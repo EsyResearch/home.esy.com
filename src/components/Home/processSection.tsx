@@ -34,17 +34,17 @@ export default function ProcessSection() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            (entry.target as HTMLElement).style.opacity = '1';
+            (entry.target as HTMLElement).style.transform = 'translateY(0)';
           }
         });
       }, observerOptions);
   
       setTimeout(() => {
         document.querySelectorAll('.process-step').forEach(el => {
-          el.style.opacity = '0';
-          el.style.transform = 'translateY(20px)';
-          el.style.transition = 'all 0.6s ease-out';
+          (el as HTMLElement).style.opacity = '0';
+          (el as HTMLElement).style.transform = 'translateY(20px)';
+          (el as HTMLElement).style.transition = 'all 0.6s ease-out';
           observer.observe(el);
         });
       }, 100);

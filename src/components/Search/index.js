@@ -20,7 +20,7 @@ const Search = () => {
         setCurrentPlaceholder((prev) => (prev + 1) % placeholders.length);
       }, 3000);
       return () => clearInterval(interval);
-    }, []);
+    }, [placeholders.length]);
   
     const handleInputChange = (e) => {
       setInputValue(e.target.value);

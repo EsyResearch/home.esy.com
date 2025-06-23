@@ -1,3 +1,6 @@
+import { ClipboardList, BookOpen, Clock, Lightbulb } from 'lucide-react';
+import ActionCard from './actionCard';
+
 const ActionCards = () => {
     const cards = [
       {

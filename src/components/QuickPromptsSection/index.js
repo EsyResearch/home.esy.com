@@ -12,7 +12,7 @@ const QuickPrompts = () => {
             key={index}
             className="px-4 py-2 bg-slate-800/50 rounded-full text-sm hover:bg-slate-700/50 transition text-gray-300 border border-slate-700"
           >
-            "{prompt}"
+            &ldquo;{prompt}&rdquo;
           </button>
         ))}
       </div>

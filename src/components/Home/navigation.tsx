@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Logo from "../../../public/esy-logos/logo-files/for-web/svg/color-no-bg.svg"
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Navigation () {
     useEffect(() => {
@@ -20,9 +21,9 @@ export default function Navigation () {
     return (
       <nav className="nav" id="nav">
         <div className="nav-inner">
-          <a href="/" className="logo">
+          <Link href="/" className="logo">
             <Image src={Logo.src} alt="Esy Logo" className="logo-icon" width={40} height={40} />
-          </a>
+          </Link>
           
           <div className="nav-links">
             {/* <a href="/essays" className="nav-link">Essays</a> */}

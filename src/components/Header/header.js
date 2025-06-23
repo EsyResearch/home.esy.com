@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Paperclip, FileText, ClipboardList, BookOpen, Clock, Lightbulb } from 'lucide-react';
+import Logo from '../Logo';
+import Navigation from '../Home/navigation';
 
 const Header = () => {
   return (
