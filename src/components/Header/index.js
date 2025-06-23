@@ -1,10 +1,9 @@
-
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Paperclip, FileText, ClipboardList, BookOpen, Clock, Lightbulb } from 'lucide-react';
-import Logo from '../Logo';
-import Navigation from './Navigation';
+import Logo from '@/components/Logo';
+import Navigation from '@/components/Home/navigation';
 
 const Header = () => {
   return (

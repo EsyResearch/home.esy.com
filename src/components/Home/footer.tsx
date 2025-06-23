@@ -1,5 +1,5 @@
 import FooterColumn from "@/components/Home/footerColumn";
-import Logo from "@/public/esy-logos/logo-files/for-web/svg/color-no-bg.svg"
+import Logo from "../../../public/esy-logos/logo-files/for-web/svg/color-no-bg.svg"
 import Image from "next/image";
 
 
