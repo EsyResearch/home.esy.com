@@ -1,12 +1,12 @@
-import Navigation from "./navigation";
-import HeroSection from "./heroSection";
-import FeaturesSection from "./featuresSection";
-import ProcessSection from "./processSection";
-import TestimonialsSection from "./testimonialSection";
-import CTASection from "./ctaSection";
-import Footer from "./footer";
+import Navigation from "@/components/Home/navigation";
+import HeroSection from "@/components/Home/heroSection";
+import FeaturesSection from "@/components/Home/featuresSection";
+import ProcessSection from "@/components/Home/processSection";
+import TestimonialsSection from "@/components/Home/testimonialSection";
+import CTASection from "@/components/Home/ctaSection";
+import Footer from "@/components/Home/footer";
 
-import "../../app/globals.css";
+import "@/app/globals.css";
 
 export default function EsyHomepage() {
     return (

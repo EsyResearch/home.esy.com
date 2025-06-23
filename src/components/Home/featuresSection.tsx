@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import FeatureCard from "./featureCard";
+import FeatureCard from "@/components/Home/featureCard";
 
 export default function FeaturesSection() {
     const features = [

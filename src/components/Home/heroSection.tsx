@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import HeroVisual from "./heroVisual";
+import HeroVisual from "@/components/Home/heroVisual";
 
 export default function HeroSection () {
     const [typedText, setTypedText] = useState('');

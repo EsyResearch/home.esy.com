@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import ProcessStep from "./processStep";
+import ProcessStep from "@/components/Home/processStep";
 
 export default function ProcessSection() {
     const steps = [
