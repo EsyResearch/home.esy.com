@@ -1,12 +1,13 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { 
-  Navigation, 
   HeroSection, 
   FeaturedEssay, 
   EssaysList, 
-  Footer 
 } from '@/components/Essays';
+import Navigation from '@/components/Home/navigation';
+import Footer from '@/components/Home/footer';
+import '@/app/globals.css';
 
 const EsyEssaysHub = () => {
   const [searchFocused, setSearchFocused] = useState(false);
@@ -95,6 +96,7 @@ const EsyEssaysHub = () => {
       lineHeight: 1.6
     }}>
       <Navigation scrolled={scrolled} />
+
       
       <HeroSection 
         searchFocused={searchFocused}
