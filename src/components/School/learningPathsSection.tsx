@@ -29,7 +29,7 @@ export default function LearningPathsSection () {
           <span className={styles.sectionLabel}>STRUCTURED LEARNING</span>
           <h2 className={styles.sectionTitle}>Choose Your Learning Path</h2>
           <p className={styles.sectionDesc}>
-            Whether you're new to AI or looking to master advanced techniques, 
+            Whether you&apos;re new to AI or looking to master advanced techniques, 
             we have a path designed for your journey.
           </p>
         </div>
