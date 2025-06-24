@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { 
   TrendingUp, FileText, Eye, Clock, Bookmark 
 } from 'lucide-react';
@@ -17,17 +18,20 @@ const EssayCard = ({ essay, index, hoveredCard, setHoveredCard }) => {
     >
       <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '3rem', alignItems: 'start' }}>
         <div>
-          <h3 style={{ 
-            fontSize: '1.5rem',
-            fontWeight: 400,
-            lineHeight: 1.3,
-            marginBottom: '0.75rem',
-            letterSpacing: '-0.01em',
-            color: hoveredCard === essay.id ? '#6366f1' : 'white',
-            transition: 'color 0.2s'
-          }}>
-            {essay.title}
-          </h3>
+          <Link href={`/essays/${essay.id}`} style={{ textDecoration: 'none' }}>
+            <h3 style={{ 
+              fontSize: '1.5rem',
+              fontWeight: 400,
+              lineHeight: 1.3,
+              marginBottom: '0.75rem',
+              letterSpacing: '-0.01em',
+              color: hoveredCard === essay.id ? '#6366f1' : 'white',
+              transition: 'color 0.2s',
+              cursor: 'pointer'
+            }}>
+              {essay.title}
+            </h3>
+          </Link>
 
           <div style={{ 
             fontSize: '0.875rem',
@@ -74,7 +78,7 @@ const EssayCard = ({ essay, index, hoveredCard, setHoveredCard }) => {
               {essay.readTime} min read
             </span>
             
-            {essay.tags.map(tag => (
+            {essay.tags && essay.tags.map(tag => (
               <span key={tag} style={{ 
                 color: 'rgba(255, 255, 255, 0.5)',
                 fontSize: '0.75rem'

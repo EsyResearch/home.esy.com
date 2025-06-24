@@ -6,7 +6,11 @@ const HeroSection = ({
   setSearchFocused, 
   activeFilter, 
   setActiveFilter, 
-  filters 
+  filters,
+  pageTitle = "Academic Essays",
+  pageSubtitle = "& Research",
+  pageDescription = "A collection of academic essays exploring contemporary issues. Each piece invites critical thinking, analysis, and continued exploration of ideas.",
+  searchPlaceholder = "Search essays..."
 }) => {
   return (
     <section style={{ 
@@ -23,9 +27,9 @@ const HeroSection = ({
             letterSpacing: '-0.03em',
             marginBottom: '1.5rem'
           }}>
-            <span style={{ fontWeight: 700 }}>Academic Essays</span>
+            <span style={{ fontWeight: 700 }}>{pageTitle}</span>
             <br />
-            <span style={{ color: 'rgba(255, 255, 255, 0.6)' }}>& Research</span>
+            <span style={{ color: 'rgba(255, 255, 255, 0.6)' }}>{pageSubtitle}</span>
           </h1>
           
           <p style={{ 
@@ -34,8 +38,7 @@ const HeroSection = ({
             marginBottom: '2.5rem',
             lineHeight: 1.6
           }}>
-            A collection of academic essays exploring contemporary issues. Each piece invites 
-            critical thinking, analysis, and continued exploration of ideas.
+            {pageDescription}
           </p>
 
           {/* Simplified Search */}
@@ -56,7 +59,7 @@ const HeroSection = ({
             <Search size={18} style={{ marginLeft: '1rem', color: 'rgba(255, 255, 255, 0.4)' }} />
             <input
               type="text"
-              placeholder="Search essays..."
+              placeholder={searchPlaceholder}
               onFocus={() => setSearchFocused(true)}
               onBlur={() => setSearchFocused(false)}
               style={{

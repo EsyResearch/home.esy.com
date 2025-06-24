@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   HeroSection, 
   FeaturedEssay, 
-  EssaysList, 
+  EssaysList
 } from '@/components/Essays';
 import Navigation from '@/components/Home/navigation';
 import Footer from '@/components/Home/footer';
@@ -96,7 +96,6 @@ const EsyEssaysHub = () => {
       lineHeight: 1.6
     }}>
       <Navigation scrolled={scrolled} />
-
       
       <HeroSection 
         searchFocused={searchFocused}

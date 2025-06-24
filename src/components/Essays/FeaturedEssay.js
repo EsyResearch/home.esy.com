@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 
 const FeaturedEssay = ({ featuredEssay }) => {
@@ -22,15 +23,20 @@ const FeaturedEssay = ({ featuredEssay }) => {
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}>
           <div>
-            <h2 style={{ 
-              fontSize: '2.25rem',
-              fontWeight: 300,
-              lineHeight: 1.2,
-              marginBottom: '1.5rem',
-              letterSpacing: '-0.02em'
-            }}>
-              {featuredEssay.title}
-            </h2>
+            <Link href={`/essays/${featuredEssay.id}`} style={{ textDecoration: 'none' }}>
+              <h2 style={{ 
+                fontSize: '2.25rem',
+                fontWeight: 300,
+                lineHeight: 1.2,
+                marginBottom: '1.5rem',
+                letterSpacing: '-0.02em',
+                color: 'white',
+                cursor: 'pointer',
+                transition: 'color 0.2s'
+              }}>
+                {featuredEssay.title}
+              </h2>
+            </Link>
 
             <div style={{ 
               fontSize: '0.875rem',
@@ -55,23 +61,25 @@ const FeaturedEssay = ({ featuredEssay }) => {
             </p>
 
             <div style={{ display: 'flex', gap: '1rem' }}>
-              <button style={{
-                padding: '0.75rem 1.5rem',
-                background: '#6366f1',
-                border: 'none',
-                borderRadius: '6px',
-                color: 'white',
-                fontSize: '0.875rem',
-                fontWeight: 500,
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                transition: 'background 0.2s'
-              }}>
-                Read Essay
-                <ArrowUpRight size={16} />
-              </button>
+              <Link href={`/essays/${featuredEssay.id}`} style={{ textDecoration: 'none' }}>
+                <button style={{
+                  padding: '0.75rem 1.5rem',
+                  background: '#6366f1',
+                  border: 'none',
+                  borderRadius: '6px',
+                  color: 'white',
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  transition: 'background 0.2s'
+                }}>
+                  Read Essay
+                  <ArrowUpRight size={16} />
+                </button>
+              </Link>
               <button style={{
                 padding: '0.75rem 1.5rem',
                 background: 'transparent',
