@@ -2,9 +2,9 @@
 import React from 'react';
 import { 
   FeaturedEssay, 
-  Footer
 } from '@/components/Essays';
 import { ClientNavigation, ClientHeroSection, ClientEssaysList } from '@/components/Essays';
+import Footer from '@/components/Home/footer';
 import '@/app/globals.css';
 
 const EsyEssaysHubClient = ({ essays, featuredEssay, filters }) => {
