@@ -1,9 +1,10 @@
 "use client"
 import React, { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import { 
   ArrowLeft, Clock, Calendar, Share2, Bookmark, 
   ChevronUp, ChevronRight, Hash, User, Building, Quote,
-  Twitter, Linkedin, Link, Check, Menu, X,
+  Twitter, Linkedin, Link as LinkIcon, Check, Menu, X,
   Sun, Moon, Type, Minus, Plus
 } from 'lucide-react';
 import { 
@@ -187,7 +188,7 @@ const EssayTemplate = ({
           <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '1rem 2rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-                <a href="/essays" style={{ 
+                <Link href="/essays" style={{ 
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.5rem',
@@ -198,7 +199,7 @@ const EssayTemplate = ({
                 }}>
                   <ArrowLeft size={16} />
                   Back to Essays
-                </a>
+                </Link>
                 
                 <button
                   onClick={() => setShowTOC(!showTOC)}
@@ -375,7 +376,7 @@ const EssayTemplate = ({
                           transition: 'background 0.2s'
                         }}
                       >
-                        {linkCopied ? <Check size={16} /> : <Link size={16} />}
+                        {linkCopied ? <Check size={16} /> : <LinkIcon size={16} />}
                         {linkCopied ? 'Copied!' : 'Copy Link'}
                       </button>
                     </div>
@@ -590,7 +591,7 @@ const EssayTemplate = ({
                     margin: '2rem 0'
                   }}>
                     <p style={{ marginBottom: '1rem' }}>
-                      "Control oil and you control nations; control food and you control the people."
+                      &ldquo;Control oil and you control nations; control food and you control the people.&rdquo;
                     </p>
                     <cite style={{ 
                       display: 'block', 
