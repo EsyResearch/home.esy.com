@@ -1,3 +1,6 @@
+import React from 'react';
+import Link from 'next/link';
+
 const Navigation = () => {
     return (
       <nav className="flex items-center space-x-8">
@@ -12,7 +15,7 @@ const Navigation = () => {
         
         {/* Product links */}
         <div className="flex items-center space-x-6">
-          <a href="/essays" className="text-gray-300 hover:text-white transition text-sm">Essays</a>
+          <Link href="/essays" className="text-gray-300 hover:text-white transition text-sm">Essays</Link>
           <a href="/school" className="text-gray-300 hover:text-white transition text-sm">School</a>
         </div>
         
