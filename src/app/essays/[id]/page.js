@@ -1,3 +1,4 @@
+import React from 'react';
 import { EssayTemplate } from '@/components/Essays';
 import { getEssayData, getRelatedEssays, getAllEssayIds } from '@/lib/essays';
 
@@ -6,7 +7,9 @@ export async function generateStaticParams() {
 }
 
 export default async function EssayDetailPage({ params }) {
-  const essayData = await getEssayData(params.id);
+  const { id } = await params;
+  const essayData = await getEssayData(id);
+  
   if (!essayData) {
     return (
       <div style={{ 
@@ -22,18 +25,14 @@ export default async function EssayDetailPage({ params }) {
       </div>
     );
   }
-  const relatedEssays = await getRelatedEssays(params.id, essayData.tags || [], 3);
+
+  const relatedEssays = await getRelatedEssays(id, essayData.tags || [], 3);
 
   return (
     <EssayTemplate
-      pageTitle={essayData.title}
-      pageSubtitle="Essay Analysis"
-      pageDescription={essayData.abstract}
-      featuredEssay={essayData}
-      essays={relatedEssays}
-      searchPlaceholder="Search related essays..."
-      showFullContent={true}
-      essayContent={essayData.contentHtml}
+      essay={essayData}
+      relatedEssays={relatedEssays}
+      isDetailPage={true}
     />
   );
 } 
