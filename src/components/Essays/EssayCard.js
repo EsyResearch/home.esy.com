@@ -5,6 +5,11 @@ import {
 } from 'lucide-react';
 
 const EssayCard = ({ essay, index, hoveredCard, setHoveredCard }) => {
+  // Ensure authors is an array and handle missing properties
+  const authors = Array.isArray(essay.authors) ? essay.authors : [essay.authors || 'Unknown Author'];
+  const metrics = essay.metrics || { citations: 0, views: 0 };
+  const tags = essay.tags || [];
+  
   return (
     <article
       onMouseEnter={() => setHoveredCard(essay.id)}
@@ -41,11 +46,11 @@ const EssayCard = ({ essay, index, hoveredCard, setHoveredCard }) => {
             alignItems: 'center',
             gap: '1rem'
           }}>
-            <span>{essay.authors.join(', ')}</span>
+            <span>{authors.join(', ')}</span>
             <span>·</span>
-            <span>{essay.institution}</span>
+            <span>{essay.institution || 'Unknown Institution'}</span>
             <span>·</span>
-            <span>{essay.publishDate}</span>
+            <span>{essay.publishDate || 'Unknown Date'}</span>
           </div>
 
           <p style={{ 
@@ -67,18 +72,18 @@ const EssayCard = ({ essay, index, hoveredCard, setHoveredCard }) => {
           }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
               <FileText size={14} />
-              {essay.metrics.citations} citations
+              {metrics.citations || 0} citations
             </span>
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
               <Eye size={14} />
-              {(essay.metrics.views / 1000).toFixed(1)}k views
+              {((metrics.views || 0) / 1000).toFixed(1)}k views
             </span>
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
               <Clock size={14} />
-              {essay.readTime} min read
+              {essay.readTime || 0} min read
             </span>
             
-            {essay.tags && essay.tags.map(tag => (
+            {tags.map(tag => (
               <span key={tag} style={{ 
                 color: 'rgba(255, 255, 255, 0.5)',
                 fontSize: '0.75rem'

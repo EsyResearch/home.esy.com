@@ -32,7 +32,8 @@ export default async function EssayDetailPage({ params }) {
     <EssayTemplate
       essay={essayData}
       relatedEssays={relatedEssays}
-      isDetailPage={true}
+      isEssayReader={true}
+      essayContent={essayData.contentHtml}
     />
   );
 } 
