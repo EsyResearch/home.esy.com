@@ -61,6 +61,210 @@
   /* Base content styles */
 }
 
+/* Global styles for HTML content within essay content */
+.content :global(h1),
+.content :global(h2),
+.content :global(h3),
+.content :global(h4),
+.content :global(h5),
+.content :global(h6) {
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.content :global(h1) {
+  font-size: 1.5rem;
+}
+
+.content :global(h2) {
+  font-size: 1.5rem;
+}
+
+.content :global(h3) {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-top: 2rem;
+  opacity: 0.9;
+}
+
+.content :global(h4) {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.content :global(h5) {
+  font-size: 0.938rem;
+  font-weight: 500;
+}
+
+.content :global(h6) {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.content :global(h1)::after,
+.content :global(h2)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 3rem;
+  height: 2px;
+  background: #6366f1;
+  border-radius: 1px;
+}
+
+.content :global(p) {
+  margin-bottom: 1.5rem;
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  line-height: inherit;
+}
+
+.content :global(p):last-child {
+  margin-bottom: 0;
+}
+
+.content :global(blockquote) {
+  margin: 2rem 0;
+  padding: 1.5rem 2rem;
+  font-style: italic;
+  position: relative;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.02) 0%, rgba(99, 102, 241, 0.05) 100%);
+  border-left: 3px solid;
+}
+
+.content :global(blockquote)::before {
+  content: '"';
+  position: absolute;
+  top: -0.5rem;
+  left: 1rem;
+  font-size: 4rem;
+  color: #6366f1;
+  opacity: 0.3;
+  font-family: serif;
+  line-height: 1;
+}
+
+.content :global(blockquote p) {
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.content :global(blockquote cite) {
+  display: block;
+  font-size: 0.875rem;
+  font-style: normal;
+  text-align: right;
+  opacity: 0.8;
+}
+
+.content :global(ul),
+.content :global(ol) {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.content :global(li) {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.content :global(ul li) {
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+.content :global(ul li)::before {
+  content: '•';
+  position: absolute;
+  left: -1rem;
+  color: #6366f1;
+  font-weight: bold;
+}
+
+.content :global(a) {
+  color: #6366f1;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.content :global(a:hover) {
+  border-bottom-color: #6366f1;
+}
+
+.content :global(pre) {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.875rem;
+}
+
+.content :global(code) {
+  background: rgba(99, 102, 241, 0.1);
+  padding: 0.125rem 0.25rem;
+  border-radius: 3px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.875em;
+}
+
+.content :global(strong),
+.content :global(b) {
+  font-weight: 600;
+}
+
+.content :global(em),
+.content :global(i) {
+  font-style: italic;
+}
+
+.content :global(hr) {
+  border: none;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.1;
+  margin: 2rem 0;
+}
+
+.content :global(table) {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+}
+
+.content :global(th),
+.content :global(td) {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid;
+  border-color: inherit;
+  opacity: 0.3;
+}
+
+.content :global(th) {
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.content :global(img) {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
 .section {
   margin-bottom: 3rem;
   scroll-margin-top: 80px;
@@ -158,62 +362,6 @@
   opacity: 0.8;
 }
 
-/* Lists */
-.content ul,
-.content ol {
-  margin: 1.5rem 0;
-  padding-left: 1.5rem;
-}
-
-.content li {
-  margin-bottom: 0.75rem;
-  line-height: 1.6;
-}
-
-.content ul li {
-  position: relative;
-  padding-left: 0.5rem;
-}
-
-.content ul li::before {
-  content: '•';
-  position: absolute;
-  left: -1rem;
-  color: #6366f1;
-  font-weight: bold;
-}
-
-/* Links */
-.content a {
-  color: #6366f1;
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: all 0.2s ease;
-}
-
-.content a:hover {
-  border-bottom-color: #6366f1;
-}
-
-/* Code blocks */
-.content pre {
-  background: rgba(0, 0, 0, 0.05);
-  padding: 1rem;
-  border-radius: 6px;
-  overflow-x: auto;
-  margin: 1.5rem 0;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-size: 0.875rem;
-}
-
-.content code {
-  background: rgba(99, 102, 241, 0.1);
-  padding: 0.125rem 0.25rem;
-  border-radius: 3px;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-size: 0.875em;
-}
-
 /* Theme variants */
 .titleSmall {
   font-size: 1.875rem;
@@ -266,6 +414,41 @@
 
 .contentLight {
   color: rgba(0, 0, 0, 0.7);
+}
+
+/* Theme variants for global content styles */
+.contentDark :global(h1),
+.contentDark :global(h2),
+.contentDark :global(h3),
+.contentDark :global(h4),
+.contentDark :global(h5),
+.contentDark :global(h6) {
+  color: #ffffff;
+}
+
+.contentLight :global(h1),
+.contentLight :global(h2),
+.contentLight :global(h3),
+.contentLight :global(h4),
+.contentLight :global(h5),
+.contentLight :global(h6) {
+  color: #000000;
+}
+
+.contentDark :global(blockquote) {
+  border-left-color: rgba(255, 255, 255, 0.05);
+}
+
+.contentLight :global(blockquote) {
+  border-left-color: rgba(0, 0, 0, 0.05);
+}
+
+.contentDark :global(hr) {
+  color: rgba(255, 255, 255, 0.1);
+}
+
+.contentLight :global(hr) {
+  color: rgba(0, 0, 0, 0.1);
 }
 
 .sectionTitleDark {
@@ -343,6 +526,28 @@
     font-size: 3rem;
     top: -0.25rem;
   }
+  
+  /* Responsive global styles */
+  .content :global(h1),
+  .content :global(h2) {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  .content :global(h3) {
+    font-size: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .content :global(blockquote) {
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .content :global(blockquote)::before {
+    font-size: 3rem;
+    top: -0.25rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -375,6 +580,24 @@
   .blockquote::before {
     font-size: 2.5rem;
   }
+  
+  /* Responsive global styles */
+  .content :global(h1),
+  .content :global(h2) {
+    font-size: 1.125rem;
+  }
+  
+  .content :global(h3) {
+    font-size: 0.938rem;
+  }
+  
+  .content :global(blockquote) {
+    padding: 0.75rem 1rem;
+  }
+  
+  .content :global(blockquote)::before {
+    font-size: 2.5rem;
+  }
 }
 
 /* Accessibility */
@@ -396,6 +619,11 @@
   }
   
   .content a {
+    color: inherit;
+    text-decoration: underline;
+  }
+  
+  .content :global(a) {
     color: inherit;
     text-decoration: underline;
   }
