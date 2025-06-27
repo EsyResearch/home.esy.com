@@ -7,10 +7,15 @@ This directory contains reference-only code and UI templates for AI-assisted dev
   - Files here are NOT meant to be imported, compiled, or executed as part of the app.
   - Used for AI/codegen or design review only.
 
+- **File Naming Convention:**
+  - Use `.ai-reference.txt` suffix for all reference templates
+  - Examples: `schoolViewTemplate.ai-reference.txt`, `essayViewTemplate.ai-reference.txt`
+  - This clearly indicates the file is for AI reference only
+
 - **How it works:**
   - Excluded from TypeScript and ESLint via `tsconfig.json` and ESLint ignore patterns.
   - Safe to keep in git for versioning and reference.
-  - You may use any file extension, but `.template`, `.txt`, or `.md` are recommended for non-code files.
+  - `.txt` extension prevents editors from trying to parse as code.
 
 - **Best Practices:**
   - Never import from this directory in your app code.
