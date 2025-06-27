@@ -47,11 +47,17 @@
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 4px 24px rgba(99, 102, 241, 0.3);
-  transition: transform 0.2s;
+  transition: all 0.2s ease;
+  z-index: 90;
 }
 
 .backToTopButton:hover {
   transform: translateY(-2px);
+  box-shadow: 0 6px 32px rgba(99, 102, 241, 0.4);
+}
+
+.backToTopButton:active {
+  transform: translateY(0);
 }
 
 /* Theme variants */
@@ -63,4 +69,44 @@
 .containerLight {
   background-color: #ffffff;
   color: #000000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mainContent {
+    padding: 2rem 1rem 4rem;
+  }
+  
+  .backToTopButton {
+    bottom: 1rem;
+    right: 1rem;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 1.5rem 0.75rem 3rem;
+  }
+  
+  .backToTopButton {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .container,
+  .progressBarTrack,
+  .backToTopButton {
+    transition: none;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+.backToTopButton:focus {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
 } 

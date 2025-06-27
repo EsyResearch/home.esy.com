@@ -16,18 +16,24 @@ const TableOfContents = ({
   const closeButtonClass = `${styles.closeButton} ${theme === 'dark' ? styles.closeButtonDark : styles.closeButtonLight}`;
 
   return (
-    <div className={sidebarClass}>
+    <div 
+      className={sidebarClass}
+      id="table-of-contents"
+      role="navigation"
+      aria-label="Table of contents"
+    >
       <div className={styles.header}>
         <h3 className={titleClass}>Contents</h3>
         <button
           className={closeButtonClass}
           onClick={() => setShowTOC(false)}
+          aria-label="Close table of contents"
         >
-          <X size={18} />
+          <X size={18} aria-hidden="true" />
         </button>
       </div>
       
-      <nav className={styles.nav}>
+      <nav className={styles.nav} role="navigation" aria-label="Essay sections">
         {sections.map(section => {
           const isActive = activeSection === section.id;
           const navLinkClass = `${styles.navLink} ${theme === 'dark' ? styles.navLinkDark : styles.navLinkLight} ${isActive ? styles.navLinkActive : ''} ${isActive ? (theme === 'dark' ? styles.navLinkActiveDark : styles.navLinkActiveLight) : ''} ${theme === 'dark' ? styles.navLinkHoverDark : styles.navLinkHoverLight}`;
@@ -38,9 +44,11 @@ const TableOfContents = ({
               href={`#${section.id}`}
               onClick={() => setShowTOC(false)}
               className={navLinkClass}
+              aria-current={isActive ? 'location' : undefined}
+              aria-label={`Go to ${section.title} section`}
             >
               <span>{section.title}</span>
-              <span className={styles.readTime}>
+              <span className={styles.readTime} aria-label={`${section.readTime} minutes to read`}>
                 {section.readTime} min
               </span>
             </a>

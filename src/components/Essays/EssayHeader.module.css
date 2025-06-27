@@ -3,6 +3,7 @@
   top: 0;
   z-index: 50;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .headerContainer {
@@ -29,7 +30,13 @@
   gap: 0.5rem;
   text-decoration: none;
   font-size: 0.875rem;
-  transition: color 0.2s;
+  transition: all 0.2s ease;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+.backLink:hover {
+  background: rgba(99, 102, 241, 0.1);
 }
 
 .contentsButton {
@@ -41,7 +48,12 @@
   border-radius: 6px;
   font-size: 0.813rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+}
+
+.contentsButton:hover {
+  background: rgba(99, 102, 241, 0.1);
+  transform: translateY(-1px);
 }
 
 .rightSection {
@@ -56,6 +68,11 @@
   gap: 0.5rem;
   padding: 0.25rem;
   border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.fontSizeControls:hover {
+  background: rgba(99, 102, 241, 0.1);
 }
 
 .fontSizeButton {
@@ -63,7 +80,12 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+.fontSizeButton:hover:not(:disabled) {
+  background: rgba(99, 102, 241, 0.1);
 }
 
 .fontSizeButton:disabled {
@@ -76,6 +98,13 @@
   background: transparent;
   border: none;
   cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.themeButton:hover {
+  background: rgba(99, 102, 241, 0.1);
+  transform: scale(1.05);
 }
 
 .actionButton {
@@ -83,11 +112,21 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  transition: color 0.2s;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+}
+
+.actionButton:hover {
+  background: rgba(99, 102, 241, 0.1);
+  transform: scale(1.05);
 }
 
 .bookmarked {
   color: #6366f1;
+}
+
+.bookmarked:hover {
+  background: rgba(99, 102, 241, 0.15);
 }
 
 .shareMenuContainer {
@@ -103,6 +142,18 @@
   border-radius: 8px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
   min-width: 160px;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .shareButton {
@@ -116,21 +167,22 @@
   font-size: 0.813rem;
   cursor: pointer;
   border-radius: 6px;
-  transition: background 0.2s;
+  transition: all 0.2s ease;
 }
 
 .shareButton:hover {
   background: rgba(99, 102, 241, 0.1);
+  transform: translateX(2px);
 }
 
 /* Theme variants */
 .headerDark {
-  background-color: #0a0a0f;
+  background-color: rgba(10, 10, 15, 0.95);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .headerLight {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.95);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -208,4 +260,84 @@
 
 .shareButtonLight {
   color: #000000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .headerContainer {
+    padding: 0.75rem 1rem;
+  }
+  
+  .leftSection {
+    gap: 1rem;
+  }
+  
+  .rightSection {
+    gap: 0.5rem;
+  }
+  
+  .contentsButton {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .backLink {
+    font-size: 0.813rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .headerContainer {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .leftSection {
+    gap: 0.5rem;
+  }
+  
+  .rightSection {
+    gap: 0.25rem;
+  }
+  
+  .fontSizeControls {
+    padding: 0.125rem;
+  }
+  
+  .fontSizeButton {
+    padding: 0.25rem;
+  }
+  
+  .themeButton,
+  .actionButton {
+    padding: 0.375rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .backLink,
+  .contentsButton,
+  .fontSizeControls,
+  .fontSizeButton,
+  .themeButton,
+  .actionButton,
+  .shareButton {
+    transition: none;
+  }
+  
+  .shareMenu {
+    animation: none;
+  }
+}
+
+/* Focus styles */
+.backLink:focus,
+.contentsButton:focus,
+.fontSizeButton:focus,
+.themeButton:focus,
+.actionButton:focus,
+.shareButton:focus {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
 } 

@@ -7,6 +7,18 @@
   padding: 2rem;
   overflow-y: auto;
   z-index: 40;
+  animation: slideInLeft 0.3s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .header {
@@ -14,11 +26,16 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid;
+  border-color: inherit;
+  opacity: 0.3;
 }
 
 .title {
   font-size: 1rem;
   font-weight: 600;
+  margin: 0;
 }
 
 .closeButton {
@@ -26,36 +43,75 @@
   background: transparent;
   border: none;
   cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeButton:hover {
+  background: rgba(99, 102, 241, 0.1);
+  transform: scale(1.1);
 }
 
 .nav {
   display: flex;
   flex-direction: column;
+  gap: 0.25rem;
 }
 
 .navLink {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0.75rem 1rem;
-  margin-bottom: 0.5rem;
   border-radius: 0 6px 6px 0;
   text-decoration: none;
   font-size: 0.875rem;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
   border-left: 3px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.navLink::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.05) 0%, transparent 100%);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.navLink:hover::before {
+  transform: translateX(0);
 }
 
 .navLink:hover {
-  background: rgba(99, 102, 241, 0.05);
+  transform: translateX(4px);
 }
 
 .navLinkActive {
   border-left: 3px solid #6366f1;
+  font-weight: 500;
+}
+
+.navLinkActive::before {
+  transform: translateX(0);
 }
 
 .readTime {
   font-size: 0.75rem;
   opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.navLink:hover .readTime {
+  opacity: 0.8;
 }
 
 /* Theme variants */
@@ -109,4 +165,105 @@
 
 .navLinkHoverLight:hover {
   background: rgba(99, 102, 241, 0.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 280px;
+    padding: 1.5rem;
+    top: 60px;
+  }
+  
+  .header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .title {
+    font-size: 0.938rem;
+  }
+  
+  .navLink {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.813rem;
+  }
+  
+  .readTime {
+    font-size: 0.688rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+    top: 55px;
+    padding: 1rem;
+  }
+  
+  .header {
+    margin-bottom: 1rem;
+  }
+  
+  .title {
+    font-size: 0.875rem;
+  }
+  
+  .navLink {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .readTime {
+    font-size: 0.625rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar {
+    animation: none;
+  }
+  
+  .navLink,
+  .closeButton {
+    transition: none;
+  }
+  
+  .navLink::before {
+    transition: none;
+  }
+}
+
+/* Focus styles */
+.closeButton:focus,
+.navLink:focus {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* Scrollbar styling */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.2);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.3);
+}
+
+/* Dark theme scrollbar */
+.sidebarDark::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebarDark::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
 } 

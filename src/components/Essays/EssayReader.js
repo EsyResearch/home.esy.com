@@ -45,6 +45,18 @@ const EssayReader = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Keyboard navigation for TOC
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && showTOC) {
+        setShowTOC(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [showTOC]);
+
   const handleShare = async (platform) => {
     await shareHandler(platform, essay, setLinkCopied);
     setShowShareMenu(false);
@@ -57,9 +69,16 @@ const EssayReader = ({
   const progressBarClass = `${styles.progressBar} ${theme === 'dark' ? styles.progressBarTrackDark : styles.progressBarTrackLight}`;
 
   return (
-    <div className={containerClass}>
+    <div className={containerClass} role="main" aria-label="Essay Reader">
       {/* Progress Bar */}
-      <div className={progressBarClass}>
+      <div 
+        className={progressBarClass}
+        role="progressbar"
+        aria-label="Reading progress"
+        aria-valuenow={Math.round(scrollProgress)}
+        aria-valuemin="0"
+        aria-valuemax="100"
+      >
         <div 
           className={styles.progressBarTrack}
           style={{ width: `${scrollProgress}%` }}
@@ -97,7 +116,7 @@ const EssayReader = ({
       )}
 
       {/* Main Content */}
-      <article className={styles.mainContent}>
+      <article className={styles.mainContent} ref={contentRef}>
         <EssayContent
           essay={essay}
           essayContent={essayContent}
@@ -119,6 +138,8 @@ const EssayReader = ({
         <button
           className={styles.backToTopButton}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          aria-label="Back to top"
+          title="Back to top"
         >
           <ChevronUp size={20} color="white" />
         </button>
