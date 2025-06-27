@@ -43,6 +43,309 @@
   color: #ffffff;
 }
 
+/* Key Insight Box */
+.keyInsight {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.keyInsightHeader {
+  color: #e0e7ff;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Numbered Components */
+.componentGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.componentItem {
+  display: flex;
+  gap: 1rem;
+}
+
+.componentNumber {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: white;
+}
+
+.componentContent h4 {
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.componentContent p {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  margin-bottom: 0;
+}
+
+/* Principles Grid */
+.principlesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.principleCard {
+  background: #16161f;
+  border: 1px solid #2a2a3a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.principleCard:hover {
+  border-color: rgba(99, 102, 241, 0.5);
+  transform: translateY(-4px);
+}
+
+.principleIcon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.principleTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.principleDesc {
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+
+/* Advanced Strategies */
+.strategiesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.strategyCard {
+  background: linear-gradient(135deg, #16161f 0%, #1e1e2a 100%);
+  border: 1px solid #2a2a3a;
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s;
+}
+
+.strategyCard:hover {
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.strategyHeader {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.strategyNumber {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: white;
+}
+
+.strategyExample {
+  background: rgba(10, 10, 15, 0.5);
+  border: 1px solid #2a2a3a;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.strategyExample code {
+  font-size: 0.875rem;
+  color: #e0e7ff;
+}
+
+/* Interactive Example */
+.interactiveExample {
+  background: #16161f;
+  border: 1px solid #2a2a3a;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.exampleHeader {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.exampleContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.promptBox {
+  background: #1e1e2a;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.promptLabel {
+  font-size: 0.875rem;
+  color: #6366f1;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.promptText {
+  color: #e0e7ff;
+  font-family: monospace;
+  font-size: 0.875rem;
+}
+
+.resultBox {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.resultLabel {
+  font-size: 0.875rem;
+  color: #6366f1;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* Video Tutorial Card */
+.videoCard {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.videoHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.videoTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.videoDuration {
+  font-size: 0.875rem;
+  color: #6366f1;
+}
+
+.videoPlayer {
+  aspect-ratio: 16 / 9;
+  background: #0a0a0f;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.playButton {
+  width: 64px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.playButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* Call to Action */
+.ctaSection {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  border-radius: 16px;
+  padding: 2rem;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.ctaTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.ctaDescription {
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.ctaButton {
+  padding: 0.75rem 1.5rem;
+  background: white;
+  color: #6366f1;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.ctaButton:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Code blocks */
 .codeBlock {
   background: #16161f;
   border: 1px solid #2a2a3a;
@@ -84,4 +387,39 @@
   font-family: monospace;
   margin: 0;
   white-space: pre-wrap;
+}
+
+/* Blockquotes */
+.content blockquote {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-left: 4px solid #6366f1;
+}
+
+.content blockquote p {
+  margin-bottom: 0;
+  color: #e0e7ff;
+}
+
+/* Enhanced typography */
+.content h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.content hr {
+  border: none;
+  height: 1px;
+  background: #2a2a3a;
+  margin: 2rem 0;
+}
+
+.content em {
+  color: #e0e7ff;
+  font-style: italic;
 } 

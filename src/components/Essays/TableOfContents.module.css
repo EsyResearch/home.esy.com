@@ -109,7 +109,7 @@
 
 .navLinkHoverLight:hover {
   background: rgba(99, 102, 241, 0.05);
-}
+} 
 
 /* Responsive Design */
 @media (max-width: 768px) {
