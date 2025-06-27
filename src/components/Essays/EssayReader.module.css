@@ -1,0 +1,66 @@
+.container {
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  transition: all 0.3s ease;
+}
+
+.progressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 100;
+}
+
+.progressBarTrack {
+  height: 100%;
+  background: #6366f1;
+  transition: width 0.1s ease;
+}
+
+.progressBarTrackDark {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.progressBarTrackLight {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.mainContent {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem;
+}
+
+.backToTopButton {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  background: #6366f1;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.3);
+  transition: transform 0.2s;
+}
+
+.backToTopButton:hover {
+  transform: translateY(-2px);
+}
+
+/* Theme variants */
+.containerDark {
+  background-color: #0a0a0f;
+  color: #ffffff;
+}
+
+.containerLight {
+  background-color: #ffffff;
+  color: #000000;
+} 

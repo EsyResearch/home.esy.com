@@ -1,0 +1,168 @@
+.header {
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+}
+
+.metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: 0.875rem;
+  padding-bottom: 2rem;
+}
+
+.metadataItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.abstract {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  border-left: 3px solid #6366f1;
+  border-radius: 0 8px 8px 0;
+}
+
+.abstractTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #6366f1;
+  margin-bottom: 1rem;
+}
+
+.content {
+  /* Base content styles */
+}
+
+.section {
+  margin-bottom: 3rem;
+  scroll-margin-top: 80px;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+}
+
+.sectionSubtitle {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.paragraph {
+  margin-bottom: 1.5rem;
+}
+
+.blockquote {
+  margin-left: 0;
+  padding-left: 2rem;
+  font-style: italic;
+  margin: 2rem 0;
+}
+
+.blockquoteText {
+  margin-bottom: 1rem;
+}
+
+.cite {
+  display: block;
+  font-size: 0.875rem;
+  font-style: normal;
+}
+
+/* Theme variants */
+.titleSmall {
+  font-size: 1.875rem;
+}
+
+.titleDefault {
+  font-size: 2.25rem;
+}
+
+.titleLarge {
+  font-size: 2.5rem;
+}
+
+.metadataDark {
+  color: rgba(255, 255, 255, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.metadataLight {
+  color: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.abstractDark {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.abstractLight {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.contentSmall {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.contentDefault {
+  font-size: 1.063rem;
+  line-height: 1.7;
+}
+
+.contentLarge {
+  font-size: 1.25rem;
+  line-height: 1.8;
+}
+
+.contentDark {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.contentLight {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.sectionTitleDark {
+  color: #ffffff;
+}
+
+.sectionTitleLight {
+  color: #000000;
+}
+
+.sectionSubtitleDark {
+  color: #ffffff;
+}
+
+.sectionSubtitleLight {
+  color: #000000;
+}
+
+.blockquoteDark {
+  border-left: 3px solid rgba(255, 255, 255, 0.05);
+}
+
+.blockquoteLight {
+  border-left: 3px solid rgba(0, 0, 0, 0.05);
+}
+
+.citeDark {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.citeLight {
+  color: rgba(0, 0, 0, 0.7);
+} 

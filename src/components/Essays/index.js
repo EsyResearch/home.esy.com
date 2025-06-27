@@ -8,3 +8,13 @@ export { default as EssayTemplate } from './EssayTemplate';
 export { default as ClientEssaysList } from './ClientEssaysList';
 export { default as ClientHeroSection } from './ClientHeroSection';
 export { default as ClientNavigation } from './ClientNavigation';
+
+// New subcomponents
+export { default as EssayReader } from './EssayReader';
+export { default as EssayHeader } from './EssayHeader';
+export { default as TableOfContents } from './TableOfContents';
+export { default as EssayContent } from './EssayContent';
+export { default as EssayMetadata } from './EssayMetadata';
+
+// Utilities
+export * from './essayUtils';

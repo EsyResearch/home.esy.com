@@ -1,0 +1,169 @@
+.authorSection {
+  margin-top: 4rem;
+  padding-top: 3rem;
+}
+
+.relatedSection {
+  margin-top: 4rem;
+  padding-top: 3rem;
+}
+
+.sectionTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #6366f1;
+  margin-bottom: 2rem;
+}
+
+.relatedTitle {
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+.authorsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.authorItem {
+  /* Individual author item styles */
+}
+
+.authorName {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.authorBio {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.relatedList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.relatedItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.relatedItem:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.relatedContent {
+  flex: 1;
+}
+
+.relatedTitle {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.relatedMeta {
+  font-size: 0.813rem;
+}
+
+.relatedArrow {
+  color: inherit;
+  opacity: 0.7;
+}
+
+/* Theme variants */
+.authorSectionDark {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.authorSectionLight {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.relatedSectionDark {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.relatedSectionLight {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.sectionTitleDark {
+  color: #6366f1;
+}
+
+.sectionTitleLight {
+  color: #6366f1;
+}
+
+.relatedTitleDark {
+  color: #ffffff;
+}
+
+.relatedTitleLight {
+  color: #000000;
+}
+
+.authorNameDark {
+  color: #ffffff;
+}
+
+.authorNameLight {
+  color: #000000;
+}
+
+.authorBioDark {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.authorBioLight {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.relatedItemDark {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+.relatedItemLight {
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: #000000;
+}
+
+.relatedItemDark:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.relatedItemLight:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.relatedTitleDark {
+  color: #ffffff;
+}
+
+.relatedTitleLight {
+  color: #000000;
+}
+
+.relatedMetaDark {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.relatedMetaLight {
+  color: rgba(0, 0, 0, 0.7);
+} 
