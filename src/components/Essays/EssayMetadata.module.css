@@ -15,8 +15,6 @@
   letter-spacing: 0.1em;
   color: #6366f1;
   margin-bottom: 2rem;
-  position: relative;
-  padding-bottom: 0.5rem;
 }
 
 .sectionTitle::after {
@@ -102,19 +100,17 @@
 .relatedList {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .relatedItem {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.25rem;
+  padding: 1rem;
   border-radius: 8px;
   text-decoration: none;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  transition: all 0.2s;
 }
 
 .relatedItem::before {
@@ -134,40 +130,27 @@
 }
 
 .relatedItem:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .relatedContent {
   flex: 1;
-  position: relative;
-  z-index: 1;
 }
 
 .relatedTitle {
   font-size: 1rem;
   font-weight: 500;
   margin-bottom: 0.25rem;
-  transition: color 0.2s ease;
 }
 
 .relatedMeta {
   font-size: 0.813rem;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
 }
 
 .relatedArrow {
   color: inherit;
-  opacity: 0.5;
-  transition: all 0.2s ease;
-  position: relative;
-  z-index: 1;
-}
-
-.relatedItem:hover .relatedArrow {
-  opacity: 1;
-  transform: translateX(4px);
+  opacity: 0.7;
 }
 
 /* Theme variants */
@@ -233,12 +216,10 @@
 
 .relatedItemDark:hover {
   background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(99, 102, 241, 0.2);
 }
 
 .relatedItemLight:hover {
   background: rgba(0, 0, 0, 0.05);
-  border-color: rgba(99, 102, 241, 0.2);
 }
 
 .relatedTitleDark {

@@ -33,19 +33,6 @@
   padding: 2rem;
   border-left: 3px solid #6366f1;
   border-radius: 0 8px 8px 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.abstract::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.02) 0%, rgba(99, 102, 241, 0.05) 100%);
-  z-index: -1;
 }
 
 .abstractTitle {
@@ -86,8 +73,8 @@
 .content :global(h3) {
   font-size: 1.125rem;
   font-weight: 500;
+  margin-bottom: 1rem;
   margin-top: 2rem;
-  opacity: 0.9;
 }
 
 .content :global(h4) {
@@ -105,24 +92,8 @@
   font-weight: 500;
 }
 
-.content :global(h1)::after,
-.content :global(h2)::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 3rem;
-  height: 2px;
-  background: #6366f1;
-  border-radius: 1px;
-}
-
 .content :global(p) {
   margin-bottom: 1.5rem;
-  text-align: justify;
-  hyphens: auto;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
   line-height: inherit;
 }
 
@@ -131,63 +102,42 @@
 }
 
 .content :global(blockquote) {
-  margin: 2rem 0;
-  padding: 1.5rem 2rem;
-  font-style: italic;
-  position: relative;
-  border-radius: 8px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.02) 0%, rgba(99, 102, 241, 0.05) 100%);
+  margin-left: 0;
+  padding-left: 2rem;
   border-left: 3px solid;
-}
-
-.content :global(blockquote)::before {
-  content: '"';
-  position: absolute;
-  top: -0.5rem;
-  left: 1rem;
-  font-size: 4rem;
-  color: #6366f1;
-  opacity: 0.3;
-  font-family: serif;
-  line-height: 1;
+  font-style: italic;
+  margin: 2rem 0;
 }
 
 .content :global(blockquote p) {
   margin-bottom: 1rem;
-  position: relative;
-  z-index: 1;
 }
 
 .content :global(blockquote cite) {
   display: block;
   font-size: 0.875rem;
   font-style: normal;
-  text-align: right;
-  opacity: 0.8;
 }
 
 .content :global(ul),
 .content :global(ol) {
-  margin: 1.5rem 0;
-  padding-left: 1.5rem;
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1.5rem;
 }
 
 .content :global(li) {
-  margin-bottom: 0.75rem;
-  line-height: 1.6;
-}
-
-.content :global(ul li) {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
   position: relative;
-  padding-left: 0.5rem;
 }
 
 .content :global(ul li)::before {
   content: '•';
   position: absolute;
-  left: -1rem;
+  left: 0;
+  top: 0.125rem;
   color: #6366f1;
-  font-weight: bold;
 }
 
 .content :global(a) {
@@ -268,42 +218,12 @@
 .section {
   margin-bottom: 3rem;
   scroll-margin-top: 80px;
-  position: relative;
-}
-
-.section::before {
-  content: '';
-  position: absolute;
-  left: -2rem;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, transparent, rgba(99, 102, 241, 0.1), transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.section:hover::before {
-  opacity: 1;
 }
 
 .sectionTitle {
   font-size: 1.5rem;
   font-weight: 400;
   margin-bottom: 1.5rem;
-  position: relative;
-  padding-bottom: 0.5rem;
-}
-
-.sectionTitle::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 3rem;
-  height: 2px;
-  background: #6366f1;
-  border-radius: 1px;
 }
 
 .sectionSubtitle {
@@ -311,16 +231,10 @@
   font-weight: 500;
   margin-bottom: 1rem;
   margin-top: 2rem;
-  color: inherit;
-  opacity: 0.9;
 }
 
 .paragraph {
   margin-bottom: 1.5rem;
-  text-align: justify;
-  hyphens: auto;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
 }
 
 .paragraph:last-child {
@@ -328,38 +242,21 @@
 }
 
 .blockquote {
-  margin: 2rem 0;
-  padding: 1.5rem 2rem;
+  margin-left: 0;
+  padding-left: 2rem;
+  border-left: 3px solid;
   font-style: italic;
-  position: relative;
-  border-radius: 8px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.02) 0%, rgba(99, 102, 241, 0.05) 100%);
-}
-
-.blockquote::before {
-  content: '"';
-  position: absolute;
-  top: -0.5rem;
-  left: 1rem;
-  font-size: 4rem;
-  color: #6366f1;
-  opacity: 0.3;
-  font-family: serif;
-  line-height: 1;
+  margin: 2rem 0;
 }
 
 .blockquoteText {
   margin-bottom: 1rem;
-  position: relative;
-  z-index: 1;
 }
 
 .cite {
   display: block;
   font-size: 0.875rem;
   font-style: normal;
-  text-align: right;
-  opacity: 0.8;
 }
 
 /* Theme variants */
@@ -468,11 +365,11 @@
 }
 
 .blockquoteDark {
-  border-left: 3px solid rgba(255, 255, 255, 0.05);
+  border-left-color: rgba(255, 255, 255, 0.05);
 }
 
 .blockquoteLight {
-  border-left: 3px solid rgba(0, 0, 0, 0.05);
+  border-left-color: rgba(0, 0, 0, 0.05);
 }
 
 .citeDark {
@@ -517,16 +414,6 @@
     margin-top: 1.5rem;
   }
   
-  .blockquote {
-    padding: 1rem 1.5rem;
-    margin: 1.5rem 0;
-  }
-  
-  .blockquote::before {
-    font-size: 3rem;
-    top: -0.25rem;
-  }
-  
   /* Responsive global styles */
   .content :global(h1),
   .content :global(h2) {
@@ -537,16 +424,6 @@
   .content :global(h3) {
     font-size: 1rem;
     margin-top: 1.5rem;
-  }
-  
-  .content :global(blockquote) {
-    padding: 1rem 1.5rem;
-    margin: 1.5rem 0;
-  }
-  
-  .content :global(blockquote)::before {
-    font-size: 3rem;
-    top: -0.25rem;
   }
 }
 
@@ -573,14 +450,6 @@
     font-size: 0.938rem;
   }
   
-  .blockquote {
-    padding: 0.75rem 1rem;
-  }
-  
-  .blockquote::before {
-    font-size: 2.5rem;
-  }
-  
   /* Responsive global styles */
   .content :global(h1),
   .content :global(h2) {
@@ -590,34 +459,10 @@
   .content :global(h3) {
     font-size: 0.938rem;
   }
-  
-  .content :global(blockquote) {
-    padding: 0.75rem 1rem;
-  }
-  
-  .content :global(blockquote)::before {
-    font-size: 2.5rem;
-  }
-}
-
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .section::before,
-  .blockquote::before {
-    transition: none;
-  }
 }
 
 /* Print styles */
 @media print {
-  .section::before {
-    display: none;
-  }
-  
-  .blockquote::before {
-    display: none;
-  }
-  
   .content a {
     color: inherit;
     text-decoration: underline;
