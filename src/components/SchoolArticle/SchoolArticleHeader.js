@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from 'react';
+import styles from './SchoolArticleHeader.module.css';
 import Navigation from '@/components/Home/navigation';
 import SchoolArticleActions from './SchoolArticleActions';
 
@@ -18,41 +19,17 @@ export default function SchoolArticleHeader({ article }) {
       <Navigation />
 
       {/* Hero Section */}
-      <section style={{ position: 'relative', paddingTop: '8rem', paddingBottom: '4rem', overflow: 'hidden' }}>
+      <section className={styles.heroSection}>
         {/* Background Effects */}
-        <div style={{ position: 'absolute', inset: 0 }}>
-          <div style={{
-            position: 'absolute',
-            top: '-50%',
-            right: '-20%',
-            width: '800px',
-            height: '800px',
-            background: 'radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%)',
-            animation: 'float 20s ease-in-out infinite'
-          }} />
-          <div style={{
-            position: 'absolute',
-            bottom: '-50%',
-            left: '-20%',
-            width: '600px',
-            height: '600px',
-            background: 'radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%)',
-            animation: 'float 25s ease-in-out infinite reverse'
-          }} />
+        <div className={styles.backgroundEffects}>
+          <div className={styles.backgroundEffect1} />
+          <div className={styles.backgroundEffect2} />
         </div>
 
-        <div style={{ position: 'relative', maxWidth: '1000px', margin: '0 auto', padding: '0 2rem' }}>
+        <div className={styles.heroContent}>
           {/* Back to School Link */}
-          <div style={{ marginBottom: '1.5rem' }}>
-            <a href="/school" style={{ 
-              color: '#94a3b8', 
-              textDecoration: 'none', 
-              transition: 'color 0.2s',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              fontSize: '0.875rem'
-            }}>
+          <div className={styles.backLink}>
+            <a href="/school">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <polyline points="15 18 9 12 15 6"></polyline>
               </svg>
@@ -61,59 +38,39 @@ export default function SchoolArticleHeader({ article }) {
           </div>
 
           {/* Category Badge */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-            <span style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.5rem 1rem',
-              background: 'rgba(99, 102, 241, 0.1)',
-              border: '1px solid rgba(99, 102, 241, 0.2)',
-              borderRadius: '24px',
-              color: '#6366f1',
-              fontSize: '0.875rem',
-              fontWeight: 600
-            }}>
-              <div style={{ width: '8px', height: '8px', background: '#6366f1', borderRadius: '50%', animation: 'pulse 2s ease-in-out infinite' }} />
+          <div className={styles.categoryContainer}>
+            <span className={styles.categoryBadge}>
+              <div className={styles.categoryDot} />
               {article.category}
             </span>
-            <span style={{ color: '#64748b', fontSize: '0.875rem' }}>Featured Article</span>
+            <span className={styles.featuredLabel}>Featured Article</span>
           </div>
 
           {/* Title */}
-          <h1 style={{
-            fontSize: '4rem',
-            fontWeight: 800,
-            lineHeight: 1.1,
-            marginBottom: '1.5rem',
-            background: 'linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #c7d2fe 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text'
-          }}>
+          <h1 className={styles.title}>
             {article.title}
           </h1>
 
           {/* Subtitle */}
-          <p style={{ fontSize: '1.5rem', color: '#94a3b8', marginBottom: '2rem', lineHeight: 1.5 }}>
+          <p className={styles.subtitle}>
             {article.subtitle}
           </p>
 
           {/* Meta Info */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '2rem', marginBottom: '2rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <div className={styles.metaContainer}>
+            <div className={styles.authorInfo}>
               <img 
                 src={article.author.avatar}
                 alt={article.author.name}
-                style={{ width: '48px', height: '48px', borderRadius: '50%', border: '2px solid #2a2a3a' }}
+                className={styles.authorAvatar}
               />
-              <div>
-                <p style={{ fontWeight: 600, marginBottom: '0.25rem' }}>{article.author.name}</p>
-                <p style={{ fontSize: '0.875rem', color: '#64748b' }}>{article.author.title}</p>
+              <div className={styles.authorDetails}>
+                <h4>{article.author.name}</h4>
+                <p className={styles.authorTitle}>{article.author.title}</p>
               </div>
             </div>
-            <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.875rem', color: '#64748b' }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <div className={styles.metaStats}>
+              <span className={styles.metaStat}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                   <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -122,14 +79,14 @@ export default function SchoolArticleHeader({ article }) {
                 </svg>
                 {article.metadata.date}
               </span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <span className={styles.metaStat}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
                 {article.metadata.readTime}
               </span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <span className={styles.metaStat}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
                   <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
@@ -140,25 +97,12 @@ export default function SchoolArticleHeader({ article }) {
           </div>
 
           {/* Action Bar */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1.5rem 0', borderTop: '1px solid #2a2a3a', borderBottom: '1px solid #2a2a3a' }}>
+          <div className={styles.actionBar}>
             <SchoolArticleActions article={article} />
 
             <button
               onClick={() => setIsPlaying(!isPlaying)}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                padding: '0.5rem 1.5rem',
-                background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)',
-                border: 'none',
-                borderRadius: '8px',
-                color: 'white',
-                fontWeight: 600,
-                cursor: 'pointer',
-                transition: 'all 0.3s',
-                boxShadow: '0 4px 12px -2px rgba(99, 102, 241, 0.3)'
-              }}
+              className={styles.listenButton}
             >
               {isPlaying ? (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

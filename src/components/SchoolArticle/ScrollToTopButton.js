@@ -1,44 +1,40 @@
 "use client"
 
+import { useState, useEffect } from 'react';
+import styles from './ScrollToTopButton.module.css';
+
 export default function ScrollToTopButton({ scrollProgress }) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.pageYOffset > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener('scroll', toggleVisibility);
+    return () => window.removeEventListener('scroll', toggleVisibility);
+  }, []);
+
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
 
-  if (scrollProgress <= 20) {
-    return null;
-  }
+  if (!isVisible) return null;
 
   return (
     <button
       onClick={scrollToTop}
-      style={{
-        position: 'fixed',
-        bottom: '2rem',
-        right: '2rem',
-        width: '48px',
-        height: '48px',
-        background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)',
-        borderRadius: '50%',
-        border: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        boxShadow: '0 8px 24px -4px rgba(99, 102, 241, 0.5)',
-        cursor: 'pointer',
-        transition: 'all 0.3s',
-        zIndex: 100
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-4px)';
-        e.currentTarget.style.boxShadow = '0 12px 32px -4px rgba(99, 102, 241, 0.6)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 8px 24px -4px rgba(99, 102, 241, 0.5)';
-      }}
+      className={styles.scrollButton}
+      aria-label="Scroll to top"
     >
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+      <svg className={styles.scrollIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <polyline points="18 15 12 9 6 15"></polyline>
       </svg>
     </button>

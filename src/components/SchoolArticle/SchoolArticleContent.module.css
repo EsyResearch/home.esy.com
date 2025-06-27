@@ -1,0 +1,87 @@
+.prose {
+  max-width: none;
+  color: #94a3b8;
+  line-height: 1.8;
+}
+
+.content {
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+.content h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.content h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.content p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+.content li {
+  margin-bottom: 0.5rem;
+}
+
+.content strong {
+  color: #ffffff;
+}
+
+.codeBlock {
+  background: #16161f;
+  border: 1px solid #2a2a3a;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.codeHeader {
+  background: #1e1e2a;
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid #2a2a3a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.codeLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+.copyButton {
+  font-size: 0.875rem;
+  color: #6366f1;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.codeContent {
+  padding: 1.5rem;
+}
+
+.codePre {
+  font-size: 0.875rem;
+  color: #e0e7ff;
+  font-family: monospace;
+  margin: 0;
+  white-space: pre-wrap;
+} 

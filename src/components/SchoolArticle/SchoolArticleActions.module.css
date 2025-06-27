@@ -1,0 +1,101 @@
+.actionsContainer {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #16161f;
+  border: 1px solid #2a2a3a;
+  border-radius: 8px;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.actionButton:hover {
+  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateY(-1px);
+}
+
+.likeButton {
+  composes: actionButton;
+}
+
+.likeButton.liked {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.commentButton {
+  composes: actionButton;
+}
+
+.bookmarkButton {
+  composes: actionButton;
+  padding: 0.5rem;
+}
+
+.bookmarkButton.bookmarked {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: rgba(99, 102, 241, 0.2);
+  color: #6366f1;
+}
+
+.shareButton {
+  composes: actionButton;
+  padding: 0.5rem;
+}
+
+.shareMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+  width: 200px;
+  background: #16161f;
+  border: 1px solid #2a2a3a;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  z-index: 100;
+}
+
+.shareMenuItem {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.shareMenuItem:hover {
+  background: #1e1e2a;
+}
+
+.shareMenuItem:not(:last-child) {
+  border-bottom: 1px solid #2a2a3a;
+}
+
+.shareIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.copyIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.copyIcon.success {
+  stroke: #10b981;
+} 

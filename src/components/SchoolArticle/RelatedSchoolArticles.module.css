@@ -1,0 +1,64 @@
+.relatedSection {
+  margin-top: 4rem;
+}
+
+.relatedTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #ffffff;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.relatedCard {
+  display: block;
+  background: #16161f;
+  border: 1px solid #2a2a3a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s;
+}
+
+.relatedCard:hover {
+  border-color: rgba(99, 102, 241, 0.5);
+  transform: translateY(-4px);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.cardType {
+  font-size: 0.75rem;
+  color: #6366f1;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cardArrow {
+  stroke: #64748b;
+}
+
+.cardTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.cardDescription {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  line-height: 1.5;
+} 

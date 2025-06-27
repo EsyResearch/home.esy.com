@@ -1,0 +1,82 @@
+.authorSection {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+.authorContent {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.authorAvatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  border: 2px solid #2a2a3a;
+  flex-shrink: 0;
+}
+
+.authorInfo {
+  flex: 1;
+}
+
+.authorName {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.authorTitle {
+  color: #6366f1;
+  margin-bottom: 0.75rem;
+}
+
+.authorBio {
+  color: #94a3b8;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.authorActions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.followButton {
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.followButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -2px rgba(99, 102, 241, 0.3);
+}
+
+.profileButton {
+  padding: 0.5rem 1rem;
+  background: #1e1e2a;
+  border: 1px solid #2a2a3a;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.profileButton:hover {
+  border-color: rgba(99, 102, 241, 0.3);
+  background: #2a2a3a;
+} 

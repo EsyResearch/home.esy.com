@@ -1,0 +1,91 @@
+.sidebar {
+  position: sticky;
+  top: 6rem;
+  height: fit-content;
+}
+
+.sidebarContent {
+  background: #16161f;
+  border: 1px solid #2a2a3a;
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.sidebarTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebarTitle svg {
+  stroke: #6366f1;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.navLink {
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  text-decoration: none;
+  color: #64748b;
+  background: transparent;
+  border-left: 2px solid transparent;
+  transition: all 0.3s;
+}
+
+.navLink:hover {
+  color: #ffffff;
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.navLink.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+  border-left-color: #6366f1;
+}
+
+.progressContainer {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #1e1e2a;
+  border-radius: 12px;
+}
+
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.progressLabel {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.progressPercentage {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6366f1;
+}
+
+.progressBar {
+  width: 100%;
+  height: 8px;
+  background: #2a2a3a;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1 0%, #a855f7 100%);
+  transition: width 0.3s ease;
+} 

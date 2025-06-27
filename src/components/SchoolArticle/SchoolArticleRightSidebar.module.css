@@ -1,0 +1,141 @@
+.rightSidebar {
+  position: sticky;
+  top: 6rem;
+  height: fit-content;
+}
+
+.sidebarContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.courseCTA {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.courseTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+}
+
+.courseDescription {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.courseButton {
+  width: 100%;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.courseButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -2px rgba(99, 102, 241, 0.3);
+}
+
+.newsletterCard {
+  background: #16161f;
+  border: 1px solid #2a2a3a;
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.newsletterTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+}
+
+.newsletterDescription {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.newsletterInput {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: #1e1e2a;
+  border: 1px solid #2a2a3a;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.newsletterInput:focus {
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+.newsletterButton {
+  width: 100%;
+  padding: 0.5rem;
+  background: #1e1e2a;
+  border: 1px solid #2a2a3a;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.newsletterButton:hover {
+  border-color: rgba(99, 102, 241, 0.3);
+  background: #2a2a3a;
+}
+
+.tagsCard {
+  background: #16161f;
+  border: 1px solid #2a2a3a;
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.tagsTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  padding: 0.25rem 0.75rem;
+  background: #1e1e2a;
+  border: 1px solid #2a2a3a;
+  border-radius: 24px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: #94a3b8;
+}
+
+.tag:hover {
+  border-color: rgba(99, 102, 241, 0.5);
+  color: #ffffff;
+} 

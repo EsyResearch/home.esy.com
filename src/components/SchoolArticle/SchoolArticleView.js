@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react';
+import styles from './SchoolArticleView.module.css';
 import SchoolArticleHeader from './SchoolArticleHeader';
 import SchoolArticleContent from './SchoolArticleContent';
 import SchoolArticleSidebar from './SchoolArticleSidebar';
@@ -34,16 +35,12 @@ export default function SchoolArticleView({ article }) {
   }, []);
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#0a0a0f', color: '#ffffff' }}>
+    <div className={styles.container}>
       {/* Progress Bar */}
-      <div style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '4px', backgroundColor: '#2a2a3a', zIndex: 50 }}>
+      <div className={styles.progressBar}>
         <div 
-          style={{ 
-            height: '100%', 
-            background: 'linear-gradient(90deg, #6366f1 0%, #a855f7 100%)',
-            width: `${scrollProgress}%`,
-            transition: 'width 0.3s ease'
-          }}
+          className={styles.progressFill}
+          style={{ width: `${scrollProgress}%` }}
         />
       </div>
 
@@ -51,7 +48,7 @@ export default function SchoolArticleView({ article }) {
       <SchoolArticleHeader article={article} />
 
       {/* Main Content */}
-      <div style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 2rem 5rem', display: 'grid', gridTemplateColumns: '1fr 3fr 1fr', gap: '3rem' }}>
+      <div className={styles.mainContent}>
         {/* Left Sidebar - Table of Contents */}
         <SchoolArticleSidebar 
           activeSection={activeSection} 
@@ -60,7 +57,7 @@ export default function SchoolArticleView({ article }) {
         />
 
         {/* Article Content */}
-        <article>
+        <article className={styles.articleContent}>
           <SchoolArticleContent article={article} />
           
           {/* Author Section */}
