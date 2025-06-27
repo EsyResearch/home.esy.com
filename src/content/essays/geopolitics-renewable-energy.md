@@ -15,8 +15,6 @@ featured: true
 trending: true
 ---
 
-# The Geopolitics of Renewable Energy: Power Shifts in a Decarbonizing World
-
 ## Introduction
 
 The global energy landscape is undergoing a fundamental transformation as nations accelerate their transition from fossil fuels to renewable energy sources. This shift is not merely technological but represents a profound geopolitical realignment that will reshape international power dynamics for decades to come.

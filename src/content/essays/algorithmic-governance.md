@@ -15,8 +15,6 @@ featured: false
 trending: true
 ---
 
-# Algorithmic Governance: Democratic Implications of AI in Public Policy
-
 ## Introduction
 
 The integration of artificial intelligence into governmental decision-making processes represents one of the most significant developments in public administration since the advent of digital government. As nations increasingly adopt AI-driven systems for policy implementation, service delivery, and regulatory enforcement, questions arise about the democratic implications of these technological transformations.

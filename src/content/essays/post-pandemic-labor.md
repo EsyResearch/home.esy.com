@@ -15,8 +15,6 @@ featured: false
 editorsChoice: true
 ---
 
-# Post-Pandemic Labor Markets: Remote Work and Urban Economic Restructuring
-
 ## Introduction
 
 The COVID-19 pandemic accelerated a transformation in work patterns that was already underway, fundamentally altering how we think about labor markets, urban economics, and the relationship between work and place. This study examines the long-term implications of this shift, drawing on data from major metropolitan areas across North America, Europe, and Asia.
