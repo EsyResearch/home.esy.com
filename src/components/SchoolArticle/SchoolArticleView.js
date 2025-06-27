@@ -58,7 +58,7 @@ export default function SchoolArticleView({ article }) {
 
         {/* Article Content */}
         <article className={styles.articleContent}>
-          <SchoolArticleContent article={article} />
+          <SchoolArticleContent content={article.content} />
           
           {/* Author Section */}
           <SchoolArticleAuthor author={article.author} />
