@@ -454,8 +454,8 @@ const StyleInspector = () => {
 
             <div style={{ marginTop: '1rem', fontSize: '0.75rem', color: '#94a3b8' }}>
               <p>💡 Hover over elements to inspect</p>
-              <p>📊 Click "Generate" for analysis</p>
-              <p>📋 Click "Copy" to share results</p>
+              <p>📊 Click &quot;Generate&quot; for analysis</p>
+              <p>📋 Click &quot;Copy&quot; to share results</p>
             </div>
           </>
         )}

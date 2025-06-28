@@ -9,6 +9,7 @@ import rehypeRaw from 'rehype-raw';
 import styles from './EnhancedMarkdownRenderer.module.css';
 import { visit } from 'unist-util-visit';
 import CardGroup from './CardGroup';
+import Image from 'next/image';
 
 // Custom components for rich content
 const KeyInsightBox = ({ children }) => (
@@ -36,7 +37,7 @@ const StrategyCard = ({ title, description, example }) => (
 const VideoCard = ({ title, description, duration, thumbnail }) => (
   <div className={styles.videoCard}>
     <div className={styles.videoThumbnail}>
-      {thumbnail && <img src={thumbnail} alt={title} />}
+      {thumbnail && <Image src={thumbnail} alt={title} width={320} height={180} style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />}
       <div className={styles.playButton}>▶</div>
     </div>
     <div className={styles.videoContent}>

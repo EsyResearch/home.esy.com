@@ -4,6 +4,7 @@ import { useState } from 'react';
 import styles from './SchoolArticleHeader.module.css';
 import Navigation from '@/components/Home/navigation';
 import SchoolArticleActions from './SchoolArticleActions';
+import Image from 'next/image';
 
 export default function SchoolArticleHeader({ article }) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -59,10 +60,12 @@ export default function SchoolArticleHeader({ article }) {
           {/* Meta Info */}
           <div className={styles.metaContainer}>
             <div className={styles.authorInfo}>
-              <img 
+              <Image 
                 src={article.author.avatar}
                 alt={article.author.name}
-                className={styles.authorAvatar}
+                width={48}
+                height={48}
+                style={{ width: '48px', height: '48px', borderRadius: '50%', border: '2px solid #2a2a3a' }}
               />
               <div className={styles.authorDetails}>
                 <h4>{article.author.name}</h4>

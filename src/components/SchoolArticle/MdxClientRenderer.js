@@ -10,6 +10,13 @@ import StyleInspector from '../StyleInspector';
 import styles from './EnhancedMarkdownRenderer.module.css';
 
 export default function MdxClientRenderer({ meta, Content, content }) {
+  // Always call useMemo at the top level
+  const processedContent = useMemo(() => {
+    if (!content) return '';
+    // Remove frontmatter if it's still in the content
+    return content.replace(/^---[\s\S]*?---/, '').trim();
+  }, [content]);
+
   // If we have compiled MDX content, render it
   if (Content) {
     return (
@@ -26,11 +33,6 @@ export default function MdxClientRenderer({ meta, Content, content }) {
   
   // If we have raw content, render it as markdown
   if (content) {
-    const processedContent = useMemo(() => {
-      // Remove frontmatter if it's still in the content
-      return content.replace(/^---[\s\S]*?---/, '').trim();
-    }, [content]);
-
     return (
       <>
         <SchoolArticleView article={meta}>
