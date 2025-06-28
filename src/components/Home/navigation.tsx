@@ -30,7 +30,7 @@ export default function Navigation () {
             {/* <a href="/research" className="nav-link">Research</a> */}
             {/* <a href="/school" className="nav-link">School</a> */}
             {/* <a href="/pricing" className="nav-link">Pricing</a> */}
-            <button className="nav-cta">Start Writing</button>
+            <a href="https://app.esy.com" className="nav-cta">Start Writing</a>
           </div>
         </div>
       </nav>

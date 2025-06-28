@@ -9,9 +9,9 @@ export default function CTASection() {
           <p className="cta-subtitle">
             Join thousands of researchers achieving more with AI-powered academic writing
           </p>
-          <button className="cta-button">
+          <a href="https://app.esy.com" className="cta-button">
             Start Writing Free Today
-          </button>
+          </a>
         </div>
       </section>
     );

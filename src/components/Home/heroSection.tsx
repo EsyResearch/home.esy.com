@@ -41,9 +41,9 @@ export default function HeroSection () {
             </p>
             
             <div className="hero-cta-group">
-              <button className="hero-cta-primary">
+              <a href="https://app.esy.com" className="hero-cta-primary">
                 Start Writing Free
-              </button>
+              </a>
               <button className="hero-cta-secondary">
                 Watch Demo
               </button>
