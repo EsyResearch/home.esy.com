@@ -1,134 +1,140 @@
-/* Enhanced Markdown Renderer Styles - Template Accurate */
+/* Enhanced Markdown Renderer Styles - Reference Template Alignment */
 
 .markdownContainer {
   background: #0a0a0f;
   color: #e5e7eb;
   max-width: 100%;
   line-height: 1.8;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   padding: 0;
 }
 
 .markdownContainer h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 3.9rem;
+  font-weight: 800;
   color: #fff;
-  margin: 2.5rem 0 1.5rem 0;
-  line-height: 1.1;
+  margin: 3rem 0 2rem 0 !important;
+  line-height: 1.1 !important;
   background: linear-gradient(135deg, #fff 0%, #e0e7ff 50%, #c7d2fe 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
 }
 
 .markdownContainer h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: #fff;
-  margin: 2rem 0 1.25rem 0;
-  border-bottom: 1px solid #2a2a3a;
-  padding-bottom: 0.5rem;
+  margin: 2.5rem 0 1.5rem 0 !important;
+  border-bottom: 1px solid #2a2a3a !important;
+  padding-bottom: 0.5rem !important;
 }
 
 .markdownContainer h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #fff;
-  margin: 1.5rem 0 1rem 0;
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  margin: 2rem 0 1.25rem 0 !important;
 }
 
 .markdownContainer h4 {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #fff;
-  margin: 1.25rem 0 0.5rem 0;
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  margin: 1.5rem 0 0.75rem 0 !important;
 }
 
 .markdownContainer p {
-  margin: 1.25rem 0;
-  color: #94a3b8;
-  line-height: 1.8;
+  margin: 1.5rem 0 !important;
+  color: #94a3b8 !important;
+  line-height: 1.8 !important;
+  font-size: 1.25rem !important;
 }
 
 .markdownContainer ul,
 .markdownContainer ol {
-  margin: 1.25rem 0 1.25rem 2rem;
+  margin: 1.5rem 0 1.5rem 2.5rem;
   padding: 0;
 }
 
 .markdownContainer li {
-  margin: 0.5rem 0;
+  margin: 0.75rem 0;
   line-height: 1.7;
   color: #e5e7eb;
+  font-size: 1.18rem;
 }
 
 .markdownContainer ul li {
   list-style-type: disc;
+  color: #a855f7;
 }
 
 .markdownContainer ol li {
   list-style-type: decimal;
+  color: #6366f1;
 }
 
 .markdownContainer blockquote {
-  margin: 2rem 0;
-  padding: 1.5rem 2rem;
-  background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(168,85,247,0.1) 100%);
-  border-left: 4px solid #6366f1;
-  border-radius: 16px;
-  color: #e0e7ff;
-  font-style: italic;
-  font-weight: 500;
+  margin: 2.5rem 0 !important;
+  padding: 2rem 2.5rem !important;
+  background: linear-gradient(135deg, rgba(99,102,241,0.12) 0%, rgba(168,85,247,0.12) 100%) !important;
+  border-radius: 20px !important;
+  color: #e0e7ff !important;
+  font-style: italic !important;
+  font-weight: 500 !important;
+  position: relative;
 }
 
 .markdownContainer pre {
-  background: #16161f;
-  border: 1px solid #2a2a3a;
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin: 1.5rem 0;
+  background: #16161f !important;
+  border: 1px solid #2a2a3a !important;
+  border-radius: 14px !important;
+  padding: 2rem !important;
+  margin: 2rem 0 !important;
   overflow-x: auto;
+  font-size: 1.1rem !important;
 }
 
 .markdownContainer code {
-  background: #1e1e2a;
-  color: #e0e7ff;
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
-  font-size: 1em;
-  font-family: 'Fira Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
+  background: #1e1e2a !important;
+  color: #e0e7ff !important;
+  padding: 0.25em 0.5em !important;
+  border-radius: 6px !important;
+  font-size: 1.1em !important;
+  font-family: 'Fira Mono', 'Menlo', 'Monaco', 'Consolas', monospace !important;
 }
 
 .markdownContainer pre code {
   background: none;
   color: #e0e7ff;
   padding: 0;
-  font-size: 1em;
+  font-size: 1.1em;
 }
 
 .markdownContainer table {
   width: 100%;
   border-collapse: collapse;
-  margin: 2rem 0;
+  margin: 2.5rem 0;
   background: #16161f;
-  border-radius: 8px;
+  border-radius: 14px;
   overflow: hidden;
 }
 
 .markdownContainer th,
 .markdownContainer td {
-  padding: 1rem;
   border: 1px solid #2a2a3a;
-  color: #e5e7eb;
+  padding: 1rem 1.5rem;
+  text-align: left;
 }
 
 .markdownContainer th {
-  background: #1e1e2a;
-  font-weight: 600;
+  background: #23233a;
+  color: #6366f1;
+  font-weight: 700;
 }
 
 .markdownContainer tr:nth-child(even) td {
-  background: #16161f;
+  background: #181825;
 }
 
 .markdownContainer a {
@@ -144,7 +150,7 @@
 /* Responsive */
 @media (max-width: 768px) {
   .markdownContainer h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
   .markdownContainer h2 {
     font-size: 1.5rem;
@@ -154,6 +160,27 @@
   }
   .markdownContainer pre {
     padding: 1rem;
+  }
+  .keyInsightBox {
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+  }
+  .keyInsightIcon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  .videoThumbnail {
+    width: 100px;
+    height: 60px;
+  }
+  .callToAction {
+    padding: 1.5rem 1rem;
+  }
+  .ctaTitle {
+    font-size: 1.1rem;
+  }
+  .ctaDescription {
+    font-size: 1rem;
   }
 }
 
@@ -191,8 +218,8 @@
 
 /* Code blocks */
 .codeBlockWrapper {
-  margin: 1.5rem 0;
-  border-radius: 8px;
+  margin: 2rem 0;
+  border-radius: 12px;
   overflow: hidden;
   background: #1f2937;
   border: 1px solid #374151;
@@ -200,33 +227,33 @@
 
 .codeHeader {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 1rem;
-  background: #374151;
-  border-bottom: 1px solid #4b5563;
+  justify-content: space-between;
+  background: #23233a;
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid #2a2a3a;
 }
 
 .codeLanguage {
-  color: #d1d5db;
-  font-size: 0.875rem;
-  font-weight: 500;
+  color: #6366f1;
+  font-size: 1rem;
+  font-weight: 600;
   text-transform: uppercase;
 }
 
 .copyButton {
-  background: #3b82f6;
-  color: white;
+  font-size: 0.95rem;
+  color: #6366f1;
+  background: transparent;
   border: none;
-  padding: 0.25rem 0.75rem;
-  border-radius: 4px;
-  font-size: 0.75rem;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  transition: background 0.2s;
 }
 
 .copyButton:hover {
-  background: #2563eb;
+  background: #23233a;
 }
 
 .codeBlock {
@@ -244,12 +271,12 @@
 }
 
 .inlineCode {
-  background: #f3f4f6;
-  color: #dc2626;
-  padding: 0.125rem 0.25rem;
-  border-radius: 4px;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-size: 0.875rem;
+  background: #23233a;
+  color: #a855f7;
+  padding: 0.18em 0.4em;
+  border-radius: 5px;
+  font-size: 1em;
+  font-family: 'Fira Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
 }
 
 /* Blockquotes */
@@ -264,25 +291,33 @@
 
 /* Key Insight Box */
 .keyInsightBox {
-  margin: 2rem 0;
-  padding: 1.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 12px;
-  color: white;
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
-  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+  gap: 1.5rem;
+  background: linear-gradient(135deg, rgba(99,102,241,0.15) 0%, rgba(168,85,247,0.15) 100%);
+  border-left: 8px solid #6366f1;
+  border-radius: 20px;
+  padding: 2rem 2.5rem;
+  margin: 2.5rem 0;
+  color: #e0e7ff;
+  box-shadow: 0 4px 24px 0 rgba(99,102,241,0.08);
 }
 
 .keyInsightIcon {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
+  margin-right: 1rem;
   flex-shrink: 0;
-  margin-top: 0.125rem;
 }
 
 .keyInsightContent {
   flex: 1;
+}
+
+.keyInsightContent strong {
+  display: block;
+  font-size: 1.25rem;
+  color: #6366f1;
+  margin-bottom: 0.5rem;
 }
 
 .keyInsightContent p {
@@ -346,13 +381,14 @@
 
 /* Principle Cards */
 .principleCard {
-  background: white;
-  border: 1px solid #e5e7eb;
+  background: #16161f;
+  border: 1px solid #2a2a3a;
   border-radius: 12px;
   padding: 1.5rem;
   text-align: center;
   transition: all 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
 }
 
 .principleCard:hover {
@@ -369,206 +405,183 @@
 .principleTitle {
   font-size: 1.125rem;
   font-weight: 600;
-  color: #111827;
+  color: #fff;
   margin: 0 0 0.75rem 0;
 }
 
 .principleDescription {
-  color: #6b7280;
+  color: #94a3b8;
   line-height: 1.6;
   margin: 0;
 }
 
 /* Strategy Cards */
 .strategyCard {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  border-radius: 12px;
-  padding: 1.5rem;
-  color: white;
-  margin: 1rem 0;
-  box-shadow: 0 10px 25px rgba(245, 87, 108, 0.3);
+  background: linear-gradient(135deg, rgba(99,102,241,0.10) 0%, rgba(168,85,247,0.10) 100%);
+  border: 1px solid #2a2a3a;
+  border-radius: 18px;
+  padding: 2rem;
+  margin: 2.5rem 0;
+  box-shadow: 0 2px 16px 0 rgba(99,102,241,0.06);
 }
 
 .strategyTitle {
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin: 0 0 0.75rem 0;
-  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.75rem;
 }
 
 .strategyDescription {
-  margin: 0 0 1rem 0;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9);
+  color: #94a3b8;
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
 }
 
 .strategyExample {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.75rem;
+  background: #23233a;
+  color: #e0e7ff;
   border-radius: 8px;
-  border-left: 3px solid rgba(255, 255, 255, 0.3);
+  padding: 1rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
 }
 
 /* Video Cards */
 .videoCard {
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  overflow: hidden;
-  margin: 1rem 0;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.videoCard:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, rgba(99,102,241,0.10) 0%, rgba(168,85,247,0.10) 100%) !important;
+  border: 1px solid #2a2a3a !important;
+  border-radius: 18px !important;
+  padding: 2rem !important;
+  margin: 2.5rem 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 2rem !important;
+  box-shadow: 0 2px 16px 0 rgba(99,102,241,0.06) !important;
 }
 
 .videoThumbnail {
-  position: relative;
-  background: #f3f4f6;
-  height: 200px;
+  width: 180px;
+  height: 110px;
+  background: #0a0a0f;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .videoThumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 12px;
 }
 
 .playButton {
   position: absolute;
-  top: 50%;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  width: 60px;
-  height: 60px;
+  width: 48px;
+  height: 48px;
+  background: rgba(255,255,255,0.12);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  color: #fff;
+  font-size: 2rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s;
 }
 
 .playButton:hover {
-  background: rgba(0, 0, 0, 0.9);
-  transform: translate(-50%, -50%) scale(1.1);
+  background: rgba(255,255,255,0.22);
 }
 
 .videoContent {
-  padding: 1.5rem;
+  flex: 1;
 }
 
 .videoTitle {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #111827;
-  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
 }
 
 .videoDescription {
-  color: #6b7280;
-  line-height: 1.6;
-  margin: 0 0 0.75rem 0;
+  color: #94a3b8;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
 }
 
 .videoDuration {
-  color: #9ca3af;
-  font-size: 0.875rem;
-  font-weight: 500;
+  color: #6366f1;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 /* Call to Action */
 .callToAction {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
   border-radius: 16px;
   padding: 2rem;
+  color: #fff;
+  margin: 2.5rem 0;
+  box-shadow: 0 2px 16px 0 rgba(99,102,241,0.10);
   text-align: center;
-  margin: 2rem 0;
-  color: white;
-  box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
 }
 
 .ctaTitle {
   font-size: 1.5rem;
   font-weight: 700;
-  margin: 0 0 1rem 0;
-  color: white;
+  margin-bottom: 1rem;
 }
 
 .ctaDescription {
-  font-size: 1.125rem;
-  margin: 0 0 1.5rem 0;
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1.6;
+  font-size: 1.15rem;
+  margin-bottom: 1.5rem;
 }
 
 .ctaButton {
   display: inline-block;
-  background: white;
-  color: #667eea;
   padding: 0.75rem 2rem;
-  border-radius: 50px;
+  background: #fff;
+  color: #6366f1;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: background 0.2s, color 0.2s;
+  margin-top: 1rem;
 }
 
 .ctaButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  background: #f8fafc;
+  background: #e0e7ff;
+  color: #a855f7;
 }
 
-/* Tables */
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+/* Figure styles */
+.markdownContainer figure {
+  background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(168,85,247,0.08) 100%);
+  border: 1px solid rgba(99,102,241,0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  text-align: center;
 }
-
-.thead {
-  background: #f9fafb;
+.markdownContainer figure img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-bottom: 0.75rem;
 }
-
-.tbody tr:nth-child(even) {
-  background: #f9fafb;
-}
-
-.tr {
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.tr:last-child {
-  border-bottom: none;
-}
-
-.th {
-  padding: 1rem;
-  text-align: left;
-  font-weight: 600;
-  color: #111827;
-  border-bottom: 2px solid #e5e7eb;
-}
-
-.td {
-  padding: 1rem;
-  color: #374151;
-  line-height: 1.5;
+.markdownContainer figcaption {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  font-style: italic;
 }
 
 /* Responsive Design */
@@ -608,5 +621,41 @@
   
   .ctaDescription {
     font-size: 1rem;
+  }
+}
+
+.cardGroup {
+  background: #181825;
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  margin: 2.5rem 0;
+  box-shadow: 0 4px 24px 0 rgba(99,102,241,0.08);
+  border: 1px solid #23233a;
+}
+
+.cardGroupTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 2rem;
+  letter-spacing: -0.01em;
+}
+
+.cardGroupContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .cardGroup {
+    padding: 1.5rem 0.5rem;
+  }
+  .cardGroupTitle {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .cardGroupContent {
+    gap: 1rem;
   }
 } 

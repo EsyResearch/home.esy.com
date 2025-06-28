@@ -34,3 +34,36 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Style Inspector (Style Analyzer)
+
+The project includes a powerful **Style Inspector** (also called Style Analyzer) tool for visually inspecting and comparing the rendered styles of markdown/MDX content against a reference design system.
+
+### Purpose
+- Ensure that your markdown/MDX content matches the intended design system styles (e.g., font sizes, colors, spacing, etc.).
+- Quickly identify and debug style mismatches between your implementation and the reference template.
+- Facilitate collaboration between developers and designers by making style differences transparent and actionable.
+- **Designed to easily share style discrepancy reports with an AI Editor like Cursor for rapid, AI-assisted style correction and review.**
+
+### Features
+- **Non-intrusive UI:** Appears as a small button in the bottom-right corner. Click to expand the full panel.
+- **Element Hover Inspection:** Hover over any markdown/MDX element (headings, paragraphs, lists, blockquotes, code, custom cards, etc.) to see a live comparison of its computed styles vs. the reference.
+- **Unit Conversion:** Displays expected values in their original units (e.g., `1.25rem`) and as computed pixel values (e.g., `20px`).
+- **Color Conversion:** Displays expected colors in both hex (e.g., `#94a3b8`) and RGB (e.g., `rgb(148, 163, 184)`) for accurate comparison with computed styles.
+- **Mismatch Highlighting:** Clearly indicates which properties do not match, and whether the mismatch is due to unit or color conversion.
+- **Full Style Report:** Click "Generate" to analyze all relevant elements on the page and produce a summary of all style mismatches.
+- **Copyable Report:** Click "Copy" to copy a markdown-formatted report of all style differences for sharing or documentation.
+- **Auto-Refresh:** Enable auto-refresh to automatically re-analyze styles every 2 seconds as you make changes.
+- **Minimize/Expand:** Collapse the panel to save space, expand when needed.
+- **Self-Exclusion:** The inspector never inspects itself, preventing glitches.
+
+### How to Use
+1. **Start your app** and navigate to a page with markdown/MDX content.
+2. **Click the "Style Inspector" button** in the bottom-right corner to open the panel.
+3. **Hover over elements** to see live style comparisons.
+4. **Click "Generate"** for a full-page style analysis.
+5. **Click "Copy"** to copy the report for sharing.
+6. **Enable "Auto-refresh"** to keep the analysis up-to-date as you edit styles.
+7. **Minimize or close** the panel as needed.
+
+This tool is invaluable for maintaining visual consistency and quickly catching style regressions in your content-driven Next.js applications.

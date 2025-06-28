@@ -1,3 +1,5 @@
+import withMDX from '@next/mdx';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   ...(process.env.NODE_ENV === 'production' && {
@@ -6,7 +8,18 @@ const nextConfig = {
     images: {
       unoptimized: true
     }
-  })
+  }),
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+  experimental: {
+    mdxRs: true,
+  },
 };
 
-export default nextConfig;
+export default withMDX({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+    providerImportSource: "@mdx-js/react",
+  },
+})(nextConfig);

@@ -10,7 +10,7 @@ import SchoolArticleAuthor from './SchoolArticleAuthor';
 import RelatedSchoolArticles from './RelatedSchoolArticles';
 import ScrollToTopButton from './ScrollToTopButton';
 
-export default function SchoolArticleView({ article }) {
+export default function SchoolArticleView({ article, children }) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('introduction');
 
@@ -58,7 +58,7 @@ export default function SchoolArticleView({ article }) {
 
         {/* Article Content */}
         <article className={styles.articleContent}>
-          <SchoolArticleContent content={article.content} />
+          {children}
           
           {/* Author Section */}
           <SchoolArticleAuthor author={article.author} />

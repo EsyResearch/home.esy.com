@@ -44,17 +44,12 @@
   margin-bottom: 1rem;
 }
 
-.content {
-  /* Base content styles */
-}
-
-/* Global styles for HTML content within essay content */
-.content :global(h1),
-.content :global(h2),
-.content :global(h3),
-.content :global(h4),
-.content :global(h5),
-.content :global(h6) {
+.essayContent h1,
+.essayContent h2,
+.essayContent h3,
+.essayContent h4,
+.essayContent h5,
+.essayContent h6 {
   font-weight: 400;
   margin-bottom: 1.5rem;
   margin-top: 2rem;
@@ -62,46 +57,46 @@
   padding-bottom: 0.5rem;
 }
 
-.content :global(h1) {
+.essayContent h1 {
   font-size: 1.5rem;
 }
 
-.content :global(h2) {
+.essayContent h2 {
   font-size: 1.5rem;
 }
 
-.content :global(h3) {
+.essayContent h3 {
   font-size: 1.125rem;
   font-weight: 500;
   margin-bottom: 1rem;
   margin-top: 2rem;
 }
 
-.content :global(h4) {
+.essayContent h4 {
   font-size: 1rem;
   font-weight: 500;
 }
 
-.content :global(h5) {
+.essayContent h5 {
   font-size: 0.938rem;
   font-weight: 500;
 }
 
-.content :global(h6) {
+.essayContent h6 {
   font-size: 0.875rem;
   font-weight: 500;
 }
 
-.content :global(p) {
+.essayContent p {
   margin-bottom: 1.5rem;
   line-height: inherit;
 }
 
-.content :global(p):last-child {
+.essayContent p:last-child {
   margin-bottom: 0;
 }
 
-.content :global(blockquote) {
+.essayContent blockquote {
   margin-left: 0;
   padding-left: 2rem;
   border-left: 3px solid;
@@ -109,30 +104,30 @@
   margin: 2rem 0;
 }
 
-.content :global(blockquote p) {
+.essayContent blockquote p {
   margin-bottom: 1rem;
 }
 
-.content :global(blockquote cite) {
+.essayContent blockquote cite {
   display: block;
   font-size: 0.875rem;
   font-style: normal;
 }
 
-.content :global(ul),
-.content :global(ol) {
+.essayContent ul,
+.essayContent ol {
   list-style: none;
   padding-left: 0;
   margin-bottom: 1.5rem;
 }
 
-.content :global(li) {
+.essayContent li {
   margin-bottom: 1rem;
   padding-left: 1.5rem;
   position: relative;
 }
 
-.content :global(ul li)::before {
+.essayContent ul li::before {
   content: '•';
   position: absolute;
   left: 0;
@@ -140,18 +135,18 @@
   color: #6366f1;
 }
 
-.content :global(a) {
+.essayContent a {
   color: #6366f1;
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: all 0.2s ease;
 }
 
-.content :global(a:hover) {
+.essayContent a:hover {
   border-bottom-color: #6366f1;
 }
 
-.content :global(pre) {
+.essayContent pre {
   background: rgba(0, 0, 0, 0.05);
   padding: 1rem;
   border-radius: 6px;
@@ -161,7 +156,7 @@
   font-size: 0.875rem;
 }
 
-.content :global(code) {
+.essayContent code {
   background: rgba(99, 102, 241, 0.1);
   padding: 0.125rem 0.25rem;
   border-radius: 3px;
@@ -169,17 +164,17 @@
   font-size: 0.875em;
 }
 
-.content :global(strong),
-.content :global(b) {
+.essayContent strong,
+.essayContent b {
   font-weight: 600;
 }
 
-.content :global(em),
-.content :global(i) {
+.essayContent em,
+.essayContent i {
   font-style: italic;
 }
 
-.content :global(hr) {
+.essayContent hr {
   border: none;
   height: 1px;
   background: currentColor;
@@ -187,15 +182,15 @@
   margin: 2rem 0;
 }
 
-.content :global(table) {
+.essayContent table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
   font-size: 0.875rem;
 }
 
-.content :global(th),
-.content :global(td) {
+.essayContent th,
+.essayContent td {
   padding: 0.75rem;
   text-align: left;
   border-bottom: 1px solid;
@@ -203,12 +198,12 @@
   opacity: 0.3;
 }
 
-.content :global(th) {
+.essayContent th {
   font-weight: 600;
   opacity: 0.7;
 }
 
-.content :global(img) {
+.essayContent img {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
@@ -314,37 +309,37 @@
 }
 
 /* Theme variants for global content styles */
-.contentDark :global(h1),
-.contentDark :global(h2),
-.contentDark :global(h3),
-.contentDark :global(h4),
-.contentDark :global(h5),
-.contentDark :global(h6) {
+.contentDark h1,
+.contentDark h2,
+.contentDark h3,
+.contentDark h4,
+.contentDark h5,
+.contentDark h6 {
   color: #ffffff;
 }
 
-.contentLight :global(h1),
-.contentLight :global(h2),
-.contentLight :global(h3),
-.contentLight :global(h4),
-.contentLight :global(h5),
-.contentLight :global(h6) {
+.contentLight h1,
+.contentLight h2,
+.contentLight h3,
+.contentLight h4,
+.contentLight h5,
+.contentLight h6 {
   color: #000000;
 }
 
-.contentDark :global(blockquote) {
+.contentDark blockquote {
   border-left-color: rgba(255, 255, 255, 0.05);
 }
 
-.contentLight :global(blockquote) {
+.contentLight blockquote {
   border-left-color: rgba(0, 0, 0, 0.05);
 }
 
-.contentDark :global(hr) {
+.contentDark hr {
   color: rgba(255, 255, 255, 0.1);
 }
 
-.contentLight :global(hr) {
+.contentLight hr {
   color: rgba(0, 0, 0, 0.1);
 }
 
@@ -415,13 +410,13 @@
   }
   
   /* Responsive global styles */
-  .content :global(h1),
-  .content :global(h2) {
+  .essayContent h1,
+  .essayContent h2 {
     font-size: 1.25rem;
     margin-bottom: 1rem;
   }
   
-  .content :global(h3) {
+  .essayContent h3 {
     font-size: 1rem;
     margin-top: 1.5rem;
   }
@@ -451,24 +446,24 @@
   }
   
   /* Responsive global styles */
-  .content :global(h1),
-  .content :global(h2) {
+  .essayContent h1,
+  .essayContent h2 {
     font-size: 1.125rem;
   }
   
-  .content :global(h3) {
+  .essayContent h3 {
     font-size: 0.938rem;
   }
 }
 
 /* Print styles */
 @media print {
-  .content a {
+  .essayContent a {
     color: inherit;
     text-decoration: underline;
   }
   
-  .content :global(a) {
+  .essayContent a {
     color: inherit;
     text-decoration: underline;
   }

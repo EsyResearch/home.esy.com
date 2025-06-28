@@ -8,6 +8,7 @@ import rehypeHighlight from 'rehype-highlight';
 import rehypeRaw from 'rehype-raw';
 import styles from './EnhancedMarkdownRenderer.module.css';
 import { visit } from 'unist-util-visit';
+import CardGroup from './CardGroup';
 
 // Custom components for rich content
 const KeyInsightBox = ({ children }) => (
@@ -17,23 +18,6 @@ const KeyInsightBox = ({ children }) => (
       <strong>Key Insight</strong>
       <div>{children}</div>
     </div>
-  </div>
-);
-
-const ComponentCard = ({ number, title, description, icon }) => (
-  <div className={styles.componentCard}>
-    <div className={styles.componentNumber}>{number}</div>
-    <div className={styles.componentIcon}>{icon}</div>
-    <h4 className={styles.componentTitle}>{title}</h4>
-    <p className={styles.componentDescription}>{description}</p>
-  </div>
-);
-
-const PrincipleCard = ({ icon, title, children }) => (
-  <div className={styles.principleCard}>
-    <div className={styles.principleIcon}>{icon}</div>
-    <h4 className={styles.principleTitle}>{title}</h4>
-    <p className={styles.principleDescription}>{children}</p>
   </div>
 );
 
@@ -77,9 +61,28 @@ const CallToAction = ({ title, description, buttonText, buttonLink }) => (
 function directivePlugin() {
   return (tree) => {
     visit(tree, (node) => {
-      if (node.type === 'textDirective' || node.type === 'leafDirective' || node.type === 'containerDirective') {
+      if (
+        node.type === 'textDirective' ||
+        node.type === 'leafDirective' ||
+        node.type === 'containerDirective'
+      ) {
         node.data = node.data || {};
-        const hast = node.data.hName = node.name;
+        if (
+          typeof node.name === 'string' &&
+          /^[a-zA-Z][a-zA-Z0-9-]*$/.test(node.name)
+        ) {
+          node.data.hName = node.name;
+        } else {
+          // Fallback to div and log a warning
+          node.data.hName = 'div';
+          if (process.env.NODE_ENV !== 'production') {
+            // eslint-disable-next-line no-console
+            console.warn(
+              `Invalid directive name '${node.name}' encountered in markdown. Falling back to <div>.`,
+              node
+            );
+          }
+        }
         node.data.hProperties = node.attributes || {};
       }
     });
@@ -154,7 +157,9 @@ const components = {
   th: ({ children }) => <th className={styles.th}>{children}</th>,
   td: ({ children }) => <td className={styles.td}>{children}</td>,
   keyinsight: ({ children }) => <KeyInsightBox>{children}</KeyInsightBox>,
-  principle: ({ icon, title, children }) => <PrincipleCard icon={icon} title={title}>{children}</PrincipleCard>,
+  strategy: ({ title, description, example }) => <StrategyCard title={title} description={description} example={example} />,
+  video: ({ title, description, duration, thumbnail }) => <VideoCard title={title} description={description} duration={duration} thumbnail={thumbnail} />,
+  callToAction: ({ title, description, buttonText, buttonLink }) => <CallToAction title={title} description={description} buttonText={buttonText} buttonLink={buttonLink} />,
 };
 
 const EnhancedMarkdownRenderer = ({ content }) => {
@@ -170,5 +175,8 @@ const EnhancedMarkdownRenderer = ({ content }) => {
     </div>
   );
 };
+
+// Export custom components for MDX usage
+export { KeyInsightBox, StrategyCard, VideoCard, CallToAction, CardGroup };
 
 export default EnhancedMarkdownRenderer; 

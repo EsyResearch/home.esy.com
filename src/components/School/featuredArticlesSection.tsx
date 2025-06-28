@@ -9,7 +9,8 @@ export default function FeaturedArticlesSection() {
         excerpt: 'Discover the art and science of crafting effective prompts for AI models. Learn fundamental techniques that will transform your AI interactions.',
         author: 'Dr. Sarah Chen',
         date: 'Mar 22, 2025',
-        readTime: 8
+        readTime: 8,
+        slug: 'prompt-engineering-guide'
       },
       {
         category: 'LLM Basics',
@@ -17,7 +18,8 @@ export default function FeaturedArticlesSection() {
         excerpt: 'Demystify the technology behind ChatGPT, Claude, and other LLMs. A beginner-friendly introduction to transformer architecture.',
         author: 'Prof. Michael Torres',
         date: 'Mar 20, 2025',
-        readTime: 12
+        readTime: 12,
+        slug: 'understanding-llms'
       },
       {
         category: 'Academic Writing',
@@ -25,7 +27,8 @@ export default function FeaturedArticlesSection() {
         excerpt: 'From literature reviews to data analysis, explore how AI tools are transforming every stage of the academic research process.',
         author: 'Emily Watson',
         date: 'Mar 18, 2025',
-        readTime: 6
+        readTime: 6,
+        slug: 'ai-research-revolution'
       }
     ];
   

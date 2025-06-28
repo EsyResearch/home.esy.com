@@ -1,204 +1,27 @@
-"use client"
+import { notFound } from 'next/navigation';
+import { getMdxContent } from '@/lib/mdxUtils';
+import MdxClientRenderer from '@/components/SchoolArticle/MdxClientRenderer';
 
-import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
-import SchoolArticleView from '@/components/SchoolArticle/SchoolArticleView';
-
-export default function SchoolArticlePage() {
-  const params = useParams();
-  const [article, setArticle] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const loadArticle = async () => {
-      try {
-        // In a real implementation, you would fetch the article data
-        // based on the slug from your markdown files or API
-        const articleData = {
-          slug: params.slug,
-          title: "What is Prompt Engineering? A Comprehensive Guide",
-          subtitle: "Discover the art and science of crafting effective prompts for AI models. Learn fundamental techniques that will transform your AI interactions.",
-          category: "Prompt Engineering",
-          author: {
-            name: "Dr. Sarah Chen",
-            title: "AI Research Lead",
-            avatar: "https://ui-avatars.com/api/?name=Sarah+Chen&background=6366f1&color=fff",
-            bio: "Dr. Chen specializes in natural language processing and human-AI interaction. With over 10 years of experience in AI research, she has published numerous papers on prompt engineering and language model optimization."
-          },
-          metadata: {
-            date: "Mar 22, 2025",
-            readTime: "8 min read",
-            readCount: "2.1k reads"
-          },
-          content: `
-# Introduction
-
-In the rapidly evolving landscape of artificial intelligence, prompt engineering has emerged as a crucial skill for anyone looking to harness the full potential of large language models (LLMs). Whether you're a researcher, developer, writer, or simply an AI enthusiast, understanding how to craft effective prompts can dramatically improve your interactions with AI systems.
-
-## What is Prompt Engineering?
-
-Prompt engineering is the practice of designing and refining inputs (prompts) to elicit desired outputs from AI language models. It involves understanding the model's capabilities, limitations, and behavioral patterns to craft prompts that produce accurate, relevant, and useful responses.
-
-### Core Components of Prompt Engineering
-
-1. **Context Setting** - Providing relevant background information to guide the AI's response
-2. **Clear Instructions** - Specifying exactly what you want the AI to do or produce
-3. **Output Formatting** - Defining how you want the response structured or presented
-
-## Key Principles
-
-Mastering prompt engineering requires understanding several fundamental principles that govern how language models process and respond to inputs.
-
-- **Specificity** - Be precise about what you want. Vague prompts lead to vague responses.
-- **Context** - Provide relevant background information to help the AI understand your needs.
-- **Examples** - Show the AI what you want through clear examples (few-shot learning).
-- **Iteration** - Refine your prompts based on responses to get better results.
-
-## Basic Techniques
-
-Let's explore some fundamental techniques that form the foundation of effective prompt engineering.
-
-### Zero-shot Prompting
-
-\`\`\`
-Prompt: "Classify the following movie review as positive or negative:
-'This film was an absolute masterpiece. The acting was superb, 
-and the cinematography took my breath away.'
-
-Classification:"
-\`\`\`
-
-### Few-shot Prompting
-
-\`\`\`
-Prompt: "Convert these sentences to passive voice:
-
-Active: The cat chased the mouse.
-Passive: The mouse was chased by the cat.
-
-Active: She wrote a beautiful poem.
-Passive: A beautiful poem was written by her.
-
-Active: The team completed the project.
-Passive:"
-\`\`\`
-
-## Advanced Strategies
-
-Once you've mastered the basics, these advanced strategies will help you unlock even more powerful capabilities from AI models.
-
-### 1. Chain-of-Thought Prompting
-
-Encourage the model to show its reasoning step-by-step, leading to more accurate and transparent responses.
-
-**Example:** "Let's solve this step by step..."
-
-### 2. Role-Based Prompting
-
-Assign a specific role or persona to the AI to get responses tailored to that perspective.
-
-**Example:** "You are an expert data scientist. Explain..."
-
-### 3. Constraint-Based Prompting
-
-Set clear boundaries and constraints to guide the AI's output format and content.
-
-**Example:** "In exactly 3 bullet points, summarize..."
-
-## Practical Examples
-
-Let's look at real-world applications of prompt engineering across different domains.
-
-### Academic Writing Assistant
-
-**Prompt:**
-"Help me write an introduction paragraph for a research paper on climate change impacts on marine ecosystems. The paragraph should: 1) Start with a compelling hook, 2) Provide context about the issue, 3) State the research gap, 4) Present the thesis statement. Keep it under 200 words."
-
-**Result:** The AI will generate a well-structured introduction following your specific requirements.
-
-## Conclusion
-
-Prompt engineering is an essential skill in the AI era. By understanding and applying these principles and techniques, you can significantly improve your interactions with language models and unlock their full potential for your specific use cases.
-
-Remember that prompt engineering is both an art and a science—it requires practice, experimentation, and continuous learning as AI models evolve.
-          `,
-          tags: ['Prompt Engineering', 'LLMs', 'AI Writing', 'ChatGPT', 'Claude', 'Few-shot Learning'],
-          relatedArticles: [
-            {
-              title: "Advanced Prompt Chaining Techniques",
-              description: "Learn how to create complex prompt chains for sophisticated AI workflows.",
-              type: "Next Article"
-            },
-            {
-              title: "Building Custom GPT Assistants",
-              description: "Create specialized AI assistants using prompt engineering principles.",
-              type: "Related"
-            }
-          ]
-        };
-
-        setArticle(articleData);
-      } catch (error) {
-        console.error('Error loading article:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (params.slug) {
-      loadArticle();
+export default async function SchoolArticlePage({ params }) {
+  try {
+    const { slug } = await params;
+    const mdxData = await getMdxContent(slug);
+    
+    if (!mdxData) {
+      notFound();
     }
-  }, [params.slug]);
+    
+    const { meta, content, isCompiled } = mdxData;
 
-  if (loading) {
     return (
-      <div style={{ 
-        minHeight: '100vh', 
-        backgroundColor: '#0a0a0f', 
-        color: '#ffffff',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}>
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ 
-            width: '40px', 
-            height: '40px', 
-            border: '4px solid #2a2a3a',
-            borderTop: '4px solid #6366f1',
-            borderRadius: '50%',
-            animation: 'spin 1s linear infinite',
-            margin: '0 auto 1rem'
-          }} />
-          <p>Loading article...</p>
-        </div>
-        <style>{`
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-        `}</style>
-      </div>
+      <MdxClientRenderer 
+        meta={meta} 
+        Content={isCompiled ? content : null}
+        content={isCompiled ? null : content}
+      />
     );
+  } catch (error) {
+    console.error('Article page error:', error);
+    notFound();
   }
-
-  if (!article) {
-    return (
-      <div style={{ 
-        minHeight: '100vh', 
-        backgroundColor: '#0a0a0f', 
-        color: '#ffffff',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}>
-        <div style={{ textAlign: 'center' }}>
-          <h1>Article not found</h1>
-          <p>The article you're looking for doesn't exist.</p>
-        </div>
-      </div>
-    );
-  }
-
-  return <SchoolArticleView article={article} />;
 } 

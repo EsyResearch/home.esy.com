@@ -2,7 +2,7 @@
 
 import styles from './RelatedSchoolArticles.module.css';
 
-export default function RelatedSchoolArticles({ articles }) {
+export default function RelatedSchoolArticles({ articles = [] }) {
   return (
     <div className={styles.relatedSection}>
       <h3 className={styles.relatedTitle}>

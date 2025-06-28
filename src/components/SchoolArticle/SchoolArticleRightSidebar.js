@@ -57,7 +57,7 @@ export default function SchoolArticleRightSidebar({ article }) {
             Related Topics
           </h4>
           <div className={styles.tagsContainer}>
-            {article.tags.map((tag, index) => (
+            {(article.tags || []).map((tag, index) => (
               <span key={index} className={styles.tag}>
                 {tag}
               </span>
