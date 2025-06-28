@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getMdxContent } from '@/lib/mdxUtils';
+import { getMdxContent, getAllMdxSlugs } from '@/lib/mdxUtils';
 import MdxClientRenderer from '@/components/SchoolArticle/MdxClientRenderer';
 
 export default async function SchoolArticlePage({ params }) {
@@ -24,4 +24,10 @@ export default async function SchoolArticlePage({ params }) {
     console.error('Article page error:', error);
     notFound();
   }
+}
+
+// For static export: generate all possible slugs
+export async function generateStaticParams() {
+  const slugs = getAllMdxSlugs();
+  return slugs.map(slug => ({ slug }));
 } 
