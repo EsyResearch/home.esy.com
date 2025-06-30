@@ -3,8 +3,7 @@ import React from 'react';
 import { 
   FeaturedEssay, 
 } from '@/components/Essays';
-import { ClientNavigation, ClientHeroSection, ClientEssaysList } from '@/components/Essays';
-import Footer from '@/components/Home/footer';
+import { ClientHeroSection, ClientEssaysList } from '@/components/Essays';
 import '@/app/globals.css';
 
 const EsyEssaysHubClient = ({ essays, featuredEssay, filters }) => {
@@ -16,15 +15,11 @@ const EsyEssaysHubClient = ({ essays, featuredEssay, filters }) => {
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
       lineHeight: 1.6
     }}>
-      <ClientNavigation />
-      
       <ClientHeroSection filters={filters} />
       
       {featuredEssay && <FeaturedEssay featuredEssay={featuredEssay} />}
       
       <ClientEssaysList essays={essays} />
-      
-      <Footer />
     </div>
   );
 };
