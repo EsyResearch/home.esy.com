@@ -6,28 +6,22 @@ export default function TestimonialsSection() {
     
     const testimonials = [
       {
-        quote: "Esy transformed my research workflow. What used to take weeks now takes days. The AI understands academic context better than any tool I've used.",
-        author: "Dr. Sarah Chen",
-        role: "Professor of Computer Science, MIT",
-        avatar: "SC"
+        quote: "Esy has transformed how I approach research. The AI collaboration feels natural and productive.",
+        author: "Research Team Lead",
+        role: "Technology Company",
+        avatar: "👨‍💼"
       },
       {
-        quote: "The quality of writing assistance is exceptional. It's like having a brilliant co-author who never sleeps and always has the perfect citation ready.",
-        author: "Michael Rodriguez",
-        role: "PhD Candidate, Stanford University",
-        avatar: "MR"
-      },
-      {
-        quote: "I've published 40% more papers since using Esy. The research discovery features alone saved me hundreds of hours last year.",
-        author: "Prof. Emily Watson",
-        role: "Director of Research, Oxford",
-        avatar: "EW"
+        quote: "The prompt engineering techniques I learned here have made my work 10x more efficient.",
+        author: "Data Scientist",
+        role: "Startup",
+        avatar: "👩‍💻"
       }
     ];
   
     useEffect(() => {
       const testimonialInterval = setInterval(() => {
-        setActiveTestimonial((prev) => (prev + 1) % 3);
+        setActiveTestimonial((prev) => (prev + 1) % 2);
       }, 5000);
   
       return () => clearInterval(testimonialInterval);

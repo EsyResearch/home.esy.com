@@ -2,10 +2,10 @@
 title: "Understanding Large Language Models: From Theory to Practice"
 category: "LLM Basics"
 author:
-  name: "Prof. Michael Torres"
-  title: "AI Researcher"
-  avatar: "https://ui-avatars.com/api/?name=Michael+Torres&background=6366f1&color=fff"
-  bio: "Prof. Torres is a leading expert in natural language processing and deep learning."
+  name: "Zev Uhuru"
+  title: "AI Research Lead"
+  avatar: "https://ui-avatars.com/api/?name=Zev+Uhuru&background=6366f1&color=fff"
+  bio: "Zev Uhuru is a leading expert in natural language processing and deep learning."
 date: "Mar 20, 2025"
 readTime: "12 min read"
 relatedArticles:

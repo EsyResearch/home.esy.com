@@ -12,9 +12,9 @@ const EssayMetadata = ({
   const essayData = essay || defaultEssay;
 
   const relatedEssays = [
-    { title: "Critical Minerals and the New Resource Competition", author: "Dr. Lisa Park", readTime: 25 },
-    { title: "Energy Storage: The Missing Link in Renewable Geopolitics", author: "Prof. James Liu", readTime: 30 },
-    { title: "Digital Infrastructure and Energy Sovereignty", author: "Dr. Maria Petrova", readTime: 20 }
+    { title: "Critical Minerals and the New Resource Competition", author: "Zev Uhuru", readTime: 25 },
+{ title: "Energy Storage: The Missing Link in Renewable Geopolitics", author: "Han Thi Htet", readTime: 30 },
+{ title: "Digital Infrastructure and Energy Sovereignty", author: "Zev Uhuru", readTime: 20 }
   ];
 
   const authorSectionClass = `${styles.authorSection} ${theme === 'dark' ? styles.authorSectionDark : styles.authorSectionLight}`;
@@ -36,17 +36,17 @@ const EssayMetadata = ({
         </h3>
         <div className={styles.authorsList}>
           <div className={styles.authorItem}>
-            <h4 className={authorNameClass}>Dr. Sarah Chen</h4>
+            <h4 className={authorNameClass}>Zev Uhuru</h4>
             <p className={authorBioClass}>
-              Director of Energy Policy Research at MIT Energy Initiative. Dr. Chen specializes in the 
+              AI Research Lead at Esy University. Zev Uhuru specializes in the 
               intersection of renewable energy technology and international relations, with a focus on 
               Asia-Pacific energy markets.
             </p>
           </div>
           <div className={styles.authorItem}>
-            <h4 className={authorNameClass}>Prof. Michael Torres</h4>
+            <h4 className={authorNameClass}>Han Thi Htet</h4>
             <p className={authorBioClass}>
-              Professor of International Relations at MIT. His research examines how technological 
+              Research Lead at Esy University. Her research examines how technological 
               transitions reshape global power structures, with particular attention to energy geopolitics.
             </p>
           </div>

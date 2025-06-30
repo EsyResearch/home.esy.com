@@ -108,7 +108,7 @@ const TransformSection: React.FC<TransformSectionProps> = ({ currentTheme }) => 
             marginTop: '1.5rem',
             fontStyle: 'normal'
           }}>
-            — Dr. Michael Chen, Stanford AI Lab
+            — Early Access User
           </cite>
         </div>
       </div>

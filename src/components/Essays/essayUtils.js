@@ -15,7 +15,7 @@ export const getThemeConfig = (theme) => {
 // Default essay data
 export const defaultEssay = {
   title: "The Geopolitics of Renewable Energy: Power Shifts in a Decarbonizing World",
-  authors: ["Dr. Sarah Chen", "Prof. Michael Torres"],
+  authors: ["Zev Uhuru", "Han Thi Htet"],
   institution: "MIT Energy Initiative",
   publishDate: "March 15, 2025",
   readTime: 45,

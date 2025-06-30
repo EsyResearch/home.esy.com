@@ -7,7 +7,7 @@ export default function FeaturedArticlesSection() {
         category: 'Prompt Engineering',
         title: 'What is Prompt Engineering? A Comprehensive Guide',
         excerpt: 'Discover the art and science of crafting effective prompts for AI models. Learn fundamental techniques that will transform your AI interactions.',
-        author: 'Dr. Sarah Chen',
+        author: 'Zev Uhuru',
         date: 'Mar 22, 2025',
         readTime: 8,
         slug: 'prompt-engineering-guide'
@@ -16,7 +16,7 @@ export default function FeaturedArticlesSection() {
         category: 'LLM Basics',
         title: 'Understanding Large Language Models: From Theory to Practice',
         excerpt: 'Demystify the technology behind ChatGPT, Claude, and other LLMs. A beginner-friendly introduction to transformer architecture.',
-        author: 'Prof. Michael Torres',
+        author: 'Zev Uhuru',
         date: 'Mar 20, 2025',
         readTime: 12,
         slug: 'understanding-llms'
@@ -25,7 +25,7 @@ export default function FeaturedArticlesSection() {
         category: 'Academic Writing',
         title: '5 Ways AI is Revolutionizing Academic Research',
         excerpt: 'From literature reviews to data analysis, explore how AI tools are transforming every stage of the academic research process.',
-        author: 'Emily Watson',
+        author: 'Zev Uhuru',
         date: 'Mar 18, 2025',
         readTime: 6,
         slug: 'ai-research-revolution'

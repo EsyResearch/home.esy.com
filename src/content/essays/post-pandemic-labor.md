@@ -1,9 +1,9 @@
 ---
 id: "post-pandemic-labor"
-title: "Post-Pandemic Labor Markets: Remote Work and Urban Economic Restructuring"
-authors: ["Dr. James Liu", "Anna Martinez"]
-institution: "Harvard Business School"
-publishDate: "2025-03-20"
+title: "The Future of Work: Post-Pandemic Labor Market Transformations"
+authors: ["Zev Uhuru"]
+institution: "Esy University"
+date: "2025-03-05"
 readTime: 38
 abstract: "Drawing on data from 15 major metropolitan areas across three continents, this study examines how the normalization of remote work has fundamentally altered urban labor markets and economic structures."
 tags: ["Economics", "Urban Studies", "Labor Markets", "Remote Work"]

@@ -9,7 +9,7 @@ export default function SchoolArticleAuthor({ author }) {
       <div className={styles.authorContent}>
         <Image 
           src={author.avatar}
-          alt={`Dr. ${author.name}`}
+          alt={`${author.name}`}
           width={48}
           height={48}
           style={{ width: '48px', height: '48px', borderRadius: '50%', border: '2px solid #2a2a3a' }}

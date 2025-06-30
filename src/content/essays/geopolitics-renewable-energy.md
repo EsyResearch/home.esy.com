@@ -1,12 +1,12 @@
 ---
 id: "geopolitics-renewable-energy"
-title: "The Geopolitics of Renewable Energy: Power Shifts in a Decarbonizing World"
-authors: ["Dr. Sarah Chen", "Prof. Michael Torres"]
-institution: "MIT Energy Initiative"
-publishDate: "2025-03-15"
+title: "Geopolitics of Renewable Energy: The New Great Game"
+authors: ["Han Thi Htet"]
+institution: "Esy University"
+date: "2025-02-14"
 readTime: 45
 abstract: "This comprehensive analysis examines how the global transition to renewable energy is fundamentally reshaping international power dynamics. Through examination of energy infrastructure investments, rare earth mineral dependencies, and emerging energy alliances, we argue that traditional petrostates face unprecedented challenges while new forms of resource competition emerge."
-tags: ["Energy Policy", "Geopolitics", "Renewable Energy", "International Relations"]
+tags: ["energy", "geopolitics", "renewables", "climate"]
 metrics:
   citations: 87
   views: 23456

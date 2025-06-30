@@ -16,7 +16,7 @@ export default function HeroVisual () {
                 The integration of artificial intelligence into academic writing represents one of the most significant transformations in scholarly communication since the advent of digital publishing...
               </p>
               <p>
-                <span style={{color: '#6366f1'}}>AI Suggestion:</span> Consider adding a citation here to strengthen your argument. Recent studies by Chen et al. (2025) demonstrate...
+                <span style={{color: '#6366f1'}}>AI Suggestion:</span> Consider adding a citation here to strengthen your argument. Recent studies by Uhuru et al. (2025) demonstrate...
               </p>
             </div>
             
@@ -39,7 +39,7 @@ export default function HeroVisual () {
                 <span style={{fontSize: '0.875rem', fontWeight: '600', color: '#6366f1'}}>Citation Found</span>
               </div>
               <p style={{fontSize: '0.875rem', color: 'var(--text-muted)'}}>
-                Chen, L. et al. (2025) Nature
+                Uhuru, Z. et al. (2025) Nature
               </p>
             </div>
           </div>

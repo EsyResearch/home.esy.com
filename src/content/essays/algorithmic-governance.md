@@ -1,9 +1,9 @@
 ---
 id: "algorithmic-governance"
 title: "Algorithmic Governance: Democratic Implications of AI in Public Policy"
-authors: ["Emily Watson"]
-institution: "Stanford Democracy Lab"
-publishDate: "2025-03-22"
+authors: ["Zev Uhuru"]
+institution: "Esy University"
+publishDate: "2025-01-28"
 readTime: 32
 abstract: "This paper investigates the increasing role of artificial intelligence in governmental decision-making processes, examining case studies from Estonia's e-governance system and exploring the democratic implications of algorithmic governance."
 tags: ["Political Science", "AI Ethics", "Digital Governance", "Democracy"]

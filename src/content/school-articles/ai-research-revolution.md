@@ -2,10 +2,10 @@
 title: "5 Ways AI is Revolutionizing Academic Research"
 category: "Academic Writing"
 author:
-  name: "Emily Watson"
-  title: "Research Technologist"
-  avatar: "https://ui-avatars.com/api/?name=Emily+Watson&background=6366f1&color=fff"
-  bio: "Emily Watson explores the intersection of AI and academic research."
+  name: "Zev Uhuru"
+  title: "AI Research Lead"
+  avatar: "https://ui-avatars.com/api/?name=Zev+Uhuru&background=6366f1&color=fff"
+  bio: "Zev Uhuru explores the intersection of AI and academic research."
 date: "Mar 18, 2025"
 readTime: "6 min read"
 relatedArticles:
