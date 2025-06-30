@@ -1,14 +1,12 @@
 "use client"
 
 import { useState, useEffect, useRef } from 'react';
-import Navigation from '@/components/Home/navigation';
 import HeroSection from '@/components/School/heroSection';
 import LearningPathsSection from '@/components/School/learningPathsSection';
 import FeaturedArticlesSection from '@/components/School/featuredArticlesSection';
 import InteractiveLearningSection from '@/components/School/interactiveLearningSection';
 import StatsSection from '@/components/School/statsSection';
 import NewsletterSection from '@/components/School/newsletterSection';
-import Footer from '@/components/Home/footer';
 
 export default function EsySchoolHub() {
     const [scrolled, setScrolled] = useState(false);
@@ -101,14 +99,12 @@ export default function EsySchoolHub() {
       
         return (
           <div>
-            <Navigation />
             <HeroSection activeFilter={activeFilter} handleFilterClick={handleFilterClick} />
             <LearningPathsSection />
             <FeaturedArticlesSection />
             <InteractiveLearningSection />
             {/* <StatsSection /> */}
             <NewsletterSection emailInputRef={emailInputRef} handleNewsletterSubmit={handleNewsletterSubmit} />
-            <Footer />
           </div>
         );
 }

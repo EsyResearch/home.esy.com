@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 import Logo from "../../../public/esy-logos/logo-files/for-web/svg/color-no-bg.svg"
 import Image from "next/image";
