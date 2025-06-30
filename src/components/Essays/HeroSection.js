@@ -14,7 +14,7 @@ const HeroSection = ({
 }) => {
   return (
     <section style={{ 
-      paddingTop: '7rem', 
+      paddingTop: '10rem', 
       paddingBottom: '3rem',
       borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
     }}>
