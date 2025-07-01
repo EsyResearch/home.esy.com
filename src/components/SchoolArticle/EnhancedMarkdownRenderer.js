@@ -77,7 +77,6 @@ function directivePlugin() {
           // Fallback to div and log a warning
           node.data.hName = 'div';
           if (process.env.NODE_ENV !== 'production') {
-            // eslint-disable-next-line no-console
             console.warn(
               `Invalid directive name '${node.name}' encountered in markdown. Falling back to <div>.`,
               node

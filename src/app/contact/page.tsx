@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { 
   BookOpen, ArrowRight, Sparkles, Calendar, Users, HelpCircle,
   Clock, Mail, ChevronDown
@@ -132,7 +133,7 @@ const ContactPage = () => {
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '1.5rem 2rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '3rem' }}>
-              <a href="/" style={{ 
+              <Link href="/" style={{ 
                 display: 'flex', 
                 alignItems: 'center', 
                 gap: '0.875rem', 
@@ -155,49 +156,49 @@ const ContactPage = () => {
                   fontWeight: 600, 
                   letterSpacing: '-0.02em' 
                 }}>esy</span>
-              </a>
+              </Link>
 
               <nav style={{ display: 'flex', gap: '2.5rem' }}>
-                <a href="/write" style={{ 
+                <Link href="/write" style={{ 
                   color: currentTheme.muted, 
                   textDecoration: 'none',
                   fontSize: '0.938rem',
                   transition: 'color 0.2s'
                 }}>
                   Write
-                </a>
-                <a href="/prompts" style={{ 
+                </Link>
+                <Link href="/prompts" style={{ 
                   color: currentTheme.muted, 
                   textDecoration: 'none',
                   fontSize: '0.938rem',
                   transition: 'color 0.2s'
                 }}>
                   Prompts
-                </a>
-                <a href="/learn" style={{ 
+                </Link>
+                <Link href="/learn" style={{ 
                   color: currentTheme.muted, 
                   textDecoration: 'none',
                   fontSize: '0.938rem',
                   transition: 'color 0.2s'
                 }}>
                   Learn
-                </a>
-                <a href="/about" style={{ 
+                </Link>
+                <Link href="/about" style={{ 
                   color: currentTheme.muted, 
                   textDecoration: 'none',
                   fontSize: '0.938rem',
                   transition: 'color 0.2s'
                 }}>
                   About
-                </a>
-                <a href="/contact" style={{ 
+                </Link>
+                <Link href="/contact" style={{ 
                   color: 'white', 
                   textDecoration: 'none',
                   fontSize: '0.938rem',
                   fontWeight: 500
                 }}>
                   Contact
-                </a>
+                </Link>
               </nav>
             </div>
 
@@ -257,7 +258,7 @@ const ContactPage = () => {
                 color: currentTheme.muted,
                 marginBottom: '3rem'
               }}>
-                Choose how you'd like to connect with us.
+                Choose how you&apos;d like to connect with us.
               </p>
 
               <div style={{ 
@@ -379,7 +380,7 @@ const ContactPage = () => {
                     color: currentTheme.subtle,
                     lineHeight: 1.6
                   }}>
-                    Choose how you'd like to connect with us, and we'll guide you through the next steps.
+                    Choose how you&apos;d like to connect with us, and we&apos;ll guide you through the next steps.
                   </p>
                 </div>
               )}
@@ -433,7 +434,7 @@ const ContactPage = () => {
                             color: currentTheme.subtle,
                             marginBottom: '1rem'
                           }}>
-                            What you'll get
+                            What you&apos;ll get
                           </h4>
                           <ul style={{
                             listStyle: 'none',
