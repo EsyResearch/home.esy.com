@@ -1,5 +1,5 @@
 ---
-title: "Conclusion: Bringing Your Essay to a Powerful Close"
+title: "Conclusion"
 category: "Structure"
 author:
   name: "Dr. Elena Martinez"

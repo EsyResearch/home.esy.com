@@ -1,5 +1,5 @@
 ---
-title: "Outline: Your Essay's Blueprint"
+title: "Outline"
 category: "Structure"
 author:
   name: "Prof. Michael Rodriguez"

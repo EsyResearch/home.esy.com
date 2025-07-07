@@ -1,5 +1,5 @@
 ---
-title: "Counterargument: Strengthening Your Position Through Opposition"
+title: "Counterargument"
 category: "Writing"
 author:
   name: "Dr. James Wilson"

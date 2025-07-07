@@ -1,5 +1,5 @@
 ---
-title: "Brainstorming: Generating Ideas for Your Essay"
+title: "Brainstorming"
 category: "Writing"
 author:
   name: "Prof. Maria Rodriguez"

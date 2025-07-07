@@ -1,5 +1,5 @@
 ---
-title: "Body Paragraph: The Heart of Your Argument"
+title: "Body Paragraph"
 category: "Structure"
 author:
   name: "Dr. Sarah Chen"

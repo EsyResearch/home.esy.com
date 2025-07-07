@@ -1,5 +1,5 @@
 ---
-title: "Hook: Capturing Your Reader's Attention"
+title: "Hook"
 category: "Writing"
 author:
   name: "Dr. Amanda Foster"

@@ -1,5 +1,5 @@
 ---
-title: "Analysis: Moving Beyond Summary to Insight"
+title: "Analysis"
 category: "Writing"
 author:
   name: "Dr. Rachel Thompson"

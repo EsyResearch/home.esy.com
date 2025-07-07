@@ -1,5 +1,5 @@
 ---
-title: "Paraphrase: Restating Ideas in Your Own Words"
+title: "Paraphrase"
 category: "Citation"
 author:
   name: "Dr. Lisa Chang"

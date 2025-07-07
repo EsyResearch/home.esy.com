@@ -1,5 +1,5 @@
 ---
-title: "Transition: Connecting Your Ideas Seamlessly"
+title: "Transition"
 category: "Writing"
 author:
   name: "Prof. David Kim"
