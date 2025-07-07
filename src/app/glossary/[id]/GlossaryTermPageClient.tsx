@@ -19,9 +19,12 @@ interface CategoryMetaMap {
 
 interface GlossaryTermPageClientProps {
   term: GlossaryTermDetail;
+  Content?: React.ComponentType;
+  content?: string;
+  isCompiled?: boolean;
 }
 
-const GlossaryTermPageClient = ({ term }: GlossaryTermPageClientProps) => {
+const GlossaryTermPageClient = ({ term, Content, content, isCompiled }: GlossaryTermPageClientProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [showShareMenu, setShowShareMenu] = useState(false);
@@ -108,6 +111,9 @@ const GlossaryTermPageClient = ({ term }: GlossaryTermPageClientProps) => {
               setActiveTab={setActiveTab}
               term={term}
               currentTheme={currentTheme}
+              Content={Content}
+              content={content}
+              isCompiled={isCompiled}
             />
           </div>
 

@@ -8,18 +8,25 @@ interface GlossaryTermTabsProps {
   setActiveTab: (tab: string) => void;
   term: GlossaryTermDetail;
   currentTheme: Theme;
+  Content?: React.ComponentType;
+  content?: string;
+  isCompiled?: boolean;
 }
 
 const GlossaryTermTabs: React.FC<GlossaryTermTabsProps> = ({
   activeTab,
   setActiveTab,
   term,
-  currentTheme
+  currentTheme,
+  Content,
+  content,
+  isCompiled
 }) => {
   const tabs = [
     { id: 'overview', label: 'Overview' },
     { id: 'usage', label: 'Usage' },
     { id: 'examples', label: 'Examples' },
+    { id: 'content', label: 'Full Content' },
     { id: 'related', label: 'Related' }
   ];
 
@@ -256,6 +263,39 @@ const GlossaryTermTabs: React.FC<GlossaryTermTabsProps> = ({
                   )}
                 </div>
               </section>
+            )}
+          </div>
+        );
+
+      case 'content':
+        return (
+          <div>
+            {Content && isCompiled ? (
+              <div style={{
+                fontSize: '1rem',
+                lineHeight: 1.7,
+                color: currentTheme.text
+              }}>
+                <Content />
+              </div>
+            ) : content ? (
+              <div style={{
+                fontSize: '1rem',
+                lineHeight: 1.7,
+                color: currentTheme.text,
+                whiteSpace: 'pre-wrap'
+              }}>
+                {content}
+              </div>
+            ) : (
+              <div style={{
+                fontSize: '1rem',
+                lineHeight: 1.7,
+                color: currentTheme.muted,
+                fontStyle: 'italic'
+              }}>
+                No content available for this term.
+              </div>
             )}
           </div>
         );
