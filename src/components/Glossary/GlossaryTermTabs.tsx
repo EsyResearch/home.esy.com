@@ -1,6 +1,8 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { Theme, GlossaryTermDetail } from '@/types';
 
 interface GlossaryTermTabsProps {
@@ -26,8 +28,7 @@ const GlossaryTermTabs: React.FC<GlossaryTermTabsProps> = ({
     { id: 'overview', label: 'Overview' },
     { id: 'usage', label: 'Usage' },
     { id: 'examples', label: 'Examples' },
-    { id: 'content', label: 'Full Content' },
-    { id: 'related', label: 'Related' }
+    { id: 'history', label: 'History' }
   ];
 
   const renderTabContent = () => {
@@ -35,83 +36,41 @@ const GlossaryTermTabs: React.FC<GlossaryTermTabsProps> = ({
       case 'overview':
         return (
           <div>
-            {/* Extended Definition */}
-            <section style={{ marginBottom: '2rem' }}>
-              <h3 style={{
-                fontSize: '1.25rem',
-                fontWeight: 600,
-                marginBottom: '1rem',
+            {/* Full Markdown Content */}
+            {content ? (
+              <div style={{
+                fontSize: '1rem',
+                lineHeight: 1.7,
                 color: currentTheme.text
               }}>
-                Extended Definition
-              </h3>
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    h1: ({ children }) => <h1 style={{ fontSize: '1.75rem', fontWeight: 600, marginBottom: '1rem', color: currentTheme.text }}>{children}</h1>,
+                    h2: ({ children }) => <h2 style={{ fontSize: '1.5rem', fontWeight: 600, marginBottom: '0.75rem', color: currentTheme.text }}>{children}</h2>,
+                    h3: ({ children }) => <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '0.5rem', color: currentTheme.text }}>{children}</h3>,
+                    p: ({ children }) => <p style={{ marginBottom: '1rem', color: currentTheme.text }}>{children}</p>,
+                    ul: ({ children }) => <ul style={{ marginBottom: '1rem', paddingLeft: '1.5rem', color: currentTheme.text }}>{children}</ul>,
+                    ol: ({ children }) => <ol style={{ marginBottom: '1rem', paddingLeft: '1.5rem', color: currentTheme.text }}>{children}</ol>,
+                    li: ({ children }) => <li style={{ marginBottom: '0.5rem', color: currentTheme.text }}>{children}</li>,
+                    blockquote: ({ children }) => <blockquote style={{ borderLeft: '4px solid ' + currentTheme.accent, paddingLeft: '1rem', marginBottom: '1rem', fontStyle: 'italic', color: currentTheme.muted }}>{children}</blockquote>,
+                    strong: ({ children }) => <strong style={{ fontWeight: 600, color: currentTheme.text }}>{children}</strong>,
+                    em: ({ children }) => <em style={{ fontStyle: 'italic', color: currentTheme.text }}>{children}</em>,
+                    code: ({ children }) => <code style={{ background: currentTheme.elevated, padding: '0.25rem 0.5rem', borderRadius: '4px', fontSize: '0.875rem', color: currentTheme.accent }}>{children}</code>,
+                  }}
+                >
+                  {content}
+                </ReactMarkdown>
+              </div>
+            ) : (
               <div style={{
                 fontSize: '1rem',
                 lineHeight: 1.7,
                 color: currentTheme.muted,
-                whiteSpace: 'pre-line'
+                fontStyle: 'italic'
               }}>
-                {term.extendedDefinition}
+                No content available for this term.
               </div>
-            </section>
-
-            {/* Personal Note */}
-            {term.personalNote && (
-              <section style={{ marginBottom: '2rem' }}>
-                <div style={{
-                  padding: '1.5rem',
-                  background: currentTheme.elevated,
-                  border: `1px solid ${currentTheme.border}`,
-                  borderRadius: '8px',
-                  borderLeft: `4px solid ${currentTheme.accent}`
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    marginBottom: '0.75rem'
-                  }}>
-                    <span style={{ fontSize: '1.25rem' }}>💡</span>
-                    <h4 style={{
-                      fontSize: '1rem',
-                      fontWeight: 600,
-                      color: currentTheme.text
-                    }}>
-                      Personal Note
-                    </h4>
-                  </div>
-                  <p style={{
-                    fontSize: '0.938rem',
-                    lineHeight: 1.6,
-                    color: currentTheme.muted,
-                    fontStyle: 'italic',
-                    margin: 0
-                  }}>
-                    {term.personalNote}
-                  </p>
-                </div>
-              </section>
-            )}
-
-            {/* Etymology */}
-            {term.etymology && (
-              <section style={{ marginBottom: '2rem' }}>
-                <h3 style={{
-                  fontSize: '1.25rem',
-                  fontWeight: 600,
-                  marginBottom: '1rem',
-                  color: currentTheme.text
-                }}>
-                  Etymology
-                </h3>
-                <p style={{
-                  fontSize: '1rem',
-                  lineHeight: 1.7,
-                  color: currentTheme.muted
-                }}>
-                  {term.etymology}
-                </p>
-              </section>
             )}
           </div>
         );
@@ -140,8 +99,8 @@ const GlossaryTermTabs: React.FC<GlossaryTermTabsProps> = ({
               </section>
             )}
 
-            {/* Related Posts */}
-            {term.relatedPosts.length > 0 && (
+            {/* Related Articles */}
+            {term.relatedArticles && term.relatedArticles.length > 0 && (
               <section>
                 <h3 style={{
                   fontSize: '1.25rem',
@@ -152,27 +111,16 @@ const GlossaryTermTabs: React.FC<GlossaryTermTabsProps> = ({
                   Related Articles
                 </h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  {term.relatedPosts.map((post, index) => (
-                    <Link
+                  {term.relatedArticles.map((article, index) => (
+                    <div
                       key={index}
-                      href={post.url}
                       style={{
                         display: 'block',
                         padding: '1.25rem',
                         background: currentTheme.elevated,
                         border: `1px solid ${currentTheme.border}`,
                         borderRadius: '8px',
-                        textDecoration: 'none',
-                        color: currentTheme.text,
-                        transition: 'all 0.2s'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = currentTheme.accent;
-                        e.currentTarget.style.transform = 'translateY(-2px)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = currentTheme.border;
-                        e.currentTarget.style.transform = 'translateY(0)';
+                        color: currentTheme.text
                       }}
                     >
                       <h4 style={{
@@ -181,15 +129,23 @@ const GlossaryTermTabs: React.FC<GlossaryTermTabsProps> = ({
                         marginBottom: '0.5rem',
                         color: currentTheme.text
                       }}>
-                        {post.title}
+                        {article.title}
                       </h4>
-                      <div style={{
+                      <p style={{
                         fontSize: '0.875rem',
-                        color: currentTheme.subtle
+                        color: currentTheme.muted,
+                        marginBottom: '0.5rem'
                       }}>
-                        {new Date(post.date).toLocaleDateString()}
-                      </div>
-                    </Link>
+                        {article.description}
+                      </p>
+                      <span style={{
+                        fontSize: '0.75rem',
+                        color: currentTheme.accent,
+                        fontWeight: 500
+                      }}>
+                        {article.type}
+                      </span>
+                    </div>
                   ))}
                 </div>
               </section>
@@ -208,7 +164,7 @@ const GlossaryTermTabs: React.FC<GlossaryTermTabsProps> = ({
                   marginBottom: '1rem',
                   color: currentTheme.text
                 }}>
-                  Code Example
+                  Examples
                 </h3>
                 <div style={{
                   background: currentTheme.elevated,
@@ -300,10 +256,51 @@ const GlossaryTermTabs: React.FC<GlossaryTermTabsProps> = ({
           </div>
         );
 
-      case 'related':
+      case 'history':
         return (
           <div>
-            {term.relatedTerms.length > 0 && (
+            <section style={{ marginBottom: '2rem' }}>
+              <h3 style={{
+                fontSize: '1.25rem',
+                fontWeight: 600,
+                marginBottom: '1rem',
+                color: currentTheme.text
+              }}>
+                Version History
+              </h3>
+              <div style={{
+                background: currentTheme.elevated,
+                border: `1px solid ${currentTheme.border}`,
+                borderRadius: '8px',
+                padding: '1.5rem'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  marginBottom: '1rem'
+                }}>
+                  <span style={{ fontSize: '1.25rem' }}>📅</span>
+                  <h4 style={{
+                    fontSize: '1rem',
+                    fontWeight: 600,
+                    color: currentTheme.text
+                  }}>
+                    Last Updated: {term.lastUpdated}
+                  </h4>
+                </div>
+                <p style={{
+                  fontSize: '0.938rem',
+                  lineHeight: 1.6,
+                  color: currentTheme.muted,
+                  margin: 0
+                }}>
+                  This term was last updated on {term.lastUpdated}. Check back for the latest information and improvements.
+                </p>
+              </div>
+            </section>
+
+            {term.updateHistory && term.updateHistory.length > 0 && (
               <section>
                 <h3 style={{
                   fontSize: '1.25rem',
@@ -311,50 +308,43 @@ const GlossaryTermTabs: React.FC<GlossaryTermTabsProps> = ({
                   marginBottom: '1rem',
                   color: currentTheme.text
                 }}>
-                  Related Terms
+                  Update History
                 </h3>
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                  gap: '1rem'
-                }}>
-                  {term.relatedTerms.map((relatedTerm, index) => (
-                    <Link
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  {term.updateHistory.map((update, index) => (
+                    <div
                       key={index}
-                      href={`/glossary/${relatedTerm.id}`}
                       style={{
-                        display: 'block',
-                        padding: '1.25rem',
+                        padding: '1rem',
                         background: currentTheme.elevated,
                         border: `1px solid ${currentTheme.border}`,
-                        borderRadius: '8px',
-                        textDecoration: 'none',
-                        color: currentTheme.text,
-                        transition: 'all 0.2s'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = currentTheme.accent;
-                        e.currentTarget.style.transform = 'translateY(-2px)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = currentTheme.border;
-                        e.currentTarget.style.transform = 'translateY(0)';
+                        borderRadius: '8px'
                       }}
                     >
-                      <h4 style={{
-                        fontSize: '1rem',
+                      <div style={{
+                        fontSize: '0.875rem',
+                        color: currentTheme.accent,
                         fontWeight: 500,
-                        color: currentTheme.text
+                        marginBottom: '0.5rem'
                       }}>
-                        {relatedTerm.term}
-                      </h4>
-                    </Link>
+                        {update.date}
+                      </div>
+                      <p style={{
+                        fontSize: '0.938rem',
+                        color: currentTheme.text,
+                        margin: 0
+                      }}>
+                        {update.change}
+                      </p>
+                    </div>
                   ))}
                 </div>
               </section>
             )}
           </div>
         );
+
+
 
       default:
         return null;

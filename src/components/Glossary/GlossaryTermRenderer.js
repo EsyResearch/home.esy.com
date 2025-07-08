@@ -33,6 +33,7 @@ export default function GlossaryTermRenderer({ meta, Content, content }) {
     example: meta.example,
     relatedTerms: meta.relatedTerms || [],
     relatedPosts: meta.relatedPosts || [],
+    relatedArticles: meta.relatedArticles || [],
     etymology: meta.etymology,
     firstAdded: meta.firstAdded || meta.date,
     stats: meta.stats || {

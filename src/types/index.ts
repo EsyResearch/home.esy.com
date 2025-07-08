@@ -58,6 +58,11 @@ export interface GlossaryTermDetail extends GlossaryTerm {
     date: string;
     url: string;
   }>;
+  relatedArticles?: Array<{
+    title: string;
+    description: string;
+    type: string;
+  }>;
   etymology?: string;
   firstAdded: string;
   stats: {
