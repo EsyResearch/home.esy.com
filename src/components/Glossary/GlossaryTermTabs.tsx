@@ -31,6 +31,46 @@ const GlossaryTermTabs: React.FC<GlossaryTermTabsProps> = ({
     { id: 'history', label: 'History' }
   ];
 
+  // Custom markdown components for callouts
+  const markdownComponents = {
+    h1: ({ children }) => <h1 style={{ fontSize: '1.75rem', fontWeight: 700, margin: '2.5rem 0 1.5rem', color: currentTheme.text, letterSpacing: '-0.01em' }}>{children}</h1>,
+    h2: ({ children }) => <h2 style={{ fontSize: '1.35rem', fontWeight: 600, margin: '2rem 0 1.25rem', color: currentTheme.text, letterSpacing: '-0.01em' }}>{children}</h2>,
+    h3: ({ children }) => <h3 style={{ fontSize: '1.15rem', fontWeight: 600, margin: '1.5rem 0 1rem', color: currentTheme.text }}>{children}</h3>,
+    p: ({ children }) => <p style={{ marginBottom: '1.25rem', color: currentTheme.text, fontSize: '1.08rem', lineHeight: 1.8 }}>{children}</p>,
+    ul: ({ children }) => <ul style={{ marginBottom: '1.25rem', paddingLeft: '1.5rem', color: currentTheme.text }}>{children}</ul>,
+    ol: ({ children }) => <ol style={{ marginBottom: '1.25rem', paddingLeft: '1.5rem', color: currentTheme.text }}>{children}</ol>,
+    li: ({ children }) => <li style={{ marginBottom: '0.5rem', color: currentTheme.text }}>{children}</li>,
+    blockquote: ({ children }) => <blockquote style={{ padding: '1.25rem 1.5rem', margin: '2rem 0', background: currentTheme.elevated, borderRadius: '12px', fontStyle: 'italic', color: currentTheme.text, fontWeight: 500, boxShadow: '0 2px 12px 0 rgba(99,102,241,0.06)' }}>{children}</blockquote>,
+    strong: ({ children }) => <strong style={{ fontWeight: 600, color: currentTheme.text }}>{children}</strong>,
+    em: ({ children }) => <em style={{ fontStyle: 'italic', color: currentTheme.text }}>{children}</em>,
+    code: ({ children }) => <code style={{ background: currentTheme.elevated, padding: '0.25rem 0.5rem', borderRadius: '4px', fontSize: '0.98rem', color: currentTheme.accent }}>{children}</code>,
+    // Custom callout for 'My Understanding' or similar
+    div: ({ node, ...props }) => {
+      if (props.className && props.className.includes('callout')) {
+        return (
+          <div style={{
+            background: 'linear-gradient(135deg, rgba(99,102,241,0.10) 0%, rgba(168,85,247,0.10) 100%)',
+            border: '1.5px solid ' + currentTheme.accent,
+            borderRadius: '16px',
+            padding: '1.5rem 2rem',
+            margin: '2.5rem 0',
+            color: currentTheme.text,
+            boxShadow: '0 4px 24px 0 rgba(99,102,241,0.08)',
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: '1.25rem',
+            fontSize: '1.08rem',
+            lineHeight: 1.8
+          }}>
+            <span style={{ fontSize: '1.5rem', color: currentTheme.accent, marginRight: '0.75rem' }}>💡</span>
+            <span>{props.children}</span>
+          </div>
+        );
+      }
+      return <div {...props} />;
+    }
+  };
+
   const renderTabContent = () => {
     switch (activeTab) {
       case 'overview':
@@ -39,25 +79,13 @@ const GlossaryTermTabs: React.FC<GlossaryTermTabsProps> = ({
             {/* Full Markdown Content */}
             {content ? (
               <div style={{
-                fontSize: '1rem',
-                lineHeight: 1.7,
+                fontSize: '1.08rem',
+                lineHeight: 1.8,
                 color: currentTheme.text
               }}>
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
-                  components={{
-                    h1: ({ children }) => <h1 style={{ fontSize: '1.75rem', fontWeight: 600, marginBottom: '1rem', color: currentTheme.text }}>{children}</h1>,
-                    h2: ({ children }) => <h2 style={{ fontSize: '1.5rem', fontWeight: 600, marginBottom: '0.75rem', color: currentTheme.text }}>{children}</h2>,
-                    h3: ({ children }) => <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '0.5rem', color: currentTheme.text }}>{children}</h3>,
-                    p: ({ children }) => <p style={{ marginBottom: '1rem', color: currentTheme.text }}>{children}</p>,
-                    ul: ({ children }) => <ul style={{ marginBottom: '1rem', paddingLeft: '1.5rem', color: currentTheme.text }}>{children}</ul>,
-                    ol: ({ children }) => <ol style={{ marginBottom: '1rem', paddingLeft: '1.5rem', color: currentTheme.text }}>{children}</ol>,
-                    li: ({ children }) => <li style={{ marginBottom: '0.5rem', color: currentTheme.text }}>{children}</li>,
-                    blockquote: ({ children }) => <blockquote style={{ borderLeft: '4px solid ' + currentTheme.accent, paddingLeft: '1rem', marginBottom: '1rem', fontStyle: 'italic', color: currentTheme.muted }}>{children}</blockquote>,
-                    strong: ({ children }) => <strong style={{ fontWeight: 600, color: currentTheme.text }}>{children}</strong>,
-                    em: ({ children }) => <em style={{ fontStyle: 'italic', color: currentTheme.text }}>{children}</em>,
-                    code: ({ children }) => <code style={{ background: currentTheme.elevated, padding: '0.25rem 0.5rem', borderRadius: '4px', fontSize: '0.875rem', color: currentTheme.accent }}>{children}</code>,
-                  }}
+                  components={markdownComponents}
                 >
                   {content}
                 </ReactMarkdown>
@@ -352,47 +380,39 @@ const GlossaryTermTabs: React.FC<GlossaryTermTabsProps> = ({
   };
 
   return (
-    <div style={{ marginTop: '2rem' }}>
-      {/* Tab Navigation */}
-      <div style={{
+    <div>
+      {/* Tabs Navigation */}
+      <nav style={{
         display: 'flex',
-        borderBottom: `1px solid ${currentTheme.border}`,
-        marginBottom: '2rem'
+        gap: '2.5rem',
+        borderBottom: `2px solid ${currentTheme.border}`,
+        marginBottom: '2.5rem',
+        marginTop: '2.5rem',
+        paddingBottom: '0.5rem',
+        fontSize: '1.13rem',
+        fontWeight: 600
       }}>
         {tabs.map(tab => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             style={{
-              padding: '1rem 1.5rem',
-              background: 'transparent',
+              background: 'none',
               border: 'none',
-              borderBottom: activeTab === tab.id ? `2px solid ${currentTheme.accent}` : '2px solid transparent',
               color: activeTab === tab.id ? currentTheme.accent : currentTheme.muted,
-              fontSize: '0.938rem',
-              fontWeight: activeTab === tab.id ? 600 : 400,
+              borderBottom: activeTab === tab.id ? `3px solid ${currentTheme.accent}` : '3px solid transparent',
+              padding: '0.5rem 0',
               cursor: 'pointer',
-              outline: 'none',
-              transition: 'all 0.2s'
-            }}
-            onMouseEnter={(e) => {
-              if (activeTab !== tab.id) {
-                e.currentTarget.style.color = currentTheme.text;
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (activeTab !== tab.id) {
-                e.currentTarget.style.color = currentTheme.muted;
-              }
+              fontSize: '1.13rem',
+              fontWeight: 700,
+              transition: 'color 0.2s, border-bottom 0.2s'
             }}
           >
             {tab.label}
           </button>
         ))}
-      </div>
-
-      {/* Tab Content */}
-      <div>
+      </nav>
+      <div style={{ marginTop: '2.5rem' }}>
         {renderTabContent()}
       </div>
     </div>
