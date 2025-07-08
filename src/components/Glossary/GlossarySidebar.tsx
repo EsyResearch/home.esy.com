@@ -26,129 +26,150 @@ const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
   <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
     {/* Term of the Day */}
     <div style={{
-      padding: '1.5rem',
+      position: 'relative',
+      padding: '2rem',
       background: currentTheme.elevated,
-      border: `1px solid ${currentTheme.border}`,
-      borderRadius: '8px'
+      border: `1.5px solid ${currentTheme.accent}`,
+      borderRadius: '18px',
+      boxShadow: `0 0 0 2px ${currentTheme.accent}30`,
+      minWidth: 0
     }}>
+      {/* Header row: icon, label, badge */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
-        gap: '0.5rem',
-        marginBottom: '1rem'
+        justifyContent: 'space-between',
+        marginBottom: '1.5rem',
+        gap: '1.25rem',
+        minWidth: 0
       }}>
-        <div style={{
-          width: '8px',
-          height: '8px',
-          borderRadius: '50%',
-          background: currentTheme.accent,
-          animation: 'pulse 2s infinite'
-        }} />
-        <h3 style={{
-          fontSize: '0.875rem',
-          fontWeight: 600,
-          color: currentTheme.text,
-          textTransform: 'uppercase',
-          letterSpacing: '0.05em'
-        }}>
-          Term of the Day
-        </h3>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flex: 1, minWidth: 0 }}>
+          <span style={{ fontSize: '1.35rem', color: currentTheme.accent, fontWeight: 700, marginTop: '-2px' }}>✨</span>
+          <span style={{
+            fontSize: '1.08rem',
+            fontWeight: 700,
+            color: currentTheme.subtle,
+            textTransform: 'uppercase',
+            letterSpacing: '0.06em',
+            marginRight: '0.5rem',
+            lineHeight: 1.1,
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
+          }}>
+            Term of the Day
+          </span>
+        </div>
         {termOfDay.isNew && (
           <span style={{
-            padding: '0.125rem 0.5rem',
+            padding: '0.22rem 1.1rem',
             background: currentTheme.accent,
-            color: 'white',
-            fontSize: '0.75rem',
-            borderRadius: '4px',
-            fontWeight: 500
+            color: '#fff',
+            fontSize: '1rem',
+            borderRadius: '9px',
+            fontWeight: 700,
+            letterSpacing: '0.01em',
+            lineHeight: 1.1,
+            display: 'inline-block',
+            marginLeft: '0.5rem',
+            flexShrink: 0
           }}>
-            New
+            NEW
           </span>
         )}
       </div>
-      
-      <Link
-        href={`/glossary/${termOfDay.term.toLowerCase().replace(/\s+/g, '-')}`}
-        style={{
-          display: 'block',
-          textDecoration: 'none',
-          color: currentTheme.text
-        }}
-      >
-        <h4 style={{
-          fontSize: '1.125rem',
-          fontWeight: 600,
-          marginBottom: '0.5rem',
-          color: currentTheme.text
-        }}>
-          {termOfDay.term}
-        </h4>
-        
+      <div style={{ marginBottom: '0.5rem' }}>
+        <span style={{
+          fontSize: '1.45rem',
+          fontWeight: 700,
+          color: currentTheme.text,
+          letterSpacing: '-0.01em',
+          lineHeight: 1.2
+        }}>{termOfDay.term}</span>
+      </div>
+      <div style={{
+        fontSize: '1rem',
+        color: currentTheme.muted,
+        marginBottom: '1.25rem',
+        lineHeight: 1.6
+      }}>
+        {termOfDay.definition}
+      </div>
+      {termOfDay.personalNote && (
         <div style={{
+          padding: '1rem',
+          background: currentTheme.bg,
+          border: `1px solid ${currentTheme.border}`,
+          borderRadius: '12px',
+          fontSize: '1rem',
+          fontStyle: 'italic',
+          color: currentTheme.subtle,
+          marginBottom: '1.5rem',
           display: 'flex',
           alignItems: 'center',
-          gap: '0.5rem',
-          marginBottom: '0.75rem',
-          fontSize: '0.75rem'
+          gap: '0.5rem'
         }}>
-          <span style={{
-            color: getCategoryColor(termOfDay.category),
-            fontWeight: 500
-          }}>
-            {termOfDay.category.toUpperCase()}
-          </span>
-          <span style={{ color: currentTheme.faint }}>•</span>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-            <Eye size={12} style={{ color: currentTheme.subtle }} />
-            <span style={{ color: currentTheme.subtle }}>
-              {termOfDay.views.toLocaleString()}
-            </span>
-          </div>
+          <span style={{ fontSize: '1.1rem' }}>💭</span>
+          <span>{termOfDay.personalNote}</span>
         </div>
-        
-        <p style={{
-          fontSize: '0.875rem',
-          lineHeight: 1.5,
-          color: currentTheme.muted,
-          marginBottom: '0.75rem'
-        }}>
-          {termOfDay.definition}
-        </p>
-        
-        {termOfDay.personalNote && (
-          <div style={{
-            padding: '0.75rem',
-            background: currentTheme.bg,
-            border: `1px solid ${currentTheme.border}`,
-            borderRadius: '6px',
-            fontSize: '0.813rem',
-            fontStyle: 'italic',
-            color: currentTheme.subtle
-          }}>
-            💡 {termOfDay.personalNote}
-          </div>
-        )}
-      </Link>
+      )}
+      {/* Divider */}
+      <div style={{
+        borderTop: `1px solid ${currentTheme.border}`,
+        margin: '1.5rem 0 0.5rem 0'
+      }} />
+      {/* Bottom row: category and learn more */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: '0.5rem',
+        gap: '1rem'
+      }}>
+        <span style={{
+          color: getCategoryColor(termOfDay.category),
+          fontWeight: 700,
+          fontSize: '1rem',
+          textTransform: 'uppercase',
+          letterSpacing: '0.03em'
+        }}>{termOfDay.category}</span>
+        <Link
+          href={`/glossary/${termOfDay.term.toLowerCase().replace(/\s+/g, '-')}`}
+          style={{
+            color: currentTheme.accent,
+            fontWeight: 500,
+            fontSize: '1rem',
+            textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.25rem',
+            transition: 'color 0.2s'
+          }}
+        >
+          Learn more <span style={{ fontSize: '1.1em', marginLeft: '0.1em' }}>→</span>
+        </Link>
+      </div>
     </div>
     
     {/* Recent Terms */}
     <div style={{
-      padding: '1.5rem',
+      padding: '2rem',
       background: currentTheme.elevated,
       border: `1px solid ${currentTheme.border}`,
-      borderRadius: '8px'
+      borderRadius: '18px',
+      marginTop: 0,
+      minWidth: 0
     }}>
       <h3 style={{
-        fontSize: '0.875rem',
-        fontWeight: 600,
-        color: currentTheme.text,
+        fontSize: '1rem',
+        fontWeight: 700,
+        color: currentTheme.subtle,
         textTransform: 'uppercase',
-        letterSpacing: '0.05em',
-        marginBottom: '1rem'
+        letterSpacing: '0.06em',
+        marginBottom: '1.5rem'
       }}>
         Recently Added
       </h3>
-      
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
         {recentTerms.map((term, index) => (
           <Link
@@ -158,74 +179,57 @@ const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              padding: '0.75rem',
+              padding: '1rem 1.25rem',
               background: currentTheme.bg,
               border: `1px solid ${currentTheme.border}`,
-              borderRadius: '6px',
+              borderRadius: '12px',
               textDecoration: 'none',
               color: currentTheme.text,
               transition: 'all 0.2s',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              fontSize: '1rem',
+              fontWeight: 500
             }}
-            onMouseEnter={(e) => {
+            onMouseEnter={e => {
               e.currentTarget.style.borderColor = currentTheme.accent;
               e.currentTarget.style.background = currentTheme.elevated;
             }}
-            onMouseLeave={(e) => {
+            onMouseLeave={e => {
               e.currentTarget.style.borderColor = currentTheme.border;
               e.currentTarget.style.background = currentTheme.bg;
             }}
           >
             <div>
-              <div style={{
-                fontSize: '0.875rem',
-                fontWeight: 500,
-                marginBottom: '0.25rem'
-              }}>
-                {term.term}
-              </div>
-              <div style={{
-                fontSize: '0.75rem',
-                color: getCategoryColor(term.category),
-                fontWeight: 500
-              }}>
-                {term.category.toUpperCase()}
-              </div>
+              <div style={{ fontWeight: 600, marginBottom: '0.15rem' }}>{term.term}</div>
+              <div style={{ fontSize: '0.85rem', color: getCategoryColor(term.category), fontWeight: 600, textTransform: 'uppercase' }}>{term.category}</div>
             </div>
-            
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.25rem',
-              fontSize: '0.75rem',
-              color: currentTheme.subtle
-            }}>
-              <Eye size={12} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.9rem', color: currentTheme.subtle }}>
+              <Eye size={14} />
               <span>{term.views > 1000 ? `${(term.views / 1000).toFixed(1)}k` : term.views}</span>
             </div>
           </Link>
         ))}
       </div>
     </div>
-    
     {/* Quick Stats */}
     <div style={{
-      padding: '1.5rem',
+      padding: '2rem',
       background: currentTheme.elevated,
       border: `1px solid ${currentTheme.border}`,
-      borderRadius: '8px'
+      borderRadius: '18px',
+      marginTop: 0,
+      minWidth: 0
     }}>
       <h3 style={{
-        fontSize: '0.875rem',
-        fontWeight: 600,
-        color: currentTheme.text,
+        fontSize: '1rem',
+        fontWeight: 700,
+        color: currentTheme.subtle,
         textTransform: 'uppercase',
-        letterSpacing: '0.05em',
-        marginBottom: '1rem'
+        letterSpacing: '0.06em',
+        marginBottom: '1.5rem'
       }}>
         Quick Stats
       </h3>
-      
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
         <div style={{
           display: 'flex',
@@ -234,24 +238,11 @@ const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
           padding: '0.5rem 0',
           borderBottom: `1px solid ${currentTheme.border}`
         }}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            color: currentTheme.muted
-          }}>
-            <Bookmark size={14} />
-            <span style={{ fontSize: '0.875rem' }}>Total Terms</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: currentTheme.muted }}>
+            <span style={{ fontWeight: 600 }}>Total Terms</span>
           </div>
-          <span style={{
-            fontSize: '0.875rem',
-            fontWeight: 600,
-            color: currentTheme.text
-          }}>
-            156
-          </span>
+          <span style={{ fontWeight: 700, color: currentTheme.text }}>156</span>
         </div>
-        
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -259,24 +250,11 @@ const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
           padding: '0.5rem 0',
           borderBottom: `1px solid ${currentTheme.border}`
         }}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            color: currentTheme.muted
-          }}>
-            <Eye size={14} />
-            <span style={{ fontSize: '0.875rem' }}>Total Views</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: currentTheme.muted }}>
+            <span style={{ fontWeight: 600 }}>Total Views</span>
           </div>
-          <span style={{
-            fontSize: '0.875rem',
-            fontWeight: 600,
-            color: currentTheme.text
-          }}>
-            24.3k
-          </span>
+          <span style={{ fontWeight: 700, color: currentTheme.text }}>24.3k</span>
         </div>
-        
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -284,46 +262,21 @@ const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
           padding: '0.5rem 0',
           borderBottom: `1px solid ${currentTheme.border}`
         }}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            color: currentTheme.muted
-          }}>
-            <Clock size={14} />
-            <span style={{ fontSize: '0.875rem' }}>Avg Read Time</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: currentTheme.muted }}>
+            <span style={{ fontWeight: 600 }}>Avg Read Time</span>
           </div>
-          <span style={{
-            fontSize: '0.875rem',
-            fontWeight: 600,
-            color: currentTheme.text
-          }}>
-            2.4 min
-          </span>
+          <span style={{ fontWeight: 700, color: currentTheme.text }}>2.4 min</span>
         </div>
-        
         <div style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '0.5rem 0'
         }}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            color: currentTheme.muted
-          }}>
-            <TrendingUp size={14} />
-            <span style={{ fontSize: '0.875rem' }}>Last Updated</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: currentTheme.muted }}>
+            <span style={{ fontWeight: 600 }}>Last Updated</span>
           </div>
-          <span style={{
-            fontSize: '0.875rem',
-            fontWeight: 600,
-            color: currentTheme.text
-          }}>
-            Today
-          </span>
+          <span style={{ fontWeight: 700, color: currentTheme.text }}>Today</span>
         </div>
       </div>
     </div>
