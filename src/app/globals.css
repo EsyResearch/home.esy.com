@@ -10,7 +10,22 @@
   font-style: normal;
 }
 
+
+
 h1, h2, h3, h4, h5, h6 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* Origami for marketing pages (homepage, school index) */
+.origami-headers h1,
+.origami-headers h2 {
+  font-family: 'OrigamiIncised', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+/* Academic pages - only h1 gets Origami for readability */
+.academic-page h1 {
   font-family: 'OrigamiIncised', sans-serif;
   letter-spacing: 0.05em;
 }

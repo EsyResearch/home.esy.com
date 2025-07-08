@@ -8,7 +8,7 @@ import '@/app/globals.css';
 
 const EsyEssaysHubClient = ({ essays, featuredEssay, filters }) => {
   return (
-    <div style={{ 
+    <div className="academic-page" style={{ 
       minHeight: '100vh', 
       backgroundColor: '#0a0a0f',
       color: '#ffffff',

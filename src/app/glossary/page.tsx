@@ -427,7 +427,7 @@ const GlossaryPage = () => {
   }));
 
   return (
-    <div style={{
+    <div className="academic-page" style={{
       minHeight: '100vh',
       backgroundColor: currentTheme.bg,
       color: currentTheme.text,

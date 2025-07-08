@@ -98,7 +98,7 @@ export default function EsySchoolHub() {
         };
       
         return (
-          <div>
+          <div className="origami-headers">
             <HeroSection activeFilter={activeFilter} handleFilterClick={handleFilterClick} />
             <LearningPathsSection />
             <FeaturedArticlesSection />

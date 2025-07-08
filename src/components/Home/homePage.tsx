@@ -8,7 +8,7 @@ import "@/app/globals.css";
 
 export default function EsyHomepage() {
     return (
-      <div>
+      <div className="origami-headers">
         <HeroSection />
         <FeaturesSection />
         <ProcessSection />

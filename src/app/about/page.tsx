@@ -110,7 +110,7 @@ const AboutPage = () => {
   };
 
   return (
-    <div style={{
+    <div className="origami-headers" style={{
       minHeight: '100vh',
       backgroundColor: currentTheme.bg,
       color: currentTheme.text,
