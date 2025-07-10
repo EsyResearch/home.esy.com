@@ -38,7 +38,7 @@ const GlossaryPage = () => {
     subtle: 'rgba(255, 255, 255, 0.5)',
     faint: 'rgba(255, 255, 255, 0.3)',
     border: 'rgba(255, 255, 255, 0.05)',
-    accent: '#6366f1'
+    accent: '#8b5cf6'
   };
 
   // Metrics summary
@@ -355,7 +355,7 @@ const GlossaryPage = () => {
 
   const categories: GlossaryCategory[] = [
     { id: 'all', name: 'All', icon: null, color: currentTheme.subtle },
-    { id: 'writing', name: 'Writing', icon: FileText, color: '#6366f1' },
+    { id: 'writing', name: 'Writing', icon: FileText, color: '#8b5cf6' },
     { id: 'structure', name: 'Structure', icon: Brain, color: '#f59e0b' },
     { id: 'research', name: 'Research', icon: Globe, color: '#ef4444' },
     { id: 'citation', name: 'Citation', icon: Lightbulb, color: '#10b981' },

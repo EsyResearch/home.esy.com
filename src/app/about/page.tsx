@@ -40,7 +40,7 @@ const AboutPage = () => {
     subtle: 'rgba(255, 255, 255, 0.5)',
     faint: 'rgba(255, 255, 255, 0.3)',
     border: 'rgba(255, 255, 255, 0.05)',
-    accent: '#6366f1'
+    accent: '#8b5cf6'
   };
 
   const principles = [
