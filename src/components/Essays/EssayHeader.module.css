@@ -87,7 +87,7 @@
 }
 
 .bookmarked {
-  color: #6366f1;
+  color: #8b5cf6;
 }
 
 .shareMenuContainer {
@@ -120,7 +120,7 @@
 }
 
 .shareButton:hover {
-  background: rgba(99, 102, 241, 0.1);
+  background: rgba(139, 92, 246, 0.1);
 }
 
 /* Theme variants */

@@ -15,7 +15,7 @@
 
 .progressBarTrack {
   height: 100%;
-  background: #6366f1;
+  background: #8b5cf6;
   transition: width 0.1s ease;
 }
 
@@ -39,7 +39,7 @@
   right: 2rem;
   width: 48px;
   height: 48px;
-  background: #6366f1;
+  background: #8b5cf6;
   border: none;
   border-radius: 50%;
   display: flex;
@@ -101,6 +101,6 @@
 
 /* Focus styles for keyboard navigation */
 .backToTopButton:focus {
-  outline: 2px solid #6366f1;
+  outline: 2px solid #8b5cf6;
   outline-offset: 2px;
 } 

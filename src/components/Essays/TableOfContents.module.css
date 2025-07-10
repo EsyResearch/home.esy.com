@@ -50,7 +50,7 @@
 }
 
 .navLinkActive {
-  border-left: 3px solid #6366f1;
+  border-left: 3px solid #8b5cf6;
 }
 
 .readTime {
@@ -181,7 +181,7 @@
 /* Focus styles */
 .closeButton:focus,
 .navLink:focus {
-  outline: 2px solid #6366f1;
+  outline: 2px solid #8b5cf6;
   outline-offset: 2px;
 }
 

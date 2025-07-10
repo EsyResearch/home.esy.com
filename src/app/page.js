@@ -1,4 +1,4 @@
 
-import Homepage from "../components/Home/Homepage.js";
+import NewHomepage from "../components/Home/NewHomepage.js";
 
-export default Homepage;
+export default NewHomepage;

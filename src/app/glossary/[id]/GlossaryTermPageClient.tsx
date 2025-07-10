@@ -48,11 +48,11 @@ const GlossaryTermPageClient = ({ term, Content, content, isCompiled }: Glossary
     subtle: 'rgba(255, 255, 255, 0.5)',
     faint: 'rgba(255, 255, 255, 0.3)',
     border: 'rgba(255, 255, 255, 0.05)',
-    accent: '#6366f1'
+    accent: '#8b5cf6'
   };
 
   const categoryMeta: CategoryMetaMap = {
-    writing: { name: 'Writing', icon: FileText, color: '#6366f1' },
+    writing: { name: 'Writing', icon: FileText, color: '#8b5cf6' },
     structure: { name: 'Structure', icon: Brain, color: '#f59e0b' },
     research: { name: 'Research', icon: Globe, color: '#ef4444' },
     citation: { name: 'Citation', icon: Lightbulb, color: '#10b981' },
