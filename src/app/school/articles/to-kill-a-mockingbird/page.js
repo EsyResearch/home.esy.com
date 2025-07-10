@@ -51,19 +51,22 @@ export default function ToKillAMockingbirdArticle() {
       category: 'Literary Analysis',
       title: 'AI-Powered Shakespeare: Analyzing The Tempest',
       author: 'Dr. James Liu',
-      readTime: '12 min'
+      readTime: '12 min',
+      link: '#'
     },
     {
       category: 'Prompt Engineering',
       title: 'Deconstructing Modernist Poetry with GPT-4',
       author: 'Prof. Maria Rodriguez',
-      readTime: '10 min'
+      readTime: '10 min',
+      link: '#'
     },
     {
       category: 'Case Studies',
       title: 'From Text to Context: Historical Fiction Analysis',
       author: 'Dr. David Kim',
-      readTime: '15 min'
+      readTime: '15 min',
+      link: '#'
     }
   ];
 

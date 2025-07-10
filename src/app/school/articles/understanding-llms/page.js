@@ -51,19 +51,22 @@ export default function UnderstandingLLMsArticle() {
       category: 'Prompt Engineering',
       title: 'What is Prompt Engineering? A Comprehensive Guide',
       author: 'Zev Uhuru',
-      readTime: '8 min'
+      readTime: '8 min',
+      link: '/school/articles/prompt-engineering-guide'
     },
     {
       category: 'Academic Writing',
       title: '5 Ways AI is Revolutionizing Academic Research',
       author: 'Zev Uhuru',
-      readTime: '6 min'
+      readTime: '6 min',
+      link: '/school/articles/ai-research-revolution'
     },
     {
       category: 'Tutorial',
       title: 'Building Your First AI Application with LLMs',
       author: 'Dr. Sarah Chen',
-      readTime: '15 min'
+      readTime: '15 min',
+      link: '#'
     }
   ];
 

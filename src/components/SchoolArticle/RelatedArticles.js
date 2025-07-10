@@ -1,6 +1,7 @@
 "use client"
 
 import React from 'react';
+import Link from 'next/link';
 
 const RelatedArticles = ({ articles }) => {
   const styles = {
@@ -59,24 +60,29 @@ const RelatedArticles = ({ articles }) => {
         <h2 style={styles.relatedTitle}>Continue Learning</h2>
         <div style={styles.relatedGrid}>
           {articles.map((article, index) => (
-            <article
+            <Link
               key={index}
-              style={styles.relatedCard}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
-                e.currentTarget.style.transform = 'translateY(-4px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'transparent';
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}
+              href={article.link || '#'}
+              style={{ textDecoration: 'none', color: 'inherit' }}
             >
-              <div style={styles.relatedCategory}>{article.category}</div>
-              <h3 style={styles.relatedCardTitle}>{article.title}</h3>
-              <div style={styles.relatedMeta}>
-                {article.author} · {article.readTime} read
-              </div>
-            </article>
+              <article
+                style={styles.relatedCard}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'transparent';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                <div style={styles.relatedCategory}>{article.category}</div>
+                <h3 style={styles.relatedCardTitle}>{article.title}</h3>
+                <div style={styles.relatedMeta}>
+                  {article.author} · {article.readTime} read
+                </div>
+              </article>
+            </Link>
           ))}
         </div>
       </div>

@@ -49,19 +49,22 @@ export default function PromptEngineeringGuideArticle() {
       category: 'Prompt Engineering',
       title: 'Advanced Prompt Chaining Techniques',
       author: 'Zev Uhuru',
-      readTime: '12 min'
+      readTime: '12 min',
+      link: '#'
     },
     {
       category: 'Tutorial',
       title: 'Building Custom GPT Assistants',
       author: 'Dr. Sarah Chen',
-      readTime: '10 min'
+      readTime: '10 min',
+      link: '#'
     },
     {
       category: 'Case Study',
       title: 'Real-World Applications of Prompt Engineering',
       author: 'Marcus Johnson',
-      readTime: '15 min'
+      readTime: '15 min',
+      link: '#'
     }
   ];
 

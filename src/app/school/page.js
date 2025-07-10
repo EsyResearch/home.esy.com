@@ -139,7 +139,7 @@ const EsySchool = () => {
       position: 'relative'
     },
     hero: {
-      padding: '3rem 3rem 3rem',
+      padding: '8rem 3rem 3rem',
       maxWidth: '1400px',
       margin: '0 auto',
       position: 'relative'
@@ -150,10 +150,11 @@ const EsySchool = () => {
     heroLabel: {
       display: 'inline-block',
       fontSize: '0.875rem',
-      color: 'rgba(255, 255, 255, 0.5)',
+      color: 'rgba(255, 255, 255, 0.7)',
       marginBottom: '2rem',
       letterSpacing: '0.1em',
-      textTransform: 'uppercase'
+      textTransform: 'uppercase',
+      fontWeight: '500'
     },
     heroTitle: {
       fontSize: 'clamp(2.5rem, 5vw, 4rem)',
@@ -692,7 +693,9 @@ const EsySchool = () => {
       {/* Hero Section */}
       <section style={styles.hero}>
         <div style={styles.heroContent}>
-          <div style={styles.heroLabel}>Esy School · Learn AI-Powered Writing</div>
+          <div style={styles.heroLabel}>
+            Esy <span style={{ color: '#8b5cf6' }}>School</span>
+          </div>
           <h1 style={styles.heroTitle}>
             Master academic writing
             <br />

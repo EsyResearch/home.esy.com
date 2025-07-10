@@ -50,19 +50,22 @@ export default function AIResearchRevolutionArticle() {
       category: 'Technology',
       title: 'Understanding Large Language Models: From Theory to Practice',
       author: 'Dr. Sarah Chen',
-      readTime: '10 min'
+      readTime: '10 min',
+      link: '/school/articles/understanding-llms'
     },
     {
       category: 'Prompt Engineering',
       title: 'What is Prompt Engineering? A Comprehensive Guide',
       author: 'Zev Uhuru',
-      readTime: '8 min'
+      readTime: '8 min',
+      link: '/school/articles/prompt-engineering-guide'
     },
     {
       category: 'Research Methods',
       title: 'Integrating AI Tools into Your Research Workflow',
       author: 'Prof. Michael Zhang',
-      readTime: '12 min'
+      readTime: '12 min',
+      link: '#'
     }
   ];
 
