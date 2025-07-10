@@ -161,8 +161,7 @@ const EsySchool = () => {
       fontWeight: '200',
       lineHeight: '1.1',
       marginBottom: '1.5rem',
-      letterSpacing: '-0.03em',
-      fontFamily: 'OrigamiIncised, sans-serif'
+      letterSpacing: '-0.03em'
     },
     heroAccent: {
       color: '#8b5cf6',
@@ -258,8 +257,7 @@ const EsySchool = () => {
     contentTitle: {
       fontSize: '2.5rem',
       fontWeight: '200',
-      letterSpacing: '-0.02em',
-      fontFamily: 'OrigamiIncised, sans-serif'
+      letterSpacing: '-0.02em'
     },
     contentMeta: {
       display: 'flex',
@@ -417,8 +415,7 @@ const EsySchool = () => {
       fontSize: '3rem',
       fontWeight: '200',
       marginBottom: '1rem',
-      letterSpacing: '-0.02em',
-      fontFamily: 'OrigamiIncised, sans-serif'
+      letterSpacing: '-0.02em'
     },
     featuredSubtitle: {
       fontSize: '1.125rem',
@@ -467,8 +464,7 @@ const EsySchool = () => {
       fontSize: '2.5rem',
       fontWeight: '200',
       marginBottom: '1rem',
-      letterSpacing: '-0.02em',
-      fontFamily: 'OrigamiIncised, sans-serif'
+      letterSpacing: '-0.02em'
     },
     sectionSubtitle: {
       fontSize: '1.125rem',
@@ -548,8 +544,7 @@ const EsySchool = () => {
       fontSize: '2.5rem',
       fontWeight: '200',
       marginBottom: '1rem',
-      letterSpacing: '-0.02em',
-      fontFamily: 'OrigamiIncised, sans-serif'
+      letterSpacing: '-0.02em'
     },
     newsletterDescription: {
       color: 'rgba(255, 255, 255, 0.7)',
