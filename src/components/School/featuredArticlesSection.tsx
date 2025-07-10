@@ -4,6 +4,15 @@ import ArticleCard from "@/components/School/articleCard";
 export default function FeaturedArticlesSection() {
     const articles = [
       {
+        category: 'Literary Analysis',
+        title: 'Unlocking Literary Depth: Using Prompt Engineering to Analyze "To Kill a Mockingbird"',
+        excerpt: 'Discover how strategic prompt engineering can transform your literary analysis, revealing insights that might otherwise remain hidden in classic texts.',
+        author: 'Dr. Emily Watson',
+        date: 'Mar 25, 2025',
+        readTime: 15,
+        slug: 'to-kill-a-mockingbird'
+      },
+      {
         category: 'Prompt Engineering',
         title: 'What is Prompt Engineering? A Comprehensive Guide',
         excerpt: 'Discover the art and science of crafting effective prompts for AI models. Learn fundamental techniques that will transform your AI interactions.',
