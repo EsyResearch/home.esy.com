@@ -8,6 +8,7 @@ import TableOfContents from '@/components/SchoolArticle/TableOfContents';
 import AuthorBox from '@/components/SchoolArticle/AuthorBox';
 import ShareSection from '@/components/SchoolArticle/ShareSection';
 import RelatedArticles from '@/components/SchoolArticle/RelatedArticles';
+import NewsletterSection from '@/components/SchoolArticle/NewsletterSection';
 import { articleContentStyles as styles } from '@/components/SchoolArticle/articleStyles';
 
 export default function UnderstandingLLMsArticle() {
@@ -362,6 +363,8 @@ Token IDs: [8100, 5646, 27140, 16101, 318, 13899, 0]`}
       </footer>
 
       <RelatedArticles articles={relatedArticles} />
+
+      <NewsletterSection />
     </ArticleLayout>
   );
 }

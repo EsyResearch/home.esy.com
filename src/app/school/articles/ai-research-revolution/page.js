@@ -8,6 +8,7 @@ import TableOfContents from '@/components/SchoolArticle/TableOfContents';
 import AuthorBox from '@/components/SchoolArticle/AuthorBox';
 import ShareSection from '@/components/SchoolArticle/ShareSection';
 import RelatedArticles from '@/components/SchoolArticle/RelatedArticles';
+import NewsletterSection from '@/components/SchoolArticle/NewsletterSection';
 import { articleContentStyles as styles } from '@/components/SchoolArticle/articleStyles';
 
 export default function AIResearchRevolutionArticle() {
@@ -276,6 +277,8 @@ model.predict({
       </footer>
 
       <RelatedArticles articles={relatedArticles} />
+
+      <NewsletterSection />
     </ArticleLayout>
   );
 }
