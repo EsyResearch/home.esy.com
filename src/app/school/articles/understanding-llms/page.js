@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import ArticleLayout from '@/components/SchoolArticle/ArticleLayout';
 import ArticleHero from '@/components/SchoolArticle/ArticleHero';
 import TableOfContents from '@/components/SchoolArticle/TableOfContents';
@@ -101,9 +102,11 @@ export default function UnderstandingLLMsArticle() {
         backgroundColor: '#16161f',
         border: '1px solid rgba(255, 255, 255, 0.1)'
       }}>
-        <img 
+        <Image 
           src="https://upload.wikimedia.org/wikipedia/commons/1/10/Transformer.png" 
           alt="Transformer Architecture" 
+          width={800}
+          height={600}
           style={{
             width: '100%',
             height: 'auto',

@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import ArticleLayout from '@/components/SchoolArticle/ArticleLayout';
 import ArticleHero from '@/components/SchoolArticle/ArticleHero';
 import TableOfContents from '@/components/SchoolArticle/TableOfContents';
@@ -123,9 +124,11 @@ export default function AIResearchRevolutionArticle() {
         backgroundColor: '#16161f',
         border: '1px solid rgba(255, 255, 255, 0.1)'
       }}>
-        <img 
+        <Image 
           src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" 
           alt="AI Data Analysis" 
+          width={800}
+          height={400}
           style={{
             width: '100%',
             height: 'auto',

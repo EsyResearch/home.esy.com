@@ -9,6 +9,12 @@ const nextConfig = {
       unoptimized: true
     }
   }),
+  images: {
+    domains: ['images.unsplash.com', 'upload.wikimedia.org'],
+    ...(process.env.NODE_ENV === 'production' && {
+      unoptimized: true
+    })
+  },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   experimental: {
     mdxRs: true,
