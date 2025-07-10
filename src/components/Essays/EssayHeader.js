@@ -100,7 +100,7 @@ const EssayHeader = ({
               aria-label={isBookmarked ? "Remove bookmark" : "Add bookmark"}
               aria-pressed={isBookmarked}
             >
-              <Bookmark size={18} fill={isBookmarked ? '#6366f1' : 'none'} aria-hidden="true" />
+              <Bookmark size={18} fill={isBookmarked ? '#8b5cf6' : 'none'} aria-hidden="true" />
             </button>
 
             <div className={styles.shareMenuContainer}>

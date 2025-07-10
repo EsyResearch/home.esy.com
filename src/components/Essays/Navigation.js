@@ -23,7 +23,7 @@ const Navigation = ({ scrolled }) => {
               <div style={{ 
                 width: '36px', 
                 height: '36px', 
-                background: '#6366f1', 
+                background: '#8b5cf6', 
                 borderRadius: '8px', 
                 display: 'flex', 
                 alignItems: 'center', 
@@ -41,7 +41,7 @@ const Navigation = ({ scrolled }) => {
                 textDecoration: 'none',
                 fontSize: '0.875rem',
                 fontWeight: 500,
-                borderBottom: '2px solid #6366f1',
+                borderBottom: '2px solid #8b5cf6',
                 paddingBottom: '2px'
               }}>
                 Essays
@@ -68,7 +68,7 @@ const Navigation = ({ scrolled }) => {
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <button style={{
               padding: '0.5rem 1.25rem',
-              background: '#6366f1',
+              background: '#8b5cf6',
               border: 'none',
               borderRadius: '6px',
               color: 'white',

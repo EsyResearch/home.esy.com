@@ -15,7 +15,7 @@ const FeaturedEssay = ({ featuredEssay }) => {
             fontWeight: 600,
             textTransform: 'uppercase',
             letterSpacing: '0.1em',
-            color: '#6366f1'
+            color: '#8b5cf6'
           }}>
             Featured Research
           </span>
@@ -64,7 +64,7 @@ const FeaturedEssay = ({ featuredEssay }) => {
               <Link href={`/essays/${featuredEssay.id}`} style={{ textDecoration: 'none' }}>
                 <button style={{
                   padding: '0.75rem 1.5rem',
-                  background: '#6366f1',
+                  background: '#8b5cf6',
                   border: 'none',
                   borderRadius: '6px',
                   color: 'white',

@@ -30,7 +30,7 @@ const EssayCard = ({ essay, index, hoveredCard, setHoveredCard }) => {
               lineHeight: 1.3,
               marginBottom: '0.75rem',
               letterSpacing: '-0.01em',
-              color: hoveredCard === essay.id ? '#6366f1' : 'white',
+              color: hoveredCard === essay.id ? '#8b5cf6' : 'white',
               transition: 'color 0.2s',
               cursor: 'pointer'
             }}>
@@ -125,7 +125,7 @@ const EssayCard = ({ essay, index, hoveredCard, setHoveredCard }) => {
           {essay.new && (
             <span style={{
               fontSize: '0.75rem',
-              color: '#6366f1',
+              color: '#8b5cf6',
               fontWeight: 500
             }}>
               New

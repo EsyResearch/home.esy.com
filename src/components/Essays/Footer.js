@@ -21,7 +21,7 @@ const Footer = () => {
             <div style={{ 
               width: '32px', 
               height: '32px', 
-              background: '#6366f1', 
+              background: '#8b5cf6', 
               borderRadius: '6px', 
               display: 'flex', 
               alignItems: 'center', 

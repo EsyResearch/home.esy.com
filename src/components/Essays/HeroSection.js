@@ -74,7 +74,7 @@ const HeroSection = ({
             />
             <button style={{
               padding: '0.5rem 1.25rem',
-              background: searchFocused ? '#6366f1' : 'transparent',
+              background: searchFocused ? '#8b5cf6' : 'transparent',
               border: 'none',
               borderRadius: '6px',
               color: searchFocused ? 'white' : 'rgba(255, 255, 255, 0.4)',
@@ -101,8 +101,8 @@ const HeroSection = ({
                 onClick={() => setActiveFilter(filter.id)}
                 style={{
                   padding: '0.5rem 1rem',
-                  background: activeFilter === filter.id ? '#6366f1' : 'transparent',
-                  border: `1px solid ${activeFilter === filter.id ? '#6366f1' : 'rgba(255, 255, 255, 0.1)'}`,
+                  background: activeFilter === filter.id ? '#8b5cf6' : 'transparent',
+                  border: `1px solid ${activeFilter === filter.id ? '#8b5cf6' : 'rgba(255, 255, 255, 0.1)'}`,
                   borderRadius: '6px',
                   color: activeFilter === filter.id ? 'white' : 'rgba(255, 255, 255, 0.6)',
                   fontSize: '0.813rem',
