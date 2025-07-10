@@ -13,7 +13,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #6366f1;
+  color: #8b5cf6;
   margin-bottom: 2rem;
 }
 
@@ -32,7 +32,7 @@
 .authorItem {
   padding: 1.5rem;
   border-radius: 8px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.02) 0%, rgba(99, 102, 241, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.02) 0%, rgba(139, 92, 246, 0.05) 100%);
   border: 1px solid transparent;
   transition: all 0.3s ease;
   position: relative;
@@ -46,7 +46,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, #6366f1, rgba(99, 102, 241, 0.5));
+  background: linear-gradient(90deg, #8b5cf6, rgba(139, 92, 246, 0.5));
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -57,7 +57,7 @@
 
 .authorItem:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.1);
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.1);
 }
 
 .authorName {
@@ -95,7 +95,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.02) 0%, rgba(99, 102, 241, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.02) 0%, rgba(139, 92, 246, 0.05) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -146,11 +146,11 @@
 }
 
 .sectionTitleDark {
-  color: #6366f1;
+  color: #8b5cf6;
 }
 
 .sectionTitleLight {
-  color: #6366f1;
+  color: #8b5cf6;
 }
 
 .relatedTitleDark {
@@ -179,13 +179,11 @@
 
 .relatedItemDark {
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
   color: #ffffff;
 }
 
 .relatedItemLight {
   background: rgba(0, 0, 0, 0.02);
-  border: 1px solid rgba(0, 0, 0, 0.05);
   color: #000000;
 }
 
@@ -310,7 +308,7 @@
 /* Focus styles */
 .authorItem:focus,
 .relatedItem:focus {
-  outline: 2px solid #6366f1;
+  outline: 2px solid #8b5cf6;
   outline-offset: 2px;
 }
 
