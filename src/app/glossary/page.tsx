@@ -451,10 +451,11 @@ const GlossaryPage = () => {
             <div>
               <h1 style={{
                 fontSize: '2.5rem',
-                fontWeight: 500,
+                fontWeight: 300,
                 letterSpacing: '-0.02em',
                 marginBottom: '0.5rem',
-                color: currentTheme.text
+                color: currentTheme.text,
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
               }}>
                 Glossary
               </h1>
@@ -462,7 +463,8 @@ const GlossaryPage = () => {
                 fontSize: '1.125rem',
                 color: currentTheme.muted,
                 maxWidth: '600px',
-                lineHeight: 1.6
+                lineHeight: 1.6,
+                fontWeight: 300
               }}>
                 Essential terms and concepts for academic writing and essay composition. 
                 From thesis statements to citation formats.
