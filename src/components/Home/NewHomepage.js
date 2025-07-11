@@ -132,7 +132,7 @@ const NewHomepage = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: isMobile ? '6rem 1rem 4rem' : isTablet ? '6rem 2rem 4rem' : '6rem 2rem',
+        padding: isMobile ? '9rem 1rem 4rem' : isTablet ? '9rem 2rem 4rem' : '9rem 2rem',
         position: 'relative'
       }}>
         <div style={{ 
