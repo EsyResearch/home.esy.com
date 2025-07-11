@@ -22,14 +22,15 @@ const HeroSection = ({
         <div style={{ maxWidth: '42rem' }}>
           <h1 style={{ 
             fontSize: '3.5rem', 
-            fontWeight: 300,
-            lineHeight: 1.1,
+            fontWeight: 200,
+            lineHeight: '1.1',
             letterSpacing: '-0.03em',
-            marginBottom: '1.5rem'
+            marginBottom: '1.5rem',
+            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
           }}>
-            <span style={{ fontWeight: 700 }}>{pageTitle}</span>
+            <span style={{ fontWeight: 200 }}>{pageTitle}</span>
             <br />
-            <span style={{ color: 'rgba(255, 255, 255, 0.6)' }}>{pageSubtitle}</span>
+            <span style={{ color: '#8b5cf6', fontWeight: 300 }}>{pageSubtitle}</span>
           </h1>
           
           <p style={{ 
