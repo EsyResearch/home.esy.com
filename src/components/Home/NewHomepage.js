@@ -143,22 +143,7 @@ const NewHomepage = () => {
         }}>
           {/* Hero Content */}
           <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            {/* Tagline */}
-            <p style={{
-              fontSize: isMobile ? '0.875rem' : '1rem',
-              color: currentTheme.accent,
-              fontWeight: 500,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              marginBottom: '1.5rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.5rem'
-            }}>
-              <Sparkles size={16} />
-              AI-Powered Academic Excellence
-            </p>
+
 
             {/* Main Headline */}
             <h1 style={{
@@ -168,9 +153,9 @@ const NewHomepage = () => {
               letterSpacing: '-0.04em',
               marginBottom: '2rem'
             }}>
-              Write brilliantly.
+              Research Faster with AI.
               <br />
-              <span style={{ color: currentTheme.accent }}>Think deeper.</span>
+              <span style={{ color: currentTheme.accent }}>Write Essays That Impress.</span>
             </h1>
 
             {/* Subheadline */}
@@ -181,8 +166,7 @@ const NewHomepage = () => {
               maxWidth: '720px',
               margin: '0 auto'
             }}>
-              Transform your academic writing with AI that enhances your unique voice, 
-              accelerates research, and elevates every argument.
+              Harness AI to write A+ essays in half the time. Dive into sources, craft ironclad arguments, and cite flawlessly in APA, MLA, or any style.
             </p>
           </div>
 
@@ -252,7 +236,7 @@ const NewHomepage = () => {
                 }}
               >
                 <Sparkles size={16} />
-                Start Writing
+                Get started
               </button>
             </div>
 
