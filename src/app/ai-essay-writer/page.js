@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { 
   PenTool, Brain, FileText, CheckCircle, Star, Users, Clock,
   BookOpen, Zap, ArrowRight, RefreshCw, Settings, Eye, Target,
@@ -8,6 +9,36 @@ import {
   Download, Share2, Bookmark, PlayCircle, Sparkles, Shield,
   GraduationCap, Lightbulb, BarChart3, Lock, ChevronRight
 } from 'lucide-react';
+
+const liveExamples = [
+  {
+    topic: "The Impact of Social Media on Mental Health",
+    type: "Argumentative",
+    level: "Undergraduate",
+    preview: "Recent studies demonstrate a complex relationship between social media usage and psychological well-being, with evidence suggesting both positive and negative impacts depending on usage patterns and individual factors...",
+    author: "Emily R.",
+    timeAgo: "2 minutes ago",
+    grade: "A-"
+  },
+  {
+    topic: "Climate Change Solutions in Developing Nations",
+    type: "Analytical",
+    level: "Graduate",
+    preview: "This analysis examines the feasibility and effectiveness of climate adaptation strategies in developing countries, considering economic constraints, technological limitations, and policy frameworks...",
+    author: "Marcus T.",
+    timeAgo: "5 minutes ago",
+    grade: "A+"
+  },
+  {
+    topic: "Artificial Intelligence in Healthcare",
+    type: "Expository",
+    level: "Undergraduate",
+    preview: "AI technologies are revolutionizing medical diagnosis and treatment, offering unprecedented accuracy in pattern recognition while raising important questions about data privacy and human oversight...",
+    author: "Sarah L.",
+    timeAgo: "8 minutes ago",
+    grade: "A"
+  }
+];
 
 const AIEssayWriter = () => {
   const [essayTopic, setEssayTopic] = useState('');
@@ -78,35 +109,6 @@ const AIEssayWriter = () => {
     { id: 'harvard', name: 'Harvard', field: 'Business, Sciences' }
   ];
 
-  const liveExamples = [
-    {
-      topic: "The Impact of Social Media on Mental Health",
-      type: "Argumentative",
-      level: "Undergraduate",
-      preview: "Recent studies demonstrate a complex relationship between social media usage and psychological well-being, with evidence suggesting both positive and negative impacts depending on usage patterns and individual factors...",
-      author: "Emily R.",
-      timeAgo: "2 minutes ago",
-      grade: "A-"
-    },
-    {
-      topic: "Climate Change Solutions in Developing Nations",
-      type: "Analytical",
-      level: "Graduate",
-      preview: "This analysis examines the feasibility and effectiveness of climate adaptation strategies in developing countries, considering economic constraints, technological limitations, and policy frameworks...",
-      author: "Marcus T.",
-      timeAgo: "5 minutes ago",
-      grade: "A+"
-    },
-    {
-      topic: "Artificial Intelligence in Healthcare",
-      type: "Expository",
-      level: "Undergraduate",
-      preview: "AI technologies are revolutionizing medical diagnosis and treatment, offering unprecedented accuracy in pattern recognition while raising important questions about data privacy and human oversight...",
-      author: "Sarah L.",
-      timeAgo: "8 minutes ago",
-      grade: "A"
-    }
-  ];
 
   const features = [
     {
@@ -261,7 +263,7 @@ References
           justifyContent: 'space-between',
           alignItems: 'center'
         }}>
-          <a href="/" style={{
+          <Link href="/" style={{
             fontSize: '1.25rem',
             fontWeight: 300,
             letterSpacing: '-0.02em',
@@ -269,7 +271,7 @@ References
             textDecoration: 'none'
           }}>
             esy
-          </a>
+          </Link>
 
           <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
             <a href="/ai-writing-tools" style={{
@@ -421,7 +423,7 @@ References
                 color: 'rgba(255, 255, 255, 0.9)'
               }}>
                 <div style={{ marginBottom: '0.5rem' }}>
-                  <strong>"{liveExamples[currentExample].topic}"</strong>
+                  <strong>&ldquo;{liveExamples[currentExample].topic}&rdquo;</strong>
                 </div>
                 <div style={{
                   display: 'flex',
@@ -492,7 +494,7 @@ References
                 marginBottom: '0.5rem',
                 color: 'rgba(255, 255, 255, 0.8)'
               }}>
-                1. What's your essay topic? *
+                1. What&apos;s your essay topic? *
               </label>
               <textarea
                 value={essayTopic}
