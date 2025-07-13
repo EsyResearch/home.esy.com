@@ -121,7 +121,7 @@ const NewHomepage = () => {
   };
 
   return (
-    <div className="origami-headers" style={{
+    <div style={{
       backgroundColor: currentTheme.bg,
       color: currentTheme.text,
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
