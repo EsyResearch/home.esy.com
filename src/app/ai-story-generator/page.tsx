@@ -223,7 +223,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
                 borderRadius: '20px',
                 border: '1px solid rgba(139, 92, 246, 0.2)',
                 marginBottom: '2rem',
-                fontSize: '0.875rem',
+                fontSize: '1rem',
                 color: '#8b5cf6'
               }}>
                 <Sparkles size={16} />
@@ -231,7 +231,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
               </div>
 
               <h1 style={{
-                fontSize: isMobile ? '2.5rem' : '3rem',
+                fontSize: isMobile ? '3rem' : '4rem',
                 // fontFamily: 'OrigamiIncised, sans-serif', // TEMPORARILY DISABLED
                 fontWeight: 300,
                 lineHeight: 1.1,
@@ -245,7 +245,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
               </h1>
               
               <p style={{
-                fontSize: isMobile ? '1.125rem' : '1.25rem',
+                fontSize: isMobile ? '1.25rem' : '1.5rem',
                 color: 'rgba(255, 255, 255, 0.7)',
                 lineHeight: 1.6,
                 marginBottom: '2rem'
@@ -254,7 +254,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
                 set the tone, and watch as your ideas transform into captivating narratives.
               </p>
 
-              {/* Stats */}
+              {/* Stats - COMMENTED OUT
               <div style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(2, 1fr)',
@@ -278,14 +278,14 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
                       {stat.number}
                     </div>
                     <div style={{
-                      fontSize: '0.813rem',
+                      fontSize: '1rem',
                       color: 'rgba(255, 255, 255, 0.5)'
                     }}>
                       {stat.label}
                     </div>
                   </div>
                 ))}
-              </div>
+              </div> */}
 
               <button
                 onClick={() => document.getElementById('generator')?.scrollIntoView({ behavior: 'smooth' })}
@@ -336,7 +336,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
                     display: 'flex',
                     alignItems: 'center',
                     gap: '1rem',
-                    fontSize: '0.875rem',
+                    fontSize: '1rem',
                     color: 'rgba(255, 255, 255, 0.5)'
                   }}>
                     <span>{exampleStories[currentExample].genre}</span>
@@ -356,7 +356,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
               {/* Story Content */}
               <div style={{
                 padding: '1.5rem',
-                fontSize: '0.938rem',
+                fontSize: '1rem',
                 lineHeight: 1.7,
                 color: 'rgba(255, 255, 255, 0.8)',
                 minHeight: '200px'
@@ -369,7 +369,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
                 padding: '1rem 1.5rem',
                 backgroundColor: 'rgba(139, 92, 246, 0.05)',
                 borderTop: '1px solid rgba(139, 92, 246, 0.1)',
-                fontSize: '0.813rem',
+                fontSize: '1rem',
                 color: 'rgba(255, 255, 255, 0.5)',
                 textAlign: 'center'
               }}>
@@ -394,7 +394,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
               marginBottom: '3rem'
             }}>
               <h2 style={{
-                fontSize: isMobile ? '2rem' : '2.5rem',
+                fontSize: isMobile ? '2.5rem' : '3rem',
                 // fontFamily: 'OrigamiIncised, sans-serif', // TEMPORARILY DISABLED
                 fontWeight: 300,
                 letterSpacing: '-0.03em', // Changed from 0.05em when Origami disabled
@@ -430,7 +430,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
                 <div>
                   <label style={{
                     display: 'block',
-                    fontSize: '0.875rem',
+                    fontSize: '1rem',
                     fontWeight: 500,
                     marginBottom: '0.75rem',
                     color: 'rgba(255, 255, 255, 0.8)'
@@ -447,7 +447,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
                       border: '1px solid rgba(255, 255, 255, 0.1)',
                       borderRadius: '6px',
                       color: '#ffffff',
-                      fontSize: '0.938rem',
+                      fontSize: '1rem',
                       cursor: 'pointer'
                     }}
                   >
@@ -463,7 +463,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
                 <div>
                   <label style={{
                     display: 'block',
-                    fontSize: '0.875rem',
+                    fontSize: '1rem',
                     fontWeight: 500,
                     marginBottom: '0.75rem',
                     color: 'rgba(255, 255, 255, 0.8)'
@@ -480,7 +480,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
                       border: '1px solid rgba(255, 255, 255, 0.1)',
                       borderRadius: '6px',
                       color: '#ffffff',
-                      fontSize: '0.938rem',
+                      fontSize: '1rem',
                       cursor: 'pointer'
                     }}
                   >
@@ -496,7 +496,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
                 <div>
                   <label style={{
                     display: 'block',
-                    fontSize: '0.875rem',
+                    fontSize: '1rem',
                     fontWeight: 500,
                     marginBottom: '0.75rem',
                     color: 'rgba(255, 255, 255, 0.8)'
@@ -513,7 +513,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
                       border: '1px solid rgba(255, 255, 255, 0.1)',
                       borderRadius: '6px',
                       color: '#ffffff',
-                      fontSize: '0.938rem',
+                      fontSize: '1rem',
                       cursor: 'pointer'
                     }}
                   >
@@ -530,7 +530,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
               <div style={{ marginBottom: '2rem' }}>
                 <label style={{
                   display: 'block',
-                  fontSize: '0.875rem',
+                  fontSize: '1rem',
                   fontWeight: 500,
                   marginBottom: '0.75rem',
                   color: 'rgba(255, 255, 255, 0.8)'
@@ -549,7 +549,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
                     border: '1px solid rgba(255, 255, 255, 0.1)',
                     borderRadius: '6px',
                     color: '#ffffff',
-                    fontSize: '0.938rem',
+                    fontSize: '1rem',
                     resize: 'vertical',
                     outline: 'none'
                   }}
@@ -687,7 +687,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
                   borderRadius: '6px',
                   border: '1px solid rgba(139, 92, 246, 0.2)',
                   textAlign: 'center',
-                  fontSize: '0.875rem',
+                  fontSize: '1rem',
                   color: '#8b5cf6'
                 }}>
                   You&apos;ve used {generatedStories}/3 free stories. Sign up for unlimited access!
@@ -708,7 +708,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
             marginBottom: '3rem'
           }}>
             <h2 style={{
-              fontSize: isMobile ? '2rem' : '2.5rem',
+              fontSize: isMobile ? '2.5rem' : '3rem',
               // fontFamily: 'OrigamiIncised, sans-serif', // TEMPORARILY DISABLED
               fontWeight: 300,
               letterSpacing: '-0.03em', // Changed from 0.05em when Origami disabled
@@ -765,7 +765,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
                 </h3>
                 
                 <p style={{
-                  fontSize: '0.938rem',
+                  fontSize: '1rem',
                   color: 'rgba(255, 255, 255, 0.7)',
                   lineHeight: 1.6
                 }}>
@@ -791,7 +791,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
               marginBottom: '3rem'
             }}>
               <h2 style={{
-                fontSize: isMobile ? '2rem' : '2.5rem',
+                fontSize: isMobile ? '2.5rem' : '3rem',
                 // fontFamily: 'OrigamiIncised, sans-serif', // TEMPORARILY DISABLED
                 fontWeight: 300,
                 letterSpacing: '-0.03em', // Changed from 0.05em when Origami disabled
@@ -856,7 +856,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
                     {faq.question}
                   </h3>
                   <p style={{
-                    fontSize: '0.938rem',
+                    fontSize: '1rem',
                     color: 'rgba(255, 255, 255, 0.7)',
                     lineHeight: 1.7
                   }}>
@@ -878,7 +878,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
             margin: '0 auto'
           }}>
             <h2 style={{
-              fontSize: isMobile ? '2rem' : '2.5rem',
+              fontSize: isMobile ? '2.5rem' : '3rem',
               // fontFamily: 'OrigamiIncised, sans-serif', // TEMPORARILY DISABLED
               fontWeight: 300,
               letterSpacing: '-0.03em', // Changed from 0.05em when Origami disabled
@@ -972,7 +972,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
               </h3>
               
               <p style={{
-                fontSize: '0.938rem',
+                fontSize: '1rem',
                 color: 'rgba(255, 255, 255, 0.7)',
                 marginBottom: '1.5rem'
               }}>
@@ -991,7 +991,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '6px',
                   color: '#ffffff',
-                  fontSize: '0.938rem',
+                  fontSize: '1rem',
                   marginBottom: '1rem',
                   outline: 'none'
                 }}
@@ -1010,7 +1010,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
                     border: '1px solid rgba(255, 255, 255, 0.2)',
                     borderRadius: '6px',
                     color: 'rgba(255, 255, 255, 0.8)',
-                    fontSize: '0.938rem',
+                    fontSize: '1rem',
                     cursor: 'pointer'
                   }}
                 >
@@ -1026,7 +1026,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
                     border: 'none',
                     borderRadius: '6px',
                     color: '#ffffff',
-                    fontSize: '0.938rem',
+                    fontSize: '1rem',
                     fontWeight: 500,
                     cursor: 'pointer'
                   }}

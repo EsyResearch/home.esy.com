@@ -289,7 +289,7 @@ References
             }}>
               Generate Perfect Essays
               <br />
-              <span style={{ color: '#8b5cf6', whiteSpace: 'nowrap' }}>in Minutes, Not Hours</span>
+              <span style={{ color: '#8b5cf6', whiteSpace: 'nowrap' }}>in Seconds</span>
             </h1>
             
             <p style={{
