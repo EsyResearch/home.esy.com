@@ -197,70 +197,11 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
         color: '#ffffff',
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
       }}>
-        {/* Header */}
-        <header style={{
-          borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
-          backgroundColor: 'rgba(10, 10, 15, 0.95)',
-          backdropFilter: 'blur(10px)',
-          position: 'sticky',
-          top: 0,
-          zIndex: 50
-        }}>
-          <div style={{
-            maxWidth: '1200px',
-            margin: '0 auto',
-            padding: isMobile ? '1rem' : '1.5rem 2rem',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center'
-          }}>
-            <Link href="/" style={{
-              fontSize: '1.25rem',
-              fontWeight: 300,
-              letterSpacing: '-0.02em',
-              color: '#ffffff',
-              textDecoration: 'none'
-            }}>
-              esy
-            </Link>
 
-            <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-              <Link href="/ai-writing-tools" style={{
-                color: 'rgba(255, 255, 255, 0.7)',
-                textDecoration: 'none',
-                fontSize: '0.875rem'
-              }}>
-                Writing Tools
-              </Link>
-              <Link href="/writing-prompts" style={{
-                color: 'rgba(255, 255, 255, 0.7)',
-                textDecoration: 'none',
-                fontSize: '0.875rem'
-              }}>
-                Prompts
-              </Link>
-              <button
-                onClick={() => window.location.href = '/app'}
-                style={{
-                  padding: '0.5rem 1rem',
-                  backgroundColor: '#8b5cf6',
-                  borderRadius: '6px',
-                  border: 'none',
-                  color: '#ffffff',
-                  fontSize: '0.875rem',
-                  fontWeight: 500,
-                  cursor: 'pointer'
-                }}
-              >
-                Try Esy AI
-              </button>
-            </nav>
-          </div>
-        </header>
 
         {/* Hero Section */}
         <section style={{
-          padding: isMobile ? '4rem 1.5rem' : '6rem 2rem',
+          padding: isMobile ? '6rem 1.5rem 4rem' : '8rem 2rem 6rem',
           textAlign: 'center',
           maxWidth: '1200px',
           margin: '0 auto'
@@ -290,15 +231,17 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
               </div>
 
               <h1 style={{
-                fontSize: isMobile ? '2.5rem' : '3.5rem',
+                fontSize: isMobile ? '2.5rem' : '3rem',
+                // fontFamily: 'OrigamiIncised, sans-serif', // TEMPORARILY DISABLED
                 fontWeight: 300,
                 lineHeight: 1.1,
-                letterSpacing: '-0.03em',
-                marginBottom: '1.5rem'
+                letterSpacing: '-0.03em', // Changed from 0.05em when Origami disabled
+                marginBottom: '1.5rem',
+                whiteSpace: 'nowrap'
               }}>
                 Create Amazing Stories
                 <br />
-                <span style={{ color: '#8b5cf6' }}>in Seconds</span>
+                <span style={{ color: '#8b5cf6', whiteSpace: 'nowrap' }}>in Seconds</span>
               </h1>
               
               <p style={{
@@ -452,7 +395,9 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
             }}>
               <h2 style={{
                 fontSize: isMobile ? '2rem' : '2.5rem',
+                // fontFamily: 'OrigamiIncised, sans-serif', // TEMPORARILY DISABLED
                 fontWeight: 300,
+                letterSpacing: '-0.03em', // Changed from 0.05em when Origami disabled
                 marginBottom: '1rem'
               }}>
                 AI Story Generator
@@ -764,7 +709,9 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
           }}>
             <h2 style={{
               fontSize: isMobile ? '2rem' : '2.5rem',
+              // fontFamily: 'OrigamiIncised, sans-serif', // TEMPORARILY DISABLED
               fontWeight: 300,
+              letterSpacing: '-0.03em', // Changed from 0.05em when Origami disabled
               marginBottom: '1rem'
             }}>
               Why Choose Our AI Story Generator?
@@ -845,7 +792,9 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
             }}>
               <h2 style={{
                 fontSize: isMobile ? '2rem' : '2.5rem',
+                // fontFamily: 'OrigamiIncised, sans-serif', // TEMPORARILY DISABLED
                 fontWeight: 300,
+                letterSpacing: '-0.03em', // Changed from 0.05em when Origami disabled
                 marginBottom: '1rem'
               }}>
                 Frequently Asked Questions
@@ -930,7 +879,9 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
           }}>
             <h2 style={{
               fontSize: isMobile ? '2rem' : '2.5rem',
+              // fontFamily: 'OrigamiIncised, sans-serif', // TEMPORARILY DISABLED
               fontWeight: 300,
+              letterSpacing: '-0.03em', // Changed from 0.05em when Origami disabled
               marginBottom: '1rem'
             }}>
               Ready for Advanced AI Writing?
@@ -988,38 +939,6 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
             </div>
           </div>
         </section>
-
-        {/* Footer */}
-        <footer style={{
-          padding: isMobile ? '3rem 1.5rem' : '4rem 2rem',
-          borderTop: '1px solid rgba(255, 255, 255, 0.05)',
-          textAlign: 'center'
-        }}>
-          <p style={{
-            fontSize: '0.875rem',
-            color: 'rgba(255, 255, 255, 0.5)',
-            marginBottom: '1rem'
-          }}>
-            © 2025 Esy · AI-Powered Writing for Everyone
-          </p>
-          <nav style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '2rem',
-            fontSize: '0.813rem',
-            flexWrap: 'wrap'
-          }}>
-            <Link href="/ai-writing-tools" style={{ color: 'rgba(255, 255, 255, 0.7)', textDecoration: 'none' }}>
-              AI Writing Tools
-            </Link>
-            <Link href="/writing-prompts" style={{ color: 'rgba(255, 255, 255, 0.7)', textDecoration: 'none' }}>
-              Writing Prompts
-            </Link>
-            <Link href="/app" style={{ color: 'rgba(255, 255, 255, 0.7)', textDecoration: 'none' }}>
-              Try Esy AI
-            </Link>
-          </nav>
-        </footer>
 
         {/* Email Signup Modal */}
         {showSignup && (

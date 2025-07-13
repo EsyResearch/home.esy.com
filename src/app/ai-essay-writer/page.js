@@ -246,70 +246,11 @@ References
       color: '#ffffff',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
     }}>
-      {/* Header */}
-      <header style={{
-        borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
-        backgroundColor: 'rgba(10, 10, 15, 0.95)',
-        backdropFilter: 'blur(10px)',
-        position: 'sticky',
-        top: 0,
-        zIndex: 50
-      }}>
-        <div style={{
-          maxWidth: '1400px',
-          margin: '0 auto',
-          padding: isMobile ? '1rem' : '1.5rem 2rem',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
-        }}>
-          <Link href="/" style={{
-            fontSize: '1.25rem',
-            fontWeight: 300,
-            letterSpacing: '-0.02em',
-            color: '#ffffff',
-            textDecoration: 'none'
-          }}>
-            esy
-          </Link>
 
-          <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-            <a href="/ai-writing-tools" style={{
-              color: 'rgba(255, 255, 255, 0.7)',
-              textDecoration: 'none',
-              fontSize: '0.875rem'
-            }}>
-              Writing Tools
-            </a>
-            <a href="/writing-prompts" style={{
-              color: 'rgba(255, 255, 255, 0.7)',
-              textDecoration: 'none',
-              fontSize: '0.875rem'
-            }}>
-              Prompts
-            </a>
-            <button
-              onClick={() => window.location.href = '/app'}
-              style={{
-                padding: '0.5rem 1rem',
-                backgroundColor: '#8b5cf6',
-                borderRadius: '6px',
-                border: 'none',
-                color: '#ffffff',
-                fontSize: '0.875rem',
-                fontWeight: 500,
-                cursor: 'pointer'
-              }}
-            >
-              Try Esy AI
-            </button>
-          </nav>
-        </div>
-      </header>
 
       {/* Hero Section with Integrated Form */}
       <section style={{
-        padding: isMobile ? '3rem 1.5rem' : '4rem 2rem',
+        padding: isMobile ? '6rem 1.5rem 3rem' : '8rem 2rem 4rem',
         maxWidth: '1400px',
         margin: '0 auto'
       }}>
@@ -330,7 +271,7 @@ References
               borderRadius: '20px',
               border: '1px solid rgba(139, 92, 246, 0.2)',
               marginBottom: '2rem',
-              fontSize: '0.875rem',
+              fontSize: '1rem',
               color: '#8b5cf6'
             }}>
               <GraduationCap size={16} />
@@ -338,28 +279,30 @@ References
             </div>
 
             <h1 style={{
-              fontSize: isMobile ? '2.5rem' : '3.5rem',
+              fontSize: isMobile ? '3rem' : '4rem',
+              // fontFamily: 'OrigamiIncised, sans-serif', // TEMPORARILY DISABLED
               fontWeight: 300,
               lineHeight: 1.1,
-              letterSpacing: '-0.03em',
-              marginBottom: '1.5rem'
+              letterSpacing: '-0.03em', // Changed from 0.05em when Origami disabled
+              marginBottom: '1.5rem',
+              whiteSpace: 'nowrap'
             }}>
               Generate Perfect Essays
               <br />
-              <span style={{ color: '#8b5cf6' }}>in Minutes, Not Hours</span>
+              <span style={{ color: '#8b5cf6', whiteSpace: 'nowrap' }}>in Minutes, Not Hours</span>
             </h1>
             
             <p style={{
-              fontSize: isMobile ? '1.125rem' : '1.25rem',
+              fontSize: isMobile ? '1.25rem' : '1.5rem',
               color: 'rgba(255, 255, 255, 0.7)',
               lineHeight: 1.6,
               marginBottom: '2rem'
             }}>
-              Create high-quality, plagiarism-free essays with proper citations and academic structure. 
-              Trusted by over 50,000 students worldwide for academic excellence.
+              Create high-quality, plagiarism-free essays with proper citations and academic structure.
             </p>
 
             {/* Trust Indicators */}
+            {/* Stats Grid - Commented out for now
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(2, 1fr)',
@@ -383,7 +326,7 @@ References
                     {stat.number}
                   </div>
                   <div style={{
-                    fontSize: '0.813rem',
+                    fontSize: '1rem',
                     color: 'rgba(255, 255, 255, 0.5)'
                   }}>
                     {stat.label}
@@ -391,6 +334,7 @@ References
                 </div>
               ))}
             </div>
+            */}
 
             {/* Live Activity Feed */}
             <div style={{
@@ -404,7 +348,7 @@ References
                 alignItems: 'center',
                 gap: '0.5rem',
                 marginBottom: '1rem',
-                fontSize: '0.875rem',
+                fontSize: '1rem',
                 color: 'rgba(255, 255, 255, 0.7)'
               }}>
                 <div style={{
@@ -418,7 +362,7 @@ References
               </div>
               
               <div style={{
-                fontSize: '0.938rem',
+                fontSize: '1rem',
                 lineHeight: 1.6,
                 color: 'rgba(255, 255, 255, 0.9)'
               }}>
@@ -429,7 +373,7 @@ References
                   display: 'flex',
                   alignItems: 'center',
                   gap: '1rem',
-                  fontSize: '0.813rem',
+                  fontSize: '1rem',
                   color: 'rgba(255, 255, 255, 0.5)'
                 }}>
                   <span>{liveExamples[currentExample].type}</span>
@@ -477,7 +421,7 @@ References
                   AI Essay Generator
                 </h3>
                 <p style={{
-                  fontSize: '0.875rem',
+                  fontSize: '1rem',
                   color: 'rgba(255, 255, 255, 0.6)'
                 }}>
                   Generate your essay in 3 simple steps
@@ -489,7 +433,7 @@ References
             <div style={{ marginBottom: '1.5rem' }}>
               <label style={{
                 display: 'block',
-                fontSize: '0.875rem',
+                fontSize: '1rem',
                 fontWeight: 500,
                 marginBottom: '0.5rem',
                 color: 'rgba(255, 255, 255, 0.8)'
@@ -510,7 +454,7 @@ References
                   border: `1px solid ${focusedField === 'topic' ? '#8b5cf6' : 'rgba(255, 255, 255, 0.1)'}`,
                   borderRadius: '8px',
                   color: '#ffffff',
-                  fontSize: '0.938rem',
+                  fontSize: '1rem',
                   resize: 'vertical',
                   outline: 'none',
                   transition: 'all 0.2s'
@@ -529,7 +473,7 @@ References
               <div>
                 <label style={{
                   display: 'block',
-                  fontSize: '0.875rem',
+                  fontSize: '1rem',
                   fontWeight: 500,
                   marginBottom: '0.5rem',
                   color: 'rgba(255, 255, 255, 0.8)'
@@ -546,7 +490,7 @@ References
                     border: '1px solid rgba(255, 255, 255, 0.1)',
                     borderRadius: '8px',
                     color: '#ffffff',
-                    fontSize: '0.875rem',
+                    fontSize: '1rem',
                     cursor: 'pointer'
                   }}
                 >
@@ -562,7 +506,7 @@ References
               <div>
                 <label style={{
                   display: 'block',
-                  fontSize: '0.875rem',
+                  fontSize: '1rem',
                   fontWeight: 500,
                   marginBottom: '0.5rem',
                   color: 'rgba(255, 255, 255, 0.8)'
@@ -579,7 +523,7 @@ References
                     border: '1px solid rgba(255, 255, 255, 0.1)',
                     borderRadius: '8px',
                     color: '#ffffff',
-                    fontSize: '0.875rem',
+                    fontSize: '1rem',
                     cursor: 'pointer'
                   }}
                 >
@@ -595,7 +539,7 @@ References
               <div>
                 <label style={{
                   display: 'block',
-                  fontSize: '0.875rem',
+                  fontSize: '1rem',
                   fontWeight: 500,
                   marginBottom: '0.5rem',
                   color: 'rgba(255, 255, 255, 0.8)'
@@ -612,7 +556,7 @@ References
                     border: '1px solid rgba(255, 255, 255, 0.1)',
                     borderRadius: '8px',
                     color: '#ffffff',
-                    fontSize: '0.875rem',
+                    fontSize: '1rem',
                     cursor: 'pointer'
                   }}
                 >
@@ -628,7 +572,7 @@ References
               <div>
                 <label style={{
                   display: 'block',
-                  fontSize: '0.875rem',
+                  fontSize: '1rem',
                   fontWeight: 500,
                   marginBottom: '0.5rem',
                   color: 'rgba(255, 255, 255, 0.8)'
@@ -645,7 +589,7 @@ References
                     border: '1px solid rgba(255, 255, 255, 0.1)',
                     borderRadius: '8px',
                     color: '#ffffff',
-                    fontSize: '0.875rem',
+                    fontSize: '1rem',
                     cursor: 'pointer'
                   }}
                 >
@@ -705,7 +649,7 @@ References
               display: 'flex',
               justifyContent: 'center',
               gap: '1.5rem',
-              fontSize: '0.813rem',
+              fontSize: '1rem',
               color: 'rgba(255, 255, 255, 0.5)',
               textAlign: 'center'
             }}>
@@ -744,7 +688,7 @@ References
                 borderRadius: '6px',
                 border: '1px solid rgba(139, 92, 246, 0.2)',
                 textAlign: 'center',
-                fontSize: '0.813rem',
+                fontSize: '1rem',
                 color: '#8b5cf6'
               }}>
                 ✨ {generatedCount}/2 free essays used. Sign up for unlimited access!
@@ -791,7 +735,7 @@ References
                       borderRadius: '6px',
                       color: copiedEssay ? '#4ade80' : 'rgba(255, 255, 255, 0.7)',
                       cursor: 'pointer',
-                      fontSize: '0.875rem',
+                      fontSize: '1rem',
                       display: 'flex',
                       alignItems: 'center',
                       gap: '0.5rem'
@@ -810,7 +754,7 @@ References
                       borderRadius: '6px',
                       color: 'rgba(255, 255, 255, 0.7)',
                       cursor: 'pointer',
-                      fontSize: '0.875rem',
+                      fontSize: '1rem',
                       display: 'flex',
                       alignItems: 'center',
                       gap: '0.5rem'
@@ -835,7 +779,7 @@ References
                       borderRadius: '6px',
                       color: '#ffffff',
                       cursor: 'pointer',
-                      fontSize: '0.875rem',
+                      fontSize: '1rem',
                       fontWeight: 500,
                       display: 'flex',
                       alignItems: 'center',
@@ -896,8 +840,10 @@ References
             marginBottom: '4rem'
           }}>
             <h2 style={{
-              fontSize: isMobile ? '2rem' : '2.5rem',
+              fontSize: isMobile ? '2.5rem' : '3rem',
+              // fontFamily: 'OrigamiIncised, sans-serif', // TEMPORARILY DISABLED
               fontWeight: 300,
+              letterSpacing: '-0.03em', // Changed from 0.05em when Origami disabled
               marginBottom: '1rem'
             }}>
               Why Choose Our AI Essay Writer?
@@ -938,7 +884,7 @@ References
                   padding: '0.25rem 0.75rem',
                   backgroundColor: 'rgba(139, 92, 246, 0.2)',
                   borderRadius: '12px',
-                  fontSize: '0.75rem',
+                  fontSize: '1rem',
                   color: '#8b5cf6',
                   fontWeight: 500
                 }}>
@@ -968,7 +914,7 @@ References
                 </h3>
                 
                 <p style={{
-                  fontSize: '0.938rem',
+                  fontSize: '1rem',
                   color: 'rgba(255, 255, 255, 0.7)',
                   lineHeight: 1.6
                 }}>
@@ -991,8 +937,10 @@ References
           marginBottom: '3rem'
         }}>
           <h2 style={{
-            fontSize: isMobile ? '2rem' : '2.5rem',
+            fontSize: isMobile ? '2.5rem' : '3rem',
+            fontFamily: 'OrigamiIncised, sans-serif',
             fontWeight: 300,
+            letterSpacing: '0.05em',
             marginBottom: '1rem'
           }}>
             Frequently Asked Questions
@@ -1054,7 +1002,7 @@ References
                 {faq.question}
               </h3>
               <p style={{
-                fontSize: '0.938rem',
+                fontSize: '1rem',
                 color: 'rgba(255, 255, 255, 0.7)',
                 lineHeight: 1.7
               }}>
@@ -1077,8 +1025,10 @@ References
           margin: '0 auto'
         }}>
           <h2 style={{
-            fontSize: isMobile ? '2rem' : '2.5rem',
+            fontSize: isMobile ? '2.5rem' : '3rem',
+            fontFamily: 'OrigamiIncised, sans-serif',
             fontWeight: 300,
+            letterSpacing: '0.05em',
             marginBottom: '1rem'
           }}>
             Ready for Advanced AI Writing?
@@ -1137,38 +1087,6 @@ References
         </div>
       </section>
 
-      {/* Footer */}
-      <footer style={{
-        padding: isMobile ? '3rem 1.5rem' : '4rem 2rem',
-        borderTop: '1px solid rgba(255, 255, 255, 0.05)',
-        textAlign: 'center'
-      }}>
-        <p style={{
-          fontSize: '0.875rem',
-          color: 'rgba(255, 255, 255, 0.5)',
-          marginBottom: '1rem'
-        }}>
-          © 2025 Esy · AI-Powered Academic Writing Excellence
-        </p>
-        <nav style={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '2rem',
-          fontSize: '0.813rem',
-          flexWrap: 'wrap'
-        }}>
-          <a href="/ai-writing-tools" style={{ color: 'rgba(255, 255, 255, 0.7)', textDecoration: 'none' }}>
-            AI Writing Tools
-          </a>
-          <a href="/writing-prompts" style={{ color: 'rgba(255, 255, 255, 0.7)', textDecoration: 'none' }}>
-            Writing Prompts
-          </a>
-          <a href="/app" style={{ color: 'rgba(255, 255, 255, 0.7)', textDecoration: 'none' }}>
-            Try Esy AI
-          </a>
-        </nav>
-      </footer>
-
       {/* Email Signup Modal */}
       {showSignup && (
         <div style={{
@@ -1217,7 +1135,7 @@ References
             </h3>
             
             <p style={{
-              fontSize: '0.938rem',
+              fontSize: '1rem',
               color: 'rgba(255, 255, 255, 0.7)',
               marginBottom: '1.5rem'
             }}>
@@ -1236,7 +1154,7 @@ References
                 border: '1px solid rgba(255, 255, 255, 0.1)',
                 borderRadius: '8px',
                 color: '#ffffff',
-                fontSize: '0.938rem',
+                fontSize: '1rem',
                 marginBottom: '1rem',
                 outline: 'none'
               }}
@@ -1255,7 +1173,7 @@ References
                   border: '1px solid rgba(255, 255, 255, 0.2)',
                   borderRadius: '8px',
                   color: 'rgba(255, 255, 255, 0.8)',
-                  fontSize: '0.938rem',
+                  fontSize: '1rem',
                   cursor: 'pointer'
                 }}
               >
@@ -1271,7 +1189,7 @@ References
                   border: 'none',
                   borderRadius: '8px',
                   color: '#ffffff',
-                  fontSize: '0.938rem',
+                  fontSize: '1rem',
                   fontWeight: 500,
                   cursor: 'pointer'
                 }}
