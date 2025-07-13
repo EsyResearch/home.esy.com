@@ -696,10 +696,10 @@ const NewHomepage = () => {
               color: currentTheme.muted,
               fontStyle: 'normal'
             }}>
-              <strong style={{ color: currentTheme.text }}>Dr. Michael Chen</strong>
+              <strong style={{ color: currentTheme.text }}>Han Thi Htet</strong>
               <br />
               <span style={{ fontSize: isMobile ? '0.813rem' : '0.875rem' }}>
-                Professor of Philosophy, Stanford University
+                Professor of Prompt Engineering, Esy University
               </span>
             </cite>
           </div>
