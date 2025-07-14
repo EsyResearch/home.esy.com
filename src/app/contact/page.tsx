@@ -126,7 +126,7 @@ const ContactPage = () => {
 
       {/* Hero Section - Split Screen */}
       <section style={{ 
-        paddingTop: '6rem',
+        paddingTop: '8rem',
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center'

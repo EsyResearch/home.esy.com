@@ -18,17 +18,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Origami for marketing pages (homepage, school index) */
+/* TEMPORARILY DISABLED
 .origami-headers h1,
 .origami-headers h2 {
   font-family: 'OrigamiIncised', sans-serif;
   letter-spacing: 0.05em;
 }
+*/
 
 /* Academic pages - only h1 gets Origami for readability */
+/* TEMPORARILY DISABLED
 .academic-page h1 {
   font-family: 'OrigamiIncised', sans-serif;
   letter-spacing: 0.05em;
 }
+*/
 
 /* :root {
   --background: #ffffff;
