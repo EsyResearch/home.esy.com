@@ -3,6 +3,7 @@ import "./globals.css";
 import Navigation from "@/components/Home/navigation";
 import Footer from "@/components/Home/footer";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import GoogleTagManager, { GoogleTagManagerBody } from "@/components/GoogleTagManager";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +25,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <GoogleAnalytics />
+        <GoogleTagManager />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <GoogleTagManagerBody />
         <Navigation />
         <main>
           {children}
