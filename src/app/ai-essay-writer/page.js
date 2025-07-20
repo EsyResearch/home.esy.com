@@ -298,7 +298,7 @@ References
               lineHeight: 1.6,
               marginBottom: '2rem'
             }}>
-              Create high-quality, plagiarism-free essays with proper citations and academic structure.
+              Create high-quality, plagiarism-free essays with proper citations and academic structure. 
             </p>
 
             {/* Trust Indicators */}
