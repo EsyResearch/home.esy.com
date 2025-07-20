@@ -772,18 +772,25 @@ const HowToWriteHub = () => {
                   const GuideIcon = guide.icon;
                   const isHovered = hoveredGuide === guide.id;
                   
+                  // Create the link URL based on guide ID
+                  const guideLink = guide.id === 'essay' ? '/how-to-write/essay' : `/how-to-write/${guide.id}`;
+                  
                   return (
-                    <div
+                    <Link
                       key={guide.id}
-                      style={{
-                        ...styles.guideCard,
-                        transform: isHovered ? 'translateY(-4px)' : 'translateY(0)',
-                        borderColor: isHovered ? 'rgba(139, 92, 246, 0.2)' : 'rgba(255, 255, 255, 0.05)',
-                        background: isHovered ? 'rgba(255, 255, 255, 0.03)' : 'rgba(255, 255, 255, 0.02)'
-                      }}
-                      onMouseEnter={() => setHoveredGuide(guide.id)}
-                      onMouseLeave={() => setHoveredGuide(null)}
+                      href={guideLink}
+                      style={{ textDecoration: 'none', color: 'inherit' }}
                     >
+                      <div
+                        style={{
+                          ...styles.guideCard,
+                          transform: isHovered ? 'translateY(-4px)' : 'translateY(0)',
+                          borderColor: isHovered ? 'rgba(139, 92, 246, 0.2)' : 'rgba(255, 255, 255, 0.05)',
+                          background: isHovered ? 'rgba(255, 255, 255, 0.03)' : 'rgba(255, 255, 255, 0.02)'
+                        }}
+                        onMouseEnter={() => setHoveredGuide(guide.id)}
+                        onMouseLeave={() => setHoveredGuide(null)}
+                      >
                       <div 
                         style={{
                           ...styles.guideGlow,
@@ -840,6 +847,7 @@ const HowToWriteHub = () => {
                         </div>
                       </div>
                     </div>
+                    </Link>
                   );
                 })}
               </div>

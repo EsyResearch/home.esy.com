@@ -52,6 +52,7 @@ export default function Footer () {
             links={[
               { href: "/school", text: "School" },
               { href: "/glossary", text: "Glossary" },
+              { href: "/how-to-write", text: "How to Write" },
               // { href: "/guides", text: "Guides" },
               // { href: "/templates", text: "Templates" },
               // { href: "/api", text: "API Docs" }

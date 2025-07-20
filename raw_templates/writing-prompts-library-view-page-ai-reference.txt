@@ -1,0 +1,732 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  ArrowLeft, Sparkles, Brain, Copy, Check, Play, 
+  BookOpen, Users, TrendingUp, Star, Clock, Target,
+  Lightbulb, ChevronRight, Zap, FileText, PenTool
+} from 'lucide-react';
+
+const WritingPromptView = () => {
+  const [copiedPrompt, setCopiedPrompt] = useState(false);
+  const [activeDemo, setActiveDemo] = useState('structure');
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
+  const [email, setEmail] = useState('');
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+
+  const isMobile = windowWidth < 768;
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Sample prompt data (would come from URL params or API)
+  const promptData = {
+    id: 101,
+    title: "Analyze the Impact of Technology on Modern Communication",
+    prompt: "Analyze the impact of [SPECIFIC TECHNOLOGY] on [SPECIFIC INDUSTRY] over the past decade. Include statistical evidence, expert opinions, and future predictions.",
+    category: "Academic Essay",
+    difficulty: "Advanced",
+    estimatedTime: "45-60 minutes",
+    aiTool: "GPT-4, Claude, Esy",
+    tokens: "~800",
+    description: "This prompt helps you write comprehensive analytical essays about technology's transformative effects on various industries. Perfect for academic papers, business reports, or thought leadership content.",
+    tags: ["Technology", "Analysis", "Research", "Academic", "Business"],
+    stats: {
+      uses: 2847,
+      rating: 4.8,
+      avgLength: 1200
+    }
+  };
+
+  const demoContent = {
+    structure: {
+      title: "Essay Structure",
+      content: `I. Introduction
+   • Hook: Compelling statistic about technology adoption
+   • Context: Brief overview of the industry transformation
+   • Thesis: Clear stance on technology's impact
+
+II. Historical Context
+   • Pre-technology baseline
+   • Timeline of key innovations
+   • Initial resistance and adoption patterns
+
+III. Current Impact Analysis
+   • Quantitative changes (metrics, statistics)
+   • Qualitative improvements (efficiency, user experience)
+   • Disrupted traditional practices
+
+IV. Expert Perspectives
+   • Industry leader quotes
+   • Academic research findings
+   • Contrasting viewpoints
+
+V. Future Predictions
+   • Emerging trends
+   • Potential challenges
+   • Long-term implications
+
+VI. Conclusion
+   • Synthesis of key findings
+   • Balanced assessment
+   • Call for continued observation`
+    },
+    example: {
+      title: "Sample Output",
+      content: `The Digital Revolution in Healthcare: A Decade of Transformation
+
+The adoption of electronic health records (EHRs) has fundamentally transformed healthcare delivery over the past decade, creating both unprecedented opportunities for patient care coordination and significant challenges for healthcare providers adapting to digital workflows.
+
+Since 2014, EHR adoption among U.S. hospitals has surged from 59% to 96%, according to the Office of the National Coordinator for Health Information Technology. This dramatic shift represents more than a simple digitization of paper records—it has restructured how medical professionals interact with patient data, collaborate across specialties, and make clinical decisions.
+
+Dr. Sarah Chen, Chief Medical Information Officer at Johns Hopkins, notes that "EHR systems have reduced diagnostic errors by 31% and improved care coordination between specialists by 67% in our network alone." However, this technological advancement has come with trade-offs...`
+    },
+    tips: {
+      title: "Writing Tips",
+      content: `• Start with a compelling hook—statistics work well for analytical essays
+
+• Use the "[SPECIFIC]" placeholders to customize for your exact topic
+
+• Balance quantitative data with qualitative insights
+
+• Include at least 3-5 credible sources for academic credibility
+
+• Structure arguments logically: past → present → future
+
+• Address counterarguments to strengthen your analysis
+
+• Use transition phrases to connect ideas smoothly
+
+• End with implications, not just summary`
+    }
+  };
+
+  const relatedPrompts = [
+    {
+      id: 102,
+      title: "Compare Two Competing Technologies",
+      category: "Comparative Analysis",
+      difficulty: "Advanced"
+    },
+    {
+      id: 103,
+      title: "Write a Technology Trend Report",
+      category: "Business Report",
+      difficulty: "Intermediate"
+    },
+    {
+      id: 104,
+      title: "Predict Future Industry Disruption",
+      category: "Futurism Essay",
+      difficulty: "Advanced"
+    }
+  ];
+
+  const handleCopyPrompt = () => {
+    navigator.clipboard.writeText(promptData.prompt);
+    setCopiedPrompt(true);
+    setTimeout(() => setCopiedPrompt(false), 2000);
+  };
+
+  const handleTryWithAI = () => {
+    setIsGenerating(true);
+    setTimeout(() => {
+      setIsGenerating(false);
+      setShowPreview(true);
+    }, 3000);
+  };
+
+  const handleCreateAccount = () => {
+    if (email) {
+      // Redirect to app with prompt pre-filled
+      window.location.href = `/app?prompt=${encodeURIComponent(promptData.prompt)}&email=${encodeURIComponent(email)}`;
+    }
+  };
+
+  return (
+    <div style={{
+      minHeight: '100vh',
+      backgroundColor: '#0a0a0f',
+      color: '#ffffff',
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+    }}>
+      {/* Header */}
+      <header style={{
+        borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+        backgroundColor: 'rgba(10, 10, 15, 0.95)',
+        backdropFilter: 'blur(10px)',
+        position: 'sticky',
+        top: 0,
+        zIndex: 50
+      }}>
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: isMobile ? '1rem' : '1.5rem 2rem',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <a href="/writing-prompts" style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              color: 'rgba(255, 255, 255, 0.7)',
+              textDecoration: 'none',
+              fontSize: '0.938rem',
+              transition: 'color 0.2s'
+            }}>
+              <ArrowLeft size={18} />
+              Back to Prompts
+            </a>
+            <div style={{
+              width: '1px',
+              height: '20px',
+              backgroundColor: 'rgba(255, 255, 255, 0.1)'
+            }} />
+            <a href="/" style={{
+              fontSize: '1.25rem',
+              fontWeight: 300,
+              letterSpacing: '-0.02em',
+              color: '#ffffff',
+              textDecoration: 'none'
+            }}>
+              esy
+            </a>
+          </div>
+
+          <button
+            onClick={() => window.location.href = '/app'}
+            style={{
+              padding: '0.5rem 1rem',
+              backgroundColor: '#8b5cf6',
+              borderRadius: '6px',
+              border: 'none',
+              color: '#ffffff',
+              fontSize: '0.875rem',
+              fontWeight: 500,
+              cursor: 'pointer'
+            }}
+          >
+            Try Esy AI
+          </button>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section style={{
+        padding: isMobile ? '3rem 1.5rem' : '4rem 2rem',
+        maxWidth: '1200px',
+        margin: '0 auto'
+      }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: isMobile ? '1fr' : '2fr 1fr',
+          gap: '3rem',
+          alignItems: 'start'
+        }}>
+          {/* Main Content */}
+          <div>
+            {/* Breadcrumb & Stats */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1rem',
+              marginBottom: '1.5rem',
+              flexWrap: 'wrap'
+            }}>
+              <span style={{
+                fontSize: '0.75rem',
+                padding: '0.25rem 0.5rem',
+                backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                color: '#8b5cf6',
+                borderRadius: '4px'
+              }}>
+                {promptData.category}
+              </span>
+              <span style={{
+                fontSize: '0.75rem',
+                color: 'rgba(255, 255, 255, 0.5)'
+              }}>
+                {promptData.difficulty}
+              </span>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.25rem',
+                fontSize: '0.75rem',
+                color: 'rgba(255, 255, 255, 0.5)'
+              }}>
+                <Star size={12} fill="#8b5cf6" color="#8b5cf6" />
+                {promptData.stats.rating}
+              </div>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.25rem',
+                fontSize: '0.75rem',
+                color: 'rgba(255, 255, 255, 0.5)'
+              }}>
+                <Users size={12} />
+                {promptData.stats.uses.toLocaleString()} uses
+              </div>
+            </div>
+
+            <h1 style={{
+              fontSize: isMobile ? '2rem' : '2.75rem',
+              fontWeight: 300,
+              lineHeight: 1.2,
+              letterSpacing: '-0.02em',
+              marginBottom: '1rem'
+            }}>
+              {promptData.title}
+            </h1>
+
+            <p style={{
+              fontSize: '1.125rem',
+              color: 'rgba(255, 255, 255, 0.7)',
+              lineHeight: 1.7,
+              marginBottom: '2rem'
+            }}>
+              {promptData.description}
+            </p>
+
+            {/* Tags */}
+            <div style={{
+              display: 'flex',
+              gap: '0.5rem',
+              marginBottom: '2rem',
+              flexWrap: 'wrap'
+            }}>
+              {promptData.tags.map(tag => (
+                <span
+                  key={tag}
+                  style={{
+                    fontSize: '0.813rem',
+                    padding: '0.25rem 0.75rem',
+                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '12px',
+                    color: 'rgba(255, 255, 255, 0.7)'
+                  }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            {/* Prompt Display */}
+            <div style={{
+              backgroundColor: '#16161f',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              borderRadius: '8px',
+              padding: '1.5rem',
+              marginBottom: '2rem'
+            }}>
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: '1rem'
+              }}>
+                <h3 style={{
+                  fontSize: '1rem',
+                  fontWeight: 500,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem'
+                }}>
+                  <FileText size={18} style={{ color: '#8b5cf6' }} />
+                  Writing Prompt
+                </h3>
+                <button
+                  onClick={handleCopyPrompt}
+                  style={{
+                    padding: '0.5rem 1rem',
+                    backgroundColor: 'transparent',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '6px',
+                    color: copiedPrompt ? '#4ade80' : 'rgba(255, 255, 255, 0.7)',
+                    fontSize: '0.813rem',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem'
+                  }}
+                >
+                  {copiedPrompt ? <Check size={14} /> : <Copy size={14} />}
+                  {copiedPrompt ? 'Copied!' : 'Copy'}
+                </button>
+              </div>
+              
+              <p style={{
+                fontSize: '1rem',
+                lineHeight: 1.7,
+                fontFamily: 'monospace',
+                backgroundColor: 'rgba(139, 92, 246, 0.03)',
+                padding: '1rem',
+                borderRadius: '6px',
+                border: '1px solid rgba(139, 92, 246, 0.1)'
+              }}>
+                {promptData.prompt}
+              </p>
+            </div>
+          </div>
+
+          {/* Sidebar */}
+          <div style={{
+            backgroundColor: '#16161f',
+            borderRadius: '8px',
+            padding: '1.5rem',
+            border: '1px solid rgba(255, 255, 255, 0.05)',
+            position: 'sticky',
+            top: '100px'
+          }}>
+            <h3 style={{
+              fontSize: '1.125rem',
+              fontWeight: 500,
+              marginBottom: '1.5rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem'
+            }}>
+              <Zap size={18} style={{ color: '#8b5cf6' }} />
+              Try with AI
+            </h3>
+
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem',
+              marginBottom: '1.5rem'
+            }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                fontSize: '0.875rem',
+                color: 'rgba(255, 255, 255, 0.7)'
+              }}>
+                <Clock size={14} />
+                {promptData.estimatedTime}
+              </div>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                fontSize: '0.875rem',
+                color: 'rgba(255, 255, 255, 0.7)'
+              }}>
+                <Target size={14} />
+                {promptData.tokens} words
+              </div>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                fontSize: '0.875rem',
+                color: 'rgba(255, 255, 255, 0.7)'
+              }}>
+                <Brain size={14} />
+                {promptData.aiTool}
+              </div>
+            </div>
+
+            {!showPreview ? (
+              <button
+                onClick={handleTryWithAI}
+                disabled={isGenerating}
+                style={{
+                  width: '100%',
+                  padding: '0.875rem',
+                  backgroundColor: isGenerating ? 'rgba(139, 92, 246, 0.5)' : '#8b5cf6',
+                  border: 'none',
+                  borderRadius: '6px',
+                  color: '#ffffff',
+                  fontSize: '0.938rem',
+                  fontWeight: 500,
+                  cursor: isGenerating ? 'not-allowed' : 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.5rem',
+                  marginBottom: '1rem'
+                }}
+              >
+                {isGenerating ? (
+                  <>
+                    <div style={{
+                      width: '16px',
+                      height: '16px',
+                      border: '2px solid rgba(255, 255, 255, 0.3)',
+                      borderTopColor: '#ffffff',
+                      borderRadius: '50%',
+                      animation: 'spin 1s linear infinite'
+                    }} />
+                    Generating...
+                  </>
+                ) : (
+                  <>
+                    <Play size={16} />
+                    Try Free Preview
+                  </>
+                )}
+              </button>
+            ) : (
+              <div style={{
+                padding: '1rem',
+                backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                borderRadius: '6px',
+                border: '1px solid rgba(139, 92, 246, 0.2)',
+                marginBottom: '1rem'
+              }}>
+                <div style={{
+                  fontSize: '0.813rem',
+                  color: '#8b5cf6',
+                  marginBottom: '0.5rem',
+                  fontWeight: 500
+                }}>
+                  ✨ AI Enhanced Preview
+                </div>
+                <p style={{
+                  fontSize: '0.875rem',
+                  lineHeight: 1.6,
+                  color: 'rgba(255, 255, 255, 0.9)'
+                }}>
+                  Your essay will analyze how artificial intelligence has revolutionized healthcare diagnostics, featuring expert insights from Mayo Clinic researchers and Stanford's AI lab...
+                </p>
+              </div>
+            )}
+
+            {showPreview && (
+              <div style={{ marginBottom: '1rem' }}>
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '0.875rem',
+                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '6px',
+                    color: '#ffffff',
+                    fontSize: '0.938rem',
+                    outline: 'none',
+                    marginBottom: '0.75rem'
+                  }}
+                />
+                <button
+                  onClick={handleCreateAccount}
+                  style={{
+                    width: '100%',
+                    padding: '0.875rem',
+                    backgroundColor: '#8b5cf6',
+                    border: 'none',
+                    borderRadius: '6px',
+                    color: '#ffffff',
+                    fontSize: '0.938rem',
+                    fontWeight: 500,
+                    cursor: 'pointer'
+                  }}
+                >
+                  Continue with Full AI
+                </button>
+              </div>
+            )}
+
+            <p style={{
+              fontSize: '0.75rem',
+              color: 'rgba(255, 255, 255, 0.5)',
+              textAlign: 'center'
+            }}>
+              Free preview • No credit card required
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* AI Demo Section */}
+      <section style={{
+        padding: isMobile ? '3rem 1.5rem' : '4rem 2rem',
+        backgroundColor: '#16161f',
+        borderTop: '1px solid rgba(255, 255, 255, 0.05)'
+      }}>
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}>
+          <h2 style={{
+            fontSize: isMobile ? '1.75rem' : '2.25rem',
+            fontWeight: 300,
+            textAlign: 'center',
+            marginBottom: '3rem'
+          }}>
+            How AI Enhances Your Writing
+          </h2>
+
+          {/* Demo Tabs */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '1rem',
+            marginBottom: '3rem',
+            flexWrap: 'wrap'
+          }}>
+            {Object.keys(demoContent).map(key => (
+              <button
+                key={key}
+                onClick={() => setActiveDemo(key)}
+                style={{
+                  padding: '0.75rem 1.5rem',
+                  backgroundColor: activeDemo === key ? '#8b5cf6' : 'transparent',
+                  border: `1px solid ${activeDemo === key ? '#8b5cf6' : 'rgba(255, 255, 255, 0.1)'}`,
+                  borderRadius: '6px',
+                  color: '#ffffff',
+                  fontSize: '0.938rem',
+                  fontWeight: 500,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s'
+                }}
+              >
+                {demoContent[key].title}
+              </button>
+            ))}
+          </div>
+
+          {/* Demo Content */}
+          <div style={{
+            backgroundColor: '#0a0a0f',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            borderRadius: '8px',
+            padding: '2rem',
+            maxWidth: '800px',
+            margin: '0 auto'
+          }}>
+            <h3 style={{
+              fontSize: '1.25rem',
+              fontWeight: 400,
+              marginBottom: '1.5rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem'
+            }}>
+              <Lightbulb size={20} style={{ color: '#8b5cf6' }} />
+              {demoContent[activeDemo].title}
+            </h3>
+            
+            <div style={{
+              fontSize: '0.938rem',
+              lineHeight: 1.8,
+              color: 'rgba(255, 255, 255, 0.9)',
+              whiteSpace: 'pre-line'
+            }}>
+              {demoContent[activeDemo].content}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Related Prompts */}
+      <section style={{
+        padding: isMobile ? '3rem 1.5rem' : '4rem 2rem',
+        maxWidth: '1200px',
+        margin: '0 auto'
+      }}>
+        <h2 style={{
+          fontSize: isMobile ? '1.75rem' : '2.25rem',
+          fontWeight: 300,
+          marginBottom: '2rem'
+        }}>
+          Related Prompts
+        </h2>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+          gap: '1.5rem'
+        }}>
+          {relatedPrompts.map(prompt => (
+            <a
+              key={prompt.id}
+              href={`/writing-prompts/${prompt.id}`}
+              style={{
+                display: 'block',
+                padding: '1.5rem',
+                backgroundColor: '#16161f',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                color: '#ffffff',
+                transition: 'all 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)'}
+              onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)'}
+            >
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'flex-start',
+                marginBottom: '0.75rem'
+              }}>
+                <span style={{
+                  fontSize: '0.75rem',
+                  padding: '0.25rem 0.5rem',
+                  backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                  color: '#8b5cf6',
+                  borderRadius: '4px'
+                }}>
+                  {prompt.category}
+                </span>
+                <ChevronRight size={16} style={{ color: 'rgba(255, 255, 255, 0.5)' }} />
+              </div>
+              
+              <h3 style={{
+                fontSize: '1rem',
+                fontWeight: 500,
+                lineHeight: 1.4,
+                marginBottom: '0.5rem'
+              }}>
+                {prompt.title}
+              </h3>
+              
+              <span style={{
+                fontSize: '0.813rem',
+                color: 'rgba(255, 255, 255, 0.5)'
+              }}>
+                {prompt.difficulty}
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer style={{
+        padding: isMobile ? '3rem 1.5rem' : '4rem 2rem',
+        borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+        textAlign: 'center'
+      }}>
+        <p style={{
+          fontSize: '0.875rem',
+          color: 'rgba(255, 255, 255, 0.5)'
+        }}>
+          © 2025 Esy · AI-Powered Writing for Everyone
+        </p>
+      </footer>
+
+      {/* Animation Styles */}
+      <style>{`
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default WritingPromptView;
