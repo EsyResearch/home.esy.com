@@ -773,7 +773,7 @@ const HowToWriteHub = () => {
                   const isHovered = hoveredGuide === guide.id;
                   
                   // Create the link URL based on guide ID
-                  const guideLink = guide.id === 'essay' ? '/how-to-write/essay' : `/how-to-write/${guide.id}`;
+                  const guideLink = guide.id === 'essay' ? '/how-to-write-an-essay' : `/how-to-write/${guide.id}`;
                   
                   return (
                     <Link
