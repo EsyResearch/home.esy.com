@@ -9,14 +9,12 @@ import {
   PenTool, Target, Layers, Award,
   Menu, X, TrendingUp, Shield
 } from 'lucide-react';
-import styles from './NewHomepage.module.css';
 
 const NewHomepage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchFocused, setSearchFocused] = useState(false);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
   const [activeQuestion, setActiveQuestion] = useState(0);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const searchRef = useRef(null);
 
   const currentTheme = {
@@ -31,10 +29,12 @@ const NewHomepage = () => {
     accent: '#8b5cf6'
   };
 
-  // Responsive breakpoints
+  // Enhanced responsive breakpoints
   const isMobile = windowWidth < 768;
   const isTablet = windowWidth >= 768 && windowWidth < 1024;
   const isDesktop = windowWidth >= 1024;
+  const isSmallMobile = windowWidth < 480;
+  const isTinyMobile = windowWidth < 375; // iPhone SE and similar small devices
 
   // Handle window resize
   useEffect(() => {
@@ -126,17 +126,15 @@ const NewHomepage = () => {
     <div style={{
       backgroundColor: currentTheme.bg,
       color: currentTheme.text,
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      overflowX: 'hidden',
-      position: 'relative'
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
     }}>
-      {/* Hero Section - Responsive */}
+      {/* Hero Section - Enhanced Mobile Responsive */}
       <section style={{ 
         minHeight: '100vh',
         display: 'flex',
-        alignItems: isMobile ? 'flex-start' : 'center',
+        alignItems: 'center',
         justifyContent: 'center',
-        padding: isMobile ? '14rem 1rem 2rem' : isTablet ? '9rem 2rem 4rem' : '9rem 2rem',
+        padding: isSmallMobile ? '8rem 1rem 3rem' : isMobile ? '9rem 1.5rem 4rem' : isTablet ? '9rem 2rem 4rem' : '9rem 2rem',
         position: 'relative'
       }}>
         <div style={{ 
@@ -146,113 +144,102 @@ const NewHomepage = () => {
           zIndex: 1 
         }}>
           {/* Hero Content */}
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: isMobile ? '2.5rem' : '3rem' }}>
 
-
-            {/* Main Headline */}
+            {/* Main Headline - Enhanced Mobile Typography */}
             <h1 style={{
-              fontSize: isMobile ? '2rem' : isTablet ? '3.5rem' : '5rem',
+              fontSize: isTinyMobile ? '1.75rem' : isSmallMobile ? '2rem' : isMobile ? '2.5rem' : isTablet ? '3.5rem' : '5rem',
               fontWeight: 300,
-              lineHeight: 1.2,
-              letterSpacing: '-0.02em',
-              marginBottom: isMobile ? '1.5rem' : '2rem'
+              lineHeight: isMobile ? 1.2 : 1.1,
+              letterSpacing: '-0.04em',
+              marginBottom: isMobile ? '1.5rem' : '2rem',
+              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
             }}>
               Research Faster with AI.
               <br />
               <span style={{ color: currentTheme.accent }}>Write Essays That Impress.</span>
             </h1>
 
-            {/* Subheadline */}
+            {/* Subheadline - Improved Mobile Readability */}
             <p style={{
-              fontSize: isMobile ? '1rem' : isTablet ? '1.25rem' : '1.5rem',
+              fontSize: isTinyMobile ? '0.938rem' : isSmallMobile ? '1rem' : isMobile ? '1.125rem' : isTablet ? '1.25rem' : '1.5rem',
               lineHeight: 1.6,
               color: currentTheme.muted,
               maxWidth: '720px',
               margin: '0 auto',
-              padding: isMobile ? '0 0.5rem' : '0'
+              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
             }}>
               Harness AI to write A+ essays in half the time. Dive into sources, craft ironclad arguments, and cite flawlessly in APA, MLA, or any style.
             </p>
           </div>
 
-          {/* Search Interface - Responsive */}
+          {/* Search Interface - Enhanced Mobile UX */}
           <div style={{
             maxWidth: isMobile ? '100%' : '720px',
             margin: '0 auto',
-            marginBottom: '3rem',
-            padding: isMobile ? '0 1rem' : '0'
+            marginBottom: isMobile ? '2.5rem' : '3rem',
+            padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
           }}>
             <div style={{
               display: 'flex',
               flexDirection: isMobile ? 'column' : 'row',
               alignItems: 'stretch',
-              background: searchFocused ? currentTheme.elevated : currentTheme.elevated,
+              background: searchFocused ? currentTheme.elevated : 'transparent',
               border: `2px solid ${searchFocused ? currentTheme.accent : currentTheme.border}`,
-              borderRadius: isMobile ? '16px' : '12px',
-              padding: isMobile ? '0.5rem' : '0.5rem',
+              borderRadius: '12px',
+              padding: isMobile ? '0.75rem' : '0.5rem',
               transition: 'all 0.2s',
-              gap: isMobile ? '0.75rem' : '0',
-              boxShadow: searchFocused ? '0 0 0 4px rgba(139, 92, 246, 0.1)' : 'none'
+              gap: isMobile ? '0.75rem' : '0'
             }}>
               <div style={{
                 flex: 1,
                 display: 'flex',
-                alignItems: 'center',
-                background: isMobile ? currentTheme.bg : 'transparent',
-                borderRadius: isMobile ? '12px' : '8px',
-                padding: isMobile ? '0.25rem' : '0'
+                alignItems: 'center'
               }}>
                 <Search size={isMobile ? 18 : 20} style={{ 
-                  marginLeft: isMobile ? '0.75rem' : '1rem',
-                  marginRight: isMobile ? '0.5rem' : '0',
+                  marginLeft: isMobile ? '0.75rem' : '1rem', 
                   color: searchFocused ? currentTheme.accent : currentTheme.subtle,
-                  transition: 'color 0.2s',
-                  flexShrink: 0
+                  transition: 'color 0.2s'
                 }} />
                 <input
                   ref={searchRef}
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder={isMobile ? 'Ask anything...' : researchQuestions[activeQuestion]}
+                  placeholder={researchQuestions[activeQuestion]}
                   onFocus={() => setSearchFocused(true)}
                   onBlur={() => setSearchFocused(false)}
                   style={{
                     flex: 1,
-                    padding: isMobile ? '0.875rem 0.75rem' : '1rem',
+                    padding: isMobile ? '1.25rem 0.75rem' : '1rem',
                     background: 'transparent',
                     border: 'none',
                     color: currentTheme.text,
-                    fontSize: '16px', // Force 16px to prevent iOS zoom
+                    fontSize: isSmallMobile ? '1rem' : isMobile ? '1rem' : '1.063rem',
                     outline: 'none',
                     width: '100%',
-                    WebkitAppearance: 'none',
-                    appearance: 'none',
-                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+                    minHeight: isMobile ? '48px' : 'auto'
                   }}
                 />
               </div>
               <button 
                 onClick={handleStartWriting}
                 style={{
-                  padding: isMobile ? '1rem 1.5rem' : '0.75rem 1.5rem',
-                  background: currentTheme.accent,
+                  padding: isSmallMobile ? '1rem' : isMobile ? '1rem 1.5rem' : '0.75rem 1.5rem',
+                  background: searchFocused || searchQuery ? currentTheme.accent : 'transparent',
                   border: 'none',
-                  borderRadius: isMobile ? '12px' : '8px',
-                  color: 'white',
-                  fontSize: '16px', // Force 16px to prevent iOS zoom
-                  fontWeight: 600,
+                  borderRadius: '8px',
+                  color: searchFocused || searchQuery ? 'white' : currentTheme.subtle,
+                  fontSize: isSmallMobile ? '1rem' : isMobile ? '1rem' : '0.938rem',
+                  fontWeight: 500,
                   cursor: 'pointer',
                   transition: 'all 0.2s',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: '0.5rem',
-                  whiteSpace: 'nowrap',
-                  WebkitTapHighlightColor: 'transparent',
                   minHeight: isMobile ? '48px' : 'auto',
-                  width: isMobile ? '100%' : 'auto',
-                  boxShadow: '0 2px 8px rgba(139, 92, 246, 0.3)'
+                  minWidth: isMobile ? '120px' : 'auto'
                 }}
               >
                 <Sparkles size={isMobile ? 18 : 16} />
@@ -260,23 +247,21 @@ const NewHomepage = () => {
               </button>
             </div>
 
-            {/* Quick actions - Responsive */}
+            {/* Quick actions - Enhanced Mobile Touch Targets */}
             <div style={{
               display: 'flex',
-              gap: isMobile ? '0.75rem' : '0.5rem',
+              gap: isTinyMobile ? '0.5rem' : isMobile ? '0.75rem' : '0.5rem',
               justifyContent: 'center',
               marginTop: '1rem',
               flexWrap: 'wrap',
-              padding: isMobile ? '0 1rem' : '0'
+              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
             }}>
-              {!isMobile && (
-                <span style={{
-                  fontSize: '0.75rem',
-                  color: currentTheme.faint
-                }}>
-                  Try:
-                </span>
-              )}
+              <span style={{
+                fontSize: isTinyMobile ? '0.813rem' : isSmallMobile ? '0.875rem' : '0.75rem',
+                color: currentTheme.faint
+              }}>
+                Try:
+              </span>
               {['Research paper', 'Essay outline', 'Literature review'].map((prompt, i) => (
                 <button
                   key={i}
@@ -285,34 +270,20 @@ const NewHomepage = () => {
                     searchRef.current?.focus();
                   }}
                   style={{
-                    fontSize: isMobile ? '0.813rem' : '0.75rem',
+                    fontSize: isTinyMobile ? '0.813rem' : isSmallMobile ? '0.875rem' : '0.75rem',
                     color: currentTheme.subtle,
-                    background: isMobile ? currentTheme.elevated : 'transparent',
-                    border: isMobile ? `1px solid ${currentTheme.border}` : 'none',
-                    borderRadius: isMobile ? '20px' : '0',
-                    padding: isMobile ? '0.375rem 0.75rem' : '0',
-                    textDecoration: isMobile ? 'none' : 'underline',
+                    background: 'transparent',
+                    border: 'none',
+                    textDecoration: 'underline',
                     cursor: 'pointer',
-                    transition: 'all 0.2s',
+                    transition: 'color 0.2s',
+                    padding: isTinyMobile ? '0.375rem' : isMobile ? '0.5rem' : '0.25rem',
                     minHeight: isMobile ? '32px' : 'auto',
-                    WebkitTapHighlightColor: 'transparent'
+                    display: 'flex',
+                    alignItems: 'center'
                   }}
-                  onMouseEnter={(e) => {
-                    if (!isMobile) {
-                      e.target.style.color = currentTheme.accent;
-                    } else {
-                      e.target.style.borderColor = currentTheme.accent;
-                      e.target.style.background = currentTheme.accent + '10';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isMobile) {
-                      e.target.style.color = currentTheme.subtle;
-                    } else {
-                      e.target.style.borderColor = currentTheme.border;
-                      e.target.style.background = currentTheme.elevated;
-                    }
-                  }}
+                  onMouseEnter={(e) => e.target.style.color = currentTheme.accent}
+                  onMouseLeave={(e) => e.target.style.color = currentTheme.subtle}
                 >
                   {prompt}
                 </button>
@@ -320,77 +291,83 @@ const NewHomepage = () => {
             </div>
           </div>
 
-          {/* Trust Indicators - Responsive Grid */}
+          {/* Trust Indicators - Enhanced Mobile Grid */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : isTablet ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)',
-            gap: isMobile ? '1rem' : '2rem',
-            fontSize: isMobile ? '0.75rem' : '0.813rem',
+            gridTemplateColumns: isTinyMobile ? '1fr' : isSmallMobile ? 'repeat(2, 1fr)' : isMobile ? 'repeat(2, 1fr)' : isTablet ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)',
+            gap: isTinyMobile ? '1rem' : isSmallMobile ? '1.5rem' : isMobile ? '1rem' : '2rem',
+            fontSize: isTinyMobile ? '0.813rem' : isSmallMobile ? '0.875rem' : '0.813rem',
             color: currentTheme.subtle,
             maxWidth: '800px',
             margin: '0 auto',
-            marginTop: isMobile ? '2rem' : '0'
+            padding: isTinyMobile ? '0 0.5rem' : isSmallMobile ? '0 1rem' : '0'
           }}>
             <div style={{ 
               display: 'flex', 
               alignItems: 'center', 
               gap: '0.5rem',
-              justifyContent: isMobile ? 'center' : 'flex-start'
+              justifyContent: isMobile ? 'center' : 'flex-start',
+              textAlign: isSmallMobile ? 'center' : 'left'
             }}>
-              <CheckCircle size={16} style={{ color: currentTheme.accent }} />
-              No credit card required
+              <CheckCircle size={isMobile ? 18 : 16} style={{ color: currentTheme.accent }} />
+              <span style={{ lineHeight: 1.3 }}>No credit card required</span>
             </div>
             <div style={{ 
               display: 'flex', 
               alignItems: 'center', 
               gap: '0.5rem',
-              justifyContent: isMobile ? 'center' : 'flex-start'
+              justifyContent: isMobile ? 'center' : 'flex-start',
+              textAlign: isSmallMobile ? 'center' : 'left'
             }}>
-              <Zap size={16} />
-              Start in seconds
+              <Zap size={isMobile ? 18 : 16} />
+              <span style={{ lineHeight: 1.3 }}>Start in seconds</span>
             </div>
             <div style={{ 
               display: 'flex', 
               alignItems: 'center', 
               gap: '0.5rem',
-              justifyContent: isMobile ? 'center' : 'flex-start'
+              justifyContent: isMobile ? 'center' : 'flex-start',
+              textAlign: isSmallMobile ? 'center' : 'left'
             }}>
-              <Globe size={16} />
-              4 AI models included
+              <Globe size={isMobile ? 18 : 16} />
+              <span style={{ lineHeight: 1.3 }}>4 AI models included</span>
             </div>
             <div style={{ 
               display: 'flex', 
               alignItems: 'center', 
               gap: '0.5rem',
-              justifyContent: isMobile ? 'center' : 'flex-start'
+              justifyContent: isMobile ? 'center' : 'flex-start',
+              textAlign: isSmallMobile ? 'center' : 'left'
             }}>
-              <Shield size={16} />
-              Your data stays private
+              <Shield size={isMobile ? 18 : 16} />
+              <span style={{ lineHeight: 1.3 }}>Your data stays private</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Benefits Section - Responsive Grid */}
+      {/* Benefits Section - Enhanced Mobile Grid */}
       <section id="benefits" style={{ 
-        padding: isMobile ? '4rem 1rem' : isTablet ? '6rem 2rem' : '8rem 2rem',
+        padding: isSmallMobile ? '3rem 1rem' : isMobile ? '4rem 1.5rem' : isTablet ? '6rem 2rem' : '8rem 2rem',
         background: currentTheme.elevated
       }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: isMobile ? '3rem' : '5rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: isMobile ? '2.5rem' : '5rem' }}>
             <h2 style={{
-              fontSize: isMobile ? '2rem' : isTablet ? '2.5rem' : '3rem',
+              fontSize: isTinyMobile ? '1.5rem' : isSmallMobile ? '1.75rem' : isMobile ? '2rem' : isTablet ? '2.5rem' : '3rem',
               fontWeight: 300,
               letterSpacing: '-0.02em',
-              marginBottom: '1.5rem'
+              marginBottom: '1.5rem',
+              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
             }}>
               Proven results, immediate impact
             </h2>
             <p style={{
-              fontSize: isMobile ? '1rem' : '1.125rem',
+              fontSize: isTinyMobile ? '0.875rem' : isSmallMobile ? '0.938rem' : isMobile ? '1rem' : '1.125rem',
               color: currentTheme.muted,
               maxWidth: '600px',
-              margin: '0 auto'
+              margin: '0 auto',
+              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
             }}>
               Join researchers experiencing dramatic improvements in their academic writing
             </p>
@@ -398,15 +375,15 @@ const NewHomepage = () => {
 
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', 
-            gap: isMobile ? '2rem' : '2.5rem'
+            gridTemplateColumns: isTinyMobile ? '1fr' : isSmallMobile ? '1fr' : isMobile ? 'repeat(2, 1fr)' : isTablet ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', 
+            gap: isTinyMobile ? '1rem' : isSmallMobile ? '1.5rem' : isMobile ? '1.5rem' : '2.5rem'
           }}>
             {keyBenefits.map((benefit, index) => (
               <div 
                 key={index}
                 style={{
                   textAlign: 'center',
-                  padding: isMobile ? '1.5rem' : '2rem',
+                  padding: isSmallMobile ? '1.25rem' : isMobile ? '1.5rem' : '2rem',
                   background: currentTheme.bg,
                   borderRadius: '12px',
                   border: `1px solid ${currentTheme.border}`,
@@ -426,14 +403,14 @@ const NewHomepage = () => {
                 }}
               >
                 <benefit.icon 
-                  size={isMobile ? 24 : 32} 
+                  size={isSmallMobile ? 20 : isMobile ? 24 : 32} 
                   style={{ 
                     color: currentTheme.accent, 
-                    marginBottom: '1rem' 
+                    marginBottom: isMobile ? '0.75rem' : '1rem' 
                   }} 
                 />
                 <div style={{
-                  fontSize: isMobile ? '2.5rem' : '3rem',
+                  fontSize: isSmallMobile ? '2rem' : isMobile ? '2.5rem' : '3rem',
                   fontWeight: 300,
                   color: currentTheme.accent,
                   marginBottom: '0.5rem'
@@ -441,15 +418,16 @@ const NewHomepage = () => {
                   {benefit.stat}
                 </div>
                 <h3 style={{
-                  fontSize: isMobile ? '1rem' : '1.125rem',
+                  fontSize: isSmallMobile ? '0.938rem' : isMobile ? '1rem' : '1.125rem',
                   fontWeight: 500,
                   marginBottom: '0.25rem'
                 }}>
                   {benefit.title}
                 </h3>
                 <p style={{
-                  fontSize: '0.813rem',
-                  color: currentTheme.subtle
+                  fontSize: isSmallMobile ? '0.75rem' : '0.813rem',
+                  color: currentTheme.subtle,
+                  lineHeight: 1.4
                 }}>
                   {benefit.description}
                 </p>
@@ -459,35 +437,37 @@ const NewHomepage = () => {
         </div>
       </section>
 
-      {/* Features Section - Responsive */}
+      {/* Features Section - Enhanced Mobile Layout */}
       <section id="features" style={{ 
-        padding: isMobile ? '4rem 1rem' : isTablet ? '6rem 2rem' : '8rem 2rem'
+        padding: isSmallMobile ? '3rem 1rem' : isMobile ? '4rem 1.5rem' : isTablet ? '6rem 2rem' : '8rem 2rem'
       }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: isMobile ? '3rem' : '5rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: isMobile ? '2.5rem' : '5rem' }}>
             <h2 style={{
-              fontSize: isMobile ? '2rem' : isTablet ? '2.5rem' : '3rem',
+              fontSize: isTinyMobile ? '1.5rem' : isSmallMobile ? '1.75rem' : isMobile ? '2rem' : isTablet ? '2.5rem' : '3rem',
               fontWeight: 300,
               letterSpacing: '-0.02em',
-              marginBottom: '1.5rem'
+              marginBottom: '1.5rem',
+              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
             }}>
               Everything you need to excel
             </h2>
             <p style={{
-              fontSize: isMobile ? '1rem' : '1.125rem',
+              fontSize: isTinyMobile ? '0.875rem' : isSmallMobile ? '0.938rem' : isMobile ? '1rem' : '1.125rem',
               color: currentTheme.muted,
               maxWidth: '600px',
-              margin: '0 auto'
+              margin: '0 auto',
+              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
             }}>
               Powerful features designed for academic success
             </p>
           </div>
 
-          {/* Feature highlights - Responsive layout */}
+          {/* Feature highlights - Enhanced Mobile Layout */}
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', 
-            gap: isMobile ? '2rem' : '3rem',
+            gridTemplateColumns: isTinyMobile ? '1fr' : isSmallMobile ? '1fr' : isMobile ? '1fr' : 'repeat(2, 1fr)', 
+            gap: isTinyMobile ? '1rem' : isSmallMobile ? '1.5rem' : isMobile ? '2rem' : '3rem',
             marginBottom: '4rem'
           }}>
             {[
@@ -521,8 +501,8 @@ const NewHomepage = () => {
                 style={{
                   display: 'flex',
                   flexDirection: isMobile ? 'column' : 'row',
-                  gap: '1.5rem',
-                  padding: isMobile ? '1.5rem' : '2rem',
+                  gap: isSmallMobile ? '1rem' : isMobile ? '1.5rem' : '1.5rem',
+                  padding: isSmallMobile ? '1.25rem' : isMobile ? '1.5rem' : '2rem',
                   background: currentTheme.elevated,
                   borderRadius: '12px',
                   border: `1px solid ${currentTheme.border}`,
@@ -544,8 +524,8 @@ const NewHomepage = () => {
                 }}
               >
                 <div style={{
-                  width: isMobile ? '48px' : '56px',
-                  height: isMobile ? '48px' : '56px',
+                  width: isSmallMobile ? '40px' : isMobile ? '48px' : '56px',
+                  height: isSmallMobile ? '40px' : isMobile ? '48px' : '56px',
                   background: currentTheme.accent + '20',
                   borderRadius: '12px',
                   display: 'flex',
@@ -553,19 +533,19 @@ const NewHomepage = () => {
                   justifyContent: 'center',
                   flexShrink: 0
                 }}>
-                  <feature.icon size={24} style={{ color: currentTheme.accent }} />
+                  <feature.icon size={isSmallMobile ? 20 : isMobile ? 24 : 24} style={{ color: currentTheme.accent }} />
                 </div>
                 
                 <div>
                   <h3 style={{
-                    fontSize: isMobile ? '1.125rem' : '1.25rem',
+                    fontSize: isSmallMobile ? '1rem' : isMobile ? '1.125rem' : '1.25rem',
                     fontWeight: 500,
                     marginBottom: '0.75rem'
                   }}>
                     {feature.title}
                   </h3>
                   <p style={{
-                    fontSize: isMobile ? '0.875rem' : '0.938rem',
+                    fontSize: isSmallMobile ? '0.813rem' : isMobile ? '0.875rem' : '0.938rem',
                     lineHeight: 1.6,
                     color: currentTheme.muted,
                     marginBottom: '0.75rem'
@@ -573,7 +553,7 @@ const NewHomepage = () => {
                     {feature.description}
                   </p>
                   <div style={{
-                    fontSize: '0.813rem',
+                    fontSize: isSmallMobile ? '0.75rem' : '0.813rem',
                     color: currentTheme.accent,
                     fontWeight: 500
                   }}>
@@ -586,26 +566,28 @@ const NewHomepage = () => {
         </div>
       </section>
 
-      {/* Capabilities Section - Responsive */}
+      {/* Capabilities Section - Enhanced Mobile Layout */}
       <section id="capabilities" style={{ 
-        padding: isMobile ? '4rem 1rem' : isTablet ? '6rem 2rem' : '8rem 2rem',
+        padding: isSmallMobile ? '3rem 1rem' : isMobile ? '4rem 1.5rem' : isTablet ? '6rem 2rem' : '8rem 2rem',
         background: currentTheme.elevated
       }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: isMobile ? '3rem' : '5rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: isMobile ? '2.5rem' : '5rem' }}>
             <h2 style={{
-              fontSize: isMobile ? '2rem' : isTablet ? '2.5rem' : '3rem',
+              fontSize: isTinyMobile ? '1.5rem' : isSmallMobile ? '1.75rem' : isMobile ? '2rem' : isTablet ? '2.5rem' : '3rem',
               fontWeight: 300,
               letterSpacing: '-0.02em',
-              marginBottom: '1.5rem'
+              marginBottom: '1.5rem',
+              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
             }}>
               Built for every academic challenge
             </h2>
             <p style={{
-              fontSize: isMobile ? '1rem' : '1.125rem',
+              fontSize: isTinyMobile ? '0.875rem' : isSmallMobile ? '0.938rem' : isMobile ? '1rem' : '1.125rem',
               color: currentTheme.muted,
               maxWidth: '600px',
-              margin: '0 auto'
+              margin: '0 auto',
+              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
             }}>
               From undergraduate essays to doctoral dissertations
             </p>
@@ -613,14 +595,14 @@ const NewHomepage = () => {
 
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(2, 1fr)', 
-            gap: isMobile ? '1.5rem' : '2rem'
+            gridTemplateColumns: isTinyMobile ? '1fr' : isSmallMobile ? '1fr' : isMobile ? '1fr' : 'repeat(2, 1fr)', 
+            gap: isTinyMobile ? '1rem' : isSmallMobile ? '1.5rem' : isMobile ? '1.5rem' : '2rem'
           }}>
             {capabilities.map((capability, index) => (
               <div 
                 key={index}
                 style={{
-                  padding: isMobile ? '2rem' : '3rem',
+                  padding: isSmallMobile ? '1.5rem' : isMobile ? '2rem' : '3rem',
                   background: currentTheme.bg,
                   borderRadius: '12px',
                   border: `1px solid ${currentTheme.border}`,
@@ -640,21 +622,21 @@ const NewHomepage = () => {
                 }}
               >
                 <capability.icon 
-                  size={32} 
+                  size={isSmallMobile ? 24 : isMobile ? 28 : 32} 
                   style={{ 
                     color: currentTheme.accent,
-                    marginBottom: '1.5rem'
+                    marginBottom: isMobile ? '1rem' : '1.5rem'
                   }} 
                 />
                 <h3 style={{
-                  fontSize: isMobile ? '1.25rem' : '1.5rem',
+                  fontSize: isSmallMobile ? '1.125rem' : isMobile ? '1.25rem' : '1.5rem',
                   fontWeight: 400,
                   marginBottom: '0.75rem'
                 }}>
                   {capability.title}
                 </h3>
                 <p style={{
-                  fontSize: isMobile ? '0.875rem' : '0.938rem',
+                  fontSize: isSmallMobile ? '0.813rem' : isMobile ? '0.875rem' : '0.938rem',
                   lineHeight: 1.6,
                   color: currentTheme.muted,
                   marginBottom: '1.5rem'
@@ -672,10 +654,10 @@ const NewHomepage = () => {
                       alignItems: 'center',
                       gap: '0.5rem',
                       marginBottom: '0.5rem',
-                      fontSize: '0.813rem',
+                      fontSize: isSmallMobile ? '0.75rem' : '0.813rem',
                       color: currentTheme.subtle
                     }}>
-                      <CheckCircle size={14} style={{ color: currentTheme.accent }} />
+                      <CheckCircle size={isSmallMobile ? 12 : 14} style={{ color: currentTheme.accent }} />
                       {feature}
                     </li>
                   ))}
@@ -686,30 +668,31 @@ const NewHomepage = () => {
         </div>
       </section>
 
-      {/* Testimonial - Responsive */}
+      {/* Testimonial - Enhanced Mobile Layout */}
       <section style={{ 
-        padding: isMobile ? '4rem 1rem' : isTablet ? '6rem 2rem' : '8rem 2rem'
+        padding: isSmallMobile ? '3rem 1rem' : isMobile ? '4rem 1.5rem' : isTablet ? '6rem 2rem' : '8rem 2rem'
       }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           <div style={{
-            padding: isMobile ? '2rem' : '4rem',
+            padding: isSmallMobile ? '1.5rem' : isMobile ? '2rem' : '4rem',
             background: currentTheme.elevated,
             borderRadius: '16px',
             border: `1px solid ${currentTheme.border}`,
             textAlign: 'center'
           }}>
-            <Quote size={isMobile ? 32 : 40} style={{ 
+            <Quote size={isSmallMobile ? 24 : isMobile ? 32 : 40} style={{ 
               color: currentTheme.accent, 
-              marginBottom: '2rem',
+              marginBottom: isMobile ? '1.5rem' : '2rem',
               opacity: 0.5
             }} />
             
             <blockquote style={{
-              fontSize: isMobile ? '1.125rem' : isTablet ? '1.25rem' : '1.5rem',
+              fontSize: isSmallMobile ? '1rem' : isMobile ? '1.125rem' : isTablet ? '1.25rem' : '1.5rem',
               lineHeight: 1.8,
               color: currentTheme.text,
-              marginBottom: '2rem',
-              fontWeight: 300
+              marginBottom: isMobile ? '1.5rem' : '2rem',
+              fontWeight: 300,
+              padding: isSmallMobile ? '0 0.5rem' : '0'
             }}>
               &quot;Esy transformed how I approach academic writing. It&apos;s not about shortcuts—it&apos;s about 
               <span style={{ color: currentTheme.accent, fontWeight: 400 }}> thinking more clearly</span> and 
@@ -718,13 +701,13 @@ const NewHomepage = () => {
             </blockquote>
             
             <cite style={{
-              fontSize: isMobile ? '0.875rem' : '1rem',
+              fontSize: isSmallMobile ? '0.813rem' : isMobile ? '0.875rem' : '1rem',
               color: currentTheme.muted,
               fontStyle: 'normal'
             }}>
               <strong style={{ color: currentTheme.text }}>Han Thi Htet</strong>
               <br />
-              <span style={{ fontSize: isMobile ? '0.813rem' : '0.875rem' }}>
+              <span style={{ fontSize: isSmallMobile ? '0.75rem' : isMobile ? '0.813rem' : '0.875rem' }}>
                 Professor of Prompt Engineering, Esy University
               </span>
             </cite>
@@ -732,27 +715,29 @@ const NewHomepage = () => {
         </div>
       </section>
 
-      {/* CTA Section - Responsive */}
+      {/* CTA Section - Enhanced Mobile Layout */}
       <section style={{ 
-        padding: isMobile ? '4rem 1rem' : isTablet ? '6rem 2rem' : '8rem 2rem',
+        padding: isSmallMobile ? '3rem 1rem' : isMobile ? '4rem 1.5rem' : isTablet ? '6rem 2rem' : '8rem 2rem',
         background: currentTheme.elevated,
         borderTop: `1px solid ${currentTheme.divider}`
       }}>
         <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
           <h2 style={{
-            fontSize: isMobile ? '2rem' : isTablet ? '2.5rem' : '3.5rem',
+            fontSize: isTinyMobile ? '1.5rem' : isSmallMobile ? '1.75rem' : isMobile ? '2rem' : isTablet ? '2.5rem' : '3.5rem',
             fontWeight: 300,
             letterSpacing: '-0.03em',
-            marginBottom: '2rem'
+            marginBottom: isMobile ? '1.5rem' : '2rem',
+            padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
           }}>
             Ready to elevate your writing?
           </h2>
           
           <p style={{
-            fontSize: isMobile ? '1rem' : '1.25rem',
+            fontSize: isTinyMobile ? '0.875rem' : isSmallMobile ? '0.938rem' : isMobile ? '1rem' : '1.25rem',
             lineHeight: 1.8,
             color: currentTheme.muted,
-            marginBottom: '3rem'
+            marginBottom: isMobile ? '2rem' : '3rem',
+            padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
           }}>
             Start writing with AI that understands academic excellence. 
             No credit card, no commitment—just better writing from day one.
@@ -761,19 +746,19 @@ const NewHomepage = () => {
           <div style={{
             display: 'flex',
             flexDirection: isMobile ? 'column' : 'row',
-            gap: '1rem',
+            gap: isMobile ? '1rem' : '1rem',
             justifyContent: 'center',
-            marginBottom: '2rem'
+            marginBottom: isMobile ? '1.5rem' : '2rem'
           }}>
             <button 
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               style={{
-                padding: isMobile ? '1rem 2rem' : '1rem 3rem',
+                padding: isTinyMobile ? '0.875rem 1.25rem' : isSmallMobile ? '1rem 1.5rem' : isMobile ? '1rem 2rem' : '1rem 3rem',
                 background: currentTheme.accent,
                 border: 'none',
                 borderRadius: '8px',
                 color: 'white',
-                fontSize: isMobile ? '1rem' : '1.063rem',
+                fontSize: isTinyMobile ? '0.938rem' : isSmallMobile ? '1rem' : isMobile ? '1rem' : '1.063rem',
                 fontWeight: 500,
                 cursor: 'pointer',
                 display: 'inline-flex',
@@ -781,7 +766,8 @@ const NewHomepage = () => {
                 justifyContent: 'center',
                 gap: '0.5rem',
                 transition: 'all 0.2s',
-                width: isMobile ? '100%' : 'auto'
+                width: isMobile ? '100%' : 'auto',
+                minHeight: isMobile ? '48px' : 'auto'
               }}
               onMouseEnter={(e) => {
                 if (!isMobile) {
@@ -796,21 +782,22 @@ const NewHomepage = () => {
                 }
               }}
             >
-              <Sparkles size={18} />
+              <Sparkles size={isMobile ? 18 : 18} />
               Start Writing Free
             </button>
 
             <button 
               style={{
-                padding: isMobile ? '1rem 2rem' : '1rem 2rem',
+                padding: isTinyMobile ? '0.875rem 1.25rem' : isSmallMobile ? '1rem 1.5rem' : isMobile ? '1rem 2rem' : '1rem 2rem',
                 background: 'transparent',
                 border: `1px solid ${currentTheme.border}`,
                 borderRadius: '8px',
                 color: currentTheme.text,
-                fontSize: isMobile ? '1rem' : '1.063rem',
+                fontSize: isTinyMobile ? '0.938rem' : isSmallMobile ? '1rem' : isMobile ? '1rem' : '1.063rem',
                 cursor: 'pointer',
                 transition: 'all 0.2s',
-                width: isMobile ? '100%' : 'auto'
+                width: isMobile ? '100%' : 'auto',
+                minHeight: isMobile ? '48px' : 'auto'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = currentTheme.accent;
@@ -824,7 +811,7 @@ const NewHomepage = () => {
           </div>
 
           <p style={{
-            fontSize: '0.875rem',
+            fontSize: isTinyMobile ? '0.75rem' : isSmallMobile ? '0.813rem' : '0.875rem',
             color: currentTheme.subtle
           }}>
             Trusted by researchers at leading universities worldwide
