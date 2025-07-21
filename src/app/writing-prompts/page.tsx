@@ -565,59 +565,9 @@ Each paragraph transitions smoothly, using sensory details to ground readers in 
       color: '#ffffff',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
     }}>
-      {/* SEO-Optimized Header */}
-      <header style={{
-        borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
-        backgroundColor: 'rgba(10, 10, 15, 0.95)',
-        backdropFilter: 'blur(10px)',
-        position: 'sticky',
-        top: 0,
-        zIndex: 50
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: isMobile ? '1rem' : '1.5rem 2rem',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
-        }}>
-          <Link href="/" style={{
-            fontSize: '1.25rem',
-            fontWeight: 300,
-            letterSpacing: '-0.02em',
-            color: '#ffffff',
-            textDecoration: 'none'
-          }}>
-            esy
-          </Link>
-
-          <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-            <Link href="/writing-prompts/generator" style={{
-              color: 'rgba(255, 255, 255, 0.7)',
-              textDecoration: 'none',
-              fontSize: '0.875rem'
-            }}>
-              Prompt Generator
-            </Link>
-            <a href="https://prompt.esy.com" style={{
-              padding: '0.5rem 1rem',
-              backgroundColor: '#8b5cf6',
-              borderRadius: '6px',
-              color: '#ffffff',
-              textDecoration: 'none',
-              fontSize: '0.875rem',
-              fontWeight: 500
-            }}>
-              Premium Prompts
-            </a>
-          </nav>
-        </div>
-      </header>
-
       {/* Hero Section - SEO Optimized */}
       <section style={{
-        padding: isMobile ? '3rem 1.5rem' : '6rem 2rem',
+        padding: isMobile ? '6rem 1.5rem 3rem' : '9rem 2rem 6rem',
         textAlign: 'center',
         maxWidth: '1000px',
         margin: '0 auto'
@@ -1681,41 +1631,7 @@ Each paragraph transitions smoothly, using sensory details to ground readers in 
         </div>
       </section>
 
-      {/* Footer */}
-      <footer style={{
-        padding: isMobile ? '3rem 1.5rem' : '4rem 2rem',
-        borderTop: '1px solid rgba(255, 255, 255, 0.05)',
-        textAlign: 'center'
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto'
-        }}>
-          <p style={{
-            fontSize: '0.875rem',
-            color: 'rgba(255, 255, 255, 0.5)',
-            marginBottom: '1rem'
-          }}>
-            © 2025 Esy · AI-Powered Writing for Everyone
-          </p>
-          <nav style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '2rem',
-            fontSize: '0.813rem'
-          }}>
-            <Link href="/writing-prompts/generator" style={{ color: 'rgba(255, 255, 255, 0.7)', textDecoration: 'none' }}>
-              Prompt Generator
-            </Link>
-            <a href="https://prompt.esy.com" style={{ color: 'rgba(255, 255, 255, 0.7)', textDecoration: 'none' }}>
-              Premium Prompts
-            </a>
-            <Link href="/app" style={{ color: 'rgba(255, 255, 255, 0.7)', textDecoration: 'none' }}>
-              Try Esy AI
-            </Link>
-          </nav>
-        </div>
-      </footer>
+
 
       {/* Try in Esy Modal */}
       {showTryModal && (
