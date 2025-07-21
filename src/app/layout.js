@@ -20,6 +20,13 @@ export const metadata = {
   description: "Write your next paper with Esy, an AI assistant that learns your writing style to create original, authentic essays.",
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

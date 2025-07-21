@@ -9,12 +9,14 @@ import {
   PenTool, Target, Layers, Award,
   Menu, X, TrendingUp, Shield
 } from 'lucide-react';
+import styles from './NewHomepage.module.css';
 
 const NewHomepage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchFocused, setSearchFocused] = useState(false);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
   const [activeQuestion, setActiveQuestion] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const searchRef = useRef(null);
 
   const currentTheme = {
@@ -124,15 +126,17 @@ const NewHomepage = () => {
     <div style={{
       backgroundColor: currentTheme.bg,
       color: currentTheme.text,
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      overflowX: 'hidden',
+      position: 'relative'
     }}>
       {/* Hero Section - Responsive */}
       <section style={{ 
         minHeight: '100vh',
         display: 'flex',
-        alignItems: 'center',
+        alignItems: isMobile ? 'flex-start' : 'center',
         justifyContent: 'center',
-        padding: isMobile ? '9rem 1rem 4rem' : isTablet ? '9rem 2rem 4rem' : '9rem 2rem',
+        padding: isMobile ? '14rem 1rem 2rem' : isTablet ? '9rem 2rem 4rem' : '9rem 2rem',
         position: 'relative'
       }}>
         <div style={{ 
@@ -147,11 +151,11 @@ const NewHomepage = () => {
 
             {/* Main Headline */}
             <h1 style={{
-              fontSize: isMobile ? '2.5rem' : isTablet ? '3.5rem' : '5rem',
+              fontSize: isMobile ? '2rem' : isTablet ? '3.5rem' : '5rem',
               fontWeight: 300,
-              lineHeight: 1.1,
-              letterSpacing: '-0.04em',
-              marginBottom: '2rem'
+              lineHeight: 1.2,
+              letterSpacing: '-0.02em',
+              marginBottom: isMobile ? '1.5rem' : '2rem'
             }}>
               Research Faster with AI.
               <br />
@@ -160,11 +164,12 @@ const NewHomepage = () => {
 
             {/* Subheadline */}
             <p style={{
-              fontSize: isMobile ? '1.125rem' : isTablet ? '1.25rem' : '1.5rem',
+              fontSize: isMobile ? '1rem' : isTablet ? '1.25rem' : '1.5rem',
               lineHeight: 1.6,
               color: currentTheme.muted,
               maxWidth: '720px',
-              margin: '0 auto'
+              margin: '0 auto',
+              padding: isMobile ? '0 0.5rem' : '0'
             }}>
               Harness AI to write A+ essays in half the time. Dive into sources, craft ironclad arguments, and cite flawlessly in APA, MLA, or any style.
             </p>
@@ -174,68 +179,83 @@ const NewHomepage = () => {
           <div style={{
             maxWidth: isMobile ? '100%' : '720px',
             margin: '0 auto',
-            marginBottom: '3rem'
+            marginBottom: '3rem',
+            padding: isMobile ? '0 1rem' : '0'
           }}>
             <div style={{
               display: 'flex',
               flexDirection: isMobile ? 'column' : 'row',
               alignItems: 'stretch',
-              background: searchFocused ? currentTheme.elevated : 'transparent',
+              background: searchFocused ? currentTheme.elevated : currentTheme.elevated,
               border: `2px solid ${searchFocused ? currentTheme.accent : currentTheme.border}`,
-              borderRadius: '12px',
-              padding: '0.5rem',
+              borderRadius: isMobile ? '16px' : '12px',
+              padding: isMobile ? '0.5rem' : '0.5rem',
               transition: 'all 0.2s',
-              gap: isMobile ? '0.5rem' : '0'
+              gap: isMobile ? '0.75rem' : '0',
+              boxShadow: searchFocused ? '0 0 0 4px rgba(139, 92, 246, 0.1)' : 'none'
             }}>
               <div style={{
                 flex: 1,
                 display: 'flex',
-                alignItems: 'center'
+                alignItems: 'center',
+                background: isMobile ? currentTheme.bg : 'transparent',
+                borderRadius: isMobile ? '12px' : '8px',
+                padding: isMobile ? '0.25rem' : '0'
               }}>
-                <Search size={20} style={{ 
-                  marginLeft: '1rem', 
+                <Search size={isMobile ? 18 : 20} style={{ 
+                  marginLeft: isMobile ? '0.75rem' : '1rem',
+                  marginRight: isMobile ? '0.5rem' : '0',
                   color: searchFocused ? currentTheme.accent : currentTheme.subtle,
-                  transition: 'color 0.2s'
+                  transition: 'color 0.2s',
+                  flexShrink: 0
                 }} />
                 <input
                   ref={searchRef}
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder={researchQuestions[activeQuestion]}
+                  placeholder={isMobile ? 'Ask anything...' : researchQuestions[activeQuestion]}
                   onFocus={() => setSearchFocused(true)}
                   onBlur={() => setSearchFocused(false)}
                   style={{
                     flex: 1,
-                    padding: '1rem',
+                    padding: isMobile ? '0.875rem 0.75rem' : '1rem',
                     background: 'transparent',
                     border: 'none',
                     color: currentTheme.text,
-                    fontSize: isMobile ? '0.938rem' : '1.063rem',
+                    fontSize: '16px', // Force 16px to prevent iOS zoom
                     outline: 'none',
-                    width: '100%'
+                    width: '100%',
+                    WebkitAppearance: 'none',
+                    appearance: 'none',
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
                   }}
                 />
               </div>
               <button 
                 onClick={handleStartWriting}
                 style={{
-                  padding: isMobile ? '0.875rem' : '0.75rem 1.5rem',
-                  background: searchFocused || searchQuery ? currentTheme.accent : 'transparent',
+                  padding: isMobile ? '1rem 1.5rem' : '0.75rem 1.5rem',
+                  background: currentTheme.accent,
                   border: 'none',
-                  borderRadius: '8px',
-                  color: searchFocused || searchQuery ? 'white' : currentTheme.subtle,
-                  fontSize: '0.938rem',
-                  fontWeight: 500,
+                  borderRadius: isMobile ? '12px' : '8px',
+                  color: 'white',
+                  fontSize: '16px', // Force 16px to prevent iOS zoom
+                  fontWeight: 600,
                   cursor: 'pointer',
                   transition: 'all 0.2s',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '0.5rem'
+                  gap: '0.5rem',
+                  whiteSpace: 'nowrap',
+                  WebkitTapHighlightColor: 'transparent',
+                  minHeight: isMobile ? '48px' : 'auto',
+                  width: isMobile ? '100%' : 'auto',
+                  boxShadow: '0 2px 8px rgba(139, 92, 246, 0.3)'
                 }}
               >
-                <Sparkles size={16} />
+                <Sparkles size={isMobile ? 18 : 16} />
                 Get started
               </button>
             </div>
@@ -243,17 +263,20 @@ const NewHomepage = () => {
             {/* Quick actions - Responsive */}
             <div style={{
               display: 'flex',
-              gap: '0.5rem',
+              gap: isMobile ? '0.75rem' : '0.5rem',
               justifyContent: 'center',
               marginTop: '1rem',
-              flexWrap: 'wrap'
+              flexWrap: 'wrap',
+              padding: isMobile ? '0 1rem' : '0'
             }}>
-              <span style={{
-                fontSize: '0.75rem',
-                color: currentTheme.faint
-              }}>
-                Try:
-              </span>
+              {!isMobile && (
+                <span style={{
+                  fontSize: '0.75rem',
+                  color: currentTheme.faint
+                }}>
+                  Try:
+                </span>
+              )}
               {['Research paper', 'Essay outline', 'Literature review'].map((prompt, i) => (
                 <button
                   key={i}
@@ -262,16 +285,34 @@ const NewHomepage = () => {
                     searchRef.current?.focus();
                   }}
                   style={{
-                    fontSize: '0.75rem',
+                    fontSize: isMobile ? '0.813rem' : '0.75rem',
                     color: currentTheme.subtle,
-                    background: 'transparent',
-                    border: 'none',
-                    textDecoration: 'underline',
+                    background: isMobile ? currentTheme.elevated : 'transparent',
+                    border: isMobile ? `1px solid ${currentTheme.border}` : 'none',
+                    borderRadius: isMobile ? '20px' : '0',
+                    padding: isMobile ? '0.375rem 0.75rem' : '0',
+                    textDecoration: isMobile ? 'none' : 'underline',
                     cursor: 'pointer',
-                    transition: 'color 0.2s'
+                    transition: 'all 0.2s',
+                    minHeight: isMobile ? '32px' : 'auto',
+                    WebkitTapHighlightColor: 'transparent'
                   }}
-                  onMouseEnter={(e) => e.target.style.color = currentTheme.accent}
-                  onMouseLeave={(e) => e.target.style.color = currentTheme.subtle}
+                  onMouseEnter={(e) => {
+                    if (!isMobile) {
+                      e.target.style.color = currentTheme.accent;
+                    } else {
+                      e.target.style.borderColor = currentTheme.accent;
+                      e.target.style.background = currentTheme.accent + '10';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isMobile) {
+                      e.target.style.color = currentTheme.subtle;
+                    } else {
+                      e.target.style.borderColor = currentTheme.border;
+                      e.target.style.background = currentTheme.elevated;
+                    }
+                  }}
                 >
                   {prompt}
                 </button>
@@ -282,12 +323,13 @@ const NewHomepage = () => {
           {/* Trust Indicators - Responsive Grid */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)',
+            gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : isTablet ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)',
             gap: isMobile ? '1rem' : '2rem',
-            fontSize: '0.813rem',
+            fontSize: isMobile ? '0.75rem' : '0.813rem',
             color: currentTheme.subtle,
             maxWidth: '800px',
-            margin: '0 auto'
+            margin: '0 auto',
+            marginTop: isMobile ? '2rem' : '0'
           }}>
             <div style={{ 
               display: 'flex', 
