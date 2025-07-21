@@ -95,11 +95,33 @@ body {
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 html {
-  font-size: 16px;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  html {
+    font-size: 16px;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -235,6 +257,130 @@ html {
 .nav-cta:hover::before {
   animation: shimmer 0.6s ease-out;
   opacity: 1;
+}
+
+/* Mobile Navigation */
+.mobile-menu-button {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: all 0.2s;
+}
+
+.mobile-menu-button:hover {
+  color: var(--primary);
+}
+
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 73px; /* Height of nav bar */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 15, 0.98);
+  backdrop-filter: blur(20px);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 99;
+}
+
+.mobile-nav-open {
+  transform: translateX(0);
+}
+
+.mobile-nav-links {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mobile-nav-link {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.125rem;
+  font-weight: 500;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: all 0.2s;
+}
+
+.mobile-nav-link:hover {
+  color: var(--primary);
+  padding-left: 0.5rem;
+}
+
+.mobile-nav-cta {
+  padding: 1rem 2rem;
+  background: #8b5cf6;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin-top: 1rem;
+  display: block;
+  transition: all 0.2s;
+}
+
+.mobile-nav-cta:hover {
+  background: #7c3aed;
+  transform: translateY(-2px);
+}
+
+/* Desktop Navigation - Hide on mobile */
+.desktop-nav {
+  display: flex;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .nav-inner {
+    padding: 1rem;
+  }
+
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-menu-button {
+    display: block;
+  }
+
+  .mobile-nav {
+    display: block;
+  }
+
+  /* Adjust nav height for mobile */
+  .nav {
+    background: rgba(10, 10, 15, 0.98) !important;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .nav-inner {
+    padding: 1rem 1.5rem;
+  }
+
+  .nav-links {
+    gap: 1.5rem;
+  }
+
+  .nav-cta {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.938rem;
+  }
 }
 
 /* Hero Section */
