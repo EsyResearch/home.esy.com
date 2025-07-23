@@ -67,6 +67,7 @@ export default function Footer () {
               { href: "/about", text: "About Us" },
               { href: "/contact", text: "Contact" },
               { href: "/privacy", text: "Privacy Policy" },
+              { href: "/cookies", text: "Cookie Policy" },
               { href: "/terms", text: "Terms of Service" }
             ]}
           />

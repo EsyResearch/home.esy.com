@@ -4,6 +4,7 @@ import Navigation from "@/components/Home/navigation";
 import Footer from "@/components/Home/footer";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import GoogleTagManager, { GoogleTagManagerBody } from "@/components/GoogleTagManager";
+import EsyCookieNotice from "@/components/CookieNotice";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,6 +44,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer />
+        <EsyCookieNotice />
       </body>
     </html>
   );

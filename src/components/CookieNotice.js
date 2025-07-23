@@ -1,0 +1,731 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { Settings, X, Shield, Eye, Zap, Lock, ChevronRight, Info } from 'lucide-react';
+
+const EsyCookieNotice = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [currentView, setCurrentView] = useState('notice'); // 'notice', 'preferences', 'details'
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [preferences, setPreferences] = useState({
+    necessary: true,
+    analytics: false,
+    functional: false,
+    personalization: false
+  });
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [expandedCard, setExpandedCard] = useState(null);
+
+  // Enhanced simulation of consent checking
+  useEffect(() => {
+    const hasConsent = localStorage.getItem('esy-cookie-consent');
+    if (!hasConsent) {
+      // Staggered entrance for premium feel
+      setTimeout(() => setIsVisible(true), 1200);
+    }
+  }, []);
+
+  const colors = {
+    background: '#0a0a0f',
+    surface: '#16161f',
+    surfaceHover: '#1a1a24',
+    accent: '#8b5cf6',
+    accentHover: '#7c3aed',
+    success: '#10b981',
+    textPrimary: 'rgba(255, 255, 255, 1)',
+    textSecondary: 'rgba(255, 255, 255, 0.7)',
+    textTertiary: 'rgba(255, 255, 255, 0.5)',
+    textQuaternary: 'rgba(255, 255, 255, 0.3)',
+    border: 'rgba(255, 255, 255, 0.05)',
+    borderHover: 'rgba(255, 255, 255, 0.1)',
+    borderAccent: 'rgba(139, 92, 246, 0.2)'
+  };
+
+  const cookieCategories = [
+    {
+      key: 'necessary',
+      icon: Lock,
+      title: 'Essential',
+      description: 'Authentication, security, and core functionality',
+      details: 'Required for login sessions, CSRF protection, and essential platform features. Cannot be disabled.',
+      purpose: 'Platform Security',
+      retention: 'Session + 30 days',
+      always: true
+    },
+    {
+      key: 'analytics',
+      icon: Eye,
+      title: 'Analytics',
+      description: 'Usage patterns and performance optimization',
+      details: 'Anonymized data about how you navigate and use Esy to improve the research experience.',
+      purpose: 'Product Enhancement',
+      retention: '13 months',
+      always: false
+    },
+    {
+      key: 'functional',
+      icon: Zap,
+      title: 'Functionality',
+      description: 'Enhanced features and user experience',
+      details: 'Remember your writing preferences, citation styles, and workspace configurations.',
+      purpose: 'User Experience',
+      retention: '12 months',
+      always: false
+    },
+    {
+      key: 'personalization',
+      icon: Settings,
+      title: 'Personalization',
+      description: 'Tailored content and recommendations',
+      details: 'Customize research suggestions, writing assistance, and academic resource recommendations.',
+      purpose: 'Content Curation',
+      retention: '24 months',
+      always: false
+    }
+  ];
+
+  const handleAcceptAll = () => {
+    const allAccepted = {
+      necessary: true,
+      analytics: true,
+      functional: true,
+      personalization: true
+    };
+    setPreferences(allAccepted);
+    savePreferences(allAccepted);
+    closeNotice();
+  };
+
+  const handleAcceptSelected = () => {
+    savePreferences(preferences);
+    closeNotice();
+  };
+
+  const handleAcceptNecessary = () => {
+    const essentialOnly = {
+      necessary: true,
+      analytics: false,
+      functional: false,
+      personalization: false
+    };
+    savePreferences(essentialOnly);
+    closeNotice();
+  };
+
+  const savePreferences = (prefs) => {
+    localStorage.setItem('esy-cookie-consent', JSON.stringify({
+      ...prefs,
+      timestamp: new Date().toISOString(),
+      version: '1.0'
+    }));
+    
+    // Analytics integration point
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('consent', 'update', {
+        analytics_storage: prefs.analytics ? 'granted' : 'denied',
+        functionality_storage: prefs.functional ? 'granted' : 'denied',
+        personalization_storage: prefs.personalization ? 'granted' : 'denied'
+      });
+    }
+    
+    // Dispatch custom event for other components to listen to
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('cookie-consent-updated', {
+        detail: prefs
+      }));
+    }
+    
+    console.log('Cookie preferences saved:', prefs);
+  };
+
+  const closeNotice = () => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      setIsVisible(false);
+      setCurrentView('notice');
+      setIsAnimating(false);
+    }, 300);
+  };
+
+  const togglePreference = (key) => {
+    if (key === 'necessary') return;
+    setPreferences(prev => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
+  };
+
+  const getAcceptedCount = () => {
+    return Object.values(preferences).filter(Boolean).length;
+  };
+
+  if (!isVisible) return null;
+
+  const Button = ({ variant, children, onClick, disabled = false, icon: Icon, size = 'default' }) => {
+    const [isHovered, setIsHovered] = useState(false);
+    const [isPressed, setIsPressed] = useState(false);
+
+    const sizeStyles = {
+      small: { padding: '0.5rem 1rem', fontSize: '0.8rem' },
+      default: { padding: '0.75rem 1.5rem', fontSize: '0.875rem' },
+      large: { padding: '1rem 2rem', fontSize: '0.95rem' }
+    };
+
+    const baseStyle = {
+      ...sizeStyles[size],
+      border: 'none',
+      cursor: disabled ? 'not-allowed' : 'pointer',
+      fontWeight: '500',
+      fontFamily: "'Source Sans Pro', sans-serif",
+      transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '0.5rem',
+      opacity: disabled ? 0.5 : 1,
+      borderRadius: '8px',
+      position: 'relative',
+      overflow: 'hidden'
+    };
+
+    const variants = {
+      primary: {
+        ...baseStyle,
+        backgroundColor: colors.accent,
+        color: colors.background,
+        boxShadow: '0 4px 12px rgba(139, 92, 246, 0.15)'
+      },
+      secondary: {
+        ...baseStyle,
+        backgroundColor: 'transparent',
+        color: colors.textPrimary,
+        border: `1px solid ${colors.border}`,
+      },
+      ghost: {
+        ...baseStyle,
+        backgroundColor: 'transparent',
+        color: colors.textSecondary,
+        padding: '0.5rem 0',
+      },
+      success: {
+        ...baseStyle,
+        backgroundColor: colors.success,
+        color: colors.background,
+        boxShadow: '0 4px 12px rgba(16, 185, 129, 0.15)'
+      }
+    };
+
+    const hoverStyles = {
+      primary: { 
+        backgroundColor: colors.accentHover,
+        transform: 'translateY(-1px)',
+        boxShadow: '0 6px 16px rgba(139, 92, 246, 0.25)'
+      },
+      secondary: { 
+        borderColor: colors.borderHover, 
+        backgroundColor: colors.surfaceHover,
+        transform: 'translateY(-1px)'
+      },
+      ghost: { color: colors.textPrimary },
+      success: {
+        backgroundColor: '#059669',
+        transform: 'translateY(-1px)',
+        boxShadow: '0 6px 16px rgba(16, 185, 129, 0.25)'
+      }
+    };
+
+    const pressedStyles = {
+      transform: 'translateY(0px)',
+      transition: 'all 0.1s ease'
+    };
+
+    return (
+      <button
+        style={{
+          ...variants[variant],
+          ...(isHovered && !disabled ? hoverStyles[variant] : {}),
+          ...(isPressed && !disabled ? pressedStyles : {})
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onMouseDown={() => setIsPressed(true)}
+        onMouseUp={() => setIsPressed(false)}
+        onClick={onClick}
+        disabled={disabled}
+      >
+        {Icon && <Icon size={16} />}
+        {children}
+      </button>
+    );
+  };
+
+  const Toggle = ({ checked, onChange, disabled = false }) => {
+    const [isHovered, setIsHovered] = useState(false);
+
+    return (
+      <button
+        onClick={onChange}
+        disabled={disabled}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        style={{
+          width: '48px',
+          height: '28px',
+          backgroundColor: checked ? colors.accent : 'rgba(255,255,255,0.08)',
+          border: `1px solid ${checked ? colors.accent : (isHovered ? colors.borderHover : colors.border)}`,
+          borderRadius: '14px',
+          position: 'relative',
+          cursor: disabled ? 'not-allowed' : 'pointer',
+          transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+          opacity: disabled ? 0.5 : 1,
+          transform: isHovered && !disabled ? 'scale(1.02)' : 'scale(1)'
+        }}
+      >
+        <div
+          style={{
+            width: '20px',
+            height: '20px',
+            backgroundColor: 'white',
+            borderRadius: '50%',
+            position: 'absolute',
+            top: '3px',
+            left: checked ? '25px' : '3px',
+            transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+          }}
+        />
+      </button>
+    );
+  };
+
+  const CategoryCard = ({ category, isExpanded, onToggle }) => {
+    const [isHovered, setIsHovered] = useState(false);
+    const Icon = category.icon;
+    const isEnabled = preferences[category.key];
+
+    return (
+      <div
+        style={{
+          border: `1px solid ${isExpanded ? colors.borderAccent : colors.border}`,
+          borderRadius: '12px',
+          backgroundColor: isHovered ? colors.surfaceHover : colors.surface,
+          transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+          overflow: 'hidden'
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div
+          style={{
+            padding: '18px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            cursor: 'pointer'
+          }}
+          onClick={() => setExpandedCard(expandedCard === category.key ? null : category.key)}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flex: 1 }}>
+            <div style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '10px',
+              backgroundColor: isEnabled ? colors.accent : 'rgba(255,255,255,0.05)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'all 0.2s ease'
+            }}>
+              <Icon size={18} color={isEnabled ? colors.background : colors.textTertiary} />
+            </div>
+            
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                <h4 style={{
+                  fontSize: '0.95rem',
+                  fontWeight: '600',
+                  color: colors.textPrimary,
+                  margin: 0,
+                  fontFamily: "'Source Sans Pro', sans-serif"
+                }}>
+                  {category.title}
+                </h4>
+                {category.always && (
+                  <span style={{
+                    fontSize: '0.7rem',
+                    color: colors.textTertiary,
+                    backgroundColor: 'rgba(255,255,255,0.05)',
+                    padding: '2px 6px',
+                    borderRadius: '4px',
+                    fontFamily: "'Source Sans Pro', sans-serif"
+                  }}>
+                    REQUIRED
+                  </span>
+                )}
+              </div>
+              <p style={{
+                fontSize: '0.85rem',
+                color: colors.textSecondary,
+                margin: 0,
+                lineHeight: '1.4',
+                fontFamily: "'Source Serif Pro', Georgia, serif"
+              }}>
+                {category.description}
+              </p>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Toggle 
+              checked={isEnabled}
+              onChange={() => togglePreference(category.key)}
+              disabled={category.always}
+            />
+            <ChevronRight 
+              size={16} 
+              color={colors.textTertiary}
+              style={{
+                transform: expandedCard === category.key ? 'rotate(90deg)' : 'rotate(0deg)',
+                transition: 'transform 0.2s ease'
+              }}
+            />
+          </div>
+        </div>
+
+        {expandedCard === category.key && (
+          <div style={{
+            padding: '0 18px 18px 18px',
+            borderTop: `1px solid ${colors.border}`,
+            animation: 'fadeIn 0.2s ease'
+          }}>
+            <div style={{ paddingTop: '16px' }}>
+              <p style={{
+                fontSize: '0.85rem',
+                color: colors.textSecondary,
+                margin: 0,
+                marginBottom: '12px',
+                lineHeight: '1.5',
+                fontFamily: "'Source Serif Pro', Georgia, serif"
+              }}>
+                {category.details}
+              </p>
+              
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                <div>
+                  <span style={{
+                    fontSize: '0.75rem',
+                    color: colors.textTertiary,
+                    fontFamily: "'Source Sans Pro', sans-serif",
+                    fontWeight: '500'
+                  }}>
+                    PURPOSE
+                  </span>
+                  <p style={{
+                    fontSize: '0.8rem',
+                    color: colors.textSecondary,
+                    margin: '4px 0 0 0',
+                    fontFamily: "'Source Serif Pro', Georgia, serif"
+                  }}>
+                    {category.purpose}
+                  </p>
+                </div>
+                
+                <div>
+                  <span style={{
+                    fontSize: '0.75rem',
+                    color: colors.textTertiary,
+                    fontFamily: "'Source Sans Pro', sans-serif",
+                    fontWeight: '500'
+                  }}>
+                    RETENTION
+                  </span>
+                  <p style={{
+                    fontSize: '0.8rem',
+                    color: colors.textSecondary,
+                    margin: '4px 0 0 0',
+                    fontFamily: "'Source Serif Pro', Georgia, serif"
+                  }}>
+                    {category.retention}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  const getContainerWidth = () => {
+    switch(currentView) {
+      case 'preferences': return '480px';
+      default: return '420px';
+    }
+  };
+
+  return (
+    <>
+      <style>
+        {`
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          
+          @keyframes slideUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+        `}
+      </style>
+      
+      <div
+        style={{
+          position: 'fixed',
+          bottom: '24px',
+          left: '24px',
+          zIndex: 1000,
+          maxWidth: getContainerWidth(),
+          width: `min(${getContainerWidth()}, calc(100vw - 48px))`,
+          transform: isAnimating ? 'translateY(20px)' : 'translateY(0)',
+          opacity: isAnimating ? 0 : 1,
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          animation: 'slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+        }}
+      >
+        {/* Enhanced backdrop */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: '-2px',
+            background: `linear-gradient(135deg, ${colors.surface} 0%, ${colors.surfaceHover} 100%)`,
+            backdropFilter: 'blur(24px)',
+            border: `1px solid ${colors.border}`,
+            borderRadius: '16px',
+            boxShadow: '0 20px 40px rgba(0,0,0,0.15), 0 1px 2px rgba(0,0,0,0.1)'
+          }}
+        />
+
+        {/* Content */}
+        <div style={{ position: 'relative', padding: '28px', fontFamily: "'Source Sans Pro', sans-serif" }}>
+          
+          {currentView === 'notice' && (
+            <>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px', marginBottom: '20px' }}>
+                <div style={{ 
+                  background: `linear-gradient(135deg, ${colors.accent} 0%, ${colors.accentHover} 100%)`,
+                  borderRadius: '12px',
+                  padding: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                  boxShadow: '0 8px 16px rgba(139, 92, 246, 0.2)'
+                }}>
+                  <Shield size={20} color={colors.background} />
+                </div>
+                
+                <div style={{ flex: 1 }}>
+                  <h3 style={{
+                    fontSize: '1.125rem',
+                    fontWeight: '600',
+                    color: colors.textPrimary,
+                    margin: 0,
+                    marginBottom: '8px',
+                    fontFamily: "'Source Sans Pro', sans-serif",
+                    letterSpacing: '-0.01em'
+                  }}>
+                    Research Privacy Controls
+                  </h3>
+                  
+                  <p style={{
+                    fontSize: '0.9rem',
+                    color: colors.textSecondary,
+                    lineHeight: '1.6',
+                    margin: 0,
+                    fontFamily: "'Source Serif Pro', Georgia, serif"
+                  }}>
+                    We use cookies to enhance your academic research experience while respecting your privacy. Choose what data you&apos;re comfortable sharing.
+                  </p>
+                </div>
+              </div>
+
+              <div style={{ 
+                backgroundColor: 'rgba(139, 92, 246, 0.05)',
+                border: `1px solid ${colors.borderAccent}`,
+                borderRadius: '10px',
+                padding: '14px',
+                marginBottom: '20px'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+                  <Info size={14} color={colors.accent} />
+                  <span style={{
+                    fontSize: '0.85rem',
+                    fontWeight: '500',
+                    color: colors.textPrimary,
+                    fontFamily: "'Source Sans Pro', sans-serif"
+                  }}>
+                    Academic Standard
+                  </span>
+                </div>
+                <p style={{
+                  fontSize: '0.8rem',
+                  color: colors.textSecondary,
+                  margin: 0,
+                  lineHeight: '1.5',
+                  fontFamily: "'Source Serif Pro', Georgia, serif"
+                }}>
+                  We follow university-grade privacy standards. Essential cookies secure your account, while optional cookies improve research tools.
+                </p>
+              </div>
+
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '16px' }}>
+                <Button variant="primary" onClick={handleAcceptAll} size="default">
+                  Accept All ({cookieCategories.length})
+                </Button>
+                <Button variant="secondary" onClick={handleAcceptNecessary}>
+                  Essential Only
+                </Button>
+                <Button 
+                  variant="ghost" 
+                  onClick={() => setCurrentView('preferences')} 
+                  icon={Settings}
+                >
+                  Customize
+                </Button>
+              </div>
+
+              <div style={{ 
+                fontSize: '0.75rem', 
+                color: colors.textTertiary,
+                fontFamily: "'Source Serif Pro', Georgia, serif",
+                lineHeight: '1.4'
+              }}>
+                Learn more in our{' '}
+                <a 
+                  href="/privacy" 
+                  style={{ 
+                    color: colors.accent, 
+                    textDecoration: 'none',
+                    borderBottom: `1px solid rgba(139, 92, 246, 0.3)`,
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseOver={(e) => {
+                    e.target.style.borderBottomColor = colors.accent;
+                    e.target.style.opacity = '0.8';
+                  }}
+                  onMouseOut={(e) => {
+                    e.target.style.borderBottomColor = 'rgba(139, 92, 246, 0.3)';
+                    e.target.style.opacity = '1';
+                  }}
+                >
+                  Privacy Policy
+                </a>
+                ,{' '}
+                <a 
+                  href="/cookies" 
+                  style={{ 
+                    color: colors.accent, 
+                    textDecoration: 'none',
+                    borderBottom: `1px solid rgba(139, 92, 246, 0.3)`,
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseOver={(e) => {
+                    e.target.style.borderBottomColor = colors.accent;
+                    e.target.style.opacity = '0.8';
+                  }}
+                  onMouseOut={(e) => {
+                    e.target.style.borderBottomColor = 'rgba(139, 92, 246, 0.3)';
+                    e.target.style.opacity = '1';
+                  }}
+                >
+                  Cookie Policy
+                </a>
+                , or{' '}
+                <a 
+                  href="/terms" 
+                  style={{ 
+                    color: colors.accent, 
+                    textDecoration: 'none',
+                    borderBottom: `1px solid rgba(139, 92, 246, 0.3)`,
+                    transition: 'all 0.2s ease'
+                  }}
+                  onMouseOver={(e) => {
+                    e.target.style.borderBottomColor = colors.accent;
+                    e.target.style.opacity = '0.8';
+                  }}
+                  onMouseOut={(e) => {
+                    e.target.style.borderBottomColor = 'rgba(139, 92, 246, 0.3)';
+                    e.target.style.opacity = '1';
+                  }}
+                >
+                  Terms of Service
+                </a>
+              </div>
+            </>
+          )}
+
+          {currentView === 'preferences' && (
+            <>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
+                <div>
+                  <h3 style={{
+                    fontSize: '1.125rem',
+                    fontWeight: '600',
+                    color: colors.textPrimary,
+                    margin: 0,
+                    marginBottom: '4px',
+                    fontFamily: "'Source Sans Pro', sans-serif",
+                    letterSpacing: '-0.01em'
+                  }}>
+                    Privacy Preferences
+                  </h3>
+                  <p style={{
+                    fontSize: '0.85rem',
+                    color: colors.textSecondary,
+                    margin: 0,
+                    fontFamily: "'Source Serif Pro', Georgia, serif"
+                  }}>
+                    {getAcceptedCount()} of {cookieCategories.length} categories enabled
+                  </p>
+                </div>
+                <Button variant="ghost" onClick={() => setCurrentView('notice')} icon={X} size="small" />
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '24px' }}>
+                {cookieCategories.map((category) => (
+                  <CategoryCard 
+                    key={category.key}
+                    category={category}
+                    isExpanded={expandedCard === category.key}
+                    onToggle={() => setExpandedCard(expandedCard === category.key ? null : category.key)}
+                  />
+                ))}
+              </div>
+
+              <div style={{ 
+                display: 'flex', 
+                gap: '10px',
+                paddingTop: '20px',
+                borderTop: `1px solid ${colors.border}`
+              }}>
+                <Button 
+                  variant={getAcceptedCount() > 1 ? "success" : "primary"} 
+                  onClick={handleAcceptSelected}
+                  size="default"
+                >
+                  Save Preferences
+                </Button>
+                <Button variant="secondary" onClick={handleAcceptNecessary} size="default">
+                  Essential Only
+                </Button>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default EsyCookieNotice; 
