@@ -6,7 +6,8 @@ const ConditionalFooter = () => {
   const pathname = usePathname();
   
   // Check if we're on an essay view page (individual essay page)
-  const isEssayViewPage = pathname?.startsWith('/essays/') && pathname !== '/essays';
+  // Only hide on individual essay pages, not the essays index page
+  const isEssayViewPage = pathname?.startsWith('/essays/') && pathname.split('/').length > 2;
   
   // Don't render the common footer on essay view pages for a focused reading experience
   if (isEssayViewPage) {
