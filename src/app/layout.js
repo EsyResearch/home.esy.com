@@ -5,6 +5,8 @@ import Footer from "@/components/Home/footer";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import GoogleTagManager, { GoogleTagManagerBody } from "@/components/GoogleTagManager";
 import EsyCookieNotice from "@/components/CookieNotice";
+import ConditionalNavigation from "@/components/ConditionalNavigation";
+import ConditionalFooter from "@/components/ConditionalFooter";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,11 +41,11 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <GoogleTagManagerBody />
-        <Navigation />
+        <ConditionalNavigation />
         <main>
           {children}
         </main>
-        <Footer />
+        <ConditionalFooter />
         <EsyCookieNotice />
       </body>
     </html>

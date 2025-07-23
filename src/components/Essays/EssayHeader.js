@@ -55,6 +55,19 @@ const EssayHeader = ({
             </button>
           </div>
 
+          <div className={styles.centerSection}>
+            <Link href="/" className={styles.logoLink}>
+              <img 
+                src={theme === 'dark' 
+                  ? "/esy-logos/logo-files/for-web/png/white-logo-no-bg.png"
+                  : "/esy-logos/logo-files/for-web/png/black-logo-no-bg.png"
+                } 
+                alt="Esy" 
+                className={styles.logo}
+              />
+            </Link>
+          </div>
+
           <div className={styles.rightSection}>
             {/* Font Size Controls */}
             <div 
