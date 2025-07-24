@@ -62,7 +62,8 @@ const GlossaryTermHeader: React.FC<GlossaryTermHeaderProps> = ({
         marginBottom: pronunciation ? '0.4rem' : '0.9rem',
         color: currentTheme.text,
         letterSpacing: '-0.02em',
-        wordBreak: 'break-word'
+        wordBreak: 'break-word',
+        fontFamily: 'var(--font-literata)'
       }}>
         {term}
       </h1>

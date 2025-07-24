@@ -10,6 +10,7 @@
 }
 
 .markdownContainer h1 {
+  font-family: var(--font-literata);
   font-size: 3.9rem;
   font-weight: 800;
   color: #fff;
@@ -22,6 +23,7 @@
 }
 
 .markdownContainer h2 {
+  font-family: var(--font-literata);
   font-size: 2.5rem;
   font-weight: 700;
   color: #fff;
@@ -31,6 +33,7 @@
 }
 
 .markdownContainer h3 {
+  font-family: var(--font-literata);
   font-size: 1.75rem !important;
   font-weight: 700 !important;
   color: #fff !important;

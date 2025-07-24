@@ -221,7 +221,7 @@ const EssayWritingCompleteGuide = () => {
                 <Eye size={14} />
                 COMPLETE GUIDE
               </div>
-              <h1 style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', fontWeight: 200, lineHeight: 1.1, marginBottom: '1rem', letterSpacing: '-0.02em' }}>
+              <h1 style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', fontWeight: 200, lineHeight: 1.1, marginBottom: '1rem', letterSpacing: '-0.02em', fontFamily: 'var(--font-literata)' }}>
                 How to Write an Essay:<br />
                 From Blank Page to A+ Paper
               </h1>
@@ -258,7 +258,7 @@ const EssayWritingCompleteGuide = () => {
                 <Zap size={14} />
                 QUICK START
               </div>
-              <h2 style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', fontWeight: 200, lineHeight: 1.1, marginBottom: '1rem', letterSpacing: '-0.02em' }}>
+              <h2 style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', fontWeight: 200, lineHeight: 1.1, marginBottom: '1rem', letterSpacing: '-0.02em', fontFamily: 'var(--font-literata)' }}>
                 Write Your Essay in 12 Steps
               </h2>
               <p style={{ fontSize: '1.25rem', color: 'rgba(255, 255, 255, 0.6)', lineHeight: 1.6, fontWeight: 300 }}>
@@ -309,7 +309,7 @@ const EssayWritingCompleteGuide = () => {
                     </div>
                   </div>
                   
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: 500, marginBottom: '0.75rem' }}>{step.title}</h3>
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: 500, marginBottom: '0.75rem', fontFamily: 'var(--font-literata)' }}>{step.title}</h3>
                   <p style={{ fontSize: '0.9375rem', color: 'rgba(255, 255, 255, 0.7)', lineHeight: 1.6, marginBottom: '1rem' }}>{step.desc}</p>
                   
                   <button
@@ -365,7 +365,7 @@ const EssayWritingCompleteGuide = () => {
                 <Layers size={14} />
                 ESSAY TYPES
               </div>
-              <h2 style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', fontWeight: 200, lineHeight: 1.1, marginBottom: '1rem', letterSpacing: '-0.02em' }}>
+              <h2 style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', fontWeight: 200, lineHeight: 1.1, marginBottom: '1rem', letterSpacing: '-0.02em', fontFamily: 'var(--font-literata)' }}>
                 Master Every Essay Type
               </h2>
               <p style={{ fontSize: '1.25rem', color: 'rgba(255, 255, 255, 0.6)', lineHeight: 1.6, fontWeight: 300 }}>
@@ -396,7 +396,7 @@ const EssayWritingCompleteGuide = () => {
             </div>
 
             <div style={{ padding: '2.5rem', background: 'rgba(255, 255, 255, 0.02)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '16px' }}>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', fontFamily: 'var(--font-literata)' }}>
                 {essayTypes[selectedEssayType as keyof typeof essayTypes].title}
               </h3>
               <p style={{ fontSize: '1.125rem', color: 'rgba(255, 255, 255, 0.7)', marginBottom: '2rem' }}>

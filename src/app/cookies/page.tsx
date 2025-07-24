@@ -323,7 +323,7 @@ const EsyCookiesPage = () => {
                   fontWeight: '600',
                   color: colors.textPrimary,
                   margin: '0 0 1rem 0',
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+                  fontFamily: 'var(--font-literata)'
                 }}>
                   Cookie Categories
                 </h3>
@@ -454,7 +454,7 @@ const EsyCookiesPage = () => {
                   fontWeight: '600',
                   color: colors.textPrimary,
                   margin: '0 0 1.5rem 0',
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+                  fontFamily: 'var(--font-literata)'
                 }}>
                   Cookie Details
                 </h2>
@@ -549,7 +549,7 @@ const EsyCookiesPage = () => {
                   fontWeight: '600',
                   color: colors.textPrimary,
                   margin: '0 0 1.5rem 0',
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+                  fontFamily: 'var(--font-literata)'
                 }}>
                   Questions About Our Cookie Policy?
                 </h2>

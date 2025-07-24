@@ -455,7 +455,7 @@ const GlossaryPage = () => {
                 letterSpacing: '-0.02em',
                 marginBottom: '0.5rem',
                 color: currentTheme.text,
-                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+                fontFamily: 'var(--font-literata)'
               }}>
                 Glossary
               </h1>

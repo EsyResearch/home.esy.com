@@ -48,7 +48,15 @@
 
 .essayContent h1,
 .essayContent h2,
-.essayContent h3,
+.essayContent h3 {
+  font-family: var(--font-literata);
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
 .essayContent h4,
 .essayContent h5,
 .essayContent h6 {

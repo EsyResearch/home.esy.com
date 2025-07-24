@@ -269,7 +269,7 @@ const EsyPrivacyPage = () => {
         fontSize: '1.1rem',
         fontWeight: '600',
         color: colors.textPrimary,
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+        fontFamily: 'var(--font-literata)',
         marginBottom: '1rem',
         letterSpacing: '-0.01em'
       }}>
@@ -331,7 +331,7 @@ const EsyPrivacyPage = () => {
               fontSize: '1.1rem',
               fontWeight: '500',
               color: colors.textPrimary,
-              fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+              fontFamily: 'var(--font-literata)',
               marginBottom: '1rem'
             }}>
               {point.title}
@@ -480,7 +480,7 @@ const EsyPrivacyPage = () => {
                 fontWeight: '600',
                 color: colors.textPrimary,
                 margin: 0,
-                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                fontFamily: 'var(--font-literata)',
                 letterSpacing: '0.02em'
               }}>
                 Privacy Topics
@@ -733,7 +733,7 @@ const EsyPrivacyPage = () => {
                     fontSize: '1.1rem',
                     fontWeight: '500',
                     color: colors.textPrimary,
-                    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                    fontFamily: 'var(--font-literata)',
                     marginBottom: '1rem'
                   }}>
                     {category.title}
@@ -864,7 +864,7 @@ const EsyPrivacyPage = () => {
                   fontSize: '1.25rem',
                   fontWeight: '400',
                   color: colors.textPrimary,
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                  fontFamily: 'var(--font-literata)',
                   margin: 0,
                   letterSpacing: '-0.01em'
                 }}>

@@ -262,7 +262,7 @@ const EsyTermsPage = () => {
         fontSize: '1.1rem',
         fontWeight: '600',
         color: colors.textPrimary,
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+        fontFamily: 'var(--font-literata)',
         marginBottom: '1rem',
         letterSpacing: '-0.01em'
       }}>
@@ -397,7 +397,7 @@ const EsyTermsPage = () => {
                 fontWeight: '600',
                 color: colors.textPrimary,
                 margin: 0,
-                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                fontFamily: 'var(--font-literata)',
                 letterSpacing: '0.02em'
               }}>
                 Navigation
@@ -633,7 +633,7 @@ const EsyTermsPage = () => {
                   fontSize: '1.25rem',
                   fontWeight: '400',
                   color: colors.textPrimary,
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                  fontFamily: 'var(--font-literata)',
                   margin: 0,
                   letterSpacing: '-0.01em'
                 }}>

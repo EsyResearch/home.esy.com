@@ -33,9 +33,9 @@ const GlossaryTermTabs: React.FC<GlossaryTermTabsProps> = ({
 
   // Custom markdown components for callouts
   const markdownComponents = {
-    h1: ({ children }) => <h1 style={{ fontSize: '1.75rem', fontWeight: 700, margin: '2.5rem 0 1.5rem', color: currentTheme.text, letterSpacing: '-0.01em' }}>{children}</h1>,
-    h2: ({ children }) => <h2 style={{ fontSize: '1.35rem', fontWeight: 600, margin: '2rem 0 1.25rem', color: currentTheme.text, letterSpacing: '-0.01em' }}>{children}</h2>,
-    h3: ({ children }) => <h3 style={{ fontSize: '1.15rem', fontWeight: 600, margin: '1.5rem 0 1rem', color: currentTheme.text }}>{children}</h3>,
+    h1: ({ children }) => <h1 style={{ fontSize: '1.75rem', fontWeight: 700, margin: '2.5rem 0 1.5rem', color: currentTheme.text, letterSpacing: '-0.01em', fontFamily: 'var(--font-literata)' }}>{children}</h1>,
+    h2: ({ children }) => <h2 style={{ fontSize: '1.35rem', fontWeight: 600, margin: '2rem 0 1.25rem', color: currentTheme.text, letterSpacing: '-0.01em', fontFamily: 'var(--font-literata)' }}>{children}</h2>,
+    h3: ({ children }) => <h3 style={{ fontSize: '1.15rem', fontWeight: 600, margin: '1.5rem 0 1rem', color: currentTheme.text, fontFamily: 'var(--font-literata)' }}>{children}</h3>,
     p: ({ children }) => <p style={{ marginBottom: '1.25rem', color: currentTheme.text, fontSize: '1.08rem', lineHeight: 1.8 }}>{children}</p>,
     ul: ({ children }) => <ul style={{ marginBottom: '1.25rem', paddingLeft: '1.5rem', color: currentTheme.text }}>{children}</ul>,
     ol: ({ children }) => <ol style={{ marginBottom: '1.25rem', paddingLeft: '1.5rem', color: currentTheme.text }}>{children}</ol>,
@@ -112,7 +112,8 @@ const GlossaryTermTabs: React.FC<GlossaryTermTabsProps> = ({
                   fontSize: '1.25rem',
                   fontWeight: 600,
                   marginBottom: '1rem',
-                  color: currentTheme.text
+                  color: currentTheme.text,
+                  fontFamily: 'var(--font-literata)'
                 }}>
                   Common Usage
                 </h3>
@@ -134,7 +135,8 @@ const GlossaryTermTabs: React.FC<GlossaryTermTabsProps> = ({
                   fontSize: '1.25rem',
                   fontWeight: 600,
                   marginBottom: '1rem',
-                  color: currentTheme.text
+                  color: currentTheme.text,
+                  fontFamily: 'var(--font-literata)'
                 }}>
                   Related Articles
                 </h3>
@@ -190,7 +192,8 @@ const GlossaryTermTabs: React.FC<GlossaryTermTabsProps> = ({
                   fontSize: '1.25rem',
                   fontWeight: 600,
                   marginBottom: '1rem',
-                  color: currentTheme.text
+                  color: currentTheme.text,
+                  fontFamily: 'var(--font-literata)'
                 }}>
                   Examples
                 </h3>
@@ -292,7 +295,8 @@ const GlossaryTermTabs: React.FC<GlossaryTermTabsProps> = ({
                 fontSize: '1.25rem',
                 fontWeight: 600,
                 marginBottom: '1rem',
-                color: currentTheme.text
+                color: currentTheme.text,
+                fontFamily: 'var(--font-literata)'
               }}>
                 Version History
               </h3>
@@ -334,7 +338,8 @@ const GlossaryTermTabs: React.FC<GlossaryTermTabsProps> = ({
                   fontSize: '1.25rem',
                   fontWeight: 600,
                   marginBottom: '1rem',
-                  color: currentTheme.text
+                  color: currentTheme.text,
+                  fontFamily: 'var(--font-literata)'
                 }}>
                   Update History
                 </h3>
