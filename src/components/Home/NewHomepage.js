@@ -153,11 +153,12 @@ const NewHomepage = () => {
               lineHeight: isMobile ? 1.2 : 1.1,
               letterSpacing: '-0.04em',
               marginBottom: isMobile ? '1.5rem' : '2rem',
-              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
+              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
+              fontFamily: 'var(--font-newsreader)'
             }}>
-              Research Faster with AI.
+              Your Personal
               <br />
-              <span style={{ color: currentTheme.accent }}>Write Essays That Impress.</span>
+              AI <span style={{ color: currentTheme.accent }}>Es</span>sa<span style={{ color: currentTheme.accent }}>y</span> Writer
             </h1>
 
             {/* Subheadline - Improved Mobile Readability */}
@@ -169,7 +170,7 @@ const NewHomepage = () => {
               margin: '0 auto',
               padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
             }}>
-              Harness AI to write A+ essays in half the time. Dive into sources, craft ironclad arguments, and cite flawlessly in APA, MLA, or any style.
+              Write A+ essays faster. Esy helps you research deeply, argue clearly, and cite with precision — APA, MLA, or any style.
             </p>
           </div>
 
@@ -358,7 +359,8 @@ const NewHomepage = () => {
               fontWeight: 300,
               letterSpacing: '-0.02em',
               marginBottom: '1.5rem',
-              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
+              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
+              fontFamily: 'var(--font-newsreader)'
             }}>
               Proven results, immediate impact
             </h2>
@@ -448,7 +450,8 @@ const NewHomepage = () => {
               fontWeight: 300,
               letterSpacing: '-0.02em',
               marginBottom: '1.5rem',
-              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
+              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
+              fontFamily: 'var(--font-newsreader)'
             }}>
               Everything you need to excel
             </h2>
@@ -578,7 +581,8 @@ const NewHomepage = () => {
               fontWeight: 300,
               letterSpacing: '-0.02em',
               marginBottom: '1.5rem',
-              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
+              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
+              fontFamily: 'var(--font-newsreader)'
             }}>
               Built for every academic challenge
             </h2>
@@ -727,7 +731,8 @@ const NewHomepage = () => {
             fontWeight: 300,
             letterSpacing: '-0.03em',
             marginBottom: isMobile ? '1.5rem' : '2rem',
-            padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
+            padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
+            fontFamily: 'var(--font-newsreader)'
           }}>
             Ready to elevate your writing?
           </h2>
