@@ -1,8 +1,7 @@
-"use client"
 import React, { useState, useEffect } from 'react';
 import { Settings, X, Shield, ChevronUp, ExternalLink } from 'lucide-react';
 
-const EsyCookieNotice = () => {
+const EsyCookieFooter = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
@@ -98,9 +97,6 @@ const EsyCookieNotice = () => {
         personalization_storage: prefs.personalization ? 'granted' : 'denied'
       });
     }
-
-    // Dispatch custom event for other components
-    window.dispatchEvent(new CustomEvent('cookie-consent-updated', { detail: prefs }));
 
     console.log('Cookie preferences saved:', prefs);
   };
@@ -555,4 +551,4 @@ const EsyCookieNotice = () => {
   );
 };
 
-export default EsyCookieNotice; 
+export default EsyCookieFooter;
