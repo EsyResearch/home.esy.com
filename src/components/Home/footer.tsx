@@ -41,7 +41,7 @@ export default function Footer () {
             title="Explore"
             links={[
               { href: "/essays", text: "Essays" },
-              { href: "/writing-tools", text: "Writing Tools" },
+              { href: "/ai-writing-tools", text: "AI Writing Tools" },
               { href: "/writing-prompts", text: "Writing Prompts" },
               // { href: "/pricing", text: "Pricing" },
               // { href: "/research", text: "Research" },
