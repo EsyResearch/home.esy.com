@@ -26,7 +26,7 @@ const HeroSection = ({
             lineHeight: '1.1',
             letterSpacing: '-0.03em',
             marginBottom: '1.5rem',
-            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+            fontFamily: 'var(--font-literata)'
           }}>
             <span style={{ fontWeight: 200 }}>{pageTitle}</span>
             <br />

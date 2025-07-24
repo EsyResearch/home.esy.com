@@ -14,7 +14,8 @@ const ContactHero = ({
       fontWeight: 300,
       lineHeight: 1.1,
       letterSpacing: '-0.03em',
-      marginBottom: '2rem'
+      marginBottom: '2rem',
+                  fontFamily: 'var(--font-literata)'
     }}>
       Ready to transform
       <br />
@@ -25,7 +26,8 @@ const ContactHero = ({
       fontSize: '1.5rem',
       lineHeight: 1.6,
       color: currentTheme.muted,
-      marginBottom: '3rem'
+      marginBottom: '3rem',
+      fontFamily: 'var(--font-inter)'
     }}>
       Choose how you&apos;d like to connect with us.
     </p>

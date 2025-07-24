@@ -27,7 +27,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ currentTheme }) => {
             fontWeight: 300,
             lineHeight: 1.1,
             letterSpacing: '-0.03em',
-            marginBottom: '3rem'
+            marginBottom: '3rem',
+            fontFamily: 'var(--font-literata)'
           }}>
             Where breakthrough
             <br />
@@ -41,7 +42,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ currentTheme }) => {
             lineHeight: 1.6,
             color: currentTheme.muted,
             marginBottom: '3rem',
-            maxWidth: '680px'
+            maxWidth: '680px',
+            fontFamily: 'var(--font-inter)'
           }}>
             Esy transforms how academics work with AI. Master prompt engineering, 
             access field-tested templates, and produce exceptional research—faster 

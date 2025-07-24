@@ -119,7 +119,7 @@ const ContactPage = () => {
       minHeight: '100vh',
       backgroundColor: currentTheme.bg,
       color: currentTheme.text,
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+      fontFamily: 'var(--font-inter)'
     }}>
       {/* Navigation */}
       <ContactNav scrolled={scrolled} currentTheme={currentTheme} />

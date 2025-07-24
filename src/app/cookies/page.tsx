@@ -241,7 +241,7 @@ const EsyCookiesPage = () => {
         backgroundColor: colors.background, 
         color: colors.textPrimary, 
         minHeight: '100vh',
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+        fontFamily: 'var(--font-inter)',
         paddingTop: '6rem'
       }}>
         {/* Header */}
@@ -268,7 +268,7 @@ const EsyCookiesPage = () => {
                 fontWeight: '300', 
                 lineHeight: '1.1', 
                 margin: 0,
-                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+                fontFamily: 'var(--font-literata)'
               }}>
                 Cookie Policy
               </h1>

@@ -14,14 +14,16 @@ export const articleContentStyles = {
     fontWeight: '300',
     marginTop: '3rem',
     marginBottom: '1.5rem',
-    letterSpacing: '-0.02em'
+    letterSpacing: '-0.02em',
+    fontFamily: 'var(--font-literata)'
   },
   heading3: {
     fontSize: '1.5rem',
     fontWeight: '400',
     marginTop: '2.5rem',
     marginBottom: '1.25rem',
-    letterSpacing: '-0.01em'
+    letterSpacing: '-0.01em',
+    fontFamily: 'var(--font-literata)'
   },
   blockquote: {
     borderLeft: '3px solid #8b5cf6',

@@ -195,7 +195,7 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
         minHeight: '100vh',
         backgroundColor: '#0a0a0f',
         color: '#ffffff',
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+        fontFamily: 'var(--font-inter)'
       }}>
 
 
@@ -232,10 +232,10 @@ Emma realized she wasn't just witnessing the past—she was seeing the future. A
 
               <h1 style={{
                 fontSize: isMobile ? '3rem' : '4rem',
-                // fontFamily: 'OrigamiIncised, sans-serif', // TEMPORARILY DISABLED
+                fontFamily: 'var(--font-literata)',
                 fontWeight: 300,
                 lineHeight: 1.1,
-                letterSpacing: '-0.03em', // Changed from 0.05em when Origami disabled
+                letterSpacing: '-0.03em',
                 marginBottom: '1.5rem',
                 whiteSpace: 'nowrap'
               }}>

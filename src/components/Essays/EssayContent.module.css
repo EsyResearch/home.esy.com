@@ -7,6 +7,7 @@
   line-height: 1.2;
   letter-spacing: -0.02em;
   margin-bottom: 2rem;
+  font-family: var(--font-literata);
 }
 
 .metadata {
@@ -42,6 +43,7 @@
   letter-spacing: 0.1em;
   color: #8b5cf6;
   margin-bottom: 1rem;
+  font-family: var(--font-literata);
 }
 
 .essayContent h1,
@@ -217,8 +219,10 @@
 
 .sectionTitle {
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: 1.5rem;
+  margin-top: 2rem;
+  font-family: var(--font-literata);
 }
 
 .sectionSubtitle {

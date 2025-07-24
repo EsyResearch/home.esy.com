@@ -150,7 +150,7 @@ const EsyTermsPage = () => {
             fontSize: emphasis ? '1.75rem' : '1.5rem',
             fontWeight: '600',
             color: colors.textPrimary,
-            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+            fontFamily: 'var(--font-literata)',
             lineHeight: '1.3',
             margin: 0,
             letterSpacing: '-0.01em'
@@ -179,7 +179,7 @@ const EsyTermsPage = () => {
       fontSize: legal ? '0.95rem' : '1rem',
       color: emphasis ? colors.textPrimary : colors.textSecondary,
       lineHeight: '1.7',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      fontFamily: 'var(--font-inter)',
       marginBottom: '2rem',
       fontWeight: emphasis ? '500' : '400',
       textTransform: legal ? 'uppercase' : 'none',
@@ -200,7 +200,7 @@ const EsyTermsPage = () => {
           fontSize: '1rem',
           lineHeight: '1.7',
           color: colors.textSecondary,
-          fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+          fontFamily: 'var(--font-inter)'
         }}>
           <span style={{
             color: colors.accent,
@@ -277,7 +277,7 @@ const EsyTermsPage = () => {
       backgroundColor: colors.background, 
       color: colors.textPrimary, 
       minHeight: '100vh',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      fontFamily: 'var(--font-inter)',
       paddingTop: '80px'
     }}>
       {/* Progress indicator */}
@@ -324,7 +324,7 @@ const EsyTermsPage = () => {
                   fontWeight: '600', 
                   lineHeight: '1.2', 
                   margin: 0,
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                  fontFamily: 'var(--font-literata)',
                   letterSpacing: '-0.02em'
                 }}>
                   Terms of Service

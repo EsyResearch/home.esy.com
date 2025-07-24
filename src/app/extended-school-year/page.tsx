@@ -82,7 +82,7 @@ const ESYLandingPage = () => {
       minHeight: '100vh',
       backgroundColor: '#0a0a0f',
       color: '#ffffff',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      fontFamily: 'var(--font-inter)',
       paddingTop: isMobile ? '6rem' : '8rem' // Compensate for global header
     }}>
       {/* Hero Section */}

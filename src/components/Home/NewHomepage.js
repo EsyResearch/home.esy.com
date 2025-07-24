@@ -126,7 +126,7 @@ const NewHomepage = () => {
     <div style={{
       backgroundColor: currentTheme.bg,
       color: currentTheme.text,
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+      fontFamily: 'var(--font-inter)'
     }}>
       {/* Hero Section - Enhanced Mobile Responsive */}
       <section style={{ 
@@ -154,11 +154,11 @@ const NewHomepage = () => {
               letterSpacing: '-0.04em',
               marginBottom: isMobile ? '1.5rem' : '2rem',
               padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
-              fontFamily: 'var(--font-newsreader)'
+              fontFamily: 'var(--font-literata)'
             }}>
               Your Personal
               <br />
-              AI <span style={{ color: currentTheme.accent }}>Es</span>sa<span style={{ color: currentTheme.accent }}>y</span> Writer
+              <span style={{ color: currentTheme.accent }}>AI Essay Writer</span>
             </h1>
 
             {/* Subheadline - Improved Mobile Readability */}
@@ -168,7 +168,8 @@ const NewHomepage = () => {
               color: currentTheme.muted,
               maxWidth: '720px',
               margin: '0 auto',
-              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
+              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
+              fontFamily: 'var(--font-inter)'
             }}>
               Write A+ essays faster. Esy helps you research deeply, argue clearly, and cite with precision — APA, MLA, or any style.
             </p>
@@ -360,7 +361,7 @@ const NewHomepage = () => {
               letterSpacing: '-0.02em',
               marginBottom: '1.5rem',
               padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
-              fontFamily: 'var(--font-newsreader)'
+              fontFamily: 'var(--font-literata)'
             }}>
               Proven results, immediate impact
             </h2>
@@ -369,7 +370,8 @@ const NewHomepage = () => {
               color: currentTheme.muted,
               maxWidth: '600px',
               margin: '0 auto',
-              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
+              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
+              fontFamily: 'var(--font-inter)'
             }}>
               Join researchers experiencing dramatic improvements in their academic writing
             </p>
@@ -451,7 +453,7 @@ const NewHomepage = () => {
               letterSpacing: '-0.02em',
               marginBottom: '1.5rem',
               padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
-              fontFamily: 'var(--font-newsreader)'
+              fontFamily: 'var(--font-literata)'
             }}>
               Everything you need to excel
             </h2>
@@ -460,7 +462,8 @@ const NewHomepage = () => {
               color: currentTheme.muted,
               maxWidth: '600px',
               margin: '0 auto',
-              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
+              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
+              fontFamily: 'var(--font-inter)'
             }}>
               Powerful features designed for academic success
             </p>
@@ -582,7 +585,7 @@ const NewHomepage = () => {
               letterSpacing: '-0.02em',
               marginBottom: '1.5rem',
               padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
-              fontFamily: 'var(--font-newsreader)'
+              fontFamily: 'var(--font-literata)'
             }}>
               Built for every academic challenge
             </h2>
@@ -591,7 +594,8 @@ const NewHomepage = () => {
               color: currentTheme.muted,
               maxWidth: '600px',
               margin: '0 auto',
-              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
+              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
+              fontFamily: 'var(--font-inter)'
             }}>
               From undergraduate essays to doctoral dissertations
             </p>
@@ -732,7 +736,7 @@ const NewHomepage = () => {
             letterSpacing: '-0.03em',
             marginBottom: isMobile ? '1.5rem' : '2rem',
             padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
-            fontFamily: 'var(--font-newsreader)'
+            fontFamily: 'var(--font-literata)'
           }}>
             Ready to elevate your writing?
           </h2>
@@ -742,7 +746,8 @@ const NewHomepage = () => {
             lineHeight: 1.8,
             color: currentTheme.muted,
             marginBottom: isMobile ? '2rem' : '3rem',
-            padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
+            padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
+            fontFamily: 'var(--font-inter)'
           }}>
             Start writing with AI that understands academic excellence. 
             No credit card, no commitment—just better writing from day one.

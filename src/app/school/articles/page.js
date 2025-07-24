@@ -60,7 +60,8 @@ export default function ArticlesIndexPage() {
       fontSize: '3rem',
       fontWeight: '300',
       letterSpacing: '-0.02em',
-      marginBottom: '1rem'
+      marginBottom: '1rem',
+      fontFamily: 'var(--font-literata)'
     },
     subtitle: {
       fontSize: '1.25rem',
@@ -101,7 +102,8 @@ export default function ArticlesIndexPage() {
       fontWeight: '400',
       marginBottom: '1rem',
       letterSpacing: '-0.01em',
-      lineHeight: '1.3'
+      lineHeight: '1.3',
+      fontFamily: 'var(--font-literata)'
     },
     excerpt: {
       fontSize: '1rem',

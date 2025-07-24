@@ -139,7 +139,7 @@ const EsyPrivacyPage = () => {
             fontSize: emphasis ? '1.75rem' : '1.5rem',
             fontWeight: '600',
             color: colors.textPrimary,
-            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+            fontFamily: 'var(--font-literata)',
             lineHeight: '1.3',
             margin: 0,
             letterSpacing: '-0.01em'
@@ -168,7 +168,7 @@ const EsyPrivacyPage = () => {
       fontSize: summary ? '1.1rem' : '1rem',
       color: emphasis ? colors.textPrimary : colors.textSecondary,
       lineHeight: '1.7',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      fontFamily: 'var(--font-inter)',
       marginBottom: '2rem',
       fontWeight: emphasis ? '500' : '400',
       fontStyle: summary ? 'italic' : 'normal'
@@ -188,7 +188,7 @@ const EsyPrivacyPage = () => {
           fontSize: '1rem',
           lineHeight: '1.7',
           color: colors.textSecondary,
-          fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+          fontFamily: 'var(--font-inter)'
         }}>
           <span style={{
             color: colors.accent,
@@ -356,7 +356,7 @@ const EsyPrivacyPage = () => {
       backgroundColor: colors.background, 
       color: colors.textPrimary, 
       minHeight: '100vh',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      fontFamily: 'var(--font-inter)',
       paddingTop: '80px'
     }}>
       {/* Progress indicator */}
@@ -402,7 +402,7 @@ const EsyPrivacyPage = () => {
                   fontWeight: '600', 
                   lineHeight: '1.2', 
                   margin: 0,
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                  fontFamily: 'var(--font-literata)',
                   letterSpacing: '-0.02em'
                 }}>
                   Privacy Policy

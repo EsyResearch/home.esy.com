@@ -270,7 +270,7 @@ const WritingPromptGenerator = () => {
       minHeight: '100vh',
       backgroundColor: '#0a0a0f',
       color: '#ffffff',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+      fontFamily: 'var(--font-inter)'
     }}>
       {/* Hero Section with Integrated Generator */}
       <section style={{
@@ -307,7 +307,8 @@ const WritingPromptGenerator = () => {
               fontWeight: 300,
               lineHeight: 1.1,
               letterSpacing: '-0.03em',
-              marginBottom: '1.5rem'
+              marginBottom: '1.5rem',
+              fontFamily: 'var(--font-literata)'
             }}>
               Writing Prompt
               <br />

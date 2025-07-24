@@ -563,7 +563,7 @@ Each paragraph transitions smoothly, using sensory details to ground readers in 
       minHeight: '100vh',
       backgroundColor: '#0a0a0f',
       color: '#ffffff',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+      fontFamily: 'var(--font-inter)'
     }}>
       {/* Hero Section - SEO Optimized */}
       <section style={{
@@ -577,7 +577,8 @@ Each paragraph transitions smoothly, using sensory details to ground readers in 
           fontWeight: 300,
           lineHeight: 1.1,
           letterSpacing: '-0.03em',
-          marginBottom: '1.5rem'
+          marginBottom: '1.5rem',
+          fontFamily: 'var(--font-literata)'
         }}>
           Writing Prompts for
           <br />
@@ -713,7 +714,8 @@ Each paragraph transitions smoothly, using sensory details to ground readers in 
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '0.5rem'
+            gap: '0.5rem',
+            fontFamily: 'var(--font-literata)'
           }}>
             <Sparkles size={24} style={{ color: '#8b5cf6' }} />
             {featuredPrompt.title}
@@ -877,7 +879,8 @@ Each paragraph transitions smoothly, using sensory details to ground readers in 
               fontSize: isMobile ? '1.75rem' : '2.5rem',
               fontWeight: 300,
               marginBottom: '2rem',
-              textAlign: 'center'
+              textAlign: 'center',
+              fontFamily: 'var(--font-literata)'
             }}>
               All Writing Prompts
             </h2>
@@ -1099,7 +1102,8 @@ Each paragraph transitions smoothly, using sensory details to ground readers in 
               fontSize: isMobile ? '1.75rem' : '2.5rem',
               fontWeight: 300,
               marginBottom: '1rem',
-              textAlign: 'center'
+              textAlign: 'center',
+              fontFamily: 'var(--font-literata)'
             }}>
               Creative Writing Prompts
             </h2>
@@ -1191,7 +1195,8 @@ Each paragraph transitions smoothly, using sensory details to ground readers in 
               fontSize: isMobile ? '1.75rem' : '2.5rem',
               fontWeight: 300,
               marginBottom: '1rem',
-              textAlign: 'center'
+              textAlign: 'center',
+              fontFamily: 'var(--font-literata)'
             }}>
               AI Writing Prompts
             </h2>
@@ -1364,7 +1369,8 @@ Each paragraph transitions smoothly, using sensory details to ground readers in 
               fontSize: isMobile ? '1.75rem' : '2.5rem',
               fontWeight: 300,
               marginBottom: '1rem',
-              textAlign: 'center'
+              textAlign: 'center',
+              fontFamily: 'var(--font-literata)'
             }}>
               Best of Both Worlds
             </h2>
@@ -1523,7 +1529,8 @@ Each paragraph transitions smoothly, using sensory details to ground readers in 
             fontSize: isMobile ? '2rem' : '2.5rem',
             fontWeight: 300,
             marginBottom: '3rem',
-            textAlign: 'center'
+            textAlign: 'center',
+            fontFamily: 'var(--font-literata)'
           }}>
             Frequently Asked Questions
           </h2>
@@ -1589,7 +1596,8 @@ Each paragraph transitions smoothly, using sensory details to ground readers in 
           <h2 style={{
             fontSize: isMobile ? '2rem' : '2.5rem',
             fontWeight: 300,
-            marginBottom: '1rem'
+            marginBottom: '1rem',
+            fontFamily: 'var(--font-literata)'
           }}>
             Get a Free Prompt Every Week
           </h2>

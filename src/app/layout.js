@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono, Newsreader } from "next/font/google";
+import { Geist, Geist_Mono, Newsreader, Inter, Literata } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Home/navigation";
 import Footer from "@/components/Home/footer";
@@ -23,6 +23,16 @@ const newsreader = Newsreader({
   subsets: ["latin"],
 });
 
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const literata = Literata({
+  variable: "--font-literata",
+  subsets: ["latin"],
+});
+
 export const metadata = {
   title: "Esy: AI Research Assistant",
   description: "Write your next paper with Esy, an AI assistant that learns your writing style to create original, authentic essays.",
@@ -43,7 +53,7 @@ export default function RootLayout({ children }) {
         <GoogleTagManager />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} ${inter.variable} ${literata.variable} antialiased`}
       >
         <GoogleTagManagerBody />
         <ConditionalNavigation />

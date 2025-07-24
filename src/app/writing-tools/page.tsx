@@ -244,7 +244,7 @@ const AIWritingToolsHub = () => {
       minHeight: '100vh',
       backgroundColor: '#0a0a0f',
       color: '#ffffff',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+      fontFamily: 'var(--font-inter)'
     }}>
       {/* Hero Section */}
       <section style={{
@@ -258,7 +258,8 @@ const AIWritingToolsHub = () => {
           fontWeight: 300,
           lineHeight: 1.1,
           letterSpacing: '-0.03em',
-          marginBottom: '1.5rem'
+          marginBottom: '1.5rem',
+          fontFamily: 'var(--font-newsreader)'
         }}>
           Free AI Writing
           <br />
@@ -271,7 +272,8 @@ const AIWritingToolsHub = () => {
           lineHeight: 1.6,
           marginBottom: '3rem',
           maxWidth: '700px',
-          margin: '0 auto 3rem'
+          margin: '0 auto 3rem',
+          fontFamily: 'var(--font-inter)'
         }}>
           Professional writing tools powered by AI. Improve your writing, 
           save time, and create better content with our comprehensive suite of free tools.
@@ -581,7 +583,8 @@ const AIWritingToolsHub = () => {
           <h2 style={{
             fontSize: isMobile ? '2rem' : '2.5rem',
             fontWeight: 300,
-            marginBottom: '3rem'
+            marginBottom: '3rem',
+            fontFamily: 'var(--font-literata)'
           }}>
             Trusted by Writers Worldwide
           </h2>
@@ -654,7 +657,8 @@ const AIWritingToolsHub = () => {
           <h2 style={{
             fontSize: isMobile ? '2rem' : '2.5rem',
             fontWeight: 300,
-            marginBottom: '1rem'
+            marginBottom: '1rem',
+            fontFamily: 'var(--font-literata)'
           }}>
             Ready for More Advanced AI?
           </h2>

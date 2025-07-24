@@ -184,7 +184,7 @@ const HowToWriteHub = () => {
       minHeight: '100vh',
       backgroundColor: '#0a0a0f',
       color: 'white',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      fontFamily: 'var(--font-inter)',
       WebkitFontSmoothing: 'antialiased',
       MozOsxFontSmoothing: 'grayscale'
     },
@@ -294,7 +294,8 @@ const HowToWriteHub = () => {
       background: 'linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 100%)',
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
-      backgroundClip: 'text'
+      backgroundClip: 'text',
+      fontFamily: 'var(--font-literata)'
     },
     heroSubtitle: {
       fontSize: '1.375rem',
