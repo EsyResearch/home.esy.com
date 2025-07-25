@@ -67,3 +67,13 @@ The project includes a powerful **Style Inspector** (also called Style Analyzer)
 7. **Minimize or close** the panel as needed.
 
 This tool is invaluable for maintaining visual consistency and quickly catching style regressions in your content-driven Next.js applications.
+
+## Documentation
+
+This project maintains comprehensive documentation for tracking fixes and issues:
+
+- **CHANGELOG.md** - High-level version history and release notes
+- **docs/fixes/** - Detailed documentation of bug fixes and resolved issues
+- **docs/QUICK_START.md** - Quick reference guide for documentation practices
+
+See `/docs/README.md` for more information about our documentation standards.
