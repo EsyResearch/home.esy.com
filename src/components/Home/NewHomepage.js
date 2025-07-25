@@ -731,7 +731,7 @@ const NewHomepage = () => {
       }}>
         <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
           <h2 style={{
-            fontSize: isTinyMobile ? '1.5rem' : isSmallMobile ? '1.75rem' : isMobile ? '2rem' : isTablet ? '2.5rem' : '3.5rem',
+            fontSize: isTinyMobile ? '1.5rem' : isSmallMobile ? '1.75rem' : isMobile ? '2rem' : isTablet ? '2.5rem' : '3rem',
             fontWeight: 300,
             letterSpacing: '-0.03em',
             marginBottom: isMobile ? '1.5rem' : '2rem',
