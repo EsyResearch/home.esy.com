@@ -22,15 +22,15 @@ const HeroSection = ({
         <div style={{ maxWidth: '42rem' }}>
           <h1 style={{ 
             fontSize: '3.5rem', 
-            fontWeight: 200,
-            lineHeight: '1.1',
-            letterSpacing: '-0.03em',
+            fontWeight: 300,
+            lineHeight: '1.3',
+            letterSpacing: '0.01em',
             marginBottom: '1.5rem',
             fontFamily: 'var(--font-literata)'
           }}>
-            <span style={{ fontWeight: 200 }}>{pageTitle}</span>
+            <span style={{ fontWeight: 300 }}>{pageTitle}</span>
             <br />
-            <span style={{ color: '#8b5cf6', fontWeight: 300 }}>{pageSubtitle}</span>
+            <span style={{ color: '#8b5cf6', fontWeight: 400 }}>{pageSubtitle}</span>
           </h1>
           
           <p style={{ 

@@ -158,15 +158,15 @@ const EsySchool = () => {
     },
     heroTitle: {
       fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-      fontWeight: '200',
-      lineHeight: '1.1',
+      fontWeight: '300',
+      lineHeight: '1.3',
       marginBottom: '1.5rem',
-      letterSpacing: '-0.03em',
+      letterSpacing: '0.01em',
       fontFamily: 'var(--font-literata)'
     },
     heroAccent: {
       color: '#8b5cf6',
-      fontWeight: '300'
+      fontWeight: '400'
     },
     heroDescription: {
       fontSize: '1.25rem',
@@ -702,7 +702,7 @@ const EsySchool = () => {
             Esy <span style={{ color: '#8b5cf6' }}>School</span>
           </div>
           <h1 style={styles.heroTitle}>
-            Master academic writing
+            <span style={{ fontWeight: 300 }}>Master academic writing</span>
             <br />
             <span style={styles.heroAccent}>in the age of AI</span>
           </h1>
