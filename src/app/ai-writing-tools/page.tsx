@@ -256,14 +256,14 @@ const AIWritingToolsHub = () => {
         <h1 style={{
           fontSize: isMobile ? '3rem' : '4.5rem',
           fontWeight: 300,
-          lineHeight: 1.1,
-          letterSpacing: '-0.03em',
+          lineHeight: 1.3,
+          letterSpacing: '0.01em',
           marginBottom: '1.5rem',
           fontFamily: 'var(--font-newsreader)'
         }}>
           Free AI Writing
           <br />
-          <span style={{ color: '#8b5cf6' }}>Tools for Everyone</span>
+          <span style={{ color: '#8b5cf6', fontWeight: 400 }}>Tools for Everyone</span>
         </h1>
         
         <p style={{

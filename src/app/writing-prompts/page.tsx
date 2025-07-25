@@ -575,14 +575,14 @@ Each paragraph transitions smoothly, using sensory details to ground readers in 
         <h1 style={{
           fontSize: isMobile ? '2.5rem' : '4rem',
           fontWeight: 300,
-          lineHeight: 1.1,
-          letterSpacing: '-0.03em',
+          lineHeight: 1.3,
+          letterSpacing: '0.01em',
           marginBottom: '1.5rem',
           fontFamily: 'var(--font-literata)'
         }}>
           Writing Prompts for
           <br />
-          <span style={{ color: '#8b5cf6' }}>Every Writer</span>
+          <span style={{ color: '#8b5cf6', fontWeight: 400 }}>Every Writer</span>
         </h1>
         
         <p style={{

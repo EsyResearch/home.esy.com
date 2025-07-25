@@ -288,8 +288,8 @@ const HowToWriteHub = () => {
     heroTitle: {
       fontSize: 'clamp(3rem, 7vw, 5.5rem)',
       fontWeight: 200,
-      lineHeight: 0.95,
-      letterSpacing: '-0.03em',
+      lineHeight: 1.3,
+      letterSpacing: '0.01em',
       marginBottom: '2rem',
       background: 'linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 100%)',
       WebkitBackgroundClip: 'text',

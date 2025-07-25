@@ -282,14 +282,14 @@ References
               fontSize: isMobile ? '3rem' : '4rem',
               fontFamily: 'var(--font-literata)',
               fontWeight: 300,
-              lineHeight: 1.1,
-              letterSpacing: '-0.03em',
+              lineHeight: 1.3,
+              letterSpacing: '0.01em',
               marginBottom: '1.5rem',
               whiteSpace: 'nowrap'
             }}>
               Generate Perfect Essays
               <br />
-              <span style={{ color: '#8b5cf6', whiteSpace: 'nowrap' }}>in Seconds</span>
+              <span style={{ color: '#8b5cf6', whiteSpace: 'nowrap', fontWeight: 400 }}>in Seconds</span>
             </h1>
             
             <p style={{
