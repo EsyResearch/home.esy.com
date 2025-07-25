@@ -150,15 +150,15 @@ const NewHomepage = () => {
             <h1 style={{
               fontSize: isTinyMobile ? '1.75rem' : isSmallMobile ? '2rem' : isMobile ? '2.5rem' : isTablet ? '3.5rem' : '5rem',
               fontWeight: 300,
-              lineHeight: isMobile ? 1.2 : 1.1,
-              letterSpacing: '-0.04em',
+              lineHeight: 1.3,
+              letterSpacing: '0.01em',
               marginBottom: isMobile ? '1.5rem' : '2rem',
               padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
               fontFamily: 'var(--font-literata)'
             }}>
-              Your Personal
+              <span style={{ fontWeight: 300 }}>Your Personal</span>
               <br />
-              <span style={{ color: currentTheme.accent }}>AI Essay Writer</span>
+              <span style={{ color: currentTheme.accent, fontWeight: 400 }}>AI Essay Writer</span>
             </h1>
 
             {/* Subheadline - Improved Mobile Readability */}
