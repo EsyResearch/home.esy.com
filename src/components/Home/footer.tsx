@@ -43,7 +43,6 @@ export default function Footer () {
               { href: "/essays", text: "Essays" },
               { href: "/ai-writing-tools", text: "AI Writing Tools" },
               { href: "/writing-prompts", text: "Writing Prompts" },
-              { href: "/agentic-workflows", text: "Agentic Workflows" },
               // { href: "/pricing", text: "Pricing" },
               // { href: "/research", text: "Research" },
               // { href: "/school", text: "School" }
@@ -59,6 +58,15 @@ export default function Footer () {
               // { href: "/guides", text: "Guides" },
               // { href: "/templates", text: "Templates" },
               // { href: "/api", text: "API Docs" }
+            ]}
+          />
+          
+          <FooterColumn 
+            title="Resources"
+            links={[
+              { href: "/ai-essay-writer", text: "AI Essay Writer" },
+              { href: "/extended-school-year", text: "Extended School Year" },
+              { href: "/agentic-workflows", text: "Agentic Workflows" },
             ]}
           />
           
