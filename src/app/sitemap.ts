@@ -5,31 +5,53 @@ import path from 'path'
 // Force static generation for static export
 export const dynamic = 'force-static'
 
+// Recursively find all page files in a directory
+function findPageFiles(dir: string, baseDir: string = dir): string[] {
+  const results: string[] = []
+  
+  try {
+    const files = fs.readdirSync(dir)
+    
+    for (const file of files) {
+      const filePath = path.join(dir, file)
+      const stat = fs.statSync(filePath)
+      
+      if (stat.isDirectory()) {
+        // Skip special Next.js directories and components
+        if (['api', 'components', '_components'].includes(file)) continue
+        
+        results.push(...findPageFiles(filePath, baseDir))
+      } else if (file.match(/^page\.(js|jsx|ts|tsx)$/)) {
+        // Convert file path to route
+        let route = path.dirname(filePath)
+          .replace(baseDir, '')
+          .replace(/\\/g, '/') // Windows compatibility
+        
+        // Skip dynamic routes (containing [])
+        if (route.includes('[')) continue
+        
+        results.push(route || '/')
+      }
+    }
+  } catch (error) {
+    console.warn(`Could not read directory: ${dir}`)
+  }
+  
+  return results
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://esy.com'
   
-  // Static routes
-  const staticRoutes = [
-    '',
-    '/about',
-    '/contact',
-    '/essays',
-    '/glossary',
-    '/school',
-    '/school/articles',
-    '/ai-story-generator',
-    '/privacy',
-    '/terms',
-    '/cookies',
-    '/ai-essay-writer',
-    '/extended-school-year',
-    '/how-to-write',
-    '/how-to-write-an-essay',
-    '/writing-prompt-generator',
-    '/writing-prompts',
-    '/ai-writing-tools',
-    '/agentic-workflows',
-  ]
+  // Automatically discover all static routes from the app directory
+  const appDir = path.join(process.cwd(), 'src/app')
+  const discoveredRoutes = findPageFiles(appDir)
+    .map(route => route === '/' ? '' : route)
+    .sort((a, b) => {
+      if (a === '') return -1
+      if (b === '') return 1
+      return a.localeCompare(b)
+    })
 
   // Get dynamic routes from content directories
   const essaysDir = path.join(process.cwd(), 'src/content/essays')
@@ -57,8 +79,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Build sitemap entries
   const sitemap: MetadataRoute.Sitemap = []
 
-  // Add static routes
-  staticRoutes.forEach(route => {
+  // Add automatically discovered static routes
+  discoveredRoutes.forEach(route => {
     sitemap.push({
       url: `${baseUrl}${route}`,
       lastModified: new Date(),
@@ -97,5 +119,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
+  // Log discovered routes for debugging
+  console.log(`Sitemap generated with ${sitemap.length} total routes:`)
+  console.log(`- ${discoveredRoutes.length} static routes (auto-discovered)`)
+  console.log(`- ${essays.length} essay routes`)
+  console.log(`- ${glossaryTerms.length} glossary routes`)
+  console.log(`- ${schoolArticles.length} school article routes`)
+
   return sitemap
-} 
+}
