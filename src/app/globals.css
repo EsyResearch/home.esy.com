@@ -1042,7 +1042,7 @@ html {
   max-width: 1440px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr;
   gap: 1rem;
 }
 
@@ -1065,6 +1065,7 @@ html {
   color: var(--text-muted);
   line-height: 1.6;
   font-size: 0.938rem;
+  max-width: 400px;
 }
 
 .footer-socials {
@@ -1161,7 +1162,7 @@ html {
 /* Responsive */
 @media (max-width: 1200px) {
   .footer-content {
-    grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2.5fr 1fr 1fr 1fr 1fr;
     gap: 1rem;
   }
 }
