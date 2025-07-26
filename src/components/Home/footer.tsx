@@ -43,6 +43,7 @@ export default function Footer () {
               { href: "/essays", text: "Essays" },
               { href: "/ai-writing-tools", text: "AI Writing Tools" },
               { href: "/writing-prompts", text: "Writing Prompts" },
+              { href: "/agentic-workflows", text: "Agentic Workflows" },
               // { href: "/pricing", text: "Pricing" },
               // { href: "/research", text: "Research" },
               // { href: "/school", text: "School" }
