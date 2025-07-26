@@ -34,8 +34,21 @@ const literata = Literata({
 });
 
 export const metadata = {
-  title: "Esy: AI Research Assistant",
-  description: "Write your next paper with Esy, an AI assistant that learns your writing style to create original, authentic essays.",
+  title: {
+    template: '%s | Esy',
+    default: 'Esy - AI Essay Writer & Research Assistant',
+  },
+  description: "Write better essays with Esy's AI assistant. Generate original, authentic academic papers that match your writing style. Free essay writer for students.",
+  keywords: 'AI essay writer, research assistant, academic writing, essay generator, AI writing tool',
+  metadataBase: new URL('https://esy.com'),
+  openGraph: {
+    title: 'Esy - AI Essay Writer & Research Assistant',
+    description: 'Transform your academic writing with AI that learns your style.',
+    url: 'https://esy.com',
+    siteName: 'Esy',
+    locale: 'en_US',
+    type: 'website',
+  },
 };
 
 export const viewport = {
