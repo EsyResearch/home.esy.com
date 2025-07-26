@@ -16,7 +16,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/essays',
     '/glossary',
     '/school',
+    '/school/articles',
     '/ai-story-generator',
+    '/privacy',
+    '/terms',
+    '/cookies',
+    '/ai-essay-writer',
+    '/extended-school-year',
+    '/how-to-write',
+    '/how-to-write-an-essay',
+    '/writing-prompt-generator',
+    '/writing-prompts',
+    '/ai-writing-tools',
+    '/agentic-workflows',
   ]
 
   // Get dynamic routes from content directories

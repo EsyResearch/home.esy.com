@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CHANGELOG.md for high-level version history
 - docs/fixes/ directory for detailed fix documentation
 - Fix documentation template and comprehensive guidelines
+- Agentic Workflows guide page at /agentic-workflows
+- Agentic Workflows link in footer navigation under Explore section
 
 ### Changed
 - Updated hero title styling across all pages:
@@ -19,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Letter spacing changed from -0.03em to 0.01em
   - Font weights set to 300/400 for consistency
 - CTA heading font size updated from 3.5rem to 3rem on desktop
+- Updated sitemap.ts to include all missing static pages (11 new routes added)
 
 ### Fixed
 - Essays page missing header/footer in production due to trailing slash handling
