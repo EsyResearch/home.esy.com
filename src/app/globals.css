@@ -1085,8 +1085,6 @@ html {
 }
 
 .social-link:hover {
-  background: var(--gradient-primary);
-  color: white;
   transform: translateY(-2px);
 }
 
