@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - No more manual updates needed when adding new pages
   - Automatically scans /src/app directory for page files
   - Added route discovery logging for debugging
+- Commit message format: No longer including "Co-Authored-By" attribution
 
 ### Fixed
 - Essays page missing header/footer in production due to trailing slash handling
