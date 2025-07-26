@@ -1043,7 +1043,7 @@ html {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .footer-brand {
@@ -1163,8 +1163,8 @@ html {
 /* Responsive */
 @media (max-width: 1200px) {
   .footer-content {
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 2rem;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 1rem;
   }
 }
 

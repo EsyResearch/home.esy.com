@@ -65,8 +65,8 @@ export default function Footer () {
             title="Resources"
             links={[
               { href: "/ai-essay-writer", text: "AI Essay Writer" },
-              { href: "/extended-school-year", text: "Extended School Year" },
               { href: "/agentic-workflows", text: "Agentic Workflows" },
+              { href: "/extended-school-year", text: "Extended School Year" },
             ]}
           />
           
