@@ -12,6 +12,8 @@ export const getPageSuffix = (pathname) => {
     return 'Essays';
   } else if (pathname?.startsWith('/school')) {
     return 'School';
+  } else if (pathname?.startsWith('/glossary')) {
+    return 'Glossary';
   }
   return '';
 };
