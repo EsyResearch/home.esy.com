@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Breadcrumbs from '@/components/Breadcrumbs';
 
 const ArticleLayout = ({ children, meta }) => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -93,23 +94,9 @@ const ArticleLayout = ({ children, meta }) => {
       justifyContent: 'center'
     },
     articleContainer: {
-      paddingTop: '5rem'
+      paddingTop: '1rem'
     },
-    breadcrumb: {
-      maxWidth: '1200px',
-      margin: '0 auto',
-      padding: '1.5rem 3rem 0',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '0.75rem',
-      fontSize: '0.875rem',
-      color: 'rgba(255, 255, 255, 0.5)'
-    },
-    breadcrumbLink: {
-      color: 'rgba(255, 255, 255, 0.5)',
-      textDecoration: 'none',
-      transition: 'color 0.2s ease'
-    },
+
     shareMenu: {
       position: 'absolute',
       top: '100%',
@@ -145,27 +132,15 @@ const ArticleLayout = ({ children, meta }) => {
 
       <article style={styles.articleContainer}>
         {/* Breadcrumb */}
-        <nav style={styles.breadcrumb}>
-          <Link 
-            href="/school" 
-            style={styles.breadcrumbLink}
-            onMouseEnter={(e) => e.target.style.color = '#ffffff'}
-            onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.5)'}
-          >
-            School
-          </Link>
-          <span>/</span>
-          <Link 
-            href="/school/articles" 
-            style={styles.breadcrumbLink}
-            onMouseEnter={(e) => e.target.style.color = '#ffffff'}
-            onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.5)'}
-          >
-            Articles
-          </Link>
-          <span>/</span>
-          <span>{meta?.category || 'Article'}</span>
-        </nav>
+        <div style={{ marginTop: '5rem' }}>
+          <Breadcrumbs 
+            items={[
+              { label: 'School', href: '/school' },
+              { label: 'Articles', href: '/school/articles' },
+              { label: meta?.category || 'Article', isCurrent: true }
+            ]}
+          />
+        </div>
 
         {children}
       </article>

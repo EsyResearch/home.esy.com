@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Breadcrumbs from '@/components/Breadcrumbs';
 
 export default function ArticlesIndexPage() {
   const articles = [
@@ -132,6 +133,12 @@ export default function ArticlesIndexPage() {
 
   return (
     <div style={styles.container}>
+      <Breadcrumbs 
+        items={[
+          { label: 'School', href: '/school' },
+          { label: 'Articles', isCurrent: true }
+        ]}
+      />
       <header style={styles.header}>
         <h1 style={styles.title}>All Articles</h1>
         <p style={styles.subtitle}>

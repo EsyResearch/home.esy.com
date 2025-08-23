@@ -1,12 +1,44 @@
-const Logo = () => {
-    return (
-      <div className="flex items-center space-x-2">
-        <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-purple-500 rounded-lg flex items-center justify-center">
-          <span className="text-white font-bold text-xl">e</span>
-        </div>
-        <span className="text-2xl font-bold text-white">esy</span>
+import Image from 'next/image';
+import styles from './Logo.module.css';
+
+const Logo = ({ 
+  suffix, 
+  href, 
+  className = '', 
+  size = 60,
+  showText = true 
+}) => {
+  // Use the same SVG logo that's working in Header and Footer
+  const logoPath = '/esy-logos/logo-files/for-web/svg/color-no-bg.svg';
+
+  const logoContent = (
+    <div className={`${styles.logo} ${className}`}>
+      <div className={styles.logoIcon}>
+        <Image 
+          src={logoPath} 
+          alt="Esy Logo" 
+          width={size} 
+          height={size}
+        />
       </div>
+      {suffix && (
+        <span className={styles.logoSubtitle}>{suffix}</span>
+      )}
+      {showText && (
+        <span className={styles.logoText}>esy</span>
+      )}
+    </div>
+  );
+
+  if (href) {
+    return (
+      <a href={href} className={styles.logoLink}>
+        {logoContent}
+      </a>
     );
-  };
+  }
+
+  return logoContent;
+};
 
 export default Logo;

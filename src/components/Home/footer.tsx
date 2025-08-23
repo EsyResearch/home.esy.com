@@ -1,17 +1,20 @@
-import FooterColumn from "@/components/Home/footerColumn";
-import Logo from "../../../public/esy-logos/logo-files/for-web/svg/color-no-bg.svg"
-import Image from "next/image";
+"use client";
 
+import { usePathname } from 'next/navigation';
+import FooterColumn from "@/components/Home/footerColumn";
+import Logo from "@/components/Logo";
+import { getPageSuffix } from "./navigation";
 
 export default function Footer () {
+    const pathname = usePathname();
+    const logoSuffix = getPageSuffix(pathname);
+
     return (
       <footer className="footer">
         <div className="footer-content">
           <div className="footer-brand">
             <div className="footer-logo">
-              <div className="logo-icon">
-                <Image src={Logo.src} alt="Esy Logo" className="logo-icon" width={40} height={40} />
-              </div>
+              <Logo suffix={logoSuffix} href="" showText={false} />
             </div>
             <p className="footer-desc">
             Write your next paper with Esy, an AI assistant that learns your writing style to create original, authentic essays.

@@ -1,0 +1,56 @@
+.breadcrumbs {
+  background-color: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 2rem;
+}
+
+.breadcrumbsContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.813rem;
+}
+
+.breadcrumbLink {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 400;
+}
+
+.breadcrumbLink:hover {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: underline;
+}
+
+.breadcrumbText {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+}
+
+.breadcrumbCurrent {
+  color: rgba(255, 255, 255, 0.5);
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.breadcrumbSeparator {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.75rem;
+}
+
+/* Mobile responsive breadcrumbs */
+@media (max-width: 768px) {
+  .breadcrumbsContainer {
+    padding: 0.75rem 1.5rem;
+  }
+  
+  .breadcrumbCurrent {
+    max-width: 150px;
+  }
+}

@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Breadcrumbs from '@/components/Breadcrumbs';
 
 const EsySchool = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -139,7 +140,7 @@ const EsySchool = () => {
       position: 'relative'
     },
     hero: {
-      padding: '8rem 3rem 3rem',
+      padding: '2rem 3rem 3rem',
       maxWidth: '1400px',
       margin: '0 auto',
       position: 'relative'
@@ -147,15 +148,7 @@ const EsySchool = () => {
     heroContent: {
       maxWidth: '900px'
     },
-    heroLabel: {
-      display: 'inline-block',
-      fontSize: '0.875rem',
-      color: 'rgba(255, 255, 255, 0.7)',
-      marginBottom: '2rem',
-      letterSpacing: '0.1em',
-      textTransform: 'uppercase',
-      fontWeight: '500'
-    },
+
     heroTitle: {
       fontSize: 'clamp(2.5rem, 5vw, 4rem)',
       fontWeight: '300',
@@ -694,13 +687,20 @@ const EsySchool = () => {
     <div style={styles.container}>
       <div style={styles.progressBar} />
       
+      {/* Breadcrumbs */}
+      <div style={{ marginTop: '6rem', marginBottom: '0.5rem' }}>
+        <Breadcrumbs 
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'School', isCurrent: true }
+          ]}
+        />
+      </div>
 
       {/* Hero Section */}
       <section style={styles.hero}>
         <div style={styles.heroContent}>
-          <div style={styles.heroLabel}>
-            Esy <span style={{ color: '#8b5cf6' }}>School</span>
-          </div>
+
           <h1 style={styles.heroTitle}>
             <span style={{ fontWeight: 300 }}>Master academic writing</span>
             <br />

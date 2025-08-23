@@ -1,13 +1,27 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Logo from "../../../public/esy-logos/logo-files/for-web/svg/color-no-bg.svg"
-import Image from "next/image";
+import { usePathname } from 'next/navigation';
+import Logo from "@/components/Logo";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
+// Shared suffix logic that can be used by both navigation and footer
+export const getPageSuffix = (pathname) => {
+  if (pathname?.startsWith('/essays')) {
+    return 'Essays';
+  } else if (pathname?.startsWith('/school')) {
+    return 'School';
+  }
+  return '';
+};
+
 export default function Navigation () {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const pathname = usePathname();
+
+    // Use the shared suffix function
+    const logoSuffix = getPageSuffix(pathname);
 
     useEffect(() => {
       const handleScroll = () => {
@@ -52,7 +66,7 @@ export default function Navigation () {
       <nav className="nav" id="nav">
         <div className="nav-inner">
           <Link href="/" className="logo">
-            <Image src={Logo.src} alt="Esy Logo" className="logo-icon" width={40} height={40} />
+            <Logo suffix={logoSuffix} href="" showText={false} />
           </Link>
           
           {/* Desktop Navigation */}
