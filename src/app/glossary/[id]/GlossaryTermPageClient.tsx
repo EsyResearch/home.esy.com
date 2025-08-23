@@ -1,7 +1,7 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Brain, Code, FileText, Globe, Lightbulb } from 'lucide-react';
-import GlossaryTermNavigation from '@/components/Glossary/GlossaryTermNavigation';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import GlossaryTermHeader from '@/components/Glossary/GlossaryTermHeader';
 import GlossaryTermTabs from '@/components/Glossary/GlossaryTermTabs';
 import GlossaryTermSidebar from '@/components/Glossary/GlossaryTermSidebar';
@@ -26,19 +26,11 @@ interface GlossaryTermPageClientProps {
 }
 
 const GlossaryTermPageClient = ({ term, Content, content, isCompiled }: GlossaryTermPageClientProps) => {
-  const [scrolled, setScrolled] = useState(false);
-  const [isBookmarked, setIsBookmarked] = useState(false);
   const [showShareMenu, setShowShareMenu] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+
 
   const currentTheme: Theme = {
     bg: '#0a0a0f',
@@ -81,22 +73,19 @@ const GlossaryTermPageClient = ({ term, Content, content, isCompiled }: Glossary
       color: currentTheme.text,
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
     }}>
-      <GlossaryTermNavigation
-        scrolled={scrolled}
-        termId={term.id}
-        isBookmarked={isBookmarked}
-        setIsBookmarked={setIsBookmarked}
-        showShareMenu={showShareMenu}
-        setShowShareMenu={setShowShareMenu}
-        linkCopied={linkCopied}
-        currentTheme={currentTheme}
-        handleShare={handleShare}
-      />
+      {/* Breadcrumbs */}
+      <div style={{ marginTop: '6rem', marginBottom: '0.5rem' }}>
+        <Breadcrumbs 
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Glossary', href: '/glossary' },
+            { label: term.term, isCurrent: true }
+          ]}
+        />
+      </div>
 
       {/* Main Content */}
-      <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '2.5rem 2rem 4rem',
-        paddingTop: '5.5rem' // space for fixed header
-      }}>
+      <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '2.5rem 2rem 4rem' }}>
         {/* Sub-header: Breadcrumbs and Share icon (now above the term title, not sticky) */}
         <div
           style={{
@@ -113,12 +102,7 @@ const GlossaryTermPageClient = ({ term, Content, content, isCompiled }: Glossary
             marginBottom: '3.5rem'
           }}
         >
-          {/* Breadcrumbs */}
-          <nav style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', fontSize: '0.97rem', color: currentTheme.muted, fontWeight: 500 }} aria-label="Breadcrumb">
-            <Link href="/glossary" style={{ color: currentTheme.accent, textDecoration: 'none', fontWeight: 600 }}>Glossary</Link>
-            <span style={{ color: currentTheme.faint, fontSize: '1.1em' }}>›</span>
-            <span style={{ color: currentTheme.text }}>{term.term}</span>
-          </nav>
+
           {/* Share Icon */}
           <button
             onClick={() => setShowShareMenu(!showShareMenu)}

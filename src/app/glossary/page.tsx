@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { Brain, FileText, Code, Globe, Lightbulb, Search, Filter } from 'lucide-react';
-import GlossarySimpleNavigation from '@/components/Glossary/GlossarySimpleNavigation';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import GlossaryGrid from '@/components/Glossary/GlossaryGrid';
 import GlossarySidebar from '@/components/Glossary/GlossarySidebar';
 import { Theme, GlossaryTerm, GlossaryCategory, TermOfDay, CategoryType } from '@/types';
@@ -433,12 +433,17 @@ const GlossaryPage = () => {
       color: currentTheme.text,
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
     }}>
-      <GlossarySimpleNavigation
-        scrolled={scrolled}
-        currentTheme={currentTheme}
-      />
+      {/* Breadcrumbs */}
+      <div style={{ marginTop: '6rem', marginBottom: '0.5rem' }}>
+        <Breadcrumbs 
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Glossary', isCurrent: true }
+          ]}
+        />
+      </div>
       
-      <header style={{ paddingTop: '8rem', paddingBottom: '2rem' }}>
+      <header style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
           <div style={{
             display: 'flex',
