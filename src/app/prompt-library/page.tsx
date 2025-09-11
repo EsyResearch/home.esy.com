@@ -1,0 +1,1059 @@
+"use client";
+
+import React, { useState, useMemo } from 'react';
+
+const PromptLibrary = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [copiedPrompt, setCopiedPrompt] = useState(null);
+
+  const promptCategories = [
+    { id: 'all', name: 'All Prompts', count: 0 },
+    { id: 'writing', name: 'Creative Writing', count: 12 },
+    { id: 'research', name: 'Academic Research', count: 15 },
+    { id: 'analysis', name: 'Literary Analysis', count: 10 },
+    { id: 'essays', name: 'Essay Writing', count: 14 },
+    { id: 'professional', name: 'Professional Writing', count: 8 },
+    { id: 'ebooks', name: 'Book & Publication', count: 9 }
+  ];
+
+  const prompts = [
+    // Creative Writing
+    {
+      id: 1,
+      category: 'writing',
+      title: 'Character Development Deep Dive',
+      description: 'Comprehensive character creation for complex narratives',
+      prompt: `Create a detailed character profile for a protagonist in [GENRE] fiction. Include: 
+
+**Core Identity:**
+- Full name, age, occupation, and social background
+- Three defining personality traits with specific examples
+- Internal contradiction or moral complexity
+
+**Psychological Profile:**
+- Primary motivation and what drives them daily
+- Greatest fear and how it manifests in behavior
+- Childhood experience that shaped their worldview
+
+**Narrative Function:**
+- Character arc from beginning to end of story
+- Key relationships and how they challenge/support growth
+- Specific skills or knowledge that advances the plot
+
+**Voice & Dialogue:**
+- Unique speech patterns, vocabulary, or verbal tics
+- How they communicate differently with various characters
+- Internal monologue style and thought patterns
+
+Provide concrete examples and avoid generic traits. Make this character feel distinctly human with authentic flaws and strengths.`,
+      isPro: false
+    },
+    {
+      id: 2,
+      category: 'writing',
+      title: 'Scene Tension Architecture',
+      description: 'Building dramatic tension through environmental and emotional layers',
+      prompt: `Analyze and construct a high-tension scene using these elements:
+
+**Setting as Character:**
+- Physical environment that mirrors internal conflict
+- Sensory details that heighten emotional stakes
+- How space constrains or enables character actions
+
+**Dialogue Mechanics:**
+- Subtext: What characters say vs. what they mean
+- Power dynamics shifting through conversation
+- Information revealed and concealed strategically
+
+**Pacing Techniques:**
+- Sentence length variation for rhythm control
+- Strategic use of white space and paragraph breaks
+- Building to climactic moment through incremental reveals
+
+**Emotional Choreography:**
+- Character's internal state vs. external presentation
+- Physical manifestations of psychological tension
+- How other characters respond to unstated emotions
+
+Write a 500-word scene demonstrating these principles, then provide a technical breakdown of your choices.`,
+      isPro: true
+    },
+
+    // Academic Research
+    {
+      id: 3,
+      category: 'research',
+      title: 'Literature Review Synthesis Framework',
+      description: 'Systematic approach to synthesizing scholarly sources',
+      difficulty: 'Advanced',
+      timeEstimate: '120-180 min',
+      tags: ['Research Methodology', 'Academic Writing', 'Source Analysis'],
+      usageCount: 2156,
+      sections: [
+        {
+          title: 'Source Evaluation Matrix',
+          content: `- Categorize sources by methodology, theoretical framework, and conclusions
+- Identify geographical, temporal, and demographic scope of studies
+- Assess sample sizes, limitations, and potential biases`
+        },
+        {
+          title: 'Theoretical Landscape Mapping',
+          content: `- Major schools of thought and their key proponents
+- Evolution of understanding over the past decade
+- Competing theories and points of contention`
+        },
+        {
+          title: 'Gap Analysis',
+          content: `- Understudied populations or contexts
+- Methodological limitations across the field
+- Contradictory findings requiring further investigation`
+        },
+        {
+          title: 'Research Questions Generation',
+          content: `- Three specific, answerable questions based on identified gaps
+- Potential methodological approaches for each question
+- Expected contributions to the field`
+        }
+      ],
+      prompt: `Conduct a comprehensive literature review on [RESEARCH TOPIC] using this structured approach:
+
+**Source Evaluation Matrix:**
+- Categorize sources by methodology, theoretical framework, and conclusions
+- Identify geographical, temporal, and demographic scope of studies
+- Assess sample sizes, limitations, and potential biases
+
+**Theoretical Landscape Mapping:**
+- Major schools of thought and their key proponents
+- Evolution of understanding over the past decade
+- Competing theories and points of contention
+
+**Gap Analysis:**
+- Understudied populations or contexts
+- Methodological limitations across the field
+- Contradictory findings requiring further investigation
+
+**Synthesis Structure:**
+- Chronological development of key concepts
+- Thematic clustering of related findings
+- Critical evaluation of methodological approaches
+
+**Research Questions Generation:**
+- Three specific, answerable questions based on identified gaps
+- Potential methodological approaches for each question
+- Expected contributions to the field
+
+Present findings in academic format with proper citations and clear argumentation.`,
+      isPro: false,
+      isFavorited: false
+    },
+    {
+      id: 4,
+      category: 'research',
+      title: 'Primary Source Analysis Protocol',
+      description: 'Rigorous methodology for analyzing historical and archival materials',
+      prompt: `Analyze primary source materials using this systematic framework:
+
+**Document Contextualization:**
+- Author's position, biases, and intended audience
+- Historical moment and its influence on content
+- Genre conventions and their impact on presentation
+
+**Content Analysis Layers:**
+- Explicit arguments and stated positions
+- Implicit assumptions and unstated beliefs
+- Rhetorical strategies and persuasive techniques
+
+**Corroboration Strategy:**
+- Cross-reference with contemporary sources
+- Identify confirming and contradicting evidence
+- Assess representativeness within historical context
+
+**Critical Interpretation:**
+- What the source reveals about its time period
+- Limitations and silences in the documentation
+- How the source fits within broader historical narratives
+
+**Modern Relevance:**
+- Connections to contemporary issues or debates
+- Methodological lessons for current research
+- Ethical considerations in interpretation and use
+
+Provide specific examples and quotations to support your analysis, maintaining scholarly objectivity while acknowledging interpretive frameworks.`,
+      isPro: true
+    },
+
+    // Literary Analysis
+    {
+      id: 5,
+      category: 'analysis',
+      title: 'Narrative Structure Deconstruction',
+      description: 'Advanced analysis of storytelling techniques and their effects',
+      prompt: `Perform a comprehensive structural analysis of [LITERARY WORK]:
+
+**Temporal Architecture:**
+- Chronological vs. narrative time manipulation
+- Flashbacks, foreshadowing, and their strategic purposes
+- Pacing variations and their emotional impact
+
+**Point of View Mechanics:**
+- Narrator reliability and perspective limitations
+- How POV shapes reader understanding and sympathy
+- Moments where perspective shifts or expands
+
+**Symbolic Systems:**
+- Recurring motifs and their evolution throughout the text
+- Color, weather, objects as meaning-carriers
+- How symbols interact with character development
+
+**Language and Style:**
+- Sentence structure patterns and their effects
+- Diction choices and register variations
+- How style reflects or contrasts with content
+
+**Thematic Architecture:**
+- Central themes and their interconnections
+- How plot events illuminate larger ideas
+- Unresolved tensions and their interpretive possibilities
+
+Support analysis with specific textual evidence and consider multiple valid interpretations. Address how formal elements serve the work's larger artistic and intellectual goals.`,
+      isPro: false
+    },
+
+    // Essay Writing
+    {
+      id: 6,
+      category: 'essays',
+      title: 'Argumentative Essay Architecture',
+      description: 'Building compelling, evidence-based arguments',
+      prompt: `Construct a persuasive argumentative essay on [TOPIC] using this framework:
+
+**Thesis Development:**
+- Clear, debatable central claim
+- Preview of main supporting arguments
+- Acknowledgment of complexity or nuance
+
+**Evidence Integration:**
+- Primary and secondary source material
+- Statistical data with proper interpretation
+- Expert testimony and its credibility
+- Historical precedents and analogies
+
+**Counterargument Strategy:**
+- Strongest opposing viewpoints
+- Fair representation of alternative positions
+- Specific refutation with evidence
+- Concessions where appropriate
+
+**Logical Flow:**
+- Each paragraph advances the central argument
+- Smooth transitions between ideas
+- Building intensity toward conclusion
+- Addressing reader's potential questions
+
+**Rhetorical Effectiveness:**
+- Appropriate tone for intended audience
+- Emotional appeals balanced with logic
+- Credibility establishment and maintenance
+- Call to action or implications for readers
+
+Write 1200-1500 words demonstrating sophisticated reasoning and engaging prose while maintaining academic rigor.`,
+      isPro: false
+    },
+
+    // Professional Writing
+    {
+      id: 7,
+      category: 'professional',
+      title: 'Executive Communication Framework',
+      description: 'High-impact business writing for leadership contexts',
+      prompt: `Develop executive-level communication materials for [BUSINESS CONTEXT]:
+
+**Strategic Messaging:**
+- Core message distilled to essential points
+- Business impact quantified with metrics
+- Risk assessment and mitigation strategies
+- Timeline and resource requirements
+
+**Audience Analysis:**
+- Stakeholder priorities and concerns
+- Decision-making criteria and processes
+- Preferred communication styles
+- Political and organizational dynamics
+
+**Document Structure:**
+- Executive summary (key points in 2-3 paragraphs)
+- Situation analysis with relevant data
+- Recommended actions with rationale
+- Implementation roadmap with milestones
+
+**Professional Tone:**
+- Confident but not presumptuous
+- Data-driven with clear conclusions
+- Acknowledges uncertainties appropriately
+- Action-oriented with specific next steps
+
+**Visual Information Design:**
+- Strategic use of white space and formatting
+- Bullet points for scannable content
+- Charts or graphs where they clarify data
+- Professional layout that enhances readability
+
+Create materials that demonstrate strategic thinking while remaining accessible to busy executives.`,
+      isPro: true
+    },
+
+    // Book & Publication
+    {
+      id: 8,
+      category: 'ebooks',
+      title: 'Non-Fiction Book Structure Blueprint',
+      description: 'Comprehensive framework for organizing educational content',
+      prompt: `Design a complete structure for a non-fiction book on [SUBJECT]:
+
+**Reader Journey Mapping:**
+- Target reader's current knowledge level
+- Learning objectives for each chapter
+- Skill progression from basic to advanced
+- Practical applications and real-world relevance
+
+**Content Architecture:**
+- Logical chapter sequence and dependencies
+- Balance of theory, examples, and exercises
+- Integration points between concepts
+- Appendices and supplementary materials
+
+**Engagement Strategies:**
+- Chapter opening hooks and previews
+- Case studies and narrative examples
+- Interactive elements and reflection questions
+- Progress markers and achievement milestones
+
+**Knowledge Transfer:**
+- Explanation techniques for complex concepts
+- Visual aids and diagram integration
+- Repetition and reinforcement patterns
+- Assessment and self-testing opportunities
+
+**Publication Considerations:**
+- Optimal length for target market
+- Series potential and companion materials
+- Platform-specific formatting requirements
+- Marketing angles and unique value propositions
+
+Include detailed chapter outlines with key points, estimated word counts, and specific examples that will illustrate major concepts.`,
+      isPro: true
+    }
+  ];
+
+  // Add more prompts to reach the counts mentioned in categories
+  const additionalPrompts = [
+    {
+      id: 9,
+      category: 'research',
+      title: 'Qualitative Data Analysis Framework',
+      description: 'Systematic approach to interview and observation data',
+      prompt: `Analyze qualitative research data using structured methodology:
+
+**Data Preparation:**
+- Transcription accuracy and formatting standards
+- Initial coding scheme development
+- Participant anonymization protocols
+- Quality checks and verification processes
+
+**Coding Strategy:**
+- Open coding for emergent themes
+- Axial coding for relationship identification
+- Selective coding for core category development
+- Constant comparative method application
+
+**Pattern Recognition:**
+- Frequency analysis of themes and concepts
+- Divergent case analysis
+- Saturation point identification
+- Member checking and validation
+
+Present findings with supporting quotations and maintain participant confidentiality while demonstrating analytical rigor.`,
+      isPro: false
+    },
+    {
+      id: 10,
+      category: 'analysis',
+      title: 'Comparative Literature Framework',
+      description: 'Cross-cultural and cross-temporal literary analysis',
+      prompt: `Compare literary works across cultures or time periods:
+
+**Cultural Context Analysis:**
+- Historical and social circumstances of each work
+- Cultural values and worldviews reflected
+- Translation considerations and their impact
+- Reception history in different contexts
+
+**Formal Comparison:**
+- Narrative techniques and structural choices
+- Linguistic features and stylistic elements
+- Genre conventions and innovations
+- Symbolic systems and their cultural specificity
+
+**Thematic Synthesis:**
+- Universal human experiences explored
+- Culture-specific interpretations and emphases
+- Evolution of themes across time periods
+- Contemporary relevance and applications
+
+Demonstrate sophisticated understanding of both works while avoiding cultural bias or oversimplification.`,
+      isPro: false
+    },
+    {
+      id: 11,
+      category: 'essays',
+      title: 'Personal Statement Architecture',
+      description: 'Compelling narrative for academic and professional applications',
+      prompt: `Craft a powerful personal statement that demonstrates growth and potential:
+
+**Narrative Arc:**
+- Formative experience as opening hook
+- Challenge or obstacle that spurred development
+- Learning process and skill acquisition
+- Future goals and contribution potential
+
+**Evidence Integration:**
+- Specific examples of achievement and growth
+- Quantifiable impact where possible
+- Skills demonstrated through experience
+- Character traits revealed through actions
+
+**Voice Development:**
+- Authentic personal tone
+- Professional maturity
+- Intellectual curiosity demonstration
+- Passion and commitment expression
+
+**Strategic Positioning:**
+- Unique perspective or background
+- Fit with program or opportunity goals
+- Clear vision for future contribution
+- Memorable and distinguishing elements
+
+Write 500-750 words that tell a compelling story while meeting application requirements.`,
+      isPro: false
+    },
+    {
+      id: 12,
+      category: 'professional',
+      title: 'Grant Proposal Framework',
+      description: 'Persuasive funding applications for research and projects',
+      prompt: `Develop a compelling grant proposal structure:
+
+**Problem Definition:**
+- Clear articulation of need or opportunity
+- Supporting data and evidence
+- Stakeholder impact assessment
+- Urgency and importance justification
+
+**Solution Design:**
+- Methodology and approach
+- Innovation and uniqueness
+- Feasibility and risk assessment
+- Expected outcomes and metrics
+
+**Implementation Plan:**
+- Timeline with specific milestones
+- Resource allocation and budget
+- Team qualifications and roles
+- Quality assurance and evaluation
+
+**Impact Projection:**
+- Short and long-term benefits
+- Sustainability and scalability
+- Dissemination and knowledge transfer
+- Return on investment calculation
+
+Create a proposal that demonstrates both vision and practical execution capability.`,
+      isPro: true
+    }
+  ];
+
+  const allPrompts = [...prompts, ...additionalPrompts];
+
+  const filteredPrompts = useMemo(() => {
+    return allPrompts.filter(prompt => {
+      const matchesCategory = selectedCategory === 'all' || prompt.category === selectedCategory;
+      const matchesSearch = prompt.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           prompt.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           prompt.prompt.toLowerCase().includes(searchTerm.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+  }, [searchTerm, selectedCategory]);
+
+  const handleCopyPrompt = async (promptText, promptId) => {
+    try {
+      await navigator.clipboard.writeText(promptText);
+      setCopiedPrompt(promptId);
+      setTimeout(() => setCopiedPrompt(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy prompt:', err);
+    }
+  };
+
+  const styles = {
+    container: {
+      backgroundColor: '#0a0a0f',
+      minHeight: '100vh',
+      color: 'white',
+      fontFamily: 'var(--font-inter)'
+    },
+    heroSection: {
+      position: 'relative',
+      maxWidth: '1400px',
+      margin: '0 auto',
+      padding: '8rem 2rem 0 2rem',
+      minHeight: '85vh',
+      display: 'flex',
+      alignItems: 'center'
+    },
+    heroContent: {
+      display: 'grid',
+      gridTemplateColumns: '2fr 1fr',
+      gap: '8rem',
+      alignItems: 'center',
+      width: '100%',
+      '@media (max-width: 1024px)': {
+        gridTemplateColumns: '1fr',
+        gap: '4rem',
+        textAlign: 'center'
+      }
+    },
+    heroLeft: {
+      maxWidth: '720px'
+    },
+    heroTitle: {
+      fontFamily: 'var(--font-literata)',
+      fontSize: 'clamp(3.5rem, 8vw, 7rem)',
+      fontWeight: '300',
+      lineHeight: '0.95',
+      marginBottom: '3rem',
+      opacity: '1',
+      letterSpacing: '-0.02em'
+    },
+    heroTitleAccent: {
+      display: 'block',
+      fontSize: 'clamp(2.5rem, 6vw, 5rem)',
+      opacity: '0.7',
+      fontWeight: '400',
+      marginTop: '1rem'
+    },
+    heroSubtitle: {
+      fontSize: 'clamp(1.15rem, 2.5vw, 1.4rem)',
+      fontWeight: '400',
+      opacity: '0.8',
+      lineHeight: '1.8',
+      marginBottom: '4rem',
+      maxWidth: '600px'
+    },
+    heroStats: {
+      display: 'flex',
+      gap: '4rem',
+      marginBottom: '4rem',
+      '@media (max-width: 768px)': {
+        gap: '2rem',
+        justifyContent: 'center'
+      }
+    },
+    statItem: {
+      textAlign: 'left',
+      '@media (max-width: 1024px)': {
+        textAlign: 'center'
+      }
+    },
+    statNumber: {
+      fontFamily: 'var(--font-literata)',
+      fontSize: '2.5rem',
+      fontWeight: '300',
+      opacity: '1',
+      display: 'block',
+      lineHeight: '1'
+    },
+    statLabel: {
+      fontSize: '0.9rem',
+      opacity: '0.5',
+      textTransform: 'uppercase',
+      letterSpacing: '0.1em',
+      marginTop: '0.5rem'
+    },
+    heroCta: {
+      display: 'flex',
+      gap: '1.5rem',
+      alignItems: 'center',
+      '@media (max-width: 768px)': {
+        justifyContent: 'center'
+      }
+    },
+    ctaButton: {
+      padding: '1.25rem 2.5rem',
+      backgroundColor: '#8b5cf6',
+      border: 'none',
+      borderRadius: '8px',
+      color: 'white',
+      fontSize: '1rem',
+      fontWeight: '500',
+      cursor: 'pointer',
+      transition: 'all 0.2s ease',
+      fontFamily: 'var(--font-inter)',
+      textDecoration: 'none',
+      display: 'inline-block'
+    },
+    ctaSecondary: {
+      color: 'rgba(255, 255, 255, 0.7)',
+      fontSize: '0.95rem',
+      textDecoration: 'none',
+      borderBottom: '1px solid rgba(255, 255, 255, 0.3)',
+      paddingBottom: '2px',
+      transition: 'all 0.2s ease'
+    },
+    heroRight: {
+      position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '1.5rem',
+      '@media (max-width: 1024px)': {
+        display: 'none'
+      }
+    },
+    featureCard: {
+      backgroundColor: 'rgba(22, 22, 31, 0.8)',
+      border: '1px solid rgba(255, 255, 255, 0.08)',
+      borderRadius: '12px',
+      padding: '2rem',
+      backdropFilter: 'blur(10px)'
+    },
+    featureTitle: {
+      fontFamily: 'var(--font-literata)',
+      fontSize: '1.1rem',
+      fontWeight: '400',
+      marginBottom: '0.75rem',
+      opacity: '0.9'
+    },
+    featureDescription: {
+      fontSize: '0.9rem',
+      opacity: '0.6',
+      lineHeight: '1.6'
+    },
+    scrollIndicator: {
+      position: 'absolute',
+      bottom: '2rem',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      opacity: '0.3',
+      fontSize: '0.8rem',
+      textTransform: 'uppercase',
+      letterSpacing: '0.1em',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: '1rem'
+    },
+    scrollLine: {
+      width: '1px',
+      height: '3rem',
+      backgroundColor: 'rgba(255, 255, 255, 0.3)',
+      animation: 'fadeInOut 2s ease-in-out infinite'
+    },
+    controlsSection: {
+      maxWidth: '1400px',
+      margin: '0 auto',
+      padding: '6rem 2rem 4rem 2rem',
+      borderTop: '1px solid rgba(255, 255, 255, 0.05)'
+    },
+    sectionTitle: {
+      fontFamily: 'var(--font-literata)',
+      fontSize: '2.5rem',
+      fontWeight: '300',
+      marginBottom: '1rem',
+      opacity: '1'
+    },
+    sectionSubtitle: {
+      fontSize: '1.1rem',
+      opacity: '0.6',
+      marginBottom: '4rem',
+      maxWidth: '600px'
+    },
+    searchContainer: {
+      marginBottom: '3rem',
+      position: 'relative'
+    },
+    searchInput: {
+      width: '100%',
+      maxWidth: '600px',
+      padding: '1.5rem 2rem',
+      fontSize: '1.1rem',
+      backgroundColor: 'rgba(22, 22, 31, 0.8)',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      borderRadius: '12px',
+      color: 'white',
+      outline: 'none',
+      transition: 'all 0.2s ease',
+      fontFamily: 'var(--font-inter)',
+      backdropFilter: 'blur(10px)'
+    },
+    categoryGrid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+      gap: '1.5rem',
+      marginTop: '3rem'
+    },
+    categoryButton: {
+      padding: '2rem',
+      backgroundColor: 'rgba(22, 22, 31, 0.6)',
+      border: '1px solid rgba(255, 255, 255, 0.08)',
+      borderRadius: '16px',
+      color: 'white',
+      cursor: 'pointer',
+      transition: 'all 0.2s ease',
+      fontSize: '1rem',
+      textAlign: 'left',
+      fontFamily: 'var(--font-inter)',
+      backdropFilter: 'blur(10px)'
+    },
+    categoryButtonActive: {
+      backgroundColor: 'rgba(139, 92, 246, 0.15)',
+      borderColor: 'rgba(139, 92, 246, 0.4)'
+    },
+    categoryName: {
+      fontFamily: 'var(--font-literata)',
+      fontSize: '1.2rem',
+      fontWeight: '400',
+      marginBottom: '0.5rem'
+    },
+    categoryCount: {
+      opacity: '0.5',
+      fontSize: '0.9rem'
+    },
+    promptsContainer: {
+      maxWidth: '1400px',
+      margin: '0 auto',
+      padding: '6rem 2rem'
+    },
+    promptsGrid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(500px, 1fr))',
+      gap: '2.5rem',
+      '@media (max-width: 768px)': {
+        gridTemplateColumns: '1fr'
+      }
+    },
+    promptCard: {
+      backgroundColor: 'rgba(22, 22, 31, 0.8)',
+      border: '1px solid rgba(255, 255, 255, 0.08)',
+      borderRadius: '20px',
+      padding: '3rem',
+      transition: 'all 0.2s ease',
+      cursor: 'pointer',
+      backdropFilter: 'blur(10px)',
+      position: 'relative',
+      overflow: 'hidden'
+    },
+    promptHeader: {
+      marginBottom: '2rem'
+    },
+    promptTitle: {
+      fontFamily: 'var(--font-literata)',
+      fontSize: '1.5rem',
+      fontWeight: '400',
+      marginBottom: '1rem',
+      opacity: '1',
+      lineHeight: '1.3'
+    },
+    promptDescription: {
+      opacity: '0.7',
+      fontSize: '1rem',
+      lineHeight: '1.7'
+    },
+    promptContent: {
+      backgroundColor: 'rgba(10, 10, 15, 0.8)',
+      border: '1px solid rgba(255, 255, 255, 0.05)',
+      borderRadius: '12px',
+      padding: '2rem',
+      marginBottom: '2rem',
+      fontSize: '0.9rem',
+      lineHeight: '1.8',
+      opacity: '0.8',
+      fontFamily: 'var(--font-geist-mono)',
+      whiteSpace: 'pre-wrap',
+      maxHeight: '350px',
+      overflowY: 'auto'
+    },
+    promptActions: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    },
+    copyButton: {
+      padding: '1rem 2rem',
+      backgroundColor: '#8b5cf6',
+      border: 'none',
+      borderRadius: '10px',
+      color: 'white',
+      fontSize: '0.95rem',
+      fontWeight: '500',
+      cursor: 'pointer',
+      transition: 'all 0.2s ease',
+      fontFamily: 'Inter, sans-serif'
+    },
+    copyButtonCopied: {
+      backgroundColor: '#10b981'
+    },
+    proLabel: {
+      backgroundColor: 'rgba(139, 92, 246, 0.15)',
+      color: '#8b5cf6',
+      padding: '0.5rem 1rem',
+      borderRadius: '8px',
+      fontSize: '0.85rem',
+      fontWeight: '500',
+      border: '1px solid rgba(139, 92, 246, 0.3)'
+    },
+    resultsCount: {
+      opacity: '0.5',
+      fontSize: '1rem',
+      marginBottom: '3rem'
+    }
+  };
+
+  return (
+    <div style={styles.container}>
+      {/* Hero Section */}
+      <section style={styles.heroSection}>
+        <div style={styles.heroContent}>
+          <div style={styles.heroLeft}>
+            <h1 style={styles.heroTitle}>
+              Prompt
+              <span style={styles.heroTitleAccent}>Library</span>
+            </h1>
+            <p style={styles.heroSubtitle}>
+              Research-grade prompts engineered for academic excellence. Elevate your writing, 
+              analysis, and research with frameworks designed by scholars for scholars.
+            </p>
+            
+            <div style={styles.heroStats}>
+              <div style={styles.statItem}>
+                <span style={styles.statNumber}>68</span>
+                <span style={styles.statLabel}>Expert Prompts</span>
+              </div>
+              <div style={styles.statItem}>
+                <span style={styles.statNumber}>6</span>
+                <span style={styles.statLabel}>Categories</span>
+              </div>
+              <div style={styles.statItem}>
+                <span style={styles.statNumber}>∞</span>
+                <span style={styles.statLabel}>Possibilities</span>
+              </div>
+            </div>
+
+            <div style={styles.heroCta}>
+              <button 
+                style={styles.ctaButton}
+                onClick={() => document.querySelector('#controls').scrollIntoView({ behavior: 'smooth' })}
+                onMouseEnter={(e) => e.target.style.backgroundColor = '#7c3aed'}
+                onMouseLeave={(e) => e.target.style.backgroundColor = '#8b5cf6'}
+              >
+                Explore Prompts
+              </button>
+              <a 
+                href="#about" 
+                style={styles.ctaSecondary}
+                onMouseEnter={(e) => {
+                  e.target.style.color = 'white';
+                  e.target.style.borderBottomColor = 'white';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.color = 'rgba(255, 255, 255, 0.7)';
+                  e.target.style.borderBottomColor = 'rgba(255, 255, 255, 0.3)';
+                }}
+              >
+                Learn More
+              </a>
+            </div>
+          </div>
+
+          <div style={styles.heroRight}>
+            <div style={styles.featureCard}>
+              <h3 style={styles.featureTitle}>Research Excellence</h3>
+              <p style={styles.featureDescription}>
+                Methodologically sound frameworks for literature reviews, source analysis, and academic inquiry.
+              </p>
+            </div>
+            <div style={styles.featureCard}>
+              <h3 style={styles.featureTitle}>Literary Sophistication</h3>
+              <p style={styles.featureDescription}>
+                Advanced analytical tools for narrative structure, character development, and thematic exploration.
+              </p>
+            </div>
+            <div style={styles.featureCard}>
+              <h3 style={styles.featureTitle}>Professional Impact</h3>
+              <p style={styles.featureDescription}>
+                Executive-level communication strategies and publication-ready writing frameworks.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div style={styles.scrollIndicator}>
+          <span>Scroll to explore</span>
+          <div style={styles.scrollLine}></div>
+        </div>
+      </section>
+
+      {/* Controls Section */}
+      <section id="controls" style={styles.controlsSection}>
+        <h2 style={styles.sectionTitle}>Discover Prompts</h2>
+        <p style={styles.sectionSubtitle}>
+          Search by keyword or browse by category to find the perfect prompt for your research needs.
+        </p>
+
+        <div style={styles.searchContainer}>
+          <input
+            type="text"
+            placeholder="Search prompts by title, description, or content..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            style={styles.searchInput}
+            onFocus={(e) => {
+              e.target.style.borderColor = 'rgba(139, 92, 246, 0.4)';
+              e.target.style.backgroundColor = 'rgba(22, 22, 31, 1)';
+            }}
+            onBlur={(e) => {
+              e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+              e.target.style.backgroundColor = 'rgba(22, 22, 31, 0.8)';
+            }}
+          />
+        </div>
+
+        <div style={styles.categoryGrid}>
+          {promptCategories.map(category => (
+            <button
+              key={category.id}
+              onClick={() => setSelectedCategory(category.id)}
+              style={{
+                ...styles.categoryButton,
+                ...(selectedCategory === category.id ? styles.categoryButtonActive : {})
+              }}
+              onMouseEnter={(e) => {
+                if (selectedCategory !== category.id) {
+                  e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                  e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (selectedCategory !== category.id) {
+                  e.target.style.backgroundColor = 'rgba(22, 22, 31, 0.6)';
+                  e.target.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                }
+              }}
+            >
+              <div style={styles.categoryName}>{category.name}</div>
+              <div style={styles.categoryCount}>
+                {category.id === 'all' ? allPrompts.length : category.count} prompts
+              </div>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* Prompts Container */}
+      <main style={styles.promptsContainer}>
+        <div style={styles.resultsCount}>
+          {filteredPrompts.length} prompt{filteredPrompts.length !== 1 ? 's' : ''} found
+        </div>
+
+        <div style={styles.promptsGrid}>
+          {filteredPrompts.map(prompt => (
+            <div
+              key={prompt.id}
+              style={styles.promptCard}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.backgroundColor = 'rgba(22, 22, 31, 1)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.backgroundColor = 'rgba(22, 22, 31, 0.8)';
+              }}
+            >
+              <div style={styles.promptHeader}>
+                <h3 style={styles.promptTitle}>{prompt.title}</h3>
+                <p style={styles.promptDescription}>{prompt.description}</p>
+              </div>
+
+              <div style={styles.promptContent}>
+                {prompt.prompt}
+              </div>
+
+              <div style={styles.promptActions}>
+                <button
+                  onClick={() => handleCopyPrompt(prompt.prompt, prompt.id)}
+                  style={{
+                    ...styles.copyButton,
+                    ...(copiedPrompt === prompt.id ? styles.copyButtonCopied : {})
+                  }}
+                  onMouseEnter={(e) => {
+                    if (copiedPrompt !== prompt.id) {
+                      e.target.style.backgroundColor = '#7c3aed';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (copiedPrompt !== prompt.id) {
+                      e.target.style.backgroundColor = '#8b5cf6';
+                    }
+                  }}
+                >
+                  {copiedPrompt === prompt.id ? 'Copied!' : 'Copy Prompt'}
+                </button>
+
+                {prompt.isPro && (
+                  <span style={styles.proLabel}>Pro</span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {filteredPrompts.length === 0 && (
+          <div style={{
+            textAlign: 'center',
+            padding: '6rem 2rem',
+            opacity: '0.5'
+          }}>
+            <p style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>No prompts found</p>
+            <p>Try adjusting your search terms or category selection</p>
+          </div>
+        )}
+      </main>
+
+      <style>
+        {`
+          @keyframes fadeInOut {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+          }
+          
+          @media (max-width: 768px) {
+            .hero-content {
+              grid-template-columns: 1fr !important;
+              text-align: center !important;
+            }
+            .hero-right {
+              display: none !important;
+            }
+            .prompts-grid {
+              grid-template-columns: 1fr !important;
+            }
+          }
+        `}
+      </style>
+    </div>
+  );
+};
+
+export default PromptLibrary;
