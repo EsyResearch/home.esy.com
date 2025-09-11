@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import { StructuredLearningPaths, EssentialResources } from '@/components/School';
 
 const EsySchool = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -392,125 +393,8 @@ const EsySchool = () => {
       display: 'flex',
       gap: '0.5rem'
     },
-    featuredSection: {
-      backgroundColor: '#16161f',
-      padding: '5rem 0',
-      marginTop: '6rem'
-    },
-    featuredInner: {
-      maxWidth: '1400px',
-      margin: '0 auto',
-      padding: '0 3rem'
-    },
-    featuredHeader: {
-      textAlign: 'center',
-      marginBottom: '4rem'
-    },
-    featuredTitle: {
-      fontSize: '3rem',
-      fontWeight: '200',
-      marginBottom: '1rem',
-      letterSpacing: '-0.02em',
-      fontFamily: 'var(--font-literata)'
-    },
-    featuredSubtitle: {
-      fontSize: '1.125rem',
-      color: 'rgba(255, 255, 255, 0.6)',
-      maxWidth: '600px',
-      margin: '0 auto',
-      lineHeight: '1.7'
-    },
-    featuredGrid: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(3, 1fr)',
-      gap: '2rem'
-    },
-    featuredCard: {
-      textAlign: 'center',
-      padding: '3rem 2rem',
-      backgroundColor: 'rgba(139, 92, 246, 0.05)',
-      borderRadius: '12px',
-      border: '1px solid rgba(139, 92, 246, 0.1)',
-      transition: 'all 0.3s ease',
-      cursor: 'pointer'
-    },
-    featuredIcon: {
-      fontSize: '3rem',
-      marginBottom: '1.5rem'
-    },
-    featuredCardTitle: {
-      fontSize: '1.5rem',
-      fontWeight: '400',
-      marginBottom: '0.75rem'
-    },
-    featuredCardDescription: {
-      color: 'rgba(255, 255, 255, 0.6)',
-      fontSize: '0.9375rem',
-      lineHeight: '1.6'
-    },
-    coursesSection: {
-      padding: '5rem 3rem',
-      maxWidth: '1400px',
-      margin: '0 auto'
-    },
-    sectionHeader: {
-      marginBottom: '3rem'
-    },
-    sectionTitle: {
-      fontSize: '2.5rem',
-      fontWeight: '200',
-      marginBottom: '1rem',
-      letterSpacing: '-0.02em',
-      fontFamily: 'var(--font-literata)'
-    },
-    sectionSubtitle: {
-      fontSize: '1.125rem',
-      color: 'rgba(255, 255, 255, 0.6)',
-      maxWidth: '600px',
-      lineHeight: '1.7'
-    },
-    coursesGrid: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-      gap: '1.5rem'
-    },
-    courseCard: {
-      backgroundColor: 'rgba(139, 92, 246, 0.03)',
-      border: '1px solid rgba(139, 92, 246, 0.1)',
-      borderRadius: '12px',
-      padding: '2rem',
-      transition: 'all 0.3s ease',
-      cursor: 'pointer'
-    },
-    courseHeader: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'flex-start',
-      marginBottom: '1rem'
-    },
-    courseTitle: {
-      fontSize: '1.25rem',
-      fontWeight: '400',
-      letterSpacing: '-0.01em',
-      flex: 1
-    },
-    courseDuration: {
-      fontSize: '0.875rem',
-      color: '#8b5cf6',
-      fontWeight: '500'
-    },
-    courseDescription: {
-      color: 'rgba(255, 255, 255, 0.6)',
-      fontSize: '0.9375rem',
-      lineHeight: '1.6',
-      marginBottom: '1.5rem'
-    },
-    courseMeta: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      fontSize: '0.875rem',
-      color: 'rgba(255, 255, 255, 0.4)'
-    },
+
+
     newsletter: {
       maxWidth: '800px',
       margin: '8rem auto',
@@ -864,78 +748,11 @@ const EsySchool = () => {
         </div>
       </section>
 
-      {/* Featured Resources */}
-      <section id="resources" style={styles.featuredSection}>
-        <div style={styles.featuredInner}>
-          <div style={styles.featuredHeader}>
-            <h2 style={styles.featuredTitle}>Essential Resources</h2>
-            <p style={styles.featuredSubtitle}>
-              Practical tools and materials to accelerate your academic writing journey
-            </p>
-          </div>
+      {/* Essential Resources */}
+      <EssentialResources featuredResources={featuredResources} />
 
-          <div style={styles.featuredGrid}>
-            {featuredResources.map((resource, index) => (
-              <div
-                key={index}
-                style={styles.featuredCard}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'rgba(139, 92, 246, 0.08)';
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'rgba(139, 92, 246, 0.05)';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
-              >
-                <div style={styles.featuredIcon}>{resource.icon}</div>
-                <h3 style={styles.featuredCardTitle}>{resource.title}</h3>
-                <p style={styles.featuredCardDescription}>{resource.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Courses Section */}
-      <section id="courses" style={styles.coursesSection}>
-        <div style={styles.sectionHeader}>
-          <h2 style={styles.sectionTitle}>Structured Learning Paths</h2>
-          <p style={styles.sectionSubtitle}>
-            Deep-dive courses for those ready to master AI-powered academic writing
-          </p>
-        </div>
-
-        <div style={styles.coursesGrid}>
-          {courses.map((course, index) => (
-            <div
-              key={index}
-              style={styles.courseCard}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(139, 92, 246, 0.05)';
-                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.2)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(139, 92, 246, 0.03)';
-                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.1)';
-              }}
-            >
-              <div style={styles.courseHeader}>
-                <h3 style={styles.courseTitle}>{course.title}</h3>
-                <span style={styles.courseDuration}>{course.duration}</span>
-              </div>
-              <p style={styles.courseDescription}>
-                Comprehensive curriculum covering all aspects of {course.title.toLowerCase()}, 
-                with practical exercises and expert feedback.
-              </p>
-              <div style={styles.courseMeta}>
-                <span>{course.level}</span>
-                <span>{course.students}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* Structured Learning Paths */}
+      {/* <StructuredLearningPaths courses={courses} /> */}
 
       {/* Newsletter */}
       <section 
