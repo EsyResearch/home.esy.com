@@ -72,7 +72,7 @@ const EssentialResources: React.FC<EssentialResourcesProps> = ({ featuredResourc
       fontSize: '0.9375rem',
       lineHeight: '1.6'
     }
-  };
+  } as const;
 
   return (
     <section id="resources" style={styles.featuredSection}>

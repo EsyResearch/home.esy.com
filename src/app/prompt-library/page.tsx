@@ -504,24 +504,24 @@ Create a proposal that demonstrates both vision and practical execution capabili
       fontFamily: 'var(--font-inter)'
     },
     heroSection: {
-      position: 'relative',
+      position: 'relative' as const,
       maxWidth: '1400px',
       margin: '0 auto',
       padding: '8rem 2rem 0 2rem',
       minHeight: '85vh',
-      display: 'flex',
-      alignItems: 'center'
+      display: 'flex' as const,
+      alignItems: 'center' as const
     },
     heroContent: {
-      display: 'grid',
+      display: 'grid' as const,
       gridTemplateColumns: '2fr 1fr',
       gap: '8rem',
-      alignItems: 'center',
+      alignItems: 'center' as const,
       width: '100%',
       '@media (max-width: 1024px)': {
         gridTemplateColumns: '1fr',
         gap: '4rem',
-        textAlign: 'center'
+        textAlign: 'center' as const
       }
     },
     heroLeft: {
@@ -537,7 +537,7 @@ Create a proposal that demonstrates both vision and practical execution capabili
       letterSpacing: '-0.02em'
     },
     heroTitleAccent: {
-      display: 'block',
+      display: 'block' as const,
       fontSize: 'clamp(2.5rem, 6vw, 5rem)',
       opacity: '0.7',
       fontWeight: '400',
@@ -552,18 +552,18 @@ Create a proposal that demonstrates both vision and practical execution capabili
       maxWidth: '600px'
     },
     heroStats: {
-      display: 'flex',
+      display: 'flex' as const,
       gap: '4rem',
       marginBottom: '4rem',
       '@media (max-width: 768px)': {
         gap: '2rem',
-        justifyContent: 'center'
+        justifyContent: 'center' as const
       }
     },
     statItem: {
-      textAlign: 'left',
+      textAlign: 'left' as const,
       '@media (max-width: 1024px)': {
-        textAlign: 'center'
+        textAlign: 'center' as const
       }
     },
     statNumber: {
@@ -571,7 +571,7 @@ Create a proposal that demonstrates both vision and practical execution capabili
       fontSize: '2.5rem',
       fontWeight: '300',
       opacity: '1',
-      display: 'block',
+      display: 'block' as const,
       lineHeight: '1'
     },
     statLabel: {
@@ -582,11 +582,11 @@ Create a proposal that demonstrates both vision and practical execution capabili
       marginTop: '0.5rem'
     },
     heroCta: {
-      display: 'flex',
+      display: 'flex' as const,
       gap: '1.5rem',
-      alignItems: 'center',
+      alignItems: 'center' as const,
       '@media (max-width: 768px)': {
-        justifyContent: 'center'
+        justifyContent: 'center' as const
       }
     },
     ctaButton: {
@@ -601,7 +601,7 @@ Create a proposal that demonstrates both vision and practical execution capabili
       transition: 'all 0.2s ease',
       fontFamily: 'var(--font-inter)',
       textDecoration: 'none',
-      display: 'inline-block'
+      display: 'inline-block' as const
     },
     ctaSecondary: {
       color: 'rgba(255, 255, 255, 0.7)',
@@ -612,12 +612,12 @@ Create a proposal that demonstrates both vision and practical execution capabili
       transition: 'all 0.2s ease'
     },
     heroRight: {
-      position: 'relative',
-      display: 'flex',
-      flexDirection: 'column',
+      position: 'relative' as const,
+      display: 'flex' as const,
+      flexDirection: 'column' as const,
       gap: '1.5rem',
       '@media (max-width: 1024px)': {
-        display: 'none'
+        display: 'none' as const
       }
     },
     featureCard: {
@@ -640,7 +640,7 @@ Create a proposal that demonstrates both vision and practical execution capabili
       lineHeight: '1.6'
     },
     scrollIndicator: {
-      position: 'absolute',
+      position: 'absolute' as const,
       bottom: '2rem',
       left: '50%',
       transform: 'translateX(-50%)',
@@ -648,9 +648,9 @@ Create a proposal that demonstrates both vision and practical execution capabili
       fontSize: '0.8rem',
       textTransform: 'uppercase',
       letterSpacing: '0.1em',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
+      display: 'flex' as const,
+      flexDirection: 'column' as const,
+      alignItems: 'center' as const,
       gap: '1rem'
     },
     scrollLine: {
@@ -680,7 +680,7 @@ Create a proposal that demonstrates both vision and practical execution capabili
     },
     searchContainer: {
       marginBottom: '3rem',
-      position: 'relative'
+      position: 'relative' as const
     },
     searchInput: {
       width: '100%',
@@ -697,7 +697,7 @@ Create a proposal that demonstrates both vision and practical execution capabili
       backdropFilter: 'blur(10px)'
     },
     categoryGrid: {
-      display: 'grid',
+      display: 'grid' as const,
       gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
       gap: '1.5rem',
       marginTop: '3rem'
@@ -711,7 +711,7 @@ Create a proposal that demonstrates both vision and practical execution capabili
       cursor: 'pointer',
       transition: 'all 0.2s ease',
       fontSize: '1rem',
-      textAlign: 'left',
+      textAlign: 'left' as const,
       fontFamily: 'var(--font-inter)',
       backdropFilter: 'blur(10px)'
     },
@@ -735,7 +735,7 @@ Create a proposal that demonstrates both vision and practical execution capabili
       padding: '6rem 2rem'
     },
     promptsGrid: {
-      display: 'grid',
+      display: 'grid' as const,
       gridTemplateColumns: 'repeat(auto-fit, minmax(500px, 1fr))',
       gap: '2.5rem',
       '@media (max-width: 768px)': {
@@ -750,7 +750,7 @@ Create a proposal that demonstrates both vision and practical execution capabili
       transition: 'all 0.2s ease',
       cursor: 'pointer',
       backdropFilter: 'blur(10px)',
-      position: 'relative',
+      position: 'relative' as const,
       overflow: 'hidden'
     },
     promptHeader: {
@@ -784,9 +784,9 @@ Create a proposal that demonstrates both vision and practical execution capabili
       overflowY: 'auto'
     },
     promptActions: {
-      display: 'flex',
+      display: 'flex' as const,
       justifyContent: 'space-between',
-      alignItems: 'center'
+      alignItems: 'center' as const
     },
     copyButton: {
       padding: '1rem 2rem',
@@ -817,7 +817,7 @@ Create a proposal that demonstrates both vision and practical execution capabili
       fontSize: '1rem',
       marginBottom: '3rem'
     }
-  };
+  } as const;
 
   return (
     <div style={styles.container}>
@@ -853,8 +853,8 @@ Create a proposal that demonstrates both vision and practical execution capabili
               <button 
                 style={styles.ctaButton}
                 onClick={() => document.querySelector('#controls').scrollIntoView({ behavior: 'smooth' })}
-                onMouseEnter={(e) => e.target.style.backgroundColor = '#7c3aed'}
-                onMouseLeave={(e) => e.target.style.backgroundColor = '#8b5cf6'}
+                onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#7c3aed'}
+                onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#8b5cf6'}
               >
                 Explore Prompts
               </button>
@@ -862,12 +862,14 @@ Create a proposal that demonstrates both vision and practical execution capabili
                 href="#about" 
                 style={styles.ctaSecondary}
                 onMouseEnter={(e) => {
-                  e.target.style.color = 'white';
-                  e.target.style.borderBottomColor = 'white';
+                  const target = e.target as HTMLAnchorElement;
+                  target.style.color = 'white';
+                  target.style.borderBottomColor = 'white';
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.color = 'rgba(255, 255, 255, 0.7)';
-                  e.target.style.borderBottomColor = 'rgba(255, 255, 255, 0.3)';
+                  const target = e.target as HTMLAnchorElement;
+                  target.style.color = 'rgba(255, 255, 255, 0.7)';
+                  target.style.borderBottomColor = 'rgba(255, 255, 255, 0.3)';
                 }}
               >
                 Learn More
@@ -918,12 +920,14 @@ Create a proposal that demonstrates both vision and practical execution capabili
             onChange={(e) => setSearchTerm(e.target.value)}
             style={styles.searchInput}
             onFocus={(e) => {
-              e.target.style.borderColor = 'rgba(139, 92, 246, 0.4)';
-              e.target.style.backgroundColor = 'rgba(22, 22, 31, 1)';
+              const target = e.target as HTMLInputElement;
+              target.style.borderColor = 'rgba(139, 92, 246, 0.4)';
+              target.style.backgroundColor = 'rgba(22, 22, 31, 1)';
             }}
             onBlur={(e) => {
-              e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-              e.target.style.backgroundColor = 'rgba(22, 22, 31, 0.8)';
+              const target = e.target as HTMLInputElement;
+              target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+              target.style.backgroundColor = 'rgba(22, 22, 31, 0.8)';
             }}
           />
         </div>
@@ -939,14 +943,16 @@ Create a proposal that demonstrates both vision and practical execution capabili
               }}
               onMouseEnter={(e) => {
                 if (selectedCategory !== category.id) {
-                  e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-                  e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                  const target = e.target as HTMLButtonElement;
+                  target.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                  target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
                 }
               }}
               onMouseLeave={(e) => {
                 if (selectedCategory !== category.id) {
-                  e.target.style.backgroundColor = 'rgba(22, 22, 31, 0.6)';
-                  e.target.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                  const target = e.target as HTMLButtonElement;
+                  target.style.backgroundColor = 'rgba(22, 22, 31, 0.6)';
+                  target.style.borderColor = 'rgba(255, 255, 255, 0.08)';
                 }
               }}
             >
@@ -999,12 +1005,14 @@ Create a proposal that demonstrates both vision and practical execution capabili
                   }}
                   onMouseEnter={(e) => {
                     if (copiedPrompt !== prompt.id) {
-                      e.target.style.backgroundColor = '#7c3aed';
+                      const target = e.target as HTMLButtonElement;
+                      target.style.backgroundColor = '#7c3aed';
                     }
                   }}
                   onMouseLeave={(e) => {
                     if (copiedPrompt !== prompt.id) {
-                      e.target.style.backgroundColor = '#8b5cf6';
+                      const target = e.target as HTMLButtonElement;
+                      target.style.backgroundColor = '#8b5cf6';
                     }
                   }}
                 >
@@ -1021,7 +1029,7 @@ Create a proposal that demonstrates both vision and practical execution capabili
 
         {filteredPrompts.length === 0 && (
           <div style={{
-            textAlign: 'center',
+            textAlign: 'center' as const,
             padding: '6rem 2rem',
             opacity: '0.5'
           }}>
