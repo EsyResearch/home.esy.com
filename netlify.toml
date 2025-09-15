@@ -6,4 +6,13 @@
   NODE_VERSION = "18"
 
 [[plugins]]
-  package = "@netlify/plugin-nextjs" 
+  package = "@netlify/plugin-nextjs"
+
+# Proxy /guide section to a separate Netlify site
+# This allows the guide to be maintained and deployed independently
+# while appearing as part of the main esy.com domain
+[[redirects]]
+  from = "/guide/*"  # Capture all paths under /guide/
+  to = "https://esy-guide.netlify.app/:splat"  # Proxy to guide subdomain, preserving path
+  status = 200  # Rewrite (proxy) rather than redirect - URL stays as esy.com/guide/*
+  force = true  # Override any existing content at these paths 
