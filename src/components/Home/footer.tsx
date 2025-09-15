@@ -17,7 +17,7 @@ export default function Footer () {
               <Logo suffix={logoSuffix} href="" showText={false} />
             </div>
             <p className="footer-desc">
-            Write your next paper with Esy, LLC, an AI assistant that learns your writing style to create original, authentic essays.
+            Write your next paper with Esy, an AI assistant that learns your writing style to create original, authentic essays.
             </p>
             <div className="footer-socials">
               <a href="https://www.x.com/@esyResearch" target="_blank" className="social-link">

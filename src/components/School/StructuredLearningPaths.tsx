@@ -125,3 +125,4 @@ const StructuredLearningPaths: React.FC<StructuredLearningPathsProps> = ({ cours
 export default StructuredLearningPaths;
 
 
+
