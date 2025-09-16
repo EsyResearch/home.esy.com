@@ -58,6 +58,7 @@ export default function Footer () {
               { href: "/school", text: "School" },
               { href: "/glossary", text: "Glossary" },
               { href: "/how-to-write", text: "How to Write" },
+              { href: "/guide", text: "How to Write an Essay" },
               // { href: "/guides", text: "Guides" },
               // { href: "/templates", text: "Templates" },
               // { href: "/api", text: "API Docs" }
