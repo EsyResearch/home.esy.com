@@ -130,11 +130,11 @@ const NewHomepage = () => {
     }}>
       {/* Hero Section - Enhanced Mobile Responsive */}
       <section style={{ 
-        minHeight: '100vh',
+        minHeight: isMobile ? 'auto' : '100vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: isSmallMobile ? '8rem 1rem 3rem' : isMobile ? '9rem 1.5rem 4rem' : isTablet ? '9rem 2rem 4rem' : '9rem 2rem',
+        padding: isSmallMobile ? '8rem 1rem 2rem' : isMobile ? '9rem 1.5rem 3rem' : isTablet ? '9rem 2rem 4rem' : '9rem 2rem',
         position: 'relative'
       }}>
         <div style={{ 
@@ -144,16 +144,16 @@ const NewHomepage = () => {
           zIndex: 1 
         }}>
           {/* Hero Content */}
-          <div style={{ textAlign: 'center', marginBottom: isMobile ? '2.5rem' : '3rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: isMobile ? '2rem' : '3rem' }}>
 
             {/* Main Headline - Enhanced Mobile Typography */}
             <h1 style={{
-              fontSize: isTinyMobile ? '1.75rem' : isSmallMobile ? '2rem' : isMobile ? '2.5rem' : isTablet ? '3.5rem' : '5rem',
+              fontSize: isTinyMobile ? '1.5rem' : isSmallMobile ? '1.75rem' : isMobile ? '2rem' : isTablet ? '3.5rem' : '5rem',
               fontWeight: 300,
-              lineHeight: 1.3,
-              letterSpacing: '0.01em',
-              marginBottom: isMobile ? '1.5rem' : '2rem',
-              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
+              lineHeight: 1.2,
+              letterSpacing: '-0.01em',
+              marginBottom: isMobile ? '1.25rem' : '2rem',
+              padding: isTinyMobile ? '0 0.5rem' : isSmallMobile ? '0 0.75rem' : '0',
               fontFamily: 'var(--font-literata)'
             }}>
               <span style={{ fontWeight: 300 }}>Your Personal</span>
@@ -163,12 +163,12 @@ const NewHomepage = () => {
 
             {/* Subheadline - Improved Mobile Readability */}
             <p style={{
-              fontSize: isTinyMobile ? '0.938rem' : isSmallMobile ? '1rem' : isMobile ? '1.125rem' : isTablet ? '1.25rem' : '1.5rem',
-              lineHeight: 1.6,
+              fontSize: isTinyMobile ? '0.875rem' : isSmallMobile ? '0.938rem' : isMobile ? '1rem' : isTablet ? '1.25rem' : '1.5rem',
+              lineHeight: 1.5,
               color: currentTheme.muted,
-              maxWidth: '720px',
+              maxWidth: '600px',
               margin: '0 auto',
-              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
+              padding: isTinyMobile ? '0 1rem' : isSmallMobile ? '0 1.5rem' : isMobile ? '0 2rem' : '0',
               fontFamily: 'var(--font-inter)'
             }}>
               Write A+ essays faster. Esy helps you research deeply, argue clearly, and cite with precision — APA, MLA, or any style.
@@ -179,19 +179,20 @@ const NewHomepage = () => {
           <div style={{
             maxWidth: isMobile ? '100%' : '720px',
             margin: '0 auto',
-            marginBottom: isMobile ? '2.5rem' : '3rem',
-            padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
+            marginBottom: isMobile ? '2rem' : '3rem',
+            padding: isTinyMobile ? '0 0.5rem' : isSmallMobile ? '0 0.75rem' : '0'
           }}>
             <div style={{
               display: 'flex',
-              flexDirection: isMobile ? 'column' : 'row',
+              flexDirection: 'column',
               alignItems: 'stretch',
-              background: searchFocused ? currentTheme.elevated : 'transparent',
-              border: `2px solid ${searchFocused ? currentTheme.accent : currentTheme.border}`,
-              borderRadius: '12px',
-              padding: isMobile ? '0.75rem' : '0.5rem',
+              background: isMobile ? currentTheme.elevated : searchFocused ? currentTheme.elevated : 'transparent',
+              border: `1px solid ${searchFocused ? currentTheme.accent : currentTheme.border}`,
+              borderRadius: isMobile ? '12px' : '12px',
+              padding: isMobile ? '0.375rem' : '0.5rem',
               transition: 'all 0.2s',
-              gap: isMobile ? '0.75rem' : '0'
+              gap: isMobile ? '0.375rem' : '0',
+              boxShadow: isMobile ? '0 2px 12px rgba(0,0,0,0.08)' : 'none'
             }}>
               <div style={{
                 flex: 1,
@@ -213,35 +214,37 @@ const NewHomepage = () => {
                   onBlur={() => setSearchFocused(false)}
                   style={{
                     flex: 1,
-                    padding: isMobile ? '1.25rem 0.75rem' : '1rem',
+                    padding: isMobile ? '0.75rem 0.5rem' : '1rem',
                     background: 'transparent',
                     border: 'none',
                     color: currentTheme.text,
-                    fontSize: isSmallMobile ? '1rem' : isMobile ? '1rem' : '1.063rem',
+                    fontSize: isSmallMobile ? '0.875rem' : isMobile ? '0.938rem' : '1.063rem',
                     outline: 'none',
                     width: '100%',
-                    minHeight: isMobile ? '48px' : 'auto'
+                    minHeight: isMobile ? '40px' : 'auto',
+                    fontFamily: 'var(--font-inter)'
                   }}
                 />
               </div>
               <button 
                 onClick={handleStartWriting}
                 style={{
-                  padding: isSmallMobile ? '1rem' : isMobile ? '1rem 1.5rem' : '0.75rem 1.5rem',
-                  background: searchFocused || searchQuery ? currentTheme.accent : 'transparent',
-                  border: 'none',
-                  borderRadius: '8px',
-                  color: searchFocused || searchQuery ? 'white' : currentTheme.subtle,
-                  fontSize: isSmallMobile ? '1rem' : isMobile ? '1rem' : '0.938rem',
-                  fontWeight: 500,
+                  padding: isSmallMobile ? '0.75rem 1.25rem' : isMobile ? '0.875rem 1.5rem' : '0.75rem 1.5rem',
+                  background: isMobile ? 'rgba(255, 255, 255, 0.1)' : currentTheme.accent,
+                  border: isMobile ? `1px solid ${currentTheme.border}` : 'none',
+                  borderRadius: isMobile ? '10px' : '8px',
+                  color: isMobile ? currentTheme.text : 'white',
+                  fontSize: isSmallMobile ? '0.875rem' : isMobile ? '0.938rem' : '0.938rem',
+                  fontWeight: isMobile ? 500 : 600,
                   cursor: 'pointer',
                   transition: 'all 0.2s',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: '0.5rem',
-                  minHeight: isMobile ? '48px' : 'auto',
-                  minWidth: isMobile ? '120px' : 'auto'
+                  minHeight: isMobile ? '40px' : 'auto',
+                  width: isMobile ? '100%' : 'auto',
+                  fontFamily: 'var(--font-inter)'
                 }}
               >
                 <Sparkles size={isMobile ? 18 : 16} />
@@ -296,53 +299,54 @@ const NewHomepage = () => {
           {/* Trust Indicators - Enhanced Mobile Grid */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: isTinyMobile ? '1fr' : isSmallMobile ? 'repeat(2, 1fr)' : isMobile ? 'repeat(2, 1fr)' : isTablet ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)',
-            gap: isTinyMobile ? '1rem' : isSmallMobile ? '1.5rem' : isMobile ? '1rem' : '2rem',
-            fontSize: isTinyMobile ? '0.813rem' : isSmallMobile ? '0.875rem' : '0.813rem',
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)',
+            gap: isMobile ? '1.75rem' : '2rem',
+            fontSize: isTinyMobile ? '0.75rem' : isSmallMobile ? '0.813rem' : '0.875rem',
             color: currentTheme.subtle,
-            maxWidth: '800px',
+            maxWidth: isMobile ? '300px' : '800px',
             margin: '0 auto',
-            padding: isTinyMobile ? '0 0.5rem' : isSmallMobile ? '0 1rem' : '0'
+            marginTop: isMobile ? '1.5rem' : '0',
+            padding: isTinyMobile ? '0 0.5rem' : isSmallMobile ? '0 0.75rem' : '0'
           }}>
             <div style={{ 
               display: 'flex', 
               alignItems: 'center', 
-              gap: '0.5rem',
+              gap: '0.375rem',
               justifyContent: isMobile ? 'center' : 'flex-start',
-              textAlign: isSmallMobile ? 'center' : 'left'
+              order: isMobile ? 1 : 0
             }}>
-              <CheckCircle size={isMobile ? 18 : 16} style={{ color: currentTheme.accent }} />
-              <span style={{ lineHeight: 1.3 }}>No credit card required</span>
+              <Zap size={isSmallMobile ? 14 : 16} style={{ flexShrink: 0 }} />
+              <span style={{ lineHeight: 1.4 }}>Start in seconds</span>
             </div>
             <div style={{ 
               display: 'flex', 
               alignItems: 'center', 
-              gap: '0.5rem',
+              gap: '0.375rem',
               justifyContent: isMobile ? 'center' : 'flex-start',
-              textAlign: isSmallMobile ? 'center' : 'left'
+              order: isMobile ? 2 : 0
             }}>
-              <Zap size={isMobile ? 18 : 16} />
-              <span style={{ lineHeight: 1.3 }}>Start in seconds</span>
+              <Globe size={isSmallMobile ? 14 : 16} style={{ flexShrink: 0 }} />
+              <span style={{ lineHeight: 1.4 }}>4 AI models included</span>
             </div>
             <div style={{ 
               display: 'flex', 
               alignItems: 'center', 
-              gap: '0.5rem',
+              gap: '0.375rem',
               justifyContent: isMobile ? 'center' : 'flex-start',
-              textAlign: isSmallMobile ? 'center' : 'left'
+              order: isMobile ? 3 : 0
             }}>
-              <Globe size={isMobile ? 18 : 16} />
-              <span style={{ lineHeight: 1.3 }}>4 AI models included</span>
+              <Shield size={isSmallMobile ? 14 : 16} style={{ flexShrink: 0 }} />
+              <span style={{ lineHeight: 1.4 }}>Your data stays private</span>
             </div>
             <div style={{ 
               display: 'flex', 
               alignItems: 'center', 
-              gap: '0.5rem',
+              gap: '0.375rem',
               justifyContent: isMobile ? 'center' : 'flex-start',
-              textAlign: isSmallMobile ? 'center' : 'left'
+              order: isMobile ? 4 : 0
             }}>
-              <Shield size={isMobile ? 18 : 16} />
-              <span style={{ lineHeight: 1.3 }}>Your data stays private</span>
+              <CheckCircle size={isSmallMobile ? 14 : 16} style={{ color: currentTheme.accent, flexShrink: 0 }} />
+              <span style={{ lineHeight: 1.4 }}>No credit card required</span>
             </div>
           </div>
         </div>
