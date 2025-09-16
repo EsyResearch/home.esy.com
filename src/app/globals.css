@@ -1193,11 +1193,24 @@ html {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+  
+  .footer-brand {
+    text-align: center;
+    align-items: center;
+  }
+  
+  .footer-desc {
+    text-align: center;
+  }
+  
+  .footer-column {
+    text-align: center;
+  }
 }
 
 @media (max-width: 768px) {
   .nav-links {
-    display: none;
+    display: flex;
   }
   
   .hero-title {
@@ -1218,5 +1231,13 @@ html {
   
   .process-steps {
     grid-template-columns: 1fr;
+  }
+  
+  .footer {
+    padding: 2rem 1rem;
+  }
+  
+  .footer-content {
+    gap: 1.5rem;
   }
 }
