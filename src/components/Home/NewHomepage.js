@@ -184,11 +184,11 @@ const NewHomepage = () => {
           }}>
             <div style={{
               display: 'flex',
-              flexDirection: 'column',
+              flexDirection: isMobile ? 'column' : 'row',
               alignItems: 'stretch',
               background: isMobile ? currentTheme.elevated : searchFocused ? currentTheme.elevated : 'transparent',
-              border: `1px solid ${searchFocused ? currentTheme.accent : currentTheme.border}`,
-              borderRadius: isMobile ? '12px' : '12px',
+              border: `${isMobile ? 1 : 2}px solid ${searchFocused ? currentTheme.accent : currentTheme.border}`,
+              borderRadius: '12px',
               padding: isMobile ? '0.375rem' : '0.5rem',
               transition: 'all 0.2s',
               gap: isMobile ? '0.375rem' : '0',
@@ -222,7 +222,8 @@ const NewHomepage = () => {
                     outline: 'none',
                     width: '100%',
                     minHeight: isMobile ? '40px' : 'auto',
-                    fontFamily: 'var(--font-inter)'
+                    fontFamily: 'var(--font-inter)',
+                    textAlign: isMobile ? 'center' : 'left'
                   }}
                 />
               </div>
