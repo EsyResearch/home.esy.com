@@ -71,6 +71,7 @@ export default function Footer () {
               { href: "/ai-essay-writer", text: "AI Essay Writer" },
               { href: "/agentic-workflows", text: "Agentic Workflows" },
               { href: "/extended-school-year", text: "Extended School Year" },
+              { href: "/prompt-library", text: "Prompt Library" },
             ]}
           />
           
