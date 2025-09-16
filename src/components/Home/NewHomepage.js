@@ -144,7 +144,7 @@ const NewHomepage = () => {
           zIndex: 1 
         }}>
           {/* Hero Content */}
-          <div style={{ textAlign: 'center', marginBottom: isMobile ? '2rem' : '3rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: isMobile ? '1.5rem' : '3rem' }}>
 
             {/* Main Headline - Enhanced Mobile Typography */}
             <h1 style={{
@@ -152,7 +152,7 @@ const NewHomepage = () => {
               fontWeight: 300,
               lineHeight: 1.2,
               letterSpacing: '-0.01em',
-              marginBottom: isMobile ? '1.25rem' : '2rem',
+              marginBottom: isMobile ? '0.875rem' : '2rem',
               padding: isTinyMobile ? '0 0.5rem' : isSmallMobile ? '0 0.75rem' : '0',
               fontFamily: 'var(--font-literata)'
             }}>
@@ -171,7 +171,7 @@ const NewHomepage = () => {
               padding: isTinyMobile ? '0 1rem' : isSmallMobile ? '0 1.5rem' : isMobile ? '0 2rem' : '0',
               fontFamily: 'var(--font-inter)'
             }}>
-              Write A+ essays faster. Esy helps you research deeply, argue clearly, and cite with precision — APA, MLA, or any style.
+              {isMobile ? 'Research, write, and cite better papers in any style' : 'Write A+ essays faster. Esy helps you research deeply, argue clearly, and cite with precision — APA, MLA, or any style.'}
             </p>
           </div>
 
@@ -179,31 +179,32 @@ const NewHomepage = () => {
           <div style={{
             maxWidth: isMobile ? '100%' : '720px',
             margin: '0 auto',
-            marginBottom: isMobile ? '2rem' : '3rem',
+            marginBottom: isMobile ? '1.5rem' : '3rem',
             padding: isTinyMobile ? '0 0.5rem' : isSmallMobile ? '0 0.75rem' : '0'
           }}>
             <div style={{
               display: 'flex',
-              flexDirection: isMobile ? 'column' : 'row',
+              flexDirection: 'row',
               alignItems: 'stretch',
-              background: isMobile ? currentTheme.elevated : searchFocused ? currentTheme.elevated : 'transparent',
-              border: `${isMobile ? 1 : 2}px solid ${searchFocused ? currentTheme.accent : currentTheme.border}`,
+              background: searchFocused ? currentTheme.elevated : 'transparent',
+              border: `${isMobile ? 1 : 2}px solid ${searchFocused ? currentTheme.accent : isMobile ? 'rgba(255,255,255,0.05)' : currentTheme.border}`,
               borderRadius: '12px',
-              padding: isMobile ? '0.375rem' : '0.5rem',
+              padding: '0.5rem',
               transition: 'all 0.2s',
-              gap: isMobile ? '0.375rem' : '0',
-              boxShadow: isMobile ? '0 2px 12px rgba(0,0,0,0.08)' : 'none'
+              gap: '0'
             }}>
               <div style={{
                 flex: 1,
                 display: 'flex',
                 alignItems: 'center'
               }}>
-                <Search size={isMobile ? 18 : 20} style={{ 
-                  marginLeft: isMobile ? '0.75rem' : '1rem', 
-                  color: searchFocused ? currentTheme.accent : currentTheme.subtle,
-                  transition: 'color 0.2s'
-                }} />
+                {!isMobile && (
+                  <Search size={20} style={{ 
+                    marginLeft: '1rem', 
+                    color: searchFocused ? currentTheme.accent : currentTheme.subtle,
+                    transition: 'color 0.2s'
+                  }} />
+                )}
                 <input
                   ref={searchRef}
                   type="text"
@@ -214,7 +215,7 @@ const NewHomepage = () => {
                   onBlur={() => setSearchFocused(false)}
                   style={{
                     flex: 1,
-                    padding: isMobile ? '0.75rem 0.5rem' : '1rem',
+                    padding: isMobile ? '0.75rem 1rem' : '1rem',
                     background: 'transparent',
                     border: 'none',
                     color: currentTheme.text,
@@ -223,128 +224,124 @@ const NewHomepage = () => {
                     width: '100%',
                     minHeight: isMobile ? '40px' : 'auto',
                     fontFamily: 'var(--font-inter)',
-                    textAlign: isMobile ? 'center' : 'left'
+                    textAlign: 'left'
                   }}
                 />
               </div>
               <button 
                 onClick={handleStartWriting}
                 style={{
-                  padding: isSmallMobile ? '0.75rem 1.25rem' : isMobile ? '0.875rem 1.5rem' : '0.75rem 1.5rem',
-                  background: isMobile ? 'rgba(255, 255, 255, 0.1)' : currentTheme.accent,
-                  border: isMobile ? `1px solid ${currentTheme.border}` : 'none',
-                  borderRadius: isMobile ? '10px' : '8px',
-                  color: isMobile ? currentTheme.text : 'white',
-                  fontSize: isSmallMobile ? '0.875rem' : isMobile ? '0.938rem' : '0.938rem',
-                  fontWeight: isMobile ? 500 : 600,
+                  padding: isMobile ? '0.75rem' : '0.75rem 1.5rem',
+                  background: searchFocused || searchQuery ? currentTheme.accent : 'transparent',
+                  border: 'none',
+                  borderRadius: '8px',
+                  color: searchFocused || searchQuery ? 'white' : currentTheme.subtle,
+                  fontSize: '0.938rem',
+                  fontWeight: 500,
                   cursor: 'pointer',
                   transition: 'all 0.2s',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: '0.5rem',
-                  minHeight: isMobile ? '40px' : 'auto',
-                  width: isMobile ? '100%' : 'auto',
                   fontFamily: 'var(--font-inter)'
                 }}
               >
                 <Sparkles size={isMobile ? 18 : 16} />
-                Get started
+                {!isMobile && 'Get started'}
               </button>
             </div>
 
             {/* Quick actions - Enhanced Mobile Touch Targets */}
-            <div style={{
-              display: 'flex',
-              gap: isTinyMobile ? '0.5rem' : isMobile ? '0.75rem' : '0.5rem',
-              justifyContent: 'center',
-              marginTop: '1rem',
-              flexWrap: 'wrap',
-              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0'
-            }}>
-              <span style={{
-                fontSize: isTinyMobile ? '0.813rem' : isSmallMobile ? '0.875rem' : '0.75rem',
-                color: currentTheme.faint
+            {!isMobile && (
+              <div style={{
+                display: 'flex',
+                gap: '0.5rem',
+                justifyContent: 'center',
+                marginTop: '1rem',
+                flexWrap: 'wrap'
               }}>
-                Try:
-              </span>
-              {['Research paper', 'Essay outline', 'Literature review'].map((prompt, i) => (
-                <button
-                  key={i}
-                  onClick={() => {
-                    setSearchQuery(prompt);
-                    searchRef.current?.focus();
-                  }}
-                  style={{
-                    fontSize: isTinyMobile ? '0.813rem' : isSmallMobile ? '0.875rem' : '0.75rem',
-                    color: currentTheme.subtle,
-                    background: 'transparent',
-                    border: 'none',
-                    textDecoration: 'underline',
-                    cursor: 'pointer',
-                    transition: 'color 0.2s',
-                    padding: isTinyMobile ? '0.375rem' : isMobile ? '0.5rem' : '0.25rem',
-                    minHeight: isMobile ? '32px' : 'auto',
-                    display: 'flex',
-                    alignItems: 'center'
-                  }}
-                  onMouseEnter={(e) => e.target.style.color = currentTheme.accent}
-                  onMouseLeave={(e) => e.target.style.color = currentTheme.subtle}
-                >
-                  {prompt}
-                </button>
-              ))}
-            </div>
+                <span style={{
+                  fontSize: '0.75rem',
+                  color: currentTheme.faint
+                }}>
+                  Try:
+                </span>
+                {['Research paper', 'Essay outline', 'Literature review'].map((prompt, i) => (
+                  <button
+                    key={i}
+                    onClick={() => {
+                      setSearchQuery(prompt);
+                      searchRef.current?.focus();
+                    }}
+                    style={{
+                      fontSize: '0.75rem',
+                      color: currentTheme.subtle,
+                      background: 'transparent',
+                      border: 'none',
+                      textDecoration: 'underline',
+                      cursor: 'pointer',
+                      transition: 'color 0.2s',
+                      padding: '0.25rem'
+                    }}
+                    onMouseEnter={(e) => e.target.style.color = currentTheme.accent}
+                    onMouseLeave={(e) => e.target.style.color = currentTheme.subtle}
+                  >
+                    {prompt}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Trust Indicators - Enhanced Mobile Grid */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)',
-            gap: isMobile ? '1.75rem' : '2rem',
+            gap: isMobile ? '1rem' : '2rem',
             fontSize: isTinyMobile ? '0.75rem' : isSmallMobile ? '0.813rem' : '0.875rem',
             color: currentTheme.subtle,
             maxWidth: isMobile ? '300px' : '800px',
             margin: '0 auto',
-            marginTop: isMobile ? '1.5rem' : '0',
+            marginTop: isMobile ? '0.75rem' : '0',
             padding: isTinyMobile ? '0 0.5rem' : isSmallMobile ? '0 0.75rem' : '0'
           }}>
             <div style={{ 
               display: 'flex', 
               alignItems: 'center', 
               gap: '0.375rem',
-              justifyContent: isMobile ? 'center' : 'flex-start',
-              order: isMobile ? 1 : 0
+              justifyContent: isMobile ? 'center' : 'flex-start'
             }}>
               <Zap size={isSmallMobile ? 14 : 16} style={{ flexShrink: 0 }} />
               <span style={{ lineHeight: 1.4 }}>Start in seconds</span>
             </div>
+            {!isMobile && (
+              <div style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '0.375rem',
+                justifyContent: 'flex-start'
+              }}>
+                <Globe size={16} style={{ flexShrink: 0 }} />
+                <span style={{ lineHeight: 1.4 }}>4 AI models included</span>
+              </div>
+            )}
+            {!isMobile && (
+              <div style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '0.375rem',
+                justifyContent: 'flex-start'
+              }}>
+                <Shield size={16} style={{ flexShrink: 0 }} />
+                <span style={{ lineHeight: 1.4 }}>Your data stays private</span>
+              </div>
+            )}
             <div style={{ 
               display: 'flex', 
               alignItems: 'center', 
               gap: '0.375rem',
-              justifyContent: isMobile ? 'center' : 'flex-start',
-              order: isMobile ? 2 : 0
-            }}>
-              <Globe size={isSmallMobile ? 14 : 16} style={{ flexShrink: 0 }} />
-              <span style={{ lineHeight: 1.4 }}>4 AI models included</span>
-            </div>
-            <div style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '0.375rem',
-              justifyContent: isMobile ? 'center' : 'flex-start',
-              order: isMobile ? 3 : 0
-            }}>
-              <Shield size={isSmallMobile ? 14 : 16} style={{ flexShrink: 0 }} />
-              <span style={{ lineHeight: 1.4 }}>Your data stays private</span>
-            </div>
-            <div style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '0.375rem',
-              justifyContent: isMobile ? 'center' : 'flex-start',
-              order: isMobile ? 4 : 0
+              justifyContent: isMobile ? 'center' : 'flex-start'
             }}>
               <CheckCircle size={isSmallMobile ? 14 : 16} style={{ color: currentTheme.accent, flexShrink: 0 }} />
               <span style={{ lineHeight: 1.4 }}>No credit card required</span>
