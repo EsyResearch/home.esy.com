@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { FileText } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import PromptLibrarySidebar from '@/components/PromptLibrary/PromptLibrarySidebar';
 import CopyrightFooter from '@/components/CopyrightFooter';
@@ -22,6 +23,7 @@ export default function PromptPageClient({
   const [copied, setCopied] = useState(false);
   const [customizedPrompt, setCustomizedPrompt] = useState(prompt.prompt);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [focusedVariable, setFocusedVariable] = useState<string | null>(null);
   
   // Initialize variables
   useEffect(() => {
@@ -41,6 +43,21 @@ export default function PromptPageClient({
     });
     setCustomizedPrompt(updated);
   }, [variables, prompt.prompt]);
+
+  // Focus on specific input when drawer opens with focused variable
+  useEffect(() => {
+    if (isDrawerOpen && focusedVariable) {
+      // Small delay to ensure drawer is rendered
+      const timer = setTimeout(() => {
+        const input = document.getElementById(focusedVariable) as HTMLInputElement;
+        if (input) {
+          input.focus();
+          input.select(); // Select all text in the input
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isDrawerOpen, focusedVariable]);
 
   const handleVariableChange = (variable: string, value: string) => {
     setVariables(prev => ({
@@ -132,30 +149,32 @@ export default function PromptPageClient({
             </div>
           </header>
 
-          <div className="prompt-display">
-            <div className="prompt-display-header">
-              <span className="prompt-display-title">Prompt Template</span>
-              <div className="prompt-display-actions">
-                <div className="prompt-display-dot"></div>
-                <div className="prompt-display-dot"></div>
-                <div className="prompt-display-dot green"></div>
-              </div>
-            </div>
-            <div className="prompt-content" onClick={(e) => {
-              // Check if clicked element is a variable
-              const target = e.target as HTMLElement;
-              if (target.classList.contains('prompt-variable')) {
-                setIsDrawerOpen(true);
-              }
-            }}>
-              <pre className="prompt-text" dangerouslySetInnerHTML={{ 
-                __html: customizedPrompt
-                  .replace(/\[([^\]]+)\]/g, '<span class="prompt-variable" role="button" tabindex="0" title="Click to customize">[$1]</span>')
-                  .replace(/^(\d+)\.\s+(.*)$/gm, '<span class="prompt-numbered-item">$2</span>')
-                  .replace(/^[-•]\s+(.*)$/gm, '<span class="prompt-list-item">$1</span>')
-                  .replace(/\*\*([^*]+)\*\*/g, '<span class="prompt-emphasis">$1</span>')
-              }} />
-            </div>
+          {/* Prompt Template Header */}
+          <div className="prompt-template-header">
+            <h2 className="prompt-template-title">
+              <FileText size={20} className="prompt-template-icon" />
+              Prompt Template
+            </h2>
+          </div>
+
+          {/* Prompt Template - Direct Integration */}
+          <div className="prompt-template-direct" onClick={(e) => {
+            // Check if clicked element is a variable
+            const target = e.target as HTMLElement;
+            if (target.classList.contains('prompt-variable')) {
+              // Extract variable name from the text content (remove brackets)
+              const variableName = target.textContent?.replace(/[\[\]]/g, '') || '';
+              setFocusedVariable(variableName);
+              setIsDrawerOpen(true);
+            }
+          }}>
+            <pre className="prompt-text" dangerouslySetInnerHTML={{ 
+              __html: customizedPrompt
+                .replace(/\[([^\]]+)\]/g, '<span class="prompt-variable" role="button" tabindex="0" title="Click to customize">[$1]</span>')
+                .replace(/^(\d+)\.\s+(.*)$/gm, '<span class="prompt-numbered-item">$2</span>')
+                .replace(/^[-•]\s+(.*)$/gm, '<span class="prompt-list-item">$1</span>')
+                .replace(/\*\*([^*]+)\*\*/g, '<span class="prompt-emphasis">$1</span>')
+            }} />
             {copied && (
               <div className="copy-indicator">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -214,13 +233,19 @@ export default function PromptPageClient({
 
       {/* Customize Variables Drawer */}
       {isDrawerOpen && (
-        <div className="drawer-overlay" onClick={() => setIsDrawerOpen(false)}>
+        <div className="drawer-overlay" onClick={() => {
+          setIsDrawerOpen(false);
+          setFocusedVariable(null);
+        }}>
           <div className="drawer" onClick={(e) => e.stopPropagation()}>
             <div className="drawer-header">
               <h2 className="drawer-title">Customize Variables</h2>
               <button 
                 className="drawer-close"
-                onClick={() => setIsDrawerOpen(false)}
+                onClick={() => {
+                  setIsDrawerOpen(false);
+                  setFocusedVariable(null);
+                }}
               >
                 ×
               </button>
@@ -240,7 +265,7 @@ export default function PromptPageClient({
                         value={variables[variable] || ''}
                         onChange={(e) => handleVariableChange(variable, e.target.value)}
                         placeholder={`Enter ${variable.toLowerCase()}`}
-                        className="variable-input"
+                        className={`variable-input ${focusedVariable === variable ? 'variable-input-focused' : ''}`}
                       />
                     </div>
                   ))}
@@ -634,6 +659,16 @@ export default function PromptPageClient({
           border-color: rgba(139, 92, 246, 0.4);
         }
 
+        .variable-input-focused {
+          border-color: rgba(139, 92, 246, 0.6) !important;
+          box-shadow: 
+            0 0 0 2px rgba(139, 92, 246, 0.2),
+            0 0 12px rgba(139, 92, 246, 0.15) !important;
+          background: linear-gradient(135deg, 
+            rgba(139, 92, 246, 0.05) 0%, 
+            rgba(139, 92, 246, 0.02) 100%) !important;
+        }
+
         .variable-input::placeholder {
           color: rgba(255, 255, 255, 0.3);
         }
@@ -714,7 +749,7 @@ export default function PromptPageClient({
           display: flex;
           gap: 0.75rem;
           flex-wrap: wrap;
-          margin-bottom: 32px;
+          margin-bottom: 4rem;
         }
 
         .action-button {
@@ -828,26 +863,54 @@ export default function PromptPageClient({
             0 0 0 1px rgba(255, 255, 255, 0.1) inset;
         }
 
-        .prompt-display {
+        /* Prompt Template Header */
+        .prompt-template-header {
+          margin: 2rem 0 1rem 0;
+        }
+
+        .prompt-template-title {
+          font-family: Literata, Georgia, serif;
+          font-size: 1.5rem;
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.9);
+          margin: 0;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+        }
+
+        .prompt-template-icon {
+          color: #8b5cf6;
+          filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.4));
+          transition: all 0.3s ease;
+        }
+
+        .prompt-template-title:hover .prompt-template-icon {
+          color: #a78bfa;
+          filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.6));
+          transform: scale(1.05);
+        }
+
+        /* Direct Prompt Template Integration */
+        .prompt-template-direct {
           background: linear-gradient(145deg, 
             rgba(10, 10, 15, 0.95) 0%, 
             rgba(15, 15, 22, 0.98) 50%, 
             rgba(8, 8, 12, 0.95) 100%);
           border: 1px solid rgba(255, 255, 255, 0.12);
           border-radius: 16px;
+          padding: 2rem;
+          margin: 0 0 2rem 0;
           position: relative;
-          overflow: hidden;
           box-shadow: 
             0 8px 32px rgba(0, 0, 0, 0.4),
             0 2px 8px rgba(0, 0, 0, 0.2),
-            inset 0 1px 0 rgba(255, 255, 255, 0.08),
-            inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-          max-width: 100%;
+            inset 0 1px 0 rgba(255, 255, 255, 0.08);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
         }
 
-        .prompt-display::before {
+        .prompt-template-direct::before {
           content: '';
           position: absolute;
           top: 0;
@@ -861,140 +924,7 @@ export default function PromptPageClient({
             rgba(59, 130, 246, 0.03) 100%);
           pointer-events: none;
           z-index: 1;
-        }
-
-        .prompt-display-header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 1rem 1.5rem;
-          background: linear-gradient(135deg, 
-            rgba(255, 255, 255, 0.04) 0%, 
-            rgba(255, 255, 255, 0.02) 50%, 
-            rgba(255, 255, 255, 0.01) 100%);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-          position: relative;
-          z-index: 2;
-        }
-
-        .prompt-display-header::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 1px;
-          background: linear-gradient(90deg, 
-            transparent 0%, 
-            rgba(139, 92, 246, 0.3) 50%, 
-            transparent 100%);
-        }
-
-        .prompt-display-title {
-          font-size: 0.85rem;
-          color: rgba(255, 255, 255, 0.7);
-          font-weight: 600;
-          letter-spacing: 0.8px;
-          text-transform: uppercase;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-        }
-
-        .prompt-display-title::before {
-          content: '';
-          width: 4px;
-          height: 4px;
-          background: linear-gradient(135deg, #8b5cf6, #3b82f6);
-          border-radius: 50%;
-          box-shadow: 0 0 8px rgba(139, 92, 246, 0.4);
-        }
-
-        .prompt-display-actions {
-          display: flex;
-          gap: 0.75rem;
-          align-items: center;
-        }
-
-        .prompt-display-dot {
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.15);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          transition: all 0.3s ease;
-          position: relative;
-        }
-
-        .prompt-display-dot:hover {
-          transform: scale(1.1);
-          box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
-        }
-
-        .prompt-display-dot.green {
-          background: linear-gradient(135deg, #22c55e, #16a34a);
-          border-color: rgba(34, 197, 94, 0.3);
-          box-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
-        }
-
-        .prompt-display-dot.green:hover {
-          box-shadow: 0 0 16px rgba(34, 197, 94, 0.5);
-        }
-
-        .prompt-content {
-          max-height: 450px;
-          overflow-y: auto;
-          padding: 2rem;
-          position: relative;
-          background: linear-gradient(180deg, 
-            transparent 0%, 
-            transparent calc(100% - 50px), 
-            rgba(8, 8, 12, 0.95) 100%);
-          counter-reset: prompt-counter;
-          text-align: left !important;
-          z-index: 2;
-          border-radius: 0 0 16px 16px;
-        }
-
-        .prompt-content::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 1px;
-          background: linear-gradient(90deg, 
-            transparent 0%, 
-            rgba(139, 92, 246, 0.2) 20%, 
-            rgba(139, 92, 246, 0.4) 50%, 
-            rgba(139, 92, 246, 0.2) 80%, 
-            transparent 100%);
-        }
-
-        .prompt-content::-webkit-scrollbar {
-          width: 6px;
-        }
-
-        .prompt-content::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.02);
-          border-radius: 6px;
-          margin: 0.5rem 0;
-        }
-
-        .prompt-content::-webkit-scrollbar-thumb {
-          background: linear-gradient(180deg, 
-            rgba(139, 92, 246, 0.3) 0%, 
-            rgba(139, 92, 246, 0.1) 100%);
-          border-radius: 6px;
-          border: 1px solid rgba(139, 92, 246, 0.1);
-          transition: all 0.3s ease;
-        }
-
-        .prompt-content::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(180deg, 
-            rgba(139, 92, 246, 0.5) 0%, 
-            rgba(139, 92, 246, 0.2) 100%);
-          box-shadow: 0 0 8px rgba(139, 92, 246, 0.3);
+          border-radius: 16px;
         }
 
         .prompt-text {
