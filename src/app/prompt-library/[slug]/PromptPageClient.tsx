@@ -141,12 +141,19 @@ export default function PromptPageClient({
                 <div className="prompt-display-dot green"></div>
               </div>
             </div>
-            <div className="prompt-content">
+            <div className="prompt-content" onClick={(e) => {
+              // Check if clicked element is a variable
+              const target = e.target as HTMLElement;
+              if (target.classList.contains('prompt-variable')) {
+                setIsDrawerOpen(true);
+              }
+            }}>
               <pre className="prompt-text" dangerouslySetInnerHTML={{ 
-                __html: customizedPrompt.replace(
-                  /\[([^\]]+)\]/g, 
-                  '<span class="prompt-variable">[$1]</span>'
-                )
+                __html: customizedPrompt
+                  .replace(/\[([^\]]+)\]/g, '<span class="prompt-variable" role="button" tabindex="0" title="Click to customize">[$1]</span>')
+                  .replace(/^(\d+)\.\s+(.*)$/gm, '<span class="prompt-numbered-item">$2</span>')
+                  .replace(/^[-•]\s+(.*)$/gm, '<span class="prompt-list-item">$1</span>')
+                  .replace(/\*\*([^*]+)\*\*/g, '<span class="prompt-emphasis">$1</span>')
               }} />
             </div>
             {copied && (
@@ -681,6 +688,7 @@ export default function PromptPageClient({
 
         .prompt-main {
           padding: 0 2rem;
+          max-width: 900px;
         }
 
         .prompt-header {
@@ -829,6 +837,7 @@ export default function PromptPageClient({
           box-shadow: 
             0 4px 16px rgba(0, 0, 0, 0.3),
             inset 0 1px 0 rgba(255, 255, 255, 0.03);
+          max-width: 100%;
         }
 
         .prompt-display-header {
@@ -873,6 +882,8 @@ export default function PromptPageClient({
             transparent 0%, 
             transparent calc(100% - 40px), 
             rgba(17, 17, 24, 0.98) 100%);
+          counter-reset: prompt-counter;
+          text-align: left !important;
         }
 
         .prompt-content::-webkit-scrollbar {
@@ -895,38 +906,172 @@ export default function PromptPageClient({
         }
 
         .prompt-text {
-          font-size: 0.9rem;
-          line-height: 1.7;
-          color: rgba(255, 255, 255, 0.85);
+          font-size: 0.925rem;
+          line-height: 1.75;
+          color: rgba(255, 255, 255, 0.9);
           white-space: pre-wrap;
           font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', monospace;
           word-break: break-word;
           overflow-wrap: break-word;
           margin: 0;
-          letter-spacing: 0.2px;
+          padding: 0;
+          letter-spacing: 0.3px;
+          text-align: left !important;
+          display: block;
+          width: 100%;
+          hyphens: none;
+          text-rendering: optimizeLegibility;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Force all content to be left-aligned */
+        .prompt-content * {
+          text-align: left !important;
+        }
+
+        /* Ensure pre element is properly aligned */
+        .prompt-content pre {
+          margin: 0;
+          padding: 0;
+          text-align: left !important;
+          white-space: pre-wrap;
+        }
+
+        /* Ensure proper paragraph spacing */
+        .prompt-text-paragraph {
+          margin-bottom: 1rem;
+          display: block;
+        }
+
+        .prompt-text-paragraph:last-child {
+          margin-bottom: 0;
         }
 
         /* Highlight variables in brackets */
         :global(.prompt-variable) {
-          color: #8b5cf6;
-          background: rgba(139, 92, 246, 0.1);
-          padding: 2px 6px;
-          border-radius: 4px;
-          font-weight: 500;
-          border: 1px solid rgba(139, 92, 246, 0.2);
+          color: #a78bfa;
+          background: rgba(139, 92, 246, 0.08);
+          padding: 3px 8px;
+          border-radius: 5px;
+          font-weight: 600;
+          border: 1px solid rgba(139, 92, 246, 0.15);
           display: inline-block;
-          margin: 0 2px;
+          margin: 0 3px;
           transition: all 0.2s ease;
+          vertical-align: baseline;
+          font-size: 0.95em;
+          letter-spacing: 0.4px;
+          box-shadow: 0 1px 3px rgba(139, 92, 246, 0.1);
+          cursor: pointer;
+          user-select: none;
+          position: relative;
         }
 
         :global(.prompt-variable):hover {
-          background: rgba(139, 92, 246, 0.15);
-          border-color: rgba(139, 92, 246, 0.3);
+          background: rgba(139, 92, 246, 0.18);
+          border-color: rgba(139, 92, 246, 0.35);
+          color: #c9b5fc;
+          transform: translateY(-1px);
+          box-shadow: 
+            0 3px 8px rgba(139, 92, 246, 0.25),
+            0 0 0 2px rgba(139, 92, 246, 0.1);
+        }
+
+        :global(.prompt-variable):active {
+          transform: translateY(0);
+          background: rgba(139, 92, 246, 0.25);
+        }
+
+        /* Add a subtle pulse animation on hover */
+        :global(.prompt-variable)::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 100%;
+          height: 100%;
+          border-radius: 5px;
+          background: rgba(139, 92, 246, 0.2);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          pointer-events: none;
+        }
+
+        :global(.prompt-variable):hover::after {
+          animation: variablePulse 0.6s ease-out;
+        }
+
+        @keyframes variablePulse {
+          0% {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(1);
+          }
+          50% {
+            opacity: 0.3;
+            transform: translate(-50%, -50%) scale(1.1);
+          }
+          100% {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(1.2);
+          }
         }
 
         .prompt-text::selection {
           background: rgba(139, 92, 246, 0.25);
           color: white;
+        }
+
+        /* Format list items and indentation */
+        :global(.prompt-list-item) {
+          display: block;
+          padding-left: 1.25rem;
+          position: relative;
+          margin: 0.5rem 0;
+          text-align: left;
+        }
+
+        :global(.prompt-list-item)::before {
+          content: '•';
+          position: absolute;
+          left: 0;
+          color: rgba(139, 92, 246, 0.6);
+          font-weight: bold;
+        }
+
+        :global(.prompt-numbered-item) {
+          display: block;
+          padding-left: 1.5rem;
+          position: relative;
+          margin: 0.5rem 0;
+          counter-increment: prompt-counter;
+          text-align: left;
+        }
+
+        :global(.prompt-numbered-item)::before {
+          content: counter(prompt-counter) '.';
+          position: absolute;
+          left: 0;
+          color: rgba(139, 92, 246, 0.6);
+          font-weight: 600;
+          font-size: 0.9em;
+        }
+
+        :global(.prompt-indent) {
+          padding-left: 1.5rem;
+          display: block;
+          border-left: 2px solid rgba(139, 92, 246, 0.1);
+          margin: 0.75rem 0;
+          text-align: left;
+        }
+
+        :global(.prompt-emphasis) {
+          color: rgba(255, 255, 255, 0.95);
+          font-weight: 600;
+          background: rgba(255, 255, 255, 0.03);
+          padding: 1px 4px;
+          border-radius: 3px;
         }
 
         /* Line numbers for better readability */
@@ -1247,6 +1392,11 @@ export default function PromptPageClient({
           .prompt-container {
             padding: 1rem;
             gap: 2rem;
+          }
+          
+          .prompt-main {
+            padding: 0 1rem;
+            max-width: 100%;
           }
 
           .variables-panel {
