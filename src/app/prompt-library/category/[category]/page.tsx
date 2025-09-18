@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { getPromptsByCategory, getCategories, getCategoryBySlug } from '@/lib/prompts';
 
 interface CategoryPageProps {
@@ -54,11 +55,15 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   return (
     <div className="category-page">
       {/* Breadcrumbs */}
-      <nav className="breadcrumbs">
-        <Link href="/prompt-library">Prompt Library</Link>
-        <span className="separator">/</span>
-        <span className="current">{category.name}</span>
-      </nav>
+      <div style={{ marginBottom: '2rem' }}>
+        <Breadcrumbs 
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Prompt Library', href: '/prompt-library' },
+            { label: category.name, isCurrent: true }
+          ]}
+        />
+      </div>
 
       {/* Category Header */}
       <header className="category-header">
@@ -122,34 +127,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           padding: 6rem 0 4rem 0;
         }
 
-        .breadcrumbs {
-          max-width: 1400px;
-          margin: 0 auto 2rem auto;
-          padding: 0 2rem;
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          font-size: 0.9rem;
-          opacity: 0.6;
-        }
-
-        .breadcrumbs a {
-          color: white;
-          text-decoration: none;
-          transition: opacity 0.2s ease;
-        }
-
-        .breadcrumbs a:hover {
-          opacity: 0.8;
-        }
-
-        .separator {
-          opacity: 0.4;
-        }
-
-        .current {
-          opacity: 1;
-        }
 
         .category-header {
           max-width: 1400px;

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { Prompt, PromptCategory } from '@/lib/prompts';
 
 interface PromptPageClientProps {
@@ -76,19 +77,16 @@ export default function PromptPageClient({
   return (
     <div className="prompt-page">
       {/* Breadcrumbs */}
-      <nav className="breadcrumbs">
-        <Link href="/prompt-library">Prompt Library</Link>
-        <span className="separator">/</span>
-        {category && (
-          <>
-            <Link href={`/prompt-library/category/${category.slug}`}>
-              {category.name}
-            </Link>
-            <span className="separator">/</span>
-          </>
-        )}
-        <span className="current">{prompt.title}</span>
-      </nav>
+      <div style={{ marginBottom: '2rem' }}>
+        <Breadcrumbs 
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Prompt Library', href: '/prompt-library' },
+            ...(category ? [{ label: category.name, href: `/prompt-library/category/${category.slug}` }] : []),
+            { label: prompt.title, isCurrent: true }
+          ]}
+        />
+      </div>
 
       {/* Main Content */}
       <div className="prompt-container">
@@ -192,34 +190,6 @@ export default function PromptPageClient({
           padding: 6rem 0 2rem 0;
         }
 
-        .breadcrumbs {
-          max-width: 1400px;
-          margin: 0 auto 2rem auto;
-          padding: 0 2rem;
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          font-size: 0.9rem;
-          opacity: 0.6;
-        }
-
-        .breadcrumbs a {
-          color: white;
-          text-decoration: none;
-          transition: opacity 0.2s ease;
-        }
-
-        .breadcrumbs a:hover {
-          opacity: 0.8;
-        }
-
-        .separator {
-          opacity: 0.4;
-        }
-
-        .current {
-          opacity: 1;
-        }
 
         .prompt-container {
           max-width: 1400px;
@@ -512,10 +482,6 @@ export default function PromptPageClient({
             padding: 5rem 0 1rem 0;
           }
 
-          .breadcrumbs {
-            padding: 0 1rem;
-            font-size: 0.8rem;
-          }
 
           .prompt-container {
             padding: 0 1rem;
