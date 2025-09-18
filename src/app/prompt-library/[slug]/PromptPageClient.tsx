@@ -280,7 +280,7 @@ export default function PromptPageClient({
               {activeTab === 'expected-output' && (
                 <div className="tab-panel">
                   <div className="expected-output-content">
-                    <h3 className="section-title">What You'll Receive from the LLM</h3>
+                    <h3 className="section-title">What You&apos;ll Receive from the LLM</h3>
                     <p className="section-description">
                       The AI will generate a comprehensive voice and style mastery system with the following structured components:
                     </p>
