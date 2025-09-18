@@ -1,26 +1,4 @@
-"use client";
-
-import React, { useState, useMemo } from 'react';
-
-const PromptLibrary = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [copiedPrompt, setCopiedPrompt] = useState(null);
-  const [currentView, setCurrentView] = useState('library'); // 'library', 'prompt', or 'category'
-  const [selectedPrompt, setSelectedPrompt] = useState(null);
-  const [promptVariables, setPromptVariables] = useState({});
-
-  const promptCategories = [
-    { id: 'all', name: 'All Prompts', count: 0 },
-    { id: 'writing', name: 'Creative Writing', count: 12 },
-    { id: 'research', name: 'Academic Research', count: 15 },
-    { id: 'analysis', name: 'Literary Analysis', count: 10 },
-    { id: 'essays', name: 'Essay Writing', count: 14 },
-    { id: 'professional', name: 'Professional Writing', count: 8 },
-    { id: 'ebooks', name: 'Book & Publication', count: 9 }
-  ];
-
-  const prompts = [
+const prompts = [
     // Creative Writing (12 prompts)
     {
       id: 1,
@@ -2847,20 +2825,259 @@ Develop integrated strategy that uses publishing as business development tool wh
 Create publishing approach that maximizes content reach while maintaining quality and reader satisfaction across all formats and platforms.`,
       isPro: true
     }
+  ];import React, { useState, useMemo } from 'react';
+
+const PromptLibrary = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [copiedPrompt, setCopiedPrompt] = useState(null);
+  const [currentView, setCurrentView] = useState('library'); // 'library', 'prompt', or 'category'
+  const [selectedPrompt, setSelectedPrompt] = useState(null);
+  const [promptVariables, setPromptVariables] = useState({});
+
+  const promptCategories = [
+    { id: 'all', name: 'All Prompts', count: 0 },
+    { id: 'writing', name: 'Creative Writing', count: 12 },
+    { id: 'research', name: 'Academic Research', count: 15 },
+    { id: 'analysis', name: 'Literary Analysis', count: 10 },
+    { id: 'essays', name: 'Essay Writing', count: 14 },
+    { id: 'professional', name: 'Professional Writing', count: 8 },
+    { id: 'ebooks', name: 'Book & Publication', count: 9 }
   ];
 
-  // Update the counts to match actual number of prompts
-  promptCategories[0].count = prompts.length; // All prompts
+  const prompts = [
+    {
+      id: 1,
+      category: 'writing',
+      title: 'Character Development Deep Dive',
+      description: 'Comprehensive character creation for complex narratives',
+      shortDescription: 'Create detailed character profiles with psychological depth',
+      variables: ['GENRE'],
+      prompt: `Create a detailed character profile for a protagonist in [GENRE] fiction. Include: 
+
+**Core Identity:**
+- Full name, age, occupation, and social background
+- Three defining personality traits with specific examples
+- Internal contradiction or moral complexity
+
+**Psychological Profile:**
+- Primary motivation and what drives them daily
+- Greatest fear and how it manifests in behavior
+- Childhood experience that shaped their worldview
+
+**Narrative Function:**
+- Character arc from beginning to end of story
+- Key relationships and how they challenge/support growth
+- Specific skills or knowledge that advances the plot
+
+**Voice & Dialogue:**
+- Unique speech patterns, vocabulary, or verbal tics
+- How they communicate differently with various characters
+- Internal monologue style and thought patterns
+
+Provide concrete examples and avoid generic traits. Make this character feel distinctly human with authentic flaws and strengths.`,
+      isPro: false
+    },
+    {
+      id: 2,
+      category: 'writing',
+      title: 'Scene Tension Architecture',
+      description: 'Building dramatic tension through environmental and emotional layers',
+      shortDescription: 'Master the art of creating compelling, tension-filled scenes',
+      variables: ['SETTING', 'CONFLICT_TYPE'],
+      prompt: `Analyze and construct a high-tension scene set in [SETTING] focusing on [CONFLICT_TYPE]:
+
+**Setting as Character:**
+- Physical environment that mirrors internal conflict
+- Sensory details that heighten emotional stakes
+- How space constrains or enables character actions
+
+**Dialogue Mechanics:**
+- Subtext: What characters say vs. what they mean
+- Power dynamics shifting through conversation
+- Information revealed and concealed strategically
+
+**Pacing Techniques:**
+- Sentence length variation for rhythm control
+- Strategic use of white space and paragraph breaks
+- Building to climactic moment through incremental reveals
+
+**Emotional Choreography:**
+- Character's internal state vs. external presentation
+- Physical manifestations of psychological tension
+- How other characters respond to unstated emotions
+
+Write a 500-word scene demonstrating these principles, then provide a technical breakdown of your choices.`,
+      isPro: true
+    },
+    {
+      id: 3,
+      category: 'research',
+      title: 'Literature Review Synthesis Framework',
+      description: 'Systematic approach to synthesizing scholarly sources',
+      shortDescription: 'Comprehensive methodology for academic literature reviews',
+      variables: ['RESEARCH_TOPIC', 'DISCIPLINE'],
+      prompt: `Conduct a comprehensive literature review on [RESEARCH_TOPIC] within [DISCIPLINE] using this structured approach:
+
+**Source Evaluation Matrix:**
+- Categorize sources by methodology, theoretical framework, and conclusions
+- Identify geographical, temporal, and demographic scope of studies
+- Assess sample sizes, limitations, and potential biases
+
+**Theoretical Landscape Mapping:**
+- Major schools of thought and their key proponents
+- Evolution of understanding over the past decade
+- Competing theories and points of contention
+
+**Gap Analysis:**
+- Understudied populations or contexts
+- Methodological limitations across the field
+- Contradictory findings requiring further investigation
+
+**Synthesis Structure:**
+- Chronological development of key concepts
+- Thematic clustering of related findings
+- Critical evaluation of methodological approaches
+
+**Research Questions Generation:**
+- Three specific, answerable questions based on identified gaps
+- Potential methodological approaches for each question
+- Expected contributions to the field
+
+Present findings in academic format with proper citations and clear argumentation.`,
+      isPro: false
+    },
+    {
+      id: 4,
+      category: 'analysis',
+      title: 'Narrative Structure Deconstruction',
+      description: 'Advanced analysis of storytelling techniques and their effects',
+      shortDescription: 'Systematic framework for analyzing literary structure',
+      variables: ['LITERARY_WORK', 'AUTHOR'],
+      prompt: `Perform a comprehensive structural analysis of "[LITERARY_WORK]" by [AUTHOR]:
+
+**Temporal Architecture:**
+- Chronological vs. narrative time manipulation
+- Flashbacks, foreshadowing, and their strategic purposes
+- Pacing variations and their emotional impact
+
+**Point of View Mechanics:**
+- Narrator reliability and perspective limitations
+- How POV shapes reader understanding and sympathy
+- Moments where perspective shifts or expands
+
+**Symbolic Systems:**
+- Recurring motifs and their evolution throughout the text
+- Color, weather, objects as meaning-carriers
+- How symbols interact with character development
+
+**Language and Style:**
+- Sentence structure patterns and their effects
+- Diction choices and register variations
+- How style reflects or contrasts with content
+
+**Thematic Architecture:**
+- Central themes and their interconnections
+- How plot events illuminate larger ideas
+- Unresolved tensions and their interpretive possibilities
+
+Support analysis with specific textual evidence and consider multiple valid interpretations.`,
+      isPro: false
+    },
+    {
+      id: 5,
+      category: 'essays',
+      title: 'Argumentative Essay Architecture',
+      description: 'Building compelling, evidence-based arguments',
+      shortDescription: 'Master persuasive essay structure and argumentation',
+      variables: ['TOPIC', 'TARGET_AUDIENCE'],
+      prompt: `Construct a persuasive argumentative essay on [TOPIC] for [TARGET_AUDIENCE]:
+
+**Thesis Development:**
+- Clear, debatable central claim
+- Preview of main supporting arguments
+- Acknowledgment of complexity or nuance
+
+**Evidence Integration:**
+- Primary and secondary source material
+- Statistical data with proper interpretation
+- Expert testimony and its credibility
+- Historical precedents and analogies
+
+**Counterargument Strategy:**
+- Strongest opposing viewpoints
+- Fair representation of alternative positions
+- Specific refutation with evidence
+- Concessions where appropriate
+
+**Logical Flow:**
+- Each paragraph advances the central argument
+- Smooth transitions between ideas
+- Building intensity toward conclusion
+- Addressing reader's potential questions
+
+**Rhetorical Effectiveness:**
+- Appropriate tone for intended audience
+- Emotional appeals balanced with logic
+- Credibility establishment and maintenance
+- Call to action or implications for readers
+
+Write 1200-1500 words demonstrating sophisticated reasoning and engaging prose.`,
+      isPro: false
+    },
+    {
+      id: 6,
+      category: 'professional',
+      title: 'Executive Communication Framework',
+      description: 'High-impact business writing for leadership contexts',
+      shortDescription: 'Professional communication for executive audiences',
+      variables: ['BUSINESS_CONTEXT', 'STAKEHOLDER_TYPE'],
+      prompt: `Develop executive-level communication materials for [BUSINESS_CONTEXT] targeting [STAKEHOLDER_TYPE]:
+
+**Strategic Messaging:**
+- Core message distilled to essential points
+- Business impact quantified with metrics
+- Risk assessment and mitigation strategies
+- Timeline and resource requirements
+
+**Audience Analysis:**
+- Stakeholder priorities and concerns
+- Decision-making criteria and processes
+- Preferred communication styles
+- Political and organizational dynamics
+
+**Document Structure:**
+- Executive summary (key points in 2-3 paragraphs)
+- Situation analysis with relevant data
+- Recommended actions with rationale
+- Implementation roadmap with milestones
+
+**Professional Tone:**
+- Confident but not presumptuous
+- Data-driven with clear conclusions
+- Acknowledges uncertainties appropriately
+- Action-oriented with specific next steps
+
+**Visual Information Design:**
+- Strategic use of white space and formatting
+- Bullet points for scannable content
+- Charts or graphs where they clarify data
+- Professional layout that enhances readability
+
+Create materials that demonstrate strategic thinking while remaining accessible.`,
+      isPro: true
+    }
+  ];
 
   const filteredPrompts = useMemo(() => {
     return prompts.filter(prompt => {
       const matchesCategory = selectedCategory === 'all' || prompt.category === selectedCategory;
       const matchesSearch = prompt.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            prompt.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           prompt.prompt.toLowerCase().includes(searchTerm.toLowerCase());
+                           (prompt.shortDescription && prompt.shortDescription.toLowerCase().includes(searchTerm.toLowerCase()));
       return matchesCategory && matchesSearch;
     });
-  }, [searchTerm, selectedCategory]);
+  }, [searchTerm, selectedCategory, prompts]);
 
   const handleCopyPrompt = async (promptText, promptId) => {
     try {
@@ -2923,11 +3140,11 @@ Create publishing approach that maximizes content reach while maintaining qualit
     
     // Library View Styles
     heroSection: {
-      position: 'relative' as const,
+      position: 'relative',
       maxWidth: '1400px',
       margin: '0 auto',
       padding: 'clamp(3rem, 10vw, 6rem) clamp(1rem, 4vw, 2rem) clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem)',
-      textAlign: 'center' as const
+      textAlign: 'center'
     },
     heroTitle: {
       fontFamily: 'Literata, Georgia, serif',
@@ -2949,7 +3166,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
     searchContainer: {
       maxWidth: '600px',
       margin: '0 auto 3rem auto',
-      position: 'relative' as const
+      position: 'relative'
     },
     searchInput: {
       width: '100%',
@@ -2961,16 +3178,15 @@ Create publishing approach that maximizes content reach while maintaining qualit
       color: 'white',
       outline: 'none',
       transition: 'all 0.2s ease',
-      boxSizing: 'border-box' as const
+      boxSizing: 'border-box'
     },
     
-    // Category Tabs
     categoryTabs: {
       display: 'flex',
       justifyContent: 'center',
       gap: '0.5rem',
       marginBottom: '4rem',
-      flexWrap: 'wrap' as const
+      flexWrap: 'wrap'
     },
     categoryTab: {
       padding: 'clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem)',
@@ -2982,7 +3198,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
       transition: 'all 0.2s ease',
       fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
       fontFamily: 'Inter, sans-serif',
-      whiteSpace: 'nowrap' as const
+      whiteSpace: 'nowrap'
     },
     categoryTabActive: {
       backgroundColor: '#8b5cf6',
@@ -2990,7 +3206,6 @@ Create publishing approach that maximizes content reach while maintaining qualit
       color: 'white'
     },
     
-    // Prompt Grid
     promptGrid: {
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fill, minmax(min(350px, 100%), 1fr))',
@@ -3008,7 +3223,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
       transition: 'all 0.2s ease',
       backdropFilter: 'blur(10px)',
       width: '100%',
-      boxSizing: 'border-box' as const
+      boxSizing: 'border-box'
     },
     promptCardHeader: {
       marginBottom: '1.5rem'
@@ -3035,45 +3250,32 @@ Create publishing approach that maximizes content reach while maintaining qualit
       flexWrap: 'wrap',
       gap: '0.5rem'
     },
-    
-    // Category and Prompt Views
-    categoryView: {
-      display: 'flex',
-      minHeight: '100vh'
+    proLabel: {
+      backgroundColor: 'rgba(139, 92, 246, 0.15)',
+      color: '#8b5cf6',
+      padding: '0.25rem 0.75rem',
+      borderRadius: '12px',
+      fontSize: '0.75rem',
+      fontWeight: '500'
     },
+    
+    // Prompt View Styles
     promptView: {
       display: 'flex',
       minHeight: '100vh'
     },
-    
-    // Sidebar Styles
     promptSidebar: {
       width: '280px',
       backgroundColor: 'rgba(16, 16, 21, 0.9)',
       borderRight: '1px solid rgba(255, 255, 255, 0.05)',
       padding: '2rem 0',
-      position: 'sticky' as const,
+      position: 'sticky',
       top: '0',
       height: '100vh',
-      overflowY: 'auto' as const
+      overflowY: 'auto'
     },
     sidebarContent: {
       padding: '0 2rem'
-    },
-    backButton: {
-      display: 'inline-flex' as const,
-      alignItems: 'center',
-      gap: '0.5rem',
-      padding: '0.75rem 1.5rem',
-      backgroundColor: 'transparent',
-      border: '1px solid rgba(255, 255, 255, 0.1)',
-      borderRadius: '8px',
-      color: 'rgba(255, 255, 255, 0.7)',
-      cursor: 'pointer',
-      transition: 'all 0.2s ease',
-      fontSize: '0.9rem',
-      marginBottom: '2rem',
-      fontFamily: 'Inter, sans-serif'
     },
     sidebarTitle: {
       fontFamily: 'Literata, Georgia, serif',
@@ -3103,7 +3305,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
       transition: 'all 0.2s ease',
       fontSize: '0.9rem',
       width: '100%',
-      textAlign: 'left' as const,
+      textAlign: 'left',
       fontFamily: 'Inter, sans-serif'
     },
     categoryLinkActive: {
@@ -3122,18 +3324,60 @@ Create publishing approach that maximizes content reach while maintaining qualit
       backgroundColor: 'rgba(139, 92, 246, 0.2)',
       color: '#8b5cf6'
     },
-    
-    // Main Content Areas
-    categoryViewMain: {
-      flex: '1',
-      padding: '2rem'
-    },
     promptViewMain: {
       flex: '1',
       padding: '2rem'
     },
+    promptViewHeader: {
+      marginBottom: '3rem',
+      paddingBottom: '2rem',
+      borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+    },
+    backButton: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '0.5rem',
+      padding: '0.75rem 1.5rem',
+      backgroundColor: 'transparent',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      borderRadius: '8px',
+      color: 'rgba(255, 255, 255, 0.7)',
+      cursor: 'pointer',
+      transition: 'all 0.2s ease',
+      fontSize: '0.9rem',
+      marginBottom: '2rem',
+      fontFamily: 'Inter, sans-serif'
+    },
+    promptViewTitle: {
+      fontFamily: 'Literata, Georgia, serif',
+      fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
+      fontWeight: '400',
+      marginBottom: '1rem',
+      lineHeight: '1.2'
+    },
+    promptViewDescription: {
+      fontSize: 'clamp(1rem, 3vw, 1.1rem)',
+      opacity: '0.8',
+      lineHeight: '1.6',
+      marginBottom: '2rem'
+    },
+    promptViewMeta: {
+      display: 'flex',
+      gap: 'clamp(1rem, 3vw, 2rem)',
+      fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
+      opacity: '0.6',
+      flexWrap: 'wrap'
+    },
     
-    // Category View Specific
+    // Category View Styles
+    categoryView: {
+      display: 'flex',
+      minHeight: '100vh'
+    },
+    categoryViewMain: {
+      flex: '1',
+      padding: '2rem'
+    },
     categoryHeader: {
       marginBottom: '3rem',
       paddingBottom: '2rem',
@@ -3165,32 +3409,6 @@ Create publishing approach that maximizes content reach while maintaining qualit
       maxWidth: '1200px'
     },
     
-    // Prompt View Specific
-    promptViewHeader: {
-      marginBottom: '3rem',
-      paddingBottom: '2rem',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
-    },
-    promptViewTitle: {
-      fontFamily: 'Literata, Georgia, serif',
-      fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
-      fontWeight: '400',
-      marginBottom: '1rem',
-      lineHeight: '1.2'
-    },
-    promptViewDescription: {
-      fontSize: 'clamp(1rem, 3vw, 1.1rem)',
-      opacity: '0.8',
-      lineHeight: '1.6',
-      marginBottom: '2rem'
-    },
-    promptViewMeta: {
-      display: 'flex',
-      gap: 'clamp(1rem, 3vw, 2rem)',
-      fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
-      opacity: '0.6',
-      flexWrap: 'wrap'
-    },
     promptContent: {
       display: 'grid',
       gridTemplateColumns: '1fr 1fr',
@@ -3198,12 +3416,45 @@ Create publishing approach that maximizes content reach while maintaining qualit
       alignItems: 'start',
       maxWidth: '1200px'
     },
+    
+    variablesSection: {
+      backgroundColor: 'rgba(22, 22, 31, 0.6)',
+      border: '1px solid rgba(255, 255, 255, 0.08)',
+      borderRadius: '16px',
+      padding: '2rem'
+    },
+    variablesSectionTitle: {
+      fontFamily: 'Literata, Georgia, serif',
+      fontSize: '1.3rem',
+      fontWeight: '400',
+      marginBottom: '1.5rem'
+    },
+    variableInput: {
+      width: '100%',
+      padding: '1rem',
+      backgroundColor: 'rgba(10, 10, 15, 0.8)',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      borderRadius: '8px',
+      color: 'white',
+      fontSize: '0.95rem',
+      marginBottom: '1rem',
+      outline: 'none',
+      transition: 'all 0.2s ease'
+    },
+    variableLabel: {
+      display: 'block',
+      fontSize: '0.9rem',
+      opacity: '0.8',
+      marginBottom: '0.5rem',
+      fontWeight: '500'
+    },
+    
     promptDisplay: {
       backgroundColor: 'rgba(10, 10, 15, 0.8)',
       border: '1px solid rgba(255, 255, 255, 0.08)',
       borderRadius: '16px',
       padding: '2rem',
-      position: 'relative' as const
+      position: 'relative'
     },
     promptDisplayHeader: {
       display: 'flex',
@@ -3246,53 +3497,12 @@ Create publishing approach that maximizes content reach while maintaining qualit
       fontSize: 'clamp(0.8rem, 2vw, 0.95rem)',
       lineHeight: '1.8',
       opacity: '0.9',
-      whiteSpace: 'pre-wrap' as const,
+      whiteSpace: 'pre-wrap',
       fontFamily: 'JetBrains Mono, Consolas, monospace',
-      wordBreak: 'break-word' as const,
-      overflowWrap: 'break-word' as const
-    },
-    
-    // Variables Section
-    variablesSection: {
-      backgroundColor: 'rgba(22, 22, 31, 0.6)',
-      border: '1px solid rgba(255, 255, 255, 0.08)',
-      borderRadius: '16px',
-      padding: '2rem'
-    },
-    variablesSectionTitle: {
-      fontFamily: 'Literata, Georgia, serif',
-      fontSize: '1.3rem',
-      fontWeight: '400',
-      marginBottom: '1.5rem'
-    },
-    variableLabel: {
-      display: 'block' as const,
-      fontSize: '0.9rem',
-      opacity: '0.8',
-      marginBottom: '0.5rem',
-      fontWeight: '500'
-    },
-    variableInput: {
-      width: '100%',
-      padding: '1rem',
-      backgroundColor: 'rgba(10, 10, 15, 0.8)',
-      border: '1px solid rgba(255, 255, 255, 0.1)',
-      borderRadius: '8px',
-      color: 'white',
-      fontSize: '0.95rem',
-      marginBottom: '1rem',
-      outline: 'none',
-      transition: 'all 0.2s ease'
-    },
-    proLabel: {
-      backgroundColor: 'rgba(139, 92, 246, 0.15)',
-      color: '#8b5cf6',
-      padding: '0.25rem 0.75rem',
-      borderRadius: '12px',
-      fontSize: '0.75rem',
-      fontWeight: '500'
+      wordBreak: 'break-word',
+      overflowWrap: 'break-word'
     }
-  } as const;
+  };
 
   // Category view with sidebar
   if (currentView === 'category') {
@@ -3309,12 +3519,12 @@ Create publishing approach that maximizes content reach while maintaining qualit
                 onClick={closePromptView}
                 style={styles.backButton}
                 onMouseEnter={(e) => {
-                  (e.target as HTMLButtonElement).style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-                  (e.target as HTMLButtonElement).style.color = 'white';
+                  e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                  e.target.style.color = 'white';
                 }}
                 onMouseLeave={(e) => {
-                  (e.target as HTMLButtonElement).style.backgroundColor = 'transparent';
-                  (e.target as HTMLButtonElement).style.color = 'rgba(255, 255, 255, 0.7)';
+                  e.target.style.backgroundColor = 'transparent';
+                  e.target.style.color = 'rgba(255, 255, 255, 0.7)';
                 }}
               >
                 ← Back to Library
@@ -3336,14 +3546,14 @@ Create publishing approach that maximizes content reach while maintaining qualit
                         }}
                         onMouseEnter={(e) => {
                           if (!isActive) {
-                            (e.target as HTMLButtonElement).style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-                            (e.target as HTMLButtonElement).style.color = 'white';
+                            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                            e.target.style.color = 'white';
                           }
                         }}
                         onMouseLeave={(e) => {
                           if (!isActive) {
-                            (e.target as HTMLButtonElement).style.backgroundColor = 'transparent';
-                            (e.target as HTMLButtonElement).style.color = 'rgba(255, 255, 255, 0.7)';
+                            e.target.style.backgroundColor = 'transparent';
+                            e.target.style.color = 'rgba(255, 255, 255, 0.7)';
                           }
                         }}
                       >
@@ -3448,12 +3658,12 @@ Create publishing approach that maximizes content reach while maintaining qualit
                 onClick={closePromptView}
                 style={styles.backButton}
                 onMouseEnter={(e) => {
-                  (e.target as HTMLButtonElement).style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-                  (e.target as HTMLButtonElement).style.color = 'white';
+                  e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                  e.target.style.color = 'white';
                 }}
                 onMouseLeave={(e) => {
-                  (e.target as HTMLButtonElement).style.backgroundColor = 'transparent';
-                  (e.target as HTMLButtonElement).style.color = 'rgba(255, 255, 255, 0.7)';
+                  e.target.style.backgroundColor = 'transparent';
+                  e.target.style.color = 'rgba(255, 255, 255, 0.7)';
                 }}
               >
                 ← Back to Library
@@ -3475,14 +3685,14 @@ Create publishing approach that maximizes content reach while maintaining qualit
                         }}
                         onMouseEnter={(e) => {
                           if (!isActive) {
-                            (e.target as HTMLButtonElement).style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-                            (e.target as HTMLButtonElement).style.color = 'white';
+                            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                            e.target.style.color = 'white';
                           }
                         }}
                         onMouseLeave={(e) => {
                           if (!isActive) {
-                            (e.target as HTMLButtonElement).style.backgroundColor = 'transparent';
-                            (e.target as HTMLButtonElement).style.color = 'rgba(255, 255, 255, 0.7)';
+                            e.target.style.backgroundColor = 'transparent';
+                            e.target.style.color = 'rgba(255, 255, 255, 0.7)';
                           }
                         }}
                       >
@@ -3530,14 +3740,14 @@ Create publishing approach that maximizes content reach while maintaining qualit
                       }}
                       onMouseEnter={(e) => {
                         if (copiedPrompt !== selectedPrompt.id) {
-                          (e.target as HTMLButtonElement).style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
-                          (e.target as HTMLButtonElement).style.color = 'white';
+                          e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+                          e.target.style.color = 'white';
                         }
                       }}
                       onMouseLeave={(e) => {
                         if (copiedPrompt !== selectedPrompt.id) {
-                          (e.target as HTMLButtonElement).style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-                          (e.target as HTMLButtonElement).style.color = 'rgba(255, 255, 255, 0.8)';
+                          e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                          e.target.style.color = 'rgba(255, 255, 255, 0.8)';
                         }
                       }}
                     >
@@ -3548,8 +3758,8 @@ Create publishing approach that maximizes content reach while maintaining qualit
                         ...styles.actionButton,
                         ...styles.tryEsyButton
                       }}
-                      onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#7c3aed'}
-                      onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#8b5cf6'}
+                      onMouseEnter={(e) => e.target.style.backgroundColor = '#7c3aed'}
+                      onMouseLeave={(e) => e.target.style.backgroundColor = '#8b5cf6'}
                     >
                       Try in Esy →
                     </button>
@@ -3574,8 +3784,8 @@ Create publishing approach that maximizes content reach while maintaining qualit
                         onChange={(e) => updateVariable(variable, e.target.value)}
                         placeholder={`Enter ${variable.toLowerCase()}`}
                         style={styles.variableInput}
-                        onFocus={(e) => (e.target as HTMLInputElement).style.borderColor = 'rgba(139, 92, 246, 0.4)'}
-                        onBlur={(e) => (e.target as HTMLInputElement).style.borderColor = 'rgba(255, 255, 255, 0.1)'}
+                        onFocus={(e) => e.target.style.borderColor = 'rgba(139, 92, 246, 0.4)'}
+                        onBlur={(e) => e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)'}
                       />
                     </div>
                   ))
@@ -3592,7 +3802,6 @@ Create publishing approach that maximizes content reach while maintaining qualit
     );
   }
 
-  // Default library view
   return (
     <div style={styles.container}>
       <section style={styles.heroSection}>
@@ -3609,12 +3818,12 @@ Create publishing approach that maximizes content reach while maintaining qualit
             onChange={(e) => setSearchTerm(e.target.value)}
             style={styles.searchInput}
             onFocus={(e) => {
-              (e.target as HTMLInputElement).style.borderColor = 'rgba(139, 92, 246, 0.4)';
-              (e.target as HTMLInputElement).style.backgroundColor = 'rgba(22, 22, 31, 1)';
+              e.target.style.borderColor = 'rgba(139, 92, 246, 0.4)';
+              e.target.style.backgroundColor = 'rgba(22, 22, 31, 1)';
             }}
             onBlur={(e) => {
-              (e.target as HTMLInputElement).style.borderColor = 'rgba(255, 255, 255, 0.1)';
-              (e.target as HTMLInputElement).style.backgroundColor = 'rgba(22, 22, 31, 0.8)';
+              e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+              e.target.style.backgroundColor = 'rgba(22, 22, 31, 0.8)';
             }}
           />
         </div>
@@ -3623,26 +3832,21 @@ Create publishing approach that maximizes content reach while maintaining qualit
           {promptCategories.map(category => (
             <button
               key={category.id}
-              onClick={() => {
-                setSelectedCategory(category.id);
-                if (category.id !== 'all') {
-                  openCategoryView(category.id);
-                }
-              }}
+              onClick={() => setSelectedCategory(category.id)}
               style={{
                 ...styles.categoryTab,
                 ...(selectedCategory === category.id ? styles.categoryTabActive : {})
               }}
               onMouseEnter={(e) => {
                 if (selectedCategory !== category.id) {
-                  (e.target as HTMLButtonElement).style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-                  (e.target as HTMLButtonElement).style.color = 'white';
+                  e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                  e.target.style.color = 'white';
                 }
               }}
               onMouseLeave={(e) => {
                 if (selectedCategory !== category.id) {
-                  (e.target as HTMLButtonElement).style.backgroundColor = 'transparent';
-                  (e.target as HTMLButtonElement).style.color = 'rgba(255, 255, 255, 0.7)';
+                  e.target.style.backgroundColor = 'transparent';
+                  e.target.style.color = 'rgba(255, 255, 255, 0.7)';
                 }
               }}
             >
