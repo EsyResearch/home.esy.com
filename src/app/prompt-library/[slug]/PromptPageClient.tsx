@@ -829,93 +829,185 @@ export default function PromptPageClient({
         }
 
         .prompt-display {
-          background: rgba(17, 17, 24, 0.98);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 12px;
+          background: linear-gradient(145deg, 
+            rgba(10, 10, 15, 0.95) 0%, 
+            rgba(15, 15, 22, 0.98) 50%, 
+            rgba(8, 8, 12, 0.95) 100%);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: 16px;
           position: relative;
           overflow: hidden;
           box-shadow: 
-            0 4px 16px rgba(0, 0, 0, 0.3),
-            inset 0 1px 0 rgba(255, 255, 255, 0.03);
+            0 8px 32px rgba(0, 0, 0, 0.4),
+            0 2px 8px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.08),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.1);
           max-width: 100%;
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+        }
+
+        .prompt-display::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(135deg, 
+            rgba(139, 92, 246, 0.03) 0%, 
+            transparent 30%, 
+            transparent 70%, 
+            rgba(59, 130, 246, 0.03) 100%);
+          pointer-events: none;
+          z-index: 1;
         }
 
         .prompt-display-header {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0.75rem 1.25rem;
-          background: rgba(255, 255, 255, 0.02);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+          padding: 1rem 1.5rem;
+          background: linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.04) 0%, 
+            rgba(255, 255, 255, 0.02) 50%, 
+            rgba(255, 255, 255, 0.01) 100%);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          position: relative;
+          z-index: 2;
+        }
+
+        .prompt-display-header::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background: linear-gradient(90deg, 
+            transparent 0%, 
+            rgba(139, 92, 246, 0.3) 50%, 
+            transparent 100%);
         }
 
         .prompt-display-title {
-          font-size: 0.8rem;
-          color: rgba(255, 255, 255, 0.5);
-          font-weight: 500;
-          letter-spacing: 0.5px;
+          font-size: 0.85rem;
+          color: rgba(255, 255, 255, 0.7);
+          font-weight: 600;
+          letter-spacing: 0.8px;
           text-transform: uppercase;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .prompt-display-title::before {
+          content: '';
+          width: 4px;
+          height: 4px;
+          background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+          border-radius: 50%;
+          box-shadow: 0 0 8px rgba(139, 92, 246, 0.4);
         }
 
         .prompt-display-actions {
           display: flex;
-          gap: 0.5rem;
+          gap: 0.75rem;
+          align-items: center;
         }
 
         .prompt-display-dot {
-          width: 10px;
-          height: 10px;
+          width: 12px;
+          height: 12px;
           border-radius: 50%;
-          background: rgba(255, 255, 255, 0.1);
+          background: rgba(255, 255, 255, 0.15);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          transition: all 0.3s ease;
+          position: relative;
+        }
+
+        .prompt-display-dot:hover {
+          transform: scale(1.1);
+          box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
         }
 
         .prompt-display-dot.green {
-          background: rgba(34, 197, 94, 0.5);
+          background: linear-gradient(135deg, #22c55e, #16a34a);
+          border-color: rgba(34, 197, 94, 0.3);
+          box-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
+        }
+
+        .prompt-display-dot.green:hover {
+          box-shadow: 0 0 16px rgba(34, 197, 94, 0.5);
         }
 
         .prompt-content {
-          max-height: 400px;
+          max-height: 450px;
           overflow-y: auto;
-          padding: 1.5rem;
+          padding: 2rem;
           position: relative;
           background: linear-gradient(180deg, 
             transparent 0%, 
-            transparent calc(100% - 40px), 
-            rgba(17, 17, 24, 0.98) 100%);
+            transparent calc(100% - 50px), 
+            rgba(8, 8, 12, 0.95) 100%);
           counter-reset: prompt-counter;
           text-align: left !important;
+          z-index: 2;
+          border-radius: 0 0 16px 16px;
+        }
+
+        .prompt-content::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background: linear-gradient(90deg, 
+            transparent 0%, 
+            rgba(139, 92, 246, 0.2) 20%, 
+            rgba(139, 92, 246, 0.4) 50%, 
+            rgba(139, 92, 246, 0.2) 80%, 
+            transparent 100%);
         }
 
         .prompt-content::-webkit-scrollbar {
-          width: 8px;
+          width: 6px;
         }
 
         .prompt-content::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.03);
-          border-radius: 4px;
+          background: rgba(255, 255, 255, 0.02);
+          border-radius: 6px;
+          margin: 0.5rem 0;
         }
 
         .prompt-content::-webkit-scrollbar-thumb {
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 4px;
-          border: 1px solid rgba(255, 255, 255, 0.05);
+          background: linear-gradient(180deg, 
+            rgba(139, 92, 246, 0.3) 0%, 
+            rgba(139, 92, 246, 0.1) 100%);
+          border-radius: 6px;
+          border: 1px solid rgba(139, 92, 246, 0.1);
+          transition: all 0.3s ease;
         }
 
         .prompt-content::-webkit-scrollbar-thumb:hover {
-          background: rgba(255, 255, 255, 0.15);
+          background: linear-gradient(180deg, 
+            rgba(139, 92, 246, 0.5) 0%, 
+            rgba(139, 92, 246, 0.2) 100%);
+          box-shadow: 0 0 8px rgba(139, 92, 246, 0.3);
         }
 
         .prompt-text {
-          font-size: 0.925rem;
-          line-height: 1.75;
-          color: rgba(255, 255, 255, 0.9);
+          font-size: 0.95rem;
+          line-height: 1.8;
+          color: rgba(255, 255, 255, 0.92);
           white-space: pre-wrap;
-          font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+          font-family: 'SF Mono', 'JetBrains Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
           word-break: break-word;
           overflow-wrap: break-word;
           margin: 0;
           padding: 0;
-          letter-spacing: 0.3px;
+          letter-spacing: 0.2px;
           text-align: left !important;
           display: block;
           width: 100%;
@@ -923,11 +1015,24 @@ export default function PromptPageClient({
           text-rendering: optimizeLegibility;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
+          font-weight: 400;
+          position: relative;
         }
 
         /* Force all content to be left-aligned */
         .prompt-content * {
           text-align: left !important;
+        }
+
+        /* Ensure prompt content is properly positioned to the left */
+        .prompt-content {
+          direction: ltr;
+          unicode-bidi: normal;
+        }
+
+        .prompt-text {
+          direction: ltr;
+          unicode-bidi: normal;
         }
 
         /* Ensure pre element is properly aligned */
@@ -950,37 +1055,50 @@ export default function PromptPageClient({
 
         /* Highlight variables in brackets */
         :global(.prompt-variable) {
-          color: #a78bfa;
-          background: rgba(139, 92, 246, 0.08);
-          padding: 3px 8px;
-          border-radius: 5px;
+          color: #c4b5fd;
+          background: linear-gradient(135deg, 
+            rgba(139, 92, 246, 0.12) 0%, 
+            rgba(139, 92, 246, 0.08) 100%);
+          padding: 4px 10px;
+          border-radius: 8px;
           font-weight: 600;
-          border: 1px solid rgba(139, 92, 246, 0.15);
+          border: 1px solid rgba(139, 92, 246, 0.2);
           display: inline-block;
-          margin: 0 3px;
-          transition: all 0.2s ease;
+          margin: 0 4px;
+          transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           vertical-align: baseline;
           font-size: 0.95em;
-          letter-spacing: 0.4px;
-          box-shadow: 0 1px 3px rgba(139, 92, 246, 0.1);
+          letter-spacing: 0.3px;
+          box-shadow: 
+            0 2px 8px rgba(139, 92, 246, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
           cursor: pointer;
           user-select: none;
           position: relative;
+          backdrop-filter: blur(10px);
         }
 
         :global(.prompt-variable):hover {
-          background: rgba(139, 92, 246, 0.18);
-          border-color: rgba(139, 92, 246, 0.35);
-          color: #c9b5fc;
-          transform: translateY(-1px);
+          background: linear-gradient(135deg, 
+            rgba(139, 92, 246, 0.2) 0%, 
+            rgba(139, 92, 246, 0.15) 100%);
+          border-color: rgba(139, 92, 246, 0.4);
+          color: #ddd6fe;
+          transform: translateY(-2px) scale(1.02);
           box-shadow: 
-            0 3px 8px rgba(139, 92, 246, 0.25),
-            0 0 0 2px rgba(139, 92, 246, 0.1);
+            0 4px 16px rgba(139, 92, 246, 0.3),
+            0 0 0 2px rgba(139, 92, 246, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
 
         :global(.prompt-variable):active {
-          transform: translateY(0);
-          background: rgba(139, 92, 246, 0.25);
+          transform: translateY(-1px) scale(1.01);
+          background: linear-gradient(135deg, 
+            rgba(139, 92, 246, 0.25) 0%, 
+            rgba(139, 92, 246, 0.2) 100%);
+          box-shadow: 
+            0 2px 8px rgba(139, 92, 246, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15);
         }
 
         /* Add a subtle pulse animation on hover */
