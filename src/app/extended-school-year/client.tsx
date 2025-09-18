@@ -642,7 +642,7 @@ const ESYLandingPage = () => {
             gap: '0.5rem'
           }}
         >
-          Start Writing Better Documentation
+          Write Better Documentation
           <ArrowRight size={18} />
         </a>
       </section>

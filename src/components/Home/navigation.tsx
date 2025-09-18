@@ -51,7 +51,7 @@ export default function Navigation () {
             {/* <a href="/research" className="nav-link">Research</a> */}
             {/* <a href="/school" className="nav-link">School</a> */}
             {/* <a href="/pricing" className="nav-link">Pricing</a> */}
-            <a href="https://app.esy.com" className="nav-cta">Start Writing</a>
+            <a href="https://app.esy.com" className="nav-cta">Write</a>
           </div>
         </div>
       </nav>

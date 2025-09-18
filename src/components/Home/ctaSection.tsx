@@ -10,7 +10,7 @@ export default function CTASection() {
             Join thousands of researchers achieving more with AI-powered academic writing
           </p>
           <a href="https://app.esy.com" className="cta-button">
-            Start Writing Free Today
+            Write
           </a>
         </div>
       </section>

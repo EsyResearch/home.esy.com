@@ -630,7 +630,7 @@ const HowToWriteHub = () => {
                 e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
               }}
             >
-              Start Writing Free
+              Write
             </button>
           </div>
         </div>
@@ -873,7 +873,7 @@ const HowToWriteHub = () => {
               onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
               onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
             >
-              Start Writing Free
+              Write
             </button>
             <button 
               style={styles.ctaSecondaryButton}

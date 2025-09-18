@@ -1,0 +1,269 @@
+{
+  "prompts": [
+    {
+      "id": 16,
+      "shortDescription": "Transform qualitative data into meaningful insights",
+      "variables": ["DATA_TYPE", "ANALYTICAL_APPROACH"]
+    },
+    {
+      "id": 17,
+      "shortDescription": "Design and execute robust statistical investigations",
+      "variables": ["RESEARCH_HYPOTHESIS", "DATA_TYPE"]
+    },
+    {
+      "id": 18,
+      "shortDescription": "Leverage multiple methodologies for comprehensive understanding",
+      "variables": ["RESEARCH_PROBLEM", "INTEGRATION_STRATEGY"]
+    },
+    {
+      "id": 19,
+      "shortDescription": "Ensure ethical integrity throughout research process",
+      "variables": ["RESEARCH_CONTEXT", "PARTICIPANT_TYPE"]
+    },
+    {
+      "id": 20,
+      "shortDescription": "Master the gold standard of literature synthesis",
+      "variables": ["REVIEW_QUESTION", "INCLUSION_CRITERIA"]
+    },
+    {
+      "id": 21,
+      "shortDescription": "Design proposals that secure research funding",
+      "variables": ["FUNDING_AGENCY", "RESEARCH_PROJECT"]
+    },
+    {
+      "id": 22,
+      "shortDescription": "Develop questions that drive meaningful inquiry",
+      "variables": ["BROAD_TOPIC", "RESEARCH_CONTEXT"]
+    },
+    {
+      "id": 23,
+      "shortDescription": "Transform data into compelling visual narratives",
+      "variables": ["DATA_TYPE", "AUDIENCE"]
+    },
+    {
+      "id": 24,
+      "shortDescription": "Master the art of scholarly peer evaluation",
+      "variables": ["MANUSCRIPT_TYPE", "REVIEW_FOCUS"]
+    },
+    {
+      "id": 25,
+      "shortDescription": "Demonstrate the value and reach of academic work",
+      "variables": ["RESEARCH_AREA", "IMPACT_TYPE"]
+    },
+    {
+      "id": 26,
+      "shortDescription": "Create research that transcends traditional boundaries",
+      "variables": ["PRIMARY_DISCIPLINE", "SECONDARY_DISCIPLINE"]
+    },
+    {
+      "id": 27,
+      "shortDescription": "Strengthen scientific knowledge through replication",
+      "variables": ["ORIGINAL_STUDY", "REPLICATION_TYPE"]
+    },
+    {
+      "id": 28,
+      "shortDescription": "Systematic framework for analyzing literary structure",
+      "variables": ["LITERARY_WORK", "AUTHOR"]
+    },
+    {
+      "id": 29,
+      "shortDescription": "Uncover the complex psychology driving character behavior",
+      "variables": ["CHARACTER_NAME", "PSYCHOLOGICAL_THEORY"]
+    },
+    {
+      "id": 30,
+      "shortDescription": "Analyze connections across different literary traditions",
+      "variables": ["WORK_ONE", "WORK_TWO"]
+    },
+    {
+      "id": 31,
+      "shortDescription": "Uncover hidden meanings in literary imagery",
+      "variables": ["LITERARY_WORK", "SYMBOLIC_ELEMENT"]
+    },
+    {
+      "id": 32,
+      "shortDescription": "Examine how texts engage with literary traditions",
+      "variables": ["LITERARY_WORK", "GENRE"]
+    },
+    {
+      "id": 33,
+      "shortDescription": "Analyze texts through feminist critical perspectives",
+      "variables": ["LITERARY_WORK", "FEMINIST_APPROACH"]
+    },
+    {
+      "id": 34,
+      "shortDescription": "Examine power, identity, and resistance in colonial contexts",
+      "variables": ["LITERARY_WORK", "COLONIAL_CONTEXT"]
+    },
+    {
+      "id": 35,
+      "shortDescription": "Uncover unconscious elements in literary texts",
+      "variables": ["LITERARY_WORK", "PSYCHOANALYTIC_CONCEPT"]
+    },
+    {
+      "id": 36,
+      "shortDescription": "Analyze texts through Marxist critical frameworks",
+      "variables": ["LITERARY_WORK", "CLASS_FOCUS"]
+    },
+    {
+      "id": 37,
+      "shortDescription": "Examine the active role of readers in literary meaning",
+      "variables": ["LITERARY_WORK", "READER_COMMUNITY"]
+    },
+    {
+      "id": 38,
+      "shortDescription": "Master persuasive essay structure and argumentation",
+      "variables": ["TOPIC", "TARGET_AUDIENCE"]
+    },
+    {
+      "id": 39,
+      "shortDescription": "Break down complex subjects with clarity and insight",
+      "variables": ["SUBJECT", "ANALYTICAL_APPROACH"]
+    },
+    {
+      "id": 40,
+      "shortDescription": "Illuminate insights through systematic comparison",
+      "variables": ["SUBJECT_A", "SUBJECT_B"]
+    },
+    {
+      "id": 41,
+      "shortDescription": "Tell your story with purpose and authenticity",
+      "variables": ["APPLICATION_TYPE", "CORE_EXPERIENCE"]
+    },
+    {
+      "id": 42,
+      "shortDescription": "Explain complex topics with clarity and engagement",
+      "variables": ["TOPIC", "COMPLEXITY_LEVEL"]
+    },
+    {
+      "id": 43,
+      "shortDescription": "Move readers to action through compelling persuasion",
+      "variables": ["POSITION", "PERSUASION_GOAL"]
+    },
+    {
+      "id": 44,
+      "shortDescription": "Develop nuanced critical assessment skills",
+      "variables": ["SUBJECT", "EVALUATION_CRITERIA"]
+    },
+    {
+      "id": 45,
+      "shortDescription": "Craft compelling narratives that inform and engage",
+      "variables": ["EXPERIENCE_TYPE", "LESSON_LEARNED"]
+    },
+    {
+      "id": 46,
+      "shortDescription": "Trace complex causal relationships with precision",
+      "variables": ["PHENOMENON", "ANALYSIS_FOCUS"]
+    },
+    {
+      "id": 47,
+      "shortDescription": "Define abstract concepts with depth and nuance",
+      "variables": ["CONCEPT", "DEFINITIONAL_APPROACH"]
+    },
+    {
+      "id": 48,
+      "shortDescription": "Guide readers through complex processes clearly",
+      "variables": ["PROCESS", "READER_LEVEL"]
+    },
+    {
+      "id": 49,
+      "shortDescription": "Weave diverse sources into unified analysis",
+      "variables": ["TOPIC", "SOURCE_TYPES"]
+    },
+    {
+      "id": 50,
+      "shortDescription": "Present research findings with scholarly rigor",
+      "variables": ["RESEARCH_QUESTION", "METHODOLOGY"]
+    },
+    {
+      "id": 51,
+      "shortDescription": "Transform experience into insight through reflection",
+      "variables": ["EXPERIENCE", "REFLECTION_FOCUS"]
+    },
+    {
+      "id": 52,
+      "shortDescription": "Professional communication for executive audiences",
+      "variables": ["BUSINESS_CONTEXT", "STAKEHOLDER_TYPE"]
+    },
+    {
+      "id": 53,
+      "shortDescription": "Transform complex information into accessible documentation",
+      "variables": ["TECHNICAL_SUBJECT", "USER_TYPE"]
+    },
+    {
+      "id": 54,
+      "shortDescription": "Secure funding through compelling proposal writing",
+      "variables": ["FUNDING_AGENCY", "PROJECT_TYPE"]
+    },
+    {
+      "id": 55,
+      "shortDescription": "Influence policy through clear, evidence-based communication",
+      "variables": ["POLICY_ISSUE", "RECOMMENDATION"]
+    },
+    {
+      "id": 56,
+      "shortDescription": "Present business insights with clarity and impact",
+      "variables": ["BUSINESS_PROBLEM", "ANALYSIS_TYPE"]
+    },
+    {
+      "id": 57,
+      "shortDescription": "Win contracts and approval through compelling proposals",
+      "variables": ["PROPOSAL_TYPE", "CLIENT_NEED"]
+    },
+    {
+      "id": 58,
+      "shortDescription": "Master professional email for maximum impact",
+      "variables": ["EMAIL_PURPOSE", "RECIPIENT_LEVEL"]
+    },
+    {
+      "id": 59,
+      "shortDescription": "Navigate difficult situations with strategic communication",
+      "variables": ["CRISIS_TYPE", "STAKEHOLDER_GROUP"]
+    },
+    {
+      "id": 60,
+      "shortDescription": "Design compelling non-fiction that teaches and engages",
+      "variables": ["SUBJECT", "TARGET_READER"]
+    },
+    {
+      "id": 61,
+      "shortDescription": "Write chapters that engage, educate, and advance your book",
+      "variables": ["CHAPTER_TOPIC", "BOOK_THEME"]
+    },
+    {
+      "id": 62,
+      "shortDescription": "Create a loyal readership that grows with each publication",
+      "variables": ["NICHE_TOPIC", "PLATFORM_FOCUS"]
+    },
+    {
+      "id": 63,
+      "shortDescription": "Navigate the self-publishing process from manuscript to market",
+      "variables": ["BOOK_TYPE", "PUBLISHING_GOAL"]
+    },
+    {
+      "id": 64,
+      "shortDescription": "Design online courses that deliver real learning outcomes",
+      "variables": ["EXPERTISE_AREA", "LEARNING_FORMAT"]
+    },
+    {
+      "id": 65,
+      "shortDescription": "Transform life experience into compelling narrative",
+      "variables": ["LIFE_THEME", "TARGET_MESSAGE"]
+    },
+    {
+      "id": 66,
+      "shortDescription": "Navigate academic publishing for maximum scholarly impact",
+      "variables": ["RESEARCH_FIELD", "PUBLICATION_TYPE"]
+    },
+    {
+      "id": 67,
+      "shortDescription": "Leverage books and content for business growth",
+      "variables": ["BUSINESS_FOCUS", "AUTHORITY_GOAL"]
+    },
+    {
+      "id": 68,
+      "shortDescription": "Optimize content for every reading preference and platform",
+      "variables": ["CONTENT_TYPE", "FORMAT_PRIORITY"]
+    }
+  ]
+}

@@ -42,7 +42,7 @@ export default function HeroSection () {
             
             <div className="hero-cta-group">
               <a href="https://app.esy.com" className="hero-cta-primary">
-                Start Writing Free
+                Write
               </a>
               <button className="hero-cta-secondary">
                 Watch Demo

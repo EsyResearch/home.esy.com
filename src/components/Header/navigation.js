@@ -21,7 +21,7 @@ const Navigation = () => {
         
         {/* CTA Button */}
         <a href="https://app.esy.com" className="px-4 py-2 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-lg hover:opacity-90 transition text-sm font-medium text-white">
-          Start Writing
+          Write
         </a>
       </nav>
     );

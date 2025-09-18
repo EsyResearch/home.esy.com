@@ -795,7 +795,7 @@ const NewHomepage = () => {
               }}
             >
               <Sparkles size={isMobile ? 18 : 18} />
-              Start Writing Free
+              Write
             </button>
 
             <button 
