@@ -3583,7 +3583,14 @@ Create publishing approach that maximizes content reach while maintaining qualit
               <p style={styles.promptViewDescription}>{selectedPrompt.description}</p>
               <div style={styles.promptViewMeta}>
                 <span>Category: {promptCategories.find(c => c.id === selectedPrompt.category)?.name}</span>
-                {selectedPrompt.isPro && <span style={styles.proLabel}>Pro</span>}
+                {selectedPrompt.isPro && <span style={{ 
+                  backgroundColor: 'rgba(251, 191, 36, 0.15)',
+                  color: '#fbbf24',
+                  padding: '0.25rem 0.75rem',
+                  borderRadius: '12px',
+                  fontSize: '0.75rem',
+                  fontWeight: '500'
+                }}>Pro</span>}
               </div>
             </div>
             

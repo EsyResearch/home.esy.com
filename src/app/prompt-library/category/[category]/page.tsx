@@ -7,9 +7,9 @@ import { getPromptsByCategory, getCategories, getCategoryBySlug } from '@/lib/pr
 import CategoryView from './CategoryView';
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     category: string;
-  };
+  }>;
 }
 
 // Generate static params for all categories

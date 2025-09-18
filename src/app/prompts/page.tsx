@@ -1,22 +1,16 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { getAllPrompts, getCategories } from '@/lib/prompts';
-import type { Metadata } from 'next';
+import { getAllPrompts, getCategories, type Prompt } from '@/lib/prompts';
 
-export const metadata: Metadata = {
-  title: 'AI Prompt Library - 68 Research-Grade Prompts | Esy',
-  description: 'Explore our collection of 68 expertly crafted AI prompts for creative writing, academic research, essay writing, and professional communication.',
-  keywords: ['AI prompts', 'writing prompts', 'research prompts', 'essay prompts', 'prompt templates'],
-  openGraph: {
-    title: 'AI Prompt Library - Research-Grade Prompts',
-    description: 'Explore 68 expertly crafted AI prompts for writing and research',
-    type: 'website',
-  },
-};
-
-export default async function PromptsPage() {
-  const prompts = await getAllPrompts();
+export default function PromptsPage() {
+  const [prompts, setPrompts] = useState<Prompt[]>([]);
   const categories = getCategories();
+
+  useEffect(() => {
+    getAllPrompts().then(setPrompts);
+  }, []);
 
   return (
     <div className="prompts-container">

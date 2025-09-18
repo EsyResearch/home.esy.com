@@ -5,9 +5,9 @@ import { getPromptBySlug, getAllPromptSlugs, getRelatedPrompts, getCategoryById 
 import PromptPageClient from './PromptPageClient';
 
 interface PromptPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // Generate static params for all prompts
