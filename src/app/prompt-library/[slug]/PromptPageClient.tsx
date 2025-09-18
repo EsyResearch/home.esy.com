@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FileText } from 'lucide-react';
+import { FileText, Target, HelpCircle, ChevronRight } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import PromptLibrarySidebar from '@/components/PromptLibrary/PromptLibrarySidebar';
 import CopyrightFooter from '@/components/CopyrightFooter';
@@ -24,6 +24,8 @@ export default function PromptPageClient({
   const [customizedPrompt, setCustomizedPrompt] = useState(prompt.prompt);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [focusedVariable, setFocusedVariable] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<'template' | 'expected-output' | 'variables'>('template');
+
   
   // Initialize variables
   useEffect(() => {
@@ -94,6 +96,67 @@ export default function PromptPageClient({
     }
   };
 
+  // Helper functions for variable descriptions and examples
+  const getVariableDescription = (variable: string): string => {
+    const descriptions: Record<string, string> = {
+      'WRITING_CONTEXT': 'The specific context or platform where your writing will be used (e.g., blog posts, academic papers, marketing copy, fiction)',
+      'TARGET_AUDIENCE': 'The specific group of readers you want to reach and engage with your content',
+      'GENRE': 'The literary or content genre that defines the style and conventions of your writing',
+      'VOICE_PERSONALITY': 'The distinct personality traits and characteristics that define your writing voice',
+      'FORMALITY_LEVEL': 'The level of formality in your writing, from casual to highly formal',
+      'EMOTIONAL_TONE': 'The emotional atmosphere and feeling you want to convey through your writing',
+      'CONTENT_LENGTH': 'The intended length or scope of your written content',
+      'SPECIFIC_GOALS': 'The specific objectives you want to achieve with your writing',
+      'STORY_TYPE': 'The genre or type of story you want to create (e.g., mystery, romance, sci-fi)',
+      'THEME': 'The central theme or message of your story',
+      'CHARACTER_NAME': 'The name of the main character',
+      'SETTING': 'The time and place where your story takes place',
+      'CONFLICT': 'The main problem or challenge your character faces',
+      'TONE': 'The emotional tone of your writing (e.g., serious, humorous, dark)',
+      'LENGTH': 'The desired length of your content (e.g., short story, novel, essay)',
+      'AUDIENCE': 'The target audience for your content',
+      'TOPIC': 'The specific subject matter you want to explore',
+      'GOAL': 'The objective or purpose of your writing',
+      'STYLE': 'The writing style you want to achieve',
+      'PERSPECTIVE': 'The point of view for your narrative',
+      'TIME_PERIOD': 'The historical period or era for your story',
+      'LOCATION': 'The specific place or environment for your story',
+      'MOOD': 'The emotional atmosphere you want to create',
+      'PURPOSE': 'The reason or goal behind your writing',
+      'FOCUS': 'The main area of concentration for your content',
+      'APPROACH': 'The method or strategy for your writing',
+      'SCOPE': 'The breadth and depth of your content',
+      'CONTEXT': 'The background or circumstances surrounding your topic'
+    };
+    
+    return descriptions[variable] || `Customize this variable to personalize your prompt`;
+  };
+
+  const getVariableExamples = (variable: string): string[] => {
+    const examples: Record<string, string[]> = {
+      'WRITING_CONTEXT': ['Blog posts', 'Academic papers', 'Marketing copy', 'Fiction novels', 'Technical documentation', 'Social media content', 'Email newsletters', 'Press releases'],
+      'TARGET_AUDIENCE': ['Young professionals', 'Academic researchers', 'Small business owners', 'Tech enthusiasts', 'Parents', 'Students', 'Industry experts', 'General consumers'],
+      'GENRE': ['Literary fiction', 'Business writing', 'Academic writing', 'Creative non-fiction', 'Technical writing', 'Marketing copy', 'Journalism', 'Poetry'],
+      'VOICE_PERSONALITY': ['Authoritative expert', 'Friendly mentor', 'Witty commentator', 'Empathetic counselor', 'Analytical researcher', 'Inspirational leader', 'Conversational friend', 'Professional consultant'],
+      'FORMALITY_LEVEL': ['Highly formal', 'Professional', 'Semi-formal', 'Conversational', 'Casual', 'Intimate', 'Academic', 'Technical'],
+      'EMOTIONAL_TONE': ['Inspiring and motivational', 'Calm and reassuring', 'Exciting and energetic', 'Thoughtful and reflective', 'Warm and welcoming', 'Serious and authoritative', 'Playful and humorous', 'Empathetic and understanding'],
+      'CONTENT_LENGTH': ['Short articles (500-1000 words)', 'Medium posts (1000-2500 words)', 'Long-form content (2500+ words)', 'Brief updates (100-500 words)', 'Comprehensive guides (5000+ words)', 'Quick tips (50-200 words)'],
+      'SPECIFIC_GOALS': ['Increase reader engagement', 'Build brand authority', 'Drive conversions', 'Educate and inform', 'Entertain and delight', 'Persuade and influence', 'Build community', 'Generate leads'],
+      'STORY_TYPE': ['Mystery', 'Romance', 'Science Fiction', 'Fantasy', 'Thriller'],
+      'THEME': ['Love conquers all', 'Good vs. evil', 'Coming of age', 'Redemption', 'Identity'],
+      'CHARACTER_NAME': ['Alex', 'Sarah', 'Marcus', 'Elena', 'Jordan'],
+      'SETTING': ['Modern day New York', 'Medieval Europe', 'Space station', 'Small town', 'Future Earth'],
+      'CONFLICT': ['Man vs. nature', 'Internal struggle', 'Social injustice', 'Family secrets', 'Technological threat'],
+      'TONE': ['Serious', 'Humorous', 'Dark', 'Optimistic', 'Melancholic'],
+      'LENGTH': ['Short story', 'Novel', 'Essay', 'Article', 'Poem'],
+      'AUDIENCE': ['Young adults', 'Children', 'Professionals', 'General readers', 'Academics'],
+      'TOPIC': ['Climate change', 'Artificial intelligence', 'Mental health', 'Education', 'Technology'],
+      'GOAL': ['Entertain', 'Educate', 'Persuade', 'Inform', 'Inspire']
+    };
+    
+    return examples[variable] || ['Example 1', 'Example 2', 'Example 3'];
+  };
+
   return (
     <div className="prompt-page">
       {/* Main Content Wrapper with Sidebar */}
@@ -155,32 +218,53 @@ export default function PromptPageClient({
             </div>
           </header>
 
-          {/* Prompt Template Header */}
-          <div className="prompt-template-header">
-            <h2 className="prompt-template-title">
-              <FileText size={20} className="prompt-template-icon" />
-              Prompt Template
-            </h2>
-          </div>
 
-          {/* Prompt Template - Direct Integration */}
-          <div className="prompt-template-direct" onClick={(e) => {
-            // Check if clicked element is a variable
-            const target = e.target as HTMLElement;
-            if (target.classList.contains('prompt-variable')) {
-              // Extract variable name from the text content (remove brackets)
-              const variableName = target.textContent?.replace(/[\[\]]/g, '') || '';
-              setFocusedVariable(variableName);
-              setIsDrawerOpen(true);
-            }
-          }}>
-            <pre className="prompt-text" dangerouslySetInnerHTML={{ 
-              __html: customizedPrompt
-                .replace(/\[([^\]]+)\]/g, '<span class="prompt-variable" role="button" tabindex="0" title="Click to customize">[$1]</span>')
-                .replace(/^(\d+)\.\s+(.*)$/gm, '<span class="prompt-numbered-item">$2</span>')
-                .replace(/^[-•]\s+(.*)$/gm, '<span class="prompt-list-item">$1</span>')
-                .replace(/\*\*([^*]+)\*\*/g, '<span class="prompt-emphasis">$1</span>')
-            }} />
+          {/* Tabbed Interface for Additional Information */}
+          <div className="prompt-details-tabs">
+            <div className="tab-navigation">
+              <button 
+                className={`tab-button ${activeTab === 'template' ? 'active' : ''}`}
+                onClick={() => setActiveTab('template')}
+              >
+                <FileText size={16} />
+                Prompt Template
+              </button>
+              <button 
+                className={`tab-button ${activeTab === 'expected-output' ? 'active' : ''}`}
+                onClick={() => setActiveTab('expected-output')}
+              >
+                <Target size={16} />
+                Expected Output
+              </button>
+              <button 
+                className={`tab-button ${activeTab === 'variables' ? 'active' : ''}`}
+                onClick={() => setActiveTab('variables')}
+              >
+                <HelpCircle size={16} />
+                Variables Guide
+              </button>
+              </div>
+
+            <div className="tab-content">
+              {activeTab === 'template' && (
+                <div className="tab-panel">
+                  <div className="prompt-template-direct" onClick={(e) => {
+              // Check if clicked element is a variable
+              const target = e.target as HTMLElement;
+              if (target.classList.contains('prompt-variable')) {
+                      // Extract variable name from the text content (remove brackets)
+                      const variableName = target.textContent?.replace(/[\[\]]/g, '') || '';
+                      setFocusedVariable(variableName);
+                setIsDrawerOpen(true);
+              }
+            }}>
+              <pre className="prompt-text" dangerouslySetInnerHTML={{ 
+                __html: customizedPrompt
+                  .replace(/\[([^\]]+)\]/g, '<span class="prompt-variable" role="button" tabindex="0" title="Click to customize">[$1]</span>')
+                  .replace(/^(\d+)\.\s+(.*)$/gm, '<span class="prompt-numbered-item">$2</span>')
+                  .replace(/^[-•]\s+(.*)$/gm, '<span class="prompt-list-item">$1</span>')
+                  .replace(/\*\*([^*]+)\*\*/g, '<span class="prompt-emphasis">$1</span>')
+              }} />
             {copied && (
               <div className="copy-indicator">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -189,6 +273,97 @@ export default function PromptPageClient({
                 Copied to clipboard
               </div>
             )}
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'expected-output' && (
+                <div className="tab-panel">
+                  <div className="expected-output-content">
+                    <h3 className="section-title">What You'll Receive from the LLM</h3>
+                    <p className="section-description">
+                      The AI will generate a comprehensive voice and style mastery system with the following structured components:
+                    </p>
+                    
+                    <div className="output-structure">
+                      <div className="structure-grid">
+                        <div className="structure-card">
+                          <div className="structure-header">
+                            <div className="structure-number">1</div>
+                            <h5>Voice Foundation</h5>
+                          </div>
+                          <p>Core identity definition, technical voice elements, and perspective mastery for establishing your unique writing signature</p>
+                        </div>
+                        <div className="structure-card">
+                          <div className="structure-header">
+                            <div className="structure-number">2</div>
+                            <h5>Style Framework</h5>
+                          </div>
+                          <p>Genre-specific adaptations, audience connection strategies, and content structure for maximum impact</p>
+                        </div>
+                        <div className="structure-card">
+                          <div className="structure-header">
+                            <div className="structure-number">3</div>
+                            <h5>Practical Implementation</h5>
+                          </div>
+                          <p>Voice consistency techniques, adaptation strategies, and quality assurance processes for real-world application</p>
+                        </div>
+                        <div className="structure-card">
+                          <div className="structure-header">
+                            <div className="structure-number">4</div>
+                            <h5>Deliverables & Metrics</h5>
+                          </div>
+                          <p>Complete style guides, writing examples, consistency checklists, and success measurement tools</p>
+                        </div>
+                        <div className="structure-card">
+                          <div className="structure-header">
+                            <div className="structure-number">5</div>
+                            <h5>Real-World Application</h5>
+                          </div>
+                          <p>Context-specific adaptations, multi-project management, and continuous improvement processes</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'variables' && (
+                <div className="tab-panel">
+                  <div className="variables-guide-content">
+                    <h3 className="section-title">Variable Definitions</h3>
+                    <p className="section-description">
+                      Customize these variables to tailor the prompt to your specific needs:
+                    </p>
+                    {prompt.variables.length > 0 ? (
+                      <div className="variables-list">
+                        {prompt.variables.map(variable => (
+                          <div key={variable} className="variable-definition">
+                            <div className="variable-header">
+                              <code className="variable-name">[{variable}]</code>
+                              <span className="variable-type">String</span>
+                            </div>
+                            <p className="variable-description">
+                              {getVariableDescription(variable)}
+                            </p>
+                            <div className="variable-examples">
+                              <strong>Examples:</strong>
+                              <div className="example-tags">
+                                {getVariableExamples(variable).map((example, index) => (
+                                  <span key={index} className="example-tag">{example}</span>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="no-variables">This prompt has no customizable variables.</p>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </main>
 
@@ -935,6 +1110,465 @@ export default function PromptPageClient({
           pointer-events: none;
           z-index: 1;
           border-radius: 16px;
+        }
+
+        /* Tabbed Interface Styles */
+        .prompt-details-tabs {
+          margin-top: 2rem;
+        }
+
+        .tab-navigation {
+          display: flex;
+          gap: 0.5rem;
+          margin-bottom: 0;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          padding-bottom: 0;
+        }
+
+        .tab-button {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 1rem 1.5rem;
+          background: transparent;
+          border: none;
+          color: rgba(255, 255, 255, 0.6);
+          font-size: 0.95rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          position: relative;
+          border-radius: 8px 8px 0 0;
+          font-family: Inter, sans-serif;
+        }
+
+        .tab-button:hover {
+          color: rgba(255, 255, 255, 0.8);
+          background: rgba(255, 255, 255, 0.02);
+        }
+
+        .tab-button.active {
+          color: #8b5cf6;
+          background: rgba(139, 92, 246, 0.08);
+          border-bottom: 2px solid #8b5cf6;
+        }
+
+        .tab-button.active::before {
+          content: '';
+          position: absolute;
+          bottom: -1px;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: linear-gradient(90deg, 
+            transparent 0%, 
+            #8b5cf6 50%, 
+            transparent 100%);
+        }
+
+        .tab-content {
+          background: linear-gradient(145deg, 
+            rgba(10, 10, 15, 0.95) 0%, 
+            rgba(15, 15, 22, 0.98) 50%, 
+            rgba(8, 8, 12, 0.95) 100%);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: 0 0 16px 16px;
+          border-top: none;
+          min-height: 400px;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .tab-content::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(135deg, 
+            rgba(139, 92, 246, 0.02) 0%, 
+            transparent 30%, 
+            transparent 70%, 
+            rgba(59, 130, 246, 0.02) 100%);
+          pointer-events: none;
+          z-index: 1;
+        }
+
+        .tab-panel {
+          padding: 2rem;
+          position: relative;
+          z-index: 2;
+        }
+
+        /* Expected Output Styles */
+        .expected-output-content {
+          max-width: 100%;
+        }
+
+        .section-title {
+          font-family: Literata, Georgia, serif;
+          font-size: 1.5rem;
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.9);
+          margin: 0 0 1rem 0;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+        }
+
+
+        .section-description {
+          font-size: 1rem;
+          color: rgba(255, 255, 255, 0.7);
+          line-height: 1.6;
+          margin-bottom: 1.5rem;
+        }
+
+        .output-overview {
+          background: linear-gradient(145deg, 
+            rgba(255, 255, 255, 0.02) 0%, 
+            rgba(255, 255, 255, 0.05) 100%);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 12px;
+          padding: 1.5rem;
+          margin-bottom: 2rem;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .output-overview::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background: linear-gradient(90deg, 
+            rgba(139, 92, 246, 0.4) 0%, 
+            rgba(59, 130, 246, 0.4) 100%);
+        }
+
+        .overview-content h4 {
+          color: rgba(255, 255, 255, 0.95);
+          font-size: 1.1rem;
+          margin: 0 0 0.75rem 0;
+          font-weight: 600;
+          font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .overview-description {
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 0.95rem;
+          line-height: 1.6;
+          margin: 0 0 1.5rem 0;
+        }
+
+        .overview-highlights {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .highlight-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.75rem;
+          padding: 0.75rem;
+          background: rgba(255, 255, 255, 0.02);
+          border-radius: 8px;
+          transition: all 0.2s ease;
+        }
+
+        .highlight-item:hover {
+          background: rgba(255, 255, 255, 0.04);
+        }
+
+        .highlight-icon {
+          font-size: 1.25rem;
+          flex-shrink: 0;
+          margin-top: 0.125rem;
+        }
+
+        .highlight-text {
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+        }
+
+        .highlight-text strong {
+          color: rgba(255, 255, 255, 0.9);
+          font-size: 0.9rem;
+          font-weight: 600;
+        }
+
+        .highlight-text span {
+          color: rgba(255, 255, 255, 0.65);
+          font-size: 0.85rem;
+          line-height: 1.4;
+        }
+
+        .output-structure {
+          background: linear-gradient(145deg, 
+            rgba(139, 92, 246, 0.03) 0%, 
+            rgba(59, 130, 246, 0.03) 100%);
+          border: 1px solid rgba(139, 92, 246, 0.15);
+          border-radius: 16px;
+          padding: 2rem;
+          margin-top: 2rem;
+          position: relative;
+          overflow: hidden;
+        }
+
+
+        .output-structure h4 {
+          color: rgba(255, 255, 255, 0.95);
+          font-size: 1.25rem;
+          margin: 0 0 0.75rem 0;
+          font-weight: 600;
+          font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .structure-description {
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 0.95rem;
+          line-height: 1.6;
+          margin: 0 0 1.5rem 0;
+        }
+
+        .structure-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 1.25rem;
+        }
+
+        .structure-card {
+          background: linear-gradient(145deg, 
+            rgba(255, 255, 255, 0.02) 0%, 
+            rgba(255, 255, 255, 0.05) 100%);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 12px;
+          padding: 1.5rem;
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .structure-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background: linear-gradient(90deg, 
+            rgba(139, 92, 246, 0.4) 0%, 
+            rgba(59, 130, 246, 0.4) 100%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .structure-card:hover {
+          background: linear-gradient(145deg, 
+            rgba(255, 255, 255, 0.04) 0%, 
+            rgba(255, 255, 255, 0.08) 100%);
+          border-color: rgba(139, 92, 246, 0.2);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .structure-card:hover::before {
+          opacity: 1;
+        }
+
+        .structure-header {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .structure-number {
+          width: 32px;
+          height: 32px;
+          background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-weight: 600;
+          font-size: 0.875rem;
+          flex-shrink: 0;
+          box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+
+        .structure-card h5 {
+          color: rgba(255, 255, 255, 0.9);
+          font-size: 1rem;
+          font-weight: 600;
+          margin: 0;
+          font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .structure-card p {
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 0.875rem;
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        /* Variables Guide Styles */
+        .variables-guide-content {
+          max-width: 100%;
+        }
+
+        .variables-list {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+          margin-top: 1.5rem;
+        }
+
+        .variable-definition {
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 12px;
+          padding: 1.5rem;
+          transition: all 0.3s ease;
+        }
+
+        .variable-definition:hover {
+          background: rgba(255, 255, 255, 0.04);
+          border-color: rgba(139, 92, 246, 0.2);
+          transform: translateY(-2px);
+        }
+
+        .variable-header {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          margin-bottom: 0.75rem;
+        }
+
+        .variable-name {
+          background: linear-gradient(135deg, 
+            rgba(139, 92, 246, 0.15) 0%, 
+            rgba(139, 92, 246, 0.08) 100%);
+          color: #c4b5fd;
+          padding: 0.5rem 1rem;
+          border-radius: 8px;
+          font-family: 'SF Mono', 'JetBrains Mono', monospace;
+          font-size: 0.9rem;
+          font-weight: 600;
+          border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .variable-type {
+          background: rgba(59, 130, 246, 0.1);
+          color: #60a5fa;
+          padding: 0.25rem 0.75rem;
+          border-radius: 6px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .variable-description {
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 0.95rem;
+          line-height: 1.6;
+          margin: 0 0 1rem 0;
+        }
+
+        .variable-examples {
+          margin-top: 1rem;
+        }
+
+        .variable-examples strong {
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 0.9rem;
+          display: block;
+          margin-bottom: 0.5rem;
+        }
+
+        .example-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+
+        .example-tag {
+          background: rgba(139, 92, 246, 0.1);
+          color: #a78bfa;
+          padding: 0.25rem 0.75rem;
+          border-radius: 6px;
+          font-size: 0.8rem;
+          border: 1px solid rgba(139, 92, 246, 0.2);
+          transition: all 0.2s ease;
+        }
+
+        .example-tag:hover {
+          background: rgba(139, 92, 246, 0.2);
+          color: #c4b5fd;
+        }
+
+        .no-variables {
+          color: rgba(255, 255, 255, 0.5);
+          font-style: italic;
+          text-align: center;
+          padding: 2rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+          .tab-navigation {
+            flex-direction: column;
+            gap: 0;
+          }
+
+          .tab-button {
+            border-radius: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          }
+
+          .tab-button.active {
+            border-bottom: 2px solid #8b5cf6;
+          }
+
+          .tab-content {
+            border-radius: 0 0 0 0;
+          }
+
+          .tab-panel {
+          padding: 1.5rem;
+          }
+
+          .example-content {
+            gap: 0.75rem;
+          }
+
+          .example-section {
+            padding: 0.75rem;
+          }
+
+          .feature-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+          }
+
+          .feature-card {
+            padding: 1.25rem;
+          }
+
+          .structure-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+          }
+
+          .structure-card {
+            padding: 1.25rem;
+          }
         }
 
         .prompt-text {
