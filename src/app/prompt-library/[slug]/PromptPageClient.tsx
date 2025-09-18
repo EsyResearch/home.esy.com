@@ -189,7 +189,7 @@ export default function PromptPageClient({
           background-color: #0a0a0f;
           color: white;
           font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
-          padding: 2rem 0;
+          padding: 6rem 0 2rem 0;
         }
 
         .breadcrumbs {
@@ -509,7 +509,7 @@ export default function PromptPageClient({
 
         @media (max-width: 768px) {
           .prompt-page {
-            padding: 1rem 0;
+            padding: 5rem 0 1rem 0;
           }
 
           .breadcrumbs {

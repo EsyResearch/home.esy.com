@@ -119,7 +119,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           background-color: #0a0a0f;
           color: white;
           font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
-          padding: 2rem 0 4rem 0;
+          padding: 6rem 0 4rem 0;
         }
 
         .breadcrumbs {
