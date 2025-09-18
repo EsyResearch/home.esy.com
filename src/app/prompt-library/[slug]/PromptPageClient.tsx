@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import PromptLibrarySidebar from '@/components/PromptLibrary/PromptLibrarySidebar';
+import CopyrightFooter from '@/components/CopyrightFooter';
 import { Prompt, PromptCategory, getCategories } from '@/lib/prompts';
 
 interface PromptPageClientProps {
@@ -78,20 +79,8 @@ export default function PromptPageClient({
 
   return (
     <div className="prompt-page">
-      {/* Breadcrumbs */}
-      <div className="breadcrumbs-section">
-        <Breadcrumbs 
-          items={[
-            { label: 'Home', href: '/' },
-            { label: 'Prompt Library', href: '/prompt-library' },
-            ...(category ? [{ label: category.name, href: `/prompt-library/category/${category.slug}` }] : []),
-            { label: prompt.title, isCurrent: true }
-          ]}
-        />
-      </div>
-
-      {/* Main Content */}
-      <div className="prompt-view-wrapper">
+      {/* Main Content Wrapper with Sidebar */}
+      <div className="prompt-layout">
         {/* Left Sidebar */}
         <PromptLibrarySidebar 
           categories={getCategories()}
@@ -99,8 +88,22 @@ export default function PromptPageClient({
           showBackButton={false}
         />
 
-        {/* Center: Main Content */}
-        <div className="prompt-container">
+        {/* Main Content Area */}
+        <div className="prompt-content">
+          {/* Breadcrumbs */}
+          <div className="breadcrumbs-section">
+            <Breadcrumbs 
+              items={[
+                { label: 'Home', href: '/' },
+                { label: 'Prompt Library', href: '/prompt-library' },
+                ...(category ? [{ label: category.name, href: `/prompt-library/category/${category.slug}` }] : []),
+                { label: prompt.title, isCurrent: true }
+              ]}
+            />
+          </div>
+
+          {/* Prompt Container */}
+          <div className="prompt-container">
             {/* Left: Prompt Display */}
             <main className="prompt-main">
             <header className="prompt-header">
@@ -130,9 +133,30 @@ export default function PromptPageClient({
           </header>
 
           <div className="prompt-display">
-            <div className="prompt-content">
-              <pre className="prompt-text">{customizedPrompt}</pre>
+            <div className="prompt-display-header">
+              <span className="prompt-display-title">Prompt Template</span>
+              <div className="prompt-display-actions">
+                <div className="prompt-display-dot"></div>
+                <div className="prompt-display-dot"></div>
+                <div className="prompt-display-dot green"></div>
+              </div>
             </div>
+            <div className="prompt-content">
+              <pre className="prompt-text" dangerouslySetInnerHTML={{ 
+                __html: customizedPrompt.replace(
+                  /\[([^\]]+)\]/g, 
+                  '<span class="prompt-variable">[$1]</span>'
+                )
+              }} />
+            </div>
+            {copied && (
+              <div className="copy-indicator">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M7 10L9 12L13 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                Copied to clipboard
+              </div>
+            )}
           </div>
         </main>
 
@@ -174,6 +198,10 @@ export default function PromptPageClient({
             </div>
           </div>
         </aside> */}
+          </div>
+          
+          {/* Footer inside content area */}
+          <CopyrightFooter />
         </div>
       </div>
 
@@ -259,16 +287,23 @@ export default function PromptPageClient({
           background-color: #0a0a0f;
           color: white;
           font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
-          padding: 0;
+        }
+
+        .prompt-layout {
+          min-height: 100vh;
+          display: block;
+        }
+
+        .prompt-content {
+          margin-left: 280px;
+          min-height: 100vh;
           display: flex;
           flex-direction: column;
-          width: 100%;
         }
 
         .breadcrumbs-section {
-          padding: 6rem 0 0 0;
+          padding: 6rem 2rem 0 2rem;
           margin-bottom: 0;
-          width: 100%;
         }
 
         .breadcrumbs-section :global(.breadcrumbs) {
@@ -281,12 +316,6 @@ export default function PromptPageClient({
 
         .prompt-page :global(.Breadcrumbs_breadcrumbs__DGlh4) {
           margin-bottom: 0 !important;
-        }
-
-        .prompt-view-wrapper {
-          display: flex;
-          flex: 1;
-          width: 100%;
         }
 
 
@@ -542,11 +571,9 @@ export default function PromptPageClient({
 
         .prompt-container {
           flex: 1;
-          padding: 2rem 0 3rem 0;
+          padding: 2rem;
           display: flex;
           flex-direction: column;
-          width: 100%;
-          max-width: none;
         }
 
         .variables-panel {
@@ -653,7 +680,6 @@ export default function PromptPageClient({
         }
 
         .prompt-main {
-          flex: 1;
           padding: 0 2rem;
         }
 
@@ -684,75 +710,292 @@ export default function PromptPageClient({
         }
 
         .action-button {
-          padding: 0.5rem 1rem;
+          padding: 0.75rem 1.5rem;
           border: none;
-          border-radius: 6px;
-          font-size: 0.85rem;
-          font-weight: 500;
+          border-radius: 10px;
+          font-size: 0.9rem;
+          font-weight: 600;
           cursor: pointer;
-          transition: all 0.2s ease;
+          transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           font-family: Inter, sans-serif;
+          position: relative;
+          overflow: hidden;
+          letter-spacing: 0.3px;
+        }
+
+        .action-button::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255, 255, 255, 0.1), 
+            transparent);
+          transition: left 0.5s ease;
+        }
+
+        .action-button:hover::before {
+          left: 100%;
         }
 
         .copy-button {
-          background-color: rgba(255, 255, 255, 0.1);
-          color: rgba(255, 255, 255, 0.8);
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: linear-gradient(135deg, 
+            rgba(30, 30, 42, 0.9) 0%, 
+            rgba(35, 35, 48, 0.9) 100%);
+          color: rgba(255, 255, 255, 0.9);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          box-shadow: 
+            0 4px 12px rgba(0, 0, 0, 0.3),
+            0 0 0 1px rgba(255, 255, 255, 0.05) inset;
         }
 
         .copy-button:hover {
-          background-color: rgba(255, 255, 255, 0.15);
-          color: white;
+          background: linear-gradient(135deg, 
+            rgba(40, 40, 55, 0.95) 0%, 
+            rgba(45, 45, 60, 0.95) 100%);
+          border-color: rgba(255, 255, 255, 0.2);
+          transform: translateY(-2px);
+          box-shadow: 
+            0 6px 20px rgba(0, 0, 0, 0.4),
+            0 0 0 1px rgba(255, 255, 255, 0.1) inset;
         }
 
         .copy-button.copied {
-          background-color: #10b981;
+          background: linear-gradient(135deg, 
+            rgba(34, 197, 94, 0.9) 0%, 
+            rgba(34, 197, 94, 0.8) 100%);
+          border: 1px solid rgba(34, 197, 94, 0.3);
           color: white;
-          border-color: #10b981;
+          box-shadow: 
+            0 4px 12px rgba(34, 197, 94, 0.3),
+            0 0 20px rgba(34, 197, 94, 0.2);
         }
 
         .try-esy-button {
-          background-color: #8b5cf6;
+          background: linear-gradient(135deg, 
+            rgba(139, 92, 246, 0.9) 0%, 
+            rgba(124, 58, 237, 0.9) 100%);
           color: white;
+          border: 1px solid transparent;
+          box-shadow: 
+            0 4px 15px rgba(139, 92, 246, 0.3),
+            0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
 
         .try-esy-button:hover {
-          background-color: #7c3aed;
+          background: linear-gradient(135deg, 
+            rgba(147, 102, 251, 1) 0%, 
+            rgba(132, 68, 242, 1) 100%);
+          transform: translateY(-2px);
+          box-shadow: 
+            0 6px 25px rgba(139, 92, 246, 0.4),
+            0 0 0 1px rgba(255, 255, 255, 0.15) inset;
         }
 
         .customize-button {
-          background-color: rgba(255, 255, 255, 0.1);
-          color: rgba(255, 255, 255, 0.8);
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.08) 0%, 
+            rgba(255, 255, 255, 0.05) 100%);
+          color: rgba(255, 255, 255, 0.85);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(10px);
+          box-shadow: 
+            0 4px 12px rgba(0, 0, 0, 0.2),
+            0 0 0 1px rgba(255, 255, 255, 0.05) inset;
         }
 
         .customize-button:hover {
-          background-color: rgba(255, 255, 255, 0.15);
+          background: linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.12) 0%, 
+            rgba(255, 255, 255, 0.08) 100%);
           color: white;
+          border-color: rgba(255, 255, 255, 0.25);
+          transform: translateY(-2px);
+          box-shadow: 
+            0 6px 20px rgba(0, 0, 0, 0.3),
+            0 0 0 1px rgba(255, 255, 255, 0.1) inset;
         }
 
         .prompt-display {
-          background-color: rgba(10, 10, 15, 0.8);
+          background: rgba(17, 17, 24, 0.98);
           border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 16px;
-          padding: 2rem;
+          border-radius: 12px;
           position: relative;
+          overflow: hidden;
+          box-shadow: 
+            0 4px 16px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+
+        .prompt-display-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.75rem 1.25rem;
+          background: rgba(255, 255, 255, 0.02);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .prompt-display-title {
+          font-size: 0.8rem;
+          color: rgba(255, 255, 255, 0.5);
+          font-weight: 500;
+          letter-spacing: 0.5px;
+          text-transform: uppercase;
+        }
+
+        .prompt-display-actions {
+          display: flex;
+          gap: 0.5rem;
+        }
+
+        .prompt-display-dot {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.1);
+        }
+
+        .prompt-display-dot.green {
+          background: rgba(34, 197, 94, 0.5);
         }
 
         .prompt-content {
-          max-height: 600px;
+          max-height: 400px;
           overflow-y: auto;
+          padding: 1.5rem;
+          position: relative;
+          background: linear-gradient(180deg, 
+            transparent 0%, 
+            transparent calc(100% - 40px), 
+            rgba(17, 17, 24, 0.98) 100%);
+        }
+
+        .prompt-content::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        .prompt-content::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.03);
+          border-radius: 4px;
+        }
+
+        .prompt-content::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 4px;
+          border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .prompt-content::-webkit-scrollbar-thumb:hover {
+          background: rgba(255, 255, 255, 0.15);
         }
 
         .prompt-text {
-          font-size: clamp(0.8rem, 2vw, 0.95rem);
-          line-height: 1.8;
-          opacity: 0.9;
+          font-size: 0.9rem;
+          line-height: 1.7;
+          color: rgba(255, 255, 255, 0.85);
           white-space: pre-wrap;
-          font-family: JetBrains Mono, Consolas, monospace;
+          font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', monospace;
           word-break: break-word;
           overflow-wrap: break-word;
           margin: 0;
+          letter-spacing: 0.2px;
+        }
+
+        /* Highlight variables in brackets */
+        :global(.prompt-variable) {
+          color: #8b5cf6;
+          background: rgba(139, 92, 246, 0.1);
+          padding: 2px 6px;
+          border-radius: 4px;
+          font-weight: 500;
+          border: 1px solid rgba(139, 92, 246, 0.2);
+          display: inline-block;
+          margin: 0 2px;
+          transition: all 0.2s ease;
+        }
+
+        :global(.prompt-variable):hover {
+          background: rgba(139, 92, 246, 0.15);
+          border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .prompt-text::selection {
+          background: rgba(139, 92, 246, 0.25);
+          color: white;
+        }
+
+        /* Line numbers for better readability */
+        .prompt-line-numbers {
+          position: absolute;
+          left: 0;
+          top: 1.5rem;
+          bottom: 1.5rem;
+          width: 40px;
+          background: rgba(255, 255, 255, 0.02);
+          border-right: 1px solid rgba(255, 255, 255, 0.05);
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          font-size: 0.75rem;
+          color: rgba(255, 255, 255, 0.3);
+          line-height: 1.7;
+          font-family: 'JetBrains Mono', monospace;
+        }
+
+        .prompt-line-number {
+          padding: 0 0.5rem;
+          text-align: right;
+          user-select: none;
+        }
+
+        .prompt-content.with-line-numbers {
+          padding-left: calc(40px + 1.5rem);
+        }
+
+        .copy-indicator {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: linear-gradient(135deg, 
+            rgba(139, 92, 246, 0.95) 0%, 
+            rgba(109, 62, 216, 0.95) 100%);
+          color: white;
+          padding: 1rem 1.5rem;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          font-size: 0.95rem;
+          font-weight: 500;
+          box-shadow: 
+            0 10px 40px rgba(139, 92, 246, 0.4),
+            0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+          animation: copyPulse 0.6s ease-out;
+          z-index: 10;
+        }
+
+        @keyframes copyPulse {
+          0% {
+            transform: translate(-50%, -50%) scale(0.8);
+            opacity: 0;
+          }
+          50% {
+            transform: translate(-50%, -50%) scale(1.05);
+          }
+          100% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+          }
+        }
+
+        .copy-indicator svg {
+          color: white;
         }
 
         .related-prompts {
@@ -958,12 +1201,11 @@ export default function PromptPageClient({
         }
 
         @media (max-width: 1024px) {
-          .prompt-sidebar {
-            display: none;
+          .prompt-content {
+            margin-left: 0;
           }
-
+          
           .prompt-container {
-            grid-template-columns: 1fr;
             padding: 2rem;
           }
 
@@ -998,14 +1240,8 @@ export default function PromptPageClient({
         }
 
         @media (max-width: 768px) {
-          .prompt-page {
-            padding: 0;
-          }
-
-
           .breadcrumbs-section {
             padding: 4.5rem 1rem 0 1rem;
-            margin-bottom: 0;
           }
 
           .prompt-container {

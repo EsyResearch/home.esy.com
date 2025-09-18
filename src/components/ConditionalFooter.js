@@ -1,6 +1,7 @@
 "use client"
 import { usePathname } from 'next/navigation';
 import Footer from "@/components/Home/footer";
+import CopyrightFooter from "@/components/CopyrightFooter";
 
 const ConditionalFooter = () => {
   const pathname = usePathname();
@@ -15,6 +16,14 @@ const ConditionalFooter = () => {
   
   // Don't render the common footer on essay view pages for a focused reading experience
   if (isEssayViewPage) {
+    return null;
+  }
+  
+  // Check if we're on a prompt library page (individual prompt or category page)
+  const isPromptPage = normalizedPath?.startsWith('/prompt-library/') && normalizedPath !== '/prompt-library';
+  
+  // Don't render footer on prompt pages (they handle their own footer)
+  if (isPromptPage) {
     return null;
   }
   

@@ -18,7 +18,8 @@ export async function generateStaticParams() {
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: PromptPageProps): Promise<Metadata> {
-  const prompt = await getPromptBySlug(params.slug);
+  const resolvedParams = await params;
+  const prompt = await getPromptBySlug(resolvedParams.slug);
   
   if (!prompt) {
     return {
@@ -55,7 +56,8 @@ export async function generateMetadata({ params }: PromptPageProps): Promise<Met
 }
 
 export default async function PromptPage({ params }: PromptPageProps) {
-  const prompt = await getPromptBySlug(params.slug);
+  const resolvedParams = await params;
+  const prompt = await getPromptBySlug(resolvedParams.slug);
   
   if (!prompt) {
     notFound();

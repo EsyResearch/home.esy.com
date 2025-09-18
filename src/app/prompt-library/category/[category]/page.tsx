@@ -22,7 +22,8 @@ export async function generateStaticParams() {
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
-  const category = getCategoryBySlug(params.category);
+  const resolvedParams = await params;
+  const category = getCategoryBySlug(resolvedParams.category);
   
   if (!category) {
     return {
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   return {
     title: `${category.name} Prompts - AI Prompt Library | Esy`,
     description: category.description,
-    keywords: [category.name, 'AI prompts', 'prompt templates', params.category],
+    keywords: [category.name, 'AI prompts', 'prompt templates', resolvedParams.category],
     openGraph: {
       title: `${category.name} Prompts`,
       description: category.description,
@@ -44,7 +45,8 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  const category = getCategoryBySlug(params.category);
+  const resolvedParams = await params;
+  const category = getCategoryBySlug(resolvedParams.category);
   
   if (!category) {
     notFound();

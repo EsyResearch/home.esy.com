@@ -14,6 +14,7 @@ interface Category {
 interface PromptLibrarySidebarProps {
   categories: Category[];
   activeCategoryId?: string;
+  activeCategorySlug?: string;
   showBackButton?: boolean;
   backButtonHref?: string;
   backButtonText?: string;
@@ -22,6 +23,7 @@ interface PromptLibrarySidebarProps {
 export default function PromptLibrarySidebar({
   categories,
   activeCategoryId,
+  activeCategorySlug,
   showBackButton = true,
   backButtonHref = '/prompt-library',
   backButtonText = '← Back to Library'
@@ -53,15 +55,15 @@ export default function PromptLibrarySidebar({
           <li className="category-item">
             <Link
               href="/prompt-library"
-              className={`category-link ${!activeCategoryId ? 'active' : ''}`}
+              className={`category-link ${!activeCategoryId && !activeCategorySlug ? 'active' : ''}`}
               onMouseEnter={(e) => {
-                if (!activeCategoryId) return;
+                if (!activeCategoryId && !activeCategorySlug) return;
                 const target = e.target as HTMLElement;
                 target.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
                 target.style.color = 'white';
               }}
               onMouseLeave={(e) => {
-                if (!activeCategoryId) return;
+                if (!activeCategoryId && !activeCategorySlug) return;
                 const target = e.target as HTMLElement;
                 target.style.backgroundColor = 'transparent';
                 target.style.color = 'rgba(255, 255, 255, 0.7)';
@@ -75,15 +77,15 @@ export default function PromptLibrarySidebar({
             <li key={cat.id} className="category-item">
               <Link
                 href={`/prompt-library/category/${cat.slug}`}
-                className={`category-link ${cat.id === activeCategoryId ? 'active' : ''}`}
+                className={`category-link ${cat.id === activeCategoryId || cat.slug === activeCategorySlug ? 'active' : ''}`}
                 onMouseEnter={(e) => {
-                  if (cat.id === activeCategoryId) return;
+                  if (cat.id === activeCategoryId || cat.slug === activeCategorySlug) return;
                   const target = e.target as HTMLElement;
                   target.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
                   target.style.color = 'white';
                 }}
                 onMouseLeave={(e) => {
-                  if (cat.id === activeCategoryId) return;
+                  if (cat.id === activeCategoryId || cat.slug === activeCategorySlug) return;
                   const target = e.target as HTMLElement;
                   target.style.backgroundColor = 'transparent';
                   target.style.color = 'rgba(255, 255, 255, 0.7)';
@@ -113,12 +115,12 @@ export default function PromptLibrarySidebar({
             0 0 60px rgba(0, 0, 0, 0.4),
             0 0 120px rgba(139, 92, 246, 0.05);
           padding: 0;
-          position: sticky;
+          position: fixed;
+          left: 0;
           top: 0;
           height: 100vh;
           overflow-y: auto;
           z-index: 10;
-          position: relative;
         }
 
         .prompt-sidebar::after {
@@ -227,8 +229,6 @@ export default function PromptLibrarySidebar({
         .category-item:first-child {
           margin-top: 0;
           font-weight: 600;
-          border-left: 2px solid rgba(139, 92, 246, 0.4);
-          padding-left: 8px;
         }
 
         .category-item:first-child .category-link {
@@ -243,7 +243,7 @@ export default function PromptLibrarySidebar({
           margin-bottom: 0;
         }
 
-        .category-link {
+        :global(.category-link) {
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -274,7 +274,7 @@ export default function PromptLibrarySidebar({
           text-align: left;
         }
 
-        .category-link::before {
+        :global(.category-link)::before {
           content: '';
           position: absolute;
           top: 0;
@@ -288,7 +288,7 @@ export default function PromptLibrarySidebar({
           transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .category-link::after {
+        :global(.category-link)::after {
           content: '';
           position: absolute;
           top: 0;
@@ -304,15 +304,15 @@ export default function PromptLibrarySidebar({
           border-radius: 12px;
         }
 
-        .category-link:hover::before {
+        :global(.category-link):hover::before {
           left: 100%;
         }
 
-        .category-link:hover::after {
+        :global(.category-link):hover::after {
           opacity: 1;
         }
 
-        .category-link:hover {
+        :global(.category-link):hover {
           background: linear-gradient(135deg, 
             rgba(255, 255, 255, 0.08) 0%, 
             rgba(255, 255, 255, 0.04) 100%);
@@ -325,17 +325,23 @@ export default function PromptLibrarySidebar({
             inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
-        .category-link.active {
+        :global(.category-link.active) {
           background: linear-gradient(135deg, 
             rgba(139, 92, 246, 0.15) 0%, 
             rgba(139, 92, 246, 0.08) 50%,
-            rgba(139, 92, 246, 0.12) 100%);
-          color: white;
-          border: 1px solid rgba(139, 92, 246, 0.3);
+            rgba(139, 92, 246, 0.12) 100%) !important;
+          color: white !important;
+          border: 1px solid rgba(139, 92, 246, 0.3) !important;
           box-shadow: 
             0 0 0 1px rgba(139, 92, 246, 0.2),
             0 4px 16px rgba(139, 92, 246, 0.2),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+        }
+
+        @media (max-width: 1024px) {
+          .prompt-sidebar {
+            display: none;
+          }
         }
       `}</style>
     </aside>

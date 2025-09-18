@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
+import PromptCard from '@/components/PromptLibrary/PromptCard';
 
 const PromptLibrary = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -3003,7 +3004,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
       position: 'relative' as const,
       maxWidth: '1400px',
       margin: '0 auto',
-      padding: 'clamp(3rem, 10vw, 6rem) clamp(1rem, 4vw, 2rem) clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem)',
+      padding: 'clamp(5rem, 12vw, 8rem) clamp(1rem, 4vw, 2rem) clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem)',
       textAlign: 'center' as const
     },
     heroTitle: {
@@ -3074,43 +3075,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
       gap: 'clamp(1rem, 3vw, 2rem)',
       maxWidth: '1400px',
       margin: '0 auto',
-      padding: '0 clamp(1rem, 4vw, 2rem)'
-    },
-    promptCard: {
-      backgroundColor: 'rgba(22, 22, 31, 0.8)',
-      border: '1px solid rgba(255, 255, 255, 0.08)',
-      borderRadius: '16px',
-      padding: 'clamp(1.5rem, 4vw, 2rem)',
-      cursor: 'pointer',
-      transition: 'all 0.2s ease',
-      backdropFilter: 'blur(10px)',
-      width: '100%',
-      boxSizing: 'border-box' as const
-    },
-    promptCardHeader: {
-      marginBottom: '1.5rem'
-    },
-    promptCardTitle: {
-      fontFamily: 'Literata, Georgia, serif',
-      fontSize: 'clamp(1.1rem, 3vw, 1.3rem)',
-      fontWeight: '400',
-      marginBottom: '0.75rem',
-      lineHeight: '1.3'
-    },
-    promptCardDescription: {
-      opacity: '0.7',
-      fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)',
-      lineHeight: '1.5',
-      marginBottom: '1rem'
-    },
-    promptCardMeta: {
-      display: 'flex',
-      justifyContent: 'flex-end',
-      alignItems: 'center',
-      fontSize: 'clamp(0.75rem, 2vw, 0.85rem)',
-      opacity: '0.5',
-      flexWrap: 'wrap',
-      gap: '0.5rem'
+      padding: '0 clamp(1rem, 4vw, 2rem) 4rem clamp(1rem, 4vw, 2rem)'
     },
     
     // Category and Prompt Views
@@ -3361,14 +3326,6 @@ Create publishing approach that maximizes content reach while maintaining qualit
       outline: 'none',
       transition: 'all 0.2s ease'
     },
-    proLabel: {
-      backgroundColor: 'rgba(139, 92, 246, 0.15)',
-      color: '#8b5cf6',
-      padding: '0.25rem 0.75rem',
-      borderRadius: '12px',
-      fontSize: '0.75rem',
-      fontWeight: '500'
-    }
   } as const;
 
   // Category view with sidebar
@@ -3502,35 +3459,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
             
             <div style={styles.categoryPromptGrid}>
               {categoryPrompts.map(prompt => (
-                <Link
-                  key={prompt.id}
-                  href={`/prompt-library/${prompt.slug}`}
-                  style={{
-                    ...styles.promptCard,
-                    textDecoration: 'none',
-                    color: 'inherit',
-                    display: 'block'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
-                    e.currentTarget.style.transform = 'translateY(-4px)';
-                    e.currentTarget.style.backgroundColor = 'rgba(22, 22, 31, 1)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.backgroundColor = 'rgba(22, 22, 31, 0.8)';
-                  }}
-                >
-                  <div style={styles.promptCardHeader}>
-                    <h3 style={styles.promptCardTitle}>{prompt.title}</h3>
-                    <p style={styles.promptCardDescription}>{prompt.shortDescription}</p>
-                  </div>
-                  
-                  <div style={styles.promptCardMeta}>
-                    {prompt.isPro && <span style={styles.proLabel}>Pro</span>}
-                  </div>
-                </Link>
+                <PromptCard key={prompt.id} prompt={prompt} />
               ))}
             </div>
             
@@ -3822,35 +3751,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
       
       <main style={styles.promptGrid}>
         {filteredPrompts.map(prompt => (
-          <Link
-            key={prompt.id}
-            href={`/prompt-library/${prompt.slug}`}
-            style={{
-              ...styles.promptCard,
-              textDecoration: 'none',
-              color: 'inherit',
-              display: 'block'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
-              e.currentTarget.style.transform = 'translateY(-4px)';
-              e.currentTarget.style.backgroundColor = 'rgba(22, 22, 31, 1)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.backgroundColor = 'rgba(22, 22, 31, 0.8)';
-            }}
-          >
-            <div style={styles.promptCardHeader}>
-              <h3 style={styles.promptCardTitle}>{prompt.title}</h3>
-              <p style={styles.promptCardDescription}>{prompt.shortDescription}</p>
-            </div>
-            
-            <div style={styles.promptCardMeta}>
-              {prompt.isPro && <span style={styles.proLabel}>Pro</span>}
-            </div>
-          </Link>
+          <PromptCard key={prompt.id} prompt={prompt} />
         ))}
         
         {filteredPrompts.length === 0 && (
@@ -3965,9 +3866,6 @@ Create publishing approach that maximizes content reach while maintaining qualit
           
           /* Fix for very small screens */
           @media (max-width: 320px) {
-            .prompt-card {
-              padding: 1rem !important;
-            }
             .variables-section, .prompt-display {
               padding: 1rem !important;
             }
