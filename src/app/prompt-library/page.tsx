@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
+import Link from 'next/link';
 
 const PromptLibrary = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -20,10 +21,19 @@ const PromptLibrary = () => {
     { id: 'ebooks', name: 'Book & Publication', count: 9 }
   ];
 
+  // Helper function to generate slug from title
+  const generateSlug = (title: string): string => {
+    return title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+  };
+
   const prompts = [
     // Creative Writing (12 prompts)
     {
       id: 1,
+      slug: 'character-development-deep-dive',
       category: 'writing',
       title: 'Character Development Deep Dive',
       description: 'Comprehensive character creation for complex narratives',
@@ -56,6 +66,7 @@ Provide concrete examples and avoid generic traits. Make this character feel dis
     },
     {
       id: 2,
+      slug: 'scene-tension-architecture',
       category: 'writing',
       title: 'Scene Tension Architecture',
       description: 'Building dramatic tension through environmental and emotional layers',
@@ -88,6 +99,7 @@ Write a 500-word scene demonstrating these principles, then provide a technical 
     },
     {
       id: 3,
+      slug: 'world-building-framework',
       category: 'writing',
       title: 'World-Building Framework',
       description: 'Systematic creation of immersive fictional universes',
@@ -124,6 +136,7 @@ Create a world that feels lived-in and authentic, where every element serves the
     },
     {
       id: 4,
+      slug: 'dialogue-mastery-system',
       category: 'writing',
       title: 'Dialogue Mastery System',
       description: 'Crafting authentic, purposeful conversations',
@@ -160,6 +173,7 @@ Write a 400-word dialogue scene, then analyze how each exchange serves multiple 
     },
     {
       id: 5,
+      slug: 'plot-structure-architect',
       category: 'writing',
       title: 'Plot Structure Architect',
       description: 'Engineering compelling narrative progression',
@@ -201,6 +215,7 @@ Create a detailed outline that balances character development with compelling pl
     },
     {
       id: 6,
+      slug: 'voice-and-style-mastery',
       category: 'writing',
       title: 'Voice and Style Mastery',
       description: 'Developing distinctive narrative voice',
@@ -243,6 +258,7 @@ Write three different scene openings in your chosen voice, each demonstrating di
     },
     {
       id: 7,
+      slug: 'conflict-escalation-engine',
       category: 'writing',
       title: 'Conflict Escalation Engine',
       description: 'Creating and intensifying dramatic conflict',
@@ -285,6 +301,7 @@ Create a detailed conflict progression that maintains reader engagement while se
     },
     {
       id: 8,
+      slug: 'setting-as-character',
       category: 'writing',
       title: 'Setting as Character',
       description: 'Making environments integral to storytelling',
@@ -327,6 +344,7 @@ Write three scene descriptions of the same location at different story moments, 
     },
     {
       id: 9,
+      slug: 'narrative-hook-mastery',
       category: 'writing',
       title: 'Narrative Hook Mastery',
       description: 'Crafting irresistible story openings',
@@ -369,6 +387,7 @@ Write five different opening paragraphs for the same story, demonstrating variou
     },
     {
       id: 10,
+      slug: 'character-relationship-dynamics',
       category: 'writing',
       title: 'Character Relationship Dynamics',
       description: 'Building complex interpersonal connections',
@@ -411,6 +430,7 @@ Create a relationship arc that spans your story's timeline, showing how external
     },
     {
       id: 11,
+      slug: 'theme-integration-system',
       category: 'writing',
       title: 'Theme Integration System',
       description: 'Weaving meaningful themes throughout narrative',
@@ -453,6 +473,7 @@ Design a thematic integration plan that makes your story's meaning emerge natura
     },
     {
       id: 12,
+      slug: 'ending-mastery-framework',
       category: 'writing',
       title: 'Ending Mastery Framework',
       description: 'Crafting satisfying and memorable conclusions',
@@ -497,6 +518,7 @@ Write three different ending scenarios for the same story, analyzing how each se
     // Academic Research (15 prompts)
     {
       id: 13,
+      slug: 'literature-review-synthesis-framework',
       category: 'research',
       title: 'Literature Review Synthesis Framework',
       description: 'Systematic approach to synthesizing scholarly sources',
@@ -534,6 +556,7 @@ Present findings in academic format with proper citations and clear argumentatio
     },
     {
       id: 14,
+      slug: 'methodology-design-blueprint',
       category: 'research',
       title: 'Methodology Design Blueprint',
       description: 'Creating robust research methodologies',
@@ -576,6 +599,7 @@ Create a methodology that demonstrates scholarly rigor while remaining feasible 
     },
     {
       id: 15,
+      slug: 'primary-source-analysis-protocol',
       category: 'research',
       title: 'Primary Source Analysis Protocol',
       description: 'Rigorous methodology for analyzing historical and archival materials',
@@ -618,6 +642,7 @@ Provide specific examples and quotations to support your analysis, maintaining s
     },
     {
       id: 16,
+      slug: 'qualitative-data-analysis-engine',
       category: 'research',
       title: 'Qualitative Data Analysis Engine',
       description: 'Systematic approach to interview and observation data',
@@ -660,6 +685,7 @@ Present findings with supporting quotations while maintaining participant confid
     },
     {
       id: 17,
+      slug: 'quantitative-analysis-framework',
       category: 'research',
       title: 'Quantitative Analysis Framework',
       description: 'Statistical analysis for empirical research',
@@ -702,6 +728,7 @@ Create an analysis plan that demonstrates statistical literacy while addressing 
     },
     {
       id: 18,
+      slug: 'mixed-methods-integration',
       category: 'research',
       title: 'Mixed Methods Integration',
       description: 'Combining qualitative and quantitative approaches',
@@ -744,6 +771,7 @@ Design a study that demonstrates how methodological integration provides insight
     },
     {
       id: 19,
+      slug: 'research-ethics-framework',
       category: 'research',
       title: 'Research Ethics Framework',
       description: 'Navigating ethical considerations in academic research',
@@ -786,6 +814,7 @@ Create an ethics protocol that demonstrates commitment to participant welfare wh
     },
     {
       id: 20,
+      slug: 'systematic-review-protocol',
       category: 'research',
       title: 'Systematic Review Protocol',
       description: 'Conducting comprehensive systematic literature reviews',
@@ -828,6 +857,7 @@ Produce a systematic review that meets PRISMA guidelines and contributes meaning
     },
     {
       id: 21,
+      slug: 'grant-proposal-architecture',
       category: 'research',
       title: 'Grant Proposal Architecture',
       description: 'Crafting competitive funding applications',
@@ -870,6 +900,7 @@ Create a proposal that demonstrates both scientific rigor and practical impact w
     },
     {
       id: 22,
+      slug: 'research-question-formulation',
       category: 'research',
       title: 'Research Question Formulation',
       description: 'Crafting precise and answerable research questions',
@@ -913,6 +944,7 @@ Develop a research question framework that balances theoretical significance wit
     },
     {
       id: 23,
+      slug: 'data-visualization-strategy',
       category: 'research',
       title: 'Data Visualization Strategy',
       description: 'Communicating research findings through visual design',
@@ -955,6 +987,7 @@ Create visualizations that enhance understanding while maintaining scientific in
     },
     {
       id: 24,
+      slug: 'peer-review-excellence',
       category: 'research',
       title: 'Peer Review Excellence',
       description: 'Conducting thorough and constructive manuscript reviews',
@@ -997,6 +1030,7 @@ Provide review feedback that helps authors improve their work while maintaining 
     },
     {
       id: 25,
+      slug: 'research-impact-assessment',
       category: 'research',
       title: 'Research Impact Assessment',
       description: 'Measuring and communicating research significance',
@@ -1039,6 +1073,7 @@ Create an impact assessment that demonstrates research value across multiple dim
     },
     {
       id: 26,
+      slug: 'interdisciplinary-research-design',
       category: 'research',
       title: 'Interdisciplinary Research Design',
       description: 'Bridging knowledge across academic disciplines',
@@ -1081,6 +1116,7 @@ Develop research that demonstrates how disciplinary integration creates knowledg
     },
     {
       id: 27,
+      slug: 'replication-study-framework',
       category: 'research',
       title: 'Replication Study Framework',
       description: 'Designing studies that verify and extend existing research',
@@ -1125,6 +1161,7 @@ Create a replication study that both verifies existing knowledge and contributes
     // Literary Analysis (10 prompts)
     {
       id: 28,
+      slug: 'narrative-structure-deconstruction',
       category: 'analysis',
       title: 'Narrative Structure Deconstruction',
       description: 'Advanced analysis of storytelling techniques and their effects',
@@ -1162,6 +1199,7 @@ Support analysis with specific textual evidence and consider multiple valid inte
     },
     {
       id: 29,
+      slug: 'character-psychology-framework',
       category: 'analysis',
       title: 'Character Psychology Framework',
       description: 'Deep psychological analysis of literary characters',
@@ -1204,6 +1242,7 @@ Create a character analysis that demonstrates sophisticated understanding of bot
     },
     {
       id: 30,
+      slug: 'comparative-literature-framework',
       category: 'analysis',
       title: 'Comparative Literature Framework',
       description: 'Cross-cultural and cross-temporal literary analysis',
@@ -1246,6 +1285,7 @@ Demonstrate sophisticated understanding of both works while avoiding cultural bi
     },
     {
       id: 31,
+      slug: 'symbol-and-metaphor-mastery',
       category: 'analysis',
       title: 'Symbol and Metaphor Mastery',
       description: 'Decoding symbolic language and metaphorical systems',
@@ -1288,6 +1328,7 @@ Create an analysis that demonstrates how symbolic elements contribute to literar
     },
     {
       id: 32,
+      slug: 'genre-theory-application',
       category: 'analysis',
       title: 'Genre Theory Application',
       description: 'Analyzing works through genre conventions and innovations',
@@ -1330,6 +1371,7 @@ Demonstrate understanding of how genre functions as both literary framework and 
     },
     {
       id: 33,
+      slug: 'feminist-literary-criticism',
       category: 'analysis',
       title: 'Feminist Literary Criticism',
       description: 'Examining gender dynamics and representation in literature',
@@ -1372,6 +1414,7 @@ Create an analysis that demonstrates sophisticated feminist critical thinking wh
     },
     {
       id: 34,
+      slug: 'postcolonial-reading-strategy',
       category: 'analysis',
       title: 'Postcolonial Reading Strategy',
       description: 'Analyzing literature through postcolonial theoretical frameworks',
@@ -1414,6 +1457,7 @@ Develop an analysis that demonstrates understanding of postcolonial theory while
     },
     {
       id: 35,
+      slug: 'psychoanalytic-interpretation',
       category: 'analysis',
       title: 'Psychoanalytic Interpretation',
       description: 'Applying psychoanalytic theory to literary analysis',
@@ -1456,6 +1500,7 @@ Create an interpretation that demonstrates psychoanalytic literacy while maintai
     },
     {
       id: 36,
+      slug: 'marxist-literary-analysis',
       category: 'analysis',
       title: 'Marxist Literary Analysis',
       description: 'Examining class, economics, and ideology in literature',
@@ -1498,6 +1543,7 @@ Develop an analysis that demonstrates Marxist critical sophistication while enga
     },
     {
       id: 37,
+      slug: 'reader-response-theory',
       category: 'analysis',
       title: 'Reader Response Theory',
       description: 'Exploring how readers create meaning through interpretation',
@@ -1542,6 +1588,7 @@ Create an analysis that demonstrates understanding of reader agency while mainta
     // Essay Writing (14 prompts)
     {
       id: 38,
+      slug: 'argumentative-essay-architecture',
       category: 'essays',
       title: 'Argumentative Essay Architecture',
       description: 'Building compelling, evidence-based arguments',
@@ -1583,6 +1630,7 @@ Write 1200-1500 words demonstrating sophisticated reasoning and engaging prose.`
     },
     {
       id: 39,
+      slug: 'analytical-essay-mastery',
       category: 'essays',
       title: 'Analytical Essay Mastery',
       description: 'Deep analysis and interpretation of complex topics',
@@ -1625,6 +1673,7 @@ Create an analysis that demonstrates intellectual rigor while remaining accessib
     },
     {
       id: 40,
+      slug: 'compare-and-contrast-framework',
       category: 'essays',
       title: 'Compare and Contrast Framework',
       description: 'Sophisticated comparison analysis structure',
@@ -1667,6 +1716,7 @@ Develop a comparison that generates new insights rather than simply cataloging s
     },
     {
       id: 41,
+      slug: 'personal-statement-architecture',
       category: 'essays',
       title: 'Personal Statement Architecture',
       description: 'Compelling narrative for academic and professional applications',
@@ -1711,6 +1761,7 @@ Write 500-750 words that tell a compelling story while meeting application requi
     },
     {
       id: 42,
+      slug: 'expository-essay-excellence',
       category: 'essays',
       title: 'Expository Essay Excellence',
       description: 'Clear explanation and information presentation',
@@ -1753,6 +1804,7 @@ Develop an explanation that transforms complex information into accessible, enga
     },
     {
       id: 43,
+      slug: 'persuasive-essay-strategy',
       category: 'essays',
       title: 'Persuasive Essay Strategy',
       description: 'Influencing reader opinion through strategic argumentation',
@@ -1795,6 +1847,7 @@ Create persuasive writing that respects reader intelligence while effectively mo
     },
     {
       id: 44,
+      slug: 'critical-essay-framework',
       category: 'essays',
       title: 'Critical Essay Framework',
       description: 'Sophisticated critique and evaluation methodology',
@@ -1837,6 +1890,7 @@ Produce criticism that demonstrates intellectual sophistication while providing 
     },
     {
       id: 45,
+      slug: 'narrative-essay-artistry',
       category: 'essays',
       title: 'Narrative Essay Artistry',
       description: 'Storytelling techniques for academic and personal writing',
@@ -1879,6 +1933,7 @@ Write a narrative that combines engaging storytelling with meaningful insight an
     },
     {
       id: 46,
+      slug: 'cause-and-effect-analysis',
       category: 'essays',
       title: 'Cause and Effect Analysis',
       description: 'Examining relationships between events and outcomes',
@@ -1921,6 +1976,7 @@ Develop an analysis that demonstrates sophisticated understanding of causality w
     },
     {
       id: 47,
+      slug: 'definition-essay-mastery',
       category: 'essays',
       title: 'Definition Essay Mastery',
       description: 'Exploring complex concepts through extended definition',
@@ -1963,6 +2019,7 @@ Create a definition that goes beyond basic explanation to provide deep understan
     },
     {
       id: 48,
+      slug: 'process-analysis-essay',
       category: 'essays',
       title: 'Process Analysis Essay',
       description: 'Explaining procedures and sequential operations',
@@ -2005,6 +2062,7 @@ Develop process explanation that enables reader success while providing comprehe
     },
     {
       id: 49,
+      slug: 'synthesis-essay-excellence',
       category: 'essays',
       title: 'Synthesis Essay Excellence',
       description: 'Combining multiple sources into coherent arguments',
@@ -2047,6 +2105,7 @@ Produce synthesis that demonstrates ability to work with multiple sources while 
     },
     {
       id: 50,
+      slug: 'research-essay-architecture',
       category: 'essays',
       title: 'Research Essay Architecture',
       description: 'Academic research integration and presentation',
@@ -2089,6 +2148,7 @@ Create research essay that demonstrates scholarly competence while making meanin
     },
     {
       id: 51,
+      slug: 'reflective-essay-framework',
       category: 'essays',
       title: 'Reflective Essay Framework',
       description: 'Thoughtful examination of experience and learning',
@@ -2133,6 +2193,7 @@ Create reflective writing that demonstrates genuine self-awareness and commitmen
     // Professional Writing (8 prompts)
     {
       id: 52,
+      slug: 'executive-communication-framework',
       category: 'professional',
       title: 'Executive Communication Framework',
       description: 'High-impact business writing for leadership contexts',
@@ -2175,6 +2236,7 @@ Create materials that demonstrate strategic thinking while remaining accessible.
     },
     {
       id: 53,
+      slug: 'technical-writing-excellence',
       category: 'professional',
       title: 'Technical Writing Excellence',
       description: 'Clear documentation for complex technical subjects',
@@ -2217,6 +2279,7 @@ Develop documentation that enables user success while maintaining technical accu
     },
     {
       id: 54,
+      slug: 'grant-proposal-mastery',
       category: 'professional',
       title: 'Grant Proposal Mastery',
       description: 'Persuasive funding applications for research and projects',
@@ -2259,6 +2322,7 @@ Create a proposal that demonstrates both scientific rigor and practical impact w
     },
     {
       id: 55,
+      slug: 'policy-brief-architecture',
       category: 'professional',
       title: 'Policy Brief Architecture',
       description: 'Concise analysis for policy makers and decision makers',
@@ -2301,6 +2365,7 @@ Develop policy communication that transforms complex analysis into actionable re
     },
     {
       id: 56,
+      slug: 'business-report-framework',
       category: 'professional',
       title: 'Business Report Framework',
       description: 'Comprehensive analysis and recommendation reporting',
@@ -2343,6 +2408,7 @@ Create business communication that enables informed decision-making while demons
     },
     {
       id: 57,
+      slug: 'proposal-writing-excellence',
       category: 'professional',
       title: 'Proposal Writing Excellence',
       description: 'Persuasive project and service proposals',
@@ -2385,6 +2451,7 @@ Create proposal writing that demonstrates understanding of client needs while po
     },
     {
       id: 58,
+      slug: 'professional-email-mastery',
       category: 'professional',
       title: 'Professional Email Mastery',
       description: 'Effective email communication for business contexts',
@@ -2427,6 +2494,7 @@ Develop email communication that builds relationships while achieving business o
     },
     {
       id: 59,
+      slug: 'crisis-communication-strategy',
       category: 'professional',
       title: 'Crisis Communication Strategy',
       description: 'Managing communication during organizational challenges',
@@ -2471,6 +2539,7 @@ Create crisis communication that demonstrates leadership while protecting organi
     // Book & Publication (9 prompts)
     {
       id: 60,
+      slug: 'non-fiction-book-structure-blueprint',
       category: 'ebooks',
       title: 'Non-Fiction Book Structure Blueprint',
       description: 'Comprehensive framework for organizing educational content',
@@ -2513,6 +2582,7 @@ Include detailed chapter outlines with key concepts, estimated word counts, and 
     },
     {
       id: 61,
+      slug: 'chapter-writing-mastery',
       category: 'ebooks',
       title: 'Chapter Writing Mastery',
       description: 'Crafting individual chapters that build toward larger goals',
@@ -2555,6 +2625,7 @@ Create chapter content that stands alone as valuable while contributing meaningf
     },
     {
       id: 62,
+      slug: 'audience-development-strategy',
       category: 'ebooks',
       title: 'Audience Development Strategy',
       description: 'Building readership before and after publication',
@@ -2597,6 +2668,7 @@ Create an audience development plan that builds genuine relationships while esta
     },
     {
       id: 63,
+      slug: 'self-publishing-roadmap',
       category: 'ebooks',
       title: 'Self-Publishing Roadmap',
       description: 'Complete guide to independent publishing success',
@@ -2639,6 +2711,7 @@ Develop a publishing strategy that maximizes reach and impact while maintaining 
     },
     {
       id: 64,
+      slug: 'course-creation-framework',
       category: 'ebooks',
       title: 'Course Creation Framework',
       description: 'Transforming expertise into educational experiences',
@@ -2681,6 +2754,7 @@ Create educational content that transforms student knowledge and skills while bu
     },
     {
       id: 65,
+      slug: 'memoir-writing-structure',
       category: 'ebooks',
       title: 'Memoir Writing Structure',
       description: 'Crafting personal stories with universal appeal',
@@ -2723,6 +2797,7 @@ Write memoir content that honors personal experience while creating meaningful c
     },
     {
       id: 66,
+      slug: 'research-publication-strategy',
       category: 'ebooks',
       title: 'Research Publication Strategy',
       description: 'Academic writing for scholarly publication',
@@ -2765,6 +2840,7 @@ Create publication strategy that advances academic career while contributing mea
     },
     {
       id: 67,
+      slug: 'content-marketing-integration',
       category: 'ebooks',
       title: 'Content Marketing Integration',
       description: 'Using publication to build business and authority',
@@ -2807,6 +2883,7 @@ Develop integrated strategy that uses publishing as business development tool wh
     },
     {
       id: 68,
+      slug: 'multi-format-publishing-strategy',
       category: 'ebooks',
       title: 'Multi-Format Publishing Strategy',
       description: 'Maximizing reach across print, digital, and audio formats',
@@ -3328,33 +3405,65 @@ Create publishing approach that maximizes content reach while maintaining qualit
                   
                   return (
                     <li key={category.id} style={styles.categoryItem}>
-                      <button
-                        onClick={() => openCategoryView(category.id)}
-                        style={{
-                          ...styles.categoryLink,
-                          ...(isActive ? styles.categoryLinkActive : {})
-                        }}
-                        onMouseEnter={(e) => {
-                          if (!isActive) {
-                            (e.target as HTMLButtonElement).style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-                            (e.target as HTMLButtonElement).style.color = 'white';
-                          }
-                        }}
-                        onMouseLeave={(e) => {
-                          if (!isActive) {
-                            (e.target as HTMLButtonElement).style.backgroundColor = 'transparent';
-                            (e.target as HTMLButtonElement).style.color = 'rgba(255, 255, 255, 0.7)';
-                          }
-                        }}
-                      >
-                        <span>{category.name}</span>
-                        <span style={{
-                          ...styles.categoryCount,
-                          ...(isActive ? styles.categoryCountActive : {})
-                        }}>
-                          {count}
-                        </span>
-                      </button>
+                      {category.id === 'all' ? (
+                        <Link
+                          href="/prompt-library"
+                          style={{
+                            ...styles.categoryLink,
+                            ...(isActive ? styles.categoryLinkActive : {}),
+                            textDecoration: 'none'
+                          }}
+                          onMouseEnter={(e) => {
+                            if (!isActive) {
+                              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                              e.currentTarget.style.color = 'white';
+                            }
+                          }}
+                          onMouseLeave={(e) => {
+                            if (!isActive) {
+                              e.currentTarget.style.backgroundColor = 'transparent';
+                              e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
+                            }
+                          }}
+                        >
+                          <span>{category.name}</span>
+                          <span style={{
+                            ...styles.categoryCount,
+                            ...(isActive ? styles.categoryCountActive : {})
+                          }}>
+                            {count}
+                          </span>
+                        </Link>
+                      ) : (
+                        <Link
+                          href={`/prompt-library/category/${category.id}`}
+                          style={{
+                            ...styles.categoryLink,
+                            ...(isActive ? styles.categoryLinkActive : {}),
+                            textDecoration: 'none'
+                          }}
+                          onMouseEnter={(e) => {
+                            if (!isActive) {
+                              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                              e.currentTarget.style.color = 'white';
+                            }
+                          }}
+                          onMouseLeave={(e) => {
+                            if (!isActive) {
+                              e.currentTarget.style.backgroundColor = 'transparent';
+                              e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
+                            }
+                          }}
+                        >
+                          <span>{category.name}</span>
+                          <span style={{
+                            ...styles.categoryCount,
+                            ...(isActive ? styles.categoryCountActive : {})
+                          }}>
+                            {count}
+                          </span>
+                        </Link>
+                      )}
                     </li>
                   );
                 })}
@@ -3393,10 +3502,15 @@ Create publishing approach that maximizes content reach while maintaining qualit
             
             <div style={styles.categoryPromptGrid}>
               {categoryPrompts.map(prompt => (
-                <div
+                <Link
                   key={prompt.id}
-                  style={styles.promptCard}
-                  onClick={() => openPromptView(prompt)}
+                  href={`/prompt-library/${prompt.slug}`}
+                  style={{
+                    ...styles.promptCard,
+                    textDecoration: 'none',
+                    color: 'inherit',
+                    display: 'block'
+                  }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
                     e.currentTarget.style.transform = 'translateY(-4px)';
@@ -3416,7 +3530,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
                   <div style={styles.promptCardMeta}>
                     {prompt.isPro && <span style={styles.proLabel}>Pro</span>}
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
             
@@ -3467,33 +3581,65 @@ Create publishing approach that maximizes content reach while maintaining qualit
                   
                   return (
                     <li key={category.id} style={styles.categoryItem}>
-                      <button
-                        onClick={() => openCategoryView(category.id)}
-                        style={{
-                          ...styles.categoryLink,
-                          ...(isActive ? styles.categoryLinkActive : {})
-                        }}
-                        onMouseEnter={(e) => {
-                          if (!isActive) {
-                            (e.target as HTMLButtonElement).style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-                            (e.target as HTMLButtonElement).style.color = 'white';
-                          }
-                        }}
-                        onMouseLeave={(e) => {
-                          if (!isActive) {
-                            (e.target as HTMLButtonElement).style.backgroundColor = 'transparent';
-                            (e.target as HTMLButtonElement).style.color = 'rgba(255, 255, 255, 0.7)';
-                          }
-                        }}
-                      >
-                        <span>{category.name}</span>
-                        <span style={{
-                          ...styles.categoryCount,
-                          ...(isActive ? styles.categoryCountActive : {})
-                        }}>
-                          {count}
-                        </span>
-                      </button>
+                      {category.id === 'all' ? (
+                        <Link
+                          href="/prompt-library"
+                          style={{
+                            ...styles.categoryLink,
+                            ...(isActive ? styles.categoryLinkActive : {}),
+                            textDecoration: 'none'
+                          }}
+                          onMouseEnter={(e) => {
+                            if (!isActive) {
+                              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                              e.currentTarget.style.color = 'white';
+                            }
+                          }}
+                          onMouseLeave={(e) => {
+                            if (!isActive) {
+                              e.currentTarget.style.backgroundColor = 'transparent';
+                              e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
+                            }
+                          }}
+                        >
+                          <span>{category.name}</span>
+                          <span style={{
+                            ...styles.categoryCount,
+                            ...(isActive ? styles.categoryCountActive : {})
+                          }}>
+                            {count}
+                          </span>
+                        </Link>
+                      ) : (
+                        <Link
+                          href={`/prompt-library/category/${category.id}`}
+                          style={{
+                            ...styles.categoryLink,
+                            ...(isActive ? styles.categoryLinkActive : {}),
+                            textDecoration: 'none'
+                          }}
+                          onMouseEnter={(e) => {
+                            if (!isActive) {
+                              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                              e.currentTarget.style.color = 'white';
+                            }
+                          }}
+                          onMouseLeave={(e) => {
+                            if (!isActive) {
+                              e.currentTarget.style.backgroundColor = 'transparent';
+                              e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
+                            }
+                          }}
+                        >
+                          <span>{category.name}</span>
+                          <span style={{
+                            ...styles.categoryCount,
+                            ...(isActive ? styles.categoryCountActive : {})
+                          }}>
+                            {count}
+                          </span>
+                        </Link>
+                      )}
                     </li>
                   );
                 })}
@@ -3621,43 +3767,70 @@ Create publishing approach that maximizes content reach while maintaining qualit
         
         <div style={styles.categoryTabs}>
           {promptCategories.map(category => (
-            <button
-              key={category.id}
-              onClick={() => {
-                setSelectedCategory(category.id);
-                if (category.id !== 'all') {
-                  openCategoryView(category.id);
-                }
-              }}
-              style={{
-                ...styles.categoryTab,
-                ...(selectedCategory === category.id ? styles.categoryTabActive : {})
-              }}
-              onMouseEnter={(e) => {
-                if (selectedCategory !== category.id) {
-                  (e.target as HTMLButtonElement).style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-                  (e.target as HTMLButtonElement).style.color = 'white';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (selectedCategory !== category.id) {
-                  (e.target as HTMLButtonElement).style.backgroundColor = 'transparent';
-                  (e.target as HTMLButtonElement).style.color = 'rgba(255, 255, 255, 0.7)';
-                }
-              }}
-            >
-              {category.name}
-            </button>
+            category.id === 'all' ? (
+              <Link
+                key={category.id}
+                href="/prompt-library"
+                style={{
+                  ...styles.categoryTab,
+                  ...(selectedCategory === category.id ? styles.categoryTabActive : {}),
+                  textDecoration: 'none'
+                }}
+                onMouseEnter={(e) => {
+                  if (selectedCategory !== category.id) {
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                    e.currentTarget.style.color = 'white';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (selectedCategory !== category.id) {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
+                  }
+                }}
+              >
+                {category.name}
+              </Link>
+            ) : (
+              <Link
+                key={category.id}
+                href={`/prompt-library/category/${category.id}`}
+                style={{
+                  ...styles.categoryTab,
+                  ...(selectedCategory === category.id ? styles.categoryTabActive : {}),
+                  textDecoration: 'none'
+                }}
+                onMouseEnter={(e) => {
+                  if (selectedCategory !== category.id) {
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                    e.currentTarget.style.color = 'white';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (selectedCategory !== category.id) {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
+                  }
+                }}
+              >
+                {category.name}
+              </Link>
+            )
           ))}
         </div>
       </section>
       
       <main style={styles.promptGrid}>
         {filteredPrompts.map(prompt => (
-          <div
+          <Link
             key={prompt.id}
-            style={styles.promptCard}
-            onClick={() => openPromptView(prompt)}
+            href={`/prompt-library/${prompt.slug}`}
+            style={{
+              ...styles.promptCard,
+              textDecoration: 'none',
+              color: 'inherit',
+              display: 'block'
+            }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
               e.currentTarget.style.transform = 'translateY(-4px)';
@@ -3677,7 +3850,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
             <div style={styles.promptCardMeta}>
               {prompt.isPro && <span style={styles.proLabel}>Pro</span>}
             </div>
-          </div>
+          </Link>
         ))}
         
         {filteredPrompts.length === 0 && (
