@@ -89,9 +89,90 @@ export default function PromptPageClient({
       </div>
 
       {/* Main Content */}
-      <div className="prompt-container">
-        {/* Left: Prompt Display */}
-        <main className="prompt-main">
+      <div className="prompt-view-wrapper">
+        {/* Left Sidebar */}
+        <aside className="prompt-sidebar">
+          <div className="sidebar-content">
+            <Link 
+              href="/prompt-library"
+              className="back-button"
+            >
+              ← Back to Library
+            </Link>
+            
+            <h3 className="sidebar-title">Categories</h3>
+            <ul className="category-list">
+              <li className="category-item">
+                <Link
+                  href="/prompt-library"
+                  className={`category-link ${!category ? 'active' : ''}`}
+                >
+                  <span>All Prompts</span>
+                  <span className="category-count">68</span>
+                </Link>
+              </li>
+              <li className="category-item">
+                <Link
+                  href="/prompt-library/category/writing"
+                  className={`category-link ${category?.id === 'writing' ? 'active' : ''}`}
+                >
+                  <span>Creative Writing</span>
+                  <span className="category-count">12</span>
+                </Link>
+              </li>
+              <li className="category-item">
+                <Link
+                  href="/prompt-library/category/research"
+                  className={`category-link ${category?.id === 'research' ? 'active' : ''}`}
+                >
+                  <span>Academic Research</span>
+                  <span className="category-count">15</span>
+                </Link>
+              </li>
+              <li className="category-item">
+                <Link
+                  href="/prompt-library/category/analysis"
+                  className={`category-link ${category?.id === 'analysis' ? 'active' : ''}`}
+                >
+                  <span>Literary Analysis</span>
+                  <span className="category-count">10</span>
+                </Link>
+              </li>
+              <li className="category-item">
+                <Link
+                  href="/prompt-library/category/essays"
+                  className={`category-link ${category?.id === 'essays' ? 'active' : ''}`}
+                >
+                  <span>Essay Writing</span>
+                  <span className="category-count">14</span>
+                </Link>
+              </li>
+              <li className="category-item">
+                <Link
+                  href="/prompt-library/category/professional"
+                  className={`category-link ${category?.id === 'professional' ? 'active' : ''}`}
+                >
+                  <span>Professional Writing</span>
+                  <span className="category-count">8</span>
+                </Link>
+              </li>
+              <li className="category-item">
+                <Link
+                  href="/prompt-library/category/ebooks"
+                  className={`category-link ${category?.id === 'ebooks' ? 'active' : ''}`}
+                >
+                  <span>Book & Publication</span>
+                  <span className="category-count">9</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        {/* Center: Main Content */}
+        <div className="prompt-container">
+          {/* Left: Prompt Display */}
+          <main className="prompt-main">
           <header className="prompt-header">
             <h1 className="prompt-title">{prompt.title}</h1>
             <p className="prompt-description">{prompt.shortDescription}</p>
@@ -157,6 +238,7 @@ export default function PromptPageClient({
             </div>
           </div>
         </aside>
+        </div>
       </div>
 
       {/* Related Prompts */}
@@ -187,14 +269,114 @@ export default function PromptPageClient({
           background-color: #0a0a0f;
           color: white;
           font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
-          padding: 6rem 0 2rem 0;
+          padding: 0;
         }
 
+        .prompt-view-wrapper {
+          display: flex;
+          min-height: 100vh;
+        }
+
+        .prompt-sidebar {
+          width: 280px;
+          background-color: rgba(16, 16, 21, 0.9);
+          border-right: 1px solid rgba(255, 255, 255, 0.05);
+          padding: 2rem 0;
+          position: sticky;
+          top: 0;
+          height: 100vh;
+          overflow-y: auto;
+        }
+
+        .sidebar-content {
+          padding: 0 2rem;
+          margin-top: 4rem;
+        }
+
+        .back-button {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.75rem 1.5rem;
+          background-color: transparent;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 8px;
+          color: rgba(255, 255, 255, 0.7);
+          cursor: pointer;
+          transition: all 0.2s ease;
+          margin-bottom: 2rem;
+          text-decoration: none;
+          font-size: 0.9rem;
+        }
+
+        .back-button:hover {
+          background-color: rgba(255, 255, 255, 0.05);
+          color: white;
+        }
+
+        .sidebar-title {
+          font-family: Literata, Georgia, serif;
+          font-size: 1.2rem;
+          font-weight: 400;
+          margin-bottom: 2rem;
+          opacity: 0.9;
+        }
+
+        .category-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .category-item {
+          margin-bottom: 0.5rem;
+        }
+
+        .category-link {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1rem 1.5rem;
+          background-color: transparent;
+          border: none;
+          border-radius: 12px;
+          color: rgba(255, 255, 255, 0.7);
+          cursor: pointer;
+          transition: all 0.2s ease;
+          font-size: 0.9rem;
+          width: 100%;
+          text-align: left;
+          font-family: Inter, sans-serif;
+          text-decoration: none;
+        }
+
+        .category-link:hover {
+          background-color: rgba(255, 255, 255, 0.05);
+          color: white;
+        }
+
+        .category-link.active {
+          background-color: rgba(139, 92, 246, 0.15);
+          color: #8b5cf6;
+        }
+
+        .category-count {
+          background-color: rgba(255, 255, 255, 0.1);
+          color: rgba(255, 255, 255, 0.6);
+          padding: 0.25rem 0.6rem;
+          border-radius: 12px;
+          font-size: 0.75rem;
+          font-weight: 500;
+        }
+
+        .category-link.active .category-count {
+          background-color: rgba(139, 92, 246, 0.2);
+          color: #8b5cf6;
+        }
 
         .prompt-container {
-          max-width: 1400px;
-          margin: 0 auto;
-          padding: 0 2rem;
+          flex: 1;
+          padding: 6rem 2rem 2rem 2rem;
           display: grid;
           grid-template-columns: 1fr 380px;
           gap: 3rem;
@@ -465,9 +647,32 @@ export default function PromptPageClient({
           background: rgba(255, 255, 255, 0.15);
         }
 
+        /* Sidebar scrollbar styles */
+        .prompt-sidebar::-webkit-scrollbar {
+          width: 6px;
+        }
+
+        .prompt-sidebar::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.02);
+        }
+
+        .prompt-sidebar::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.08);
+          border-radius: 3px;
+        }
+
+        .prompt-sidebar::-webkit-scrollbar-thumb:hover {
+          background: rgba(255, 255, 255, 0.12);
+        }
+
         @media (max-width: 1024px) {
+          .prompt-sidebar {
+            display: none;
+          }
+
           .prompt-container {
             grid-template-columns: 1fr;
+            padding: 0 2rem;
           }
 
           .variables-panel {
@@ -479,12 +684,12 @@ export default function PromptPageClient({
 
         @media (max-width: 768px) {
           .prompt-page {
-            padding: 5rem 0 1rem 0;
+            padding: 0;
           }
 
 
           .prompt-container {
-            padding: 0 1rem;
+            padding: 5rem 1rem 1rem 1rem;
             gap: 2rem;
           }
 
