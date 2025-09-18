@@ -90,7 +90,36 @@ export default function PromptPageClient({
 
       {/* Main Content */}
       <div className="prompt-container">
-        {/* Left: Variable Customization */}
+        {/* Left: Prompt Display */}
+        <main className="prompt-main">
+          <header className="prompt-header">
+            <h1 className="prompt-title">{prompt.title}</h1>
+            <p className="prompt-description">{prompt.shortDescription}</p>
+            
+            <div className="prompt-actions">
+              <button
+                onClick={handleCopy}
+                className={`action-button copy-button ${copied ? 'copied' : ''}`}
+              >
+                {copied ? '✓ Copied' : 'Copy Prompt'}
+              </button>
+              <button
+                onClick={handleShare}
+                className="action-button share-button"
+              >
+                Share
+              </button>
+            </div>
+          </header>
+
+          <div className="prompt-display">
+            <div className="prompt-content">
+              <pre className="prompt-text">{customizedPrompt}</pre>
+            </div>
+          </div>
+        </main>
+
+        {/* Right: Variable Customization */}
         <aside className="variables-panel">
           <h2 className="panel-title">Customize Variables</h2>
           {prompt.variables.length > 0 ? (
@@ -128,35 +157,6 @@ export default function PromptPageClient({
             </div>
           </div>
         </aside>
-
-        {/* Right: Prompt Display */}
-        <main className="prompt-main">
-          <header className="prompt-header">
-            <h1 className="prompt-title">{prompt.title}</h1>
-            <p className="prompt-description">{prompt.shortDescription}</p>
-            
-            <div className="prompt-actions">
-              <button
-                onClick={handleCopy}
-                className={`action-button copy-button ${copied ? 'copied' : ''}`}
-              >
-                {copied ? '✓ Copied' : 'Copy Prompt'}
-              </button>
-              <button
-                onClick={handleShare}
-                className="action-button share-button"
-              >
-                Share
-              </button>
-            </div>
-          </header>
-
-          <div className="prompt-display">
-            <div className="prompt-content">
-              <pre className="prompt-text">{customizedPrompt}</pre>
-            </div>
-          </div>
-        </main>
       </div>
 
       {/* Related Prompts */}
@@ -196,7 +196,7 @@ export default function PromptPageClient({
           margin: 0 auto;
           padding: 0 2rem;
           display: grid;
-          grid-template-columns: 380px 1fr;
+          grid-template-columns: 1fr 380px;
           gap: 3rem;
           align-items: start;
         }
