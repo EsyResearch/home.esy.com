@@ -135,7 +135,13 @@ export default function PromptPageClient({
                 {copied ? '✓ Copied' : 'Copy Prompt'}
               </button>
               <button
-                onClick={() => setIsDrawerOpen(true)}
+                onClick={() => {
+                  // Set first variable as focused if variables exist
+                  if (prompt.variables.length > 0) {
+                    setFocusedVariable(prompt.variables[0]);
+                  }
+                  setIsDrawerOpen(true);
+                }}
                 className="action-button customize-button"
               >
                 Customize Prompt
@@ -344,10 +350,14 @@ export default function PromptPageClient({
 
         .prompt-page .breadcrumbs-section :global(.breadcrumbs) {
           margin-bottom: 0 !important;
+          background-color: transparent !important;
+          border-bottom: none !important;
         }
 
         .prompt-page :global(.Breadcrumbs_breadcrumbs__DGlh4) {
           margin-bottom: 0 !important;
+          background-color: transparent !important;
+          border-bottom: none !important;
         }
 
 
