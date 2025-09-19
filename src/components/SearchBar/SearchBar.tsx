@@ -8,8 +8,9 @@ interface SearchResult {
   description?: string;
   category?: string;
   slug?: string;
-  type?: 'prompt' | 'suggestion' | 'category';
+  type?: 'prompt' | 'suggestion' | 'category' | 'article' | 'resource' | 'course';
   isPro?: boolean;
+  metadata?: Record<string, any>;
 }
 
 interface SearchBarProps {
@@ -322,7 +323,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       opacity: showResults ? 1 : 0,
       transform: showResults ? 'translateY(0)' : 'translateY(-10px)',
       transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-      pointerEvents: showResults ? 'auto' : 'none'
+      pointerEvents: showResults ? 'auto' as const : 'none' as const
     },
     dropdownItem: {
       padding: isMobile ? '12px 16px' : '16px 20px',
@@ -560,6 +561,30 @@ const SearchBar: React.FC<SearchBarProps> = ({
                   {result.category && (
                     <span style={styles.dropdownItemCategory}>
                       {result.category}
+                    </span>
+                  )}
+                  {result.metadata?.readTime && (
+                    <span style={{
+                      fontSize: '0.75rem',
+                      color: 'rgba(255, 255, 255, 0.6)',
+                      backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                      padding: '2px 8px',
+                      borderRadius: '12px',
+                      fontWeight: '500'
+                    }}>
+                      {result.metadata.readTime}
+                    </span>
+                  )}
+                  {result.metadata?.type && result.type === 'article' && (
+                    <span style={{
+                      fontSize: '0.75rem',
+                      color: 'rgba(59, 130, 246, 0.8)',
+                      backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                      padding: '2px 8px',
+                      borderRadius: '12px',
+                      fontWeight: '500'
+                    }}>
+                      {result.metadata.type}
                     </span>
                   )}
                   {result.isPro && (

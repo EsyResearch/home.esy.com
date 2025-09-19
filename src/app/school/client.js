@@ -6,8 +6,10 @@ import { useRouter } from 'next/navigation';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import { StructuredLearningPaths, EssentialResources } from '@/components/School';
+import { useSchoolSearch } from '@/hooks/useSchoolSearch';
 
 const EsySchool = () => {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
   const [viewMode, setViewMode] = useState('grid');
@@ -468,6 +470,36 @@ const EsySchool = () => {
     }
   ];
 
+  // Use the search hook for dropdown functionality
+  const {
+    searchResults,
+    isLoading: searchLoading,
+    searchTerm: dropdownSearchTerm,
+    setSearchTerm: setDropdownSearchTerm,
+    showDropdown
+  } = useSchoolSearch({ 
+    articles, 
+    resources: featuredResources, 
+    courses, 
+    debounceMs: 300, 
+    maxResults: 8 
+  });
+
+  // Handle search result selection
+  const handleResultSelect = (result) => {
+    if (result.type === 'article' && result.slug) {
+      router.push(result.slug);
+    } else if (result.type === 'resource' && result.slug) {
+      router.push(result.slug);
+    } else if (result.type === 'course') {
+      // For courses, we could scroll to the courses section or show a modal
+      const coursesSection = document.getElementById('courses');
+      if (coursesSection) {
+        coursesSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <div style={styles.container}>
       <div style={styles.progressBar} />
@@ -499,10 +531,18 @@ const EsySchool = () => {
           {/* Search */}
           <SearchBar
             value={searchQuery}
-            onChange={setSearchQuery}
+            onChange={(value) => {
+              setSearchQuery(value);
+              setDropdownSearchTerm(value);
+            }}
             onSearch={(query) => console.log('Searching for:', query)}
             context="school"
             style={{ margin: '0 0 2rem 0' }}
+            showDropdown={showDropdown}
+            searchResults={searchResults}
+            onResultSelect={handleResultSelect}
+            loadingResults={searchLoading}
+            maxResults={8}
           />
         </div>
       </section>
