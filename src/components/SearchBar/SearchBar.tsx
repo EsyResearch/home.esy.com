@@ -11,6 +11,7 @@ interface SearchBarProps {
   className?: string;
   style?: React.CSSProperties;
   context?: 'prompt-library' | 'school' | 'general';
+  inputFontSize?: string;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
@@ -21,7 +22,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
   onChange,
   className = "",
   style = {},
-  context = 'general'
+  context = 'general',
+  inputFontSize = '1.25rem'
 }) => {
   // Context-specific default suggestions
   const getDefaultSuggestions = (context: string) => {
@@ -134,7 +136,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       backgroundColor: 'transparent',
       border: 'none',
       color: '#ffffff',
-      fontSize: '1.25rem',
+      fontSize: inputFontSize,
       fontWeight: '300' as const,
       outline: 'none'
     },

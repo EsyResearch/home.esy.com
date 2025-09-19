@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from 'react';
-import Link from 'next/link';
+import React, { useState, useMemo, useEffect } from 'react';
 import PromptCard from '@/components/PromptLibrary/PromptCard';
 import SearchBar from '@/components/SearchBar/SearchBar';
 
@@ -9,6 +8,24 @@ const PromptLibrary = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [copiedPrompt, setCopiedPrompt] = useState(null);
+
+  // Reset all button styles when selectedCategory changes
+  useEffect(() => {
+    const resetAllButtonStyles = () => {
+      const buttons = document.querySelectorAll('[data-category-button]');
+      buttons.forEach(button => {
+        const element = button as HTMLElement;
+        // Only reset if this button is not the currently selected one
+        if (element.getAttribute('data-category-id') !== selectedCategory) {
+          element.style.backgroundColor = 'rgba(22, 22, 31, 0.6)';
+          element.style.color = 'rgba(255, 255, 255, 0.7)';
+          element.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+        }
+      });
+    };
+    
+    resetAllButtonStyles();
+  }, [selectedCategory]);
   const [currentView, setCurrentView] = useState('library'); // 'library', 'prompt', or 'category'
   const [selectedPrompt, setSelectedPrompt] = useState(null);
   const [promptVariables, setPromptVariables] = useState({});
@@ -3003,22 +3020,24 @@ Create publishing approach that maximizes content reach while maintaining qualit
     // Library View Styles
     heroSection: {
       position: 'relative' as const,
-      maxWidth: '1400px',
+      maxWidth: '1200px',
       margin: '0 auto',
-      padding: '8rem 2rem 0 2rem',
-      minHeight: '85vh',
+      padding: '8rem 2rem 2rem 2rem',
+      minHeight: '70vh',
       display: 'flex',
       alignItems: 'center'
     },
     heroContent: {
       display: 'grid',
-      gridTemplateColumns: '2fr 1fr',
-      gap: '8rem',
+      gridTemplateColumns: '1.2fr 0.8fr',
+      gap: '4rem',
       alignItems: 'center',
       width: '100%',
+      maxWidth: '1200px',
+      margin: '0 auto',
       '@media (max-width: 1024px)': {
         gridTemplateColumns: '1fr',
-        gap: '4rem',
+        gap: '3rem',
         textAlign: 'center'
       }
     },
@@ -3027,27 +3046,27 @@ Create publishing approach that maximizes content reach while maintaining qualit
     },
     heroTitle: {
       fontFamily: 'Literata, Georgia, serif',
-      fontSize: 'clamp(3.5rem, 8vw, 7rem)',
+      fontSize: 'clamp(2.5rem, 6vw, 5rem)',
       fontWeight: '300',
       lineHeight: '0.95',
-      marginBottom: '3rem',
+      marginBottom: '2rem',
       opacity: '1',
       letterSpacing: '-0.02em'
     },
     heroTitleAccent: {
       display: 'block',
-      fontSize: 'clamp(2.5rem, 6vw, 5rem)',
+      fontSize: 'clamp(2rem, 5vw, 4rem)',
       fontWeight: '400',
-      marginTop: '1rem',
+      marginTop: '0.5rem',
       color: '#8b5cf6'
     },
     heroSubtitle: {
-      fontSize: 'clamp(1.15rem, 2.5vw, 1.4rem)',
+      fontSize: 'clamp(1rem, 2vw, 1.2rem)',
       fontWeight: '400',
       opacity: '0.8',
-      lineHeight: '1.8',
-      marginBottom: '4rem',
-      maxWidth: '600px'
+      lineHeight: '1.6',
+      marginBottom: '2rem',
+      maxWidth: '500px'
     },
     heroStats: {
       display: 'flex',
@@ -3113,7 +3132,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
       position: 'relative',
       display: 'flex',
       flexDirection: 'column',
-      gap: '1.5rem',
+      gap: '0.75rem',
       '@media (max-width: 1024px)': {
         display: 'none'
       }
@@ -3121,34 +3140,34 @@ Create publishing approach that maximizes content reach while maintaining qualit
     featureCard: {
       backgroundColor: 'rgba(22, 22, 31, 0.8)',
       border: '1px solid rgba(255, 255, 255, 0.08)',
-      borderRadius: '12px',
-      padding: '2rem',
+      borderRadius: '10px',
+      padding: '1rem',
       backdropFilter: 'blur(10px)'
     },
     featureTitle: {
       fontFamily: 'Literata, Georgia, serif',
-      fontSize: '1.1rem',
+      fontSize: '1rem',
       fontWeight: '400',
-      marginBottom: '0.75rem',
+      marginBottom: '0.5rem',
       opacity: '0.9'
     },
     featureDescription: {
-      fontSize: '0.9rem',
+      fontSize: '0.8rem',
       opacity: '0.6',
-      lineHeight: '1.6'
+      lineHeight: '1.5'
     },
     
     // Hero Search Section
     heroSearchSection: {
-      marginTop: '3rem',
-      maxWidth: '600px'
+      marginTop: '2rem',
+      maxWidth: '500px'
     },
     
     // Search Section
     searchSection: {
-      maxWidth: '1400px',
+      maxWidth: '1200px',
       margin: '0 auto',
-      padding: '2rem 2rem 2rem 2rem',
+      padding: '1rem 2rem 2rem 2rem',
       textAlign: 'center' as const
     },
     
@@ -3828,6 +3847,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
                 onChange={setSearchTerm}
                 onSearch={(query) => console.log('Searching for:', query)}
                 context="prompt-library"
+                inputFontSize="0.9rem"
                 style={{ marginBottom: '0' }}
               />
             </div>
@@ -3861,31 +3881,10 @@ Create publishing approach that maximizes content reach while maintaining qualit
         <div style={styles.categoryTabs}>
           {promptCategories.map(category => (
             category.id === 'all' ? (
-              <Link
-                key={category.id}
-                href="/prompt-library"
-                style={{
-                  ...styles.categoryTab,
-                  ...(selectedCategory === category.id ? styles.categoryTabActive : {})
-                }}
-                onMouseEnter={(e) => {
-                  if (selectedCategory !== category.id) {
-                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-                    e.currentTarget.style.color = 'white';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (selectedCategory !== category.id) {
-                    e.currentTarget.style.backgroundColor = 'rgba(22, 22, 31, 0.6)';
-                    e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
-                  }
-                }}
-              >
-                {category.name}
-              </Link>
-            ) : (
               <button
                 key={category.id}
+                data-category-button
+                data-category-id={category.id}
                 onClick={() => setSelectedCategory(category.id)}
                 style={{
                   ...styles.categoryTab,
@@ -3895,12 +3894,41 @@ Create publishing approach that maximizes content reach while maintaining qualit
                   if (selectedCategory !== category.id) {
                     e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
                     e.currentTarget.style.color = 'white';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (selectedCategory !== category.id) {
                     e.currentTarget.style.backgroundColor = 'rgba(22, 22, 31, 0.6)';
                     e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                  }
+                }}
+              >
+                {category.name}
+              </button>
+            ) : (
+              <button
+                key={category.id}
+                data-category-button
+                data-category-id={category.id}
+                onClick={() => setSelectedCategory(category.id)}
+                style={{
+                  ...styles.categoryTab,
+                  ...(selectedCategory === category.id ? styles.categoryTabActive : {})
+                }}
+                onMouseEnter={(e) => {
+                  if (selectedCategory !== category.id) {
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                    e.currentTarget.style.color = 'white';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (selectedCategory !== category.id) {
+                    e.currentTarget.style.backgroundColor = 'rgba(22, 22, 31, 0.6)';
+                    e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
                   }
                 }}
               >
