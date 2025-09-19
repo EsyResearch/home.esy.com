@@ -3047,7 +3047,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
     },
     heroTitle: {
       fontFamily: 'Literata, Georgia, serif',
-      fontSize: 'clamp(2.5rem, 6vw, 5rem)',
+      fontSize: 'clamp(3rem, 7vw, 6rem)',
       fontWeight: '300',
       lineHeight: '0.95',
       marginBottom: '2rem',
@@ -3056,7 +3056,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
     },
     heroTitleAccent: {
       display: 'block',
-      fontSize: 'clamp(2rem, 5vw, 4rem)',
+      fontSize: 'clamp(2.5rem, 6vw, 5rem)',
       fontWeight: '400',
       marginTop: '0.5rem',
       color: '#8b5cf6'
