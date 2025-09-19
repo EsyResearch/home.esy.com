@@ -171,7 +171,7 @@ const NewHomepage = () => {
               padding: isTinyMobile ? '0 1rem' : isSmallMobile ? '0 1.5rem' : isMobile ? '0 2rem' : '0',
               fontFamily: 'var(--font-inter)'
             }}>
-              {isMobile ? 'Research, write, and cite better papers in any style' : 'Write A+ essays faster. Esy helps you research deeply, argue clearly, and cite with precision — APA, MLA, or any style.'}
+              Research, write, and cite better papers in any style
             </p>
           </div>
 

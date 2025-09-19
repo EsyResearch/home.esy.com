@@ -8,7 +8,7 @@ import Navigation from '@/components/Home/navigation';
 const Header = () => {
   return (
     <header className="fixed top-0 w-full backdrop-blur-md z-50 bg-slate-950/80">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div className="/* max-w-7xl mx-auto */ px-6 py-4 flex justify-between items-center">
         <Logo />
         <Navigation />
       </div>

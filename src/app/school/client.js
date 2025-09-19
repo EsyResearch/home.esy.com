@@ -531,7 +531,8 @@ const EsySchool = () => {
     {
       icon: '🎯',
       title: 'Prompt Library',
-      description: 'Curated prompts for every academic discipline and writing stage'
+      description: 'Curated prompts for every academic discipline and writing stage',
+      link: '/prompt-library'
     },
     {
       icon: '🎥',

@@ -13,6 +13,8 @@ export const getPageSuffix = (pathname) => {
     return 'School';
   } else if (pathname?.startsWith('/glossary')) {
     return 'Glossary';
+  } else if (pathname?.startsWith('/prompt-library')) {
+    return 'Prompt Library';
   }
   return '';
 };

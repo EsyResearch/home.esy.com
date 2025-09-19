@@ -1,11 +1,13 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 
 interface FeaturedResource {
   icon: string;
   title: string;
   description: string;
+  link?: string;
 }
 
 interface EssentialResourcesProps {
@@ -91,9 +93,8 @@ const EssentialResources: React.FC<EssentialResourcesProps> = ({ featuredResourc
               return null;
             }
             
-            return (
+            const cardContent = (
               <div
-                key={index}
                 style={styles.featuredCard}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = 'rgba(139, 92, 246, 0.08)';
@@ -107,6 +108,18 @@ const EssentialResources: React.FC<EssentialResourcesProps> = ({ featuredResourc
                 <div style={styles.featuredIcon}>{resource.icon}</div>
                 <h3 style={styles.featuredCardTitle}>{resource.title}</h3>
                 <p style={styles.featuredCardDescription}>{resource.description}</p>
+              </div>
+            );
+
+            return (
+              <div key={index}>
+                {resource.link ? (
+                  <Link href={resource.link} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    {cardContent}
+                  </Link>
+                ) : (
+                  cardContent
+                )}
               </div>
             );
           })}
