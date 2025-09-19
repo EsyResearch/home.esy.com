@@ -3005,26 +3005,173 @@ Create publishing approach that maximizes content reach while maintaining qualit
       position: 'relative' as const,
       maxWidth: '1400px',
       margin: '0 auto',
-      padding: 'clamp(5rem, 12vw, 8rem) clamp(1rem, 4vw, 2rem) clamp(2rem, 6vw, 4rem) clamp(1rem, 4vw, 2rem)',
-      textAlign: 'center' as const
+      padding: '8rem 2rem 0 2rem',
+      minHeight: '85vh',
+      display: 'flex',
+      alignItems: 'center'
+    },
+    heroContent: {
+      display: 'grid',
+      gridTemplateColumns: '2fr 1fr',
+      gap: '8rem',
+      alignItems: 'center',
+      width: '100%',
+      '@media (max-width: 1024px)': {
+        gridTemplateColumns: '1fr',
+        gap: '4rem',
+        textAlign: 'center'
+      }
+    },
+    heroLeft: {
+      maxWidth: '720px'
     },
     heroTitle: {
       fontFamily: 'Literata, Georgia, serif',
-      fontSize: 'clamp(2.5rem, 8vw, 5rem)',
+      fontSize: 'clamp(3.5rem, 8vw, 7rem)',
       fontWeight: '300',
-      lineHeight: '1.1',
-      marginBottom: '1.5rem',
+      lineHeight: '0.95',
+      marginBottom: '3rem',
+      opacity: '1',
       letterSpacing: '-0.02em'
     },
+    heroTitleAccent: {
+      display: 'block',
+      fontSize: 'clamp(2.5rem, 6vw, 5rem)',
+      fontWeight: '400',
+      marginTop: '1rem',
+      color: '#8b5cf6'
+    },
     heroSubtitle: {
-      fontSize: 'clamp(1rem, 4vw, 1.2rem)',
-      opacity: '0.7',
-      maxWidth: '600px',
-      margin: '0 auto 3rem auto',
-      lineHeight: '1.6',
-      padding: '0 1rem'
+      fontSize: 'clamp(1.15rem, 2.5vw, 1.4rem)',
+      fontWeight: '400',
+      opacity: '0.8',
+      lineHeight: '1.8',
+      marginBottom: '4rem',
+      maxWidth: '600px'
+    },
+    heroStats: {
+      display: 'flex',
+      gap: '4rem',
+      marginBottom: '4rem',
+      '@media (max-width: 768px)': {
+        gap: '2rem',
+        justifyContent: 'center'
+      }
+    },
+    statItem: {
+      textAlign: 'left',
+      '@media (max-width: 1024px)': {
+        textAlign: 'center'
+      }
+    },
+    statNumber: {
+      fontFamily: 'Literata, Georgia, serif',
+      fontSize: '2.5rem',
+      fontWeight: '300',
+      opacity: '1',
+      display: 'block',
+      lineHeight: '1'
+    },
+    statLabel: {
+      fontSize: '0.9rem',
+      opacity: '0.5',
+      textTransform: 'uppercase',
+      letterSpacing: '0.1em',
+      marginTop: '0.5rem'
+    },
+    heroCta: {
+      display: 'flex',
+      gap: '1.5rem',
+      alignItems: 'center',
+      '@media (max-width: 768px)': {
+        justifyContent: 'center'
+      }
+    },
+    ctaButton: {
+      padding: '1.25rem 2.5rem',
+      backgroundColor: '#8b5cf6',
+      border: 'none',
+      borderRadius: '8px',
+      color: 'white',
+      fontSize: '1rem',
+      fontWeight: '500',
+      cursor: 'pointer',
+      transition: 'all 0.2s ease',
+      fontFamily: 'Inter, sans-serif',
+      textDecoration: 'none',
+      display: 'inline-block'
+    },
+    ctaSecondary: {
+      color: 'rgba(255, 255, 255, 0.7)',
+      fontSize: '0.95rem',
+      textDecoration: 'none',
+      borderBottom: '1px solid rgba(255, 255, 255, 0.3)',
+      paddingBottom: '2px',
+      transition: 'all 0.2s ease'
+    },
+    heroRight: {
+      position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '1.5rem',
+      '@media (max-width: 1024px)': {
+        display: 'none'
+      }
+    },
+    featureCard: {
+      backgroundColor: 'rgba(22, 22, 31, 0.8)',
+      border: '1px solid rgba(255, 255, 255, 0.08)',
+      borderRadius: '12px',
+      padding: '2rem',
+      backdropFilter: 'blur(10px)'
+    },
+    featureTitle: {
+      fontFamily: 'Literata, Georgia, serif',
+      fontSize: '1.1rem',
+      fontWeight: '400',
+      marginBottom: '0.75rem',
+      opacity: '0.9'
+    },
+    featureDescription: {
+      fontSize: '0.9rem',
+      opacity: '0.6',
+      lineHeight: '1.6'
     },
     
+    // Hero Search Section
+    heroSearchSection: {
+      marginTop: '3rem',
+      maxWidth: '600px'
+    },
+    
+    // Search Section
+    searchSection: {
+      maxWidth: '1400px',
+      margin: '0 auto',
+      padding: '2rem 2rem 2rem 2rem',
+      textAlign: 'center' as const
+    },
+    
+    // Controls Section
+    controlsSection: {
+      maxWidth: '1400px',
+      margin: '0 auto',
+      padding: '6rem 2rem 4rem 2rem',
+      borderTop: '1px solid rgba(255, 255, 255, 0.05)'
+    },
+    sectionTitle: {
+      fontFamily: 'Literata, Georgia, serif',
+      fontSize: '2.5rem',
+      fontWeight: '300',
+      marginBottom: '1rem',
+      opacity: '1'
+    },
+    sectionSubtitle: {
+      fontSize: '1.1rem',
+      opacity: '0.6',
+      marginBottom: '4rem',
+      maxWidth: '600px'
+    },
     
     // Category Tabs
     categoryTabs: {
@@ -3663,18 +3810,54 @@ Create publishing approach that maximizes content reach while maintaining qualit
   return (
     <div style={styles.container}>
       <section style={styles.heroSection}>
-        <h1 style={styles.heroTitle}>Prompt Library</h1>
-        <p style={styles.heroSubtitle}>
-          Research-grade prompts engineered for academic excellence. Customize variables and generate perfect prompts for your needs.
-        </p>
-        
-        <SearchBar
-          value={searchTerm}
-          onChange={setSearchTerm}
-          onSearch={(query) => console.log('Searching for:', query)}
-          context="prompt-library"
-        />
-        
+        <div style={styles.heroContent}>
+          <div style={styles.heroLeft}>
+            <h1 style={styles.heroTitle}>
+              Prompt
+              <span style={styles.heroTitleAccent}>Library</span>
+            </h1>
+            <p style={styles.heroSubtitle}>
+              Research-grade prompts engineered for academic excellence. Elevate your writing, 
+              analysis, and research with frameworks designed by scholars for scholars.
+            </p>
+            
+            {/* Search Bar in Hero */}
+            <div style={styles.heroSearchSection}>
+              <SearchBar
+                value={searchTerm}
+                onChange={setSearchTerm}
+                onSearch={(query) => console.log('Searching for:', query)}
+                context="prompt-library"
+                style={{ marginBottom: '0' }}
+              />
+            </div>
+          </div>
+
+          <div style={styles.heroRight}>
+            <div style={styles.featureCard}>
+              <h3 style={styles.featureTitle}>Ready-to-Use Prompts</h3>
+              <p style={styles.featureDescription}>
+                No more guessing what to ask AI. Our prompts are tested and optimized to get you exactly the help you need for any writing task.
+              </p>
+            </div>
+            <div style={styles.featureCard}>
+              <h3 style={styles.featureTitle}>Customize Everything</h3>
+              <p style={styles.featureDescription}>
+                Adjust variables like topic, audience, and style to make each prompt perfectly fit your specific assignment and requirements.
+              </p>
+            </div>
+            <div style={styles.featureCard}>
+              <h3 style={styles.featureTitle}>Copy & Paste Ready</h3>
+              <p style={styles.featureDescription}>
+                One click copies the entire prompt. Just paste it into ChatGPT, Claude, or any AI tool and start getting results immediately.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Category Filters Section */}
+      <section style={styles.searchSection}>
         <div style={styles.categoryTabs}>
           {promptCategories.map(category => (
             category.id === 'all' ? (
@@ -3683,8 +3866,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
                 href="/prompt-library"
                 style={{
                   ...styles.categoryTab,
-                  ...(selectedCategory === category.id ? styles.categoryTabActive : {}),
-                  textDecoration: 'none'
+                  ...(selectedCategory === category.id ? styles.categoryTabActive : {})
                 }}
                 onMouseEnter={(e) => {
                   if (selectedCategory !== category.id) {
@@ -3694,7 +3876,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
                 }}
                 onMouseLeave={(e) => {
                   if (selectedCategory !== category.id) {
-                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.backgroundColor = 'rgba(22, 22, 31, 0.6)';
                     e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
                   }
                 }}
@@ -3702,13 +3884,12 @@ Create publishing approach that maximizes content reach while maintaining qualit
                 {category.name}
               </Link>
             ) : (
-              <Link
+              <button
                 key={category.id}
-                href={`/prompt-library/category/${category.id}`}
+                onClick={() => setSelectedCategory(category.id)}
                 style={{
                   ...styles.categoryTab,
-                  ...(selectedCategory === category.id ? styles.categoryTabActive : {}),
-                  textDecoration: 'none'
+                  ...(selectedCategory === category.id ? styles.categoryTabActive : {})
                 }}
                 onMouseEnter={(e) => {
                   if (selectedCategory !== category.id) {
@@ -3718,19 +3899,20 @@ Create publishing approach that maximizes content reach while maintaining qualit
                 }}
                 onMouseLeave={(e) => {
                   if (selectedCategory !== category.id) {
-                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.backgroundColor = 'rgba(22, 22, 31, 0.6)';
                     e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
                   }
                 }}
               >
                 {category.name}
-              </Link>
+              </button>
             )
           ))}
         </div>
       </section>
-      
-      <main style={styles.promptGrid}>
+
+      {/* Prompts Section */}
+      <main id="prompts" style={styles.promptGrid}>
         {filteredPrompts.map(prompt => (
           <PromptCard key={prompt.id} prompt={prompt} />
         ))}
