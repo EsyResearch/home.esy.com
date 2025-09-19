@@ -1,21 +1,19 @@
 "use client"
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
-  BookOpen, ArrowRight, ChevronRight, Search,
+  BookOpen, ArrowRight, ChevronRight,
   FileText, Brain, Sparkles, Quote,
   CheckCircle, Clock, Zap, Globe,
   BarChart, Edit3, BookMarked, Lightbulb,
   PenTool, Target, Layers, Award,
   Menu, X, TrendingUp, Shield
 } from 'lucide-react';
+import SearchBar from '@/components/SearchBar/SearchBar';
 
 const NewHomepage = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchFocused, setSearchFocused] = useState(false);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
-  const [activeQuestion, setActiveQuestion] = useState(0);
-  const searchRef = useRef(null);
 
   const currentTheme = {
     bg: '#0a0a0f',
@@ -43,21 +41,14 @@ const NewHomepage = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Rotating questions for search placeholder
-  const researchQuestions = [
+  // Homepage-specific search suggestions
+  const homepageSuggestions = [
     "How does AI impact academic integrity?",
     "What drives sustainable urban development?",
     "Can quantum computing solve climate models?",
     "How do social movements shape policy?",
     "What defines consciousness in neuroscience?"
   ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveQuestion((prev) => (prev + 1) % researchQuestions.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [researchQuestions.length]);
 
   // Key benefits with icons
   const keyBenefits = [
@@ -115,11 +106,9 @@ const NewHomepage = () => {
     }
   ];
 
-  const handleStartWriting = () => {
-    if (searchQuery.trim()) {
-      console.log('Starting with:', searchQuery);
-      // Would navigate to writing interface
-    }
+  const handleSearch = (query) => {
+    console.log('Searching for:', query);
+    // Would navigate to search results or writing interface
   };
 
   return (
@@ -148,11 +137,11 @@ const NewHomepage = () => {
 
             {/* Main Headline - Enhanced Mobile Typography */}
             <h1 style={{
-              fontSize: isTinyMobile ? '1.75rem' : isSmallMobile ? '2rem' : isMobile ? '2.25rem' : isTablet ? '3.5rem' : '5rem',
+              fontSize: isTinyMobile ? '2.5rem' : isSmallMobile ? '2.75rem' : isMobile ? '3rem' : isTablet ? '3.5rem' : '5rem',
               fontWeight: 300,
-              lineHeight: 1.2,
-              letterSpacing: '-0.01em',
-              marginBottom: isMobile ? '0.875rem' : '2rem',
+              lineHeight: 1.1,
+              letterSpacing: '-0.02em',
+              marginBottom: isMobile ? '1rem' : '2rem',
               padding: isTinyMobile ? '0 0.5rem' : isSmallMobile ? '0 0.75rem' : '0',
               fontFamily: 'var(--font-literata)'
             }}>
@@ -161,96 +150,37 @@ const NewHomepage = () => {
               <span style={{ color: currentTheme.accent, fontWeight: 400 }}>AI Essay Writer</span>
             </h1>
 
-            {/* Subheadline - Improved Mobile Readability */}
+            {/* Subheadline - Enhanced Mobile Readability */}
             <p style={{
-              fontSize: isTinyMobile ? '0.875rem' : isSmallMobile ? '0.938rem' : isMobile ? '1rem' : isTablet ? '1.25rem' : '1.5rem',
-              lineHeight: 1.5,
+              fontSize: isTinyMobile ? '1rem' : isSmallMobile ? '1.125rem' : isMobile ? '1.25rem' : isTablet ? '1.25rem' : '1.5rem',
+              lineHeight: 1.4,
               color: currentTheme.muted,
               maxWidth: '600px',
               margin: '0 auto',
               padding: isTinyMobile ? '0 1rem' : isSmallMobile ? '0 1.5rem' : isMobile ? '0 2rem' : '0',
-              fontFamily: 'var(--font-inter)'
+              fontFamily: 'var(--font-inter)',
+              fontWeight: 400
             }}>
               Research, write, and cite better papers in any style
             </p>
           </div>
 
-          {/* Search Interface - Enhanced Mobile UX */}
+          {/* Search Interface */}
           <div style={{
             maxWidth: isMobile ? '100%' : '720px',
             margin: '0 auto',
             marginBottom: isMobile ? '1.5rem' : '3rem',
             padding: isTinyMobile ? '0 0.5rem' : isSmallMobile ? '0 0.75rem' : '0'
           }}>
-            <div style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'stretch',
-              background: searchFocused ? currentTheme.elevated : 'transparent',
-              border: `${isMobile ? 1 : 2}px solid ${searchFocused ? currentTheme.accent : isMobile ? 'rgba(255,255,255,0.05)' : currentTheme.border}`,
-              borderRadius: '12px',
-              padding: '0.5rem',
-              transition: 'all 0.2s',
-              gap: '0'
-            }}>
-              <div style={{
-                flex: 1,
-                display: 'flex',
-                alignItems: 'center'
-              }}>
-                {!isMobile && (
-                  <Search size={20} style={{ 
-                    marginLeft: '1rem', 
-                    color: searchFocused ? currentTheme.accent : currentTheme.subtle,
-                    transition: 'color 0.2s'
-                  }} />
-                )}
-                <input
-                  ref={searchRef}
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder={researchQuestions[activeQuestion]}
-                  onFocus={() => setSearchFocused(true)}
-                  onBlur={() => setSearchFocused(false)}
-                  style={{
-                    flex: 1,
-                    padding: isMobile ? '0.75rem 1rem' : '1rem',
-                    background: 'transparent',
-                    border: 'none',
-                    color: currentTheme.text,
-                    fontSize: isSmallMobile ? '0.875rem' : isMobile ? '0.938rem' : '1.063rem',
-                    outline: 'none',
-                    width: '100%',
-                    minHeight: isMobile ? '40px' : 'auto',
-                    fontFamily: 'var(--font-inter)',
-                    textAlign: 'left'
-                  }}
-                />
-              </div>
-              <button 
-                onClick={handleStartWriting}
-                style={{
-                  padding: isMobile ? '0.75rem' : '0.75rem 1.5rem',
-                  background: searchFocused || searchQuery ? currentTheme.accent : 'transparent',
-                  border: 'none',
-                  borderRadius: '8px',
-                  color: searchFocused || searchQuery ? 'white' : currentTheme.subtle,
-                  fontSize: '0.938rem',
-                  fontWeight: 500,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '0.5rem',
-                  fontFamily: 'var(--font-inter)'
-                }}
-              >
-                <Sparkles size={isMobile ? 18 : 16} />
-                {!isMobile && 'Get started'}
-              </button>
-            </div>
+            <SearchBar
+              value={searchQuery}
+              onChange={setSearchQuery}
+              onSearch={handleSearch}
+              searchSuggestions={homepageSuggestions}
+              context="homepage"
+              style={{ margin: '0' }}
+              autoFocus={true}
+            />
 
           </div>
 
@@ -261,16 +191,17 @@ const NewHomepage = () => {
             gap: isMobile ? '1.5rem' : '2rem',
             fontSize: isTinyMobile ? '0.75rem' : isSmallMobile ? '0.813rem' : '0.875rem',
             color: currentTheme.subtle,
-            maxWidth: isMobile ? '300px' : '800px',
+            maxWidth: isMobile ? '300px' : '720px',
             margin: '0 auto',
-            marginTop: isMobile ? '0.75rem' : '0',
-            padding: isTinyMobile ? '0 0.5rem' : isSmallMobile ? '0 0.75rem' : '0'
+            marginTop: isMobile ? '1.5rem' : '2rem',
+            padding: isTinyMobile ? '0 0.5rem' : isSmallMobile ? '0 0.75rem' : '0',
+            textAlign: 'center'
           }}>
             <div style={{ 
               display: 'flex', 
               alignItems: 'center', 
               gap: '0.375rem',
-              justifyContent: isMobile ? 'center' : 'flex-start'
+              justifyContent: 'center'
             }}>
               <Zap size={isSmallMobile ? 14 : 16} style={{ flexShrink: 0 }} />
               <span style={{ lineHeight: 1.4 }}>Start in seconds</span>
@@ -279,7 +210,7 @@ const NewHomepage = () => {
               display: 'flex', 
               alignItems: 'center', 
               gap: '0.375rem',
-              justifyContent: isMobile ? 'center' : 'flex-start'
+              justifyContent: 'center'
             }}>
               <CheckCircle size={isSmallMobile ? 14 : 16} style={{ color: currentTheme.accent, flexShrink: 0 }} />
               <span style={{ lineHeight: 1.4 }}>No credit card required</span>
@@ -288,7 +219,7 @@ const NewHomepage = () => {
               display: 'flex', 
               alignItems: 'center', 
               gap: '0.375rem',
-              justifyContent: isMobile ? 'center' : 'flex-start'
+              justifyContent: 'center'
             }}>
               <Shield size={isSmallMobile ? 14 : 16} style={{ flexShrink: 0 }} />
               <span style={{ lineHeight: 1.4 }}>Your data stays private</span>
