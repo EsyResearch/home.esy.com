@@ -13,6 +13,7 @@ import SearchBar from '@/components/SearchBar/SearchBar';
 
 const NewHomepage = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
   const currentTheme = {
@@ -106,9 +107,20 @@ const NewHomepage = () => {
     }
   ];
 
-  const handleSearch = (query) => {
+  const handleSearch = async (query) => {
     console.log('Searching for:', query);
-    // Would navigate to search results or writing interface
+    
+    // Show elegant loading state
+    setIsSearching(true);
+    
+    // Brief delay for sophisticated micro-interaction
+    await new Promise(resolve => setTimeout(resolve, 300));
+    
+    // Redirect to signup page to start using the app
+    window.open('https://app.esy.com/signup', '_blank');
+    
+    // Reset loading state after redirect
+    setTimeout(() => setIsSearching(false), 100);
   };
 
   return (
@@ -180,6 +192,7 @@ const NewHomepage = () => {
               context="homepage"
               style={{ margin: '0' }}
               autoFocus={true}
+              isLoading={isSearching}
             />
 
           </div>

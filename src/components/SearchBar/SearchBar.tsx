@@ -13,6 +13,7 @@ interface SearchBarProps {
   context?: 'prompt-library' | 'school' | 'general' | 'homepage';
   inputFontSize?: string;
   autoFocus?: boolean;
+  isLoading?: boolean;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
@@ -25,7 +26,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
   style = {},
   context = 'general',
   inputFontSize = '1.25rem',
-  autoFocus = false
+  autoFocus = false,
+  isLoading = false
 }) => {
   // Context-specific default suggestions
   const getDefaultSuggestions = (context: string) => {
@@ -190,13 +192,13 @@ const SearchBar: React.FC<SearchBarProps> = ({
     },
     searchButton: {
       padding: isMobile ? '0.625rem 1rem' : '0.75rem 1.5rem',
-      backgroundColor: searchFocused || searchValue ? '#8b5cf6' : 'rgba(255, 255, 255, 0.08)',
+      backgroundColor: isLoading ? '#8b5cf6' : (searchFocused || searchValue ? '#8b5cf6' : 'rgba(255, 255, 255, 0.08)'),
       border: 'none',
       borderRadius: isMobile ? '6px' : '8px',
-      color: searchFocused || searchValue ? '#ffffff' : 'rgba(255, 255, 255, 0.7)',
+      color: isLoading ? '#ffffff' : (searchFocused || searchValue ? '#ffffff' : 'rgba(255, 255, 255, 0.7)'),
       fontSize: isMobile ? '0.875rem' : '0.9375rem',
       fontWeight: '500' as const,
-      cursor: 'pointer',
+      cursor: isLoading ? 'default' : 'pointer',
       transition: 'all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       display: 'flex',
       alignItems: 'center',
@@ -205,9 +207,12 @@ const SearchBar: React.FC<SearchBarProps> = ({
       whiteSpace: 'nowrap' as const,
       backdropFilter: 'blur(10px)',
       WebkitBackdropFilter: 'blur(10px)',
-      boxShadow: searchFocused || searchValue 
-        ? '0 4px 12px rgba(139, 92, 246, 0.3)' 
-        : '0 2px 8px rgba(0, 0, 0, 0.1)'
+      boxShadow: isLoading 
+        ? '0 4px 12px rgba(139, 92, 246, 0.4)' 
+        : (searchFocused || searchValue 
+          ? '0 4px 12px rgba(139, 92, 246, 0.3)' 
+          : '0 2px 8px rgba(0, 0, 0, 0.1)'),
+      opacity: isLoading ? 0.9 : 1
     },
     searchHint: {
       position: 'absolute' as const,
@@ -223,7 +228,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
   };
 
   return (
-    <div style={styles.searchContainer} className={className}>
+    <>
+      <style jsx>{`
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
+      <div style={styles.searchContainer} className={className}>
       <div style={styles.searchWrapper}>
         <div style={styles.searchInner}>
           <div style={styles.searchIconWrapper}>
@@ -259,19 +271,42 @@ const SearchBar: React.FC<SearchBarProps> = ({
             <button 
               style={styles.searchButton}
               onClick={handleSearch}
+              disabled={isLoading}
             >
-              <span>{isMobile ? 'Go' : 'Search'}</span>
-              <svg 
-                width={isMobile ? "14" : "16"} 
-                height={isMobile ? "14" : "16"} 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2"
-                style={{ flexShrink: 0 }}
-              >
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
+              {isLoading ? (
+                <>
+                  <svg 
+                    width={isMobile ? "14" : "16"} 
+                    height={isMobile ? "14" : "16"} 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2"
+                    style={{ 
+                      flexShrink: 0,
+                      animation: 'spin 1s linear infinite'
+                    }}
+                  >
+                    <path d="M21 12a9 9 0 11-6.219-8.56"/>
+                  </svg>
+                  <span>Searching...</span>
+                </>
+              ) : (
+                <>
+                  <span>{isMobile ? 'Go' : 'Search'}</span>
+                  <svg 
+                    width={isMobile ? "14" : "16"} 
+                    height={isMobile ? "14" : "16"} 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2"
+                    style={{ flexShrink: 0 }}
+                  >
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </>
+              )}
             </button>
           </div>
         </div>
@@ -290,6 +325,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         </div>
       )}
     </div>
+    </>
   );
 };
 
