@@ -323,7 +323,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       opacity: showResults ? 1 : 0,
       transform: showResults ? 'translateY(0)' : 'translateY(-10px)',
       transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-      pointerEvents: showResults ? 'auto' as const : 'none' as const
+      pointerEvents: (showResults ? 'auto' : 'none') as React.CSSProperties['pointerEvents']
     },
     dropdownItem: {
       padding: isMobile ? '12px 16px' : '16px 20px',
