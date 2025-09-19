@@ -3897,8 +3897,8 @@ Create publishing approach that maximizes content reach while maintaining qualit
               <span style={styles.heroTitleAccent}>Library</span>
             </h1>
             <p style={styles.heroSubtitle}>
-              Research-grade prompts engineered for academic excellence. Elevate your writing, 
-              analysis, and research with frameworks designed by scholars for scholars.
+              Stop guessing what to ask AI.<br />
+              Get the right prompts instantly.
             </p>
             
             {/* Search Bar in Hero */}
