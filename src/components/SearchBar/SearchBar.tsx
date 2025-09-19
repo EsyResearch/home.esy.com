@@ -2,6 +2,16 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 
+interface SearchResult {
+  id: string | number;
+  title: string;
+  description?: string;
+  category?: string;
+  slug?: string;
+  type?: 'prompt' | 'suggestion' | 'category';
+  isPro?: boolean;
+}
+
 interface SearchBarProps {
   placeholder?: string;
   searchSuggestions?: string[];
@@ -14,6 +24,12 @@ interface SearchBarProps {
   inputFontSize?: string;
   autoFocus?: boolean;
   isLoading?: boolean;
+  // New dropdown props
+  showDropdown?: boolean;
+  searchResults?: SearchResult[];
+  onResultSelect?: (result: SearchResult) => void;
+  maxResults?: number;
+  loadingResults?: boolean;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
@@ -27,7 +43,13 @@ const SearchBar: React.FC<SearchBarProps> = ({
   context = 'general',
   inputFontSize = '1.25rem',
   autoFocus = false,
-  isLoading = false
+  isLoading = false,
+  // New dropdown props
+  showDropdown = false,
+  searchResults = [],
+  onResultSelect,
+  maxResults = 8,
+  loadingResults = false
 }) => {
   // Context-specific default suggestions
   const getDefaultSuggestions = (context: string) => {
@@ -71,7 +93,10 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const [searchFocused, setSearchFocused] = useState(false);
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [internalValue, setInternalValue] = useState(value);
+  const [selectedResultIndex, setSelectedResultIndex] = useState(-1);
+  const [showResults, setShowResults] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Use controlled value if provided, otherwise use internal state
   const searchValue = value !== undefined ? value : internalValue;
@@ -111,6 +136,32 @@ const SearchBar: React.FC<SearchBarProps> = ({
     }
   }, [autoFocus]);
 
+  // Handle dropdown visibility
+  useEffect(() => {
+    setShowResults(showDropdown && (searchResults.length > 0 || loadingResults));
+  }, [showDropdown, searchResults.length, loadingResults]);
+
+  // Reset selected index when results change
+  useEffect(() => {
+    setSelectedResultIndex(-1);
+  }, [searchResults]);
+
+  // Handle click outside to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node) &&
+          searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setShowResults(false);
+        setSelectedResultIndex(-1);
+      }
+    };
+
+    if (showResults) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [showResults]);
+
   const handleSearch = () => {
     if (onSearch && searchValue) {
       onSearch(searchValue);
@@ -119,7 +170,30 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && searchValue) {
-      handleSearch();
+      if (selectedResultIndex >= 0 && searchResults[selectedResultIndex] && onResultSelect) {
+        onResultSelect(searchResults[selectedResultIndex]);
+        setShowResults(false);
+        setSelectedResultIndex(-1);
+      } else {
+        handleSearch();
+      }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (showResults && searchResults.length > 0) {
+        setSelectedResultIndex(prev => 
+          prev < searchResults.length - 1 ? prev + 1 : 0
+        );
+      }
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (showResults && searchResults.length > 0) {
+        setSelectedResultIndex(prev => 
+          prev > 0 ? prev - 1 : searchResults.length - 1
+        );
+      }
+    } else if (e.key === 'Escape') {
+      setShowResults(false);
+      setSelectedResultIndex(-1);
     }
   };
 
@@ -224,6 +298,91 @@ const SearchBar: React.FC<SearchBarProps> = ({
       alignItems: 'center',
       gap: '0.5rem',
       opacity: isMobile ? 0.8 : 1
+    },
+    // Dropdown styles
+    dropdownContainer: {
+      position: 'relative' as const,
+      width: '100%'
+    },
+    dropdown: {
+      position: 'absolute' as const,
+      top: '100%',
+      left: '0',
+      right: '0',
+      backgroundColor: 'rgba(10, 10, 15, 0.95)',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      borderRadius: isMobile ? '12px' : '16px',
+      marginTop: '8px',
+      maxHeight: isMobile ? '300px' : '400px',
+      overflowY: 'auto' as const,
+      zIndex: 1000,
+      backdropFilter: 'blur(20px)',
+      WebkitBackdropFilter: 'blur(20px)',
+      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3), 0 8px 16px rgba(0, 0, 0, 0.2)',
+      opacity: showResults ? 1 : 0,
+      transform: showResults ? 'translateY(0)' : 'translateY(-10px)',
+      transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+      pointerEvents: showResults ? 'auto' : 'none'
+    },
+    dropdownItem: {
+      padding: isMobile ? '12px 16px' : '16px 20px',
+      borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+      cursor: 'pointer',
+      transition: 'all 0.2s ease',
+      display: 'flex',
+      flexDirection: 'column' as const,
+      gap: '4px'
+    },
+    dropdownItemSelected: {
+      backgroundColor: 'rgba(139, 92, 246, 0.1)',
+      borderLeft: '3px solid #8b5cf6'
+    },
+    dropdownItemTitle: {
+      fontSize: isMobile ? '0.875rem' : '1rem',
+      fontWeight: '500' as const,
+      color: 'rgba(255, 255, 255, 0.9)',
+      margin: '0',
+      lineHeight: '1.3'
+    },
+    dropdownItemDescription: {
+      fontSize: isMobile ? '0.75rem' : '0.875rem',
+      color: 'rgba(255, 255, 255, 0.6)',
+      margin: '0',
+      lineHeight: '1.4'
+    },
+    dropdownItemMeta: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '8px',
+      marginTop: '4px'
+    },
+    dropdownItemCategory: {
+      fontSize: '0.75rem',
+      color: 'rgba(139, 92, 246, 0.8)',
+      backgroundColor: 'rgba(139, 92, 246, 0.1)',
+      padding: '2px 8px',
+      borderRadius: '12px',
+      fontWeight: '500' as const
+    },
+    dropdownItemPro: {
+      fontSize: '0.75rem',
+      color: 'rgba(255, 215, 0, 0.8)',
+      backgroundColor: 'rgba(255, 215, 0, 0.1)',
+      padding: '2px 8px',
+      borderRadius: '12px',
+      fontWeight: '500' as const
+    },
+    dropdownLoading: {
+      padding: isMobile ? '20px 16px' : '24px 20px',
+      textAlign: 'center' as const,
+      color: 'rgba(255, 255, 255, 0.6)',
+      fontSize: '0.875rem'
+    },
+    dropdownEmpty: {
+      padding: isMobile ? '20px 16px' : '24px 20px',
+      textAlign: 'center' as const,
+      color: 'rgba(255, 255, 255, 0.5)',
+      fontSize: '0.875rem'
     }
   };
 
@@ -234,6 +393,27 @@ const SearchBar: React.FC<SearchBarProps> = ({
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
         }
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .dropdown-item {
+          animation: fadeInUp 0.2s ease forwards;
+        }
+        .dropdown-item:nth-child(1) { animation-delay: 0.05s; }
+        .dropdown-item:nth-child(2) { animation-delay: 0.1s; }
+        .dropdown-item:nth-child(3) { animation-delay: 0.15s; }
+        .dropdown-item:nth-child(4) { animation-delay: 0.2s; }
+        .dropdown-item:nth-child(5) { animation-delay: 0.25s; }
+        .dropdown-item:nth-child(6) { animation-delay: 0.3s; }
+        .dropdown-item:nth-child(7) { animation-delay: 0.35s; }
+        .dropdown-item:nth-child(8) { animation-delay: 0.4s; }
       `}</style>
       <div style={styles.searchContainer} className={className}>
       <div style={styles.searchWrapper}>
@@ -324,9 +504,83 @@ const SearchBar: React.FC<SearchBarProps> = ({
           <span>for quick search</span>
         </div>
       )}
+
+      {/* Search Results Dropdown */}
+      {showDropdown && (
+        <div ref={dropdownRef} style={styles.dropdown}>
+          {loadingResults ? (
+            <div style={styles.dropdownLoading}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px'
+              }}>
+                <div style={{
+                  width: '16px',
+                  height: '16px',
+                  border: '2px solid rgba(139, 92, 246, 0.3)',
+                  borderTop: '2px solid #8b5cf6',
+                  borderRadius: '50%',
+                  animation: 'spin 1s linear infinite'
+                }} />
+                Searching...
+              </div>
+            </div>
+          ) : searchResults.length > 0 ? (
+            searchResults.slice(0, maxResults).map((result, index) => (
+              <div
+                key={result.id}
+                className="dropdown-item"
+                style={{
+                  ...styles.dropdownItem,
+                  ...(selectedResultIndex === index ? styles.dropdownItemSelected : {}),
+                  backgroundColor: selectedResultIndex === index 
+                    ? 'rgba(139, 92, 246, 0.1)' 
+                    : 'transparent'
+                }}
+                onMouseEnter={() => setSelectedResultIndex(index)}
+                onClick={() => {
+                  if (onResultSelect) {
+                    onResultSelect(result);
+                    setShowResults(false);
+                    setSelectedResultIndex(-1);
+                  }
+                }}
+              >
+                <div style={styles.dropdownItemTitle}>
+                  {result.title}
+                </div>
+                {result.description && (
+                  <div style={styles.dropdownItemDescription}>
+                    {result.description}
+                  </div>
+                )}
+                <div style={styles.dropdownItemMeta}>
+                  {result.category && (
+                    <span style={styles.dropdownItemCategory}>
+                      {result.category}
+                    </span>
+                  )}
+                  {result.isPro && (
+                    <span style={styles.dropdownItemPro}>
+                      PRO
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))
+          ) : (
+            <div style={styles.dropdownEmpty}>
+              No results found
+            </div>
+          )}
+        </div>
+      )}
     </div>
     </>
   );
 };
 
 export default SearchBar;
+export type { SearchResult };

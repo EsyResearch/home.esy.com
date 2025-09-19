@@ -2,11 +2,14 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import PromptCard from '@/components/PromptLibrary/PromptCard';
 import SearchBar from '@/components/SearchBar/SearchBar';
+import type { SearchResult } from '@/components/SearchBar/SearchBar';
+import { usePromptSearch } from '@/hooks/usePromptSearch';
 
 const PromptLibrary = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [copiedPrompt, setCopiedPrompt] = useState(null);
 
@@ -2949,6 +2952,26 @@ Create publishing approach that maximizes content reach while maintaining qualit
   // Update the counts to match actual number of prompts
   promptCategories[0].count = prompts.length; // All prompts
 
+  // Use the search hook for dropdown functionality
+  const {
+    searchResults,
+    isLoading: searchLoading,
+    searchTerm,
+    setSearchTerm,
+    showDropdown
+  } = usePromptSearch({ 
+    prompts, 
+    debounceMs: 300, 
+    maxResults: 8 
+  });
+
+  // Handle search result selection
+  const handleResultSelect = (result: SearchResult) => {
+    if (result.type === 'prompt' && result.slug) {
+      router.push(`/prompt-library/${result.slug}`);
+    }
+  };
+
   const filteredPrompts = useMemo(() => {
     return prompts.filter(prompt => {
       const matchesCategory = selectedCategory === 'all' || prompt.category === selectedCategory;
@@ -3910,6 +3933,12 @@ Create publishing approach that maximizes content reach while maintaining qualit
                 context="prompt-library"
                 inputFontSize="0.9rem"
                 style={{ marginBottom: '0' }}
+                autoFocus={true}
+                showDropdown={showDropdown}
+                searchResults={searchResults}
+                onResultSelect={handleResultSelect}
+                loadingResults={searchLoading}
+                maxResults={8}
               />
             </div>
           </div>
