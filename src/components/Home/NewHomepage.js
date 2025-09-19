@@ -281,8 +281,8 @@ const NewHomepage = () => {
               gap: '0.375rem',
               justifyContent: isMobile ? 'center' : 'flex-start'
             }}>
-              <Shield size={isSmallMobile ? 14 : 16} style={{ flexShrink: 0 }} />
-              <span style={{ lineHeight: 1.4 }}>Your data stays private</span>
+              <CheckCircle size={isSmallMobile ? 14 : 16} style={{ color: currentTheme.accent, flexShrink: 0 }} />
+              <span style={{ lineHeight: 1.4 }}>No credit card required</span>
             </div>
             <div style={{ 
               display: 'flex', 
@@ -290,8 +290,8 @@ const NewHomepage = () => {
               gap: '0.375rem',
               justifyContent: isMobile ? 'center' : 'flex-start'
             }}>
-              <CheckCircle size={isSmallMobile ? 14 : 16} style={{ color: currentTheme.accent, flexShrink: 0 }} />
-              <span style={{ lineHeight: 1.4 }}>No credit card required</span>
+              <Shield size={isSmallMobile ? 14 : 16} style={{ flexShrink: 0 }} />
+              <span style={{ lineHeight: 1.4 }}>Your data stays private</span>
             </div>
           </div>
         </div>
