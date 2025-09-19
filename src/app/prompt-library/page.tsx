@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo, useEffect } from 'react';
+import Link from 'next/link';
 import PromptCard from '@/components/PromptLibrary/PromptCard';
 import SearchBar from '@/components/SearchBar/SearchBar';
 
@@ -3219,14 +3220,74 @@ Create publishing approach that maximizes content reach while maintaining qualit
       color: 'white'
     },
     
-    // Prompt Grid
+    // Prompt Grid Container with Elegant Frame
+    promptGridContainer: {
+      maxWidth: '1400px',
+      margin: '0 auto',
+      padding: '0 clamp(1rem, 4vw, 2rem) 4rem clamp(1rem, 4vw, 2rem)',
+      position: 'relative' as const
+    },
+    promptGridFrame: {
+      background: 'rgba(255, 255, 255, 0.01)',
+      border: '1px solid rgba(255, 255, 255, 0.06)',
+      borderRadius: '20px',
+      padding: '3rem',
+      position: 'relative' as const,
+      overflow: 'hidden' as const,
+      backdropFilter: 'blur(10px)',
+      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+      '@media (max-width: 768px)': {
+        padding: '2rem 1.5rem',
+        borderRadius: '16px'
+      }
+    },
+    promptGridFrameAccent: {
+      position: 'absolute' as const,
+      top: '0',
+      left: '0',
+      right: '0',
+      height: '1px',
+      background: 'rgba(255, 255, 255, 0.1)',
+      borderRadius: '20px 20px 0 0'
+    },
+    promptGridFrameGlow: {
+      position: 'absolute' as const,
+      top: '-1px',
+      left: '-1px',
+      right: '-1px',
+      bottom: '-1px',
+      background: 'rgba(255, 255, 255, 0.02)',
+      borderRadius: '20px',
+      zIndex: -1,
+      filter: 'blur(0.5px)'
+    },
     promptGrid: {
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fill, minmax(min(350px, 100%), 1fr))',
       gap: 'clamp(1rem, 3vw, 2rem)',
-      maxWidth: '1400px',
-      margin: '0 auto',
-      padding: '0 clamp(1rem, 4vw, 2rem) 4rem clamp(1rem, 4vw, 2rem)'
+      position: 'relative' as const,
+      zIndex: 1
+    },
+    promptSectionHeader: {
+      textAlign: 'center' as const,
+      marginBottom: '3rem',
+      position: 'relative' as const
+    },
+    promptSectionTitle: {
+      fontFamily: 'Literata, Georgia, serif',
+      fontSize: 'clamp(1.6rem, 3.5vw, 2.2rem)',
+      fontWeight: '300',
+      marginBottom: '0.75rem',
+      color: 'rgba(255, 255, 255, 0.95)',
+      letterSpacing: '-0.02em'
+    },
+    promptSectionSubtitle: {
+      fontSize: 'clamp(0.85rem, 1.8vw, 1rem)',
+      color: 'rgba(255, 255, 255, 0.5)',
+      fontWeight: '400',
+      lineHeight: '1.5',
+      maxWidth: '500px',
+      margin: '0 auto'
     },
     
     // Category and Prompt Views
@@ -3939,23 +4000,51 @@ Create publishing approach that maximizes content reach while maintaining qualit
         </div>
       </section>
 
-      {/* Prompts Section */}
-      <main id="prompts" style={styles.promptGrid}>
-        {filteredPrompts.map(prompt => (
-          <PromptCard key={prompt.id} prompt={prompt} />
-        ))}
-        
-        {filteredPrompts.length === 0 && (
-          <div style={{
-            gridColumn: '1 / -1',
-            textAlign: 'center',
-            padding: '4rem 2rem',
-            opacity: '0.5'
-          }}>
-            <p style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>No prompts found</p>
-            <p>Try adjusting your search terms or category selection</p>
+      {/* Prompts Section with Elegant Frame */}
+      <main id="prompts" style={styles.promptGridContainer}>
+        <div style={styles.promptGridFrame}>
+          {/* Frame Glow Effect */}
+          <div style={styles.promptGridFrameGlow}></div>
+          
+          {/* Frame Accent Line */}
+          <div style={styles.promptGridFrameAccent}></div>
+          
+          {/* Section Header */}
+          <div style={styles.promptSectionHeader}>
+            <h2 style={styles.promptSectionTitle}>
+              {selectedCategory === 'all' ? 'All Prompts' : promptCategories.find(cat => cat.id === selectedCategory)?.name}
+            </h2>
+            <p style={styles.promptSectionSubtitle}>
+              {selectedCategory === 'all' 
+                ? 'Discover our complete collection of AI-powered writing prompts, carefully crafted for every academic and creative writing need.'
+                : `Explore ${promptCategories.find(cat => cat.id === selectedCategory)?.name.toLowerCase()} prompts designed to enhance your writing process.`
+              }
+            </p>
           </div>
-        )}
+          
+          {/* Prompt Grid */}
+          <div style={styles.promptGrid}>
+            {filteredPrompts.map(prompt => (
+              <PromptCard key={prompt.id} prompt={prompt} />
+            ))}
+            
+            {filteredPrompts.length === 0 && (
+              <div style={{
+                gridColumn: '1 / -1',
+                textAlign: 'center',
+                padding: '4rem 2rem',
+                color: 'rgba(255, 255, 255, 0.6)'
+              }}>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', opacity: '0.8' }}>
+                  No prompts found
+                </h3>
+                <p style={{ fontSize: '1rem', opacity: '0.6' }}>
+                  Try adjusting your search or category filter
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
       </main>
       
       <style>
