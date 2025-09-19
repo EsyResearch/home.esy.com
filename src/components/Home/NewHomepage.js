@@ -93,7 +93,7 @@ const NewHomepage = () => {
       icon: FileText,
       title: 'Academic Essays',
       description: 'Structure arguments with precision and depth',
-      features: ['Thesis development', 'Evidence integration', 'Citation management']
+      features: ['Argument development', 'Evidence integration', 'Citation management']
     },
     {
       icon: Brain,
@@ -103,15 +103,15 @@ const NewHomepage = () => {
     },
     {
       icon: BookMarked,
-      title: 'Dissertations',
-      description: 'Long-form academic writing with consistent quality',
-      features: ['Chapter planning', 'Argument coherence', 'Academic voice']
+      title: 'Writing Templates',
+      description: 'Pre-built structures for any academic writing task',
+      features: ['Essay frameworks', 'Research outlines', 'Citation formats']
     },
     {
       icon: Lightbulb,
-      title: 'Grant Proposals',
-      description: 'Compelling proposals that secure funding',
-      features: ['Impact articulation', 'Budget justification', 'Innovation emphasis']
+      title: 'AI-Powered Research',
+      description: 'Intelligent assistance for every writing stage',
+      features: ['Source discovery', 'Argument development', 'Style optimization']
     }
   ];
 
@@ -428,9 +428,9 @@ const NewHomepage = () => {
             {[
               {
                 icon: Brain,
-                title: 'Multiple AI Models',
-                description: 'Choose from GPT-4, Claude, Gemini, or Grok. Each model brings unique strengths—switch instantly based on your needs.',
-                highlight: '4 leading AI models'
+                title: 'Smart Writing Assistant',
+                description: 'Advanced AI technology that adapts to your writing style and academic requirements. Get personalized suggestions that enhance your work.',
+                highlight: 'Intelligent writing support'
               },
               {
                 icon: Target,
@@ -546,7 +546,7 @@ const NewHomepage = () => {
               padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
               fontFamily: 'var(--font-inter)'
             }}>
-              From undergraduate essays to doctoral dissertations
+              Professional writing assistance for every academic level
             </p>
           </div>
 
@@ -710,7 +710,7 @@ const NewHomepage = () => {
             marginBottom: isMobile ? '1.5rem' : '2rem'
           }}>
             <button 
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              onClick={() => window.open('https://app.esy.com/signup', '_blank')}
               style={{
                 padding: isTinyMobile ? '0.875rem 1.25rem' : isSmallMobile ? '1rem 1.5rem' : isMobile ? '1rem 2rem' : '1rem 3rem',
                 background: currentTheme.accent,
