@@ -970,9 +970,7 @@ export default function PromptPageClient({
         }
 
         .copy-button {
-          background: linear-gradient(135deg, 
-            rgba(30, 30, 42, 0.9) 0%, 
-            rgba(35, 35, 48, 0.9) 100%);
+          background: rgba(22, 22, 31, 0.8);
           color: rgba(255, 255, 255, 0.9);
           border: 1px solid rgba(255, 255, 255, 0.12);
           box-shadow: 
@@ -981,9 +979,7 @@ export default function PromptPageClient({
         }
 
         .copy-button:hover {
-          background: linear-gradient(135deg, 
-            rgba(40, 40, 55, 0.95) 0%, 
-            rgba(45, 45, 60, 0.95) 100%);
+          background: rgba(22, 22, 31, 1);
           border-color: rgba(255, 255, 255, 0.2);
           transform: translateY(-2px);
           box-shadow: 
@@ -1025,21 +1021,16 @@ export default function PromptPageClient({
         }
 
         .customize-button {
-          background: linear-gradient(135deg, 
-            rgba(255, 255, 255, 0.08) 0%, 
-            rgba(255, 255, 255, 0.05) 100%);
-          color: rgba(255, 255, 255, 0.85);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          backdrop-filter: blur(10px);
+          background: rgba(22, 22, 31, 0.8);
+          color: rgba(255, 255, 255, 0.9);
+          border: 1px solid rgba(255, 255, 255, 0.12);
           box-shadow: 
-            0 4px 12px rgba(0, 0, 0, 0.2),
+            0 4px 12px rgba(0, 0, 0, 0.3),
             0 0 0 1px rgba(255, 255, 255, 0.05) inset;
         }
 
         .customize-button:hover {
-          background: linear-gradient(135deg, 
-            rgba(255, 255, 255, 0.12) 0%, 
-            rgba(255, 255, 255, 0.08) 100%);
+          background: rgba(22, 22, 31, 1);
           color: white;
           border-color: rgba(255, 255, 255, 0.25);
           transform: translateY(-2px);
