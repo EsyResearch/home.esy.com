@@ -742,10 +742,10 @@ const NewHomepage = () => {
               }}
             >
               <Sparkles size={isMobile ? 18 : 18} />
-              Write
+              Get Started Free
             </button>
 
-            <button 
+            {/* <button 
               style={{
                 padding: isTinyMobile ? '0.875rem 1.25rem' : isSmallMobile ? '1rem 1.5rem' : isMobile ? '1rem 2rem' : '1rem 2rem',
                 background: 'transparent',
@@ -766,7 +766,7 @@ const NewHomepage = () => {
               }}
             >
               Watch Demo
-            </button>
+            </button> */}
           </div>
 
         </div>
