@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import PromptCard from '@/components/PromptLibrary/PromptCard';
+import SearchBar from '@/components/SearchBar/SearchBar';
 
 const PromptLibrary = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -3024,29 +3025,13 @@ Create publishing approach that maximizes content reach while maintaining qualit
       padding: '0 1rem'
     },
     
-    searchContainer: {
-      maxWidth: '600px',
-      margin: '0 auto 3rem auto',
-      position: 'relative' as const
-    },
-    searchInput: {
-      width: '100%',
-      padding: 'clamp(1rem, 3vw, 1.25rem) clamp(1.5rem, 4vw, 2rem)',
-      fontSize: 'clamp(0.9rem, 2.5vw, 1rem)',
-      backgroundColor: 'rgba(22, 22, 31, 0.8)',
-      border: '1px solid rgba(255, 255, 255, 0.1)',
-      borderRadius: '12px',
-      color: 'white',
-      outline: 'none',
-      transition: 'all 0.2s ease',
-      boxSizing: 'border-box' as const
-    },
     
     // Category Tabs
     categoryTabs: {
       display: 'flex',
       justifyContent: 'center',
       gap: '0.5rem',
+      marginTop: '2rem',
       marginBottom: '4rem',
       flexWrap: 'wrap' as const
     },
@@ -3683,23 +3668,12 @@ Create publishing approach that maximizes content reach while maintaining qualit
           Research-grade prompts engineered for academic excellence. Customize variables and generate perfect prompts for your needs.
         </p>
         
-        <div style={styles.searchContainer}>
-          <input
-            type="text"
-            placeholder="Search prompts..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            style={styles.searchInput}
-            onFocus={(e) => {
-              (e.target as HTMLInputElement).style.borderColor = 'rgba(139, 92, 246, 0.4)';
-              (e.target as HTMLInputElement).style.backgroundColor = 'rgba(22, 22, 31, 1)';
-            }}
-            onBlur={(e) => {
-              (e.target as HTMLInputElement).style.borderColor = 'rgba(255, 255, 255, 0.1)';
-              (e.target as HTMLInputElement).style.backgroundColor = 'rgba(22, 22, 31, 0.8)';
-            }}
-          />
-        </div>
+        <SearchBar
+          value={searchTerm}
+          onChange={setSearchTerm}
+          onSearch={(query) => console.log('Searching for:', query)}
+          context="prompt-library"
+        />
         
         <div style={styles.categoryTabs}>
           {promptCategories.map(category => (

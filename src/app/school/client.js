@@ -4,47 +4,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import SearchBar from '@/components/SearchBar/SearchBar';
 import { StructuredLearningPaths, EssentialResources } from '@/components/School';
 
 const EsySchool = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchFocused, setSearchFocused] = useState(false);
   const [activeCategory, setActiveCategory] = useState('all');
   const [viewMode, setViewMode] = useState('grid');
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [activeQuestion, setActiveQuestion] = useState(0);
   const [email, setEmail] = useState('');
   const [newsletterHovered, setNewsletterHovered] = useState(false);
-  const searchRef = useRef(null);
-
-  // Rotating search suggestions
-  const searchSuggestions = [
-    "How to structure an academic paper",
-    "Best practices for literature reviews",
-    "Understanding citation styles",
-    "Writing compelling abstracts",
-    "AI tools for research"
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveQuestion((prev) => (prev + 1) % searchSuggestions.length);
-    }, 3500);
-    return () => clearInterval(interval);
-  }, [searchSuggestions.length]);
-
-  // Handle keyboard shortcut
-  useEffect(() => {
-    const handleKeyPress = (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        searchRef.current?.focus();
-      }
-    };
-    
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, []);
 
   // Scroll progress indicator
   useEffect(() => {
@@ -168,75 +137,6 @@ const EsySchool = () => {
       lineHeight: '1.7',
       marginBottom: '3rem',
       fontWeight: '300'
-    },
-    searchContainer: {
-      position: 'relative',
-      maxWidth: '720px',
-      marginBottom: '2rem'
-    },
-    searchWrapper: {
-      position: 'relative',
-      backgroundColor: searchFocused ? 'rgba(10, 10, 15, 0.8)' : 'rgba(22, 22, 31, 0.4)',
-      border: `1px solid ${searchFocused ? 'transparent' : 'rgba(255, 255, 255, 0.08)'}`,
-      borderRadius: '16px',
-      transition: 'all 0.3s ease',
-      overflow: 'hidden',
-      boxShadow: searchFocused ? '0 0 0 3px rgba(139, 92, 246, 0.2), 0 20px 40px rgba(139, 92, 246, 0.1)' : 'none'
-    },
-    searchInner: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '1rem'
-    },
-    searchIconWrapper: {
-      padding: '0 0 0 1.75rem',
-      display: 'flex',
-      alignItems: 'center'
-    },
-    searchInput: {
-      flex: 1,
-      padding: '1.5rem 0',
-      backgroundColor: 'transparent',
-      border: 'none',
-      color: '#ffffff',
-      fontSize: '1.25rem',
-      fontWeight: '300',
-      outline: 'none'
-    },
-    searchMeta: {
-      padding: '0 1.75rem 0 0',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '1rem'
-    },
-    searchDivider: {
-      width: '1px',
-      height: '24px',
-      backgroundColor: 'rgba(255, 255, 255, 0.1)'
-    },
-    searchButton: {
-      padding: '0.75rem 1.5rem',
-      backgroundColor: searchFocused || searchQuery ? '#8b5cf6' : 'transparent',
-      border: 'none',
-      borderRadius: '8px',
-      color: searchFocused || searchQuery ? '#ffffff' : 'rgba(255, 255, 255, 0.5)',
-      fontSize: '0.9375rem',
-      fontWeight: '500',
-      cursor: 'pointer',
-      transition: 'all 0.2s ease',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '0.5rem'
-    },
-    searchHint: {
-      position: 'absolute',
-      bottom: '-28px',
-      left: '0',
-      fontSize: '0.875rem',
-      color: 'rgba(255, 255, 255, 0.4)',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '0.5rem'
     },
     mainContent: {
       maxWidth: '1400px',
@@ -597,63 +497,13 @@ const EsySchool = () => {
           </p>
 
           {/* Search */}
-          <div style={styles.searchContainer}>
-            <div style={styles.searchWrapper}>
-              <div style={styles.searchInner}>
-                <div style={styles.searchIconWrapper}>
-                  <svg 
-                    width="20" 
-                    height="20" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke={searchFocused ? '#8b5cf6' : 'rgba(255, 255, 255, 0.4)'}
-                    strokeWidth="2"
-                    style={{ transition: 'stroke 0.3s ease' }}
-                  >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.35-4.35"></path>
-                  </svg>
-                </div>
-                <input
-                  ref={searchRef}
-                  type="text"
-                  placeholder={searchSuggestions[activeQuestion]}
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onFocus={() => setSearchFocused(true)}
-                  onBlur={() => setSearchFocused(false)}
-                  style={styles.searchInput}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' && searchQuery) {
-                      console.log('Searching for:', searchQuery);
-                    }
-                  }}
-                />
-                <div style={styles.searchMeta}>
-                  <div style={styles.searchDivider} />
-                  <button 
-                    style={styles.searchButton}
-                    onClick={() => searchQuery && console.log('Searching for:', searchQuery)}
-                  >
-                    <span>Search</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div style={styles.searchHint}>
-              <kbd style={{
-                padding: '0.125rem 0.375rem',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                borderRadius: '4px',
-                fontSize: '0.75rem',
-                fontFamily: 'monospace'
-              }}>⌘K</kbd>
-              <span>for quick search</span>
-            </div>
-          </div>
+          <SearchBar
+            value={searchQuery}
+            onChange={setSearchQuery}
+            onSearch={(query) => console.log('Searching for:', query)}
+            context="school"
+            style={{ margin: '0 0 2rem 0' }}
+          />
         </div>
       </section>
 
