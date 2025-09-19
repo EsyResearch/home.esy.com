@@ -3,9 +3,9 @@ title: "Understanding Large Language Models: From Theory to Practice"
 category: "LLM Basics"
 author:
   name: "Zev Uhuru"
-  title: "AI Research Lead"
+  title: "Founder, Esy"
   avatar: "https://ui-avatars.com/api/?name=Zev+Uhuru&background=6366f1&color=fff"
-  bio: "Zev Uhuru is a leading expert in natural language processing and deep learning."
+  bio: "Leading expert in natural language processing and deep learning."
 date: "Mar 20, 2025"
 readTime: "12 min read"
 relatedArticles:

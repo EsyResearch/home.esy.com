@@ -33,8 +33,8 @@ export default function AIResearchRevolutionArticle() {
   const author = {
     initials: 'ZU',
     name: 'Zev Uhuru',
-    role: 'AI Research Lead',
-    bio: 'Zev Uhuru explores the intersection of AI and academic research, helping researchers leverage cutting-edge technology to accelerate their work.',
+    role: 'Founder, Esy',
+    bio: 'Explores the intersection of AI and academic research, helping researchers leverage cutting-edge technology to accelerate their work.',
     meta: '15 articles published · Joined January 2024'
   };
 

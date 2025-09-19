@@ -32,8 +32,8 @@ export default function PromptEngineeringGuideArticle() {
   const author = {
     initials: 'ZU',
     name: 'Zev Uhuru',
-    role: 'AI Research Lead',
-    bio: 'Zev Uhuru specializes in natural language processing and human-AI interaction. With over 10 years of experience in AI research, he has published numerous papers on prompt engineering and language model optimization.',
+    role: 'Founder, Esy',
+    bio: 'Specializes in natural language processing and human-AI interaction. With over 10 years of experience in AI research, has published numerous papers on prompt engineering and language model optimization.',
     meta: '15 articles published · Joined January 2024'
   };
 

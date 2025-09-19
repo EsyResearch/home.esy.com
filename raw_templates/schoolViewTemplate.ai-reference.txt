@@ -188,7 +188,7 @@ const ArticleView = () => {
               />
               <div>
                 <p style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Dr. Sarah Chen</p>
-                <p style={{ fontSize: '0.875rem', color: '#64748b' }}>AI Research Lead</p>
+                <p style={{ fontSize: '0.875rem', color: '#64748b' }}>Founder, Esy</p>
               </div>
             </div>
             <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.875rem', color: '#64748b' }}>
@@ -807,7 +807,7 @@ Passive:"`}
               />
               <div style={{ flex: 1 }}>
                 <h3 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '0.5rem', color: '#ffffff' }}>Dr. Sarah Chen</h3>
-                <p style={{ color: '#6366f1', marginBottom: '0.75rem' }}>AI Research Lead at Esy</p>
+                <p style={{ color: '#6366f1', marginBottom: '0.75rem' }}>Founder, Esy</p>
                 <p style={{ color: '#94a3b8', marginBottom: '1rem', fontSize: '0.875rem' }}>
                   Dr. Chen specializes in natural language processing and human-AI interaction. 
                   With over 10 years of experience in AI research, she has published numerous papers 

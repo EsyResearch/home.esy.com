@@ -33,8 +33,8 @@ export default function UnderstandingLLMsArticle() {
   const author = {
     initials: 'ZU',
     name: 'Zev Uhuru',
-    role: 'AI Research Lead',
-    bio: 'Zev Uhuru is a leading expert in natural language processing and deep learning, with over a decade of experience in developing and deploying AI systems.',
+    role: 'Founder, Esy',
+    bio: 'Leading expert in natural language processing and deep learning, with over a decade of experience in developing and deploying AI systems.',
     meta: '15 articles published · Joined January 2024'
   };
 
