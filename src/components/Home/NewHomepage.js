@@ -148,7 +148,7 @@ const NewHomepage = () => {
 
             {/* Main Headline - Enhanced Mobile Typography */}
             <h1 style={{
-              fontSize: isTinyMobile ? '1.5rem' : isSmallMobile ? '1.75rem' : isMobile ? '2rem' : isTablet ? '3.5rem' : '5rem',
+              fontSize: isTinyMobile ? '1.75rem' : isSmallMobile ? '2rem' : isMobile ? '2.25rem' : isTablet ? '3.5rem' : '5rem',
               fontWeight: 300,
               lineHeight: 1.2,
               letterSpacing: '-0.01em',
@@ -252,53 +252,13 @@ const NewHomepage = () => {
               </button>
             </div>
 
-            {/* Quick actions - Enhanced Mobile Touch Targets */}
-            {!isMobile && (
-              <div style={{
-                display: 'flex',
-                gap: '0.5rem',
-                justifyContent: 'center',
-                marginTop: '1rem',
-                flexWrap: 'wrap'
-              }}>
-                <span style={{
-                  fontSize: '0.75rem',
-                  color: currentTheme.faint
-                }}>
-                  Try:
-                </span>
-                {['Research paper', 'Essay outline', 'Literature review'].map((prompt, i) => (
-                  <button
-                    key={i}
-                    onClick={() => {
-                      setSearchQuery(prompt);
-                      searchRef.current?.focus();
-                    }}
-                    style={{
-                      fontSize: '0.75rem',
-                      color: currentTheme.subtle,
-                      background: 'transparent',
-                      border: 'none',
-                      textDecoration: 'underline',
-                      cursor: 'pointer',
-                      transition: 'color 0.2s',
-                      padding: '0.25rem'
-                    }}
-                    onMouseEnter={(e) => e.target.style.color = currentTheme.accent}
-                    onMouseLeave={(e) => e.target.style.color = currentTheme.subtle}
-                  >
-                    {prompt}
-                  </button>
-                ))}
-              </div>
-            )}
           </div>
 
           {/* Trust Indicators - Enhanced Mobile Grid */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)',
-            gap: isMobile ? '1rem' : '2rem',
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+            gap: isMobile ? '1.5rem' : '2rem',
             fontSize: isTinyMobile ? '0.75rem' : isSmallMobile ? '0.813rem' : '0.875rem',
             color: currentTheme.subtle,
             maxWidth: isMobile ? '300px' : '800px',
@@ -315,28 +275,15 @@ const NewHomepage = () => {
               <Zap size={isSmallMobile ? 14 : 16} style={{ flexShrink: 0 }} />
               <span style={{ lineHeight: 1.4 }}>Start in seconds</span>
             </div>
-            {!isMobile && (
-              <div style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '0.375rem',
-                justifyContent: 'flex-start'
-              }}>
-                <Globe size={16} style={{ flexShrink: 0 }} />
-                <span style={{ lineHeight: 1.4 }}>4 AI models included</span>
-              </div>
-            )}
-            {!isMobile && (
-              <div style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '0.375rem',
-                justifyContent: 'flex-start'
-              }}>
-                <Shield size={16} style={{ flexShrink: 0 }} />
-                <span style={{ lineHeight: 1.4 }}>Your data stays private</span>
-              </div>
-            )}
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '0.375rem',
+              justifyContent: isMobile ? 'center' : 'flex-start'
+            }}>
+              <Shield size={isSmallMobile ? 14 : 16} style={{ flexShrink: 0 }} />
+              <span style={{ lineHeight: 1.4 }}>Your data stays private</span>
+            </div>
             <div style={{ 
               display: 'flex', 
               alignItems: 'center', 
@@ -822,12 +769,6 @@ const NewHomepage = () => {
             </button>
           </div>
 
-          <p style={{
-            fontSize: isTinyMobile ? '0.75rem' : isSmallMobile ? '0.813rem' : '0.875rem',
-            color: currentTheme.subtle
-          }}>
-            Trusted by researchers at leading universities worldwide
-          </p>
         </div>
       </section>
     </div>
