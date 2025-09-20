@@ -46,10 +46,13 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        // Always clear search term to close dropdown
+        setSearchTerm('');
+        setHoveredIndex(null);
+        
+        // Only collapse the search bar if not on prompt library pages
         if (!shouldAlwaysExpand) {
           setIsExpanded(false);
-          setSearchTerm('');
-          setHoveredIndex(null);
         }
       }
     };
@@ -63,18 +66,23 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
   // Handle keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
+      // Always clear search term to close dropdown
+      setSearchTerm('');
+      searchRef.current?.blur();
+      
+      // Only collapse the search bar if not on prompt library pages
       if (!shouldAlwaysExpand) {
         setIsExpanded(false);
-        setSearchTerm('');
-        searchRef.current?.blur();
       }
     } else if (e.key === 'Enter' && searchTerm.trim()) {
       // Navigate to prompt library with search
       router.push(`/prompt-library?search=${encodeURIComponent(searchTerm)}`);
+      setSearchTerm('');
+      
+      // Only collapse if not on prompt library pages
       if (!shouldAlwaysExpand) {
         setIsExpanded(false);
       }
-      setSearchTerm('');
     }
   };
 
@@ -82,11 +90,15 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
     if (result.slug) {
       router.push(`/prompt-library/${result.slug}`);
     }
+    
+    // Always clear search to close dropdown
+    setSearchTerm('');
+    setHoveredIndex(null);
+    
+    // Only collapse the search bar if not on prompt library pages
     if (!shouldAlwaysExpand) {
       setIsExpanded(false);
     }
-    setSearchTerm('');
-    setHoveredIndex(null);
   };
 
   const handleFocus = () => {
