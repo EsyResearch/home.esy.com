@@ -1,22 +1,31 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import type { SearchResult } from '../SearchBar/SearchBar';
 import { usePromptSearch } from '@/hooks/usePromptSearch';
 
 interface HeaderSearchProps {
   prompts: any[];
   className?: string;
+  alwaysExpanded?: boolean;
 }
 
 const HeaderSearch: React.FC<HeaderSearchProps> = ({ 
   prompts = [], 
-  className = "" 
+  className = "",
+  alwaysExpanded = false
 }) => {
   const router = useRouter();
-  const [isExpanded, setIsExpanded] = useState(false);
+  const pathname = usePathname();
+  
+  // Check if we're on a prompt-library page
+  const isPromptLibraryPage = pathname?.startsWith('/prompt-library');
+  const shouldAlwaysExpand = alwaysExpanded || isPromptLibraryPage;
+  
+  const [isExpanded, setIsExpanded] = useState(shouldAlwaysExpand);
   const [searchTerm, setSearchTerm] = useState('');
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const searchRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -37,8 +46,11 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setIsExpanded(false);
-        setSearchTerm('');
+        if (!shouldAlwaysExpand) {
+          setIsExpanded(false);
+          setSearchTerm('');
+          setHoveredIndex(null);
+        }
       }
     };
 
@@ -46,18 +58,22 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
       document.addEventListener('mousedown', handleClickOutside);
       return () => document.removeEventListener('mousedown', handleClickOutside);
     }
-  }, [isExpanded]);
+  }, [isExpanded, shouldAlwaysExpand]);
 
   // Handle keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
-      setIsExpanded(false);
-      setSearchTerm('');
-      searchRef.current?.blur();
+      if (!shouldAlwaysExpand) {
+        setIsExpanded(false);
+        setSearchTerm('');
+        searchRef.current?.blur();
+      }
     } else if (e.key === 'Enter' && searchTerm.trim()) {
       // Navigate to prompt library with search
       router.push(`/prompt-library?search=${encodeURIComponent(searchTerm)}`);
-      setIsExpanded(false);
+      if (!shouldAlwaysExpand) {
+        setIsExpanded(false);
+      }
       setSearchTerm('');
     }
   };
@@ -66,13 +82,25 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
     if (result.slug) {
       router.push(`/prompt-library/${result.slug}`);
     }
-    setIsExpanded(false);
+    if (!shouldAlwaysExpand) {
+      setIsExpanded(false);
+    }
     setSearchTerm('');
+    setHoveredIndex(null);
   };
 
   const handleFocus = () => {
-    setIsExpanded(true);
+    if (!isExpanded) {
+      setIsExpanded(true);
+    }
   };
+
+  // Auto-focus when always expanded
+  useEffect(() => {
+    if (shouldAlwaysExpand && searchRef.current) {
+      searchRef.current.focus();
+    }
+  }, [shouldAlwaysExpand]);
 
   // Responsive breakpoints
   const [isMobile, setIsMobile] = useState(false);
@@ -95,8 +123,8 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
       display: 'flex',
       alignItems: 'center',
       zIndex: 100,
-      ...(isExpanded ? {
-        width: isMobile ? 'calc(100vw - 4rem)' : '400px',
+      ...(isExpanded || shouldAlwaysExpand ? {
+        width: isMobile ? 'calc(100vw - 4rem)' : '600px',
         maxWidth: '90vw'
       } : {})
     },
@@ -104,38 +132,38 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
       position: 'relative' as const,
       display: 'flex',
       alignItems: 'center',
-      backgroundColor: isExpanded ? 'rgba(10, 10, 15, 0.95)' : 'rgba(22, 22, 31, 0.6)',
-      border: `1px solid ${isExpanded ? 'rgba(139, 92, 246, 0.3)' : 'rgba(255, 255, 255, 0.1)'}`,
+      backgroundColor: (isExpanded || shouldAlwaysExpand) ? 'rgba(10, 10, 15, 0.95)' : 'rgba(22, 22, 31, 0.6)',
+      border: `1px solid ${(isExpanded || shouldAlwaysExpand) ? 'rgba(139, 92, 246, 0.3)' : 'rgba(255, 255, 255, 0.1)'}`,
       borderRadius: '8px',
       transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       backdropFilter: 'blur(20px)',
       WebkitBackdropFilter: 'blur(20px)',
-      boxShadow: isExpanded 
+      boxShadow: (isExpanded || shouldAlwaysExpand)
         ? '0 8px 24px rgba(139, 92, 246, 0.2), 0 4px 12px rgba(0, 0, 0, 0.3)' 
         : '0 2px 8px rgba(0, 0, 0, 0.1)',
-      width: isExpanded ? '100%' : 'auto',
-      minWidth: isExpanded ? 'auto' : '40px',
-      height: '40px'
+      width: (isExpanded || shouldAlwaysExpand) ? '100%' : 'auto',
+      minWidth: (isExpanded || shouldAlwaysExpand) ? 'auto' : '48px',
+      height: '48px'
     },
     searchIcon: {
-      padding: '0 12px',
+      padding: '0 14px',
       display: 'flex',
       alignItems: 'center',
-      cursor: 'pointer',
-      color: isExpanded ? '#8b5cf6' : 'rgba(255, 255, 255, 0.6)',
+      cursor: shouldAlwaysExpand ? 'default' : 'pointer',
+      color: (isExpanded || shouldAlwaysExpand) ? '#8b5cf6' : 'rgba(255, 255, 255, 0.6)',
       transition: 'color 0.3s ease',
       flexShrink: 0
     },
     searchInput: {
       flex: 1,
-      padding: '0 8px 0 0',
+      padding: '0 12px 0 0',
       backgroundColor: 'transparent',
       border: 'none',
       color: '#ffffff',
-      fontSize: '0.875rem',
+      fontSize: '1rem',
       fontWeight: '300' as const,
       outline: 'none',
-      minWidth: isExpanded ? '200px' : '0',
+      minWidth: isExpanded ? '300px' : '0',
       width: isExpanded ? 'auto' : '0',
       opacity: isExpanded ? 1 : 0,
       transition: 'all 0.3s ease',
@@ -148,18 +176,18 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
       top: '100%',
       left: '0',
       right: '0',
-      backgroundColor: 'rgba(10, 10, 15, 0.95)',
+      backgroundColor: 'rgba(10, 10, 15, 0.98)',
       border: '1px solid rgba(255, 255, 255, 0.1)',
-      borderRadius: '8px',
-      marginTop: '4px',
-      maxHeight: '300px',
+      borderRadius: '12px',
+      marginTop: '8px',
+      maxHeight: '400px',
       overflowY: 'auto' as const,
       zIndex: 1001,
-      backdropFilter: 'blur(20px)',
-      WebkitBackdropFilter: 'blur(20px)',
-      boxShadow: '0 12px 24px rgba(0, 0, 0, 0.4)',
+      backdropFilter: 'blur(30px) saturate(180%)',
+      WebkitBackdropFilter: 'blur(30px) saturate(180%)',
+      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4), 0 8px 16px rgba(0, 0, 0, 0.3)',
       opacity: showDropdown ? 1 : 0,
-      transform: showDropdown ? 'translateY(0)' : 'translateY(-8px)',
+      transform: showDropdown ? 'translateY(0)' : 'translateY(-10px)',
       transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       pointerEvents: (showDropdown ? 'auto' : 'none') as React.CSSProperties['pointerEvents']
     },
@@ -231,39 +259,58 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
       `}</style>
       <div ref={containerRef} style={styles.container} className={className}>
         <div style={styles.searchWrapper}>
-          <div 
-            style={styles.searchIcon}
-            onClick={() => {
-              if (!isExpanded) {
-                setIsExpanded(true);
-                setTimeout(() => searchRef.current?.focus(), 100);
-              }
-            }}
-          >
-            <svg 
-              width="18" 
-              height="18" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor"
-              strokeWidth="2"
+          {!shouldAlwaysExpand && (
+            <div 
+              style={styles.searchIcon}
+              onClick={() => {
+                if (!isExpanded) {
+                  setIsExpanded(true);
+                  setTimeout(() => searchRef.current?.focus(), 100);
+                }
+              }}
             >
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.35-4.35"></path>
-            </svg>
-          </div>
+              <svg 
+                width="20" 
+                height="20" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+            </div>
+          )}
           
-          {isExpanded && (
-            <input
-              ref={searchRef}
-              type="text"
-              placeholder="Search prompts..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              onKeyDown={handleKeyDown}
-              onFocus={handleFocus}
-              style={styles.searchInput}
-            />
+          {(isExpanded || shouldAlwaysExpand) && (
+            <>
+              {shouldAlwaysExpand && (
+                <div style={styles.searchIcon}>
+                  <svg 
+                    width="20" 
+                    height="20" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="#8b5cf6"
+                    strokeWidth="2"
+                  >
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                  </svg>
+                </div>
+              )}
+              <input
+                ref={searchRef}
+                type="text"
+                placeholder="Search prompts..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={handleKeyDown}
+                onFocus={handleFocus}
+                style={styles.searchInput}
+              />
+            </>
           )}
         </div>
 
@@ -293,7 +340,14 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
               searchResults.map((result, index) => (
                 <div
                   key={result.id}
-                  style={styles.dropdownItem}
+                  style={{
+                    ...styles.dropdownItem,
+                    backgroundColor: hoveredIndex === index ? 'rgba(139, 92, 246, 0.1)' : 'transparent',
+                    borderLeft: hoveredIndex === index ? '3px solid #8b5cf6' : '3px solid transparent',
+                    paddingLeft: hoveredIndex === index ? '13px' : '16px'
+                  }}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
                   onClick={() => handleResultSelect(result)}
                 >
                   <div style={styles.dropdownItemTitle}>
