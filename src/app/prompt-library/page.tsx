@@ -3253,14 +3253,12 @@ Create publishing approach that maximizes content reach while maintaining qualit
     promptGridFrame: {
       background: 'rgba(255, 255, 255, 0.01)',
       border: '1px solid rgba(255, 255, 255, 0.06)',
-      borderRadius: '20px',
-      padding: '3rem',
+      borderRadius: isMobile ? '16px' : '20px',
+      padding: isMobile ? '2rem 1.5rem' : '3rem 2rem',
       position: 'relative' as const,
       overflow: 'hidden' as const,
       backdropFilter: 'blur(10px)',
-      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
-      padding: isMobile ? '2rem 1.5rem' : '3rem 2rem',
-      borderRadius: isMobile ? '16px' : '20px'
+      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
     },
     promptGridFrameAccent: {
       position: 'absolute' as const,
