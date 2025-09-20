@@ -107,12 +107,7 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
     }
   };
 
-  // Auto-focus when always expanded
-  useEffect(() => {
-    if (shouldAlwaysExpand && searchRef.current) {
-      searchRef.current.focus();
-    }
-  }, [shouldAlwaysExpand]);
+  // Removed auto-focus - users can click when they want to search
 
   // Responsive breakpoints
   const [isMobile, setIsMobile] = useState(false);

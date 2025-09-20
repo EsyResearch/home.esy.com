@@ -31,7 +31,7 @@ const PromptLibrary = () => {
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
-  // Scroll detection for header search
+  // Scroll detection for header search (only on prompt library index page)
   useEffect(() => {
     const handleScroll = () => {
       if (searchBarRef.current) {

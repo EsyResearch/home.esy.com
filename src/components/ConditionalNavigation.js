@@ -17,6 +17,7 @@ const ConditionalNavigation = () => {
   
   // Check if we're on prompt-library pages
   const isPromptLibraryPage = normalizedPath?.startsWith('/prompt-library');
+  const isPromptLibraryIndex = normalizedPath === '/prompt-library';
   
   // Don't render the common navigation on essay view pages
   if (isEssayViewPage) {
@@ -24,8 +25,13 @@ const ConditionalNavigation = () => {
   }
 
   // Render the common navigation on all other pages
-  // Show header search if we're on prompt-library page AND user has scrolled past the main search bar
-  return <Navigation showHeaderSearch={isPromptLibraryPage && showHeaderSearch} />;
+  // Show header search:
+  // - Always on individual prompt pages (/prompt-library/*)
+  // - On prompt library index only after scrolling past main search
+  const shouldShowHeaderSearch = isPromptLibraryPage && 
+    (isPromptLibraryIndex ? showHeaderSearch : true);
+  
+  return <Navigation showHeaderSearch={shouldShowHeaderSearch} />;
 };
 
 export default ConditionalNavigation; 
