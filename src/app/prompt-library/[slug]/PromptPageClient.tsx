@@ -2,11 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FileText, Target, HelpCircle, ChevronRight } from 'lucide-react';
+import { FileText, Target, HelpCircle, ChevronRight, Info } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import PromptLibrarySidebar from '@/components/PromptLibrary/PromptLibrarySidebar';
 import CopyrightFooter from '@/components/CopyrightFooter';
 import { Prompt, PromptCategory, getCategories } from '@/lib/prompts';
+import Tooltip from '@/components/Tooltip/Tooltip';
 
 interface PromptPageClientProps {
   prompt: Prompt;
@@ -438,7 +439,35 @@ export default function PromptPageClient({
                   {prompt.variables.map(variable => (
                     <div key={variable} className="variable-input-group">
                       <label htmlFor={variable} className="variable-label">
-                        {variable.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}
+                        <span className="variable-label-text">
+                          {variable.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}
+                        </span>
+                        <Tooltip
+                          content={
+                            <div className="variable-tooltip-content">
+                              <p className="tooltip-description">
+                                {getVariableDescription(variable)}
+                              </p>
+                              <div className="tooltip-examples">
+                                <strong>Examples:</strong>
+                                <div className="tooltip-example-list">
+                                  {getVariableExamples(variable).slice(0, 4).map((example, idx) => (
+                                    <span key={idx} className="tooltip-example-item">
+                                      {example}
+                                    </span>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+                          }
+                          placement="right"
+                          delay={200}
+                          className="variable-info-tooltip"
+                        >
+                          <span className="variable-info-icon">
+                            <Info size={14} />
+                          </span>
+                        </Tooltip>
                       </label>
                       <input
                         id={variable}
@@ -823,9 +852,11 @@ export default function PromptPageClient({
         }
 
         .variable-label {
-          font-size: 0.9rem;
-          opacity: 0.8;
-          font-weight: 500;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 0.5rem;
+          position: relative;
         }
 
         .variable-input {
