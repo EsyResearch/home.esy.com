@@ -15,29 +15,40 @@ export const getPageSuffix = (pathname) => {
     return 'School';
   } else if (pathname?.startsWith('/glossary')) {
     return 'Glossary';
-  } else if (pathname?.startsWith('/prompt-library')) {
-    return 'Prompt Library';
   }
+  // No suffix for prompt-library
   return '';
 };
 
 interface NavigationProps {
   showHeaderSearch?: boolean;
+  searchContext?: 'prompt-library' | 'glossary' | 'general';
 }
 
-export default function Navigation ({ showHeaderSearch = false }: NavigationProps = {}) {
+export default function Navigation ({ 
+  showHeaderSearch = false, 
+  searchContext = 'general' 
+}: NavigationProps = {}) {
     const pathname = usePathname();
-    const [prompts, setPrompts] = useState([]);
+    const [searchData, setSearchData] = useState([]);
 
     // Use the shared suffix function
     const logoSuffix = getPageSuffix(pathname);
     
-    // Load prompts when showHeaderSearch is true
+    // Load appropriate data based on search context
     useEffect(() => {
       if (showHeaderSearch) {
-        getAllPrompts().then(setPrompts).catch(console.error);
+        if (searchContext === 'prompt-library') {
+          getAllPrompts().then(setSearchData).catch(console.error);
+        } else if (searchContext === 'glossary') {
+          // Fetch glossary terms from static JSON
+          fetch('/glossary-terms.json')
+            .then(res => res.json())
+            .then(terms => setSearchData(terms))
+            .catch(console.error);
+        }
       }
-    }, [showHeaderSearch]);
+    }, [showHeaderSearch, searchContext]);
 
     useEffect(() => {
       const handleScroll = () => {
@@ -61,9 +72,13 @@ export default function Navigation ({ showHeaderSearch = false }: NavigationProp
             <Logo suffix={logoSuffix} href="" showText={false} />
           </Link>
           
-          {/* Header Search - Only show on prompt-library pages */}
+          {/* Header Search - Show on prompt-library and glossary view pages */}
           {showHeaderSearch && (
-            <HeaderSearch prompts={prompts} className="header-search" />
+            <HeaderSearch 
+              prompts={searchData} 
+              className="header-search"
+              searchContext={searchContext}
+            />
           )}
           
           {/* Navigation */}

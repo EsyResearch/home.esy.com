@@ -4,24 +4,28 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import type { SearchResult } from '../SearchBar/SearchBar';
 import { usePromptSearch } from '@/hooks/usePromptSearch';
+import { useGlossarySearch } from '@/hooks/useGlossarySearch';
 
 interface HeaderSearchProps {
   prompts: any[];
   className?: string;
   alwaysExpanded?: boolean;
+  searchContext?: 'prompt-library' | 'glossary' | 'general';
 }
 
 const HeaderSearch: React.FC<HeaderSearchProps> = ({ 
   prompts = [], 
   className = "",
-  alwaysExpanded = false
+  alwaysExpanded = false,
+  searchContext = 'general'
 }) => {
   const router = useRouter();
   const pathname = usePathname();
   
-  // Always expanded on prompt-library pages when shown
+  // Always expanded on prompt-library and glossary view pages when shown
   const isPromptLibraryPage = pathname?.startsWith('/prompt-library');
-  const shouldAlwaysExpand = alwaysExpanded || isPromptLibraryPage;
+  const isGlossaryViewPage = pathname?.startsWith('/glossary/');
+  const shouldAlwaysExpand = alwaysExpanded || isPromptLibraryPage || isGlossaryViewPage;
   
   const [isExpanded, setIsExpanded] = useState(shouldAlwaysExpand);
   const [searchTerm, setSearchTerm] = useState('');
@@ -30,12 +34,22 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
   const dropdownRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Use the existing prompt search hook
-  const { searchResults, isLoading, setSearchTerm: setSearchTermFromHook, showDropdown } = usePromptSearch({
-    prompts: prompts || [],
+  // Use the appropriate search hook based on context
+  const promptSearchHook = usePromptSearch({
+    prompts: searchContext === 'prompt-library' ? (prompts || []) : [],
     debounceMs: 200,
     maxResults: 6
   });
+  
+  const glossarySearchHook = useGlossarySearch({
+    terms: searchContext === 'glossary' ? (prompts || []) : [],
+    debounceMs: 200,
+    maxResults: 6
+  });
+  
+  // Select the appropriate hook results based on context
+  const { searchResults, isLoading, setSearchTerm: setSearchTermFromHook, showDropdown } = 
+    searchContext === 'glossary' ? glossarySearchHook : promptSearchHook;
 
   // Sync search terms
   useEffect(() => {
@@ -74,21 +88,29 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
       if (!shouldAlwaysExpand) {
         setIsExpanded(false);
       }
-    } else if (e.key === 'Enter' && searchTerm.trim()) {
-      // Navigate to prompt library with search
-      router.push(`/prompt-library?search=${encodeURIComponent(searchTerm)}`);
-      setSearchTerm('');
-      
-      // Only collapse if not on prompt library pages
-      if (!shouldAlwaysExpand) {
-        setIsExpanded(false);
+      } else if (e.key === 'Enter' && searchTerm.trim()) {
+        // Navigate to appropriate page with search
+        if (searchContext === 'glossary') {
+          router.push(`/glossary?search=${encodeURIComponent(searchTerm)}`);
+        } else {
+          router.push(`/prompt-library?search=${encodeURIComponent(searchTerm)}`);
+        }
+        setSearchTerm('');
+        
+        // Only collapse if not on prompt library or glossary pages
+        if (!shouldAlwaysExpand) {
+          setIsExpanded(false);
+        }
       }
-    }
   };
 
   const handleResultSelect = (result: SearchResult) => {
     if (result.slug) {
-      router.push(`/prompt-library/${result.slug}`);
+      if (searchContext === 'glossary') {
+        router.push(`/glossary/${result.slug}`);
+      } else {
+        router.push(`/prompt-library/${result.slug}`);
+      }
     }
     
     // Always clear search to close dropdown
@@ -307,16 +329,16 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
                   </svg>
                 </div>
               )}
-              <input
-                ref={searchRef}
-                type="text"
-                placeholder="Search prompts..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                onKeyDown={handleKeyDown}
-                onFocus={handleFocus}
-                style={styles.searchInput}
-              />
+               <input
+                 ref={searchRef}
+                 type="text"
+                 placeholder={searchContext === 'glossary' ? "Search glossary terms..." : "Search prompts..."}
+                 value={searchTerm}
+                 onChange={(e) => setSearchTerm(e.target.value)}
+                 onKeyDown={handleKeyDown}
+                 onFocus={handleFocus}
+                 style={styles.searchInput}
+               />
             </>
           )}
         </div>
