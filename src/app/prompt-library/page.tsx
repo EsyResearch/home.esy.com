@@ -1,15 +1,18 @@
 "use client";
 
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PromptCard from '@/components/PromptLibrary/PromptCard';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import type { SearchResult } from '@/components/SearchBar/SearchBar';
 import { usePromptSearch } from '@/hooks/usePromptSearch';
+import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
 
 const PromptLibrary = () => {
   const router = useRouter();
+  const { setShowHeaderSearch } = useHeaderSearch();
+  const searchBarRef = useRef<HTMLDivElement>(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [copiedPrompt, setCopiedPrompt] = useState(null);
   
@@ -27,6 +30,25 @@ const PromptLibrary = () => {
     window.addEventListener('resize', checkScreenSize);
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
+
+  // Scroll detection for header search
+  useEffect(() => {
+    const handleScroll = () => {
+      if (searchBarRef.current) {
+        const searchBarRect = searchBarRef.current.getBoundingClientRect();
+        const shouldShowHeaderSearch = searchBarRect.bottom < 0;
+        setShowHeaderSearch(shouldShowHeaderSearch);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial state
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      setShowHeaderSearch(false); // Reset when leaving page
+    };
+  }, [setShowHeaderSearch]);
 
   // Reset all button styles when selectedCategory changes
   useEffect(() => {
@@ -3921,7 +3943,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
             </p>
             
             {/* Search Bar in Hero */}
-            <div style={styles.heroSearchSection}>
+            <div ref={searchBarRef} style={styles.heroSearchSection}>
               <SearchBar
                 value={searchTerm}
                 onChange={setSearchTerm}

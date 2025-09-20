@@ -7,6 +7,7 @@ import GoogleTagManager, { GoogleTagManagerBody } from "@/components/GoogleTagMa
 import EsyCookieNotice from "@/components/CookieNotice";
 import ConditionalNavigation from "@/components/ConditionalNavigation";
 import ConditionalFooter from "@/components/ConditionalFooter";
+import { HeaderSearchProvider } from "@/contexts/HeaderSearchContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -69,11 +70,13 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} ${inter.variable} ${literata.variable} antialiased`}
       >
         <GoogleTagManagerBody />
-        <ConditionalNavigation />
-        <main>
-          {children}
-        </main>
-        <ConditionalFooter />
+        <HeaderSearchProvider>
+          <ConditionalNavigation />
+          <main>
+            {children}
+          </main>
+          <ConditionalFooter />
+        </HeaderSearchProvider>
         <EsyCookieNotice />
       </body>
     </html>

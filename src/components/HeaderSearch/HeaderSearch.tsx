@@ -19,7 +19,7 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
   const router = useRouter();
   const pathname = usePathname();
   
-  // Check if we're on a prompt-library page
+  // Always expanded on prompt-library pages when shown
   const isPromptLibraryPage = pathname?.startsWith('/prompt-library');
   const shouldAlwaysExpand = alwaysExpanded || isPromptLibraryPage;
   

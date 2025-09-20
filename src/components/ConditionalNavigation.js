@@ -1,9 +1,11 @@
 "use client"
 import { usePathname } from 'next/navigation';
 import Navigation from "@/components/Home/navigation";
+import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
 
 const ConditionalNavigation = () => {
   const pathname = usePathname();
+  const { showHeaderSearch } = useHeaderSearch();
   
   // Check if we're on an essay view page (individual essay page)
   // Only hide on individual essay pages, not the essays index page
@@ -22,7 +24,8 @@ const ConditionalNavigation = () => {
   }
 
   // Render the common navigation on all other pages
-  return <Navigation showHeaderSearch={isPromptLibraryPage} />;
+  // Show header search if we're on prompt-library page AND user has scrolled past the main search bar
+  return <Navigation showHeaderSearch={isPromptLibraryPage && showHeaderSearch} />;
 };
 
 export default ConditionalNavigation; 

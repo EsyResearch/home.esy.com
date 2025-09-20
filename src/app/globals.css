@@ -271,6 +271,19 @@ html {
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
+  animation: headerSearchFadeIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  opacity: 0;
+}
+
+@keyframes headerSearchFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 @media (max-width: 768px) {
@@ -284,6 +297,18 @@ html {
     margin: 0 1rem;
     flex: 1;
     max-width: 200px;
+    animation: headerSearchFadeInMobile 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  @keyframes headerSearchFadeInMobile {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
