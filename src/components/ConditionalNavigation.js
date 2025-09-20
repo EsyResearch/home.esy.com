@@ -24,6 +24,11 @@ const ConditionalNavigation = () => {
   const isGlossaryIndex = normalizedPath === '/glossary';
   const isGlossaryViewPage = isGlossaryPage && !isGlossaryIndex;
   
+  // Check if we're on school pages
+  const isSchoolPage = normalizedPath?.startsWith('/school');
+  const isSchoolIndex = normalizedPath === '/school';
+  const isSchoolArticlePage = normalizedPath?.startsWith('/school/articles/');
+  
   // Don't render the common navigation on essay view pages
   if (isEssayViewPage) {
     return null;
@@ -34,13 +39,17 @@ const ConditionalNavigation = () => {
   // - Always on individual prompt pages (/prompt-library/*)
   // - On prompt library index only after scrolling past main search
   // - Always on glossary view pages (/glossary/*)
+  // - Always on school article pages (/school/articles/*)
+  // - On school index only after scrolling past main search
   const shouldShowHeaderSearch = 
     (isPromptLibraryPage && (isPromptLibraryIndex ? showHeaderSearch : true)) ||
-    isGlossaryViewPage;
+    isGlossaryViewPage ||
+    (isSchoolPage && (isSchoolIndex ? showHeaderSearch : isSchoolArticlePage));
   
   // Determine search context
   const searchContext = isGlossaryViewPage ? 'glossary' : 
                        isPromptLibraryPage ? 'prompt-library' : 
+                       isSchoolPage ? 'school' :
                        'general';
   
   return <Navigation showHeaderSearch={shouldShowHeaderSearch} searchContext={searchContext} />;

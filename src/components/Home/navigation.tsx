@@ -46,6 +46,9 @@ export default function Navigation ({
             .then(res => res.json())
             .then(terms => setSearchData(terms))
             .catch(console.error);
+        } else if (searchContext === 'school') {
+          // For school context, we'll pass empty data for now since school uses its own search
+          setSearchData([]);
         }
       }
     }, [showHeaderSearch, searchContext]);

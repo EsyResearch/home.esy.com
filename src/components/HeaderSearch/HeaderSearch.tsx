@@ -5,12 +5,13 @@ import { useRouter, usePathname } from 'next/navigation';
 import type { SearchResult } from '../SearchBar/SearchBar';
 import { usePromptSearch } from '@/hooks/usePromptSearch';
 import { useGlossarySearch } from '@/hooks/useGlossarySearch';
+import { useSchoolSearch } from '@/hooks/useSchoolSearch';
 
 interface HeaderSearchProps {
   prompts: any[];
   className?: string;
   alwaysExpanded?: boolean;
-  searchContext?: 'prompt-library' | 'glossary' | 'general';
+  searchContext?: 'prompt-library' | 'glossary' | 'school' | 'general';
 }
 
 const HeaderSearch: React.FC<HeaderSearchProps> = ({ 
@@ -22,10 +23,11 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
   const router = useRouter();
   const pathname = usePathname();
   
-  // Always expanded on prompt-library and glossary view pages when shown
+  // Always expanded on prompt-library, glossary view pages, and school pages when shown
   const isPromptLibraryPage = pathname?.startsWith('/prompt-library');
   const isGlossaryViewPage = pathname?.startsWith('/glossary/');
-  const shouldAlwaysExpand = alwaysExpanded || isPromptLibraryPage || isGlossaryViewPage;
+  const isSchoolPage = pathname?.startsWith('/school');
+  const shouldAlwaysExpand = alwaysExpanded || isPromptLibraryPage || isGlossaryViewPage || isSchoolPage;
   
   const [isExpanded, setIsExpanded] = useState(shouldAlwaysExpand);
   const [searchTerm, setSearchTerm] = useState('');
@@ -47,9 +49,24 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
     maxResults: 6
   });
   
+  const schoolSearchHook = useSchoolSearch({
+    articles: searchContext === 'school' ? 
+      [
+        { type: 'Article', category: 'AI Research', title: '5 Ways AI is Revolutionizing Academic Research', excerpt: 'Discover how artificial intelligence is transforming the landscape of academic research.', author: 'Zev Uhuru', readTime: '6 min', link: '/school/articles/ai-research-revolution' },
+        { type: 'Guide', category: 'Prompt Engineering', title: 'What is Prompt Engineering? A Comprehensive Guide', excerpt: 'Master the art and science of crafting effective prompts for AI systems.', author: 'Zev Uhuru', readTime: '8 min', link: '/school/articles/prompt-engineering-guide' },
+        { type: 'Tutorial', category: 'LLM Basics', title: 'Understanding Large Language Models: From Theory to Practice', excerpt: 'Demystify the technology behind ChatGPT, Claude, and other LLMs.', author: 'Zev Uhuru', readTime: '12 min', link: '/school/articles/understanding-llms' },
+        { type: 'Literature', category: 'Classic Literature', title: 'To Kill a Mockingbird: A Timeless Exploration of Justice', excerpt: 'Explore Harper Lee\'s masterpiece through the lens of moral courage.', author: 'Harper Lee Scholar', readTime: '15 min', link: '/school/articles/to-kill-a-mockingbird' }
+      ] : [],
+    resources: [],
+    courses: [],
+    debounceMs: 200,
+    maxResults: 6
+  });
+  
   // Select the appropriate hook results based on context
   const { searchResults, isLoading, setSearchTerm: setSearchTermFromHook, showDropdown } = 
-    searchContext === 'glossary' ? glossarySearchHook : promptSearchHook;
+    searchContext === 'glossary' ? glossarySearchHook :
+    searchContext === 'school' ? schoolSearchHook : promptSearchHook;
 
   // Sync search terms
   useEffect(() => {
@@ -92,6 +109,8 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
         // Navigate to appropriate page with search
         if (searchContext === 'glossary') {
           router.push(`/glossary?search=${encodeURIComponent(searchTerm)}`);
+        } else if (searchContext === 'school') {
+          router.push(`/school?search=${encodeURIComponent(searchTerm)}`);
         } else {
           router.push(`/prompt-library?search=${encodeURIComponent(searchTerm)}`);
         }
@@ -108,6 +127,8 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
     if (result.slug) {
       if (searchContext === 'glossary') {
         router.push(`/glossary/${result.slug}`);
+      } else if (searchContext === 'school') {
+        router.push(result.slug);
       } else {
         router.push(`/prompt-library/${result.slug}`);
       }
@@ -332,7 +353,11 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
                <input
                  ref={searchRef}
                  type="text"
-                 placeholder={searchContext === 'glossary' ? "Search glossary terms..." : "Search prompts..."}
+                 placeholder={
+                   searchContext === 'glossary' ? "Search glossary terms..." : 
+                   searchContext === 'school' ? "Search articles & guides..." :
+                   "Search prompts..."
+                 }
                  value={searchTerm}
                  onChange={(e) => setSearchTerm(e.target.value)}
                  onKeyDown={handleKeyDown}

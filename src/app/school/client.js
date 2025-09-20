@@ -7,9 +7,12 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import { StructuredLearningPaths, EssentialResources } from '@/components/School';
 import { useSchoolSearch } from '@/hooks/useSchoolSearch';
+import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
 
 const EsySchool = () => {
   const router = useRouter();
+  const { setShowHeaderSearch } = useHeaderSearch();
+  const searchBarRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
   const [viewMode, setViewMode] = useState('grid');
@@ -28,6 +31,25 @@ const EsySchool = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Scroll detection for header search
+  useEffect(() => {
+    const handleScroll = () => {
+      if (searchBarRef.current) {
+        const searchBarRect = searchBarRef.current.getBoundingClientRect();
+        const shouldShowHeaderSearch = searchBarRect.bottom < 0;
+        setShowHeaderSearch(shouldShowHeaderSearch);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial state
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      setShowHeaderSearch(false); // Reset when leaving page
+    };
+  }, [setShowHeaderSearch]);
 
   const styles = {
     container: {
@@ -529,21 +551,23 @@ const EsySchool = () => {
           </p>
 
           {/* Search */}
-          <SearchBar
-            value={searchQuery}
-            onChange={(value) => {
-              setSearchQuery(value);
-              setDropdownSearchTerm(value);
-            }}
-            onSearch={(query) => console.log('Searching for:', query)}
-            context="school"
-            style={{ margin: '0 0 2rem 0' }}
-            showDropdown={showDropdown}
-            searchResults={searchResults}
-            onResultSelect={handleResultSelect}
-            loadingResults={searchLoading}
-            maxResults={8}
-          />
+          <div ref={searchBarRef}>
+            <SearchBar
+              value={searchQuery}
+              onChange={(value) => {
+                setSearchQuery(value);
+                setDropdownSearchTerm(value);
+              }}
+              onSearch={(query) => console.log('Searching for:', query)}
+              context="school"
+              style={{ margin: '0 0 2rem 0' }}
+              showDropdown={showDropdown}
+              searchResults={searchResults}
+              onResultSelect={handleResultSelect}
+              loadingResults={searchLoading}
+              maxResults={8}
+            />
+          </div>
         </div>
       </section>
 
