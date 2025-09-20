@@ -139,7 +139,7 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
       backdropFilter: 'blur(20px)',
       WebkitBackdropFilter: 'blur(20px)',
       boxShadow: (isExpanded || shouldAlwaysExpand)
-        ? '0 8px 24px rgba(139, 92, 246, 0.2), 0 4px 12px rgba(0, 0, 0, 0.3)' 
+        ? '0 4px 16px rgba(139, 92, 246, 0.15), 0 2px 8px rgba(0, 0, 0, 0.2)' 
         : '0 2px 8px rgba(0, 0, 0, 0.1)',
       width: (isExpanded || shouldAlwaysExpand) ? '100%' : 'auto',
       minWidth: (isExpanded || shouldAlwaysExpand) ? 'auto' : '48px',
