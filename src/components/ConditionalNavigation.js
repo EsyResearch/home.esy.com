@@ -13,13 +13,16 @@ const ConditionalNavigation = () => {
     : pathname;
   const isEssayViewPage = normalizedPath?.startsWith('/essays/') && normalizedPath !== '/essays';
   
+  // Check if we're on prompt-library pages
+  const isPromptLibraryPage = normalizedPath?.startsWith('/prompt-library');
+  
   // Don't render the common navigation on essay view pages
   if (isEssayViewPage) {
     return null;
   }
-  
+
   // Render the common navigation on all other pages
-  return <Navigation />;
+  return <Navigation showHeaderSearch={isPromptLibraryPage} />;
 };
 
 export default ConditionalNavigation; 

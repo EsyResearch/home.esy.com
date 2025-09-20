@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from 'next/navigation';
 import Logo from "@/components/Logo";
 import Link from "next/link";
+import HeaderSearch from "@/components/HeaderSearch/HeaderSearch";
+import { getAllPrompts } from "@/lib/prompts";
 
 // Shared suffix logic that can be used by both navigation and footer
 export const getPageSuffix = (pathname) => {
@@ -19,11 +21,23 @@ export const getPageSuffix = (pathname) => {
   return '';
 };
 
-export default function Navigation () {
+interface NavigationProps {
+  showHeaderSearch?: boolean;
+}
+
+export default function Navigation ({ showHeaderSearch = false }: NavigationProps = {}) {
     const pathname = usePathname();
+    const [prompts, setPrompts] = useState([]);
 
     // Use the shared suffix function
     const logoSuffix = getPageSuffix(pathname);
+    
+    // Load prompts when showHeaderSearch is true
+    useEffect(() => {
+      if (showHeaderSearch) {
+        getAllPrompts().then(setPrompts).catch(console.error);
+      }
+    }, [showHeaderSearch]);
 
     useEffect(() => {
       const handleScroll = () => {
@@ -46,6 +60,11 @@ export default function Navigation () {
           <Link href="/" className="logo">
             <Logo suffix={logoSuffix} href="" showText={false} />
           </Link>
+          
+          {/* Header Search - Only show on prompt-library pages */}
+          {showHeaderSearch && (
+            <HeaderSearch prompts={prompts} className="header-search" />
+          )}
           
           {/* Navigation */}
           <div className="nav-links">

@@ -12,6 +12,21 @@ const PromptLibrary = () => {
   const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [copiedPrompt, setCopiedPrompt] = useState(null);
+  
+  // Responsive breakpoints
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+  
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768);
+      setIsTablet(window.innerWidth < 1024);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   // Reset all button styles when selectedCategory changes
   useEffect(() => {
@@ -3053,17 +3068,13 @@ Create publishing approach that maximizes content reach while maintaining qualit
     },
     heroContent: {
       display: 'grid',
-      gridTemplateColumns: '1.2fr 0.8fr',
-      gap: '4rem',
+      gridTemplateColumns: isTablet ? '1fr' : '1.2fr 0.8fr',
+      gap: isTablet ? '3rem' : '4rem',
       alignItems: 'center',
       width: '100%',
       maxWidth: '1200px',
       margin: '0 auto',
-      '@media (max-width: 1024px)': {
-        gridTemplateColumns: '1fr',
-        gap: '3rem',
-        textAlign: 'center'
-      }
+      textAlign: isTablet ? 'center' : 'left'
     },
     heroLeft: {
       maxWidth: '720px'
@@ -3094,18 +3105,12 @@ Create publishing approach that maximizes content reach while maintaining qualit
     },
     heroStats: {
       display: 'flex',
-      gap: '4rem',
+      gap: isMobile ? '2rem' : '4rem',
       marginBottom: '4rem',
-      '@media (max-width: 768px)': {
-        gap: '2rem',
-        justifyContent: 'center'
-      }
+      justifyContent: isMobile ? 'center' : 'flex-start'
     },
     statItem: {
-      textAlign: 'left',
-      '@media (max-width: 1024px)': {
-        textAlign: 'center'
-      }
+      textAlign: isTablet ? 'center' : 'left'
     },
     statNumber: {
       fontFamily: 'Literata, Georgia, serif',
@@ -3126,9 +3131,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
       display: 'flex',
       gap: '1.5rem',
       alignItems: 'center',
-      '@media (max-width: 768px)': {
-        justifyContent: 'center'
-      }
+      justifyContent: isMobile ? 'center' : 'flex-start'
     },
     ctaButton: {
       padding: '1.25rem 2.5rem',
@@ -3154,12 +3157,9 @@ Create publishing approach that maximizes content reach while maintaining qualit
     },
     heroRight: {
       position: 'relative',
-      display: 'flex',
+      display: isTablet ? 'none' : 'flex',
       flexDirection: 'column',
-      gap: '0.75rem',
-      '@media (max-width: 1024px)': {
-        display: 'none'
-      }
+      gap: '0.75rem'
     },
     featureCard: {
       backgroundColor: 'rgba(22, 22, 31, 0.8)',
@@ -3259,10 +3259,8 @@ Create publishing approach that maximizes content reach while maintaining qualit
       overflow: 'hidden' as const,
       backdropFilter: 'blur(10px)',
       boxShadow: '0 8px 32px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
-      '@media (max-width: 768px)': {
-        padding: '2rem 1.5rem',
-        borderRadius: '16px'
-      }
+      padding: isMobile ? '2rem 1.5rem' : '3rem 2rem',
+      borderRadius: isMobile ? '16px' : '20px'
     },
     promptGridFrameAccent: {
       position: 'absolute' as const,

@@ -167,6 +167,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .logo {
@@ -262,6 +263,28 @@ html {
 .nav-cta:hover::before {
   animation: shimmer 0.6s ease-out;
   opacity: 1;
+}
+
+/* Header Search Styles */
+.header-search {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+@media (max-width: 768px) {
+  .nav-inner {
+    padding: 0.75rem 1rem;
+  }
+  
+  .header-search {
+    position: static;
+    transform: none;
+    margin: 0 1rem;
+    flex: 1;
+    max-width: 200px;
+  }
 }
 
 /* Mobile Navigation */
