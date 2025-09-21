@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { 
   BookOpen, ArrowRight, ChevronRight,
   FileText, Brain, Sparkles, Quote,
@@ -50,6 +51,7 @@ const BlogPage = () => {
   const blogPosts = [
     {
       id: 1,
+      slug: "future-ai-academic-writing",
       title: "The Future of AI in Academic Writing",
       excerpt: "Explore how artificial intelligence is revolutionizing academic writing, from research assistance to automated proofreading.",
       author: "Dr. Sarah Chen",
@@ -60,6 +62,7 @@ const BlogPage = () => {
     },
     {
       id: 2,
+      slug: "mastering-prompt-engineering",
       title: "Mastering Prompt Engineering for Better AI Interactions",
       excerpt: "Learn the art and science of crafting effective prompts that unlock the full potential of AI language models.",
       author: "Zev Uhuru",
@@ -70,6 +73,7 @@ const BlogPage = () => {
     },
     {
       id: 3,
+      slug: "research-methodology-digital-age",
       title: "Research Methodology in the Digital Age",
       excerpt: "Discover modern research techniques that leverage digital tools while maintaining academic rigor.",
       author: "Prof. Michael Rodriguez",
@@ -80,6 +84,7 @@ const BlogPage = () => {
     },
     {
       id: 4,
+      slug: "ai-transforming-literature-analysis",
       title: "How AI is Transforming Literature Analysis",
       excerpt: "A deep dive into computational literary analysis and how AI tools are uncovering new insights in classic texts.",
       author: "Dr. Emily Watson",
@@ -250,23 +255,27 @@ const BlogPage = () => {
               gap: '2rem'
             }}>
               {filteredPosts.filter(post => post.featured).map(post => (
-                <div
+                <Link
                   key={post.id}
-                  style={{
-                    backgroundColor: currentTheme.elevated,
-                    borderRadius: '20px',
-                    padding: isMobile ? '1.5rem' : '2rem',
-                    border: `1px solid ${hoveredCard === post.id ? currentTheme.accent : currentTheme.border}`,
-                    transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                    cursor: 'pointer',
-                    transform: hoveredCard === post.id ? 'translateY(-4px)' : 'translateY(0)',
-                    boxShadow: hoveredCard === post.id 
-                      ? `0 20px 40px rgba(139, 92, 246, 0.2)` 
-                      : '0 4px 16px rgba(0, 0, 0, 0.1)'
-                  }}
-                  onMouseEnter={() => setHoveredCard(post.id)}
-                  onMouseLeave={() => setHoveredCard(null)}
+                  href={`/blog/${post.slug}`}
+                  style={{ textDecoration: 'none' }}
                 >
+                  <div
+                    style={{
+                      backgroundColor: currentTheme.elevated,
+                      borderRadius: '20px',
+                      padding: isMobile ? '1.5rem' : '2rem',
+                      border: `1px solid ${hoveredCard === post.id ? currentTheme.accent : currentTheme.border}`,
+                      transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      cursor: 'pointer',
+                      transform: hoveredCard === post.id ? 'translateY(-4px)' : 'translateY(0)',
+                      boxShadow: hoveredCard === post.id 
+                        ? `0 20px 40px rgba(139, 92, 246, 0.2)` 
+                        : '0 4px 16px rgba(0, 0, 0, 0.1)'
+                    }}
+                    onMouseEnter={() => setHoveredCard(post.id)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
                   <div style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -313,7 +322,8 @@ const BlogPage = () => {
                       <span>{post.readTime} min</span>
                     </div>
                   </div>
-                </div>
+                  </div>
+                </Link>
               ))}
             </div>
           </div>
@@ -336,23 +346,27 @@ const BlogPage = () => {
               gap: '1.5rem'
             }}>
               {filteredPosts.filter(post => !post.featured).map(post => (
-                <div
+                <Link
                   key={post.id}
-                  style={{
-                    backgroundColor: currentTheme.elevated,
-                    borderRadius: '16px',
-                    padding: isMobile ? '1.25rem' : '1.5rem',
-                    border: `1px solid ${hoveredCard === post.id ? currentTheme.accent : currentTheme.border}`,
-                    transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                    cursor: 'pointer',
-                    transform: hoveredCard === post.id ? 'translateY(-4px)' : 'translateY(0)',
-                    boxShadow: hoveredCard === post.id 
-                      ? `0 20px 40px rgba(139, 92, 246, 0.15)` 
-                      : '0 4px 16px rgba(0, 0, 0, 0.1)'
-                  }}
-                  onMouseEnter={() => setHoveredCard(post.id)}
-                  onMouseLeave={() => setHoveredCard(null)}
+                  href={`/blog/${post.slug}`}
+                  style={{ textDecoration: 'none' }}
                 >
+                  <div
+                    style={{
+                      backgroundColor: currentTheme.elevated,
+                      borderRadius: '16px',
+                      padding: isMobile ? '1.25rem' : '1.5rem',
+                      border: `1px solid ${hoveredCard === post.id ? currentTheme.accent : currentTheme.border}`,
+                      transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      cursor: 'pointer',
+                      transform: hoveredCard === post.id ? 'translateY(-4px)' : 'translateY(0)',
+                      boxShadow: hoveredCard === post.id 
+                        ? `0 20px 40px rgba(139, 92, 246, 0.15)` 
+                        : '0 4px 16px rgba(0, 0, 0, 0.1)'
+                    }}
+                    onMouseEnter={() => setHoveredCard(post.id)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
                   <div style={{
                     padding: '0.25rem 0.75rem',
                     backgroundColor: `${currentTheme.accent}20`,
@@ -393,7 +407,8 @@ const BlogPage = () => {
                       <span>{post.readTime} min</span>
                     </div>
                   </div>
-                </div>
+                  </div>
+                </Link>
               ))}
             </div>
           </div>
