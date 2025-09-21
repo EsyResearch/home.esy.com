@@ -1,18 +1,25 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ArticleLayout from '@/components/SchoolArticle/ArticleLayout';
 import ArticleHero from '@/components/SchoolArticle/ArticleHero';
 import TableOfContents from '@/components/SchoolArticle/TableOfContents';
 import AuthorBox from '@/components/SchoolArticle/AuthorBox';
 import ShareSection from '@/components/SchoolArticle/ShareSection';
 import RelatedArticles from '@/components/SchoolArticle/RelatedArticles';
-import NewsletterSection from '@/components/SchoolArticle/NewsletterSection';
+import SchoolNewsletter from '@/components/School/SchoolNewsletter';
 import { articleContentStyles as styles } from '@/components/SchoolArticle/articleStyles';
 
 export default function PromptEngineeringGuideArticle() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [copiedLink, setCopiedLink] = useState(false);
+  const emailInputRef = useRef(null);
+
+  const handleNewsletterSubmit = (e) => {
+    e.preventDefault();
+    // Handle newsletter subscription
+    console.log('Newsletter subscription:', emailInputRef.current?.value);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -315,7 +322,12 @@ export default function PromptEngineeringGuideArticle() {
 
       <RelatedArticles articles={relatedArticles} />
 
-      <NewsletterSection />
+      <SchoolNewsletter 
+        emailInputRef={emailInputRef}
+        handleNewsletterSubmit={handleNewsletterSubmit}
+        isMobile={false}
+        isTablet={false}
+      />
     </ArticleLayout>
   );
 }
