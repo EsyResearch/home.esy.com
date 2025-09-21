@@ -2,7 +2,7 @@
 id: "geopolitics-renewable-energy"
 title: "Geopolitics of Renewable Energy: The New Great Game"
 authors: ["Han Thi Htet"]
-institution: "Esy University"
+institution: "Esy"
 date: "2025-02-14"
 readTime: 45
 abstract: "This comprehensive analysis examines how the global transition to renewable energy is fundamentally reshaping international power dynamics. Through examination of energy infrastructure investments, rare earth mineral dependencies, and emerging energy alliances, we argue that traditional petrostates face unprecedented challenges while new forms of resource competition emerge."

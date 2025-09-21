@@ -7,7 +7,8 @@ export default function FeaturedArticlesSection() {
         category: 'Literary Analysis',
         title: 'Unlocking Literary Depth: Using Prompt Engineering to Analyze "To Kill a Mockingbird"',
         excerpt: 'Discover how strategic prompt engineering can transform your literary analysis, revealing insights that might otherwise remain hidden in classic texts.',
-        author: 'Dr. Emily Watson',
+        author: 'Zev Uhuru',
+        authorRole: 'Founder, Esy',
         date: 'Mar 25, 2025',
         readTime: 15,
         slug: 'to-kill-a-mockingbird'

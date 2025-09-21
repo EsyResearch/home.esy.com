@@ -609,7 +609,7 @@ const NewHomepage = () => {
               <strong style={{ color: currentTheme.text }}>Han Thi Htet</strong>
               <br />
               <span style={{ fontSize: isSmallMobile ? '0.75rem' : isMobile ? '0.813rem' : '0.875rem' }}>
-                Professor of Prompt Engineering, Esy University
+                AI Writing Specialist, Esy
               </span>
             </cite>
           </div>

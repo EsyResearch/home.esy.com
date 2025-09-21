@@ -63,7 +63,7 @@ Begin with a brief, relevant story or scenario.
 ### Quote Hook
 Use a relevant quote from an expert or notable figure.
 
-**Example**: "As psychologist Dr. Jean Twenge warns, 'We are on the brink of the worst mental health crisis in decades.'"
+**Example**: "As leading psychologists warn, 'We are on the brink of the worst mental health crisis in decades.'"
 
 ### Contradiction Hook
 Present something that seems contradictory or surprising.

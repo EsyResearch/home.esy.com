@@ -56,14 +56,16 @@ export default function PromptEngineeringGuideArticle() {
     {
       category: 'Tutorial',
       title: 'Building Custom GPT Assistants',
-      author: 'Dr. Sarah Chen',
+      author: 'Zev Uhuru',
+      authorRole: 'Founder, Esy',
       readTime: '10 min',
       link: '#'
     },
     {
       category: 'Case Study',
       title: 'Real-World Applications of Prompt Engineering',
-      author: 'Marcus Johnson',
+      author: 'Zev Uhuru',
+      authorRole: 'Founder, Esy',
       readTime: '15 min',
       link: '#'
     }

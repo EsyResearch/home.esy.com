@@ -32,8 +32,8 @@ export default function ToKillAMockingbirdArticle() {
 
   const author = {
     initials: 'EW',
-    name: 'Dr. Emily Watson',
-    role: 'Professor of English Literature',
+    name: 'Zev Uhuru',
+    role: 'Founder, Esy',
     bio: 'Professor of English Literature at Yale University, specializing in American literature and digital humanities. Author of "Reading in the Digital Age" and pioneer in applying AI tools to literary analysis while maintaining humanistic values.',
     meta: '38 articles published · Joined February 2024'
   };
@@ -51,21 +51,24 @@ export default function ToKillAMockingbirdArticle() {
     {
       category: 'Literary Analysis',
       title: 'AI-Powered Shakespeare: Analyzing The Tempest',
-      author: 'Dr. James Liu',
+      author: 'Zev Uhuru',
+      authorRole: 'Founder, Esy',
       readTime: '12 min',
       link: '#'
     },
     {
       category: 'Prompt Engineering',
       title: 'Deconstructing Modernist Poetry with GPT-4',
-      author: 'Prof. Maria Rodriguez',
+      author: 'Zev Uhuru',
+      authorRole: 'Founder, Esy',
       readTime: '10 min',
       link: '#'
     },
     {
       category: 'Case Studies',
       title: 'From Text to Context: Historical Fiction Analysis',
-      author: 'Dr. David Kim',
+      author: 'Zev Uhuru',
+      authorRole: 'Founder, Esy',
       readTime: '15 min',
       link: '#'
     }

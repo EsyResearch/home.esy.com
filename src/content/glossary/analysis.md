@@ -2,10 +2,10 @@
 title: "Analysis"
 category: "Writing"
 author:
-  name: "Dr. Rachel Thompson"
-  title: "Critical Thinking and Writing Professor"
+  name: "Zev Uhuru"
+  title: "Founder, Esy"
   avatar: "https://ui-avatars.com/api/?name=Rachel+Thompson&background=6366f1&color=fff"
-  bio: "Dr. Thompson has taught critical analysis and argumentative writing for over 20 years. She specializes in helping students develop deep analytical skills and move beyond surface-level thinking."
+  bio: "Zev Uhuru is the founder of Esy, specializing in AI-powered educational tools and academic writing assistance. He has extensive experience in developing innovative solutions for students and researchers."
 date: "Jan 20, 2025"
 readTime: "6 min read"
 relatedArticles:
@@ -176,7 +176,7 @@ Connect multiple pieces of evidence:
 
 Let's examine a strong analysis:
 
-> **Evidence:** "A 2023 study by Stanford University found that teenagers who used social media for more than 4 hours daily showed 40% higher levels of anxiety compared to those who used it for less than 1 hour daily."
+> **Evidence:** "A 2023 study found that teenagers who used social media for more than 4 hours daily showed 40% higher levels of anxiety compared to those who used it for less than 1 hour daily."
 > 
 > **Analysis:** "This finding is particularly significant because it establishes a dose-response relationship—the more time spent on social media, the greater the psychological harm. This pattern suggests that social media isn't just correlated with anxiety but actively contributes to it through mechanisms like social comparison and fear of missing out."
 > 

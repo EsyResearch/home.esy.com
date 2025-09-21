@@ -71,7 +71,8 @@ const BlogPage = () => {
       slug: "future-ai-academic-writing",
       title: "The Future of AI in Academic Writing",
       excerpt: "Explore how artificial intelligence is revolutionizing academic writing, from research assistance to automated proofreading.",
-      author: "Dr. Sarah Chen",
+      author: "Zev Uhuru",
+      authorRole: "Founder, Esy",
       date: "March 28, 2025",
       readTime: 12,
       category: "AI & Technology",
@@ -83,6 +84,7 @@ const BlogPage = () => {
       title: "Mastering Prompt Engineering for Better AI Interactions",
       excerpt: "Learn the art and science of crafting effective prompts that unlock the full potential of AI language models.",
       author: "Zev Uhuru",
+      authorRole: "Founder, Esy",
       date: "March 25, 2025",
       readTime: 8,
       category: "AI & Technology",
@@ -93,7 +95,8 @@ const BlogPage = () => {
       slug: "research-methodology-digital-age",
       title: "Research Methodology in the Digital Age",
       excerpt: "Discover modern research techniques that leverage digital tools while maintaining academic rigor.",
-      author: "Prof. Michael Rodriguez",
+      author: "Zev Uhuru",
+      authorRole: "Founder, Esy",
       date: "March 22, 2025",
       readTime: 15,
       category: "Research",
@@ -104,7 +107,8 @@ const BlogPage = () => {
       slug: "ai-transforming-literature-analysis",
       title: "How AI is Transforming Literature Analysis",
       excerpt: "A deep dive into computational literary analysis and how AI tools are uncovering new insights in classic texts.",
-      author: "Dr. Emily Watson",
+      author: "Zev Uhuru",
+      authorRole: "Founder, Esy",
       date: "March 20, 2025",
       readTime: 10,
       category: "Education",
@@ -366,7 +370,10 @@ const BlogPage = () => {
                     color: currentTheme.subtle
                   }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <span>{post.author}</span>
+                      <div>
+                        <div style={{ fontWeight: '600' }}>{post.author}</div>
+                        <div style={{ fontSize: '0.75rem', color: currentTheme.subtle }}>{post.authorRole}</div>
+                      </div>
                       <span>•</span>
                       <span>{post.date}</span>
                     </div>
@@ -454,7 +461,10 @@ const BlogPage = () => {
                     fontSize: '0.75rem',
                     color: currentTheme.subtle
                   }}>
-                    <span>{post.author}</span>
+                    <div>
+                      <div style={{ fontWeight: '600' }}>{post.author}</div>
+                      <div style={{ fontSize: '0.7rem', color: currentTheme.subtle }}>{post.authorRole}</div>
+                    </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                       <Clock size={12} />
                       <span>{post.readTime} min</span>

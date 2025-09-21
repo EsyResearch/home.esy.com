@@ -94,7 +94,7 @@ End with a thoughtful consideration of the topic's complexity.
 Return to an image, quote, or idea from your introduction.
 
 **Example:**
-"Just as Sarah Chen's story opened our discussion of social media's impact, her recovery after implementing strict screen time limits demonstrates that change is possible. The question is whether we have the collective will to demand it."
+"Just as the student's story opened our discussion of social media's impact, her recovery after implementing strict screen time limits demonstrates that change is possible. The question is whether we have the collective will to demand it."
 
 ## Conclusion Strategies by Essay Type
 

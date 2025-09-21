@@ -161,7 +161,7 @@ const BlogPostClient = ({ params }) => {
         <p>Recent advances in natural language processing have led to the development of more sophisticated writing assistants. These tools understand context, maintain consistency in tone, and can even suggest structural improvements to academic papers.</p>
         
         <blockquote>
-          "The integration of AI in academic writing represents not a replacement of human creativity, but an enhancement of scholarly capabilities." - Dr. Sarah Chen
+          "The integration of AI in academic writing represents not a replacement of human creativity, but an enhancement of scholarly capabilities." - Zev Uhuru
         </blockquote>
         
         <p>Key emerging technologies include:</p>
@@ -203,9 +203,9 @@ const BlogPostClient = ({ params }) => {
         <p>The integration of AI in academic writing is not just a technological shift—it's a fundamental reimagining of how knowledge is created, shared, and validated. As we embrace these new tools, we must remain mindful of the values that underpin academic work: rigor, originality, and the pursuit of truth.</p>
       </section>
     `,
-    author: "Dr. Sarah Chen",
-    authorBio: "Dr. Sarah Chen is a leading researcher in educational technology and AI applications in higher education. She has published over 50 peer-reviewed articles on the intersection of technology and learning.",
-    authorTitle: "Director of AI Research, Stanford University",
+    author: "Zev Uhuru",
+    authorBio: "Zev Uhuru is the founder of Esy, specializing in AI-powered educational tools and academic writing assistance. He has extensive experience in developing innovative solutions for students and researchers.",
+    authorTitle: "Founder, Esy",
     date: "March 28, 2025",
     readTime: 12,
     category: "AI & Technology",

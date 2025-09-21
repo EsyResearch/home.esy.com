@@ -2,8 +2,8 @@
 title: "Outline"
 category: "Structure"
 author:
-  name: "Prof. Michael Rodriguez"
-  title: "Composition Studies Expert"
+  name: "Zev Uhuru"
+  title: "Founder, Esy"
   avatar: "https://ui-avatars.com/api/?name=Michael+Rodriguez&background=6366f1&color=fff"
   bio: "Prof. Rodriguez has been teaching composition and rhetoric for over 20 years, specializing in pre-writing strategies and essay organization."
 date: "Jan 10, 2025"

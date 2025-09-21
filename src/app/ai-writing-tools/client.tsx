@@ -221,20 +221,20 @@ const AIWritingToolsHub = () => {
   const testimonials = [
     {
       text: "These tools saved me hours on my dissertation. The citation generator is a lifesaver!",
-      author: "Sarah Chen",
-      role: "PhD Student, Stanford",
+      author: "Han Thi Htet",
+      role: "Quality Assurance, Esy",
       rating: 5
     },
     {
       text: "The AI paraphrasing tool helped me improve my writing style significantly.",
-      author: "Marcus Rodriguez",
-      role: "Professor, MIT",
+      author: "Han Thi Htet",
+      role: "Quality Assurance, Esy",
       rating: 5
     },
     {
       text: "Essential tools for any serious academic writer. The readability analyzer is brilliant.",
-      author: "Dr. Aisha Patel",
-      role: "Research Scientist",
+      author: "Han Thi Htet",
+      role: "Quality Assurance, Esy",
       rating: 5
     }
   ];

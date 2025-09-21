@@ -46,8 +46,7 @@ const EssayMetadata = ({
           <div className={styles.authorItem}>
             <h4 className={authorNameClass}>Han Thi Htet</h4>
             <p className={authorBioClass}>
-              Research Lead at Esy University. Her research examines how technological 
-              transitions reshape global power structures, with particular attention to energy geopolitics.
+              Quality Assurance, Esy. She specializes in ensuring the highest quality standards for AI-powered educational tools and academic writing assistance.
             </p>
           </div>
         </div>

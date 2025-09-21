@@ -68,7 +68,7 @@ Pose a question that challenges assumptions or makes readers think.
 Tell a brief, relevant story that illustrates your point.
 
 **Example:**
-"Sarah Chen had always been a straight-A student until her junior year of high school, when her grades began to slip as she spent increasingly more time crafting the perfect Instagram posts. By graduation, she was spending six hours a day on social media and struggling with anxiety attacks."
+"A student had always been a straight-A student until her junior year of high school, when her grades began to slip as she spent increasingly more time crafting the perfect Instagram posts. By graduation, she was spending six hours a day on social media and struggling with anxiety attacks."
 
 **Why it works:**
 - Humanizes abstract issues

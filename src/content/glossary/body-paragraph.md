@@ -2,10 +2,10 @@
 title: "Body Paragraph"
 category: "Structure"
 author:
-  name: "Dr. Sarah Chen"
-  title: "Academic Writing Specialist"
+  name: "Zev Uhuru"
+  title: "Founder, Esy"
   avatar: "https://ui-avatars.com/api/?name=Sarah+Chen&background=6366f1&color=fff"
-  bio: "Dr. Sarah Chen has taught academic writing at top universities for over 15 years, helping thousands of students master essay structure and argumentation."
+  bio: "Zev Uhuru is the founder of Esy, specializing in AI-powered educational tools and academic writing assistance. He has extensive experience in developing innovative solutions for students and researchers."
 date: "Jan 8, 2025"
 readTime: "4 min read"
 relatedArticles:
@@ -49,7 +49,7 @@ Start with a clear statement of your main point.
 ### **I - Information (Evidence)**
 Provide specific evidence to support your point.
 
-**Example:** "According to Dr. Anna Lembke's research at Stanford, social media platforms use 'variable ratio reinforcement schedules'—the same psychological mechanism found in gambling addiction—to keep users scrolling (Lembke, 2021, p. 67)."
+**Example:** "According to recent research, social media platforms use 'variable ratio reinforcement schedules'—the same psychological mechanism found in gambling addiction—to keep users scrolling (Lembke, 2021, p. 67)."
 
 ### **E - Explanation (Analysis)**
 Explain how your evidence proves your point and connects to your thesis.
@@ -118,7 +118,7 @@ Let's analyze a strong body paragraph:
 3. **Analyze** its significance
 
 **Example:**
-"Stanford psychologist Dr. Jean Twenge, who has studied generational differences for over two decades, warns that 'we are on the brink of the worst mental health crisis in decades, and smartphones are likely playing a role' (2019, p. 15). This expert assessment from a leading researcher in the field underscores the urgency of addressing social media's impact on young people's psychological well-being."
+"Research by leading experts who have studied generational differences for over two decades warns that 'we are on the brink of the worst mental health crisis in decades, and smartphones are likely playing a role' (Twenge, 2019, p. 15). This expert assessment from leading researchers in the field underscores the urgency of addressing social media's impact on young people's psychological well-being."
 
 ### Signal Phrases for Smooth Integration
 - "According to research by..."

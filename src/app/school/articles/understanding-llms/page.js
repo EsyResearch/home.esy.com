@@ -65,7 +65,8 @@ export default function UnderstandingLLMsArticle() {
     {
       category: 'Tutorial',
       title: 'Building Your First AI Application with LLMs',
-      author: 'Dr. Sarah Chen',
+      author: 'Zev Uhuru',
+      authorRole: 'Founder, Esy',
       readTime: '15 min',
       link: '#'
     }

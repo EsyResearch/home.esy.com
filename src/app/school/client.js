@@ -420,7 +420,7 @@ const EsySchool = () => {
       category: 'Classic Literature',
       title: 'To Kill a Mockingbird: A Timeless Exploration of Justice',
       excerpt: 'Explore Harper Lee\'s masterpiece through the lens of moral courage, racial injustice, and the loss of innocence in 1930s Alabama.',
-      author: 'Harper Lee Scholar',
+      author: 'Zev Uhuru',
       readTime: '15 min',
       link: '/school/articles/to-kill-a-mockingbird'
     }

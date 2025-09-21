@@ -2,7 +2,7 @@
 id: "algorithmic-governance"
 title: "Algorithmic Governance: Democratic Implications of AI in Public Policy"
 authors: ["Zev Uhuru"]
-institution: "Esy University"
+institution: "Esy"
 publishDate: "2025-01-28"
 readTime: 32
 abstract: "This paper investigates the increasing role of artificial intelligence in governmental decision-making processes, examining case studies from Estonia's e-governance system and exploring the democratic implications of algorithmic governance."

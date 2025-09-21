@@ -89,7 +89,7 @@ Introduce specific examples or illustrations.
 
 **Examples:**
 - "Social media affects various aspects of teenage life. **For example**, Instagram's focus on appearance can lead to body image issues."
-- "**To illustrate** this point, consider the case of Sarah Chen, whose grades declined as her social media usage increased."
+- "**To illustrate** this point, consider the case of a student whose grades declined as her social media usage increased."
 
 ### 6. Emphasis Transitions
 Highlight important points or add emphasis.

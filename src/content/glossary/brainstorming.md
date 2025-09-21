@@ -2,10 +2,10 @@
 title: "Brainstorming"
 category: "Writing"
 author:
-  name: "Prof. Maria Rodriguez"
-  title: "Creative Writing and Composition Professor"
+  name: "Zev Uhuru"
+  title: "Founder, Esy"
   avatar: "https://ui-avatars.com/api/?name=Maria+Rodriguez&background=6366f1&color=fff"
-  bio: "Prof. Rodriguez has taught creative writing and composition for over 18 years. She specializes in helping students develop effective pre-writing strategies and overcome writer's block through systematic brainstorming techniques."
+  bio: "Zev Uhuru is the founder of Esy, specializing in AI-powered educational tools and academic writing assistance. He has extensive experience in developing innovative solutions for students and researchers."
 date: "Jan 28, 2025"
 readTime: "5 min read"
 relatedArticles:

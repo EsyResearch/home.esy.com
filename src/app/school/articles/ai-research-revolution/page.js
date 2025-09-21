@@ -50,7 +50,8 @@ export default function AIResearchRevolutionArticle() {
     {
       category: 'Technology',
       title: 'Understanding Large Language Models: From Theory to Practice',
-      author: 'Dr. Sarah Chen',
+      author: 'Zev Uhuru',
+      authorRole: 'Founder, Esy',
       readTime: '10 min',
       link: '/school/articles/understanding-llms'
     },
@@ -64,7 +65,8 @@ export default function AIResearchRevolutionArticle() {
     {
       category: 'Research Methods',
       title: 'Integrating AI Tools into Your Research Workflow',
-      author: 'Prof. Michael Zhang',
+      author: 'Zev Uhuru',
+      authorRole: 'Founder, Esy',
       readTime: '12 min',
       link: '#'
     }
