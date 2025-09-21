@@ -282,12 +282,14 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                       minWidth: isMobile ? 'auto' : '140px'
                     }}
                     onMouseEnter={(e) => {
-                      e.target.style.transform = 'translateY(-2px)';
-                      e.target.style.boxShadow = '0 8px 24px rgba(139, 92, 246, 0.35)';
+                      const target = e.target as HTMLButtonElement;
+                      target.style.transform = 'translateY(-2px)';
+                      target.style.boxShadow = '0 8px 24px rgba(139, 92, 246, 0.35)';
                     }}
                     onMouseLeave={(e) => {
-                      e.target.style.transform = 'translateY(0)';
-                      e.target.style.boxShadow = '0 6px 20px rgba(139, 92, 246, 0.25)';
+                      const target = e.target as HTMLButtonElement;
+                      target.style.transform = 'translateY(0)';
+                      target.style.boxShadow = '0 6px 20px rgba(139, 92, 246, 0.25)';
                     }}>
                     Get Started
                   </button>
