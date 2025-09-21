@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import { BookOpen } from 'lucide-react';
 
 interface FooterProps {
@@ -100,10 +101,10 @@ const Footer: React.FC<FooterProps> = ({ currentTheme }) => {
               Company
             </h4>
             <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
-              <a href="/about" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>About</a>
-              <a href="/blog" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Blog</a>
-              <a href="/contact" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Contact</a>
-              <a href="/privacy" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Privacy</a>
+              <Link href="/about" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>About</Link>
+              <Link href="/blog" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Blog</Link>
+              <Link href="/contact" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Contact</Link>
+              <Link href="/privacy" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Privacy</Link>
             </nav>
           </div>
         </div>
