@@ -1,10 +1,11 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Brain, FileText, Code, Globe, Lightbulb, Search, Filter } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import GlossaryGrid from '@/components/Glossary/GlossaryGrid';
 import GlossarySidebar from '@/components/Glossary/GlossarySidebar';
 import { Theme, GlossaryTerm, GlossaryCategory, TermOfDay, CategoryType } from '@/types';
+import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
 
 const GlossaryPage = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -14,10 +15,18 @@ const GlossaryPage = () => {
   const [hoveredTerm, setHoveredTerm] = useState<string | null>(null);
   const [showFilters, setShowFilters] = useState(false);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+  const searchBarRef = useRef<HTMLDivElement>(null);
+  const { setShowHeaderSearch } = useHeaderSearch();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
+      
+      // Check if search bar is visible
+      if (searchBarRef.current) {
+        const rect = searchBarRef.current.getBoundingClientRect();
+        setShowHeaderSearch(rect.bottom < 0);
+      }
     };
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -28,7 +37,7 @@ const GlossaryPage = () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [setShowHeaderSearch]);
 
   const currentTheme: Theme = {
     bg: '#0a0a0f',
@@ -498,7 +507,7 @@ const GlossaryPage = () => {
           </div>
           
           {/* Search and Controls */}
-          <div style={{
+          <div ref={searchBarRef} style={{
             display: 'flex',
             gap: '1rem',
             marginTop: '2rem',

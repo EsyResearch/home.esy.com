@@ -22,7 +22,7 @@ export const getPageSuffix = (pathname) => {
 
 interface NavigationProps {
   showHeaderSearch?: boolean;
-  searchContext?: 'prompt-library' | 'glossary' | 'general';
+  searchContext?: 'prompt-library' | 'glossary' | 'school' | 'general';
 }
 
 export default function Navigation ({ 

@@ -39,15 +39,16 @@ const ConditionalNavigation = () => {
   // - Always on individual prompt pages (/prompt-library/*)
   // - On prompt library index only after scrolling past main search
   // - Always on glossary view pages (/glossary/*)
+  // - On glossary index only after scrolling past main search
   // - Always on school article pages (/school/articles/*)
   // - On school index only after scrolling past main search
   const shouldShowHeaderSearch = 
     (isPromptLibraryPage && (isPromptLibraryIndex ? showHeaderSearch : true)) ||
-    isGlossaryViewPage ||
+    (isGlossaryPage && (isGlossaryIndex ? showHeaderSearch : true)) ||
     (isSchoolPage && (isSchoolIndex ? showHeaderSearch : isSchoolArticlePage));
   
-  // Determine search context
-  const searchContext = isGlossaryViewPage ? 'glossary' : 
+  // Determine search context - use glossary for both glossary index and view pages
+  const searchContext = isGlossaryPage ? 'glossary' : 
                        isPromptLibraryPage ? 'prompt-library' : 
                        isSchoolPage ? 'school' :
                        'general';
