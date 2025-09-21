@@ -12,6 +12,7 @@ import {
   Award, TrendingDown, AlertCircle, Info,
   BarChart
 } from 'lucide-react';
+import ContextAwareNavigation from '@/components/Navigation/ContextAwareNavigation';
 import '@/app/globals.css';
 
 const BlogPostClient = ({ params }) => {
@@ -268,6 +269,9 @@ const BlogPostClient = ({ params }) => {
       minHeight: '100vh',
       transition: 'all 0.3s ease'
     }}>
+      {/* Context-Aware Navigation with HeaderSearch */}
+      <ContextAwareNavigation showHeaderSearch={true} forceContext="blog" />
+      
       {/* Reading Progress Bar */}
       <div style={{
         position: 'fixed',

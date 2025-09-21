@@ -15,6 +15,8 @@ export const getPageSuffix = (pathname) => {
     return 'School';
   } else if (pathname?.startsWith('/glossary')) {
     return 'Glossary';
+  } else if (pathname?.startsWith('/blog')) {
+    return 'Blog';
   }
   // No suffix for prompt-library
   return '';
@@ -22,7 +24,7 @@ export const getPageSuffix = (pathname) => {
 
 interface NavigationProps {
   showHeaderSearch?: boolean;
-  searchContext?: 'prompt-library' | 'glossary' | 'school' | 'essays' | 'general';
+  searchContext?: 'prompt-library' | 'glossary' | 'school' | 'essays' | 'blog' | 'general';
 }
 
 export default function Navigation ({ 
@@ -56,6 +58,55 @@ export default function Navigation ({
             .then(res => res.json())
             .then(essays => setSearchData(essays))
             .catch(console.error);
+        } else if (searchContext === 'blog') {
+          // Blog posts data
+          const blogPosts = [
+            {
+              id: 1,
+              slug: "future-ai-academic-writing",
+              title: "The Future of AI in Academic Writing",
+              excerpt: "Explore how artificial intelligence is revolutionizing academic writing, from research assistance to automated proofreading.",
+              author: "Dr. Sarah Chen",
+              date: "March 28, 2025",
+              readTime: 12,
+              category: "AI & Technology",
+              featured: true
+            },
+            {
+              id: 2,
+              slug: "mastering-prompt-engineering",
+              title: "Mastering Prompt Engineering for Better AI Interactions",
+              excerpt: "Learn the art and science of crafting effective prompts that unlock the full potential of AI language models.",
+              author: "Zev Uhuru",
+              date: "March 25, 2025",
+              readTime: 8,
+              category: "AI & Technology",
+              featured: false
+            },
+            {
+              id: 3,
+              slug: "research-methodology-digital-age",
+              title: "Research Methodology in the Digital Age",
+              excerpt: "Discover modern research techniques that leverage digital tools while maintaining academic rigor.",
+              author: "Prof. Michael Rodriguez",
+              date: "March 22, 2025",
+              readTime: 15,
+              category: "Research",
+              featured: false
+            },
+            {
+              id: 4,
+              slug: "ai-transforming-literature-analysis",
+              title: "How AI is Transforming Literature Analysis",
+              excerpt: "A deep dive into computational literary analysis and how AI tools are uncovering new insights in classic texts.",
+              author: "Dr. Emily Watson",
+              date: "March 20, 2025",
+              readTime: 10,
+              category: "Education",
+              featured: true
+            }
+          ];
+          setSearchData(blogPosts);
         }
       }
     }, [showHeaderSearch, searchContext]);

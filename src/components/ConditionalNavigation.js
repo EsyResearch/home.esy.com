@@ -1,7 +1,8 @@
 "use client"
 import { usePathname } from 'next/navigation';
-import Navigation from "@/components/Home/navigation";
+import ContextAwareNavigation from "@/components/Navigation/ContextAwareNavigation";
 import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
+import { getSearchContextFromPath } from '@/lib/searchContexts';
 
 const ConditionalNavigation = () => {
   const pathname = usePathname();
@@ -52,15 +53,10 @@ const ConditionalNavigation = () => {
     (isSchoolPage && (isSchoolIndex ? showHeaderSearch : isSchoolArticlePage)) ||
     (isEssaysPage && showHeaderSearch);
   
-  // Determine search context - use glossary for both glossary index and view pages
-  const searchContext = isGlossaryPage ? 'glossary' : 
-                       isPromptLibraryPage ? 'prompt-library' : 
-                       isSchoolPage ? 'school' :
-                       isEssaysPage ? 'essays' :
-                       'general';
+  // Determine search context using centralized system
+  const searchContext = getSearchContextFromPath(pathname);
   
-  
-  return <Navigation showHeaderSearch={shouldShowHeaderSearch} searchContext={searchContext} />;
+  return <ContextAwareNavigation showHeaderSearch={shouldShowHeaderSearch} forceContext={searchContext} />;
 };
 
 export default ConditionalNavigation; 

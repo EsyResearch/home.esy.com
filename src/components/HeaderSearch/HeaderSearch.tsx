@@ -7,12 +7,19 @@ import { usePromptSearch } from '@/hooks/usePromptSearch';
 import { useGlossarySearch } from '@/hooks/useGlossarySearch';
 import { useSchoolSearch } from '@/hooks/useSchoolSearch';
 import { useEssaySearch } from '@/hooks/useEssaySearch';
+import { useBlogSearch } from '@/hooks/useBlogSearch';
+import { 
+  getSearchContextConfig, 
+  getContextSearchUrl, 
+  getContextResultUrl,
+  type SearchContext 
+} from '@/lib/searchContexts';
 
 interface HeaderSearchProps {
   prompts: any[];
   className?: string;
   alwaysExpanded?: boolean;
-  searchContext?: 'prompt-library' | 'glossary' | 'school' | 'essays' | 'general';
+  searchContext?: SearchContext;
 }
 
 const HeaderSearch: React.FC<HeaderSearchProps> = ({ 
@@ -24,12 +31,9 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
   const router = useRouter();
   const pathname = usePathname();
   
-  // Always expanded on prompt-library, glossary pages, school pages, and essays page when shown
-  const isPromptLibraryPage = pathname?.startsWith('/prompt-library');
-  const isGlossaryPage = pathname?.startsWith('/glossary');
-  const isSchoolPage = pathname?.startsWith('/school');
-  const isEssaysPage = pathname === '/essays';
-  const shouldAlwaysExpand = alwaysExpanded || isPromptLibraryPage || isGlossaryPage || isSchoolPage || isEssaysPage;
+  // Get context configuration
+  const contextConfig = getSearchContextConfig(searchContext);
+  const shouldAlwaysExpand = alwaysExpanded || contextConfig.shouldAlwaysExpand;
   
   const [isExpanded, setIsExpanded] = useState(shouldAlwaysExpand);
   const [searchTerm, setSearchTerm] = useState('');
@@ -71,11 +75,27 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
     maxResults: 6
   });
   
+  const blogSearchHook = useBlogSearch({
+    posts: searchContext === 'blog' ? (prompts || []) : [],
+    debounceMs: 200,
+    maxResults: 6
+  });
+  
   // Select the appropriate hook results based on context
-  const { searchResults, isLoading, setSearchTerm: setSearchTermFromHook, showDropdown } = 
-    searchContext === 'glossary' ? glossarySearchHook :
-    searchContext === 'school' ? schoolSearchHook :
-    searchContext === 'essays' ? essaySearchHook : promptSearchHook;
+  let searchHook;
+  if (searchContext === 'glossary') {
+    searchHook = glossarySearchHook;
+  } else if (searchContext === 'school') {
+    searchHook = schoolSearchHook;
+  } else if (searchContext === 'essays') {
+    searchHook = essaySearchHook;
+  } else if (searchContext === 'blog') {
+    searchHook = blogSearchHook;
+  } else {
+    searchHook = promptSearchHook;
+  }
+  
+  const { searchResults, isLoading, setSearchTerm: setSearchTermFromHook, showDropdown } = searchHook;
 
   // Sync search terms
   useEffect(() => {
@@ -115,16 +135,9 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
         setIsExpanded(false);
       }
       } else if (e.key === 'Enter' && searchTerm.trim()) {
-        // Navigate to appropriate page with search
-        if (searchContext === 'glossary') {
-          router.push(`/glossary?search=${encodeURIComponent(searchTerm)}`);
-        } else if (searchContext === 'school') {
-          router.push(`/school?search=${encodeURIComponent(searchTerm)}`);
-        } else if (searchContext === 'essays') {
-          router.push(`/essays?search=${encodeURIComponent(searchTerm)}`);
-        } else {
-          router.push(`/prompt-library?search=${encodeURIComponent(searchTerm)}`);
-        }
+        // Navigate to appropriate page with search using centralized context
+        const searchUrl = getContextSearchUrl(searchContext, searchTerm);
+        router.push(searchUrl);
         setSearchTerm('');
         
         // Only collapse if not on prompt library or glossary pages
@@ -136,15 +149,9 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
 
   const handleResultSelect = (result: SearchResult) => {
     if (result.slug) {
-      if (searchContext === 'glossary') {
-        router.push(`/glossary/${result.slug}`);
-      } else if (searchContext === 'school') {
-        router.push(result.slug);
-      } else if (searchContext === 'essays') {
-        router.push(result.slug);
-      } else {
-        router.push(`/prompt-library/${result.slug}`);
-      }
+      // Use centralized context system for result navigation
+      const resultUrl = getContextResultUrl(searchContext, result.slug);
+      router.push(resultUrl);
     }
     
     // Always clear search to close dropdown
@@ -366,12 +373,7 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
                <input
                  ref={searchRef}
                  type="text"
-                 placeholder={
-                   searchContext === 'glossary' ? "Search glossary terms..." : 
-                   searchContext === 'school' ? "Search articles & guides..." :
-                   searchContext === 'essays' ? "Search essays..." :
-                   "Search prompts..."
-                 }
+                 placeholder={contextConfig.placeholder}
                  value={searchTerm}
                  onChange={(e) => setSearchTerm(e.target.value)}
                  onKeyDown={handleKeyDown}

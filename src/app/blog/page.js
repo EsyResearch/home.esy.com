@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { 
   BookOpen, ArrowRight, ChevronRight,
@@ -11,6 +11,7 @@ import {
   Menu, X, TrendingUp, Shield, Star
 } from 'lucide-react';
 import SearchBar from '@/components/SearchBar/SearchBar';
+import ContextAwareNavigation from '@/components/Navigation/ContextAwareNavigation';
 import '@/app/globals.css';
 
 const BlogPage = () => {
@@ -19,6 +20,8 @@ const BlogPage = () => {
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
   const [hoveredCard, setHoveredCard] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [showHeaderSearch, setShowHeaderSearch] = useState(false);
+  const searchBarRef = useRef(null);
 
   const currentTheme = {
     bg: '#0a0a0f',
@@ -44,6 +47,19 @@ const BlogPage = () => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Handle scroll to show/hide HeaderSearch
+  useEffect(() => {
+    const handleScroll = () => {
+      if (searchBarRef.current) {
+        const searchBarBottom = searchBarRef.current.getBoundingClientRect().bottom;
+        setShowHeaderSearch(searchBarBottom < 0);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const categories = ['All', 'AI & Technology', 'Academic Writing', 'Research', 'Education'];
@@ -111,6 +127,9 @@ const BlogPage = () => {
       color: currentTheme.text,
       fontFamily: 'var(--font-inter)'
     }}>
+      {/* Context-Aware Navigation with HeaderSearch */}
+      <ContextAwareNavigation showHeaderSearch={showHeaderSearch} forceContext="blog" />
+      
       {/* Hero Section - Same structure as homepage */}
       <section style={{ 
         minHeight: isMobile ? 'auto' : '100vh',
@@ -158,14 +177,16 @@ const BlogPage = () => {
             </p>
 
             {/* Search Bar */}
-            <SearchBar
-              placeholder="Search articles, topics, or authors..."
-              context="general"
-              onSearch={handleSearch}
-              value={searchQuery}
-              onChange={setSearchQuery}
-              isLoading={isSearching}
-            />
+            <div ref={searchBarRef}>
+              <SearchBar
+                placeholder="Search articles, topics, or authors..."
+                context="general"
+                onSearch={handleSearch}
+                value={searchQuery}
+                onChange={setSearchQuery}
+                isLoading={isSearching}
+              />
+            </div>
           </div>
 
           {/* Category Filter Pills */}
