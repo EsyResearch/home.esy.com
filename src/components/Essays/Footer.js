@@ -37,10 +37,11 @@ const Footer = () => {
             gap: '2rem',
             fontSize: '0.813rem'
           }}>
-            <Link href="#" style={{ color: 'rgba(255, 255, 255, 0.6)', textDecoration: 'none' }}>About</Link>
-            <Link href="#" style={{ color: 'rgba(255, 255, 255, 0.6)', textDecoration: 'none' }}>Privacy</Link>
-            <Link href="#" style={{ color: 'rgba(255, 255, 255, 0.6)', textDecoration: 'none' }}>Terms</Link>
-            <Link href="#" style={{ color: 'rgba(255, 255, 255, 0.6)', textDecoration: 'none' }}>Contact</Link>
+            <Link href="/about" style={{ color: 'rgba(255, 255, 255, 0.6)', textDecoration: 'none' }}>About</Link>
+            <Link href="/blog" style={{ color: 'rgba(255, 255, 255, 0.6)', textDecoration: 'none' }}>Blog</Link>
+            <Link href="/privacy" style={{ color: 'rgba(255, 255, 255, 0.6)', textDecoration: 'none' }}>Privacy</Link>
+            <Link href="/terms" style={{ color: 'rgba(255, 255, 255, 0.6)', textDecoration: 'none' }}>Terms</Link>
+            <Link href="/contact" style={{ color: 'rgba(255, 255, 255, 0.6)', textDecoration: 'none' }}>Contact</Link>
           </nav>
 
           <p style={{ 
