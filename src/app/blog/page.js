@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { 
   BookOpen, ArrowRight, ChevronRight,
   FileText, Brain, Sparkles, Quote,
@@ -11,12 +12,12 @@ import {
   Menu, X, TrendingUp, Shield, Star
 } from 'lucide-react';
 import SearchBar from '@/components/SearchBar/SearchBar';
+import { useBlogSearch } from '@/hooks/useBlogSearch';
 import ContextAwareNavigation from '@/components/Navigation/ContextAwareNavigation';
 import '@/app/globals.css';
 
 const BlogPage = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [isSearching, setIsSearching] = useState(false);
+  const router = useRouter();
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
   const [hoveredCard, setHoveredCard] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -115,10 +116,34 @@ const BlogPage = () => {
     selectedCategory === 'All' || post.category === selectedCategory
   );
 
+  // Add tags to blog posts for better search
+  const blogPostsWithTags = blogPosts.map(post => ({
+    ...post,
+    tags: post.category.split(' ').filter(tag => tag.length > 2)
+  }));
+
+  // Use the blog search hook for dropdown functionality
+  const {
+    searchResults,
+    isLoading: searchLoading,
+    searchTerm,
+    setSearchTerm,
+    showDropdown
+  } = useBlogSearch({ 
+    posts: blogPostsWithTags, 
+    debounceMs: 300, 
+    maxResults: 8 
+  });
+
+  // Handle search result selection
+  const handleResultSelect = (result) => {
+    if (result.type === 'article' && result.slug) {
+      router.push(`/blog/${result.slug}`);
+    }
+  };
+
   const handleSearch = async (query) => {
-    setIsSearching(true);
-    setSearchQuery(query);
-    setTimeout(() => setIsSearching(false), 500);
+    console.log('Searching for:', query);
   };
 
   return (
@@ -179,12 +204,19 @@ const BlogPage = () => {
             {/* Search Bar */}
             <div ref={searchBarRef}>
               <SearchBar
-                placeholder="Search articles, topics, or authors..."
-                context="general"
+                value={searchTerm}
+                onChange={setSearchTerm}
                 onSearch={handleSearch}
-                value={searchQuery}
-                onChange={setSearchQuery}
-                isLoading={isSearching}
+                placeholder="Search articles, topics, or authors..."
+                context="blog"
+                inputFontSize="0.9rem"
+                style={{ marginBottom: '0' }}
+                autoFocus={false}
+                showDropdown={showDropdown}
+                searchResults={searchResults}
+                onResultSelect={handleResultSelect}
+                loadingResults={searchLoading}
+                maxResults={8}
               />
             </div>
           </div>

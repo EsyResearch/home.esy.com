@@ -1,4 +1,5 @@
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import type { SearchResult } from '@/components/SearchBar/SearchBar';
 
 interface BlogPost {
   id: number;
@@ -10,6 +11,7 @@ interface BlogPost {
   readTime: number;
   category: string;
   featured: boolean;
+  tags?: string[];
 }
 
 interface UseBlogSearchProps {
@@ -18,43 +20,83 @@ interface UseBlogSearchProps {
   maxResults?: number;
 }
 
+interface UseBlogSearchReturn {
+  searchResults: SearchResult[];
+  isLoading: boolean;
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
+  showDropdown: boolean;
+}
+
 export const useBlogSearch = ({ 
   posts = [], 
-  debounceMs = 200, 
-  maxResults = 6 
-}: UseBlogSearchProps) => {
+  debounceMs = 300, 
+  maxResults = 8 
+}: UseBlogSearchProps): UseBlogSearchReturn => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
+  // Debounce search term
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+      setIsLoading(false);
+    }, debounceMs);
+
+    return () => {
+      clearTimeout(timer);
+      setIsLoading(false);
+    };
+  }, [searchTerm, debounceMs]);
+
+  // Filter blog posts based on search term
   const searchResults = useMemo(() => {
-    if (!searchTerm.trim()) return [];
+    if (!debouncedSearchTerm.trim()) {
+      return [];
+    }
 
-    const term = searchTerm.toLowerCase();
+    const searchLower = debouncedSearchTerm.toLowerCase();
     
-    return posts
-      .filter(post => 
-        post.title.toLowerCase().includes(term) ||
-        post.excerpt.toLowerCase().includes(term) ||
-        post.author.toLowerCase().includes(term) ||
-        post.category.toLowerCase().includes(term)
-      )
+    const filtered = posts
+      .filter(post => {
+        return (
+          post.title.toLowerCase().includes(searchLower) ||
+          post.excerpt.toLowerCase().includes(searchLower) ||
+          post.category.toLowerCase().includes(searchLower) ||
+          post.author.toLowerCase().includes(searchLower) ||
+          (post.tags && post.tags.some(tag => 
+            tag.toLowerCase().includes(searchLower)
+          ))
+        );
+      })
       .slice(0, maxResults)
       .map(post => ({
         id: post.id,
         title: post.title,
         description: post.excerpt,
-        author: post.author,
         category: post.category,
-        readTime: post.readTime,
         slug: post.slug,
-        type: 'blog-post'
+        type: 'article' as const,
+        metadata: {
+          author: post.author,
+          date: post.date,
+          readTime: post.readTime,
+          featured: post.featured
+        }
       }));
-  }, [searchTerm, posts, maxResults]);
+
+    return filtered;
+  }, [posts, debouncedSearchTerm, maxResults]);
+
+  const showDropdown = searchTerm.length > 0;
 
   return {
+    searchResults,
+    isLoading,
     searchTerm,
     setSearchTerm,
-    searchResults,
-    isLoading: false,
-    showDropdown: searchTerm.length > 0
+    showDropdown
   };
 };

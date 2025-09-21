@@ -21,7 +21,7 @@ interface SearchBarProps {
   onChange?: (query: string) => void;
   className?: string;
   style?: React.CSSProperties;
-  context?: 'prompt-library' | 'school' | 'general' | 'homepage';
+  context?: 'prompt-library' | 'school' | 'general' | 'homepage' | 'blog';
   inputFontSize?: string;
   autoFocus?: boolean;
   isLoading?: boolean;
@@ -78,6 +78,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
           "Can quantum computing solve climate models?",
           "How do social movements shape policy?",
           "What defines consciousness in neuroscience?"
+        ];
+      case 'blog':
+        return [
+          "AI in academic writing",
+          "Prompt engineering techniques",
+          "Research methodology guides",
+          "Essay writing best practices",
+          "Future of education technology"
         ];
       default:
         return [
@@ -323,7 +331,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
       opacity: showResults ? 1 : 0,
       transform: showResults ? 'translateY(0)' : 'translateY(-10px)',
       transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-      pointerEvents: (showResults ? 'auto' : 'none') as React.CSSProperties['pointerEvents']
+      pointerEvents: (showResults ? 'auto' : 'none') as React.CSSProperties['pointerEvents'],
+      textAlign: 'left' as const
     },
     dropdownItem: {
       padding: isMobile ? '12px 16px' : '16px 20px',
@@ -332,7 +341,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
       transition: 'all 0.2s ease',
       display: 'flex',
       flexDirection: 'column' as const,
-      gap: '4px'
+      gap: '4px',
+      textAlign: 'left' as const
     },
     dropdownItemSelected: {
       backgroundColor: 'rgba(139, 92, 246, 0.1)',
