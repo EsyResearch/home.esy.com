@@ -2,11 +2,17 @@ import React from 'react';
 import Link from 'next/link';
 import styles from './Breadcrumbs.module.css';
 
-const Breadcrumbs = ({ items = [], className = '' }) => {
+const Breadcrumbs = ({ items = [], className = '', isLight = false }) => {
+  const breadcrumbClass = isLight ? styles.breadcrumbsLight : styles.breadcrumbs;
+  const linkClass = isLight ? styles.breadcrumbLinkLight : styles.breadcrumbLink;
+  const textClass = isLight ? styles.breadcrumbTextLight : styles.breadcrumbText;
+  const currentClass = isLight ? styles.breadcrumbCurrentLight : styles.breadcrumbCurrent;
+  const separatorClass = isLight ? styles.breadcrumbSeparatorLight : styles.breadcrumbSeparator;
+
   return (
     <nav 
       aria-label="Breadcrumb"
-      className={`${styles.breadcrumbs} ${className}`}
+      className={`${breadcrumbClass} ${className}`}
     >
       <div className={styles.breadcrumbsContainer}>
         {items.map((item, index) => (
@@ -14,13 +20,13 @@ const Breadcrumbs = ({ items = [], className = '' }) => {
             {item.href ? (
               <Link 
                 href={item.href}
-                className={styles.breadcrumbLink}
+                className={linkClass}
               >
                 {item.label}
               </Link>
             ) : (
               <span 
-                className={`${styles.breadcrumbText} ${item.isCurrent ? styles.breadcrumbCurrent : ''}`}
+                className={`${textClass} ${item.isCurrent ? currentClass : ''}`}
                 title={item.label}
               >
                 {item.label}
@@ -28,7 +34,7 @@ const Breadcrumbs = ({ items = [], className = '' }) => {
             )}
             
             {index < items.length - 1 && (
-              <span className={styles.breadcrumbSeparator}>
+              <span className={separatorClass}>
                 /
               </span>
             )}

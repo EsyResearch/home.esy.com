@@ -2,6 +2,16 @@
   background-color: rgba(255, 255, 255, 0.02);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   margin-bottom: 2rem;
+  position: relative;
+  z-index: 100;
+}
+
+.breadcrumbsLight {
+  background-color: rgba(15, 23, 42, 0.02);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 100;
 }
 
 .breadcrumbsContainer {
@@ -26,8 +36,25 @@
   text-decoration: underline;
 }
 
+.breadcrumbLinkLight {
+  color: rgba(15, 23, 42, 0.6);
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 400;
+}
+
+.breadcrumbLinkLight:hover {
+  color: rgba(15, 23, 42, 0.9);
+  text-decoration: underline;
+}
+
 .breadcrumbText {
   color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+}
+
+.breadcrumbTextLight {
+  color: rgba(15, 23, 42, 0.5);
   font-weight: 400;
 }
 
@@ -39,8 +66,21 @@
   white-space: nowrap;
 }
 
+.breadcrumbCurrentLight {
+  color: rgba(15, 23, 42, 0.5);
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .breadcrumbSeparator {
   color: rgba(255, 255, 255, 0.3);
+  font-size: 0.75rem;
+}
+
+.breadcrumbSeparatorLight {
+  color: rgba(15, 23, 42, 0.3);
   font-size: 0.75rem;
 }
 

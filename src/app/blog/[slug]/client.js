@@ -10,9 +10,10 @@ import {
   Eye, ThumbsUp, Send, MoreVertical, Hash,
   Quote, Code, FileText, Sparkles, Zap,
   Award, TrendingDown, AlertCircle, Info,
-  BarChart
+  BarChart, Menu, X, Settings, Type, AlignLeft
 } from 'lucide-react';
 import ContextAwareNavigation from '@/components/Navigation/ContextAwareNavigation';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import '@/app/globals.css';
 
 const BlogPostClient = ({ params }) => {
@@ -22,16 +23,18 @@ const BlogPostClient = ({ params }) => {
   const [copied, setCopied] = useState(false);
   const [readingProgress, setReadingProgress] = useState(0);
   const [timeSpent, setTimeSpent] = useState(0);
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false); // Light mode by default
   const [fontSize, setFontSize] = useState('medium');
   const [showTableOfContents, setShowTableOfContents] = useState(true);
   const [activeSection, setActiveSection] = useState('');
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [viewCount] = useState(Math.floor(Math.random() * 10000) + 1000);
   const [likeCount, setLikeCount] = useState(Math.floor(Math.random() * 500) + 50);
   const [shareCount] = useState(Math.floor(Math.random() * 200) + 20);
   const [hoveredElement, setHoveredElement] = useState(null);
   const [showShareMenu, setShowShareMenu] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+  const [lineHeight, setLineHeight] = useState('relaxed');
+  const [maxWidth, setMaxWidth] = useState('comfortable');
   
   const contentRef = useRef(null);
   const articleRef = useRef(null);
@@ -55,14 +58,14 @@ const BlogPostClient = ({ params }) => {
     info: '#3b82f6'
   } : {
     bg: '#ffffff',
-    elevated: '#f9fafb',
-    card: '#f3f4f6',
-    text: '#111827',
-    muted: 'rgba(17, 24, 39, 0.7)',
-    subtle: 'rgba(17, 24, 39, 0.5)',
-    faint: 'rgba(17, 24, 39, 0.3)',
-    border: 'rgba(17, 24, 39, 0.08)',
-    divider: 'rgba(17, 24, 39, 0.05)',
+    elevated: '#f8fafc',
+    card: '#f1f5f9',
+    text: '#0f172a',
+    muted: 'rgba(15, 23, 42, 0.7)',
+    subtle: 'rgba(15, 23, 42, 0.5)',
+    faint: 'rgba(15, 23, 42, 0.3)',
+    border: 'rgba(15, 23, 42, 0.08)',
+    divider: 'rgba(15, 23, 42, 0.05)',
     accent: '#7c3aed',
     accentLight: '#8b5cf6',
     accentDark: '#6d28d9',
@@ -80,7 +83,23 @@ const BlogPostClient = ({ params }) => {
     xlarge: { body: '1.25rem', heading: '2.25rem', subheading: '2rem', lineHeight: 2.2 }
   };
 
+  const lineHeights = {
+    tight: 1.4,
+    normal: 1.6,
+    relaxed: 1.8,
+    loose: 2.0
+  };
+
+  const maxWidths = {
+    narrow: '600px',
+    comfortable: '750px',
+    wide: '900px',
+    full: '100%'
+  };
+
   const currentFontSize = fontSizes[fontSize];
+  const currentLineHeight = lineHeights[lineHeight];
+  const currentMaxWidth = maxWidths[maxWidth];
 
   // Enhanced responsive breakpoints
   const isMobile = windowWidth < 768;
@@ -269,7 +288,7 @@ const BlogPostClient = ({ params }) => {
       minHeight: '100vh',
       transition: 'all 0.3s ease'
     }}>
-      {/* Context-Aware Navigation with HeaderSearch */}
+      {/* Context-Aware Navigation */}
       <ContextAwareNavigation showHeaderSearch={true} forceContext="blog" />
       
       {/* Reading Progress Bar */}
@@ -278,7 +297,7 @@ const BlogPostClient = ({ params }) => {
         top: 0,
         left: 0,
         right: 0,
-        height: '4px',
+        height: '3px',
         backgroundColor: currentTheme.divider,
         zIndex: 1000
       }}>
@@ -287,16 +306,15 @@ const BlogPostClient = ({ params }) => {
           width: `${readingProgress}%`,
           background: `linear-gradient(90deg, ${currentTheme.accent} 0%, ${currentTheme.accentLight} 100%)`,
           transition: 'width 0.1s ease',
-          boxShadow: `0 0 10px ${currentTheme.accent}40`
+          boxShadow: `0 0 8px ${currentTheme.accent}30`
         }} />
       </div>
 
-      {/* Floating Action Bar */}
+      {/* Floating Controls */}
       <div style={{
         position: 'fixed',
-        top: '50%',
+        bottom: isMobile ? '1.5rem' : '2rem',
         right: isMobile ? '1rem' : '2rem',
-        transform: 'translateY(-50%)',
         display: 'flex',
         flexDirection: 'column',
         gap: '0.75rem',
@@ -315,7 +333,8 @@ const BlogPostClient = ({ params }) => {
             justifyContent: 'center',
             cursor: 'pointer',
             transition: 'all 0.2s ease',
-            backdropFilter: 'blur(10px)'
+            backdropFilter: 'blur(10px)',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'scale(1.1)';
@@ -329,12 +348,8 @@ const BlogPostClient = ({ params }) => {
           {isDarkMode ? <Sun size={20} color={currentTheme.muted} /> : <Moon size={20} color={currentTheme.muted} />}
         </button>
 
-        <button
-          onClick={() => {
-            const sizes = ['small', 'medium', 'large', 'xlarge'];
-            const currentIndex = sizes.indexOf(fontSize);
-            setFontSize(sizes[(currentIndex + 1) % sizes.length]);
-          }}
+        {/* <button
+          onClick={() => setShowSettings(!showSettings)}
           style={{
             width: '48px',
             height: '48px',
@@ -347,11 +362,10 @@ const BlogPostClient = ({ params }) => {
             cursor: 'pointer',
             transition: 'all 0.2s ease',
             backdropFilter: 'blur(10px)',
-            fontSize: fontSize === 'small' ? '14px' : fontSize === 'large' ? '18px' : fontSize === 'xlarge' ? '20px' : '16px',
-            fontWeight: '600'
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
           }}
         >
-          Aa
+          <Settings size={20} color={currentTheme.muted} />
         </button>
 
         {!isMobile && (
@@ -368,144 +382,163 @@ const BlogPostClient = ({ params }) => {
               justifyContent: 'center',
               cursor: 'pointer',
               transition: 'all 0.2s ease',
-              backdropFilter: 'blur(10px)'
+              backdropFilter: 'blur(10px)',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
             }}
           >
             {isFullscreen ? <Minimize2 size={20} color={currentTheme.muted} /> : <Maximize2 size={20} color={currentTheme.muted} />}
           </button>
-        )}
+        )} */}
       </div>
 
-      {/* Hero Section with Enhanced Design */}
+      {/* Settings Panel */}
+      {/* {showSettings && (
+        <div style={{
+          position: 'fixed',
+          top: '50%',
+          right: isMobile ? '5rem' : '6rem',
+          transform: 'translateY(-50%)',
+          backgroundColor: currentTheme.elevated,
+          borderRadius: '16px',
+          padding: '1.5rem',
+          border: `1px solid ${currentTheme.border}`,
+          boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
+          zIndex: 200,
+          minWidth: '200px',
+          backdropFilter: 'blur(20px)'
+        }}>
+          <h3 style={{
+            fontSize: '0.875rem',
+            fontWeight: '600',
+            marginBottom: '1rem',
+            color: currentTheme.text
+          }}>Reading Settings</h3>
+          
+          <div style={{ marginBottom: '1rem' }}>
+            <label style={{
+              fontSize: '0.75rem',
+              color: currentTheme.subtle,
+              marginBottom: '0.5rem',
+              display: 'block'
+            }}>Font Size</label>
+            <select
+              value={fontSize}
+              onChange={(e) => setFontSize(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '0.5rem',
+                backgroundColor: currentTheme.card,
+                border: `1px solid ${currentTheme.border}`,
+                borderRadius: '8px',
+                color: currentTheme.text,
+                fontSize: '0.875rem'
+              }}
+            >
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+              <option value="xlarge">Extra Large</option>
+            </select>
+          </div>
+
+          <div style={{ marginBottom: '1rem' }}>
+            <label style={{
+              fontSize: '0.75rem',
+              color: currentTheme.subtle,
+              marginBottom: '0.5rem',
+              display: 'block'
+            }}>Line Height</label>
+            <select
+              value={lineHeight}
+              onChange={(e) => setLineHeight(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '0.5rem',
+                backgroundColor: currentTheme.card,
+                border: `1px solid ${currentTheme.border}`,
+                borderRadius: '8px',
+                color: currentTheme.text,
+                fontSize: '0.875rem'
+              }}
+            >
+              <option value="tight">Tight</option>
+              <option value="normal">Normal</option>
+              <option value="relaxed">Relaxed</option>
+              <option value="loose">Loose</option>
+            </select>
+          </div>
+
+          <div>
+            <label style={{
+              fontSize: '0.75rem',
+              color: currentTheme.subtle,
+              marginBottom: '0.5rem',
+              display: 'block'
+            }}>Max Width</label>
+            <select
+              value={maxWidth}
+              onChange={(e) => setMaxWidth(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '0.5rem',
+                backgroundColor: currentTheme.card,
+                border: `1px solid ${currentTheme.border}`,
+                borderRadius: '8px',
+                color: currentTheme.text,
+                fontSize: '0.875rem'
+              }}
+            >
+              <option value="narrow">Narrow</option>
+              <option value="comfortable">Comfortable</option>
+              <option value="wide">Wide</option>
+              <option value="full">Full Width</option>
+            </select>
+          </div>
+        </div>
+      )} */}
+
+      {/* Breadcrumbs - Connected to header */}
+      <div style={{ position: 'relative', zIndex: 100, marginTop: '100px' }}>
+        <Breadcrumbs 
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Blog', href: '/blog' },
+            { label: post.title, href: null, isCurrent: true }
+          ]}
+          isLight={!isDarkMode}
+        />
+      </div>
+
+      {/* Hero Section */}
       <section style={{ 
-        padding: isSmallMobile ? '6rem 1rem 3rem' : isMobile ? '7rem 1.5rem 4rem' : isTablet ? '8rem 2rem 4rem' : '8rem 2rem 4rem',
+        padding: isSmallMobile ? '2rem 1rem 3rem' : isMobile ? '2rem 1.5rem 4rem' : isTablet ? '2rem 2rem 4rem' : '2rem 2rem 4rem',
         position: 'relative',
         background: `linear-gradient(180deg, ${currentTheme.bg} 0%, ${currentTheme.elevated} 100%)`,
         overflow: 'hidden'
       }}>
-        {/* Animated Background Elements */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          overflow: 'hidden',
-          zIndex: 0
-        }}>
-          <div style={{
-            position: 'absolute',
-            width: '600px',
-            height: '600px',
-            borderRadius: '50%',
-            background: `radial-gradient(circle, ${currentTheme.accent}20 0%, transparent 70%)`,
-            top: '-300px',
-            right: '-200px',
-            animation: 'float 20s ease-in-out infinite'
-          }} />
-          <div style={{
-            position: 'absolute',
-            width: '400px',
-            height: '400px',
-            borderRadius: '50%',
-            background: `radial-gradient(circle, ${currentTheme.info}15 0%, transparent 70%)`,
-            bottom: '-200px',
-            left: '-100px',
-            animation: 'float 15s ease-in-out infinite reverse'
-          }} />
-        </div>
-
         <div style={{ 
-          maxWidth: '900px', 
+          maxWidth: '1200px', 
           margin: '0 auto',
           position: 'relative', 
           zIndex: 1 
         }}>
-          {/* Back Button with Enhanced Style */}
-          <button
-            onClick={() => window.history.back()}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.75rem 1.5rem',
-              backgroundColor: currentTheme.elevated,
-              border: `1px solid ${currentTheme.border}`,
-              borderRadius: '50px',
-              color: currentTheme.muted,
-              fontSize: '0.875rem',
-              fontWeight: '500',
-              cursor: 'pointer',
-              transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-              marginBottom: '2rem',
-              backdropFilter: 'blur(10px)'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateX(-4px)';
-              e.currentTarget.style.borderColor = currentTheme.accent;
-              e.currentTarget.style.color = currentTheme.accent;
-              e.currentTarget.style.backgroundColor = `${currentTheme.accent}10`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateX(0)';
-              e.currentTarget.style.borderColor = currentTheme.border;
-              e.currentTarget.style.color = currentTheme.muted;
-              e.currentTarget.style.backgroundColor = currentTheme.elevated;
-            }}
-          >
-            <ArrowLeft size={16} />
-            Back to Blog
-          </button>
 
-          {/* Category and Metadata Row */}
+          {/* Category Badge */}
           <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1rem',
+            display: 'inline-block',
+            padding: '0.5rem 1rem',
+            background: `linear-gradient(135deg, ${currentTheme.accent}20 0%, ${currentTheme.accentLight}10 100%)`,
+            color: currentTheme.accent,
+            borderRadius: '20px',
+            fontSize: '0.875rem',
+            fontWeight: '600',
             marginBottom: '1.5rem',
-            flexWrap: 'wrap'
+            border: `1px solid ${currentTheme.accent}30`
           }}>
-            <div style={{
-              padding: '0.5rem 1rem',
-              background: `linear-gradient(135deg, ${currentTheme.accent}30 0%, ${currentTheme.accentLight}20 100%)`,
-              color: currentTheme.accent,
-              borderRadius: '20px',
-              fontSize: '0.875rem',
-              fontWeight: '600',
-              display: 'inline-block',
-              border: `1px solid ${currentTheme.accent}40`
-            }}>
-              {post.category}
-            </div>
-            
-            <div style={{
-              padding: '0.5rem 1rem',
-              backgroundColor: currentTheme.success + '20',
-              color: currentTheme.success,
-              borderRadius: '20px',
-              fontSize: '0.875rem',
-              fontWeight: '500',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.25rem'
-            }}>
-              <TrendingUp size={14} />
-              Trending
-            </div>
-
-            <div style={{
-              padding: '0.5rem 1rem',
-              backgroundColor: currentTheme.warning + '20',
-              color: currentTheme.warning,
-              borderRadius: '20px',
-              fontSize: '0.875rem',
-              fontWeight: '500'
-            }}>
-              {post.difficulty}
-            </div>
+            {post.category}
           </div>
 
-          {/* Title with Gradient */}
+          {/* Title */}
           <h1 style={{
             fontSize: isTinyMobile ? '2rem' : isSmallMobile ? '2.25rem' : isMobile ? '2.5rem' : isTablet ? '3rem' : isLargeDesktop ? '4rem' : '3.5rem',
             fontWeight: 300,
@@ -513,10 +546,7 @@ const BlogPostClient = ({ params }) => {
             letterSpacing: '-0.02em',
             marginBottom: '1rem',
             fontFamily: 'var(--font-literata)',
-            background: `linear-gradient(135deg, ${currentTheme.text} 0%, ${currentTheme.muted} 100%)`,
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text'
+            color: currentTheme.text
           }}>
             {post.title}
           </h1>
@@ -533,126 +563,35 @@ const BlogPostClient = ({ params }) => {
             {post.subtitle}
           </p>
 
-          {/* Enhanced Meta Info Grid */}
+          {/* Meta Info */}
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(150px, 1fr))',
-            gap: '1rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '2rem',
+            flexWrap: 'wrap',
             padding: '1.5rem',
-            backgroundColor: currentTheme.card,
+            backgroundColor: currentTheme.elevated,
             borderRadius: '16px',
             border: `1px solid ${currentTheme.border}`,
             backdropFilter: 'blur(10px)'
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <div style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                backgroundColor: currentTheme.accent + '20',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <User size={18} color={currentTheme.accent} />
-              </div>
-              <div>
-                <div style={{ fontSize: '0.75rem', color: currentTheme.subtle }}>Author</div>
-                <div style={{ fontSize: '0.875rem', fontWeight: '600' }}>{post.author}</div>
-              </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <User size={16} color={currentTheme.accent} />
+              <span style={{ fontSize: '0.875rem', color: currentTheme.text }}>{post.author}</span>
             </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <div style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                backgroundColor: currentTheme.info + '20',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <Calendar size={18} color={currentTheme.info} />
-              </div>
-              <div>
-                <div style={{ fontSize: '0.75rem', color: currentTheme.subtle }}>Published</div>
-                <div style={{ fontSize: '0.875rem', fontWeight: '600' }}>{post.date}</div>
-              </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Calendar size={16} color={currentTheme.info} />
+              <span style={{ fontSize: '0.875rem', color: currentTheme.muted }}>{post.date}</span>
             </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <div style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                backgroundColor: currentTheme.success + '20',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <Clock size={18} color={currentTheme.success} />
-              </div>
-              <div>
-                <div style={{ fontSize: '0.75rem', color: currentTheme.subtle }}>Read Time</div>
-                <div style={{ fontSize: '0.875rem', fontWeight: '600' }}>{post.readTime} min</div>
-              </div>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-              <div style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                backgroundColor: currentTheme.warning + '20',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <Eye size={18} color={currentTheme.warning} />
-              </div>
-              <div>
-                <div style={{ fontSize: '0.75rem', color: currentTheme.subtle }}>Views</div>
-                <div style={{ fontSize: '0.875rem', fontWeight: '600' }}>{viewCount.toLocaleString()}</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Reading Stats Bar */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginTop: '2rem',
-            padding: '1rem',
-            backgroundColor: currentTheme.elevated,
-            borderRadius: '12px',
-            border: `1px solid ${currentTheme.border}`
-          }}>
-            <div style={{ display: 'flex', gap: '2rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <BookOpen size={16} color={currentTheme.accent} />
-                <span style={{ fontSize: '0.875rem', color: currentTheme.muted }}>
-                  {Math.round(readingProgress)}% Complete
-                </span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Clock size={16} color={currentTheme.info} />
-                <span style={{ fontSize: '0.875rem', color: currentTheme.muted }}>
-                  {formatTime(timeSpent)} reading
-                </span>
-              </div>
-            </div>
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
-              <ThumbsUp size={16} color={currentTheme.subtle} />
-              <span style={{ fontSize: '0.875rem', color: currentTheme.subtle }}>{likeCount}</span>
-              <Share2 size={16} color={currentTheme.subtle} style={{ marginLeft: '1rem' }} />
-              <span style={{ fontSize: '0.875rem', color: currentTheme.subtle }}>{shareCount}</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <Clock size={16} color={currentTheme.success} />
+              <span style={{ fontSize: '0.875rem', color: currentTheme.muted }}>{post.readTime} min read</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Main Content Area with Sidebar */}
+      {/* Main Content Area */}
       <section style={{
         padding: isMobile ? '2rem 1rem' : '3rem 2rem',
         backgroundColor: currentTheme.bg
@@ -661,138 +600,34 @@ const BlogPostClient = ({ params }) => {
           maxWidth: '1400px',
           margin: '0 auto',
           display: 'grid',
-          gridTemplateColumns: isDesktop ? '250px 1fr 250px' : '1fr',
+          gridTemplateColumns: isDesktop ? '1fr 300px' : '1fr',
           gap: '3rem'
         }}>
-          {/* Left Sidebar - Table of Contents */}
-          {isDesktop && (
-            <aside style={{
-              position: 'sticky',
-              top: '100px',
-              height: 'fit-content'
-            }}>
-              <div style={{
-                backgroundColor: currentTheme.elevated,
-                borderRadius: '16px',
-                padding: '1.5rem',
-                border: `1px solid ${currentTheme.border}`
-              }}>
-                <h3 style={{
-                  fontSize: '1rem',
-                  fontWeight: '600',
-                  marginBottom: '1rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem'
-                }}>
-                  <Hash size={16} />
-                  Table of Contents
-                </h3>
-                <nav>
-                  {tableOfContents.map((item, index) => (
-                    <button
-                      key={item.id}
-                      onClick={() => scrollToSection(item.id)}
-                      style={{
-                        display: 'block',
-                        width: '100%',
-                        textAlign: 'left',
-                        padding: '0.5rem 0.75rem',
-                        marginBottom: '0.25rem',
-                        backgroundColor: activeSection === item.id ? currentTheme.accent + '20' : 'transparent',
-                        borderLeft: `3px solid ${activeSection === item.id ? currentTheme.accent : 'transparent'}`,
-                        color: activeSection === item.id ? currentTheme.accent : currentTheme.muted,
-                        fontSize: '0.875rem',
-                        fontWeight: activeSection === item.id ? '600' : '400',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease',
-                        border: 'none',
-                        borderRadius: '8px'
-                      }}
-                      onMouseEnter={(e) => {
-                        if (activeSection !== item.id) {
-                          e.currentTarget.style.backgroundColor = currentTheme.card;
-                          e.currentTarget.style.color = currentTheme.text;
-                        }
-                      }}
-                      onMouseLeave={(e) => {
-                        if (activeSection !== item.id) {
-                          e.currentTarget.style.backgroundColor = 'transparent';
-                          e.currentTarget.style.color = currentTheme.muted;
-                        }
-                      }}
-                    >
-                      {item.title}
-                    </button>
-                  ))}
-                </nav>
-              </div>
-
-              {/* Author Card */}
-              <div style={{
-                backgroundColor: currentTheme.elevated,
-                borderRadius: '16px',
-                padding: '1.5rem',
-                marginTop: '1.5rem',
-                border: `1px solid ${currentTheme.border}`
-              }}>
-                <div style={{
-                  width: '80px',
-                  height: '80px',
-                  borderRadius: '50%',
-                  background: `linear-gradient(135deg, ${currentTheme.accent} 0%, ${currentTheme.accentLight} 100%)`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#ffffff',
-                  fontSize: '2rem',
-                  fontWeight: '600',
-                  margin: '0 auto 1rem'
-                }}>
-                  {post.author.split(' ').map(n => n[0]).join('')}
-                </div>
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontWeight: '600', marginBottom: '0.25rem' }}>{post.author}</div>
-                  <div style={{ fontSize: '0.75rem', color: currentTheme.muted, marginBottom: '1rem' }}>{post.authorTitle}</div>
-                  <button style={{
-                    padding: '0.5rem 1rem',
-                    backgroundColor: currentTheme.accent,
-                    color: '#ffffff',
-                    borderRadius: '20px',
-                    fontSize: '0.75rem',
-                    fontWeight: '500',
-                    cursor: 'pointer',
-                    border: 'none',
-                    transition: 'all 0.2s ease'
-                  }}>
-                    Follow
-                  </button>
-                </div>
-              </div>
-            </aside>
-          )}
-
           {/* Main Article Content */}
-          <article ref={contentRef} style={{ maxWidth: '750px' }}>
+          <article ref={contentRef} style={{ 
+            maxWidth: currentMaxWidth,
+            margin: '0 auto'
+          }}>
             <div 
               style={{
                 fontSize: currentFontSize.body,
-                lineHeight: currentFontSize.lineHeight,
-                color: currentTheme.text
+                lineHeight: currentLineHeight,
+                color: currentTheme.text,
+                fontFamily: 'var(--font-inter)'
               }}
               dangerouslySetInnerHTML={{ 
                 __html: post.content
-                  .replace(/<h2>/g, `<h2 style="font-size: ${currentFontSize.heading}; font-weight: 600; margin: 3rem 0 1.5rem; color: ${currentTheme.text}; font-family: var(--font-literata);">`)
-                  .replace(/<p>/g, `<p style="margin-bottom: 1.75rem; color: ${currentTheme.text}; line-height: ${currentFontSize.lineHeight};">`)
+                  .replace(/<h2>/g, `<h2 style="font-size: ${currentFontSize.heading}; font-weight: 600; margin: 3rem 0 1.5rem; color: ${currentTheme.text}; font-family: var(--font-literata); line-height: 1.3;">`)
+                  .replace(/<p>/g, `<p style="margin-bottom: 1.75rem; color: ${currentTheme.text}; line-height: ${currentLineHeight}; font-size: ${currentFontSize.body};">`)
                   .replace(/<ul>/g, `<ul style="margin-bottom: 1.75rem; padding-left: 1.5rem; list-style: none;">`)
-                  .replace(/<li>/g, `<li style="margin-bottom: 0.75rem; color: ${currentTheme.text}; position: relative; padding-left: 1.5rem;"><span style="position: absolute; left: 0; color: ${currentTheme.accent};">•</span>`)
-                  .replace(/<blockquote>/g, `<blockquote style="border-left: 4px solid ${currentTheme.accent}; padding: 1.5rem; margin: 2.5rem 0; font-style: italic; color: ${currentTheme.muted}; font-size: ${currentFontSize.body}; background: ${currentTheme.elevated}; border-radius: 0 12px 12px 0; position: relative;">`)
+                  .replace(/<li>/g, `<li style="margin-bottom: 0.75rem; color: ${currentTheme.text}; position: relative; padding-left: 1.5rem; line-height: ${currentLineHeight};"><span style="position: absolute; left: 0; color: ${currentTheme.accent}; font-weight: 600;">•</span>`)
+                  .replace(/<blockquote>/g, `<blockquote style="border-left: 4px solid ${currentTheme.accent}; padding: 1.5rem; margin: 2.5rem 0; font-style: italic; color: ${currentTheme.muted}; font-size: ${currentFontSize.body}; background: ${currentTheme.elevated}; border-radius: 0 12px 12px 0; position: relative; line-height: ${currentLineHeight};">`)
                   .replace(/<strong>/g, `<strong style="color: ${currentTheme.accent}; font-weight: 600;">`)
                   .replace(/<section/g, `<section style="scroll-margin-top: 100px;"`)
               }}
             />
 
-            {/* Enhanced Tags Section */}
+            {/* Tags Section */}
             <div style={{
               marginTop: '3rem',
               paddingTop: '2rem',
@@ -804,7 +639,8 @@ const BlogPostClient = ({ params }) => {
                 marginBottom: '1rem',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.5rem'
+                gap: '0.5rem',
+                color: currentTheme.text
               }}>
                 <Tag size={16} />
                 Topics Covered
@@ -846,24 +682,27 @@ const BlogPostClient = ({ params }) => {
             </div>
 
             {/* Engagement Actions */}
-            <div style={{
+            {/* <div style={{
               marginTop: '3rem',
               padding: '2rem',
               backgroundColor: currentTheme.elevated,
               borderRadius: '16px',
-              border: `1px solid ${currentTheme.border}`
+              border: `1px solid ${currentTheme.border}`,
+              backdropFilter: 'blur(10px)'
             }}>
               <h3 style={{
                 fontSize: '1.25rem',
                 fontWeight: '600',
-                marginBottom: '1rem'
+                marginBottom: '1rem',
+                color: currentTheme.text
               }}>
                 Did you find this article helpful?
               </h3>
               <div style={{
                 display: 'flex',
                 gap: '1rem',
-                marginBottom: '1.5rem'
+                marginBottom: '1.5rem',
+                flexWrap: 'wrap'
               }}>
                 <button
                   onClick={() => {
@@ -944,7 +783,8 @@ const BlogPostClient = ({ params }) => {
                       borderRadius: '12px',
                       padding: '0.5rem',
                       boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
-                      zIndex: 10
+                      zIndex: 10,
+                      backdropFilter: 'blur(20px)'
                     }}>
                       <button
                         onClick={() => handleShare('twitter')}
@@ -1019,111 +859,253 @@ const BlogPostClient = ({ params }) => {
                   )}
                 </div>
               </div>
-            </div>
+            </div> */}
           </article>
 
-          {/* Right Sidebar - Related Content */}
+          {/* Right Sidebar - Table of Contents */}
           {isDesktop && (
             <aside style={{
               position: 'sticky',
               top: '100px',
               height: 'fit-content'
             }}>
-              {/* Reading Stats Card */}
               <div style={{
-                backgroundColor: currentTheme.elevated,
-                borderRadius: '16px',
-                padding: '1.5rem',
+                background: `linear-gradient(145deg, ${currentTheme.elevated} 0%, ${currentTheme.card} 100%)`,
+                borderRadius: '20px',
+                padding: '2rem',
                 border: `1px solid ${currentTheme.border}`,
-                marginBottom: '1.5rem'
+                backdropFilter: 'blur(20px)',
+                boxShadow: `0 8px 32px ${currentTheme.accent}10`,
+                position: 'relative',
+                overflow: 'hidden'
               }}>
-                <h3 style={{
-                  fontSize: '1rem',
-                  fontWeight: '600',
-                  marginBottom: '1rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem'
+                {/* Decorative corner accent */}
+                <div style={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  width: '60px',
+                  height: '60px',
+                  background: `linear-gradient(135deg, ${currentTheme.accent}20 0%, transparent 50%)`,
+                  borderRadius: '0 20px 0 20px'
+                }} />
+                
+                <div style={{
+                  position: 'relative',
+                  zIndex: 1
                 }}>
-                  <BarChart size={16} />
-                  Article Stats
-                </h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <div>
-                    <div style={{ fontSize: '0.75rem', color: currentTheme.subtle, marginBottom: '0.25rem' }}>Citations</div>
-                    <div style={{ fontSize: '1.25rem', fontWeight: '600', color: currentTheme.accent }}>{post.citations}</div>
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '0.75rem', color: currentTheme.subtle, marginBottom: '0.25rem' }}>Engagement</div>
-                    <div style={{ fontSize: '1.25rem', fontWeight: '600', color: currentTheme.success }}>
-                      {((likeCount / viewCount) * 100).toFixed(1)}%
+                  <h3 style={{
+                    fontSize: '1.125rem',
+                    fontWeight: '300',
+                    marginBottom: '1.5rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.75rem',
+                    color: currentTheme.text,
+                    fontFamily: 'var(--font-literata)',
+                    letterSpacing: '-0.01em'
+                  }}>
+                    <div style={{
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '8px',
+                      background: `linear-gradient(135deg, ${currentTheme.accent} 0%, ${currentTheme.accentLight} 100%)`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#ffffff',
+                      fontSize: '0.875rem',
+                      fontWeight: '600'
+                    }}>
+                      <Hash size={16} />
                     </div>
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '0.75rem', color: currentTheme.subtle, marginBottom: '0.25rem' }}>Shares</div>
-                    <div style={{ fontSize: '1.25rem', fontWeight: '600', color: currentTheme.info }}>{shareCount}</div>
+                    Contents
+                  </h3>
+                  
+                  <nav style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.5rem'
+                  }}>
+                    {tableOfContents.map((item, index) => (
+                      <button
+                        key={item.id}
+                        onClick={() => scrollToSection(item.id)}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          width: '100%',
+                          textAlign: 'left',
+                          padding: '1rem 1.25rem',
+                          backgroundColor: activeSection === item.id 
+                            ? `linear-gradient(135deg, ${currentTheme.accent}15 0%, ${currentTheme.accentLight}08 100%)`
+                            : 'transparent',
+                          border: activeSection === item.id 
+                            ? `1px solid ${currentTheme.accent}30`
+                            : `1px solid transparent`,
+                          color: activeSection === item.id ? currentTheme.accent : currentTheme.muted,
+                          fontSize: '0.875rem',
+                          fontWeight: activeSection === item.id ? '500' : '400',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                          borderRadius: '12px',
+                          position: 'relative',
+                          overflow: 'hidden'
+                        }}
+                        onMouseEnter={(e) => {
+                          if (activeSection !== item.id) {
+                            e.currentTarget.style.backgroundColor = currentTheme.card;
+                            e.currentTarget.style.color = currentTheme.text;
+                            e.currentTarget.style.transform = 'translateX(4px)';
+                            e.currentTarget.style.borderColor = currentTheme.border;
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (activeSection !== item.id) {
+                            e.currentTarget.style.backgroundColor = 'transparent';
+                            e.currentTarget.style.color = currentTheme.muted;
+                            e.currentTarget.style.transform = 'translateX(0)';
+                            e.currentTarget.style.borderColor = 'transparent';
+                          }
+                        }}
+                      >
+                        {/* Section number indicator */}
+                        <div style={{
+                          width: '24px',
+                          height: '24px',
+                          borderRadius: '50%',
+                          backgroundColor: activeSection === item.id 
+                            ? currentTheme.accent 
+                            : currentTheme.faint,
+                          color: activeSection === item.id 
+                            ? '#ffffff' 
+                            : currentTheme.muted,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '0.75rem',
+                          fontWeight: '600',
+                          marginRight: '0.75rem',
+                          transition: 'all 0.3s ease',
+                          flexShrink: 0
+                        }}>
+                          {index + 1}
+                        </div>
+                        
+                        {/* Section title */}
+                        <span style={{
+                          flex: 1,
+                          lineHeight: '1.4',
+                          letterSpacing: '-0.01em'
+                        }}>
+                          {item.title}
+                        </span>
+                        
+                        {/* Active indicator */}
+                        {activeSection === item.id && (
+                          <div style={{
+                            width: '6px',
+                            height: '6px',
+                            borderRadius: '50%',
+                            backgroundColor: currentTheme.accent,
+                            marginLeft: '0.5rem',
+                            animation: 'pulse 2s infinite'
+                          }} />
+                        )}
+                      </button>
+                    ))}
+                  </nav>
+                  
+                  {/* Progress indicator */}
+                  <div style={{
+                    marginTop: '1.5rem',
+                    paddingTop: '1.5rem',
+                    borderTop: `1px solid ${currentTheme.divider}`
+                  }}>
+                    <div style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      marginBottom: '0.75rem'
+                    }}>
+                      <span style={{
+                        fontSize: '0.75rem',
+                        color: currentTheme.subtle,
+                        fontWeight: '500'
+                      }}>
+                        Reading Progress
+                      </span>
+                      <span style={{
+                        fontSize: '0.75rem',
+                        color: currentTheme.accent,
+                        fontWeight: '600'
+                      }}>
+                        {Math.round(readingProgress)}%
+                      </span>
+                    </div>
+                    <div style={{
+                      width: '100%',
+                      height: '4px',
+                      backgroundColor: currentTheme.divider,
+                      borderRadius: '2px',
+                      overflow: 'hidden'
+                    }}>
+                      <div style={{
+                        width: `${readingProgress}%`,
+                        height: '100%',
+                        background: `linear-gradient(90deg, ${currentTheme.accent} 0%, ${currentTheme.accentLight} 100%)`,
+                        borderRadius: '2px',
+                        transition: 'width 0.3s ease',
+                        boxShadow: `0 0 8px ${currentTheme.accent}30`
+                      }} />
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Related Articles */}
+              {/* Author Card */}
               <div style={{
                 backgroundColor: currentTheme.elevated,
                 borderRadius: '16px',
                 padding: '1.5rem',
-                border: `1px solid ${currentTheme.border}`
+                marginTop: '1.5rem',
+                border: `1px solid ${currentTheme.border}`,
+                backdropFilter: 'blur(10px)'
               }}>
-                <h3 style={{
-                  fontSize: '1rem',
-                  fontWeight: '600',
-                  marginBottom: '1rem',
+                <div style={{
+                  width: '60px',
+                  height: '60px',
+                  borderRadius: '50%',
+                  background: `linear-gradient(135deg, ${currentTheme.accent} 0%, ${currentTheme.accentLight} 100%)`,
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.5rem'
+                  justifyContent: 'center',
+                  color: '#ffffff',
+                  fontSize: '1.5rem',
+                  fontWeight: '600',
+                  margin: '0 auto 1rem'
                 }}>
-                  <Sparkles size={16} />
-                  Related Articles
-                </h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  {post.relatedPosts.map((related) => (
-                    <button
-                      key={related.id}
-                      style={{
-                        textAlign: 'left',
-                        padding: '0.75rem',
-                        backgroundColor: currentTheme.card,
-                        borderRadius: '12px',
-                        border: `1px solid ${currentTheme.border}`,
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'translateX(-4px)';
-                        e.currentTarget.style.borderColor = currentTheme.accent;
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'translateX(0)';
-                        e.currentTarget.style.borderColor = currentTheme.border;
-                      }}
-                    >
-                      <div style={{
-                        fontSize: '0.875rem',
-                        fontWeight: '600',
-                        marginBottom: '0.25rem',
-                        color: currentTheme.text
-                      }}>{related.title}</div>
-                      <div style={{
-                        fontSize: '0.75rem',
-                        color: currentTheme.subtle,
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '0.25rem'
-                      }}>
-                        <Clock size={12} />
-                        {related.readTime} min read
-                      </div>
-                    </button>
-                  ))}
+                  {post.author.split(' ').map(n => n[0]).join('')}
+                </div>
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ fontWeight: '600', marginBottom: '0.25rem', color: currentTheme.text }}>{post.author}</div>
+                  <div style={{ fontSize: '0.75rem', color: currentTheme.muted, marginBottom: '1rem' }}>{post.authorTitle}</div>
+                  <p style={{ fontSize: '0.875rem', color: currentTheme.muted, lineHeight: 1.5, marginBottom: '1rem' }}>
+                    {post.authorBio}
+                  </p>
+                  <button style={{
+                    padding: '0.5rem 1rem',
+                    backgroundColor: currentTheme.accent,
+                    color: '#ffffff',
+                    borderRadius: '20px',
+                    fontSize: '0.75rem',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    border: 'none',
+                    transition: 'all 0.2s ease'
+                  }}>
+                    Follow
+                  </button>
                 </div>
               </div>
             </aside>
@@ -1139,6 +1121,28 @@ const BlogPostClient = ({ params }) => {
           }
           50% {
             transform: translateY(-20px) scale(1.05);
+          }
+        }
+        
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.7;
+            transform: scale(1.1);
+          }
+        }
+        
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
           }
         }
       `}</style>
