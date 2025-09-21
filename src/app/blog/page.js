@@ -9,7 +9,7 @@ import {
   CheckCircle, Clock, Zap, Globe,
   BarChart, Edit3, BookMarked, Lightbulb,
   PenTool, Target, Layers, Award,
-  Menu, X, TrendingUp, Shield, Star
+  Menu, X, TrendingUp, Shield
 } from 'lucide-react';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import { useBlogSearch } from '@/hooks/useBlogSearch';
@@ -75,8 +75,7 @@ const BlogPage = () => {
       authorRole: "Founder, Esy",
       date: "March 28, 2025",
       readTime: 12,
-      category: "AI & Technology",
-      featured: true
+      category: "AI & Technology"
     },
     {
       id: 2,
@@ -87,8 +86,7 @@ const BlogPage = () => {
       authorRole: "Founder, Esy",
       date: "March 25, 2025",
       readTime: 8,
-      category: "AI & Technology",
-      featured: false
+      category: "AI & Technology"
     },
     {
       id: 3,
@@ -99,8 +97,7 @@ const BlogPage = () => {
       authorRole: "Founder, Esy",
       date: "March 22, 2025",
       readTime: 15,
-      category: "Research",
-      featured: false
+      category: "Research"
     },
     {
       id: 4,
@@ -111,14 +108,13 @@ const BlogPage = () => {
       authorRole: "Founder, Esy",
       date: "March 20, 2025",
       readTime: 10,
-      category: "Education",
-      featured: true
+      category: "Education"
     }
   ];
 
-  const filteredPosts = blogPosts.filter(post => 
-    selectedCategory === 'All' || post.category === selectedCategory
-  );
+  const filteredPosts = blogPosts
+    .filter(post => selectedCategory === 'All' || post.category === selectedCategory)
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
 
   // Add tags to blog posts for better search
   const blogPostsWithTags = blogPosts.map(post => ({
@@ -284,7 +280,7 @@ const BlogPage = () => {
         }} />
       </section>
 
-      {/* Blog Posts Grid Section */}
+        {/* Blog Posts Grid Section */}
       <section style={{
         padding: isMobile ? '3rem 1rem' : '5rem 2rem',
         backgroundColor: currentTheme.bg,
@@ -294,100 +290,6 @@ const BlogPage = () => {
           maxWidth: '1200px',
           margin: '0 auto'
         }}>
-          {/* Featured Posts */}
-          <div style={{ marginBottom: '4rem' }}>
-            <h2 style={{
-              fontSize: isMobile ? '1.75rem' : '2.5rem',
-              fontWeight: 300,
-              marginBottom: '2rem',
-              textAlign: 'center',
-              fontFamily: 'var(--font-literata)'
-            }}>
-              <span style={{ color: currentTheme.accent }}>Featured</span> Articles
-            </h2>
-            
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(2, 1fr)',
-              gap: '2rem'
-            }}>
-              {filteredPosts.filter(post => post.featured).map(post => (
-                <Link
-                  key={post.id}
-                  href={`/blog/${post.slug}`}
-                  style={{ textDecoration: 'none' }}
-                >
-                  <div
-                    style={{
-                      backgroundColor: currentTheme.elevated,
-                      borderRadius: '20px',
-                      padding: isMobile ? '1.5rem' : '2rem',
-                      border: `1px solid ${hoveredCard === post.id ? currentTheme.accent : currentTheme.border}`,
-                      transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                      cursor: 'pointer',
-                      transform: hoveredCard === post.id ? 'translateY(-4px)' : 'translateY(0)',
-                      boxShadow: hoveredCard === post.id 
-                        ? `0 20px 40px rgba(139, 92, 246, 0.2)` 
-                        : '0 4px 16px rgba(0, 0, 0, 0.1)'
-                    }}
-                    onMouseEnter={() => setHoveredCard(post.id)}
-                    onMouseLeave={() => setHoveredCard(null)}
-                  >
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    marginBottom: '1rem'
-                  }}>
-                    <Star size={16} color={currentTheme.accent} />
-                    <span style={{
-                      fontSize: '0.75rem',
-                      color: currentTheme.accent,
-                      fontWeight: '600',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.05em'
-                    }}>Featured</span>
-                  </div>
-                  
-                  <h3 style={{
-                    fontSize: isMobile ? '1.25rem' : '1.5rem',
-                    fontWeight: 600,
-                    marginBottom: '1rem',
-                    lineHeight: 1.3
-                  }}>{post.title}</h3>
-                  
-                  <p style={{
-                    color: currentTheme.muted,
-                    marginBottom: '1.5rem',
-                    lineHeight: 1.6
-                  }}>{post.excerpt}</p>
-                  
-                  <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    fontSize: '0.875rem',
-                    color: currentTheme.subtle
-                  }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <div>
-                        <div style={{ fontWeight: '600' }}>{post.author}</div>
-                        <div style={{ fontSize: '0.75rem', color: currentTheme.subtle }}>{post.authorRole}</div>
-                      </div>
-                      <span>•</span>
-                      <span>{post.date}</span>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                      <Clock size={14} />
-                      <span>{post.readTime} min</span>
-                    </div>
-                  </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-
           {/* All Posts */}
           <div>
             <h2 style={{
@@ -397,7 +299,7 @@ const BlogPage = () => {
               textAlign: 'center',
               fontFamily: 'var(--font-literata)'
             }}>
-              All Articles
+              Latest Articles
             </h2>
             
             <div style={{
@@ -405,7 +307,7 @@ const BlogPage = () => {
               gridTemplateColumns: isMobile ? '1fr' : isTablet ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)',
               gap: '1.5rem'
             }}>
-              {filteredPosts.filter(post => !post.featured).map(post => (
+              {filteredPosts.map(post => (
                 <Link
                   key={post.id}
                   href={`/blog/${post.slug}`}
