@@ -59,14 +59,6 @@ const ConditionalNavigation = () => {
                        isEssaysPage ? 'essays' :
                        'general';
   
-  console.log('[ConditionalNavigation] Debug:', {
-    pathname,
-    normalizedPath,
-    isEssaysPage,
-    showHeaderSearch,
-    shouldShowHeaderSearch,
-    searchContext
-  });
   
   return <Navigation showHeaderSearch={shouldShowHeaderSearch} searchContext={searchContext} />;
 };

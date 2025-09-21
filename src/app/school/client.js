@@ -18,7 +18,21 @@ const EsySchool = () => {
   const [viewMode, setViewMode] = useState('grid');
   const [scrollProgress, setScrollProgress] = useState(0);
   const [email, setEmail] = useState('');
-  const [newsletterHovered, setNewsletterHovered] = useState(false);
+  
+  // Responsive breakpoints
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+  
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768);
+      setIsTablet(window.innerWidth < 1024);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   // Scroll progress indicator
   useEffect(() => {
@@ -133,39 +147,72 @@ const EsySchool = () => {
       transition: 'color 0.2s ease',
       position: 'relative'
     },
-    hero: {
-      padding: '2rem 3rem 3rem',
-      maxWidth: '1400px',
-      margin: '0 auto',
-      position: 'relative'
-    },
     heroContent: {
-      maxWidth: '900px'
-    },
-
-    heroTitle: {
-      fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-      fontWeight: '300',
-      lineHeight: '1.3',
-      marginBottom: '1.5rem',
-      letterSpacing: '0.01em',
-      fontFamily: 'var(--font-literata)'
-    },
-    heroAccent: {
-      color: '#8b5cf6',
-      fontWeight: '400'
-    },
-    heroDescription: {
-      fontSize: '1.25rem',
-      color: 'rgba(255, 255, 255, 0.7)',
-      lineHeight: '1.7',
-      marginBottom: '3rem',
-      fontWeight: '300'
-    },
-    mainContent: {
-      maxWidth: '1400px',
+      display: 'grid',
+      gridTemplateColumns: isTablet ? '1fr' : '1.2fr 0.8fr',
+      gap: isTablet ? '3rem' : '4rem',
+      alignItems: 'center',
+      width: '100%',
+      maxWidth: '1200px',
       margin: '0 auto',
-      padding: '4rem 3rem'
+      textAlign: isTablet ? 'center' : 'left'
+    },
+    heroLeft: {
+      maxWidth: '720px',
+      margin: isTablet ? '0 auto' : '0'
+    },
+    heroTitle: {
+      fontFamily: 'Literata, Georgia, serif',
+      fontSize: 'clamp(3rem, 7vw, 6rem)',
+      fontWeight: '300',
+      lineHeight: '1.15',
+      marginBottom: '2rem',
+      opacity: '1',
+      letterSpacing: '-0.02em'
+    },
+    heroTitleAccent: {
+      display: 'block',
+      fontSize: 'clamp(2.5rem, 6vw, 5rem)',
+      fontWeight: '400',
+      marginTop: '0.5rem',
+      color: '#8b5cf6'
+    },
+    heroSubtitle: {
+      fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+      fontWeight: '400',
+      opacity: '0.8',
+      lineHeight: '1.6',
+      marginBottom: '3rem',
+      maxWidth: '500px'
+    },
+    heroSearchSection: {
+      marginTop: '0',
+      maxWidth: '500px'
+    },
+    heroRight: {
+      position: 'relative',
+      display: isTablet ? 'none' : 'flex',
+      flexDirection: 'column',
+      gap: '0.75rem'
+    },
+    featureCard: {
+      backgroundColor: 'rgba(22, 22, 31, 0.8)',
+      border: '1px solid rgba(255, 255, 255, 0.08)',
+      borderRadius: '10px',
+      padding: '1rem',
+      backdropFilter: 'blur(10px)'
+    },
+    featureTitle: {
+      fontFamily: 'Literata, Georgia, serif',
+      fontSize: '1rem',
+      fontWeight: '400',
+      marginBottom: '0.5rem',
+      opacity: '0.9'
+    },
+    featureDescription: {
+      fontSize: '0.8rem',
+      opacity: '0.6',
+      lineHeight: '1.5'
     },
     contentHeader: {
       display: 'flex',
@@ -319,73 +366,6 @@ const EsySchool = () => {
     },
 
 
-    newsletter: {
-      maxWidth: '800px',
-      margin: '8rem auto',
-      padding: '4rem',
-      backgroundColor: 'rgba(139, 92, 246, 0.03)',
-      border: '1px solid rgba(139, 92, 246, 0.1)',
-      borderRadius: '16px',
-      textAlign: 'center',
-      position: 'relative',
-      overflow: 'hidden'
-    },
-    newsletterGlow: {
-      position: 'absolute',
-      top: '-50%',
-      left: '-50%',
-      width: '200%',
-      height: '200%',
-      background: 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)',
-      animation: newsletterHovered ? 'rotate 20s linear infinite' : 'none',
-      opacity: newsletterHovered ? 1 : 0,
-      transition: 'opacity 0.3s ease'
-    },
-    newsletterContent: {
-      position: 'relative',
-      zIndex: 1
-    },
-    newsletterTitle: {
-      fontSize: '2.5rem',
-      fontWeight: '200',
-      marginBottom: '1rem',
-      letterSpacing: '-0.02em',
-      fontFamily: 'var(--font-literata)'
-    },
-    newsletterDescription: {
-      color: 'rgba(255, 255, 255, 0.7)',
-      fontSize: '1.125rem',
-      marginBottom: '2.5rem',
-      lineHeight: '1.6'
-    },
-    newsletterForm: {
-      display: 'flex',
-      gap: '1rem',
-      maxWidth: '480px',
-      margin: '0 auto'
-    },
-    newsletterInput: {
-      flex: 1,
-      padding: '1rem 1.5rem',
-      backgroundColor: 'rgba(255, 255, 255, 0.05)',
-      border: '1px solid rgba(255, 255, 255, 0.1)',
-      borderRadius: '8px',
-      color: '#ffffff',
-      fontSize: '1rem',
-      outline: 'none',
-      transition: 'all 0.3s ease'
-    },
-    newsletterButton: {
-      padding: '1rem 2rem',
-      backgroundColor: '#8b5cf6',
-      border: 'none',
-      borderRadius: '8px',
-      color: '#ffffff',
-      fontSize: '1rem',
-      fontWeight: '500',
-      cursor: 'pointer',
-      transition: 'all 0.2s ease'
-    },
     footer: {
       borderTop: '1px solid rgba(255, 255, 255, 0.05)',
       padding: '3rem',
@@ -527,52 +507,89 @@ const EsySchool = () => {
       <div style={styles.progressBar} />
       
       {/* Breadcrumbs */}
-      <div style={{ marginTop: '6rem', marginBottom: '0.5rem' }}>
+      {/* <div style={{ marginTop: '6rem', marginBottom: '0.5rem' }}>
         <Breadcrumbs 
           items={[
             { label: 'Home', href: '/' },
             { label: 'School', isCurrent: true }
           ]}
         />
-      </div>
+      </div> */}
 
       {/* Hero Section */}
-      <section style={styles.hero}>
+      <section style={{
+        position: 'relative',
+        maxWidth: '1200px',
+        margin: '0 auto',
+        marginTop: '5rem',
+        padding: '2rem 2rem 2rem 2rem',
+        minHeight: '70vh',
+        display: 'flex',
+        alignItems: 'center'
+      }}>
         <div style={styles.heroContent}>
+          <div style={styles.heroLeft}>
+            <h1 style={styles.heroTitle}>
+              Esy
+              <span style={styles.heroTitleAccent}>School</span>
+            </h1>
+            <p style={styles.heroSubtitle}>
+              Master essay writing with AI agents<br />
+              and prompt engineering.
+            </p>
+            
+            {/* Search Bar in Hero */}
+            <div ref={searchBarRef} style={styles.heroSearchSection}>
+              <SearchBar
+                placeholder="Search articles & guides..."
+                value={searchQuery}
+                onChange={(value) => {
+                  setSearchQuery(value);
+                  setDropdownSearchTerm(value);
+                }}
+                onSearch={(query) => console.log('Searching for:', query)}
+                context="school"
+                inputFontSize="0.9rem"
+                style={{ marginBottom: '0' }}
+                autoFocus={true}
+                showDropdown={showDropdown}
+                searchResults={searchResults}
+                onResultSelect={handleResultSelect}
+                loadingResults={searchLoading}
+                maxResults={8}
+              />
+            </div>
+          </div>
 
-          <h1 style={styles.heroTitle}>
-            <span style={{ fontWeight: 300 }}>Master academic writing</span>
-            <br />
-            <span style={styles.heroAccent}>in the age of AI</span>
-          </h1>
-          <p style={styles.heroDescription}>
-            Expert guides, practical tutorials, and comprehensive courses designed to help you 
-            write better, research faster, and think more clearly with AI assistance.
-          </p>
-
-          {/* Search */}
-          <div ref={searchBarRef}>
-            <SearchBar
-              value={searchQuery}
-              onChange={(value) => {
-                setSearchQuery(value);
-                setDropdownSearchTerm(value);
-              }}
-              onSearch={(query) => console.log('Searching for:', query)}
-              context="school"
-              style={{ margin: '0 0 2rem 0' }}
-              showDropdown={showDropdown}
-              searchResults={searchResults}
-              onResultSelect={handleResultSelect}
-              loadingResults={searchLoading}
-              maxResults={8}
-            />
+          <div style={styles.heroRight}>
+            <div style={styles.featureCard}>
+              <h3 style={styles.featureTitle}>AI Agent Workflows</h3>
+              <p style={styles.featureDescription}>
+                Learn to build and deploy AI agents that research, outline, and draft essays with academic rigor.
+              </p>
+            </div>
+            <div style={styles.featureCard}>
+              <h3 style={styles.featureTitle}>Prompt Engineering</h3>
+              <p style={styles.featureDescription}>
+                Master the art of crafting <Link href="/prompt-library" style={{ color: '#8b5cf6', textDecoration: 'underline', textUnderlineOffset: '0.2em' }}>prompts</Link> that generate scholarly content, citations, and critical analysis.
+              </p>
+            </div>
+            <div style={styles.featureCard}>
+              <h3 style={styles.featureTitle}>Research Automation</h3>
+              <p style={styles.featureDescription}>
+                Discover how to use AI to find sources, synthesize literature, and build compelling arguments.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Articles Section */}
-      <section id="articles" style={styles.mainContent}>
+      <section id="articles" style={{ 
+        maxWidth: '1400px',
+        margin: '0 auto',
+        padding: '4rem 3rem'
+      }}>
         <div style={styles.contentHeader}>
           <h2 style={styles.contentTitle}>Articles & Tutorials</h2>
           <div style={styles.contentMeta}>
@@ -670,40 +687,296 @@ const EsySchool = () => {
       {/* <StructuredLearningPaths courses={courses} /> */}
 
       {/* Newsletter */}
-      <section 
-        style={styles.newsletter}
-        onMouseEnter={() => setNewsletterHovered(true)}
-        onMouseLeave={() => setNewsletterHovered(false)}
-      >
-        <div style={styles.newsletterGlow} />
-        <div style={styles.newsletterContent}>
-          <h2 style={styles.newsletterTitle}>Weekly learning digest</h2>
-          <p style={styles.newsletterDescription}>
-            Get the latest articles, tutorials, and AI writing insights delivered to your inbox every Thursday.
-          </p>
-          <div style={styles.newsletterForm}>
-            <input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={styles.newsletterInput}
-              onFocus={(e) => {
-                e.target.style.borderColor = '#8b5cf6';
-                e.target.style.backgroundColor = 'rgba(139, 92, 246, 0.08)';
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-              }}
-            />
-            <button
-              style={styles.newsletterButton}
-              onMouseEnter={(e) => e.target.style.transform = 'translateY(-2px)'}
-              onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
-            >
-              Subscribe
-            </button>
+      <section style={{ 
+        position: 'relative',
+        paddingTop: isMobile ? '3rem' : isTablet ? '4rem' : '5rem',
+        paddingBottom: isMobile ? '2rem' : isTablet ? '3rem' : '4rem',
+        overflow: 'hidden'
+      }}>
+        {/* Background Elements */}
+        <div style={{
+          position: 'absolute',
+          top: '30%',
+          right: isMobile ? '5%' : '15%',
+          width: isMobile ? '150px' : '200px',
+          height: isMobile ? '150px' : '200px',
+          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, transparent 70%)',
+          borderRadius: '50%',
+          zIndex: -1,
+          filter: isMobile ? 'blur(30px)' : 'blur(40px)'
+        }} />
+
+        {/* Newsletter Scaffold Container */}
+        <div style={{
+          width: '100%',
+          margin: '0',
+          padding: '0',
+          position: 'relative'
+        }}>
+          {/* Outer Scaffold Frame */}
+          <div style={{
+            position: 'relative',
+            padding: isMobile ? '1.5rem' : isTablet ? '2rem' : '2.5rem',
+            background: 'rgba(22, 22, 31, 0.1)',
+            backdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255, 255, 255, 0.05)',
+            borderLeft: 'none',
+            borderRight: 'none',
+            borderRadius: '0',
+            overflow: 'hidden'
+          }}>
+            {/* Corner Accent Elements */}
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: isMobile ? '40px' : '60px',
+              height: isMobile ? '40px' : '60px',
+              background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%)'
+            }} />
+            
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              width: isMobile ? '40px' : '60px',
+              height: isMobile ? '40px' : '60px',
+              background: 'linear-gradient(225deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%)'
+            }} />
+            
+            <div style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              width: isMobile ? '40px' : '60px',
+              height: isMobile ? '40px' : '60px',
+              background: 'linear-gradient(45deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%)'
+            }} />
+            
+            <div style={{
+              position: 'absolute',
+              bottom: 0,
+              right: 0,
+              width: isMobile ? '40px' : '60px',
+              height: isMobile ? '40px' : '60px',
+              background: 'linear-gradient(315deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%)'
+            }} />
+
+            {/* Side decorative elements */}
+            {!isMobile && (
+              <>
+                <div style={{
+                  position: 'absolute',
+                  left: 0,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  width: '3px',
+                  height: isTablet ? '80px' : '120px',
+                  background: 'linear-gradient(to bottom, transparent 0%, #8b5cf6 50%, transparent 100%)',
+                  borderRadius: '2px'
+                }} />
+                
+                <div style={{
+                  position: 'absolute',
+                  right: 0,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  width: '3px',
+                  height: isTablet ? '80px' : '120px',
+                  background: 'linear-gradient(to bottom, transparent 0%, #8b5cf6 50%, transparent 100%)',
+                  borderRadius: '2px'
+                }} />
+
+                <div style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: isTablet ? '80px' : '120px',
+                  height: '3px',
+                  background: 'linear-gradient(to right, transparent 0%, #8b5cf6 50%, transparent 100%)',
+                  borderRadius: '2px'
+                }} />
+                
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: isTablet ? '80px' : '120px',
+                  height: '3px',
+                  background: 'linear-gradient(to right, transparent 0%, #8b5cf6 50%, transparent 100%)',
+                  borderRadius: '2px'
+                }} />
+              </>
+            )}
+
+            {/* Inner Content Container */}
+            <div style={{
+              position: 'relative',
+              padding: isMobile ? '2rem 1.5rem' : isTablet ? '3rem 2.5rem' : '3.5rem 3rem',
+              background: 'rgba(10, 10, 15, 0.3)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.03)',
+              borderRadius: isMobile ? '8px' : '12px',
+              boxShadow: '0 4px 20px rgba(10, 10, 15, 0.15)'
+            }}>
+              {/* Newsletter Content */}
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                textAlign: 'center',
+                maxWidth: '900px',
+                margin: '0 auto'
+              }}>
+                {/* Header Section */}
+                <div style={{
+                  textAlign: 'center',
+                  marginBottom: isMobile ? '2rem' : isTablet ? '2.5rem' : '3rem'
+                }}>
+                  {/* Icon */}
+                  <div style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: isMobile ? '48px' : '56px',
+                    height: isMobile ? '48px' : '56px',
+                    background: 'rgba(139, 92, 246, 0.1)',
+                    borderRadius: '50%',
+                    border: '2px solid rgba(139, 92, 246, 0.2)',
+                    marginBottom: '1.5rem'
+                  }}>
+                    <span style={{ fontSize: isMobile ? '20px' : '24px' }}>📚</span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 style={{
+                    fontSize: isMobile ? '1.75rem' : isTablet ? '2.25rem' : '2.5rem',
+                    fontWeight: '300',
+                    lineHeight: '1.2',
+                    letterSpacing: '-0.025em',
+                    marginBottom: '0.75rem',
+                    fontFamily: 'Literata, Georgia, serif',
+                    color: '#ffffff'
+                  }}>
+                    Subscribe to Esy School
+                  </h3>
+
+                  {/* Subtitle */}
+                  <p style={{
+                    fontSize: isMobile ? '0.875rem' : '0.9375rem',
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    margin: '0 auto 1.5rem auto',
+                    maxWidth: isMobile ? '100%' : '400px',
+                    lineHeight: '1.5'
+                  }}>
+                    Weekly AI writing tutorials and prompt engineering techniques
+                  </p>
+
+                  {/* Trust indicators */}
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '1rem',
+                    fontSize: '0.75rem',
+                    color: 'rgba(255, 255, 255, 0.5)',
+                    flexWrap: 'wrap'
+                  }}>
+                    <span style={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      gap: '0.5rem',
+                      padding: '0.5rem 1rem',
+                      background: 'rgba(22, 22, 31, 0.5)',
+                      borderRadius: '20px',
+                      border: '1px solid rgba(255, 255, 255, 0.04)',
+                      whiteSpace: 'nowrap'
+                    }}>
+                      #️⃣ Weekly delivery
+                    </span>
+                    <span style={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      gap: '0.5rem',
+                      padding: '0.5rem 1rem',
+                      background: 'rgba(22, 22, 31, 0.5)',
+                      borderRadius: '20px',
+                      border: '1px solid rgba(255, 255, 255, 0.04)',
+                      whiteSpace: 'nowrap'
+                    }}>
+                      👤 Zero spam
+                    </span>
+                  </div>
+                </div>
+
+                {/* Form Section */}
+                <div style={{
+                  width: '100%',
+                  maxWidth: '500px'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    flexDirection: isMobile ? 'column' : 'row',
+                    gap: '1rem',
+                    alignItems: 'stretch'
+                  }}>
+                    <input
+                      type="email"
+                      placeholder="Enter your email address"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      style={{
+                        flex: 1,
+                        padding: isMobile ? '1rem 1.25rem' : '1rem 1.5rem',
+                        background: '#16161f',
+                        border: '2px solid rgba(255, 255, 255, 0.05)',
+                        borderRadius: '10px',
+                        color: '#ffffff',
+                        fontSize: '0.9375rem',
+                        outline: 'none',
+                        minHeight: '48px',
+                        fontFamily: 'inherit',
+                        boxShadow: '0 4px 12px rgba(10, 10, 15, 0.3)',
+                        transition: 'border-color 0.2s ease'
+                      }}
+                      onFocus={(e) => {
+                        e.target.style.borderColor = '#8b5cf6';
+                      }}
+                      onBlur={(e) => {
+                        e.target.style.borderColor = 'rgba(255, 255, 255, 0.05)';
+                      }}
+                    />
+                    <button style={{
+                      padding: isMobile ? '1rem 2.5rem' : '1rem 2rem',
+                      background: 'linear-gradient(135deg, #8b5cf6 0%, rgba(139, 92, 246, 0.87) 100%)',
+                      border: 'none',
+                      borderRadius: '10px',
+                      color: 'white',
+                      fontSize: '0.9375rem',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease',
+                      boxShadow: '0 6px 20px rgba(139, 92, 246, 0.25)',
+                      minHeight: '48px',
+                      whiteSpace: 'nowrap',
+                      minWidth: isMobile ? 'auto' : '140px'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = 'translateY(-2px)';
+                      e.target.style.boxShadow = '0 8px 24px rgba(139, 92, 246, 0.35)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = 'translateY(0)';
+                      e.target.style.boxShadow = '0 6px 20px rgba(139, 92, 246, 0.25)';
+                    }}>
+                      Get Started
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

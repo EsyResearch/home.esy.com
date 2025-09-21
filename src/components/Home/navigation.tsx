@@ -35,11 +35,6 @@ export default function Navigation ({
     // Use the shared suffix function
     const logoSuffix = getPageSuffix(pathname);
     
-    console.log('[Navigation] Props received:', {
-      showHeaderSearch,
-      searchContext,
-      pathname
-    });
     
     // Load appropriate data based on search context
     useEffect(() => {

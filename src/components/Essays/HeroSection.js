@@ -42,11 +42,6 @@ const HeroSection = ({
       if (searchBarRef.current) {
         const searchBarRect = searchBarRef.current.getBoundingClientRect();
         const shouldShowHeaderSearch = searchBarRect.bottom < 0;
-        console.log('[Essays HeroSection] Scroll detected:', {
-          searchBarBottom: searchBarRect.bottom,
-          shouldShowHeaderSearch,
-          scrollY: window.scrollY
-        });
         setShowHeaderSearch(shouldShowHeaderSearch);
       }
     };
@@ -72,7 +67,6 @@ const HeroSection = ({
 
   const handleSearch = (query) => {
     // This can be expanded to navigate to a search results page
-    console.log('Search submitted:', query);
   };
 
   const styles = {
