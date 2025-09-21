@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import HeroSection from './HeroSection';
 
-const ClientHeroSection = ({ filters }) => {
+const ClientHeroSection = ({ filters, essays }) => {
   const [searchFocused, setSearchFocused] = useState(false);
   const [activeFilter, setActiveFilter] = useState('all');
 
@@ -13,6 +13,7 @@ const ClientHeroSection = ({ filters }) => {
       activeFilter={activeFilter}
       setActiveFilter={setActiveFilter}
       filters={filters}
+      essays={essays}
     />
   );
 };

@@ -15,7 +15,7 @@ const EsyEssaysHubClient = ({ essays, featuredEssay, filters }) => {
       fontFamily: 'var(--font-inter)',
       lineHeight: 1.6
     }}>
-      <ClientHeroSection filters={filters} />
+      <ClientHeroSection filters={filters} essays={essays} />
       
       {featuredEssay && <FeaturedEssay featuredEssay={featuredEssay} />}
       

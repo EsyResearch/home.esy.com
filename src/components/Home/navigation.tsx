@@ -22,7 +22,7 @@ export const getPageSuffix = (pathname) => {
 
 interface NavigationProps {
   showHeaderSearch?: boolean;
-  searchContext?: 'prompt-library' | 'glossary' | 'school' | 'general';
+  searchContext?: 'prompt-library' | 'glossary' | 'school' | 'essays' | 'general';
 }
 
 export default function Navigation ({ 
@@ -34,6 +34,12 @@ export default function Navigation ({
 
     // Use the shared suffix function
     const logoSuffix = getPageSuffix(pathname);
+    
+    console.log('[Navigation] Props received:', {
+      showHeaderSearch,
+      searchContext,
+      pathname
+    });
     
     // Load appropriate data based on search context
     useEffect(() => {
@@ -49,6 +55,12 @@ export default function Navigation ({
         } else if (searchContext === 'school') {
           // For school context, we'll pass empty data for now since school uses its own search
           setSearchData([]);
+        } else if (searchContext === 'essays') {
+          // Fetch essays data from static JSON
+          fetch('/essays-data.json')
+            .then(res => res.json())
+            .then(essays => setSearchData(essays))
+            .catch(console.error);
         }
       }
     }, [showHeaderSearch, searchContext]);

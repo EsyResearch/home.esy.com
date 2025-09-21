@@ -1,5 +1,9 @@
-import React from 'react';
-import { Search } from 'lucide-react';
+"use client";
+import React, { useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import SearchBar from '@/components/SearchBar/SearchBar';
+import { useEssaySearch } from '@/hooks/useEssaySearch';
+import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
 
 const HeroSection = ({ 
   searchFocused, 
@@ -7,111 +11,263 @@ const HeroSection = ({
   activeFilter, 
   setActiveFilter, 
   filters,
-  pageTitle = "Academic Essays",
-  pageSubtitle = "& Research",
-  pageDescription = "A collection of academic essays exploring contemporary issues. Each piece invites critical thinking, analysis, and continued exploration of ideas.",
+  essays = [],
+  pageTitle = "Academic",
+  pageSubtitle = "Essays",
+  pageDescription = "Expert-crafted essays to inspire your best writing.",
   searchPlaceholder = "Search essays..."
 }) => {
-  return (
-    <section style={{ 
-      paddingTop: '10rem', 
-      paddingBottom: '3rem',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
-    }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
-        <div style={{ maxWidth: '42rem' }}>
-          <h1 style={{ 
-            fontSize: '3.5rem', 
-            fontWeight: 300,
-            lineHeight: '1.3',
-            letterSpacing: '0.01em',
-            marginBottom: '1.5rem',
-            fontFamily: 'var(--font-literata)'
-          }}>
-            <span style={{ fontWeight: 300 }}>{pageTitle}</span>
-            <br />
-            <span style={{ color: '#8b5cf6', fontWeight: 400 }}>{pageSubtitle}</span>
-          </h1>
-          
-          <p style={{ 
-            fontSize: '1.125rem', 
-            color: 'rgba(255, 255, 255, 0.6)',
-            marginBottom: '2.5rem',
-            lineHeight: 1.6
-          }}>
-            {pageDescription}
-          </p>
+  const router = useRouter();
+  const { setShowHeaderSearch } = useHeaderSearch();
+  const searchBarRef = useRef(null);
+  
+  // Responsive breakpoints
+  const [isMobile, setIsMobile] = React.useState(false);
+  const [isTablet, setIsTablet] = React.useState(false);
+  
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768);
+      setIsTablet(window.innerWidth < 1024);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
-          {/* Simplified Search */}
-          <div style={{ 
-            display: 'flex', 
-            alignItems: 'center',
-            background: 'rgba(255, 255, 255, 0.02)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            borderRadius: '8px',
-            padding: '0.25rem',
-            maxWidth: '32rem',
-            transition: 'all 0.2s',
-            ...(searchFocused && {
-              background: 'rgba(255, 255, 255, 0.04)',
-              borderColor: 'rgba(99, 102, 241, 0.3)'
-            })
-          }}>
-            <Search size={18} style={{ marginLeft: '1rem', color: 'rgba(255, 255, 255, 0.4)' }} />
-            <input
-              type="text"
-              placeholder={searchPlaceholder}
-              onFocus={() => setSearchFocused(true)}
-              onBlur={() => setSearchFocused(false)}
-              style={{
-                flex: 1,
-                padding: '0.75rem',
-                background: 'transparent',
-                border: 'none',
-                color: 'white',
-                fontSize: '0.875rem',
-                outline: 'none'
-              }}
-            />
-            <button style={{
-              padding: '0.5rem 1.25rem',
-              background: searchFocused ? '#8b5cf6' : 'transparent',
-              border: 'none',
-              borderRadius: '6px',
-              color: searchFocused ? 'white' : 'rgba(255, 255, 255, 0.4)',
-              fontSize: '0.875rem',
-              fontWeight: 500,
-              cursor: 'pointer',
-              marginRight: '0.25rem',
-              transition: 'all 0.2s'
-            }}>
-              Search
-            </button>
+  // Scroll detection for header search
+  useEffect(() => {
+    const handleScroll = () => {
+      if (searchBarRef.current) {
+        const searchBarRect = searchBarRef.current.getBoundingClientRect();
+        const shouldShowHeaderSearch = searchBarRect.bottom < 0;
+        console.log('[Essays HeroSection] Scroll detected:', {
+          searchBarBottom: searchBarRect.bottom,
+          shouldShowHeaderSearch,
+          scrollY: window.scrollY
+        });
+        setShowHeaderSearch(shouldShowHeaderSearch);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial state
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      setShowHeaderSearch(false); // Reset when leaving page
+    };
+  }, [setShowHeaderSearch]);
+
+  const { searchResults, isLoading, searchTerm, setSearchTerm, showDropdown } = useEssaySearch({
+    essays,
+    debounceMs: 300,
+    maxResults: 6
+  });
+
+  const handleResultSelect = (result) => {
+    router.push(result.slug);
+  };
+
+  const handleSearch = (query) => {
+    // This can be expanded to navigate to a search results page
+    console.log('Search submitted:', query);
+  };
+
+  const styles = {
+    heroSection: {
+      position: 'relative',
+      maxWidth: '1200px',
+      margin: '0 auto',
+      padding: '8rem 2rem 2rem 2rem',
+      minHeight: '70vh',
+      display: 'flex',
+      alignItems: 'center'
+    },
+    heroContent: {
+      display: 'grid',
+      gridTemplateColumns: isTablet ? '1fr' : '1.2fr 0.8fr',
+      gap: isTablet ? '3rem' : '4rem',
+      alignItems: 'center',
+      width: '100%',
+      maxWidth: '1200px',
+      margin: '0 auto',
+      textAlign: isTablet ? 'center' : 'left'
+    },
+    heroLeft: {
+      maxWidth: '720px'
+    },
+    heroTitle: {
+      fontFamily: 'Literata, Georgia, serif',
+      fontSize: 'clamp(3rem, 7vw, 6rem)',
+      fontWeight: '300',
+      lineHeight: '0.95',
+      marginBottom: '2rem',
+      opacity: '1',
+      letterSpacing: '-0.02em'
+    },
+    heroTitleAccent: {
+      display: 'block',
+      fontSize: 'clamp(2.5rem, 6vw, 5rem)',
+      fontWeight: '400',
+      marginTop: '0.5rem',
+      color: '#8b5cf6'
+    },
+    heroSubtitle: {
+      fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+      fontWeight: '400',
+      opacity: '0.8',
+      lineHeight: '1.6',
+      marginBottom: '2rem',
+      maxWidth: '500px'
+    },
+    heroSearchSection: {
+      marginTop: '2rem',
+      maxWidth: '500px'
+    },
+    heroRight: {
+      position: 'relative',
+      display: isTablet ? 'none' : 'flex',
+      flexDirection: 'column',
+      gap: '0.75rem'
+    },
+    featureCard: {
+      backgroundColor: 'rgba(22, 22, 31, 0.8)',
+      border: '1px solid rgba(255, 255, 255, 0.08)',
+      borderRadius: '10px',
+      padding: '1rem',
+      backdropFilter: 'blur(10px)'
+    },
+    featureTitle: {
+      fontFamily: 'var(--font-literata)',
+      fontSize: '1rem',
+      fontWeight: '400',
+      marginBottom: '0.5rem',
+      opacity: '0.9'
+    },
+    featureDescription: {
+      fontSize: '0.8rem',
+      opacity: '0.6',
+      lineHeight: '1.5'
+    },
+    searchSection: {
+      maxWidth: '1200px',
+      margin: '0 auto',
+      padding: '1rem 2rem 2rem 2rem',
+      textAlign: 'center'
+    },
+    categoryTabs: {
+      display: 'flex',
+      justifyContent: 'center',
+      gap: '0.5rem',
+      marginTop: '2rem',
+      marginBottom: '4rem',
+      flexWrap: 'wrap'
+    },
+    categoryTab: {
+      padding: '0.625rem 1.5rem',
+      backgroundColor: 'rgba(22, 22, 31, 0.6)',
+      border: '1px solid rgba(255, 255, 255, 0.08)',
+      borderRadius: '8px',
+      color: 'rgba(255, 255, 255, 0.7)',
+      fontSize: '0.875rem',
+      fontWeight: '500',
+      cursor: 'pointer',
+      transition: 'all 0.2s ease',
+      fontFamily: 'Inter, sans-serif'
+    },
+    categoryTabActive: {
+      backgroundColor: '#8b5cf6',
+      color: 'white',
+      borderColor: '#8b5cf6'
+    }
+  };
+
+  return (
+    <>
+      <section style={styles.heroSection}>
+        <div style={styles.heroContent}>
+          <div style={styles.heroLeft}>
+            <h1 style={styles.heroTitle}>
+              {pageTitle}
+              {pageSubtitle && <span style={styles.heroTitleAccent}>{pageSubtitle}</span>}
+            </h1>
+            <p style={styles.heroSubtitle}>
+              {pageDescription}
+            </p>
+            
+            {/* Search Bar in Hero */}
+            <div ref={searchBarRef} style={styles.heroSearchSection}>
+              <SearchBar
+                placeholder={searchPlaceholder}
+                value={searchTerm}
+                onChange={setSearchTerm}
+                onSearch={handleSearch}
+                context="general"
+                inputFontSize="0.9rem"
+                style={{ marginBottom: '0' }}
+                autoFocus={true}
+                showDropdown={showDropdown}
+                searchResults={searchResults}
+                onResultSelect={handleResultSelect}
+                loadingResults={isLoading}
+                maxResults={8}
+              />
+            </div>
           </div>
 
-          {/* Clean Filter Pills */}
-          <div style={{ 
-            display: 'flex', 
-            gap: '0.75rem', 
-            marginTop: '2rem',
-            flexWrap: 'wrap'
-          }}>
-            {filters.map(filter => (
-              <button
-                key={filter.id}
-                onClick={() => setActiveFilter(filter.id)}
-                style={{
-                  padding: '0.5rem 1rem',
-                  background: activeFilter === filter.id ? '#8b5cf6' : 'transparent',
-                  border: `1px solid ${activeFilter === filter.id ? '#8b5cf6' : 'rgba(255, 255, 255, 0.1)'}`,
-                  borderRadius: '6px',
-                  color: activeFilter === filter.id ? 'white' : 'rgba(255, 255, 255, 0.6)',
-                  fontSize: '0.813rem',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s'
-                }}
-              >
-                {filter.label}
+          <div style={styles.heroRight}>
+            <div style={styles.featureCard}>
+              <h3 style={styles.featureTitle}>Expert Examples</h3>
+              <p style={styles.featureDescription}>
+                Access high-quality academic essays across various topics, each demonstrating proper structure and argumentation.
+              </p>
+            </div>
+            <div style={styles.featureCard}>
+              <h3 style={styles.featureTitle}>Learn by Example</h3>
+              <p style={styles.featureDescription}>
+                Study real essays to understand thesis development, evidence integration, and effective conclusion strategies.
+              </p>
+            </div>
+            <div style={styles.featureCard}>
+              <h3 style={styles.featureTitle}>Improve Your Writing</h3>
+              <p style={styles.featureDescription}>
+                Use these essays as inspiration and guidance to elevate your own academic writing to the next level.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Category Filters Section - Commented out for now */}
+      {/* <section style={styles.searchSection}>
+        <div style={styles.categoryTabs}>
+          {filters.map(filter => (
+            <button
+              key={filter.id}
+              onClick={() => setActiveFilter(filter.id)}
+              style={{
+                ...styles.categoryTab,
+                ...(activeFilter === filter.id ? styles.categoryTabActive : {})
+              }}
+              onMouseEnter={(e) => {
+                if (activeFilter !== filter.id) {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                  e.currentTarget.style.color = 'white';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (activeFilter !== filter.id) {
+                  e.currentTarget.style.backgroundColor = 'rgba(22, 22, 31, 0.6)';
+                  e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                }
+              }}
+            >
+              {filter.label}
+              {filter.count > 0 && (
                 <span style={{ 
                   marginLeft: '0.5rem', 
                   opacity: 0.5,
@@ -119,13 +275,13 @@ const HeroSection = ({
                 }}>
                   {filter.count}
                 </span>
-              </button>
-            ))}
-          </div>
+              )}
+            </button>
+          ))}
         </div>
-      </div>
-    </section>
+      </section> */}
+    </>
   );
 };
 
-export default HeroSection; 
+export default HeroSection;
