@@ -6,6 +6,7 @@ import Logo from "@/components/Logo";
 import Link from "next/link";
 import HeaderSearch from "@/components/HeaderSearch/HeaderSearch";
 import { getAllPrompts } from "@/lib/prompts";
+import { getCTAConfig, getResponsiveCTAText } from "@/lib/ctaMapping";
 
 // Shared suffix logic that can be used by both navigation and footer
 export const getPageSuffix = (pathname) => {
@@ -25,19 +26,38 @@ export const getPageSuffix = (pathname) => {
 interface NavigationProps {
   showHeaderSearch?: boolean;
   searchContext?: 'prompt-library' | 'glossary' | 'school' | 'essays' | 'blog' | 'general';
+  pathname?: string;
 }
 
 export default function Navigation ({ 
   showHeaderSearch = false, 
-  searchContext = 'general' 
+  searchContext = 'general',
+  pathname: propPathname
 }: NavigationProps = {}) {
-    const pathname = usePathname();
+    const hookPathname = usePathname();
+    const pathname = propPathname || hookPathname;
     const [searchData, setSearchData] = useState([]);
+    const [isMobile, setIsMobile] = useState(false);
 
     // Use the shared suffix function
     const logoSuffix = getPageSuffix(pathname);
     
+    // Get dynamic CTA configuration
+    const ctaConfig = getCTAConfig(pathname);
+    const responsiveCTA = getResponsiveCTAText(ctaConfig.ctaText, isMobile);
     
+    
+    // Mobile detection
+    useEffect(() => {
+      const checkMobile = () => {
+        setIsMobile(window.innerWidth < 768);
+      };
+      
+      checkMobile();
+      window.addEventListener('resize', checkMobile);
+      return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     // Load appropriate data based on search context
     useEffect(() => {
       if (showHeaderSearch) {
@@ -148,7 +168,21 @@ export default function Navigation ({
             {/* <a href="/research" className="nav-link">Research</a> */}
             {/* <a href="/school" className="nav-link">School</a> */}
             {/* <a href="/pricing" className="nav-link">Pricing</a> */}
-            <a href="https://app.esy.com" className="nav-cta">Write</a>
+            <a 
+              href={ctaConfig.ctaHref} 
+              className="nav-cta"
+              style={{
+                whiteSpace: responsiveCTA.shouldWrap ? 'normal' : 'nowrap',
+                lineHeight: responsiveCTA.shouldWrap ? '1.2' : '1',
+                textAlign: 'center',
+                minHeight: responsiveCTA.shouldWrap ? 'auto' : '40px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              {responsiveCTA.text}
+            </a>
           </div>
         </div>
       </nav>

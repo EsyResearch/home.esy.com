@@ -267,19 +267,19 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                   <button 
                     onClick={handleNewsletterSubmit}
                     style={{
-                      padding: isMobile ? '1rem 2.5rem' : '1rem 2rem',
+                      padding: isMobile ? '1rem 1.5rem' : '1rem 1.75rem',
                       background: 'linear-gradient(135deg, #8b5cf6 0%, rgba(139, 92, 246, 0.87) 100%)',
                       border: 'none',
                       borderRadius: '10px',
                       color: 'white',
-                      fontSize: '0.9375rem',
+                      fontSize: isMobile ? '0.875rem' : '0.9375rem',
                       fontWeight: '600',
                       cursor: 'pointer',
                       transition: 'all 0.2s ease',
                       boxShadow: '0 6px 20px rgba(139, 92, 246, 0.25)',
                       minHeight: '48px',
                       whiteSpace: 'nowrap',
-                      minWidth: isMobile ? 'auto' : '140px'
+                      minWidth: isMobile ? 'auto' : '180px'
                     }}
                     onMouseEnter={(e) => {
                       const target = e.target as HTMLButtonElement;
@@ -291,7 +291,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                       target.style.transform = 'translateY(0)';
                       target.style.boxShadow = '0 6px 20px rgba(139, 92, 246, 0.25)';
                     }}>
-                    Get Started
+                    Send Me Writing Tips
                   </button>
                 </div>
               </div>

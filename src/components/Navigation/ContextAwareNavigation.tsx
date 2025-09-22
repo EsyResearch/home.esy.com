@@ -26,7 +26,8 @@ export default function ContextAwareNavigation({
   return (
     <Navigation 
       showHeaderSearch={showHeaderSearch} 
-      searchContext={searchContext} 
+      searchContext={searchContext}
+      pathname={pathname}
     />
   );
 }

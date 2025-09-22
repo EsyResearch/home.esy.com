@@ -240,6 +240,12 @@ html {
   box-shadow: 0 4px 12px -2px rgba(99, 102, 241, 0.3);
   position: relative;
   overflow: hidden;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  white-space: nowrap;
 }
 
 .nav-cta:hover {
@@ -417,6 +423,17 @@ html {
   /* Adjust nav height for mobile */
   .nav {
     background: rgba(10, 10, 15, 0.98) !important;
+  }
+
+  /* Mobile CTA adjustments */
+  .nav-cta {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    min-height: 36px;
+    max-width: 120px;
+    white-space: normal;
+    line-height: 1.2;
+    text-align: center;
   }
 }
 

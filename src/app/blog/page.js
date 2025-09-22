@@ -14,6 +14,7 @@ import {
 import SearchBar from '@/components/SearchBar/SearchBar';
 import { useBlogSearch } from '@/hooks/useBlogSearch';
 import ContextAwareNavigation from '@/components/Navigation/ContextAwareNavigation';
+import SchoolNewsletter from '@/components/School/SchoolNewsletter';
 import '@/app/globals.css';
 
 const BlogPage = () => {
@@ -144,6 +145,11 @@ const BlogPage = () => {
 
   const handleSearch = async (query) => {
     console.log('Searching for:', query);
+  };
+
+  // Newsletter handler
+  const handleNewsletterSubmit = () => {
+    console.log('Newsletter subscription submitted');
   };
 
   return (
@@ -280,6 +286,257 @@ const BlogPage = () => {
         }} />
       </section>
 
+      {/* Featured Article Section */}
+      <section style={{
+        padding: isMobile ? '4rem 1rem' : '6rem 2rem',
+        backgroundColor: currentTheme.bg,
+        borderTop: `1px solid ${currentTheme.divider}`,
+        position: 'relative'
+      }}>
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          position: 'relative'
+        }}>
+          {/* Featured Article Card */}
+          <div style={{
+            position: 'relative',
+            background: `linear-gradient(135deg, ${currentTheme.elevated} 0%, rgba(22, 22, 31, 0.8) 100%)`,
+            borderRadius: '24px',
+            border: `1px solid ${currentTheme.border}`,
+            overflow: 'hidden',
+            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15), 0 8px 32px rgba(139, 92, 246, 0.08)',
+            backdropFilter: 'blur(20px)',
+            transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+          }}>
+            {/* Premium Background Pattern */}
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: `
+                radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.02) 0%, transparent 50%),
+                linear-gradient(135deg, transparent 0%, rgba(139, 92, 246, 0.01) 100%)
+              `,
+              zIndex: 0
+            }} />
+
+            {/* Content */}
+            <div style={{
+              position: 'relative',
+              zIndex: 1,
+              padding: isMobile ? '3rem 2rem' : isTablet ? '4rem 3rem' : '5rem 4rem'
+            }}>
+              {/* Editors Pick Badge */}
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.5rem 1rem',
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                borderRadius: '50px',
+                fontSize: '0.75rem',
+                fontWeight: '600',
+                color: currentTheme.text,
+                marginBottom: '2rem',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.1)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+                backdropFilter: 'blur(10px)'
+              }}>
+                <Sparkles size={14} />
+                Editors Pick
+              </div>
+
+              {/* Article Meta */}
+              <div style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                alignItems: 'center',
+                gap: isMobile ? '1rem' : '1.5rem',
+                marginBottom: '1.5rem',
+                fontSize: '0.875rem',
+                color: currentTheme.muted
+              }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem'
+                }}>
+                  <div style={{
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '50%',
+                    background: `linear-gradient(135deg, ${currentTheme.accent} 0%, rgba(139, 92, 246, 0.8) 100%)`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '0.75rem',
+                    fontWeight: '600',
+                    color: '#ffffff'
+                  }}>
+                    ZU
+                  </div>
+                  <div>
+                    <div style={{ fontWeight: '600', color: currentTheme.text }}>Zev Uhuru</div>
+                    <div style={{ fontSize: '0.75rem', color: currentTheme.subtle }}>Founder, Esy</div>
+                  </div>
+                </div>
+
+                <div style={{
+                  width: '1px',
+                  height: '20px',
+                  background: currentTheme.border
+                }} />
+
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem'
+                }}>
+                  <Clock size={14} />
+                  <span>12 min read</span>
+                </div>
+
+                <div style={{
+                  width: '1px',
+                  height: '20px',
+                  background: currentTheme.border
+                }} />
+
+                <div style={{
+                  padding: '0.25rem 0.75rem',
+                  background: `${currentTheme.accent}15`,
+                  color: currentTheme.accent,
+                  borderRadius: '12px',
+                  fontSize: '0.75rem',
+                  fontWeight: '600',
+                  border: `1px solid ${currentTheme.accent}30`
+                }}>
+                  AI & Technology
+                </div>
+
+                <div style={{
+                  width: '1px',
+                  height: '20px',
+                  background: currentTheme.border
+                }} />
+
+                <div style={{
+                  color: currentTheme.subtle
+                }}>
+                  March 28, 2025
+                </div>
+              </div>
+
+              {/* Article Title */}
+              <h2 style={{
+                fontSize: isMobile ? '2rem' : isTablet ? '2.5rem' : '3.5rem',
+                fontWeight: '300',
+                lineHeight: '1.1',
+                letterSpacing: '-0.02em',
+                marginBottom: '1.5rem',
+                fontFamily: 'var(--font-literata)',
+                color: currentTheme.text,
+                maxWidth: '900px'
+              }}>
+                The Future of AI in Academic Writing
+              </h2>
+
+              {/* Article Excerpt */}
+              <p style={{
+                fontSize: isMobile ? '1.125rem' : '1.25rem',
+                lineHeight: '1.6',
+                color: currentTheme.muted,
+                marginBottom: '2.5rem',
+                maxWidth: '700px',
+                fontWeight: '300'
+              }}>
+                How AI is transforming academic writing with intelligent research tools, automated editing, and breakthrough techniques that are reshaping scholarly communication.
+              </p>
+
+              {/* CTA Button */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1rem',
+                flexWrap: 'wrap'
+              }}>
+                <Link
+                  href="/blog/future-ai-academic-writing"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.75rem',
+                    padding: '1rem 2rem',
+                    background: `linear-gradient(135deg, ${currentTheme.accent} 0%, rgba(139, 92, 246, 0.9) 100%)`,
+                    color: '#ffffff',
+                    borderRadius: '12px',
+                    textDecoration: 'none',
+                    fontSize: '1rem',
+                    fontWeight: '600',
+                    transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                    boxShadow: '0 4px 12px rgba(139, 92, 246, 0.15)',
+                    border: 'none',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 16px rgba(139, 92, 246, 0.2)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(139, 92, 246, 0.15)';
+                  }}
+                >
+                  Dive Deeper
+                  <ArrowRight size={18} />
+                </Link>
+
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  color: currentTheme.subtle,
+                  fontSize: '0.875rem'
+                }}>
+                  <span>🔥 Trending this week</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Decorative Elements */}
+            <div style={{
+              position: 'absolute',
+              top: '2rem',
+              right: '2rem',
+              width: '60px',
+              height: '60px',
+              background: `radial-gradient(circle, ${currentTheme.accent}20 0%, transparent 70%)`,
+              borderRadius: '50%',
+              filter: 'blur(20px)',
+              zIndex: 0
+            }} />
+
+            <div style={{
+              position: 'absolute',
+              bottom: '2rem',
+              left: '2rem',
+              width: '40px',
+              height: '40px',
+              background: `radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%)`,
+              borderRadius: '50%',
+              filter: 'blur(15px)',
+              zIndex: 0
+            }} />
+          </div>
+        </div>
+      </section>
+
         {/* Blog Posts Grid Section */}
       <section style={{
         padding: isMobile ? '3rem 1rem' : '5rem 2rem',
@@ -379,6 +636,13 @@ const BlogPage = () => {
           </div>
         </div>
       </section>
+
+      {/* School Newsletter Section */}
+      <SchoolNewsletter 
+        handleNewsletterSubmit={handleNewsletterSubmit}
+        isMobile={isMobile}
+        isTablet={isTablet}
+      />
     </div>
   );
 };
