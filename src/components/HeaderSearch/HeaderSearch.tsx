@@ -194,7 +194,7 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
       alignItems: 'center',
       zIndex: 100,
       ...(isExpanded || shouldAlwaysExpand ? {
-        width: isMobile ? 'calc(100vw - 4rem)' : '600px',
+        width: isMobile ? 'calc(100vw - 4rem)' : '500px',
         maxWidth: '90vw'
       } : {})
     },
