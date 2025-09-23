@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import Link from 'next/link';
 import { 
   ArrowLeft, Calendar, Clock, User, Tag, Share2,
   BookOpen, Heart, BookMarked, MessageCircle,
@@ -131,7 +132,7 @@ const BlogPostClient = ({ post }) => {
     excerpt: post.excerpt,
     content: post.contentHtml,
     author: post.author || "Zev Uhuru",
-    authorBio: post.authorBio || "Zev Uhuru is the founder of Esy, specializing in AI-powered educational tools and academic writing assistance.",
+    authorBio: post.authorBio || "Software Engineer with 5 years of experience, passionate about the intersection of AI and writing. Building tools that empower writers to create better content with the help of artificial intelligence.",
     authorTitle: post.authorRole || "Founder, Esy",
     date: new Date(post.date).toLocaleDateString('en-US', { 
       year: 'numeric', 
@@ -295,16 +296,38 @@ const BlogPostClient = ({ post }) => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const yOffset = -100; // Offset for fixed header
+      const yOffset = -120; // Offset for fixed header
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       
-      window.scrollTo({
-        top: y,
-        behavior: 'smooth'
-      });
+      // Use a custom smooth scroll with easing
+      const startY = window.pageYOffset;
+      const distance = y - startY;
+      const duration = 800; // Increased duration for smoother scroll
+      let start = null;
       
-      // Set active section immediately for better UX
-      setActiveSection(sectionId);
+      // Cubic easing function for smooth acceleration/deceleration
+      const easeInOutCubic = (t) => {
+        return t < 0.5
+          ? 4 * t * t * t
+          : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      };
+      
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const easeProgress = easeInOutCubic(progress);
+        
+        window.scrollTo(0, startY + distance * easeProgress);
+        
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          // Set active section after scroll completes
+          setActiveSection(sectionId);
+        }
+      };
+      
+      requestAnimationFrame(step);
     }
   };
 
@@ -750,6 +773,162 @@ const BlogPostClient = ({ post }) => {
               </div>
             </div>
 
+            {/* Author Card - Full Width at Bottom */}
+            <div style={{
+              marginTop: '4rem',
+              padding: '3rem',
+              background: `linear-gradient(135deg, ${currentTheme.elevated} 0%, ${currentTheme.card} 100%)`,
+              borderRadius: '24px',
+              border: `1px solid ${currentTheme.border}`,
+              position: 'relative',
+              overflow: 'hidden'
+            }}>
+              {/* Background decoration */}
+              <div style={{
+                position: 'absolute',
+                top: '-50px',
+                right: '-50px',
+                width: '200px',
+                height: '200px',
+                background: `radial-gradient(circle, ${currentTheme.accent}10 0%, transparent 70%)`,
+                borderRadius: '50%',
+                filter: 'blur(40px)'
+              }} />
+              
+              <div style={{
+                display: 'flex',
+                flexDirection: isMobile ? 'column' : 'row',
+                alignItems: isMobile ? 'center' : 'flex-start',
+                gap: isMobile ? '2rem' : '3rem',
+                position: 'relative',
+                zIndex: 1
+              }}>
+                {/* Author Avatar */}
+                <div style={{
+                  flexShrink: 0
+                }}>
+                  <div style={{
+                    width: isMobile ? '80px' : '100px',
+                    height: isMobile ? '80px' : '100px',
+                    borderRadius: '50%',
+                    background: isDarkMode 
+                      ? `linear-gradient(135deg, #374151 0%, #1f2937 100%)`
+                      : `linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%)`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: isDarkMode ? '#f3f4f6' : '#374151',
+                    fontSize: isMobile ? '2rem' : '2.5rem',
+                    fontWeight: '600',
+                    boxShadow: isDarkMode 
+                      ? `0 8px 24px rgba(0, 0, 0, 0.3)`
+                      : `0 8px 24px rgba(0, 0, 0, 0.1)`
+                  }}>
+                    {postData.author.split(' ').map(n => n[0]).join('')}
+                  </div>
+                </div>
+                
+                {/* Author Info */}
+                <div style={{
+                  flex: 1,
+                  textAlign: isMobile ? 'center' : 'left'
+                }}>
+                  <div style={{
+                    fontSize: isMobile ? '1.5rem' : '1.75rem',
+                    fontWeight: '600',
+                    marginBottom: '0.25rem',
+                    color: currentTheme.text,
+                    fontFamily: 'var(--font-literata)'
+                  }}>
+                    {postData.author}
+                  </div>
+                  <div style={{
+                    fontSize: '1rem',
+                    color: isDarkMode ? currentTheme.muted : '#6b7280',
+                    marginBottom: '1rem',
+                    fontWeight: '500'
+                  }}>
+                    {postData.authorTitle}
+                  </div>
+                  <p style={{
+                    fontSize: '1rem',
+                    color: currentTheme.muted,
+                    lineHeight: 1.6,
+                    marginBottom: '1.5rem',
+                    maxWidth: '600px'
+                  }}>
+                    {postData.authorBio}
+                  </p>
+                  
+                  {/* Action Buttons */}
+                  <div style={{
+                    display: 'flex',
+                    gap: '1rem',
+                    flexWrap: 'wrap',
+                    justifyContent: isMobile ? 'center' : 'flex-start'
+                  }}>
+                    <Link 
+                      href="/blog"
+                      style={{
+                        padding: '0.75rem 2rem',
+                        background: `linear-gradient(135deg, ${currentTheme.accent} 0%, ${currentTheme.accentLight} 100%)`,
+                        color: '#ffffff',
+                        borderRadius: '50px',
+                        fontSize: '0.875rem',
+                        fontWeight: '600',
+                        cursor: 'pointer',
+                        border: 'none',
+                        transition: 'all 0.3s ease',
+                        boxShadow: `0 4px 12px ${currentTheme.accent}30`,
+                        textDecoration: 'none',
+                        display: 'inline-block'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                        e.currentTarget.style.boxShadow = `0 6px 16px ${currentTheme.accent}40`;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = `0 4px 12px ${currentTheme.accent}30`;
+                      }}
+                    >
+                      Read More Articles
+                    </Link>
+                    
+                    <Link 
+                      href="/ai-essay-writer"
+                      style={{
+                        padding: '0.75rem 2rem',
+                        backgroundColor: 'transparent',
+                        color: isDarkMode ? currentTheme.text : '#374151',
+                        borderRadius: '50px',
+                        fontSize: '0.875rem',
+                        fontWeight: '600',
+                        cursor: 'pointer',
+                        border: isDarkMode ? `2px solid ${currentTheme.border}` : `2px solid #d1d5db`,
+                        transition: 'all 0.3s ease',
+                        textDecoration: 'none',
+                        display: 'inline-block'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = isDarkMode ? currentTheme.elevated : '#f3f4f6';
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                        e.currentTarget.style.borderColor = isDarkMode ? currentTheme.muted : '#9ca3af';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'transparent';
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.borderColor = isDarkMode ? currentTheme.border : '#d1d5db';
+                      }}
+                    >
+                      Try AI Essay Writer
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+
             {/* Engagement Actions */}
             {/* <div style={{
               marginTop: '3rem',
@@ -949,17 +1128,19 @@ const BlogPostClient = ({ post }) => {
                 boxShadow: `0 8px 32px ${currentTheme.accent}10`,
                 position: 'relative',
                 overflow: 'hidden'
-              }}>
-                {/* Decorative corner accent */}
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  right: 0,
-                  width: '60px',
-                  height: '60px',
-                  background: `linear-gradient(135deg, ${currentTheme.accent}20 0%, transparent 50%)`,
-                  borderRadius: '0 20px 0 20px'
-                }} />
+              }}              >
+                {/* Decorative corner accent - only in dark mode */}
+                {isDarkMode && (
+                  <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    right: 0,
+                    width: '60px',
+                    height: '60px',
+                    background: `linear-gradient(135deg, ${currentTheme.accent}20 0%, transparent 50%)`,
+                    borderRadius: '0 20px 0 20px'
+                  }} />
+                )}
                 
                 <div style={{
                   position: 'relative',
@@ -1003,7 +1184,14 @@ const BlogPostClient = ({ post }) => {
                       return (
                       <button
                         key={item.id}
-                        onClick={() => scrollToSection(item.id)}
+                        onClick={(e) => {
+                          // Add a subtle scale animation on click
+                          e.currentTarget.style.transform = 'scale(0.98)';
+                          setTimeout(() => {
+                            e.currentTarget.style.transform = '';
+                          }, 200);
+                          scrollToSection(item.id);
+                        }}
                         style={{
                           display: 'flex',
                           alignItems: 'center',
@@ -1011,10 +1199,12 @@ const BlogPostClient = ({ post }) => {
                           textAlign: 'left',
                           padding: '0.875rem 1rem',
                           backgroundColor: isActive 
-                            ? `${currentTheme.accent}10`
+                            ? (isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.03)')
                             : 'transparent',
                           border: 'none',
-                          color: isActive ? currentTheme.accent : currentTheme.muted,
+                          color: isActive 
+                            ? (isDarkMode ? currentTheme.text : '#111827')
+                            : currentTheme.muted,
                           fontSize: '0.875rem',
                           fontWeight: isActive ? '500' : '400',
                           cursor: 'pointer',
@@ -1043,14 +1233,14 @@ const BlogPostClient = ({ post }) => {
                           height: '28px',
                           borderRadius: '50%',
                           background: isActive 
-                            ? `linear-gradient(135deg, ${currentTheme.accent} 0%, ${currentTheme.accentLight} 100%)`
-                            : currentTheme.elevated,
+                            ? currentTheme.accent
+                            : isDarkMode ? currentTheme.elevated : '#f3f4f6',
                           border: isActive
                             ? 'none'
                             : `1px solid ${currentTheme.border}`,
                           color: isActive 
                             ? '#ffffff' 
-                            : currentTheme.subtle,
+                            : isDarkMode ? currentTheme.subtle : '#6b7280',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -1060,9 +1250,9 @@ const BlogPostClient = ({ post }) => {
                           transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                           flexShrink: 0,
                           boxShadow: isActive 
-                            ? `0 4px 12px ${currentTheme.accent}40, 0 0 0 4px ${currentTheme.accent}15`
+                            ? `0 2px 8px ${currentTheme.accent}30`
                             : 'none',
-                          transform: isActive ? 'scale(1.1)' : 'scale(1)'
+                          transform: isActive ? 'scale(1.05)' : 'scale(1)'
                         }}>
                           {index + 1}
                         </div>
@@ -1076,17 +1266,6 @@ const BlogPostClient = ({ post }) => {
                           {item.title}
                         </span>
                         
-                        {/* Active indicator dot */}
-                        {isActive && (
-                          <div style={{
-                            width: '6px',
-                            height: '6px',
-                            borderRadius: '50%',
-                            backgroundColor: currentTheme.accent,
-                            marginLeft: '0.5rem',
-                            animation: 'pulse 2s infinite'
-                          }} />
-                        )}
                       </button>
                       );
                     })}
@@ -1139,49 +1318,106 @@ const BlogPostClient = ({ post }) => {
                 </div>
               </div>
 
-              {/* Author Card */}
+              {/* Email Capture Card */}
               <div style={{
-                backgroundColor: currentTheme.elevated,
+                background: isDarkMode 
+                  ? `linear-gradient(135deg, ${currentTheme.elevated} 0%, ${currentTheme.card} 100%)`
+                  : `linear-gradient(135deg, #fafafa 0%, #f9fafb 100%)`,
                 borderRadius: '16px',
                 padding: '1.5rem',
                 marginTop: '1.5rem',
                 border: `1px solid ${currentTheme.border}`,
-                backdropFilter: 'blur(10px)'
+                position: 'relative',
+                overflow: 'hidden'
               }}>
+                {/* Decorative element */}
                 <div style={{
-                  width: '60px',
-                  height: '60px',
+                  position: 'absolute',
+                  top: '-20px',
+                  right: '-20px',
+                  width: '80px',
+                  height: '80px',
+                  background: isDarkMode 
+                    ? `radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%)`
+                    : `radial-gradient(circle, rgba(0, 0, 0, 0.02) 0%, transparent 70%)`,
                   borderRadius: '50%',
-                  background: `linear-gradient(135deg, ${currentTheme.accent} 0%, ${currentTheme.accentLight} 100%)`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#ffffff',
-                  fontSize: '1.5rem',
-                  fontWeight: '600',
-                  margin: '0 auto 1rem'
-                }}>
-                  {postData.author.split(' ').map(n => n[0]).join('')}
-                </div>
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontWeight: '600', marginBottom: '0.25rem', color: currentTheme.text }}>{postData.author}</div>
-                  <div style={{ fontSize: '0.75rem', color: currentTheme.muted, marginBottom: '1rem' }}>{postData.authorTitle}</div>
-                  <p style={{ fontSize: '0.875rem', color: currentTheme.muted, lineHeight: 1.5, marginBottom: '1rem' }}>
-                    {postData.authorBio}
+                  filter: 'blur(20px)'
+                }} />
+                
+                <div style={{ position: 'relative', zIndex: 1 }}>
+                  <div style={{
+                    fontSize: '1.125rem',
+                    fontWeight: '600',
+                    marginBottom: '0.5rem',
+                    color: currentTheme.text,
+                    fontFamily: 'var(--font-literata)'
+                  }}>
+                    Get Weekly AI Writing Tips
+                  </div>
+                  <p style={{
+                    fontSize: '0.875rem',
+                    color: currentTheme.muted,
+                    marginBottom: '1rem',
+                    lineHeight: 1.4
+                  }}>
+                    Join 10,000+ writers improving their craft with AI
                   </p>
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem',
+                      borderRadius: '8px',
+                      border: `1px solid ${currentTheme.border}`,
+                      backgroundColor: currentTheme.bg,
+                      color: currentTheme.text,
+                      fontSize: '0.875rem',
+                      marginBottom: '0.75rem',
+                      outline: 'none',
+                      transition: 'all 0.2s ease'
+                    }}
+                    onFocus={(e) => {
+                      e.target.style.borderColor = currentTheme.accent;
+                      e.target.style.boxShadow = `0 0 0 3px ${currentTheme.accent}15`;
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.borderColor = currentTheme.border;
+                      e.target.style.boxShadow = 'none';
+                    }}
+                  />
                   <button style={{
-                    padding: '0.5rem 1rem',
-                    backgroundColor: currentTheme.accent,
+                    width: '100%',
+                    padding: '0.75rem',
+                    background: `linear-gradient(135deg, ${currentTheme.accent} 0%, ${currentTheme.accentLight} 100%)`,
                     color: '#ffffff',
-                    borderRadius: '20px',
-                    fontSize: '0.75rem',
-                    fontWeight: '500',
+                    borderRadius: '8px',
+                    fontSize: '0.875rem',
+                    fontWeight: '600',
                     cursor: 'pointer',
                     border: 'none',
-                    transition: 'all 0.2s ease'
-                  }}>
-                    Follow
+                    transition: 'all 0.3s ease',
+                    boxShadow: `0 4px 12px ${currentTheme.accent}30`
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-1px)';
+                    e.currentTarget.style.boxShadow = `0 6px 16px ${currentTheme.accent}40`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = `0 4px 12px ${currentTheme.accent}30`;
+                  }}
+                  >
+                    Subscribe
                   </button>
+                  <p style={{
+                    fontSize: '0.75rem',
+                    color: currentTheme.subtle,
+                    marginTop: '0.75rem',
+                    textAlign: 'center'
+                  }}>
+                    No spam. Unsubscribe anytime.
+                  </p>
                 </div>
               </div>
             </aside>
