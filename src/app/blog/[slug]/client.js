@@ -16,7 +16,7 @@ import ContextAwareNavigation from '@/components/Navigation/ContextAwareNavigati
 import Breadcrumbs from '@/components/Breadcrumbs';
 import '@/app/globals.css';
 
-const BlogPostClient = ({ params }) => {
+const BlogPostClient = ({ post }) => {
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
   const [isLiked, setIsLiked] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
@@ -116,21 +116,6 @@ const BlogPostClient = ({ params }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Reading progress tracker
-  useEffect(() => {
-    const handleScroll = () => {
-      if (contentRef.current) {
-        const { top, height } = contentRef.current.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const scrolled = Math.max(0, Math.min(1, (-top) / (height - windowHeight)));
-        setReadingProgress(scrolled * 100);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   // Time spent reading tracker
   useEffect(() => {
     const interval = setInterval(() => {
@@ -139,96 +124,23 @@ const BlogPostClient = ({ params }) => {
     return () => clearInterval(interval);
   }, []);
 
-  // Table of contents data
-  const tableOfContents = [
-    { id: 'intro', title: 'Introduction', level: 1 },
-    { id: 'current-state', title: 'The Current State of AI', level: 1 },
-    { id: 'emerging-tech', title: 'Emerging Technologies', level: 1 },
-    { id: 'challenges', title: 'Challenges and Considerations', level: 1 },
-    { id: 'road-ahead', title: 'The Road Ahead', level: 1 },
-    { id: 'conclusion', title: 'Conclusion', level: 1 }
-  ];
-
-  // Enhanced blog post data with more metadata
-  const post = {
-    title: "The Future of AI in Academic Writing: A Comprehensive Analysis",
-    subtitle: "How artificial intelligence is revolutionizing scholarly work and what it means for the future of research",
-    excerpt: "Explore how artificial intelligence is revolutionizing academic writing, from research assistance to automated proofreading and beyond.",
-    content: `
-      <section id="intro">
-        <p>Artificial intelligence is transforming the landscape of academic writing in unprecedented ways. From automated research assistance to intelligent proofreading tools, AI technologies are reshaping how scholars approach the craft of writing.</p>
-        
-        <p>This comprehensive analysis explores the current state of AI in academic writing, emerging technologies, and the challenges that lie ahead as we navigate this new frontier of scholarly work.</p>
-      </section>
-      
-      <section id="current-state">
-        <h2>The Current State of AI in Academic Writing</h2>
-        <p>Today's AI writing tools offer capabilities that were unimaginable just a few years ago. These tools can help researchers:</p>
-        <ul>
-          <li>Generate literature reviews with comprehensive source analysis</li>
-          <li>Assist with citation formatting and reference management</li>
-          <li>Provide real-time grammar and style suggestions</li>
-          <li>Offer alternative phrasing and vocabulary suggestions</li>
-          <li>Detect potential plagiarism and ensure originality</li>
-        </ul>
-        
-        <p>The integration of these tools has led to significant improvements in writing efficiency and quality across academic institutions worldwide.</p>
-      </section>
-      
-      <section id="emerging-tech">
-        <h2>Emerging Technologies and Their Impact</h2>
-        <p>Recent advances in natural language processing have led to the development of more sophisticated writing assistants. These tools understand context, maintain consistency in tone, and can even suggest structural improvements to academic papers.</p>
-        
-        <blockquote>
-          "The integration of AI in academic writing represents not a replacement of human creativity, but an enhancement of scholarly capabilities." - Zev Uhuru
-        </blockquote>
-        
-        <p>Key emerging technologies include:</p>
-        <ul>
-          <li><strong>Contextual AI Assistants:</strong> Tools that understand the specific requirements of different academic disciplines</li>
-          <li><strong>Research Synthesis Engines:</strong> Systems that can analyze and synthesize findings from multiple sources</li>
-          <li><strong>Automated Peer Review:</strong> AI systems that provide initial feedback on academic papers</li>
-        </ul>
-      </section>
-      
-      <section id="challenges">
-        <h2>Challenges and Considerations</h2>
-        <p>While AI offers tremendous potential, it also presents challenges that academic institutions must address:</p>
-        <ul>
-          <li>Maintaining academic integrity and originality</li>
-          <li>Ensuring proper attribution of AI-generated content</li>
-          <li>Developing guidelines for AI tool usage</li>
-          <li>Preserving critical thinking and analytical skills</li>
-        </ul>
-        
-        <p>These challenges require careful consideration and the development of new frameworks for academic work in the AI age.</p>
-      </section>
-      
-      <section id="road-ahead">
-        <h2>The Road Ahead</h2>
-        <p>As we look to the future, the relationship between AI and academic writing will continue to evolve. The key lies in finding the right balance between leveraging AI capabilities and maintaining the essential human elements of scholarly work.</p>
-        
-        <p>Future developments may include:</p>
-        <ul>
-          <li>More sophisticated AI research assistants</li>
-          <li>Enhanced collaboration tools for academic teams</li>
-          <li>Improved methods for verifying AI-assisted research</li>
-          <li>New pedagogical approaches to teaching writing with AI</li>
-        </ul>
-      </section>
-      
-      <section id="conclusion">
-        <h2>Conclusion</h2>
-        <p>The integration of AI in academic writing is not just a technological shift—it's a fundamental reimagining of how knowledge is created, shared, and validated. As we embrace these new tools, we must remain mindful of the values that underpin academic work: rigor, originality, and the pursuit of truth.</p>
-      </section>
-    `,
-    author: "Zev Uhuru",
-    authorBio: "Zev Uhuru is the founder of Esy, specializing in AI-powered educational tools and academic writing assistance. He has extensive experience in developing innovative solutions for students and researchers.",
-    authorTitle: "Founder, Esy",
-    date: "March 28, 2025",
-    readTime: 12,
-    category: "AI & Technology",
-    tags: ["AI", "Academic Writing", "Future Tech", "Education", "Research", "Innovation"],
+  // Use the dynamic post data passed as props
+  const postData = {
+    title: post.title,
+    subtitle: post.subtitle || post.excerpt,
+    excerpt: post.excerpt,
+    content: post.contentHtml,
+    author: post.author || "Zev Uhuru",
+    authorBio: post.authorBio || "Zev Uhuru is the founder of Esy, specializing in AI-powered educational tools and academic writing assistance.",
+    authorTitle: post.authorRole || "Founder, Esy",
+    date: new Date(post.date).toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    }),
+    readTime: post.readTime || 8,
+    category: post.category || "AI & Technology",
+    tags: post.tags || ["AI", "Technology"],
     difficulty: "Intermediate",
     citations: 24,
     relatedPosts: [
@@ -238,6 +150,114 @@ const BlogPostClient = ({ params }) => {
     ]
   };
 
+  // Dynamically generate table of contents from post content
+  const tableOfContents = React.useMemo(() => {
+    const toc = [];
+    const content = postData.content;
+    
+    // Extract h2 and h3 headings from the content
+    const headingRegex = /<h([23])>(.*?)<\/h[23]>/gi;
+    let match;
+    let hasIntro = false;
+    
+    while ((match = headingRegex.exec(content)) !== null) {
+      const level = parseInt(match[1]) - 1; // h2 = level 1, h3 = level 2
+      const title = match[2].replace(/<[^>]*>/g, '').trim(); // Remove any HTML tags
+      
+      // Generate ID from title
+      let id = title.toLowerCase()
+        .replace(/[^a-z0-9\s]/g, '')
+        .replace(/\s+/g, '-')
+        .trim();
+      
+      // Special handling for common section names
+      if (title.toLowerCase().includes('introduction')) {
+        id = 'intro';
+        hasIntro = true;
+      } else if (title.toLowerCase().includes('conclusion')) {
+        id = 'conclusion';
+      }
+      
+      toc.push({ id, title, level });
+    }
+    
+    // If no headings found or content doesn't start with a heading, add Introduction
+    if (!hasIntro && (toc.length === 0 || !content.trim().startsWith('<h'))) {
+      toc.unshift({ id: 'intro', title: 'Introduction', level: 1 });
+    }
+    
+    return toc;
+  }, [postData.content]);
+
+  // Combined progress tracker and section detection
+  useEffect(() => {
+    const handleScroll = () => {
+      if (contentRef.current) {
+        // Calculate reading progress
+        const { top, height } = contentRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const scrolled = Math.max(0, Math.min(1, (-top) / (height - windowHeight)));
+        setReadingProgress(scrolled * 100);
+        
+        // Detect active section based on scroll position
+        const sections = tableOfContents.map(item => ({
+          id: item.id,
+          element: document.getElementById(item.id)
+        })).filter(section => section.element);
+        
+        if (sections.length > 0) {
+          let currentSection = sections[0].id;
+          
+          // Check if we're near the bottom of the page (last 10%)
+          const isNearBottom = scrolled > 0.9;
+          
+          if (isNearBottom && sections.length > 0) {
+            // If near bottom, highlight the last section
+            currentSection = sections[sections.length - 1].id;
+          } else {
+            // Find the section that's currently most visible
+            for (let i = sections.length - 1; i >= 0; i--) {
+              const rect = sections[i].element.getBoundingClientRect();
+              const elementTop = rect.top;
+              const elementBottom = rect.bottom;
+              
+              // Check if section is visible in viewport
+              // A section is considered active if its top is in the upper 40% of viewport
+              // OR if it spans across the middle of the viewport
+              const threshold = window.innerHeight * 0.4;
+              const isInView = elementTop <= threshold && elementBottom > 0;
+              
+              if (isInView) {
+                currentSection = sections[i].id;
+                break;
+              }
+            }
+          }
+          
+          setActiveSection(currentSection);
+        }
+      }
+    };
+
+    // Initial call
+    handleScroll();
+    
+    // Throttled scroll handler for better performance
+    let ticking = false;
+    const throttledScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', throttledScroll, { passive: true });
+    return () => window.removeEventListener('scroll', throttledScroll);
+  }, [tableOfContents]);
+
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -246,7 +266,7 @@ const BlogPostClient = ({ params }) => {
 
   const handleShare = async (platform) => {
     const url = window.location.href;
-    const text = `${post.title} - Read this insightful article on Esy`;
+    const text = `${postData.title} - Read this insightful article on Esy`;
     
     if (platform === 'copy') {
       await navigator.clipboard.writeText(url);
@@ -275,7 +295,15 @@ const BlogPostClient = ({ params }) => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const yOffset = -100; // Offset for fixed header
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth'
+      });
+      
+      // Set active section immediately for better UX
       setActiveSection(sectionId);
     }
   };
@@ -503,7 +531,7 @@ const BlogPostClient = ({ params }) => {
           items={[
             { label: 'Home', href: '/' },
             { label: 'Blog', href: '/blog' },
-            { label: post.title, href: null, isCurrent: true }
+            { label: postData.title, href: null, isCurrent: true }
           ]}
           isLight={!isDarkMode}
         />
@@ -535,7 +563,7 @@ const BlogPostClient = ({ params }) => {
             marginBottom: '1.5rem',
             border: `1px solid ${currentTheme.accent}30`
           }}>
-            {post.category}
+            {postData.category}
           </div>
 
           {/* Title */}
@@ -548,7 +576,7 @@ const BlogPostClient = ({ params }) => {
             fontFamily: 'var(--font-literata)',
             color: currentTheme.text
           }}>
-            {post.title}
+            {postData.title}
           </h1>
 
           {/* Subtitle */}
@@ -560,7 +588,7 @@ const BlogPostClient = ({ params }) => {
             marginBottom: '2rem',
             fontStyle: 'italic'
           }}>
-            {post.subtitle}
+            {postData.subtitle}
           </p>
 
           {/* Meta Info */}
@@ -577,15 +605,15 @@ const BlogPostClient = ({ params }) => {
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <User size={16} color={currentTheme.accent} />
-              <span style={{ fontSize: '0.875rem', color: currentTheme.text }}>{post.author}</span>
+              <span style={{ fontSize: '0.875rem', color: currentTheme.text }}>{postData.author}</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Calendar size={16} color={currentTheme.info} />
-              <span style={{ fontSize: '0.875rem', color: currentTheme.muted }}>{post.date}</span>
+              <span style={{ fontSize: '0.875rem', color: currentTheme.muted }}>{postData.date}</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Clock size={16} color={currentTheme.success} />
-              <span style={{ fontSize: '0.875rem', color: currentTheme.muted }}>{post.readTime} min read</span>
+              <span style={{ fontSize: '0.875rem', color: currentTheme.muted }}>{postData.readTime} min read</span>
             </div>
           </div>
         </div>
@@ -601,12 +629,14 @@ const BlogPostClient = ({ params }) => {
           margin: '0 auto',
           display: 'grid',
           gridTemplateColumns: isDesktop ? '1fr 300px' : '1fr',
-          gap: '3rem'
+          gap: isDesktop ? '3rem' : '2rem',
+          alignItems: 'start',
+          position: 'relative'
         }}>
           {/* Main Article Content */}
           <article ref={contentRef} style={{ 
-            maxWidth: currentMaxWidth,
-            margin: '0 auto'
+            width: '100%',
+            overflow: 'hidden'
           }}>
             <div 
               style={{
@@ -616,14 +646,53 @@ const BlogPostClient = ({ params }) => {
                 fontFamily: 'var(--font-inter)'
               }}
               dangerouslySetInnerHTML={{ 
-                __html: post.content
-                  .replace(/<h2>/g, `<h2 style="font-size: ${currentFontSize.heading}; font-weight: 600; margin: 3rem 0 1.5rem; color: ${currentTheme.text}; font-family: var(--font-literata); line-height: 1.3;">`)
-                  .replace(/<p>/g, `<p style="margin-bottom: 1.75rem; color: ${currentTheme.text}; line-height: ${currentLineHeight}; font-size: ${currentFontSize.body};">`)
-                  .replace(/<ul>/g, `<ul style="margin-bottom: 1.75rem; padding-left: 1.5rem; list-style: none;">`)
-                  .replace(/<li>/g, `<li style="margin-bottom: 0.75rem; color: ${currentTheme.text}; position: relative; padding-left: 1.5rem; line-height: ${currentLineHeight};"><span style="position: absolute; left: 0; color: ${currentTheme.accent}; font-weight: 600;">•</span>`)
-                  .replace(/<blockquote>/g, `<blockquote style="border-left: 4px solid ${currentTheme.accent}; padding: 1.5rem; margin: 2.5rem 0; font-style: italic; color: ${currentTheme.muted}; font-size: ${currentFontSize.body}; background: ${currentTheme.elevated}; border-radius: 0 12px 12px 0; position: relative; line-height: ${currentLineHeight};">`)
-                  .replace(/<strong>/g, `<strong style="color: ${currentTheme.accent}; font-weight: 600;">`)
-                  .replace(/<section/g, `<section style="scroll-margin-top: 100px;"`)
+                __html: (() => {
+                  // Process content to add IDs to headings that match TOC
+                  let processedContent = postData.content;
+                  let hasIntro = false;
+                  
+                  // Add IDs to h2 and h3 headings based on their content
+                  processedContent = processedContent.replace(/<h([23])>(.*?)<\/h[23]>/gi, (match, level, title) => {
+                    const cleanTitle = title.replace(/<[^>]*>/g, '').trim();
+                    
+                    // Generate ID exactly as we do in TOC
+                    let id = cleanTitle.toLowerCase()
+                      .replace(/[^a-z0-9\s]/g, '')
+                      .replace(/\s+/g, '-')
+                      .trim();
+                    
+                    // Special handling for common section names
+                    if (cleanTitle.toLowerCase().includes('introduction')) {
+                      id = 'intro';
+                      hasIntro = true;
+                    } else if (cleanTitle.toLowerCase().includes('conclusion')) {
+                      id = 'conclusion';
+                    }
+                    
+                    const styles = level === '2' 
+                      ? `font-size: ${currentFontSize.heading}; font-weight: 600; margin: 3rem 0 1.5rem; color: ${currentTheme.text}; font-family: var(--font-literata); line-height: 1.3; scroll-margin-top: 100px;`
+                      : `font-size: ${currentFontSize.subheading}; font-weight: 600; margin: 2rem 0 1rem; color: ${currentTheme.text}; font-family: var(--font-literata); line-height: 1.3; scroll-margin-top: 100px;`;
+                    
+                    return `<h${level} id="${id}" style="${styles}">${title}</h${level}>`;
+                  });
+                  
+                  // Add intro section if content doesn't start with h2/h3 and we don't have intro
+                  if (!hasIntro && !processedContent.trim().match(/^<h[23]/)) {
+                    processedContent = `<div id="intro">${processedContent}`;
+                    // Find the first heading and close the intro div before it
+                    processedContent = processedContent.replace(/<h[23]/, '</div>$&');
+                  }
+                  
+                  // Apply other styles
+                  processedContent = processedContent
+                    .replace(/<p>/g, `<p style="margin-bottom: 1.75rem; color: ${currentTheme.text}; line-height: ${currentLineHeight}; font-size: ${currentFontSize.body};">`)
+                    .replace(/<ul>/g, `<ul style="margin-bottom: 1.75rem; padding-left: 1.5rem; list-style: none;">`)
+                    .replace(/<li>/g, `<li style="margin-bottom: 0.75rem; color: ${currentTheme.text}; position: relative; padding-left: 1.5rem; line-height: ${currentLineHeight};"><span style="position: absolute; left: 0; color: ${currentTheme.accent}; font-weight: 600;">•</span>`)
+                    .replace(/<blockquote>/g, `<blockquote style="border-left: 4px solid ${currentTheme.accent}; padding: 1.5rem; margin: 2.5rem 0; font-style: italic; color: ${currentTheme.muted}; font-size: ${currentFontSize.body}; background: ${currentTheme.elevated}; border-radius: 0 12px 12px 0; position: relative; line-height: ${currentLineHeight};">`)
+                    .replace(/<strong>/g, `<strong style="color: ${currentTheme.accent}; font-weight: 600;">`);
+                  
+                  return processedContent;
+                })()
               }}
             />
 
@@ -650,7 +719,7 @@ const BlogPostClient = ({ params }) => {
                 flexWrap: 'wrap',
                 gap: '0.75rem'
               }}>
-                {post.tags.map((tag, index) => (
+                {postData.tags.map((tag, index) => (
                   <button
                     key={index}
                     style={{
@@ -867,7 +936,9 @@ const BlogPostClient = ({ params }) => {
             <aside style={{
               position: 'sticky',
               top: '100px',
-              height: 'fit-content'
+              height: 'fit-content',
+              width: '300px',
+              flexShrink: 0
             }}>
               <div style={{
                 background: `linear-gradient(145deg, ${currentTheme.elevated} 0%, ${currentTheme.card} 100%)`,
@@ -927,7 +998,9 @@ const BlogPostClient = ({ params }) => {
                     flexDirection: 'column',
                     gap: '0.5rem'
                   }}>
-                    {tableOfContents.map((item, index) => (
+                    {tableOfContents.map((item, index) => {
+                      const isActive = activeSection === item.id;
+                      return (
                       <button
                         key={item.id}
                         onClick={() => scrollToSection(item.id)}
@@ -936,58 +1009,60 @@ const BlogPostClient = ({ params }) => {
                           alignItems: 'center',
                           width: '100%',
                           textAlign: 'left',
-                          padding: '1rem 1.25rem',
-                          backgroundColor: activeSection === item.id 
-                            ? `linear-gradient(135deg, ${currentTheme.accent}15 0%, ${currentTheme.accentLight}08 100%)`
+                          padding: '0.875rem 1rem',
+                          backgroundColor: isActive 
+                            ? `${currentTheme.accent}10`
                             : 'transparent',
-                          border: activeSection === item.id 
-                            ? `1px solid ${currentTheme.accent}30`
-                            : `1px solid transparent`,
-                          color: activeSection === item.id ? currentTheme.accent : currentTheme.muted,
+                          border: 'none',
+                          color: isActive ? currentTheme.accent : currentTheme.muted,
                           fontSize: '0.875rem',
-                          fontWeight: activeSection === item.id ? '500' : '400',
+                          fontWeight: isActive ? '500' : '400',
                           cursor: 'pointer',
-                          transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                           borderRadius: '12px',
-                          position: 'relative',
-                          overflow: 'hidden'
+                          position: 'relative'
                         }}
                         onMouseEnter={(e) => {
-                          if (activeSection !== item.id) {
-                            e.currentTarget.style.backgroundColor = currentTheme.card;
+                          if (!isActive) {
+                            e.currentTarget.style.backgroundColor = `${currentTheme.card}80`;
                             e.currentTarget.style.color = currentTheme.text;
-                            e.currentTarget.style.transform = 'translateX(4px)';
-                            e.currentTarget.style.borderColor = currentTheme.border;
+                            e.currentTarget.style.transform = 'translateX(2px)';
                           }
                         }}
                         onMouseLeave={(e) => {
-                          if (activeSection !== item.id) {
+                          if (!isActive) {
                             e.currentTarget.style.backgroundColor = 'transparent';
                             e.currentTarget.style.color = currentTheme.muted;
                             e.currentTarget.style.transform = 'translateX(0)';
-                            e.currentTarget.style.borderColor = 'transparent';
                           }
                         }}
                       >
                         {/* Section number indicator */}
                         <div style={{
-                          width: '24px',
-                          height: '24px',
+                          width: '28px',
+                          height: '28px',
                           borderRadius: '50%',
-                          backgroundColor: activeSection === item.id 
-                            ? currentTheme.accent 
-                            : currentTheme.faint,
-                          color: activeSection === item.id 
+                          background: isActive 
+                            ? `linear-gradient(135deg, ${currentTheme.accent} 0%, ${currentTheme.accentLight} 100%)`
+                            : currentTheme.elevated,
+                          border: isActive
+                            ? 'none'
+                            : `1px solid ${currentTheme.border}`,
+                          color: isActive 
                             ? '#ffffff' 
-                            : currentTheme.muted,
+                            : currentTheme.subtle,
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                           fontSize: '0.75rem',
                           fontWeight: '600',
-                          marginRight: '0.75rem',
-                          transition: 'all 0.3s ease',
-                          flexShrink: 0
+                          marginRight: '0.875rem',
+                          transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                          flexShrink: 0,
+                          boxShadow: isActive 
+                            ? `0 4px 12px ${currentTheme.accent}40, 0 0 0 4px ${currentTheme.accent}15`
+                            : 'none',
+                          transform: isActive ? 'scale(1.1)' : 'scale(1)'
                         }}>
                           {index + 1}
                         </div>
@@ -1001,8 +1076,8 @@ const BlogPostClient = ({ params }) => {
                           {item.title}
                         </span>
                         
-                        {/* Active indicator */}
-                        {activeSection === item.id && (
+                        {/* Active indicator dot */}
+                        {isActive && (
                           <div style={{
                             width: '6px',
                             height: '6px',
@@ -1013,7 +1088,8 @@ const BlogPostClient = ({ params }) => {
                           }} />
                         )}
                       </button>
-                    ))}
+                      );
+                    })}
                   </nav>
                   
                   {/* Progress indicator */}
@@ -1085,13 +1161,13 @@ const BlogPostClient = ({ params }) => {
                   fontWeight: '600',
                   margin: '0 auto 1rem'
                 }}>
-                  {post.author.split(' ').map(n => n[0]).join('')}
+                  {postData.author.split(' ').map(n => n[0]).join('')}
                 </div>
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontWeight: '600', marginBottom: '0.25rem', color: currentTheme.text }}>{post.author}</div>
-                  <div style={{ fontSize: '0.75rem', color: currentTheme.muted, marginBottom: '1rem' }}>{post.authorTitle}</div>
+                  <div style={{ fontWeight: '600', marginBottom: '0.25rem', color: currentTheme.text }}>{postData.author}</div>
+                  <div style={{ fontSize: '0.75rem', color: currentTheme.muted, marginBottom: '1rem' }}>{postData.authorTitle}</div>
                   <p style={{ fontSize: '0.875rem', color: currentTheme.muted, lineHeight: 1.5, marginBottom: '1rem' }}>
-                    {post.authorBio}
+                    {postData.authorBio}
                   </p>
                   <button style={{
                     padding: '0.5rem 1rem',
@@ -1113,8 +1189,26 @@ const BlogPostClient = ({ params }) => {
         </div>
       </section>
 
-      {/* CSS Animations */}
+      {/* CSS Animations and Scrollbar Styling */}
       <style jsx>{`
+        /* Custom scrollbar for sidebar */
+        aside > div::-webkit-scrollbar {
+          width: 4px;
+        }
+        
+        aside > div::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        
+        aside > div::-webkit-scrollbar-thumb {
+          background: ${currentTheme.border};
+          border-radius: 2px;
+        }
+        
+        aside > div::-webkit-scrollbar-thumb:hover {
+          background: ${currentTheme.accent}40;
+        }
+        
         @keyframes float {
           0%, 100% {
             transform: translateY(0) scale(1);
@@ -1130,19 +1224,28 @@ const BlogPostClient = ({ params }) => {
             transform: scale(1);
           }
           50% {
-            opacity: 0.7;
-            transform: scale(1.1);
+            opacity: 0.6;
+            transform: scale(1.2);
           }
         }
         
         @keyframes slideIn {
           from {
+            width: 0;
             opacity: 0;
-            transform: translateY(10px);
           }
           to {
+            width: 3px;
             opacity: 1;
-            transform: translateY(0);
+          }
+        }
+        
+        @keyframes glow {
+          0%, 100% {
+            box-shadow: 0 0 0 0 ${currentTheme.accent}40;
+          }
+          50% {
+            box-shadow: 0 0 0 8px ${currentTheme.accent}00;
           }
         }
       `}</style>

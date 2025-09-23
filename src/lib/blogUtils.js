@@ -1,94 +1,73 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { compileMDX } from 'next-mdx-remote/rsc';
+import { remark } from 'remark';
+import html from 'remark-html';
 
-// Custom components that can be used in blog MDX
-const customComponents = {
-  // Add any custom components here if needed
-};
+const blogDirectory = path.join(process.cwd(), 'src/content/blog');
 
-export async function getBlogPost(slug) {
-  try {
-    const blogPath = path.join(process.cwd(), 'src/content/blog', `${slug}.mdx`);
-    
-    if (!fs.existsSync(blogPath)) {
-      return null;
-    }
-    
-    const rawMdx = fs.readFileSync(blogPath, 'utf8');
-    const { data, content } = matter(rawMdx);
-    
-    // Try to compile the MDX content
-    try {
-      const { content: compiledContent } = await compileMDX({
-        source: content,
-        components: customComponents,
-        options: {
-          parseFrontmatter: false, // We already parsed it with gray-matter
-          mdxOptions: {
-            remarkPlugins: [],
-            rehypePlugins: [],
-          },
-        },
-      });
-      
-      return {
-        meta: data,
-        content: compiledContent,
-        isCompiled: true,
-      };
-    } catch (compileError) {
-      console.error('Failed to compile MDX:', compileError);
-      
-      // Fallback to raw content
-      return {
-        meta: data,
-        content: content,
-        isCompiled: false,
-      };
-    }
-  } catch (error) {
-    console.error('Error processing blog post:', error);
-    return null;
-  }
+export async function getAllBlogIds() {
+  const fileNames = fs.readdirSync(blogDirectory);
+  return fileNames.map(fileName => {
+    return {
+      params: {
+        slug: fileName.replace(/\.mdx?$/, '')
+      }
+    };
+  });
 }
 
-export function getAllBlogSlugs() {
-  const blogDirectory = path.join(process.cwd(), 'src/content/blog');
-  
-  if (!fs.existsSync(blogDirectory)) {
-    return [];
-  }
-  
-  const fileNames = fs.readdirSync(blogDirectory);
-  return fileNames
-    .filter(name => name.endsWith('.mdx'))
-    .map(name => name.replace(/\.mdx$/, ''));
+export async function getBlogPost(slug) {
+  const fullPath = path.join(blogDirectory, `${slug}.mdx`);
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+  // Use gray-matter to parse the post metadata section
+  const matterResult = matter(fileContents);
+
+  // Use remark to convert markdown into HTML string
+  const processedContent = await remark()
+    .use(html)
+    .process(matterResult.content);
+  const contentHtml = processedContent.toString();
+
+  return {
+    slug,
+    contentHtml,
+    ...matterResult.data
+  };
 }
 
 export async function getAllBlogPosts() {
-  const slugs = getAllBlogSlugs();
-  const posts = [];
-  
-  for (const slug of slugs) {
-    const post = await getBlogPost(slug);
-    if (post) {
-      posts.push({
-        slug,
-        ...post.meta,
-        content: post.content
-      });
-    }
-  }
-  
+  const fileNames = fs.readdirSync(blogDirectory);
+  const allBlogPosts = fileNames.map(fileName => {
+    // Remove ".mdx" from file name to get slug
+    const slug = fileName.replace(/\.mdx?$/, '');
+
+    // Read markdown file as string
+    const fullPath = path.join(blogDirectory, fileName);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+    // Use gray-matter to parse the post metadata section
+    const matterResult = matter(fileContents);
+
+    // Combine the data with the slug
+    return {
+      slug,
+      ...matterResult.data
+    };
+  });
+
   // Sort posts by date (newest first)
-  return posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+  return allBlogPosts.sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return dateB - dateA;
+  });
 }
 
-export async function getFeaturedBlogPosts() {
+export async function getFeaturedBlogPost() {
   const allPosts = await getAllBlogPosts();
-  return allPosts.filter(post => post.featured);
+  return allPosts.find(post => post.featured) || allPosts[0];
 }
 
 export async function getBlogPostsByCategory(category) {
@@ -96,14 +75,7 @@ export async function getBlogPostsByCategory(category) {
   return allPosts.filter(post => post.category === category);
 }
 
-export async function searchBlogPosts(query) {
-  const allPosts = await getAllBlogPosts();
-  const lowercaseQuery = query.toLowerCase();
-  
-  return allPosts.filter(post => 
-    post.title.toLowerCase().includes(lowercaseQuery) ||
-    post.excerpt.toLowerCase().includes(lowercaseQuery) ||
-    post.tags.some(tag => tag.toLowerCase().includes(lowercaseQuery)) ||
-    post.author.toLowerCase().includes(lowercaseQuery)
-  );
+export async function getBlogPostSlugs() {
+  const fileNames = fs.readdirSync(blogDirectory);
+  return fileNames.map(fileName => fileName.replace(/\.mdx?$/, ''));
 }

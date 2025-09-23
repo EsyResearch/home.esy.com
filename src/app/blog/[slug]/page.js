@@ -1,18 +1,46 @@
 import React from 'react';
 import BlogPostClient from './client';
+import { getBlogPost, getBlogPostSlugs } from '@/lib/blogUtils';
+import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
-  // Return the blog post slugs that should be pre-rendered
-  return [
-    { slug: 'future-ai-academic-writing' },
-    { slug: 'mastering-prompt-engineering' },
-    { slug: 'research-methodology-digital-age' },
-    { slug: 'ai-transforming-literature-analysis' },
-    { slug: 'ethics-ai-assisted-academic-writing' },
-    { slug: 'innovative-teaching-methods-ai-generation' }
-  ];
+  const slugs = await getBlogPostSlugs();
+  return slugs.map((slug) => ({
+    slug: slug,
+  }));
 }
 
-export default function BlogPostPage({ params }) {
-  return <BlogPostClient params={params} />;
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const post = await getBlogPost(slug);
+  
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+    };
+  }
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: 'article',
+      publishedTime: post.date,
+      authors: [post.author],
+      tags: post.tags,
+    },
+  };
+}
+
+export default async function BlogPostPage({ params }) {
+  const { slug } = await params;
+  const post = await getBlogPost(slug);
+  
+  if (!post) {
+    notFound();
+  }
+
+  return <BlogPostClient post={post} />;
 }
