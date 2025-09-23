@@ -323,7 +323,7 @@ const BlogPostClient = ({ post }) => {
           requestAnimationFrame(step);
         } else {
           // Set active section after scroll completes
-          setActiveSection(sectionId);
+      setActiveSection(sectionId);
         }
       };
       
@@ -708,10 +708,10 @@ const BlogPostClient = ({ post }) => {
                   
                   // Apply other styles
                   processedContent = processedContent
-                    .replace(/<p>/g, `<p style="margin-bottom: 1.75rem; color: ${currentTheme.text}; line-height: ${currentLineHeight}; font-size: ${currentFontSize.body};">`)
-                    .replace(/<ul>/g, `<ul style="margin-bottom: 1.75rem; padding-left: 1.5rem; list-style: none;">`)
-                    .replace(/<li>/g, `<li style="margin-bottom: 0.75rem; color: ${currentTheme.text}; position: relative; padding-left: 1.5rem; line-height: ${currentLineHeight};"><span style="position: absolute; left: 0; color: ${currentTheme.accent}; font-weight: 600;">•</span>`)
-                    .replace(/<blockquote>/g, `<blockquote style="border-left: 4px solid ${currentTheme.accent}; padding: 1.5rem; margin: 2.5rem 0; font-style: italic; color: ${currentTheme.muted}; font-size: ${currentFontSize.body}; background: ${currentTheme.elevated}; border-radius: 0 12px 12px 0; position: relative; line-height: ${currentLineHeight};">`)
+                  .replace(/<p>/g, `<p style="margin-bottom: 1.75rem; color: ${currentTheme.text}; line-height: ${currentLineHeight}; font-size: ${currentFontSize.body};">`)
+                  .replace(/<ul>/g, `<ul style="margin-bottom: 1.75rem; padding-left: 1.5rem; list-style: none;">`)
+                  .replace(/<li>/g, `<li style="margin-bottom: 0.75rem; color: ${currentTheme.text}; position: relative; padding-left: 1.5rem; line-height: ${currentLineHeight};"><span style="position: absolute; left: 0; color: ${currentTheme.accent}; font-weight: 600;">•</span>`)
+                  .replace(/<blockquote>/g, `<blockquote style="border-left: 4px solid ${currentTheme.accent}; padding: 1.5rem; margin: 2.5rem 0; font-style: italic; color: ${currentTheme.muted}; font-size: ${currentFontSize.body}; background: ${currentTheme.elevated}; border-radius: 0 12px 12px 0; position: relative; line-height: ${currentLineHeight};">`)
                     .replace(/<strong>/g, `<strong style="color: ${currentTheme.accent}; font-weight: 600;">`);
                   
                   return processedContent;
@@ -929,6 +929,359 @@ const BlogPostClient = ({ post }) => {
               
             </div>
 
+            {/* Continue Reading Section */}
+            <div style={{
+              marginTop: '6rem',
+              position: 'relative',
+              padding: '4rem 2rem',
+              background: isDarkMode 
+                ? 'linear-gradient(180deg, rgba(30, 30, 40, 0.5) 0%, rgba(25, 25, 35, 0.3) 100%)'
+                : 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%)',
+              borderRadius: '24px',
+              border: isDarkMode 
+                ? '1px solid rgba(255, 255, 255, 0.06)'
+                : '1px solid rgba(139, 92, 246, 0.05)',
+              boxShadow: isDarkMode 
+                ? '0 1px 0 rgba(255,255,255,0.03) inset, 0 0 0 1px rgba(0,0,0,0.2)'
+                : 'inset 0 1px 0 rgba(255,255,255,0.9), 0 20px 40px -20px rgba(0,0,0,0.1)',
+              backdropFilter: isDarkMode ? 'blur(20px) saturate(1.2)' : 'none',
+              overflow: 'hidden'
+            }}>
+              {/* Decorative gradient orbs */}
+              <div style={{
+                position: 'absolute',
+                top: '-50%',
+                left: '-10%',
+                width: '300px',
+                height: '300px',
+                background: isDarkMode 
+                  ? 'radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%)'
+                  : 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)',
+                borderRadius: '50%',
+                filter: 'blur(80px)',
+                pointerEvents: 'none',
+                opacity: isDarkMode ? 0.5 : 1
+              }} />
+              <div style={{
+                position: 'absolute',
+                bottom: '-50%',
+                right: '-10%',
+                width: '300px',
+                height: '300px',
+                background: isDarkMode 
+                  ? 'radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%)'
+                  : 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)',
+                borderRadius: '50%',
+                filter: 'blur(80px)',
+                pointerEvents: 'none',
+                opacity: isDarkMode ? 0.5 : 1
+              }} />
+
+              {/* Top decorative line */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '100px',
+                height: isDarkMode ? '2px' : '3px',
+                background: isDarkMode 
+                  ? `linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent)`
+                  : `linear-gradient(90deg, transparent, ${currentTheme.accent}, transparent)`,
+                borderRadius: '2px',
+                opacity: isDarkMode ? 0.6 : 1
+              }} />
+
+              {/* Header with icon */}
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                marginBottom: '3rem',
+                position: 'relative',
+                zIndex: 1
+              }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '60px',
+                  height: '60px',
+                  background: isDarkMode 
+                    ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(139, 92, 246, 0.08) 100%)'
+                    : 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.05) 100%)',
+                  borderRadius: '16px',
+                  marginBottom: '1.5rem',
+                  border: isDarkMode 
+                    ? '1px solid rgba(139, 92, 246, 0.2)'
+                    : '1px solid rgba(139, 92, 246, 0.2)',
+                  boxShadow: isDarkMode 
+                    ? '0 4px 12px -4px rgba(139, 92, 246, 0.2)'
+                    : '0 8px 16px -8px rgba(139, 92, 246, 0.3)'
+                }}>
+                  <BookOpen size={28} color={isDarkMode ? '#a78bfa' : currentTheme.accent} />
+                </div>
+                
+                <h2 style={{
+                  fontSize: isMobile ? '2rem' : '2.5rem',
+                  fontWeight: '300',
+                  marginBottom: '0.5rem',
+                  textAlign: 'center',
+                  fontFamily: 'var(--font-literata)',
+                  color: currentTheme.text,
+                  letterSpacing: '-0.02em'
+                }}>
+                  Continue Your Journey
+                </h2>
+                
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '1rem',
+                  marginTop: '0.5rem'
+                }}>
+                  <div style={{
+                    width: '40px',
+                    height: '1px',
+                    background: isDarkMode 
+                      ? 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1))'
+                      : `linear-gradient(90deg, transparent, ${currentTheme.divider})`,
+                    opacity: isDarkMode ? 0.5 : 1
+                  }} />
+                  <p style={{
+                    fontSize: '1.125rem',
+                    color: isDarkMode ? 'rgba(255,255,255,0.6)' : currentTheme.muted,
+                    textAlign: 'center',
+                    margin: 0,
+                    fontStyle: 'italic'
+                  }}>
+                    Handpicked articles to expand your knowledge
+                  </p>
+                  <div style={{
+                    width: '40px',
+                    height: '1px',
+                    background: isDarkMode 
+                      ? 'linear-gradient(90deg, rgba(255,255,255,0.1), transparent)'
+                      : `linear-gradient(90deg, ${currentTheme.divider}, transparent)`,
+                    opacity: isDarkMode ? 0.5 : 1
+                  }} />
+                </div>
+              </div>
+
+              {/* Related Articles Grid */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
+                gap: '2rem',
+                marginBottom: '3rem',
+                maxWidth: '800px',
+                margin: '0 auto 3rem',
+                position: 'relative',
+                zIndex: 1
+              }}>
+                {/* Related Article 1 */}
+                <Link 
+                  href="/blog/mastering-prompt-engineering"
+                  style={{
+                    textDecoration: 'none',
+                    display: 'block',
+                    transform: 'translateY(0)',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-4px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}
+                >
+                  <div style={{
+                    backgroundColor: currentTheme.elevated,
+                    borderRadius: '16px',
+                    padding: '1.5rem',
+                    border: `1px solid ${currentTheme.border}`,
+                    height: '100%',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = currentTheme.accent;
+                    e.currentTarget.style.boxShadow = `0 10px 30px ${isDarkMode ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.1)'}`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = currentTheme.border;
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
+                  >
+                    <div style={{
+                      display: 'inline-block',
+                      padding: '0.25rem 0.75rem',
+                      backgroundColor: `${currentTheme.accent}20`,
+                      color: currentTheme.accent,
+                      borderRadius: '8px',
+                      fontSize: '0.75rem',
+                      fontWeight: '600',
+                      marginBottom: '1rem'
+                    }}>
+                      Prompt Engineering
+                    </div>
+                    <h3 style={{
+                      fontSize: '1.25rem',
+                      fontWeight: '600',
+                      marginBottom: '0.75rem',
+                      color: currentTheme.text,
+                      lineHeight: 1.3
+                    }}>
+                      Mastering Prompt Engineering
+                    </h3>
+                    <p style={{
+                      fontSize: '0.875rem',
+                      color: currentTheme.muted,
+                      lineHeight: 1.5,
+                      marginBottom: '1rem'
+                    }}>
+                      Learn the art and science of crafting effective prompts that unlock the full potential of AI language models.
+                    </p>
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      fontSize: '0.875rem',
+                      color: currentTheme.subtle
+                    }}>
+                      <Clock size={14} />
+                      <span>8 min read</span>
+                    </div>
+                  </div>
+                </Link>
+
+                {/* Related Article 2 */}
+                <Link 
+                  href="/blog/research-methodology-digital-age"
+                  style={{
+                    textDecoration: 'none',
+                    display: 'block',
+                    transform: 'translateY(0)',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-4px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}
+                >
+                  <div style={{
+                    backgroundColor: currentTheme.elevated,
+                    borderRadius: '16px',
+                    padding: '1.5rem',
+                    border: `1px solid ${currentTheme.border}`,
+                    height: '100%',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = currentTheme.accent;
+                    e.currentTarget.style.boxShadow = `0 10px 30px ${isDarkMode ? 'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.1)'}`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = currentTheme.border;
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
+                  >
+                    <div style={{
+                      display: 'inline-block',
+                      padding: '0.25rem 0.75rem',
+                      backgroundColor: `${currentTheme.accent}20`,
+                      color: currentTheme.accent,
+                      borderRadius: '8px',
+                      fontSize: '0.75rem',
+                      fontWeight: '600',
+                      marginBottom: '1rem'
+                    }}>
+                      Research
+                    </div>
+                    <h3 style={{
+                      fontSize: '1.25rem',
+                      fontWeight: '600',
+                      marginBottom: '0.75rem',
+                      color: currentTheme.text,
+                      lineHeight: 1.3
+                    }}>
+                      Research Methodology in the Digital Age
+                    </h3>
+                    <p style={{
+                      fontSize: '0.875rem',
+                      color: currentTheme.muted,
+                      lineHeight: 1.5,
+                      marginBottom: '1rem'
+                    }}>
+                      Discover modern research techniques that leverage digital tools while maintaining academic rigor.
+                    </p>
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      fontSize: '0.875rem',
+                      color: currentTheme.subtle
+                    }}>
+                      <Clock size={14} />
+                      <span>15 min read</span>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+
+              {/* View All Articles CTA */}
+              <div style={{
+                textAlign: 'center',
+                marginTop: '3rem',
+                position: 'relative',
+                zIndex: 1
+              }}>
+                <Link
+                  href="/blog"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    padding: '0.875rem 2rem',
+                    backgroundColor: 'transparent',
+                    color: isDarkMode ? 'rgba(167, 139, 250, 0.8)' : currentTheme.accent,
+                    border: isDarkMode 
+                      ? '1.5px solid rgba(167, 139, 250, 0.3)'
+                      : `2px solid ${currentTheme.accent}`,
+                    borderRadius: '50px',
+                    fontSize: '1rem',
+                    fontWeight: isDarkMode ? '500' : '600',
+                    textDecoration: 'none',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (isDarkMode) {
+                      e.currentTarget.style.backgroundColor = 'rgba(139, 92, 246, 0.08)';
+                      e.currentTarget.style.borderColor = 'rgba(167, 139, 250, 0.5)';
+                      e.currentTarget.style.color = 'rgba(167, 139, 250, 1)';
+                    } else {
+                      e.currentTarget.style.backgroundColor = `${currentTheme.accent}10`;
+                    }
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    if (isDarkMode) {
+                      e.currentTarget.style.borderColor = 'rgba(167, 139, 250, 0.3)';
+                      e.currentTarget.style.color = 'rgba(167, 139, 250, 0.8)';
+                    }
+                  }}
+                >
+                  View All Articles
+                  <ArrowRight size={18} />
+                </Link>
+              </div>
+            </div>
+
             {/* Engagement Actions */}
             {/* <div style={{
               marginTop: '3rem',
@@ -1131,15 +1484,15 @@ const BlogPostClient = ({ post }) => {
               }}              >
                 {/* Decorative corner accent - only in dark mode */}
                 {isDarkMode && (
-                  <div style={{
-                    position: 'absolute',
-                    top: 0,
-                    right: 0,
-                    width: '60px',
-                    height: '60px',
-                    background: `linear-gradient(135deg, ${currentTheme.accent}20 0%, transparent 50%)`,
-                    borderRadius: '0 20px 0 20px'
-                  }} />
+                <div style={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  width: '60px',
+                  height: '60px',
+                  background: `linear-gradient(135deg, ${currentTheme.accent}20 0%, transparent 50%)`,
+                  borderRadius: '0 20px 0 20px'
+                }} />
                 )}
                 
                 <div style={{
@@ -1233,7 +1586,7 @@ const BlogPostClient = ({ post }) => {
                           height: '28px',
                           borderRadius: '50%',
                           background: isActive 
-                            ? currentTheme.accent
+                            ? currentTheme.accent 
                             : isDarkMode ? currentTheme.elevated : '#f3f4f6',
                           border: isActive
                             ? 'none'
@@ -1347,13 +1700,13 @@ const BlogPostClient = ({ post }) => {
                 <div style={{ position: 'relative', zIndex: 1 }}>
                   <div style={{
                     fontSize: '1.125rem',
-                    fontWeight: '600',
+                  fontWeight: '600',
                     marginBottom: '0.5rem',
                     color: currentTheme.text,
                     fontFamily: 'var(--font-literata)'
-                  }}>
+                }}>
                     Get Weekly AI Writing Tips
-                  </div>
+                </div>
                   <p style={{
                     fontSize: '0.875rem',
                     color: currentTheme.muted,
