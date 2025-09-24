@@ -2,18 +2,29 @@
 
 import React from 'react';
 
-const ShareSection = ({ onShare, copiedLink }) => {
+const ShareSection = ({ onShare, copiedLink, theme, isDarkMode = true }) => {
+  // Default theme if not provided
+  const currentTheme = theme || {
+    text: isDarkMode ? '#ffffff' : '#0f172a',
+    muted: isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(15, 23, 42, 0.7)',
+    border: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(15, 23, 42, 0.1)',
+    divider: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.05)',
+    accent: isDarkMode ? '#8b5cf6' : '#7c3aed',
+    accentBg: isDarkMode ? 'rgba(139, 92, 246, 0.1)' : 'rgba(124, 58, 237, 0.1)'
+  };
+
   const styles = {
     shareSection: {
       padding: '3rem 0',
-      borderTop: '1px solid rgba(255, 255, 255, 0.05)',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+      borderTop: `1px solid ${currentTheme.divider}`,
+      borderBottom: `1px solid ${currentTheme.divider}`,
       textAlign: 'center'
     },
     shareTitle: {
       fontSize: '1.25rem',
       fontWeight: '300',
-      marginBottom: '1.5rem'
+      marginBottom: '1.5rem',
+      color: currentTheme.text
     },
     shareButtons: {
       display: 'flex',
@@ -24,9 +35,9 @@ const ShareSection = ({ onShare, copiedLink }) => {
     shareButton: {
       padding: '0.75rem 1.5rem',
       backgroundColor: 'transparent',
-      border: '1px solid rgba(255, 255, 255, 0.1)',
+      border: `1px solid ${currentTheme.border}`,
       borderRadius: '8px',
-      color: 'rgba(255, 255, 255, 0.7)',
+      color: currentTheme.muted,
       cursor: 'pointer',
       transition: 'all 0.2s ease',
       display: 'flex',
@@ -44,12 +55,12 @@ const ShareSection = ({ onShare, copiedLink }) => {
           style={styles.shareButton}
           onClick={() => onShare('twitter')}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = '#8b5cf6';
-            e.currentTarget.style.color = '#8b5cf6';
+            e.currentTarget.style.borderColor = currentTheme.accent;
+            e.currentTarget.style.color = currentTheme.accent;
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-            e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
+            e.currentTarget.style.borderColor = currentTheme.border;
+            e.currentTarget.style.color = currentTheme.muted;
           }}
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -62,12 +73,12 @@ const ShareSection = ({ onShare, copiedLink }) => {
           style={styles.shareButton}
           onClick={() => onShare('linkedin')}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = '#8b5cf6';
-            e.currentTarget.style.color = '#8b5cf6';
+            e.currentTarget.style.borderColor = currentTheme.accent;
+            e.currentTarget.style.color = currentTheme.accent;
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-            e.currentTarget.style.color = 'rgba(255, 255, 255, 0.7)';
+            e.currentTarget.style.borderColor = currentTheme.border;
+            e.currentTarget.style.color = currentTheme.muted;
           }}
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -81,9 +92,9 @@ const ShareSection = ({ onShare, copiedLink }) => {
         <button 
           style={{
             ...styles.shareButton,
-            backgroundColor: copiedLink ? 'rgba(139, 92, 246, 0.1)' : 'transparent',
-            borderColor: copiedLink ? '#8b5cf6' : 'rgba(255, 255, 255, 0.1)',
-            color: copiedLink ? '#8b5cf6' : 'rgba(255, 255, 255, 0.7)'
+            backgroundColor: copiedLink ? currentTheme.accentBg : 'transparent',
+            borderColor: copiedLink ? currentTheme.accent : currentTheme.border,
+            color: copiedLink ? currentTheme.accent : currentTheme.muted
           }}
           onClick={() => onShare('copy')}
         >

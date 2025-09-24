@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { Sun, Moon } from 'lucide-react';
 import ArticleLayout from '@/components/SchoolArticle/ArticleLayout';
 import ArticleHero from '@/components/SchoolArticle/ArticleHero';
 import ArticleSidebarComponent from '@/components/ArticleSidebar/ArticleSidebarComponent';
@@ -16,6 +17,7 @@ export default function AIResearchRevolutionArticle() {
   const [copiedLink, setCopiedLink] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true); // Default to dark for School
   const emailInputRef = useRef(null);
 
   const handleNewsletterSubmit = (e) => {
@@ -105,14 +107,99 @@ export default function AIResearchRevolutionArticle() {
   const estimatedReadTime = 6;
   const readingProgress = Math.min(Math.round((scrollProgress / 100) * estimatedReadTime), estimatedReadTime);
 
+  // Theme configuration
+  const theme = isDarkMode ? {
+    // Dark theme (School default)
+    bg: '#0a0a0f',
+    contentBg: 'transparent',
+    text: 'rgba(255, 255, 255, 0.9)',
+    textMuted: 'rgba(255, 255, 255, 0.7)',
+    textSubtle: 'rgba(255, 255, 255, 0.5)',
+    heading: '#ffffff',
+    border: 'rgba(139, 92, 246, 0.15)',
+    accent: '#8b5cf6',
+    accentLight: '#a78bfa',
+    accentBg: 'rgba(139, 92, 246, 0.1)',
+    accentBorder: 'rgba(139, 92, 246, 0.3)',
+    codeBg: '#16161f',
+    codeBorder: 'rgba(255, 255, 255, 0.1)',
+    calloutBg: 'rgba(139, 92, 246, 0.1)',
+    calloutBorder: '#8b5cf6',
+    buttonBg: 'rgba(139, 92, 246, 0.1)',
+    buttonHoverBg: 'rgba(139, 92, 246, 0.2)',
+  } : {
+    // Light theme
+    bg: '#ffffff',
+    contentBg: '#ffffff',
+    text: 'rgba(15, 23, 42, 0.9)',
+    textMuted: 'rgba(15, 23, 42, 0.7)',
+    textSubtle: 'rgba(15, 23, 42, 0.5)',
+    heading: '#0f172a',
+    border: 'rgba(139, 92, 246, 0.2)',
+    accent: '#7c3aed',
+    accentLight: '#8b5cf6',
+    accentBg: 'rgba(139, 92, 246, 0.05)',
+    accentBorder: 'rgba(139, 92, 246, 0.3)',
+    codeBg: '#f8fafc',
+    codeBorder: 'rgba(15, 23, 42, 0.1)',
+    calloutBg: 'rgba(139, 92, 246, 0.05)',
+    calloutBorder: '#7c3aed',
+    buttonBg: 'rgba(139, 92, 246, 0.05)',
+    buttonHoverBg: 'rgba(139, 92, 246, 0.1)',
+  };
+
   return (
-    <ArticleLayout meta={meta}>
+    <>
+      {/* Theme Toggle Button */}
+      <button
+        onClick={() => setIsDarkMode(!isDarkMode)}
+        style={{
+          position: 'fixed',
+          bottom: '2rem',
+          right: '2rem',
+          width: '56px',
+          height: '56px',
+          borderRadius: '50%',
+          backgroundColor: isDarkMode ? 'rgba(139, 92, 246, 0.1)' : 'rgba(139, 92, 246, 0.05)',
+          border: `2px solid ${theme.border}`,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          cursor: 'pointer',
+          zIndex: 100,
+          transition: 'all 0.3s ease',
+          boxShadow: isDarkMode 
+            ? '0 4px 20px rgba(139, 92, 246, 0.2)' 
+            : '0 4px 20px rgba(139, 92, 246, 0.1)'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'scale(1.1)';
+          e.currentTarget.style.backgroundColor = theme.buttonHoverBg;
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'scale(1)';
+          e.currentTarget.style.backgroundColor = isDarkMode 
+            ? 'rgba(139, 92, 246, 0.1)' 
+            : 'rgba(139, 92, 246, 0.05)';
+        }}
+        aria-label="Toggle theme"
+      >
+        {isDarkMode ? (
+          <Sun size={24} color={theme.accent} />
+        ) : (
+          <Moon size={24} color={theme.accent} />
+        )}
+      </button>
+
+    <ArticleLayout meta={meta} theme={theme} isDarkMode={isDarkMode}>
       <ArticleHero 
         category="Academic Writing"
         title="5 Ways AI is Revolutionizing Academic Research"
         author={author}
         date="March 18, 2025"
         readTime={`${readingProgress} / ${estimatedReadTime}`}
+        theme={theme}
+        isDarkMode={isDarkMode}
       />
 
       <div style={{
@@ -125,47 +212,47 @@ export default function AIResearchRevolutionArticle() {
         alignItems: 'start',
         position: 'relative'
       }}>
-        <div style={{
-          lineHeight: '1.8',
-          color: 'rgba(255, 255, 255, 0.9)',
-          maxWidth: isDesktop ? '100%' : '720px',
-          margin: isDesktop ? '0' : '0 auto'
-        }}>
-        <p style={styles.paragraph}>
+      <div style={{
+        lineHeight: '1.8',
+        color: theme.text,
+        maxWidth: isDesktop ? '100%' : '720px',
+        margin: isDesktop ? '0' : '0 auto'
+      }}>
+          <p style={{...styles.paragraph, color: theme.text}}>
         AI is transforming every stage of the research process, from literature reviews to data analysis and beyond. Here are five key ways AI is making an impact:
       </p>
 
-      <h2 style={styles.heading2} id="literature-review">1. Literature Review Automation</h2>
+      <h2 style={{...styles.heading2, color: theme.heading}} id="literature-review">1. Literature Review Automation</h2>
 
-      <p style={styles.paragraph}>
+      <p style={{...styles.paragraph, color: theme.text}}>
         AI tools can scan thousands of papers in seconds, summarizing key findings and identifying trends that would take humans weeks to uncover.
       </p>
 
-      <div style={styles.calloutBox}>
-        <h4 style={styles.calloutTitle}>
+      <div style={{...styles.calloutBox, backgroundColor: theme.calloutBg, borderColor: theme.calloutBorder}}>
+        <h4 style={{...styles.calloutTitle, color: theme.accent}}>
           <span style={{ fontSize: '1.5rem' }}>📚</span>
           Key Benefits
         </h4>
-        <ul style={{ ...styles.list, marginBottom: 0 }}>
-          <li style={styles.listItem}>Comprehensive coverage of relevant literature</li>
-          <li style={styles.listItem}>Automatic identification of research gaps</li>
-          <li style={styles.listItem}>Time savings of up to 90% compared to manual reviews</li>
-          <li style={styles.listItem}>Real-time updates as new papers are published</li>
+        <ul style={{ ...styles.list, marginBottom: 0, color: theme.text }}>
+          <li style={{...styles.listItem, color: theme.text}}>Comprehensive coverage of relevant literature</li>
+          <li style={{...styles.listItem, color: theme.text}}>Automatic identification of research gaps</li>
+          <li style={{...styles.listItem, color: theme.text}}>Time savings of up to 90% compared to manual reviews</li>
+          <li style={{...styles.listItem, color: theme.text}}>Real-time updates as new papers are published</li>
         </ul>
       </div>
 
-      <p style={styles.paragraph}>
+      <p style={{...styles.paragraph, color: theme.text}}>
         Modern AI-powered literature review tools use natural language processing to understand the context and relevance of research papers. They can identify methodological approaches, key findings, and even potential conflicts or contradictions across studies.
       </p>
 
-      <h2 style={styles.heading2} id="data-analysis">2. Data Analysis</h2>
+      <h2 style={{...styles.heading2, color: theme.heading}} id="data-analysis">2. Data Analysis</h2>
 
       <div style={{
         margin: '2rem 0',
         borderRadius: '12px',
         overflow: 'hidden',
-        backgroundColor: '#16161f',
-        border: '1px solid rgba(255, 255, 255, 0.1)'
+        backgroundColor: theme.codeBg,
+        border: `1px solid ${theme.codeBorder}`
       }}>
         <Image 
           src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" 
@@ -182,7 +269,7 @@ export default function AIResearchRevolutionArticle() {
           padding: '1rem',
           textAlign: 'center',
           fontSize: '0.875rem',
-          color: 'rgba(255, 255, 255, 0.6)',
+          color: theme.textSubtle,
           fontStyle: 'italic',
           margin: 0
         }}>
@@ -190,53 +277,57 @@ export default function AIResearchRevolutionArticle() {
         </p>
       </div>
 
-      <p style={styles.paragraph}>
+      <p style={{...styles.paragraph, color: theme.text}}>
         AI algorithms can process and analyze large datasets, revealing patterns and insights that drive new discoveries. Machine learning models excel at:
       </p>
 
-      <ul style={styles.list}>
-        <li style={styles.listItem}>Pattern recognition in complex multidimensional data</li>
-        <li style={styles.listItem}>Anomaly detection for quality control</li>
-        <li style={styles.listItem}>Predictive modeling for hypothesis testing</li>
-        <li style={styles.listItem}>Automated statistical analysis and visualization</li>
+      <ul style={{...styles.list, color: theme.text}}>
+        <li style={{...styles.listItem, color: theme.text}}>Pattern recognition in complex multidimensional data</li>
+        <li style={{...styles.listItem, color: theme.text}}>Anomaly detection for quality control</li>
+        <li style={{...styles.listItem, color: theme.text}}>Predictive modeling for hypothesis testing</li>
+        <li style={{...styles.listItem, color: theme.text}}>Automated statistical analysis and visualization</li>
       </ul>
 
-      <h2 style={styles.heading2} id="writing-assistance">3. Automated Writing Assistance</h2>
+      <h2 style={{...styles.heading2, color: theme.heading}} id="writing-assistance">3. Automated Writing Assistance</h2>
 
-      <p style={styles.paragraph}>
+      <p style={{...styles.paragraph, color: theme.text}}>
         From grammar checking to generating entire sections of text, AI writing tools help researchers communicate their findings more clearly and efficiently.
       </p>
 
-      <div style={styles.literaryExample}>
-        <div style={styles.exampleLabel}>AI Writing Capabilities</div>
-        <div style={styles.exampleText}>
+      <div style={{
+        ...styles.literaryExample,
+        backgroundColor: isDarkMode ? 'rgba(139, 92, 246, 0.05)' : 'rgba(124, 58, 237, 0.05)',
+        border: `1px solid ${theme.border}`
+      }}>
+        <div style={{...styles.exampleLabel, color: theme.accent}}>AI Writing Capabilities</div>
+        <div style={{...styles.exampleText, color: theme.text}}>
           &quot;The integration of quantum computing principles into molecular dynamics simulations represents a paradigmatic shift in computational chemistry.&quot;
         </div>
-        <div style={styles.exampleAnalysis}>
+        <div style={{...styles.exampleAnalysis, color: theme.textMuted}}>
           AI can help refine complex academic prose, suggest clearer alternatives, and ensure consistency in terminology throughout lengthy documents.
         </div>
       </div>
 
-      <p style={styles.paragraph}>
+      <p style={{...styles.paragraph, color: theme.text}}>
         Advanced AI writing assistants go beyond simple grammar checking. They can:
       </p>
 
-      <ul style={styles.list}>
-        <li style={styles.listItem}>Suggest improvements to logical flow and argumentation</li>
-        <li style={styles.listItem}>Ensure consistency in citation formatting</li>
-        <li style={styles.listItem}>Generate literature review summaries</li>
-        <li style={styles.listItem}>Adapt writing style for different academic audiences</li>
+      <ul style={{...styles.list, color: theme.text}}>
+        <li style={{...styles.listItem, color: theme.text}}>Suggest improvements to logical flow and argumentation</li>
+        <li style={{...styles.listItem, color: theme.text}}>Ensure consistency in citation formatting</li>
+        <li style={{...styles.listItem, color: theme.text}}>Generate literature review summaries</li>
+        <li style={{...styles.listItem, color: theme.text}}>Adapt writing style for different academic audiences</li>
       </ul>
 
-      <h2 style={styles.heading2} id="predictive-analytics">4. Predictive Analytics</h2>
+      <h2 style={{...styles.heading2, color: theme.heading}} id="predictive-analytics">4. Predictive Analytics</h2>
 
-      <p style={styles.paragraph}>
+      <p style={{...styles.paragraph, color: theme.text}}>
         Machine learning models can predict research outcomes, suggest new hypotheses, and optimize experimental design.
       </p>
 
-      <div style={styles.codeBlock}>
-        <span style={styles.codeLabel}>Example: Predictive Model Input</span>
-        <code>
+      <div style={{...styles.codeBlock, backgroundColor: theme.codeBg, border: `1px solid ${theme.codeBorder}`}}>
+        <span style={{...styles.codeLabel, color: theme.textSubtle}}>Example: Predictive Model Input</span>
+        <code style={{color: theme.text}}>
           {`# Predicting experimental outcomes
 model.predict({
   temperature: 298.15,  # Kelvin
@@ -249,60 +340,60 @@ model.predict({
         </code>
       </div>
 
-      <p style={styles.paragraph}>
+      <p style={{...styles.paragraph, color: theme.text}}>
         These predictive capabilities allow researchers to:
       </p>
 
-      <ul style={styles.list}>
-        <li style={styles.listItem}>Optimize experimental parameters before conducting costly trials</li>
-        <li style={styles.listItem}>Identify promising research directions based on existing data</li>
-        <li style={styles.listItem}>Reduce the number of experiments needed to validate hypotheses</li>
-        <li style={styles.listItem}>Accelerate the pace of discovery through intelligent hypothesis generation</li>
+      <ul style={{...styles.list, color: theme.text}}>
+        <li style={{...styles.listItem, color: theme.text}}>Optimize experimental parameters before conducting costly trials</li>
+        <li style={{...styles.listItem, color: theme.text}}>Identify promising research directions based on existing data</li>
+        <li style={{...styles.listItem, color: theme.text}}>Reduce the number of experiments needed to validate hypotheses</li>
+        <li style={{...styles.listItem, color: theme.text}}>Accelerate the pace of discovery through intelligent hypothesis generation</li>
       </ul>
 
-      <h2 style={styles.heading2} id="collaboration">5. Collaboration and Networking</h2>
+      <h2 style={{...styles.heading2, color: theme.heading}} id="collaboration">5. Collaboration and Networking</h2>
 
-      <p style={styles.paragraph}>
+      <p style={{...styles.paragraph, color: theme.text}}>
         AI-powered platforms connect researchers across disciplines, fostering collaboration and accelerating the pace of innovation.
       </p>
 
-      <div style={styles.calloutBox}>
-        <h4 style={styles.calloutTitle}>
+      <div style={{...styles.calloutBox, backgroundColor: theme.calloutBg, borderColor: theme.calloutBorder}}>
+        <h4 style={{...styles.calloutTitle, color: theme.accent}}>
           <span style={{ fontSize: '1.5rem' }}>🌐</span>
           Collaboration Features
         </h4>
-        <p>
+        <p style={{color: theme.text, marginBottom: 0}}>
           Modern AI platforms can match researchers based on complementary skills, identify potential collaborators working on related problems, and even suggest interdisciplinary approaches to complex challenges.
         </p>
       </div>
 
-      <p style={styles.paragraph}>
+      <p style={{...styles.paragraph, color: theme.text}}>
         AI facilitates research collaboration through:
       </p>
 
-      <ul style={styles.list}>
-        <li style={styles.listItem}>Intelligent matching algorithms that identify complementary expertise</li>
-        <li style={styles.listItem}>Automated translation for international collaborations</li>
-        <li style={styles.listItem}>Real-time collaboration on data analysis and interpretation</li>
-        <li style={styles.listItem}>Knowledge graphs that visualize connections between research areas</li>
+      <ul style={{...styles.list, color: theme.text}}>
+        <li style={{...styles.listItem, color: theme.text}}>Intelligent matching algorithms that identify complementary expertise</li>
+        <li style={{...styles.listItem, color: theme.text}}>Automated translation for international collaborations</li>
+        <li style={{...styles.listItem, color: theme.text}}>Real-time collaboration on data analysis and interpretation</li>
+        <li style={{...styles.listItem, color: theme.text}}>Knowledge graphs that visualize connections between research areas</li>
       </ul>
 
-      <h2 style={styles.heading2}>Conclusion</h2>
+      <h2 style={{...styles.heading2, color: theme.heading}}>Conclusion</h2>
 
-      <p style={styles.paragraph}>
+      <p style={{...styles.paragraph, color: theme.text}}>
         The integration of AI into academic research is not just improving existing processes—it&apos;s fundamentally changing how we approach scientific discovery. From accelerating literature reviews to enabling new forms of collaboration, AI is empowering researchers to tackle increasingly complex challenges.
       </p>
 
-      <p style={styles.paragraph}>
+      <p style={{...styles.paragraph, color: theme.text}}>
         As these technologies continue to evolve, we can expect even more transformative changes in how research is conducted, shared, and applied. The key for researchers is to embrace these tools while maintaining the critical thinking and creativity that drive true innovation.
       </p>
 
-      <div style={styles.calloutBox}>
-        <h4 style={styles.calloutTitle}>
+      <div style={{...styles.calloutBox, backgroundColor: theme.calloutBg, borderColor: theme.calloutBorder}}>
+        <h4 style={{...styles.calloutTitle, color: theme.accent}}>
           <span style={{ fontSize: '1.5rem' }}>🚀</span>
           Looking Ahead
         </h4>
-        <p>
+        <p style={{color: theme.text, marginBottom: 0}}>
           The future of academic research lies in the synergy between human insight and AI capabilities. By leveraging these tools effectively, researchers can focus on what they do best: asking the right questions and interpreting results in meaningful ways.
         </p>
       </div>
@@ -322,17 +413,18 @@ model.predict({
               console.log('Email submitted:', email);
               // Handle email submission
             }}
-            isDarkMode={true} // School articles use dark theme
+            currentTheme={theme}
+            isDarkMode={isDarkMode}
           />
         )}
       </div>
 
       <footer style={styles.articleFooter}>
-        <AuthorBox author={author} />
-        <ShareSection onShare={handleShare} copiedLink={copiedLink} />
+        <AuthorBox author={author} theme={theme} isDarkMode={isDarkMode} />
+        <ShareSection onShare={handleShare} copiedLink={copiedLink} theme={theme} isDarkMode={isDarkMode} />
       </footer>
 
-      <RelatedArticles articles={relatedArticles} />
+      <RelatedArticles articles={relatedArticles} theme={theme} isDarkMode={isDarkMode} />
 
       <SchoolNewsletter 
         emailInputRef={emailInputRef}
@@ -341,5 +433,6 @@ model.predict({
         isTablet={false}
       />
     </ArticleLayout>
+    </>
   );
 }

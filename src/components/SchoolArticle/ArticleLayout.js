@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
-const ArticleLayout = ({ children, meta }) => {
+const ArticleLayout = ({ children, meta, theme, isDarkMode = true }) => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [fontSize, setFontSize] = useState('default');
@@ -32,20 +32,31 @@ const ArticleLayout = ({ children, meta }) => {
     setShowShareMenu(false);
   };
 
+  // Use provided theme or default
+  const currentTheme = theme || {
+    bg: isDarkMode ? '#0a0a0f' : '#ffffff',
+    text: isDarkMode ? '#ffffff' : '#0f172a',
+    accent: isDarkMode ? '#8b5cf6' : '#7c3aed',
+    headerBg: isDarkMode ? 'rgba(10, 10, 15, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+    border: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+    muted: isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)'
+  };
+
   const styles = {
     container: {
       minHeight: '100vh',
-      backgroundColor: '#0a0a0f',
-      color: '#ffffff',
+      backgroundColor: currentTheme.bg,
+      color: currentTheme.text,
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-      lineHeight: 1.6
+      lineHeight: 1.6,
+      transition: 'background-color 0.3s ease, color 0.3s ease'
     },
     progressBar: {
       position: 'fixed',
       top: 0,
       left: 0,
       height: '3px',
-      backgroundColor: '#8b5cf6',
+      backgroundColor: currentTheme.accent,
       width: `${scrollProgress}%`,
       transition: 'width 0.1s ease',
       zIndex: 1001
@@ -56,9 +67,9 @@ const ArticleLayout = ({ children, meta }) => {
       left: 0,
       right: 0,
       zIndex: 1000,
-      backgroundColor: 'rgba(10, 10, 15, 0.85)',
+      backgroundColor: 'rgba(17, 17, 27, 0.95)',
       backdropFilter: 'blur(20px)',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+      borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
       transition: 'all 0.3s ease'
     },
     headerInner: {
@@ -86,7 +97,7 @@ const ArticleLayout = ({ children, meta }) => {
       backgroundColor: 'transparent',
       border: '1px solid rgba(255, 255, 255, 0.1)',
       borderRadius: '8px',
-      color: 'rgba(255, 255, 255, 0.7)',
+      color: 'rgba(255, 255, 255, 0.6)',
       cursor: 'pointer',
       transition: 'all 0.2s ease',
       display: 'flex',
@@ -103,18 +114,18 @@ const ArticleLayout = ({ children, meta }) => {
       left: '50%',
       transform: 'translateX(-50%)',
       marginTop: '0.5rem',
-      backgroundColor: '#16161f',
-      border: '1px solid rgba(255, 255, 255, 0.1)',
+      backgroundColor: isDarkMode ? '#16161f' : '#ffffff',
+      border: `1px solid ${currentTheme.border}`,
       borderRadius: '8px',
       padding: '0.5rem',
       minWidth: '200px',
-      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)'
+      boxShadow: isDarkMode ? '0 10px 30px rgba(0, 0, 0, 0.5)' : '0 10px 30px rgba(0, 0, 0, 0.1)'
     },
     shareMenuItem: {
       padding: '0.75rem 1rem',
       backgroundColor: 'transparent',
       border: 'none',
-      color: 'rgba(255, 255, 255, 0.7)',
+      color: currentTheme.muted,
       cursor: 'pointer',
       transition: 'all 0.2s ease',
       display: 'flex',

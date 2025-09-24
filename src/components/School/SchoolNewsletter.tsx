@@ -34,7 +34,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
         <div style={{
           position: 'relative',
           padding: isMobile ? '1.5rem' : isTablet ? '2rem' : '2.5rem',
-          background: 'rgba(22, 22, 31, 0.1)',
+          background: 'rgba(22, 22, 31, 0.95)',
           backdropFilter: 'blur(20px)',
           border: '1px solid rgba(255, 255, 255, 0.05)',
           borderLeft: 'none',

@@ -151,13 +151,15 @@ const ArticleSidebarComponent = ({
                 width: '32px',
                 height: '32px',
                 borderRadius: '8px',
-                background: `linear-gradient(135deg, ${theme.accent} 0%, ${theme.accentLight} 100%)`,
+                background: isDarkMode 
+                  ? `linear-gradient(135deg, ${theme.accent} 0%, ${theme.accentLight} 100%)`
+                  : theme.border,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: `0 4px 12px ${theme.accent}30`
+                boxShadow: isDarkMode ? `0 4px 12px ${theme.accent}30` : 'none'
               }}>
-                <Hash size={16} color="#ffffff" strokeWidth={2.5} />
+                <Hash size={16} color={isDarkMode ? "#ffffff" : theme.accent} strokeWidth={2.5} />
               </div>
               Table of Contents
             </h3>
@@ -182,7 +184,7 @@ const ArticleSidebarComponent = ({
                 </span>
                 <span style={{
                   fontSize: '0.75rem',
-                  color: theme.accent,
+                  color: isDarkMode ? theme.accent : theme.text,
                   fontWeight: '600'
                 }}>
                   {Math.round(scrollProgress)}%
@@ -197,10 +199,12 @@ const ArticleSidebarComponent = ({
                 <div style={{
                   height: '100%',
                   width: `${scrollProgress}%`,
-                  background: `linear-gradient(90deg, ${theme.accent} 0%, ${theme.accentLight} 100%)`,
+                  background: isDarkMode 
+                    ? `linear-gradient(90deg, ${theme.accent} 0%, ${theme.accentLight} 100%)`
+                    : theme.accent,
                   borderRadius: '4px',
                   transition: 'width 0.3s ease',
-                  boxShadow: `0 2px 8px ${theme.accent}40`
+                  boxShadow: isDarkMode ? `0 2px 8px ${theme.accent}40` : 'none'
                 }} />
               </div>
             </div>
@@ -229,7 +233,9 @@ const ArticleSidebarComponent = ({
                       borderRadius: '12px',
                       cursor: 'pointer',
                       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                      backgroundColor: isActive ? `${theme.accent}15` : 'transparent',
+                      backgroundColor: isActive 
+                        ? (isDarkMode ? `${theme.accent}15` : `${theme.accent}08`)
+                        : 'transparent',
                       transform: isActive ? 'translateX(4px)' : 'translateX(0)'
                     }}
                     onMouseEnter={(e) => {
@@ -252,8 +258,12 @@ const ArticleSidebarComponent = ({
                       justifyContent: 'center',
                       fontSize: '0.75rem',
                       fontWeight: '600',
-                      backgroundColor: isActive ? `${theme.accent}25` : theme.border,
-                      color: isActive ? theme.accent : theme.subtle,
+                      backgroundColor: isActive 
+                        ? (isDarkMode ? `${theme.accent}25` : `${theme.accent}15`)
+                        : theme.border,
+                      color: isActive 
+                        ? (isDarkMode ? theme.accent : theme.accent)
+                        : theme.subtle,
                       transition: 'all 0.3s ease',
                       flexShrink: 0
                     }}>

@@ -2,7 +2,15 @@
 
 import React from 'react';
 
-const ArticleHero = ({ category, title, author, date, readTime }) => {
+const ArticleHero = ({ category, title, author, date, readTime, theme, isDarkMode = true }) => {
+  // Default theme if not provided
+  const currentTheme = theme || {
+    text: isDarkMode ? '#ffffff' : '#0f172a',
+    muted: isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+    accent: isDarkMode ? '#8b5cf6' : '#7c3aed',
+    border: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+  };
+
   const styles = {
     articleHero: {
       padding: '3rem 3rem 4rem',
@@ -15,7 +23,7 @@ const ArticleHero = ({ category, title, author, date, readTime }) => {
     articleCategory: {
       display: 'inline-block',
       fontSize: '0.875rem',
-      color: '#8b5cf6',
+      color: currentTheme.accent,
       textTransform: 'uppercase',
       letterSpacing: '0.1em',
       fontWeight: '500',
@@ -26,7 +34,8 @@ const ArticleHero = ({ category, title, author, date, readTime }) => {
       fontWeight: '200',
       lineHeight: '1.2',
       letterSpacing: '-0.03em',
-      marginBottom: '2rem'
+      marginBottom: '2rem',
+      color: currentTheme.text
     },
     articleMeta: {
       display: 'flex',
@@ -62,7 +71,7 @@ const ArticleHero = ({ category, title, author, date, readTime }) => {
     },
     authorRole: {
       fontSize: '0.875rem',
-      color: 'rgba(255, 255, 255, 0.5)'
+      color: currentTheme.muted
     },
     metaDivider: {
       width: '1px',
@@ -71,7 +80,7 @@ const ArticleHero = ({ category, title, author, date, readTime }) => {
     },
     metaItem: {
       fontSize: '0.875rem',
-      color: 'rgba(255, 255, 255, 0.5)',
+      color: currentTheme.muted,
       display: 'flex',
       alignItems: 'center',
       gap: '0.5rem'
