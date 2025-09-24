@@ -108,7 +108,7 @@ const MockingbirdFeaturedImage = () => {
               }} />
             </div>
             
-            {/* Floating code snippets */}
+            {/* Floating literary elements */}
             <div style={{
               ...styles.codeFloating,
               top: '20%',
@@ -116,7 +116,7 @@ const MockingbirdFeaturedImage = () => {
               transform: 'rotate(-5deg)',
               animation: 'float 6s ease-in-out infinite'
             }}>
-              analyze_symbolism(&quot;mockingbird&quot;)
+              Symbolism & Metaphor
             </div>
             
             <div style={{
@@ -126,7 +126,7 @@ const MockingbirdFeaturedImage = () => {
               transform: 'rotate(3deg)',
               animation: 'float 8s ease-in-out infinite reverse'
             }}>
-              character.get_motivation(&quot;Scout&quot;)
+              Character Analysis
             </div>
             
             <div style={{
@@ -136,7 +136,7 @@ const MockingbirdFeaturedImage = () => {
               transform: 'rotate(-3deg)',
               animation: 'float 7s ease-in-out infinite'
             }}>
-              theme.explore(&quot;justice&quot;)
+              Themes & Justice
             </div>
           </div>
         </div>

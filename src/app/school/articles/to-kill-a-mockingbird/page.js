@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import ArticleLayout from '@/components/SchoolArticle/ArticleLayout';
 import ArticleHero from '@/components/SchoolArticle/ArticleHero';
 import MockingbirdFeaturedImage from '@/components/SchoolArticle/MockingbirdFeaturedImage';
-import TableOfContents from '@/components/SchoolArticle/TableOfContents';
+import ArticleSidebarComponent from '@/components/ArticleSidebar/ArticleSidebarComponent';
 import AuthorBox from '@/components/SchoolArticle/AuthorBox';
 import ShareSection from '@/components/SchoolArticle/ShareSection';
 import RelatedArticles from '@/components/SchoolArticle/RelatedArticles';
@@ -14,6 +14,8 @@ import { articleContentStyles as styles } from '@/components/SchoolArticle/artic
 export default function ToKillAMockingbirdArticle() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [copiedLink, setCopiedLink] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const emailInputRef = useRef(null);
 
   const handleNewsletterSubmit = (e) => {
@@ -29,8 +31,20 @@ export default function ToKillAMockingbirdArticle() {
       setScrollProgress(progress);
     };
 
+    const checkScreenSize = () => {
+      const width = window.innerWidth;
+      setIsDesktop(width >= 1024); // Show sidebar on laptops and above
+      setIsMobile(width < 768);
+    };
+
+    checkScreenSize();
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', checkScreenSize);
+    };
   }, []);
 
   const meta = {
@@ -105,7 +119,22 @@ export default function ToKillAMockingbirdArticle() {
         readTime={`${readingProgress} / ${estimatedReadTime}`}
       />
 
-      <div style={styles.contentWrapper}>
+      <div style={{
+        maxWidth: isDesktop ? '1200px' : '100%',
+        margin: '0 auto',
+        padding: isMobile ? '0 1.5rem' : isDesktop ? '0 2rem' : '0 2rem',
+        display: isDesktop ? 'grid' : 'block',
+        gridTemplateColumns: isDesktop ? '1fr 280px' : '1fr',
+        gap: isDesktop ? '2rem' : '0',
+        alignItems: 'start',
+        position: 'relative'
+      }}>
+        <div style={{
+          lineHeight: '1.8',
+          color: 'rgba(255, 255, 255, 0.9)',
+          maxWidth: isDesktop ? '100%' : '720px',
+          margin: isDesktop ? '0' : '0 auto'
+        }}>
         <p style={styles.paragraph}>
         Harper Lee&apos;s &quot;To Kill a Mockingbird&quot; remains one of American literature&apos;s most profound explorations of justice, morality, and coming-of-age. But what if we could unlock deeper layers of meaning using modern AI tools? This guide demonstrates how strategic prompt engineering can transform your literary analysis, revealing insights that might otherwise remain hidden.
       </p>
@@ -286,9 +315,26 @@ export default function ToKillAMockingbirdArticle() {
       <p style={styles.paragraph}>
         Start with these frameworks, but don&apos;t stop there. The beauty of AI-assisted analysis lies in its ability to surprise us, revealing connections and insights we might never have discovered alone. In this collaboration between human insight and artificial intelligence, we find new ways to honor the complexity and continued relevance of great literature.
       </p>
-      </div>
+        </div>
 
-      <TableOfContents items={tableOfContents} scrollProgress={scrollProgress} />
+        {isDesktop && (
+          <ArticleSidebarComponent 
+            tableOfContents={tableOfContents.map(item => ({
+              id: item.id,
+              title: item.title
+            }))}
+            scrollProgress={scrollProgress}
+            showEmailCapture={true}
+            emailCaptureTitle="Get Weekly AI Writing Tips"
+            emailCaptureDescription="Join 10,000+ writers improving their craft with AI"
+            onEmailSubmit={(email) => {
+              console.log('Email submitted:', email);
+              // Handle email submission
+            }}
+            isDarkMode={true} // School articles use dark theme
+          />
+        )}
+      </div>
 
       <footer style={styles.articleFooter}>
         <AuthorBox author={author} />

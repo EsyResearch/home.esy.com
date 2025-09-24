@@ -129,7 +129,7 @@ const ArticleLayout = ({ children, meta }) => {
   return (
     <div style={styles.container}>
       <div style={styles.progressBar} />
-
+      
       <article style={styles.articleContainer}>
         {/* Breadcrumb */}
         <div style={{ marginTop: '5rem' }}>
@@ -149,6 +149,14 @@ const ArticleLayout = ({ children, meta }) => {
         @keyframes float {
           0%, 100% { transform: translateY(0) rotate(-5deg); }
           50% { transform: translateY(-10px) rotate(-5deg); }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 1280px) {
+          .main-content {
+            max-width: 100% !important;
+            margin-right: 0 !important;
+          }
         }
       `}</style>
     </div>

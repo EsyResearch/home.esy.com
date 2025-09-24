@@ -1,57 +1,178 @@
 "use client"
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 const AuthorBox = ({ author }) => {
-  const styles = {
-    authorBox: {
-      backgroundColor: 'rgba(139, 92, 246, 0.03)',
-      border: '1px solid rgba(139, 92, 246, 0.1)',
-      borderRadius: '12px',
-      padding: '2rem',
-      marginTop: '3rem',
-      display: 'flex',
-      gap: '2rem',
-      alignItems: 'center'
-    },
-    authorBoxAvatar: {
-      width: '80px',
-      height: '80px',
-      borderRadius: '50%',
-      backgroundColor: 'rgba(139, 92, 246, 0.2)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: '2rem',
-      fontWeight: '300',
-      flexShrink: 0
-    },
-    authorBoxContent: {
-      flex: 1
-    },
-    authorBoxName: {
-      fontSize: '1.25rem',
-      fontWeight: '400',
-      marginBottom: '0.5rem'
-    },
-    authorBoxBio: {
-      color: 'rgba(255, 255, 255, 0.7)',
-      lineHeight: '1.6',
-      marginBottom: '1rem'
-    },
-    authorBoxMeta: {
-      fontSize: '0.875rem',
-      color: 'rgba(255, 255, 255, 0.5)'
-    }
-  };
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Updated bio text to match blog profile
+  const updatedBio = "Software Engineer with 5 years of experience, passionate about the intersection of AI and writing. Building tools that empower writers to create better content with the help of artificial intelligence.";
 
   return (
-    <div style={styles.authorBox}>
-      <div style={styles.authorBoxAvatar}>{author.initials}</div>
-      <div style={styles.authorBoxContent}>
-        <h3 style={styles.authorBoxName}>{author.name}</h3>
-        <p style={styles.authorBoxBio}>{author.bio}</p>
-        <div style={styles.authorBoxMeta}>{author.meta}</div>
+    <div style={{
+      width: '100%',
+      marginTop: '4rem',
+      padding: '3rem',
+      background: 'linear-gradient(135deg, rgba(30, 30, 40, 0.9) 0%, rgba(25, 25, 35, 0.7) 100%)',
+      borderRadius: '24px',
+      border: '1px solid rgba(139, 92, 246, 0.15)',
+      position: 'relative',
+      overflow: 'hidden',
+      boxSizing: 'border-box'
+    }}>
+      {/* Background decoration */}
+      <div style={{
+        position: 'absolute',
+        top: '-50px',
+        right: '-50px',
+        width: '200px',
+        height: '200px',
+        background: 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)',
+        borderRadius: '50%',
+        filter: 'blur(40px)'
+      }} />
+      
+      <div style={{
+        display: 'flex',
+        flexDirection: isMobile ? 'column' : 'row',
+        alignItems: isMobile ? 'center' : 'flex-start',
+        gap: isMobile ? '2rem' : '3rem',
+        position: 'relative',
+        zIndex: 1
+      }}>
+        {/* Author Avatar */}
+        <div style={{
+          flexShrink: 0
+        }}>
+          <div style={{
+            width: isMobile ? '80px' : '100px',
+            height: isMobile ? '80px' : '100px',
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(139, 92, 246, 0.15) 100%)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#ffffff',
+            fontSize: isMobile ? '2rem' : '2.5rem',
+            fontWeight: '600',
+            boxShadow: '0 8px 24px rgba(139, 92, 246, 0.2)',
+            border: '2px solid rgba(139, 92, 246, 0.2)'
+          }}>
+            ZU
+          </div>
+        </div>
+        
+        {/* Author Info */}
+        <div style={{
+          flex: 1,
+          textAlign: isMobile ? 'center' : 'left'
+        }}>
+          <div style={{
+            fontSize: isMobile ? '1.5rem' : '1.75rem',
+            fontWeight: '600',
+            marginBottom: '0.25rem',
+            color: '#ffffff',
+            fontFamily: 'var(--font-literata)'
+          }}>
+            {author.name}
+          </div>
+          <div style={{
+            fontSize: '1rem',
+            color: 'rgba(167, 139, 250, 0.9)',
+            marginBottom: '1rem',
+            fontWeight: '500'
+          }}>
+            {author.role}
+          </div>
+          <p style={{
+            fontSize: '1rem',
+            color: 'rgba(255, 255, 255, 0.7)',
+            lineHeight: 1.6,
+            marginBottom: '1.5rem',
+            maxWidth: '600px'
+          }}>
+            {updatedBio}
+          </p>
+          
+          {/* Action Buttons - Side by Side */}
+          <div style={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '1rem',
+            flexWrap: isMobile ? 'wrap' : 'nowrap',
+            justifyContent: isMobile ? 'center' : 'flex-start',
+            alignItems: 'center'
+          }}>
+            <Link 
+              href="/school/articles"
+              style={{
+                padding: '0.75rem 2rem',
+                background: 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)',
+                color: '#ffffff',
+                borderRadius: '50px',
+                fontSize: '0.875rem',
+                fontWeight: '600',
+                cursor: 'pointer',
+                border: 'none',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)',
+                textDecoration: 'none',
+                display: 'inline-block',
+                whiteSpace: 'nowrap'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 6px 16px rgba(139, 92, 246, 0.4)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(139, 92, 246, 0.3)';
+              }}
+            >
+              Read More Articles
+            </Link>
+            
+            <Link 
+              href="/ai-essay-writer"
+              style={{
+                padding: '0.75rem 2rem',
+                backgroundColor: 'transparent',
+                color: '#ffffff',
+                borderRadius: '50px',
+                fontSize: '0.875rem',
+                fontWeight: '600',
+                cursor: 'pointer',
+                border: '2px solid rgba(139, 92, 246, 0.3)',
+                transition: 'all 0.3s ease',
+                textDecoration: 'none',
+                display: 'inline-block',
+                whiteSpace: 'nowrap'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(139, 92, 246, 0.1)';
+                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.5)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
+              }}
+            >
+              Try AI Essay Writer
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

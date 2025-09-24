@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import ArticleLayout from '@/components/SchoolArticle/ArticleLayout';
 import ArticleHero from '@/components/SchoolArticle/ArticleHero';
-import TableOfContents from '@/components/SchoolArticle/TableOfContents';
+import ArticleSidebarComponent from '@/components/ArticleSidebar/ArticleSidebarComponent';
 import AuthorBox from '@/components/SchoolArticle/AuthorBox';
 import ShareSection from '@/components/SchoolArticle/ShareSection';
 import RelatedArticles from '@/components/SchoolArticle/RelatedArticles';
@@ -14,6 +14,8 @@ import { articleContentStyles as styles } from '@/components/SchoolArticle/artic
 export default function AIResearchRevolutionArticle() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [copiedLink, setCopiedLink] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const emailInputRef = useRef(null);
 
   const handleNewsletterSubmit = (e) => {
@@ -29,8 +31,21 @@ export default function AIResearchRevolutionArticle() {
       setScrollProgress(progress);
     };
 
+    const checkScreenSize = () => {
+      const width = window.innerWidth;
+      setIsDesktop(width >= 1024); // Lowered from 1280px to show on laptops
+      setIsMobile(width < 768);
+      console.log('Screen width:', width, 'Desktop:', width >= 1024);
+    };
+
+    checkScreenSize();
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', checkScreenSize);
+    };
   }, []);
 
   const meta = {
@@ -100,7 +115,22 @@ export default function AIResearchRevolutionArticle() {
         readTime={`${readingProgress} / ${estimatedReadTime}`}
       />
 
-      <div style={styles.contentWrapper}>
+      <div style={{
+        maxWidth: isDesktop ? '1200px' : '100%',
+        margin: '0 auto',
+        padding: isMobile ? '0 1.5rem' : isDesktop ? '0 2rem' : '0 2rem',
+        display: isDesktop ? 'grid' : 'block',
+        gridTemplateColumns: isDesktop ? '1fr 280px' : '1fr',
+        gap: isDesktop ? '2rem' : '0',
+        alignItems: 'start',
+        position: 'relative'
+      }}>
+        <div style={{
+          lineHeight: '1.8',
+          color: 'rgba(255, 255, 255, 0.9)',
+          maxWidth: isDesktop ? '100%' : '720px',
+          margin: isDesktop ? '0' : '0 auto'
+        }}>
         <p style={styles.paragraph}>
         AI is transforming every stage of the research process, from literature reviews to data analysis and beyond. Here are five key ways AI is making an impact:
       </p>
@@ -276,9 +306,26 @@ model.predict({
           The future of academic research lies in the synergy between human insight and AI capabilities. By leveraging these tools effectively, researchers can focus on what they do best: asking the right questions and interpreting results in meaningful ways.
         </p>
       </div>
-      </div>
+        </div>
 
-      <TableOfContents items={tableOfContents} scrollProgress={scrollProgress} />
+        {isDesktop && (
+          <ArticleSidebarComponent 
+            tableOfContents={tableOfContents.map(item => ({
+              id: item.id,
+              title: item.title.replace(/^\d+\.\s*/, '') // Remove number prefix from title
+            }))}
+            scrollProgress={scrollProgress}
+            showEmailCapture={true}
+            emailCaptureTitle="Get Weekly AI Writing Tips"
+            emailCaptureDescription="Join 10,000+ writers improving their craft with AI"
+            onEmailSubmit={(email) => {
+              console.log('Email submitted:', email);
+              // Handle email submission
+            }}
+            isDarkMode={true} // School articles use dark theme
+          />
+        )}
+      </div>
 
       <footer style={styles.articleFooter}>
         <AuthorBox author={author} />
