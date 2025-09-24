@@ -17,7 +17,7 @@ export default function ToKillAMockingbirdArticle() {
   const [copiedLink, setCopiedLink] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true); // Default to dark for School
+  const [isDarkMode, setIsDarkMode] = useState(false); // Default to light for School
   const emailInputRef = useRef(null);
 
   const handleNewsletterSubmit = (e) => {
