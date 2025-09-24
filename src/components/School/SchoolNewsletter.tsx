@@ -42,14 +42,14 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
           backdropFilter: 'blur(20px)',
           border: isDarkMode 
             ? '1px solid rgba(255, 255, 255, 0.05)' 
-            : '1px solid rgba(139, 92, 246, 0.08)',
+            : 'none',
           borderLeft: 'none',
           borderRight: 'none',
           borderRadius: '0',
           overflow: 'hidden',
           boxShadow: isDarkMode 
             ? '0 1px 0 rgba(255,255,255,0.03) inset, 0 0 0 1px rgba(0,0,0,0.2)'
-            : 'inset 0 1px 0 rgba(255,255,255,0.9), 0 20px 40px -20px rgba(139, 92, 246, 0.1)'
+            : 'none'
         }}>
           {/* Corner Accent Elements */}
           {/* Corner Accents - Only in dark mode */}
@@ -156,7 +156,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
             borderRadius: isMobile ? '8px' : '12px',
             boxShadow: isDarkMode 
               ? '0 4px 20px rgba(10, 10, 15, 0.15)'
-              : '0 8px 32px rgba(139, 92, 246, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)'
+              : 'none'
           }}>
             {/* Newsletter Content */}
             <div style={{
@@ -189,7 +189,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                   marginBottom: '1.5rem',
                   boxShadow: isDarkMode 
                     ? '0 4px 12px rgba(139, 92, 246, 0.2)'
-                    : '0 4px 16px rgba(139, 92, 246, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)'
+                    : 'none'
                 }}>
                   <span style={{ fontSize: isMobile ? '20px' : '24px' }}>📚</span>
                 </div>
@@ -299,14 +299,14 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                       fontFamily: 'inherit',
                       boxShadow: isDarkMode 
                         ? '0 4px 12px rgba(10, 10, 15, 0.3)'
-                        : '0 4px 16px rgba(139, 92, 246, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+                        : 'none',
                       transition: 'all 0.2s ease'
                     }}
                     onFocus={(e) => {
                       e.target.style.borderColor = '#8b5cf6';
                       e.target.style.boxShadow = isDarkMode 
                         ? '0 4px 12px rgba(10, 10, 15, 0.3), 0 0 0 3px rgba(139, 92, 246, 0.1)'
-                        : '0 4px 16px rgba(139, 92, 246, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 0 0 3px rgba(139, 92, 246, 0.1)';
+                        : 'none';
                     }}
                     onBlur={(e) => {
                       e.target.style.borderColor = isDarkMode 
@@ -314,7 +314,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                         : 'rgba(139, 92, 246, 0.1)';
                       e.target.style.boxShadow = isDarkMode 
                         ? '0 4px 12px rgba(10, 10, 15, 0.3)'
-                        : '0 4px 16px rgba(139, 92, 246, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)';
+                        : 'none';
                     }}
                   />
                   <button 
@@ -329,7 +329,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                       fontWeight: '600',
                       cursor: 'pointer',
                       transition: 'all 0.2s ease',
-                      boxShadow: '0 6px 20px rgba(139, 92, 246, 0.25)',
+                      boxShadow: isDarkMode ? '0 6px 20px rgba(139, 92, 246, 0.25)' : 'none',
                       minHeight: '48px',
                       whiteSpace: 'nowrap',
                       minWidth: isMobile ? 'auto' : '180px'
@@ -337,12 +337,12 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                     onMouseEnter={(e) => {
                       const target = e.target as HTMLButtonElement;
                       target.style.transform = 'translateY(-2px)';
-                      target.style.boxShadow = '0 8px 24px rgba(139, 92, 246, 0.35)';
+                      target.style.boxShadow = isDarkMode ? '0 8px 24px rgba(139, 92, 246, 0.35)' : 'none';
                     }}
                     onMouseLeave={(e) => {
                       const target = e.target as HTMLButtonElement;
                       target.style.transform = 'translateY(0)';
-                      target.style.boxShadow = '0 6px 20px rgba(139, 92, 246, 0.25)';
+                      target.style.boxShadow = isDarkMode ? '0 6px 20px rgba(139, 92, 246, 0.25)' : 'none';
                     }}>
                     Send Me Writing Tips
                   </button>
