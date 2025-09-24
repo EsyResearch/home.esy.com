@@ -27,7 +27,7 @@ const AuthorBox = ({ author, theme, isDarkMode = true }) => {
     accent: isDarkMode ? '#8b5cf6' : '#7c3aed',
     accentLight: isDarkMode ? '#a78bfa' : '#8b5cf6',
     border: isDarkMode ? 'rgba(139, 92, 246, 0.15)' : 'rgba(139, 92, 246, 0.2)',
-    bg: isDarkMode ? 'linear-gradient(135deg, rgba(30, 30, 40, 0.9) 0%, rgba(25, 25, 35, 0.7) 100%)' : 'linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%)',
+    bg: isDarkMode ? 'linear-gradient(135deg, rgba(30, 30, 40, 0.9) 0%, rgba(25, 25, 35, 0.7) 100%)' : '#f8f9fa',
   };
 
   return (
@@ -43,17 +43,19 @@ const AuthorBox = ({ author, theme, isDarkMode = true }) => {
       boxSizing: 'border-box',
       transition: 'all 0.3s ease'
     }}>
-      {/* Background decoration */}
-      <div style={{
-        position: 'absolute',
-        top: '-50px',
-        right: '-50px',
-        width: '200px',
-        height: '200px',
-        background: 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)',
-        borderRadius: '50%',
-        filter: 'blur(40px)'
-      }} />
+      {/* Background decoration - Only in dark mode */}
+      {isDarkMode && (
+        <div style={{
+          position: 'absolute',
+          top: '-50px',
+          right: '-50px',
+          width: '200px',
+          height: '200px',
+          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)',
+          borderRadius: '50%',
+          filter: 'blur(40px)'
+        }} />
+      )}
       
       <div style={{
         display: 'flex',
@@ -73,7 +75,7 @@ const AuthorBox = ({ author, theme, isDarkMode = true }) => {
             borderRadius: '50%',
             background: isDarkMode 
               ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(139, 92, 246, 0.15) 100%)'
-              : 'linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(124, 58, 237, 0.1) 100%)',
+              : 'rgba(139, 92, 246, 0.08)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -103,7 +105,7 @@ const AuthorBox = ({ author, theme, isDarkMode = true }) => {
           </div>
           <div style={{
             fontSize: '1rem',
-            color: currentTheme.accent,
+            color: isDarkMode ? currentTheme.accent : currentTheme.muted,
             marginBottom: '1rem',
             fontWeight: '500'
           }}>

@@ -111,35 +111,35 @@ const RelatedArticles = ({ articles, theme, isDarkMode = true }) => {
 
   return (
     <section style={styles.relatedArticles}>
-      {/* Decorative gradient orbs */}
-      <div style={{
-        position: 'absolute',
-        top: '-50%',
-        left: '-10%',
-        width: '300px',
-        height: '300px',
-        background: isDarkMode 
-          ? 'radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%)'
-          : 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)',
-        borderRadius: '50%',
-        filter: 'blur(80px)',
-        pointerEvents: 'none',
-        opacity: isDarkMode ? 0.5 : 1
-      }} />
-      <div style={{
-        position: 'absolute',
-        bottom: '-50%',
-        right: '-10%',
-        width: '300px',
-        height: '300px',
-        background: isDarkMode 
-          ? 'radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%)'
-          : 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)',
-        borderRadius: '50%',
-        filter: 'blur(80px)',
-        pointerEvents: 'none',
-        opacity: isDarkMode ? 0.5 : 1
-      }} />
+      {/* Decorative gradient orbs - Only in dark mode */}
+      {isDarkMode && (
+        <>
+          <div style={{
+            position: 'absolute',
+            top: '-50%',
+            left: '-10%',
+            width: '300px',
+            height: '300px',
+            background: 'radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%)',
+            borderRadius: '50%',
+            filter: 'blur(80px)',
+            pointerEvents: 'none',
+            opacity: 0.5
+          }} />
+          <div style={{
+            position: 'absolute',
+            bottom: '-50%',
+            right: '-10%',
+            width: '300px',
+            height: '300px',
+            background: 'radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%)',
+            borderRadius: '50%',
+            filter: 'blur(80px)',
+            pointerEvents: 'none',
+            opacity: 0.5
+          }} />
+        </>
+      )}
 
       {/* Top decorative line */}
       <div style={{
@@ -148,12 +148,12 @@ const RelatedArticles = ({ articles, theme, isDarkMode = true }) => {
         left: '50%',
         transform: 'translateX(-50%)',
         width: '100px',
-        height: isDarkMode ? '2px' : '3px',
+        height: isDarkMode ? '2px' : '1px',
         background: isDarkMode 
           ? `linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent)`
-          : `linear-gradient(90deg, transparent, ${currentTheme.accent}, transparent)`,
+          : currentTheme.border,
         borderRadius: '2px',
-        opacity: isDarkMode ? 0.6 : 1
+        opacity: isDarkMode ? 0.6 : 0.3
       }} />
 
       <div style={styles.relatedInner}>

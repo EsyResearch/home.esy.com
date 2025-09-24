@@ -154,42 +154,33 @@ export default function PromptEngineeringGuideArticle() {
         onClick={() => setIsDarkMode(!isDarkMode)}
         style={{
           position: 'fixed',
-          bottom: '2rem',
-          right: '2rem',
-          zIndex: 1000,
-          width: '56px',
-          height: '56px',
+          bottom: isMobile ? '1.5rem' : '2rem',
+          right: isMobile ? '1rem' : '2rem',
+          width: '48px',
+          height: '48px',
           borderRadius: '50%',
-          border: `2px solid ${theme.accent}`,
-          backgroundColor: isDarkMode ? 'rgba(139, 92, 246, 0.1)' : 'rgba(139, 92, 246, 0.05)',
-          color: theme.accent,
-          cursor: 'pointer',
+          backgroundColor: isDarkMode ? '#16161f' : '#f9fafb',
+          border: `1px solid ${theme.border}`,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          transition: 'all 0.3s ease',
-          boxShadow: 'none',
-          backdropFilter: 'blur(10px)'
+          cursor: 'pointer',
+          transition: 'all 0.2s ease',
+          backdropFilter: 'blur(10px)',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+          zIndex: 100
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = 'scale(1.1)';
-          e.currentTarget.style.backgroundColor = isDarkMode 
-            ? 'rgba(139, 92, 246, 0.2)' 
-            : 'rgba(139, 92, 246, 0.1)';
+          e.currentTarget.style.backgroundColor = isDarkMode ? '#1a1a24' : '#ffffff';
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = 'scale(1)';
-          e.currentTarget.style.backgroundColor = isDarkMode 
-            ? 'rgba(139, 92, 246, 0.1)' 
-            : 'rgba(139, 92, 246, 0.05)';
+          e.currentTarget.style.backgroundColor = isDarkMode ? '#16161f' : '#f9fafb';
         }}
         aria-label="Toggle theme"
       >
-        {isDarkMode ? (
-          <Sun size={24} color={theme.accent} />
-        ) : (
-          <Moon size={24} color={theme.accent} />
-        )}
+        {isDarkMode ? <Sun size={20} color={theme.textMuted || 'rgba(255, 255, 255, 0.6)'} /> : <Moon size={20} color={theme.textMuted || 'rgba(0, 0, 0, 0.6)'} />}
       </button>
 
     <ArticleLayout meta={meta} theme={theme} isDarkMode={isDarkMode}>

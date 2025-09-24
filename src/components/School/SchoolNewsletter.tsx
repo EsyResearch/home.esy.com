@@ -52,52 +52,49 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
             : 'inset 0 1px 0 rgba(255,255,255,0.9), 0 20px 40px -20px rgba(139, 92, 246, 0.1)'
         }}>
           {/* Corner Accent Elements */}
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: isMobile ? '40px' : '60px',
-            height: isMobile ? '40px' : '60px',
-            background: isDarkMode 
-              ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%)'
-              : 'linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, transparent 100%)'
-          }} />
-          
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            right: 0,
-            width: isMobile ? '40px' : '60px',
-            height: isMobile ? '40px' : '60px',
-            background: isDarkMode 
-              ? 'linear-gradient(225deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%)'
-              : 'linear-gradient(225deg, rgba(139, 92, 246, 0.08) 0%, transparent 100%)'
-          }} />
-          
-          <div style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            width: isMobile ? '40px' : '60px',
-            height: isMobile ? '40px' : '60px',
-            background: isDarkMode 
-              ? 'linear-gradient(45deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%)'
-              : 'linear-gradient(45deg, rgba(139, 92, 246, 0.08) 0%, transparent 100%)'
-          }} />
-          
-          <div style={{
-            position: 'absolute',
-            bottom: 0,
-            right: 0,
-            width: isMobile ? '40px' : '60px',
-            height: isMobile ? '40px' : '60px',
-            background: isDarkMode 
-              ? 'linear-gradient(315deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%)'
-              : 'linear-gradient(315deg, rgba(139, 92, 246, 0.08) 0%, transparent 100%)'
-          }} />
+          {/* Corner Accents - Only in dark mode */}
+          {isDarkMode && (
+            <>
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: isMobile ? '40px' : '60px',
+                height: isMobile ? '40px' : '60px',
+                background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%)'
+              }} />
+              
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                width: isMobile ? '40px' : '60px',
+                height: isMobile ? '40px' : '60px',
+                background: 'linear-gradient(225deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%)'
+              }} />
+              
+              <div style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                width: isMobile ? '40px' : '60px',
+                height: isMobile ? '40px' : '60px',
+                background: 'linear-gradient(45deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%)'
+              }} />
+              
+              <div style={{
+                position: 'absolute',
+                bottom: 0,
+                right: 0,
+                width: isMobile ? '40px' : '60px',
+                height: isMobile ? '40px' : '60px',
+                background: 'linear-gradient(315deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%)'
+              }} />
+            </>
+          )}
 
-          {/* Side decorative elements */}
-          {!isMobile && (
+          {/* Side decorative elements - Only in dark mode */}
+          {!isMobile && isDarkMode && (
             <>
               <div style={{
                 position: 'absolute',
@@ -106,9 +103,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                 transform: 'translateY(-50%)',
                 width: '3px',
                 height: isTablet ? '80px' : '120px',
-                background: isDarkMode 
-                  ? 'linear-gradient(to bottom, transparent 0%, #8b5cf6 50%, transparent 100%)'
-                  : 'linear-gradient(to bottom, transparent 0%, rgba(139, 92, 246, 0.6) 50%, transparent 100%)',
+                background: 'linear-gradient(to bottom, transparent 0%, #8b5cf6 50%, transparent 100%)',
                 borderRadius: '2px'
               }} />
               
@@ -119,9 +114,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                 transform: 'translateY(-50%)',
                 width: '3px',
                 height: isTablet ? '80px' : '120px',
-                background: isDarkMode 
-                  ? 'linear-gradient(to bottom, transparent 0%, #8b5cf6 50%, transparent 100%)'
-                  : 'linear-gradient(to bottom, transparent 0%, rgba(139, 92, 246, 0.6) 50%, transparent 100%)',
+                background: 'linear-gradient(to bottom, transparent 0%, #8b5cf6 50%, transparent 100%)',
                 borderRadius: '2px'
               }} />
 
@@ -132,9 +125,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                 transform: 'translateX(-50%)',
                 width: isTablet ? '80px' : '120px',
                 height: '3px',
-                background: isDarkMode 
-                  ? 'linear-gradient(to right, transparent 0%, #8b5cf6 50%, transparent 100%)'
-                  : 'linear-gradient(to right, transparent 0%, rgba(139, 92, 246, 0.6) 50%, transparent 100%)',
+                background: 'linear-gradient(to right, transparent 0%, #8b5cf6 50%, transparent 100%)',
                 borderRadius: '2px'
               }} />
               
@@ -145,9 +136,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                 transform: 'translateX(-50%)',
                 width: isTablet ? '80px' : '120px',
                 height: '3px',
-                background: isDarkMode 
-                  ? 'linear-gradient(to right, transparent 0%, #8b5cf6 50%, transparent 100%)'
-                  : 'linear-gradient(to right, transparent 0%, rgba(139, 92, 246, 0.6) 50%, transparent 100%)',
+                background: 'linear-gradient(to right, transparent 0%, #8b5cf6 50%, transparent 100%)',
                 borderRadius: '2px'
               }} />
             </>
@@ -246,11 +235,11 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                     padding: '0.5rem 1rem',
                     background: isDarkMode 
                       ? 'rgba(22, 22, 31, 0.5)'
-                      : 'linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(139, 92, 246, 0.02) 100%)',
+                      : 'rgba(139, 92, 246, 0.04)',
                     borderRadius: '20px',
                     border: isDarkMode 
                       ? '1px solid rgba(255, 255, 255, 0.04)'
-                      : '1px solid rgba(139, 92, 246, 0.1)',
+                      : '1px solid rgba(139, 92, 246, 0.08)',
                     whiteSpace: 'nowrap',
                     color: isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(15, 23, 42, 0.7)',
                     fontWeight: '500'
@@ -264,11 +253,11 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                     padding: '0.5rem 1rem',
                     background: isDarkMode 
                       ? 'rgba(22, 22, 31, 0.5)'
-                      : 'linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(139, 92, 246, 0.02) 100%)',
+                      : 'rgba(139, 92, 246, 0.04)',
                     borderRadius: '20px',
                     border: isDarkMode 
                       ? '1px solid rgba(255, 255, 255, 0.04)'
-                      : '1px solid rgba(139, 92, 246, 0.1)',
+                      : '1px solid rgba(139, 92, 246, 0.08)',
                     whiteSpace: 'nowrap',
                     color: isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(15, 23, 42, 0.7)',
                     fontWeight: '500'
