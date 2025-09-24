@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { Sun, Moon } from 'lucide-react';
 import ArticleLayout from '@/components/SchoolArticle/ArticleLayout';
 import ArticleHero from '@/components/SchoolArticle/ArticleHero';
 import ArticleSidebarComponent from '@/components/ArticleSidebar/ArticleSidebarComponent';
@@ -16,6 +17,7 @@ export default function UnderstandingLLMsArticle() {
   const [copiedLink, setCopiedLink] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true); // Default to dark for School
   const emailInputRef = useRef(null);
 
   const handleNewsletterSubmit = (e) => {
@@ -55,8 +57,50 @@ export default function UnderstandingLLMsArticle() {
     initials: 'ZU',
     name: 'Zev Uhuru',
     role: 'Founder, Esy',
-    bio: 'Leading expert in natural language processing and deep learning, with over a decade of experience in developing and deploying AI systems.',
+    bio: 'Software Engineer with 5 years of experience, passionate about the intersection of AI and writing. Building tools that empower writers to create better content with the help of artificial intelligence.',
     meta: '15 articles published · Joined January 2024'
+  };
+
+  const theme = isDarkMode ? {
+    // Dark theme (School default)
+    bg: '#0a0a0f',
+    contentBg: 'transparent',
+    text: 'rgba(255, 255, 255, 0.9)',
+    textMuted: 'rgba(255, 255, 255, 0.7)',
+    textSubtle: 'rgba(255, 255, 255, 0.5)',
+    heading: '#ffffff',
+    border: 'rgba(139, 92, 246, 0.15)',
+    accent: '#8b5cf6',
+    accentLight: '#a78bfa',
+    accentBg: 'rgba(139, 92, 246, 0.1)',
+    accentBorder: 'rgba(139, 92, 246, 0.3)',
+    codeBg: '#16161f',
+    codeBorder: 'rgba(255, 255, 255, 0.1)',
+    calloutBg: 'rgba(139, 92, 246, 0.1)',
+    calloutBorder: '#8b5cf6',
+    buttonBg: 'rgba(139, 92, 246, 0.1)',
+    buttonHoverBg: 'rgba(139, 92, 246, 0.2)',
+    headerBg: 'rgba(10, 10, 15, 0.95)',
+  } : {
+    // Light theme
+    bg: '#ffffff',
+    contentBg: '#ffffff',
+    text: 'rgba(15, 23, 42, 0.9)',
+    textMuted: 'rgba(15, 23, 42, 0.7)',
+    textSubtle: 'rgba(15, 23, 42, 0.5)',
+    heading: '#0f172a',
+    border: 'rgba(139, 92, 246, 0.2)',
+    accent: '#7c3aed',
+    accentLight: '#8b5cf6',
+    accentBg: 'rgba(139, 92, 246, 0.05)',
+    accentBorder: 'rgba(139, 92, 246, 0.3)',
+    codeBg: '#f8fafc',
+    codeBorder: 'rgba(15, 23, 42, 0.1)',
+    calloutBg: 'rgba(139, 92, 246, 0.05)',
+    calloutBorder: '#7c3aed',
+    buttonBg: 'rgba(139, 92, 246, 0.05)',
+    buttonHoverBg: 'rgba(139, 92, 246, 0.1)',
+    headerBg: 'rgba(255, 255, 255, 1)',
   };
 
   const tableOfContents = [
@@ -105,13 +149,59 @@ export default function UnderstandingLLMsArticle() {
   const readingProgress = Math.min(Math.round((scrollProgress / 100) * estimatedReadTime), estimatedReadTime);
 
   return (
-    <ArticleLayout meta={meta}>
+    <>
+      {/* Theme Toggle Button */}
+      <button
+        onClick={() => setIsDarkMode(!isDarkMode)}
+        style={{
+          position: 'fixed',
+          bottom: '2rem',
+          right: '2rem',
+          zIndex: 1000,
+          width: '56px',
+          height: '56px',
+          borderRadius: '50%',
+          border: `2px solid ${theme.accent}`,
+          backgroundColor: isDarkMode ? 'rgba(139, 92, 246, 0.1)' : 'rgba(139, 92, 246, 0.05)',
+          color: theme.accent,
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'all 0.3s ease',
+          boxShadow: 'none',
+          backdropFilter: 'blur(10px)'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'scale(1.1)';
+          e.currentTarget.style.backgroundColor = isDarkMode 
+            ? 'rgba(139, 92, 246, 0.2)' 
+            : 'rgba(139, 92, 246, 0.1)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'scale(1)';
+          e.currentTarget.style.backgroundColor = isDarkMode 
+            ? 'rgba(139, 92, 246, 0.1)' 
+            : 'rgba(139, 92, 246, 0.05)';
+        }}
+        aria-label="Toggle theme"
+      >
+        {isDarkMode ? (
+          <Sun size={24} color={theme.accent} />
+        ) : (
+          <Moon size={24} color={theme.accent} />
+        )}
+      </button>
+
+    <ArticleLayout meta={meta} theme={theme} isDarkMode={isDarkMode}>
       <ArticleHero 
         category="LLM Basics"
         title="Understanding Large Language Models: From Theory to Practice"
         author={author}
         date="March 20, 2025"
         readTime={`${readingProgress} / ${estimatedReadTime}`}
+        theme={theme}
+        isDarkMode={isDarkMode}
       />
 
       <div style={{
@@ -126,7 +216,7 @@ export default function UnderstandingLLMsArticle() {
       }}>
       <div style={{
         lineHeight: '1.8',
-        color: 'rgba(255, 255, 255, 0.9)',
+        color: theme.text,
         maxWidth: isDesktop ? '100%' : '720px',
         margin: isDesktop ? '0' : '0 auto'
       }}>
@@ -140,8 +230,8 @@ export default function UnderstandingLLMsArticle() {
         margin: '2rem 0',
         borderRadius: '12px',
         overflow: 'hidden',
-        backgroundColor: '#16161f',
-        border: '1px solid rgba(255, 255, 255, 0.1)'
+        backgroundColor: theme.codeBg,
+        border: `1px solid ${theme.codeBorder}`
       }}>
         <Image 
           src="https://upload.wikimedia.org/wikipedia/commons/1/10/Transformer.png" 
@@ -159,7 +249,7 @@ export default function UnderstandingLLMsArticle() {
           padding: '1rem',
           textAlign: 'center',
           fontSize: '0.875rem',
-          color: 'rgba(255, 255, 255, 0.6)',
+          color: theme.textMuted,
           fontStyle: 'italic',
           margin: 0
         }}>
@@ -171,12 +261,12 @@ export default function UnderstandingLLMsArticle() {
         Transformers are a type of neural network architecture introduced in 2017. They use self-attention mechanisms to process input data in parallel, making them highly efficient for language tasks.
       </p>
 
-      <div style={styles.calloutBox}>
-        <h4 style={styles.calloutTitle}>
+      <div style={{...styles.calloutBox, backgroundColor: theme.calloutBg, borderColor: theme.calloutBorder}}>
+        <h4 style={{...styles.calloutTitle, color: theme.accent}}>
           <span style={{ fontSize: '1.5rem' }}>🧠</span>
           Core Concept
         </h4>
-        <p>
+        <p style={{color: theme.text}}>
           Unlike traditional sequential models, Transformers can process entire sequences simultaneously, dramatically improving training efficiency and enabling the creation of much larger models.
         </p>
       </div>
@@ -189,9 +279,9 @@ export default function UnderstandingLLMsArticle() {
         Self-attention allows the model to weigh the importance of different words in a sentence. This mechanism enables the model to understand context and relationships between words, regardless of their distance in the text.
       </p>
 
-      <div style={styles.codeBlock}>
-        <span style={styles.codeLabel}>Attention Calculation</span>
-        <code>
+      <div style={{...styles.codeBlock, backgroundColor: theme.codeBg, border: `1px solid ${theme.codeBorder}`}}>
+        <span style={{...styles.codeLabel, color: theme.textSubtle}}>Attention Calculation</span>
+        <code style={{color: theme.text}}>
           {`# Simplified attention mechanism
 Attention(Q, K, V) = softmax(QK^T / √d_k)V
 
@@ -252,49 +342,49 @@ Where:
         marginBottom: '2rem'
       }}>
         <div style={{
-          backgroundColor: 'rgba(139, 92, 246, 0.05)',
-          border: '1px solid rgba(139, 92, 246, 0.2)',
+          backgroundColor: theme.accentBg,
+          border: `1px solid ${theme.border}`,
           borderRadius: '8px',
           padding: '1.5rem'
         }}>
           <h4 style={{ marginBottom: '0.5rem' }}>💬 Communication</h4>
-          <p style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.7)' }}>
+          <p style={{ fontSize: '0.875rem', color: theme.textMuted }}>
             Chatbots, virtual assistants, and customer service automation
           </p>
         </div>
 
         <div style={{
-          backgroundColor: 'rgba(139, 92, 246, 0.05)',
-          border: '1px solid rgba(139, 92, 246, 0.2)',
+          backgroundColor: theme.accentBg,
+          border: `1px solid ${theme.border}`,
           borderRadius: '8px',
           padding: '1.5rem'
         }}>
           <h4 style={{ marginBottom: '0.5rem' }}>✍️ Content Creation</h4>
-          <p style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.7)' }}>
+          <p style={{ fontSize: '0.875rem', color: theme.textMuted }}>
             Article writing, marketing copy, and creative storytelling
           </p>
         </div>
 
         <div style={{
-          backgroundColor: 'rgba(139, 92, 246, 0.05)',
-          border: '1px solid rgba(139, 92, 246, 0.2)',
+          backgroundColor: theme.accentBg,
+          border: `1px solid ${theme.border}`,
           borderRadius: '8px',
           padding: '1.5rem'
         }}>
           <h4 style={{ marginBottom: '0.5rem' }}>👨‍💻 Code Generation</h4>
-          <p style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.7)' }}>
+          <p style={{ fontSize: '0.875rem', color: theme.textMuted }}>
             Code completion, debugging, and automated programming
           </p>
         </div>
 
         <div style={{
-          backgroundColor: 'rgba(139, 92, 246, 0.05)',
-          border: '1px solid rgba(139, 92, 246, 0.2)',
+          backgroundColor: theme.accentBg,
+          border: `1px solid ${theme.border}`,
           borderRadius: '8px',
           padding: '1.5rem'
         }}>
           <h4 style={{ marginBottom: '0.5rem' }}>🔬 Research</h4>
-          <p style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.7)' }}>
+          <p style={{ fontSize: '0.875rem', color: theme.textMuted }}>
             Literature review, hypothesis generation, and data analysis
           </p>
         </div>
@@ -308,9 +398,9 @@ Where:
         Before processing text, LLMs break it down into tokens—smaller units that can be words, subwords, or characters.
       </p>
 
-      <div style={styles.codeBlock}>
-        <span style={styles.codeLabel}>Tokenization Example</span>
-        <code>
+      <div style={{...styles.codeBlock, backgroundColor: theme.codeBg, border: `1px solid ${theme.codeBorder}`}}>
+        <span style={{...styles.codeLabel, color: theme.textSubtle}}>Tokenization Example</span>
+        <code style={{color: theme.text}}>
           {`Input: "Understanding LLMs is fascinating!"
 Tokens: ["Under", "standing", " LL", "Ms", " is", " fascinating", "!"]
 Token IDs: [8100, 5646, 27140, 16101, 318, 13899, 0]`}
@@ -329,12 +419,12 @@ Token IDs: [8100, 5646, 27140, 16101, 318, 13899, 0]`}
         Instead of using a single attention mechanism, Transformers use multiple &quot;attention heads&quot; that can focus on different aspects of the input simultaneously.
       </p>
 
-      <div style={styles.calloutBox}>
-        <h4 style={styles.calloutTitle}>
+      <div style={{...styles.calloutBox, backgroundColor: theme.calloutBg, borderColor: theme.calloutBorder}}>
+        <h4 style={{...styles.calloutTitle, color: theme.accent}}>
           <span style={{ fontSize: '1.5rem' }}>💡</span>
           Key Takeaway
         </h4>
-        <p>
+        <p style={{color: theme.text}}>
           LLMs are powerful, but understanding their inner workings helps you use them more effectively. By knowing how they process information, you can craft better prompts and understand their limitations.
         </p>
       </div>
@@ -371,17 +461,17 @@ Token IDs: [8100, 5646, 27140, 16101, 318, 13899, 0]`}
 
       <ul style={styles.list}>
         <li style={styles.listItem}>
-          <a href="https://arxiv.org/abs/1706.03762" style={{ color: '#8b5cf6' }}>
+          <a href="https://arxiv.org/abs/1706.03762" style={{ color: theme.accent }}>
             Attention Is All You Need (Vaswani et al., 2017)
           </a> - The paper that introduced Transformers
         </li>
         <li style={styles.listItem}>
-          <a href="https://arxiv.org/abs/2005.14165" style={{ color: '#8b5cf6' }}>
+          <a href="https://arxiv.org/abs/2005.14165" style={{ color: theme.accent }}>
             Language Models are Few-Shot Learners (Brown et al., 2020)
           </a> - GPT-3 paper
         </li>
         <li style={styles.listItem}>
-          <a href="https://arxiv.org/abs/2203.02155" style={{ color: '#8b5cf6' }}>
+          <a href="https://arxiv.org/abs/2203.02155" style={{ color: theme.accent }}>
             Training Compute-Optimal Large Language Models (Hoffmann et al., 2022)
           </a> - Chinchilla scaling laws
         </li>
@@ -406,24 +496,27 @@ Token IDs: [8100, 5646, 27140, 16101, 318, 13899, 0]`}
             console.log('Email submitted:', email);
             // Handle email submission
           }}
-          isDarkMode={true}
+          isDarkMode={isDarkMode}
         />
       )}
       </div>
 
       <footer style={styles.articleFooter}>
-        <AuthorBox author={author} />
-        <ShareSection onShare={handleShare} copiedLink={copiedLink} />
+        <AuthorBox author={author} theme={theme} isDarkMode={isDarkMode} />
+        <ShareSection onShare={handleShare} copiedLink={copiedLink} theme={theme} isDarkMode={isDarkMode} />
       </footer>
 
-      <RelatedArticles articles={relatedArticles} />
+      <RelatedArticles articles={relatedArticles} theme={theme} isDarkMode={isDarkMode} />
 
       <SchoolNewsletter 
         emailInputRef={emailInputRef}
         handleNewsletterSubmit={handleNewsletterSubmit}
         isMobile={false}
         isTablet={false}
+        theme={theme}
+        isDarkMode={isDarkMode}
       />
     </ArticleLayout>
+    </>
   );
 }

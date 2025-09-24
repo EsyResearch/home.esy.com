@@ -127,6 +127,7 @@ export default function AIResearchRevolutionArticle() {
     calloutBorder: '#8b5cf6',
     buttonBg: 'rgba(139, 92, 246, 0.1)',
     buttonHoverBg: 'rgba(139, 92, 246, 0.2)',
+    headerBg: 'rgba(10, 10, 15, 0.95)',
   } : {
     // Light theme
     bg: '#ffffff',
@@ -146,6 +147,7 @@ export default function AIResearchRevolutionArticle() {
     calloutBorder: '#7c3aed',
     buttonBg: 'rgba(139, 92, 246, 0.05)',
     buttonHoverBg: 'rgba(139, 92, 246, 0.1)',
+    headerBg: 'rgba(255, 255, 255, 1)',
   };
 
   return (
@@ -168,9 +170,7 @@ export default function AIResearchRevolutionArticle() {
           cursor: 'pointer',
           zIndex: 100,
           transition: 'all 0.3s ease',
-          boxShadow: isDarkMode 
-            ? '0 4px 20px rgba(139, 92, 246, 0.2)' 
-            : '0 4px 20px rgba(139, 92, 246, 0.1)'
+          boxShadow: 'none'
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = 'scale(1.1)';
@@ -431,6 +431,8 @@ model.predict({
         handleNewsletterSubmit={handleNewsletterSubmit}
         isMobile={false}
         isTablet={false}
+        theme={theme}
+        isDarkMode={isDarkMode}
       />
     </ArticleLayout>
     </>

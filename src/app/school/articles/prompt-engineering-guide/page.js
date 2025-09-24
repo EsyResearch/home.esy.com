@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react';
+import { Sun, Moon } from 'lucide-react';
 import ArticleLayout from '@/components/SchoolArticle/ArticleLayout';
 import ArticleHero from '@/components/SchoolArticle/ArticleHero';
 import ArticleSidebarComponent from '@/components/ArticleSidebar/ArticleSidebarComponent';
@@ -15,6 +16,7 @@ export default function PromptEngineeringGuideArticle() {
   const [copiedLink, setCopiedLink] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true); // Default to dark for School
   const emailInputRef = useRef(null);
 
   const handleNewsletterSubmit = (e) => {
@@ -54,8 +56,50 @@ export default function PromptEngineeringGuideArticle() {
     initials: 'ZU',
     name: 'Zev Uhuru',
     role: 'Founder, Esy',
-    bio: 'Specializes in natural language processing and human-AI interaction. With over 10 years of experience in AI research, has published numerous papers on prompt engineering and language model optimization.',
+    bio: 'Software Engineer with 5 years of experience, passionate about the intersection of AI and writing. Building tools that empower writers to create better content with the help of artificial intelligence.',
     meta: '15 articles published · Joined January 2024'
+  };
+
+  const theme = isDarkMode ? {
+    // Dark theme (School default)
+    bg: '#0a0a0f',
+    contentBg: 'transparent',
+    text: 'rgba(255, 255, 255, 0.9)',
+    textMuted: 'rgba(255, 255, 255, 0.7)',
+    textSubtle: 'rgba(255, 255, 255, 0.5)',
+    heading: '#ffffff',
+    border: 'rgba(139, 92, 246, 0.15)',
+    accent: '#8b5cf6',
+    accentLight: '#a78bfa',
+    accentBg: 'rgba(139, 92, 246, 0.1)',
+    accentBorder: 'rgba(139, 92, 246, 0.3)',
+    codeBg: '#16161f',
+    codeBorder: 'rgba(255, 255, 255, 0.1)',
+    calloutBg: 'rgba(139, 92, 246, 0.1)',
+    calloutBorder: '#8b5cf6',
+    buttonBg: 'rgba(139, 92, 246, 0.1)',
+    buttonHoverBg: 'rgba(139, 92, 246, 0.2)',
+    headerBg: 'rgba(10, 10, 15, 0.95)',
+  } : {
+    // Light theme
+    bg: '#ffffff',
+    contentBg: '#ffffff',
+    text: 'rgba(15, 23, 42, 0.9)',
+    textMuted: 'rgba(15, 23, 42, 0.7)',
+    textSubtle: 'rgba(15, 23, 42, 0.5)',
+    heading: '#0f172a',
+    border: 'rgba(139, 92, 246, 0.2)',
+    accent: '#7c3aed',
+    accentLight: '#8b5cf6',
+    accentBg: 'rgba(139, 92, 246, 0.05)',
+    accentBorder: 'rgba(139, 92, 246, 0.3)',
+    codeBg: '#f8fafc',
+    codeBorder: 'rgba(15, 23, 42, 0.1)',
+    calloutBg: 'rgba(139, 92, 246, 0.05)',
+    calloutBorder: '#7c3aed',
+    buttonBg: 'rgba(139, 92, 246, 0.05)',
+    buttonHoverBg: 'rgba(139, 92, 246, 0.1)',
+    headerBg: 'rgba(255, 255, 255, 1)',
   };
 
   const tableOfContents = [
@@ -104,13 +148,59 @@ export default function PromptEngineeringGuideArticle() {
   const readingProgress = Math.min(Math.round((scrollProgress / 100) * estimatedReadTime), estimatedReadTime);
 
   return (
-    <ArticleLayout meta={meta}>
+    <>
+      {/* Theme Toggle Button */}
+      <button
+        onClick={() => setIsDarkMode(!isDarkMode)}
+        style={{
+          position: 'fixed',
+          bottom: '2rem',
+          right: '2rem',
+          zIndex: 1000,
+          width: '56px',
+          height: '56px',
+          borderRadius: '50%',
+          border: `2px solid ${theme.accent}`,
+          backgroundColor: isDarkMode ? 'rgba(139, 92, 246, 0.1)' : 'rgba(139, 92, 246, 0.05)',
+          color: theme.accent,
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'all 0.3s ease',
+          boxShadow: 'none',
+          backdropFilter: 'blur(10px)'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'scale(1.1)';
+          e.currentTarget.style.backgroundColor = isDarkMode 
+            ? 'rgba(139, 92, 246, 0.2)' 
+            : 'rgba(139, 92, 246, 0.1)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'scale(1)';
+          e.currentTarget.style.backgroundColor = isDarkMode 
+            ? 'rgba(139, 92, 246, 0.1)' 
+            : 'rgba(139, 92, 246, 0.05)';
+        }}
+        aria-label="Toggle theme"
+      >
+        {isDarkMode ? (
+          <Sun size={24} color={theme.accent} />
+        ) : (
+          <Moon size={24} color={theme.accent} />
+        )}
+      </button>
+
+    <ArticleLayout meta={meta} theme={theme} isDarkMode={isDarkMode}>
       <ArticleHero 
         category="Prompt Engineering"
         title="What is Prompt Engineering? A Comprehensive Guide"
         author={author}
         date="March 22, 2025"
         readTime={`${readingProgress} / ${estimatedReadTime}`}
+        theme={theme}
+        isDarkMode={isDarkMode}
       />
 
       <div style={{
@@ -125,7 +215,7 @@ export default function PromptEngineeringGuideArticle() {
       }}>
       <div style={{
         lineHeight: '1.8',
-        color: 'rgba(255, 255, 255, 0.9)',
+        color: theme.text,
         maxWidth: isDesktop ? '100%' : '720px',
         margin: isDesktop ? '0' : '0 auto'
       }}>
@@ -133,12 +223,12 @@ export default function PromptEngineeringGuideArticle() {
         In the rapidly evolving landscape of artificial intelligence, prompt engineering has emerged as a crucial skill for anyone looking to harness the full potential of large language models (LLMs). Whether you&apos;re a researcher, developer, writer, or simply an AI enthusiast, understanding how to craft effective prompts can dramatically improve your interactions with AI systems.
       </p>
 
-      <div style={styles.calloutBox}>
-        <h4 style={styles.calloutTitle}>
+      <div style={{...styles.calloutBox, backgroundColor: theme.calloutBg, borderColor: theme.calloutBorder}}>
+        <h4 style={{...styles.calloutTitle, color: theme.accent}}>
           <span style={{ fontSize: '1.5rem' }}>💡</span>
           Key Insight
         </h4>
-        <p>
+        <p style={{color: theme.text}}>
           Prompt engineering is not just about asking questions—it&apos;s about understanding how AI models interpret and respond to different types of inputs.
         </p>
       </div>
@@ -158,53 +248,53 @@ export default function PromptEngineeringGuideArticle() {
         marginBottom: '2rem'
       }}>
         <div style={{
-          backgroundColor: 'rgba(139, 92, 246, 0.05)',
-          border: '1px solid rgba(139, 92, 246, 0.2)',
+          backgroundColor: theme.accentBg,
+          border: `1px solid ${theme.border}`,
           borderRadius: '12px',
           padding: '1.5rem'
         }}>
           <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🟣</div>
           <h3 style={{ fontSize: '1.125rem', marginBottom: '0.5rem' }}>1. Context Setting</h3>
-          <p style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.7)' }}>
+          <p style={{ fontSize: '0.875rem', color: theme.textMuted }}>
             Providing relevant background information to guide the AI&apos;s response
           </p>
         </div>
 
         <div style={{
-          backgroundColor: 'rgba(139, 92, 246, 0.05)',
-          border: '1px solid rgba(139, 92, 246, 0.2)',
+          backgroundColor: theme.accentBg,
+          border: `1px solid ${theme.border}`,
           borderRadius: '12px',
           padding: '1.5rem'
         }}>
           <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🎯</div>
           <h3 style={{ fontSize: '1.125rem', marginBottom: '0.5rem' }}>2. Clear Instructions</h3>
-          <p style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.7)' }}>
+          <p style={{ fontSize: '0.875rem', color: theme.textMuted }}>
             Specifying exactly what you want the AI to do or produce
           </p>
         </div>
 
         <div style={{
-          backgroundColor: 'rgba(139, 92, 246, 0.05)',
-          border: '1px solid rgba(139, 92, 246, 0.2)',
+          backgroundColor: theme.accentBg,
+          border: `1px solid ${theme.border}`,
           borderRadius: '12px',
           padding: '1.5rem'
         }}>
           <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📊</div>
           <h3 style={{ fontSize: '1.125rem', marginBottom: '0.5rem' }}>3. Output Formatting</h3>
-          <p style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.7)' }}>
+          <p style={{ fontSize: '0.875rem', color: theme.textMuted }}>
             Defining how you want the response structured or presented
           </p>
         </div>
 
         <div style={{
-          backgroundColor: 'rgba(139, 92, 246, 0.05)',
-          border: '1px solid rgba(139, 92, 246, 0.2)',
+          backgroundColor: theme.accentBg,
+          border: `1px solid ${theme.border}`,
           borderRadius: '12px',
           padding: '1.5rem'
         }}>
           <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>✨</div>
           <h3 style={{ fontSize: '1.125rem', marginBottom: '0.5rem' }}>4. Examples</h3>
-          <p style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.7)' }}>
+          <p style={{ fontSize: '0.875rem', color: theme.textMuted }}>
             Showing the AI what good outputs look like through demonstrations
           </p>
         </div>
@@ -218,9 +308,9 @@ export default function PromptEngineeringGuideArticle() {
         Zero-shot prompting involves asking the model to perform a task without providing any examples. This technique relies on the model&apos;s pre-trained knowledge and understanding.
       </p>
 
-      <div style={styles.codeBlock}>
-        <span style={styles.codeLabel}>Example</span>
-        <code>
+      <div style={{...styles.codeBlock, backgroundColor: theme.codeBg, border: `1px solid ${theme.codeBorder}`}}>
+        <span style={{...styles.codeLabel, color: theme.textSubtle}}>Example</span>
+        <code style={{color: theme.text}}>
           Classify the following text as positive, negative, or neutral:<br/>
           &quot;The product exceeded my expectations in every way.&quot;
         </code>
@@ -232,9 +322,9 @@ export default function PromptEngineeringGuideArticle() {
         Few-shot prompting provides the model with a few examples before asking it to perform the task. This helps the model understand the pattern and format you&apos;re looking for.
       </p>
 
-      <div style={styles.codeBlock}>
-        <span style={styles.codeLabel}>Example</span>
-        <code>
+      <div style={{...styles.codeBlock, backgroundColor: theme.codeBg, border: `1px solid ${theme.codeBorder}`}}>
+        <span style={{...styles.codeLabel, color: theme.textSubtle}}>Example</span>
+        <code style={{color: theme.text}}>
           Classify the sentiment:<br/><br/>
           Text: &quot;I love this!&quot; → Positive<br/>
           Text: &quot;This is terrible.&quot; → Negative<br/>
@@ -249,9 +339,9 @@ export default function PromptEngineeringGuideArticle() {
         This technique encourages the model to show its reasoning process step by step, leading to more accurate and transparent results, especially for complex problems.
       </p>
 
-      <div style={styles.codeBlock}>
-        <span style={styles.codeLabel}>Example</span>
-        <code>
+      <div style={{...styles.codeBlock, backgroundColor: theme.codeBg, border: `1px solid ${theme.codeBorder}`}}>
+        <span style={{...styles.codeLabel, color: theme.textSubtle}}>Example</span>
+        <code style={{color: theme.text}}>
           Let&apos;s solve this step by step:<br/><br/>
           If a train travels 120 miles in 2 hours, and then 180 miles in 3 hours, 
           what is its average speed for the entire journey?<br/><br/>
@@ -289,12 +379,16 @@ export default function PromptEngineeringGuideArticle() {
         Assign a specific role or persona to the AI to get responses tailored to that perspective.
       </p>
 
-      <div style={styles.literaryExample}>
-        <div style={styles.exampleLabel}>Role Example</div>
-        <div style={styles.exampleText}>
+      <div style={{
+        ...styles.literaryExample,
+        backgroundColor: isDarkMode ? 'rgba(139, 92, 246, 0.1)' : 'rgba(124, 58, 237, 0.05)',
+        border: `1px solid ${theme.border}`
+      }}>
+        <div style={{...styles.exampleLabel, color: theme.accent}}>Role Example</div>
+        <div style={{...styles.exampleText, color: theme.text}}>
           &quot;You are an experienced data scientist. Explain machine learning to a business executive who has no technical background.&quot;
         </div>
-        <div style={styles.exampleAnalysis}>
+        <div style={{...styles.exampleAnalysis, color: theme.textMuted}}>
           This approach helps the AI adjust its language, examples, and focus to match the assigned role and target audience.
         </div>
       </div>
@@ -305,9 +399,9 @@ export default function PromptEngineeringGuideArticle() {
         Set specific constraints to guide the model&apos;s output within desired boundaries.
       </p>
 
-      <div style={styles.codeBlock}>
-        <span style={styles.codeLabel}>Constraints Example</span>
-        <code>
+      <div style={{...styles.codeBlock, backgroundColor: theme.codeBg, border: `1px solid ${theme.codeBorder}`}}>
+        <span style={{...styles.codeLabel, color: theme.textSubtle}}>Constraints Example</span>
+        <code style={{color: theme.text}}>
           Write a product description with the following constraints:<br/>
           - Maximum 50 words<br/>
           - Include 3 key benefits<br/>
@@ -323,12 +417,12 @@ export default function PromptEngineeringGuideArticle() {
         Ask the AI to help you improve your prompts or generate better prompts for specific tasks.
       </p>
 
-      <div style={styles.calloutBox}>
-        <h4 style={styles.calloutTitle}>
+      <div style={{...styles.calloutBox, backgroundColor: theme.calloutBg, borderColor: theme.calloutBorder}}>
+        <h4 style={{...styles.calloutTitle, color: theme.accent}}>
           <span style={{ fontSize: '1.5rem' }}>🚀</span>
           Pro Tip
         </h4>
-        <p>
+        <p style={{color: theme.text}}>
           Use meta-prompting when you&apos;re stuck: &quot;What would be a better way to ask you to [task]?&quot;
         </p>
       </div>
@@ -356,24 +450,27 @@ export default function PromptEngineeringGuideArticle() {
             console.log('Email submitted:', email);
             // Handle email submission
           }}
-          isDarkMode={true}
+          isDarkMode={isDarkMode}
         />
       )}
       </div>
 
       <footer style={styles.articleFooter}>
-        <AuthorBox author={author} />
-        <ShareSection onShare={handleShare} copiedLink={copiedLink} />
+        <AuthorBox author={author} theme={theme} isDarkMode={isDarkMode} />
+        <ShareSection onShare={handleShare} copiedLink={copiedLink} theme={theme} isDarkMode={isDarkMode} />
       </footer>
 
-      <RelatedArticles articles={relatedArticles} />
+      <RelatedArticles articles={relatedArticles} theme={theme} isDarkMode={isDarkMode} />
 
       <SchoolNewsletter 
         emailInputRef={emailInputRef}
         handleNewsletterSubmit={handleNewsletterSubmit}
         isMobile={false}
         isTablet={false}
+        theme={theme}
+        isDarkMode={isDarkMode}
       />
     </ArticleLayout>
+    </>
   );
 }

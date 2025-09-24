@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react';
+import { Sun, Moon } from 'lucide-react';
 import ArticleLayout from '@/components/SchoolArticle/ArticleLayout';
 import ArticleHero from '@/components/SchoolArticle/ArticleHero';
 import MockingbirdFeaturedImage from '@/components/SchoolArticle/MockingbirdFeaturedImage';
@@ -16,6 +17,7 @@ export default function ToKillAMockingbirdArticle() {
   const [copiedLink, setCopiedLink] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true); // Default to dark for School
   const emailInputRef = useRef(null);
 
   const handleNewsletterSubmit = (e) => {
@@ -52,11 +54,53 @@ export default function ToKillAMockingbirdArticle() {
   };
 
   const author = {
-    initials: 'EW',
+    initials: 'ZU',
     name: 'Zev Uhuru',
     role: 'Founder, Esy',
-    bio: 'Professor of English Literature at Yale University, specializing in American literature and digital humanities. Author of "Reading in the Digital Age" and pioneer in applying AI tools to literary analysis while maintaining humanistic values.',
+    bio: 'Software Engineer with 5 years of experience, passionate about the intersection of AI and writing. Building tools that empower writers to create better content with the help of artificial intelligence.',
     meta: '38 articles published · Joined February 2024'
+  };
+
+  const theme = isDarkMode ? {
+    // Dark theme (School default)
+    bg: '#0a0a0f',
+    contentBg: 'transparent',
+    text: 'rgba(255, 255, 255, 0.9)',
+    textMuted: 'rgba(255, 255, 255, 0.7)',
+    textSubtle: 'rgba(255, 255, 255, 0.5)',
+    heading: '#ffffff',
+    border: 'rgba(139, 92, 246, 0.15)',
+    accent: '#8b5cf6',
+    accentLight: '#a78bfa',
+    accentBg: 'rgba(139, 92, 246, 0.1)',
+    accentBorder: 'rgba(139, 92, 246, 0.3)',
+    codeBg: '#16161f',
+    codeBorder: 'rgba(255, 255, 255, 0.1)',
+    calloutBg: 'rgba(139, 92, 246, 0.1)',
+    calloutBorder: '#8b5cf6',
+    buttonBg: 'rgba(139, 92, 246, 0.1)',
+    buttonHoverBg: 'rgba(139, 92, 246, 0.2)',
+    headerBg: 'rgba(10, 10, 15, 1)',
+  } : {
+    // Light theme
+    bg: '#ffffff',
+    contentBg: '#ffffff',
+    text: 'rgba(15, 23, 42, 0.9)',
+    textMuted: 'rgba(15, 23, 42, 0.7)',
+    textSubtle: 'rgba(15, 23, 42, 0.5)',
+    heading: '#0f172a',
+    border: 'rgba(139, 92, 246, 0.2)',
+    accent: '#7c3aed',
+    accentLight: '#8b5cf6',
+    accentBg: 'rgba(139, 92, 246, 0.05)',
+    accentBorder: 'rgba(139, 92, 246, 0.3)',
+    codeBg: '#f8fafc',
+    codeBorder: 'rgba(15, 23, 42, 0.1)',
+    calloutBg: 'rgba(139, 92, 246, 0.05)',
+    calloutBorder: '#7c3aed',
+    buttonBg: 'rgba(139, 92, 246, 0.05)',
+    buttonHoverBg: 'rgba(139, 92, 246, 0.1)',
+    headerBg: 'rgba(255, 255, 255, 1)',
   };
 
   const tableOfContents = [
@@ -108,8 +152,54 @@ export default function ToKillAMockingbirdArticle() {
   const readingProgress = Math.min(Math.round((scrollProgress / 100) * estimatedReadTime), estimatedReadTime);
 
   return (
-    <ArticleLayout meta={meta}>
-      <MockingbirdFeaturedImage />
+    <>
+      {/* Theme Toggle Button */}
+      <button
+        onClick={() => setIsDarkMode(!isDarkMode)}
+        style={{
+          position: 'fixed',
+          bottom: '2rem',
+          right: '2rem',
+          zIndex: 1000,
+          width: '56px',
+          height: '56px',
+          borderRadius: '50%',
+          border: `2px solid ${theme.accent}`,
+          backgroundColor: isDarkMode ? 'rgba(139, 92, 246, 0.1)' : 'rgba(139, 92, 246, 0.05)',
+          color: theme.accent,
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'all 0.3s ease',
+          boxShadow: 'none',
+          backdropFilter: 'blur(10px)'
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'scale(1.1)';
+          e.currentTarget.style.backgroundColor = isDarkMode 
+            ? 'rgba(139, 92, 246, 0.2)' 
+            : 'rgba(139, 92, 246, 0.1)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'scale(1)';
+          e.currentTarget.style.backgroundColor = isDarkMode 
+            ? 'rgba(139, 92, 246, 0.1)' 
+            : 'rgba(139, 92, 246, 0.05)';
+        }}
+        aria-label="Toggle theme"
+      >
+        {isDarkMode ? (
+          <Sun size={24} color={theme.accent} />
+        ) : (
+          <Moon size={24} color={theme.accent} />
+        )}
+      </button>
+
+    <ArticleLayout meta={meta} theme={theme} isDarkMode={isDarkMode}>
+      <div style={{ marginTop: '-2rem' }}>
+        <MockingbirdFeaturedImage />
+      </div>
       
       <ArticleHero 
         category="Literary Analysis"
@@ -117,6 +207,8 @@ export default function ToKillAMockingbirdArticle() {
         author={author}
         date="March 25, 2025"
         readTime={`${readingProgress} / ${estimatedReadTime}`}
+        theme={theme}
+        isDarkMode={isDarkMode}
       />
 
       <div style={{
@@ -131,7 +223,7 @@ export default function ToKillAMockingbirdArticle() {
       }}>
         <div style={{
           lineHeight: '1.8',
-          color: 'rgba(255, 255, 255, 0.9)',
+          color: theme.text,
           maxWidth: isDesktop ? '100%' : '720px',
           margin: isDesktop ? '0' : '0 auto'
         }}>
@@ -149,9 +241,9 @@ export default function ToKillAMockingbirdArticle() {
         The mockingbird symbol permeates Lee&apos;s novel, but its full significance often eludes first-time readers. Let&apos;s explore how carefully crafted prompts can illuminate this central metaphor and its various manifestations throughout the text.
       </p>
 
-      <div style={styles.codeBlock}>
-        <span style={styles.codeLabel}>Prompt Example</span>
-        <code>
+      <div style={{...styles.codeBlock, backgroundColor: theme.codeBg, border: `1px solid ${theme.codeBorder}`}}>
+        <span style={{...styles.codeLabel, color: theme.textSubtle}}>Prompt Example</span>
+        <code style={{color: theme.text}}>
           Analyze the mockingbird as a symbol in Harper Lee&apos;s novel. Consider:<br/><br/>
           1. Direct references to mockingbirds in the text<br/>
           2. Characters who embody mockingbird-like qualities<br/>
@@ -165,12 +257,16 @@ export default function ToKillAMockingbirdArticle() {
         This prompt structure encourages comprehensive analysis while maintaining focus. The AI can help identify subtle connections between the mockingbird symbol and characters like Tom Robinson and Boo Radley, both of whom embody innocence destroyed by evil.
       </p>
 
-      <div style={styles.literaryExample}>
-        <div style={styles.exampleLabel}>Literary Insight</div>
-        <div style={styles.exampleText}>
+      <div style={{
+        ...styles.literaryExample,
+        backgroundColor: isDarkMode ? 'rgba(139, 92, 246, 0.1)' : 'rgba(124, 58, 237, 0.05)',
+        border: `1px solid ${theme.border}`
+      }}>
+        <div style={{...styles.exampleLabel, color: theme.accent}}>Literary Insight</div>
+        <div style={{...styles.exampleText, color: theme.text}}>
           &quot;Mockingbirds don&apos;t do one thing but make music for us to enjoy... they don&apos;t do one thing but sing their hearts out for us. That&apos;s why it&apos;s a sin to kill a mockingbird.&quot;
         </div>
-        <div style={styles.exampleAnalysis}>
+        <div style={{...styles.exampleAnalysis, color: theme.textMuted}}>
           The AI analysis reveals how this seemingly simple explanation from Atticus contains the novel&apos;s entire moral framework. The mockingbird becomes a test of character—those who would harm the innocent reveal their own moral corruption.
         </div>
       </div>
@@ -187,9 +283,9 @@ export default function ToKillAMockingbirdArticle() {
         Character analysis benefits tremendously from AI&apos;s ability to track development across lengthy texts. Let&apos;s examine how to craft prompts that reveal character complexity and growth.
       </p>
 
-      <div style={styles.codeBlock}>
-        <span style={styles.codeLabel}>Character Analysis Prompt</span>
-        <code>
+      <div style={{...styles.codeBlock, backgroundColor: theme.codeBg, border: `1px solid ${theme.codeBorder}`}}>
+        <span style={{...styles.codeLabel, color: theme.textSubtle}}>Character Analysis Prompt</span>
+        <code style={{color: theme.text}}>
           Trace Scout Finch&apos;s moral development throughout &quot;To Kill a Mockingbird&quot; by analyzing:<br/><br/>
           - Her initial worldview and assumptions about Maycomb<br/>
           - Key moments that challenge her perspective<br/>
@@ -204,12 +300,12 @@ export default function ToKillAMockingbirdArticle() {
         This structured approach helps identify Scout&apos;s transformation from innocent observer to empathetic participant in her community&apos;s moral struggles. The AI can track linguistic changes in her narration that reflect growing sophistication.
       </p>
 
-      <div style={styles.calloutBox}>
-        <h4 style={styles.calloutTitle}>
+      <div style={{...styles.calloutBox, backgroundColor: theme.calloutBg, borderColor: theme.calloutBorder}}>
+        <h4 style={{...styles.calloutTitle, color: theme.accent}}>
           <span style={{ fontSize: '1.5rem' }}>🎯</span>
           Prompt Engineering Tip
         </h4>
-        <p>
+        <p style={{color: theme.text}}>
           When analyzing character development, ask the AI to compare early and late appearances of the character. This contrast approach often reveals subtle growth that linear analysis might miss.
         </p>
       </div>
@@ -220,12 +316,16 @@ export default function ToKillAMockingbirdArticle() {
         The relationships between characters often reveal more than individual analysis. Consider this approach to examining the complex dynamic between Scout and Boo Radley:
       </p>
 
-      <div style={styles.literaryExample}>
-        <div style={styles.exampleLabel}>Relationship Analysis</div>
-        <div style={styles.exampleText}>
+      <div style={{
+        ...styles.literaryExample,
+        backgroundColor: isDarkMode ? 'rgba(139, 92, 246, 0.1)' : 'rgba(124, 58, 237, 0.05)',
+        border: `1px solid ${theme.border}`
+      }}>
+        <div style={{...styles.exampleLabel, color: theme.accent}}>Relationship Analysis</div>
+        <div style={{...styles.exampleText, color: theme.text}}>
           &quot;Boo was our neighbor. He gave us two soap dolls, a broken watch and chain, a pair of good-luck pennies, and our lives.&quot;
         </div>
-        <div style={styles.exampleAnalysis}>
+        <div style={{...styles.exampleAnalysis, color: theme.textMuted}}>
           Through prompted analysis, we see how Scout&apos;s simple list represents a profound journey from childish curiosity to mature gratitude. Each gift marks a stage in their relationship, culminating in the ultimate gift of life itself.
         </div>
       </div>
@@ -236,9 +336,9 @@ export default function ToKillAMockingbirdArticle() {
         The novel&apos;s themes interweave in complex patterns. AI analysis excels at identifying these connections when given properly structured prompts. Let&apos;s explore the intersection of prejudice, justice, and moral courage.
       </p>
 
-      <div style={styles.codeBlock}>
-        <span style={styles.codeLabel}>Thematic Analysis Framework</span>
-        <code>
+      <div style={{...styles.codeBlock, backgroundColor: theme.codeBg, border: `1px solid ${theme.codeBorder}`}}>
+        <span style={{...styles.codeLabel, color: theme.textSubtle}}>Thematic Analysis Framework</span>
+        <code style={{color: theme.text}}>
           Analyze how &quot;To Kill a Mockingbird&quot; presents the theme of moral courage:<br/><br/>
           Level 1: Identify explicit acts of courage (Atticus defending Tom, Mrs. Dubose&apos;s struggle)<br/>
           Level 2: Explore quiet courage (Miss Maudie&apos;s dignity, Link Deas supporting Helen)<br/>
@@ -258,12 +358,12 @@ export default function ToKillAMockingbirdArticle() {
         One of AI&apos;s greatest strengths lies in making connections across texts and contexts. We can use this capability to place &quot;To Kill a Mockingbird&quot; in broader literary and historical conversations.
       </p>
 
-      <div style={styles.calloutBox}>
-        <h4 style={styles.calloutTitle}>
+      <div style={{...styles.calloutBox, backgroundColor: theme.calloutBg, borderColor: theme.calloutBorder}}>
+        <h4 style={{...styles.calloutTitle, color: theme.accent}}>
           <span style={{ fontSize: '1.5rem' }}>🔄</span>
           Cross-Reference Prompt
         </h4>
-        <p>
+        <p style={{color: theme.text}}>
           Compare the treatment of justice in &quot;To Kill a Mockingbird&quot; with other American literary works addressing racial injustice. Consider narrative techniques, character archetypes, and how each work reflects its historical moment while speaking to universal themes.
         </p>
       </div>
@@ -298,12 +398,16 @@ export default function ToKillAMockingbirdArticle() {
         </li>
       </ul>
 
-      <div style={styles.literaryExample}>
-        <div style={styles.exampleLabel}>Final Reflection</div>
-        <div style={styles.exampleText}>
+      <div style={{
+        ...styles.literaryExample,
+        backgroundColor: isDarkMode ? 'rgba(139, 92, 246, 0.1)' : 'rgba(124, 58, 237, 0.05)',
+        border: `1px solid ${theme.border}`
+      }}>
+        <div style={{...styles.exampleLabel, color: theme.accent}}>Final Reflection</div>
+        <div style={{...styles.exampleText, color: theme.text}}>
           &quot;You never really understand a person until you consider things from his point of view... Until you climb inside of his skin and walk around in it.&quot;
         </div>
-        <div style={styles.exampleAnalysis}>
+        <div style={{...styles.exampleAnalysis, color: theme.textMuted}}>
           This central wisdom from Atticus applies equally to our approach to literary analysis with AI. By crafting thoughtful prompts, we climb inside the text, walking around in its meanings, discovering new paths through familiar territory.
         </div>
       </div>
@@ -331,24 +435,27 @@ export default function ToKillAMockingbirdArticle() {
               console.log('Email submitted:', email);
               // Handle email submission
             }}
-            isDarkMode={true} // School articles use dark theme
+            isDarkMode={isDarkMode}
           />
         )}
       </div>
 
       <footer style={styles.articleFooter}>
-        <AuthorBox author={author} />
-        <ShareSection onShare={handleShare} copiedLink={copiedLink} />
+        <AuthorBox author={author} theme={theme} isDarkMode={isDarkMode} />
+        <ShareSection onShare={handleShare} copiedLink={copiedLink} theme={theme} isDarkMode={isDarkMode} />
       </footer>
 
-      <RelatedArticles articles={relatedArticles} />
+      <RelatedArticles articles={relatedArticles} theme={theme} isDarkMode={isDarkMode} />
 
       <SchoolNewsletter 
         emailInputRef={emailInputRef}
         handleNewsletterSubmit={handleNewsletterSubmit}
         isMobile={false}
         isTablet={false}
+        theme={theme}
+        isDarkMode={isDarkMode}
       />
     </ArticleLayout>
+    </>
   );
 }

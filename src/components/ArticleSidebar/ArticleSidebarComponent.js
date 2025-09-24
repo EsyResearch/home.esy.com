@@ -112,8 +112,8 @@ const ArticleSidebarComponent = ({
           borderRadius: '20px',
           padding: '1.5rem',
           border: `1px solid ${theme.border}`,
-          backdropFilter: 'blur(20px)',
-          boxShadow: `0 8px 32px ${theme.accent}10`,
+          backdropFilter: isDarkMode ? 'blur(20px)' : 'none',
+          boxShadow: isDarkMode ? `0 8px 32px ${theme.accent}10` : 'none',
           position: 'relative',
           overflow: 'hidden',
           marginBottom: '2rem'
@@ -289,13 +289,13 @@ const ArticleSidebarComponent = ({
       {/* Email Capture Card */}
       {showEmailCapture && (
         <div style={{
-          background: isDarkMode 
+          background: isDarkMode
             ? `linear-gradient(135deg, rgba(30, 30, 40, 0.9) 0%, rgba(25, 25, 35, 0.7) 100%)`
             : `linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%)`,
           borderRadius: '20px',
           padding: '1.5rem',
           border: `1px solid ${theme.border}`,
-          backdropFilter: 'blur(10px)',
+          backdropFilter: isDarkMode ? 'blur(10px)' : 'none',
           position: 'relative',
           overflow: 'hidden'
         }}>

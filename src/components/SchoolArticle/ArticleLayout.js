@@ -33,11 +33,15 @@ const ArticleLayout = ({ children, meta, theme, isDarkMode = true }) => {
   };
 
   // Use provided theme or default
-  const currentTheme = theme || {
+  const currentTheme = theme ? {
+    ...theme,
+    // Ensure headerBg is set correctly based on theme
+    headerBg: theme.headerBg || (isDarkMode ? 'rgba(10, 10, 15, 0.95)' : 'rgba(255, 255, 255, 1)')
+  } : {
     bg: isDarkMode ? '#0a0a0f' : '#ffffff',
     text: isDarkMode ? '#ffffff' : '#0f172a',
     accent: isDarkMode ? '#8b5cf6' : '#7c3aed',
-    headerBg: isDarkMode ? 'rgba(10, 10, 15, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+    headerBg: isDarkMode ? 'rgba(10, 10, 15, 0.95)' : 'rgba(255, 255, 255, 1)',
     border: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
     muted: isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)'
   };
@@ -67,9 +71,9 @@ const ArticleLayout = ({ children, meta, theme, isDarkMode = true }) => {
       left: 0,
       right: 0,
       zIndex: 1000,
-      backgroundColor: 'rgba(17, 17, 27, 0.95)',
+      backgroundColor: currentTheme.headerBg,
       backdropFilter: 'blur(20px)',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+      borderBottom: `1px solid ${currentTheme.border}`,
       transition: 'all 0.3s ease'
     },
     headerInner: {
@@ -84,7 +88,7 @@ const ArticleLayout = ({ children, meta, theme, isDarkMode = true }) => {
       fontSize: '1.25rem',
       fontWeight: '300',
       letterSpacing: '-0.02em',
-      color: '#ffffff',
+      color: currentTheme.text,
       textDecoration: 'none'
     },
     headerActions: {
@@ -95,9 +99,9 @@ const ArticleLayout = ({ children, meta, theme, isDarkMode = true }) => {
     iconButton: {
       padding: '0.625rem',
       backgroundColor: 'transparent',
-      border: '1px solid rgba(255, 255, 255, 0.1)',
+      border: `1px solid ${currentTheme.border}`,
       borderRadius: '8px',
-      color: 'rgba(255, 255, 255, 0.6)',
+      color: currentTheme.muted,
       cursor: 'pointer',
       transition: 'all 0.2s ease',
       display: 'flex',
@@ -143,13 +147,14 @@ const ArticleLayout = ({ children, meta, theme, isDarkMode = true }) => {
       
       <article style={styles.articleContainer}>
         {/* Breadcrumb */}
-        <div style={{ marginTop: '5rem' }}>
+        <div style={{ marginTop: '5.2rem' }}>
           <Breadcrumbs 
             items={[
               { label: 'School', href: '/school' },
               { label: 'Articles', href: '/school/articles' },
               { label: meta?.category || 'Article', isCurrent: true }
             ]}
+            isLight={!isDarkMode}
           />
         </div>
 

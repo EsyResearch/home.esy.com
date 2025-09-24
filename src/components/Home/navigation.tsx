@@ -137,7 +137,7 @@ export default function Navigation ({
         if (window.scrollY > 100) {
           nav.style.background = 'rgba(10, 10, 15, 0.95)';
         } else {
-          nav.style.background = 'rgba(10, 10, 15, 0.85)';
+          nav.style.background = 'rgba(10, 10, 15, 1)';
         }
       };
   

@@ -80,9 +80,7 @@ const AuthorBox = ({ author, theme, isDarkMode = true }) => {
             color: isDarkMode ? '#ffffff' : currentTheme.accent,
             fontSize: isMobile ? '2rem' : '2.5rem',
             fontWeight: '600',
-            boxShadow: isDarkMode 
-              ? '0 8px 24px rgba(139, 92, 246, 0.2)'
-              : '0 8px 24px rgba(124, 58, 237, 0.15)',
+            boxShadow: 'none',
             border: `2px solid ${currentTheme.border}`
           }}>
             ZU
@@ -142,18 +140,18 @@ const AuthorBox = ({ author, theme, isDarkMode = true }) => {
                 cursor: 'pointer',
                 border: 'none',
                 transition: 'all 0.3s ease',
-                boxShadow: `0 4px 12px ${currentTheme.accent}30`,
+                boxShadow: 'none',
                 textDecoration: 'none',
                 display: 'inline-block',
                 whiteSpace: 'nowrap'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 6px 16px rgba(139, 92, 246, 0.4)';
+                // Removed box shadow on hover
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(139, 92, 246, 0.3)';
+                // Removed box shadow
               }}
             >
               Read More Articles

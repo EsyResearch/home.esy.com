@@ -16,7 +16,7 @@ const MockingbirdFeaturedImage = () => {
       width: '100%',
       height: '600px',
       overflow: 'hidden',
-      marginTop: '1rem',
+      marginTop: '0',
       backgroundColor: '#16161f'
     },
     imageOverlay: {
@@ -63,7 +63,7 @@ const MockingbirdFeaturedImage = () => {
       alignItems: 'center',
       justifyContent: 'center',
       padding: '3rem',
-      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.5)'
+      boxShadow: 'none'
     },
     bookTitle: {
       fontSize: '2.5rem',
