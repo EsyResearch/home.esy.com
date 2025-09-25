@@ -261,7 +261,8 @@ The emergence of ${topic} as a critical area of study can be traced back to seve
     container: {
       position: 'relative' as const,
       width: '100%',
-      maxWidth: isMobile ? '100%' : '860px',
+      // Fluid max width
+      maxWidth: `min(100%, ${isMobile ? '100%' : '860px'})`,
       margin: '0 auto',
       ...style
     },
@@ -271,8 +272,10 @@ The emergence of ${topic} as a critical area of study can be traced back to seve
         ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.03) 0%, rgba(59, 130, 246, 0.03) 100%)'
         : 'linear-gradient(135deg, rgba(22, 22, 31, 0.6) 0%, rgba(22, 22, 31, 0.4) 100%)',
       border: `2px solid ${isFocused ? 'rgba(139, 92, 246, 0.4)' : 'rgba(255, 255, 255, 0.08)'}`,
-      borderRadius: isMobile ? '20px' : '24px',
-      padding: isMobile ? '1.5rem' : '2rem',
+      // Fluid border radius
+      borderRadius: `clamp(16px, 2.5vw, 24px)`,
+      // Fluid padding system
+      padding: `clamp(1.25rem, 3vw, 2rem)`,
       transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
       backdropFilter: 'blur(20px)',
       boxShadow: isFocused
@@ -370,49 +373,59 @@ The emergence of ${topic} as a critical area of study can be traced back to seve
       color: '#8b5cf6'
     },
     promptSection: {
-      marginTop: '1.5rem',
-      paddingTop: '1.5rem',
+      marginTop: isMobile ? '1.25rem' : '1.5rem',
+      paddingTop: isMobile ? '1.25rem' : '1.5rem',
       borderTop: '1px solid rgba(255, 255, 255, 0.05)'
     },
     promptHeader: {
       display: 'flex',
-      alignItems: 'center',
+      flexDirection: (isMobile ? 'column' : 'row') as React.CSSProperties['flexDirection'],
+      alignItems: isMobile ? 'stretch' : 'center',
       justifyContent: 'space-between',
-      marginBottom: '1rem'
+      marginBottom: isMobile ? '1.25rem' : '1rem',
+      gap: isMobile ? '0.875rem' : '0'
     },
     promptTitle: {
-      fontSize: isMobile ? '0.875rem' : '0.9375rem',
-      color: '#ffffff',
-      fontWeight: '600',
+      fontSize: isMobile ? '0.9375rem' : '0.9375rem',
+      color: 'rgba(255, 255, 255, 0.9)',
+      fontWeight: '500',
       display: 'flex',
-      alignItems: 'center',
-      gap: '0.5rem'
+      alignItems: isMobile ? 'flex-start' : 'center',
+      gap: '0.375rem',
+      flexWrap: 'nowrap' as React.CSSProperties['flexWrap'],
+      lineHeight: isMobile ? 1.5 : 1.2
     },
     viewAllButton: {
-      display: 'flex',
+      display: isMobile ? 'inline-flex' : 'flex',
       alignItems: 'center',
-      gap: '0.25rem',
-      color: '#8b5cf6',
-      fontSize: '0.8125rem',
-      fontWeight: '600',
+      justifyContent: 'center',
+      gap: '0.375rem',
+      color: '#ffffff',
+      fontSize: isMobile ? '0.8125rem' : '0.8125rem',
+      fontWeight: '500',
       cursor: 'pointer',
       transition: 'all 0.2s ease',
-      background: 'none',
-      border: 'none',
-      padding: '0.25rem 0.5rem'
+      background: isMobile ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%)' : 'none',
+      border: isMobile ? '1px solid rgba(139, 92, 246, 0.3)' : 'none',
+      padding: isMobile ? '0.625rem 1rem' : '0.25rem 0.5rem',
+      whiteSpace: 'nowrap',
+      width: isMobile ? '100%' : 'auto',
+      borderRadius: '10px',
+      backdropFilter: isMobile ? 'blur(10px)' : 'none'
     },
     promptGrid: {
       display: 'grid',
-      gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
+      gridTemplateColumns: isSmallMobile ? '1fr' : isMobile ? 'repeat(auto-fit, minmax(250px, 1fr))' : 'repeat(2, 1fr)',
       gap: isMobile ? '0.75rem' : '1rem'
     },
     promptCard: {
-      padding: isMobile ? '0.875rem' : '1rem',
-      background: 'rgba(255, 255, 255, 0.02)',
+      padding: isMobile ? '1rem' : '1rem',
+      background: isMobile ? 'rgba(255, 255, 255, 0.03)' : 'rgba(255, 255, 255, 0.02)',
       border: '1px solid rgba(255, 255, 255, 0.08)',
-      borderRadius: '12px',
+      borderRadius: isMobile ? '10px' : '12px',
       cursor: 'pointer',
       transition: 'all 0.2s ease',
+      minHeight: isMobile ? '100px' : 'auto',
       position: 'relative' as const
     },
     promptCardSelected: {
@@ -812,21 +825,25 @@ The emergence of ${topic} as a critical area of study can be traced back to seve
           <div style={styles.promptSection}>
             <div style={styles.promptHeader}>
               <div style={styles.promptTitle}>
-                <Sparkles size={16} color="#8b5cf6" />
-                Don&apos;t know what to write? Try these popular essay topics
+                {!isMobile && <Sparkles size={16} color="#8b5cf6" />}
+                {isMobile ? "Need inspiration?" : "Don't know what to write? Try these popular essay topics"}
               </div>
               <button
                 style={styles.viewAllButton}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateX(2px)';
+                  if (!isMobile) {
+                    e.currentTarget.style.transform = 'translateX(2px)';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateX(0)';
+                  if (!isMobile) {
+                    e.currentTarget.style.transform = 'translateX(0)';
+                  }
                 }}
                 onClick={() => window.open('/prompt-library', '_blank')}
               >
-                Browse All Topics
-                <ChevronRight size={14} />
+                Browse Prompts
+                <ChevronRight size={isMobile ? 16 : 14} />
               </button>
             </div>
 

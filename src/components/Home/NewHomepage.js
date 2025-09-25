@@ -123,32 +123,60 @@ const NewHomepage = () => {
       color: currentTheme.text,
       fontFamily: 'var(--font-inter)'
     }}>
-      {/* Hero Section - Enhanced Mobile Responsive */}
+      {/* Hero Section - World-Class Responsive Design System */}
       <section style={{ 
         minHeight: isMobile ? 'auto' : '100vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: isSmallMobile ? '8rem 1rem 2rem' : isMobile ? '9rem 1.5rem 3rem' : isTablet ? '9rem 2rem 4rem' : '9rem 2rem',
+        // Fluid padding system with proper nav clearance
+        paddingTop: `clamp(${
+          isTinyMobile ? '7rem' : 
+          isSmallMobile ? '7.5rem' : 
+          isMobile ? '8rem' : 
+          isTablet ? '9rem' : 
+          '10rem'
+        }, 12vh, 12rem)`,
+        paddingBottom: `clamp(${isMobile ? '2rem' : '3rem'}, 5vh, 5rem)`,
+        paddingLeft: `clamp(1rem, 5vw, 4rem)`,
+        paddingRight: `clamp(1rem, 5vw, 4rem)`,
         position: 'relative'
       }}>
         <div style={{ 
-          maxWidth: '1200px', 
-          width: '100%', 
+          // Fluid container width
+          width: `min(100%, ${isDesktop ? '1280px' : isTablet ? '1024px' : '100%'})`,
           position: 'relative', 
           zIndex: 1 
         }}>
           {/* Hero Content */}
-          <div style={{ textAlign: 'center', marginBottom: isMobile ? '1.5rem' : '3rem' }}>
+          <div style={{ 
+            textAlign: 'center', 
+            // Dynamic spacing based on viewport
+            marginBottom: `clamp(${isMobile ? '1.5rem' : '2rem'}, 4vh, 4rem)`
+          }}>
 
-            {/* Main Headline - Enhanced Mobile Typography */}
+            {/* Main Headline - Fluid Typography System */}
             <h1 style={{
-              fontSize: isTinyMobile ? '2.5rem' : isSmallMobile ? '2.75rem' : isMobile ? '3rem' : isTablet ? '3.5rem' : '5rem',
+              // Fluid font size with clamp
+              fontSize: `clamp(${
+                isTinyMobile ? '2rem' : 
+                isSmallMobile ? '2.25rem' : 
+                isMobile ? '2.5rem' : '3rem'
+              }, ${
+                isMobile ? '7vw' : '5vw'
+              }, ${
+                isDesktop ? '5.5rem' : isTablet ? '4rem' : '3.5rem'
+              })`,
               fontWeight: 300,
-              lineHeight: 1.1,
-              letterSpacing: '-0.02em',
-              marginBottom: isMobile ? '1rem' : '2rem',
-              padding: isTinyMobile ? '0 0.5rem' : isSmallMobile ? '0 0.75rem' : '0',
+              // Responsive line height
+              lineHeight: isMobile ? 1.15 : 1.05,
+              // Progressive letter spacing
+              letterSpacing: `${isMobile ? '-0.02em' : isTablet ? '-0.03em' : '-0.04em'}`,
+              // Fluid margin
+              marginBottom: `clamp(1rem, 3vh, 2.5rem)`,
+              // Safe area padding for notched devices
+              paddingLeft: 'env(safe-area-inset-left, 0)',
+              paddingRight: 'env(safe-area-inset-right, 0)',
               fontFamily: 'var(--font-literata)'
             }}>
               <span style={{ fontWeight: 300 }}>Your Personal</span>
@@ -156,14 +184,25 @@ const NewHomepage = () => {
               <span style={{ color: currentTheme.accent, fontWeight: 400 }}>AI Essay Writer</span>
             </h1>
 
-            {/* Subheadline - Enhanced Mobile Readability */}
+            {/* Subheadline - Fluid Typography System */}
             <p style={{
-              fontSize: isTinyMobile ? '1rem' : isSmallMobile ? '1.125rem' : isMobile ? '1.25rem' : isTablet ? '1.25rem' : '1.5rem',
-              lineHeight: 1.4,
+              // Fluid font size
+              fontSize: `clamp(${
+                isMobile ? '1rem' : '1.25rem'
+              }, ${
+                isMobile ? '2.5vw' : '1.5vw'
+              }, ${
+                isDesktop ? '1.75rem' : '1.5rem'
+              })`,
+              // Optimal line height for readability
+              lineHeight: isMobile ? 1.5 : 1.6,
               color: currentTheme.muted,
-              maxWidth: '600px',
+              // Responsive max width
+              maxWidth: `min(90%, ${isMobile ? '500px' : '650px'})`,
               margin: '0 auto',
-              padding: isTinyMobile ? '0 1rem' : isSmallMobile ? '0 1.5rem' : isMobile ? '0 2rem' : '0',
+              // Fluid padding
+              paddingLeft: `clamp(0.5rem, 2vw, 2rem)`,
+              paddingRight: `clamp(0.5rem, 2vw, 2rem)`,
               fontFamily: 'var(--font-inter)',
               fontWeight: 400
             }}>
@@ -171,12 +210,16 @@ const NewHomepage = () => {
             </p>
           </div>
 
-          {/* Essay Generator Interface - World-Class Design */}
+          {/* Essay Generator Interface - Responsive Container */}
           <div style={{
-            maxWidth: isMobile ? '100%' : '840px',
+            // Fluid max width
+            maxWidth: `min(100%, ${isDesktop ? '840px' : isTablet ? '720px' : '100%'})`,
             margin: '0 auto',
-            marginBottom: isMobile ? '1.5rem' : '3rem',
-            padding: isTinyMobile ? '0 0.5rem' : isSmallMobile ? '0 0.75rem' : '0'
+            // Dynamic margin bottom
+            marginBottom: `clamp(1.5rem, 4vh, 3.5rem)`,
+            // Safe area padding
+            paddingLeft: isMobile ? `max(0.5rem, env(safe-area-inset-left))` : 0,
+            paddingRight: isMobile ? `max(0.5rem, env(safe-area-inset-right))` : 0
           }}>
             <EssayGeneratorPro
               onGenerate={handleEssayGeneration}
@@ -185,17 +228,21 @@ const NewHomepage = () => {
             />
           </div>
 
-          {/* Trust Indicators - Enhanced Mobile Grid */}
+          {/* Trust Indicators - Responsive Grid System */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
-            gap: isMobile ? '1.5rem' : '2rem',
-            fontSize: isTinyMobile ? '0.75rem' : isSmallMobile ? '0.813rem' : '0.875rem',
+            // Responsive grid columns
+            gridTemplateColumns: isMobile ? '1fr' : `repeat(auto-fit, minmax(200px, 1fr))`,
+            // Fluid gap
+            gap: `clamp(1rem, 3vw, 2rem)`,
+            // Fluid font size
+            fontSize: `clamp(0.75rem, 1.5vw, 0.9375rem)`,
             color: currentTheme.subtle,
-            maxWidth: isMobile ? '300px' : '720px',
+            // Responsive container
+            maxWidth: `min(100%, ${isMobile ? '320px' : '720px'})`,
             margin: '0 auto',
-            marginTop: isMobile ? '1.5rem' : '2rem',
-            padding: isTinyMobile ? '0 0.5rem' : isSmallMobile ? '0 0.75rem' : '0',
+            // Dynamic margin top
+            marginTop: `clamp(1.5rem, 3vh, 2.5rem)`,
             textAlign: 'center'
           }}>
             <div style={{ 

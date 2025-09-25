@@ -343,12 +343,14 @@ const ModernFeaturesBento: React.FC = () => {
           </div>
           
           <h2 style={styles.title}>
-            How Esy <span style={styles.titleGradient}>Transforms</span> Your Writing
+            How Esy {isMobile ? <br /> : ''}
+            <span style={styles.titleGradient}>Transforms Your Writing</span>
           </h2>
           
           <p style={styles.subtitle}>
-            Every tool you need to write with confidence, backed by intelligent AI 
-            that understands academic excellence.
+            {isMobile 
+              ? 'Write with confidence using AI that understands excellence' 
+              : 'Every tool you need to write with confidence, backed by intelligent AI that understands academic excellence.'}
           </p>
         </div>
 
@@ -444,11 +446,16 @@ const ModernFeaturesBento: React.FC = () => {
           transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s'
         }}>
           <p style={{ 
-            fontSize: '1rem', 
+            fontSize: isMobile ? '1.125rem' : '1rem', 
             color: 'rgba(255, 255, 255, 0.6)',
-            marginBottom: '1.5rem'
+            marginBottom: '1.5rem',
+            lineHeight: 1.4
           }}>
-            Ready to experience the difference?
+            {isMobile ? (
+              <>Ready to experience<br />the difference?</>
+            ) : (
+              'Ready to experience the difference?'
+            )}
           </p>
           <button
             style={{

@@ -500,13 +500,14 @@ This prompt will generate a comprehensive analysis with 20+ scholarly sources, t
           </div>
           
           <h2 style={styles.title}>
-            Transform Your Writing From
-            <span style={styles.titleGradient}>Generic to Genius</span>
+            Transform Your Writing
+            <br />
+            <span style={styles.titleGradient}>From Generic to Genius</span>
           </h2>
           
           <p style={styles.subtitle}>
-            Our AI-powered prompts don&apos;t just help you write—they teach you to think like 
-            scholars, researchers, and professional writers. See the difference intelligence makes.
+            AI prompts that teach you to think like scholars and researchers.
+            {!isMobile && ' See the difference intelligence makes.'}
           </p>
         </div>
 
@@ -676,10 +677,14 @@ This prompt will generate a comprehensive analysis with 20+ scholarly sources, t
         {/* CTA Section */}
         <div style={styles.ctaSection}>
           <h3 style={styles.ctaTitle}>
-            Ready to Write at a Higher Level?
+            Ready to Write
+            {isMobile ? <br /> : ' '}
+            at a Higher Level?
           </h3>
           <p style={styles.ctaSubtitle}>
-            Join thousands of students and professionals achieving excellence with intelligent prompts.
+            {isMobile 
+              ? 'Achieve excellence with intelligent prompts'
+              : 'Join thousands of students and professionals achieving excellence with intelligent prompts.'}
           </p>
           <div style={styles.ctaButtons}>
             <button
