@@ -212,7 +212,7 @@ const NewHomepage = () => {
                 marginTop: 0,
                 whiteSpace: 'normal'
               }}>
-                Stop staring at a blinking cursor.{isMobile && <br />} Esy helps you plan your outline, write in academic formats, and explore thousands of AI suggestions.
+                Stop staring at a blank page.{isMobile && <br />} Esy helps you plan your outline, write in academic formats, and explore thousands of AI suggestions.
               </p>
             </div>
           </div>
