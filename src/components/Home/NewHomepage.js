@@ -179,9 +179,9 @@ const NewHomepage = () => {
               paddingRight: 'env(safe-area-inset-right, 0)',
               fontFamily: 'var(--font-literata)'
             }}>
-              <span style={{ fontWeight: 300 }}>Delegate Boring Research</span>
+              <span style={{ fontWeight: 300 }}>Skip Boring Research</span>
               <br />
-              <span style={{ color: currentTheme.accent, fontWeight: 400 }}>Write Smarter Essays</span>
+              <span style={{ color: currentTheme.accent, fontWeight: 400 }}>Write Better Essays</span>
             </h1>
 
             {/* Clean, Elegant Subtitle - Optimized for Longer Text */}
@@ -212,8 +212,8 @@ const NewHomepage = () => {
                 marginTop: isMobile ? '1.25rem' : '1.75rem',
                 whiteSpace: 'normal'
               }}>
-                Esy helps you beat the blank page with prompts,<br />
-                stay focused with workflows, and build stronger outlines for research.
+                Stop staring at a blinking cursor. Esy helps you plan your outline,<br />
+                write in academic formats, and explore thousands of AI suggestions.
               </p>
             </div>
           </div>
