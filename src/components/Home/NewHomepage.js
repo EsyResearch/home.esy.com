@@ -129,15 +129,15 @@ const NewHomepage = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        // Fluid padding system with MORE nav clearance on mobile
+        // Enhanced padding for premium breathing room
         paddingTop: `clamp(${
-          isTinyMobile ? '8.5rem' :     // 136px - much more breathing room
-          isSmallMobile ? '9rem' :      // 144px
-          isMobile ? '9.5rem' :         // 152px  
-          isTablet ? '10rem' :          // 160px
-          '11rem'                       // 176px desktop
-        }, 14vh, 13rem)`,
-        paddingBottom: `clamp(${isMobile ? '2rem' : '3rem'}, 5vh, 5rem)`,
+          isTinyMobile ? '9rem' :       // 144px - more space from nav
+          isSmallMobile ? '9.5rem' :    // 152px
+          isMobile ? '10rem' :          // 160px  
+          isTablet ? '11rem' :          // 176px
+          '12rem'                       // 192px desktop - generous spacing
+        }, 15vh, 14rem)`,
+        paddingBottom: `clamp(${isMobile ? '2.5rem' : '3.5rem'}, 6vh, 5.5rem)`,
         paddingLeft: `clamp(1rem, 5vw, 4rem)`,
         paddingRight: `clamp(1rem, 5vw, 4rem)`,
         position: 'relative'
@@ -168,12 +168,12 @@ const NewHomepage = () => {
                 isDesktop ? '5rem' : isTablet ? '4rem' : '3.5rem'  // 80px desktop max
               })`,
               fontWeight: 300,
-              // Responsive line height
-              lineHeight: isMobile ? 1.2 : 1.1,
-              // Progressive letter spacing
-              letterSpacing: `${isMobile ? '-0.01em' : isTablet ? '-0.02em' : '-0.03em'}`,
-              // Fluid margin
-              marginBottom: `clamp(0.75rem, 2vh, 2rem)`,
+              // More generous line height for breathing room
+              lineHeight: isMobile ? 1.3 : 1.2,
+              // Reduced negative letter spacing for less tension
+              letterSpacing: `${isMobile ? '0' : isTablet ? '-0.01em' : '-0.01em'}`,
+              // Increased margin to subtitle
+              marginBottom: `clamp(${isMobile ? '2rem' : '2.5rem'}, 3vh, 3rem)`,
               // Safe area padding for notched devices
               paddingLeft: 'env(safe-area-inset-left, 0)',
               paddingRight: 'env(safe-area-inset-right, 0)',
@@ -181,12 +181,12 @@ const NewHomepage = () => {
             }}>
               <span style={{ fontWeight: 300 }}>Skip Boring Research</span>
               <br />
-              <span style={{ color: currentTheme.accent, fontWeight: 400 }}>Write Better Essays</span>
+              <span style={{ color: currentTheme.accent, fontWeight: 400 }}>Write Smarter Essays</span>
             </h1>
 
-            {/* Clean, Elegant Subtitle - Optimized for Longer Text */}
+            {/* Clean, Elegant Subtitle - Constrained to Title Width */}
             <div style={{
-              maxWidth: `min(95%, ${isMobile ? '90%' : isTablet ? '750px' : '900px'})`,
+              maxWidth: `min(95%, ${isMobile ? '95%' : isTablet ? '600px' : '700px'})`,
               margin: '0 auto',
               paddingLeft: `clamp(0.5rem, 2vw, 2rem)`,
               paddingRight: `clamp(0.5rem, 2vw, 2rem)`,
@@ -195,25 +195,24 @@ const NewHomepage = () => {
               {/* Main subtitle */}
               <p style={{
                 fontSize: `clamp(${
-                  isTinyMobile ? '0.875rem' :    // 14px minimum
-                  isSmallMobile ? '0.9375rem' :  // 15px
-                  isMobile ? '1rem' : '1.125rem' // 16px mobile, 18px tablet
+                  isTinyMobile ? '0.8125rem' :    // 13px minimum
+                  isSmallMobile ? '0.875rem' :    // 14px
+                  isMobile ? '0.9375rem' : '1.125rem' // 15px mobile, 18px tablet
                 }, ${
-                  isMobile ? '2.5vw' : '1.3vw'
+                  isMobile ? '2.25vw' : '1.3vw'
                 }, ${
-                  isDesktop ? '1.5rem' : isTablet ? '1.375rem' : '1.25rem'  // 24px desktop max
+                  isDesktop ? '1.5rem' : isTablet ? '1.375rem' : '1.125rem'  // Keep desktop at 24px
                 })`,
-                lineHeight: isMobile ? 1.5 : 1.45,
-                color: 'rgba(255, 255, 255, 0.8)',
+                lineHeight: isMobile ? 1.65 : 1.6,
+                color: 'rgba(255, 255, 255, 0.85)',
                 fontFamily: 'var(--font-inter)',
                 fontWeight: '400',
-                letterSpacing: '0.01em',
+                letterSpacing: '0.02em',
                 margin: 0,
-                marginTop: isMobile ? '1.25rem' : '1.75rem',
+                marginTop: 0,
                 whiteSpace: 'normal'
               }}>
-                Stop staring at a blinking cursor. Esy helps you plan your outline,<br />
-                write in academic formats, and explore thousands of AI suggestions.
+                Stop staring at a blinking cursor.{isMobile && <br />} Esy helps you plan your outline, write in academic formats, and explore thousands of AI suggestions.
               </p>
             </div>
           </div>
@@ -223,6 +222,8 @@ const NewHomepage = () => {
             // Fluid max width
             maxWidth: `min(100%, ${isDesktop ? '840px' : isTablet ? '720px' : '100%'})`,
             margin: '0 auto',
+            // More generous top spacing from subtitle
+            marginTop: `clamp(${isMobile ? '2.5rem' : '3rem'}, 5vh, 4rem)`,
             // Dynamic margin bottom
             marginBottom: `clamp(1.5rem, 4vh, 3.5rem)`,
             // Safe area padding
