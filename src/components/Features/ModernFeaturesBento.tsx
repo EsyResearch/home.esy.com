@@ -462,16 +462,16 @@ const ModernFeaturesBento: React.FC = () => {
               alignItems: 'center',
               gap: '0.5rem',
               transition: 'all 0.2s ease',
-              boxShadow: '0 10px 30px rgba(139, 92, 246, 0.3)'
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
             }}
             onClick={() => window.open('https://app.esy.com', '_blank')}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 15px 35px rgba(139, 92, 246, 0.4)';
+              e.currentTarget.style.transform = 'translateY(-1px)';
+              e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 0, 0, 0.18)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 10px 30px rgba(139, 92, 246, 0.3)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
             }}
           >
             Start Writing Free

@@ -129,6 +129,11 @@ const NewHomepage = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        // Subtle gradient background - lighter at top, solid at bottom
+        background: `linear-gradient(180deg, 
+          rgba(22, 22, 31, 0.3) 0%, 
+          rgba(10, 10, 15, 0.8) 30%,
+          rgba(10, 10, 15, 1) 60%)`,
         // Enhanced padding for premium breathing room
         paddingTop: `clamp(${
           isTinyMobile ? '9rem' :       // 144px - more space from nav
@@ -155,17 +160,17 @@ const NewHomepage = () => {
             marginBottom: `clamp(${isMobile ? '1.5rem' : '2rem'}, 4vh, 4rem)`
           }}>
 
-            {/* Main Headline - Adjusted for Longer Text */}
+            {/* Main Headline - Increased for Impact */}
             <h1 style={{
-              // Reduced font sizes to accommodate longer text
+              // Larger font sizes for better presence
               fontSize: `clamp(${
-                isTinyMobile ? '2rem' :        // 32px minimum
-                isSmallMobile ? '2.25rem' :    // 36px 
-                isMobile ? '2.5rem' : '3.5rem' // 40px mobile, 56px tablet
+                isTinyMobile ? '2.25rem' :     // 36px minimum
+                isSmallMobile ? '2.5rem' :     // 40px 
+                isMobile ? '2.75rem' : '4rem'  // 44px mobile, 64px tablet
               }, ${
-                isMobile ? '7vw' : '5vw'       // Gentler scaling
+                isMobile ? '8vw' : '6vw'       // More aggressive scaling
               }, ${
-                isDesktop ? '5rem' : isTablet ? '4rem' : '3.5rem'  // 80px desktop max
+                isDesktop ? '6rem' : isTablet ? '4.5rem' : '4rem'  // 96px desktop max
               })`,
               fontWeight: 300,
               // More generous line height for breathing room
@@ -565,8 +570,8 @@ const NewHomepage = () => {
               }}
               onMouseEnter={(e) => {
                 if (!isMobile) {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = `0 8px 20px ${currentTheme.accent}30`;
+                  e.currentTarget.style.transform = 'translateY(-1px)';
+                  e.currentTarget.style.boxShadow = `0 4px 12px rgba(0, 0, 0, 0.15)`;
                 }
               }}
               onMouseLeave={(e) => {

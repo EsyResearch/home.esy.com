@@ -299,7 +299,7 @@ The emergence of ${topic} as a critical area of study can be traced back to seve
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      boxShadow: '0 8px 16px rgba(139, 92, 246, 0.3)'
+      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
     },
     title: {
       fontSize: isMobile ? '1.125rem' : '1.375rem',
@@ -701,7 +701,7 @@ The emergence of ${topic} as a critical area of study can be traced back to seve
                 justifyContent: 'center',
                 gap: '0.5rem',
                 boxShadow: topic.trim() && !isGenerating
-                  ? '0 8px 20px rgba(139, 92, 246, 0.3)'
+                  ? '0 2px 8px rgba(0, 0, 0, 0.08)'
                   : 'none',
                 flexShrink: 0,
                 position: 'relative',
@@ -714,13 +714,13 @@ The emergence of ${topic} as a critical area of study can be traced back to seve
               onMouseEnter={(e) => {
                 if (topic.trim() && !isGenerating) {
                   e.currentTarget.style.transform = 'translateY(-1px)';
-                  e.currentTarget.style.boxShadow = '0 10px 25px rgba(139, 92, 246, 0.4)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
                 }
               }}
               onMouseLeave={(e) => {
                 if (topic.trim() && !isGenerating) {
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 8px 20px rgba(139, 92, 246, 0.3)';
+                  e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
                 }
               }}
             >

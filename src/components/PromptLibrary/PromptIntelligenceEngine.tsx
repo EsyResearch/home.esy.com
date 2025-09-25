@@ -462,7 +462,7 @@ This prompt will generate a comprehensive analysis with 20+ scholarly sources, t
       alignItems: 'center',
       gap: '0.5rem',
       transition: 'all 0.2s ease',
-      boxShadow: '0 10px 25px rgba(139, 92, 246, 0.3)'
+      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
     },
     secondaryCta: {
       padding: '1rem 2.5rem',
@@ -645,8 +645,8 @@ This prompt will generate a comprehensive analysis with 20+ scholarly sources, t
             disabled={!selectedVariable || isGenerating}
             onMouseEnter={(e) => {
               if (selectedVariable && !isGenerating) {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 15px 30px rgba(139, 92, 246, 0.4)';
+                e.currentTarget.style.transform = 'translateY(-1px)';
+                e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 0, 0, 0.18)';
               }
             }}
             onMouseLeave={(e) => {
@@ -698,12 +698,12 @@ This prompt will generate a comprehensive analysis with 20+ scholarly sources, t
               style={styles.primaryCta}
               onClick={() => window.open('/prompt-library', '_blank')}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-3px)';
-                e.currentTarget.style.boxShadow = '0 15px 35px rgba(139, 92, 246, 0.4)';
+                e.currentTarget.style.transform = 'translateY(-1px)';
+                e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 0, 0, 0.18)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 10px 25px rgba(139, 92, 246, 0.3)';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
               }}
             >
               Explore All 68 Prompts
