@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   BookOpen, ArrowRight, ChevronRight,
-  FileText, Brain, Sparkles, Quote,
+  FileText, Brain, Sparkles,
   CheckCircle, Clock, Zap, Globe,
   BarChart, Edit3, BookMarked, Lightbulb,
   PenTool, Target, Layers, Award,
@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import EssayGeneratorPro from '@/components/EssayGenerator/EssayGeneratorPro';
 import PromptIntelligenceEngine from '@/components/PromptLibrary/PromptIntelligenceEngine';
+import ModernFeaturesBento from '@/components/Features/ModernFeaturesBento';
 
 const NewHomepage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -231,100 +232,11 @@ const NewHomepage = () => {
       {/* Prompt Intelligence Engine - Revolutionary Feature Section */}
       <PromptIntelligenceEngine />
 
-      {/* Benefits Section - Enhanced Mobile Grid */}
-      <section id="benefits" style={{ 
-        padding: isSmallMobile ? '3rem 1rem' : isMobile ? '4rem 1.5rem' : isTablet ? '6rem 2rem' : '8rem 2rem',
-        background: currentTheme.elevated
-      }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: isMobile ? '2.5rem' : '5rem' }}>
-            <h2 style={{
-              fontSize: isTinyMobile ? '1.5rem' : isSmallMobile ? '1.75rem' : isMobile ? '2rem' : isTablet ? '2.5rem' : '3rem',
-              fontWeight: 300,
-              letterSpacing: '-0.02em',
-              marginBottom: '1.5rem',
-              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
-              fontFamily: 'var(--font-literata)'
-            }}>
-              Proven results, immediate impact
-            </h2>
-            <p style={{
-              fontSize: isTinyMobile ? '0.875rem' : isSmallMobile ? '0.938rem' : isMobile ? '1rem' : '1.125rem',
-              color: currentTheme.muted,
-              maxWidth: '600px',
-              margin: '0 auto',
-              padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
-              fontFamily: 'var(--font-inter)'
-            }}>
-              Join researchers experiencing dramatic improvements in their academic writing
-            </p>
-          </div>
+      {/* Modern Features Bento Grid - World-Class Design */}
+      <ModernFeaturesBento />
 
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: isTinyMobile ? '1fr' : isSmallMobile ? '1fr' : isMobile ? 'repeat(2, 1fr)' : isTablet ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', 
-            gap: isTinyMobile ? '1rem' : isSmallMobile ? '1.5rem' : isMobile ? '1.5rem' : '2.5rem'
-          }}>
-            {keyBenefits.map((benefit, index) => (
-              <div 
-                key={index}
-                style={{
-                  textAlign: 'center',
-                  padding: isSmallMobile ? '1.25rem' : isMobile ? '1.5rem' : '2rem',
-                  background: currentTheme.bg,
-                  borderRadius: '12px',
-                  border: `1px solid ${currentTheme.border}`,
-                  transition: 'all 0.2s'
-                }}
-                onMouseEnter={(e) => {
-                  if (!isMobile) {
-                    e.currentTarget.style.transform = 'translateY(-4px)';
-                    e.currentTarget.style.borderColor = currentTheme.accent;
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (!isMobile) {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.borderColor = currentTheme.border;
-                  }
-                }}
-              >
-                <benefit.icon 
-                  size={isSmallMobile ? 20 : isMobile ? 24 : 32} 
-                  style={{ 
-                    color: currentTheme.accent, 
-                    marginBottom: isMobile ? '0.75rem' : '1rem' 
-                  }} 
-                />
-                <div style={{
-                  fontSize: isSmallMobile ? '2rem' : isMobile ? '2.5rem' : '3rem',
-                  fontWeight: 300,
-                  color: currentTheme.accent,
-                  marginBottom: '0.5rem'
-                }}>
-                  {benefit.stat}
-                </div>
-                <h3 style={{
-                  fontSize: isSmallMobile ? '0.938rem' : isMobile ? '1rem' : '1.125rem',
-                  fontWeight: 500,
-                  marginBottom: '0.25rem'
-                }}>
-                  {benefit.title}
-                </h3>
-                <p style={{
-                  fontSize: isSmallMobile ? '0.75rem' : '0.813rem',
-                  color: currentTheme.subtle,
-                  lineHeight: 1.4
-                }}>
-                  {benefit.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section - Enhanced Mobile Layout */}
+      {/* REMOVED OLD FEATURES SECTION */}
+      {false && (
       <section id="features" style={{ 
         padding: isSmallMobile ? '3rem 1rem' : isMobile ? '4rem 1.5rem' : isTablet ? '6rem 2rem' : '8rem 2rem'
       }}>
@@ -454,8 +366,10 @@ const NewHomepage = () => {
           </div>
         </div>
       </section>
+      )}
 
-      {/* Capabilities Section - Enhanced Mobile Layout */}
+      {/* REMOVED OLD CAPABILITIES SECTION */}
+      {false && (
       <section id="capabilities" style={{ 
         padding: isSmallMobile ? '3rem 1rem' : isMobile ? '4rem 1.5rem' : isTablet ? '6rem 2rem' : '8rem 2rem',
         background: currentTheme.elevated
@@ -558,114 +472,45 @@ const NewHomepage = () => {
           </div>
         </div>
       </section>
+      )}
 
-      {/* Testimonial - Enhanced Mobile Layout */}
-      <section style={{ 
-        padding: isSmallMobile ? '3rem 1rem' : isMobile ? '4rem 1.5rem' : isTablet ? '6rem 2rem' : '8rem 2rem'
-      }}>
-        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <div style={{
-            padding: isSmallMobile ? '1.5rem' : isMobile ? '2rem' : '4rem',
-            background: currentTheme.elevated,
-            borderRadius: '16px',
-            border: `1px solid ${currentTheme.border}`,
-            textAlign: 'center'
+      {/* Pre-Footer CTA Removed - Component preserved but not rendered */}
+      {/* To re-enable: Change false to true in the condition below */}
+      {false && (
+        <section style={{ 
+          padding: isSmallMobile ? '3rem 1rem' : isMobile ? '4rem 1.5rem' : isTablet ? '5rem 2rem' : '6rem 2rem',
+          background: currentTheme.bg,
+          borderTop: `1px solid ${currentTheme.divider}`,
+          textAlign: 'center'
+        }}>
+          <div style={{ 
+            maxWidth: '500px', 
+            margin: '0 auto'
           }}>
-            <Quote size={isSmallMobile ? 24 : isMobile ? 32 : 40} style={{ 
-              color: currentTheme.accent, 
-              marginBottom: isMobile ? '1.5rem' : '2rem',
-              opacity: 0.5
-            }} />
-            
-            <blockquote style={{
-              fontSize: isSmallMobile ? '1rem' : isMobile ? '1.125rem' : isTablet ? '1.25rem' : '1.5rem',
-              lineHeight: 1.8,
-              color: currentTheme.text,
-              marginBottom: isMobile ? '1.5rem' : '2rem',
-              fontWeight: 300,
-              padding: isSmallMobile ? '0 0.5rem' : '0'
-            }}>
-              &quot;Esy transformed how I approach academic writing. It&apos;s not about shortcuts—it&apos;s about 
-              <span style={{ color: currentTheme.accent, fontWeight: 400 }}> thinking more clearly</span> and 
-              <span style={{ color: currentTheme.accent, fontWeight: 400 }}> arguing more precisely</span>. 
-              My productivity has doubled while my writing quality has never been better.&quot;
-            </blockquote>
-            
-            <cite style={{
-              fontSize: isSmallMobile ? '0.813rem' : isMobile ? '0.875rem' : '1rem',
-              color: currentTheme.muted,
-              fontStyle: 'normal'
-            }}>
-              <strong style={{ color: currentTheme.text }}>Han Thi Htet</strong>
-              <br />
-              <span style={{ fontSize: isSmallMobile ? '0.75rem' : isMobile ? '0.813rem' : '0.875rem' }}>
-                AI Writing Specialist, Esy
-              </span>
-            </cite>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section - Enhanced Mobile Layout */}
-      <section style={{ 
-        padding: isSmallMobile ? '3rem 1rem' : isMobile ? '4rem 1.5rem' : isTablet ? '6rem 2rem' : '8rem 2rem',
-        background: currentTheme.elevated,
-        borderTop: `1px solid ${currentTheme.divider}`
-      }}>
-        <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
-          <h2 style={{
-            fontSize: isTinyMobile ? '1.5rem' : isSmallMobile ? '1.75rem' : isMobile ? '2rem' : isTablet ? '2.5rem' : '3rem',
-            fontWeight: 300,
-            letterSpacing: '-0.03em',
-            marginBottom: isMobile ? '1.5rem' : '2rem',
-            padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
-            fontFamily: 'var(--font-literata)'
-          }}>
-            Ready to elevate your writing?
-          </h2>
-          
-          <p style={{
-            fontSize: isTinyMobile ? '0.875rem' : isSmallMobile ? '0.938rem' : isMobile ? '1rem' : '1.25rem',
-            lineHeight: 1.8,
-            color: currentTheme.muted,
-            marginBottom: isMobile ? '2rem' : '3rem',
-            padding: isTinyMobile ? '0 0.25rem' : isSmallMobile ? '0 0.5rem' : '0',
-            fontFamily: 'var(--font-inter)'
-          }}>
-            Start writing with AI that understands academic excellence. 
-            No credit card, no commitment—just better writing from day one.
-          </p>
-
-          <div style={{
-            display: 'flex',
-            flexDirection: isMobile ? 'column' : 'row',
-            gap: isMobile ? '1rem' : '1rem',
-            justifyContent: 'center',
-            marginBottom: isMobile ? '1.5rem' : '2rem'
-          }}>
+            {/* Single CTA Button */}
             <button 
               onClick={() => window.open('https://app.esy.com/signup', '_blank')}
               style={{
-                padding: isTinyMobile ? '0.875rem 1.25rem' : isSmallMobile ? '1rem 1.5rem' : isMobile ? '1rem 2rem' : '1rem 3rem',
+                padding: isMobile ? '1.125rem 2.5rem' : '1.125rem 3.5rem',
                 background: currentTheme.accent,
                 border: 'none',
                 borderRadius: '8px',
                 color: 'white',
-                fontSize: isTinyMobile ? '0.938rem' : isSmallMobile ? '1rem' : isMobile ? '1rem' : '1.063rem',
+                fontSize: isMobile ? '1.0625rem' : '1.125rem',
                 fontWeight: 500,
                 cursor: 'pointer',
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '0.5rem',
-                transition: 'all 0.2s',
+                gap: '0.625rem',
+                transition: 'all 0.2s ease',
                 width: isMobile ? '100%' : 'auto',
-                minHeight: isMobile ? '48px' : 'auto'
+                minHeight: '52px'
               }}
               onMouseEnter={(e) => {
                 if (!isMobile) {
                   e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = `0 10px 30px ${currentTheme.accent}40`;
+                  e.currentTarget.style.boxShadow = `0 8px 20px ${currentTheme.accent}30`;
                 }
               }}
               onMouseLeave={(e) => {
@@ -675,36 +520,22 @@ const NewHomepage = () => {
                 }
               }}
             >
-              <Sparkles size={isMobile ? 18 : 18} />
-              Get Started Free
+              Start Writing with Esy
+              <ArrowRight size={18} />
             </button>
 
-            {/* <button 
-              style={{
-                padding: isTinyMobile ? '0.875rem 1.25rem' : isSmallMobile ? '1rem 1.5rem' : isMobile ? '1rem 2rem' : '1rem 2rem',
-                background: 'transparent',
-                border: `1px solid ${currentTheme.border}`,
-                borderRadius: '8px',
-                color: currentTheme.text,
-                fontSize: isTinyMobile ? '0.938rem' : isSmallMobile ? '1rem' : isMobile ? '1rem' : '1.063rem',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                width: isMobile ? '100%' : 'auto',
-                minHeight: isMobile ? '48px' : 'auto'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = currentTheme.accent;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = currentTheme.border;
-              }}
-            >
-              Watch Demo
-            </button> */}
+            {/* Simple Supporting Text */}
+            <p style={{
+              fontSize: '0.9375rem',
+              color: 'rgba(255, 255, 255, 0.4)',
+              marginTop: '1.25rem',
+              marginBottom: 0
+            }}>
+              Try it free. No credit card needed.
+            </p>
           </div>
-
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   );
 };
