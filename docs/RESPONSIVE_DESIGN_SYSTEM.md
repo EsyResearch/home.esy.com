@@ -73,15 +73,15 @@ const isFoldable = width < 320;    // Galaxy Fold
 
 ### Scale System
 ```css
-/* Hero Title */
---font-hero: clamp(2rem, 7vw, 5.5rem);
---font-hero-tablet: clamp(3rem, 5vw, 4rem);
---font-hero-mobile: clamp(2rem, 7vw, 3rem);
+/* Hero Title - BIGGER for maximum impact */
+--font-hero: clamp(4rem, 6vw, 6.5rem);        /* 64px → 104px */
+--font-hero-tablet: clamp(4rem, 5vw, 5rem);   /* 64px → 80px */
+--font-hero-mobile: clamp(2.5rem, 8.5vw, 4rem); /* 40px → 64px */
 
-/* Subtitle */
---font-subtitle: clamp(1rem, 2.5vw, 1.75rem);
---font-subtitle-tablet: clamp(1.25rem, 2vw, 1.5rem);
---font-subtitle-mobile: clamp(1rem, 2.5vw, 1.25rem);
+/* Subtitle - Proportionally larger */
+--font-subtitle: clamp(1.375rem, 1.75vw, 2rem);     /* 22px → 32px */
+--font-subtitle-tablet: clamp(1.375rem, 1.75vw, 1.75rem); /* 22px → 28px */
+--font-subtitle-mobile: clamp(1.125rem, 3vw, 1.5rem);    /* 18px → 24px */
 
 /* Body Text */
 --font-body: clamp(0.875rem, 1.5vw, 1rem);
@@ -143,14 +143,14 @@ letterSpacing: `${isMobile ? '-0.02em' : isTablet ? '-0.03em' : '-0.04em'}`
 
 ### Padding System
 ```javascript
-// Hero Section Padding (with navigation clearance)
+// Hero Section Padding (with generous navigation clearance)
 paddingTop: `clamp(${
-  isTinyMobile ? '7rem' :     // ~112px - small phones
-  isSmallMobile ? '7.5rem' :   // ~120px - standard phones  
-  isMobile ? '8rem' :          // ~128px - large phones
-  isTablet ? '9rem' :          // ~144px - tablets
-  '10rem'                      // ~160px - desktop
-}, 12vh, 12rem)`,
+  isTinyMobile ? '8.5rem' :     // ~136px - small phones (more breathing room)
+  isSmallMobile ? '9rem' :      // ~144px - standard phones  
+  isMobile ? '9.5rem' :         // ~152px - large phones
+  isTablet ? '10rem' :          // ~160px - tablets
+  '11rem'                       // ~176px - desktop
+}, 14vh, 13rem)`,
 paddingBottom: `clamp(${isMobile ? '2rem' : '3rem'}, 5vh, 5rem)`,
 paddingLeft: `clamp(1rem, 5vw, 4rem)`,
 paddingRight: `clamp(1rem, 5vw, 4rem)`
@@ -410,10 +410,10 @@ const buttonStyles = {
 - Use CSS Grid and Flexbox
 - Implement safe area insets
 - Cache breakpoint calculations
-- **Always add sufficient top padding for fixed navigation**
-  - Mobile: minimum 7rem (112px)
-  - Tablet: minimum 9rem (144px)  
-  - Desktop: minimum 10rem (160px)
+- **Always add generous top padding for fixed navigation**
+  - Mobile: minimum 8.5rem (136px) - ensures breathing room
+  - Tablet: minimum 10rem (160px) - comfortable spacing 
+  - Desktop: minimum 11rem (176px) - premium feel
 
 ### Don'ts ❌
 - Don't use fixed pixel values for layout

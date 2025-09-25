@@ -188,12 +188,19 @@ This prompt will generate a comprehensive analysis with 20+ scholarly sources, t
       textTransform: 'uppercase' as const
     },
     title: {
-      fontSize: isMobile ? '2.5rem' : '4rem',
+      // Fluid responsive typography
+      fontSize: `clamp(${
+        isMobile ? '2rem' : '3rem'      // Minimum size
+      }, ${
+        isMobile ? '6vw' : '4vw'        // Preferred scaling
+      }, ${
+        isMobile ? '3rem' : '4.5rem'    // Maximum size
+      })`,
       fontWeight: '300',
       color: '#ffffff',
       marginBottom: '1.5rem',
       letterSpacing: '-0.03em',
-      lineHeight: 1.1,
+      lineHeight: 1.2,
       fontFamily: 'var(--font-literata)'
     },
     titleGradient: {
@@ -496,7 +503,7 @@ This prompt will generate a comprehensive analysis with 20+ scholarly sources, t
         <div style={styles.header}>
           <div style={styles.badge}>
             <Brain size={18} color="#a78bfa" />
-            <span style={styles.badgeText}>Prompt Intelligence Engine</span>
+            <span style={styles.badgeText}>The Biggest AI Prompt Library</span>
           </div>
           
           <h2 style={styles.title}>

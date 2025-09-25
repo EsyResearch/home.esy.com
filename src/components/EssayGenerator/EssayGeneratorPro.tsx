@@ -420,13 +420,14 @@ The emergence of ${topic} as a critical area of study can be traced back to seve
     },
     promptCard: {
       padding: isMobile ? '1rem' : '1rem',
-      background: isMobile ? 'rgba(255, 255, 255, 0.03)' : 'rgba(255, 255, 255, 0.02)',
-      border: '1px solid rgba(255, 255, 255, 0.08)',
+      background: isMobile ? 'rgba(255, 255, 255, 0.04)' : 'rgba(255, 255, 255, 0.02)',
+      border: isMobile ? '1px solid rgba(139, 92, 246, 0.2)' : '1px solid rgba(255, 255, 255, 0.08)',
       borderRadius: isMobile ? '10px' : '12px',
       cursor: 'pointer',
       transition: 'all 0.2s ease',
       minHeight: isMobile ? '100px' : 'auto',
-      position: 'relative' as const
+      position: 'relative' as const,
+      boxShadow: isMobile ? '0 2px 8px rgba(139, 92, 246, 0.05)' : 'none'
     },
     promptCardSelected: {
       background: 'rgba(139, 92, 246, 0.08)',
@@ -826,7 +827,7 @@ The emergence of ${topic} as a critical area of study can be traced back to seve
             <div style={styles.promptHeader}>
               <div style={styles.promptTitle}>
                 {!isMobile && <Sparkles size={16} color="#8b5cf6" />}
-                {isMobile ? "Need inspiration?" : "Don't know what to write? Try these popular essay topics"}
+                {isMobile ? "Need inspiration? Tap a prompt below:" : "Don't know what to write? Try these popular essay topics"}
               </div>
               <button
                 style={styles.viewAllButton}
@@ -897,6 +898,26 @@ The emergence of ${topic} as a critical area of study can be traced back to seve
                     {isSuggested && (
                       <div style={styles.suggestedBadge}>
                         🔥 Best Match
+                      </div>
+                    )}
+                    
+                    {/* Mobile tap indicator */}
+                    {isMobile && (
+                      <div style={{
+                        position: 'absolute',
+                        bottom: '8px',
+                        right: '8px',
+                        fontSize: '0.625rem',
+                        color: isSelected ? '#10b981' : 'rgba(139, 92, 246, 0.6)',
+                        fontWeight: '600',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em',
+                        background: isSelected ? 'rgba(16, 185, 129, 0.1)' : 'rgba(139, 92, 246, 0.1)',
+                        padding: '2px 6px',
+                        borderRadius: '4px',
+                        border: `1px solid ${isSelected ? 'rgba(16, 185, 129, 0.2)' : 'rgba(139, 92, 246, 0.2)'}`
+                      }}>
+                        {isSelected ? '✓ Using' : 'Tap to use'}
                       </div>
                     )}
                     

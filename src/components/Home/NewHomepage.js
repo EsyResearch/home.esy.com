@@ -129,14 +129,14 @@ const NewHomepage = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        // Fluid padding system with proper nav clearance
+        // Fluid padding system with MORE nav clearance on mobile
         paddingTop: `clamp(${
-          isTinyMobile ? '7rem' : 
-          isSmallMobile ? '7.5rem' : 
-          isMobile ? '8rem' : 
-          isTablet ? '9rem' : 
-          '10rem'
-        }, 12vh, 12rem)`,
+          isTinyMobile ? '8.5rem' :     // 136px - much more breathing room
+          isSmallMobile ? '9rem' :      // 144px
+          isMobile ? '9.5rem' :         // 152px  
+          isTablet ? '10rem' :          // 160px
+          '11rem'                       // 176px desktop
+        }, 14vh, 13rem)`,
         paddingBottom: `clamp(${isMobile ? '2rem' : '3rem'}, 5vh, 5rem)`,
         paddingLeft: `clamp(1rem, 5vw, 4rem)`,
         paddingRight: `clamp(1rem, 5vw, 4rem)`,
@@ -157,15 +157,15 @@ const NewHomepage = () => {
 
             {/* Main Headline - Fluid Typography System */}
             <h1 style={{
-              // Fluid font size with clamp
+              // Fluid font size with clamp - BIGGER for more impact
               fontSize: `clamp(${
-                isTinyMobile ? '2rem' : 
-                isSmallMobile ? '2.25rem' : 
-                isMobile ? '2.5rem' : '3rem'
+                isTinyMobile ? '2.5rem' :     // 40px minimum
+                isSmallMobile ? '2.75rem' :   // 44px 
+                isMobile ? '3rem' : '4rem'    // 48px mobile, 64px tablet
               }, ${
-                isMobile ? '7vw' : '5vw'
+                isMobile ? '8.5vw' : '6vw'    // More aggressive scaling
               }, ${
-                isDesktop ? '5.5rem' : isTablet ? '4rem' : '3.5rem'
+                isDesktop ? '6.5rem' : isTablet ? '5rem' : '4rem'  // 104px desktop max
               })`,
               fontWeight: 300,
               // Responsive line height
@@ -186,13 +186,13 @@ const NewHomepage = () => {
 
             {/* Subheadline - Fluid Typography System */}
             <p style={{
-              // Fluid font size
+              // Fluid font size - proportionally larger
               fontSize: `clamp(${
-                isMobile ? '1rem' : '1.25rem'
+                isMobile ? '1.125rem' : '1.375rem'  // 18px mobile, 22px tablet
               }, ${
-                isMobile ? '2.5vw' : '1.5vw'
+                isMobile ? '3vw' : '1.75vw'
               }, ${
-                isDesktop ? '1.75rem' : '1.5rem'
+                isDesktop ? '2rem' : '1.75rem'      // 32px desktop max
               })`,
               // Optimal line height for readability
               lineHeight: isMobile ? 1.5 : 1.6,
