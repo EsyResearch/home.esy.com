@@ -9,7 +9,8 @@ import {
   PenTool, Target, Layers, Award,
   Menu, X, TrendingUp, Shield
 } from 'lucide-react';
-import SearchBar from '@/components/SearchBar/SearchBar';
+import EssayGeneratorPro from '@/components/EssayGenerator/EssayGeneratorPro';
+import PromptIntelligenceEngine from '@/components/PromptLibrary/PromptIntelligenceEngine';
 
 const NewHomepage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -42,14 +43,6 @@ const NewHomepage = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Homepage-specific search suggestions
-  const homepageSuggestions = [
-    "How does AI impact academic integrity?",
-    "What drives sustainable urban development?",
-    "Can quantum computing solve climate models?",
-    "How do social movements shape policy?",
-    "What defines consciousness in neuroscience?"
-  ];
 
   // Key benefits with icons
   const keyBenefits = [
@@ -107,17 +100,17 @@ const NewHomepage = () => {
     }
   ];
 
-  const handleSearch = async (query) => {
-    console.log('Searching for:', query);
+  const handleEssayGeneration = async (topic, options) => {
+    console.log('Generating essay for:', topic);
     
     // Show elegant loading state
     setIsSearching(true);
     
     // Brief delay for sophisticated micro-interaction
-    await new Promise(resolve => setTimeout(resolve, 300));
+    await new Promise(resolve => setTimeout(resolve, 800));
     
-    // Redirect to signup page to start using the app
-    window.open('https://app.esy.com/signup', '_blank');
+    // Redirect to app with topic
+    window.open(`https://app.esy.com?topic=${encodeURIComponent(topic)}`, '_blank');
     
     // Reset loading state after redirect
     setTimeout(() => setIsSearching(false), 100);
@@ -177,24 +170,18 @@ const NewHomepage = () => {
             </p>
           </div>
 
-          {/* Search Interface */}
+          {/* Essay Generator Interface - World-Class Design */}
           <div style={{
-            maxWidth: isMobile ? '100%' : '720px',
+            maxWidth: isMobile ? '100%' : '840px',
             margin: '0 auto',
             marginBottom: isMobile ? '1.5rem' : '3rem',
             padding: isTinyMobile ? '0 0.5rem' : isSmallMobile ? '0 0.75rem' : '0'
           }}>
-            <SearchBar
-              value={searchQuery}
-              onChange={setSearchQuery}
-              onSearch={handleSearch}
-              searchSuggestions={homepageSuggestions}
-              context="homepage"
+            <EssayGeneratorPro
+              onGenerate={handleEssayGeneration}
+              isGenerating={isSearching}
               style={{ margin: '0' }}
-              autoFocus={true}
-              isLoading={isSearching}
             />
-
           </div>
 
           {/* Trust Indicators - Enhanced Mobile Grid */}
@@ -240,6 +227,9 @@ const NewHomepage = () => {
           </div>
         </div>
       </section>
+
+      {/* Prompt Intelligence Engine - Revolutionary Feature Section */}
+      <PromptIntelligenceEngine />
 
       {/* Benefits Section - Enhanced Mobile Grid */}
       <section id="benefits" style={{ 

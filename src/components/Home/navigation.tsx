@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import Logo from "@/components/Logo";
 import Link from "next/link";
 import HeaderSearch from "@/components/HeaderSearch/HeaderSearch";
+import NewsletterModal from "@/components/NewsletterModal/NewsletterModal";
 import { getAllPrompts } from "@/lib/prompts";
 import { getCTAConfig, getResponsiveCTAText } from "@/lib/ctaMapping";
 
@@ -38,6 +39,8 @@ export default function Navigation ({
     const pathname = propPathname || hookPathname;
     const [searchData, setSearchData] = useState([]);
     const [isMobile, setIsMobile] = useState(false);
+    const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
+    const [modalSource, setModalSource] = useState<'nav-tips' | 'nav-school' | 'other'>('other');
 
     // Use the shared suffix function
     const logoSuffix = getPageSuffix(pathname);
@@ -147,6 +150,7 @@ export default function Navigation ({
 
   
     return (
+      <>
       <nav className="nav" id="nav">
         <div className="nav-inner">
           <Link href="/" className="logo">
@@ -168,8 +172,15 @@ export default function Navigation ({
             {/* <a href="/research" className="nav-link">Research</a> */}
             {/* <a href="/school" className="nav-link">School</a> */}
             {/* <a href="/pricing" className="nav-link">Pricing</a> */}
-            <a 
-              href={ctaConfig.ctaHref} 
+            <button 
+              onClick={(e) => {
+                e.preventDefault();
+                // Determine source based on CTA text
+                const source = ctaConfig.ctaText.includes('School') ? 'nav-school' : 
+                              ctaConfig.ctaText.includes('Tips') ? 'nav-tips' : 'other';
+                setModalSource(source);
+                setIsNewsletterModalOpen(true);
+              }}
               className="nav-cta"
               style={{
                 whiteSpace: responsiveCTA.shouldWrap ? 'normal' : 'nowrap',
@@ -178,13 +189,24 @@ export default function Navigation ({
                 minHeight: responsiveCTA.shouldWrap ? 'auto' : '40px',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                border: 'none',
+                cursor: 'pointer',
+                fontFamily: 'inherit'
               }}
             >
               {responsiveCTA.text}
-            </a>
+            </button>
           </div>
         </div>
       </nav>
+      
+      {/* Newsletter Modal */}
+      <NewsletterModal 
+        isOpen={isNewsletterModalOpen}
+        onClose={() => setIsNewsletterModalOpen(false)}
+        source={modalSource}
+      />
+    </>
     );
   };
