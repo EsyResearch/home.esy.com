@@ -35,7 +35,8 @@ import {
   Lock,
   Mail,
   Eye,
-  EyeOff
+  EyeOff,
+  X
 } from 'lucide-react';
 
 // Prompt library types
@@ -812,7 +813,7 @@ The emergence of ${topic} as a critical area of study can be traced back to seve
             <div style={styles.promptHeader}>
               <div style={styles.promptTitle}>
                 <Sparkles size={16} color="#8b5cf6" />
-                Don't know what to write? Try these popular essay topics
+                Don&apos;t know what to write? Try these popular essay topics
               </div>
               <button
                 style={styles.viewAllButton}

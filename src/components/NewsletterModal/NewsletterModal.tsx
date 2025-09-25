@@ -203,7 +203,7 @@ const NewsletterModal: React.FC<NewsletterModalProps> = ({ isOpen, onClose, sour
       justifyContent: 'center',
       gap: '0.5rem',
       overflow: 'hidden',
-      textTransform: 'none',
+      textTransform: 'none' as const,
       letterSpacing: '0.01em',
     },
     features: {
@@ -412,7 +412,7 @@ const NewsletterModal: React.FC<NewsletterModalProps> = ({ isOpen, onClose, sour
                 <Check size={32} strokeWidth={2.5} />
               </div>
               <h2 style={{ ...styles.title, marginBottom: '0.5rem', fontSize: '1.75rem' }}>
-                You're In! 🎉
+                You&apos;re In! 🎉
               </h2>
               <p style={{ ...styles.subtitle, marginBottom: 0, textAlign: 'center' }}>
                 Welcome to a community of forward-thinking writers.

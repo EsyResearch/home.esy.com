@@ -505,7 +505,7 @@ This prompt will generate a comprehensive analysis with 20+ scholarly sources, t
           </h2>
           
           <p style={styles.subtitle}>
-            Our AI-powered prompts don't just help you write—they teach you to think like 
+            Our AI-powered prompts don&apos;t just help you write—they teach you to think like 
             scholars, researchers, and professional writers. See the difference intelligence makes.
           </p>
         </div>
