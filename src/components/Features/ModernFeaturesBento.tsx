@@ -365,21 +365,12 @@ const ModernFeaturesBento: React.FC = () => {
                     feature.size === 'medium' ? styles.cardMedium : 
                     styles.cardSmall),
                 ...(hoveredCard === feature.id ? {
-                  transform: 'translateY(-8px) scale(1.02)',
-                  borderColor: 'rgba(139, 92, 246, 0.3)'
+                  transform: 'translateY(-8px) scale(1.02)'
                 } : {})
               }}
               onMouseEnter={() => setHoveredCard(feature.id)}
               onMouseLeave={() => setHoveredCard(null)}
             >
-              {/* Gradient Top Border */}
-              <div 
-                style={{
-                  ...styles.cardGradient,
-                  background: feature.gradient || 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
-                  opacity: hoveredCard === feature.id ? 1 : 0
-                }}
-              />
 
               {/* Glow Effect */}
               <div 

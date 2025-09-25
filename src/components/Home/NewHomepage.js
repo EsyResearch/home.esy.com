@@ -155,25 +155,25 @@ const NewHomepage = () => {
             marginBottom: `clamp(${isMobile ? '1.5rem' : '2rem'}, 4vh, 4rem)`
           }}>
 
-            {/* Main Headline - Fluid Typography System */}
+            {/* Main Headline - Adjusted for Longer Text */}
             <h1 style={{
-              // Fluid font size with clamp - BIGGER for more impact
+              // Reduced font sizes to accommodate longer text
               fontSize: `clamp(${
-                isTinyMobile ? '2.5rem' :     // 40px minimum
-                isSmallMobile ? '2.75rem' :   // 44px 
-                isMobile ? '3rem' : '4rem'    // 48px mobile, 64px tablet
+                isTinyMobile ? '2rem' :        // 32px minimum
+                isSmallMobile ? '2.25rem' :    // 36px 
+                isMobile ? '2.5rem' : '3.5rem' // 40px mobile, 56px tablet
               }, ${
-                isMobile ? '8.5vw' : '6vw'    // More aggressive scaling
+                isMobile ? '7vw' : '5vw'       // Gentler scaling
               }, ${
-                isDesktop ? '6.5rem' : isTablet ? '5rem' : '4rem'  // 104px desktop max
+                isDesktop ? '5rem' : isTablet ? '4rem' : '3.5rem'  // 80px desktop max
               })`,
               fontWeight: 300,
               // Responsive line height
-              lineHeight: isMobile ? 1.15 : 1.05,
+              lineHeight: isMobile ? 1.2 : 1.1,
               // Progressive letter spacing
-              letterSpacing: `${isMobile ? '-0.02em' : isTablet ? '-0.03em' : '-0.04em'}`,
+              letterSpacing: `${isMobile ? '-0.01em' : isTablet ? '-0.02em' : '-0.03em'}`,
               // Fluid margin
-              marginBottom: `clamp(1rem, 3vh, 2.5rem)`,
+              marginBottom: `clamp(0.75rem, 2vh, 2rem)`,
               // Safe area padding for notched devices
               paddingLeft: 'env(safe-area-inset-left, 0)',
               paddingRight: 'env(safe-area-inset-right, 0)',
@@ -184,9 +184,9 @@ const NewHomepage = () => {
               <span style={{ color: currentTheme.accent, fontWeight: 400 }}>Write Smarter Essays</span>
             </h1>
 
-            {/* Clean, Elegant Subtitle with Features */}
+            {/* Clean, Elegant Subtitle - Optimized for Longer Text */}
             <div style={{
-              maxWidth: `min(95%, ${isMobile ? '700px' : '850px'})`,
+              maxWidth: `min(95%, ${isMobile ? '90%' : isTablet ? '750px' : '900px'})`,
               margin: '0 auto',
               paddingLeft: `clamp(0.5rem, 2vw, 2rem)`,
               paddingRight: `clamp(0.5rem, 2vw, 2rem)`,
@@ -195,19 +195,21 @@ const NewHomepage = () => {
               {/* Main subtitle */}
               <p style={{
                 fontSize: `clamp(${
-                  isMobile ? '0.95rem' : '1.25rem'
+                  isTinyMobile ? '0.875rem' :    // 14px minimum
+                  isSmallMobile ? '0.9375rem' :  // 15px
+                  isMobile ? '1rem' : '1.125rem' // 16px mobile, 18px tablet
                 }, ${
-                  isMobile ? '2vw' : '1.4vw'
+                  isMobile ? '2.5vw' : '1.3vw'
                 }, ${
-                  isMobile ? '1.25rem' : '1.625rem'
+                  isDesktop ? '1.5rem' : isTablet ? '1.375rem' : '1.25rem'  // 24px desktop max
                 })`,
-                lineHeight: 1.45,
+                lineHeight: isMobile ? 1.5 : 1.45,
                 color: 'rgba(255, 255, 255, 0.8)',
                 fontFamily: 'var(--font-inter)',
                 fontWeight: '400',
                 letterSpacing: '0.01em',
                 margin: 0,
-                marginTop: isMobile ? '1.5rem' : '2rem',
+                marginTop: isMobile ? '1.25rem' : '1.75rem',
                 whiteSpace: 'normal'
               }}>
                 Esy helps you beat the blank page with prompts,<br />

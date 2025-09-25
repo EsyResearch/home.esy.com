@@ -7,12 +7,17 @@ import html from 'remark-html';
 const essaysDirectory = path.join(process.cwd(), 'src/content/essays');
 
 export async function getAllEssayIds() {
-  const fileNames = fs.readdirSync(essaysDirectory);
-  return fileNames.map(fileName => {
-    return {
-      id: fileName.replace(/\.md$/, '')
-    };
-  });
+  try {
+    const fileNames = fs.readdirSync(essaysDirectory);
+    return fileNames.map(fileName => {
+      return {
+        id: fileName.replace(/\.md$/, '')
+      };
+    });
+  } catch (error) {
+    console.error('Error reading essays directory:', error);
+    return [];
+  }
 }
 
 export async function getEssayData(id) {

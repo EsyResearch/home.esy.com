@@ -73,15 +73,15 @@ const isFoldable = width < 320;    // Galaxy Fold
 
 ### Scale System
 ```css
-/* Hero Title - BIGGER for maximum impact */
---font-hero: clamp(4rem, 6vw, 6.5rem);        /* 64px → 104px */
---font-hero-tablet: clamp(4rem, 5vw, 5rem);   /* 64px → 80px */
---font-hero-mobile: clamp(2.5rem, 8.5vw, 4rem); /* 40px → 64px */
+/* Hero Title - Optimized for longer text */
+--font-hero: clamp(3.5rem, 5vw, 5rem);        /* 56px → 80px */
+--font-hero-tablet: clamp(3.5rem, 5vw, 4rem); /* 56px → 64px */
+--font-hero-mobile: clamp(2rem, 7vw, 3.5rem); /* 32px → 56px */
 
-/* Subtitle - Proportionally larger */
---font-subtitle: clamp(1.375rem, 1.75vw, 2rem);     /* 22px → 32px */
---font-subtitle-tablet: clamp(1.375rem, 1.75vw, 1.75rem); /* 22px → 28px */
---font-subtitle-mobile: clamp(1.125rem, 3vw, 1.5rem);    /* 18px → 24px */
+/* Subtitle - Adjusted for two-line layout */
+--font-subtitle: clamp(1.125rem, 1.3vw, 1.5rem);       /* 18px → 24px */
+--font-subtitle-tablet: clamp(1.125rem, 1.3vw, 1.375rem); /* 18px → 22px */
+--font-subtitle-mobile: clamp(0.875rem, 2.5vw, 1.25rem);  /* 14px → 20px */
 
 /* Body Text */
 --font-body: clamp(0.875rem, 1.5vw, 1rem);

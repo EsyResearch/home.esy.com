@@ -616,7 +616,7 @@ The emergence of ${topic} as a critical area of study can be traced back to seve
             marginBottom: isMobile ? '1.25rem' : '1.5rem'
           }}>
             <h3 style={styles.title}>Start Your First Draft</h3>
-            <p style={styles.subtitle}>Tell us what you're writing about • We'll help you build it</p>
+            <p style={styles.subtitle}>Tell us what you&apos;re writing about • We&apos;ll help you build it</p>
           </div>
 
           {/* Topic Input with Generate Button - Professional Aligned Design */}
