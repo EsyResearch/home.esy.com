@@ -615,8 +615,8 @@ The emergence of ${topic} as a critical area of study can be traced back to seve
           <div style={{
             marginBottom: isMobile ? '1.25rem' : '1.5rem'
           }}>
-            <h3 style={styles.title}>Generate Your Perfect Essay</h3>
-            <p style={styles.subtitle}>AI-powered • Customizable • Academic quality</p>
+            <h3 style={styles.title}>Start Your First Draft</h3>
+            <p style={styles.subtitle}>Tell us what you're writing about • We'll help you build it</p>
           </div>
 
           {/* Topic Input with Generate Button - Professional Aligned Design */}

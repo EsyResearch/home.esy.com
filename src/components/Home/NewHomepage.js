@@ -179,35 +179,41 @@ const NewHomepage = () => {
               paddingRight: 'env(safe-area-inset-right, 0)',
               fontFamily: 'var(--font-literata)'
             }}>
-              <span style={{ fontWeight: 300 }}>Your Personal</span>
+              <span style={{ fontWeight: 300 }}>Delegate Boring Research</span>
               <br />
-              <span style={{ color: currentTheme.accent, fontWeight: 400 }}>AI Essay Writer</span>
+              <span style={{ color: currentTheme.accent, fontWeight: 400 }}>Write Smarter Essays</span>
             </h1>
 
-            {/* Subheadline - Fluid Typography System */}
-            <p style={{
-              // Fluid font size - proportionally larger
-              fontSize: `clamp(${
-                isMobile ? '1.125rem' : '1.375rem'  // 18px mobile, 22px tablet
-              }, ${
-                isMobile ? '3vw' : '1.75vw'
-              }, ${
-                isDesktop ? '2rem' : '1.75rem'      // 32px desktop max
-              })`,
-              // Optimal line height for readability
-              lineHeight: isMobile ? 1.5 : 1.6,
-              color: currentTheme.muted,
-              // Responsive max width
-              maxWidth: `min(90%, ${isMobile ? '500px' : '650px'})`,
+            {/* Clean, Elegant Subtitle with Features */}
+            <div style={{
+              maxWidth: `min(95%, ${isMobile ? '700px' : '850px'})`,
               margin: '0 auto',
-              // Fluid padding
               paddingLeft: `clamp(0.5rem, 2vw, 2rem)`,
               paddingRight: `clamp(0.5rem, 2vw, 2rem)`,
-              fontFamily: 'var(--font-inter)',
-              fontWeight: 400
+              textAlign: 'center'
             }}>
-              Research, write, and cite better papers in any style
-            </p>
+              {/* Main subtitle */}
+              <p style={{
+                fontSize: `clamp(${
+                  isMobile ? '0.95rem' : '1.25rem'
+                }, ${
+                  isMobile ? '2vw' : '1.4vw'
+                }, ${
+                  isMobile ? '1.25rem' : '1.625rem'
+                })`,
+                lineHeight: 1.45,
+                color: 'rgba(255, 255, 255, 0.8)',
+                fontFamily: 'var(--font-inter)',
+                fontWeight: '400',
+                letterSpacing: '0.01em',
+                margin: 0,
+                marginTop: isMobile ? '1.5rem' : '2rem',
+                whiteSpace: 'normal'
+              }}>
+                Esy helps you beat the blank page with prompts,<br />
+                stay focused with workflows, and build stronger outlines for research.
+              </p>
+            </div>
           </div>
 
           {/* Essay Generator Interface - Responsive Container */}
