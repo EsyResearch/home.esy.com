@@ -1,13 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
 import { BookOpen } from 'lucide-react';
+import { elevatedDarkTheme } from '@/lib/theme';
 
 const Footer = () => {
   return (
     <footer style={{ 
-      borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+      borderTop: `1px solid ${elevatedDarkTheme.border}`,
       padding: '3rem 0',
-      marginTop: '6rem'
+      marginTop: '6rem',
+      background: `linear-gradient(180deg, ${elevatedDarkTheme.bg} 0%, rgba(15, 15, 18, 0.98) 100%)`
     }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
         <div style={{ 
@@ -21,7 +23,7 @@ const Footer = () => {
             <div style={{ 
               width: '32px', 
               height: '32px', 
-              background: '#8b5cf6', 
+              background: elevatedDarkTheme.accent, 
               borderRadius: '6px', 
               display: 'flex', 
               alignItems: 'center', 
@@ -37,16 +39,16 @@ const Footer = () => {
             gap: '2rem',
             fontSize: '0.813rem'
           }}>
-            <Link href="/about" style={{ color: 'rgba(255, 255, 255, 0.6)', textDecoration: 'none' }}>About</Link>
-            <Link href="/blog" style={{ color: 'rgba(255, 255, 255, 0.6)', textDecoration: 'none' }}>Blog</Link>
-            <Link href="/privacy" style={{ color: 'rgba(255, 255, 255, 0.6)', textDecoration: 'none' }}>Privacy</Link>
-            <Link href="/terms" style={{ color: 'rgba(255, 255, 255, 0.6)', textDecoration: 'none' }}>Terms</Link>
-            <Link href="/contact" style={{ color: 'rgba(255, 255, 255, 0.6)', textDecoration: 'none' }}>Contact</Link>
+            <Link href="/about" style={{ color: elevatedDarkTheme.muted, textDecoration: 'none', transition: 'color 0.2s' }}>About</Link>
+            <Link href="/blog" style={{ color: elevatedDarkTheme.muted, textDecoration: 'none', transition: 'color 0.2s' }}>Blog</Link>
+            <Link href="/privacy" style={{ color: elevatedDarkTheme.muted, textDecoration: 'none', transition: 'color 0.2s' }}>Privacy</Link>
+            <Link href="/terms" style={{ color: elevatedDarkTheme.muted, textDecoration: 'none', transition: 'color 0.2s' }}>Terms</Link>
+            <Link href="/contact" style={{ color: elevatedDarkTheme.muted, textDecoration: 'none', transition: 'color 0.2s' }}>Contact</Link>
           </nav>
 
           <p style={{ 
             fontSize: '0.813rem',
-            color: 'rgba(255, 255, 255, 0.4)'
+            color: elevatedDarkTheme.faint
           }}>
             © 2025 Esy. All rights reserved.
           </p>
