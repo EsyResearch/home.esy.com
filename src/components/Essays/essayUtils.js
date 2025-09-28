@@ -5,11 +5,43 @@ export const fontSizes = {
   large: { body: '1.25rem', heading: '2.5rem', lineHeight: 1.8 }
 };
 
+// Import theme constants
+import { elevatedDarkTheme } from '@/lib/theme';
+import { lightTheme } from '@/lib/lightTheme';
+
 // Theme configurations
 export const getThemeConfig = (theme) => {
   return theme === 'dark' 
-    ? { bg: '#0a0a0f', text: '#ffffff', muted: 'rgba(255, 255, 255, 0.7)', border: 'rgba(255, 255, 255, 0.05)' }
-    : { bg: '#ffffff', text: '#000000', muted: 'rgba(0, 0, 0, 0.7)', border: 'rgba(0, 0, 0, 0.05)' };
+    ? { 
+        bg: elevatedDarkTheme.bg,
+        elevated: elevatedDarkTheme.elevated,
+        surface: elevatedDarkTheme.surface,
+        text: elevatedDarkTheme.text,
+        textSecondary: elevatedDarkTheme.textSecondary,
+        muted: elevatedDarkTheme.muted,
+        subtle: elevatedDarkTheme.subtle,
+        border: elevatedDarkTheme.border,
+        borderSubtle: elevatedDarkTheme.borderSubtle,
+        accent: elevatedDarkTheme.accent,
+        accentHover: elevatedDarkTheme.accentHover,
+        accentGlow: elevatedDarkTheme.accentGlow,
+        shadows: elevatedDarkTheme.shadows
+      }
+    : { 
+        bg: lightTheme.bg,
+        elevated: lightTheme.elevated,
+        surface: lightTheme.surface,
+        text: lightTheme.text,
+        textSecondary: lightTheme.textSecondary,
+        muted: lightTheme.muted,
+        subtle: lightTheme.subtle,
+        border: lightTheme.border,
+        borderSubtle: lightTheme.borderSubtle,
+        accent: lightTheme.accent,
+        accentHover: lightTheme.accentHover,
+        accentGlow: lightTheme.accentGlow,
+        shadows: lightTheme.shadows
+      };
 };
 
 // Default essay data

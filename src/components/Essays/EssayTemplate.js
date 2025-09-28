@@ -63,8 +63,8 @@ const EssayTemplate = ({
   return (
     <div style={{ 
       minHeight: '100vh', 
-      backgroundColor: '#0a0a0f',
-      color: '#ffffff',
+      backgroundColor: '#18181b', // Using elevated dark theme
+      color: '#fafafa', // Softer white for reduced eye strain
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
       lineHeight: 1.6
     }}>

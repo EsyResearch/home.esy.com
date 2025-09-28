@@ -26,13 +26,13 @@
 }
 
 .metadataItem:hover {
-  color: #8b5cf6;
+  color: #9f7aea; /* Updated accent color */
 }
 
 .abstract {
   margin-bottom: 3rem;
   padding: 2rem;
-  border-left: 3px solid #8b5cf6;
+  border-left: 3px solid #9f7aea; /* Updated accent color */
   border-radius: 0 8px 8px 0;
 }
 
@@ -41,7 +41,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #8b5cf6;
+  color: #9f7aea; /* Updated accent color */
   margin-bottom: 1rem;
   font-family: var(--font-literata);
 }
@@ -290,7 +290,8 @@
 }
 
 .abstractDark {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(39, 39, 42, 0.4); /* Elevated surface with subtle depth */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle elevation */
 }
 
 .abstractLight {

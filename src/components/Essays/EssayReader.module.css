@@ -16,7 +16,7 @@
 
 .progressBarTrack {
   height: 100%;
-  background: #8b5cf6;
+  background: #9f7aea; /* Updated accent color */
   transition: width 0.1s ease;
 }
 
@@ -40,14 +40,14 @@
   right: 2rem;
   width: 48px;
   height: 48px;
-  background: #8b5cf6;
+  background: #9f7aea; /* Updated accent color */
   border: none;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 16px rgba(159, 122, 234, 0.2); /* Updated accent glow */
   transition: transform 0.2s;
 }
 
@@ -57,13 +57,13 @@
 
 /* Theme variants */
 .containerDark {
-  background-color: #0a0a0f;
-  color: #ffffff;
+  background-color: #18181b; /* Elevated dark theme */
+  color: #fafafa; /* Softer white for reduced eye strain */
 }
 
 .containerLight {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #fafafa; /* Off-white for reduced glare */
+  color: #1e293b; /* Slate-800 for better contrast */
 } 
 
 /* Responsive Design */

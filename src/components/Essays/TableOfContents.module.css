@@ -46,11 +46,11 @@
 }
 
 .navLink:hover {
-  background: rgba(99, 102, 241, 0.05);
+  background: rgba(159, 122, 234, 0.05); /* Updated accent glow */
 }
 
 .navLinkActive {
-  border-left: 3px solid #8b5cf6;
+  border-left: 3px solid #9f7aea; /* Updated accent color */
 }
 
 .readTime {
@@ -60,8 +60,9 @@
 
 /* Theme variants */
 .sidebarDark {
-  background: #0a0a0f;
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  background: #1f1f23; /* Elevated surface */
+  border-right: 1px solid rgba(63, 63, 70, 0.4); /* Theme border */
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2); /* Subtle elevation */
 }
 
 .sidebarLight {
