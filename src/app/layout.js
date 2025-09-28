@@ -37,14 +37,14 @@ const literata = Literata({
 export const metadata = {
   title: {
     template: '%s | Esy',
-    default: 'Esy - AI Essay Writer & Research Assistant',
+    default: 'Esy - Skip Boring Research, Write Smarter Essays',
   },
-  description: "Write better essays with Esy's AI assistant. Generate original, authentic academic papers that match your writing style. Free essay writer for students.",
-  keywords: 'AI essay writer, research assistant, academic writing, essay generator, AI writing tool',
+  description: "Write your next essay with Esy, an AI Agent that does the boring research and helps you write smarter papers. Perfect grammar, citations, and your unique voice.",
+  keywords: 'AI essay writer, research assistant, academic writing, essay generator, AI writing tool, skip research, smart essays, ESL writing help',
   metadataBase: new URL('https://esy.com'),
   openGraph: {
-    title: 'Esy - AI Essay Writer & Research Assistant',
-    description: 'Transform your academic writing with AI that learns your style.',
+    title: 'Esy - Skip Boring Research, Write Smarter Essays',
+    description: 'Write your next essay with Esy, an AI Agent that does the boring research and helps you write smarter papers.',
     url: 'https://esy.com',
     siteName: 'Esy',
     locale: 'en_US',
