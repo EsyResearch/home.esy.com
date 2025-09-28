@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
+import { elevatedDarkTheme } from '@/lib/theme';
 import { 
   Brain, 
   Target, 
@@ -102,7 +103,7 @@ const ModernFeaturesBento: React.FC = () => {
       description: 'AI that understands academic context and maintains your unique voice',
       stat: counters.accuracy?.toString() || '0',
       statLabel: '% Accuracy',
-      gradient: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
+      gradient: `linear-gradient(135deg, ${elevatedDarkTheme.accent} 0%, #ec4899 100%)`,
       size: 'large'
     },
     {
@@ -130,7 +131,7 @@ const ModernFeaturesBento: React.FC = () => {
       icon: Sparkles,
       title: '68 Expert Prompts',
       description: 'Professionally crafted templates for every writing scenario',
-      gradient: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+      gradient: `linear-gradient(135deg, ${elevatedDarkTheme.accent} 0%, ${elevatedDarkTheme.accentDark} 100%)`,
       size: 'medium'
     },
     {
@@ -155,7 +156,7 @@ const ModernFeaturesBento: React.FC = () => {
     container: {
       width: '100%',
       padding: isMobile ? '4rem 1rem' : '6rem 2rem',
-      background: '#0a0a0f',
+      background: elevatedDarkTheme.bg,
       position: 'relative' as const,
       overflow: 'hidden'
     },
@@ -175,8 +176,8 @@ const ModernFeaturesBento: React.FC = () => {
       alignItems: 'center',
       gap: '0.5rem',
       padding: '0.5rem 1rem',
-      background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%)',
-      border: '1px solid rgba(139, 92, 246, 0.2)',
+      background: `linear-gradient(135deg, ${elevatedDarkTheme.accentGlow} 0%, rgba(159, 122, 234, 0.05) 100%)`,
+      border: `1px solid ${elevatedDarkTheme.accentBorder}`,
       borderRadius: '100px',
       marginBottom: '1.5rem'
     },
@@ -197,7 +198,7 @@ const ModernFeaturesBento: React.FC = () => {
       fontFamily: 'var(--font-literata)'
     },
     titleGradient: {
-      background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
+      background: `linear-gradient(135deg, ${elevatedDarkTheme.accent} 0%, #ec4899 100%)`,
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
       backgroundClip: 'text',
@@ -218,9 +219,9 @@ const ModernFeaturesBento: React.FC = () => {
       marginBottom: '2rem'
     },
     card: {
-      background: 'rgba(22, 22, 31, 0.6)',
+      background: elevatedDarkTheme.elevated,
       backdropFilter: 'blur(10px)',
-      border: '1px solid rgba(255, 255, 255, 0.06)',
+      border: `1px solid ${elevatedDarkTheme.border}`,
       borderRadius: '20px',
       padding: isMobile ? '1.5rem' : '2rem',
       position: 'relative' as const,
@@ -271,8 +272,8 @@ const ModernFeaturesBento: React.FC = () => {
       alignItems: 'center',
       justifyContent: 'center',
       marginBottom: '1rem',
-      background: 'rgba(139, 92, 246, 0.1)',
-      border: '1px solid rgba(139, 92, 246, 0.2)',
+      background: elevatedDarkTheme.accentGlow,
+      border: `1px solid ${elevatedDarkTheme.accentBorder}`,
       transition: 'all 0.3s ease'
     },
     cardTitle: {
@@ -384,13 +385,13 @@ const ModernFeaturesBento: React.FC = () => {
               <div style={{
                 ...styles.iconWrapper,
                 ...(hoveredCard === feature.id ? {
-                  background: 'rgba(139, 92, 246, 0.2)',
+                  background: elevatedDarkTheme.accentGlow,
                   transform: 'rotate(-5deg) scale(1.1)'
                 } : {})
               }}>
                 <feature.icon 
                   size={24} 
-                  color={hoveredCard === feature.id ? '#a78bfa' : '#8b5cf6'}
+                  color={hoveredCard === feature.id ? elevatedDarkTheme.accentLight : elevatedDarkTheme.accent}
                 />
               </div>
 
@@ -403,7 +404,7 @@ const ModernFeaturesBento: React.FC = () => {
                 <div style={styles.cardStat}>
                   <span style={{
                     ...styles.statNumber,
-                    background: feature.gradient || 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
+                    background: feature.gradient || `linear-gradient(135deg, ${elevatedDarkTheme.accent} 0%, #ec4899 100%)`,
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text'
@@ -451,7 +452,7 @@ const ModernFeaturesBento: React.FC = () => {
           <button
             style={{
               padding: '0.875rem 2rem',
-              background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+              background: `linear-gradient(135deg, ${elevatedDarkTheme.accent} 0%, ${elevatedDarkTheme.accentDark} 100%)`,
               border: 'none',
               borderRadius: '12px',
               color: '#ffffff',

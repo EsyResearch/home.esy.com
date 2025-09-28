@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
+import { elevatedDarkTheme } from '@/lib/theme';
 import { 
   Brain,
   Sparkles,
@@ -73,7 +74,7 @@ const PromptIntelligenceEngine: React.FC = () => {
       prompt: 'Conduct a systematic literature review on [TOPIC] following academic standards...',
       variables: ['TOPIC', 'DISCIPLINE', 'TIME_RANGE'],
       icon: BookOpen,
-      color: '#8b5cf6',
+      color: elevatedDarkTheme.accent,
       transformation: {
         before: '"Write about climate change"',
         after: 'Systematic review of 50+ peer-reviewed sources with thematic analysis, methodological critique, and research gap identification',
@@ -153,9 +154,9 @@ This prompt will generate a comprehensive analysis with 20+ scholarly sources, t
       width: '100%',
       padding: isMobile ? '4rem 1rem' : '6rem 2rem',
       background: `linear-gradient(180deg, 
-        rgba(10, 10, 15, 1) 0%, 
-        rgba(22, 22, 31, 0.4) 50%,
-        rgba(10, 10, 15, 1) 100%)`,
+        ${elevatedDarkTheme.bg} 0%, 
+        rgba(31, 31, 35, 0.4) 50%,
+        ${elevatedDarkTheme.bg} 100%)`,
       position: 'relative' as const,
       overflow: 'hidden'
     },
@@ -175,8 +176,8 @@ This prompt will generate a comprehensive analysis with 20+ scholarly sources, t
       alignItems: 'center',
       gap: '0.5rem',
       padding: '0.625rem 1.25rem',
-      background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.05) 100%)',
-      border: '1px solid rgba(139, 92, 246, 0.3)',
+      background: `linear-gradient(135deg, ${elevatedDarkTheme.accentGlow} 0%, rgba(159, 122, 234, 0.05) 100%)`,
+      border: `1px solid ${elevatedDarkTheme.accentBorder}`,
       borderRadius: '100px',
       marginBottom: '2rem'
     },
@@ -204,7 +205,7 @@ This prompt will generate a comprehensive analysis with 20+ scholarly sources, t
       fontFamily: 'var(--font-literata)'
     },
     titleGradient: {
-      background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #f59e0b 100%)',
+      background: `linear-gradient(135deg, ${elevatedDarkTheme.accent} 0%, #ec4899 50%, #f59e0b 100%)`,
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
       backgroundClip: 'text',
@@ -227,8 +228,8 @@ This prompt will generate a comprehensive analysis with 20+ scholarly sources, t
       marginBottom: isMobile ? '3rem' : '5rem'
     },
     statCard: {
-      background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)',
-      border: '1px solid rgba(255, 255, 255, 0.06)',
+      background: `linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)`,
+      border: `1px solid ${elevatedDarkTheme.borderSubtle}`,
       borderRadius: '20px',
       padding: '1.75rem',
       textAlign: 'center' as const,
@@ -308,8 +309,8 @@ This prompt will generate a comprehensive analysis with 20+ scholarly sources, t
       color: '#ffffff'
     },
     transformCard: {
-      background: 'rgba(22, 22, 31, 0.6)',
-      border: '1px solid rgba(255, 255, 255, 0.08)',
+      background: elevatedDarkTheme.elevated,
+      border: `1px solid ${elevatedDarkTheme.border}`,
       borderRadius: '20px',
       padding: isMobile ? '1.5rem' : '2rem',
       position: 'relative' as const
@@ -395,7 +396,7 @@ This prompt will generate a comprehensive analysis with 20+ scholarly sources, t
     },
     generateButton: {
       padding: '1rem 2rem',
-      background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+      background: `linear-gradient(135deg, ${elevatedDarkTheme.accent} 0%, ${elevatedDarkTheme.accentDark} 100%)`,
       border: 'none',
       borderRadius: '12px',
       color: '#ffffff',
@@ -451,7 +452,7 @@ This prompt will generate a comprehensive analysis with 20+ scholarly sources, t
     },
     primaryCta: {
       padding: '1rem 2.5rem',
-      background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+      background: `linear-gradient(135deg, ${elevatedDarkTheme.accent} 0%, ${elevatedDarkTheme.accentDark} 100%)`,
       color: '#ffffff',
       border: 'none',
       borderRadius: '12px',
