@@ -52,9 +52,24 @@ export const ctaMapping: CTAMapping = {
   }
 };
 
-// Default fallback CTA
+// Dynamic CTA pool for A/B testing
+export const dynamicCTAPool: string[] = [
+  'Write for Free',
+  'Start Writing Free',
+  'Get Free AI Essay Writer',
+  'Write My Essay'
+];
+
+// Function to get dynamic CTA based on hour
+export function getDynamicCTA(): string {
+  const hour = new Date().getHours();
+  const index = hour % dynamicCTAPool.length;
+  return dynamicCTAPool[index];
+}
+
+// Default fallback CTA (now dynamic)
 export const defaultCTA: CTAConfig = {
-  ctaText: 'Sign Up',
+  ctaText: getDynamicCTA(),
   ctaHref: 'https://app.esy.com/signup',
   isProduct: true
 };
@@ -86,8 +101,12 @@ export function getCTAConfig(pathname: string): CTAConfig {
     }
   }
   
-  // Return default if no match found
-  return defaultCTA;
+  // Return dynamic default if no match found
+  return {
+    ctaText: getDynamicCTA(),
+    ctaHref: 'https://app.esy.com/signup',
+    isProduct: true
+  };
 }
 
 /**

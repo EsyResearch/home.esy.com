@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useEffect, useRef } from 'react';
 import styles from './Logo.module.css';
 
 const Logo = ({ 
@@ -9,6 +10,23 @@ const Logo = ({
   showText = true,
   theme = 'dark' // New prop for theme
 }) => {
+  const suffixRef = useRef(null);
+  
+  // Apply theme styles immediately when theme prop changes
+  useEffect(() => {
+    if (suffixRef.current && suffix) {
+      const element = suffixRef.current;
+      if (theme === 'light') {
+        element.style.setProperty('color', 'rgba(30, 41, 59, 0.75)', 'important');
+        element.style.setProperty('background', 'rgba(30, 41, 59, 0.03)', 'important');
+        element.style.setProperty('border-color', 'rgba(30, 41, 59, 0.08)', 'important');
+      } else {
+        element.style.setProperty('color', 'rgba(255, 255, 255, 0.75)', 'important');
+        element.style.setProperty('background', 'rgba(255, 255, 255, 0.03)', 'important');
+        element.style.setProperty('border-color', 'rgba(255, 255, 255, 0.08)', 'important');
+      }
+    }
+  }, [theme, suffix]);
   // Switch logo based on theme for better contrast
   const logoPath = theme === 'light' 
     ? '/esy-logos/logo-files/for-web/svg/black-logo-no-bg.svg'  // Black logo for light backgrounds
@@ -26,39 +44,40 @@ const Logo = ({
       </div>
       {suffix && (
         <span 
+          ref={suffixRef}
           className={styles.logoSubtitle}
           style={{
             color: theme === 'light' 
-              ? 'rgba(30, 41, 59, 0.75)'  // Dark text for light mode
-              : 'rgba(255, 255, 255, 0.75)', // White text for dark mode
+              ? 'rgba(30, 41, 59, 0.75) !important'  // Dark text for light mode
+              : 'rgba(255, 255, 255, 0.75) !important', // White text for dark mode
             background: theme === 'light'
-              ? 'rgba(30, 41, 59, 0.03)'   // Light background for light mode
-              : 'rgba(255, 255, 255, 0.03)', // Dark background for dark mode
+              ? 'rgba(30, 41, 59, 0.03) !important'   // Light background for light mode
+              : 'rgba(255, 255, 255, 0.03) !important', // Dark background for dark mode
             borderColor: theme === 'light'
-              ? 'rgba(30, 41, 59, 0.08)'   // Dark border for light mode
-              : 'rgba(255, 255, 255, 0.08)', // Light border for dark mode
+              ? 'rgba(30, 41, 59, 0.08) !important'   // Dark border for light mode
+              : 'rgba(255, 255, 255, 0.08) !important', // Light border for dark mode
             transition: 'all 0.2s ease'
           }}
           onMouseEnter={(e) => {
             if (theme === 'light') {
-              e.target.style.background = 'rgba(30, 41, 59, 0.06)';
-              e.target.style.borderColor = 'rgba(30, 41, 59, 0.12)';
-              e.target.style.color = 'rgba(30, 41, 59, 0.9)';
+              e.target.style.setProperty('background', 'rgba(30, 41, 59, 0.06)', 'important');
+              e.target.style.setProperty('border-color', 'rgba(30, 41, 59, 0.12)', 'important');
+              e.target.style.setProperty('color', 'rgba(30, 41, 59, 0.9)', 'important');
             } else {
-              e.target.style.background = 'rgba(255, 255, 255, 0.06)';
-              e.target.style.borderColor = 'rgba(255, 255, 255, 0.12)';
-              e.target.style.color = 'rgba(255, 255, 255, 0.9)';
+              e.target.style.setProperty('background', 'rgba(255, 255, 255, 0.06)', 'important');
+              e.target.style.setProperty('border-color', 'rgba(255, 255, 255, 0.12)', 'important');
+              e.target.style.setProperty('color', 'rgba(255, 255, 255, 0.9)', 'important');
             }
           }}
           onMouseLeave={(e) => {
             if (theme === 'light') {
-              e.target.style.background = 'rgba(30, 41, 59, 0.03)';
-              e.target.style.borderColor = 'rgba(30, 41, 59, 0.08)';
-              e.target.style.color = 'rgba(30, 41, 59, 0.75)';
+              e.target.style.setProperty('background', 'rgba(30, 41, 59, 0.03)', 'important');
+              e.target.style.setProperty('border-color', 'rgba(30, 41, 59, 0.08)', 'important');
+              e.target.style.setProperty('color', 'rgba(30, 41, 59, 0.75)', 'important');
             } else {
-              e.target.style.background = 'rgba(255, 255, 255, 0.03)';
-              e.target.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-              e.target.style.color = 'rgba(255, 255, 255, 0.75)';
+              e.target.style.setProperty('background', 'rgba(255, 255, 255, 0.03)', 'important');
+              e.target.style.setProperty('border-color', 'rgba(255, 255, 255, 0.08)', 'important');
+              e.target.style.setProperty('color', 'rgba(255, 255, 255, 0.75)', 'important');
             }
           }}
         >

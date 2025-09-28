@@ -170,6 +170,14 @@ export default function Navigation ({
       };
       
       checkTheme();
+      
+      // IMMEDIATE CHECK: Run theme detection multiple times to catch timing issues
+      // This ensures we catch the theme changes that happen during component mounting
+      setTimeout(() => checkTheme(), 10);
+      setTimeout(() => checkTheme(), 50);
+      setTimeout(() => checkTheme(), 100);
+      setTimeout(() => checkTheme(), 200);
+      
       // Listen for theme changes
       const observer = new MutationObserver(() => {
         checkTheme();
@@ -442,7 +450,7 @@ export default function Navigation ({
           >
             <Logo 
               key={`logo-${isLightMode ? 'light' : 'dark'}`} // Force re-render on theme change
-              suffix={logoSuffix} 
+              // suffix={logoSuffix} // Disabled suffix in header
               href="" 
               showText={false} 
               theme={isLightMode ? 'light' : 'dark'} 
@@ -465,33 +473,59 @@ export default function Navigation ({
             {/* <a href="/research" className="nav-link">Research</a> */}
             {/* <a href="/school" className="nav-link">School</a> */}
             {/* <a href="/pricing" className="nav-link">Pricing</a> */}
-            <button 
-              onClick={(e) => {
-                e.preventDefault();
-                // Determine source based on CTA text
-                const source = ctaConfig.ctaText.includes('School') ? 'nav-school' : 
-                              ctaConfig.ctaText.includes('Tips') ? 'nav-tips' : 'other';
-                setModalSource(source);
-                setIsNewsletterModalOpen(true);
-              }}
-              className="nav-cta"
-              style={{
-                whiteSpace: responsiveCTA.shouldWrap ? 'normal' : 'nowrap',
-                lineHeight: responsiveCTA.shouldWrap ? '1.2' : '1',
-                textAlign: 'center',
-                minHeight: responsiveCTA.shouldWrap ? 'auto' : '40px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                border: 'none',
-                cursor: 'pointer',
-                fontFamily: 'inherit',
-                backgroundColor: isLightMode ? '#7c3aed' : '#8b5cf6',
-                color: '#ffffff'
-              }}
-            >
-              {responsiveCTA.text}
-            </button>
+            {ctaConfig.isNewsletter ? (
+              <button 
+                onClick={(e) => {
+                  e.preventDefault();
+                  // Determine source based on CTA text
+                  const source = ctaConfig.ctaText.includes('School') ? 'nav-school' : 
+                                ctaConfig.ctaText.includes('Tips') ? 'nav-tips' : 'other';
+                  setModalSource(source);
+                  setIsNewsletterModalOpen(true);
+                }}
+                className="nav-cta"
+                style={{
+                  whiteSpace: responsiveCTA.shouldWrap ? 'normal' : 'nowrap',
+                  lineHeight: responsiveCTA.shouldWrap ? '1.2' : '1',
+                  textAlign: 'center',
+                  minHeight: responsiveCTA.shouldWrap ? 'auto' : '40px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontFamily: 'inherit',
+                  backgroundColor: isLightMode ? '#7c3aed' : '#8b5cf6',
+                  color: '#ffffff'
+                }}
+              >
+                {responsiveCTA.text}
+              </button>
+            ) : (
+              <a 
+                href={ctaConfig.ctaHref}
+                target={ctaConfig.isProduct ? "_blank" : "_self"}
+                rel={ctaConfig.isProduct ? "noopener noreferrer" : undefined}
+                className="nav-cta"
+                style={{
+                  whiteSpace: responsiveCTA.shouldWrap ? 'normal' : 'nowrap',
+                  lineHeight: responsiveCTA.shouldWrap ? '1.2' : '1',
+                  textAlign: 'center',
+                  minHeight: responsiveCTA.shouldWrap ? 'auto' : '40px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontFamily: 'inherit',
+                  backgroundColor: isLightMode ? '#7c3aed' : '#8b5cf6',
+                  color: '#ffffff',
+                  textDecoration: 'none'
+                }}
+              >
+                {responsiveCTA.text}
+              </a>
+            )}
           </div>
         </div>
       </nav>
