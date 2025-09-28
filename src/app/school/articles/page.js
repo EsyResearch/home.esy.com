@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import { elevatedDarkTheme } from '@/lib/theme';
 
 export default function ArticlesIndexPage() {
   const articles = [
@@ -48,8 +49,8 @@ export default function ArticlesIndexPage() {
   const styles = {
     container: {
       minHeight: '100vh',
-      backgroundColor: '#0a0a0f',
-      color: '#ffffff',
+      backgroundColor: elevatedDarkTheme.bg,
+      color: elevatedDarkTheme.text,
       paddingTop: '6rem'
     },
     header: {
@@ -67,7 +68,7 @@ export default function ArticlesIndexPage() {
     },
     subtitle: {
       fontSize: '1.25rem',
-      color: 'rgba(255, 255, 255, 0.7)',
+      color: elevatedDarkTheme.textSecondary,
       lineHeight: '1.6'
     },
     articlesContainer: {
@@ -81,19 +82,20 @@ export default function ArticlesIndexPage() {
       gap: '2rem'
     },
     articleCard: {
-      backgroundColor: '#16161f',
+      backgroundColor: elevatedDarkTheme.elevated,
       borderRadius: '12px',
       padding: '2rem',
-      transition: 'all 0.3s ease',
+      transition: 'all 0.2s ease',
       cursor: 'pointer',
-      border: '1px solid transparent',
+      border: 'none',
       textDecoration: 'none',
       color: 'inherit',
-      display: 'block'
+      display: 'block',
+      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
     },
     category: {
       fontSize: '0.875rem',
-      color: '#8b5cf6',
+      color: elevatedDarkTheme.accent,
       textTransform: 'uppercase',
       letterSpacing: '0.1em',
       fontWeight: '500',
@@ -109,7 +111,7 @@ export default function ArticlesIndexPage() {
     },
     excerpt: {
       fontSize: '1rem',
-      color: 'rgba(255, 255, 255, 0.7)',
+      color: elevatedDarkTheme.textSecondary,
       lineHeight: '1.6',
       marginBottom: '1.5rem'
     },
@@ -118,7 +120,7 @@ export default function ArticlesIndexPage() {
       justifyContent: 'space-between',
       alignItems: 'center',
       fontSize: '0.875rem',
-      color: 'rgba(255, 255, 255, 0.5)'
+      color: elevatedDarkTheme.muted
     },
     author: {
       display: 'flex',
@@ -156,14 +158,14 @@ export default function ArticlesIndexPage() {
               href={`/school/articles/${article.slug}`}
               style={styles.articleCard}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
-                e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+                e.currentTarget.style.backgroundColor = elevatedDarkTheme.surface;
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'transparent';
+                e.currentTarget.style.backgroundColor = elevatedDarkTheme.elevated;
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
               }}
             >
               <div style={styles.category}>{article.category}</div>

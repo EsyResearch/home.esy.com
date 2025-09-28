@@ -11,6 +11,7 @@ import ShareSection from '@/components/SchoolArticle/ShareSection';
 import RelatedArticles from '@/components/SchoolArticle/RelatedArticles';
 import SchoolNewsletter from '@/components/School/SchoolNewsletter';
 import { articleContentStyles as styles } from '@/components/SchoolArticle/articleStyles';
+import { elevatedDarkTheme } from '@/lib/theme';
 
 export default function ToKillAMockingbirdArticle() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -62,25 +63,25 @@ export default function ToKillAMockingbirdArticle() {
   };
 
   const theme = isDarkMode ? {
-    // Dark theme (School default)
-    bg: '#0a0a0f',
+    // Dark theme uses elevated dark theme
+    bg: elevatedDarkTheme.bg,
     contentBg: 'transparent',
-    text: 'rgba(255, 255, 255, 0.9)',
-    textMuted: 'rgba(255, 255, 255, 0.7)',
-    textSubtle: 'rgba(255, 255, 255, 0.5)',
-    heading: '#ffffff',
-    border: 'rgba(139, 92, 246, 0.15)',
-    accent: '#8b5cf6',
-    accentLight: '#a78bfa',
-    accentBg: 'rgba(139, 92, 246, 0.1)',
-    accentBorder: 'rgba(139, 92, 246, 0.3)',
-    codeBg: '#16161f',
-    codeBorder: 'rgba(255, 255, 255, 0.1)',
-    calloutBg: 'rgba(139, 92, 246, 0.1)',
-    calloutBorder: '#8b5cf6',
-    buttonBg: 'rgba(139, 92, 246, 0.1)',
-    buttonHoverBg: 'rgba(139, 92, 246, 0.2)',
-    headerBg: 'rgba(10, 10, 15, 1)',
+    text: elevatedDarkTheme.text,
+    textMuted: elevatedDarkTheme.textSecondary,
+    textSubtle: elevatedDarkTheme.muted,
+    heading: elevatedDarkTheme.text,
+    border: elevatedDarkTheme.borderSubtle,
+    accent: elevatedDarkTheme.accent,
+    accentLight: elevatedDarkTheme.accentLight,
+    accentBg: elevatedDarkTheme.accentGlow,
+    accentBorder: elevatedDarkTheme.accentBorder,
+    codeBg: elevatedDarkTheme.elevated,
+    codeBorder: elevatedDarkTheme.border,
+    calloutBg: elevatedDarkTheme.accentGlow,
+    calloutBorder: elevatedDarkTheme.accent,
+    buttonBg: elevatedDarkTheme.accentGlow,
+    buttonHoverBg: elevatedDarkTheme.accentBorder,
+    headerBg: 'rgba(24, 24, 27, 0.95)',
   } : {
     // Light theme
     bg: '#ffffff',
@@ -163,24 +164,24 @@ export default function ToKillAMockingbirdArticle() {
           width: '48px',
           height: '48px',
           borderRadius: '50%',
-          backgroundColor: isDarkMode ? '#16161f' : '#f9fafb',
-          border: `1px solid ${theme.border}`,
+          backgroundColor: isDarkMode ? elevatedDarkTheme.elevated : '#f9fafb',
+          border: isDarkMode ? 'none' : `1px solid ${theme.border}`,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
           transition: 'all 0.2s ease',
           backdropFilter: 'blur(10px)',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+          boxShadow: isDarkMode ? '0 2px 8px rgba(0, 0, 0, 0.1)' : '0 2px 6px rgba(0, 0, 0, 0.08)',
           zIndex: 100
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = 'scale(1.1)';
-          e.currentTarget.style.backgroundColor = isDarkMode ? '#1a1a24' : '#ffffff';
+          e.currentTarget.style.backgroundColor = isDarkMode ? elevatedDarkTheme.surface : '#ffffff';
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = 'scale(1)';
-          e.currentTarget.style.backgroundColor = isDarkMode ? '#16161f' : '#f9fafb';
+          e.currentTarget.style.backgroundColor = isDarkMode ? elevatedDarkTheme.elevated : '#f9fafb';
         }}
         aria-label="Toggle theme"
       >

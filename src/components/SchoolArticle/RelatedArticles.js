@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Clock } from 'lucide-react';
+import { elevatedDarkTheme } from '@/lib/theme';
 
 const RelatedArticles = ({ articles, theme, isDarkMode = true }) => {
   const [isMobile, setIsMobile] = useState(false);
@@ -35,16 +36,11 @@ const RelatedArticles = ({ articles, theme, isDarkMode = true }) => {
       position: 'relative',
       padding: '4rem 2rem',
       background: isDarkMode 
-        ? 'linear-gradient(180deg, rgba(30, 30, 40, 0.5) 0%, rgba(25, 25, 35, 0.3) 100%)'
+        ? elevatedDarkTheme.bg
         : 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%)',
       borderRadius: '0px',
-      border: isDarkMode 
-        ? '1px solid rgba(255, 255, 255, 0.06)'
-        : '1px solid rgba(139, 92, 246, 0.05)',
-      boxShadow: isDarkMode 
-        ? '0 1px 0 rgba(255,255,255,0.03) inset, 0 0 0 1px rgba(0,0,0,0.2)'
-        : 'inset 0 1px 0 rgba(255,255,255,0.9), 0 20px 40px -20px rgba(0,0,0,0.1)',
-      backdropFilter: isDarkMode ? 'blur(20px) saturate(1.2)' : 'none',
+      border: 'none',
+      boxShadow: 'none',
       overflow: 'hidden'
     },
     relatedInner: {
@@ -69,19 +65,20 @@ const RelatedArticles = ({ articles, theme, isDarkMode = true }) => {
       marginTop: '2rem'
     },
     relatedCard: {
-      backgroundColor: currentTheme.elevated,
-      borderRadius: '16px',
+      backgroundColor: isDarkMode ? elevatedDarkTheme.elevated : currentTheme.elevated,
+      borderRadius: '12px',
       padding: '1.5rem',
-      border: `1px solid ${currentTheme.border}`,
+      border: 'none',
       height: '100%',
-      transition: 'all 0.3s ease',
-      cursor: 'pointer'
+      transition: 'all 0.2s ease',
+      cursor: 'pointer',
+      boxShadow: isDarkMode ? '0 1px 3px rgba(0, 0, 0, 0.1)' : '0 1px 3px rgba(0, 0, 0, 0.05)'
     },
     relatedCategory: {
       display: 'inline-block',
       padding: '0.25rem 0.75rem',
-      backgroundColor: `${currentTheme.accent}20`,
-      color: currentTheme.accent,
+      backgroundColor: isDarkMode ? elevatedDarkTheme.accentGlow : `${currentTheme.accent}20`,
+      color: isDarkMode ? elevatedDarkTheme.accent : currentTheme.accent,
       borderRadius: '8px',
       fontSize: '0.75rem',
       fontWeight: '600',
@@ -111,50 +108,7 @@ const RelatedArticles = ({ articles, theme, isDarkMode = true }) => {
 
   return (
     <section style={styles.relatedArticles}>
-      {/* Decorative gradient orbs - Only in dark mode */}
-      {isDarkMode && (
-        <>
-          <div style={{
-            position: 'absolute',
-            top: '-50%',
-            left: '-10%',
-            width: '300px',
-            height: '300px',
-            background: 'radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%)',
-            borderRadius: '50%',
-            filter: 'blur(80px)',
-            pointerEvents: 'none',
-            opacity: 0.5
-          }} />
-          <div style={{
-            position: 'absolute',
-            bottom: '-50%',
-            right: '-10%',
-            width: '300px',
-            height: '300px',
-            background: 'radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%)',
-            borderRadius: '50%',
-            filter: 'blur(80px)',
-            pointerEvents: 'none',
-            opacity: 0.5
-          }} />
-        </>
-      )}
 
-      {/* Top decorative line */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: '50%',
-        transform: 'translateX(-50%)',
-        width: '100px',
-        height: isDarkMode ? '2px' : '1px',
-        background: isDarkMode 
-          ? `linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent)`
-          : currentTheme.border,
-        borderRadius: '2px',
-        opacity: isDarkMode ? 0.6 : 0.3
-      }} />
 
       <div style={styles.relatedInner}>
         {/* Header */}
@@ -224,7 +178,7 @@ const RelatedArticles = ({ articles, theme, isDarkMode = true }) => {
                 transition: 'all 0.3s ease'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
@@ -233,12 +187,12 @@ const RelatedArticles = ({ articles, theme, isDarkMode = true }) => {
               <article
                 style={styles.relatedCard}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = currentTheme.accent;
-                  e.currentTarget.style.boxShadow = isDarkMode ? '0 4px 12px rgba(0,0,0,0.2)' : 'none';
+                  e.currentTarget.style.backgroundColor = isDarkMode ? elevatedDarkTheme.surface : '#f5f5f5';
+                  e.currentTarget.style.boxShadow = isDarkMode ? '0 4px 12px rgba(0,0,0,0.15)' : '0 2px 8px rgba(0,0,0,0.08)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = currentTheme.border;
-                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.backgroundColor = isDarkMode ? elevatedDarkTheme.elevated : currentTheme.elevated;
+                  e.currentTarget.style.boxShadow = isDarkMode ? '0 1px 3px rgba(0, 0, 0, 0.1)' : '0 1px 3px rgba(0, 0, 0, 0.05)';
                 }}
               >
                 <div style={styles.relatedCategory}>{article.category}</div>
