@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { 
   TrendingUp, FileText, Eye, Clock, Bookmark 
 } from 'lucide-react';
+import { elevatedDarkTheme } from '@/lib/theme';
 
 const EssayCard = ({ essay, index, hoveredCard, setHoveredCard }) => {
   // Ensure authors is an array and handle missing properties
@@ -30,7 +31,7 @@ const EssayCard = ({ essay, index, hoveredCard, setHoveredCard }) => {
               lineHeight: 1.3,
               marginBottom: '0.75rem',
               letterSpacing: '-0.01em',
-              color: hoveredCard === essay.id ? '#8b5cf6' : 'white',
+              color: hoveredCard === essay.id ? elevatedDarkTheme.accent : 'white',
               transition: 'color 0.2s',
               cursor: 'pointer'
             }}>
@@ -125,7 +126,7 @@ const EssayCard = ({ essay, index, hoveredCard, setHoveredCard }) => {
           {essay.new && (
             <span style={{
               fontSize: '0.75rem',
-              color: '#8b5cf6',
+              color: elevatedDarkTheme.accent,
               fontWeight: 500
             }}>
               New

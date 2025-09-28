@@ -14,6 +14,7 @@ import {
   getContextResultUrl,
   type SearchContext 
 } from '@/lib/searchContexts';
+import { elevatedDarkTheme } from '@/lib/theme';
 
 interface HeaderSearchProps {
   prompts: any[];
@@ -202,15 +203,15 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
       position: 'relative' as const,
       display: 'flex',
       alignItems: 'center',
-      backgroundColor: (isExpanded || shouldAlwaysExpand) ? 'rgba(10, 10, 15, 0.95)' : 'rgba(22, 22, 31, 0.6)',
-      border: `1px solid ${(isExpanded || shouldAlwaysExpand) ? 'rgba(139, 92, 246, 0.3)' : 'rgba(255, 255, 255, 0.1)'}`,
+      backgroundColor: (isExpanded || shouldAlwaysExpand) ? 'rgba(31, 31, 35, 0.95)' : 'rgba(31, 31, 35, 0.7)',
+      border: `1px solid ${(isExpanded || shouldAlwaysExpand) ? elevatedDarkTheme.accentBorder || 'rgba(159, 122, 234, 0.3)' : elevatedDarkTheme.borderSubtle}`,
       borderRadius: '8px',
       transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       backdropFilter: 'blur(20px)',
       WebkitBackdropFilter: 'blur(20px)',
       boxShadow: (isExpanded || shouldAlwaysExpand)
-        ? '0 4px 16px rgba(139, 92, 246, 0.15), 0 2px 8px rgba(0, 0, 0, 0.2)' 
-        : '0 2px 8px rgba(0, 0, 0, 0.1)',
+        ? `${elevatedDarkTheme.shadows?.glow || '0 4px 16px rgba(159, 122, 234, 0.2)'}, ${elevatedDarkTheme.shadows?.md || '0 4px 12px rgba(0, 0, 0, 0.3)'}` 
+        : elevatedDarkTheme.shadows?.sm || '0 2px 4px rgba(0, 0, 0, 0.2)',
       width: (isExpanded || shouldAlwaysExpand) ? '100%' : 'auto',
       minWidth: (isExpanded || shouldAlwaysExpand) ? 'auto' : '48px',
       height: '48px'
@@ -220,7 +221,7 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
       display: 'flex',
       alignItems: 'center',
       cursor: shouldAlwaysExpand ? 'default' : 'pointer',
-      color: (isExpanded || shouldAlwaysExpand) ? '#8b5cf6' : 'rgba(255, 255, 255, 0.6)',
+      color: (isExpanded || shouldAlwaysExpand) ? elevatedDarkTheme.accent : elevatedDarkTheme.muted,
       transition: 'color 0.3s ease',
       flexShrink: 0
     },
@@ -229,7 +230,7 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
       padding: '0 12px 0 0',
       backgroundColor: 'transparent',
       border: 'none',
-      color: '#ffffff',
+      color: elevatedDarkTheme.text,
       fontSize: '1rem',
       fontWeight: '300' as const,
       outline: 'none',
@@ -246,8 +247,8 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
       top: '100%',
       left: '0',
       right: '0',
-      backgroundColor: 'rgba(10, 10, 15, 0.98)',
-      border: '1px solid rgba(255, 255, 255, 0.1)',
+      backgroundColor: 'rgba(24, 24, 27, 0.98)',
+      border: `1px solid ${elevatedDarkTheme.border}`,
       borderRadius: '12px',
       marginTop: '8px',
       maxHeight: '400px',
@@ -255,7 +256,7 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
       zIndex: 1001,
       backdropFilter: 'blur(30px) saturate(180%)',
       WebkitBackdropFilter: 'blur(30px) saturate(180%)',
-      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4), 0 8px 16px rgba(0, 0, 0, 0.3)',
+      boxShadow: `${elevatedDarkTheme.shadows?.lg || '0 8px 32px rgba(0, 0, 0, 0.4)'}, 0 8px 16px rgba(0, 0, 0, 0.3)`,
       opacity: showDropdown ? 1 : 0,
       transform: showDropdown ? 'translateY(0)' : 'translateY(-10px)',
       transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
@@ -263,7 +264,7 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
     },
     dropdownItem: {
       padding: '12px 16px',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+      borderBottom: `1px solid ${elevatedDarkTheme.divider}`,
       cursor: 'pointer',
       transition: 'all 0.2s ease',
       display: 'flex',
@@ -273,13 +274,13 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
     dropdownItemTitle: {
       fontSize: '0.875rem',
       fontWeight: '500' as const,
-      color: 'rgba(255, 255, 255, 0.9)',
+      color: elevatedDarkTheme.textSecondary,
       margin: '0',
       lineHeight: '1.3'
     },
     dropdownItemDescription: {
       fontSize: '0.75rem',
-      color: 'rgba(255, 255, 255, 0.6)',
+      color: elevatedDarkTheme.muted,
       margin: '0',
       lineHeight: '1.4'
     },
@@ -291,16 +292,16 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
     },
     dropdownItemCategory: {
       fontSize: '0.7rem',
-      color: 'rgba(139, 92, 246, 0.8)',
-      backgroundColor: 'rgba(139, 92, 246, 0.1)',
+      color: elevatedDarkTheme.accent,
+      backgroundColor: elevatedDarkTheme.accentGlow || 'rgba(159, 122, 234, 0.15)',
       padding: '1px 6px',
       borderRadius: '8px',
       fontWeight: '500' as const
     },
     dropdownItemPro: {
       fontSize: '0.7rem',
-      color: 'rgba(255, 215, 0, 0.8)',
-      backgroundColor: 'rgba(255, 215, 0, 0.1)',
+      color: elevatedDarkTheme.warning || '#fbbf24',
+      backgroundColor: elevatedDarkTheme.warningGlow || 'rgba(251, 191, 36, 0.15)',
       padding: '1px 6px',
       borderRadius: '8px',
       fontWeight: '500' as const
@@ -308,13 +309,13 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
     dropdownLoading: {
       padding: '16px',
       textAlign: 'center' as const,
-      color: 'rgba(255, 255, 255, 0.6)',
+      color: elevatedDarkTheme.muted,
       fontSize: '0.8rem'
     },
     dropdownEmpty: {
       padding: '16px',
       textAlign: 'center' as const,
-      color: 'rgba(255, 255, 255, 0.5)',
+      color: elevatedDarkTheme.subtle,
       fontSize: '0.8rem'
     }
   };
@@ -362,7 +363,7 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
                     height="20" 
                     viewBox="0 0 24 24" 
                     fill="none" 
-                    stroke="#8b5cf6"
+                    stroke={elevatedDarkTheme.accent}
                     strokeWidth="2"
                   >
                     <circle cx="11" cy="11" r="8"></circle>
@@ -398,8 +399,8 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
                   <div style={{
                     width: '14px',
                     height: '14px',
-                    border: '2px solid rgba(139, 92, 246, 0.3)',
-                    borderTop: '2px solid #8b5cf6',
+                    border: `2px solid ${elevatedDarkTheme.accentGlow || 'rgba(159, 122, 234, 0.15)'}`,
+                    borderTop: `2px solid ${elevatedDarkTheme.accent}`,
                     borderRadius: '50%',
                     animation: 'spin 1s linear infinite'
                   }} />
@@ -412,8 +413,8 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
                   key={result.id}
                   style={{
                     ...styles.dropdownItem,
-                    backgroundColor: hoveredIndex === index ? 'rgba(139, 92, 246, 0.1)' : 'transparent',
-                    borderLeft: hoveredIndex === index ? '3px solid #8b5cf6' : '3px solid transparent',
+                    backgroundColor: hoveredIndex === index ? (elevatedDarkTheme.accentGlow || 'rgba(159, 122, 234, 0.15)') : 'transparent',
+                    borderLeft: hoveredIndex === index ? `3px solid ${elevatedDarkTheme.accent}` : '3px solid transparent',
                     paddingLeft: hoveredIndex === index ? '13px' : '16px'
                   }}
                   onMouseEnter={() => setHoveredIndex(index)}

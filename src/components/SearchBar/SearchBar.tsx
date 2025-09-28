@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
+import { elevatedDarkTheme } from '@/lib/theme';
 
 interface SearchResult {
   id: string | number;
@@ -222,13 +223,13 @@ const SearchBar: React.FC<SearchBarProps> = ({
     searchWrapper: {
       position: 'relative' as const,
       backgroundColor: searchFocused ? 'rgba(31, 31, 35, 0.95)' : 'rgba(31, 31, 35, 0.7)',  // More elevated & visible
-      border: `1px solid ${searchFocused ? 'rgba(139, 92, 246, 0.4)' : 'rgba(255, 255, 255, 0.12)'}`,  // Stronger border
+      border: `1px solid ${searchFocused ? (elevatedDarkTheme.accentBorder || 'rgba(159, 122, 234, 0.3)') : elevatedDarkTheme.border}`,  // Stronger border
       borderRadius: isMobile ? '12px' : '16px',
       transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       overflow: 'hidden' as const,
       boxShadow: searchFocused 
-        ? `0 0 0 ${isMobile ? '2px' : '3px'} rgba(139, 92, 246, 0.25), 0 ${isMobile ? '12px' : '20px'} ${isMobile ? '24px' : '40px'} rgba(139, 92, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)` 
-        : `0 ${isMobile ? '4px' : '8px'} ${isMobile ? '16px' : '24px'} rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.03)`,  // Always elevated
+        ? `0 0 0 ${isMobile ? '2px' : '3px'} ${elevatedDarkTheme.accentGlow || 'rgba(159, 122, 234, 0.15)'}, ${elevatedDarkTheme.shadows?.glow || '0 4px 16px rgba(159, 122, 234, 0.2)'}, ${elevatedDarkTheme.shadows?.hover || '0 12px 24px rgba(159, 122, 234, 0.15)'}` 
+        : elevatedDarkTheme.shadows?.md || '0 4px 12px rgba(0, 0, 0, 0.3)',  // Always elevated
       backdropFilter: 'blur(20px)',
       WebkitBackdropFilter: 'blur(20px)'
     },
@@ -249,14 +250,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
       padding: isMobile ? '1rem 0' : '1.5rem 0',
       backgroundColor: 'transparent',
       border: 'none',
-      color: '#ffffff',
+      color: elevatedDarkTheme.text,
       fontSize: isMobile ? (isTinyMobile ? '0.875rem' : '1rem') : inputFontSize,
       fontWeight: '300' as const,
       outline: 'none',
       minHeight: isMobile ? '24px' : 'auto',
       lineHeight: '1.4',
       '::placeholder': {
-        color: 'rgba(255, 255, 255, 0.5)',
+        color: elevatedDarkTheme.subtle,
         fontWeight: '300'
       }
     },
@@ -270,15 +271,15 @@ const SearchBar: React.FC<SearchBarProps> = ({
     searchDivider: {
       width: '1px',
       height: isMobile ? '20px' : '24px',
-      backgroundColor: 'rgba(255, 255, 255, 0.15)',
+      backgroundColor: elevatedDarkTheme.divider,
       display: isMobile ? 'none' : 'block'
     },
     searchButton: {
       padding: isMobile ? '0.625rem 1rem' : '0.75rem 1.5rem',
-      backgroundColor: isLoading ? '#8b5cf6' : (searchFocused || searchValue ? '#8b5cf6' : 'rgba(255, 255, 255, 0.08)'),
+      backgroundColor: isLoading ? elevatedDarkTheme.accent : (searchFocused || searchValue ? elevatedDarkTheme.accent : elevatedDarkTheme.borderSubtle),
       border: 'none',
       borderRadius: isMobile ? '6px' : '8px',
-      color: isLoading ? '#ffffff' : (searchFocused || searchValue ? '#ffffff' : 'rgba(255, 255, 255, 0.7)'),
+      color: isLoading ? elevatedDarkTheme.text : (searchFocused || searchValue ? elevatedDarkTheme.text : elevatedDarkTheme.muted),
       fontSize: isMobile ? '0.875rem' : '0.9375rem',
       fontWeight: '500' as const,
       cursor: isLoading ? 'default' : 'pointer',
@@ -291,10 +292,10 @@ const SearchBar: React.FC<SearchBarProps> = ({
       backdropFilter: 'blur(10px)',
       WebkitBackdropFilter: 'blur(10px)',
       boxShadow: isLoading 
-        ? '0 4px 12px rgba(139, 92, 246, 0.4)' 
+        ? elevatedDarkTheme.shadows?.glow || '0 4px 16px rgba(159, 122, 234, 0.2)' 
         : (searchFocused || searchValue 
-          ? '0 4px 12px rgba(139, 92, 246, 0.3)' 
-          : '0 2px 8px rgba(0, 0, 0, 0.1)'),
+          ? elevatedDarkTheme.shadows?.hover || '0 12px 24px rgba(159, 122, 234, 0.15)' 
+          : elevatedDarkTheme.shadows?.sm || '0 2px 4px rgba(0, 0, 0, 0.2)'),
       opacity: isLoading ? 0.9 : 1
     },
     searchHint: {
@@ -302,7 +303,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       bottom: isMobile ? '-24px' : '-28px',
       left: '0',
       fontSize: isMobile ? '0.75rem' : '0.875rem',
-      color: 'rgba(255, 255, 255, 0.4)',
+      color: elevatedDarkTheme.subtle,
       display: 'flex',
       alignItems: 'center',
       gap: '0.5rem',
@@ -318,8 +319,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
       top: '100%',
       left: '0',
       right: '0',
-      backgroundColor: 'rgba(10, 10, 15, 0.95)',
-      border: '1px solid rgba(255, 255, 255, 0.1)',
+      backgroundColor: 'rgba(24, 24, 27, 0.95)',
+      border: `1px solid ${elevatedDarkTheme.border}`,
       borderRadius: isMobile ? '12px' : '16px',
       marginTop: '8px',
       maxHeight: isMobile ? '300px' : '400px',
@@ -327,7 +328,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       zIndex: 1000,
       backdropFilter: 'blur(20px)',
       WebkitBackdropFilter: 'blur(20px)',
-      boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3), 0 8px 16px rgba(0, 0, 0, 0.2)',
+      boxShadow: `${elevatedDarkTheme.shadows?.lg || '0 8px 32px rgba(0, 0, 0, 0.4)'}, 0 8px 16px rgba(0, 0, 0, 0.3)`,
       opacity: showResults ? 1 : 0,
       transform: showResults ? 'translateY(0)' : 'translateY(-10px)',
       transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
@@ -336,7 +337,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
     },
     dropdownItem: {
       padding: isMobile ? '12px 16px' : '16px 20px',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+      borderBottom: `1px solid ${elevatedDarkTheme.divider}`,
       cursor: 'pointer',
       transition: 'all 0.2s ease',
       display: 'flex',
@@ -345,19 +346,19 @@ const SearchBar: React.FC<SearchBarProps> = ({
       textAlign: 'left' as const
     },
     dropdownItemSelected: {
-      backgroundColor: 'rgba(139, 92, 246, 0.1)',
-      borderLeft: '3px solid #8b5cf6'
+      backgroundColor: elevatedDarkTheme.accentGlow || 'rgba(159, 122, 234, 0.15)',
+      borderLeft: `3px solid ${elevatedDarkTheme.accent}`
     },
     dropdownItemTitle: {
       fontSize: isMobile ? '0.875rem' : '1rem',
       fontWeight: '500' as const,
-      color: 'rgba(255, 255, 255, 0.9)',
+      color: elevatedDarkTheme.textSecondary,
       margin: '0',
       lineHeight: '1.3'
     },
     dropdownItemDescription: {
       fontSize: isMobile ? '0.75rem' : '0.875rem',
-      color: 'rgba(255, 255, 255, 0.6)',
+      color: elevatedDarkTheme.muted,
       margin: '0',
       lineHeight: '1.4'
     },
@@ -369,16 +370,16 @@ const SearchBar: React.FC<SearchBarProps> = ({
     },
     dropdownItemCategory: {
       fontSize: '0.75rem',
-      color: 'rgba(139, 92, 246, 0.8)',
-      backgroundColor: 'rgba(139, 92, 246, 0.1)',
+      color: elevatedDarkTheme.accent,
+      backgroundColor: elevatedDarkTheme.accentGlow || 'rgba(159, 122, 234, 0.15)',
       padding: '2px 8px',
       borderRadius: '12px',
       fontWeight: '500' as const
     },
     dropdownItemPro: {
       fontSize: '0.75rem',
-      color: 'rgba(255, 215, 0, 0.8)',
-      backgroundColor: 'rgba(255, 215, 0, 0.1)',
+      color: elevatedDarkTheme.warning || '#fbbf24',
+      backgroundColor: elevatedDarkTheme.warningGlow || 'rgba(251, 191, 36, 0.15)',
       padding: '2px 8px',
       borderRadius: '12px',
       fontWeight: '500' as const
@@ -386,13 +387,13 @@ const SearchBar: React.FC<SearchBarProps> = ({
     dropdownLoading: {
       padding: isMobile ? '20px 16px' : '24px 20px',
       textAlign: 'center' as const,
-      color: 'rgba(255, 255, 255, 0.6)',
+      color: elevatedDarkTheme.muted,
       fontSize: '0.875rem'
     },
     dropdownEmpty: {
       padding: isMobile ? '20px 16px' : '24px 20px',
       textAlign: 'center' as const,
-      color: 'rgba(255, 255, 255, 0.5)',
+      color: elevatedDarkTheme.subtle,
       fontSize: '0.875rem'
     }
   };
@@ -435,7 +436,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
               height={isMobile ? "18" : "20"} 
               viewBox="0 0 24 24" 
               fill="none" 
-              stroke={searchFocused ? '#8b5cf6' : 'rgba(255, 255, 255, 0.5)'}
+              stroke={searchFocused ? elevatedDarkTheme.accent : elevatedDarkTheme.subtle}
               strokeWidth="2"
               style={{ 
                 transition: 'stroke 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
@@ -506,8 +507,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
         <div style={styles.searchHint}>
           <kbd style={{
             padding: '0.25rem 0.5rem',
-            backgroundColor: 'rgba(255, 255, 255, 0.1)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
+            backgroundColor: elevatedDarkTheme.borderSubtle,
+            border: `1px solid ${elevatedDarkTheme.border}`,
             borderRadius: '4px',
             fontSize: '0.75rem',
             fontFamily: 'monospace'
@@ -530,8 +531,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 <div style={{
                   width: '16px',
                   height: '16px',
-                  border: '2px solid rgba(139, 92, 246, 0.3)',
-                  borderTop: '2px solid #8b5cf6',
+                  border: `2px solid ${elevatedDarkTheme.accentGlow || 'rgba(159, 122, 234, 0.15)'}`,
+                  borderTop: `2px solid ${elevatedDarkTheme.accent}`,
                   borderRadius: '50%',
                   animation: 'spin 1s linear infinite'
                 }} />
@@ -547,7 +548,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
                   ...styles.dropdownItem,
                   ...(selectedResultIndex === index ? styles.dropdownItemSelected : {}),
                   backgroundColor: selectedResultIndex === index 
-                    ? 'rgba(139, 92, 246, 0.1)' 
+                    ? (elevatedDarkTheme.accentGlow || 'rgba(159, 122, 234, 0.15)') 
                     : 'transparent'
                 }}
                 onMouseEnter={() => setSelectedResultIndex(index)}
@@ -576,8 +577,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
                   {result.metadata?.readTime && (
                     <span style={{
                       fontSize: '0.75rem',
-                      color: 'rgba(255, 255, 255, 0.6)',
-                      backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                      color: elevatedDarkTheme.muted,
+                      backgroundColor: elevatedDarkTheme.borderSubtle,
                       padding: '2px 8px',
                       borderRadius: '12px',
                       fontWeight: '500'

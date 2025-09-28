@@ -88,7 +88,7 @@ const EsySchool = () => {
       top: 0,
       left: 0,
       height: '2px',
-      backgroundColor: '#8b5cf6',
+      backgroundColor: elevatedDarkTheme.accent,
       width: `${scrollProgress}%`,
       transition: 'width 0.1s ease',
       zIndex: 1001
@@ -141,7 +141,7 @@ const EsySchool = () => {
     badgeDot: {
       width: '6px',
       height: '6px',
-      backgroundColor: '#8b5cf6',
+      backgroundColor: elevatedDarkTheme.accent,
       borderRadius: '50%',
       animation: 'pulse 2s ease-in-out infinite'
     },
@@ -206,13 +206,14 @@ const EsySchool = () => {
       gap: '0.75rem'
     },
     featureCard: {
-      backgroundColor: 'rgba(31, 31, 35, 0.8)',  // Slightly elevated
-      border: '1px solid rgba(255, 255, 255, 0.08)',
+      background: elevatedDarkTheme.gradients?.featured || `linear-gradient(135deg, rgba(31, 31, 35, 0.9) 0%, rgba(39, 39, 42, 0.7) 100%)`,
+      border: `1px solid ${elevatedDarkTheme.accentBorder || 'rgba(159, 122, 234, 0.2)'}`,
       borderRadius: '10px',
       padding: '1rem',
       backdropFilter: 'blur(10px)',
       transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      boxShadow: elevatedDarkTheme.shadows?.sm || '0 2px 4px rgba(0, 0, 0, 0.2)'
     },
     featureTitle: {
       fontFamily: 'Literata, Georgia, serif',
@@ -291,7 +292,7 @@ const EsySchool = () => {
       left: 0,
       right: 0,
       height: '2px',
-      backgroundColor: '#8b5cf6',
+      backgroundColor: elevatedDarkTheme.accent,
       transform: 'scaleX(0)',
       transition: 'transform 0.3s ease'
     },
@@ -304,15 +305,16 @@ const EsySchool = () => {
       gap: '2rem'
     },
     articleCard: {
-      backgroundColor: elevatedDarkTheme.elevated,  // Use elevated theme color
+      background: elevatedDarkTheme.gradients?.card || `linear-gradient(180deg, rgba(31, 31, 35, 0.6) 0%, rgba(24, 24, 27, 0.4) 100%)`,
       borderRadius: '12px',
       overflow: 'hidden',
       transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       cursor: 'pointer',
       border: '1px solid rgba(255, 255, 255, 0.05)',
+      borderLeft: `3px solid ${elevatedDarkTheme.accent}`,
       display: viewMode === 'list' ? 'flex' : 'block',
       gap: viewMode === 'list' ? '2rem' : '0',
-      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.2)'
+      boxShadow: elevatedDarkTheme.shadows?.sm || '0 2px 4px rgba(0, 0, 0, 0.2)'
     },
     articleImage: {
       width: viewMode === 'list' ? '240px' : '100%',
@@ -579,15 +581,15 @@ const EsySchool = () => {
               style={styles.featureCard}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.2)';
-                e.currentTarget.style.boxShadow = '0 4px 16px rgba(139, 92, 246, 0.1), 0 2px 8px rgba(0, 0, 0, 0.2)';
-                e.currentTarget.style.backgroundColor = 'rgba(39, 39, 42, 0.9)';
+                e.currentTarget.style.borderColor = elevatedDarkTheme.accentBorder || 'rgba(159, 122, 234, 0.3)';
+                e.currentTarget.style.boxShadow = `${elevatedDarkTheme.shadows?.glow || '0 4px 16px rgba(159, 122, 234, 0.2)'}, ${elevatedDarkTheme.shadows?.hover || '0 12px 24px rgba(159, 122, 234, 0.15)'}`;
+                e.currentTarget.style.background = elevatedDarkTheme.gradients?.hover || `linear-gradient(135deg, rgba(39, 39, 42, 0.95) 0%, rgba(31, 31, 35, 0.8) 100%)`;
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                e.currentTarget.style.boxShadow = 'none';
-                e.currentTarget.style.backgroundColor = 'rgba(31, 31, 35, 0.8)';
+                e.currentTarget.style.borderColor = elevatedDarkTheme.accentBorder || 'rgba(159, 122, 234, 0.2)';
+                e.currentTarget.style.boxShadow = elevatedDarkTheme.shadows?.sm || '0 2px 4px rgba(0, 0, 0, 0.2)';
+                e.currentTarget.style.background = elevatedDarkTheme.gradients?.featured || `linear-gradient(135deg, rgba(31, 31, 35, 0.9) 0%, rgba(39, 39, 42, 0.7) 100%)`;
               }}
             >
               <h3 style={styles.featureTitle}>AI Agent Workflows</h3>
@@ -599,35 +601,35 @@ const EsySchool = () => {
               style={styles.featureCard}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.2)';
-                e.currentTarget.style.boxShadow = '0 4px 16px rgba(139, 92, 246, 0.1), 0 2px 8px rgba(0, 0, 0, 0.2)';
-                e.currentTarget.style.backgroundColor = 'rgba(39, 39, 42, 0.9)';
+                e.currentTarget.style.borderColor = elevatedDarkTheme.accentBorder || 'rgba(159, 122, 234, 0.3)';
+                e.currentTarget.style.boxShadow = `${elevatedDarkTheme.shadows?.glow || '0 4px 16px rgba(159, 122, 234, 0.2)'}, ${elevatedDarkTheme.shadows?.hover || '0 12px 24px rgba(159, 122, 234, 0.15)'}`;
+                e.currentTarget.style.background = elevatedDarkTheme.gradients?.hover || `linear-gradient(135deg, rgba(39, 39, 42, 0.95) 0%, rgba(31, 31, 35, 0.8) 100%)`;
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                e.currentTarget.style.boxShadow = 'none';
-                e.currentTarget.style.backgroundColor = 'rgba(31, 31, 35, 0.8)';
+                e.currentTarget.style.borderColor = elevatedDarkTheme.accentBorder || 'rgba(159, 122, 234, 0.2)';
+                e.currentTarget.style.boxShadow = elevatedDarkTheme.shadows?.sm || '0 2px 4px rgba(0, 0, 0, 0.2)';
+                e.currentTarget.style.background = elevatedDarkTheme.gradients?.featured || `linear-gradient(135deg, rgba(31, 31, 35, 0.9) 0%, rgba(39, 39, 42, 0.7) 100%)`;
               }}
             >
               <h3 style={styles.featureTitle}>Prompt Engineering</h3>
               <p style={styles.featureDescription}>
-                Master the art of crafting <Link href="/prompt-library" style={{ color: '#8b5cf6', textDecoration: 'underline', textUnderlineOffset: '0.2em' }}>prompts</Link> that generate scholarly content, citations, and critical analysis.
+                Master the art of crafting <Link href="/prompt-library" style={{ color: elevatedDarkTheme.accent, textDecoration: 'underline', textUnderlineOffset: '0.2em' }}>prompts</Link> that generate scholarly content, citations, and critical analysis.
               </p>
             </div>
             <div 
               style={styles.featureCard}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.2)';
-                e.currentTarget.style.boxShadow = '0 4px 16px rgba(139, 92, 246, 0.1), 0 2px 8px rgba(0, 0, 0, 0.2)';
-                e.currentTarget.style.backgroundColor = 'rgba(39, 39, 42, 0.9)';
+                e.currentTarget.style.borderColor = elevatedDarkTheme.accentBorder || 'rgba(159, 122, 234, 0.3)';
+                e.currentTarget.style.boxShadow = `${elevatedDarkTheme.shadows?.glow || '0 4px 16px rgba(159, 122, 234, 0.2)'}, ${elevatedDarkTheme.shadows?.hover || '0 12px 24px rgba(159, 122, 234, 0.15)'}`;
+                e.currentTarget.style.background = elevatedDarkTheme.gradients?.hover || `linear-gradient(135deg, rgba(39, 39, 42, 0.95) 0%, rgba(31, 31, 35, 0.8) 100%)`;
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                e.currentTarget.style.boxShadow = 'none';
-                e.currentTarget.style.backgroundColor = 'rgba(31, 31, 35, 0.8)';
+                e.currentTarget.style.borderColor = elevatedDarkTheme.accentBorder || 'rgba(159, 122, 234, 0.2)';
+                e.currentTarget.style.boxShadow = elevatedDarkTheme.shadows?.sm || '0 2px 4px rgba(0, 0, 0, 0.2)';
+                e.currentTarget.style.background = elevatedDarkTheme.gradients?.featured || `linear-gradient(135deg, rgba(31, 31, 35, 0.9) 0%, rgba(39, 39, 42, 0.7) 100%)`;
               }}
             >
               <h3 style={styles.featureTitle}>Research Automation</h3>
@@ -703,16 +705,18 @@ const EsySchool = () => {
               <article
                 style={styles.articleCard}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
+                  e.currentTarget.style.borderColor = elevatedDarkTheme.accentBorder || 'rgba(159, 122, 234, 0.3)';
+                  e.currentTarget.style.borderLeftColor = elevatedDarkTheme.accentLight || '#b794f4';
                   e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(139, 92, 246, 0.15), 0 4px 12px rgba(0, 0, 0, 0.3)';
-                  e.currentTarget.style.backgroundColor = elevatedDarkTheme.surface;
+                  e.currentTarget.style.boxShadow = `${elevatedDarkTheme.shadows?.glow || '0 4px 16px rgba(159, 122, 234, 0.2)'}, ${elevatedDarkTheme.shadows?.hover || '0 12px 24px rgba(159, 122, 234, 0.15)'}`;
+                  e.currentTarget.style.background = elevatedDarkTheme.gradients?.hover || `linear-gradient(135deg, rgba(39, 39, 42, 0.8) 0%, rgba(31, 31, 35, 0.6) 100%)`;
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.05)';
+                  e.currentTarget.style.borderLeftColor = elevatedDarkTheme.accent;
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.2)';
-                  e.currentTarget.style.backgroundColor = elevatedDarkTheme.elevated;
+                  e.currentTarget.style.boxShadow = elevatedDarkTheme.shadows?.sm || '0 2px 4px rgba(0, 0, 0, 0.2)';
+                  e.currentTarget.style.background = elevatedDarkTheme.gradients?.card || `linear-gradient(180deg, rgba(31, 31, 35, 0.6) 0%, rgba(24, 24, 27, 0.4) 100%)`;
                 }}
               >
                 <div style={styles.articleImage}>

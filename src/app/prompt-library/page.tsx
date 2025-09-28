@@ -3158,7 +3158,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
     },
     ctaButton: {
       padding: '1.25rem 2.5rem',
-      backgroundColor: '#8b5cf6',
+      backgroundColor: elevatedDarkTheme.accent,
       border: 'none',
       borderRadius: '8px',
       color: 'white',
@@ -3261,8 +3261,8 @@ Create publishing approach that maximizes content reach while maintaining qualit
       whiteSpace: 'nowrap' as const
     },
     categoryTabActive: {
-      backgroundColor: '#8b5cf6',
-      borderColor: '#8b5cf6',
+      backgroundColor: elevatedDarkTheme.accent,
+      borderColor: elevatedDarkTheme.accent,
       color: 'white'
     },
     
@@ -3535,7 +3535,7 @@ Create publishing approach that maximizes content reach while maintaining qualit
       border: '1px solid rgba(255, 255, 255, 0.1)'
     },
     tryEsyButton: {
-      backgroundColor: '#8b5cf6',
+      backgroundColor: elevatedDarkTheme.accent,
       color: 'white'
     },
     promptText: {
@@ -3884,8 +3884,8 @@ Create publishing approach that maximizes content reach while maintaining qualit
                         ...styles.actionButton,
                         ...styles.tryEsyButton
                       }}
-                      onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#7c3aed'}
-                      onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#8b5cf6'}
+                      onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = elevatedDarkTheme.accentDark}
+                      onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = elevatedDarkTheme.accent}
                     >
                       Try in Esy →
                     </button>

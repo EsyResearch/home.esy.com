@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import { useEssaySearch } from '@/hooks/useEssaySearch';
 import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
+import { elevatedDarkTheme } from '@/lib/theme';
 
 const HeroSection = ({ 
   searchFocused, 
@@ -106,7 +107,7 @@ const HeroSection = ({
       fontSize: 'clamp(2.5rem, 6vw, 5rem)',
       fontWeight: '400',
       marginTop: '0.5rem',
-      color: '#8b5cf6'
+      color: elevatedDarkTheme.accent
     },
     heroSubtitle: {
       fontSize: 'clamp(1rem, 2vw, 1.2rem)',
@@ -172,9 +173,9 @@ const HeroSection = ({
       fontFamily: 'Inter, sans-serif'
     },
     categoryTabActive: {
-      backgroundColor: '#8b5cf6',
+      backgroundColor: elevatedDarkTheme.accent,
       color: 'white',
-      borderColor: '#8b5cf6'
+      borderColor: elevatedDarkTheme.accent
     }
   };
 

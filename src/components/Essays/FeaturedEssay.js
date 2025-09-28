@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
+import { elevatedDarkTheme } from '@/lib/theme';
 
 const FeaturedEssay = ({ featuredEssay }) => {
   return (
@@ -15,7 +16,7 @@ const FeaturedEssay = ({ featuredEssay }) => {
             fontWeight: 600,
             textTransform: 'uppercase',
             letterSpacing: '0.1em',
-            color: '#8b5cf6'
+            color: elevatedDarkTheme.accent
           }}>
             Featured Research
           </span>
@@ -64,7 +65,7 @@ const FeaturedEssay = ({ featuredEssay }) => {
               <Link href={`/essays/${featuredEssay.id}`} style={{ textDecoration: 'none' }}>
                 <button style={{
                   padding: '0.75rem 1.5rem',
-                  background: '#8b5cf6',
+                  background: elevatedDarkTheme.accent,
                   border: 'none',
                   borderRadius: '6px',
                   color: 'white',

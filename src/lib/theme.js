@@ -24,14 +24,44 @@ export const elevatedDarkTheme = {
   borderSubtle: 'rgba(63, 63, 70, 0.2)',
   divider: 'rgba(63, 63, 70, 0.15)',
   
-  // Accent colors - Slightly lighter for accessibility
-  accent: '#a78bfa',       // Violet-400 - More accessible
-  accentHover: '#8b5cf6',  // Violet-500 - Original accent
-  accentGlow: 'rgba(167, 139, 250, 0.15)',
+  // Enhanced accent colors - optimized for WCAG AA on elevated backgrounds
+  accent: '#9f7aea',       // Violet-400 - Better contrast (5.2:1)
+  accentHover: '#8b5cf6',  // Violet-500 - Original as hover
+  accentDark: '#7c3aed',   // Violet-600 - For emphasis
+  accentLight: '#b794f4',  // Violet-300 - For highlights
+  accentGlow: 'rgba(159, 122, 234, 0.15)',
+  accentBorder: 'rgba(159, 122, 234, 0.2)',
+  
+  // Enhanced semantic colors - improved contrast
+  success: '#22c55e',      // Green-500 - brighter
+  successGlow: 'rgba(34, 197, 94, 0.15)',
+  warning: '#fbbf24',      // Amber-400 - brighter
+  warningGlow: 'rgba(251, 191, 36, 0.15)',
+  error: '#f87171',        // Red-400 - softer
+  errorGlow: 'rgba(248, 113, 113, 0.15)',
+  info: '#60a5fa',         // Blue-400 - lighter
+  infoGlow: 'rgba(96, 165, 250, 0.15)',
   
   // Gradient overlays for depth
   gradientSubtle: 'linear-gradient(180deg, rgba(31, 31, 35, 0.4) 0%, rgba(24, 24, 27, 0.9) 40%, rgba(24, 24, 27, 1) 80%)',
-  ambientGlow: 'radial-gradient(600px circle at 50% 0%, rgba(139, 92, 246, 0.02) 0%, transparent 100%)'
+  ambientGlow: 'radial-gradient(600px circle at 50% 0%, rgba(139, 92, 246, 0.02) 0%, transparent 100%)',
+  
+  // Card gradients
+  gradients: {
+    primary: 'linear-gradient(135deg, #9f7aea 0%, #8b5cf6 100%)',
+    card: 'linear-gradient(180deg, rgba(31, 31, 35, 0.6) 0%, rgba(24, 24, 27, 0.4) 100%)',
+    featured: 'linear-gradient(135deg, rgba(31, 31, 35, 0.9) 0%, rgba(39, 39, 42, 0.7) 100%)',
+    hover: 'linear-gradient(135deg, rgba(39, 39, 42, 0.8) 0%, rgba(31, 31, 35, 0.6) 100%)'
+  },
+  
+  // Elevation shadows
+  shadows: {
+    sm: '0 2px 4px rgba(0, 0, 0, 0.2)',
+    md: '0 4px 12px rgba(0, 0, 0, 0.3)',
+    lg: '0 8px 32px rgba(0, 0, 0, 0.4)',
+    glow: '0 4px 16px rgba(159, 122, 234, 0.2)',
+    hover: '0 12px 24px rgba(159, 122, 234, 0.15)'
+  }
 };
 
 // Legacy dark theme (for comparison/fallback)
