@@ -25,6 +25,19 @@ const BlogPostClient = ({ post }) => {
   const [readingProgress, setReadingProgress] = useState(0);
   const [timeSpent, setTimeSpent] = useState(0);
   const [isDarkMode, setIsDarkMode] = useState(false); // Light mode by default
+  
+  // Update DOM when theme changes (for navigation detection)
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.style.backgroundColor = '#121215'; // Enhanced dark theme
+      document.body.className = document.body.className.replace('light', '');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.body.style.backgroundColor = '#ffffff'; // Light theme
+      document.body.className = document.body.className + ' light';
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDarkMode]);
   const [fontSize, setFontSize] = useState('medium');
   const [showTableOfContents, setShowTableOfContents] = useState(true);
   const [activeSection, setActiveSection] = useState('');

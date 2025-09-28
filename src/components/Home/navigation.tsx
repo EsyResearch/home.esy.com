@@ -51,40 +51,43 @@ export default function Navigation ({
         let isLight = false;
         const debugInfo: string[] = [];
         
-        // Check body classes
-        const bodyClasses = document.body.className;
-        const htmlClasses = document.documentElement.className;
-        if (bodyClasses?.includes('light') || htmlClasses?.includes('light')) {
-          isLight = true;
-          debugInfo.push('class-based');
-        }
-        
-        // Check localStorage
-        const storedTheme = localStorage.getItem('theme');
-        if (storedTheme === 'light') {
-          isLight = true;
-          debugInfo.push('localStorage');
-        }
-        
-        // Check computed background color
-        const bgColor = window.getComputedStyle(document.body).backgroundColor;
-        const bgColorRgb = bgColor.match(/\d+/g);
-        
-        if (bgColorRgb) {
-          const r = parseInt(bgColorRgb[0]);
-          const g = parseInt(bgColorRgb[1]);
-          const b = parseInt(bgColorRgb[2]);
-          const avg = (r + g + b) / 3;
-          
-          // Light background = high RGB values (typically > 200 average)
-          if (avg > 200) {
+        // Check body classes - but only if we're on a school article page or blog detail page
+        // This prevents global light class from affecting other pages
+        if (pathname?.includes('/school/articles') || pathname?.includes('/blog/')) {
+          const bodyClasses = document.body.className;
+          const htmlClasses = document.documentElement.className;
+          if (bodyClasses?.includes('light') || htmlClasses?.includes('light')) {
             isLight = true;
-            debugInfo.push(`bg-color(${r},${g},${b})`);
+            debugInfo.push('class-based');
           }
         }
         
-        // Special check for school articles with theme toggle
-        if (pathname?.includes('/school/articles')) {
+        // Check localStorage - but only if we're on a school article page or blog detail page
+        // This prevents global theme setting from affecting other pages
+        if (pathname?.includes('/school/articles') || pathname?.includes('/blog/')) {
+          const storedTheme = localStorage.getItem('theme');
+          if (storedTheme === 'light') {
+            isLight = true;
+            debugInfo.push('localStorage');
+          }
+        }
+        
+        // DISABLED: Background color detection was too aggressive
+        // const bgColor = window.getComputedStyle(document.body).backgroundColor;
+        // const bgColorRgb = bgColor.match(/\d+/g);
+        // if (bgColorRgb) {
+        //   const r = parseInt(bgColorRgb[0]);
+        //   const g = parseInt(bgColorRgb[1]);
+        //   const b = parseInt(bgColorRgb[2]);
+        //   const avg = (r + g + b) / 3;
+        //   if (avg > 200) {
+        //     isLight = true;
+        //     debugInfo.push(`bg-color(${r},${g},${b})`);
+        //   }
+        // }
+        
+        // Special check for school articles and blog detail pages with theme toggle
+        if (pathname?.includes('/school/articles') || pathname?.includes('/blog/')) {
           const themeToggle = document.querySelector('[aria-label="Toggle theme"]');
           if (themeToggle) {
             const toggleHTML = themeToggle.innerHTML;
@@ -304,10 +307,12 @@ export default function Navigation ({
         const navInner = nav?.querySelector('.nav-inner');
         const scrollY = window.scrollY;
         const isHomepage = pathname === '/' || pathname === '';
+        const isBlogPage = pathname === '/blog';
+        const shouldBeTransparent = isHomepage || isBlogPage;
         
         if (scrollY === 0) {
-          if (isHomepage) {
-            // Homepage: Completely transparent - unified with hero
+          if (shouldBeTransparent) {
+            // Homepage/Blog: Completely transparent - unified with hero
             nav.style.background = 'transparent';
             nav.style.boxShadow = 'none';
             nav.style.borderBottom = 'none';
@@ -338,8 +343,8 @@ export default function Navigation ({
             }
           }
         } else if (scrollY < 50) {
-          if (isHomepage) {
-            // Homepage: Progressive fade-in of header
+          if (shouldBeTransparent) {
+            // Homepage/Blog: Progressive fade-in of header
             const progress = scrollY / 50;
             if (isLightMode) {
               nav.style.background = `rgba(255, 255, 255, ${progress * 0.98})`;
