@@ -52,17 +52,8 @@
     background: var(--text-dim);
   }
   
-  .nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    background: rgba(10, 10, 15, 0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    transition: all 0.3s ease;
-  }
+  /* Removed .nav styles to prevent conflicts with dynamic theme styling */
+  /* Navigation styles are now handled by inline JavaScript styles */
   
   .nav-inner {
     max-width: 1440px;
@@ -78,7 +69,7 @@
     gap: 0.75rem;
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--text);
+    /* Color handled dynamically */
     text-decoration: none;
   }
   

@@ -20,6 +20,19 @@ export default function UnderstandingLLMsArticle() {
   const [isDesktop, setIsDesktop] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false); // Default to light for School
+  
+  // Update DOM when theme changes
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.style.backgroundColor = elevatedDarkTheme.bg;
+      document.body.className = document.body.className.replace('light', '');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.body.style.backgroundColor = lightTheme.bg;
+      document.body.className = document.body.className + ' light';
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDarkMode]);
   const emailInputRef = useRef(null);
 
   const handleNewsletterSubmit = (e) => {

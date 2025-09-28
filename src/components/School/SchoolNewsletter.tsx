@@ -40,7 +40,10 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
             ? 'rgba(22, 22, 31, 0.95)' 
             : 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%)',
           backdropFilter: 'blur(20px)',
-          border: isDarkMode 
+          borderTop: isDarkMode 
+            ? '1px solid rgba(255, 255, 255, 0.05)' 
+            : 'none',
+          borderBottom: isDarkMode 
             ? '1px solid rgba(255, 255, 255, 0.05)' 
             : 'none',
           borderLeft: 'none',

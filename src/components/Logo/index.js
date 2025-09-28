@@ -6,10 +6,13 @@ const Logo = ({
   href, 
   className = '', 
   size = 60,
-  showText = true 
+  showText = true,
+  theme = 'dark' // New prop for theme
 }) => {
-  // Use the same SVG logo that's working in Header and Footer
-  const logoPath = '/esy-logos/logo-files/for-web/svg/color-no-bg.svg';
+  // Switch logo based on theme for better contrast
+  const logoPath = theme === 'light' 
+    ? '/esy-logos/logo-files/for-web/svg/black-logo-no-bg.svg'  // Black logo for light backgrounds
+    : '/esy-logos/logo-files/for-web/svg/color-no-bg.svg';      // Color logo for dark backgrounds
 
   const logoContent = (
     <div className={`${styles.logo} ${className}`}>

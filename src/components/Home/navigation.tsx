@@ -8,6 +8,7 @@ import HeaderSearch from "@/components/HeaderSearch/HeaderSearch";
 import NewsletterModal from "@/components/NewsletterModal/NewsletterModal";
 import { getAllPrompts } from "@/lib/prompts";
 import { getCTAConfig, getResponsiveCTAText } from "@/lib/ctaMapping";
+import { lightTheme } from "@/lib/lightTheme";
 
 // Shared suffix logic that can be used by both navigation and footer
 export const getPageSuffix = (pathname) => {
@@ -41,6 +42,169 @@ export default function Navigation ({
     const [isMobile, setIsMobile] = useState(false);
     const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
     const [modalSource, setModalSource] = useState<'nav-tips' | 'nav-school' | 'other'>('other');
+    const [isLightMode, setIsLightMode] = useState(false);
+
+    // Detect theme from various sources
+    useEffect(() => {
+      const checkTheme = () => {
+        // Enhanced theme detection with debugging
+        let isLight = false;
+        const debugInfo: string[] = [];
+        
+        // Check body classes
+        const bodyClasses = document.body.className;
+        const htmlClasses = document.documentElement.className;
+        if (bodyClasses?.includes('light') || htmlClasses?.includes('light')) {
+          isLight = true;
+          debugInfo.push('class-based');
+        }
+        
+        // Check localStorage
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme === 'light') {
+          isLight = true;
+          debugInfo.push('localStorage');
+        }
+        
+        // Check computed background color
+        const bgColor = window.getComputedStyle(document.body).backgroundColor;
+        const bgColorRgb = bgColor.match(/\d+/g);
+        
+        if (bgColorRgb) {
+          const r = parseInt(bgColorRgb[0]);
+          const g = parseInt(bgColorRgb[1]);
+          const b = parseInt(bgColorRgb[2]);
+          const avg = (r + g + b) / 3;
+          
+          // Light background = high RGB values (typically > 200 average)
+          if (avg > 200) {
+            isLight = true;
+            debugInfo.push(`bg-color(${r},${g},${b})`);
+          }
+        }
+        
+        // Special check for school articles with theme toggle
+        if (pathname?.includes('/school/articles')) {
+          const themeToggle = document.querySelector('[aria-label="Toggle theme"]');
+          if (themeToggle) {
+            const toggleHTML = themeToggle.innerHTML;
+            // Sun icon visible = light mode active
+            if (toggleHTML?.includes('M12 3v1m0') || toggleHTML?.includes('Sun')) {
+              isLight = true;
+              debugInfo.push('toggle-sun-icon');
+            }
+          }
+        }
+        
+        console.log(`[Navigation Theme] isLight: ${isLight}, detected via: ${debugInfo.join(', ') || 'none'}, path: ${pathname}`);
+        setIsLightMode(isLight);
+        
+        // Update nav link and logo colors based on theme
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+          const element = link as HTMLElement;
+          if (isLight) {
+            element.style.color = '#475569';
+            element.style.textShadow = 'none';
+          } else {
+            element.style.color = '#94a3b8';  // var(--text-muted) equivalent
+            element.style.textShadow = '0 1px 2px rgba(0, 0, 0, 0.2)';
+          }
+        });
+        
+        // Update logo text color
+        const logoElements = document.querySelectorAll('.logo');
+        logoElements.forEach(logo => {
+          const element = logo as HTMLElement;
+          if (isLight) {
+            element.style.color = '#1e293b';
+            element.style.textShadow = 'none';
+          } else {
+            element.style.color = '#ffffff';
+            element.style.textShadow = '0 1px 3px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)';
+          }
+        });
+        
+        // Update CTA button
+        const ctaButtons = document.querySelectorAll('.nav-cta');
+        ctaButtons.forEach(btn => {
+          const element = btn as HTMLElement;
+          if (isLight) {
+            element.style.backgroundColor = '#7c3aed';
+            element.style.color = '#ffffff';
+          } else {
+            element.style.backgroundColor = '#8b5cf6';
+            element.style.color = '#ffffff';
+          }
+        });
+        
+        // Update mobile menu elements
+        const mobileNav = document.querySelector('.mobile-nav') as HTMLElement;
+        if (mobileNav) {
+          if (isLight) {
+            mobileNav.style.background = 'rgba(255, 255, 255, 0.98)';
+          } else {
+            mobileNav.style.background = 'rgba(10, 10, 15, 0.98)';
+          }
+        }
+        
+        const mobileMenuButton = document.querySelector('.mobile-menu-button') as HTMLElement;
+        if (mobileMenuButton) {
+          mobileMenuButton.style.color = isLight ? '#1e293b' : '#ffffff';
+        }
+        
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        mobileNavLinks.forEach(link => {
+          const element = link as HTMLElement;
+          if (isLight) {
+            element.style.color = '#1e293b';
+            element.style.borderBottom = '1px solid rgba(203, 213, 225, 0.3)';
+          } else {
+            element.style.color = '#ffffff';
+            element.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+          }
+        });
+      };
+      
+      checkTheme();
+      // Listen for theme changes
+      const observer = new MutationObserver(() => {
+        checkTheme();
+        // Force update nav styles when theme changes
+        window.dispatchEvent(new Event('scroll'));
+      });
+      observer.observe(document.body, { 
+        attributes: true, 
+        attributeFilter: ['class', 'style'],
+        subtree: true 
+      });
+      observer.observe(document.documentElement, { 
+        attributes: true, 
+        attributeFilter: ['class', 'style'] 
+      });
+      
+      // Also check when clicking anywhere (to catch theme toggle clicks)
+      const handleClick = () => {
+        setTimeout(() => {
+          checkTheme();
+          // Force update nav styles when theme changes
+          window.dispatchEvent(new Event('scroll'));
+        }, 50);
+      };
+      document.addEventListener('click', handleClick);
+      
+      // Also check on pathname changes
+      const timeoutId = setTimeout(() => {
+        checkTheme();
+        window.dispatchEvent(new Event('scroll'));
+      }, 100);
+      
+      return () => {
+        observer.disconnect();
+        clearTimeout(timeoutId);
+        document.removeEventListener('click', handleClick);
+      };
+    }, [pathname]);
 
     // Use the shared suffix function
     const logoSuffix = getPageSuffix(pathname);
@@ -149,69 +313,105 @@ export default function Navigation ({
             nav.style.borderBottom = 'none';
             nav.style.backdropFilter = 'none';
             nav.style.webkitBackdropFilter = 'none';
-            // Enhanced text shadows for legibility
+            // Text shadows based on theme
             if (navInner) {
-              navInner.style.textShadow = '0 2px 4px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3)';
+              navInner.style.textShadow = isLightMode 
+                ? 'none'  // No shadow needed on light backgrounds
+                : '0 2px 4px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3)';
             }
           } else {
-            // Other pages: Elevated with gradient and border
-            nav.style.background = 'linear-gradient(180deg, rgba(31, 31, 35, 0.95) 0%, rgba(24, 24, 27, 0.85) 100%)';
-            nav.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.2)';
-            nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+            // Other pages: Theme-aware styling
+            if (isLightMode) {
+              nav.style.background = 'linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 250, 250, 0.95) 100%)';
+              nav.style.boxShadow = lightTheme.shadows?.sm || '0 1px 3px rgba(0, 0, 0, 0.06)';
+              nav.style.borderBottom = `1px solid ${lightTheme.border}`;
+            } else {
+              nav.style.background = 'linear-gradient(180deg, rgba(31, 31, 35, 0.95) 0%, rgba(24, 24, 27, 0.85) 100%)';
+              nav.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.2)';
+              nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+            }
             nav.style.backdropFilter = 'blur(20px)';
-            nav.style.webkitBackdropFilter = 'blur(20px)';
-            // Standard text shadow
+              (nav.style as any).webkitBackdropFilter = 'blur(20px)';
+            // Text shadow
             if (navInner) {
-              navInner.style.textShadow = '0 1px 2px rgba(0, 0, 0, 0.2)';
+              (navInner as HTMLElement).style.textShadow = isLightMode ? 'none' : '0 1px 2px rgba(0, 0, 0, 0.2)';
             }
           }
         } else if (scrollY < 50) {
           if (isHomepage) {
             // Homepage: Progressive fade-in of header
             const progress = scrollY / 50;
-            nav.style.background = `rgba(31, 31, 35, ${progress * 0.85})`;
-            nav.style.boxShadow = `0 1px 3px rgba(0, 0, 0, ${progress * 0.2})`;
-            nav.style.borderBottom = `1px solid rgba(255, 255, 255, ${progress * 0.1})`;
+            if (isLightMode) {
+              nav.style.background = `rgba(255, 255, 255, ${progress * 0.98})`;
+              nav.style.boxShadow = `0 1px 3px rgba(0, 0, 0, ${progress * 0.06})`;
+              nav.style.borderBottom = `1px solid rgba(0, 0, 0, ${progress * 0.08})`;
+            } else {
+              nav.style.background = `rgba(31, 31, 35, ${progress * 0.85})`;
+              nav.style.boxShadow = `0 1px 3px rgba(0, 0, 0, ${progress * 0.2})`;
+              nav.style.borderBottom = `1px solid rgba(255, 255, 255, ${progress * 0.1})`;
+            }
             nav.style.backdropFilter = `blur(${progress * 20}px)`;
-            nav.style.webkitBackdropFilter = `blur(${progress * 20}px)`;
-            // Gradually reduce text shadow as background appears
+              (nav.style as any).webkitBackdropFilter = `blur(${progress * 20}px)`;
+            // Text shadow handling
             if (navInner) {
-              const shadowOpacity = 1 - (progress * 0.5);
-              navInner.style.textShadow = `0 2px 4px rgba(0, 0, 0, ${shadowOpacity * 0.5}), 0 4px 12px rgba(0, 0, 0, ${shadowOpacity * 0.3})`;
+              if (isLightMode) {
+                (navInner as HTMLElement).style.textShadow = 'none';
+              } else {
+                const shadowOpacity = 1 - (progress * 0.5);
+                (navInner as HTMLElement).style.textShadow = `0 2px 4px rgba(0, 0, 0, ${shadowOpacity * 0.5}), 0 4px 12px rgba(0, 0, 0, ${shadowOpacity * 0.3})`;
+              }
             }
           } else {
             // Other pages: Already have full header, just subtle enhancement
-            nav.style.background = 'linear-gradient(180deg, rgba(31, 31, 35, 0.95) 0%, rgba(24, 24, 27, 0.9) 100%)';
-            nav.style.boxShadow = '0 1px 4px rgba(0, 0, 0, 0.25)';
-            nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+            if (isLightMode) {
+              nav.style.background = 'rgba(255, 255, 255, 0.98)';
+              nav.style.boxShadow = lightTheme.shadows?.md || '0 2px 6px rgba(0, 0, 0, 0.08)';
+              nav.style.borderBottom = `1px solid ${lightTheme.border}`;
+            } else {
+              nav.style.background = 'linear-gradient(180deg, rgba(31, 31, 35, 0.95) 0%, rgba(24, 24, 27, 0.9) 100%)';
+              nav.style.boxShadow = '0 1px 4px rgba(0, 0, 0, 0.25)';
+              nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+            }
             nav.style.backdropFilter = 'blur(20px)';
-            nav.style.webkitBackdropFilter = 'blur(20px)';
+              (nav.style as any).webkitBackdropFilter = 'blur(20px)';
             if (navInner) {
-              navInner.style.textShadow = '0 1px 2px rgba(0, 0, 0, 0.2)';
+              (navInner as HTMLElement).style.textShadow = isLightMode ? 'none' : '0 1px 2px rgba(0, 0, 0, 0.2)';
             }
           }
         } else if (scrollY < 100) {
           // Both homepage and other pages converge to similar style
-          nav.style.background = 'rgba(31, 31, 35, 0.85)';
-          nav.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.2)';
-          nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+          if (isLightMode) {
+            nav.style.background = 'rgba(255, 255, 255, 0.95)';
+            nav.style.boxShadow = lightTheme.shadows?.sm || '0 1px 3px rgba(0, 0, 0, 0.06)';
+            nav.style.borderBottom = `1px solid ${lightTheme.border}`;
+          } else {
+            nav.style.background = 'rgba(31, 31, 35, 0.85)';
+            nav.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.2)';
+            nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+          }
           nav.style.backdropFilter = 'blur(20px)';
-          nav.style.webkitBackdropFilter = 'blur(20px)';
-          // Minimal text shadow
-          if (navInner) {
-            navInner.style.textShadow = '0 1px 2px rgba(0, 0, 0, 0.2)';
-          }
+              (nav.style as any).webkitBackdropFilter = 'blur(20px)';
+          // Text shadow
+            if (navInner) {
+              (navInner as HTMLElement).style.textShadow = isLightMode ? 'none' : '0 1px 2px rgba(0, 0, 0, 0.2)';
+            }
         } else {
-          // Fully scrolled - maximum elevation (same for all pages)
-          nav.style.background = 'rgba(24, 24, 27, 0.98)';
-          nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(0, 0, 0, 0.5)';
-          nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
-          nav.style.backdropFilter = 'blur(20px) saturate(150%)';
-          nav.style.webkitBackdropFilter = 'blur(20px) saturate(150%)';
-          // Minimal text shadow
-          if (navInner) {
-            navInner.style.textShadow = '0 1px 2px rgba(0, 0, 0, 0.2)';
+          // Fully scrolled - maximum elevation
+          if (isLightMode) {
+            nav.style.background = 'rgba(255, 255, 255, 0.98)';
+            nav.style.boxShadow = lightTheme.shadows?.lg || '0 4px 10px rgba(0, 0, 0, 0.1)';
+            nav.style.borderBottom = `1px solid ${lightTheme.border}`;
+          } else {
+            nav.style.background = 'rgba(24, 24, 27, 0.98)';
+            nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(0, 0, 0, 0.5)';
+            nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
           }
+          nav.style.backdropFilter = 'blur(20px) saturate(150%)';
+              (nav.style as any).webkitBackdropFilter = 'blur(20px) saturate(150%)';
+          // Text shadow
+            if (navInner) {
+              (navInner as HTMLElement).style.textShadow = isLightMode ? 'none' : '0 1px 2px rgba(0, 0, 0, 0.2)';
+            }
         }
       };
       
@@ -220,15 +420,28 @@ export default function Navigation ({
   
       window.addEventListener('scroll', handleScroll);
       return () => window.removeEventListener('scroll', handleScroll);
-    }, [pathname]);
+    }, [pathname, isLightMode]);
 
   
     return (
       <>
       <nav className="nav" id="nav">
         <div className="nav-inner">
-          <Link href="/" className="logo">
-            <Logo suffix={logoSuffix} href="" showText={false} />
+          <Link 
+            href="/" 
+            className="logo"
+            style={{
+              color: isLightMode ? '#1e293b' : '#ffffff',
+              textShadow: isLightMode ? 'none' : '0 1px 3px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)'
+            }}
+          >
+            <Logo 
+              key={`logo-${isLightMode ? 'light' : 'dark'}`} // Force re-render on theme change
+              suffix={logoSuffix} 
+              href="" 
+              showText={false} 
+              theme={isLightMode ? 'light' : 'dark'} 
+            />
           </Link>
           
           {/* Header Search - Show on prompt-library and glossary view pages */}
@@ -237,6 +450,7 @@ export default function Navigation ({
               prompts={searchData} 
               className="header-search"
               searchContext={searchContext}
+              isLightMode={isLightMode}
             />
           )}
           
@@ -266,7 +480,9 @@ export default function Navigation ({
                 justifyContent: 'center',
                 border: 'none',
                 cursor: 'pointer',
-                fontFamily: 'inherit'
+                fontFamily: 'inherit',
+                backgroundColor: isLightMode ? '#7c3aed' : '#8b5cf6',
+                color: '#ffffff'
               }}
             >
               {responsiveCTA.text}
