@@ -11,6 +11,7 @@ import RelatedArticles from '@/components/SchoolArticle/RelatedArticles';
 import SchoolNewsletter from '@/components/School/SchoolNewsletter';
 import { articleContentStyles as styles } from '@/components/SchoolArticle/articleStyles';
 import { elevatedDarkTheme } from '@/lib/theme';
+import { lightTheme } from '@/lib/lightTheme';
 
 export default function PromptEngineeringGuideArticle() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -82,25 +83,25 @@ export default function PromptEngineeringGuideArticle() {
     buttonHoverBg: elevatedDarkTheme.accentBorder,
     headerBg: 'rgba(24, 24, 27, 0.95)',
   } : {
-    // Light theme
-    bg: '#ffffff',
-    contentBg: '#ffffff',
-    text: 'rgba(15, 23, 42, 0.9)',
-    textMuted: 'rgba(15, 23, 42, 0.7)',
-    textSubtle: 'rgba(15, 23, 42, 0.5)',
-    heading: '#0f172a',
-    border: 'rgba(139, 92, 246, 0.2)',
-    accent: '#7c3aed',
-    accentLight: '#8b5cf6',
-    accentBg: 'rgba(139, 92, 246, 0.05)',
-    accentBorder: 'rgba(139, 92, 246, 0.3)',
-    codeBg: '#f8fafc',
-    codeBorder: 'rgba(15, 23, 42, 0.1)',
-    calloutBg: 'rgba(139, 92, 246, 0.05)',
-    calloutBorder: '#7c3aed',
-    buttonBg: 'rgba(139, 92, 246, 0.05)',
-    buttonHoverBg: 'rgba(139, 92, 246, 0.1)',
-    headerBg: 'rgba(255, 255, 255, 1)',
+    // Optimized light theme for readability
+    bg: lightTheme.bg,
+    contentBg: lightTheme.surface,
+    text: lightTheme.text,
+    textMuted: lightTheme.textSecondary,
+    textSubtle: lightTheme.textMuted,
+    heading: lightTheme.heading,
+    border: lightTheme.borderSubtle,
+    accent: lightTheme.accent,
+    accentLight: lightTheme.accentLight,
+    accentBg: lightTheme.accentGlow,
+    accentBorder: lightTheme.accentBorder,
+    codeBg: lightTheme.codeBg,
+    codeBorder: lightTheme.codeBorder,
+    calloutBg: lightTheme.calloutBg,
+    calloutBorder: lightTheme.calloutBorder,
+    buttonBg: lightTheme.buttonBg,
+    buttonHoverBg: lightTheme.buttonHoverBg,
+    headerBg: lightTheme.headerBg,
   };
 
   const tableOfContents = [
@@ -168,7 +169,7 @@ export default function PromptEngineeringGuideArticle() {
           cursor: 'pointer',
           transition: 'all 0.2s ease',
           backdropFilter: 'blur(10px)',
-          boxShadow: isDarkMode ? '0 2px 8px rgba(0, 0, 0, 0.1)' : '0 2px 6px rgba(0, 0, 0, 0.08)',
+          boxShadow: isDarkMode ? '0 2px 8px rgba(0, 0, 0, 0.1)' : lightTheme.shadows?.md,
           zIndex: 100
         }}
         onMouseEnter={(e) => {
