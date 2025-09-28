@@ -325,10 +325,10 @@ export default function Navigation ({
             nav.style.boxShadow = 'none';
             nav.style.borderBottom = 'none';
             nav.style.backdropFilter = 'none';
-            nav.style.webkitBackdropFilter = 'none';
+            (nav.style as any).webkitBackdropFilter = 'none';
             // Text shadows based on theme
             if (navInner) {
-              navInner.style.textShadow = isLightMode 
+              (navInner as HTMLElement).style.textShadow = isLightMode 
                 ? 'none'  // No shadow needed on light backgrounds
                 : '0 2px 4px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3)';
             }
@@ -450,7 +450,7 @@ export default function Navigation ({
           >
             <Logo 
               key={`logo-${isLightMode ? 'light' : 'dark'}`} // Force re-render on theme change
-              // suffix={logoSuffix} // Disabled suffix in header
+              suffix="" // Disabled suffix in header - passing empty string
               href="" 
               showText={false} 
               theme={isLightMode ? 'light' : 'dark'} 
