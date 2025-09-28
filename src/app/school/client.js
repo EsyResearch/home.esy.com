@@ -311,10 +311,9 @@ const EsySchool = () => {
       transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       cursor: 'pointer',
       border: '1px solid rgba(255, 255, 255, 0.05)',
-      borderLeft: `3px solid ${elevatedDarkTheme.accent}`,
       display: viewMode === 'list' ? 'flex' : 'block',
       gap: viewMode === 'list' ? '2rem' : '0',
-      boxShadow: elevatedDarkTheme.shadows?.sm || '0 2px 4px rgba(0, 0, 0, 0.2)'
+      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
     },
     articleImage: {
       width: viewMode === 'list' ? '240px' : '100%',
@@ -706,16 +705,14 @@ const EsySchool = () => {
                 style={styles.articleCard}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = elevatedDarkTheme.accentBorder || 'rgba(159, 122, 234, 0.3)';
-                  e.currentTarget.style.borderLeftColor = elevatedDarkTheme.accentLight || '#b794f4';
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.boxShadow = `${elevatedDarkTheme.shadows?.glow || '0 4px 16px rgba(159, 122, 234, 0.2)'}, ${elevatedDarkTheme.shadows?.hover || '0 12px 24px rgba(159, 122, 234, 0.15)'}`;
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
                   e.currentTarget.style.background = elevatedDarkTheme.gradients?.hover || `linear-gradient(135deg, rgba(39, 39, 42, 0.8) 0%, rgba(31, 31, 35, 0.6) 100%)`;
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.05)';
-                  e.currentTarget.style.borderLeftColor = elevatedDarkTheme.accent;
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = elevatedDarkTheme.shadows?.sm || '0 2px 4px rgba(0, 0, 0, 0.2)';
+                  e.currentTarget.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
                   e.currentTarget.style.background = elevatedDarkTheme.gradients?.card || `linear-gradient(180deg, rgba(31, 31, 35, 0.6) 0%, rgba(24, 24, 27, 0.4) 100%)`;
                 }}
               >
