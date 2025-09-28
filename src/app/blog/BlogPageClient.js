@@ -15,7 +15,6 @@ import SearchBar from '@/components/SearchBar/SearchBar';
 import { useBlogSearch } from '@/hooks/useBlogSearch';
 import ContextAwareNavigation from '@/components/Navigation/ContextAwareNavigation';
 import SchoolNewsletter from '@/components/School/SchoolNewsletter';
-import { elevatedDarkTheme } from '@/lib/theme';
 import '@/app/globals.css';
 
 const BlogPageClient = ({ allPosts, featuredPost }) => {
@@ -26,7 +25,21 @@ const BlogPageClient = ({ allPosts, featuredPost }) => {
   const [showHeaderSearch, setShowHeaderSearch] = useState(false);
   const searchBarRef = useRef(null);
 
-  const currentTheme = elevatedDarkTheme;
+  // Enhanced blog dark theme - optimized for reading comfort
+  const currentTheme = {
+    bg: '#121215',           // 8% lighter than pitch black for reading comfort
+    elevated: '#1a1a1f',     // Warmer elevated tone with better card visibility
+    card: '#1f1f24',         // Card hover state for clear hierarchy
+    text: '#f5f5f5',        // Softer than pure white to reduce eye strain
+    muted: 'rgba(245, 245, 245, 0.7)',
+    subtle: 'rgba(245, 245, 245, 0.5)',
+    faint: 'rgba(245, 245, 245, 0.3)',
+    border: 'rgba(255, 255, 255, 0.1)',     // Slightly more visible borders
+    divider: 'rgba(255, 255, 255, 0.06)',
+    accent: '#8b5cf6',
+    // Gradient for visual interest in long-form content
+    gradient: 'linear-gradient(135deg, #1a1a1f 0%, rgba(26, 26, 31, 0.85) 100%)'
+  };
 
   // Enhanced responsive breakpoints
   const isMobile = windowWidth < 768;
@@ -247,7 +260,7 @@ const BlogPageClient = ({ allPosts, featuredPost }) => {
             {/* Featured Article Card */}
             <div style={{
               position: 'relative',
-              background: `linear-gradient(135deg, ${currentTheme.elevated} 0%, rgba(22, 22, 31, 0.8) 100%)`,
+              background: currentTheme.gradient,
               borderRadius: '24px',
               border: `1px solid ${currentTheme.border}`,
               overflow: 'hidden',
@@ -523,16 +536,16 @@ const BlogPageClient = ({ allPosts, featuredPost }) => {
                 >
                   <div
                     style={{
-                      backgroundColor: currentTheme.elevated,
+                      backgroundColor: hoveredCard === post.slug ? currentTheme.card : currentTheme.elevated,
                       borderRadius: '16px',
                       padding: isMobile ? '1.25rem' : '1.5rem',
-                      border: `1px solid ${hoveredCard === post.slug ? currentTheme.accent : currentTheme.border}`,
+                      border: `1px solid ${hoveredCard === post.slug ? 'rgba(139, 92, 246, 0.25)' : currentTheme.border}`,
                       transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                       cursor: 'pointer',
                       transform: hoveredCard === post.slug ? 'translateY(-4px)' : 'translateY(0)',
                       boxShadow: hoveredCard === post.slug 
-                        ? `0 20px 40px rgba(139, 92, 246, 0.15)` 
-                        : '0 4px 16px rgba(0, 0, 0, 0.1)'
+                        ? `0 20px 40px rgba(139, 92, 246, 0.2), 0 8px 24px rgba(0, 0, 0, 0.3)` 
+                        : '0 4px 16px rgba(0, 0, 0, 0.15)'
                     }}
                     onMouseEnter={() => setHoveredCard(post.slug)}
                     onMouseLeave={() => setHoveredCard(null)}

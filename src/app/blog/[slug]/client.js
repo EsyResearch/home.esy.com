@@ -15,7 +15,6 @@ import {
 } from 'lucide-react';
 import ContextAwareNavigation from '@/components/Navigation/ContextAwareNavigation';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { elevatedDarkTheme } from '@/lib/theme';
 import '@/app/globals.css';
 
 const BlogPostClient = ({ post }) => {
@@ -42,18 +41,19 @@ const BlogPostClient = ({ post }) => {
   const articleRef = useRef(null);
 
   const currentTheme = isDarkMode ? {
-    bg: elevatedDarkTheme.bg,
-    elevated: elevatedDarkTheme.elevated,
-    card: elevatedDarkTheme.surface,
-    text: elevatedDarkTheme.text,
-    muted: elevatedDarkTheme.muted,
-    subtle: elevatedDarkTheme.subtle,
-    faint: elevatedDarkTheme.faint,
-    border: elevatedDarkTheme.border,
-    divider: elevatedDarkTheme.divider,
-    accent: elevatedDarkTheme.accent,
-    accentLight: elevatedDarkTheme.accent,
-    accentDark: elevatedDarkTheme.accentHover,
+    // Enhanced dark theme optimized for long-form reading
+    bg: '#121215',           // Softer than pitch black for extended reading
+    elevated: '#1a1a1f',     // Better card separation
+    card: '#1f1f24',         // Clear content hierarchy
+    text: '#f5f5f5',        // Reduced eye strain vs pure white
+    muted: 'rgba(245, 245, 245, 0.7)',
+    subtle: 'rgba(245, 245, 245, 0.5)',
+    faint: 'rgba(245, 245, 245, 0.3)',
+    border: 'rgba(255, 255, 255, 0.1)',
+    divider: 'rgba(255, 255, 255, 0.06)',
+    accent: '#8b5cf6',
+    accentLight: '#a78bfa',
+    accentDark: '#7c3aed',
     success: '#10b981',
     warning: '#f59e0b',
     error: '#ef4444',

@@ -127,28 +127,32 @@ const NewHomepageElevated = () => {
         zIndex: 0
       }} />
 
-      {/* Hero Section - Elevated Dark Design */}
+      {/* Hero Section - Unified with Header */}
       <section style={{ 
         minHeight: isMobile ? 'auto' : '100vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        // Sophisticated gradient - lighter and more nuanced
+        // Extended gradient that starts from the very top
         background: `
           ${elevatedTheme.ambientGlow},
           linear-gradient(180deg, 
-            rgba(31, 31, 35, 0.3) 0%,      /* Much lighter top */
-            rgba(24, 24, 27, 0.7) 30%,     /* Gradual transition */
-            ${elevatedTheme.bg} 60%)       /* Solid elevated dark */
+            rgba(24, 24, 27, 0.15) 0px,     /* Subtle scrim for text legibility */
+            rgba(24, 24, 27, 0.1) 40px,     
+            rgba(31, 31, 35, 0.05) 80px,    /* Very subtle fade */
+            rgba(31, 31, 35, 0.2) 120px,    /* Behind header area */
+            rgba(24, 24, 27, 0.7) 30%,      /* Gradual transition */
+            ${elevatedTheme.bg} 60%)        /* Solid elevated dark */
         `,
-        // Enhanced padding for premium breathing room
-        paddingTop: `clamp(${
-          isTinyMobile ? '9rem' :
-          isSmallMobile ? '9.5rem' :
-          isMobile ? '10rem' :
-          isTablet ? '11rem' :
-          '12rem'
-        }, 15vh, 14rem)`,
+        // Hero extends to top of viewport
+        marginTop: '-80px',  // Pull up under header
+        paddingTop: `calc(80px + clamp(${
+          isTinyMobile ? '10rem' :
+          isSmallMobile ? '10.5rem' :
+          isMobile ? '11rem' :
+          isTablet ? '12rem' :
+          '13rem'
+        }, 15vh, 15rem))`,  // Add back header height plus content padding
         paddingBottom: `clamp(${isMobile ? '2.5rem' : '3.5rem'}, 6vh, 5.5rem)`,
         paddingLeft: `clamp(1rem, 5vw, 4rem)`,
         paddingRight: `clamp(1rem, 5vw, 4rem)`,

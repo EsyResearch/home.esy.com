@@ -221,14 +221,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
     },
     searchWrapper: {
       position: 'relative' as const,
-      backgroundColor: searchFocused ? 'rgba(10, 10, 15, 0.9)' : 'rgba(22, 22, 31, 0.6)',
-      border: `1px solid ${searchFocused ? 'rgba(139, 92, 246, 0.3)' : 'rgba(255, 255, 255, 0.1)'}`,
+      backgroundColor: searchFocused ? 'rgba(31, 31, 35, 0.95)' : 'rgba(31, 31, 35, 0.7)',  // More elevated & visible
+      border: `1px solid ${searchFocused ? 'rgba(139, 92, 246, 0.4)' : 'rgba(255, 255, 255, 0.12)'}`,  // Stronger border
       borderRadius: isMobile ? '12px' : '16px',
       transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       overflow: 'hidden' as const,
       boxShadow: searchFocused 
-        ? `0 0 0 ${isMobile ? '2px' : '3px'} rgba(139, 92, 246, 0.2), 0 ${isMobile ? '12px' : '20px'} ${isMobile ? '24px' : '40px'} rgba(139, 92, 246, 0.1)` 
-        : `0 ${isMobile ? '4px' : '8px'} ${isMobile ? '16px' : '24px'} rgba(0, 0, 0, 0.15)`,
+        ? `0 0 0 ${isMobile ? '2px' : '3px'} rgba(139, 92, 246, 0.25), 0 ${isMobile ? '12px' : '20px'} ${isMobile ? '24px' : '40px'} rgba(139, 92, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)` 
+        : `0 ${isMobile ? '4px' : '8px'} ${isMobile ? '16px' : '24px'} rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.03)`,  // Always elevated
       backdropFilter: 'blur(20px)',
       WebkitBackdropFilter: 'blur(20px)'
     },

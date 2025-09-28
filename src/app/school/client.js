@@ -128,14 +128,15 @@ const EsySchool = () => {
       alignItems: 'center',
       gap: '0.375rem',
       padding: '0.375rem 0.875rem',
-      backgroundColor: 'rgba(139, 92, 246, 0.1)',
-      border: '1px solid rgba(139, 92, 246, 0.2)',
+      backgroundColor: 'rgba(139, 92, 246, 0.15)',  // Increased opacity for better contrast
+      border: '1px solid rgba(139, 92, 246, 0.25)',  // Slightly more visible border
       borderRadius: '20px',
       fontSize: '0.75rem',
       fontWeight: '500',
       letterSpacing: '0.05em',
       textTransform: 'uppercase',
-      color: '#8b5cf6'
+      color: '#a78bfa',  // Lighter purple for better readability
+      boxShadow: '0 2px 8px rgba(139, 92, 246, 0.15)'  // Subtle glow
     },
     badgeDot: {
       width: '6px',
@@ -205,11 +206,13 @@ const EsySchool = () => {
       gap: '0.75rem'
     },
     featureCard: {
-      backgroundColor: 'rgba(22, 22, 31, 0.8)',
+      backgroundColor: 'rgba(31, 31, 35, 0.8)',  // Slightly elevated
       border: '1px solid rgba(255, 255, 255, 0.08)',
       borderRadius: '10px',
       padding: '1rem',
-      backdropFilter: 'blur(10px)'
+      backdropFilter: 'blur(10px)',
+      transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+      cursor: 'pointer'
     },
     featureTitle: {
       fontFamily: 'Literata, Georgia, serif',
@@ -301,14 +304,15 @@ const EsySchool = () => {
       gap: '2rem'
     },
     articleCard: {
-      backgroundColor: '#16161f',
+      backgroundColor: elevatedDarkTheme.elevated,  // Use elevated theme color
       borderRadius: '12px',
       overflow: 'hidden',
-      transition: 'all 0.3s ease',
+      transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       cursor: 'pointer',
-      border: '1px solid transparent',
+      border: '1px solid rgba(255, 255, 255, 0.05)',
       display: viewMode === 'list' ? 'flex' : 'block',
-      gap: viewMode === 'list' ? '2rem' : '0'
+      gap: viewMode === 'list' ? '2rem' : '0',
+      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.2)'
     },
     articleImage: {
       width: viewMode === 'list' ? '240px' : '100%',
@@ -571,19 +575,61 @@ const EsySchool = () => {
           </div>
 
           <div style={styles.heroRight}>
-            <div style={styles.featureCard}>
+            <div 
+              style={styles.featureCard}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.2)';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(139, 92, 246, 0.1), 0 2px 8px rgba(0, 0, 0, 0.2)';
+                e.currentTarget.style.backgroundColor = 'rgba(39, 39, 42, 0.9)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.backgroundColor = 'rgba(31, 31, 35, 0.8)';
+              }}
+            >
               <h3 style={styles.featureTitle}>AI Agent Workflows</h3>
               <p style={styles.featureDescription}>
                 Learn to build and deploy AI agents that research, outline, and draft essays with academic rigor.
               </p>
             </div>
-            <div style={styles.featureCard}>
+            <div 
+              style={styles.featureCard}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.2)';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(139, 92, 246, 0.1), 0 2px 8px rgba(0, 0, 0, 0.2)';
+                e.currentTarget.style.backgroundColor = 'rgba(39, 39, 42, 0.9)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.backgroundColor = 'rgba(31, 31, 35, 0.8)';
+              }}
+            >
               <h3 style={styles.featureTitle}>Prompt Engineering</h3>
               <p style={styles.featureDescription}>
                 Master the art of crafting <Link href="/prompt-library" style={{ color: '#8b5cf6', textDecoration: 'underline', textUnderlineOffset: '0.2em' }}>prompts</Link> that generate scholarly content, citations, and critical analysis.
               </p>
             </div>
-            <div style={styles.featureCard}>
+            <div 
+              style={styles.featureCard}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.2)';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(139, 92, 246, 0.1), 0 2px 8px rgba(0, 0, 0, 0.2)';
+                e.currentTarget.style.backgroundColor = 'rgba(39, 39, 42, 0.9)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.backgroundColor = 'rgba(31, 31, 35, 0.8)';
+              }}
+            >
               <h3 style={styles.featureTitle}>Research Automation</h3>
               <p style={styles.featureDescription}>
                 Discover how to use AI to find sources, synthesize literature, and build compelling arguments.
@@ -659,10 +705,14 @@ const EsySchool = () => {
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
                   e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(139, 92, 246, 0.15), 0 4px 12px rgba(0, 0, 0, 0.3)';
+                  e.currentTarget.style.backgroundColor = elevatedDarkTheme.surface;
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'transparent';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.05)';
                   e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.2)';
+                  e.currentTarget.style.backgroundColor = elevatedDarkTheme.elevated;
                 }}
               >
                 <div style={styles.articleImage}>

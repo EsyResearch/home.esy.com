@@ -137,16 +137,60 @@ export default function Navigation ({
     useEffect(() => {
       const handleScroll = () => {
         const nav = document.getElementById('nav');
-        if (window.scrollY > 100) {
-          // More opaque and darker when scrolled
+        const navInner = nav?.querySelector('.nav-inner');
+        const scrollY = window.scrollY;
+        
+        if (scrollY === 0) {
+          // Completely transparent - unified with hero
+          nav.style.background = 'transparent';
+          nav.style.boxShadow = 'none';
+          nav.style.borderBottom = 'none';
+          nav.style.backdropFilter = 'none';
+          nav.style.webkitBackdropFilter = 'none';
+          // Enhanced text shadows for legibility
+          if (navInner) {
+            navInner.style.textShadow = '0 2px 4px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3)';
+          }
+        } else if (scrollY < 50) {
+          // Progressive fade-in of header
+          const progress = scrollY / 50;
+          nav.style.background = `rgba(31, 31, 35, ${progress * 0.85})`;
+          nav.style.boxShadow = `0 1px 3px rgba(0, 0, 0, ${progress * 0.2})`;
+          nav.style.borderBottom = `1px solid rgba(255, 255, 255, ${progress * 0.1})`;
+          nav.style.backdropFilter = `blur(${progress * 20}px)`;
+          nav.style.webkitBackdropFilter = `blur(${progress * 20}px)`;
+          // Gradually reduce text shadow as background appears
+          if (navInner) {
+            const shadowOpacity = 1 - (progress * 0.5);
+            navInner.style.textShadow = `0 2px 4px rgba(0, 0, 0, ${shadowOpacity * 0.5}), 0 4px 12px rgba(0, 0, 0, ${shadowOpacity * 0.3})`;
+          }
+        } else if (scrollY < 100) {
+          // Transition to full header
+          nav.style.background = 'rgba(31, 31, 35, 0.85)';
+          nav.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.2)';
+          nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+          nav.style.backdropFilter = 'blur(20px)';
+          nav.style.webkitBackdropFilter = 'blur(20px)';
+          // Minimal text shadow
+          if (navInner) {
+            navInner.style.textShadow = '0 1px 2px rgba(0, 0, 0, 0.2)';
+          }
+        } else {
+          // Fully scrolled - maximum elevation
           nav.style.background = 'rgba(24, 24, 27, 0.98)';
           nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(0, 0, 0, 0.5)';
-        } else {
-          // Elevated and distinct at top
-          nav.style.background = 'rgba(31, 31, 35, 0.85)';
-          nav.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.5)';
+          nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+          nav.style.backdropFilter = 'blur(20px) saturate(150%)';
+          nav.style.webkitBackdropFilter = 'blur(20px) saturate(150%)';
+          // Minimal text shadow
+          if (navInner) {
+            navInner.style.textShadow = '0 1px 2px rgba(0, 0, 0, 0.2)';
+          }
         }
       };
+      
+      // Set initial state
+      handleScroll();
   
       window.addEventListener('scroll', handleScroll);
       return () => window.removeEventListener('scroll', handleScroll);
