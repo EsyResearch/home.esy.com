@@ -6,6 +6,7 @@ import GlossaryGrid from '@/components/Glossary/GlossaryGrid';
 import GlossarySidebar from '@/components/Glossary/GlossarySidebar';
 import { Theme, GlossaryTerm, GlossaryCategory, TermOfDay, CategoryType } from '@/types';
 import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
+import { elevatedDarkTheme } from '@/lib/theme';
 
 const GlossaryPage = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -39,16 +40,7 @@ const GlossaryPage = () => {
     };
   }, [setShowHeaderSearch]);
 
-  const currentTheme: Theme = {
-    bg: '#0a0a0f',
-    elevated: '#16161f',
-    text: '#ffffff',
-    muted: 'rgba(255, 255, 255, 0.7)',
-    subtle: 'rgba(255, 255, 255, 0.5)',
-    faint: 'rgba(255, 255, 255, 0.3)',
-    border: 'rgba(255, 255, 255, 0.05)',
-    accent: '#8b5cf6'
-  };
+  const currentTheme: Theme = elevatedDarkTheme as Theme;
 
   // Metrics summary
   const metrics = {

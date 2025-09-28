@@ -11,6 +11,7 @@ import ShareSection from '@/components/SchoolArticle/ShareSection';
 import RelatedArticles from '@/components/SchoolArticle/RelatedArticles';
 import SchoolNewsletter from '@/components/School/SchoolNewsletter';
 import { articleContentStyles as styles } from '@/components/SchoolArticle/articleStyles';
+import { elevatedDarkTheme } from '@/lib/theme';
 
 export default function UnderstandingLLMsArticle() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -62,25 +63,25 @@ export default function UnderstandingLLMsArticle() {
   };
 
   const theme = isDarkMode ? {
-    // Dark theme (School default)
-    bg: '#0a0a0f',
+    // Elevated Dark theme
+    bg: elevatedDarkTheme.bg,
     contentBg: 'transparent',
-    text: 'rgba(255, 255, 255, 0.9)',
-    textMuted: 'rgba(255, 255, 255, 0.7)',
-    textSubtle: 'rgba(255, 255, 255, 0.5)',
-    heading: '#ffffff',
-    border: 'rgba(139, 92, 246, 0.15)',
-    accent: '#8b5cf6',
-    accentLight: '#a78bfa',
-    accentBg: 'rgba(139, 92, 246, 0.1)',
-    accentBorder: 'rgba(139, 92, 246, 0.3)',
-    codeBg: '#16161f',
-    codeBorder: 'rgba(255, 255, 255, 0.1)',
-    calloutBg: 'rgba(139, 92, 246, 0.1)',
-    calloutBorder: '#8b5cf6',
-    buttonBg: 'rgba(139, 92, 246, 0.1)',
-    buttonHoverBg: 'rgba(139, 92, 246, 0.2)',
-    headerBg: 'rgba(10, 10, 15, 0.95)',
+    text: elevatedDarkTheme.text,
+    textMuted: elevatedDarkTheme.muted,
+    textSubtle: elevatedDarkTheme.subtle,
+    heading: elevatedDarkTheme.text,
+    border: elevatedDarkTheme.borderSubtle,
+    accent: elevatedDarkTheme.accent,
+    accentLight: elevatedDarkTheme.accent,
+    accentBg: elevatedDarkTheme.accentGlow,
+    accentBorder: `1px solid ${elevatedDarkTheme.accent}`,
+    codeBg: elevatedDarkTheme.elevated,
+    codeBorder: elevatedDarkTheme.border,
+    calloutBg: elevatedDarkTheme.accentGlow,
+    calloutBorder: elevatedDarkTheme.accent,
+    buttonBg: elevatedDarkTheme.accentGlow,
+    buttonHoverBg: 'rgba(167, 139, 250, 0.2)',
+    headerBg: 'rgba(24, 24, 27, 0.95)',
   } : {
     // Light theme
     bg: '#ffffff',

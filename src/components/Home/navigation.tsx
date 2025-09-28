@@ -138,9 +138,13 @@ export default function Navigation ({
       const handleScroll = () => {
         const nav = document.getElementById('nav');
         if (window.scrollY > 100) {
-          nav.style.background = 'rgba(10, 10, 15, 0.95)';
+          // More opaque and darker when scrolled
+          nav.style.background = 'rgba(24, 24, 27, 0.98)';
+          nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(0, 0, 0, 0.5)';
         } else {
-          nav.style.background = 'rgba(10, 10, 15, 1)';
+          // Elevated and distinct at top
+          nav.style.background = 'rgba(31, 31, 35, 0.85)';
+          nav.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.5)';
         }
       };
   

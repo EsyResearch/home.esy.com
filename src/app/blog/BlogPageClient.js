@@ -15,6 +15,7 @@ import SearchBar from '@/components/SearchBar/SearchBar';
 import { useBlogSearch } from '@/hooks/useBlogSearch';
 import ContextAwareNavigation from '@/components/Navigation/ContextAwareNavigation';
 import SchoolNewsletter from '@/components/School/SchoolNewsletter';
+import { elevatedDarkTheme } from '@/lib/theme';
 import '@/app/globals.css';
 
 const BlogPageClient = ({ allPosts, featuredPost }) => {
@@ -25,17 +26,7 @@ const BlogPageClient = ({ allPosts, featuredPost }) => {
   const [showHeaderSearch, setShowHeaderSearch] = useState(false);
   const searchBarRef = useRef(null);
 
-  const currentTheme = {
-    bg: '#0a0a0f',
-    elevated: '#16161f',
-    text: '#ffffff',
-    muted: 'rgba(255, 255, 255, 0.7)',
-    subtle: 'rgba(255, 255, 255, 0.5)',
-    faint: 'rgba(255, 255, 255, 0.3)',
-    border: 'rgba(255, 255, 255, 0.08)',
-    divider: 'rgba(255, 255, 255, 0.05)',
-    accent: '#8b5cf6'
-  };
+  const currentTheme = elevatedDarkTheme;
 
   // Enhanced responsive breakpoints
   const isMobile = windowWidth < 768;

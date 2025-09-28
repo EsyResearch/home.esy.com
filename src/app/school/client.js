@@ -9,6 +9,7 @@ import { StructuredLearningPaths, EssentialResources } from '@/components/School
 import SchoolNewsletter from '@/components/School/SchoolNewsletter';
 import { useSchoolSearch } from '@/hooks/useSchoolSearch';
 import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
+import { elevatedDarkTheme } from '@/lib/theme';
 
 const EsySchool = () => {
   const router = useRouter();
@@ -76,8 +77,8 @@ const EsySchool = () => {
   const styles = {
     container: {
       minHeight: '100vh',
-      backgroundColor: '#0a0a0f',
-      color: '#ffffff',
+      backgroundColor: elevatedDarkTheme.bg,
+      color: elevatedDarkTheme.text,
       fontFamily: 'var(--font-inter)',
       lineHeight: 1.6,
       position: 'relative'
@@ -98,9 +99,9 @@ const EsySchool = () => {
       left: 0,
       right: 0,
       zIndex: 1000,
-      backgroundColor: 'rgba(10, 10, 15, 0.85)',
+      backgroundColor: 'rgba(24, 24, 27, 0.85)',
       backdropFilter: 'blur(20px)',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
+      borderBottom: `1px solid ${elevatedDarkTheme.borderSubtle}`
     },
     headerInner: {
       maxWidth: '1400px',
@@ -149,7 +150,7 @@ const EsySchool = () => {
       alignItems: 'center'
     },
     navLink: {
-      color: 'rgba(255, 255, 255, 0.7)',
+      color: elevatedDarkTheme.muted,
       textDecoration: 'none',
       fontSize: '0.9375rem',
       transition: 'color 0.2s ease',

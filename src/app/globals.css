@@ -154,9 +154,10 @@ html {
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(10, 10, 15, 1);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
+  background: rgba(31, 31, 35, 0.85);  /* Elevated from pitch black */
+  backdrop-filter: blur(20px) saturate(150%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);  /* More visible border */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.5);  /* Subtle depth */
   transition: all 0.3s ease;
 }
 
@@ -428,7 +429,8 @@ html {
 
   /* Adjust nav height for mobile */
   .nav {
-    background: rgba(10, 10, 15, 0.98) !important;
+    background: rgba(31, 31, 35, 0.95) !important;  /* Elevated for mobile too */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   /* Mobile CTA adjustments */

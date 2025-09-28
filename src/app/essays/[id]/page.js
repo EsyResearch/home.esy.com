@@ -1,6 +1,7 @@
 import React from 'react';
 import { EssayTemplate } from '@/components/Essays';
 import { getEssayData, getRelatedEssays, getAllEssayIds } from '@/lib/essays';
+import { elevatedDarkTheme } from '@/lib/theme';
 
 export async function generateStaticParams() {
   return await getAllEssayIds();
@@ -14,8 +15,8 @@ export default async function EssayDetailPage({ params }) {
     return (
       <div style={{ 
         minHeight: '100vh', 
-        backgroundColor: '#0a0a0f',
-        color: '#ffffff',
+        backgroundColor: elevatedDarkTheme.bg,
+        color: elevatedDarkTheme.text,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import ContextAwareNavigation from '@/components/Navigation/ContextAwareNavigation';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import { elevatedDarkTheme } from '@/lib/theme';
 import '@/app/globals.css';
 
 const BlogPostClient = ({ post }) => {
@@ -41,18 +42,18 @@ const BlogPostClient = ({ post }) => {
   const articleRef = useRef(null);
 
   const currentTheme = isDarkMode ? {
-    bg: '#0a0a0f',
-    elevated: '#16161f',
-    card: '#1a1a24',
-    text: '#ffffff',
-    muted: 'rgba(255, 255, 255, 0.7)',
-    subtle: 'rgba(255, 255, 255, 0.5)',
-    faint: 'rgba(255, 255, 255, 0.3)',
-    border: 'rgba(255, 255, 255, 0.08)',
-    divider: 'rgba(255, 255, 255, 0.05)',
-    accent: '#8b5cf6',
-    accentLight: '#a78bfa',
-    accentDark: '#7c3aed',
+    bg: elevatedDarkTheme.bg,
+    elevated: elevatedDarkTheme.elevated,
+    card: elevatedDarkTheme.surface,
+    text: elevatedDarkTheme.text,
+    muted: elevatedDarkTheme.muted,
+    subtle: elevatedDarkTheme.subtle,
+    faint: elevatedDarkTheme.faint,
+    border: elevatedDarkTheme.border,
+    divider: elevatedDarkTheme.divider,
+    accent: elevatedDarkTheme.accent,
+    accentLight: elevatedDarkTheme.accent,
+    accentDark: elevatedDarkTheme.accentHover,
     success: '#10b981',
     warning: '#f59e0b',
     error: '#ef4444',

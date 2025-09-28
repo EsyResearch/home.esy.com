@@ -8,6 +8,7 @@ import SearchBar from '@/components/SearchBar/SearchBar';
 import type { SearchResult } from '@/components/SearchBar/SearchBar';
 import { usePromptSearch } from '@/hooks/usePromptSearch';
 import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
+import { elevatedDarkTheme } from '@/lib/theme';
 
 const PromptLibrary = () => {
   const router = useRouter();
@@ -3072,9 +3073,9 @@ Create publishing approach that maximizes content reach while maintaining qualit
 
   const styles = {
     container: {
-      backgroundColor: '#0a0a0f',
+      backgroundColor: elevatedDarkTheme.bg,
       minHeight: '100vh',
-      color: 'white',
+      color: elevatedDarkTheme.text,
       fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
     },
     
@@ -3494,8 +3495,8 @@ Create publishing approach that maximizes content reach while maintaining qualit
       maxWidth: '1200px'
     },
     promptDisplay: {
-      backgroundColor: 'rgba(10, 10, 15, 0.8)',
-      border: '1px solid rgba(255, 255, 255, 0.08)',
+      backgroundColor: elevatedDarkTheme.surface,
+      border: `1px solid ${elevatedDarkTheme.borderSubtle}`,
       borderRadius: '16px',
       padding: '2rem',
       position: 'relative' as const
@@ -3549,8 +3550,8 @@ Create publishing approach that maximizes content reach while maintaining qualit
     
     // Variables Section
     variablesSection: {
-      backgroundColor: 'rgba(22, 22, 31, 0.6)',
-      border: '1px solid rgba(255, 255, 255, 0.08)',
+      backgroundColor: elevatedDarkTheme.elevated,
+      border: `1px solid ${elevatedDarkTheme.borderSubtle}`,
       borderRadius: '16px',
       padding: '2rem'
     },
