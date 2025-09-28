@@ -1,0 +1,187 @@
+/* Elevated Dark Theme System - Esy.com */
+/* Professional dark theme that maintains sophistication while improving readability */
+
+:root {
+  /* Primary Background Colors - Elevated Grays */
+  --dark-base: #18181b;        /* Zinc-900 - Primary background (was #0a0a0f) */
+  --dark-elevated: #27272a;    /* Zinc-800 - Elevated surfaces (was #16161f) */
+  --dark-hover: #3f3f46;       /* Zinc-700 - Interactive states */
+  --dark-border: #52525b;      /* Zinc-600 - Subtle borders */
+  
+  /* Sophisticated Gradient Backgrounds */
+  --gradient-dark-subtle: linear-gradient(180deg, #18181b 0%, #1c1c1f 100%);
+  --gradient-dark-elevated: radial-gradient(
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(139, 92, 246, 0.02) 0%,
+    transparent 100%
+  );
+  
+  /* Text Colors - Softer Whites */
+  --text-primary: #fafafa;     /* Neutral-50 - Main text (was pure #ffffff) */
+  --text-secondary: #e4e4e7;   /* Zinc-200 - Secondary text */
+  --text-muted: #a1a1aa;       /* Zinc-400 - Muted text */
+  --text-subtle: #71717a;      /* Zinc-500 - Subtle text */
+  
+  /* Accent Colors - Premium Purple */
+  --accent-primary: #a78bfa;   /* Violet-400 - Lighter, more accessible */
+  --accent-hover: #8b5cf6;     /* Violet-500 - Current accent */
+  --accent-active: #7c3aed;    /* Violet-600 - Pressed state */
+  --accent-glow: rgba(167, 139, 250, 0.15);
+  
+  /* Surface Elevations for Depth */
+  --surface-0: #18181b;        /* Base level */
+  --surface-1: #1f1f23;        /* Slightly elevated */
+  --surface-2: #27272a;        /* Card level */
+  --surface-3: #2e2e33;        /* Modal level */
+  --surface-4: #363639;        /* Dropdown level */
+}
+
+/* Dark Mode Color Variables for Components */
+.elevated-dark-theme {
+  /* Backgrounds */
+  --bg-primary: var(--dark-base);
+  --bg-secondary: var(--dark-elevated);
+  --bg-tertiary: var(--surface-2);
+  --bg-interactive: var(--surface-3);
+  
+  /* Text Hierarchy */
+  --color-text: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-subtle: var(--text-subtle);
+  
+  /* Interactive Elements */
+  --color-accent: var(--accent-primary);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-active: var(--accent-active);
+  
+  /* Borders & Dividers */
+  --border-default: rgba(63, 63, 70, 0.4);    /* Zinc-700 with opacity */
+  --border-subtle: rgba(63, 63, 70, 0.2);
+  --divider: rgba(63, 63, 70, 0.15);
+}
+
+/* Enhanced Component Styles */
+.elevated-dark-theme {
+  background-color: var(--bg-primary);
+  color: var(--color-text);
+}
+
+/* Hero Section Enhancement */
+.hero-elevated {
+  background: 
+    var(--gradient-dark-elevated),
+    linear-gradient(
+      180deg,
+      rgba(31, 31, 35, 0.4) 0%,     /* Lighter at top */
+      rgba(24, 24, 27, 0.9) 40%,    /* Gradual transition */
+      rgba(24, 24, 27, 1) 80%       /* Solid at bottom */
+    );
+}
+
+/* Card Components */
+.card-elevated {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset,  /* Inner glow */
+    0 10px 40px -10px rgba(0, 0, 0, 0.5);        /* Depth shadow */
+}
+
+/* Navigation Bar */
+.nav-elevated {
+  background: rgba(24, 24, 27, 0.85);
+  backdrop-filter: blur(20px) saturate(150%);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Interactive Elements */
+.button-elevated {
+  background: var(--surface-2);
+  border: 1px solid var(--border-default);
+  color: var(--color-text);
+  transition: all 0.2s ease;
+}
+
+.button-elevated:hover {
+  background: var(--surface-3);
+  border-color: var(--color-accent);
+  box-shadow: 
+    0 0 0 1px var(--accent-glow) inset,
+    0 4px 12px rgba(167, 139, 250, 0.1);
+}
+
+/* Input Fields */
+.input-elevated {
+  background: var(--surface-1);
+  border: 1px solid var(--border-subtle);
+  color: var(--color-text);
+}
+
+.input-elevated:focus {
+  background: var(--surface-2);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* Code Blocks & Editors */
+.code-elevated {
+  background: var(--surface-1);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+/* Subtle Ambient Lighting Effect */
+@keyframes ambientGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.6; }
+}
+
+.ambient-light {
+  position: fixed;
+  pointer-events: none;
+  width: 600px;
+  height: 600px;
+  top: 20%;
+  right: -200px;
+  background: radial-gradient(
+    circle,
+    rgba(139, 92, 246, 0.03) 0%,
+    transparent 70%
+  );
+  filter: blur(60px);
+  animation: ambientGlow 8s ease-in-out infinite;
+}
+
+/* Improved Readability for Body Text */
+.content-elevated {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+.content-elevated h1,
+.content-elevated h2,
+.content-elevated h3 {
+  color: var(--text-primary);
+  font-weight: 400;
+}
+
+/* Sophisticated Scrollbar */
+.elevated-dark-theme::-webkit-scrollbar {
+  width: 12px;
+}
+
+.elevated-dark-theme::-webkit-scrollbar-track {
+  background: var(--surface-0);
+}
+
+.elevated-dark-theme::-webkit-scrollbar-thumb {
+  background: var(--surface-3);
+  border-radius: 6px;
+  border: 3px solid var(--surface-0);
+}
+
+.elevated-dark-theme::-webkit-scrollbar-thumb:hover {
+  background: var(--surface-4);
+}
