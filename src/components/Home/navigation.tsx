@@ -51,9 +51,9 @@ export default function Navigation ({
         let isLight = false;
         const debugInfo: string[] = [];
         
-        // Check body classes - but only if we're on a school page or blog detail page
-        // This prevents global light class from affecting other pages
-        if (pathname?.includes('/school') || pathname?.includes('/blog/')) {
+        // Check body classes - but only if we're on a school page
+        // Blog pages should always use dark theme for header
+        if (pathname?.includes('/school')) {
           const bodyClasses = document.body.className;
           const htmlClasses = document.documentElement.className;
           if (bodyClasses?.includes('light') || htmlClasses?.includes('light')) {
@@ -62,9 +62,9 @@ export default function Navigation ({
           }
         }
         
-        // Check localStorage - but only if we're on a school page or blog detail page
-        // This prevents global theme setting from affecting other pages
-        if (pathname?.includes('/school') || pathname?.includes('/blog/')) {
+        // Check localStorage - but only if we're on a school page
+        // Blog pages should always use dark theme for header
+        if (pathname?.includes('/school')) {
           const storedTheme = localStorage.getItem('theme');
           if (storedTheme === 'light') {
             isLight = true;
@@ -86,8 +86,9 @@ export default function Navigation ({
         //   }
         // }
         
-        // Special check for school pages and blog detail pages with theme toggle
-        if (pathname?.includes('/school') || pathname?.includes('/blog/')) {
+        // Special check for school pages with theme toggle
+        // Blog pages should not use theme toggle for header styling
+        if (pathname?.includes('/school')) {
           const themeToggle = document.querySelector('[aria-label="Toggle theme"]');
           if (themeToggle) {
             const toggleHTML = themeToggle.innerHTML;

@@ -24,7 +24,7 @@ const BlogPostClient = ({ post }) => {
   const [copied, setCopied] = useState(false);
   const [readingProgress, setReadingProgress] = useState(0);
   const [timeSpent, setTimeSpent] = useState(0);
-  const [isDarkMode, setIsDarkMode] = useState(false); // Light mode by default
+  const [isDarkMode, setIsDarkMode] = useState(true); // Dark mode by default for blog
   
   // Update DOM when theme changes (for navigation detection)
   useEffect(() => {
