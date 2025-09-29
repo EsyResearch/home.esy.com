@@ -18,7 +18,7 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import '@/app/globals.css';
 
 const BlogPostClient = ({ post }) => {
-  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+  const [windowWidth, setWindowWidth] = useState(1200); // Default value to avoid hydration mismatch
   const [isLiked, setIsLiked] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -42,8 +42,19 @@ const BlogPostClient = ({ post }) => {
   const [showTableOfContents, setShowTableOfContents] = useState(true);
   const [activeSection, setActiveSection] = useState('');
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [likeCount, setLikeCount] = useState(Math.floor(Math.random() * 500) + 50);
-  const [shareCount] = useState(Math.floor(Math.random() * 200) + 20);
+  const [likeCount, setLikeCount] = useState(0);
+  const [shareCount] = useState(0);
+  
+  // Initialize with random values after hydration to avoid mismatch
+  useEffect(() => {
+    setLikeCount(Math.floor(Math.random() * 500) + 50);
+    setShareCount(Math.floor(Math.random() * 200) + 20);
+    
+    // Set actual window width after hydration
+    if (typeof window !== 'undefined') {
+      setWindowWidth(window.innerWidth);
+    }
+  }, []);
   const [hoveredElement, setHoveredElement] = useState(null);
   const [showShareMenu, setShowShareMenu] = useState(false);
   const [showSettings, setShowSettings] = useState(false);

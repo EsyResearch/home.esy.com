@@ -85,7 +85,7 @@ export const extractSectionsFromContent = (content, fallbackSections = defaultEs
     sections.push({
       id: match[1],
       title: match[2].replace(/<[^>]*>/g, ''), // Remove any HTML tags
-      readTime: Math.floor(Math.random() * 8) + 3 // Estimate read time
+      readTime: 5 // Fixed read time to avoid hydration mismatch
     });
   }
   
