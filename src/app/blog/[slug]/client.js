@@ -43,7 +43,7 @@ const BlogPostClient = ({ post }) => {
   const [activeSection, setActiveSection] = useState('');
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
-  const [shareCount] = useState(0);
+  const [shareCount, setShareCount] = useState(0);
   
   // Initialize with random values after hydration to avoid mismatch
   useEffect(() => {
