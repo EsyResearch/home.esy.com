@@ -18,19 +18,33 @@ export default function PromptEngineeringGuideArticle() {
   const [copiedLink, setCopiedLink] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false); // Default to light for School
+  // Initialize theme based on stored preference or default to light for school articles
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const storedTheme = localStorage.getItem('theme-school');
+      if (storedTheme) {
+        return storedTheme === 'dark';
+      }
+      // Default to light mode for school articles
+      return false;
+    }
+    return false; // Default to light for SSR
+  });
   
   // Update DOM when theme changes
   useEffect(() => {
     if (isDarkMode) {
       document.body.style.backgroundColor = elevatedDarkTheme.bg;
-      document.body.className = document.body.className.replace('light', '');
-      localStorage.setItem('theme', 'dark');
+      document.body.className = document.body.className.replace('light', 'dark');
+      localStorage.setItem('theme-school', 'dark');
     } else {
       document.body.style.backgroundColor = lightTheme.bg;
-      document.body.className = document.body.className + ' light';
-      localStorage.setItem('theme', 'light');
+      document.body.className = document.body.className.replace('dark', 'light');
+      localStorage.setItem('theme-school', 'light');
     }
+    
+    // Trigger navigation theme check
+    window.dispatchEvent(new Event('themechange'));
   }, [isDarkMode]);
   const emailInputRef = useRef(null);
 

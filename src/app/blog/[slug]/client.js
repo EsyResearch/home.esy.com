@@ -24,19 +24,33 @@ const BlogPostClient = ({ post }) => {
   const [copied, setCopied] = useState(false);
   const [readingProgress, setReadingProgress] = useState(0);
   const [timeSpent, setTimeSpent] = useState(0);
-  const [isDarkMode, setIsDarkMode] = useState(true); // Dark mode by default for blog
+  // Initialize theme based on stored preference or default to light for articles
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const storedTheme = localStorage.getItem('theme-blog');
+      if (storedTheme) {
+        return storedTheme === 'dark';
+      }
+      // Default to light mode for blog articles
+      return false;
+    }
+    return false; // Default to light for SSR
+  });
   
   // Update DOM when theme changes (for navigation detection)
   useEffect(() => {
     if (isDarkMode) {
       document.body.style.backgroundColor = '#121215'; // Enhanced dark theme
-      document.body.className = document.body.className.replace('light', '');
-      localStorage.setItem('theme', 'dark');
+      document.body.className = document.body.className.replace('light', 'dark');
+      localStorage.setItem('theme-blog', 'dark');
     } else {
       document.body.style.backgroundColor = '#ffffff'; // Light theme
-      document.body.className = document.body.className + ' light';
-      localStorage.setItem('theme', 'light');
+      document.body.className = document.body.className.replace('dark', 'light');
+      localStorage.setItem('theme-blog', 'light');
     }
+    
+    // Trigger navigation theme check
+    window.dispatchEvent(new Event('themechange'));
   }, [isDarkMode]);
   const [fontSize, setFontSize] = useState('medium');
   const [showTableOfContents, setShowTableOfContents] = useState(true);

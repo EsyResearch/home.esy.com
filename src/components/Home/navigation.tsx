@@ -44,60 +44,81 @@ export default function Navigation ({
     const [modalSource, setModalSource] = useState<'nav-tips' | 'nav-school' | 'other'>('other');
     const [isLightMode, setIsLightMode] = useState(false);
 
-    // Detect theme from various sources
+    // Detect theme from various sources with page-specific logic
     useEffect(() => {
       const checkTheme = () => {
-        // Enhanced theme detection with debugging
+        // Enhanced theme detection with page-specific storage
         let isLight = false;
         const debugInfo: string[] = [];
         
-        // Check body classes - but only if we're on a school page
-        // Blog pages should always use dark theme for header
-        if (pathname?.includes('/school')) {
+        // Determine the current section for theme application
+        const isSchoolPage = pathname?.includes('/school');
+        const isBlogPage = pathname?.includes('/blog');
+        const hasThemeToggle = isSchoolPage || isBlogPage;
+        
+        if (hasThemeToggle) {
+          // Get the section-specific theme key
+          const sectionKey = isSchoolPage ? 'school' : 'blog';
+          const themeStorageKey = `theme-${sectionKey}`;
+          
+          // Check localStorage for section-specific theme
+          const storedTheme = localStorage.getItem(themeStorageKey);
+          
+          if (storedTheme === 'light') {
+            // User has explicitly set light mode for this section
+            isLight = true;
+            debugInfo.push(`localStorage-${sectionKey}`);
+          } else if (storedTheme === 'dark') {
+            // User has explicitly set dark mode for this section
+            isLight = false;
+            debugInfo.push(`localStorage-${sectionKey}-dark`);
+          } else {
+            // No stored preference, use defaults
+            // School and blog articles default to light mode
+            if (isSchoolPage && pathname !== '/school') {
+              // School articles default to light
+              isLight = true;
+              debugInfo.push('default-school-light');
+            } else if (isBlogPage && pathname !== '/blog' && !pathname.endsWith('/blog/')) {
+              // Blog articles default to light
+              isLight = true;
+              debugInfo.push('default-blog-light');
+            } else {
+              // Index pages and other pages default to dark
+              isLight = false;
+              debugInfo.push('default-dark');
+            }
+          }
+          
+          // Check body classes as override (for real-time toggle updates)
           const bodyClasses = document.body.className;
           const htmlClasses = document.documentElement.className;
           if (bodyClasses?.includes('light') || htmlClasses?.includes('light')) {
             isLight = true;
-            debugInfo.push('class-based');
+            debugInfo.push('class-override');
+          } else if (bodyClasses?.includes('dark') || htmlClasses?.includes('dark')) {
+            isLight = false;
+            debugInfo.push('class-override-dark');
           }
-        }
-        
-        // Check localStorage - but only if we're on a school page
-        // Blog pages should always use dark theme for header
-        if (pathname?.includes('/school')) {
-          const storedTheme = localStorage.getItem('theme');
-          if (storedTheme === 'light') {
-            isLight = true;
-            debugInfo.push('localStorage');
-          }
-        }
-        
-        // DISABLED: Background color detection was too aggressive
-        // const bgColor = window.getComputedStyle(document.body).backgroundColor;
-        // const bgColorRgb = bgColor.match(/\d+/g);
-        // if (bgColorRgb) {
-        //   const r = parseInt(bgColorRgb[0]);
-        //   const g = parseInt(bgColorRgb[1]);
-        //   const b = parseInt(bgColorRgb[2]);
-        //   const avg = (r + g + b) / 3;
-        //   if (avg > 200) {
-        //     isLight = true;
-        //     debugInfo.push(`bg-color(${r},${g},${b})`);
-        //   }
-        // }
-        
-        // Special check for school pages with theme toggle
-        // Blog pages should not use theme toggle for header styling
-        if (pathname?.includes('/school')) {
+          
+          // Check theme toggle button state for real-time updates
           const themeToggle = document.querySelector('[aria-label="Toggle theme"]');
           if (themeToggle) {
             const toggleHTML = themeToggle.innerHTML;
-            // Sun icon visible = light mode active
+            // Moon icon visible = dark mode active (user sees moon to switch to dark)
+            // Sun icon visible = light mode active (user sees sun to switch to light)
             if (toggleHTML?.includes('M12 3v1m0') || toggleHTML?.includes('Sun')) {
               isLight = true;
-              debugInfo.push('toggle-sun-icon');
+              debugInfo.push('toggle-light');
+            } else if (toggleHTML?.includes('M12 2v2') || toggleHTML?.includes('Moon')) {
+              isLight = false;
+              debugInfo.push('toggle-dark');
             }
           }
+        } else {
+          // Pages without theme toggle always use dark mode
+          isLight = false;
+          debugInfo.push('no-toggle-dark');
         }
         
         console.log(`[Navigation Theme] isLight: ${isLight}, detected via: ${debugInfo.join(', ') || 'none'}, path: ${pathname}`);
@@ -205,6 +226,13 @@ export default function Navigation ({
       };
       document.addEventListener('click', handleClick);
       
+      // Listen for custom theme change events
+      const handleThemeChange = () => {
+        checkTheme();
+        window.dispatchEvent(new Event('scroll'));
+      };
+      window.addEventListener('themechange', handleThemeChange);
+      
       // Also check on pathname changes
       const timeoutId = setTimeout(() => {
         checkTheme();
@@ -215,6 +243,7 @@ export default function Navigation ({
         observer.disconnect();
         clearTimeout(timeoutId);
         document.removeEventListener('click', handleClick);
+        window.removeEventListener('themechange', handleThemeChange);
       };
     }, [pathname]);
 
