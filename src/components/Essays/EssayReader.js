@@ -20,7 +20,7 @@ const EssayReader = ({
   const [linkCopied, setLinkCopied] = useState(false);
   const [showTOC, setShowTOC] = useState(false);
   const [fontSize, setFontSize] = useState('default');
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light');
   const [activeSection, setActiveSection] = useState('introduction');
   
   const contentRef = useRef(null);
