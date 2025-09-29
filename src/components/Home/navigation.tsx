@@ -313,7 +313,9 @@ export default function Navigation ({
     useEffect(() => {
       const handleScroll = () => {
         const nav = document.getElementById('nav');
-        const navInner = nav?.querySelector('.nav-inner');
+        if (!nav) return; // Guard clause if nav doesn't exist yet
+        
+        const navInner = nav.querySelector('.nav-inner');
         const scrollY = window.scrollY;
         const isHomepage = pathname === '/' || pathname === '';
         const isBlogPage = pathname === '/blog';
@@ -431,9 +433,17 @@ export default function Navigation ({
       
       // Set initial state
       handleScroll();
+      
+      // Force re-check when pathname changes
+      const timeoutId = setTimeout(() => {
+        handleScroll();
+      }, 50);
   
       window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+        clearTimeout(timeoutId);
+      };
     }, [pathname, isLightMode]);
 
   
