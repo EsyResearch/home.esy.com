@@ -51,43 +51,40 @@ export default function Navigation ({
         let isLight = false;
         const debugInfo: string[] = [];
         
-        // Determine the current section for theme application
-        const isSchoolPage = pathname?.includes('/school');
-        const isBlogPage = pathname?.includes('/blog');
-        const hasThemeToggle = isSchoolPage || isBlogPage;
+        // CRITICAL: Only apply theme to pages that ACTUALLY have theme toggles
+        // Index pages (/school, /blog) NEVER have toggles and should ALWAYS be dark
+        
+        // Normalize pathname to handle trailing slashes
+        const normalizedPath = pathname?.endsWith('/') && pathname.length > 1 
+          ? pathname.slice(0, -1) 
+          : pathname || '';
+        
+        // Determine if current page has a theme toggle
+        // Only article pages have toggles, NOT index pages
+        const isSchoolArticle = normalizedPath.includes('/school/articles/');
+        const isBlogArticle = normalizedPath.includes('/blog/') && normalizedPath !== '/blog';
+        const hasThemeToggle = isSchoolArticle || isBlogArticle;
         
         if (hasThemeToggle) {
-          // Get the section-specific theme key
-          const sectionKey = isSchoolPage ? 'school' : 'blog';
+          // Only article pages can have theme preferences
+          const sectionKey = isSchoolArticle ? 'school' : 'blog';
           const themeStorageKey = `theme-${sectionKey}`;
           
           // Check localStorage for section-specific theme
           const storedTheme = localStorage.getItem(themeStorageKey);
           
           if (storedTheme === 'light') {
-            // User has explicitly set light mode for this section
+            // User has explicitly set light mode for this section's articles
             isLight = true;
             debugInfo.push(`localStorage-${sectionKey}`);
           } else if (storedTheme === 'dark') {
-            // User has explicitly set dark mode for this section
+            // User has explicitly set dark mode for this section's articles
             isLight = false;
             debugInfo.push(`localStorage-${sectionKey}-dark`);
           } else {
-            // No stored preference, use defaults
-            // School and blog articles default to light mode
-            if (isSchoolPage && pathname !== '/school') {
-              // School articles default to light
-              isLight = true;
-              debugInfo.push('default-school-light');
-            } else if (isBlogPage && pathname !== '/blog' && !pathname.endsWith('/blog/')) {
-              // Blog articles default to light
-              isLight = true;
-              debugInfo.push('default-blog-light');
-            } else {
-              // Index pages and other pages default to dark
-              isLight = false;
-              debugInfo.push('default-dark');
-            }
+            // No stored preference - articles default to light
+            isLight = true;
+            debugInfo.push(`default-${sectionKey}-article-light`);
           }
           
           // Check body classes as override (for real-time toggle updates)
@@ -116,12 +113,13 @@ export default function Navigation ({
             }
           }
         } else {
-          // Pages without theme toggle always use dark mode
+          // Pages without theme toggle ALWAYS use dark mode
+          // This includes /school index, /blog index, and all other pages
           isLight = false;
-          debugInfo.push('no-toggle-dark');
+          debugInfo.push('no-toggle-always-dark');
         }
         
-        console.log(`[Navigation Theme] isLight: ${isLight}, detected via: ${debugInfo.join(', ') || 'none'}, path: ${pathname}`);
+        console.log(`[Navigation Theme] isLight: ${isLight}, hasToggle: ${hasThemeToggle}, detected via: ${debugInfo.join(', ') || 'none'}, path: ${normalizedPath}`);
         setIsLightMode(isLight);
         
         // Update nav link and logo colors based on theme
@@ -353,25 +351,23 @@ export default function Navigation ({
           : pathname || '';
         
         const isHomepage = normalizedPath === '/' || normalizedPath === '';
-        const isBlogPage = normalizedPath === '/blog';
-        const shouldBeTransparent = isHomepage || isBlogPage;
+        const isBlogIndexPage = normalizedPath === '/blog';
+        const shouldBeTransparent = isHomepage || isBlogIndexPage;
         
         if (scrollY === 0) {
           if (shouldBeTransparent) {
-            // Homepage/Blog: Completely transparent - unified with hero
+            // Homepage/Blog index: Completely transparent - unified with hero
             nav.style.background = 'transparent';
             nav.style.boxShadow = 'none';
             nav.style.borderBottom = 'none';
             nav.style.backdropFilter = 'none';
             (nav.style as any).webkitBackdropFilter = 'none';
-            // Text shadows based on theme
+            // Text shadows for visibility - ALWAYS dark mode for blog index
             if (navInner) {
-              (navInner as HTMLElement).style.textShadow = isLightMode 
-                ? 'none'  // No shadow needed on light backgrounds
-                : '0 2px 4px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3)';
+              (navInner as HTMLElement).style.textShadow = '0 2px 4px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3)';
             }
           } else {
-            // Other pages: Theme-aware styling
+            // Other pages: Theme-aware styling (but blog index never gets here)
             if (isLightMode) {
               nav.style.background = 'linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 250, 250, 0.95) 100%)';
               nav.style.boxShadow = lightTheme.shadows?.sm || '0 1px 3px rgba(0, 0, 0, 0.06)';
@@ -390,27 +386,18 @@ export default function Navigation ({
           }
         } else if (scrollY < 50) {
           if (shouldBeTransparent) {
-            // Homepage/Blog: Progressive fade-in of header
+            // Homepage/Blog index: Progressive fade-in of header - ALWAYS DARK
             const progress = scrollY / 50;
-            if (isLightMode) {
-              nav.style.background = `rgba(255, 255, 255, ${progress * 0.98})`;
-              nav.style.boxShadow = `0 1px 3px rgba(0, 0, 0, ${progress * 0.06})`;
-              nav.style.borderBottom = `1px solid rgba(0, 0, 0, ${progress * 0.08})`;
-            } else {
-              nav.style.background = `rgba(31, 31, 35, ${progress * 0.85})`;
-              nav.style.boxShadow = `0 1px 3px rgba(0, 0, 0, ${progress * 0.2})`;
-              nav.style.borderBottom = `1px solid rgba(255, 255, 255, ${progress * 0.1})`;
-            }
+            // Blog index page should ALWAYS show dark navigation when scrolling
+            nav.style.background = `rgba(31, 31, 35, ${progress * 0.85})`;
+            nav.style.boxShadow = `0 1px 3px rgba(0, 0, 0, ${progress * 0.2})`;
+            nav.style.borderBottom = `1px solid rgba(255, 255, 255, ${progress * 0.1})`;
             nav.style.backdropFilter = `blur(${progress * 20}px)`;
-              (nav.style as any).webkitBackdropFilter = `blur(${progress * 20}px)`;
+            (nav.style as any).webkitBackdropFilter = `blur(${progress * 20}px)`;
             // Text shadow handling
             if (navInner) {
-              if (isLightMode) {
-                (navInner as HTMLElement).style.textShadow = 'none';
-              } else {
-                const shadowOpacity = 1 - (progress * 0.5);
-                (navInner as HTMLElement).style.textShadow = `0 2px 4px rgba(0, 0, 0, ${shadowOpacity * 0.5}), 0 4px 12px rgba(0, 0, 0, ${shadowOpacity * 0.3})`;
-              }
+              const shadowOpacity = 1 - (progress * 0.5);
+              (navInner as HTMLElement).style.textShadow = `0 2px 4px rgba(0, 0, 0, ${shadowOpacity * 0.5}), 0 4px 12px rgba(0, 0, 0, ${shadowOpacity * 0.3})`;
             }
           } else {
             // Other pages: Already have full header, just subtle enhancement
@@ -431,14 +418,15 @@ export default function Navigation ({
           }
         } else if (scrollY < 100) {
           // Both homepage and other pages converge to similar style
-          if (isLightMode) {
-            nav.style.background = 'rgba(255, 255, 255, 0.95)';
-            nav.style.boxShadow = lightTheme.shadows?.sm || '0 1px 3px rgba(0, 0, 0, 0.06)';
-            nav.style.borderBottom = `1px solid ${lightTheme.border}`;
-          } else {
+          // Blog index should ALWAYS be dark regardless of theme
+          if (isBlogIndexPage || !isLightMode) {
             nav.style.background = 'rgba(31, 31, 35, 0.85)';
             nav.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.2)';
             nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+          } else if (isLightMode) {
+            nav.style.background = 'rgba(255, 255, 255, 0.95)';
+            nav.style.boxShadow = lightTheme.shadows?.sm || '0 1px 3px rgba(0, 0, 0, 0.06)';
+            nav.style.borderBottom = `1px solid ${lightTheme.border}`;
           }
           nav.style.backdropFilter = 'blur(20px)';
               (nav.style as any).webkitBackdropFilter = 'blur(20px)';
@@ -448,14 +436,15 @@ export default function Navigation ({
             }
         } else {
           // Fully scrolled - maximum elevation
-          if (isLightMode) {
-            nav.style.background = 'rgba(255, 255, 255, 0.98)';
-            nav.style.boxShadow = lightTheme.shadows?.lg || '0 4px 10px rgba(0, 0, 0, 0.1)';
-            nav.style.borderBottom = `1px solid ${lightTheme.border}`;
-          } else {
+          // Blog index should ALWAYS be dark regardless of theme
+          if (isBlogIndexPage || !isLightMode) {
             nav.style.background = 'rgba(24, 24, 27, 0.98)';
             nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(0, 0, 0, 0.5)';
             nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+          } else if (isLightMode) {
+            nav.style.background = 'rgba(255, 255, 255, 0.98)';
+            nav.style.boxShadow = lightTheme.shadows?.lg || '0 4px 10px rgba(0, 0, 0, 0.1)';
+            nav.style.borderBottom = `1px solid ${lightTheme.border}`;
           }
           nav.style.backdropFilter = 'blur(20px) saturate(150%)';
               (nav.style as any).webkitBackdropFilter = 'blur(20px) saturate(150%)';
