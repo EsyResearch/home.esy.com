@@ -55,6 +55,17 @@ const BlogPageClient = ({ allPosts, featuredPost }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Set page data attribute to ensure proper CSS targeting
+  useEffect(() => {
+    document.body.setAttribute('data-page', '/blog');
+    document.documentElement.setAttribute('data-page', '/blog');
+    
+    return () => {
+      document.body.removeAttribute('data-page');
+      document.documentElement.removeAttribute('data-page');
+    };
+  }, []);
+
   // Handle scroll to show/hide HeaderSearch
   useEffect(() => {
     const handleScroll = () => {
@@ -111,11 +122,14 @@ const BlogPageClient = ({ allPosts, featuredPost }) => {
   };
 
   return (
-    <div style={{
-      backgroundColor: currentTheme.bg,
-      color: currentTheme.text,
-      fontFamily: 'var(--font-inter)'
-    }}>
+    <div 
+      data-page="/blog"
+      style={{
+        backgroundColor: currentTheme.bg,
+        color: currentTheme.text,
+        fontFamily: 'var(--font-inter)'
+      }}
+    >
       {/* Context-Aware Navigation with HeaderSearch */}
       <ContextAwareNavigation showHeaderSearch={showHeaderSearch} forceContext="blog" />
       
