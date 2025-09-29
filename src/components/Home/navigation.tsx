@@ -317,8 +317,14 @@ export default function Navigation ({
         
         const navInner = nav.querySelector('.nav-inner');
         const scrollY = window.scrollY;
-        const isHomepage = pathname === '/' || pathname === '';
-        const isBlogPage = pathname === '/blog';
+        
+        // Normalize pathname to handle trailing slashes and undefined states
+        const normalizedPath = pathname?.endsWith('/') && pathname.length > 1 
+          ? pathname.slice(0, -1) 
+          : pathname || '';
+        
+        const isHomepage = normalizedPath === '/' || normalizedPath === '';
+        const isBlogPage = normalizedPath === '/blog';
         const shouldBeTransparent = isHomepage || isBlogPage;
         
         if (scrollY === 0) {
@@ -434,15 +440,21 @@ export default function Navigation ({
       // Set initial state
       handleScroll();
       
-      // Force re-check when pathname changes
+      // Force re-check when pathname changes and after hydration
       const timeoutId = setTimeout(() => {
         handleScroll();
       }, 50);
+      
+      // Additional check after hydration completes
+      const hydrationTimeout = setTimeout(() => {
+        handleScroll();
+      }, 100);
   
       window.addEventListener('scroll', handleScroll);
       return () => {
         window.removeEventListener('scroll', handleScroll);
         clearTimeout(timeoutId);
+        clearTimeout(hydrationTimeout);
       };
     }, [pathname, isLightMode]);
 
