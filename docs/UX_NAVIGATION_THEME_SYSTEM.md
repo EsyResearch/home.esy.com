@@ -24,9 +24,9 @@ Special pages like the blog index use progressive transparency effects that enha
 |-----------|-----------------|----------------|------------|------------------|
 | `/` (Homepage) | ❌ | Transparent→Dark | No | Transparent at top, fades to dark on scroll |
 | `/school` | ❌ | Dark | No | Always dark, no transparency |
-| `/school/articles/*` | ✅ | Light | Yes | User preference stored as `theme-school` |
+| `/school/articles/*` | ✅ | **Light** | Yes | User preference stored as `theme-school` |
 | `/blog` | ❌ | Transparent→Dark | No | Transparent at top, always dark when scrolled |
-| `/blog/[slug]` | ✅ | Light | Yes | User preference stored as `theme-blog` |
+| `/blog/[slug]` | ✅ | **Light** | Yes | User preference stored as `theme-blog` |
 | `/essays/*` | ❌ | Dark | No | Always dark |
 | `/glossary/*` | ❌ | Dark | No | Always dark |
 | Other pages | ❌ | Dark | No | Always dark |
@@ -109,11 +109,11 @@ All Scroll Positions:
 
 ### Flow 1: User Visits School Article
 1. User navigates to `/school/articles/to-kill-a-mockingbird`
-2. Page loads with light theme (default for articles)
+2. Page loads with **light theme by default** (optimized for reading)
 3. Navigation header appears in light mode
 4. User can toggle to dark mode using the theme switch
 5. Preference saved as `theme-school: dark`
-6. All School articles will now default to dark theme
+6. All School articles will now use dark theme
 
 ### Flow 2: User Visits Blog Index
 1. User navigates to `/blog`
@@ -126,9 +126,17 @@ All Scroll Positions:
 ### Flow 3: Cross-Section Navigation
 1. User sets School articles to dark mode
 2. User navigates to Blog article
-3. Blog article loads with light theme (independent preference)
+3. Blog article loads with **light theme by default** (independent preference)
 4. User can set different theme for Blog section
 5. Each section maintains its own preference
+
+### Flow 4: User Visits Blog Article
+1. User navigates to `/blog/future-ai-academic-writing`
+2. Page loads with **light theme by default** (optimized for reading)
+3. Navigation header appears in light mode
+4. User can toggle to dark mode using the theme switch
+5. Preference saved as `theme-blog: dark`
+6. All Blog articles will now use dark theme
 
 ## Technical Implementation Details
 
@@ -169,9 +177,9 @@ All Scroll Positions:
 
 ### Why Section-Specific Themes?
 Different content types benefit from different default themes:
-- **Academic articles**: Light mode reduces eye strain for long reading
-- **Blog posts**: Light mode provides familiar reading experience
-- **Navigation pages**: Dark mode creates premium, focused experience
+- **School articles**: Default to light mode for optimal readability during study
+- **Blog articles**: Default to light mode for comfortable long-form reading
+- **Navigation pages**: Always dark mode for premium, focused experience
 
 ### Why No Toggle on Index Pages?
 Index pages serve as navigation hubs and benefit from consistent appearance:
