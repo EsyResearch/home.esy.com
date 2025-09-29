@@ -428,7 +428,15 @@ export default function Navigation ({
         }
       };
       
-      // Set initial state
+      // Set initial state - ensure blog page starts transparent
+      const isBlogPage = pathname === '/blog';
+      if (isBlogPage && nav) {
+        nav.style.background = 'transparent';
+        nav.style.boxShadow = 'none';
+        nav.style.borderBottom = 'none';
+        nav.style.backdropFilter = 'none';
+        (nav.style as any).webkitBackdropFilter = 'none';
+      }
       handleScroll();
   
       window.addEventListener('scroll', handleScroll);

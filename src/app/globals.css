@@ -166,14 +166,6 @@ html {
               backdrop-filter 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Ensure blog page navigation stays transparent on initial render to prevent hydration mismatch */
-body[data-page="/blog"] .nav,
-html[data-page="/blog"] .nav {
-  background: transparent !important;
-  backdrop-filter: none !important;
-  border-bottom: none !important;
-  box-shadow: none !important;
-}
 
 .nav-inner {
   /* max-width: 1440px; */
