@@ -51,9 +51,9 @@ export default function Navigation ({
         let isLight = false;
         const debugInfo: string[] = [];
         
-        // Check body classes - but only if we're on a school article page or blog detail page
+        // Check body classes - but only if we're on a school page or blog detail page
         // This prevents global light class from affecting other pages
-        if (pathname?.includes('/school/articles') || pathname?.includes('/blog/')) {
+        if (pathname?.includes('/school') || pathname?.includes('/blog/')) {
           const bodyClasses = document.body.className;
           const htmlClasses = document.documentElement.className;
           if (bodyClasses?.includes('light') || htmlClasses?.includes('light')) {
@@ -62,9 +62,9 @@ export default function Navigation ({
           }
         }
         
-        // Check localStorage - but only if we're on a school article page or blog detail page
+        // Check localStorage - but only if we're on a school page or blog detail page
         // This prevents global theme setting from affecting other pages
-        if (pathname?.includes('/school/articles') || pathname?.includes('/blog/')) {
+        if (pathname?.includes('/school') || pathname?.includes('/blog/')) {
           const storedTheme = localStorage.getItem('theme');
           if (storedTheme === 'light') {
             isLight = true;
@@ -86,8 +86,8 @@ export default function Navigation ({
         //   }
         // }
         
-        // Special check for school articles and blog detail pages with theme toggle
-        if (pathname?.includes('/school/articles') || pathname?.includes('/blog/')) {
+        // Special check for school pages and blog detail pages with theme toggle
+        if (pathname?.includes('/school') || pathname?.includes('/blog/')) {
           const themeToggle = document.querySelector('[aria-label="Toggle theme"]');
           if (themeToggle) {
             const toggleHTML = themeToggle.innerHTML;
@@ -428,15 +428,7 @@ export default function Navigation ({
         }
       };
       
-      // Set initial state - ensure blog page starts transparent
-      const isBlogPage = pathname === '/blog';
-      if (isBlogPage && nav) {
-        nav.style.background = 'transparent';
-        nav.style.boxShadow = 'none';
-        nav.style.borderBottom = 'none';
-        nav.style.backdropFilter = 'none';
-        (nav.style as any).webkitBackdropFilter = 'none';
-      }
+      // Set initial state
       handleScroll();
   
       window.addEventListener('scroll', handleScroll);

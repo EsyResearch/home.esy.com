@@ -7,7 +7,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
     <section style={{ 
       position: 'relative',
       paddingTop: isMobile ? '3rem' : isTablet ? '4rem' : '5rem',
-      paddingBottom: isMobile ? '2rem' : isTablet ? '3rem' : '4rem',
+      paddingBottom: '0',
       overflow: 'hidden'
     }}>
       {/* Background Elements */}
