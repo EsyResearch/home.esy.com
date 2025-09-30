@@ -16,7 +16,7 @@ const SideNavigation: React.FC<SideNavigationProps> = ({
   currentTheme, 
   scrollToSection 
 }) => {
-  const sections = ['hero', 'problem', 'principles', 'features', 'transform'];
+  const sections = ['hero', 'problem', 'solution', 'social-proof', 'pricing', 'transform'];
 
   return (
     <aside style={{
