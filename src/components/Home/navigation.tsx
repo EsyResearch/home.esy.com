@@ -20,6 +20,8 @@ export const getPageSuffix = (pathname) => {
     return 'Glossary';
   } else if (pathname?.startsWith('/blog')) {
     return 'Blog';
+  } else if (pathname?.startsWith('/research')) {
+    return 'Research';
   }
   // No suffix for prompt-library
   return '';

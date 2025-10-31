@@ -8,7 +8,6 @@ import {
 } from 'lucide-react';
 import { Theme } from '@/app/research/types';
 import NewsletterSignup from './NewsletterSignup';
-import Logo from './Logo';
 
 interface Article {
   id: number;
@@ -167,53 +166,6 @@ const HomePageClient: React.FC<HomePageClientProps> = ({
       fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
       transition: 'background-color 0.2s ease, color 0.2s ease'
     }}>
-      {/* Research Header */}
-      <div style={{
-        paddingTop: isMobile ? '6rem' : '7rem',
-        paddingBottom: isMobile ? '2rem' : '3rem',
-        paddingLeft: isMobile ? '1.5rem' : isTablet ? '3rem' : '4rem',
-        paddingRight: isMobile ? '1.5rem' : isTablet ? '3rem' : '4rem',
-        borderBottom: `1px solid ${currentTheme.border}`,
-        background: `linear-gradient(180deg, ${currentTheme.bg} 0%, ${currentTheme.elevated}10 100%)`
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          display: 'flex',
-          alignItems: 'center',
-          gap: isMobile ? '1rem' : '1.5rem'
-        }}>
-          <Logo 
-            suffix="Research" 
-            href="/research"
-            size={isMobile ? 48 : 60}
-          />
-          <div style={{
-            flex: 1,
-            paddingLeft: isMobile ? '1rem' : '2rem',
-            borderLeft: `2px solid ${currentTheme.accent}40`
-          }}>
-            <h1 style={{
-              fontSize: isMobile ? '1.25rem' : isTablet ? '1.5rem' : '1.75rem',
-              fontWeight: 300,
-              margin: 0,
-              color: currentTheme.text,
-              letterSpacing: '-0.02em'
-            }}>
-              AI & Machine Learning Research
-            </h1>
-            <p style={{
-              fontSize: isMobile ? '0.875rem' : '1rem',
-              color: currentTheme.muted,
-              margin: '0.5rem 0 0 0',
-              fontWeight: 400
-            }}>
-              Experiments, analysis, and insights from the frontier of artificial intelligence
-            </p>
-          </div>
-        </div>
-      </div>
-
       {/* Hero Feature */}
       <section style={{ 
         position: 'relative',

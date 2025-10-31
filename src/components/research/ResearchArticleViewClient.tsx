@@ -6,7 +6,6 @@ import {
   ArrowLeft, Heart, TrendingUp, Clock, ArrowRight, Sparkles
 } from 'lucide-react';
 import NewsletterSignup from './NewsletterSignup';
-import Logo from './Logo';
 
 interface ArticleViewClientProps {
   frontmatter: {
@@ -159,63 +158,6 @@ const ArticleViewClient: React.FC<ArticleViewClientProps> = ({
         fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
         transition: 'background-color 0.2s ease, color 0.2s ease'
       }}>
-      {/* Research Header */}
-      <div style={{
-        paddingTop: isMobile ? '6rem' : '7rem',
-        paddingBottom: isMobile ? '1.5rem' : '2rem',
-        paddingLeft: isMobile ? '1.5rem' : isTablet ? '3rem' : '4rem',
-        paddingRight: isMobile ? '1.5rem' : isTablet ? '3rem' : '4rem',
-        borderBottom: `1px solid ${currentTheme.border}`,
-        background: `linear-gradient(180deg, ${currentTheme.bg} 0%, ${currentTheme.elevated}10 100%)`
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          display: 'flex',
-          alignItems: 'center',
-          gap: isMobile ? '1rem' : '1.5rem'
-        }}>
-          <Logo 
-            suffix="Research" 
-            href="/research"
-            size={isMobile ? 42 : 52}
-          />
-          <div style={{
-            flex: 1,
-            paddingLeft: isMobile ? '1rem' : '1.5rem',
-            borderLeft: `2px solid ${currentTheme.accent}40`,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between'
-          }}>
-            <h1 style={{
-              fontSize: isMobile ? '1rem' : isTablet ? '1.125rem' : '1.25rem',
-              fontWeight: 300,
-              margin: 0,
-              color: currentTheme.muted,
-              letterSpacing: '-0.01em'
-            }}>
-              AI & Machine Learning Research
-            </h1>
-            <Link 
-              href="/research" 
-              style={{
-                fontSize: isMobile ? '0.875rem' : '1rem',
-                color: currentTheme.accent,
-                textDecoration: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                transition: 'color 0.2s ease'
-              }}
-            >
-              <ArrowLeft size={isMobile ? 14 : 16} />
-              {!isMobile && 'Back to Research'}
-            </Link>
-          </div>
-        </div>
-      </div>
-
       {/* Reading Progress Bar */}
       <div style={{
         position: 'fixed',
@@ -232,6 +174,33 @@ const ArticleViewClient: React.FC<ArticleViewClientProps> = ({
           width: `${readingProgress}%`,
           transition: 'width 0.1s ease'
         }} />
+      </div>
+
+      {/* Back Button */}
+      <div style={{
+        position: 'fixed',
+        top: isMobile ? '5rem' : '6rem',
+        left: isMobile ? '1rem' : '2rem',
+        zIndex: 50
+      }}>
+        <Link href="/research" style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: '0.5rem',
+          color: currentTheme.muted,
+          textDecoration: 'none',
+          fontSize: '0.875rem',
+          fontWeight: 400,
+          transition: 'color 0.2s ease',
+          padding: '0.5rem 0.75rem',
+          borderRadius: '6px',
+          border: `1px solid ${currentTheme.border}`,
+          background: `${currentTheme.elevated}CC`,
+          backdropFilter: 'blur(20px)'
+        }}>
+          <ArrowLeft size={16} />
+          {!isMobile && <span>Back</span>}
+        </Link>
       </div>
 
       {/* Article Hero */}
