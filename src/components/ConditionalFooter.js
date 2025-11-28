@@ -27,6 +27,12 @@ const ConditionalFooter = () => {
     return null;
   }
   
+  // Check if we're on docs pages (they handle their own footer via DocsPageNav)
+  const isDocsPage = normalizedPath?.startsWith('/docs');
+  if (isDocsPage) {
+    return null;
+  }
+  
   // Render the common footer on all other pages
   return <Footer />;
 };
