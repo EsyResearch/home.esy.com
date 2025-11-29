@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { elevatedDarkTheme } from "@/lib/theme";
 import {
   Sparkles,
   Target,
@@ -8,11 +7,22 @@ import {
   CheckCircle,
   ArrowRight,
 } from "lucide-react";
-import {
-  DocsPageNav,
-  DocsCallout,
-  PromptCard,
-} from "@/components/docs";
+import { DocsPageNav, DocsCallout, PromptCard } from "@/components/docs";
+
+// Design system colors from DESIGN_SYSTEM.md
+const colors = {
+  bg: '#18181b',
+  elevated: '#27272a',
+  surface: '#1f1f23',
+  text: '#fafafa',
+  textSecondary: '#e4e4e7',
+  muted: '#a1a1aa',
+  subtle: '#71717a',
+  border: 'rgba(63, 63, 70, 0.4)',
+  accent: '#9f7aea',
+  accentHover: '#8b5cf6',
+  accentLight: '#c4b5fd',
+};
 
 export const metadata: Metadata = {
   title: "Prompt Engineering for Students",
@@ -104,7 +114,7 @@ export default function PromptEngineeringPage() {
           style={{
             background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(236, 72, 153, 0.1) 100%)',
             border: '1px solid rgba(139, 92, 246, 0.3)',
-            color: '#c4b5fd',
+            color: colors.accentLight,
           }}
         >
           <Sparkles className="w-4 h-4" />
@@ -113,27 +123,18 @@ export default function PromptEngineeringPage() {
 
         <h1 
           className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight"
-          style={{ 
-            fontFamily: 'var(--font-literata), Georgia, serif',
-            color: elevatedDarkTheme.text,
-          }}
+          style={{ fontFamily: 'var(--font-literata), Georgia, serif', color: colors.text }}
         >
           Prompt Engineering for Students: The Complete Guide
         </h1>
 
-        <p 
-          className="text-lg mb-6"
-          style={{ color: elevatedDarkTheme.muted }}
-        >
+        <p className="text-lg mb-6" style={{ color: colors.muted }}>
           Learn how to write AI prompts that actually work. This guide covers
           the fundamentals of prompt engineering tailored specifically for
           academic writing, research papers, and essay assignments.
         </p>
 
-        <div 
-          className="flex flex-wrap gap-4 text-sm"
-          style={{ color: elevatedDarkTheme.subtle }}
-        >
+        <div className="flex flex-wrap gap-4 text-sm" style={{ color: colors.subtle }}>
           <span>📚 15 min read</span>
           <span>•</span>
           <span>Updated November 2025</span>
@@ -142,11 +143,7 @@ export default function PromptEngineeringPage() {
 
       <DocsCallout type="tip" title="Quick Win">
         Already know the basics? Jump to our{" "}
-        <Link
-          href="/docs/chatgpt-prompts-for-academic-writing"
-          style={{ color: '#8b5cf6' }}
-          className="underline"
-        >
+        <Link href="/docs/chatgpt-prompts-for-academic-writing" className="underline" style={{ color: colors.accentHover }}>
           50+ ready-to-use prompts
         </Link>{" "}
         for academic writing.
@@ -157,20 +154,17 @@ export default function PromptEngineeringPage() {
         <h2
           id="what-is-prompt-engineering"
           className="text-2xl font-bold mb-4"
-          style={{ 
-            color: elevatedDarkTheme.text,
-            fontFamily: 'var(--font-literata), Georgia, serif',
-          }}
+          style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
         >
           What is Prompt Engineering?
         </h2>
-        <p className="mb-4" style={{ color: elevatedDarkTheme.textSecondary }}>
+        <p className="mb-4" style={{ color: colors.textSecondary }}>
           Prompt engineering is the skill of crafting instructions that help
           AI tools like ChatGPT, Claude, or Esy understand exactly what you
           need. Think of it as learning to communicate with a brilliant but
           literal-minded research assistant.
         </p>
-        <p className="mb-4" style={{ color: elevatedDarkTheme.textSecondary }}>
+        <p className="mb-4" style={{ color: colors.textSecondary }}>
           The difference between a mediocre AI response and a genuinely
           helpful one often comes down to how you ask the question. A vague
           prompt gets vague results. A specific, well-structured prompt gets
@@ -179,44 +173,32 @@ export default function PromptEngineeringPage() {
 
         <div 
           className="rounded-xl p-6 mt-6"
-          style={{
-            backgroundColor: elevatedDarkTheme.elevated,
-            border: `1px solid ${elevatedDarkTheme.border}`,
-          }}
+          style={{ backgroundColor: colors.elevated, border: `1px solid ${colors.border}` }}
         >
-          <h3 
-            className="font-semibold mb-4 flex items-center gap-2"
-            style={{ color: elevatedDarkTheme.text }}
-          >
-            <Target className="w-5 h-5" style={{ color: '#8b5cf6' }} />
+          <h3 className="font-semibold mb-4 flex items-center gap-2" style={{ color: colors.text }}>
+            <Target className="w-5 h-5" style={{ color: colors.accentHover }} />
             Bad vs. Good Prompts
           </h3>
           <div className="grid sm:grid-cols-2 gap-4">
             <div 
               className="p-4 rounded-lg"
-              style={{
-                backgroundColor: 'rgba(248, 113, 113, 0.1)',
-                border: '1px solid rgba(248, 113, 113, 0.2)',
-              }}
+              style={{ backgroundColor: 'rgba(248, 113, 113, 0.1)', border: '1px solid rgba(248, 113, 113, 0.2)' }}
             >
               <p className="text-xs uppercase tracking-wider mb-2 font-semibold" style={{ color: '#f87171' }}>
                 ❌ Vague
               </p>
-              <p className="text-sm font-mono" style={{ color: elevatedDarkTheme.textSecondary }}>
+              <p className="text-sm font-mono" style={{ color: colors.textSecondary }}>
                 &ldquo;Write about climate change&rdquo;
               </p>
             </div>
             <div 
               className="p-4 rounded-lg"
-              style={{
-                backgroundColor: 'rgba(34, 197, 94, 0.1)',
-                border: '1px solid rgba(34, 197, 94, 0.2)',
-              }}
+              style={{ backgroundColor: 'rgba(34, 197, 94, 0.1)', border: '1px solid rgba(34, 197, 94, 0.2)' }}
             >
               <p className="text-xs uppercase tracking-wider mb-2 font-semibold" style={{ color: '#22c55e' }}>
                 ✓ Specific
               </p>
-              <p className="text-sm font-mono" style={{ color: elevatedDarkTheme.textSecondary }}>
+              <p className="text-sm font-mono" style={{ color: colors.textSecondary }}>
                 &ldquo;I&apos;m writing a 1500-word argumentative essay for my
                 Environmental Science class. Help me build an outline arguing
                 that carbon pricing is the most effective policy tool for
@@ -232,14 +214,11 @@ export default function PromptEngineeringPage() {
         <h2
           id="crispe-framework"
           className="text-2xl font-bold mb-4"
-          style={{ 
-            color: elevatedDarkTheme.text,
-            fontFamily: 'var(--font-literata), Georgia, serif',
-          }}
+          style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
         >
           The CRISPE Framework
         </h2>
-        <p className="mb-6" style={{ color: elevatedDarkTheme.textSecondary }}>
+        <p className="mb-6" style={{ color: colors.textSecondary }}>
           CRISPE is a simple framework for writing effective prompts. It
           stands for Context, Role, Instructions, Style, Parameters, and
           Examples. Not every prompt needs all six elements, but including
@@ -250,40 +229,26 @@ export default function PromptEngineeringPage() {
           {crispeFramework.map((item) => (
             <div
               key={item.letter}
-              className="rounded-xl p-4 transition-colors"
-              style={{
-                backgroundColor: elevatedDarkTheme.elevated,
-                border: `1px solid ${elevatedDarkTheme.border}`,
-              }}
+              className="rounded-xl p-4"
+              style={{ backgroundColor: colors.elevated, border: `1px solid ${colors.border}` }}
             >
               <div className="flex items-start gap-4">
                 <div 
-                  className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold"
-                  style={{
-                    background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
-                  }}
+                  className="shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold"
+                  style={{ background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)' }}
                 >
                   {item.letter}
                 </div>
-                <div className="flex-1">
-                  <h3 
-                    className="font-semibold mb-1"
-                    style={{ color: elevatedDarkTheme.text }}
-                  >
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-semibold mb-1" style={{ color: colors.text }}>
                     {item.word}
                   </h3>
-                  <p 
-                    className="text-sm mb-2"
-                    style={{ color: elevatedDarkTheme.muted }}
-                  >
+                  <p className="text-sm mb-2" style={{ color: colors.muted }}>
                     {item.description}
                   </p>
                   <p 
                     className="text-sm font-mono rounded-lg p-3"
-                    style={{
-                      color: elevatedDarkTheme.subtle,
-                      backgroundColor: elevatedDarkTheme.bg,
-                    }}
+                    style={{ color: colors.subtle, backgroundColor: colors.bg }}
                   >
                     {item.example}
                   </p>
@@ -299,32 +264,21 @@ export default function PromptEngineeringPage() {
         <h2
           id="iteration-technique"
           className="text-2xl font-bold mb-4 flex items-center gap-2"
-          style={{ 
-            color: elevatedDarkTheme.text,
-            fontFamily: 'var(--font-literata), Georgia, serif',
-          }}
+          style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
         >
-          <RefreshCw className="w-6 h-6" style={{ color: '#8b5cf6' }} />
+          <RefreshCw className="w-6 h-6" style={{ color: colors.accentHover }} />
           The Power of Iteration
         </h2>
-        <p className="mb-4" style={{ color: elevatedDarkTheme.textSecondary }}>
+        <p className="mb-4" style={{ color: colors.textSecondary }}>
           Great prompts rarely happen on the first try. The best results come
           from iterating—refining your prompt based on what the AI gives you.
         </p>
 
         <div 
           className="rounded-xl p-6"
-          style={{
-            backgroundColor: elevatedDarkTheme.elevated,
-            border: `1px solid ${elevatedDarkTheme.border}`,
-          }}
+          style={{ backgroundColor: colors.elevated, border: `1px solid ${colors.border}` }}
         >
-          <h3 
-            className="font-semibold mb-4"
-            style={{ color: elevatedDarkTheme.text }}
-          >
-            Iteration Workflow
-          </h3>
+          <h3 className="font-semibold mb-4" style={{ color: colors.text }}>Iteration Workflow</h3>
           <div className="space-y-4">
             {[
               { step: "1", title: "Start with your best attempt", desc: "Write the most complete prompt you can" },
@@ -334,22 +288,18 @@ export default function PromptEngineeringPage() {
             ].map((item) => (
               <div key={item.step} className="flex gap-4">
                 <div 
-                  className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold"
+                  className="shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold"
                   style={{
                     backgroundColor: 'rgba(139, 92, 246, 0.15)',
                     border: '1px solid rgba(139, 92, 246, 0.3)',
-                    color: '#8b5cf6',
+                    color: colors.accentHover,
                   }}
                 >
                   {item.step}
                 </div>
                 <div>
-                  <p className="font-medium" style={{ color: elevatedDarkTheme.text }}>
-                    {item.title}
-                  </p>
-                  <p className="text-sm" style={{ color: elevatedDarkTheme.muted }}>
-                    {item.desc}
-                  </p>
+                  <p className="font-medium" style={{ color: colors.text }}>{item.title}</p>
+                  <p className="text-sm" style={{ color: colors.muted }}>{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -362,14 +312,11 @@ export default function PromptEngineeringPage() {
         <h2
           id="starter-prompts"
           className="text-2xl font-bold mb-4"
-          style={{ 
-            color: elevatedDarkTheme.text,
-            fontFamily: 'var(--font-literata), Georgia, serif',
-          }}
+          style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
         >
           Starter Prompts
         </h2>
-        <p className="mb-6" style={{ color: elevatedDarkTheme.textSecondary }}>
+        <p className="mb-6" style={{ color: colors.textSecondary }}>
           Here are some templates to get you started. Replace the bracketed
           sections with your specific details.
         </p>
@@ -386,11 +333,7 @@ export default function PromptEngineeringPage() {
         </div>
 
         <div className="mt-6">
-          <Link
-            href="/docs/chatgpt-prompts-for-academic-writing"
-            className="inline-flex items-center gap-2 font-medium"
-            style={{ color: '#8b5cf6' }}
-          >
+          <Link href="/docs/chatgpt-prompts-for-academic-writing" className="inline-flex items-center gap-2 font-medium" style={{ color: colors.accentHover }}>
             See all 50+ academic prompts
             <ArrowRight className="w-4 h-4" />
           </Link>
@@ -402,10 +345,7 @@ export default function PromptEngineeringPage() {
         <h2
           id="key-takeaways"
           className="text-2xl font-bold mb-4"
-          style={{ 
-            color: elevatedDarkTheme.text,
-            fontFamily: 'var(--font-literata), Georgia, serif',
-          }}
+          style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
         >
           Key Takeaways
         </h2>
@@ -425,8 +365,8 @@ export default function PromptEngineeringPage() {
               "Set constraints to keep responses focused",
             ].map((item) => (
               <li key={item} className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#8b5cf6' }} />
-                <span style={{ color: elevatedDarkTheme.textSecondary }}>{item}</span>
+                <CheckCircle className="w-5 h-5 shrink-0 mt-0.5" style={{ color: colors.accentHover }} />
+                <span style={{ color: colors.textSecondary }}>{item}</span>
               </li>
             ))}
           </ul>
@@ -435,52 +375,25 @@ export default function PromptEngineeringPage() {
 
       {/* Related Content */}
       <section className="mb-12">
-        <h2 
-          id="next-steps" 
-          className="text-2xl font-bold mb-4"
-          style={{ 
-            color: elevatedDarkTheme.text,
-            fontFamily: 'var(--font-literata), Georgia, serif',
-          }}
-        >
+        <h2 id="next-steps" className="text-2xl font-bold mb-4" style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}>
           Next Steps
         </h2>
         <div className="grid sm:grid-cols-2 gap-4">
           <Link
             href="/docs/chatgpt-prompts-for-academic-writing"
-            className="group p-4 rounded-xl transition-all"
-            style={{
-              backgroundColor: elevatedDarkTheme.elevated,
-              border: `1px solid ${elevatedDarkTheme.border}`,
-            }}
+            className="group p-4 rounded-xl transition-all hover:bg-zinc-800/50"
+            style={{ backgroundColor: colors.elevated, border: `1px solid ${colors.border}` }}
           >
-            <h3 
-              className="font-semibold mb-1 transition-colors"
-              style={{ color: elevatedDarkTheme.text }}
-            >
-              50+ Academic Prompts →
-            </h3>
-            <p className="text-sm" style={{ color: elevatedDarkTheme.muted }}>
-              Ready-to-use prompts for every type of assignment
-            </p>
+            <h3 className="font-semibold mb-1" style={{ color: colors.text }}>50+ Academic Prompts →</h3>
+            <p className="text-sm" style={{ color: colors.muted }}>Ready-to-use prompts for every type of assignment</p>
           </Link>
           <Link
             href="/docs/agent-workflows"
-            className="group p-4 rounded-xl transition-all"
-            style={{
-              backgroundColor: elevatedDarkTheme.elevated,
-              border: `1px solid ${elevatedDarkTheme.border}`,
-            }}
+            className="group p-4 rounded-xl transition-all hover:bg-zinc-800/50"
+            style={{ backgroundColor: colors.elevated, border: `1px solid ${colors.border}` }}
           >
-            <h3 
-              className="font-semibold mb-1 transition-colors"
-              style={{ color: elevatedDarkTheme.text }}
-            >
-              Build Agent Workflows →
-            </h3>
-            <p className="text-sm" style={{ color: elevatedDarkTheme.muted }}>
-              Automate your research with Esy&apos;s no-code tools
-            </p>
+            <h3 className="font-semibold mb-1" style={{ color: colors.text }}>Build Agent Workflows →</h3>
+            <p className="text-sm" style={{ color: colors.muted }}>Automate your research with Esy&apos;s no-code tools</p>
           </Link>
         </div>
       </section>

@@ -1,8 +1,23 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { elevatedDarkTheme } from "@/lib/theme";
 import { BookOpen, ArrowRight, Sparkles } from "lucide-react";
 import { DocsPageNav, DocsCallout, PromptCard } from "@/components/docs";
+
+// Design system colors from DESIGN_SYSTEM.md
+const colors = {
+  bg: '#18181b',
+  elevated: '#27272a',
+  surface: '#1f1f23',
+  text: '#fafafa',
+  textSecondary: '#e4e4e7',
+  muted: '#a1a1aa',
+  subtle: '#71717a',
+  border: 'rgba(63, 63, 70, 0.4)',
+  borderSubtle: 'rgba(63, 63, 70, 0.2)',
+  accent: '#9f7aea',
+  accentHover: '#8b5cf6',
+  accentLight: '#c4b5fd',
+};
 
 export const metadata: Metadata = {
   title: "50+ ChatGPT Prompts for Academic Writing (2025)",
@@ -132,10 +147,7 @@ const promptCategories = [
 ];
 
 export default function ChatGPTPromptsPage() {
-  const totalPrompts = promptCategories.reduce(
-    (acc, cat) => acc + cat.prompts.length,
-    0
-  );
+  const totalPrompts = promptCategories.reduce((acc, cat) => acc + cat.prompts.length, 0);
 
   return (
     <article className="max-w-4xl">
@@ -146,7 +158,7 @@ export default function ChatGPTPromptsPage() {
           style={{
             background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(236, 72, 153, 0.1) 100%)',
             border: '1px solid rgba(139, 92, 246, 0.3)',
-            color: '#c4b5fd',
+            color: colors.accentLight,
           }}
         >
           <BookOpen className="w-4 h-4" />
@@ -155,27 +167,18 @@ export default function ChatGPTPromptsPage() {
 
         <h1 
           className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight"
-          style={{ 
-            fontFamily: 'var(--font-literata), Georgia, serif',
-            color: elevatedDarkTheme.text,
-          }}
+          style={{ fontFamily: 'var(--font-literata), Georgia, serif', color: colors.text }}
         >
           {totalPrompts}+ ChatGPT Prompts for Academic Writing
         </h1>
 
-        <p 
-          className="text-lg mb-6"
-          style={{ color: elevatedDarkTheme.muted }}
-        >
+        <p className="text-lg mb-6" style={{ color: colors.muted }}>
           Copy-paste prompts that actually work. Tested and refined for essays,
           research papers, thesis statements, and every type of academic
           assignment. Updated for 2025.
         </p>
 
-        <div 
-          className="flex flex-wrap gap-4 text-sm"
-          style={{ color: elevatedDarkTheme.subtle }}
-        >
+        <div className="flex flex-wrap gap-4 text-sm" style={{ color: colors.subtle }}>
           <span>📝 {totalPrompts} prompts</span>
           <span>•</span>
           <span>6 categories</span>
@@ -187,11 +190,7 @@ export default function ChatGPTPromptsPage() {
       <DocsCallout type="tip" title="Pro Tip">
         Replace the [BRACKETED TEXT] with your specific details. The more
         specific you are, the better the AI response. For even better results,{" "}
-        <Link
-          href="https://app.esy.com"
-          style={{ color: '#8b5cf6' }}
-          className="underline"
-        >
+        <Link href="https://app.esy.com" className="underline" style={{ color: colors.accentHover }}>
           use Esy&apos;s agentic workflows
         </Link>{" "}
         which can reference your own documents.
@@ -200,15 +199,9 @@ export default function ChatGPTPromptsPage() {
       {/* Quick Navigation */}
       <nav 
         className="mb-12 p-6 rounded-2xl"
-        style={{
-          backgroundColor: elevatedDarkTheme.elevated,
-          border: `1px solid ${elevatedDarkTheme.border}`,
-        }}
+        style={{ backgroundColor: colors.elevated, border: `1px solid ${colors.border}` }}
       >
-        <h2 
-          className="text-lg font-semibold mb-4"
-          style={{ color: elevatedDarkTheme.text }}
-        >
+        <h2 className="text-lg font-semibold mb-4" style={{ color: colors.text }}>
           Jump to Category
         </h2>
         <div className="flex flex-wrap gap-2">
@@ -216,11 +209,11 @@ export default function ChatGPTPromptsPage() {
             <a
               key={category.id}
               href={`#${category.id}`}
-              className="px-3 py-1.5 rounded-lg text-sm transition-all"
+              className="px-3 py-1.5 rounded-lg text-sm transition-all hover:bg-zinc-700/50"
               style={{
-                backgroundColor: elevatedDarkTheme.surface,
-                border: `1px solid ${elevatedDarkTheme.borderSubtle}`,
-                color: elevatedDarkTheme.textSecondary,
+                backgroundColor: colors.surface,
+                border: `1px solid ${colors.borderSubtle}`,
+                color: colors.textSecondary,
               }}
             >
               {category.title} ({category.prompts.length})
@@ -235,23 +228,16 @@ export default function ChatGPTPromptsPage() {
           <div id={category.id} className="scroll-mt-24 mb-6">
             <h2 
               className="text-2xl font-bold mb-2"
-              style={{ 
-                color: elevatedDarkTheme.text,
-                fontFamily: 'var(--font-literata), Georgia, serif',
-              }}
+              style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
             >
               {category.title}
             </h2>
-            <p style={{ color: elevatedDarkTheme.muted }}>{category.description}</p>
+            <p style={{ color: colors.muted }}>{category.description}</p>
           </div>
 
           <div className="grid gap-4">
             {category.prompts.map((prompt) => (
-              <PromptCard
-                key={prompt.title}
-                title={prompt.title}
-                prompt={prompt.prompt}
-              />
+              <PromptCard key={prompt.title} title={prompt.title} prompt={prompt.prompt} />
             ))}
           </div>
         </section>
@@ -266,28 +252,21 @@ export default function ChatGPTPromptsPage() {
             border: '1px solid rgba(139, 92, 246, 0.2)',
           }}
         >
-          <Sparkles className="w-10 h-10 mx-auto mb-4" style={{ color: '#8b5cf6' }} />
+          <Sparkles className="w-10 h-10 mx-auto mb-4" style={{ color: colors.accentHover }} />
           <h2 
             className="text-2xl font-bold mb-3"
-            style={{ 
-              color: elevatedDarkTheme.text,
-              fontFamily: 'var(--font-literata), Georgia, serif',
-            }}
+            style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
           >
             Want Prompts That Know Your Documents?
           </h2>
-          <p 
-            className="mb-6 max-w-lg mx-auto"
-            style={{ color: elevatedDarkTheme.muted }}
-          >
+          <p className="mb-6 max-w-lg mx-auto" style={{ color: colors.muted }}>
             Esy&apos;s agentic workflows can reference your uploaded PDFs, notes,
-            and research—giving you AI responses grounded in your actual
-            sources.
+            and research—giving you AI responses grounded in your actual sources.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="https://app.esy.com"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 text-white font-semibold rounded-xl transition-all"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 text-white font-semibold rounded-xl transition-all hover:-translate-y-0.5"
               style={{
                 background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
                 boxShadow: '0 10px 30px rgba(139, 92, 246, 0.3)',
@@ -298,11 +277,8 @@ export default function ChatGPTPromptsPage() {
             </Link>
             <Link
               href="/prompt-library"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 font-medium rounded-xl transition-colors"
-              style={{
-                backgroundColor: elevatedDarkTheme.elevated,
-                color: elevatedDarkTheme.text,
-              }}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 font-medium rounded-xl transition-colors hover:bg-zinc-700/50"
+              style={{ backgroundColor: colors.elevated, color: colors.text, border: `1px solid ${colors.border}` }}
             >
               Browse Full Prompt Library
             </Link>
@@ -314,49 +290,26 @@ export default function ChatGPTPromptsPage() {
       <section className="mb-12">
         <h2 
           className="text-2xl font-bold mb-4"
-          style={{ 
-            color: elevatedDarkTheme.text,
-            fontFamily: 'var(--font-literata), Georgia, serif',
-          }}
+          style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
         >
           Related Guides
         </h2>
         <div className="grid sm:grid-cols-2 gap-4">
           <Link
             href="/docs/prompt-engineering"
-            className="group p-4 rounded-xl transition-all"
-            style={{
-              backgroundColor: elevatedDarkTheme.elevated,
-              border: `1px solid ${elevatedDarkTheme.border}`,
-            }}
+            className="group p-4 rounded-xl transition-all hover:bg-zinc-800/50"
+            style={{ backgroundColor: colors.elevated, border: `1px solid ${colors.border}` }}
           >
-            <h3 
-              className="font-semibold mb-1 transition-colors"
-              style={{ color: elevatedDarkTheme.text }}
-            >
-              Prompt Engineering Guide →
-            </h3>
-            <p className="text-sm" style={{ color: elevatedDarkTheme.muted }}>
-              Learn the CRISPE framework for better prompts
-            </p>
+            <h3 className="font-semibold mb-1" style={{ color: colors.text }}>Prompt Engineering Guide →</h3>
+            <p className="text-sm" style={{ color: colors.muted }}>Learn the CRISPE framework for better prompts</p>
           </Link>
           <Link
             href="/docs/how-to-write-better-essays-with-ai"
-            className="group p-4 rounded-xl transition-all"
-            style={{
-              backgroundColor: elevatedDarkTheme.elevated,
-              border: `1px solid ${elevatedDarkTheme.border}`,
-            }}
+            className="group p-4 rounded-xl transition-all hover:bg-zinc-800/50"
+            style={{ backgroundColor: colors.elevated, border: `1px solid ${colors.border}` }}
           >
-            <h3 
-              className="font-semibold mb-1 transition-colors"
-              style={{ color: elevatedDarkTheme.text }}
-            >
-              Write Better Essays with AI →
-            </h3>
-            <p className="text-sm" style={{ color: elevatedDarkTheme.muted }}>
-              Complete guide to AI-assisted essay writing
-            </p>
+            <h3 className="font-semibold mb-1" style={{ color: colors.text }}>Write Better Essays with AI →</h3>
+            <p className="text-sm" style={{ color: colors.muted }}>Complete guide to AI-assisted essay writing</p>
           </Link>
         </div>
       </section>

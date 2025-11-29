@@ -1,5 +1,9 @@
-import { elevatedDarkTheme } from "@/lib/theme";
 import { Info, AlertTriangle, CheckCircle, Lightbulb, Zap } from "lucide-react";
+
+// Design system colors from DESIGN_SYSTEM.md
+const colors = {
+  textSecondary: '#e4e4e7',
+};
 
 type CalloutType = "info" | "warning" | "success" | "tip" | "note";
 
@@ -61,22 +65,16 @@ export function DocsCallout({
       }}
     >
       <div className="flex gap-3">
-        <div className="flex-shrink-0" style={{ color: styles.iconColor }}>
+        <div className="shrink-0" style={{ color: styles.iconColor }}>
           {styles.icon}
         </div>
-        <div>
+        <div className="min-w-0">
           {title && (
-            <h4 
-              className="font-semibold mb-1"
-              style={{ color: styles.iconColor }}
-            >
+            <h4 className="font-semibold mb-1" style={{ color: styles.iconColor }}>
               {title}
             </h4>
           )}
-          <div 
-            className="text-sm leading-relaxed"
-            style={{ color: elevatedDarkTheme.textSecondary }}
-          >
+          <div className="text-sm leading-relaxed" style={{ color: colors.textSecondary }}>
             {children}
           </div>
         </div>

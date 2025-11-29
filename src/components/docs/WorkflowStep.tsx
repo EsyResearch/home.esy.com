@@ -1,4 +1,10 @@
-import { elevatedDarkTheme } from "@/lib/theme";
+// Design system colors from DESIGN_SYSTEM.md
+const colors = {
+  elevated: '#27272a',
+  text: '#fafafa',
+  muted: '#a1a1aa',
+  border: 'rgba(63, 63, 70, 0.4)',
+};
 
 interface WorkflowStepProps {
   number: number;
@@ -14,12 +20,12 @@ export function WorkflowStep({
   children,
 }: WorkflowStepProps) {
   return (
-    <div className="relative pl-12 pb-8 last:pb-0">
+    <div className="relative pl-12 pb-6 last:pb-0">
       {/* Connector line */}
       <div 
-        className="absolute left-4 top-10 bottom-0 w-0.5 last:hidden"
+        className="absolute left-[17px] top-10 bottom-0 w-0.5"
         style={{
-          background: 'linear-gradient(180deg, rgba(139, 92, 246, 0.5) 0%, rgba(236, 72, 153, 0.2) 100%)',
+          background: 'linear-gradient(180deg, rgba(139, 92, 246, 0.4) 0%, rgba(236, 72, 153, 0.15) 100%)',
         }}
       />
 
@@ -36,24 +42,18 @@ export function WorkflowStep({
 
       {/* Content */}
       <div>
-        <h3 
-          className="text-lg font-semibold mb-2"
-          style={{ color: elevatedDarkTheme.text }}
-        >
+        <h3 className="text-base font-semibold mb-1" style={{ color: colors.text }}>
           {title}
         </h3>
-        <p 
-          className="mb-4"
-          style={{ color: elevatedDarkTheme.muted }}
-        >
+        <p className="text-sm leading-relaxed" style={{ color: colors.muted }}>
           {description}
         </p>
         {children && (
           <div 
-            className="rounded-xl p-4"
+            className="rounded-xl p-4 mt-3"
             style={{
-              backgroundColor: elevatedDarkTheme.elevated,
-              border: `1px solid ${elevatedDarkTheme.border}`,
+              backgroundColor: colors.elevated,
+              border: `1px solid ${colors.border}`,
             }}
           >
             {children}

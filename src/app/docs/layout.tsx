@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { DocsSidebar } from "@/components/docs";
-import { elevatedDarkTheme } from "@/lib/theme";
 
 export const metadata: Metadata = {
   title: {
@@ -37,43 +36,53 @@ export default function DocsLayout({
     <div 
       className="min-h-screen"
       style={{ 
-        backgroundColor: elevatedDarkTheme.bg,
-        paddingTop: '73px', // Account for fixed nav height
+        backgroundColor: '#18181b',
+        paddingTop: '73px',
       }}
     >
-      {/* Background effects matching Esy brand */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ top: '73px' }}>
-        {/* Gradient orbs - signature Esy purple→pink */}
+      {/* Background effects - fixed position below nav */}
+      <div 
+        className="fixed inset-x-0 bottom-0 pointer-events-none overflow-hidden"
+        style={{ top: '73px' }}
+      >
+        {/* Gradient orbs - signature Esy purple→pink at 135deg */}
         <div 
-          className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full blur-[128px] opacity-30"
-          style={{ background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)' }}
+          className="absolute -top-32 left-1/4 w-[700px] h-[700px] rounded-full"
+          style={{ 
+            background: 'radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%)',
+            filter: 'blur(80px)',
+          }}
         />
         <div 
-          className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full blur-[128px] opacity-20"
-          style={{ background: 'linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%)' }}
+          className="absolute -bottom-32 right-1/4 w-[500px] h-[500px] rounded-full"
+          style={{ 
+            background: 'radial-gradient(circle, rgba(236, 72, 153, 0.08) 0%, transparent 70%)',
+            filter: 'blur(80px)',
+          }}
         />
         {/* Subtle grid pattern */}
         <div
-          className="absolute inset-0 opacity-[0.02]"
+          className="absolute inset-0"
           style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                             linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: "64px 64px",
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                             linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
+            backgroundSize: '64px 64px',
+            opacity: 0.5,
           }}
         />
       </div>
 
       {/* Main layout with sidebar */}
-      <div className="relative flex">
+      <div className="relative flex min-h-[calc(100vh-73px)]">
         {/* Sidebar */}
         <DocsSidebar />
 
         {/* Content area */}
-        <div className="flex-1 min-w-0">
-          <div className="px-4 sm:px-6 lg:px-8 py-8 max-w-4xl mx-auto">
+        <main className="flex-1 min-w-0">
+          <div className="px-6 sm:px-8 lg:px-12 py-10 max-w-4xl mx-auto">
             {children}
           </div>
-        </div>
+        </main>
       </div>
     </div>
   );

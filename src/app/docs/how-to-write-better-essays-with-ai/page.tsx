@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { elevatedDarkTheme } from "@/lib/theme";
 import {
   PenLine,
   Lightbulb,
@@ -10,6 +9,21 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import { DocsPageNav, DocsCallout } from "@/components/docs";
+
+// Design system colors from DESIGN_SYSTEM.md
+const colors = {
+  bg: '#18181b',
+  elevated: '#27272a',
+  surface: '#1f1f23',
+  text: '#fafafa',
+  textSecondary: '#e4e4e7',
+  muted: '#a1a1aa',
+  subtle: '#71717a',
+  border: 'rgba(63, 63, 70, 0.4)',
+  accent: '#9f7aea',
+  accentHover: '#8b5cf6',
+  accentLight: '#c4b5fd',
+};
 
 export const metadata: Metadata = {
   title: "How to Write Better Essays with AI (Complete Guide)",
@@ -119,7 +133,7 @@ export default function WriteBetterEssaysPage() {
           style={{
             background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(236, 72, 153, 0.1) 100%)',
             border: '1px solid rgba(139, 92, 246, 0.3)',
-            color: '#c4b5fd',
+            color: colors.accentLight,
           }}
         >
           <PenLine className="w-4 h-4" />
@@ -128,27 +142,18 @@ export default function WriteBetterEssaysPage() {
 
         <h1 
           className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight"
-          style={{ 
-            fontFamily: 'var(--font-literata), Georgia, serif',
-            color: elevatedDarkTheme.text,
-          }}
+          style={{ fontFamily: 'var(--font-literata), Georgia, serif', color: colors.text }}
         >
           How to Write Better Essays with AI
         </h1>
 
-        <p 
-          className="text-lg mb-6"
-          style={{ color: elevatedDarkTheme.muted }}
-        >
+        <p className="text-lg mb-6" style={{ color: colors.muted }}>
           AI tools can transform your essay writing—making research faster,
           arguments stronger, and prose clearer. Here&apos;s how to use them
           effectively while maintaining academic integrity.
         </p>
 
-        <div 
-          className="flex flex-wrap gap-4 text-sm"
-          style={{ color: elevatedDarkTheme.subtle }}
-        >
+        <div className="flex flex-wrap gap-4 text-sm" style={{ color: colors.subtle }}>
           <span>📚 12 min read</span>
           <span>•</span>
           <span>Updated November 2025</span>
@@ -166,14 +171,11 @@ export default function WriteBetterEssaysPage() {
         <h2
           id="why-use-ai-for-essays"
           className="text-2xl font-bold mb-4"
-          style={{ 
-            color: elevatedDarkTheme.text,
-            fontFamily: 'var(--font-literata), Georgia, serif',
-          }}
+          style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
         >
           Why Use AI for Essay Writing?
         </h2>
-        <p className="mb-4" style={{ color: elevatedDarkTheme.textSecondary }}>
+        <p className="mb-4" style={{ color: colors.textSecondary }}>
           The students getting the best results with AI aren&apos;t using it
           to write their essays. They&apos;re using it to think better, research
           smarter, and revise more effectively. AI amplifies your effort—but
@@ -189,17 +191,10 @@ export default function WriteBetterEssaysPage() {
             <div
               key={item.title}
               className="p-4 rounded-xl"
-              style={{
-                backgroundColor: elevatedDarkTheme.elevated,
-                border: `1px solid ${elevatedDarkTheme.border}`,
-              }}
+              style={{ backgroundColor: colors.elevated, border: `1px solid ${colors.border}` }}
             >
-              <h3 className="font-semibold mb-2" style={{ color: elevatedDarkTheme.text }}>
-                {item.title}
-              </h3>
-              <p className="text-sm" style={{ color: elevatedDarkTheme.muted }}>
-                {item.description}
-              </p>
+              <h3 className="font-semibold mb-2" style={{ color: colors.text }}>{item.title}</h3>
+              <p className="text-sm" style={{ color: colors.muted }}>{item.description}</p>
             </div>
           ))}
         </div>
@@ -210,14 +205,11 @@ export default function WriteBetterEssaysPage() {
         <h2
           id="ai-in-each-phase"
           className="text-2xl font-bold mb-4"
-          style={{ 
-            color: elevatedDarkTheme.text,
-            fontFamily: 'var(--font-literata), Georgia, serif',
-          }}
+          style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
         >
           How to Use AI in Each Phase
         </h2>
-        <p className="mb-6" style={{ color: elevatedDarkTheme.textSecondary }}>
+        <p className="mb-6" style={{ color: colors.textSecondary }}>
           Different phases of essay writing benefit from AI in different
           ways. Here&apos;s what works at each stage.
         </p>
@@ -227,15 +219,9 @@ export default function WriteBetterEssaysPage() {
             <div
               key={phase.phase}
               className="rounded-xl overflow-hidden"
-              style={{
-                backgroundColor: elevatedDarkTheme.elevated,
-                border: `1px solid ${elevatedDarkTheme.border}`,
-              }}
+              style={{ backgroundColor: colors.elevated, border: `1px solid ${colors.border}` }}
             >
-              <div 
-                className="p-4 flex items-center gap-3"
-                style={{ borderBottom: `1px solid ${elevatedDarkTheme.border}` }}
-              >
+              <div className="p-4 flex items-center gap-3" style={{ borderBottom: `1px solid ${colors.border}` }}>
                 <div 
                   className="w-8 h-8 rounded-lg flex items-center justify-center text-white"
                   style={{ background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)' }}
@@ -243,38 +229,33 @@ export default function WriteBetterEssaysPage() {
                   {phase.icon}
                 </div>
                 <div>
-                  <h3 className="font-semibold" style={{ color: elevatedDarkTheme.text }}>
+                  <h3 className="font-semibold" style={{ color: colors.text }}>
                     Phase {index + 1}: {phase.phase}
                   </h3>
-                  <p className="text-sm" style={{ color: elevatedDarkTheme.muted }}>
-                    AI role: {phase.aiRole}
-                  </p>
+                  <p className="text-sm" style={{ color: colors.muted }}>AI role: {phase.aiRole}</p>
                 </div>
               </div>
               <div className="p-4">
                 <div className="mb-4">
-                  <h4 className="text-sm font-medium mb-2" style={{ color: elevatedDarkTheme.textSecondary }}>
+                  <h4 className="text-sm font-medium mb-2" style={{ color: colors.textSecondary }}>
                     What AI can help with:
                   </h4>
                   <ul className="grid sm:grid-cols-2 gap-2">
                     {phase.tasks.map((task) => (
-                      <li key={task} className="flex items-start gap-2 text-sm" style={{ color: elevatedDarkTheme.muted }}>
-                        <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#8b5cf6' }} />
+                      <li key={task} className="flex items-start gap-2 text-sm" style={{ color: colors.muted }}>
+                        <CheckCircle className="w-4 h-4 mt-0.5 shrink-0" style={{ color: colors.accentHover }} />
                         {task}
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div>
-                  <h4 className="text-sm font-medium mb-2" style={{ color: elevatedDarkTheme.textSecondary }}>
+                  <h4 className="text-sm font-medium mb-2" style={{ color: colors.textSecondary }}>
                     Try this prompt:
                   </h4>
                   <p 
                     className="text-sm font-mono rounded-lg p-3"
-                    style={{
-                      color: elevatedDarkTheme.muted,
-                      backgroundColor: elevatedDarkTheme.bg,
-                    }}
+                    style={{ color: colors.muted, backgroundColor: colors.bg }}
                   >
                     {phase.prompt}
                   </p>
@@ -290,20 +271,14 @@ export default function WriteBetterEssaysPage() {
         <h2
           id="dos-and-donts"
           className="text-2xl font-bold mb-4"
-          style={{ 
-            color: elevatedDarkTheme.text,
-            fontFamily: 'var(--font-literata), Georgia, serif',
-          }}
+          style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
         >
           Do&apos;s and Don&apos;ts
         </h2>
         <div className="grid sm:grid-cols-2 gap-6">
           <div 
             className="rounded-xl p-6"
-            style={{
-              backgroundColor: 'rgba(34, 197, 94, 0.1)',
-              border: '1px solid rgba(34, 197, 94, 0.2)',
-            }}
+            style={{ backgroundColor: 'rgba(34, 197, 94, 0.1)', border: '1px solid rgba(34, 197, 94, 0.2)' }}
           >
             <h3 className="font-semibold mb-4 flex items-center gap-2" style={{ color: '#22c55e' }}>
               <CheckCircle className="w-5 h-5" />
@@ -311,7 +286,7 @@ export default function WriteBetterEssaysPage() {
             </h3>
             <ul className="space-y-3">
               {dosAndDonts.dos.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-sm" style={{ color: elevatedDarkTheme.textSecondary }}>
+                <li key={item} className="flex items-start gap-2 text-sm" style={{ color: colors.textSecondary }}>
                   <span style={{ color: '#22c55e' }} className="mt-1">✓</span>
                   {item}
                 </li>
@@ -320,10 +295,7 @@ export default function WriteBetterEssaysPage() {
           </div>
           <div 
             className="rounded-xl p-6"
-            style={{
-              backgroundColor: 'rgba(248, 113, 113, 0.1)',
-              border: '1px solid rgba(248, 113, 113, 0.2)',
-            }}
+            style={{ backgroundColor: 'rgba(248, 113, 113, 0.1)', border: '1px solid rgba(248, 113, 113, 0.2)' }}
           >
             <h3 className="font-semibold mb-4 flex items-center gap-2" style={{ color: '#f87171' }}>
               <AlertTriangle className="w-5 h-5" />
@@ -331,7 +303,7 @@ export default function WriteBetterEssaysPage() {
             </h3>
             <ul className="space-y-3">
               {dosAndDonts.donts.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-sm" style={{ color: elevatedDarkTheme.textSecondary }}>
+                <li key={item} className="flex items-start gap-2 text-sm" style={{ color: colors.textSecondary }}>
                   <span style={{ color: '#f87171' }} className="mt-1">✗</span>
                   {item}
                 </li>
@@ -346,14 +318,11 @@ export default function WriteBetterEssaysPage() {
         <h2
           id="esy-advantage"
           className="text-2xl font-bold mb-4"
-          style={{ 
-            color: elevatedDarkTheme.text,
-            fontFamily: 'var(--font-literata), Georgia, serif',
-          }}
+          style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
         >
           The Esy Advantage
         </h2>
-        <p className="mb-6" style={{ color: elevatedDarkTheme.textSecondary }}>
+        <p className="mb-6" style={{ color: colors.textSecondary }}>
           While ChatGPT gives you generic responses, Esy&apos;s agentic
           workflows can reference your actual documents—PDFs, notes, research
           papers—giving you AI assistance grounded in your real sources.
@@ -373,12 +342,8 @@ export default function WriteBetterEssaysPage() {
               { title: "✨ Citation-Aware", desc: "AI responses cite your actual sources, not hallucinated ones" },
             ].map((item) => (
               <div key={item.title}>
-                <h3 className="font-semibold mb-2" style={{ color: elevatedDarkTheme.text }}>
-                  {item.title}
-                </h3>
-                <p className="text-sm" style={{ color: elevatedDarkTheme.muted }}>
-                  {item.desc}
-                </p>
+                <h3 className="font-semibold mb-2" style={{ color: colors.text }}>{item.title}</h3>
+                <p className="text-sm" style={{ color: colors.muted }}>{item.desc}</p>
               </div>
             ))}
           </div>
@@ -387,14 +352,7 @@ export default function WriteBetterEssaysPage() {
 
       {/* Related Content */}
       <section className="mb-12">
-        <h2 
-          id="next-steps" 
-          className="text-2xl font-bold mb-4"
-          style={{ 
-            color: elevatedDarkTheme.text,
-            fontFamily: 'var(--font-literata), Georgia, serif',
-          }}
-        >
+        <h2 id="next-steps" className="text-2xl font-bold mb-4" style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}>
           Continue Learning
         </h2>
         <div className="grid sm:grid-cols-2 gap-4">
@@ -407,18 +365,11 @@ export default function WriteBetterEssaysPage() {
             <Link
               key={item.href}
               href={item.href}
-              className="group p-4 rounded-xl transition-all"
-              style={{
-                backgroundColor: elevatedDarkTheme.elevated,
-                border: `1px solid ${elevatedDarkTheme.border}`,
-              }}
+              className="group p-4 rounded-xl transition-all hover:bg-zinc-800/50"
+              style={{ backgroundColor: colors.elevated, border: `1px solid ${colors.border}` }}
             >
-              <h3 className="font-semibold mb-1 transition-colors" style={{ color: elevatedDarkTheme.text }}>
-                {item.title}
-              </h3>
-              <p className="text-sm" style={{ color: elevatedDarkTheme.muted }}>
-                {item.desc}
-              </p>
+              <h3 className="font-semibold mb-1" style={{ color: colors.text }}>{item.title}</h3>
+              <p className="text-sm" style={{ color: colors.muted }}>{item.desc}</p>
             </Link>
           ))}
         </div>
