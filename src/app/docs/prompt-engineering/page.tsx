@@ -106,9 +106,9 @@ const starterPrompts = [
 
 export default function PromptEngineeringPage() {
   return (
-    <article>
+    <article style={{ paddingTop: 'clamp(2rem, 5vh, 3rem)' }}>
       {/* Header */}
-      <div className="mb-10">
+      <div style={{ marginBottom: 'clamp(3rem, 6vh, 4rem)' }}>
         <div 
           className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full text-sm font-medium"
           style={{
@@ -122,13 +122,26 @@ export default function PromptEngineeringPage() {
         </div>
 
         <h1 
-          className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight"
-          style={{ fontFamily: 'var(--font-literata), Georgia, serif', color: colors.text }}
+          style={{ 
+            fontFamily: 'var(--font-literata), Georgia, serif', 
+            fontSize: 'clamp(2.25rem, 5vw, 3.25rem)',
+            fontWeight: 300,
+            lineHeight: 1.1,
+            letterSpacing: '-0.02em',
+            marginBottom: '1.5rem',
+            color: colors.text
+          }}
         >
           Prompt Engineering for Students: The Complete Guide
         </h1>
 
-        <p className="text-lg mb-6" style={{ color: colors.muted }}>
+        <p style={{ 
+          fontSize: 'clamp(1.0625rem, 2vw, 1.1875rem)',
+          lineHeight: 1.7,
+          marginBottom: '1.5rem',
+          color: colors.muted,
+          maxWidth: '700px'
+        }}>
           Learn how to write AI prompts that actually work. This guide covers
           the fundamentals of prompt engineering tailored specifically for
           academic writing, research papers, and essay assignments.
@@ -150,11 +163,17 @@ export default function PromptEngineeringPage() {
       </DocsCallout>
 
       {/* What is Prompt Engineering */}
-      <section className="mb-12">
+      <section style={{ marginBottom: 'clamp(4rem, 8vh, 6rem)' }}>
         <h2
           id="what-is-prompt-engineering"
-          className="text-2xl font-bold mb-4"
-          style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
+          style={{ 
+            fontFamily: 'var(--font-literata), Georgia, serif',
+            fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
+            fontWeight: 300,
+            letterSpacing: '-0.01em',
+            marginBottom: 'clamp(1.5rem, 3vh, 2rem)',
+            color: colors.text
+          }}
         >
           What is Prompt Engineering?
         </h2>
@@ -210,11 +229,17 @@ export default function PromptEngineeringPage() {
       </section>
 
       {/* CRISPE Framework */}
-      <section className="mb-12">
+      <section style={{ marginBottom: 'clamp(4rem, 8vh, 6rem)' }}>
         <h2
           id="crispe-framework"
-          className="text-2xl font-bold mb-4"
-          style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
+          style={{ 
+            fontFamily: 'var(--font-literata), Georgia, serif',
+            fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
+            fontWeight: 300,
+            letterSpacing: '-0.01em',
+            marginBottom: 'clamp(1.5rem, 3vh, 2rem)',
+            color: colors.text
+          }}
         >
           The CRISPE Framework
         </h2>
@@ -260,11 +285,18 @@ export default function PromptEngineeringPage() {
       </section>
 
       {/* Iteration */}
-      <section className="mb-12">
+      <section style={{ marginBottom: 'clamp(4rem, 8vh, 6rem)' }}>
         <h2
           id="iteration-technique"
-          className="text-2xl font-bold mb-4 flex items-center gap-2"
-          style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
+          className="flex items-center gap-2"
+          style={{ 
+            fontFamily: 'var(--font-literata), Georgia, serif',
+            fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
+            fontWeight: 300,
+            letterSpacing: '-0.01em',
+            marginBottom: 'clamp(1.5rem, 3vh, 2rem)',
+            color: colors.text
+          }}
         >
           <RefreshCw className="w-6 h-6" style={{ color: colors.accentHover }} />
           The Power of Iteration
@@ -308,11 +340,17 @@ export default function PromptEngineeringPage() {
       </section>
 
       {/* Starter Prompts */}
-      <section className="mb-12">
+      <section style={{ marginBottom: 'clamp(4rem, 8vh, 6rem)' }}>
         <h2
           id="starter-prompts"
-          className="text-2xl font-bold mb-4"
-          style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
+          style={{ 
+            fontFamily: 'var(--font-literata), Georgia, serif',
+            fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
+            fontWeight: 300,
+            letterSpacing: '-0.01em',
+            marginBottom: 'clamp(1.5rem, 3vh, 2rem)',
+            color: colors.text
+          }}
         >
           Starter Prompts
         </h2>
@@ -341,11 +379,17 @@ export default function PromptEngineeringPage() {
       </section>
 
       {/* Key Takeaways */}
-      <section className="mb-12">
+      <section style={{ marginBottom: 'clamp(4rem, 8vh, 6rem)' }}>
         <h2
           id="key-takeaways"
-          className="text-2xl font-bold mb-4"
-          style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
+          style={{ 
+            fontFamily: 'var(--font-literata), Georgia, serif',
+            fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
+            fontWeight: 300,
+            letterSpacing: '-0.01em',
+            marginBottom: 'clamp(1.5rem, 3vh, 2rem)',
+            color: colors.text
+          }}
         >
           Key Takeaways
         </h2>
@@ -374,8 +418,15 @@ export default function PromptEngineeringPage() {
       </section>
 
       {/* Related Content */}
-      <section className="mb-12">
-        <h2 id="next-steps" className="text-2xl font-bold mb-4" style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}>
+      <section style={{ marginBottom: 'clamp(4rem, 8vh, 6rem)' }}>
+        <h2 id="next-steps" style={{ 
+          fontFamily: 'var(--font-literata), Georgia, serif',
+          fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
+          fontWeight: 300,
+          letterSpacing: '-0.01em',
+          marginBottom: 'clamp(1.5rem, 3vh, 2rem)',
+          color: colors.text
+        }}>
           Next Steps
         </h2>
         <div className="grid sm:grid-cols-2 gap-4">

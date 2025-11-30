@@ -150,9 +150,9 @@ export default function ChatGPTPromptsPage() {
   const totalPrompts = promptCategories.reduce((acc, cat) => acc + cat.prompts.length, 0);
 
   return (
-    <article className="max-w-4xl">
+    <article className="max-w-4xl" style={{ paddingTop: 'clamp(2rem, 5vh, 3rem)' }}>
       {/* Header */}
-      <div className="mb-10">
+      <div style={{ marginBottom: 'clamp(3rem, 6vh, 4rem)' }}>
         <div 
           className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full text-sm font-medium"
           style={{
@@ -166,13 +166,26 @@ export default function ChatGPTPromptsPage() {
         </div>
 
         <h1 
-          className="text-3xl sm:text-4xl font-bold mb-4 tracking-tight"
-          style={{ fontFamily: 'var(--font-literata), Georgia, serif', color: colors.text }}
+          style={{ 
+            fontFamily: 'var(--font-literata), Georgia, serif', 
+            fontSize: 'clamp(2.25rem, 5vw, 3.25rem)',
+            fontWeight: 300,
+            lineHeight: 1.1,
+            letterSpacing: '-0.02em',
+            marginBottom: '1.5rem',
+            color: colors.text
+          }}
         >
           {totalPrompts}+ ChatGPT Prompts for Academic Writing
         </h1>
 
-        <p className="text-lg mb-6" style={{ color: colors.muted }}>
+        <p style={{ 
+          fontSize: 'clamp(1.0625rem, 2vw, 1.1875rem)',
+          lineHeight: 1.7,
+          marginBottom: '1.5rem',
+          color: colors.muted,
+          maxWidth: '700px'
+        }}>
           Copy-paste prompts that actually work. Tested and refined for essays,
           research papers, thesis statements, and every type of academic
           assignment. Updated for 2025.
@@ -224,11 +237,17 @@ export default function ChatGPTPromptsPage() {
 
       {/* Prompt Categories */}
       {promptCategories.map((category) => (
-        <section key={category.id} className="mb-16">
-          <div id={category.id} className="scroll-mt-24 mb-6">
+        <section key={category.id} style={{ marginBottom: 'clamp(4rem, 8vh, 6rem)' }}>
+          <div id={category.id} className="scroll-mt-24" style={{ marginBottom: 'clamp(1.5rem, 3vh, 2rem)' }}>
             <h2 
-              className="text-2xl font-bold mb-2"
-              style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
+              style={{ 
+                fontFamily: 'var(--font-literata), Georgia, serif',
+                fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
+                fontWeight: 300,
+                letterSpacing: '-0.01em',
+                marginBottom: '0.75rem',
+                color: colors.text
+              }}
             >
               {category.title}
             </h2>
@@ -244,7 +263,7 @@ export default function ChatGPTPromptsPage() {
       ))}
 
       {/* CTA Section */}
-      <section className="mb-12">
+      <section style={{ marginBottom: 'clamp(4rem, 8vh, 6rem)' }}>
         <div 
           className="rounded-2xl p-8 text-center"
           style={{
@@ -254,8 +273,14 @@ export default function ChatGPTPromptsPage() {
         >
           <Sparkles className="w-10 h-10 mx-auto mb-4" style={{ color: colors.accentHover }} />
           <h2 
-            className="text-2xl font-bold mb-3"
-            style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
+            style={{ 
+              fontFamily: 'var(--font-literata), Georgia, serif',
+              fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
+              fontWeight: 300,
+              letterSpacing: '-0.01em',
+              marginBottom: '1rem',
+              color: colors.text
+            }}
           >
             Want Prompts That Know Your Documents?
           </h2>
@@ -287,10 +312,16 @@ export default function ChatGPTPromptsPage() {
       </section>
 
       {/* Related Content */}
-      <section className="mb-12">
+      <section style={{ marginBottom: 'clamp(4rem, 8vh, 6rem)' }}>
         <h2 
-          className="text-2xl font-bold mb-4"
-          style={{ color: colors.text, fontFamily: 'var(--font-literata), Georgia, serif' }}
+          style={{ 
+            fontFamily: 'var(--font-literata), Georgia, serif',
+            fontSize: 'clamp(1.75rem, 3.5vw, 2.25rem)',
+            fontWeight: 300,
+            letterSpacing: '-0.01em',
+            marginBottom: 'clamp(1.5rem, 3vh, 2rem)',
+            color: colors.text
+          }}
         >
           Related Guides
         </h2>
