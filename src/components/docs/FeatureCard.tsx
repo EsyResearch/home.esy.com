@@ -1,16 +1,13 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+// Elevated Dark Theme
 const theme = {
   elevated: '#27272a',
-  surface: '#1f1f23',
   text: '#fafafa',
-  muted: '#a1a1aa',
-  subtle: '#71717a',
-  border: 'rgba(63, 63, 70, 0.4)',
-  borderSubtle: 'rgba(63, 63, 70, 0.2)',
-  accent: '#9f7aea',
-  accentLight: '#c4b5fd',
+  muted: 'rgba(255, 255, 255, 0.7)',
+  border: 'rgba(255, 255, 255, 0.08)',
+  accent: '#8b5cf6',
 };
 
 interface FeatureCardProps {
@@ -31,33 +28,52 @@ export function FeatureCard({
   return (
     <Link
       href={href}
-      className="group relative block rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2"
       style={{
-        backgroundColor: theme.elevated,
-        border: `1px solid ${theme.border}`,
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+        display: 'block',
+        textDecoration: 'none',
       }}
     >
-      {/* Ambient Glow on Hover */}
       <div
-        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
         style={{
-          background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(236, 72, 153, 0.04) 100%)',
-          boxShadow: '0 20px 60px rgba(139, 92, 246, 0.2)',
+          padding: '1.75rem',
+          background: 'linear-gradient(135deg, rgba(31, 31, 35, 0.9) 0%, rgba(39, 39, 42, 0.7) 100%)',
+          border: `1px solid ${theme.border}`,
+          borderRadius: '16px',
+          transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          cursor: 'pointer',
+          backdropFilter: 'blur(10px)',
+          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.15)',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column' as const,
         }}
-      />
-
-      {/* Content */}
-      <div className="relative space-y-4">
-        {/* Icon & Badge Row */}
-        <div className="flex items-start justify-between">
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'translateY(-4px)';
+          e.currentTarget.style.borderColor = 'rgba(159, 122, 234, 0.3)';
+          e.currentTarget.style.boxShadow = '0 12px 32px rgba(159, 122, 234, 0.2)';
+          e.currentTarget.style.background = 'linear-gradient(135deg, rgba(39, 39, 42, 0.95) 0%, rgba(31, 31, 35, 0.8) 100%)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'translateY(0)';
+          e.currentTarget.style.borderColor = theme.border;
+          e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.15)';
+          e.currentTarget.style.background = 'linear-gradient(135deg, rgba(31, 31, 35, 0.9) 0%, rgba(39, 39, 42, 0.7) 100%)';
+        }}
+      >
+        {/* Icon + New Badge */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
           {icon && (
             <div
-              className="w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110"
               style={{
-                background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(236, 72, 153, 0.1) 100%)',
+                width: '48px',
+                height: '48px',
+                borderRadius: '12px',
+                background: 'rgba(139, 92, 246, 0.15)',
                 border: '1px solid rgba(139, 92, 246, 0.2)',
-                color: theme.accentLight,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#a78bfa',
                 boxShadow: '0 4px 12px rgba(139, 92, 246, 0.15)',
               }}
             >
@@ -66,10 +82,15 @@ export function FeatureCard({
           )}
           {isNew && (
             <span
-              className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full text-white"
               style={{
+                padding: '0.25rem 0.625rem',
                 background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
-                boxShadow: '0 2px 8px rgba(139, 92, 246, 0.3)',
+                color: '#ffffff',
+                borderRadius: '8px',
+                fontSize: '0.65rem',
+                fontWeight: 700,
+                textTransform: 'uppercase' as const,
+                letterSpacing: '0.05em',
               }}
             >
               New
@@ -77,47 +98,47 @@ export function FeatureCard({
           )}
         </div>
 
-        {/* Title */}
+        {/* Content */}
         <h3
-          className="text-xl font-bold tracking-tight transition-colors duration-200 group-hover:text-violet-300"
           style={{
+            fontSize: '1.25rem',
+            fontWeight: 400,
+            letterSpacing: '-0.01em',
+            lineHeight: 1.3,
+            marginBottom: '0.75rem',
             color: theme.text,
-            fontFamily: 'var(--font-literata), Georgia, serif',
+            fontFamily: 'var(--font-literata)',
           }}
         >
           {title}
         </h3>
-
-        {/* Description */}
         <p
-          className="text-base leading-relaxed"
-          style={{ color: theme.muted }}
+          style={{
+            fontSize: '0.9375rem',
+            color: theme.muted,
+            lineHeight: 1.6,
+            marginBottom: '1.25rem',
+            flexGrow: 1,
+          }}
         >
           {description}
         </p>
 
-        {/* Arrow Indicator */}
-        <div className="flex items-center gap-2 pt-2">
-          <span
-            className="text-sm font-medium transition-colors duration-200"
-            style={{ color: theme.accent }}
-          >
-            Learn more
-          </span>
-          <ArrowRight
-            className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-            style={{ color: theme.accent }}
-          />
+        {/* Arrow */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            color: theme.accent,
+            fontSize: '0.875rem',
+            fontWeight: 500,
+          }}
+        >
+          Learn more
+          <ArrowRight style={{ width: '16px', height: '16px' }} />
         </div>
       </div>
-
-      {/* Subtle Border Glow on Hover */}
-      <div
-        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-        style={{
-          border: '1px solid rgba(139, 92, 246, 0.3)',
-        }}
-      />
     </Link>
   );
 }

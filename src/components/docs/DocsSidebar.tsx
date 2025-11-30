@@ -21,19 +21,16 @@ import {
   FileText,
 } from "lucide-react";
 
+// Elevated Dark Theme
 const theme = {
   bg: '#18181b',
   elevated: '#27272a',
   surface: '#1f1f23',
   text: '#fafafa',
-  textSecondary: '#e4e4e7',
-  muted: '#a1a1aa',
-  subtle: '#71717a',
-  border: 'rgba(63, 63, 70, 0.4)',
-  borderSubtle: 'rgba(63, 63, 70, 0.2)',
-  accent: '#9f7aea',
-  accentHover: '#8b5cf6',
-  accentLight: '#c4b5fd',
+  muted: 'rgba(255, 255, 255, 0.7)',
+  subtle: 'rgba(255, 255, 255, 0.5)',
+  border: 'rgba(255, 255, 255, 0.08)',
+  accent: '#8b5cf6',
 };
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -49,49 +46,79 @@ function NavItemComponent({ item, isActive }: { item: NavItem; isActive: boolean
   return (
     <Link
       href={item.href}
-      className="group relative flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200"
-      style={{
-        background: isActive 
-          ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(236, 72, 153, 0.06) 100%)'
-          : 'transparent',
-        color: isActive ? theme.text : theme.muted,
-        border: isActive ? '1px solid rgba(139, 92, 246, 0.25)' : '1px solid transparent',
-      }}
+      className="group block"
+      style={{ textDecoration: 'none' }}
     >
-      {/* Active Indicator Bar */}
-      {isActive && (
-        <div
-          className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 rounded-r-full"
-          style={{
-            background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
-          }}
-        />
-      )}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.75rem',
+        padding: '0.75rem 1rem',
+        borderRadius: '10px',
+        transition: 'all 0.2s ease',
+        background: isActive 
+          ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.08) 100%)'
+          : 'transparent',
+        border: `1px solid ${isActive ? 'rgba(139, 92, 246, 0.25)' : 'transparent'}`,
+        position: 'relative' as const
+      }}>
+        {/* Active indicator bar */}
+        {isActive && (
+          <div style={{
+            position: 'absolute' as const,
+            left: 0,
+            top: '50%',
+            transform: 'translateY(-50%)',
+            width: '3px',
+            height: '60%',
+            background: theme.accent,
+            borderRadius: '0 4px 4px 0'
+          }} />
+        )}
+        
+        {/* Icon */}
+        <div style={{
+          width: '28px',
+          height: '28px',
+          borderRadius: '8px',
+          background: isActive ? 'rgba(139, 92, 246, 0.2)' : theme.elevated,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: isActive ? '#a78bfa' : theme.subtle,
+          transition: 'all 0.2s ease',
+          flexShrink: 0
+        }}>
+          {item.icon && iconMap[item.icon]}
+        </div>
 
-      <span
-        className="shrink-0 p-2 rounded-lg transition-all duration-200"
-        style={{
-          background: isActive 
-            ? 'rgba(139, 92, 246, 0.2)' 
-            : theme.surface,
-          color: isActive 
-            ? theme.accentLight 
-            : theme.subtle,
-        }}
-      >
-        {item.icon && iconMap[item.icon]}
-      </span>
-      
-      <span className="flex-1 truncate">{item.title}</span>
-      
-      {item.isNew && (
-        <span 
-          className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full text-white shrink-0"
-          style={{ background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)' }}
-        >
-          New
+        {/* Text */}
+        <span style={{
+          fontSize: '0.875rem',
+          fontWeight: isActive ? 500 : 400,
+          color: isActive ? theme.text : theme.muted,
+          transition: 'color 0.2s ease',
+          flex: 1
+        }}>
+          {item.title}
         </span>
-      )}
+
+        {/* New Badge */}
+        {item.isNew && (
+          <span style={{
+            padding: '0.125rem 0.375rem',
+            background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
+            color: '#ffffff',
+            borderRadius: '6px',
+            fontSize: '0.625rem',
+            fontWeight: 700,
+            textTransform: 'uppercase' as const,
+            letterSpacing: '0.05em'
+          }}>
+            New
+          </span>
+        )}
+      </div>
     </Link>
   );
 }
@@ -99,26 +126,42 @@ function NavItemComponent({ item, isActive }: { item: NavItem; isActive: boolean
 function NavSectionComponent({ section }: { section: NavSection }) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(true);
-  const normalizedPath = pathname?.endsWith('/') && pathname.length > 1 
-    ? pathname.slice(0, -1) 
+  const normalizedPath = pathname?.endsWith('/') && pathname.length > 1
+    ? pathname.slice(0, -1)
     : pathname;
 
   return (
-    <div className="mb-8">
+    <div style={{ marginBottom: '1.5rem' }}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 w-full px-4 py-2 text-xs font-bold uppercase tracking-[0.1em] transition-colors hover:text-zinc-300"
-        style={{ color: theme.subtle }}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          width: '100%',
+          padding: '0.5rem 1rem',
+          background: 'transparent',
+          border: 'none',
+          color: theme.subtle,
+          fontSize: '0.75rem',
+          fontWeight: 600,
+          textTransform: 'uppercase' as const,
+          letterSpacing: '0.05em',
+          cursor: 'pointer',
+          transition: 'color 0.2s ease'
+        }}
+        onMouseEnter={(e) => e.currentTarget.style.color = theme.muted}
+        onMouseLeave={(e) => e.currentTarget.style.color = theme.subtle}
       >
         {isOpen ? (
-          <ChevronDown className="w-3.5 h-3.5" />
+          <ChevronDown className="w-3 h-3" />
         ) : (
-          <ChevronRight className="w-3.5 h-3.5" />
+          <ChevronRight className="w-3 h-3" />
         )}
         {section.title}
       </button>
       {isOpen && (
-        <div className="space-y-1 mt-2">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', marginTop: '0.5rem' }}>
           {section.items.map((item) => (
             <NavItemComponent
               key={item.href}
@@ -137,14 +180,24 @@ export function DocsSidebar() {
 
   return (
     <>
-      {/* Mobile FAB */}
+      {/* Mobile Toggle Button */}
       <button
         onClick={() => setIsMobileOpen(true)}
-        className="lg:hidden fixed bottom-8 right-8 z-50 p-4 rounded-full text-white transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
         style={{
-          background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
-          boxShadow: '0 10px 40px rgba(139, 92, 246, 0.4)',
+          position: 'fixed' as const,
+          bottom: '1.5rem',
+          right: '1.5rem',
+          zIndex: 50,
+          padding: '1rem',
+          borderRadius: '50%',
+          background: `linear-gradient(135deg, ${theme.accent} 0%, rgba(139, 92, 246, 0.9) 100%)`,
+          color: '#ffffff',
+          border: 'none',
+          boxShadow: '0 8px 24px rgba(139, 92, 246, 0.4)',
+          cursor: 'pointer',
+          display: 'none'
         }}
+        className="lg:hidden"
         aria-label="Open navigation"
       >
         <Menu className="w-6 h-6" />
@@ -153,87 +206,183 @@ export function DocsSidebar() {
       {/* Mobile Overlay */}
       {isMobileOpen && (
         <div
-          className="lg:hidden fixed inset-0 z-[60] bg-black/70 backdrop-blur-sm"
           onClick={() => setIsMobileOpen(false)}
+          style={{
+            position: 'fixed' as const,
+            inset: 0,
+            zIndex: 50,
+            background: 'rgba(0, 0, 0, 0.6)',
+            backdropFilter: 'blur(4px)',
+            display: 'none'
+          }}
+          className="lg:hidden"
         />
       )}
 
-      {/* Sidebar Container */}
+      {/* Sidebar */}
       <aside
-        className={`
-          fixed lg:sticky z-[70] lg:z-auto
-          h-screen lg:h-[calc(100vh-73px)]
-          w-80 lg:w-72
-          border-r flex flex-col
-          transform transition-transform duration-300 ease-out
-          ${isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
-        `}
         style={{
-          top: isMobileOpen ? 0 : '73px',
+          position: 'sticky' as const,
+          top: '73px',
           left: 0,
+          height: 'calc(100vh - 73px)',
+          width: '280px',
           backgroundColor: theme.bg,
-          borderColor: theme.border,
-          backdropFilter: 'blur(20px)',
+          borderRight: `1px solid ${theme.border}`,
+          overflowY: 'auto' as const,
+          flexShrink: 0,
+          display: 'flex',
+          flexDirection: 'column' as const
         }}
+        className={isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
       >
         {/* Header */}
-        <div 
-          className="shrink-0 p-6 border-b"
-          style={{ borderColor: theme.border }}
-        >
-          <div className="flex items-center justify-between">
-            <Link href="/docs" className="flex items-center gap-3 group">
-              <div 
-                className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110"
-                style={{
-                  background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
-                  boxShadow: '0 4px 16px rgba(139, 92, 246, 0.3)',
-                }}
-              >
-                <BookOpen className="w-5 h-5 text-white" />
-              </div>
-              <span 
-                className="text-xl font-bold"
-                style={{ 
-                  color: theme.text,
-                  fontFamily: 'var(--font-literata), Georgia, serif',
-                }}
-              >
-                Docs
-              </span>
-            </Link>
-            <button
-              onClick={() => setIsMobileOpen(false)}
-              className="lg:hidden p-2 rounded-lg transition-colors hover:bg-zinc-800"
-              style={{ color: theme.muted }}
-              aria-label="Close navigation"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '1.5rem',
+          borderBottom: `1px solid ${theme.border}`
+        }}>
+          <Link
+            href="/docs"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              textDecoration: 'none'
+            }}
+          >
+            <div style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: '10px',
+              background: `linear-gradient(135deg, ${theme.accent} 0%, rgba(139, 92, 246, 0.9) 100%)`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#ffffff',
+              boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)'
+            }}>
+              <BookOpen className="w-5 h-5" />
+            </div>
+            <span style={{
+              fontSize: '1.125rem',
+              fontWeight: 600,
+              color: theme.text,
+              fontFamily: 'var(--font-literata)',
+              letterSpacing: '-0.01em'
+            }}>
+              Docs
+            </span>
+          </Link>
+          <button
+            onClick={() => setIsMobileOpen(false)}
+            style={{
+              padding: '0.5rem',
+              borderRadius: '8px',
+              background: theme.elevated,
+              color: theme.muted,
+              border: 'none',
+              cursor: 'pointer',
+              display: 'none'
+            }}
+            className="lg:hidden"
+            aria-label="Close navigation"
+          >
+            <X className="w-5 h-5" />
+          </button>
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent">
+        <nav style={{
+          flex: 1,
+          overflowY: 'auto' as const,
+          padding: '1.5rem 1rem'
+        }}>
           {docsNavigation.map((section) => (
             <NavSectionComponent key={section.title} section={section} />
           ))}
         </nav>
 
         {/* Footer CTA */}
-        <div className="shrink-0 p-4 border-t" style={{ borderColor: theme.border }}>
+        <div style={{
+          padding: '1.5rem',
+          borderTop: `1px solid ${theme.border}`
+        }}>
           <Link
-            href="https://app.esy.com"
-            className="block w-full py-3.5 px-5 text-white text-sm font-semibold rounded-xl text-center transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
+            href="https://app.esy.com/signup"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
-              background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
-              boxShadow: '0 8px 24px rgba(139, 92, 246, 0.3)',
+              display: 'block',
+              width: '100%',
+              padding: '0.875rem 1.25rem',
+              background: `linear-gradient(135deg, ${theme.accent} 0%, rgba(139, 92, 246, 0.9) 100%)`,
+              color: '#ffffff',
+              borderRadius: '10px',
+              textAlign: 'center' as const,
+              fontSize: '0.9375rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              transition: 'all 0.2s ease',
+              boxShadow: '0 4px 12px rgba(139, 92, 246, 0.25)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-1px)';
+              e.currentTarget.style.boxShadow = '0 6px 16px rgba(139, 92, 246, 0.35)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(139, 92, 246, 0.25)';
             }}
           >
             Try Esy Free →
           </Link>
         </div>
       </aside>
+
+      <style jsx global>{`
+        /* Mobile sidebar overlay */
+        @media (max-width: 1023px) {
+          aside {
+            position: fixed !important;
+            z-index: 51;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+          }
+          
+          aside.translate-x-0 {
+            transform: translateX(0);
+          }
+          
+          button.lg\\:hidden {
+            display: flex !important;
+          }
+          
+          div.lg\\:hidden {
+            display: block !important;
+          }
+        }
+        
+        /* Scrollbar styling */
+        aside::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        aside::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        
+        aside::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 3px;
+        }
+        
+        aside::-webkit-scrollbar-thumb:hover {
+          background: rgba(255, 255, 255, 0.15);
+        }
+      `}</style>
     </>
   );
 }

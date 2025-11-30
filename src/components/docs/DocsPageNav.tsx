@@ -1,144 +1,119 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { getAdjacentPages } from "@/lib/docs-navigation";
-import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
-// Design system colors from DESIGN_SYSTEM.md
-const colors = {
+// Elevated Dark Theme
+const theme = {
   bg: '#18181b',
   elevated: '#27272a',
-  surface: '#1f1f23',
   text: '#fafafa',
-  muted: '#a1a1aa',
-  subtle: '#71717a',
-  border: 'rgba(63, 63, 70, 0.4)',
+  muted: 'rgba(255, 255, 255, 0.7)',
+  border: 'rgba(255, 255, 255, 0.08)',
+  accent: '#8b5cf6',
 };
 
-export function DocsPageNav() {
-  const pathname = usePathname();
-  const normalizedPath = pathname?.endsWith('/') && pathname.length > 1 
-    ? pathname.slice(0, -1) 
-    : pathname;
-  const { prev, next } = getAdjacentPages(normalizedPath || '');
+interface PageLink {
+  href: string;
+  title: string;
+}
+
+interface DocsPageNavProps {
+  prev?: PageLink;
+  next?: PageLink;
+}
+
+export function DocsPageNav({ prev, next }: DocsPageNavProps) {
+  if (!prev && !next) {
+    return null;
+  }
 
   return (
-    <footer className="mt-16 pt-8" style={{ borderTop: `1px solid ${colors.border}` }}>
-      {/* Prev/Next Navigation */}
-      <div className="flex flex-col sm:flex-row justify-between gap-4 mb-12">
-        {prev ? (
-          <Link
-            href={prev.href}
-            className="group flex-1 flex items-center gap-4 p-4 rounded-xl transition-all hover:bg-zinc-800/50"
-            style={{
-              backgroundColor: colors.elevated,
-              border: `1px solid ${colors.border}`,
-            }}
-          >
-            <ChevronLeft 
-              className="w-5 h-5 shrink-0 group-hover:-translate-x-1 transition-transform" 
-              style={{ color: colors.subtle }}
-            />
-            <div className="min-w-0">
-              <p className="text-xs uppercase tracking-wider mb-1" style={{ color: colors.subtle }}>
-                Previous
-              </p>
-              <p className="text-sm font-medium truncate" style={{ color: colors.text }}>
-                {prev.title}
-              </p>
-            </div>
-          </Link>
-        ) : (
-          <div className="flex-1" />
-        )}
-
-        {next ? (
-          <Link
-            href={next.href}
-            className="group flex-1 flex items-center justify-end gap-4 p-4 rounded-xl transition-all hover:bg-zinc-800/50 text-right"
-            style={{
-              backgroundColor: colors.elevated,
-              border: `1px solid ${colors.border}`,
-            }}
-          >
-            <div className="min-w-0">
-              <p className="text-xs uppercase tracking-wider mb-1" style={{ color: colors.subtle }}>
-                Next
-              </p>
-              <p className="text-sm font-medium truncate" style={{ color: colors.text }}>
-                {next.title}
-              </p>
-            </div>
-            <ChevronRight 
-              className="w-5 h-5 shrink-0 group-hover:translate-x-1 transition-transform" 
-              style={{ color: colors.subtle }}
-            />
-          </Link>
-        ) : (
-          <div className="flex-1" />
-        )}
-      </div>
-
-      {/* CTA Section */}
-      <div 
-        className="rounded-2xl p-8 text-center mb-8"
-        style={{
-          background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%)',
-          border: '1px solid rgba(139, 92, 246, 0.2)',
-        }}
-      >
-        <h3 
-          className="text-xl font-bold mb-3"
-          style={{ 
-            color: colors.text,
-            fontFamily: 'var(--font-literata), Georgia, serif',
+    <nav style={{
+      display: 'grid',
+      gridTemplateColumns: prev && next ? '1fr 1fr' : '1fr',
+      gap: '1rem',
+      marginTop: 'clamp(4rem, 8vh, 6rem)',
+      paddingTop: 'clamp(2rem, 4vh, 3rem)',
+      borderTop: `1px solid ${theme.border}`,
+    }}>
+      {prev && (
+        <Link
+          href={prev.href}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.75rem',
+            padding: '1.25rem 1.5rem',
+            background: 'linear-gradient(135deg, rgba(31, 31, 35, 0.9) 0%, rgba(39, 39, 42, 0.7) 100%)',
+            border: `1px solid ${theme.border}`,
+            borderRadius: '12px',
+            textDecoration: 'none',
+            transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            backdropFilter: 'blur(10px)',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
+            e.currentTarget.style.boxShadow = '0 8px 24px rgba(139, 92, 246, 0.15)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.borderColor = theme.border;
+            e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
           }}
         >
-          Ready to write smarter essays?
-        </h3>
-        <p className="mb-6 max-w-md mx-auto" style={{ color: colors.muted }}>
-          Join thousands of students using Esy&apos;s agentic research tools to skip the boring work.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="https://app.esy.com/signup"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 text-white font-semibold rounded-xl transition-all hover:-translate-y-0.5"
-            style={{
-              background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
-              boxShadow: '0 10px 30px rgba(139, 92, 246, 0.3)',
-            }}
-          >
-            Start Free Trial
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-          <Link
-            href="/prompt-library"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 font-medium rounded-xl transition-colors hover:bg-zinc-700/50"
-            style={{
-              backgroundColor: colors.elevated,
-              color: colors.text,
-              border: `1px solid ${colors.border}`,
-            }}
-          >
-            Browse Prompt Library
-          </Link>
-        </div>
-      </div>
-
-      {/* Copyright */}
-      <div 
-        className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm"
-        style={{ color: colors.subtle }}
-      >
-        <p>© {new Date().getFullYear()} Esy. All rights reserved.</p>
-        <div className="flex gap-6">
-          <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
-          <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
-          <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
-        </div>
-      </div>
-    </footer>
+          <ArrowLeft style={{ width: '20px', height: '20px', color: theme.accent, flexShrink: 0 }} />
+          <div>
+            <div style={{ fontSize: '0.75rem', color: theme.muted, marginBottom: '0.25rem', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 500 }}>
+              Previous
+            </div>
+            <div style={{ fontSize: '1rem', color: theme.text, fontWeight: 500 }}>
+              {prev.title}
+            </div>
+          </div>
+        </Link>
+      )}
+      {next && (
+        <Link
+          href={next.href}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            gap: '0.75rem',
+            padding: '1.25rem 1.5rem',
+            background: 'linear-gradient(135deg, rgba(31, 31, 35, 0.9) 0%, rgba(39, 39, 42, 0.7) 100%)',
+            border: `1px solid ${theme.border}`,
+            borderRadius: '12px',
+            textDecoration: 'none',
+            transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            backdropFilter: 'blur(10px)',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+            gridColumn: prev ? 'auto' : '1 / -1'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
+            e.currentTarget.style.boxShadow = '0 8px 24px rgba(139, 92, 246, 0.15)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.borderColor = theme.border;
+            e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+          }}
+        >
+          <div style={{ textAlign: 'right' }}>
+            <div style={{ fontSize: '0.75rem', color: theme.muted, marginBottom: '0.25rem', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 500 }}>
+              Next
+            </div>
+            <div style={{ fontSize: '1rem', color: theme.text, fontWeight: 500 }}>
+              {next.title}
+            </div>
+          </div>
+          <ArrowRight style={{ width: '20px', height: '20px', color: theme.accent, flexShrink: 0 }} />
+        </Link>
+      )}
+    </nav>
   );
 }
 
