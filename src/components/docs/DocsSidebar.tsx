@@ -248,7 +248,7 @@ export function DocsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
         }}>
           <Logo 
             suffix="Docs"
-            href="/"
+            href="/docs"
             size={50}
             showText={false}
             theme="dark"
