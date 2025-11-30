@@ -33,8 +33,11 @@ const ConditionalNavigation = () => {
   // Check if we're on essays page
   const isEssaysPage = normalizedPath === '/essays';
   
-  // Don't render the common navigation on essay view pages
-  if (isEssayViewPage) {
+  // Check if we're on docs pages
+  const isDocsPage = normalizedPath?.startsWith('/docs');
+  
+  // Don't render the common navigation on essay view pages or docs pages
+  if (isEssayViewPage || isDocsPage) {
     return null;
   }
 
