@@ -127,7 +127,7 @@ const DocsHomeClient = () => {
             <p style={{ marginBottom: '1.5rem' }}>
               <strong style={{ color: theme.text, fontWeight: 600 }}>Need prompts right away?</strong> Jump to our{' '}
               <Link
-                href="/docs/chatgpt-prompts-for-academic-writing"
+                href="/prompt-library"
                 style={{
                   color: theme.accent,
                   textDecoration: 'none',
@@ -137,7 +137,7 @@ const DocsHomeClient = () => {
                 onMouseEnter={(e) => e.currentTarget.style.borderBottomColor = theme.accent}
                 onMouseLeave={(e) => e.currentTarget.style.borderBottomColor = `${theme.accent}40`}
               >
-                50+ ChatGPT Prompts
+                Prompt Library
               </Link>{' '}
               for ready-to-use examples across different academic tasks.
             </p>
