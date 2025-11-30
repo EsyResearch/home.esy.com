@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Logo from "@/components/Logo";
 import {
   docsNavigation,
   type NavSection,
@@ -245,42 +246,13 @@ export function DocsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
           padding: '1.5rem',
           borderBottom: `1px solid ${theme.border}`
         }}>
-          <Link
+          <Logo 
+            suffix="Docs"
             href="/"
-            style={{
-              display: 'flex',
-              alignItems: 'baseline',
-              gap: '0.5rem',
-              textDecoration: 'none',
-              transition: 'opacity 0.2s ease'
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.8')}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
-          >
-            {/* Esy Logo */}
-            <span style={{
-              fontSize: '1.5rem',
-              fontWeight: 300,
-              color: theme.text,
-              fontFamily: 'var(--font-literata)',
-              letterSpacing: '-0.02em'
-            }}>
-              esy
-            </span>
-            
-            {/* Docs Suffix */}
-            <span style={{
-              fontSize: '0.875rem',
-              fontWeight: 500,
-              color: theme.subtle,
-              textTransform: 'uppercase' as const,
-              letterSpacing: '0.05em',
-              paddingLeft: '0.5rem',
-              borderLeft: `1px solid ${theme.border}`
-            }}>
-              Docs
-            </span>
-          </Link>
+            size={50}
+            showText={false}
+            theme="dark"
+          />
           
           <button
             onClick={() => setIsMobileOpen(false)}
