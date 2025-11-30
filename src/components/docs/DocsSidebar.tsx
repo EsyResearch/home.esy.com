@@ -19,6 +19,7 @@ import {
   X,
   Menu,
   FileText,
+  Search,
 } from "lucide-react";
 
 // Elevated Dark Theme
@@ -175,7 +176,7 @@ function NavSectionComponent({ section }: { section: NavSection }) {
   );
 }
 
-export function DocsSidebar() {
+export function DocsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   return (
@@ -223,9 +224,9 @@ export function DocsSidebar() {
       <aside
         style={{
           position: 'sticky' as const,
-          top: '73px',
+          top: 0,
           left: 0,
-          height: 'calc(100vh - 73px)',
+          height: '100vh',
           width: '280px',
           backgroundColor: theme.bg,
           borderRight: `1px solid ${theme.border}`,
@@ -236,7 +237,7 @@ export function DocsSidebar() {
         }}
         className={isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
       >
-        {/* Header */}
+        {/* Header with Logo */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -245,37 +246,42 @@ export function DocsSidebar() {
           borderBottom: `1px solid ${theme.border}`
         }}>
           <Link
-            href="/docs"
+            href="/"
             style={{
               display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              textDecoration: 'none'
+              alignItems: 'baseline',
+              gap: '0.5rem',
+              textDecoration: 'none',
+              transition: 'opacity 0.2s ease'
             }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.8')}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
           >
-            <div style={{
-              width: '36px',
-              height: '36px',
-              borderRadius: '10px',
-              background: `linear-gradient(135deg, ${theme.accent} 0%, rgba(139, 92, 246, 0.9) 100%)`,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#ffffff',
-              boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)'
-            }}>
-              <BookOpen className="w-5 h-5" />
-            </div>
+            {/* Esy Logo */}
             <span style={{
-              fontSize: '1.125rem',
-              fontWeight: 600,
+              fontSize: '1.5rem',
+              fontWeight: 300,
               color: theme.text,
               fontFamily: 'var(--font-literata)',
-              letterSpacing: '-0.01em'
+              letterSpacing: '-0.02em'
+            }}>
+              esy
+            </span>
+            
+            {/* Docs Suffix */}
+            <span style={{
+              fontSize: '0.875rem',
+              fontWeight: 500,
+              color: theme.subtle,
+              textTransform: 'uppercase' as const,
+              letterSpacing: '0.05em',
+              paddingLeft: '0.5rem',
+              borderLeft: `1px solid ${theme.border}`
             }}>
               Docs
             </span>
           </Link>
+          
           <button
             onClick={() => setIsMobileOpen(false)}
             style={{
@@ -292,6 +298,102 @@ export function DocsSidebar() {
           >
             <X className="w-5 h-5" />
           </button>
+        </div>
+
+        {/* Search Section */}
+        <div style={{
+          padding: '1rem',
+          borderBottom: `1px solid ${theme.border}`
+        }}>
+          {/* Search Input (triggers modal) */}
+          <button
+            onClick={onOpenSearch}
+            style={{
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              position: 'relative' as const,
+              padding: '0.625rem 0.875rem 0.625rem 2.5rem',
+              background: theme.surface,
+              border: `1px solid ${theme.border}`,
+              borderRadius: '8px',
+              fontSize: '0.875rem',
+              color: theme.muted,
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              textAlign: 'left' as const
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
+              e.currentTarget.style.background = theme.elevated;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = theme.border;
+              e.currentTarget.style.background = theme.surface;
+            }}
+          >
+            <Search style={{
+              position: 'absolute' as const,
+              left: '0.875rem',
+              width: '16px',
+              height: '16px',
+              color: theme.subtle
+            }} />
+            <span>Search docs...</span>
+            <kbd style={{
+              position: 'absolute' as const,
+              right: '0.75rem',
+              padding: '0.125rem 0.375rem',
+              background: theme.elevated,
+              border: `1px solid ${theme.border}`,
+              borderRadius: '4px',
+              fontSize: '0.7rem',
+              color: theme.subtle
+            }}>
+              ⌘K
+            </kbd>
+          </button>
+
+          {/* Quick Links */}
+          <div style={{
+            display: 'flex',
+            gap: '0.5rem',
+            marginTop: '0.75rem',
+            flexWrap: 'wrap'
+          }}>
+            {[
+              { label: 'Getting Started', href: '/docs/prompt-engineering' },
+              { label: 'Prompts', href: '/docs/chatgpt-prompts-for-academic-writing' },
+              { label: 'Workflows', href: '/docs/agent-workflows' }
+            ].map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                style={{
+                  padding: '0.375rem 0.75rem',
+                  background: 'transparent',
+                  border: `1px solid ${theme.border}`,
+                  borderRadius: '6px',
+                  fontSize: '0.75rem',
+                  color: theme.muted,
+                  textDecoration: 'none',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = theme.accent;
+                  e.currentTarget.style.color = theme.text;
+                  e.currentTarget.style.background = 'rgba(139, 92, 246, 0.08)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = theme.border;
+                  e.currentTarget.style.color = theme.muted;
+                  e.currentTarget.style.background = 'transparent';
+                }}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
         </div>
 
         {/* Navigation */}

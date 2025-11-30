@@ -10,6 +10,15 @@ export const metadata: Metadata = {
     description: "Learn prompt engineering, build no-code research automations, and write smarter essays.",
     url: "https://esy.com/docs",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Master Research with Agentic AI | Esy Docs",
+    description: "Learn prompt engineering, build no-code research automations, and write smarter essays.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function DocsHomePage() {
