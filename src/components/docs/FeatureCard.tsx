@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-// Design system colors from DESIGN_SYSTEM.md
-const colors = {
+const theme = {
   elevated: '#27272a',
+  surface: '#1f1f23',
   text: '#fafafa',
   muted: '#a1a1aa',
   subtle: '#71717a',
   border: 'rgba(63, 63, 70, 0.4)',
+  borderSubtle: 'rgba(63, 63, 70, 0.2)',
   accent: '#9f7aea',
   accentLight: '#c4b5fd',
 };
@@ -30,61 +31,93 @@ export function FeatureCard({
   return (
     <Link
       href={href}
-      className="group relative block p-6 rounded-xl transition-all hover:-translate-y-1"
+      className="group relative block rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2"
       style={{
-        backgroundColor: colors.elevated,
-        border: `1px solid ${colors.border}`,
+        backgroundColor: theme.elevated,
+        border: `1px solid ${theme.border}`,
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
       }}
     >
-      {/* Gradient overlay on hover */}
-      <div 
-        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"
+      {/* Ambient Glow on Hover */}
+      <div
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
         style={{
           background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(236, 72, 153, 0.04) 100%)',
+          boxShadow: '0 20px 60px rgba(139, 92, 246, 0.2)',
         }}
       />
 
-      <div className="relative">
-        {/* Icon */}
-        {icon && (
-          <div 
-            className="w-11 h-11 mb-4 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform"
-            style={{
-              background: 'rgba(139, 92, 246, 0.15)',
-              border: '1px solid rgba(139, 92, 246, 0.2)',
-              color: colors.accent,
-            }}
-          >
-            {icon}
-          </div>
-        )}
-
-        {/* Content */}
-        <div className="flex items-start justify-between gap-4">
-          <div className="min-w-0">
-            <div className="flex items-center gap-2 mb-1.5">
-              <h3 className="font-semibold text-base" style={{ color: colors.text }}>
-                {title}
-              </h3>
-              {isNew && (
-                <span 
-                  className="px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-md text-white shrink-0"
-                  style={{ background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)' }}
-                >
-                  New
-                </span>
-              )}
+      {/* Content */}
+      <div className="relative space-y-4">
+        {/* Icon & Badge Row */}
+        <div className="flex items-start justify-between">
+          {icon && (
+            <div
+              className="w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+              style={{
+                background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(236, 72, 153, 0.1) 100%)',
+                border: '1px solid rgba(139, 92, 246, 0.2)',
+                color: theme.accentLight,
+                boxShadow: '0 4px 12px rgba(139, 92, 246, 0.15)',
+              }}
+            >
+              {icon}
             </div>
-            <p className="text-sm leading-relaxed" style={{ color: colors.muted }}>
-              {description}
-            </p>
-          </div>
-          <ArrowRight 
-            className="w-5 h-5 shrink-0 mt-0.5 group-hover:translate-x-1 transition-transform"
-            style={{ color: colors.subtle }}
+          )}
+          {isNew && (
+            <span
+              className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full text-white"
+              style={{
+                background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
+                boxShadow: '0 2px 8px rgba(139, 92, 246, 0.3)',
+              }}
+            >
+              New
+            </span>
+          )}
+        </div>
+
+        {/* Title */}
+        <h3
+          className="text-xl font-bold tracking-tight transition-colors duration-200 group-hover:text-violet-300"
+          style={{
+            color: theme.text,
+            fontFamily: 'var(--font-literata), Georgia, serif',
+          }}
+        >
+          {title}
+        </h3>
+
+        {/* Description */}
+        <p
+          className="text-base leading-relaxed"
+          style={{ color: theme.muted }}
+        >
+          {description}
+        </p>
+
+        {/* Arrow Indicator */}
+        <div className="flex items-center gap-2 pt-2">
+          <span
+            className="text-sm font-medium transition-colors duration-200"
+            style={{ color: theme.accent }}
+          >
+            Learn more
+          </span>
+          <ArrowRight
+            className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+            style={{ color: theme.accent }}
           />
         </div>
       </div>
+
+      {/* Subtle Border Glow on Hover */}
+      <div
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+        style={{
+          border: '1px solid rgba(139, 92, 246, 0.3)',
+        }}
+      />
     </Link>
   );
 }

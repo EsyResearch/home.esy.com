@@ -40,46 +40,86 @@ export default function DocsLayout({
         paddingTop: '73px',
       }}
     >
-      {/* Background effects - fixed position below nav */}
+      {/* Sophisticated Background Effects - Layered for Depth */}
       <div 
         className="fixed inset-x-0 bottom-0 pointer-events-none overflow-hidden"
-        style={{ top: '73px' }}
+        style={{ top: '73px', zIndex: 0 }}
       >
-        {/* Gradient orbs - signature Esy purple→pink at 135deg */}
+        {/* Primary Ambient Glow - Top Right */}
         <div 
-          className="absolute -top-32 left-1/4 w-[700px] h-[700px] rounded-full"
-          style={{ 
-            background: 'radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%)',
-            filter: 'blur(80px)',
+          style={{
+            position: 'absolute',
+            width: '800px',
+            height: '800px',
+            top: '-200px',
+            right: '10%',
+            background: 'radial-gradient(circle, rgba(139, 92, 246, 0.04) 0%, transparent 70%)',
+            filter: 'blur(100px)',
+            opacity: 0.8,
           }}
         />
+        
+        {/* Secondary Glow - Bottom Left */}
         <div 
-          className="absolute -bottom-32 right-1/4 w-[500px] h-[500px] rounded-full"
-          style={{ 
-            background: 'radial-gradient(circle, rgba(236, 72, 153, 0.08) 0%, transparent 70%)',
+          style={{
+            position: 'absolute',
+            width: '600px',
+            height: '600px',
+            bottom: '-100px',
+            left: '5%',
+            background: 'radial-gradient(circle, rgba(236, 72, 153, 0.03) 0%, transparent 70%)',
             filter: 'blur(80px)',
+            opacity: 0.6,
           }}
         />
-        {/* Subtle grid pattern */}
+
+        {/* Tertiary Accent - Middle */}
+        <div 
+          style={{
+            position: 'absolute',
+            width: '400px',
+            height: '400px',
+            top: '40%',
+            right: '30%',
+            background: 'radial-gradient(circle, rgba(245, 158, 11, 0.02) 0%, transparent 70%)',
+            filter: 'blur(60px)',
+            opacity: 0.4,
+          }}
+        />
+        
+        {/* Subtle Grid Texture */}
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                             linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
-            backgroundSize: '64px 64px',
+            backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.015) 1px, transparent 0)',
+            backgroundSize: '48px 48px',
             opacity: 0.5,
+          }}
+        />
+
+        {/* Gradient Overlay for Cohesion */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(180deg, rgba(24, 24, 27, 0.3) 0%, rgba(24, 24, 27, 0.1) 40%, transparent 100%)',
           }}
         />
       </div>
 
-      {/* Main layout with sidebar */}
-      <div className="relative flex min-h-[calc(100vh-73px)]">
+      {/* Main Content - Elevated Above Background */}
+      <div className="relative flex min-h-[calc(100vh-73px)]" style={{ zIndex: 1 }}>
         {/* Sidebar */}
         <DocsSidebar />
 
-        {/* Content area */}
+        {/* Content Area - Generous Spacing */}
         <main className="flex-1 min-w-0">
-          <div className="px-6 sm:px-8 lg:px-12 py-10 max-w-4xl mx-auto">
+          <div
+            style={{
+              maxWidth: '1200px',
+              margin: '0 auto',
+              padding: 'clamp(2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem)',
+            }}
+          >
             {children}
           </div>
         </main>
