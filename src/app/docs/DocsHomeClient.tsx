@@ -88,7 +88,7 @@ const DocsHomeClient = () => {
     {
       id: 'agent-workflows',
       title: 'Build No-Code Agent Workflows',
-      description: 'Learn to create automated research workflows using Esy's visual builder—no programming required.',
+      description: 'Learn to create automated research workflows using Esy&apos;s visual builder—no programming required.',
       href: '/docs/agent-workflows',
       icon: <Workflow className="w-6 h-6" />,
       category: 'Advanced',
