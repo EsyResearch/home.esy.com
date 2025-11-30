@@ -9,19 +9,19 @@ import {
 } from "lucide-react";
 import { DocsPageNav, DocsCallout, PromptCard } from "@/components/docs";
 
-// Design system colors from DESIGN_SYSTEM.md
+// Design system colors from DESIGN_SYSTEM.md - Updated for better contrast
 const colors = {
   bg: '#18181b',
   elevated: '#27272a',
   surface: '#1f1f23',
   text: '#fafafa',
-  textSecondary: '#e4e4e7',
-  muted: '#a1a1aa',
-  subtle: '#71717a',
-  border: 'rgba(63, 63, 70, 0.4)',
-  accent: '#9f7aea',
-  accentHover: '#8b5cf6',
-  accentLight: '#c4b5fd',
+  textSecondary: 'rgba(255, 255, 255, 0.85)',  // Improved contrast
+  muted: 'rgba(255, 255, 255, 0.75)',          // Better readability (was #a1a1aa)
+  subtle: 'rgba(255, 255, 255, 0.5)',          // (was #71717a)
+  border: 'rgba(255, 255, 255, 0.08)',
+  accent: '#8b5cf6',
+  accentHover: '#7c3aed',
+  accentLight: '#a78bfa',
 };
 
 export const metadata: Metadata = {
@@ -106,7 +106,13 @@ const starterPrompts = [
 
 export default function PromptEngineeringPage() {
   return (
-    <article style={{ paddingTop: 'clamp(2rem, 5vh, 3rem)' }}>
+    <article style={{ 
+      maxWidth: '800px',
+      margin: '0 auto',
+      padding: '0 clamp(1.5rem, 5vw, 2rem)',
+      paddingTop: 'clamp(4rem, 10vh, 6rem)',
+      paddingBottom: 'clamp(4rem, 8vh, 6rem)'
+    }}>
       {/* Header */}
       <div style={{ marginBottom: 'clamp(3rem, 6vh, 4rem)' }}>
         <div 
@@ -136,11 +142,10 @@ export default function PromptEngineeringPage() {
         </h1>
 
         <p style={{ 
-          fontSize: 'clamp(1.0625rem, 2vw, 1.1875rem)',
-          lineHeight: 1.7,
+          fontSize: '1.125rem',                // 18px - lead paragraph
+          lineHeight: 1.8,
           marginBottom: '1.5rem',
-          color: colors.muted,
-          maxWidth: '700px'
+          color: colors.muted
         }}>
           Learn how to write AI prompts that actually work. This guide covers
           the fundamentals of prompt engineering tailored specifically for
@@ -177,13 +182,23 @@ export default function PromptEngineeringPage() {
         >
           What is Prompt Engineering?
         </h2>
-        <p className="mb-4" style={{ color: colors.textSecondary }}>
+        <p style={{ 
+          fontSize: '1rem',
+          lineHeight: 1.7,
+          marginBottom: '1.25rem',
+          color: colors.muted
+        }}>
           Prompt engineering is the skill of crafting instructions that help
           AI tools like ChatGPT, Claude, or Esy understand exactly what you
           need. Think of it as learning to communicate with a brilliant but
           literal-minded research assistant.
         </p>
-        <p className="mb-4" style={{ color: colors.textSecondary }}>
+        <p style={{ 
+          fontSize: '1rem',
+          lineHeight: 1.7,
+          marginBottom: '1.25rem',
+          color: colors.muted
+        }}>
           The difference between a mediocre AI response and a genuinely
           helpful one often comes down to how you ask the question. A vague
           prompt gets vague results. A specific, well-structured prompt gets
@@ -243,7 +258,13 @@ export default function PromptEngineeringPage() {
         >
           The CRISPE Framework
         </h2>
-        <p className="mb-6" style={{ color: colors.textSecondary }}>
+        <p style={{ 
+          fontSize: '1.0625rem',
+          lineHeight: 1.7,
+          marginBottom: '2rem',
+          color: colors.muted,
+          fontWeight: 500
+        }}>
           CRISPE is a simple framework for writing effective prompts. It
           stands for Context, Role, Instructions, Style, Parameters, and
           Examples. Not every prompt needs all six elements, but including
@@ -301,7 +322,12 @@ export default function PromptEngineeringPage() {
           <RefreshCw className="w-6 h-6" style={{ color: colors.accentHover }} />
           The Power of Iteration
         </h2>
-        <p className="mb-4" style={{ color: colors.textSecondary }}>
+        <p style={{ 
+          fontSize: '1rem',
+          lineHeight: 1.7,
+          marginBottom: '1.25rem',
+          color: colors.muted
+        }}>
           Great prompts rarely happen on the first try. The best results come
           from iterating—refining your prompt based on what the AI gives you.
         </p>
@@ -354,7 +380,13 @@ export default function PromptEngineeringPage() {
         >
           Starter Prompts
         </h2>
-        <p className="mb-6" style={{ color: colors.textSecondary }}>
+        <p style={{ 
+          fontSize: '1.0625rem',
+          lineHeight: 1.7,
+          marginBottom: '2rem',
+          color: colors.muted,
+          fontWeight: 500
+        }}>
           Here are some templates to get you started. Replace the bracketed
           sections with your specific details.
         </p>

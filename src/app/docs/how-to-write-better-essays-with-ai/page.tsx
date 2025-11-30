@@ -10,19 +10,19 @@ import {
 } from "lucide-react";
 import { DocsPageNav, DocsCallout } from "@/components/docs";
 
-// Design system colors from DESIGN_SYSTEM.md
+// Design system colors from DESIGN_SYSTEM.md - Updated for better contrast
 const colors = {
   bg: '#18181b',
   elevated: '#27272a',
   surface: '#1f1f23',
   text: '#fafafa',
-  textSecondary: '#e4e4e7',
-  muted: '#a1a1aa',
-  subtle: '#71717a',
-  border: 'rgba(63, 63, 70, 0.4)',
-  accent: '#9f7aea',
-  accentHover: '#8b5cf6',
-  accentLight: '#c4b5fd',
+  textSecondary: 'rgba(255, 255, 255, 0.85)',
+  muted: 'rgba(255, 255, 255, 0.75)',
+  subtle: 'rgba(255, 255, 255, 0.5)',
+  border: 'rgba(255, 255, 255, 0.08)',
+  accent: '#8b5cf6',
+  accentHover: '#7c3aed',
+  accentLight: '#a78bfa',
 };
 
 export const metadata: Metadata = {
@@ -125,7 +125,13 @@ const dosAndDonts = {
 
 export default function WriteBetterEssaysPage() {
   return (
-    <article style={{ paddingTop: 'clamp(2rem, 5vh, 3rem)' }}>
+    <article style={{ 
+      maxWidth: '800px',
+      margin: '0 auto',
+      padding: '0 clamp(1.5rem, 5vw, 2rem)',
+      paddingTop: 'clamp(4rem, 10vh, 6rem)',
+      paddingBottom: 'clamp(4rem, 8vh, 6rem)'
+    }}>
       {/* Header */}
       <div style={{ marginBottom: 'clamp(3rem, 6vh, 4rem)' }}>
         <div 
@@ -155,11 +161,10 @@ export default function WriteBetterEssaysPage() {
         </h1>
 
         <p style={{ 
-          fontSize: 'clamp(1.0625rem, 2vw, 1.1875rem)',
-          lineHeight: 1.7,
+          fontSize: '1.125rem',
+          lineHeight: 1.8,
           marginBottom: '1.5rem',
-          color: colors.muted,
-          maxWidth: '700px'
+          color: colors.muted
         }}>
           AI tools can transform your essay writing—making research faster,
           arguments stronger, and prose clearer. Here&apos;s how to use them
