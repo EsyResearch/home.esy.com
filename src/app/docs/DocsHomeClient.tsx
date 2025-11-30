@@ -26,38 +26,6 @@ const theme = {
 
 const DocsHomeClient = () => {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-  const [hoveredJourney, setHoveredJourney] = useState<number | null>(null);
-
-  const journeySteps = [
-    {
-      icon: '📚',
-      label: 'Learn',
-      subtitle: 'Core concepts',
-      description: 'Understand how Esy works',
-      href: '/docs/prompt-engineering'
-    },
-    {
-      icon: '💡',
-      label: 'Prompt',
-      subtitle: '50+ examples',
-      description: 'Ready-to-use prompts',
-      href: '/docs/chatgpt-prompts-for-academic-writing'
-    },
-    {
-      icon: '✍️',
-      label: 'Write',
-      subtitle: 'Better essays',
-      description: 'AI-assisted writing',
-      href: '/docs/how-to-write-better-essays-with-ai'
-    },
-    {
-      icon: '🤖',
-      label: 'Automate',
-      subtitle: 'Workflows',
-      description: 'Build no-code agents',
-      href: '/docs/agent-workflows'
-    }
-  ];
 
   const guides = [
     {
@@ -102,144 +70,29 @@ const DocsHomeClient = () => {
       backgroundColor: theme.bg,
       color: theme.text,
       fontFamily: 'var(--font-inter)',
-      padding: 'clamp(3rem, 8vh, 5rem) clamp(1.5rem, 5vw, 3rem)'
     }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <div style={{ 
+        maxWidth: '1200px', 
+        margin: '0 auto',
+        padding: '0 clamp(1.5rem, 5vw, 3rem)'
+      }}>
         
-        {/* Visual Journey Map */}
-        <section style={{ marginBottom: 'clamp(4rem, 10vh, 6rem)' }}>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '1.5rem',
-            position: 'relative'
-          }}>
-            {journeySteps.map((step, index) => (
-              <Link
-                key={step.label}
-                href={step.href}
-                style={{
-                  textDecoration: 'none',
-                  position: 'relative'
-                }}
-                onMouseEnter={() => setHoveredJourney(index)}
-                onMouseLeave={() => setHoveredJourney(null)}
-              >
-                <div style={{
-                  padding: '2rem 1.5rem',
-                  background: hoveredJourney === index
-                    ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(139, 92, 246, 0.06) 100%)'
-                    : 'linear-gradient(135deg, rgba(31, 31, 35, 0.9) 0%, rgba(39, 39, 42, 0.7) 100%)',
-                  border: `1px solid ${hoveredJourney === index ? 'rgba(139, 92, 246, 0.3)' : theme.border}`,
-                  borderRadius: '16px',
-                  transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                  cursor: 'pointer',
-                  textAlign: 'center',
-                  transform: hoveredJourney === index ? 'translateY(-4px)' : 'translateY(0)',
-                  boxShadow: hoveredJourney === index
-                    ? '0 12px 32px rgba(139, 92, 246, 0.2)'
-                    : '0 4px 16px rgba(0, 0, 0, 0.15)'
-                }}>
-                  {/* Icon */}
-                  <div style={{
-                    fontSize: '3rem',
-                    marginBottom: '1rem',
-                    transition: 'transform 0.3s ease',
-                    transform: hoveredJourney === index ? 'scale(1.1)' : 'scale(1)'
-                  }}>
-                    {step.icon}
-                  </div>
-
-                  {/* Label */}
-                  <div style={{
-                    fontSize: '1.25rem',
-                    fontWeight: 600,
-                    color: theme.text,
-                    marginBottom: '0.5rem',
-                    fontFamily: 'var(--font-literata)'
-                  }}>
-                    {step.label}
-                  </div>
-
-                  {/* Subtitle */}
-                  <div style={{
-                    fontSize: '0.875rem',
-                    color: theme.accent,
-                    marginBottom: '0.75rem',
-                    fontWeight: 500
-                  }}>
-                    {step.subtitle}
-                  </div>
-
-                  {/* Description */}
-                  <div style={{
-                    fontSize: '0.8125rem',
-                    color: theme.muted,
-                    lineHeight: 1.5
-                  }}>
-                    {step.description}
-                  </div>
-                </div>
-
-                {/* Arrow connector (except for last item) */}
-                {index < journeySteps.length - 1 && (
-                  <div style={{
-                    position: 'absolute',
-                    right: '-0.75rem',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    color: theme.subtle,
-                    fontSize: '1.5rem',
-                    pointerEvents: 'none',
-                    display: window.innerWidth >= 768 ? 'block' : 'none'
-                  }}>
-                    →
-                  </div>
-                )}
-              </Link>
-            ))}
-          </div>
-
-          {/* Subtle connecting line (desktop only) */}
-          <svg
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: 0,
-              right: 0,
-              height: '2px',
-              pointerEvents: 'none',
-              opacity: 0.1,
-              display: window.innerWidth >= 768 ? 'block' : 'none'
-            }}
-          >
-            <line
-              x1="0"
-              y1="0"
-              x2="100%"
-              y2="0"
-              stroke={theme.accent}
-              strokeWidth="2"
-              strokeDasharray="8 8"
-            />
-          </svg>
-        </section>
-
         {/* Getting Started Section */}
         <section style={{
-          marginBottom: 'clamp(4rem, 10vh, 6rem)',
-          padding: '3rem 0'
+          paddingTop: 'clamp(4rem, 10vh, 6rem)',
+          paddingBottom: 'clamp(4rem, 10vh, 6rem)'
         }}>
-          <h2 style={{
+          <h1 style={{
             fontFamily: 'var(--font-literata)',
-            fontSize: 'clamp(2rem, 5vw, 2.5rem)',
+            fontSize: 'clamp(2.5rem, 6vw, 3.5rem)',
             fontWeight: 300,
             letterSpacing: '-0.02em',
             marginBottom: '1.5rem',
-            color: theme.text
+            color: theme.text,
+            lineHeight: 1.2
           }}>
             Getting Started
-          </h2>
+          </h1>
 
           <div style={{
             fontSize: '1.125rem',
@@ -254,14 +107,14 @@ const DocsHomeClient = () => {
             </p>
 
             <p style={{ marginBottom: '1.5rem' }}>
-              <strong style={{ color: theme.text }}>New to Esy?</strong> Start with the{' '}
+              <strong style={{ color: theme.text, fontWeight: 600 }}>New to Esy?</strong> Start with the{' '}
               <Link
                 href="/docs/prompt-engineering"
                 style={{
                   color: theme.accent,
                   textDecoration: 'none',
                   borderBottom: `1px solid ${theme.accent}40`,
-                  transition: 'all 0.2s ease'
+                  transition: 'border-color 0.2s ease'
                 }}
                 onMouseEnter={(e) => e.currentTarget.style.borderBottomColor = theme.accent}
                 onMouseLeave={(e) => e.currentTarget.style.borderBottomColor = `${theme.accent}40`}
@@ -272,17 +125,17 @@ const DocsHomeClient = () => {
             </p>
 
             <p style={{ marginBottom: '1.5rem' }}>
-              <strong style={{ color: theme.text }}>Need prompts right away?</strong> Jump to our{' '}
+              <strong style={{ color: theme.text, fontWeight: 600 }}>Need prompts right away?</strong> Jump to our{' '}
               <Link
                 href="/docs/chatgpt-prompts-for-academic-writing"
                 style={{
                   color: theme.accent,
                   textDecoration: 'none',
                   borderBottom: `1px solid ${theme.accent}40`,
-                  transition: 'all 0.2s ease'
+                  transition: 'border-color 0.2s ease'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.borderBottom = `1px solid ${theme.accent}`}
-                onMouseLeave={(e) => e.currentTarget.style.borderBottom = `1px solid ${theme.accent}40`}
+                onMouseEnter={(e) => e.currentTarget.style.borderBottomColor = theme.accent}
+                onMouseLeave={(e) => e.currentTarget.style.borderBottomColor = `${theme.accent}40`}
               >
                 50+ ChatGPT Prompts
               </Link>{' '}
@@ -290,17 +143,17 @@ const DocsHomeClient = () => {
             </p>
 
             <p>
-              <strong style={{ color: theme.text }}>Ready to automate?</strong> Learn how to{' '}
+              <strong style={{ color: theme.text, fontWeight: 600 }}>Ready to automate?</strong> Learn how to{' '}
               <Link
                 href="/docs/agent-workflows"
                 style={{
                   color: theme.accent,
                   textDecoration: 'none',
                   borderBottom: `1px solid ${theme.accent}40`,
-                  transition: 'all 0.2s ease'
+                  transition: 'border-color 0.2s ease'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.borderBottom = `1px solid ${theme.accent}`}
-                onMouseLeave={(e) => e.currentTarget.style.borderBottom = `1px solid ${theme.accent}40`}
+                onMouseEnter={(e) => e.currentTarget.style.borderBottomColor = theme.accent}
+                onMouseLeave={(e) => e.currentTarget.style.borderBottomColor = `${theme.accent}40`}
               >
                 build agent workflows
               </Link>{' '}
@@ -311,24 +164,27 @@ const DocsHomeClient = () => {
 
         {/* Essential Guides */}
         <section style={{
-          padding: '3rem 0',
+          paddingTop: 'clamp(4rem, 10vh, 6rem)',
+          paddingBottom: 'clamp(4rem, 10vh, 6rem)',
           borderTop: `1px solid ${theme.divider}`
         }}>
           <div style={{ marginBottom: '3rem' }}>
             <h2 style={{
               fontFamily: 'var(--font-literata)',
-              fontSize: 'clamp(2rem, 5vw, 2.5rem)',
+              fontSize: 'clamp(2rem, 5vw, 2.75rem)',
               fontWeight: 300,
               letterSpacing: '-0.02em',
               marginBottom: '1rem',
-              color: theme.text
+              color: theme.text,
+              lineHeight: 1.2
             }}>
               Essential Guides
             </h2>
             <p style={{
               fontSize: '1.125rem',
               color: theme.muted,
-              maxWidth: '700px'
+              maxWidth: '700px',
+              lineHeight: 1.6
             }}>
               In-depth guides covering everything from prompt engineering fundamentals to building 
               advanced agent workflows.
