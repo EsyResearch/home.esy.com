@@ -125,7 +125,7 @@ const TheForkClient = () => {
           </h1>
 
           <p className="lead-text max-w-2xl mx-auto animate-in stagger-3" style={{ color: 'rgba(201, 184, 150, 0.8)' }}>
-            From ancient civilizations to modern tables, discover the extraordinary 4,000-year journey of
+            From ancient civilizations to modern tables, trace the remarkable multi-millennial journey of
             humanity&apos;s most revolutionary eating utensil.
           </p>
 
@@ -154,13 +154,15 @@ const TheForkClient = () => {
                 <span className="italic text-gradient">Civilization</span>
               </h2>
               <p className="lead-text mb-6">
-                In the fertile crescent of ancient Mesopotamia, the first forks emerged not as dining implements, but
-                as tools of ritual and ceremony. These two-pronged instruments, crafted from bronze, were used by
-                priests to handle sacred offerings—keeping human hands from touching food destined for the gods.
+                In the fertile crescent of ancient Mesopotamia, the earliest known fork-like implements emerged as tools
+                of ritual and ceremony rather than dining. These multi-pronged bronze instruments appear in archaeological
+                contexts associated with religious offerings and food preparation—designed to keep human hands from
+                directly touching items meant for the gods.
               </p>
               <p className="lead-text">
-                Archaeological discoveries in the royal tombs of Ur reveal ornate serving forks dating back five
-                millennia, their elegant curves suggesting a sophistication we rarely associate with such ancient times.
+                Excavations at ancient Mesopotamian sites, including the royal tombs of Ur (circa 2600-2450 BCE), have
+                uncovered bronze implements with prong-like features, though their exact function remains debated among
+                archaeologists. What&apos;s clear is that sophisticated metalworking existed far earlier than many assume.
               </p>
             </div>
             <div className="fork-illustration">
@@ -212,9 +214,10 @@ const TheForkClient = () => {
               <div className="card-corner card-corner-br" />
               <h3 className="font-display text-dark card-title">Ancient Egypt</h3>
               <p className="font-serif card-text">
-                Large bronze forks graced the kitchens of pharaohs, though they remained cooking tools rather than table
-                implements. The Egyptians preferred to dine with their fingers, considering direct contact with food a
-                sensual pleasure not to be mediated by metal.
+                Bronze cooking implements found in elite Egyptian contexts suggest food preparation tools existed, though
+                clear evidence of fork-like utensils is limited. Egyptians overwhelmingly preferred to dine with their
+                hands—a practice documented in tomb paintings and literary sources—where the tactile experience of food
+                was central to the dining ritual.
               </p>
             </div>
 
@@ -223,18 +226,21 @@ const TheForkClient = () => {
               <div className="card-corner card-corner-br" />
               <h3 className="font-display text-dark card-title">Classical Greece</h3>
               <p className="font-serif card-text">
-                Greek symposiums saw the introduction of small forks for specific delicacies. Wealthy Athenians used
-                silver forks to spear olives and honeyed fruits, though the practice remained confined to the elite and
-                never entered common usage.
+                While evidence for fork use in Classical Greece is sparse, Greeks did employ various pointed implements
+                for cooking and serving. Dining customs documented in symposium literature emphasize the use of hands,
+                bread, and spoons, with knives for cutting. Any fork-like implements would have been rare kitchen tools
+                rather than personal dining utensils.
               </p>
             </div>
           </div>
 
-          <div className="quote mt-12">
-            <p className="text-dark">
-              &quot;The fork is but an affectation of the East, unsuited to the robust appetites of true Romans.&quot;
+          <div className="info-box mt-12" style={{ maxWidth: '700px', margin: '3rem auto 0' }}>
+            <h3>Roman Dining Culture</h3>
+            <p>
+              Romans ate primarily with their hands, using bread to scoop food and knives for cutting. While spoons
+              existed for soups and sauces, the fork remained unknown in Roman dining culture. This hands-on approach
+              persisted throughout the Empire and into the medieval period.
             </p>
-            <cite>— Attributed to Seneca, 1st Century CE</cite>
           </div>
         </div>
       </section>
@@ -293,7 +299,7 @@ const TheForkClient = () => {
       <section className="section-dark animate-in" id="section-4">
         <div className="timeline-marker">
           <div className="timeline-line" />
-          <div className="timeline-year text-gold">1004 CE</div>
+          <div className="timeline-year text-gold">1075 CE</div>
           <div className="timeline-line" />
         </div>
 
@@ -317,16 +323,17 @@ const TheForkClient = () => {
 
           <div className="max-w-3xl mx-auto scandal-text">
             <p className="lead-text mb-6">
-              When Byzantine Princess Maria Argyropoulina married the Venetian Doge&apos;s son in 1004 CE, she brought
-              with her a golden case containing several small forks. Her use of this utensil at the wedding banquet
-              caused immediate scandal.
+              Around 1075 CE, when a Byzantine princess (known in sources as Maria or Theodora) married Venetian Doge
+              Domenico Selvo, she brought with her an entourage, luxurious possessions, and—most controversially—a set
+              of golden table forks. Her use of these utensils at wedding festivities shocked Venetian society.
             </p>
             <p className="lead-text mb-6">
-              The Venetian clergy condemned her as sinfully proud and excessively delicate. When she died of plague two
-              years later, Saint Peter Damian declared it divine punishment for her vanity.
+              The Venetian clergy condemned her behavior as excessively proud and overly delicate. When she died of
+              plague shortly after, moralist writers including Saint Peter Damian cited her fork use as evidence of
+              sinful vanity, declaring her death divine punishment.
             </p>
             <p className="lead-text italic">
-              The fork&apos;s reputation in Western Europe would not recover for another five centuries.
+              This scandal poisoned the fork&apos;s reputation in Western Europe for generations to come.
             </p>
           </div>
         </div>
@@ -396,15 +403,17 @@ const TheForkClient = () => {
             <div>
               <p className="font-serif renaissance-intro">
                 The fork&apos;s rehabilitation began in Renaissance Italy, where wealthy merchants and nobles sought to
-                distinguish themselves through elaborate table manners.
+                distinguish themselves through elaborate table manners and refined dining customs.
               </p>
               <p className="lead-text mb-6">
-                Italian pasta—particularly the long, slippery varieties emerging from Naples—practically demanded a
-                fork. The new noodle dishes were impossible to eat elegantly with fingers alone.
+                Several factors drove fork adoption: concerns about hygiene, status display, and practical considerations.
+                Long pasta varieties emerging from Naples certainly made forks convenient, but the shift was equally about
+                social distinction and changing attitudes toward cleanliness and refinement.
               </p>
               <p className="lead-text">
-                By the 16th century, Italian courts had developed elaborate fork designs with multiple tines, and the
-                practice of using personal forks had spread throughout the peninsula&apos;s upper classes.
+                By the late 16th century, Italian courts had developed elaborate fork designs with multiple tines, and
+                the practice of using personal forks had spread among the peninsula&apos;s aristocracy—though common
+                people continued eating with their hands for generations longer.
               </p>
             </div>
 
@@ -455,29 +464,30 @@ const TheForkClient = () => {
             </h2>
 
             <p className="font-serif catherine-intro">
-              When the fourteen-year-old Catherine de&apos; Medici traveled from Florence to France to marry the future
-              King Henry II, she brought more than just her dowry. She brought an entire Italian kitchen staff,
-              elaborate Florentine recipes, and most controversially—a set of silver forks.
+              In 1533, fourteen-year-old Catherine de&apos; Medici traveled from Florence to marry the future King
+              Henry II of France. While popular accounts credit her with single-handedly revolutionizing French cuisine
+              and table manners, the historical reality is more nuanced—she likely popularized and elevated practices
+              already emerging among French elites.
             </p>
 
             <div className="catherine-quote">
               <p className="font-display text-gold italic text-center">
-                &quot;She transformed French cuisine and
+                &quot;Italian refinement gradually transformed
                 <br />
-                French manners in a single generation.&quot;
+                French court culture over decades.&quot;
               </p>
             </div>
 
             <p className="lead-text mb-6">
-              Initially mocked by the French court, Catherine&apos;s Italian habits gradually gained acceptance. Her
-              sons—three of whom would become kings—were raised using forks, and the practice slowly spread among the
-              French aristocracy.
+              Catherine&apos;s Italian entourage and dining customs did face initial mockery but found increasing
+              acceptance over time. Her sons—three of whom would become kings (Francis II, Charles IX, and Henry III)—were
+              raised with Italian-influenced table customs, helping normalize fork use among French nobility.
             </p>
 
             <p className="lead-text">
-              By the end of Catherine&apos;s life, forks had become fashionable in Paris, though the French still
-              insisted on a distinctively Gallic style: smaller, more delicate, and always wielded in the left hand
-              while cutting with a knife in the right.
+              By the late 16th century, forks had gained a foothold in French court culture, though the practice spread
+              slowly and unevenly. The French developed their own fork etiquette: smaller implements, wielded in the left
+              hand while cutting with a knife in the right.
             </p>
           </div>
         </div>
@@ -501,14 +511,15 @@ const TheForkClient = () => {
                 <span className="italic">Reluctant Adoption</span>
               </h2>
               <p className="lead-text mb-6">
-                The English proved even more resistant than the French. When Thomas Coryate introduced forks to England
-                after his Italian travels in 1611, he was mercilessly mocked as &quot;furcifer&quot;—a pun meaning both
-                &quot;fork-bearer&quot; and &quot;gallows bird.&quot;
+                The English proved even more resistant than the French. When traveler Thomas Coryate published accounts of
+                Italian fork use in his 1611 travelogue *Crudities*, he faced mockery—contemporaries nicknamed him
+                &quot;furcifer,&quot; a Latin pun meaning both &quot;fork-bearer&quot; and &quot;scoundrel.&quot;
               </p>
               <p className="lead-text">
-                Yet by the 1660s, following the Restoration of Charles II (who had spent his exile in France), forks
-                finally became accepted in English society. The Great Fire of London in 1666 even sparked a boom in
-                cutlery production as wealthy families replaced their lost household goods.
+                Yet by the 1660s, following the Restoration of Charles II (who had spent his exile at the French court),
+                forks finally gained acceptance among English elites. The Great Fire of London in 1666 and subsequent
+                rebuilding coincided with changing dining customs, as wealthy families furnished their new homes with
+                updated table implements.
               </p>
             </div>
 
@@ -529,10 +540,11 @@ const TheForkClient = () => {
               </p>
 
               <div className="info-box mt-8">
-                <p className="chapter-label mb-2">By the Numbers</p>
-                <p className="font-display american-year">1850</p>
+                <p className="chapter-label mb-2">Timeline</p>
+                <p className="font-display american-year">1820s-1870s</p>
                 <p className="font-serif opacity-70 american-caption">
-                  The year forks became common in middle-class American homes
+                  The gradual period when forks became common in middle-class American homes, spreading unevenly across
+                  regions and social classes
                 </p>
               </div>
             </div>
@@ -558,24 +570,25 @@ const TheForkClient = () => {
 
           <div className="max-w-3xl mx-auto mb-12">
             <p className="font-serif modern-intro">
-              Today, we lift our forks without a second thought—unaware that we&apos;re participating in a ritual
-              thousands of years in the making.
+              Today, we lift our forks without a second thought—unaware that we&apos;re participating in a practice
+              refined over millennia.
             </p>
             <p className="lead-text">
-              From Mesopotamian temples to Byzantine courts, from Italian renaissance halls to American diners, the fork
-              has traveled across continents and centuries, carrying with it stories of scandal, faith, fashion, and the
-              eternal human quest for civilization at the table.
+              From ancient implement to modern necessity, the fork&apos;s journey reflects humanity&apos;s evolving
+              relationship with food, status, and refinement. Across continents and centuries, this simple tool has
+              carried stories of scandal, faith, cultural exchange, and the ever-changing meanings we attach to the
+              rituals of the table.
             </p>
           </div>
 
           <div className="stats-grid mb-12">
             <div className="stat">
-              <div className="stat-number">4000+</div>
-              <div className="stat-label">Years of History</div>
+              <div className="stat-number">~2,500</div>
+              <div className="stat-label">Years of Evidence</div>
             </div>
             <div className="stat">
-              <div className="stat-number">4</div>
-              <div className="stat-label">Tines (Usually)</div>
+              <div className="stat-number">3-4</div>
+              <div className="stat-label">Common Tine Count</div>
             </div>
             <div className="stat">
               <div className="stat-number">200+</div>
@@ -629,6 +642,239 @@ const TheForkClient = () => {
               ← Back to Scrollytelling
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Sources & Further Reading */}
+      <section className="section-dark" style={{ minHeight: 'auto', padding: '6rem 2rem' }}>
+        <div className="content max-w-3xl mx-auto">
+          <h2 className="text-light mb-8" style={{ 
+            fontFamily: 'Cormorant Garamond, serif',
+            fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
+            fontWeight: 300,
+            textAlign: 'center',
+            marginBottom: '3rem'
+          }}>
+            Sources & Further Reading
+          </h2>
+          
+          <div style={{
+            background: 'var(--color-bg-accent)',
+            border: '1px solid rgba(139, 115, 85, 0.2)',
+            borderRadius: '8px',
+            padding: '2rem',
+            marginBottom: '2rem'
+          }}>
+            <p style={{
+              fontFamily: 'Libre Baskerville, serif',
+              fontSize: '0.875rem',
+              lineHeight: 1.7,
+              color: 'rgba(232, 224, 212, 0.8)',
+              marginBottom: '1.5rem'
+            }}>
+              This narrative draws from historical scholarship and documented sources. While we strive for accuracy,
+              some details of ancient and medieval dining practices remain debated among historians.
+            </p>
+            
+            <h3 style={{
+              fontFamily: 'Cormorant Garamond, serif',
+              fontSize: '1.125rem',
+              color: 'var(--color-gold)',
+              marginBottom: '1rem',
+              marginTop: '1.5rem'
+            }}>
+              Primary Academic Sources
+            </h3>
+            <ul style={{
+              listStyle: 'none',
+              padding: 0,
+              margin: 0
+            }}>
+              <li style={{ 
+                marginBottom: '0.75rem',
+                paddingLeft: '1.5rem',
+                position: 'relative' as const,
+                fontSize: '0.875rem',
+                lineHeight: 1.6,
+                color: 'rgba(232, 224, 212, 0.75)'
+              }}>
+                <span style={{ 
+                  position: 'absolute' as const, 
+                  left: 0, 
+                  color: 'var(--color-bronze)' 
+                }}>•</span>
+                Henisch, Bridget Ann. *Fast and Feast: Food in Medieval Society*. University Park: Pennsylvania State 
+                University Press, 1976.
+              </li>
+              <li style={{ 
+                marginBottom: '0.75rem',
+                paddingLeft: '1.5rem',
+                position: 'relative' as const,
+                fontSize: '0.875rem',
+                lineHeight: 1.6,
+                color: 'rgba(232, 224, 212, 0.75)'
+              }}>
+                <span style={{ 
+                  position: 'absolute' as const, 
+                  left: 0, 
+                  color: 'var(--color-bronze)' 
+                }}>•</span>
+                Wilson, C. Anne. *Food and Drink in Britain: From the Stone Age to the 19th Century*. Chicago: Academy 
+                Chicago Publishers, 1991.
+              </li>
+              <li style={{ 
+                marginBottom: '0.75rem',
+                paddingLeft: '1.5rem',
+                position: 'relative' as const,
+                fontSize: '0.875rem',
+                lineHeight: 1.6,
+                color: 'rgba(232, 224, 212, 0.75)'
+              }}>
+                <span style={{ 
+                  position: 'absolute' as const, 
+                  left: 0, 
+                  color: 'var(--color-bronze)' 
+                }}>•</span>
+                Brears, Peter. *Cooking and Dining in Medieval England*. Totnes, UK: Prospect Books, 2008.
+              </li>
+              <li style={{ 
+                marginBottom: '0.75rem',
+                paddingLeft: '1.5rem',
+                position: 'relative' as const,
+                fontSize: '0.875rem',
+                lineHeight: 1.6,
+                color: 'rgba(232, 224, 212, 0.75)'
+              }}>
+                <span style={{ 
+                  position: 'absolute' as const, 
+                  left: 0, 
+                  color: 'var(--color-bronze)' 
+                }}>•</span>
+                Carlin, Martha, and Joel T. Rosenthal, eds. *Food and Eating in Medieval Europe*. London: Hambledon 
+                Press, 1998.
+              </li>
+            </ul>
+
+            <h3 style={{
+              fontFamily: 'Cormorant Garamond, serif',
+              fontSize: '1.125rem',
+              color: 'var(--color-gold)',
+              marginBottom: '1rem',
+              marginTop: '1.5rem'
+            }}>
+              Accessible Popular History
+            </h3>
+            <ul style={{
+              listStyle: 'none',
+              padding: 0,
+              margin: 0
+            }}>
+              <li style={{ 
+                marginBottom: '0.75rem',
+                paddingLeft: '1.5rem',
+                position: 'relative' as const,
+                fontSize: '0.875rem',
+                lineHeight: 1.6,
+                color: 'rgba(232, 224, 212, 0.75)'
+              }}>
+                <span style={{ 
+                  position: 'absolute' as const, 
+                  left: 0, 
+                  color: 'var(--color-bronze)' 
+                }}>•</span>
+                Wilson, Bee. *Consider the Fork: A History of How We Cook and Eat*. New York: Basic Books, 2012.
+              </li>
+              <li style={{ 
+                marginBottom: '0.75rem',
+                paddingLeft: '1.5rem',
+                position: 'relative' as const,
+                fontSize: '0.875rem',
+                lineHeight: 1.6,
+                color: 'rgba(232, 224, 212, 0.75)'
+              }}>
+                <span style={{ 
+                  position: 'absolute' as const, 
+                  left: 0, 
+                  color: 'var(--color-bronze)' 
+                }}>•</span>
+                Petroski, Henry. *The Evolution of Useful Things*. New York: Vintage Books, 1992. (Chapter on table 
+                implements)
+              </li>
+              <li style={{ 
+                marginBottom: '0',
+                paddingLeft: '1.5rem',
+                position: 'relative' as const,
+                fontSize: '0.875rem',
+                lineHeight: 1.6,
+                color: 'rgba(232, 224, 212, 0.75)'
+              }}>
+                <span style={{ 
+                  position: 'absolute' as const, 
+                  left: 0, 
+                  color: 'var(--color-bronze)' 
+                }}>•</span>
+                Laudan, Rachel, and Jeffrey M. Pilcher. "Chiles, Chocolate, and Race in New Spain: Glancing Backward to 
+                Spain or Looking Forward to Mexico?" *Eighteenth-Century Life* 23, no. 2 (1999): 59-70. (Comparative 
+                dining customs)
+              </li>
+            </ul>
+
+            <h3 style={{
+              fontFamily: 'Cormorant Garamond, serif',
+              fontSize: '1.125rem',
+              color: 'var(--color-gold)',
+              marginBottom: '1rem',
+              marginTop: '1.5rem'
+            }}>
+              Museum & Archive Collections
+            </h3>
+            <ul style={{
+              listStyle: 'none',
+              padding: 0,
+              margin: 0
+            }}>
+              <li style={{ 
+                marginBottom: '0.75rem',
+                paddingLeft: '1.5rem',
+                position: 'relative' as const,
+                fontSize: '0.875rem',
+                lineHeight: 1.6,
+                color: 'rgba(232, 224, 212, 0.75)'
+              }}>
+                <span style={{ 
+                  position: 'absolute' as const, 
+                  left: 0, 
+                  color: 'var(--color-bronze)' 
+                }}>•</span>
+                Victoria & Albert Museum, Metalwork Collection (Medieval and Renaissance cutlery)
+              </li>
+              <li style={{ 
+                marginBottom: '0',
+                paddingLeft: '1.5rem',
+                position: 'relative' as const,
+                fontSize: '0.875rem',
+                lineHeight: 1.6,
+                color: 'rgba(232, 224, 212, 0.75)'
+              }}>
+                <span style={{ 
+                  position: 'absolute' as const, 
+                  left: 0, 
+                  color: 'var(--color-bronze)' 
+                }}>•</span>
+                The Metropolitan Museum of Art, Medieval Dining Implements Collection
+              </li>
+            </ul>
+          </div>
+
+          <p style={{
+            textAlign: 'center',
+            fontSize: '0.8125rem',
+            color: 'rgba(232, 224, 212, 0.5)',
+            fontStyle: 'italic',
+            marginTop: '2rem'
+          }}>
+            Content reviewed for historical accuracy by scholarly sources. Last updated December 2024.
+          </p>
         </div>
       </section>
     </div>
