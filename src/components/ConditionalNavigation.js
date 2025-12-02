@@ -1,6 +1,7 @@
 "use client"
 import { usePathname } from 'next/navigation';
 import ContextAwareNavigation from "@/components/Navigation/ContextAwareNavigation";
+import ScrollytellingMinimalHeader from "@/components/Scrollytelling/ScrollytellingMinimalHeader";
 import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
 import { getSearchContextFromPath } from '@/lib/searchContexts';
 
@@ -36,9 +37,17 @@ const ConditionalNavigation = () => {
   // Check if we're on docs pages
   const isDocsPage = normalizedPath?.startsWith('/docs');
   
+  // Check if we're on scrollytelling pages
+  const isScrollytellingPage = normalizedPath?.startsWith('/scrollytelling');
+  
   // Don't render the common navigation on essay view pages or docs pages
   if (isEssayViewPage || isDocsPage) {
     return null;
+  }
+  
+  // Render minimal header for scrollytelling pages (just logo)
+  if (isScrollytellingPage) {
+    return <ScrollytellingMinimalHeader />;
   }
 
   // Render the common navigation on all other pages

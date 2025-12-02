@@ -1,8 +1,10 @@
 /* The Fork Scrollytelling Styles */
+/* Scoped to .scrollytelling-container to prevent style leakage to header/footer */
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@200;300;400;500&display=swap');
 
-:root {
+.scrollytelling-container {
+  /* Color variables scoped to container */
   --color-bg-dark: #1a1714;
   --color-bg-light: #f5f0e8;
   --color-bg-accent: #2c2520;
@@ -11,25 +13,26 @@
   --color-brown: #5c4a32;
   --color-text-dark: #3d3027;
   --color-text-light: #e8e0d4;
-}
-
-.scrollytelling-container {
+  
+  /* Base container styles */
   font-family: 'Josefin Sans', sans-serif;
   background: var(--color-bg-dark);
   color: var(--color-text-light);
   overflow-x: hidden;
   line-height: 1.6;
+  position: relative;
+  z-index: 1;
 }
 
-.font-display {
+.scrollytelling-container .font-display {
   font-family: 'Cormorant Garamond', serif;
 }
 
-.font-serif {
+.scrollytelling-container .font-serif {
   font-family: 'Libre Baskerville', serif;
 }
 
-.text-gradient {
+.scrollytelling-container .text-gradient {
   background: linear-gradient(135deg, #c9b896 0%, #8b7355 50%, #5c4a32 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -37,7 +40,7 @@
 }
 
 /* Progress Bar */
-.progress-bar {
+.scrollytelling-container .progress-bar {
   position: fixed;
   top: 0;
   left: 0;
@@ -47,14 +50,14 @@
   z-index: 100;
 }
 
-.progress-bar-fill {
+.scrollytelling-container .progress-bar-fill {
   height: 100%;
   background: linear-gradient(90deg, var(--color-gold), var(--color-bronze), var(--color-brown));
   transition: width 0.1s ease-out;
 }
 
 /* Navigation Dots */
-.nav-dots {
+.scrollytelling-container .nav-dots {
   position: fixed;
   right: 2rem;
   top: 50%;
@@ -65,7 +68,7 @@
   gap: 1rem;
 }
 
-.nav-dot {
+.scrollytelling-container .nav-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -75,8 +78,8 @@
   transition: all 0.5s ease;
 }
 
-.nav-dot:hover,
-.nav-dot.active {
+.scrollytelling-container .nav-dot:hover,
+.scrollytelling-container .nav-dot.active {
   background: var(--color-gold);
   transform: scale(1.3);
 }
@@ -87,8 +90,8 @@
   }
 }
 
-/* Sections */
-section {
+/* Sections - scoped to scrollytelling container */
+.scrollytelling-container section {
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -98,21 +101,21 @@ section {
   padding: 4rem 2rem;
 }
 
-.section-dark {
+.scrollytelling-container .section-dark {
   background: var(--color-bg-dark);
 }
 
-.section-light {
+.scrollytelling-container .section-light {
   background: var(--color-bg-light);
   color: var(--color-text-dark);
 }
 
-.section-accent {
+.scrollytelling-container .section-accent {
   background: var(--color-bg-accent);
 }
 
 /* Noise Overlay */
-.noise-overlay::before {
+.scrollytelling-container .noise-overlay ::before {
   content: '';
   position: absolute;
   top: 0;
@@ -125,7 +128,7 @@ section {
 }
 
 /* Timeline Marker */
-.timeline-marker {
+.scrollytelling-container .timeline-marker {
   position: absolute;
   left: 2rem;
   top: 50%;
@@ -135,21 +138,21 @@ section {
   align-items: center;
 }
 
-.timeline-line {
+.scrollytelling-container .timeline-line {
   width: 1px;
   height: 8rem;
   background: var(--color-bronze);
   opacity: 0.3;
 }
 
-.timeline-line-brown {
+.scrollytelling-container .timeline-line-brown {
   width: 1px;
   height: 8rem;
   background: var(--color-brown);
   opacity: 0.3;
 }
 
-.timeline-year {
+.scrollytelling-container .timeline-year {
   padding: 0.5rem 1rem;
   font-size: 0.75rem;
   letter-spacing: 0.3em;
@@ -169,13 +172,13 @@ section {
 }
 
 /* Content */
-.content {
+.scrollytelling-container .content {
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
 }
 
-.chapter-label {
+.scrollytelling-container .chapter-label {
   font-size: 0.7rem;
   letter-spacing: 0.4em;
   text-transform: uppercase;
@@ -184,25 +187,25 @@ section {
   display: block;
 }
 
-h1,
-h2,
-h3 {
+.scrollytelling-container h1,
+.scrollytelling-container h2,
+.scrollytelling-container h3 {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 400;
   line-height: 1.1;
 }
 
-h1 {
+.scrollytelling-container h1 {
   font-size: clamp(3rem, 10vw, 8rem);
   margin-bottom: 2rem;
 }
 
-h2 {
+.scrollytelling-container h2 {
   font-size: clamp(2rem, 6vw, 4rem);
   margin-bottom: 1.5rem;
 }
 
-.lead-text {
+.scrollytelling-container .lead-text {
   font-family: 'Libre Baskerville', serif;
   font-size: clamp(1rem, 2vw, 1.25rem);
   line-height: 1.8;
@@ -231,39 +234,39 @@ h2 {
   }
 }
 
-.animate-in {
+.scrollytelling-container .animate-in {
   opacity: 0;
   transform: translateY(40px);
   transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.animate-in.visible {
+.scrollytelling-container .animate-in.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.animate-float {
+.scrollytelling-container .animate-float {
   animation: float 6s ease-in-out infinite;
 }
 
-.stagger-1 {
+.scrollytelling-container .stagger-1 {
   transition-delay: 0.1s;
 }
-.stagger-2 {
+.scrollytelling-container .stagger-2 {
   transition-delay: 0.2s;
 }
-.stagger-3 {
+.scrollytelling-container .stagger-3 {
   transition-delay: 0.3s;
 }
-.stagger-4 {
+.scrollytelling-container .stagger-4 {
   transition-delay: 0.4s;
 }
-.stagger-5 {
+.scrollytelling-container .stagger-5 {
   transition-delay: 0.5s;
 }
 
 /* Hero */
-.hero-bg {
+.scrollytelling-container .hero-bg {
   position: absolute;
   inset: 0;
   opacity: 0.2;
@@ -271,20 +274,20 @@ h2 {
     radial-gradient(ellipse 60% 40% at 20% 80%, var(--color-brown) 0%, transparent 50%);
 }
 
-.hero-content {
+.scrollytelling-container .hero-content {
   text-align: center;
   position: relative;
   z-index: 10;
 }
 
-.hero-fork {
+.scrollytelling-container .hero-fork {
   width: 80px;
   height: auto;
   margin: 0 auto 2rem;
   filter: drop-shadow(0 20px 40px rgba(139, 115, 85, 0.3));
 }
 
-.scroll-indicator {
+.scrollytelling-container .scroll-indicator {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -292,21 +295,21 @@ h2 {
   margin-top: 3rem;
 }
 
-.scroll-indicator span {
+.scrollytelling-container .scroll-indicator span {
   font-size: 0.75rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--color-bronze);
 }
 
-.scroll-line {
+.scrollytelling-container .scroll-line {
   width: 1px;
   height: 4rem;
   background: linear-gradient(to bottom, var(--color-bronze), transparent);
 }
 
 /* Grid Layouts */
-.grid-2 {
+.scrollytelling-container .grid-2 {
   display: grid;
   grid-template-columns: 1fr;
   gap: 4rem;
@@ -320,45 +323,45 @@ h2 {
 }
 
 /* Cards */
-.card {
+.scrollytelling-container .card {
   position: relative;
   padding: 2rem;
   border: 1px solid rgba(92, 74, 50, 0.2);
   background: var(--color-bg-light);
 }
 
-.card-corner {
+.scrollytelling-container .card-corner {
   position: absolute;
   width: 2rem;
   height: 2rem;
 }
 
-.card-corner-tl {
+.scrollytelling-container .card-corner-tl {
   top: -1rem;
   left: -1rem;
   border-top: 2px solid var(--color-bronze);
   border-left: 2px solid var(--color-bronze);
 }
 
-.card-corner-br {
+.scrollytelling-container .card-corner-br {
   bottom: -1rem;
   right: -1rem;
   border-bottom: 2px solid var(--color-bronze);
   border-right: 2px solid var(--color-bronze);
 }
 
-.card-title {
+.scrollytelling-container .card-title {
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
 
-.card-text {
+.scrollytelling-container .card-text {
   color: rgba(92, 74, 50, 0.8);
   line-height: 1.8;
 }
 
 /* Quote */
-.quote {
+.scrollytelling-container .quote {
   position: relative;
   padding-left: 2rem;
   border-left: 2px solid rgba(201, 184, 150, 0.5);
@@ -366,7 +369,7 @@ h2 {
   margin: 3rem auto;
 }
 
-.quote p {
+.scrollytelling-container .quote p {
   font-family: 'Libre Baskerville', serif;
   font-style: italic;
   font-size: clamp(1rem, 2.5vw, 1.5rem);
@@ -374,7 +377,7 @@ h2 {
   margin-bottom: 1rem;
 }
 
-.quote cite {
+.scrollytelling-container .quote cite {
   font-size: 0.75rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -383,18 +386,18 @@ h2 {
 }
 
 /* Featured Quote Box */
-.quote-section {
+.scrollytelling-container .quote-section {
   padding: 4rem 0;
 }
 
-.quote-box {
+.scrollytelling-container .quote-box {
   background: var(--color-bg-accent);
   padding: 3rem;
   position: relative;
   border: 1px solid rgba(139, 115, 85, 0.2);
 }
 
-.quote-box::before {
+.scrollytelling-container .quote-box ::before {
   content: '';
   position: absolute;
   top: 0;
@@ -405,7 +408,7 @@ h2 {
   background: var(--color-gold);
 }
 
-.quote-box p {
+.scrollytelling-container .quote-box p {
   font-family: 'Libre Baskerville', serif;
   font-style: italic;
   font-size: clamp(1rem, 3vw, 1.5rem);
@@ -414,7 +417,7 @@ h2 {
   margin-bottom: 1.5rem;
 }
 
-.quote-box cite {
+.scrollytelling-container .quote-box cite {
   display: block;
   text-align: center;
   font-size: 0.75rem;
@@ -425,7 +428,7 @@ h2 {
 }
 
 /* Stats */
-.stats-grid {
+.scrollytelling-container .stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
@@ -439,18 +442,18 @@ h2 {
   }
 }
 
-.stat {
+.scrollytelling-container .stat {
   text-align: center;
 }
 
-.stat-number {
+.scrollytelling-container .stat-number {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(2rem, 5vw, 3rem);
   color: var(--color-gold);
   margin-bottom: 0.5rem;
 }
 
-.stat-label {
+.scrollytelling-container .stat-label {
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -458,19 +461,19 @@ h2 {
 }
 
 /* Info Box */
-.info-box {
+.scrollytelling-container .info-box {
   padding: 1.5rem;
   background: var(--color-text-dark);
   color: var(--color-bg-light);
 }
 
-.info-box h3 {
+.scrollytelling-container .info-box h3 {
   font-size: 1rem;
   color: var(--color-gold);
   margin-bottom: 1rem;
 }
 
-.info-box p {
+.scrollytelling-container .info-box p {
   font-family: 'Libre Baskerville', serif;
   font-size: 0.875rem;
   opacity: 0.8;
@@ -478,33 +481,33 @@ h2 {
 }
 
 /* Fork Illustration */
-.fork-illustration {
+.scrollytelling-container .fork-illustration {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.fork-circle {
+.scrollytelling-container .fork-circle {
   position: relative;
   width: 300px;
   height: 300px;
 }
 
-.fork-circle-ring {
+.scrollytelling-container .fork-circle-ring {
   position: absolute;
   inset: 0;
   border: 1px solid rgba(139, 115, 85, 0.2);
   border-radius: 50%;
 }
 
-.fork-circle-ring-inner {
+.scrollytelling-container .fork-circle-ring-inner {
   position: absolute;
   inset: 2rem;
   border: 1px solid rgba(139, 115, 85, 0.1);
   border-radius: 50%;
 }
 
-.fork-circle svg {
+.scrollytelling-container .fork-circle svg {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -512,13 +515,13 @@ h2 {
 }
 
 /* Fork Grid */
-.fork-grid {
+.scrollytelling-container .fork-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
-.fork-grid-item {
+.scrollytelling-container .fork-grid-item {
   aspect-ratio: 1;
   background: var(--color-bg-dark);
   display: flex;
@@ -527,20 +530,20 @@ h2 {
   transition: background 0.5s ease;
 }
 
-.fork-grid-item:hover {
+.scrollytelling-container .fork-grid-item:hover {
   background: rgba(201, 184, 150, 0.05);
 }
 
-.fork-grid-item svg {
+.scrollytelling-container .fork-grid-item svg {
   transition: transform 0.5s ease;
 }
 
-.fork-grid-item:hover svg {
+.scrollytelling-container .fork-grid-item:hover svg {
   transform: scale(1.1);
 }
 
 /* Image Container */
-.image-container {
+.scrollytelling-container .image-container {
   position: relative;
   width: 100%;
   aspect-ratio: 3/4;
@@ -548,7 +551,7 @@ h2 {
   overflow: hidden;
 }
 
-.image-container-content {
+.scrollytelling-container .image-container-content {
   position: absolute;
   inset: 0;
   display: flex;
@@ -556,14 +559,14 @@ h2 {
   justify-content: center;
 }
 
-.image-container-blur {
+.scrollytelling-container .image-container-blur {
   position: absolute;
   inset: 0;
   filter: blur(60px);
   background: rgba(201, 184, 150, 0.2);
 }
 
-.image-container-caption {
+.scrollytelling-container .image-container-caption {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -572,7 +575,7 @@ h2 {
   background: linear-gradient(to top, var(--color-bg-dark), transparent);
 }
 
-.image-container-caption p {
+.scrollytelling-container .image-container-caption p {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-size: 1.125rem;
@@ -580,7 +583,7 @@ h2 {
   margin-bottom: 0.5rem;
 }
 
-.image-container-caption span {
+.scrollytelling-container .image-container-caption span {
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -588,7 +591,7 @@ h2 {
 }
 
 /* Vertical Line */
-.vertical-line {
+.scrollytelling-container .vertical-line {
   position: absolute;
   left: -1rem;
   top: 0;
@@ -598,7 +601,7 @@ h2 {
 }
 
 /* Divider */
-.divider {
+.scrollytelling-container .divider {
   width: 1px;
   height: 100%;
   background: linear-gradient(to bottom, transparent, rgba(139, 115, 85, 0.5), transparent);
@@ -608,7 +611,7 @@ h2 {
 }
 
 /* Button */
-.btn {
+.scrollytelling-container .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
@@ -623,20 +626,20 @@ h2 {
   transition: color 0.3s ease;
 }
 
-.btn:hover {
+.scrollytelling-container .btn:hover {
   color: var(--color-bg-light);
 }
 
-.btn svg {
+.scrollytelling-container .btn svg {
   transition: transform 0.3s ease;
 }
 
-.btn:hover svg {
+.scrollytelling-container .btn:hover svg {
   transform: translateY(-4px);
 }
 
 /* Footer */
-.footer {
+.scrollytelling-container .footer {
   margin-top: 6rem;
   padding-top: 2rem;
   border-top: 1px solid rgba(139, 115, 85, 0.2);
@@ -646,115 +649,115 @@ h2 {
   align-items: center;
 }
 
-.footer p {
+.scrollytelling-container .footer p {
   font-size: 0.65rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: rgba(139, 115, 85, 0.5);
 }
 
-.footer-link {
+.scrollytelling-container .footer-link {
   color: var(--color-bronze);
   text-decoration: none;
   font-size: 0.875rem;
   transition: color 0.3s ease;
 }
 
-.footer-link:hover {
+.scrollytelling-container .footer-link:hover {
   color: var(--color-gold);
 }
 
 /* Text Colors */
-.text-gold {
+.scrollytelling-container .text-gold {
   color: var(--color-gold);
 }
-.text-bronze {
+.scrollytelling-container .text-bronze {
   color: var(--color-bronze);
 }
-.text-brown {
+.scrollytelling-container .text-brown {
   color: var(--color-brown);
 }
-.text-light {
+.scrollytelling-container .text-light {
   color: var(--color-text-light);
 }
-.text-dark {
+.scrollytelling-container .text-dark {
   color: var(--color-text-dark);
 }
 
 /* Utilities */
-.text-center {
+.scrollytelling-container .text-center {
   text-align: center;
 }
-.relative {
+.scrollytelling-container .relative {
   position: relative;
 }
-.z-10 {
+.scrollytelling-container .z-10 {
   z-index: 10;
 }
-.mb-2 {
+.scrollytelling-container .mb-2 {
   margin-bottom: 0.5rem;
 }
-.mb-4 {
+.scrollytelling-container .mb-4 {
   margin-bottom: 1rem;
 }
-.mb-6 {
+.scrollytelling-container .mb-6 {
   margin-bottom: 1.5rem;
 }
-.mb-8 {
+.scrollytelling-container .mb-8 {
   margin-bottom: 2rem;
 }
-.mb-12 {
+.scrollytelling-container .mb-12 {
   margin-bottom: 3rem;
 }
-.mt-4 {
+.scrollytelling-container .mt-4 {
   margin-top: 1rem;
 }
-.mt-8 {
+.scrollytelling-container .mt-8 {
   margin-top: 2rem;
 }
-.mt-12 {
+.scrollytelling-container .mt-12 {
   margin-top: 3rem;
 }
-.opacity-50 {
+.scrollytelling-container .opacity-50 {
   opacity: 0.5;
 }
-.opacity-70 {
+.scrollytelling-container .opacity-70 {
   opacity: 0.7;
 }
-.opacity-80 {
+.scrollytelling-container .opacity-80 {
   opacity: 0.8;
 }
-.italic {
+.scrollytelling-container .italic {
   font-style: italic;
 }
-.max-w-2xl {
+.scrollytelling-container .max-w-2xl {
   max-width: 42rem;
 }
-.max-w-3xl {
+.scrollytelling-container .max-w-3xl {
   max-width: 48rem;
 }
-.mx-auto {
+.scrollytelling-container .mx-auto {
   margin-left: auto;
   margin-right: auto;
 }
-.pl-8 {
+.scrollytelling-container .pl-8 {
   padding-left: 2rem;
 }
 
 /* Specific styling for sections */
-.scandal-text {
+.scrollytelling-container .scandal-text {
   text-align: left;
 }
 
-.scandal-text .lead-text {
+.scrollytelling-container .scandal-text .lead-text {
   color: rgba(201, 184, 150, 0.8);
 }
 
-.scandal-text .lead-text.italic {
+.scrollytelling-container .scandal-text .lead-text.italic {
   color: rgba(201, 184, 150, 0.7);
 }
 
-.catherine-intro {
+.scrollytelling-container .catherine-intro {
   font-size: 1.25rem;
   color: var(--color-text-light);
   line-height: 1.8;
@@ -763,62 +766,62 @@ h2 {
   border-bottom: 1px solid rgba(139, 115, 85, 0.3);
 }
 
-.catherine-quote {
+.scrollytelling-container .catherine-quote {
   padding: 2rem 0;
   border-top: 1px solid rgba(139, 115, 85, 0.3);
   border-bottom: 1px solid rgba(139, 115, 85, 0.3);
   margin: 2rem 0;
 }
 
-.catherine-quote p {
+.scrollytelling-container .catherine-quote p {
   font-size: clamp(1.5rem, 4vw, 2rem);
 }
 
-.renaissance-intro {
+.scrollytelling-container .renaissance-intro {
   font-size: 1.25rem;
   color: var(--color-text-light);
   line-height: 1.8;
   margin-bottom: 2rem;
 }
 
-.american-year {
+.scrollytelling-container .american-year {
   font-size: 2.5rem;
   color: var(--color-bg-light);
   margin-bottom: 0.5rem;
 }
 
-.american-caption {
+.scrollytelling-container .american-caption {
   font-size: 0.875rem;
 }
 
-.modern-intro {
+.scrollytelling-container .modern-intro {
   font-size: 1.25rem;
   color: var(--color-text-light);
   line-height: 1.8;
   margin-bottom: 2rem;
 }
 
-.final-section {
+.scrollytelling-container .final-section {
   min-height: auto;
   padding: 8rem 2rem;
 }
 
-.final-bg {
+.scrollytelling-container .final-bg {
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse 100% 100% at 50% 100%, var(--color-bg-accent) 0%, transparent 70%);
 }
 
-.final-fork {
+.scrollytelling-container .final-fork {
   margin: 0 auto 3rem;
   opacity: 0.5;
 }
 
-.final-title {
+.scrollytelling-container .final-title {
   font-size: clamp(1.5rem, 5vw, 3rem);
 }
 
-.final-text {
+.scrollytelling-container .final-text {
   color: rgba(201, 184, 150, 0.7);
 }
 
