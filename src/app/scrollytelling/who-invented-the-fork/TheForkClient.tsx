@@ -813,8 +813,8 @@ const TheForkClient = () => {
                   left: 0, 
                   color: 'var(--color-bronze)' 
                 }}>•</span>
-                Laudan, Rachel, and Jeffrey M. Pilcher. "Chiles, Chocolate, and Race in New Spain: Glancing Backward to 
-                Spain or Looking Forward to Mexico?" *Eighteenth-Century Life* 23, no. 2 (1999): 59-70. (Comparative 
+                Laudan, Rachel, and Jeffrey M. Pilcher. &quot;Chiles, Chocolate, and Race in New Spain: Glancing Backward to 
+                Spain or Looking Forward to Mexico?&quot; *Eighteenth-Century Life* 23, no. 2 (1999): 59-70. (Comparative 
                 dining customs)
               </li>
             </ul>
