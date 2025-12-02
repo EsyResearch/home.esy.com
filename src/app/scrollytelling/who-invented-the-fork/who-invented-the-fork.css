@@ -271,13 +271,15 @@
     radial-gradient(ellipse 60% 40% at 20% 80%, var(--color-brown) 0%, transparent 50%);
 }
 
-.hero-content {
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
+.scrollytelling-container .hero-content {
+  display: block !important; /* Override globals.css grid layout */
   text-align: center;
   position: relative;
   z-index: 10;
+  max-width: none !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  grid-template-columns: none !important;
 }
 
 .hero-fork {

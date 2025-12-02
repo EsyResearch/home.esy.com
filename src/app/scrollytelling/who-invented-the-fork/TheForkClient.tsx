@@ -118,13 +118,13 @@ const TheForkClient = () => {
             />
           </svg>
 
-          <p className="chapter-label animate-in stagger-1">A Journey Through Time</p>
+          <p className="chapter-label animate-in stagger-1" style={{ color: 'var(--color-bronze)' }}>A Journey Through Time</p>
 
-          <h1 className="animate-in stagger-2">
+          <h1 className="animate-in stagger-2" style={{ textShadow: '0 10px 60px rgba(139, 115, 85, 0.2)' }}>
             The <span className="italic text-gradient">Fork</span>
           </h1>
 
-          <p className="lead-text max-w-2xl mx-auto animate-in stagger-3">
+          <p className="lead-text max-w-2xl mx-auto animate-in stagger-3" style={{ color: 'rgba(201, 184, 150, 0.8)' }}>
             From ancient civilizations to modern tables, discover the extraordinary 4,000-year journey of
             humanity&apos;s most revolutionary eating utensil.
           </p>
