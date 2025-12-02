@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable react/no-unescaped-entities */
 
 import { useState } from "react";
 import Link from "next/link";
@@ -11,6 +12,7 @@ import {
   Clock,
   AlertTriangle,
   Target,
+  Lightbulb,
 } from "lucide-react";
 import { DocsPageNav } from "@/components/docs";
 
