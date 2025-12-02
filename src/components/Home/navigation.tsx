@@ -354,7 +354,8 @@ export default function Navigation ({
         
         const isHomepage = normalizedPath === '/' || normalizedPath === '';
         const isBlogIndexPage = normalizedPath === '/blog';
-        const shouldBeTransparent = isHomepage || isBlogIndexPage;
+        const isScrollytellingPage = normalizedPath?.startsWith('/scrollytelling');
+        const shouldBeTransparent = isHomepage || isBlogIndexPage || isScrollytellingPage;
         
         if (scrollY === 0) {
           if (shouldBeTransparent) {
