@@ -5,7 +5,7 @@ export interface NavItem {
   title: string;
   href: string;
   description?: string;
-  icon?: 'home' | 'sparkles' | 'book' | 'pencil' | 'workflow' | 'prompt';
+  icon?: 'home' | 'sparkles' | 'book' | 'pencil' | 'workflow' | 'prompt' | 'essay';
   isNew?: boolean;
   children?: NavItem[];
 }
@@ -48,6 +48,54 @@ export const docsNavigation: NavSection[] = [
         href: "/docs/how-to-write-better-essays-with-ai",
         description: "Improve your essay writing process",
         icon: "pencil",
+      },
+    ],
+  },
+  {
+    title: "Essay Writing Guides",
+    items: [
+      {
+        title: "How to Write an Essay",
+        href: "/docs/how-to-write-an-essay",
+        description: "Complete essay writing guide",
+        icon: "book",
+        isNew: true,
+      },
+      {
+        title: "How to Write a Thesis Statement",
+        href: "/docs/how-to-write-a-thesis-statement",
+        description: "Craft strong thesis statements",
+        icon: "essay",
+      },
+      {
+        title: "How to Write an Introduction",
+        href: "/docs/how-to-write-an-essay-introduction",
+        description: "Hook readers from the start",
+        icon: "essay",
+      },
+      {
+        title: "How to Write a Conclusion",
+        href: "/docs/how-to-write-an-essay-conclusion",
+        description: "End with lasting impact",
+        icon: "essay",
+      },
+      {
+        title: "How to Write an Argumentative Essay",
+        href: "/docs/how-to-write-an-argumentative-essay",
+        description: "Build persuasive arguments",
+        icon: "essay",
+      },
+      {
+        title: "How to Write an Expository Essay",
+        href: "/docs/how-to-write-an-expository-essay",
+        description: "Explain topics clearly",
+        icon: "essay",
+      },
+      {
+        title: "How to Write an Informative Essay",
+        href: "/docs/how-to-write-an-informative-essay",
+        description: "Present factual information",
+        icon: "essay",
       },
     ],
   },

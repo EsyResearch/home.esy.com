@@ -21,6 +21,7 @@ import {
   Menu,
   FileText,
   Search,
+  Edit3,
 } from "lucide-react";
 
 // Elevated Dark Theme
@@ -42,6 +43,7 @@ const iconMap: Record<string, React.ReactNode> = {
   pencil: <PenLine className="w-4 h-4" />,
   workflow: <Workflow className="w-4 h-4" />,
   prompt: <FileText className="w-4 h-4" />,
+  essay: <Edit3 className="w-4 h-4" />,
 };
 
 function NavItemComponent({ item, isActive }: { item: NavItem; isActive: boolean }) {
@@ -335,6 +337,7 @@ export function DocsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
           }}>
             {[
               { label: 'Getting Started', href: '/docs/prompt-engineering' },
+              { label: 'Essay Guide', href: '/docs/how-to-write-an-essay' },
               { label: 'Prompts', href: '/docs/chatgpt-prompts-for-academic-writing' },
               { label: 'Workflows', href: '/docs/agent-workflows' }
             ].map((link) => (

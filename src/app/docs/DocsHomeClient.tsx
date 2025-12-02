@@ -8,6 +8,7 @@ import {
   PenLine,
   Workflow,
   ArrowRight,
+  FileText,
 } from "lucide-react";
 import { DocsPageNav } from "@/components/docs";
 
@@ -52,6 +53,15 @@ const DocsHomeClient = () => {
       href: '/docs/how-to-write-better-essays-with-ai',
       icon: <PenLine className="w-6 h-6" />,
       category: 'Techniques'
+    },
+    {
+      id: 'essay-writing',
+      title: 'How to Write an Essay',
+      description: 'Complete guide to essay writing—from understanding assignments to polishing final drafts. Covers all essay types, structure, and essential components.',
+      href: '/docs/how-to-write-an-essay',
+      icon: <FileText className="w-6 h-6" />,
+      category: 'Writing Guides',
+      isNew: true
     },
     {
       id: 'agent-workflows',
@@ -122,6 +132,24 @@ const DocsHomeClient = () => {
                 Prompt Engineering Guide
               </Link>{' '}
               to understand how to communicate effectively with AI.
+            </p>
+
+            <p style={{ marginBottom: '1.5rem' }}>
+              <strong style={{ color: theme.text, fontWeight: 600 }}>Learning to write essays?</strong> Check out our{' '}
+              <Link
+                href="/docs/how-to-write-an-essay"
+                style={{
+                  color: theme.accent,
+                  textDecoration: 'none',
+                  borderBottom: `1px solid ${theme.accent}40`,
+                  transition: 'border-color 0.2s ease'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.borderBottomColor = theme.accent}
+                onMouseLeave={(e) => e.currentTarget.style.borderBottomColor = `${theme.accent}40`}
+              >
+                essay writing guide
+              </Link>{' '}
+              covering argumentative, expository, and informative essays with examples.
             </p>
 
             <p style={{ marginBottom: '1.5rem' }}>
