@@ -1,0 +1,31 @@
+import { Metadata } from "next";
+import TheForkClient from "./TheForkClient";
+
+export const metadata: Metadata = {
+  title: "The Fork - A Journey Through Time | Esy Scrollytelling",
+  description:
+    "From ancient Mesopotamia to modern tables, discover the extraordinary 4,000-year journey of humanity's most revolutionary eating utensil. An immersive scrollytelling experience.",
+  keywords:
+    "fork history, scrollytelling, interactive story, cutlery history, Byzantine Empire, Renaissance Italy, table manners history",
+  openGraph: {
+    title: "The Fork - A Journey Through Time | Esy",
+    description:
+      "Discover the 4,000-year journey of the fork through an immersive scrollytelling experience.",
+    url: "https://esy.com/scrollytelling/the-fork",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Fork - A Journey Through Time | Esy",
+    description:
+      "Discover the 4,000-year journey of the fork through an immersive scrollytelling experience.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export default function TheForkPage() {
+  return <TheForkClient />;
+}
+
