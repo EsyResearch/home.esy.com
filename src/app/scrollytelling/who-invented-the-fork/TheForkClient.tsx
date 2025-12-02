@@ -873,7 +873,7 @@ const TheForkClient = () => {
             fontStyle: 'italic',
             marginTop: '2rem'
           }}>
-            Content reviewed for historical accuracy by scholarly sources. Last updated December 2024.
+            Content reviewed for historical accuracy by scholarly sources. Last updated December 2025.
           </p>
         </div>
       </section>
