@@ -1,10 +1,8 @@
 /* The Fork Scrollytelling Styles */
-/* Scoped to .scrollytelling-container to prevent style leakage to header/footer */
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Josefin+Sans:wght@200;300;400;500&display=swap');
 
-.scrollytelling-container {
-  /* Color variables scoped to container */
+:root {
   --color-bg-dark: #1a1714;
   --color-bg-light: #f5f0e8;
   --color-bg-accent: #2c2520;
@@ -13,26 +11,25 @@
   --color-brown: #5c4a32;
   --color-text-dark: #3d3027;
   --color-text-light: #e8e0d4;
-  
-  /* Base container styles */
+}
+
+.scrollytelling-container {
   font-family: 'Josefin Sans', sans-serif;
   background: var(--color-bg-dark);
   color: var(--color-text-light);
   overflow-x: hidden;
   line-height: 1.6;
-  position: relative;
-  z-index: 1;
 }
 
-.scrollytelling-container .font-display {
+.font-display {
   font-family: 'Cormorant Garamond', serif;
 }
 
-.scrollytelling-container .font-serif {
+.font-serif {
   font-family: 'Libre Baskerville', serif;
 }
 
-.scrollytelling-container .text-gradient {
+.text-gradient {
   background: linear-gradient(135deg, #c9b896 0%, #8b7355 50%, #5c4a32 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -40,7 +37,7 @@
 }
 
 /* Progress Bar */
-.scrollytelling-container .progress-bar {
+.progress-bar {
   position: fixed;
   top: 0;
   left: 0;
@@ -50,14 +47,14 @@
   z-index: 100;
 }
 
-.scrollytelling-container .progress-bar-fill {
+.progress-bar-fill {
   height: 100%;
   background: linear-gradient(90deg, var(--color-gold), var(--color-bronze), var(--color-brown));
   transition: width 0.1s ease-out;
 }
 
 /* Navigation Dots */
-.scrollytelling-container .nav-dots {
+.nav-dots {
   position: fixed;
   right: 2rem;
   top: 50%;
@@ -68,7 +65,7 @@
   gap: 1rem;
 }
 
-.scrollytelling-container .nav-dot {
+.nav-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -78,8 +75,8 @@
   transition: all 0.5s ease;
 }
 
-.scrollytelling-container .nav-dot:hover,
-.scrollytelling-container .nav-dot.active {
+.nav-dot:hover,
+.nav-dot.active {
   background: var(--color-gold);
   transform: scale(1.3);
 }
@@ -90,7 +87,7 @@
   }
 }
 
-/* Sections - scoped to scrollytelling container */
+/* Sections */
 .scrollytelling-container section {
   min-height: 100vh;
   display: flex;
@@ -101,21 +98,21 @@
   padding: 4rem 2rem;
 }
 
-.scrollytelling-container .section-dark {
+.section-dark {
   background: var(--color-bg-dark);
 }
 
-.scrollytelling-container .section-light {
+.section-light {
   background: var(--color-bg-light);
   color: var(--color-text-dark);
 }
 
-.scrollytelling-container .section-accent {
+.section-accent {
   background: var(--color-bg-accent);
 }
 
 /* Noise Overlay */
-.scrollytelling-container .noise-overlay ::before {
+.noise-overlay::before {
   content: '';
   position: absolute;
   top: 0;
@@ -128,7 +125,7 @@
 }
 
 /* Timeline Marker */
-.scrollytelling-container .timeline-marker {
+.timeline-marker {
   position: absolute;
   left: 2rem;
   top: 50%;
@@ -138,21 +135,21 @@
   align-items: center;
 }
 
-.scrollytelling-container .timeline-line {
+.timeline-line {
   width: 1px;
   height: 8rem;
   background: var(--color-bronze);
   opacity: 0.3;
 }
 
-.scrollytelling-container .timeline-line-brown {
+.timeline-line-brown {
   width: 1px;
   height: 8rem;
   background: var(--color-brown);
   opacity: 0.3;
 }
 
-.scrollytelling-container .timeline-year {
+.timeline-year {
   padding: 0.5rem 1rem;
   font-size: 0.75rem;
   letter-spacing: 0.3em;
@@ -172,13 +169,13 @@
 }
 
 /* Content */
-.scrollytelling-container .content {
+.content {
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
 }
 
-.scrollytelling-container .chapter-label {
+.chapter-label {
   font-size: 0.7rem;
   letter-spacing: 0.4em;
   text-transform: uppercase;
@@ -205,7 +202,7 @@
   margin-bottom: 1.5rem;
 }
 
-.scrollytelling-container .lead-text {
+.lead-text {
   font-family: 'Libre Baskerville', serif;
   font-size: clamp(1rem, 2vw, 1.25rem);
   line-height: 1.8;
@@ -234,39 +231,39 @@
   }
 }
 
-.scrollytelling-container .animate-in {
+.animate-in {
   opacity: 0;
   transform: translateY(40px);
   transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.scrollytelling-container .animate-in.visible {
+.animate-in.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.scrollytelling-container .animate-float {
+.animate-float {
   animation: float 6s ease-in-out infinite;
 }
 
-.scrollytelling-container .stagger-1 {
+.stagger-1 {
   transition-delay: 0.1s;
 }
-.scrollytelling-container .stagger-2 {
+.stagger-2 {
   transition-delay: 0.2s;
 }
-.scrollytelling-container .stagger-3 {
+.stagger-3 {
   transition-delay: 0.3s;
 }
-.scrollytelling-container .stagger-4 {
+.stagger-4 {
   transition-delay: 0.4s;
 }
-.scrollytelling-container .stagger-5 {
+.stagger-5 {
   transition-delay: 0.5s;
 }
 
 /* Hero */
-.scrollytelling-container .hero-bg {
+.hero-bg {
   position: absolute;
   inset: 0;
   opacity: 0.2;
@@ -274,20 +271,23 @@
     radial-gradient(ellipse 60% 40% at 20% 80%, var(--color-brown) 0%, transparent 50%);
 }
 
-.scrollytelling-container .hero-content {
+.hero-content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
   text-align: center;
   position: relative;
   z-index: 10;
 }
 
-.scrollytelling-container .hero-fork {
+.hero-fork {
   width: 80px;
   height: auto;
   margin: 0 auto 2rem;
   filter: drop-shadow(0 20px 40px rgba(139, 115, 85, 0.3));
 }
 
-.scrollytelling-container .scroll-indicator {
+.scroll-indicator {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -295,21 +295,21 @@
   margin-top: 3rem;
 }
 
-.scrollytelling-container .scroll-indicator span {
+.scroll-indicator span {
   font-size: 0.75rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--color-bronze);
 }
 
-.scrollytelling-container .scroll-line {
+.scroll-line {
   width: 1px;
   height: 4rem;
   background: linear-gradient(to bottom, var(--color-bronze), transparent);
 }
 
 /* Grid Layouts */
-.scrollytelling-container .grid-2 {
+.grid-2 {
   display: grid;
   grid-template-columns: 1fr;
   gap: 4rem;
@@ -323,45 +323,45 @@
 }
 
 /* Cards */
-.scrollytelling-container .card {
+.card {
   position: relative;
   padding: 2rem;
   border: 1px solid rgba(92, 74, 50, 0.2);
   background: var(--color-bg-light);
 }
 
-.scrollytelling-container .card-corner {
+.card-corner {
   position: absolute;
   width: 2rem;
   height: 2rem;
 }
 
-.scrollytelling-container .card-corner-tl {
+.card-corner-tl {
   top: -1rem;
   left: -1rem;
   border-top: 2px solid var(--color-bronze);
   border-left: 2px solid var(--color-bronze);
 }
 
-.scrollytelling-container .card-corner-br {
+.card-corner-br {
   bottom: -1rem;
   right: -1rem;
   border-bottom: 2px solid var(--color-bronze);
   border-right: 2px solid var(--color-bronze);
 }
 
-.scrollytelling-container .card-title {
+.card-title {
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
 
-.scrollytelling-container .card-text {
+.card-text {
   color: rgba(92, 74, 50, 0.8);
   line-height: 1.8;
 }
 
 /* Quote */
-.scrollytelling-container .quote {
+.quote {
   position: relative;
   padding-left: 2rem;
   border-left: 2px solid rgba(201, 184, 150, 0.5);
@@ -369,7 +369,7 @@
   margin: 3rem auto;
 }
 
-.scrollytelling-container .quote p {
+.quote p {
   font-family: 'Libre Baskerville', serif;
   font-style: italic;
   font-size: clamp(1rem, 2.5vw, 1.5rem);
@@ -377,7 +377,7 @@
   margin-bottom: 1rem;
 }
 
-.scrollytelling-container .quote cite {
+.quote cite {
   font-size: 0.75rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -386,18 +386,18 @@
 }
 
 /* Featured Quote Box */
-.scrollytelling-container .quote-section {
+.quote-section {
   padding: 4rem 0;
 }
 
-.scrollytelling-container .quote-box {
+.quote-box {
   background: var(--color-bg-accent);
   padding: 3rem;
   position: relative;
   border: 1px solid rgba(139, 115, 85, 0.2);
 }
 
-.scrollytelling-container .quote-box ::before {
+.quote-box::before {
   content: '';
   position: absolute;
   top: 0;
@@ -408,7 +408,7 @@
   background: var(--color-gold);
 }
 
-.scrollytelling-container .quote-box p {
+.quote-box p {
   font-family: 'Libre Baskerville', serif;
   font-style: italic;
   font-size: clamp(1rem, 3vw, 1.5rem);
@@ -417,7 +417,7 @@
   margin-bottom: 1.5rem;
 }
 
-.scrollytelling-container .quote-box cite {
+.quote-box cite {
   display: block;
   text-align: center;
   font-size: 0.75rem;
@@ -428,7 +428,7 @@
 }
 
 /* Stats */
-.scrollytelling-container .stats-grid {
+.stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
@@ -442,18 +442,18 @@
   }
 }
 
-.scrollytelling-container .stat {
+.stat {
   text-align: center;
 }
 
-.scrollytelling-container .stat-number {
+.stat-number {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(2rem, 5vw, 3rem);
   color: var(--color-gold);
   margin-bottom: 0.5rem;
 }
 
-.scrollytelling-container .stat-label {
+.stat-label {
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -461,19 +461,19 @@
 }
 
 /* Info Box */
-.scrollytelling-container .info-box {
+.info-box {
   padding: 1.5rem;
   background: var(--color-text-dark);
   color: var(--color-bg-light);
 }
 
-.scrollytelling-container .info-box h3 {
+.info-box h3 {
   font-size: 1rem;
   color: var(--color-gold);
   margin-bottom: 1rem;
 }
 
-.scrollytelling-container .info-box p {
+.info-box p {
   font-family: 'Libre Baskerville', serif;
   font-size: 0.875rem;
   opacity: 0.8;
@@ -481,33 +481,33 @@
 }
 
 /* Fork Illustration */
-.scrollytelling-container .fork-illustration {
+.fork-illustration {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.scrollytelling-container .fork-circle {
+.fork-circle {
   position: relative;
   width: 300px;
   height: 300px;
 }
 
-.scrollytelling-container .fork-circle-ring {
+.fork-circle-ring {
   position: absolute;
   inset: 0;
   border: 1px solid rgba(139, 115, 85, 0.2);
   border-radius: 50%;
 }
 
-.scrollytelling-container .fork-circle-ring-inner {
+.fork-circle-ring-inner {
   position: absolute;
   inset: 2rem;
   border: 1px solid rgba(139, 115, 85, 0.1);
   border-radius: 50%;
 }
 
-.scrollytelling-container .fork-circle svg {
+.fork-circle svg {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -515,13 +515,13 @@
 }
 
 /* Fork Grid */
-.scrollytelling-container .fork-grid {
+.fork-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
-.scrollytelling-container .fork-grid-item {
+.fork-grid-item {
   aspect-ratio: 1;
   background: var(--color-bg-dark);
   display: flex;
@@ -530,20 +530,20 @@
   transition: background 0.5s ease;
 }
 
-.scrollytelling-container .fork-grid-item:hover {
+.fork-grid-item:hover {
   background: rgba(201, 184, 150, 0.05);
 }
 
-.scrollytelling-container .fork-grid-item svg {
+.fork-grid-item svg {
   transition: transform 0.5s ease;
 }
 
-.scrollytelling-container .fork-grid-item:hover svg {
+.fork-grid-item:hover svg {
   transform: scale(1.1);
 }
 
 /* Image Container */
-.scrollytelling-container .image-container {
+.image-container {
   position: relative;
   width: 100%;
   aspect-ratio: 3/4;
@@ -551,7 +551,7 @@
   overflow: hidden;
 }
 
-.scrollytelling-container .image-container-content {
+.image-container-content {
   position: absolute;
   inset: 0;
   display: flex;
@@ -559,14 +559,14 @@
   justify-content: center;
 }
 
-.scrollytelling-container .image-container-blur {
+.image-container-blur {
   position: absolute;
   inset: 0;
   filter: blur(60px);
   background: rgba(201, 184, 150, 0.2);
 }
 
-.scrollytelling-container .image-container-caption {
+.image-container-caption {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -575,7 +575,7 @@
   background: linear-gradient(to top, var(--color-bg-dark), transparent);
 }
 
-.scrollytelling-container .image-container-caption p {
+.image-container-caption p {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-size: 1.125rem;
@@ -583,7 +583,7 @@
   margin-bottom: 0.5rem;
 }
 
-.scrollytelling-container .image-container-caption span {
+.image-container-caption span {
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -591,7 +591,7 @@
 }
 
 /* Vertical Line */
-.scrollytelling-container .vertical-line {
+.vertical-line {
   position: absolute;
   left: -1rem;
   top: 0;
@@ -601,7 +601,7 @@
 }
 
 /* Divider */
-.scrollytelling-container .divider {
+.divider {
   width: 1px;
   height: 100%;
   background: linear-gradient(to bottom, transparent, rgba(139, 115, 85, 0.5), transparent);
@@ -611,7 +611,7 @@
 }
 
 /* Button */
-.scrollytelling-container .btn {
+.btn {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
@@ -626,19 +626,19 @@
   transition: color 0.3s ease;
 }
 
-.scrollytelling-container .btn:hover {
+.btn:hover {
   color: var(--color-bg-light);
 }
 
-.scrollytelling-container .btn svg {
+.btn svg {
   transition: transform 0.3s ease;
 }
 
-.scrollytelling-container .btn:hover svg {
+.btn:hover svg {
   transform: translateY(-4px);
 }
 
-/* Footer */
+/* Scrollytelling Footer (inside content) */
 .scrollytelling-container .footer {
   margin-top: 6rem;
   padding-top: 2rem;
@@ -668,96 +668,96 @@
 }
 
 /* Text Colors */
-.scrollytelling-container .text-gold {
+.text-gold {
   color: var(--color-gold);
 }
-.scrollytelling-container .text-bronze {
+.text-bronze {
   color: var(--color-bronze);
 }
-.scrollytelling-container .text-brown {
+.text-brown {
   color: var(--color-brown);
 }
-.scrollytelling-container .text-light {
+.text-light {
   color: var(--color-text-light);
 }
-.scrollytelling-container .text-dark {
+.text-dark {
   color: var(--color-text-dark);
 }
 
 /* Utilities */
-.scrollytelling-container .text-center {
+.text-center {
   text-align: center;
 }
-.scrollytelling-container .relative {
+.relative {
   position: relative;
 }
-.scrollytelling-container .z-10 {
+.z-10 {
   z-index: 10;
 }
-.scrollytelling-container .mb-2 {
+.mb-2 {
   margin-bottom: 0.5rem;
 }
-.scrollytelling-container .mb-4 {
+.mb-4 {
   margin-bottom: 1rem;
 }
-.scrollytelling-container .mb-6 {
+.mb-6 {
   margin-bottom: 1.5rem;
 }
-.scrollytelling-container .mb-8 {
+.mb-8 {
   margin-bottom: 2rem;
 }
-.scrollytelling-container .mb-12 {
+.mb-12 {
   margin-bottom: 3rem;
 }
-.scrollytelling-container .mt-4 {
+.mt-4 {
   margin-top: 1rem;
 }
-.scrollytelling-container .mt-8 {
+.mt-8 {
   margin-top: 2rem;
 }
-.scrollytelling-container .mt-12 {
+.mt-12 {
   margin-top: 3rem;
 }
-.scrollytelling-container .opacity-50 {
+.opacity-50 {
   opacity: 0.5;
 }
-.scrollytelling-container .opacity-70 {
+.opacity-70 {
   opacity: 0.7;
 }
-.scrollytelling-container .opacity-80 {
+.opacity-80 {
   opacity: 0.8;
 }
-.scrollytelling-container .italic {
+.italic {
   font-style: italic;
 }
-.scrollytelling-container .max-w-2xl {
+.max-w-2xl {
   max-width: 42rem;
 }
-.scrollytelling-container .max-w-3xl {
+.max-w-3xl {
   max-width: 48rem;
 }
-.scrollytelling-container .mx-auto {
+.mx-auto {
   margin-left: auto;
   margin-right: auto;
 }
-.scrollytelling-container .pl-8 {
+.pl-8 {
   padding-left: 2rem;
 }
 
 /* Specific styling for sections */
-.scrollytelling-container .scandal-text {
+.scandal-text {
   text-align: left;
 }
 
-.scrollytelling-container .scandal-text .lead-text {
+.scandal-text .lead-text {
   color: rgba(201, 184, 150, 0.8);
 }
 
-.scrollytelling-container .scandal-text .lead-text.italic {
+.scandal-text .lead-text.italic {
   color: rgba(201, 184, 150, 0.7);
 }
 
-.scrollytelling-container .catherine-intro {
+.catherine-intro {
   font-size: 1.25rem;
   color: var(--color-text-light);
   line-height: 1.8;
@@ -766,62 +766,62 @@
   border-bottom: 1px solid rgba(139, 115, 85, 0.3);
 }
 
-.scrollytelling-container .catherine-quote {
+.catherine-quote {
   padding: 2rem 0;
   border-top: 1px solid rgba(139, 115, 85, 0.3);
   border-bottom: 1px solid rgba(139, 115, 85, 0.3);
   margin: 2rem 0;
 }
 
-.scrollytelling-container .catherine-quote p {
+.catherine-quote p {
   font-size: clamp(1.5rem, 4vw, 2rem);
 }
 
-.scrollytelling-container .renaissance-intro {
+.renaissance-intro {
   font-size: 1.25rem;
   color: var(--color-text-light);
   line-height: 1.8;
   margin-bottom: 2rem;
 }
 
-.scrollytelling-container .american-year {
+.american-year {
   font-size: 2.5rem;
   color: var(--color-bg-light);
   margin-bottom: 0.5rem;
 }
 
-.scrollytelling-container .american-caption {
+.american-caption {
   font-size: 0.875rem;
 }
 
-.scrollytelling-container .modern-intro {
+.modern-intro {
   font-size: 1.25rem;
   color: var(--color-text-light);
   line-height: 1.8;
   margin-bottom: 2rem;
 }
 
-.scrollytelling-container .final-section {
+.final-section {
   min-height: auto;
   padding: 8rem 2rem;
 }
 
-.scrollytelling-container .final-bg {
+.final-bg {
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse 100% 100% at 50% 100%, var(--color-bg-accent) 0%, transparent 70%);
 }
 
-.scrollytelling-container .final-fork {
+.final-fork {
   margin: 0 auto 3rem;
   opacity: 0.5;
 }
 
-.scrollytelling-container .final-title {
+.final-title {
   font-size: clamp(1.5rem, 5vw, 3rem);
 }
 
-.scrollytelling-container .final-text {
+.final-text {
   color: rgba(201, 184, 150, 0.7);
 }
 

@@ -77,7 +77,7 @@ const TheForkClient = () => {
   };
 
   return (
-    <div className="scrollytelling-container" style={{ marginTop: '4rem' }}>
+    <div className="scrollytelling-container">
       {/* Progress Bar */}
       <div className="progress-bar">
         <div className="progress-bar-fill" style={{ width: `${progress}%` }} />

@@ -13,9 +13,7 @@ const ScrollytellingMinimalHeader: React.FC = () => {
         left: 0,
         right: 0,
         zIndex: 100,
-        backgroundColor: 'rgba(18, 18, 27, 0.95)',
-        backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+        backgroundColor: 'transparent',
         transition: 'all 0.3s ease',
       }}
     >
@@ -23,7 +21,7 @@ const ScrollytellingMinimalHeader: React.FC = () => {
         style={{
           maxWidth: '1400px',
           margin: '0 auto',
-          padding: '1rem 2rem',
+          padding: '1.5rem 2rem',
         }}
       >
         <Link
@@ -35,7 +33,6 @@ const ScrollytellingMinimalHeader: React.FC = () => {
           }}
         >
           <Logo 
-            size={40}
             showText={false}
             theme="dark"
           />
