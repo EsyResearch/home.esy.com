@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import './the-fork.css';
+import './who-invented-the-fork.css';
 
 const TheForkClient = () => {
   const [progress, setProgress] = useState(0);

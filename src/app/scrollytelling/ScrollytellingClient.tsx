@@ -36,14 +36,14 @@ const ScrollytellingClient = () => {
 
   const stories: Story[] = [
     {
-      id: "the-fork",
-      title: "The Fork",
+      id: "who-invented-the-fork",
+      title: "Who Invented the Fork?",
       subtitle: "A Journey Through Time",
       description:
         "From ancient Mesopotamian temples to modern tables, discover the extraordinary 4,000-year journey of humanity's most revolutionary eating utensil. Travel through Byzantine courts, Renaissance Italy, and medieval Europe in this immersive historical narrative.",
       category: "History",
       readTime: "12 min",
-      href: "/scrollytelling/the-fork",
+      href: "/scrollytelling/who-invented-the-fork",
       icon: <History className="w-6 h-6" />,
       isNew: true,
       isFeatured: true,
