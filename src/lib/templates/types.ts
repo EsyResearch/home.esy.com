@@ -4,6 +4,15 @@ export type TemplateCategory = 'prompt' | 'template' | 'bundle';
 
 export type TemplateDifficulty = 'beginner' | 'intermediate' | 'advanced';
 
+// AI Model targeting for SEO
+export type AIModel = 'ChatGPT' | 'Claude' | 'Gemini' | null;
+
+// Pricing for premium prompts
+export interface TemplatePricing {
+  type: 'free' | 'premium';
+  price?: number; // Price in USD
+}
+
 export interface Template {
   id: string;
   slug: string;
@@ -25,6 +34,9 @@ export interface Template {
   author?: string;
   createdAt?: string;
   updatedAt?: string;
+  // New fields for SEO expansion
+  model?: AIModel;
+  pricing?: TemplatePricing;
 }
 
 export interface TemplateSubcategory {

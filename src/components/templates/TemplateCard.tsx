@@ -146,7 +146,7 @@ export default function TemplateCard({ template, showCategory = true }: Template
                 }}
               >
                 <Star size={10} fill="currentColor" />
-                Pro
+                {template.pricing?.price ? `$${template.pricing.price}` : 'Pro'}
               </span>
             )}
             {template.isFeatured && !template.isNew && !template.isPro && (

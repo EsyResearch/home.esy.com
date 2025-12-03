@@ -13,6 +13,7 @@ interface TemplateFiltersProps {
   onDifficultyChange: (difficulty: TemplateDifficulty | null) => void;
   onClearFilters: () => void;
   showMobileToggle?: boolean;
+  hideSubcategories?: boolean;
 }
 
 const difficulties: { id: TemplateDifficulty; label: string }[] = [
@@ -28,6 +29,7 @@ export default function TemplateFilters({
   onSubcategoryChange,
   onDifficultyChange,
   onClearFilters,
+  hideSubcategories = false,
 }: TemplateFiltersProps) {
   const hasActiveFilters = activeSubcategory !== null || activeDifficulty !== null;
 
@@ -83,7 +85,7 @@ export default function TemplateFilters({
       </div>
 
       {/* Subcategories */}
-      {subcategories.length > 0 && (
+      {!hideSubcategories && subcategories.length > 0 && (
         <div>
           <h4
             style={{

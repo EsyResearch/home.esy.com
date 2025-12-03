@@ -10,7 +10,7 @@ export const templateCategories: TemplateCategoryInfo[] = [
     name: 'Prompts',
     slug: 'prompts',
     description: 'Ready-to-use AI prompts for academic writing, research, and creative projects',
-    count: 10,
+    count: 35,
     subcategories: [
       {
         id: 'essay-writing',
@@ -39,6 +39,34 @@ export const templateCategories: TemplateCategoryInfo[] = [
         name: 'Professional Writing',
         description: 'Prompts for business and professional communication',
         count: 2,
+      },
+      {
+        id: 'chatgpt',
+        slug: 'chatgpt',
+        name: 'ChatGPT Prompts',
+        description: 'Optimized prompts for OpenAI ChatGPT models',
+        count: 6,
+      },
+      {
+        id: 'claude',
+        slug: 'claude',
+        name: 'Claude Prompts',
+        description: 'Optimized prompts for Anthropic Claude models',
+        count: 6,
+      },
+      {
+        id: 'gemini',
+        slug: 'gemini',
+        name: 'Gemini Prompts',
+        description: 'Optimized prompts for Google Gemini models',
+        count: 6,
+      },
+      {
+        id: 'seo',
+        slug: 'seo',
+        name: 'SEO Writing',
+        description: 'Prompts for search engine optimized content',
+        count: 6,
       },
     ],
   },
@@ -655,6 +683,1805 @@ Please provide:
     ],
     relatedSlugs: ['executive-summary-generator', 'presentation-outline-builder'],
   },
+
+  // ============================================
+  // ChatGPT Academic Prompts
+  // ============================================
+  {
+    id: '11',
+    slug: 'chatgpt-argument-analysis-prompt',
+    title: 'ChatGPT Argument Analysis Prompt',
+    shortDescription: 'Analyze arguments, identify logical fallacies, and strengthen your reasoning with ChatGPT.',
+    description: 'This prompt leverages ChatGPT\'s analytical capabilities to break down arguments, identify strengths and weaknesses, detect logical fallacies, and suggest improvements for more rigorous academic discourse.',
+    category: 'prompt',
+    subcategory: 'chatgpt',
+    tags: ['chatgpt', 'argument', 'analysis', 'logic', 'academic'],
+    difficulty: 'intermediate',
+    isNew: true,
+    model: 'ChatGPT',
+    pricing: { type: 'free' },
+    variables: ['ARGUMENT_TEXT', 'CONTEXT', 'EVALUATION_CRITERIA'],
+    content: `You are an expert in logic and argumentation. Analyze the following argument using rigorous academic standards.
+
+**Argument to Analyze:**
+[ARGUMENT_TEXT]
+
+**Context:** [CONTEXT]
+
+**Evaluation Focus:** [EVALUATION_CRITERIA]
+
+Please provide:
+
+1. **Argument Structure Analysis**
+   - Identify the main claim/thesis
+   - Map supporting premises
+   - Identify implicit assumptions
+   - Diagram the logical flow
+
+2. **Logical Assessment**
+   - Evaluate validity of reasoning
+   - Check for logical fallacies (name and explain each)
+   - Assess evidence quality
+   - Identify unsupported claims
+
+3. **Strength Analysis**
+   - What makes this argument compelling?
+   - Most effective rhetorical elements
+   - Best-supported claims
+
+4. **Weakness Identification**
+   - Gaps in reasoning
+   - Missing evidence
+   - Counterarguments not addressed
+   - Potential biases
+
+5. **Improvement Recommendations**
+   - How to strengthen the argument
+   - Additional evidence needed
+   - Rhetorical improvements
+   - Rewritten stronger version`,
+    expectedOutput: 'Comprehensive argument analysis with logical assessment, fallacy identification, and actionable improvements.',
+    useCases: [
+      'Essay argument evaluation',
+      'Debate preparation',
+      'Critical reading exercises',
+      'Academic peer review',
+    ],
+    relatedSlugs: ['chatgpt-critical-thinking-essay-prompt', 'thesis-statement-generator'],
+  },
+  {
+    id: '12',
+    slug: 'chatgpt-critical-thinking-essay-prompt',
+    title: 'ChatGPT Critical Thinking Essay Prompt',
+    shortDescription: 'Develop essays that demonstrate sophisticated critical thinking and analysis.',
+    description: 'Use ChatGPT to craft essays that showcase higher-order thinking skills, including analysis, synthesis, evaluation, and the ability to consider multiple perspectives on complex issues.',
+    category: 'prompt',
+    subcategory: 'chatgpt',
+    tags: ['chatgpt', 'critical thinking', 'essay', 'analysis', 'academic'],
+    difficulty: 'advanced',
+    model: 'ChatGPT',
+    pricing: { type: 'free' },
+    variables: ['TOPIC', 'THESIS', 'PERSPECTIVES', 'WORD_COUNT'],
+    content: `You are an expert academic writing coach specializing in critical thinking development. Help me write an essay that demonstrates sophisticated analytical skills.
+
+**Topic:** [TOPIC]
+
+**Working Thesis:** [THESIS]
+
+**Perspectives to Consider:** [PERSPECTIVES]
+
+**Target Length:** [WORD_COUNT] words
+
+Guide me through:
+
+1. **Critical Framework Selection**
+   - Appropriate analytical lenses for this topic
+   - Key questions to investigate
+   - Theoretical frameworks to apply
+
+2. **Multi-Perspective Analysis**
+   - Present each perspective fairly
+   - Identify underlying assumptions
+   - Compare and contrast viewpoints
+   - Synthesize insights
+
+3. **Evidence Evaluation**
+   - Assess source credibility
+   - Identify potential biases
+   - Weigh conflicting evidence
+   - Draw supported conclusions
+
+4. **Argument Development**
+   - Build nuanced claims
+   - Acknowledge complexity
+   - Address counterarguments substantively
+   - Avoid oversimplification
+
+5. **Synthesis and Conclusion**
+   - Integrate multiple perspectives
+   - Articulate original insights
+   - Identify implications
+   - Propose areas for further inquiry`,
+    expectedOutput: 'A sophisticated essay framework demonstrating critical thinking through multi-perspective analysis and nuanced argumentation.',
+    useCases: [
+      'Graduate-level essays',
+      'Philosophy papers',
+      'Policy analysis',
+      'Ethics discussions',
+    ],
+    relatedSlugs: ['chatgpt-argument-analysis-prompt', 'chatgpt-research-synthesis-prompt'],
+  },
+  {
+    id: '13',
+    slug: 'chatgpt-research-synthesis-prompt',
+    title: 'ChatGPT Research Synthesis Prompt',
+    shortDescription: 'Synthesize multiple research sources into coherent, insightful analysis.',
+    description: 'This prompt helps you use ChatGPT to combine findings from multiple research sources, identify patterns, resolve contradictions, and develop original insights from existing literature.',
+    category: 'prompt',
+    subcategory: 'chatgpt',
+    tags: ['chatgpt', 'research', 'synthesis', 'literature', 'academic'],
+    difficulty: 'advanced',
+    model: 'ChatGPT',
+    pricing: { type: 'free' },
+    variables: ['RESEARCH_TOPIC', 'SOURCE_SUMMARIES', 'SYNTHESIS_GOAL'],
+    content: `You are a research methodology expert. Help me synthesize these sources into coherent analysis.
+
+**Research Topic:** [RESEARCH_TOPIC]
+
+**Source Summaries:** [SOURCE_SUMMARIES]
+
+**Synthesis Goal:** [SYNTHESIS_GOAL]
+
+Please synthesize by:
+
+1. **Pattern Identification**
+   - Common themes across sources
+   - Recurring methodologies
+   - Shared conclusions
+   - Consistent evidence
+
+2. **Contradiction Resolution**
+   - Identify conflicting findings
+   - Analyze reasons for differences
+   - Evaluate which positions are better supported
+   - Propose reconciliation where possible
+
+3. **Gap Analysis**
+   - What questions remain unanswered?
+   - What perspectives are missing?
+   - Where is evidence insufficient?
+   - What future research is needed?
+
+4. **Original Insight Development**
+   - Connections not explicitly made in sources
+   - New interpretations of combined evidence
+   - Theoretical implications
+   - Practical applications
+
+5. **Synthesis Narrative**
+   - Coherent story from disparate sources
+   - Logical flow of ideas
+   - Clear thesis emerging from synthesis
+   - Compelling conclusion`,
+    expectedOutput: 'A synthesized analysis that identifies patterns, resolves contradictions, and generates original insights from multiple sources.',
+    useCases: [
+      'Literature reviews',
+      'Research paper backgrounds',
+      'Systematic reviews',
+      'Thesis chapters',
+    ],
+    relatedSlugs: ['literature-review-assistant', 'chatgpt-literature-comparison-prompt'],
+  },
+  {
+    id: '14',
+    slug: 'chatgpt-literature-comparison-prompt',
+    title: 'ChatGPT Literature Comparison Prompt',
+    shortDescription: 'Compare and contrast multiple literary works or academic sources systematically.',
+    description: 'Use ChatGPT to conduct sophisticated comparative analysis of texts, identifying thematic connections, methodological differences, and creating comprehensive comparison frameworks.',
+    category: 'prompt',
+    subcategory: 'chatgpt',
+    tags: ['chatgpt', 'comparison', 'literature', 'analysis', 'academic'],
+    difficulty: 'intermediate',
+    model: 'ChatGPT',
+    pricing: { type: 'free' },
+    variables: ['TEXT_A', 'TEXT_B', 'COMPARISON_FOCUS', 'ANALYSIS_PURPOSE'],
+    content: `You are a comparative literature and analysis expert. Help me compare these texts systematically.
+
+**Text/Source A:** [TEXT_A]
+
+**Text/Source B:** [TEXT_B]
+
+**Comparison Focus:** [COMPARISON_FOCUS]
+
+**Purpose of Analysis:** [ANALYSIS_PURPOSE]
+
+Provide comprehensive comparison:
+
+1. **Overview Matrix**
+   - Side-by-side key elements
+   - Author background/context
+   - Publication context
+   - Intended audience
+
+2. **Thematic Comparison**
+   - Shared themes
+   - Divergent themes
+   - Treatment of common themes
+   - Thematic evolution
+
+3. **Methodological Analysis**
+   - Approaches used
+   - Evidence types
+   - Analytical frameworks
+   - Strengths of each approach
+
+4. **Stylistic Elements**
+   - Writing style
+   - Rhetorical strategies
+   - Tone and voice
+   - Structural choices
+
+5. **Synthesis and Evaluation**
+   - What each contributes uniquely
+   - How they complement each other
+   - Which is more effective for what purpose
+   - Combined insights`,
+    expectedOutput: 'Comprehensive comparative analysis with thematic, methodological, and stylistic dimensions.',
+    useCases: [
+      'Comparative essays',
+      'Literature reviews',
+      'Source evaluation',
+      'Academic debates',
+    ],
+    relatedSlugs: ['chatgpt-research-synthesis-prompt', 'source-evaluation-framework'],
+  },
+  {
+    id: '15',
+    slug: 'chatgpt-academic-tone-conversion-prompt',
+    title: 'ChatGPT Academic Tone Conversion Prompt',
+    shortDescription: 'Convert casual writing to polished academic prose while preserving meaning.',
+    description: 'Transform informal or draft writing into polished academic prose using ChatGPT. This prompt helps elevate language, improve precision, and ensure appropriate scholarly tone.',
+    category: 'prompt',
+    subcategory: 'chatgpt',
+    tags: ['chatgpt', 'academic writing', 'tone', 'editing', 'style'],
+    difficulty: 'beginner',
+    isNew: true,
+    model: 'ChatGPT',
+    pricing: { type: 'free' },
+    variables: ['ORIGINAL_TEXT', 'DISCIPLINE', 'FORMALITY_LEVEL'],
+    content: `You are an expert academic editor. Convert this text to polished academic prose.
+
+**Original Text:** [ORIGINAL_TEXT]
+
+**Academic Discipline:** [DISCIPLINE]
+
+**Formality Level:** [FORMALITY_LEVEL] (undergraduate/graduate/publication)
+
+Please transform by:
+
+1. **Tone Elevation**
+   - Replace casual language with academic alternatives
+   - Remove colloquialisms
+   - Adjust sentence structure for formality
+   - Maintain author's voice while elevating register
+
+2. **Precision Enhancement**
+   - Replace vague terms with specific ones
+   - Add appropriate hedging language
+   - Clarify ambiguous statements
+   - Ensure technical accuracy
+
+3. **Structure Improvement**
+   - Improve paragraph organization
+   - Add transition phrases
+   - Enhance logical flow
+   - Create clear topic sentences
+
+4. **Citation Readiness**
+   - Identify claims needing citation
+   - Suggest where evidence should be added
+   - Format for citation integration
+   - Balance assertion with support
+
+5. **Final Polish**
+   - Check discipline-specific conventions
+   - Ensure consistent voice
+   - Verify appropriate complexity
+   - Provide before/after comparison`,
+    expectedOutput: 'Academically polished version of the text with explanations of changes made.',
+    useCases: [
+      'Draft revision',
+      'Freewriting to formal prose',
+      'ESL academic writing support',
+      'Quick tone adjustment',
+    ],
+    relatedSlugs: ['professional-email-crafter', 'chatgpt-critical-thinking-essay-prompt'],
+  },
+
+  // ============================================
+  // Claude Academic Prompts
+  // ============================================
+  {
+    id: '16',
+    slug: 'claude-high-level-research-assistant',
+    title: 'Claude High-Level Research Assistant',
+    shortDescription: 'Leverage Claude\'s nuanced reasoning for sophisticated research guidance.',
+    description: 'This prompt harnesses Claude\'s strength in nuanced analysis and careful reasoning to provide high-level research guidance, methodology recommendations, and strategic research planning.',
+    category: 'prompt',
+    subcategory: 'claude',
+    tags: ['claude', 'research', 'methodology', 'academic', 'planning'],
+    difficulty: 'advanced',
+    isNew: true,
+    model: 'Claude',
+    pricing: { type: 'free' },
+    variables: ['RESEARCH_AREA', 'CURRENT_STAGE', 'CHALLENGES', 'GOALS'],
+    content: `You are a senior research advisor with expertise in research design and methodology. Provide high-level guidance for this research project.
+
+**Research Area:** [RESEARCH_AREA]
+
+**Current Stage:** [CURRENT_STAGE]
+
+**Key Challenges:** [CHALLENGES]
+
+**Research Goals:** [GOALS]
+
+Provide strategic guidance on:
+
+1. **Research Design Assessment**
+   - Evaluate current approach
+   - Identify methodological strengths
+   - Flag potential weaknesses
+   - Suggest design refinements
+
+2. **Strategic Direction**
+   - Prioritize research activities
+   - Identify critical path items
+   - Suggest resource allocation
+   - Timeline recommendations
+
+3. **Methodological Recommendations**
+   - Appropriate methods for questions
+   - Data collection strategies
+   - Analysis approach options
+   - Validity and reliability considerations
+
+4. **Risk Mitigation**
+   - Anticipate potential problems
+   - Suggest contingency plans
+   - Identify ethical considerations
+   - Address feasibility concerns
+
+5. **Quality Assurance**
+   - Standards to meet
+   - Peer review preparation
+   - Documentation requirements
+   - Publication positioning`,
+    expectedOutput: 'Strategic research guidance with methodology recommendations and risk mitigation strategies.',
+    useCases: [
+      'Dissertation planning',
+      'Grant proposal development',
+      'Research project management',
+      'Methodology consultation',
+    ],
+    relatedSlugs: ['research-question-refiner', 'claude-multi-source-literature-review-prompt'],
+  },
+  {
+    id: '17',
+    slug: 'claude-multi-source-literature-review-prompt',
+    title: 'Claude Multi-Source Literature Review Prompt',
+    shortDescription: 'Construct comprehensive literature reviews with Claude\'s analytical depth.',
+    description: 'Use Claude\'s capacity for handling complex, nuanced information to build thorough literature reviews that synthesize diverse sources while maintaining critical perspective.',
+    category: 'prompt',
+    subcategory: 'claude',
+    tags: ['claude', 'literature review', 'research', 'synthesis', 'academic'],
+    difficulty: 'advanced',
+    model: 'Claude',
+    pricing: { type: 'free' },
+    variables: ['TOPIC', 'SOURCE_TYPES', 'REVIEW_SCOPE', 'ANALYTICAL_FOCUS'],
+    content: `You are an expert in systematic literature review methodology. Help construct a comprehensive literature review.
+
+**Topic:** [TOPIC]
+
+**Source Types to Include:** [SOURCE_TYPES]
+
+**Review Scope:** [REVIEW_SCOPE]
+
+**Analytical Focus:** [ANALYTICAL_FOCUS]
+
+Guide the review construction:
+
+1. **Systematic Framework**
+   - Search strategy recommendations
+   - Inclusion/exclusion criteria
+   - Quality assessment approach
+   - Documentation standards
+
+2. **Source Organization**
+   - Chronological evolution of field
+   - Thematic clustering
+   - Methodological groupings
+   - Theoretical frameworks
+
+3. **Critical Analysis Structure**
+   - Evaluate evidence quality
+   - Assess methodological rigor
+   - Identify bias patterns
+   - Note limitations systematically
+
+4. **Synthesis Strategy**
+   - Connect disparate findings
+   - Resolve contradictions
+   - Identify consensus areas
+   - Map disagreements
+
+5. **Gap Identification**
+   - Underexplored questions
+   - Methodological gaps
+   - Population gaps
+   - Theoretical gaps
+
+6. **Narrative Development**
+   - Compelling structure
+   - Logical flow
+   - Clear argumentation
+   - Strong conclusion`,
+    expectedOutput: 'Comprehensive literature review framework with systematic organization and critical analysis.',
+    useCases: [
+      'Thesis literature chapters',
+      'Systematic reviews',
+      'Research proposals',
+      'Academic publications',
+    ],
+    relatedSlugs: ['literature-review-assistant', 'claude-high-level-research-assistant'],
+  },
+  {
+    id: '18',
+    slug: 'claude-bias-perspective-analyzer',
+    title: 'Claude Bias & Perspective Analyzer',
+    shortDescription: 'Identify biases, assumptions, and perspectives in texts with Claude\'s nuanced analysis.',
+    description: 'Leverage Claude\'s sophisticated reasoning to uncover hidden biases, unstated assumptions, and perspective limitations in academic and professional texts.',
+    category: 'prompt',
+    subcategory: 'claude',
+    tags: ['claude', 'bias', 'analysis', 'critical thinking', 'perspective'],
+    difficulty: 'intermediate',
+    model: 'Claude',
+    pricing: { type: 'free' },
+    variables: ['TEXT_TO_ANALYZE', 'CONTEXT', 'ANALYSIS_DEPTH'],
+    content: `You are an expert in critical discourse analysis and bias detection. Analyze this text for biases and perspectives.
+
+**Text to Analyze:** [TEXT_TO_ANALYZE]
+
+**Context:** [CONTEXT]
+
+**Analysis Depth:** [ANALYSIS_DEPTH]
+
+Conduct thorough analysis:
+
+1. **Perspective Identification**
+   - Author's apparent viewpoint
+   - Disciplinary lens
+   - Cultural/historical context
+   - Stakeholder alignment
+
+2. **Assumption Mapping**
+   - Explicit assumptions
+   - Implicit assumptions
+   - Foundational premises
+   - Unquestioned beliefs
+
+3. **Bias Detection**
+   - Selection bias (what's included/excluded)
+   - Framing bias (how issues are presented)
+   - Language bias (loaded terms)
+   - Confirmation bias indicators
+
+4. **Missing Perspectives**
+   - Voices not represented
+   - Alternative interpretations
+   - Counterarguments not addressed
+   - Stakeholders ignored
+
+5. **Impact Assessment**
+   - How biases affect conclusions
+   - Validity implications
+   - Generalizability limits
+   - Practical consequences
+
+6. **Balanced Interpretation**
+   - How to read the text critically
+   - Valid insights despite biases
+   - Complementary sources needed
+   - Appropriate use cases`,
+    expectedOutput: 'Detailed bias and perspective analysis with practical guidance for critical interpretation.',
+    useCases: [
+      'Source evaluation',
+      'Media literacy',
+      'Academic criticism',
+      'Research assessment',
+    ],
+    relatedSlugs: ['source-evaluation-framework', 'claude-academic-debate-simulator'],
+  },
+  {
+    id: '19',
+    slug: 'claude-academic-debate-simulator',
+    title: 'Claude Academic Debate Simulator',
+    shortDescription: 'Simulate rigorous academic debates to strengthen arguments and anticipate objections.',
+    description: 'Use Claude to simulate scholarly debate, generating strong counterarguments, testing your positions, and developing more robust academic arguments.',
+    category: 'prompt',
+    subcategory: 'claude',
+    tags: ['claude', 'debate', 'argumentation', 'academic', 'critical thinking'],
+    difficulty: 'advanced',
+    model: 'Claude',
+    pricing: { type: 'free' },
+    variables: ['YOUR_POSITION', 'TOPIC', 'DEBATE_CONTEXT', 'OPPOSING_VIEW'],
+    content: `You are a skilled academic debater and argumentation expert. Simulate a rigorous academic debate on this topic.
+
+**Your Position:** [YOUR_POSITION]
+
+**Topic:** [TOPIC]
+
+**Debate Context:** [DEBATE_CONTEXT]
+
+**Known Opposing View:** [OPPOSING_VIEW]
+
+Conduct the debate simulation:
+
+1. **Position Strengthening**
+   - Best arguments for your position
+   - Strongest evidence available
+   - Most compelling framing
+   - Rhetorical strategies
+
+2. **Opposition Construction**
+   - Strongest counterarguments
+   - Evidence against your position
+   - Logical challenges
+   - Alternative interpretations
+
+3. **Cross-Examination**
+   - Questions opponents would ask
+   - Weak points they'd target
+   - Evidence they'd demand
+   - Logical gaps they'd exploit
+
+4. **Rebuttal Development**
+   - Responses to key objections
+   - Evidence to address concerns
+   - Concessions to make strategically
+   - Ground to defend firmly
+
+5. **Synthesis**
+   - Common ground identification
+   - Nuanced final position
+   - Acknowledged limitations
+   - Stronger revised argument`,
+    expectedOutput: 'Comprehensive debate simulation with counterarguments, rebuttals, and strengthened position.',
+    useCases: [
+      'Thesis defense preparation',
+      'Paper strengthening',
+      'Peer review preparation',
+      'Academic presentations',
+    ],
+    relatedSlugs: ['chatgpt-argument-analysis-prompt', 'claude-evidence-based-writing-enhancer'],
+  },
+  {
+    id: '20',
+    slug: 'claude-evidence-based-writing-enhancer',
+    title: 'Claude Evidence-Based Writing Enhancer',
+    shortDescription: 'Strengthen academic writing with better evidence integration and citation practices.',
+    description: 'Use Claude to improve how you integrate evidence into your writing, ensuring claims are well-supported, citations are properly used, and arguments are substantiated.',
+    category: 'prompt',
+    subcategory: 'claude',
+    tags: ['claude', 'evidence', 'citations', 'academic writing', 'research'],
+    difficulty: 'intermediate',
+    isNew: true,
+    model: 'Claude',
+    pricing: { type: 'free' },
+    variables: ['DRAFT_TEXT', 'AVAILABLE_SOURCES', 'CITATION_STYLE'],
+    content: `You are an expert in academic writing and evidence integration. Help strengthen this text with better evidence use.
+
+**Draft Text:** [DRAFT_TEXT]
+
+**Available Sources:** [AVAILABLE_SOURCES]
+
+**Citation Style:** [CITATION_STYLE]
+
+Enhance evidence integration:
+
+1. **Claim Audit**
+   - Identify all claims made
+   - Categorize by evidence needs
+   - Flag unsupported assertions
+   - Note over-reliance on any source
+
+2. **Evidence Mapping**
+   - Match claims to available evidence
+   - Identify gaps in support
+   - Suggest additional evidence needed
+   - Recommend source types
+
+3. **Integration Improvement**
+   - Better quote integration
+   - Paraphrase suggestions
+   - Signal phrase variety
+   - Analysis after evidence
+
+4. **Citation Enhancement**
+   - Proper citation format
+   - Strategic citation placement
+   - Attribution clarity
+   - Avoiding over-citation
+
+5. **Balance Assessment**
+   - Source diversity check
+   - Perspective balance
+   - Primary vs. secondary sources
+   - Recent vs. foundational sources
+
+6. **Revised Version**
+   - Provide enhanced text
+   - Explain improvements
+   - Note remaining needs
+   - Citation checklist`,
+    expectedOutput: 'Enhanced text with improved evidence integration, proper citations, and well-supported claims.',
+    useCases: [
+      'Draft revision',
+      'Citation improvement',
+      'Argument strengthening',
+      'Academic editing',
+    ],
+    relatedSlugs: ['claude-bias-perspective-analyzer', 'source-evaluation-framework'],
+  },
+
+  // ============================================
+  // Gemini Academic Prompts
+  // ============================================
+  {
+    id: '21',
+    slug: 'gemini-graduate-level-essay-planner',
+    title: 'Gemini Graduate-Level Essay Planner',
+    shortDescription: 'Plan sophisticated graduate-level essays with Gemini\'s advanced reasoning.',
+    description: 'Leverage Google Gemini\'s capabilities to plan complex, graduate-level academic essays with appropriate depth, rigor, and scholarly conventions.',
+    category: 'prompt',
+    subcategory: 'gemini',
+    tags: ['gemini', 'graduate', 'essay', 'planning', 'academic'],
+    difficulty: 'advanced',
+    isNew: true,
+    model: 'Gemini',
+    pricing: { type: 'free' },
+    variables: ['ESSAY_TOPIC', 'COURSE_LEVEL', 'WORD_COUNT', 'KEY_TEXTS'],
+    content: `You are an expert academic advisor specializing in graduate-level writing. Help plan a sophisticated essay.
+
+**Essay Topic:** [ESSAY_TOPIC]
+
+**Course Level:** [COURSE_LEVEL]
+
+**Word Count:** [WORD_COUNT]
+
+**Key Texts to Engage:** [KEY_TEXTS]
+
+Create comprehensive essay plan:
+
+1. **Scholarly Positioning**
+   - Place topic in academic discourse
+   - Identify relevant debates
+   - Determine contribution potential
+   - Frame scholarly intervention
+
+2. **Thesis Development**
+   - Craft graduate-level thesis
+   - Ensure appropriate scope
+   - Build argumentative complexity
+   - Allow for nuance
+
+3. **Structural Architecture**
+   - Section breakdown
+   - Argument progression
+   - Evidence distribution
+   - Transition logic
+
+4. **Source Integration Plan**
+   - Primary source engagement
+   - Secondary source dialogue
+   - Theoretical framework use
+   - Citation density planning
+
+5. **Methodological Approach**
+   - Analytical methods
+   - Interpretive frameworks
+   - Disciplinary conventions
+   - Originality elements
+
+6. **Quality Checkpoints**
+   - Graduate-level expectations
+   - Depth indicators
+   - Sophistication markers
+   - Common pitfalls to avoid`,
+    expectedOutput: 'Comprehensive graduate-level essay plan with scholarly positioning and structural architecture.',
+    useCases: [
+      'Master\'s essays',
+      'PhD coursework',
+      'Comprehensive exams',
+      'Seminar papers',
+    ],
+    relatedSlugs: ['gemini-academic-outline-generator', 'gemini-concept-to-essay-builder'],
+  },
+  {
+    id: '22',
+    slug: 'gemini-source-evaluation-framework',
+    title: 'Gemini Source Evaluation Framework',
+    shortDescription: 'Systematically evaluate academic sources using Gemini\'s analytical capabilities.',
+    description: 'Use Google Gemini to conduct thorough, multi-dimensional evaluation of academic sources, assessing credibility, relevance, methodology, and scholarly impact.',
+    category: 'prompt',
+    subcategory: 'gemini',
+    tags: ['gemini', 'source evaluation', 'research', 'credibility', 'academic'],
+    difficulty: 'intermediate',
+    model: 'Gemini',
+    pricing: { type: 'free' },
+    variables: ['SOURCE_INFO', 'RESEARCH_PURPOSE', 'EVALUATION_CRITERIA'],
+    content: `You are an expert in information literacy and source evaluation. Conduct a comprehensive source assessment.
+
+**Source Information:** [SOURCE_INFO]
+
+**Research Purpose:** [RESEARCH_PURPOSE]
+
+**Specific Evaluation Criteria:** [EVALUATION_CRITERIA]
+
+Evaluate systematically:
+
+1. **Authority Assessment**
+   - Author credentials
+   - Institutional affiliation
+   - Publication venue
+   - Peer review status
+
+2. **Methodological Review**
+   - Research design quality
+   - Data collection rigor
+   - Analysis appropriateness
+   - Limitations acknowledged
+
+3. **Currency Analysis**
+   - Publication date
+   - Field evolution since
+   - Continued relevance
+   - Updated perspectives
+
+4. **Relevance Mapping**
+   - Alignment with research question
+   - Applicable findings
+   - Generalizable insights
+   - Context fit
+
+5. **Impact Assessment**
+   - Citation metrics
+   - Scholarly reception
+   - Influence on field
+   - Subsequent research
+
+6. **Bias Screening**
+   - Funding sources
+   - Conflicts of interest
+   - Methodological biases
+   - Interpretive biases
+
+7. **Use Recommendation**
+   - Appropriate uses
+   - Caveats for use
+   - Complementary sources
+   - Alternative sources`,
+    expectedOutput: 'Comprehensive source evaluation with authority, methodology, relevance, and bias assessments.',
+    useCases: [
+      'Literature review',
+      'Research paper writing',
+      'Academic fact-checking',
+      'Source selection',
+    ],
+    relatedSlugs: ['source-evaluation-framework', 'gemini-graduate-level-essay-planner'],
+  },
+  {
+    id: '23',
+    slug: 'gemini-academic-outline-generator',
+    title: 'Gemini Academic Outline Generator',
+    shortDescription: 'Generate detailed, hierarchical outlines for academic papers with Gemini.',
+    description: 'Use Google Gemini to create comprehensive, logically structured outlines that serve as effective roadmaps for academic writing projects of any scope.',
+    category: 'prompt',
+    subcategory: 'gemini',
+    tags: ['gemini', 'outline', 'academic', 'structure', 'planning'],
+    difficulty: 'beginner',
+    model: 'Gemini',
+    pricing: { type: 'free' },
+    variables: ['PAPER_TOPIC', 'THESIS', 'PAPER_TYPE', 'LENGTH'],
+    content: `You are an expert in academic writing structure and organization. Create a detailed outline for this paper.
+
+**Paper Topic:** [PAPER_TOPIC]
+
+**Thesis/Main Argument:** [THESIS]
+
+**Paper Type:** [PAPER_TYPE]
+
+**Target Length:** [LENGTH]
+
+Generate comprehensive outline:
+
+1. **Introduction Section**
+   - Hook options (3 approaches)
+   - Background/context elements
+   - Problem statement
+   - Thesis placement
+   - Roadmap preview
+
+2. **Body Structure**
+   - Main sections with rationale
+   - Subsection breakdown
+   - Point-by-point organization
+   - Evidence placement markers
+   - Transition points
+
+3. **Each Body Section Includes:**
+   - Topic sentence
+   - Key arguments (2-4)
+   - Evidence needs
+   - Analysis prompts
+   - Connection to thesis
+
+4. **Counterargument/Limitation Section**
+   - Opposing views to address
+   - Rebuttal approach
+   - Concession points
+   - Strengthening moves
+
+5. **Conclusion Framework**
+   - Thesis restatement approach
+   - Summary strategy
+   - Broader implications
+   - Future directions
+   - Closing impact
+
+6. **Supplementary Elements**
+   - Word count allocation
+   - Source distribution
+   - Visual/table suggestions
+   - Appendix considerations`,
+    expectedOutput: 'Detailed hierarchical outline with all sections mapped and writing guidance included.',
+    useCases: [
+      'Research papers',
+      'Essays',
+      'Dissertations',
+      'Reports',
+    ],
+    relatedSlugs: ['essay-outline-creator', 'gemini-concept-to-essay-builder'],
+  },
+  {
+    id: '24',
+    slug: 'gemini-concept-to-essay-builder',
+    title: 'Gemini Concept-to-Essay Builder',
+    shortDescription: 'Transform abstract concepts into well-structured academic essays with Gemini.',
+    description: 'Use Google Gemini to develop vague ideas or concepts into fully realized academic essays, with proper argumentation, evidence integration, and scholarly conventions.',
+    category: 'prompt',
+    subcategory: 'gemini',
+    tags: ['gemini', 'essay', 'concept development', 'academic', 'writing'],
+    difficulty: 'intermediate',
+    model: 'Gemini',
+    pricing: { type: 'free' },
+    variables: ['CONCEPT', 'DISCIPLINE', 'ESSAY_TYPE', 'AUDIENCE'],
+    content: `You are an expert at developing abstract ideas into rigorous academic arguments. Help transform this concept into an essay.
+
+**Core Concept/Idea:** [CONCEPT]
+
+**Academic Discipline:** [DISCIPLINE]
+
+**Essay Type:** [ESSAY_TYPE]
+
+**Target Audience:** [AUDIENCE]
+
+Guide the development:
+
+1. **Concept Clarification**
+   - Define the core idea precisely
+   - Identify key components
+   - Map related concepts
+   - Establish boundaries
+
+2. **Academic Framing**
+   - Place in scholarly context
+   - Identify relevant literature
+   - Connect to existing debates
+   - Find disciplinary home
+
+3. **Thesis Crystallization**
+   - Move from concept to argument
+   - Develop specific claim
+   - Ensure it's arguable
+   - Test thesis strength
+
+4. **Evidence Strategy**
+   - Types of evidence needed
+   - Potential sources
+   - Research direction
+   - Data requirements
+
+5. **Argument Architecture**
+   - Build from concept to conclusion
+   - Create logical progression
+   - Plan supporting arguments
+   - Anticipate objections
+
+6. **Essay Draft Blueprint**
+   - Full outline from concept
+   - Section summaries
+   - Key points per section
+   - Transition strategy`,
+    expectedOutput: 'Complete essay development plan from abstract concept to structured argument.',
+    useCases: [
+      'Brainstorming to essay',
+      'Concept papers',
+      'Early draft development',
+      'Idea refinement',
+    ],
+    relatedSlugs: ['gemini-academic-outline-generator', 'thesis-statement-generator'],
+  },
+  {
+    id: '25',
+    slug: 'gemini-research-question-expander',
+    title: 'Gemini Research Question Expander',
+    shortDescription: 'Expand and refine research questions for comprehensive academic inquiry.',
+    description: 'Use Google Gemini to develop initial research questions into comprehensive inquiry frameworks, with sub-questions, methodology considerations, and scope refinement.',
+    category: 'prompt',
+    subcategory: 'gemini',
+    tags: ['gemini', 'research questions', 'methodology', 'academic', 'inquiry'],
+    difficulty: 'intermediate',
+    isNew: true,
+    model: 'Gemini',
+    pricing: { type: 'free' },
+    variables: ['INITIAL_QUESTION', 'FIELD', 'SCOPE_CONSTRAINTS', 'METHODOLOGY_PREFERENCES'],
+    content: `You are a research design expert. Help expand and refine this research question.
+
+**Initial Research Question:** [INITIAL_QUESTION]
+
+**Field/Discipline:** [FIELD]
+
+**Scope Constraints:** [SCOPE_CONSTRAINTS]
+
+**Methodology Preferences:** [METHODOLOGY_PREFERENCES]
+
+Develop comprehensive research framework:
+
+1. **Question Analysis**
+   - Deconstruct the question
+   - Identify key variables
+   - Clarify concepts
+   - Map assumptions
+
+2. **Question Refinement**
+   - More specific versions (3-5)
+   - Different angles
+   - Scope variations
+   - Feasibility adjustments
+
+3. **Sub-Question Development**
+   - Break into components
+   - Logical sequence
+   - Dependencies between questions
+   - Priority ordering
+
+4. **Methodology Alignment**
+   - Methods for each question
+   - Data requirements
+   - Analysis approaches
+   - Resource needs
+
+5. **Scope Optimization**
+   - Narrow vs. broad trade-offs
+   - Depth vs. breadth balance
+   - Time/resource fit
+   - Contribution potential
+
+6. **Final Question Set**
+   - Primary research question
+   - Sub-questions (3-5)
+   - Operational definitions
+   - Success criteria`,
+    expectedOutput: 'Expanded research question framework with sub-questions, methodology alignment, and scope optimization.',
+    useCases: [
+      'Research proposals',
+      'Thesis development',
+      'Grant applications',
+      'Preliminary research',
+    ],
+    relatedSlugs: ['research-question-refiner', 'gemini-source-evaluation-framework'],
+  },
+
+  // ============================================
+  // SEO Writing Prompts
+  // ============================================
+  {
+    id: '26',
+    slug: 'seo-blog-outline-generator',
+    title: 'SEO Blog Outline Generator',
+    shortDescription: 'Create SEO-optimized blog post outlines that rank and engage readers.',
+    description: 'Generate comprehensive blog post outlines optimized for search engines while maintaining reader engagement and value delivery.',
+    category: 'prompt',
+    subcategory: 'seo',
+    tags: ['seo', 'blog', 'content', 'outline', 'marketing'],
+    difficulty: 'intermediate',
+    isNew: true,
+    model: null,
+    pricing: { type: 'free' },
+    variables: ['PRIMARY_KEYWORD', 'SECONDARY_KEYWORDS', 'TARGET_AUDIENCE', 'WORD_COUNT'],
+    content: `You are an SEO content strategist. Create an optimized blog outline.
+
+**Primary Keyword:** [PRIMARY_KEYWORD]
+
+**Secondary Keywords:** [SECONDARY_KEYWORDS]
+
+**Target Audience:** [TARGET_AUDIENCE]
+
+**Target Word Count:** [WORD_COUNT]
+
+Create SEO-optimized outline:
+
+1. **Title Options** (5 variations)
+   - Include primary keyword
+   - Optimize for CTR
+   - Power words inclusion
+   - Length optimization (50-60 chars)
+
+2. **Meta Description**
+   - Include primary keyword
+   - Compelling hook
+   - Call to action
+   - 150-160 characters
+
+3. **Header Structure (H1-H4)**
+   - H1: Title with keyword
+   - H2s: Major sections with secondary keywords
+   - H3s: Subsections with related terms
+   - Natural keyword distribution
+
+4. **Content Sections**
+   - Introduction (hook + keyword)
+   - Each H2 section:
+     - Key points to cover
+     - Keywords to include
+     - Word count target
+     - Internal link opportunities
+
+5. **Featured Snippet Optimization**
+   - Definition paragraph
+   - Listicle section
+   - How-to steps
+   - FAQ section
+
+6. **Engagement Elements**
+   - Visual placement suggestions
+   - Quote/stat opportunities
+   - CTA positions
+   - Internal/external links`,
+    expectedOutput: 'Complete SEO-optimized blog outline with headers, keywords, and engagement elements.',
+    useCases: [
+      'Blog content planning',
+      'Content marketing',
+      'SEO campaigns',
+      'Editorial calendars',
+    ],
+    relatedSlugs: ['seo-keyword-expansion-prompt', 'seo-high-intent-landing-page-prompt'],
+  },
+  {
+    id: '27',
+    slug: 'seo-keyword-expansion-prompt',
+    title: 'SEO Keyword Expansion Prompt',
+    shortDescription: 'Expand seed keywords into comprehensive keyword clusters for content strategy.',
+    description: 'Transform a seed keyword into a complete keyword strategy with long-tail variations, related terms, questions, and content mapping.',
+    category: 'prompt',
+    subcategory: 'seo',
+    tags: ['seo', 'keywords', 'content strategy', 'research', 'marketing'],
+    difficulty: 'intermediate',
+    model: null,
+    pricing: { type: 'free' },
+    variables: ['SEED_KEYWORD', 'INDUSTRY', 'CONTENT_GOALS', 'COMPETITOR_URLS'],
+    content: `You are an SEO keyword research expert. Expand this seed keyword into a comprehensive strategy.
+
+**Seed Keyword:** [SEED_KEYWORD]
+
+**Industry:** [INDUSTRY]
+
+**Content Goals:** [CONTENT_GOALS]
+
+**Competitor Reference:** [COMPETITOR_URLS]
+
+Generate keyword expansion:
+
+1. **Core Keyword Cluster**
+   - Primary keyword variations (10)
+   - Synonyms and related terms (10)
+   - Industry-specific variations (5)
+   - Brand-safe alternatives (5)
+
+2. **Long-Tail Expansion**
+   - Question-based keywords (10)
+   - Comparison keywords (5)
+   - "Best" and "top" keywords (5)
+   - Location-based (if relevant) (5)
+
+3. **Search Intent Mapping**
+   - Informational keywords
+   - Navigational keywords
+   - Commercial keywords
+   - Transactional keywords
+
+4. **Content Mapping**
+   - Blog post topics
+   - Landing page keywords
+   - Product/service page keywords
+   - FAQ content keywords
+
+5. **Difficulty Assessment**
+   - Low competition opportunities
+   - Medium competition targets
+   - High competition aspirational
+   - Quick win suggestions
+
+6. **Implementation Priority**
+   - Immediate targets (high value, lower difficulty)
+   - Medium-term goals
+   - Long-term authority building
+   - Content calendar suggestions`,
+    expectedOutput: 'Comprehensive keyword strategy with clusters, intent mapping, and implementation priority.',
+    useCases: [
+      'SEO campaigns',
+      'Content planning',
+      'PPC research',
+      'Competitive analysis',
+    ],
+    relatedSlugs: ['seo-blog-outline-generator', 'seo-competitor-rewrite-prompt'],
+  },
+  {
+    id: '28',
+    slug: 'seo-competitor-rewrite-prompt',
+    title: 'SEO Competitor Rewrite Prompt',
+    shortDescription: 'Create superior content that outranks competitor articles.',
+    description: 'Analyze competitor content and create a framework for writing superior, more comprehensive content that can outrank existing top results.',
+    category: 'prompt',
+    subcategory: 'seo',
+    tags: ['seo', 'competitor analysis', 'content', 'ranking', 'marketing'],
+    difficulty: 'advanced',
+    model: null,
+    pricing: { type: 'free' },
+    variables: ['TARGET_KEYWORD', 'COMPETITOR_CONTENT', 'YOUR_UNIQUE_ANGLE', 'RESOURCES'],
+    content: `You are an SEO content strategist specializing in competitive content. Help create content that outranks competitors.
+
+**Target Keyword:** [TARGET_KEYWORD]
+
+**Competitor Content to Beat:** [COMPETITOR_CONTENT]
+
+**Your Unique Angle:** [YOUR_UNIQUE_ANGLE]
+
+**Available Resources:** [RESOURCES]
+
+Create outranking strategy:
+
+1. **Competitor Analysis**
+   - Content structure breakdown
+   - Keyword usage mapping
+   - Strengths to match
+   - Weaknesses to exploit
+   - Missing information
+
+2. **Content Gap Identification**
+   - Topics not covered
+   - Questions not answered
+   - Depth lacking
+   - Freshness issues
+   - User intent gaps
+
+3. **Superior Content Framework**
+   - More comprehensive outline
+   - Better structure
+   - Enhanced depth
+   - Unique value additions
+   - Expert insights to include
+
+4. **Differentiation Strategy**
+   - Original research opportunities
+   - Case studies to add
+   - Expert quotes to include
+   - Visual content improvements
+   - Interactive elements
+
+5. **Technical SEO Improvements**
+   - Better header structure
+   - Schema markup opportunities
+   - Page speed considerations
+   - Mobile optimization
+   - Featured snippet targeting
+
+6. **Promotion Strategy**
+   - Link building opportunities
+   - Social amplification
+   - Community engagement
+   - Update schedule`,
+    expectedOutput: 'Complete strategy for creating content that outranks competitor articles.',
+    useCases: [
+      'Competitive SEO',
+      'Content refreshes',
+      'Market entry',
+      'Traffic recovery',
+    ],
+    relatedSlugs: ['seo-blog-outline-generator', 'seo-keyword-expansion-prompt'],
+  },
+  {
+    id: '29',
+    slug: 'seo-high-intent-landing-page-prompt',
+    title: 'SEO High-Intent Landing Page Prompt',
+    shortDescription: 'Create conversion-optimized landing pages that rank for commercial keywords.',
+    description: 'Design landing pages that satisfy both search engine requirements and conversion optimization best practices for high-intent commercial queries.',
+    category: 'prompt',
+    subcategory: 'seo',
+    tags: ['seo', 'landing page', 'conversion', 'commercial', 'marketing'],
+    difficulty: 'advanced',
+    model: null,
+    pricing: { type: 'free' },
+    variables: ['TARGET_KEYWORD', 'PRODUCT_SERVICE', 'VALUE_PROPOSITION', 'TARGET_AUDIENCE'],
+    content: `You are a conversion rate optimization and SEO expert. Create a high-converting, SEO-optimized landing page.
+
+**Target Keyword:** [TARGET_KEYWORD]
+
+**Product/Service:** [PRODUCT_SERVICE]
+
+**Value Proposition:** [VALUE_PROPOSITION]
+
+**Target Audience:** [TARGET_AUDIENCE]
+
+Design landing page framework:
+
+1. **Above the Fold**
+   - Headline (keyword + benefit)
+   - Subheadline (value prop)
+   - Hero image/video concept
+   - Primary CTA
+   - Trust indicators
+
+2. **SEO Content Section**
+   - H2 with secondary keyword
+   - Problem/solution narrative
+   - Feature-benefit matrix
+   - Keyword-rich descriptions
+   - Internal link anchor text
+
+3. **Social Proof Section**
+   - Testimonial structure
+   - Case study summaries
+   - Trust badges
+   - Stats and numbers
+   - Client logos
+
+4. **Feature Breakdown**
+   - Feature sections with H3s
+   - Benefit-focused copy
+   - Visual representations
+   - Comparison elements
+
+5. **FAQ Section (Schema)**
+   - 5-7 keyword-rich questions
+   - Comprehensive answers
+   - FAQ schema markup
+   - Related search coverage
+
+6. **Conversion Elements**
+   - Multiple CTAs
+   - Form optimization
+   - Urgency elements
+   - Risk reversal
+   - Contact options
+
+7. **Technical Requirements**
+   - Page speed targets
+   - Mobile layout
+   - Schema markup list
+   - Meta tags`,
+    expectedOutput: 'Complete landing page framework optimized for both SEO and conversions.',
+    useCases: [
+      'Product launches',
+      'Service pages',
+      'Lead generation',
+      'Sales pages',
+    ],
+    relatedSlugs: ['seo-meta-description-snippet-prompt', 'seo-blog-outline-generator'],
+  },
+  {
+    id: '30',
+    slug: 'seo-meta-description-snippet-prompt',
+    title: 'SEO Meta Description & Snippet Set Prompt',
+    shortDescription: 'Generate optimized meta descriptions and rich snippet content for better CTR.',
+    description: 'Create compelling meta descriptions and structured data content that improves click-through rates from search engine results pages.',
+    category: 'prompt',
+    subcategory: 'seo',
+    tags: ['seo', 'meta description', 'snippets', 'ctr', 'serp'],
+    difficulty: 'beginner',
+    model: null,
+    pricing: { type: 'free' },
+    variables: ['PAGE_TITLE', 'PAGE_CONTENT_SUMMARY', 'TARGET_KEYWORD', 'PAGE_TYPE'],
+    content: `You are an SEO specialist focused on SERP optimization. Create meta descriptions and snippet content.
+
+**Page Title:** [PAGE_TITLE]
+
+**Content Summary:** [PAGE_CONTENT_SUMMARY]
+
+**Target Keyword:** [TARGET_KEYWORD]
+
+**Page Type:** [PAGE_TYPE]
+
+Generate optimized elements:
+
+1. **Meta Description Options** (5 variations)
+   - Include target keyword naturally
+   - Compelling hook/benefit
+   - Call to action
+   - 150-160 characters each
+   - Different emotional angles
+
+2. **Title Tag Variations** (3 options)
+   - Primary keyword near start
+   - Brand inclusion
+   - 50-60 characters
+   - Click-worthy format
+
+3. **Featured Snippet Content**
+   - Definition paragraph (40-50 words)
+   - List format (5-7 items)
+   - Table format (if applicable)
+   - Step-by-step format
+
+4. **FAQ Schema Content**
+   - 5 relevant questions
+   - Concise, complete answers
+   - Keyword integration
+   - User intent focused
+
+5. **Rich Snippet Data**
+   - Relevant schema type
+   - Key properties
+   - Implementation notes
+
+6. **Social Meta Tags**
+   - Open Graph title
+   - OG description
+   - Twitter card content
+   - Image alt text`,
+    expectedOutput: 'Complete set of meta descriptions, titles, and structured snippet content.',
+    useCases: [
+      'Page optimization',
+      'CTR improvement',
+      'SERP appearance',
+      'Content updates',
+    ],
+    relatedSlugs: ['seo-blog-outline-generator', 'seo-high-intent-landing-page-prompt'],
+  },
+
+  // ============================================
+  // Premium Prompts
+  // ============================================
+  {
+    id: '31',
+    slug: 'gemini-advanced-literature-review-generator',
+    title: 'Gemini Advanced Literature Review Generator',
+    shortDescription: 'Generate comprehensive, publication-ready literature reviews with advanced AI assistance.',
+    description: 'This premium prompt provides a complete framework for generating sophisticated literature reviews suitable for academic publication, with systematic methodology, critical analysis, and synthesis guidance.',
+    category: 'prompt',
+    subcategory: 'gemini',
+    tags: ['gemini', 'literature review', 'research', 'premium', 'publication'],
+    difficulty: 'advanced',
+    isPro: true,
+    isFeatured: true,
+    model: 'Gemini',
+    pricing: { type: 'premium', price: 7 },
+    variables: ['RESEARCH_DOMAIN', 'REVIEW_SCOPE', 'METHODOLOGY', 'TARGET_JOURNAL'],
+    content: `You are a senior academic researcher with expertise in systematic literature reviews. Generate a publication-ready literature review framework.
+
+**Research Domain:** [RESEARCH_DOMAIN]
+
+**Review Scope:** [REVIEW_SCOPE]
+
+**Methodology Preference:** [METHODOLOGY]
+
+**Target Journal/Venue:** [TARGET_JOURNAL]
+
+Generate comprehensive literature review:
+
+1. **Systematic Search Protocol**
+   - Database selection rationale
+   - Search string development
+   - Boolean operator optimization
+   - Date range justification
+   - Language and publication type criteria
+
+2. **PRISMA-Compliant Framework**
+   - Identification phase
+   - Screening criteria
+   - Eligibility assessment
+   - Inclusion decision tree
+   - Flow diagram structure
+
+3. **Quality Assessment Matrix**
+   - Study quality indicators
+   - Bias risk assessment
+   - Methodological rigor scoring
+   - Evidence level classification
+   - Confidence grading
+
+4. **Thematic Analysis Structure**
+   - Major theme identification
+   - Theme relationship mapping
+   - Subtheme organization
+   - Cross-theme connections
+   - Temporal evolution tracking
+
+5. **Critical Synthesis Framework**
+   - Agreement/disagreement mapping
+   - Methodological comparison
+   - Finding integration strategy
+   - Gap identification systematic
+   - Future direction derivation
+
+6. **Publication-Ready Components**
+   - Abstract structure
+   - Introduction framework
+   - Methods section template
+   - Results organization
+   - Discussion outline
+   - Conclusion elements
+
+7. **Supplementary Materials**
+   - Search strategy documentation
+   - Included studies table
+   - Quality assessment results
+   - PRISMA checklist completion`,
+    expectedOutput: 'Complete publication-ready literature review framework with systematic methodology and critical synthesis.',
+    useCases: [
+      'Journal submissions',
+      'Dissertation chapters',
+      'Systematic reviews',
+      'Meta-analyses',
+    ],
+    relatedSlugs: ['claude-multi-source-literature-review-prompt', 'literature-review-assistant'],
+  },
+  {
+    id: '32',
+    slug: 'chatgpt-graduate-thesis-builder',
+    title: 'ChatGPT Graduate-Level Thesis Builder',
+    shortDescription: 'Build comprehensive thesis frameworks with expert academic guidance.',
+    description: 'This premium prompt provides complete thesis development support, from research question refinement through chapter structuring and defense preparation.',
+    category: 'prompt',
+    subcategory: 'chatgpt',
+    tags: ['chatgpt', 'thesis', 'graduate', 'premium', 'dissertation'],
+    difficulty: 'advanced',
+    isPro: true,
+    isFeatured: true,
+    model: 'ChatGPT',
+    pricing: { type: 'premium', price: 7 },
+    variables: ['THESIS_TOPIC', 'DEGREE_LEVEL', 'DISCIPLINE', 'TIMELINE'],
+    content: `You are an experienced thesis advisor with decades of graduate supervision experience. Provide comprehensive thesis development guidance.
+
+**Thesis Topic:** [THESIS_TOPIC]
+
+**Degree Level:** [DEGREE_LEVEL]
+
+**Discipline:** [DISCIPLINE]
+
+**Available Timeline:** [TIMELINE]
+
+Develop complete thesis framework:
+
+1. **Research Foundation**
+   - Research question refinement
+   - Hypothesis development (if applicable)
+   - Theoretical framework selection
+   - Conceptual model building
+   - Operational definitions
+
+2. **Literature Review Architecture**
+   - Chapter structure
+   - Thematic organization
+   - Critical analysis approach
+   - Synthesis methodology
+   - Gap justification
+
+3. **Methodology Framework**
+   - Research design justification
+   - Method selection rationale
+   - Data collection protocols
+   - Analysis plan
+   - Validity/reliability strategies
+   - Ethical considerations
+
+4. **Chapter-by-Chapter Blueprint**
+   For each chapter:
+   - Purpose and contribution
+   - Key arguments
+   - Evidence requirements
+   - Page/word targets
+   - Dependencies
+
+5. **Timeline and Milestones**
+   - Phase breakdown
+   - Key deliverables
+   - Review points
+   - Buffer time allocation
+   - Defense preparation
+
+6. **Quality Assurance**
+   - Committee expectations
+   - Common pitfalls
+   - Excellence indicators
+   - Revision strategy
+
+7. **Defense Preparation**
+   - Anticipated questions
+   - Weakness acknowledgment strategy
+   - Contribution articulation
+   - Future research positioning`,
+    expectedOutput: 'Complete thesis development framework with chapter blueprints, methodology, and defense preparation.',
+    useCases: [
+      'Master\'s thesis',
+      'PhD dissertation',
+      'Research proposals',
+      'Academic planning',
+    ],
+    relatedSlugs: ['chatgpt-research-synthesis-prompt', 'gemini-graduate-level-essay-planner'],
+  },
+  {
+    id: '33',
+    slug: 'claude-deep-research-synthesizer',
+    title: 'Claude Deep Research Synthesizer',
+    shortDescription: 'Synthesize complex research into actionable insights with Claude\'s analytical depth.',
+    description: 'This premium prompt leverages Claude\'s sophisticated reasoning to synthesize complex, multi-disciplinary research into coherent frameworks and actionable insights.',
+    category: 'prompt',
+    subcategory: 'claude',
+    tags: ['claude', 'research', 'synthesis', 'premium', 'analysis'],
+    difficulty: 'advanced',
+    isPro: true,
+    model: 'Claude',
+    pricing: { type: 'premium', price: 9 },
+    variables: ['RESEARCH_SOURCES', 'SYNTHESIS_OBJECTIVE', 'OUTPUT_FORMAT', 'STAKEHOLDER'],
+    content: `You are a senior research analyst specializing in complex synthesis across disciplines. Provide deep research synthesis.
+
+**Research Sources:** [RESEARCH_SOURCES]
+
+**Synthesis Objective:** [SYNTHESIS_OBJECTIVE]
+
+**Desired Output Format:** [OUTPUT_FORMAT]
+
+**Primary Stakeholder:** [STAKEHOLDER]
+
+Conduct deep synthesis:
+
+1. **Source Deconstruction**
+   - Extract key findings
+   - Identify methodologies
+   - Map theoretical bases
+   - Note limitations
+   - Assess evidence quality
+
+2. **Cross-Source Analysis**
+   - Convergence identification
+   - Divergence mapping
+   - Contradiction resolution
+   - Complementarity assessment
+   - Integration opportunities
+
+3. **Pattern Recognition**
+   - Emergent themes
+   - Trend identification
+   - Causal relationships
+   - Correlation patterns
+   - Anomaly detection
+
+4. **Framework Development**
+   - Integrative model creation
+   - Relationship visualization
+   - Hierarchy establishment
+   - Process mapping
+   - Decision framework
+
+5. **Insight Generation**
+   - Novel connections
+   - Practical implications
+   - Strategic recommendations
+   - Risk identification
+   - Opportunity mapping
+
+6. **Stakeholder Translation**
+   - Executive summary
+   - Technical details
+   - Action items
+   - Implementation roadmap
+   - Success metrics
+
+7. **Future Directions**
+   - Research gaps
+   - Investigation priorities
+   - Resource requirements
+   - Timeline estimates
+   - Success indicators`,
+    expectedOutput: 'Deep research synthesis with integrative framework, actionable insights, and stakeholder-ready outputs.',
+    useCases: [
+      'Strategic planning',
+      'Policy development',
+      'Investment decisions',
+      'Innovation research',
+    ],
+    relatedSlugs: ['chatgpt-research-synthesis-prompt', 'claude-high-level-research-assistant'],
+  },
+  {
+    id: '34',
+    slug: 'seo-long-form-article-blueprint',
+    title: 'SEO Long-Form Article Blueprint',
+    shortDescription: 'Create comprehensive, authority-building long-form content that dominates search.',
+    description: 'This premium prompt provides a complete framework for creating pillar content that establishes topical authority, ranks for multiple keywords, and drives sustained organic traffic.',
+    category: 'prompt',
+    subcategory: 'seo',
+    tags: ['seo', 'long-form', 'pillar content', 'premium', 'authority'],
+    difficulty: 'advanced',
+    isPro: true,
+    model: null,
+    pricing: { type: 'premium', price: 5 },
+    variables: ['TOPIC_CLUSTER', 'PRIMARY_KEYWORD', 'WORD_COUNT_TARGET', 'BUSINESS_GOAL'],
+    content: `You are a senior content strategist specializing in authority-building long-form content. Create a comprehensive article blueprint.
+
+**Topic Cluster:** [TOPIC_CLUSTER]
+
+**Primary Keyword:** [PRIMARY_KEYWORD]
+
+**Word Count Target:** [WORD_COUNT_TARGET]
+
+**Business Goal:** [BUSINESS_GOAL]
+
+Generate comprehensive blueprint:
+
+1. **Keyword Architecture**
+   - Primary keyword placement strategy
+   - Secondary keywords (15-20)
+   - Long-tail variations (20-30)
+   - Semantic keywords (15-20)
+   - Question keywords (10-15)
+
+2. **Content Structure**
+   - Title variations (10 options)
+   - Meta description (5 versions)
+   - Header hierarchy (H1-H4)
+   - Section word counts
+   - Internal linking map
+
+3. **Section-by-Section Guide**
+   For each major section:
+   - Key points to cover
+   - Keywords to include
+   - Expert quotes to seek
+   - Data/stats to include
+   - Internal link opportunities
+   - External link suggestions
+
+4. **Featured Snippet Optimization**
+   - Definition snippets
+   - List snippets
+   - Table snippets
+   - Process snippets
+   - Comparison snippets
+
+5. **Multimedia Integration**
+   - Image concepts
+   - Infographic outlines
+   - Video opportunities
+   - Interactive elements
+   - Downloadable resources
+
+6. **Link Building Strategy**
+   - Linkable asset identification
+   - Outreach angle development
+   - Resource page targets
+   - Expert contributor strategy
+   - Original research opportunities
+
+7. **Update and Maintenance**
+   - Freshness indicators
+   - Update schedule
+   - Expansion opportunities
+   - Competitor monitoring
+   - Performance metrics`,
+    expectedOutput: 'Complete long-form content blueprint with keyword architecture, section guides, and promotion strategy.',
+    useCases: [
+      'Pillar pages',
+      'Ultimate guides',
+      'Resource centers',
+      'Authority building',
+    ],
+    relatedSlugs: ['seo-blog-outline-generator', 'seo-competitor-rewrite-prompt'],
+  },
+  {
+    id: '35',
+    slug: 'academic-argument-master-prompt',
+    title: 'Academic Argument Master Prompt',
+    shortDescription: 'Master the art of academic argumentation with this comprehensive framework.',
+    description: 'This premium prompt provides expert-level guidance on constructing, analyzing, and defending sophisticated academic arguments across any discipline.',
+    category: 'prompt',
+    subcategory: 'essay-writing',
+    tags: ['academic', 'argument', 'premium', 'master', 'advanced'],
+    difficulty: 'advanced',
+    isPro: true,
+    isFeatured: true,
+    model: null,
+    pricing: { type: 'premium', price: 9 },
+    variables: ['ARGUMENT_TOPIC', 'DISCIPLINE', 'AUDIENCE', 'COMPLEXITY_LEVEL'],
+    content: `You are a master academic argumentation coach with expertise across disciplines. Provide comprehensive argument development guidance.
+
+**Argument Topic:** [ARGUMENT_TOPIC]
+
+**Discipline:** [DISCIPLINE]
+
+**Target Audience:** [AUDIENCE]
+
+**Complexity Level:** [COMPLEXITY_LEVEL]
+
+Develop master argument framework:
+
+1. **Argument Architecture**
+   - Claim taxonomy (main, supporting, subsidiary)
+   - Evidence hierarchy
+   - Warrant structure
+   - Backing requirements
+   - Qualifier placement
+
+2. **Logic Framework**
+   - Deductive structure
+   - Inductive reasoning
+   - Abductive elements
+   - Analogical arguments
+   - Causal claims
+
+3. **Evidence Strategy**
+   - Evidence type selection
+   - Source credibility matrix
+   - Data integration
+   - Expert testimony use
+   - Case study deployment
+
+4. **Counterargument Mastery**
+   - Strongest objections
+   - Steel man construction
+   - Rebuttal development
+   - Concession strategy
+   - Synthesis moves
+
+5. **Rhetorical Enhancement**
+   - Ethos establishment
+   - Pathos integration
+   - Logos reinforcement
+   - Kairos awareness
+   - Style optimization
+
+6. **Discipline-Specific Conventions**
+   - Field expectations
+   - Methodology norms
+   - Citation practices
+   - Discourse patterns
+   - Evaluation criteria
+
+7. **Defense Preparation**
+   - Weakness anticipation
+   - Q&A preparation
+   - Pivot strategies
+   - Confidence building
+   - Response templates`,
+    expectedOutput: 'Comprehensive argument master framework with logic, evidence, rhetoric, and defense preparation.',
+    useCases: [
+      'High-stakes essays',
+      'Dissertation arguments',
+      'Academic debates',
+      'Publication submissions',
+    ],
+    relatedSlugs: ['argumentative-essay-builder', 'chatgpt-argument-analysis-prompt'],
+  },
 ];
 
 // Utility functions for data access
@@ -725,5 +2552,18 @@ export function getAllSubcategories(): TemplateSubcategory[] {
 
 export function getSubcategoryInfo(subcategoryId: string): TemplateSubcategory | undefined {
   return getAllSubcategories().find((s) => s.id === subcategoryId || s.slug === subcategoryId);
+}
+
+// New functions for SEO categories
+export function getTemplatesByModel(model: string): Template[] {
+  return templates.filter((t) => t.model === model);
+}
+
+export function getPremiumTemplates(): Template[] {
+  return templates.filter((t) => t.pricing?.type === 'premium');
+}
+
+export function getFreeTemplates(): Template[] {
+  return templates.filter((t) => !t.pricing || t.pricing.type === 'free');
 }
 

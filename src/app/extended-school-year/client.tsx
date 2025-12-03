@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { 
   GraduationCap, BookOpen, Users, FileText, 
   CheckCircle, ArrowRight, Sparkles, Calendar,
@@ -513,7 +514,7 @@ const ESYLandingPage = () => {
                 <ArrowRight size={18} />
               </a>
               
-              <a href="/templates/special-education" style={{
+              <Link href="/templates/special-education" style={{
                 padding: '1rem 2rem',
                 backgroundColor: 'transparent',
                 border: '1px solid rgba(139, 92, 246, 0.3)',
@@ -523,7 +524,7 @@ const ESYLandingPage = () => {
                 fontSize: '1rem'
               }}>
                 View ESY Templates
-              </a>
+              </Link>
             </div>
           </div>
         </div>

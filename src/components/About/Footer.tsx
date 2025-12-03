@@ -63,10 +63,10 @@ const Footer: React.FC<FooterProps> = ({ currentTheme }) => {
               Product
             </h4>
             <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
-              <a href="/features" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Features</a>
-              <a href="/templates" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Templates</a>
-              <a href="/pricing" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Pricing</a>
-              <a href="/roadmap" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Roadmap</a>
+              <Link href="/features" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Features</Link>
+              <Link href="/templates" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Templates</Link>
+              <Link href="/pricing" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Pricing</Link>
+              <Link href="/roadmap" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Roadmap</Link>
             </nav>
           </div>
 
