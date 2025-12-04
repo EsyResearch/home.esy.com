@@ -642,6 +642,11 @@ const Sources: React.FC = () => (
           </a>
         </li>
         <li>
+          <a href="https://fashion-era.com/fashion-history/history-of-high-heels" target="_blank" rel="noopener noreferrer">
+            &ldquo;The History of High Heels: A Journey Through Time and Status&rdquo; — Fashion-Era
+          </a>
+        </li>
+        <li>
           <a href="https://www.bbc.com/culture/article/20150617-the-high-heels-history" target="_blank" rel="noopener noreferrer">
             &ldquo;Why Did Men Stop Wearing High Heels?&rdquo; — BBC Culture
           </a>
