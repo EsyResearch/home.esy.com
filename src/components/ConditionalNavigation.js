@@ -1,6 +1,7 @@
 "use client"
 import { usePathname } from 'next/navigation';
 import ContextAwareNavigation from "@/components/Navigation/ContextAwareNavigation";
+import ScrollytellingNavigation from "@/components/Scrollytelling/ScrollytellingNavigation";
 import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
 import { getSearchContextFromPath } from '@/lib/searchContexts';
 
@@ -15,6 +16,9 @@ const ConditionalNavigation = () => {
     ? pathname.slice(0, -1) 
     : pathname;
   const isEssayViewPage = normalizedPath?.startsWith('/essays/') && normalizedPath !== '/essays';
+  
+  // Check if we're on scrollytelling pages (individual stories, not index)
+  const isScrollytellingPage = normalizedPath?.startsWith('/scrollytelling/');
   
   // Check if we're on prompt-library pages
   const isPromptLibraryPage = normalizedPath?.startsWith('/prompt-library');
@@ -39,6 +43,11 @@ const ConditionalNavigation = () => {
   // Don't render the common navigation on essay view pages or docs pages
   if (isEssayViewPage || isDocsPage) {
     return null;
+  }
+  
+  // Render scrollytelling-specific navigation (logo only → full nav on scroll)
+  if (isScrollytellingPage) {
+    return <ScrollytellingNavigation />;
   }
 
   // Render the common navigation on all other pages
