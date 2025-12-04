@@ -606,14 +606,15 @@ Current agents derived from this framework:
 
 | Agent | Domain | Primary Role | Collaboration |
 |-------|--------|--------------|---------------|
-| `historian-writer-expert.md` | History | Narrative Writer | → Editor |
-| `historian-editor-expert.md` | History | Fact-Checker/Editor | ← Writer |
+| `historian-writer-expert.md` | History | Narrative Writer | → Editor, ← Research |
+| `historian-editor-expert.md` | History | Fact-Checker/Editor | ← Writer, ← Research |
 | `essayist-expert.md` | Academic Writing | Essay Instruction | Standalone |
 | `copywriter-marketing-expert.md` | Marketing | Conversion Copy | Standalone |
 | `software-engineering-expert.md` | Engineering | Full-Stack Dev | Standalone |
 | `ui-ux-design-expert.md` | Design | Interface Design | Standalone |
 | `template-integration-engineer.md` | Frontend | Template → Next.js | Standalone |
-| `scrollytelling-expert.md` | Digital Storytelling | Immersive Narratives | **Orchestrator** → Writer, Editor, UI/UX, SW Eng |
+| `research-citations-expert.md` | Research | Source Discovery & Verification | → All content agents |
+| `scrollytelling-expert.md` | Digital Storytelling | Immersive Narratives | **Orchestrator** → Writer, Editor, Research, UI/UX, SW Eng |
 
 ---
 

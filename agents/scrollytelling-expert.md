@@ -554,16 +554,25 @@ The Scrollytelling Expert acts as **orchestrator**, coordinating four specialize
 │                      (Orchestrator)                             │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│  ┌──────────────────┐      ┌──────────────────┐                │
-│  │ HISTORIAN WRITER │ ───► │ HISTORIAN EDITOR │                │
-│  │  (Content Draft) │      │  (Fact-Check)    │                │
-│  └──────────────────┘      └──────────────────┘                │
-│           │                         │                          │
-│           ▼                         ▼                          │
-│  ┌──────────────────┐      ┌──────────────────┐                │
-│  │   UI/UX DESIGN   │      │ SOFTWARE ENGINEER│                │
-│  │  (Visual System) │      │ (Implementation) │                │
-│  └──────────────────┘      └──────────────────┘                │
+│                 ┌──────────────────┐                           │
+│                 │ RESEARCH/CITATIONS│ ◄── Sources for ALL      │
+│                 │    (Tier 1-2)     │     content agents        │
+│                 └────────┬─────────┘                           │
+│                          │                                      │
+│           ┌──────────────┼──────────────┐                      │
+│           ▼              ▼              ▼                      │
+│  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐           │
+│  │  HISTORIAN   │ │  HISTORIAN   │ │   UI/UX      │           │
+│  │   WRITER     │►│   EDITOR     │ │   DESIGN     │           │
+│  │ (Content)    │ │ (Fact-Check) │ │  (Visual)    │           │
+│  └──────────────┘ └──────────────┘ └──────────────┘           │
+│           │              │              │                      │
+│           └──────────────┼──────────────┘                      │
+│                          ▼                                      │
+│                 ┌──────────────────┐                           │
+│                 │ SOFTWARE ENGINEER│                           │
+│                 │ (Implementation) │                           │
+│                 └──────────────────┘                           │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -573,13 +582,44 @@ The Scrollytelling Expert acts as **orchestrator**, coordinating four specialize
 **Every scrollytelling piece MUST follow this sequence:**
 
 1. **Scrollytelling Expert** → **Design Research Phase (FIRST)**: Research subject's visual history, derive unique color palette, typography, animation philosophy. Produce Design Research Report. **NEVER skip this step.**
-2. **Scrollytelling Expert** → Defines story architecture, brief, visual direction based on Design Research
-3. **Historian Writer** → Drafts narrative content with research notes
-4. **Historian Editor** → Fact-checks, verifies sources, provides citations
-5. **Scrollytelling Expert** → Integrates approved content with Design Research-derived visual design
-6. **UI/UX Designer** → Refines visual system, ensures design aligns with subject research
-7. **Software Engineer** → Implements technical architecture with subject-specific styling
-8. **Scrollytelling Expert** → Final review: verify design is unique and subject-appropriate
+2. **Research & Citations Expert** → **Source Discovery Phase**: Compile Tier 1-2 sources (.edu, peer-reviewed, NYT/FT/Guardian, institutional). Verify all citations meet credibility standards.
+3. **Scrollytelling Expert** → Defines story architecture, brief, visual direction based on Design Research
+4. **Historian Writer** → Drafts narrative content using verified sources from Research Expert
+5. **Historian Editor** → Fact-checks against Research Expert's verified sources
+6. **Research & Citations Expert** → Final source audit, format citations for Sources section
+7. **Scrollytelling Expert** → Integrates approved content with Design Research-derived visual design
+8. **UI/UX Designer** → Refines visual system, ensures design aligns with subject research
+9. **Software Engineer** → Implements technical architecture with subject-specific styling
+10. **Scrollytelling Expert** → Final review: verify design is unique, sources are authoritative, content is accurate
+
+### Working With research-citations-expert.md
+**Role**: Source discovery and citation authority — **MANDATORY for all research**
+
+**Division of Responsibilities**
+- **Scrollytelling Expert**: Define research needs, integrate sources into narrative
+- **Research & Citations Expert**: Source discovery, credibility verification, citation formatting
+- **Shared**: Ensuring claims meet sourcing standards
+
+**Handoff Protocol**
+1. **Scrollytelling Expert provides**:
+   - Topic and scope of scrollytelling piece
+   - Key claims and facts requiring citation
+   - Specific quotes to authenticate
+   - Minimum source count (typically 5-10 for Sources section)
+
+2. **Research & Citations Expert delivers**:
+   - Tiered source list (Tier 1-2 sources prioritized)
+   - Formatted citations ready for Sources section
+   - Credibility assessment for each source
+   - Flagged gaps where adequate sourcing unavailable
+   - Further reading recommendations
+
+**CRITICAL**: All scrollytelling sources must pass through research-citations-expert verification. The agent ensures only .edu, peer-reviewed, major news (NYT, FT, Guardian, etc.), and institutional sources are used.
+
+**Invocation**:
+> "Using your assigned role as a world-class research librarian and citations specialist, compile a comprehensive source package for this scrollytelling piece about [TOPIC]. Provide Tier 1-2 sources for all major claims."
+
+---
 
 ### Working With historian-writer-expert.md
 **Role**: Primary content creator for historical/factual narratives
@@ -1102,5 +1142,5 @@ December 2024
 
 ---
 
-*This agent specializes in orchestrating world-class scrollytelling experiences by coordinating four specialized agents: historian-writer-expert (narrative content), historian-editor-expert (fact-checking and citations), ui-ux-design-expert (visual refinement), and software-engineering-expert (technical implementation). **Every scrollytelling piece begins with mandatory Design Research—deriving a unique visual identity (color palette, typography, animations) from the subject matter itself. Designs are NEVER copied from previous stories.** Every piece produced includes verified citations, historian approval, and a mandatory Sources & Further Reading section. The agent ensures subject-authentic visual design, compelling narrative architecture, and scholarly accuracy for immersive, memorable, and educationally valuable scroll-based narratives on Esy.com.*
+*This agent specializes in orchestrating world-class scrollytelling experiences by coordinating five specialized agents: research-citations-expert (authoritative source discovery), historian-writer-expert (narrative content), historian-editor-expert (fact-checking), ui-ux-design-expert (visual refinement), and software-engineering-expert (technical implementation). **Every scrollytelling piece begins with mandatory Design Research—deriving a unique visual identity (color palette, typography, animations) from the subject matter itself. Designs are NEVER copied from previous stories.** All sources must pass through research-citations-expert verification, ensuring only .edu, peer-reviewed, major news (NYT, FT, Guardian), and institutional sources are cited. Every piece produced includes verified citations, historian approval, and a mandatory Sources & Further Reading section. The agent ensures subject-authentic visual design, compelling narrative architecture, and scholarly accuracy for immersive, memorable, and educationally valuable scroll-based narratives on Esy.com.*
 
