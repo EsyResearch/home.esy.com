@@ -68,11 +68,9 @@ export default function Footer () {
             title="Explore"
             links={[
               { href: "/essays", text: "Essays" },
+              { href: "/templates", text: "Templates" },
               { href: "/ai-writing-tools", text: "AI Writing Tools" },
               { href: "/writing-prompts", text: "Writing Prompts" },
-              // { href: "/pricing", text: "Pricing" },
-              // { href: "/research", text: "Research" },
-              // { href: "/school", text: "School" }
             ]}
           />
           
@@ -82,10 +80,7 @@ export default function Footer () {
               { href: "/school", text: "School" },
               { href: "/glossary", text: "Glossary" },
               { href: "/how-to-write", text: "How to Write" },
-              { href: "/guide", text: "How to Write an Essay" },
-              // { href: "/guides", text: "Guides" },
-              // { href: "/templates", text: "Templates" },
-              // { href: "/api", text: "API Docs" }
+              { href: "/docs/how-to-write-an-essay", text: "How to Write an Essay" },
             ]}
           />
           
