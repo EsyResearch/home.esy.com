@@ -63,8 +63,21 @@ our scrollytelling piece about [topic]. Focus on .edu and major news sources.
 
 **Key Features:**
 - Mandatory Design Research phase (unique visual identity per story)
+- **Layout Variation Required** (minimum 3 different patterns, no consecutive duplicates)
 - Coordinates 5 other agents (Research, Writer, Editor, UI/UX, Engineer)
 - Enforces Sources & Further Reading section
+
+**Available Layout Patterns:**
+| Pattern | Best For |
+|---------|----------|
+| `split-screen` | Visual subjects, image+text |
+| `full-bleed` | Dramatic moments, hero sections |
+| `timeline` | Chronological stories |
+| `sticky-scroll` | Deep dives, processes |
+| `card-grid` | Comparisons, lists |
+| `quote-monument` | Key quotes, turning points |
+| `data-viz` | Statistics, impact numbers |
+| `horizontal` | Galleries, sequences |
 
 **Invocation Examples:**
 ```
