@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { BookOpen, Clock, ArrowRight, Sparkles, Globe, History, Trophy, Utensils, Bike, Armchair } from "lucide-react";
+import { BookOpen, Clock, ArrowRight, Sparkles, Globe, History, Trophy, Utensils, Bike, Footprints } from "lucide-react";
 
 // Elevated Dark Theme from DESIGN_SYSTEM.md
 const colors = {
@@ -36,15 +36,15 @@ const ScrollytellingClient = () => {
 
   const stories: Story[] = [
     {
-      id: "who-invented-the-chair",
-      title: "The Chair Story",
-      subtitle: "5,000 Years of Seating",
+      id: "who-invented-high-heels",
+      title: "The High Heels Story",
+      subtitle: "500 Years of Elevation",
       description:
-        "From pharaohs' thrones to IKEA flat-packs, discover the surprisingly radical 5,000-year history of the chair. An immersive journey through ancient Egypt, Renaissance workshops, and the modern design revolution.",
-      category: "Design History",
-      readTime: "12 min",
-      href: "/scrollytelling/who-invented-the-chair",
-      icon: <Armchair className="w-6 h-6" />,
+        "From Persian cavalrymen to Parisian runways, discover the extraordinary 500-year journey of the high heel—from military equipment to fashion icon. Experience the rise and fall (literally) of humanity's most provocative footwear.",
+      category: "Fashion History",
+      readTime: "14 min",
+      href: "/scrollytelling/who-invented-high-heels",
+      icon: <Footprints className="w-6 h-6" />,
       isNew: true,
       isFeatured: true,
     },
