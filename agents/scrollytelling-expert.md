@@ -239,7 +239,7 @@
 | **Full Bleed Image** | `full-bleed` | Edge-to-edge image with text overlay | Dramatic moments, setting scenes |
 | **Timeline Vertical** | `timeline` | Vertical line with branching content left/right | Chronological stories |
 | **Sticky + Scroll** | `sticky-scroll` | Fixed image/element while text scrolls past | Deep dives, process explanations |
-| **Card Grid** | `card-grid` | 2-4 cards revealed together | Comparisons, parallel stories, lists |
+| **Comparison Panels** | `comparison` | Side-by-side panels with visual contrast | Before/after, contrasts, evolution |
 | **Quote Monument** | `quote-monument` | Massive quote as the entire section | Key quotes, turning points |
 | **Data Visualization** | `data-viz` | Charts, numbers, visual statistics as focus | Statistics, scale, impact |
 | **Horizontal Scroll** | `horizontal` | Side-scrolling within vertical page | Galleries, timelines, sequences |
@@ -254,12 +254,13 @@ Content Type → Recommended Layouts
 ─────────────────────────────────────────────
 Key quote          → quote-monument, full-bleed
 Visual subject     → split-screen, full-bleed
-Statistics         → data-viz, card-grid
-Comparison         → split-screen, card-grid
+Statistics         → data-viz, standard
+Comparison         → comparison, split-screen
 Timeline event     → timeline, standard
 Deep explanation   → sticky-scroll, standard
-Gallery/sequence   → horizontal, card-grid
+Gallery/sequence   → horizontal, staggered
 Dramatic moment    → full-bleed, quote-monument
+Before/After       → comparison (with SVG illustrations)
 ```
 
 ### Layout Pattern Implementation
@@ -315,17 +316,37 @@ Dramatic moment    → full-bleed, quote-monument
 </section>
 ```
 
-#### Card Grid
+#### Comparison Panels
 ```tsx
-<section className="card-grid-section">
-  <h2>Section Title</h2>
-  <div className="card-grid">
-    <div className="card">Card 1</div>
-    <div className="card">Card 2</div>
-    <div className="card">Card 3</div>
+<section className="comparison-section">
+  <div className="comparison-header">
+    <h2>Before vs After</h2>
+  </div>
+  <div className="comparison-container">
+    <div className="comparison-panel before">
+      <div className="panel-icon">{/* SVG illustration */}</div>
+      <h3>The Old Way</h3>
+      <p>Description...</p>
+      <ul className="panel-traits">
+        <li><span className="trait-negative">✕</span> Drawback</li>
+      </ul>
+    </div>
+    <div className="comparison-divider">
+      <div className="divider-year">1885</div>
+    </div>
+    <div className="comparison-panel after">
+      <div className="panel-icon">{/* SVG illustration */}</div>
+      <h3>The New Way</h3>
+      <p>Description...</p>
+      <ul className="panel-traits">
+        <li><span className="trait-positive">✓</span> Benefit</li>
+      </ul>
+    </div>
   </div>
 </section>
 ```
+
+**Note**: Avoid blog-style card grids (image-top, text-bottom). They break immersion. Use comparison panels with SVG illustrations for contrasts.
 
 ### Layout Variation Planning Template
 
@@ -381,6 +402,8 @@ Consecutive Same: ❌ None — ✅ APPROVED
 ❌ **Image Desert**: No visual variety, only text with small icons
 ❌ **Layout Chaos**: Too many different patterns with no rhythm
 ❌ **Mobile Neglect**: Layouts that collapse poorly on mobile
+❌ **Blog Grid**: Card grids with image-top/text-bottom look like blog listings, not editorial storytelling. Use comparison panels, staggered layouts, or horizontal scrolls instead.
+❌ **Stock Photo Cards**: Rectangular image cards with captions feel like a content index. For comparisons, use SVG illustrations, split panels, or interactive elements.
 
 ### Layout Validation Checklist
 

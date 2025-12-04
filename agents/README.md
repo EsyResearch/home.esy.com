@@ -74,7 +74,7 @@ our scrollytelling piece about [topic]. Focus on .edu and major news sources.
 | `full-bleed` | Dramatic moments, hero sections |
 | `timeline` | Chronological stories |
 | `sticky-scroll` | Deep dives, processes |
-| `card-grid` | Comparisons, lists |
+| `comparison` | Before/after, contrasts (use SVG illustrations, NOT blog cards) |
 | `quote-monument` | Key quotes, turning points |
 | `data-viz` | Statistics, impact numbers |
 | `horizontal` | Galleries, sequences |
