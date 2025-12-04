@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { BookOpen, Clock, ArrowRight, Sparkles, Globe, History, Trophy, Utensils, Bike } from "lucide-react";
+import { BookOpen, Clock, ArrowRight, Sparkles, Globe, History, Trophy, Utensils, Bike, Armchair } from "lucide-react";
 
 // Elevated Dark Theme from DESIGN_SYSTEM.md
 const colors = {
@@ -36,6 +36,19 @@ const ScrollytellingClient = () => {
 
   const stories: Story[] = [
     {
+      id: "who-invented-the-chair",
+      title: "The Chair Story",
+      subtitle: "5,000 Years of Seating",
+      description:
+        "From pharaohs' thrones to IKEA flat-packs, discover the surprisingly radical 5,000-year history of the chair. An immersive journey through ancient Egypt, Renaissance workshops, and the modern design revolution.",
+      category: "Design History",
+      readTime: "12 min",
+      href: "/scrollytelling/who-invented-the-chair",
+      icon: <Armchair className="w-6 h-6" />,
+      isNew: true,
+      isFeatured: true,
+    },
+    {
       id: "who-invented-the-bicycle",
       title: "The Bicycle Story",
       subtitle: "200 Years of Two Wheels",
@@ -45,8 +58,8 @@ const ScrollytellingClient = () => {
       readTime: "10 min",
       href: "/scrollytelling/who-invented-the-bicycle",
       icon: <Bike className="w-6 h-6" />,
-      isNew: true,
-      isFeatured: true,
+      isNew: false,
+      isFeatured: false,
     },
     {
       id: "who-invented-the-spoon",
