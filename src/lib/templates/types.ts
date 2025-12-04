@@ -75,3 +75,114 @@ export function generateSlug(title: string): string {
     .replace(/(^-|-$)/g, '');
 }
 
+// Breadcrumb types and utilities
+export interface BreadcrumbItem {
+  label: string;
+  href?: string;
+  isCurrent?: boolean;
+}
+
+export interface ModelCategoryInfo {
+  label: string;
+  href: string;
+}
+
+// Map AI models to their category page info
+export const MODEL_CATEGORY_MAP: Record<string, ModelCategoryInfo> = {
+  ChatGPT: {
+    label: 'ChatGPT Prompts',
+    href: '/templates/chatgpt-prompts',
+  },
+  Gemini: {
+    label: 'Gemini Prompts',
+    href: '/templates/gemini-prompts',
+  },
+  Claude: {
+    label: 'Claude Prompts',
+    href: '/templates/claude-prompts',
+  },
+};
+
+// SEO subcategory mapping (for templates without a model but with SEO subcategory)
+export const SUBCATEGORY_CATEGORY_MAP: Record<string, ModelCategoryInfo> = {
+  seo: {
+    label: 'SEO Writing Prompts',
+    href: '/templates/seo-writing-prompts',
+  },
+  chatgpt: {
+    label: 'ChatGPT Prompts',
+    href: '/templates/chatgpt-prompts',
+  },
+  gemini: {
+    label: 'Gemini Prompts',
+    href: '/templates/gemini-prompts',
+  },
+  claude: {
+    label: 'Claude Prompts',
+    href: '/templates/claude-prompts',
+  },
+};
+
+/**
+ * Generate breadcrumb items for a template detail page.
+ * Returns items for: Templates → {Model} Prompts → {Template Title}
+ */
+export function getTemplateBreadcrumbs(template: Template): BreadcrumbItem[] {
+  const items: BreadcrumbItem[] = [
+    {
+      label: 'Templates',
+      href: '/templates',
+    },
+  ];
+
+  // Try to get category from model field first
+  if (template.model && MODEL_CATEGORY_MAP[template.model]) {
+    const modelCategory = MODEL_CATEGORY_MAP[template.model];
+    items.push({
+      label: modelCategory.label,
+      href: modelCategory.href,
+    });
+  }
+  // Fall back to subcategory if no model
+  else if (template.subcategory && SUBCATEGORY_CATEGORY_MAP[template.subcategory]) {
+    const subcategoryInfo = SUBCATEGORY_CATEGORY_MAP[template.subcategory];
+    items.push({
+      label: subcategoryInfo.label,
+      href: subcategoryInfo.href,
+    });
+  }
+  // Default fallback - just show "Prompts"
+  else {
+    items.push({
+      label: 'Prompts',
+      href: '/templates',
+    });
+  }
+
+  // Add current template (no link)
+  items.push({
+    label: template.title,
+    isCurrent: true,
+  });
+
+  return items;
+}
+
+/**
+ * Generate JSON-LD BreadcrumbList structured data
+ */
+export function getTemplateBreadcrumbJsonLd(template: Template, baseUrl: string = 'https://esy.com'): object {
+  const breadcrumbs = getTemplateBreadcrumbs(template);
+  
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.label,
+      item: item.href ? `${baseUrl}${item.href}` : `${baseUrl}/templates/${template.slug}`,
+    })),
+  };
+}
+

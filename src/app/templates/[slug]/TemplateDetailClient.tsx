@@ -13,7 +13,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { elevatedDarkTheme } from '@/lib/theme';
-import { Template, TemplateCategoryInfo, TemplateSubcategory } from '@/lib/templates';
+import { Template, TemplateCategoryInfo, TemplateSubcategory, getTemplateBreadcrumbs, BreadcrumbItem } from '@/lib/templates';
 import {
   TemplatePreview,
   TemplateCTA,
@@ -34,6 +34,9 @@ export default function TemplateDetailClient({
   subcategoryInfo,
 }: TemplateDetailClientProps) {
   const [activeTab, setActiveTab] = useState<'template' | 'output' | 'uses'>('template');
+
+  // Generate dynamic breadcrumbs based on template model/subcategory
+  const breadcrumbs = getTemplateBreadcrumbs(template);
 
   const getDifficultyColor = (difficulty?: string) => {
     switch (difficulty) {
@@ -68,38 +71,55 @@ export default function TemplateDetailClient({
       >
         {/* Breadcrumb */}
         <nav
+          aria-label="Breadcrumb"
           style={{
             display: 'flex',
             alignItems: 'center',
             gap: '0.5rem',
             marginBottom: '2rem',
             fontSize: '0.875rem',
+            flexWrap: 'wrap',
           }}
         >
-          <Link
-            href="/templates"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.375rem',
-              color: elevatedDarkTheme.muted,
-              textDecoration: 'none',
-              transition: 'color 0.2s ease',
-            }}
-          >
-            <ArrowLeft size={16} />
-            Templates
-          </Link>
-          <ChevronRight size={14} style={{ color: elevatedDarkTheme.subtle }} />
-          {categoryInfo && (
-            <>
-              <span style={{ color: elevatedDarkTheme.subtle }}>
-                {categoryInfo.name}
-              </span>
-              <ChevronRight size={14} style={{ color: elevatedDarkTheme.subtle }} />
-            </>
-          )}
-          <span style={{ color: elevatedDarkTheme.text }}>{template.title}</span>
+          {breadcrumbs.map((item, index) => (
+            <React.Fragment key={index}>
+              {index === 0 ? (
+                // First item with back arrow
+                <Link
+                  href={item.href || '/templates'}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.375rem',
+                    color: elevatedDarkTheme.muted,
+                    textDecoration: 'none',
+                    transition: 'color 0.2s ease',
+                  }}
+                >
+                  <ArrowLeft size={16} />
+                  {item.label}
+                </Link>
+              ) : item.isCurrent ? (
+                // Current page (no link)
+                <span style={{ color: elevatedDarkTheme.text }}>{item.label}</span>
+              ) : (
+                // Middle items with links
+                <Link
+                  href={item.href || '/templates'}
+                  style={{
+                    color: elevatedDarkTheme.muted,
+                    textDecoration: 'none',
+                    transition: 'color 0.2s ease',
+                  }}
+                >
+                  {item.label}
+                </Link>
+              )}
+              {index < breadcrumbs.length - 1 && (
+                <ChevronRight size={14} style={{ color: elevatedDarkTheme.subtle }} />
+              )}
+            </React.Fragment>
+          ))}
         </nav>
 
         {/* Header Content */}

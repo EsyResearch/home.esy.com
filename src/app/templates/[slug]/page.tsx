@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import Script from 'next/script';
 import TemplateDetailClient from './TemplateDetailClient';
 import {
   getAllTemplates,
@@ -7,6 +8,7 @@ import {
   getRelatedTemplates,
   getCategoryInfo,
   getSubcategoryInfo,
+  getTemplateBreadcrumbJsonLd,
 } from '@/lib/templates';
 
 interface Props {
@@ -63,14 +65,25 @@ export default async function TemplateDetailPage({ params }: Props) {
   const relatedTemplates = getRelatedTemplates(slug, 3);
   const categoryInfo = getCategoryInfo(template.category);
   const subcategoryInfo = getSubcategoryInfo(template.subcategory);
+  
+  // Generate JSON-LD breadcrumb structured data
+  const breadcrumbJsonLd = getTemplateBreadcrumbJsonLd(template);
 
   return (
-    <TemplateDetailClient
-      template={template}
-      relatedTemplates={relatedTemplates}
-      categoryInfo={categoryInfo}
-      subcategoryInfo={subcategoryInfo}
-    />
+    <>
+      {/* JSON-LD Breadcrumb Structured Data */}
+      <Script
+        id="breadcrumb-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <TemplateDetailClient
+        template={template}
+        relatedTemplates={relatedTemplates}
+        categoryInfo={categoryInfo}
+        subcategoryInfo={subcategoryInfo}
+      />
+    </>
   );
 }
 
