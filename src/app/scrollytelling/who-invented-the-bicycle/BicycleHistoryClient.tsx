@@ -326,62 +326,91 @@ const PennyFarthingSection: React.FC = () => {
   );
 };
 
-// ==================== LAYOUT: CARD GRID ====================
+// ==================== LAYOUT: COMPARISON (Before/After) ====================
 const SafetyBicycleSection: React.FC = () => {
   const { ref, isVisible } = useInView();
 
-  const cards = [
-    {
-      label: 'Before 1885',
-      title: 'The High Wheeler',
-      text: 'Massive front wheel, tiny rear. Fast but dangerous. Only for athletic young men. A status symbol for the daring few.',
-      image: 'https://images.unsplash.com/photo-1511994298241-608e28f14fde?w=600&q=80' // vintage bicycle wheel
-    },
-    {
-      label: 'After 1885',
-      title: 'The Safety Bicycle',
-      text: 'Equal-sized wheels. Chain drive. Diamond frame still used today. Anyone could ride—old, young, men, women.',
-      image: 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=600&q=80' // classic bicycle
-    },
-    {
-      label: 'The Innovation',
-      title: 'Chain Drive',
-      text: 'Starley\'s chain drive transferred power from pedals to rear wheel—no more direct pedaling on a giant wheel.',
-      image: 'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=600&q=80' // bicycle gears/chain
-    },
-    {
-      label: 'The Legacy',
-      title: '140 Years Later',
-      text: 'Starley\'s basic diamond frame geometry remains virtually unchanged—proof of revolutionary design.',
-      image: 'https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=600&q=80' // modern road bike
-    }
-  ];
-
   return (
-    <section ref={ref} className={`card-grid-section ${isVisible ? 'visible' : ''}`}>
-      <h2>The Safety Revolution</h2>
-      <p className="section-intro">
-        In 1885, John Kemp Starley&apos;s &ldquo;Rover Safety Bicycle&rdquo; transformed cycling 
-        from daredevil sport to universal transport. Within a decade, the penny-farthing was obsolete.
-      </p>
+    <section ref={ref} className={`comparison-section ${isVisible ? 'visible' : ''}`}>
+      <div className="comparison-header">
+        <span className="comparison-label">1885 — The Turning Point</span>
+        <h2>The Safety Revolution</h2>
+      </div>
       
-      <div className="card-grid">
-        {cards.map((card, index) => (
-          <div 
-            key={card.title} 
-            className="card"
-            style={{ transitionDelay: `${index * 0.1}s` }}
-          >
-            <div className="card-image">
-              <img src={card.image} alt={card.title} />
+      <div className="comparison-container">
+        {/* Before */}
+        <div className="comparison-panel before">
+          <div className="panel-marker">Before</div>
+          <div className="panel-content">
+            <div className="panel-icon">
+              {/* Penny-farthing silhouette */}
+              <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="40" r="38" stroke="currentColor" strokeWidth="2"/>
+                <circle cx="40" cy="40" r="4" fill="currentColor"/>
+                <circle cx="95" cy="75" r="15" stroke="currentColor" strokeWidth="2"/>
+                <circle cx="95" cy="75" r="2" fill="currentColor"/>
+                <path d="M40 40 L85 70" stroke="currentColor" strokeWidth="2"/>
+                <path d="M35 38 L35 20" stroke="currentColor" strokeWidth="2"/>
+                <path d="M30 20 L40 20" stroke="currentColor" strokeWidth="2"/>
+              </svg>
             </div>
-            <div className="card-body">
-              <div className="card-label">{card.label}</div>
-              <h3 className="card-title">{card.title}</h3>
-              <p className="card-text">{card.text}</p>
-            </div>
+            <h3>The High Wheeler</h3>
+            <p>
+              Front wheels up to 1.5 meters tall. Fast, but terrifying. A stumble meant 
+              flying headfirst over the handlebars. Only young, athletic men dared ride.
+            </p>
+            <ul className="panel-traits">
+              <li><span className="trait-negative">✕</span> Dangerous</li>
+              <li><span className="trait-negative">✕</span> Men only</li>
+              <li><span className="trait-negative">✕</span> Requires athleticism</li>
+            </ul>
           </div>
-        ))}
+        </div>
+
+        {/* Divider */}
+        <div className="comparison-divider">
+          <div className="divider-line" />
+          <div className="divider-year">1885</div>
+          <div className="divider-line" />
+        </div>
+
+        {/* After */}
+        <div className="comparison-panel after">
+          <div className="panel-marker">After</div>
+          <div className="panel-content">
+            <div className="panel-icon">
+              {/* Safety bicycle silhouette */}
+              <svg viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="25" cy="55" r="22" stroke="currentColor" strokeWidth="2"/>
+                <circle cx="25" cy="55" r="3" fill="currentColor"/>
+                <circle cx="95" cy="55" r="22" stroke="currentColor" strokeWidth="2"/>
+                <circle cx="95" cy="55" r="3" fill="currentColor"/>
+                <path d="M25 55 L50 35 L70 35 L95 55" stroke="currentColor" strokeWidth="2"/>
+                <path d="M50 35 L60 55 L95 55" stroke="currentColor" strokeWidth="2"/>
+                <path d="M45 35 L45 20" stroke="currentColor" strokeWidth="2"/>
+                <path d="M40 20 L50 20" stroke="currentColor" strokeWidth="2"/>
+                <circle cx="60" cy="55" r="8" stroke="currentColor" strokeWidth="2"/>
+              </svg>
+            </div>
+            <h3>The Safety Bicycle</h3>
+            <p>
+              Equal-sized wheels. Chain drive to rear wheel. Diamond frame geometry 
+              still used today. Suddenly, anyone could ride.
+            </p>
+            <ul className="panel-traits">
+              <li><span className="trait-positive">✓</span> Safe &amp; stable</li>
+              <li><span className="trait-positive">✓</span> Everyone welcome</li>
+              <li><span className="trait-positive">✓</span> Design unchanged 140 years</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div className="comparison-footer">
+        <p>
+          John Kemp Starley&apos;s <strong>Rover Safety Bicycle</strong> didn&apos;t just 
+          improve cycling—it democratized it. Within a decade, the penny-farthing was obsolete.
+        </p>
       </div>
     </section>
   );

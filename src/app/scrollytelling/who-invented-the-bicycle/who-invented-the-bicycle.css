@@ -410,94 +410,285 @@
 }
 
 /* ============================================
-   LAYOUT: CARD GRID
+   LAYOUT: COMPARISON (Before/After)
    ============================================ */
-.bicycle-history-container .card-grid-section {
+.bicycle-history-container .comparison-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 6rem 2rem;
-  background: linear-gradient(135deg, var(--color-asphalt-light) 0%, var(--color-asphalt) 100%);
+  background: var(--color-asphalt);
+  position: relative;
 }
 
-.bicycle-history-container .card-grid-section h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3rem);
+.bicycle-history-container .comparison-header {
   text-align: center;
-  color: var(--color-white);
+  margin-bottom: 4rem;
+}
+
+.bicycle-history-container .comparison-label {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-racing-red);
   margin-bottom: 1rem;
 }
 
-.bicycle-history-container .card-grid-section .section-intro {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 4rem;
-  font-size: 1.0625rem;
-  color: var(--color-white-muted);
-  line-height: 1.8;
+.bicycle-history-container .comparison-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: var(--color-white);
 }
 
-.bicycle-history-container .card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
+.bicycle-history-container .comparison-container {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
-.bicycle-history-container .card {
-  background: var(--color-asphalt-elevated);
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(156, 163, 175, 0.1);
-  transition: transform 0.4s var(--ease-out), border-color 0.4s ease;
+.bicycle-history-container .comparison-panel {
+  flex: 1;
+  max-width: 400px;
+  position: relative;
 }
 
-.bicycle-history-container .card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(220, 38, 38, 0.3);
-}
-
-.bicycle-history-container .card-image {
-  height: 200px;
-  overflow: hidden;
-  background: var(--color-asphalt);
-}
-
-.bicycle-history-container .card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.8;
-  transition: transform 0.6s var(--ease-out);
-}
-
-.bicycle-history-container .card:hover .card-image img {
-  transform: scale(1.05);
-}
-
-.bicycle-history-container .card-body {
-  padding: 1.5rem;
-}
-
-.bicycle-history-container .card-label {
+.bicycle-history-container .panel-marker {
+  position: absolute;
+  top: -1rem;
   font-family: var(--font-heading);
   font-size: 0.65rem;
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+}
+
+.bicycle-history-container .comparison-panel.before .panel-marker {
+  right: 0;
+  background: rgba(107, 114, 128, 0.2);
+  color: var(--color-chrome);
+}
+
+.bicycle-history-container .comparison-panel.after .panel-marker {
+  left: 0;
+  background: rgba(220, 38, 38, 0.15);
   color: var(--color-racing-red);
+}
+
+.bicycle-history-container .panel-content {
+  padding: 2.5rem;
+  height: 100%;
+  border-radius: 12px;
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+}
+
+.bicycle-history-container .comparison-panel.before .panel-content {
+  background: var(--color-asphalt-light);
+  border: 1px solid rgba(107, 114, 128, 0.2);
+  text-align: right;
+}
+
+.bicycle-history-container .comparison-panel.after .panel-content {
+  background: linear-gradient(135deg, var(--color-asphalt-elevated) 0%, rgba(220, 38, 38, 0.05) 100%);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  text-align: left;
+}
+
+.bicycle-history-container .comparison-panel:hover .panel-content {
+  transform: translateY(-4px);
+}
+
+.bicycle-history-container .comparison-panel.after:hover .panel-content {
+  box-shadow: 0 20px 60px rgba(220, 38, 38, 0.1);
+}
+
+.bicycle-history-container .panel-icon {
+  width: 120px;
+  height: 100px;
+  margin-bottom: 1.5rem;
+  color: var(--color-chrome);
+  opacity: 0.6;
+}
+
+.bicycle-history-container .comparison-panel.before .panel-icon {
+  margin-left: auto;
+}
+
+.bicycle-history-container .comparison-panel.after .panel-icon {
+  color: var(--color-racing-red);
+  opacity: 0.8;
+}
+
+.bicycle-history-container .panel-content h3 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--color-white);
+  margin-bottom: 1rem;
+}
+
+.bicycle-history-container .panel-content p {
+  font-size: 0.9375rem;
+  color: var(--color-white-muted);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.bicycle-history-container .panel-traits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bicycle-history-container .panel-traits li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-white-muted);
   margin-bottom: 0.5rem;
 }
 
-.bicycle-history-container .card-title {
-  font-family: var(--font-display);
-  font-size: 1.375rem;
-  color: var(--color-white);
-  margin-bottom: 0.75rem;
+.bicycle-history-container .comparison-panel.before .panel-traits li {
+  justify-content: flex-end;
 }
 
-.bicycle-history-container .card-text {
-  font-size: 0.9375rem;
+.bicycle-history-container .trait-negative {
+  color: var(--color-chrome);
+  font-weight: 600;
+}
+
+.bicycle-history-container .trait-positive {
+  color: var(--color-racing-red);
+  font-weight: 600;
+}
+
+/* Divider */
+.bicycle-history-container .comparison-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  min-width: 100px;
+}
+
+.bicycle-history-container .divider-line {
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--color-racing-red), transparent);
+}
+
+.bicycle-history-container .divider-year {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-racing-red);
+  padding: 1rem 0;
+  position: relative;
+}
+
+.bicycle-history-container .divider-year::before,
+.bicycle-history-container .divider-year::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: var(--color-racing-red);
+  border-radius: 50%;
+}
+
+.bicycle-history-container .divider-year::before {
+  top: 0;
+}
+
+.bicycle-history-container .divider-year::after {
+  bottom: 0;
+}
+
+/* Footer */
+.bicycle-history-container .comparison-footer {
+  text-align: center;
+  max-width: 650px;
+  margin: 4rem auto 0;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(156, 163, 175, 0.1);
+}
+
+.bicycle-history-container .comparison-footer p {
+  font-size: 1.0625rem;
   color: var(--color-white-muted);
-  line-height: 1.7;
+  line-height: 1.8;
+}
+
+.bicycle-history-container .comparison-footer strong {
+  color: var(--color-white);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .bicycle-history-container .comparison-container {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+  
+  .bicycle-history-container .comparison-panel {
+    max-width: 100%;
+  }
+  
+  .bicycle-history-container .comparison-panel.before .panel-content,
+  .bicycle-history-container .comparison-panel.before .panel-traits li {
+    text-align: left;
+    justify-content: flex-start;
+  }
+  
+  .bicycle-history-container .comparison-panel.before .panel-icon {
+    margin-left: 0;
+  }
+  
+  .bicycle-history-container .comparison-divider {
+    flex-direction: row;
+    padding: 1rem 0;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .bicycle-history-container .divider-line {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--color-racing-red), transparent);
+  }
+  
+  .bicycle-history-container .divider-year {
+    padding: 0 1.5rem;
+  }
+  
+  .bicycle-history-container .divider-year::before,
+  .bicycle-history-container .divider-year::after {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .bicycle-history-container .divider-year::before {
+    left: 0;
+  }
+  
+  .bicycle-history-container .divider-year::after {
+    left: auto;
+    right: 0;
+  }
 }
 
 /* ============================================
