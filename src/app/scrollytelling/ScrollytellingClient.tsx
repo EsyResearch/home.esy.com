@@ -1,171 +1,134 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { 
-  Sparkles, 
-  Clock, 
-  ArrowRight, 
-  Footprints,
-  Bike, 
-  Trophy, 
-  History,
-  ChefHat
-} from "lucide-react";
+import { ArrowRight, Clock } from "lucide-react";
 import './scrollytelling-index.css';
 
 /*
- * Scrollytelling Index - "The Story Universe"
+ * Scrollytelling Index - Editorial Magazine Layout
  * 
  * Design Philosophy:
- * - Cinematic, immersive full-viewport hero
- * - Interactive story cards with 3D depth effects
- * - Each story card hints at its unique visual identity
- * - Scroll-triggered animations
- * - Premium, sophisticated aesthetic
+ * - Premium editorial aesthetic (Vogue, Bloomberg, NYT Magazine)
+ * - Typography-forward, not gimmick-forward
+ * - Asymmetric, intentional layouts
+ * - Refined interactions, not flashy animations
+ * - Sophisticated use of negative space
  * 
- * Built with:
- * - @agents/scrollytelling-expert.md (narrative architecture)
- * - @agents/ui-ux-design-expert.md (visual design)
- * - @agents/software-engineering-expert.md (implementation)
+ * Structure:
+ * - Split hero: Left = masthead title, Right = featured story preview
+ * - Stories as horizontal editorial rows with numbering
+ * - Minimal color, strategic accents only
  */
 
-// ==================== TYPES ====================
+// ==================== DATA ====================
 interface Story {
   id: string;
-  slug: string;
+  number: string;
   title: string;
   subtitle: string;
   description: string;
   category: string;
   readTime: string;
   href: string;
-  icon: React.ReactNode;
   isNew?: boolean;
   isFeatured?: boolean;
 }
 
-// ==================== HOOKS ====================
-const useInView = (threshold = 0.2) => {
-  const ref = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [threshold]);
-
-  return { ref, isVisible };
-};
-
-// ==================== DATA ====================
 const stories: Story[] = [
   {
     id: "who-invented-high-heels",
-    slug: "heels",
+    number: "01",
     title: "The High Heels Story",
     subtitle: "500 Years of Elevation",
-    description:
-      "From Persian cavalrymen to Parisian runways, discover the extraordinary 500-year journey of the high heel—from military equipment to fashion icon.",
+    description: "From Persian cavalrymen to Parisian runways, the extraordinary journey of fashion's most provocative invention.",
     category: "Fashion History",
     readTime: "14 min",
     href: "/scrollytelling/who-invented-high-heels",
-    icon: <Footprints />,
     isNew: true,
     isFeatured: true,
   },
   {
     id: "who-invented-the-bicycle",
-    slug: "bicycle",
+    number: "02",
     title: "The Bicycle Story",
     subtitle: "200 Years of Two Wheels",
-    description:
-      "From Karl von Drais's 1817 running machine to modern carbon fiber racers, discover the invention that changed transportation forever.",
+    description: "The invention that changed transportation, liberated women, and became humanity's most efficient machine.",
     category: "Transportation",
     readTime: "10 min",
     href: "/scrollytelling/who-invented-the-bicycle",
-    icon: <Bike />,
   },
   {
     id: "who-invented-the-spoon",
-    slug: "spoon",
+    number: "03",
     title: "The Spoon Story",
     subtitle: "30,000 Years of Essential Tools",
-    description:
-      "From prehistoric bone carvings to silver apostle spoons, discover the extraordinary journey of humanity's oldest eating utensil.",
+    description: "From prehistoric bone carvings to silver apostle spoons—humanity's oldest eating utensil.",
     category: "Material Culture",
     readTime: "10 min",
     href: "/scrollytelling/who-invented-the-spoon",
-    icon: <ChefHat />,
   },
   {
     id: "who-invented-basketball",
-    slug: "basketball",
+    number: "04",
     title: "The Basketball Story",
-    subtitle: "From Peach Baskets to Phenomenon",
-    description:
-      "Experience the 134-year journey of basketball from Dr. Naismith's invention to global culture and billion-dollar arenas.",
+    subtitle: "From Peach Baskets to Global Culture",
+    description: "Dr. Naismith's 1891 invention becomes billion-dollar arenas and worldwide phenomenon.",
     category: "Sports History",
     readTime: "10 min",
     href: "/scrollytelling/who-invented-basketball",
-    icon: <Trophy />,
   },
   {
     id: "who-invented-the-fork",
-    slug: "fork",
+    number: "05",
     title: "The Fork Story",
     subtitle: "4,000 Years of Revolution",
-    description:
-      "From ancient Mesopotamia to modern tables, travel through Byzantine courts and Renaissance Italy in this immersive narrative.",
+    description: "From ancient Mesopotamia through Byzantine courts to your dinner table.",
     category: "History",
     readTime: "12 min",
     href: "/scrollytelling/who-invented-the-fork",
-    icon: <History />,
   },
 ];
 
 // ==================== COMPONENTS ====================
 
-// Floating particles for hero
-const Particles: React.FC = () => (
-  <div className="particles">
-    {[...Array(10)].map((_, i) => (
-      <div key={i} className="particle" />
-    ))}
-  </div>
-);
-
-// Hero Section
-const HeroPortal: React.FC = () => {
+const EditorialHero: React.FC = () => {
+  const featured = stories.find(s => s.isFeatured);
   const totalStories = stories.length;
-  const totalReadTime = stories.reduce((acc, s) => acc + parseInt(s.readTime), 0);
+  const totalTime = stories.reduce((acc, s) => acc + parseInt(s.readTime), 0);
   
   return (
-    <section className="hero-portal">
-      <Particles />
-      
-      <div className="hero-content">
-        <div className="hero-badge">
-          <Sparkles className="hero-badge-icon" />
-          <span className="hero-badge-text">Immersive Narratives</span>
-        </div>
-        
+    <section className="editorial-hero">
+      {/* Left: Masthead */}
+      <div className="hero-left">
+        <span className="hero-label">Scrollytelling</span>
         <h1 className="hero-title">
-          <span className="hero-title-line">Stories That</span>
-          <span className="hero-title-line hero-title-accent">Come Alive</span>
+          <span className="hero-title-line">Stories</span>
+          <span className="hero-title-line">That</span>
+          <span className="hero-title-line hero-title-italic">Unfold</span>
         </h1>
-        
-        <p className="hero-subtitle">
-          Experience history like never before. Each scrollytelling piece combines 
-          cinematic visuals, interactive elements, and compelling research into 
-          unforgettable journeys through time.
+        <p className="hero-description">
+          Immersive narratives that combine research, design, and interaction. 
+          History experienced, not just read.
         </p>
+      </div>
+      
+      {/* Right: Featured + Stats */}
+      <div className="hero-right">
+        {featured && (
+          <Link href={featured.href} className="hero-featured">
+            <span className="hero-featured-category">{featured.category}</span>
+            <h2 className="hero-featured-title">{featured.title}</h2>
+            <p className="hero-featured-subtitle">{featured.subtitle}</p>
+            <div className="hero-featured-meta">
+              <Clock size={14} />
+              <span>{featured.readTime} read</span>
+              {featured.isNew && <span>• New</span>}
+            </div>
+            <span className="hero-featured-cta">
+              Begin Story <ArrowRight size={14} />
+            </span>
+          </Link>
+        )}
         
         <div className="hero-stats">
           <div className="hero-stat">
@@ -173,156 +136,78 @@ const HeroPortal: React.FC = () => {
             <div className="hero-stat-label">Stories</div>
           </div>
           <div className="hero-stat">
-            <div className="hero-stat-value">{totalReadTime}+</div>
-            <div className="hero-stat-label">Minutes of Discovery</div>
+            <div className="hero-stat-value">{totalTime}</div>
+            <div className="hero-stat-label">Minutes</div>
           </div>
           <div className="hero-stat">
             <div className="hero-stat-value">∞</div>
-            <div className="hero-stat-label">Years of History</div>
+            <div className="hero-stat-label">Years</div>
           </div>
         </div>
-      </div>
-      
-      <div className="scroll-indicator">
-        <span className="scroll-indicator-text">Explore</span>
-        <div className="scroll-indicator-line" />
       </div>
     </section>
   );
 };
 
-// Featured Story Card
-const FeaturedStory: React.FC<{ story: Story }> = ({ story }) => {
-  const { ref, isVisible } = useInView(0.2);
-  
-  return (
-    <div className="featured-story">
-      <div className="featured-label">
-        <h3>Featured Story</h3>
-        {story.isNew && <span className="new-badge">New</span>}
+const StoryRow: React.FC<{ story: Story }> = ({ story }) => (
+  <Link href={story.href} className="story-row">
+    <span className="story-number">{story.number}</span>
+    
+    <div className="story-main">
+      <div className="story-info">
+        <span className="story-category">{story.category}</span>
+        <h3 className="story-title">{story.title}</h3>
+        <p className="story-subtitle">{story.subtitle}</p>
+        <p className="story-description">{story.description}</p>
       </div>
       
-      <Link 
-        href={story.href} 
-        className={`featured-card ${isVisible ? 'fade-in-up' : ''}`}
-        ref={ref as React.RefObject<HTMLAnchorElement>}
-      >
-        <div className="featured-visual">
-          <div className="featured-icon">{story.icon}</div>
-        </div>
-        
-        <div className="featured-content">
-          <span className="featured-category">{story.category}</span>
-          <h2 className="featured-title">{story.title}</h2>
-          <p className="featured-subtitle">{story.subtitle}</p>
-          <p className="featured-description">{story.description}</p>
-          
-          <div className="featured-meta">
-            <div className="featured-time">
-              <Clock size={16} />
-              <span>{story.readTime} read</span>
-            </div>
-            <div className="featured-cta">
-              <span>Begin Journey</span>
-              <ArrowRight size={18} className="featured-cta-arrow" />
-            </div>
-          </div>
-        </div>
-      </Link>
+      <div className="story-meta">
+        <Clock size={14} />
+        <span>{story.readTime}</span>
+      </div>
     </div>
-  );
-};
+    
+    <div className="story-arrow">
+      <ArrowRight size={18} />
+    </div>
+  </Link>
+);
 
-// Story Card
-const StoryCard: React.FC<{ story: Story; index: number }> = ({ story, index }) => {
-  const { ref, isVisible } = useInView(0.15);
-  
-  return (
-    <Link 
-      href={story.href}
-      className={`story-card ${isVisible ? `fade-in-up stagger-${Math.min(index + 1, 5)}` : ''}`}
-      data-story={story.slug}
-      ref={ref as React.RefObject<HTMLAnchorElement>}
-    >
-      <div className="story-card-visual">
-        <div className="story-card-icon">{story.icon}</div>
-      </div>
-      
-      <div className="story-card-content">
-        <div className="story-card-header">
-          <span className="story-card-category">{story.category}</span>
-        </div>
-        
-        <h3 className="story-card-title">{story.title}</h3>
-        <p className="story-card-subtitle">{story.subtitle}</p>
-        <p className="story-card-description">{story.description}</p>
-        
-        <div className="story-card-footer">
-          <div className="story-card-time">
-            <Clock size={14} />
-            <span>{story.readTime}</span>
-          </div>
-          <ArrowRight className="story-card-arrow" />
-        </div>
-      </div>
-    </Link>
-  );
-};
-
-// Stories Section
 const StoriesSection: React.FC = () => {
-  const featuredStory = stories.find(s => s.isFeatured);
-  const otherStories = stories.filter(s => !s.isFeatured);
+  const nonFeatured = stories.filter(s => !s.isFeatured);
   
   return (
     <section className="stories-section">
       <div className="stories-header">
-        <h2>Choose Your Journey</h2>
-        <p>Each story is a portal to another time. Where will you go?</p>
+        <h2>All Stories</h2>
+        <span className="stories-count">{stories.length} narratives</span>
       </div>
       
-      {featuredStory && <FeaturedStory story={featuredStory} />}
-      
-      <div className="stories-grid">
-        {otherStories.map((story, index) => (
-          <StoryCard key={story.id} story={story} index={index} />
+      <div className="stories-list">
+        {nonFeatured.map(story => (
+          <StoryRow key={story.id} story={story} />
         ))}
       </div>
     </section>
   );
 };
 
-// Coming Soon Section
-const ComingSoon: React.FC = () => {
-  const { ref, isVisible } = useInView(0.3);
-  
-  return (
-    <section 
-      className={`coming-soon ${isVisible ? 'fade-in-up' : ''}`}
-      ref={ref}
-    >
-      <div className="coming-soon-icon">
-        <Sparkles size={32} />
-      </div>
-      <h3>More Stories Coming Soon</h3>
-      <p>
-        We&apos;re crafting new immersive narratives covering science, art, 
-        technology, and culture. Each piece takes weeks to research and 
-        develop—ensuring every journey is unforgettable.
-      </p>
-    </section>
-  );
-};
+const ComingSoon: React.FC = () => (
+  <section className="coming-soon">
+    <p className="coming-soon-text">
+      More stories in development. Each narrative takes weeks of research 
+      and design to ensure an unforgettable experience.
+    </p>
+  </section>
+);
 
-// ==================== MAIN COMPONENT ====================
-const ScrollytellingClient: React.FC = () => {
-  return (
-    <div className="scrollytelling-index">
-      <HeroPortal />
-      <StoriesSection />
-      <ComingSoon />
-    </div>
-  );
-};
+// ==================== MAIN ====================
+const ScrollytellingClient: React.FC = () => (
+  <div className="scrollytelling-index">
+    <EditorialHero />
+    <StoriesSection />
+    <ComingSoon />
+  </div>
+);
 
 export default ScrollytellingClient;
