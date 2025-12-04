@@ -623,10 +623,13 @@
   position: relative;
   padding: 6rem 2rem;
   background: linear-gradient(to bottom, #1A1612, #0D0B09);
-  text-align: center;
 }
 
 .basketball-history-container .footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   max-width: 600px;
   margin: 0 auto;
 }
@@ -634,7 +637,7 @@
 .basketball-history-container .footer-ball {
   width: 60px;
   height: 60px;
-  margin: 0 auto 2rem;
+  margin-bottom: 2rem;
   opacity: 0.3;
 }
 
@@ -650,7 +653,10 @@
   font-style: italic;
   color: var(--color-cream);
   line-height: 1.6;
-  margin-bottom: 1rem;
+  margin: 0;
+  padding: 0;
+  border: none;
+  max-width: 550px;
 }
 
 .basketball-history-container .footer-quote cite {
@@ -666,13 +672,15 @@
   width: 60px;
   height: 1px;
   background: var(--color-burnt);
-  margin: 2rem auto;
+  margin: 2rem 0;
+  flex-shrink: 0;
 }
 
 .basketball-history-container .footer-text {
   font-family: var(--font-body);
   font-size: 0.875rem;
   color: rgba(245, 240, 232, 0.5);
+  margin: 0;
 }
 
 /* Animations */

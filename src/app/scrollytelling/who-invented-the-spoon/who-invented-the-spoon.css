@@ -610,10 +610,13 @@
   position: relative;
   padding: 6rem 2rem;
   background: linear-gradient(to bottom, var(--color-night-surface), #06060A);
-  text-align: center;
 }
 
 .spoon-history-container .footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   max-width: 550px;
   margin: 0 auto;
 }
@@ -621,9 +624,14 @@
 .spoon-history-container .footer-icon {
   width: 40px;
   height: 60px;
-  margin: 0 auto 2.5rem;
+  margin-bottom: 2.5rem;
   opacity: 0.2;
   color: var(--color-silver);
+}
+
+.spoon-history-container .footer-icon svg {
+  width: 100%;
+  height: 100%;
 }
 
 .spoon-history-container .footer-quote {
@@ -632,8 +640,11 @@
   font-style: italic;
   color: var(--color-porcelain);
   line-height: 1.6;
-  margin-bottom: 1rem;
+  margin: 0;
+  padding: 0;
+  border: none;
   font-weight: 400;
+  max-width: 500px;
 }
 
 .spoon-history-container .footer-quote cite {
@@ -649,8 +660,9 @@
   width: 50px;
   height: 1px;
   background: var(--color-delft-blue);
-  margin: 2.5rem auto;
+  margin: 2.5rem 0;
   opacity: 0.5;
+  flex-shrink: 0;
 }
 
 .spoon-history-container .footer-text {
@@ -658,6 +670,7 @@
   font-size: 0.875rem;
   color: rgba(248, 246, 243, 0.45);
   font-style: italic;
+  margin: 0;
 }
 
 /* Animations - gentle, stirring-like motion */
