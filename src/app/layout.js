@@ -42,6 +42,9 @@ export const metadata = {
   description: "Write your next essay with Esy, an AI Agent that does the boring research and helps you write smarter papers. Perfect grammar, citations, and your unique voice.",
   keywords: 'AI essay writer, research assistant, academic writing, essay generator, AI writing tool, skip research, smart essays, ESL writing help',
   metadataBase: new URL('https://esy.com'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'Esy - Skip Boring Research, Write Smarter Essays',
     description: 'Write your next essay with Esy, an AI Agent that does the boring research and helps you write smarter papers.',
