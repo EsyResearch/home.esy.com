@@ -1,0 +1,754 @@
+/*
+ * Design Research Report: The History of the Bicycle
+ * 
+ * Visual Archaeology:
+ * - Materials: Wood (1817), iron, steel tubes, rubber tires, leather saddles, chrome, carbon fiber
+ * - Color associations:
+ *   - Early era: dark wood, black iron, brass hardware
+ *   - Victorian: hunter greens, burgundy, polished brass
+ *   - Racing: chrome silver, Italian red, Tour de France yellow
+ *   - Modern: carbon black, neon accents
+ * 
+ * Proposed Color Palette:
+ * - Background: Asphalt night (#14171C) - the open road at dusk
+ * - Text: Clean white (#F4F4F5)
+ * - Accent 1: Chrome silver (#9CA3AF) - steel frames
+ * - Accent 2: Racing red (#DC2626) - competition, energy, Italian racing
+ * - Accent 3: Vintage brass (#C9A227) - Victorian hardware
+ * - Accent 4: Tour yellow (#FFD700) - le maillot jaune
+ * 
+ * Typography:
+ * - Display: DM Serif Display - elegant with forward momentum
+ * - Body: Inter - modern, clean, engineered precision
+ * 
+ * Animation Philosophy:
+ * - Rolling wheel motions
+ * - Forward-moving reveals (like cycling)
+ * - Spoke-like radial patterns
+ * - Chain-link/gear transitions
+ * - Speed and momentum feel
+ * 
+ * Differentiation:
+ * - Spoon: Porcelain whites, Delft blue, gentle/refined
+ * - Basketball: Burnt orange, hardwood, athletic bounce
+ * - Bicycle: Chrome/steel, racing red, forward momentum, road-inspired
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Road & Steel Palette - derived from bicycle materials */
+  --color-asphalt: #14171C;
+  --color-asphalt-light: #1C2027;
+  --color-asphalt-elevated: #242931;
+  --color-white: #F4F4F5;
+  --color-white-muted: rgba(244, 244, 245, 0.75);
+  --color-chrome: #9CA3AF;
+  --color-chrome-bright: #D1D5DB;
+  --color-steel: #6B7280;
+  --color-racing-red: #DC2626;
+  --color-racing-red-light: #EF4444;
+  --color-brass: #C9A227;
+  --color-tour-yellow: #FFD700;
+  --color-rubber: #1F2937;
+  
+  /* Typography - precision engineering meets elegance */
+  --font-display: 'DM Serif Display', serif;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  
+  /* Forward-moving, dynamic easing */
+  --ease-forward: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-momentum: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bicycle-history-container *,
+.bicycle-history-container *::before,
+.bicycle-history-container *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.bicycle-history-container {
+  font-family: var(--font-body);
+  background: var(--color-asphalt);
+  color: var(--color-white);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* Progress Bar - styled like a wheel/spoke */
+.bicycle-history-container .progress-bar {
+  position: fixed;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 200px;
+  background: rgba(156, 163, 175, 0.15);
+  border-radius: 2px;
+  z-index: 100;
+}
+
+.bicycle-history-container .progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to bottom, var(--color-racing-red), var(--color-tour-yellow));
+  border-radius: 2px;
+  transition: height 0.1s linear;
+}
+
+.bicycle-history-container .progress-wheel {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-racing-red);
+  border-radius: 50%;
+  background: var(--color-asphalt);
+  transition: top 0.1s linear;
+}
+
+.bicycle-history-container .progress-wheel::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--color-racing-red);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Hero Section - road/journey opening */
+.bicycle-history-container .hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.bicycle-history-container .hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.bicycle-history-container .hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(220, 38, 38, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(201, 162, 39, 0.06) 0%, transparent 40%),
+    linear-gradient(180deg, var(--color-asphalt) 0%, var(--color-asphalt-light) 100%);
+}
+
+/* Road lines pattern */
+.bicycle-history-container .hero-road-lines {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.bicycle-history-container .road-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 60px;
+  background: rgba(156, 163, 175, 0.15);
+  border-radius: 2px;
+}
+
+.bicycle-history-container .hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 1000px;
+}
+
+.bicycle-history-container .hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 100px;
+  color: var(--color-racing-red-light);
+  font-family: var(--font-heading);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  animation: fadeInDown 1s var(--ease-forward) 0.2s both;
+}
+
+.bicycle-history-container .hero-title {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
+.bicycle-history-container .title-line {
+  display: block;
+}
+
+.bicycle-history-container .title-line-1 {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 400;
+  color: var(--color-chrome);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  margin-bottom: 0.75rem;
+  animation: fadeInUp 0.8s var(--ease-forward) 0.3s both;
+}
+
+.bicycle-history-container .title-line-2 {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 12vw, 8rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  background: linear-gradient(
+    135deg,
+    var(--color-white) 0%,
+    var(--color-chrome-bright) 30%,
+    var(--color-racing-red-light) 60%,
+    var(--color-tour-yellow) 100%
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeInUp 0.8s var(--ease-forward) 0.4s both, wheelSpin 15s linear infinite;
+}
+
+@keyframes wheelSpin {
+  0% { background-position: 0% center; }
+  100% { background-position: 300% center; }
+}
+
+.bicycle-history-container .title-line-3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-style: italic;
+  color: var(--color-chrome);
+  margin-top: 0.5rem;
+  animation: fadeInUp 0.8s var(--ease-forward) 0.5s both;
+}
+
+.bicycle-history-container .hero-tagline {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  color: var(--color-white-muted);
+  font-weight: 300;
+  max-width: 550px;
+  margin: 0 auto;
+  animation: fadeIn 1s var(--ease-forward) 0.7s both;
+}
+
+/* Decorative wheel */
+.bicycle-history-container .hero-wheel {
+  position: absolute;
+  right: 5%;
+  top: 15%;
+  width: clamp(100px, 18vw, 200px);
+  height: clamp(100px, 18vw, 200px);
+  opacity: 0.06;
+  animation: rotate 30s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.bicycle-history-container .scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  animation: fadeIn 1s var(--ease-forward) 1s both;
+}
+
+.bicycle-history-container .scroll-indicator span {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-chrome);
+}
+
+.bicycle-history-container .scroll-arrow {
+  width: 20px;
+  height: 20px;
+  color: var(--color-racing-red);
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(8px); }
+  60% { transform: translateY(4px); }
+}
+
+.bicycle-history-container .hero-stats {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  padding: 2rem;
+  background: linear-gradient(to top, rgba(20, 23, 28, 0.95), transparent);
+  animation: fadeIn 1s var(--ease-forward) 0.9s both;
+}
+
+.bicycle-history-container .stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.bicycle-history-container .stat-number {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 600;
+  color: var(--color-racing-red);
+  line-height: 1;
+}
+
+.bicycle-history-container .stat-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--color-chrome);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.25rem;
+}
+
+/* Section Styles */
+.bicycle-history-container .section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 6rem 2rem;
+  overflow: hidden;
+}
+
+.bicycle-history-container .section-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Subtle road texture */
+.bicycle-history-container .road-texture {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 80px,
+      rgba(156, 163, 175, 0.5) 80px,
+      rgba(156, 163, 175, 0.5) 82px
+    );
+}
+
+.bicycle-history-container .section:nth-child(even) {
+  background: linear-gradient(135deg, var(--color-asphalt-light) 0%, var(--color-asphalt-elevated) 100%);
+}
+
+.bicycle-history-container .section:nth-child(odd) {
+  background: linear-gradient(135deg, var(--color-asphalt) 0%, var(--color-asphalt-light) 100%);
+}
+
+.bicycle-history-container .section-content {
+  position: relative;
+  z-index: 1;
+  max-width: 750px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.bicycle-history-container .section-content.align-left {
+  margin-left: 10%;
+  margin-right: auto;
+}
+
+.bicycle-history-container .section-content.align-right {
+  margin-right: 10%;
+  margin-left: auto;
+}
+
+.bicycle-history-container .era-badge {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.8s var(--ease-forward);
+}
+
+.bicycle-history-container .section.visible .era-badge {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.bicycle-history-container .era-text {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 600;
+  color: var(--color-racing-red);
+  line-height: 1;
+}
+
+.bicycle-history-container .era-line {
+  flex: 1;
+  max-width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-racing-red), transparent);
+  border-radius: 2px;
+}
+
+.bicycle-history-container .text-container {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s var(--ease-forward) 0.15s;
+}
+
+.bicycle-history-container .section.visible .text-container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bicycle-history-container .subtitle {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-brass);
+  margin-bottom: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(201, 162, 39, 0.1);
+  border-radius: 4px;
+}
+
+.bicycle-history-container .section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+
+.bicycle-history-container .section-text {
+  font-family: var(--font-body);
+  font-size: clamp(0.9375rem, 1.8vw, 1.0625rem);
+  color: var(--color-white-muted);
+  line-height: 1.85;
+  font-weight: 300;
+}
+
+/* Highlight box - chain link inspired */
+.bicycle-history-container .highlight-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(220, 38, 38, 0.08);
+  border-left: 4px solid var(--color-racing-red);
+  border-radius: 0 8px 8px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s var(--ease-forward) 0.3s;
+}
+
+.bicycle-history-container .section.visible .highlight-box {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bicycle-history-container .highlight-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: var(--color-racing-red);
+}
+
+.bicycle-history-container .highlight-text {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: var(--color-chrome-bright);
+  line-height: 1.6;
+}
+
+/* Decorative wheel element */
+.bicycle-history-container .decorative-wheel {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.04;
+}
+
+.bicycle-history-container .align-left ~ .decorative-wheel {
+  right: 5%;
+}
+
+.bicycle-history-container .align-right ~ .decorative-wheel {
+  left: 5%;
+}
+
+.bicycle-history-container .wheel-circle {
+  width: 150px;
+  height: 150px;
+  border: 2px solid var(--color-chrome);
+  border-radius: 50%;
+  position: relative;
+  opacity: 0;
+  transform: scale(0.5) rotate(-90deg);
+  transition: all 1.2s var(--ease-forward) 0.2s;
+}
+
+.bicycle-history-container .section.visible .wheel-circle {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.bicycle-history-container .wheel-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-chrome);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bicycle-history-container .wheel-spoke {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 65px;
+  background: var(--color-chrome);
+  transform-origin: top center;
+}
+
+.bicycle-history-container .section-number {
+  position: absolute;
+  bottom: 2rem;
+  right: 3rem;
+  font-family: var(--font-heading);
+  font-size: clamp(5rem, 12vw, 9rem);
+  font-weight: 700;
+  color: rgba(220, 38, 38, 0.04);
+  line-height: 1;
+  user-select: none;
+}
+
+/* Sources Section */
+.bicycle-history-container .sources-section {
+  position: relative;
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, var(--color-asphalt-light) 0%, var(--color-asphalt) 100%);
+}
+
+.bicycle-history-container .sources-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.bicycle-history-container .sources-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-white);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(220, 38, 38, 0.3);
+}
+
+.bicycle-history-container .sources-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.bicycle-history-container .sources-list li {
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.bicycle-history-container .sources-list li::before {
+  content: '●';
+  position: absolute;
+  left: 0;
+  color: var(--color-racing-red);
+  font-size: 0.5rem;
+  top: 0.6em;
+}
+
+.bicycle-history-container .sources-list a {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--color-white-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  line-height: 1.6;
+}
+
+.bicycle-history-container .sources-list a:hover {
+  color: var(--color-racing-red-light);
+}
+
+.bicycle-history-container .sources-note {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: var(--color-chrome);
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(156, 163, 175, 0.15);
+}
+
+/* Footer */
+.bicycle-history-container .footer {
+  position: relative;
+  padding: 6rem 2rem;
+  background: linear-gradient(to bottom, var(--color-asphalt-light), #0A0C0F);
+  text-align: center;
+}
+
+.bicycle-history-container .footer-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.bicycle-history-container .footer-icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 2rem;
+  opacity: 0.2;
+  color: var(--color-chrome);
+}
+
+.bicycle-history-container .footer-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.625rem);
+  font-style: italic;
+  color: var(--color-white);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.bicycle-history-container .footer-quote cite {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-style: normal;
+  color: var(--color-racing-red);
+  margin-top: 1rem;
+}
+
+.bicycle-history-container .footer-divider {
+  width: 60px;
+  height: 3px;
+  background: var(--color-racing-red);
+  margin: 2rem auto;
+  border-radius: 2px;
+}
+
+.bicycle-history-container .footer-text {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-chrome);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .bicycle-history-container .progress-bar {
+    display: none;
+  }
+  
+  .bicycle-history-container .hero-stats {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .bicycle-history-container .section-content.align-left,
+  .bicycle-history-container .section-content.align-right {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .bicycle-history-container .decorative-wheel {
+    display: none;
+  }
+  
+  .bicycle-history-container .section-number {
+    font-size: 5rem;
+    bottom: 1rem;
+    right: 1rem;
+  }
+  
+  .bicycle-history-container .hero-wheel {
+    display: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .bicycle-history-container .hero-wheel,
+  .bicycle-history-container .title-line-2,
+  .bicycle-history-container .scroll-arrow {
+    animation: none;
+  }
+}
+

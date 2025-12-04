@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { BookOpen, Clock, ArrowRight, Sparkles, Globe, History, Trophy, Utensils } from "lucide-react";
+import { BookOpen, Clock, ArrowRight, Sparkles, Globe, History, Trophy, Utensils, Bike } from "lucide-react";
 
 // Elevated Dark Theme from DESIGN_SYSTEM.md
 const colors = {
@@ -36,6 +36,19 @@ const ScrollytellingClient = () => {
 
   const stories: Story[] = [
     {
+      id: "who-invented-the-bicycle",
+      title: "The Bicycle Story",
+      subtitle: "200 Years of Two Wheels",
+      description:
+        "From Karl von Drais's 1817 running machine to modern carbon fiber racers, discover the 200-year journey of the bicycle—the invention that changed transportation, liberated women, and became humanity's most efficient machine.",
+      category: "Transportation History",
+      readTime: "10 min",
+      href: "/scrollytelling/who-invented-the-bicycle",
+      icon: <Bike className="w-6 h-6" />,
+      isNew: true,
+      isFeatured: true,
+    },
+    {
       id: "who-invented-the-spoon",
       title: "The Spoon Story",
       subtitle: "30,000 Years of Humanity's Essential Tool",
@@ -45,8 +58,8 @@ const ScrollytellingClient = () => {
       readTime: "10 min",
       href: "/scrollytelling/who-invented-the-spoon",
       icon: <Utensils className="w-6 h-6" />,
-      isNew: true,
-      isFeatured: true,
+      isNew: false,
+      isFeatured: false,
     },
     {
       id: "who-invented-basketball",
