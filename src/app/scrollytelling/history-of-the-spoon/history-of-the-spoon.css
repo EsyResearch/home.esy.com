@@ -1,0 +1,723 @@
+/*
+ * Design Research Report: The History of the Spoon
+ * 
+ * Subject Visual Archaeology:
+ * - Materials: bone, shell, wood, ceramic/porcelain, silver, pewter, stainless steel
+ * - Cultural associations: fine dining, elegance, nurturing, refinement
+ * - Key touchpoints: porcelain/china, sterling silver flatware, "born with a silver spoon"
+ * 
+ * Color Palette (Derived from spoon materials):
+ * - Background: Deep porcelain night (#0C0C14) - sophisticated dining room ambiance
+ * - Primary: Porcelain white (#F8F6F3) - clean, refined, like fine china
+ * - Accent 1: Delft Blue (#4A6FA5) - from Dutch/Chinese porcelain tradition
+ * - Accent 2: Sterling Silver (#B8C4D0) - the iconic material
+ * - Highlight: Antiqued Gold (#C9A861) - gilded edges, historical wealth
+ * 
+ * Typography:
+ * - Display: Playfair Display - elegant, refined, suitable for fine dining
+ * - Serif: Cormorant Garamond - delicate, graceful, European elegance
+ * - Body: Spectral - readable with refinement
+ * 
+ * Animation Philosophy:
+ * - Smooth, gentle movements (like stirring soup)
+ * - Reflective shimmer effects (polished metal)
+ * - Graceful reveals, not athletic/bouncing
+ * - Porcelain-inspired patterns
+ * 
+ * Differentiation from other stories:
+ * - Basketball: Athletic, burnt orange, hardwood browns, energetic
+ * - Fork: Ancient Byzantine, deep golds, warmer earth tones
+ * - Spoon: Refined porcelain whites, Delft blues, sterling silvers, gentle elegance
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+
+:root {
+  /* Porcelain & Silver Palette - derived from spoon materials */
+  --color-porcelain: #F8F6F3;
+  --color-porcelain-warm: #F5F0E8;
+  --color-delft-blue: #4A6FA5;
+  --color-delft-light: #6B8DBF;
+  --color-delft-dark: #2D4A6F;
+  --color-silver: #B8C4D0;
+  --color-silver-bright: #D4DCE4;
+  --color-silver-dark: #8A9AAD;
+  --color-gold: #C9A861;
+  --color-gold-light: #E0C988;
+  --color-night: #0C0C14;
+  --color-night-surface: #141420;
+  --color-night-elevated: #1C1C2A;
+  
+  /* Typography - refined dining elegance */
+  --font-display: 'Playfair Display', serif;
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-body: 'Spectral', serif;
+  
+  /* Smooth, stirring-like easing */
+  --ease-gentle: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-elegant: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.spoon-history-container *,
+.spoon-history-container *::before,
+.spoon-history-container *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.spoon-history-container {
+  font-family: var(--font-body);
+  background: var(--color-night);
+  color: var(--color-porcelain);
+  overflow-x: hidden;
+  line-height: 1.75;
+}
+
+/* Progress Bar - styled like a silver spoon handle */
+.spoon-history-container .progress-bar {
+  position: fixed;
+  left: 2.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 180px;
+  background: rgba(184, 196, 208, 0.15);
+  border-radius: 1px;
+  z-index: 100;
+}
+
+.spoon-history-container .progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to bottom, var(--color-delft-blue), var(--color-silver));
+  border-radius: 1px;
+  transition: height 0.15s var(--ease-gentle);
+}
+
+.spoon-history-container .progress-indicator {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 16px;
+  background: var(--color-silver);
+  border-radius: 5px 5px 5px 5px / 8px 8px 4px 4px;
+  transition: top 0.15s var(--ease-gentle);
+  box-shadow: 0 0 12px rgba(184, 196, 208, 0.4);
+}
+
+/* Hero Section - porcelain elegance */
+.spoon-history-container .hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.spoon-history-container .hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.spoon-history-container .hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 70% 50% at 50% 20%, rgba(74, 111, 165, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 35% at 75% 75%, rgba(184, 196, 208, 0.06) 0%, transparent 50%),
+    linear-gradient(180deg, var(--color-night) 0%, var(--color-night-surface) 100%);
+}
+
+/* Porcelain pattern - Delft-inspired dots */
+.spoon-history-container .hero-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image: 
+    radial-gradient(circle at 1px 1px, var(--color-delft-blue) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.spoon-history-container .hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 900px;
+}
+
+.spoon-history-container .hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 1.75rem;
+  border: 1px solid rgba(74, 111, 165, 0.4);
+  border-radius: 2px;
+  color: var(--color-delft-light);
+  font-family: var(--font-serif);
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+  animation: fadeInDown 1s var(--ease-elegant) 0.2s both;
+}
+
+.spoon-history-container .hero-badge::before,
+.spoon-history-container .hero-badge::after {
+  content: '✦';
+  font-size: 0.5rem;
+  opacity: 0.6;
+}
+
+.spoon-history-container .hero-title {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  margin-bottom: 1.75rem;
+}
+
+.spoon-history-container .title-line {
+  display: block;
+  font-family: var(--font-display);
+}
+
+.spoon-history-container .title-line-1 {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  color: var(--color-silver);
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  animation: fadeInUp 0.8s var(--ease-elegant) 0.4s both;
+}
+
+.spoon-history-container .title-line-2 {
+  font-size: clamp(4.5rem, 14vw, 9rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  background: linear-gradient(
+    135deg, 
+    var(--color-porcelain) 0%, 
+    var(--color-silver-bright) 25%, 
+    var(--color-delft-light) 50%, 
+    var(--color-silver-bright) 75%, 
+    var(--color-porcelain) 100%
+  );
+  background-size: 400% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeInUp 0.8s var(--ease-elegant) 0.5s both, silverShimmer 10s linear infinite;
+}
+
+@keyframes silverShimmer {
+  0% { background-position: 400% center; }
+  100% { background-position: -400% center; }
+}
+
+.spoon-history-container .title-line-3 {
+  font-size: clamp(1.25rem, 3.5vw, 2rem);
+  color: var(--color-silver-dark);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  margin-top: 0.5rem;
+  animation: fadeInUp 0.8s var(--ease-elegant) 0.6s both;
+}
+
+.spoon-history-container .hero-tagline {
+  font-family: var(--font-serif);
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  color: rgba(248, 246, 243, 0.6);
+  font-weight: 300;
+  animation: fadeIn 1s var(--ease-elegant) 0.8s both;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Decorative spoon illustration */
+.spoon-history-container .hero-spoon {
+  position: absolute;
+  right: 8%;
+  top: 15%;
+  width: clamp(80px, 12vw, 150px);
+  opacity: 0.08;
+  animation: gentleFloat 8s ease-in-out infinite;
+  color: var(--color-silver);
+}
+
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0) rotate(-25deg); }
+  50% { transform: translateY(-10px) rotate(-22deg); }
+}
+
+.spoon-history-container .scroll-indicator {
+  position: absolute;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  animation: fadeIn 1s var(--ease-elegant) 1.2s both;
+}
+
+.spoon-history-container .scroll-indicator span {
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(184, 196, 208, 0.5);
+}
+
+.spoon-history-container .scroll-arrow {
+  width: 20px;
+  height: 20px;
+  color: var(--color-delft-blue);
+  animation: gentleBounce 3s ease-in-out infinite;
+}
+
+@keyframes gentleBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+.spoon-history-container .hero-stats {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  padding: 2.5rem 2rem;
+  background: linear-gradient(to top, rgba(12, 12, 20, 0.95), transparent);
+  animation: fadeIn 1s var(--ease-elegant) 1s both;
+}
+
+.spoon-history-container .stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.spoon-history-container .stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  color: var(--color-delft-blue);
+  line-height: 1;
+  font-weight: 500;
+}
+
+.spoon-history-container .stat-label {
+  font-family: var(--font-serif);
+  font-size: 0.7rem;
+  color: rgba(248, 246, 243, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-top: 0.375rem;
+}
+
+/* Section Styles - alternating porcelain/night */
+.spoon-history-container .section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 7rem 2rem;
+  overflow: hidden;
+}
+
+.spoon-history-container .section-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Delft-inspired decorative pattern */
+.spoon-history-container .pattern-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.018;
+  background-image: 
+    radial-gradient(circle at 2px 2px, var(--color-delft-blue) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.spoon-history-container .section:nth-child(even) {
+  background: linear-gradient(135deg, var(--color-night-surface) 0%, var(--color-night-elevated) 100%);
+}
+
+.spoon-history-container .section:nth-child(odd) {
+  background: linear-gradient(135deg, var(--color-night) 0%, var(--color-night-surface) 100%);
+}
+
+.spoon-history-container .section-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.spoon-history-container .section-content.align-left {
+  margin-left: 12%;
+  margin-right: auto;
+}
+
+.spoon-history-container .section-content.align-right {
+  margin-right: 12%;
+  margin-left: auto;
+}
+
+.spoon-history-container .era-badge {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.9s var(--ease-elegant);
+}
+
+.spoon-history-container .section.visible .era-badge {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.spoon-history-container .era-text {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--color-delft-blue);
+  line-height: 1;
+  font-weight: 500;
+}
+
+.spoon-history-container .era-line {
+  flex: 1;
+  max-width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-delft-blue), transparent);
+}
+
+.spoon-history-container .text-container {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s var(--ease-elegant) 0.15s;
+}
+
+.spoon-history-container .section.visible .text-container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.spoon-history-container .subtitle {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 0.875rem;
+  font-weight: 400;
+}
+
+.spoon-history-container .section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 500;
+  color: var(--color-porcelain);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.spoon-history-container .section-text {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.8vw, 1.0625rem);
+  color: rgba(248, 246, 243, 0.75);
+  line-height: 1.9;
+  font-weight: 300;
+}
+
+/* Highlight box - porcelain-inspired border */
+.spoon-history-container .highlight-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: 2.25rem;
+  padding: 1.5rem;
+  background: rgba(74, 111, 165, 0.06);
+  border-left: 2px solid var(--color-delft-blue);
+  border-radius: 0 4px 4px 0;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 0.8s var(--ease-elegant) 0.3s;
+}
+
+.spoon-history-container .section.visible .highlight-box {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.spoon-history-container .highlight-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: var(--color-delft-light);
+}
+
+.spoon-history-container .highlight-text {
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  font-style: italic;
+  color: var(--color-silver);
+  line-height: 1.7;
+}
+
+/* Decorative elements - spoon bowl shapes */
+.spoon-history-container .decorative-elements {
+  position: absolute;
+  top: 50%;
+  right: 6%;
+  transform: translateY(-50%);
+  opacity: 0.04;
+}
+
+.spoon-history-container .align-left ~ .decorative-elements {
+  right: 6%;
+  left: auto;
+}
+
+.spoon-history-container .align-right ~ .decorative-elements {
+  left: 6%;
+  right: auto;
+}
+
+/* Oval spoon bowl shape */
+.spoon-history-container .deco-oval {
+  width: 120px;
+  height: 180px;
+  border: 1px solid var(--color-silver);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: all 1.2s var(--ease-elegant) 0.2s;
+}
+
+.spoon-history-container .section.visible .deco-oval {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.spoon-history-container .deco-handle {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 1px;
+  height: 100px;
+  background: linear-gradient(to bottom, var(--color-silver), transparent);
+  transform: translateX(-50%);
+}
+
+.spoon-history-container .section-number {
+  position: absolute;
+  bottom: 2rem;
+  right: 3rem;
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 10vw, 8rem);
+  color: rgba(74, 111, 165, 0.03);
+  line-height: 1;
+  user-select: none;
+  font-weight: 500;
+}
+
+/* Sources Section - refined styling */
+.spoon-history-container .sources-section {
+  position: relative;
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, var(--color-night-surface) 0%, var(--color-night) 100%);
+}
+
+.spoon-history-container .sources-content {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.spoon-history-container .sources-title {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 500;
+  color: var(--color-porcelain);
+  margin-bottom: 1.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(74, 111, 165, 0.25);
+}
+
+.spoon-history-container .sources-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem 0;
+}
+
+.spoon-history-container .sources-list li {
+  margin-bottom: 0.875rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.spoon-history-container .sources-list li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  color: var(--color-delft-blue);
+  font-size: 0.5rem;
+  top: 0.5em;
+}
+
+.spoon-history-container .sources-list a {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: rgba(248, 246, 243, 0.7);
+  text-decoration: none;
+  transition: color 0.25s var(--ease-gentle);
+  line-height: 1.6;
+}
+
+.spoon-history-container .sources-list a:hover {
+  color: var(--color-delft-light);
+}
+
+.spoon-history-container .sources-note {
+  font-family: var(--font-serif);
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: rgba(248, 246, 243, 0.4);
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(184, 196, 208, 0.1);
+}
+
+/* Footer - elegant close */
+.spoon-history-container .footer {
+  position: relative;
+  padding: 6rem 2rem;
+  background: linear-gradient(to bottom, var(--color-night-surface), #06060A);
+  text-align: center;
+}
+
+.spoon-history-container .footer-content {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.spoon-history-container .footer-icon {
+  width: 40px;
+  height: 60px;
+  margin: 0 auto 2.5rem;
+  opacity: 0.2;
+  color: var(--color-silver);
+}
+
+.spoon-history-container .footer-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-style: italic;
+  color: var(--color-porcelain);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.spoon-history-container .footer-quote cite {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 0.875rem;
+  font-style: normal;
+  color: var(--color-delft-light);
+  margin-top: 1rem;
+}
+
+.spoon-history-container .footer-divider {
+  width: 50px;
+  height: 1px;
+  background: var(--color-delft-blue);
+  margin: 2.5rem auto;
+  opacity: 0.5;
+}
+
+.spoon-history-container .footer-text {
+  font-family: var(--font-serif);
+  font-size: 0.875rem;
+  color: rgba(248, 246, 243, 0.45);
+  font-style: italic;
+}
+
+/* Animations - gentle, stirring-like motion */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .spoon-history-container .progress-bar {
+    display: none;
+  }
+  
+  .spoon-history-container .hero-stats {
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .spoon-history-container .section-content.align-left,
+  .spoon-history-container .section-content.align-right {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .spoon-history-container .decorative-elements {
+    display: none;
+  }
+  
+  .spoon-history-container .section-number {
+    font-size: 5rem;
+    bottom: 1rem;
+    right: 1rem;
+  }
+  
+  .spoon-history-container .hero-spoon {
+    display: none;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .spoon-history-container .hero-spoon,
+  .spoon-history-container .scroll-arrow,
+  .spoon-history-container .title-line-2 {
+    animation: none;
+  }
+  
+  .spoon-history-container .progress-fill,
+  .spoon-history-container .progress-indicator {
+    transition: none;
+  }
+}

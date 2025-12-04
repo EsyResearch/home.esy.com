@@ -1,0 +1,960 @@
+import React, { useEffect, useRef, useState } from 'react';
+
+interface Section {
+  id: string;
+  year: string;
+  title: string;
+  subtitle: string;
+  content: string;
+  highlight?: string;
+  image?: string;
+}
+
+const sections: Section[] = [
+  {
+    id: 'origin',
+    year: '1891',
+    title: 'The Birth of a Game',
+    subtitle: 'Springfield, Massachusetts',
+    content: 'In the winter of 1891, Dr. James Naismith, a Canadian physical education instructor at the International YMCA Training School, faced an impossible challenge: create an indoor game that could keep young men active during the brutal New England winters. Armed with a soccer ball and two peach baskets, he invented a game that would captivate billions.',
+    highlight: 'December 21, 1891 — The first game of basketball was played'
+  },
+  {
+    id: 'rules',
+    year: '1891',
+    title: 'The Original 13 Rules',
+    subtitle: 'A Foundation for Forever',
+    content: 'Naismith wrote 13 simple rules on two typewritten pages. Players couldn\'t run with the ball. No shouldering, holding, pushing, or striking. The ball could be batted in any direction with one or both hands. Goals were made by throwing the ball into the basket. These rules, born from necessity, became the DNA of a global phenomenon.',
+    highlight: 'The original rules document sold for $4.3 million in 2010'
+  },
+  {
+    id: 'spread',
+    year: '1893-1936',
+    title: 'From Peach Baskets to the World',
+    subtitle: 'A Game Without Borders',
+    content: 'YMCA missionaries carried basketball across oceans. By 1893, it reached France. China embraced it by 1895. Japan and India followed. The game needed no translator — just a ball, a hoop, and the universal language of competition. In 1936, basketball made its Olympic debut in Berlin, with Naismith himself presenting the medals.',
+    highlight: 'Basketball is now played in over 200 countries worldwide'
+  },
+  {
+    id: 'nba',
+    year: '1946',
+    title: 'The NBA is Born',
+    subtitle: 'Professional Dreams Take Flight',
+    content: 'On June 6, 1946, the Basketball Association of America was founded in New York City. The merger with the National Basketball League in 1949 created the NBA. What began in hockey arenas and dance halls would become a multi-billion dollar empire, transforming athletes into global icons.',
+    highlight: 'The first NBA game: Toronto Huskies vs New York Knickerbockers'
+  },
+  {
+    id: 'evolution',
+    year: '1950-1980',
+    title: 'The Evolution',
+    subtitle: 'Giants Walk Among Us',
+    content: 'The game evolved rapidly. The shot clock arrived in 1954, eliminating stall tactics forever. Wilt Chamberlain scored 100 points in a single game. Bill Russell redefined defense. The ABA introduced the three-point line, adding a new dimension to offensive strategy. Basketball was becoming art.',
+    highlight: 'March 2, 1962 — Wilt scores 100 points vs the New York Knicks'
+  },
+  {
+    id: 'globalicons',
+    year: '1984-1998',
+    title: 'The Age of Icons',
+    subtitle: 'When Basketball Became Culture',
+    content: 'Michael Jordan didn\'t just play basketball — he transcended it. The Dream Team of 1992 showed the world that basketball was America\'s gift to global sports culture. Magic and Bird had saved the league; Jordan made it legendary. Sneakers became artifacts. Highlights became religion.',
+    highlight: 'The 1992 Dream Team is considered the greatest sports team ever assembled'
+  },
+  {
+    id: 'modern',
+    year: '2000-Present',
+    title: 'The Modern Game',
+    subtitle: 'Analytics Meets Artistry',
+    content: 'Stephen Curry broke basketball\'s spatial logic, launching shots from distances once considered absurd. Analytics revolutionized strategy. LeBron James became a living debate about greatness. International players from every continent now dominate the league. The three-point revolution changed everything.',
+    highlight: 'The NBA is now valued at over $100 billion'
+  },
+  {
+    id: 'legacy',
+    year: 'Forever',
+    title: 'More Than a Game',
+    subtitle: 'The Ball Never Stops',
+    content: 'From a gymnasium in Massachusetts to courts on every continent, basketball has become humanity\'s shared language of movement, competition, and joy. Every driveway hoop, every playground game, every buzzer-beater connects back to that December day when James Naismith hung two peach baskets and changed the world forever.',
+    highlight: 'An estimated 450 million people play basketball worldwide'
+  }
+];
+
+const BasketballIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="3"/>
+    <path d="M50 5 Q30 50 50 95" stroke="currentColor" strokeWidth="2" fill="none"/>
+    <path d="M50 5 Q70 50 50 95" stroke="currentColor" strokeWidth="2" fill="none"/>
+    <path d="M5 50 H95" stroke="currentColor" strokeWidth="2"/>
+    <path d="M50 5 V95" stroke="currentColor" strokeWidth="2"/>
+  </svg>
+);
+
+const Section: React.FC<{ section: Section; index: number }> = ({ section, index }) => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const progress = Math.max(0, Math.min(1, 1 - rect.top / windowHeight));
+        setScrollProgress(progress);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const isEven = index % 2 === 0;
+
+  return (
+    <section
+      ref={sectionRef}
+      className={`section ${isVisible ? 'visible' : ''}`}
+      style={{
+        '--scroll-progress': scrollProgress,
+        '--index': index,
+      } as React.CSSProperties}
+    >
+      <div className="section-bg" style={{
+        transform: `translateY(${scrollProgress * -50}px)`,
+      }}>
+        <div className="noise-overlay" />
+        <div className="pattern-overlay" style={{
+          backgroundPosition: `${scrollProgress * 100}px ${scrollProgress * 50}px`
+        }} />
+      </div>
+      
+      <div className={`section-content ${isEven ? 'align-left' : 'align-right'}`}>
+        <div className="year-badge">
+          <span className="year-text">{section.year}</span>
+          <div className="year-line" />
+        </div>
+        
+        <div className="text-container">
+          <span className="subtitle">{section.subtitle}</span>
+          <h2 className="title">{section.title}</h2>
+          <p className="content">{section.content}</p>
+          
+          {section.highlight && (
+            <div className="highlight-box">
+              <div className="highlight-icon">
+                <BasketballIcon className="ball-icon" />
+              </div>
+              <p className="highlight-text">{section.highlight}</p>
+            </div>
+          )}
+        </div>
+        
+        <div className="decorative-elements">
+          <div className="deco-circle" />
+          <div className="deco-line" />
+          <div className="deco-dots">
+            {[...Array(5)].map((_, i) => (
+              <span key={i} className="dot" style={{ animationDelay: `${i * 0.1}s` }} />
+            ))}
+          </div>
+        </div>
+      </div>
+      
+      <div className="section-number">
+        <span>{String(index + 1).padStart(2, '0')}</span>
+      </div>
+    </section>
+  );
+};
+
+const Hero: React.FC = () => {
+  const [scrollY, setScrollY] = useState(0);
+  
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <header className="hero">
+      <div className="hero-bg">
+        <div className="hero-gradient" />
+        <div className="hero-noise" />
+        <div className="hero-lines">
+          {[...Array(20)].map((_, i) => (
+            <div 
+              key={i} 
+              className="court-line"
+              style={{
+                transform: `translateY(${scrollY * (0.1 + i * 0.02)}px)`,
+                opacity: 1 - (scrollY / 800)
+              }}
+            />
+          ))}
+        </div>
+      </div>
+      
+      <div className="hero-content" style={{ transform: `translateY(${scrollY * 0.4}px)` }}>
+        <div className="hero-badge">
+          <span>EST. 1891</span>
+        </div>
+        
+        <h1 className="hero-title">
+          <span className="title-line title-line-1">The</span>
+          <span className="title-line title-line-2">Basketball</span>
+          <span className="title-line title-line-3">Story</span>
+        </h1>
+        
+        <p className="hero-tagline">
+          From peach baskets to global phenomenon
+        </p>
+        
+        <div className="hero-ball" style={{
+          transform: `translateY(${scrollY * 0.6}px) rotate(${scrollY * 0.2}deg)`
+        }}>
+          <BasketballIcon className="hero-ball-icon" />
+        </div>
+        
+        <div className="scroll-indicator">
+          <span>Scroll to explore</span>
+          <div className="scroll-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      
+      <div className="hero-stats">
+        <div className="stat">
+          <span className="stat-number">134</span>
+          <span className="stat-label">Years of History</span>
+        </div>
+        <div className="stat">
+          <span className="stat-number">450M</span>
+          <span className="stat-label">Players Worldwide</span>
+        </div>
+        <div className="stat">
+          <span className="stat-number">200+</span>
+          <span className="stat-label">Countries Playing</span>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+const Footer: React.FC = () => (
+  <footer className="footer">
+    <div className="footer-content">
+      <div className="footer-ball">
+        <BasketballIcon className="footer-ball-icon" />
+      </div>
+      <blockquote className="footer-quote">
+        "The invention of basketball was not an accident. It was developed to meet a need."
+        <cite>— Dr. James Naismith</cite>
+      </blockquote>
+      <div className="footer-divider" />
+      <p className="footer-text">
+        The story continues every time someone picks up a ball.
+      </p>
+    </div>
+  </footer>
+);
+
+const ProgressBar: React.FC = () => {
+  const [progress, setProgress] = useState(0);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const currentProgress = (window.scrollY / scrollHeight) * 100;
+      setProgress(currentProgress);
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
+  return (
+    <div className="progress-bar">
+      <div className="progress-fill" style={{ height: `${progress}%` }} />
+      <div className="progress-ball" style={{ top: `${progress}%` }}>
+        <BasketballIcon className="progress-ball-icon" />
+      </div>
+    </div>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Bebas+Neue&family=Source+Serif+4:wght@300;400;500;600&display=swap');
+        
+        :root {
+          --color-cream: #F5F0E8;
+          --color-paper: #EDE6DA;
+          --color-burnt: #C4501B;
+          --color-rust: #A63D0F;
+          --color-brown: #2C1810;
+          --color-sepia: #704214;
+          --color-gold: #D4A853;
+          --color-leather: #8B4513;
+          --color-ink: #1A1612;
+          
+          --font-display: 'Bebas Neue', sans-serif;
+          --font-serif: 'Playfair Display', serif;
+          --font-body: 'Source Serif 4', serif;
+          
+          --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+          --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        *, *::before, *::after {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        
+        html {
+          scroll-behavior: smooth;
+        }
+        
+        body {
+          font-family: var(--font-body);
+          background: var(--color-ink);
+          color: var(--color-cream);
+          overflow-x: hidden;
+          line-height: 1.6;
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+          position: fixed;
+          left: 2rem;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 3px;
+          height: 200px;
+          background: rgba(244, 240, 232, 0.1);
+          border-radius: 2px;
+          z-index: 100;
+        }
+        
+        .progress-fill {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          background: linear-gradient(to bottom, var(--color-burnt), var(--color-gold));
+          border-radius: 2px;
+          transition: height 0.1s linear;
+        }
+        
+        .progress-ball {
+          position: absolute;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 20px;
+          height: 20px;
+          transition: top 0.1s linear;
+        }
+        
+        .progress-ball-icon {
+          width: 100%;
+          height: 100%;
+          color: var(--color-burnt);
+        }
+        
+        /* Hero Section */
+        .hero {
+          position: relative;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+          padding: 2rem;
+        }
+        
+        .hero-bg {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+        }
+        
+        .hero-gradient {
+          position: absolute;
+          inset: 0;
+          background: 
+            radial-gradient(ellipse 80% 50% at 50% 0%, rgba(196, 80, 27, 0.15) 0%, transparent 60%),
+            radial-gradient(ellipse 60% 40% at 80% 80%, rgba(166, 61, 15, 0.1) 0%, transparent 50%),
+            linear-gradient(180deg, var(--color-ink) 0%, #1D1410 100%);
+        }
+        
+        .hero-noise {
+          position: absolute;
+          inset: 0;
+          opacity: 0.4;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        
+        .hero-lines {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+        }
+        
+        .court-line {
+          position: absolute;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(212, 168, 83, 0.1) 20%, rgba(212, 168, 83, 0.1) 80%, transparent);
+        }
+        
+        .court-line:nth-child(odd) {
+          background: linear-gradient(90deg, transparent 10%, rgba(196, 80, 27, 0.08) 50%, transparent 90%);
+        }
+        
+        ${[...Array(20)].map((_, i) => `.court-line:nth-child(${i + 1}) { top: ${i * 5}%; }`).join('\n')}
+        
+        .hero-content {
+          position: relative;
+          z-index: 1;
+          text-align: center;
+          max-width: 1000px;
+        }
+        
+        .hero-badge {
+          display: inline-block;
+          padding: 0.5rem 1.5rem;
+          border: 1px solid var(--color-gold);
+          color: var(--color-gold);
+          font-family: var(--font-display);
+          letter-spacing: 0.3em;
+          font-size: 0.875rem;
+          margin-bottom: 2rem;
+          animation: fadeInDown 1s var(--ease-out-expo) 0.2s both;
+        }
+        
+        .hero-title {
+          display: flex;
+          flex-direction: column;
+          line-height: 0.85;
+          margin-bottom: 1.5rem;
+        }
+        
+        .title-line {
+          display: block;
+          font-family: var(--font-display);
+          letter-spacing: 0.02em;
+        }
+        
+        .title-line-1 {
+          font-size: clamp(3rem, 10vw, 6rem);
+          color: var(--color-cream);
+          animation: fadeInUp 0.8s var(--ease-out-expo) 0.4s both;
+        }
+        
+        .title-line-2 {
+          font-size: clamp(5rem, 18vw, 12rem);
+          background: linear-gradient(135deg, var(--color-burnt) 0%, var(--color-gold) 50%, var(--color-burnt) 100%);
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: fadeInUp 0.8s var(--ease-out-expo) 0.5s both, shimmer 8s linear infinite;
+        }
+        
+        .title-line-3 {
+          font-size: clamp(3rem, 10vw, 6rem);
+          color: var(--color-cream);
+          animation: fadeInUp 0.8s var(--ease-out-expo) 0.6s both;
+        }
+        
+        @keyframes shimmer {
+          0% { background-position: 200% center; }
+          100% { background-position: -200% center; }
+        }
+        
+        .hero-tagline {
+          font-family: var(--font-serif);
+          font-size: clamp(1rem, 2.5vw, 1.5rem);
+          font-style: italic;
+          color: rgba(245, 240, 232, 0.7);
+          font-weight: 400;
+          animation: fadeIn 1s var(--ease-out-expo) 0.8s both;
+        }
+        
+        .hero-ball {
+          position: absolute;
+          right: -5%;
+          top: 10%;
+          width: clamp(150px, 25vw, 300px);
+          height: clamp(150px, 25vw, 300px);
+          opacity: 0.15;
+          animation: float 6s ease-in-out infinite;
+        }
+        
+        .hero-ball-icon {
+          width: 100%;
+          height: 100%;
+          color: var(--color-burnt);
+        }
+        
+        @keyframes float {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        .scroll-indicator {
+          position: absolute;
+          bottom: 3rem;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.75rem;
+          animation: fadeIn 1s var(--ease-out-expo) 1.2s both;
+        }
+        
+        .scroll-indicator span {
+          font-family: var(--font-display);
+          font-size: 0.75rem;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: rgba(245, 240, 232, 0.5);
+        }
+        
+        .scroll-arrow {
+          width: 24px;
+          height: 24px;
+          color: var(--color-gold);
+          animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+          0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+          40% { transform: translateY(8px); }
+          60% { transform: translateY(4px); }
+        }
+        
+        .hero-stats {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          display: flex;
+          justify-content: center;
+          gap: 4rem;
+          padding: 2rem;
+          background: linear-gradient(to top, rgba(26, 22, 18, 0.9), transparent);
+          animation: fadeIn 1s var(--ease-out-expo) 1s both;
+        }
+        
+        .stat {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        
+        .stat-number {
+          font-family: var(--font-display);
+          font-size: clamp(2rem, 5vw, 3.5rem);
+          color: var(--color-burnt);
+          line-height: 1;
+        }
+        
+        .stat-label {
+          font-family: var(--font-body);
+          font-size: 0.75rem;
+          color: rgba(245, 240, 232, 0.6);
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          margin-top: 0.25rem;
+        }
+        
+        /* Section Styles */
+        .section {
+          position: relative;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          padding: 6rem 2rem;
+          overflow: hidden;
+        }
+        
+        .section-bg {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+        }
+        
+        .noise-overlay {
+          position: absolute;
+          inset: 0;
+          opacity: 0.3;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        
+        .pattern-overlay {
+          position: absolute;
+          inset: 0;
+          opacity: 0.03;
+          background-image: 
+            radial-gradient(circle at 2px 2px, var(--color-cream) 1px, transparent 1px);
+          background-size: 40px 40px;
+        }
+        
+        .section:nth-child(even) {
+          background: linear-gradient(135deg, #1A1612 0%, #231D17 100%);
+        }
+        
+        .section:nth-child(odd) {
+          background: linear-gradient(135deg, #1D1915 0%, #151210 100%);
+        }
+        
+        .section-content {
+          position: relative;
+          z-index: 1;
+          max-width: 800px;
+          width: 100%;
+          margin: 0 auto;
+          padding: 0 2rem;
+        }
+        
+        .section-content.align-left {
+          margin-left: 10%;
+          margin-right: auto;
+        }
+        
+        .section-content.align-right {
+          margin-right: 10%;
+          margin-left: auto;
+        }
+        
+        .year-badge {
+          display: flex;
+          align-items: center;
+          gap: 1.5rem;
+          margin-bottom: 1.5rem;
+          opacity: 0;
+          transform: translateX(-30px);
+          transition: all 0.8s var(--ease-out-expo);
+        }
+        
+        .section.visible .year-badge {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        
+        .year-text {
+          font-family: var(--font-display);
+          font-size: clamp(3rem, 8vw, 5rem);
+          color: var(--color-burnt);
+          line-height: 1;
+        }
+        
+        .year-line {
+          flex: 1;
+          max-width: 100px;
+          height: 2px;
+          background: linear-gradient(90deg, var(--color-burnt), transparent);
+        }
+        
+        .text-container {
+          opacity: 0;
+          transform: translateY(40px);
+          transition: all 1s var(--ease-out-expo) 0.2s;
+        }
+        
+        .section.visible .text-container {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        
+        .subtitle {
+          display: block;
+          font-family: var(--font-display);
+          font-size: 0.875rem;
+          letter-spacing: 0.3em;
+          text-transform: uppercase;
+          color: var(--color-gold);
+          margin-bottom: 0.75rem;
+        }
+        
+        .title {
+          font-family: var(--font-serif);
+          font-size: clamp(2rem, 5vw, 3.5rem);
+          font-weight: 700;
+          color: var(--color-cream);
+          line-height: 1.1;
+          margin-bottom: 1.5rem;
+        }
+        
+        .content {
+          font-family: var(--font-body);
+          font-size: clamp(1rem, 2vw, 1.25rem);
+          color: rgba(245, 240, 232, 0.8);
+          line-height: 1.8;
+          font-weight: 300;
+        }
+        
+        .highlight-box {
+          display: flex;
+          align-items: flex-start;
+          gap: 1rem;
+          margin-top: 2rem;
+          padding: 1.5rem;
+          background: rgba(196, 80, 27, 0.1);
+          border-left: 3px solid var(--color-burnt);
+          opacity: 0;
+          transform: translateY(20px);
+          transition: all 0.8s var(--ease-out-expo) 0.4s;
+        }
+        
+        .section.visible .highlight-box {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        
+        .highlight-icon {
+          flex-shrink: 0;
+          width: 32px;
+          height: 32px;
+        }
+        
+        .ball-icon {
+          width: 100%;
+          height: 100%;
+          color: var(--color-burnt);
+          animation: spin 20s linear infinite;
+        }
+        
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        
+        .highlight-text {
+          font-family: var(--font-serif);
+          font-size: 1rem;
+          font-style: italic;
+          color: var(--color-gold);
+          line-height: 1.5;
+        }
+        
+        .decorative-elements {
+          position: absolute;
+          top: 50%;
+          right: 5%;
+          transform: translateY(-50%);
+          opacity: 0.1;
+        }
+        
+        .align-left ~ .decorative-elements,
+        .section-content.align-left ~ .section-number + .decorative-elements {
+          right: 5%;
+          left: auto;
+        }
+        
+        .align-right ~ .decorative-elements {
+          left: 5%;
+          right: auto;
+        }
+        
+        .deco-circle {
+          width: 200px;
+          height: 200px;
+          border: 1px solid var(--color-cream);
+          border-radius: 50%;
+          opacity: 0;
+          transform: scale(0.5);
+          transition: all 1.2s var(--ease-out-expo) 0.3s;
+        }
+        
+        .section.visible .deco-circle {
+          opacity: 1;
+          transform: scale(1);
+        }
+        
+        .deco-line {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 1px;
+          height: 150px;
+          background: linear-gradient(to bottom, transparent, var(--color-cream), transparent);
+          transform: translate(-50%, -50%);
+        }
+        
+        .deco-dots {
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          gap: 8px;
+          margin-top: 2rem;
+        }
+        
+        .dot {
+          width: 4px;
+          height: 4px;
+          background: var(--color-cream);
+          border-radius: 50%;
+          opacity: 0;
+          animation: dotFade 2s ease-in-out infinite;
+        }
+        
+        @keyframes dotFade {
+          0%, 100% { opacity: 0; }
+          50% { opacity: 0.5; }
+        }
+        
+        .section-number {
+          position: absolute;
+          bottom: 2rem;
+          right: 3rem;
+          font-family: var(--font-display);
+          font-size: clamp(6rem, 15vw, 12rem);
+          color: rgba(245, 240, 232, 0.03);
+          line-height: 1;
+          user-select: none;
+        }
+        
+        /* Footer */
+        .footer {
+          position: relative;
+          padding: 6rem 2rem;
+          background: linear-gradient(to bottom, #1A1612, #0D0B09);
+          text-align: center;
+        }
+        
+        .footer-content {
+          max-width: 600px;
+          margin: 0 auto;
+        }
+        
+        .footer-ball {
+          width: 60px;
+          height: 60px;
+          margin: 0 auto 2rem;
+          opacity: 0.3;
+        }
+        
+        .footer-ball-icon {
+          width: 100%;
+          height: 100%;
+          color: var(--color-burnt);
+        }
+        
+        .footer-quote {
+          font-family: var(--font-serif);
+          font-size: clamp(1.25rem, 3vw, 1.75rem);
+          font-style: italic;
+          color: var(--color-cream);
+          line-height: 1.6;
+          margin-bottom: 1rem;
+        }
+        
+        .footer-quote cite {
+          display: block;
+          font-family: var(--font-body);
+          font-size: 0.875rem;
+          font-style: normal;
+          color: var(--color-gold);
+          margin-top: 1rem;
+        }
+        
+        .footer-divider {
+          width: 60px;
+          height: 1px;
+          background: var(--color-burnt);
+          margin: 2rem auto;
+        }
+        
+        .footer-text {
+          font-family: var(--font-body);
+          font-size: 0.875rem;
+          color: rgba(245, 240, 232, 0.5);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInDown {
+          from { opacity: 0; transform: translateY(-30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+          .progress-bar {
+            display: none;
+          }
+          
+          .hero-stats {
+            gap: 2rem;
+            flex-wrap: wrap;
+          }
+          
+          .section-content.align-left,
+          .section-content.align-right {
+            margin-left: auto;
+            margin-right: auto;
+          }
+          
+          .decorative-elements {
+            display: none;
+          }
+          
+          .section-number {
+            font-size: 8rem;
+            bottom: 1rem;
+            right: 1rem;
+          }
+        }
+      `}</style>
+      
+      <ProgressBar />
+      <Hero />
+      {sections.map((section, index) => (
+        <Section key={section.id} section={section} index={index} />
+      ))}
+      <Footer />
+    </>
+  );
+};
+
+export default App;

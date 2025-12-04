@@ -1,0 +1,31 @@
+import { Metadata } from "next";
+import BasketballHistoryClient from "./BasketballHistoryClient";
+
+export const metadata: Metadata = {
+  title: "The History of Basketball: From Peach Baskets to Global Phenomenon | Esy Scrollytelling",
+  description:
+    "Experience the 134-year journey of basketball from Dr. James Naismith's invention in 1891 to the modern NBA. An immersive scrollytelling experience through sports history.",
+  keywords:
+    "basketball history, James Naismith, NBA history, scrollytelling, interactive story, basketball origins, sports history, Michael Jordan, Dream Team",
+  openGraph: {
+    title: "The History of Basketball: From Peach Baskets to Global Phenomenon | Esy",
+    description:
+      "Experience the 134-year journey of basketball through an immersive scrollytelling experience.",
+    url: "https://esy.com/scrollytelling/history-of-basketball",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The History of Basketball | Esy Scrollytelling",
+    description:
+      "Experience the 134-year journey of basketball through an immersive scrollytelling experience.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export default function HistoryOfBasketballPage() {
+  return <BasketballHistoryClient />;
+}
+
