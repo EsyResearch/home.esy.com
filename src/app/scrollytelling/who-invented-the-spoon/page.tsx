@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "The History of the Spoon: 30,000 Years | Esy Scrollytelling",
     description:
       "Discover the 30,000-year journey of the spoon through an immersive scrollytelling experience.",
-    url: "https://esy.com/scrollytelling/history-of-the-spoon",
+    url: "https://esy.com/scrollytelling/who-invented-the-spoon",
   },
   twitter: {
     card: "summary_large_image",

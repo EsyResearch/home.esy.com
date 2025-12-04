@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "The History of Basketball: From Peach Baskets to Global Phenomenon | Esy",
     description:
       "Experience the 134-year journey of basketball through an immersive scrollytelling experience.",
-    url: "https://esy.com/scrollytelling/history-of-basketball",
+    url: "https://esy.com/scrollytelling/who-invented-basketball",
   },
   twitter: {
     card: "summary_large_image",

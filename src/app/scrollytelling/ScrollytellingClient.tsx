@@ -36,27 +36,27 @@ const ScrollytellingClient = () => {
 
   const stories: Story[] = [
     {
-      id: "history-of-the-spoon",
+      id: "who-invented-the-spoon",
       title: "The Spoon Story",
       subtitle: "30,000 Years of Humanity's Essential Tool",
       description:
         "From prehistoric bone carvings to silver apostle spoons to modern stainless steel, discover the extraordinary 30,000-year journey of the spoon—humanity's oldest and most universal eating utensil. An immersive journey through time.",
       category: "Material Culture",
       readTime: "10 min",
-      href: "/scrollytelling/history-of-the-spoon",
+      href: "/scrollytelling/who-invented-the-spoon",
       icon: <Utensils className="w-6 h-6" />,
       isNew: true,
       isFeatured: true,
     },
     {
-      id: "history-of-basketball",
+      id: "who-invented-basketball",
       title: "The Basketball Story",
       subtitle: "From Peach Baskets to Global Phenomenon",
       description:
         "Experience the 134-year journey of basketball from Dr. James Naismith's invention in 1891 to the modern NBA. Travel through time as peach baskets become billion-dollar arenas and playground games become global culture.",
       category: "Sports History",
       readTime: "10 min",
-      href: "/scrollytelling/history-of-basketball",
+      href: "/scrollytelling/who-invented-basketball",
       icon: <Trophy className="w-6 h-6" />,
       isNew: false,
       isFeatured: false,

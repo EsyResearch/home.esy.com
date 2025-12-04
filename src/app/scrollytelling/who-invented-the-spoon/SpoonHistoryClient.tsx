@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
-import './history-of-the-spoon.css';
+import './who-invented-the-spoon.css';
 
 /*
  * Design Research: The History of the Spoon

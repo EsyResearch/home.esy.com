@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from 'react';
-import './history-of-basketball.css';
+import './who-invented-basketball.css';
 
 interface SectionData {
   id: string;
