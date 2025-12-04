@@ -223,6 +223,178 @@
 - Related content suggestions
 - Community/sharing prompt
 
+---
+
+## Section Layout Patterns (MANDATORY VARIATION)
+
+### Core Requirement: Layout Diversity
+
+**CRITICAL**: Every scrollytelling piece MUST use at least **3 different layout patterns**. No two consecutive sections may use the same layout. The monotony of alternating left/right text blocks is explicitly prohibited.
+
+### Available Layout Patterns
+
+| Pattern | Code | Description | Best For |
+|---------|------|-------------|----------|
+| **Split Screen** | `split-screen` | Image on one side, text on the other (50/50 or 60/40) | Visual subjects, dramatic reveals |
+| **Full Bleed Image** | `full-bleed` | Edge-to-edge image with text overlay | Dramatic moments, setting scenes |
+| **Timeline Vertical** | `timeline` | Vertical line with branching content left/right | Chronological stories |
+| **Sticky + Scroll** | `sticky-scroll` | Fixed image/element while text scrolls past | Deep dives, process explanations |
+| **Card Grid** | `card-grid` | 2-4 cards revealed together | Comparisons, parallel stories, lists |
+| **Quote Monument** | `quote-monument` | Massive quote as the entire section | Key quotes, turning points |
+| **Data Visualization** | `data-viz` | Charts, numbers, visual statistics as focus | Statistics, scale, impact |
+| **Horizontal Scroll** | `horizontal` | Side-scrolling within vertical page | Galleries, timelines, sequences |
+| **Standard Text** | `standard` | Traditional text block with accent elements | Detailed narrative passages |
+
+### Layout Selection Guide
+
+**Choose Layout Based on Content:**
+
+```
+Content Type → Recommended Layouts
+─────────────────────────────────────────────
+Key quote          → quote-monument, full-bleed
+Visual subject     → split-screen, full-bleed
+Statistics         → data-viz, card-grid
+Comparison         → split-screen, card-grid
+Timeline event     → timeline, standard
+Deep explanation   → sticky-scroll, standard
+Gallery/sequence   → horizontal, card-grid
+Dramatic moment    → full-bleed, quote-monument
+```
+
+### Layout Pattern Implementation
+
+#### Split Screen
+```tsx
+<section className="split-screen">
+  <div className="split-image">
+    <img src="..." alt="..." />
+  </div>
+  <div className="split-content">
+    <h2>Title</h2>
+    <p>Content...</p>
+  </div>
+</section>
+```
+
+#### Full Bleed Image
+```tsx
+<section className="full-bleed">
+  <div className="full-bleed-bg">
+    <img src="..." alt="..." />
+    <div className="overlay-gradient" />
+  </div>
+  <div className="full-bleed-content">
+    <h2>Title</h2>
+    <p>Content...</p>
+  </div>
+</section>
+```
+
+#### Quote Monument
+```tsx
+<section className="quote-monument">
+  <blockquote>
+    <p>"The quote text here..."</p>
+    <cite>— Attribution, Year</cite>
+  </blockquote>
+</section>
+```
+
+#### Sticky + Scroll
+```tsx
+<section className="sticky-scroll-container">
+  <div className="sticky-element">
+    <img src="..." alt="..." />
+  </div>
+  <div className="scroll-content">
+    <div className="scroll-panel">Panel 1...</div>
+    <div className="scroll-panel">Panel 2...</div>
+    <div className="scroll-panel">Panel 3...</div>
+  </div>
+</section>
+```
+
+#### Card Grid
+```tsx
+<section className="card-grid-section">
+  <h2>Section Title</h2>
+  <div className="card-grid">
+    <div className="card">Card 1</div>
+    <div className="card">Card 2</div>
+    <div className="card">Card 3</div>
+  </div>
+</section>
+```
+
+### Layout Variation Planning Template
+
+Before implementation, map each section to a layout:
+
+```markdown
+## Story: [Title]
+
+| Section | Content Type | Layout Pattern | Notes |
+|---------|--------------|----------------|-------|
+| Hero | Opening | full-bleed | Dramatic image |
+| 1 | Origin story | split-screen | Historical image left |
+| 2 | Key quote | quote-monument | Susan B. Anthony |
+| 3 | Timeline | timeline | Multiple dates |
+| 4 | Comparison | card-grid | Before/after |
+| 5 | Deep dive | sticky-scroll | Fixed diagram |
+| 6 | Statistics | data-viz | Impact numbers |
+| 7 | Modern era | split-screen | Contemporary image |
+| 8 | Legacy | full-bleed | Closing image |
+
+Layout Count: split-screen(2), quote-monument(1), timeline(1), 
+              card-grid(1), sticky-scroll(1), data-viz(1), full-bleed(2)
+Consecutive Same: ❌ None — ✅ APPROVED
+```
+
+### Media Integration Requirements
+
+**Every scrollytelling piece SHOULD include:**
+
+1. **At least 2-3 image sections** using one of:
+   - Unsplash/Pexels free stock images
+   - Public domain historical images (Library of Congress, Wikimedia)
+   - SVG illustrations (custom or subject-specific)
+
+2. **Image Sources (Prioritized):**
+   - Unsplash: `https://images.unsplash.com/photo-[id]?w=1200`
+   - Pexels: `https://images.pexels.com/photos/[id]/pexels-photo-[id].jpeg`
+   - Library of Congress: `https://www.loc.gov/pictures/`
+   - Wikimedia Commons: `https://commons.wikimedia.org/`
+   - Museum digital collections
+
+3. **Media Research Phase (Add to Workflow):**
+   After Design Research, research relevant imagery:
+   - Search Unsplash/Pexels for subject-related photos
+   - Search archive.org and Library of Congress for historical images
+   - Plan SVG illustrations for diagrams/icons
+   - Note image URLs and attribution
+
+### Anti-Patterns (Layout Failures)
+
+❌ **The Monotony Trap**: All sections use same alternating left/right layout
+❌ **Text Wall**: Multiple consecutive text-only sections
+❌ **Image Desert**: No visual variety, only text with small icons
+❌ **Layout Chaos**: Too many different patterns with no rhythm
+❌ **Mobile Neglect**: Layouts that collapse poorly on mobile
+
+### Layout Validation Checklist
+
+Before finalizing layout plan:
+- [ ] At least 3 different layout patterns used
+- [ ] No consecutive sections use identical layouts
+- [ ] At least 2 sections include meaningful imagery
+- [ ] Quote monuments reserved for truly impactful quotes
+- [ ] Data viz sections have actual data to visualize
+- [ ] Mobile behavior specified for complex layouts
+- [ ] Sticky-scroll used sparingly (max 1-2 per story)
+
+---
+
 ## Quality Assurance Framework
 
 ### Three-Tier Review
@@ -276,6 +448,9 @@
 - ❌ **NEVER reuse design systems from previous scrollytelling pieces**
 - ❌ **NEVER copy color palettes, typography, or visual patterns from other stories**
 - ❌ **NEVER skip Design Research phase—every story demands its own visual identity**
+- ❌ **NEVER use the same layout pattern for all sections (minimum 3 different layouts required)**
+- ❌ **NEVER create consecutive sections with identical layout patterns**
+- ❌ **NEVER publish a story without at least 2 image/media sections**
 
 ## Design Research Framework (MANDATORY)
 
@@ -1032,14 +1207,15 @@ When working with this agent, reference the role by stating:
 
 **CRITICAL REQUIREMENTS**:
 1. **Design Research First**: Every story MUST begin with Design Research phase—unique visual identity derived from subject matter research. **NEVER copy designs from previous stories.**
-2. **Narrative Excellence**: Every scrollytelling piece must have a clear arc with hook, development, and resolution
-3. **Visual-Narrative Unity**: Design decisions must serve the story AND emerge from subject research, never overshadow it
-4. **Factual Foundation**: All content must be researched and verified; spectacular visuals cannot excuse inaccuracy
-5. **Historian Approval Required**: Every piece MUST be reviewed by historian-editor-expert before publication
-6. **Mandatory Sources Section**: Every scrollytelling page MUST include a "Sources & Further Reading" section with verified citations
-7. **Performance Standards**: 60fps animations, <3s initial load, smooth scroll experience
-8. **Accessibility**: WCAG AA compliance, reduced motion support, screen reader consideration
-9. **Mobile Parity**: Mobile experience designed intentionally, not degraded gracefully
+2. **Layout Variation Required**: Every story MUST use at least **3 different layout patterns**. No consecutive sections may use the same layout. Include at least 2 image/media sections.
+3. **Narrative Excellence**: Every scrollytelling piece must have a clear arc with hook, development, and resolution
+4. **Visual-Narrative Unity**: Design decisions must serve the story AND emerge from subject research, never overshadow it
+5. **Factual Foundation**: All content must be researched and verified; spectacular visuals cannot excuse inaccuracy
+6. **Historian Approval Required**: Every piece MUST be reviewed by historian-editor-expert before publication
+7. **Mandatory Sources Section**: Every scrollytelling page MUST include a "Sources & Further Reading" section with verified citations
+8. **Performance Standards**: 60fps animations, <3s initial load, smooth scroll experience
+9. **Accessibility**: WCAG AA compliance, reduced motion support, screen reader consideration
+10. **Mobile Parity**: Mobile experience designed intentionally, not degraded gracefully
 
 ## Deliverables
 
