@@ -4,103 +4,30 @@ import { useEffect, useRef, useState } from 'react';
 import './who-invented-the-bicycle.css';
 
 /*
- * Design Research: The History of the Bicycle
+ * Design Research: The History of the Bicycle - V2 (Varied Layouts)
  * 
- * Visual Identity derived from subject matter:
- * - Chrome/steel silvers (bicycle frames)
- * - Racing red (competition, Italian racing heritage)
- * - Tour de France yellow (le maillot jaune)
- * - Asphalt dark backgrounds (the open road)
- * - Forward-moving, momentum-based animations
- * - Wheel and spoke decorative motifs
+ * Layout Pattern Usage:
+ * - Hero: full-bleed (cycling image)
+ * - Section 1: split-screen (Draisine)
+ * - Section 2: quote-monument (Mount Tambora)
+ * - Section 3: timeline (Evolution 1860s-1870s)
+ * - Section 4: full-bleed (Penny-farthing)
+ * - Section 5: card-grid (Safety bicycle comparison)
+ * - Section 6: sticky-scroll (Women's liberation)
+ * - Section 7: data-viz (Global statistics)
+ * - Section 8: split-screen reverse (Modern era)
  * 
- * This design is intentionally different from:
- * - Spoon (porcelain whites, Delft blue, gentle/refined)
- * - Basketball (burnt orange, hardwood, athletic bounce)
+ * Image Sources:
+ * - Hero: Unsplash road cycling
+ * - Historical: Public domain / Library of Congress
+ * - Modern: Unsplash cycling photos
  */
 
-interface SectionData {
-  id: string;
-  era: string;
-  title: string;
-  subtitle: string;
-  content: string;
-  highlight?: string;
-}
-
-const sections: SectionData[] = [
-  {
-    id: 'draisine',
-    era: '1817',
-    title: 'The Running Machine',
-    subtitle: 'Mannheim, Germany',
-    content: 'In the summer of 1817, Baron Karl von Drais unveiled his "Laufmaschine"—the running machine. A wooden frame connecting two wheels, steered by handlebars, propelled by pushing feet against the ground. It looked absurd to onlookers in Mannheim, but Drais had solved a problem created by a natural disaster: the 1815 eruption of Mount Tambora had killed crops and horses across Europe. The bicycle was born from necessity.',
-    highlight: 'Drais covered 13 kilometers in under an hour on his first public ride—faster than a horse-drawn stagecoach'
-  },
-  {
-    id: 'velocipede',
-    era: '1860s',
-    title: 'The Boneshaker',
-    subtitle: 'Paris, France',
-    content: 'Four decades later, in a Paris workshop, blacksmith Pierre Michaux (or perhaps his son Ernest—history disputes the credit) attached pedals directly to the front wheel of a Draisine. The "velocipede" was born. Iron tires on cobblestone streets earned it the nickname "boneshaker," but Parisians didn\'t care. Velocipede riding schools opened across the city. The bicycle craze had begun.',
-    highlight: 'Pierre Lallement brought the velocipede to America and received the first U.S. bicycle patent in 1866'
-  },
-  {
-    id: 'pennyfarthing',
-    era: '1870s',
-    title: 'The Ordinary',
-    subtitle: 'Coventry, England',
-    content: 'Engineers realized a simple truth: a larger wheel covers more ground per pedal stroke. The result was the "penny-farthing"—named for two British coins of vastly different sizes. With front wheels up to 1.5 meters tall, these machines were fast but terrifying. A small obstacle could send riders flying headfirst over the handlebars, earning the maneuver the grim name "taking a header." Only young, athletic men dared ride them.',
-    highlight: 'The phrase "taking a header" for falling forward comes directly from penny-farthing accidents'
-  },
-  {
-    id: 'safety',
-    era: '1885',
-    title: 'The Safety Bicycle',
-    subtitle: 'The Invention That Changed Everything',
-    content: 'John Kemp Starley\'s "Rover Safety Bicycle" transformed cycling from daredevil sport to universal transport. Equal-sized wheels. Chain drive to the rear wheel. Diamond frame geometry still used today. Suddenly, anyone could ride—old and young, men and women. Within a decade, the penny-farthing was obsolete, and the bicycle we recognize today had been born in a Coventry workshop.',
-    highlight: 'Starley\'s basic diamond frame design has remained essentially unchanged for 140 years'
-  },
-  {
-    id: 'liberation',
-    era: '1890s',
-    title: 'Wheels of Change',
-    subtitle: 'The Bicycle & Women\'s Liberation',
-    content: 'The safety bicycle didn\'t just change transportation—it changed society. For the first time, women could travel independently, without chaperones. Susan B. Anthony declared it had "done more to emancipate women than anything else in the world." The "rational dress" movement emerged as women abandoned corsets and long skirts for practical cycling attire. The bicycle became a symbol of freedom.',
-    highlight: '"Let me tell you what I think of bicycling. I think it has done more to emancipate women than anything else in the world." — Susan B. Anthony, 1896'
-  },
-  {
-    id: 'tourdefrance',
-    era: '1903',
-    title: 'The Birth of Racing',
-    subtitle: 'Le Tour de France',
-    content: 'On July 1, 1903, sixty cyclists left Paris for a 2,428-kilometer journey around France. The Tour de France was born—not as sport, but as a newspaper circulation stunt by L\'Auto. Maurice Garin won after 94 hours of riding. The race captured public imagination like nothing before. By the 1920s, the Tour had become a national obsession, transforming cycling into spectacle and cyclists into celebrities.',
-    highlight: 'The famous yellow jersey (maillot jaune) was introduced in 1919—the color of L\'Auto\'s newspaper pages'
-  },
-  {
-    id: 'modern',
-    era: '1970s–Today',
-    title: 'The Cycling Renaissance',
-    subtitle: 'From Oil Crisis to Carbon Fiber',
-    content: 'The 1970s oil crisis sparked a bicycle boom in the West. Mountain bikes emerged from Marin County, California in the 1980s. Carbon fiber frames made racing bikes lighter than ever. Cities worldwide began building cycling infrastructure. E-bikes extended cycling to new populations. Two centuries after Drais\'s wooden running machine, the bicycle remains humanity\'s most efficient form of transport—still two wheels, still powered by human ambition.',
-    highlight: 'More bicycles are produced each year than cars—approximately 100 million bikes annually worldwide'
-  },
-  {
-    id: 'future',
-    era: 'Now',
-    title: 'The Enduring Machine',
-    subtitle: 'Two Wheels, Two Centuries',
-    content: 'From wooden running machines to carbon-fiber racing bikes, from cobblestone streets to dedicated bike lanes, the bicycle has proven remarkably adaptable. It requires no fuel, produces no emissions, improves health, and connects communities. In an age of climate crisis and urban congestion, the simple invention of a German baron in 1817 may yet prove to be one of humanity\'s most important technologies.',
-    highlight: 'Over 1 billion bicycles exist worldwide—more than double the number of cars'
-  }
-];
-
-// Wheel icon with spokes
+// Wheel SVG component
 const WheelIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="3"/>
+    <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="2"/>
     <circle cx="50" cy="50" r="8" stroke="currentColor" strokeWidth="2"/>
-    {/* Spokes */}
     {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((angle) => (
       <line
         key={angle}
@@ -109,118 +36,58 @@ const WheelIcon: React.FC<{ className?: string }> = ({ className }) => (
         x2={50 + 37 * Math.cos((angle * Math.PI) / 180)}
         y2={50 + 37 * Math.sin((angle * Math.PI) / 180)}
         stroke="currentColor"
-        strokeWidth="1"
+        strokeWidth="0.75"
       />
     ))}
   </svg>
 );
 
-// Gear/cog icon for highlights
-const GearIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2"/>
-    <path d="M12 1v4M12 19v4M23 12h-4M5 12H1M20.5 3.5l-3 3M6.5 17.5l-3 3M20.5 20.5l-3-3M6.5 6.5l-3-3" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-  </svg>
-);
-
-const Section: React.FC<{ section: SectionData; index: number }> = ({ section, index }) => {
-  const sectionRef = useRef<HTMLElement>(null);
+// Animation hook
+const useInView = (threshold = 0.2) => {
+  const ref = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
       },
-      { threshold: 0.2 }
+      { threshold }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
-  }, []);
+  }, [threshold]);
+
+  return { ref, isVisible };
+};
+
+// Progress Bar Component
+const ProgressBar: React.FC = () => {
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const progress = Math.max(0, Math.min(1, 1 - rect.top / windowHeight));
-        setScrollProgress(progress);
-      }
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress((window.scrollY / scrollHeight) * 100);
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isEven = index % 2 === 0;
-
   return (
-    <section
-      ref={sectionRef}
-      className={`section ${isVisible ? 'visible' : ''}`}
-      style={{
-        '--scroll-progress': scrollProgress,
-        '--index': index,
-      } as React.CSSProperties}
-    >
-      <div className="section-bg" style={{
-        transform: `translateY(${scrollProgress * -40}px)`,
-      }}>
-        <div className="road-texture" />
-      </div>
-      
-      <div className={`section-content ${isEven ? 'align-left' : 'align-right'}`}>
-        <div className="era-badge">
-          <span className="era-text">{section.era}</span>
-          <div className="era-line" />
-        </div>
-        
-        <div className="text-container">
-          <span className="subtitle">{section.subtitle}</span>
-          <h2 className="section-title">{section.title}</h2>
-          <p className="section-text">{section.content}</p>
-          
-          {section.highlight && (
-            <div className="highlight-box">
-              <GearIcon className="highlight-icon" />
-              <p className="highlight-text">{section.highlight}</p>
-            </div>
-          )}
-        </div>
-        
-        <div className="decorative-wheel">
-          <div className="wheel-circle">
-            <div className="wheel-hub" />
-            {[0, 45, 90, 135].map((angle) => (
-              <div 
-                key={angle} 
-                className="wheel-spoke" 
-                style={{ transform: `translate(-50%, 0) rotate(${angle}deg)` }} 
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-      
-      <div className="section-number">
-        <span>{String(index + 1).padStart(2, '0')}</span>
-      </div>
-    </section>
+    <div className="progress-bar">
+      <div className="progress-fill" style={{ width: `${progress}%` }} />
+    </div>
   );
 };
 
+// ==================== LAYOUT: HERO (Full Bleed) ====================
 const Hero: React.FC = () => {
   const [scrollY, setScrollY] = useState(0);
-  
+
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -228,73 +95,429 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <header className="hero">
+    <header className="hero full-bleed">
       <div className="hero-bg">
-        <div className="hero-gradient" />
-        <div className="hero-road-lines">
-          {[...Array(8)].map((_, i) => (
-            <div 
-              key={i} 
-              className="road-line" 
-              style={{ 
-                top: `${15 + i * 10}%`,
-                opacity: 0.15 - i * 0.015,
-                transform: `translateX(-50%) translateY(${scrollY * (0.1 + i * 0.03)}px)`
-              }} 
-            />
-          ))}
-        </div>
+        {/* Road cycling - dynamic motion */}
+        <img 
+          src="https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=1920&q=80" 
+          alt="Cyclist riding on an open road"
+          style={{ transform: `scale(${1 + scrollY * 0.0003}) translateY(${scrollY * 0.2}px)` }}
+        />
+        <div className="hero-overlay" />
       </div>
-      
-      <div className="hero-content" style={{ transform: `translateY(${scrollY * 0.35}px)` }}>
-        <div className="hero-badge">
-          <span>Since 1817</span>
-        </div>
+
+      <div className="hero-content" style={{ transform: `translateY(${scrollY * 0.3}px)` }}>
+        <div className="hero-badge">Since 1817</div>
         
-        <h1 className="hero-title">
-          <span className="title-line title-line-1">Who Invented</span>
-          <span className="title-line title-line-2">The Bicycle</span>
-          <span className="title-line title-line-3">A Story of Wheels and Freedom</span>
+        <h1>
+          <span>Who Invented</span>
+          The Bicycle
         </h1>
         
         <p className="hero-tagline">
-          From wooden running machines to carbon fiber racers—the 200-year journey of humanity&apos;s most efficient transport
+          From wooden running machines to carbon fiber racers—the 200-year journey 
+          of humanity&apos;s most efficient form of transport.
         </p>
-        
-        <div className="hero-wheel" style={{
-          transform: `rotate(${scrollY * 0.5}deg)`
-        }}>
-          <WheelIcon />
-        </div>
-        
-        <div className="scroll-indicator">
-          <span>Start the ride</span>
-          <div className="scroll-arrow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M12 5v14M5 12l7 7 7-7"/>
-            </svg>
+
+        <div className="hero-stats">
+          <div className="hero-stat">
+            <div className="hero-stat-number">200+</div>
+            <div className="hero-stat-label">Years of Innovation</div>
+          </div>
+          <div className="hero-stat">
+            <div className="hero-stat-number">1B+</div>
+            <div className="hero-stat-label">Bicycles Worldwide</div>
+          </div>
+          <div className="hero-stat">
+            <div className="hero-stat-number">100M</div>
+            <div className="hero-stat-label">Made Each Year</div>
           </div>
         </div>
       </div>
-      
-      <div className="hero-stats">
-        <div className="stat">
-          <span className="stat-number">200+</span>
-          <span className="stat-label">Years of Innovation</span>
-        </div>
-        <div className="stat">
-          <span className="stat-number">1B+</span>
-          <span className="stat-label">Bicycles Worldwide</span>
-        </div>
-        <div className="stat">
-          <span className="stat-number">100M</span>
-          <span className="stat-label">Made Each Year</span>
-        </div>
+
+      <div className="scroll-indicator">
+        <span>Begin the ride</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
       </div>
     </header>
   );
 };
 
+// ==================== LAYOUT: SPLIT SCREEN ====================
+const DraisineSection: React.FC = () => {
+  const { ref, isVisible } = useInView();
+
+  return (
+    <section ref={ref} className={`split-screen ${isVisible ? 'visible' : ''}`}>
+      <div className="split-image">
+        {/* Vintage bicycle aesthetic */}
+        <img 
+          src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80"
+          alt="Vintage bicycle wheel detail"
+        />
+        <div className="image-overlay" />
+        <div className="image-caption">The elegance of two wheels</div>
+      </div>
+      
+      <div className="split-content">
+        <div className="era-badge">
+          <span className="era-text">1817</span>
+          <div className="era-line" />
+        </div>
+        
+        <span className="subtitle">Mannheim, Germany</span>
+        <h2>The Running Machine</h2>
+        
+        <p>
+          In the summer of 1817, Baron Karl von Drais unveiled his &ldquo;Laufmaschine&rdquo;—the 
+          running machine. A wooden frame connecting two wheels, steered by handlebars, 
+          propelled by pushing feet against the ground.
+        </p>
+        <p>
+          It looked absurd to onlookers in Mannheim, but Drais had solved a problem created 
+          by a natural disaster. The bicycle was born from necessity.
+        </p>
+        
+        <div className="highlight">
+          <p>Drais covered 13 kilometers in under an hour on his first public ride—faster than a horse-drawn stagecoach.</p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// ==================== LAYOUT: QUOTE MONUMENT ====================
+const TamboraQuote: React.FC = () => {
+  const { ref, isVisible } = useInView();
+
+  return (
+    <section ref={ref} className={`quote-monument ${isVisible ? 'animate-in visible' : 'animate-in'}`}>
+      <blockquote>
+        <p>
+          &ldquo;The year without a summer killed the horses. From their deaths, the bicycle was born.&rdquo;
+        </p>
+        <cite>On the eruption of Mount Tambora, 1815</cite>
+        
+        <div className="quote-context">
+          <p>
+            The 1815 eruption of Mount Tambora in Indonesia caused global climate disruption. 
+            Crops failed across Europe. Horses starved. Karl von Drais invented his running 
+            machine as an alternative to horse travel—necessity driving innovation.
+          </p>
+        </div>
+      </blockquote>
+    </section>
+  );
+};
+
+// ==================== LAYOUT: TIMELINE ====================
+const TimelineSection: React.FC = () => {
+  const { ref, isVisible } = useInView(0.1);
+
+  const timelineItems = [
+    {
+      year: '1860s',
+      title: 'The Velocipede',
+      text: 'Pierre Michaux (or his son Ernest) attached pedals to the front wheel. Iron tires on cobblestones earned it the nickname "boneshaker."'
+    },
+    {
+      year: '1866',
+      title: 'First U.S. Patent',
+      text: 'Pierre Lallement brought the velocipede to America and received the first U.S. bicycle patent.'
+    },
+    {
+      year: '1870s',
+      title: 'The Penny-Farthing',
+      text: 'Engineers realized larger wheels cover more ground. Front wheels grew to 1.5 meters—fast but terrifying.'
+    },
+    {
+      year: '1885',
+      title: 'The Safety Bicycle',
+      text: 'John Kemp Starley\'s "Rover" introduced equal-sized wheels and chain drive. The modern bicycle was born.'
+    }
+  ];
+
+  return (
+    <section ref={ref} className={`timeline-section ${isVisible ? 'visible' : ''}`}>
+      <h2>The Evolution of Two Wheels</h2>
+      
+      <div className="timeline">
+        {timelineItems.map((item, index) => (
+          <div 
+            key={item.year} 
+            className="timeline-item"
+            style={{ transitionDelay: `${index * 0.15}s` }}
+          >
+            <div className="timeline-dot" />
+            <div className="timeline-content">
+              <div className="timeline-year">{item.year}</div>
+              <h3 className="timeline-title">{item.title}</h3>
+              <p className="timeline-text">{item.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+// ==================== LAYOUT: FULL BLEED (Penny-farthing) ====================
+const PennyFarthingSection: React.FC = () => {
+  const { ref, isVisible } = useInView();
+
+  return (
+    <section ref={ref} className={`full-bleed ${isVisible ? 'animate-in visible' : 'animate-in'}`}>
+      <div className="full-bleed-bg">
+        {/* Historical/artistic bicycle image */}
+        <img 
+          src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=1920&q=80"
+          alt="Elegant bicycle against minimal background"
+        />
+        <div className="overlay" />
+      </div>
+      
+      <div className="full-bleed-content">
+        <span className="subtitle" style={{ 
+          color: 'var(--color-brass)', 
+          background: 'rgba(201, 162, 39, 0.15)',
+          padding: '0.25rem 0.75rem',
+          borderRadius: '4px',
+          fontSize: '0.7rem',
+          letterSpacing: '0.15em',
+          textTransform: 'uppercase',
+          marginBottom: '1rem',
+          display: 'inline-block'
+        }}>
+          The Ordinary
+        </span>
+        
+        <h2 style={{ 
+          fontFamily: 'var(--font-display)', 
+          fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+          marginBottom: '1.5rem'
+        }}>
+          Taking a Header
+        </h2>
+        
+        <p style={{ 
+          maxWidth: '650px', 
+          margin: '0 auto',
+          fontSize: '1.125rem',
+          color: 'var(--color-white-muted)',
+          lineHeight: '1.8'
+        }}>
+          With front wheels up to 1.5 meters tall, penny-farthings were fast but terrifying. 
+          A small obstacle could send riders flying headfirst over the handlebars. Only young, 
+          athletic men dared ride them—until John Kemp Starley changed everything.
+        </p>
+        
+        <p style={{ 
+          marginTop: '2rem',
+          fontSize: '0.9375rem',
+          color: 'var(--color-chrome)',
+          fontStyle: 'italic'
+        }}>
+          The phrase &ldquo;taking a header&rdquo; for falling forward comes directly from penny-farthing accidents.
+        </p>
+      </div>
+    </section>
+  );
+};
+
+// ==================== LAYOUT: CARD GRID ====================
+const SafetyBicycleSection: React.FC = () => {
+  const { ref, isVisible } = useInView();
+
+  const cards = [
+    {
+      label: 'Before 1885',
+      title: 'The High Wheeler',
+      text: 'Massive front wheel, tiny rear. Fast but dangerous. Only for athletic young men. A status symbol for the daring few.',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80'
+    },
+    {
+      label: 'After 1885',
+      title: 'The Safety Bicycle',
+      text: 'Equal-sized wheels. Chain drive. Diamond frame still used today. Anyone could ride—old, young, men, women.',
+      image: 'https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80'
+    },
+    {
+      label: 'The Innovation',
+      title: 'Chain Drive',
+      text: 'Starley\'s chain drive transferred power from pedals to rear wheel—no more direct pedaling on a giant wheel.',
+      image: 'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?w=600&q=80'
+    },
+    {
+      label: 'The Legacy',
+      title: '140 Years Later',
+      text: 'Starley\'s basic diamond frame geometry remains virtually unchanged—proof of revolutionary design.',
+      image: 'https://images.unsplash.com/photo-1505705694340-019e1f774e3c?w=600&q=80'
+    }
+  ];
+
+  return (
+    <section ref={ref} className={`card-grid-section ${isVisible ? 'visible' : ''}`}>
+      <h2>The Safety Revolution</h2>
+      <p className="section-intro">
+        In 1885, John Kemp Starley&apos;s &ldquo;Rover Safety Bicycle&rdquo; transformed cycling 
+        from daredevil sport to universal transport. Within a decade, the penny-farthing was obsolete.
+      </p>
+      
+      <div className="card-grid">
+        {cards.map((card, index) => (
+          <div 
+            key={card.title} 
+            className="card"
+            style={{ transitionDelay: `${index * 0.1}s` }}
+          >
+            <div className="card-image">
+              <img src={card.image} alt={card.title} />
+            </div>
+            <div className="card-body">
+              <div className="card-label">{card.label}</div>
+              <h3 className="card-title">{card.title}</h3>
+              <p className="card-text">{card.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+// ==================== LAYOUT: STICKY SCROLL ====================
+const WomensLiberationSection: React.FC = () => {
+  const { ref, isVisible } = useInView(0.1);
+
+  return (
+    <section ref={ref} className={`sticky-scroll-section ${isVisible ? 'visible' : ''}`}>
+      <div className="sticky-element">
+        <div className="sticky-content">
+          <WheelIcon className="sticky-icon" />
+          <h3>Wheels of Change</h3>
+          <p>
+            The safety bicycle didn&apos;t just change transportation—it changed society forever.
+          </p>
+        </div>
+      </div>
+      
+      <div className="scroll-panels">
+        <div className="scroll-panel">
+          <div className="scroll-panel-content">
+            <div className="panel-year">1890s</div>
+            <h4>Freedom on Two Wheels</h4>
+            <p>
+              For the first time in history, women could travel independently, without chaperones. 
+              The bicycle offered mobility that horse riding (in sidesaddle) never could.
+            </p>
+          </div>
+        </div>
+        
+        <div className="scroll-panel">
+          <div className="scroll-panel-content">
+            <div className="panel-year">1896</div>
+            <h4>Susan B. Anthony&apos;s Declaration</h4>
+            <p>
+              &ldquo;Let me tell you what I think of bicycling. I think it has done more to emancipate 
+              women than anything else in the world. It gives women a feeling of freedom and self-reliance.&rdquo;
+            </p>
+          </div>
+        </div>
+        
+        <div className="scroll-panel">
+          <div className="scroll-panel-content">
+            <div className="panel-year">The Movement</div>
+            <h4>Rational Dress</h4>
+            <p>
+              Women abandoned corsets and long skirts for practical cycling attire. The &ldquo;rational 
+              dress&rdquo; movement emerged—and fashion was changed forever. The bicycle became a 
+              symbol of freedom and independence.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// ==================== LAYOUT: DATA VISUALIZATION ====================
+const GlobalStatsSection: React.FC = () => {
+  const { ref, isVisible } = useInView();
+
+  const stats = [
+    { number: '1B+', label: 'Bicycles Exist', detail: 'More than double the number of cars worldwide' },
+    { number: '100M', label: 'Made Each Year', detail: 'Global annual bicycle production' },
+    { number: '1903', label: 'First Tour de France', detail: '2,428 km around France' },
+    { number: '140', label: 'Years Unchanged', detail: 'Starley\'s diamond frame still dominant' }
+  ];
+
+  return (
+    <section ref={ref} className={`data-viz-section ${isVisible ? 'visible' : ''}`}>
+      <h2>The Numbers Tell the Story</h2>
+      
+      <div className="stats-grid">
+        {stats.map((stat, index) => (
+          <div 
+            key={stat.label}
+            className={`stat-card ${isVisible ? 'animate-in visible' : 'animate-in'}`}
+            style={{ transitionDelay: `${index * 0.15}s` }}
+          >
+            <div className="stat-number">{stat.number}</div>
+            <div className="stat-label">{stat.label}</div>
+            <p className="stat-detail">{stat.detail}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+// ==================== LAYOUT: SPLIT SCREEN (Reverse) ====================
+const ModernEraSection: React.FC = () => {
+  const { ref, isVisible } = useInView();
+
+  return (
+    <section ref={ref} className={`split-screen reverse ${isVisible ? 'visible' : ''}`}>
+      <div className="split-image">
+        {/* Modern cycling - urban */}
+        <img 
+          src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1200&q=80"
+          alt="Modern cyclist in urban environment"
+        />
+        <div className="image-overlay" />
+        <div className="image-caption">The enduring machine</div>
+      </div>
+      
+      <div className="split-content">
+        <div className="era-badge">
+          <span className="era-text">Now</span>
+          <div className="era-line" />
+        </div>
+        
+        <span className="subtitle">Two Centuries Later</span>
+        <h2>The Enduring Machine</h2>
+        
+        <p>
+          From wooden running machines to carbon-fiber racing bikes, from cobblestone streets 
+          to dedicated bike lanes, the bicycle has proven remarkably adaptable.
+        </p>
+        <p>
+          It requires no fuel, produces no emissions, improves health, and connects communities. 
+          In an age of climate crisis and urban congestion, the simple invention of a German baron 
+          in 1817 may yet prove to be one of humanity&apos;s most important technologies.
+        </p>
+        
+        <div className="highlight">
+          <p>The 1970s oil crisis sparked a bicycle renaissance in the West. Mountain bikes, carbon fiber, e-bikes—innovation continues.</p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// ==================== SOURCES ====================
 const Sources: React.FC = () => (
   <section className="sources-section">
     <div className="sources-content">
@@ -316,8 +539,8 @@ const Sources: React.FC = () => (
           </a>
         </li>
         <li>
-          <a href="https://www.nationalgeographic.com/history/article/how-bicycles-transformed-world" target="_blank" rel="noopener noreferrer">
-            &ldquo;How Bicycles Transformed Our World&rdquo; — National Geographic
+          <a href="https://www.smithsonianmag.com/history/how-the-bicycle-paved-the-way-for-womens-rights-105413804/" target="_blank" rel="noopener noreferrer">
+            &ldquo;How the Bicycle Paved the Way for Women&apos;s Rights&rdquo; — Smithsonian Magazine
           </a>
         </li>
         <li>
@@ -326,13 +549,13 @@ const Sources: React.FC = () => (
           </a>
         </li>
         <li>
-          <a href="https://en.wikipedia.org/wiki/Safety_bicycle" target="_blank" rel="noopener noreferrer">
-            &ldquo;Safety Bicycle&rdquo; — Wikipedia
+          <a href="https://en.wikipedia.org/wiki/Year_Without_a_Summer" target="_blank" rel="noopener noreferrer">
+            &ldquo;Year Without a Summer (Mount Tambora)&rdquo; — Wikipedia
           </a>
         </li>
         <li>
-          <a href="https://www.smithsonianmag.com/history/how-the-bicycle-paved-the-way-for-womens-rights-105413804/" target="_blank" rel="noopener noreferrer">
-            &ldquo;How the Bicycle Paved the Way for Women&apos;s Rights&rdquo; — Smithsonian Magazine
+          <a href="https://en.wikipedia.org/wiki/Safety_bicycle" target="_blank" rel="noopener noreferrer">
+            &ldquo;Safety Bicycle&rdquo; — Wikipedia
           </a>
         </li>
       </ul>
@@ -343,6 +566,7 @@ const Sources: React.FC = () => (
   </section>
 );
 
+// ==================== FOOTER ====================
 const Footer: React.FC = () => (
   <footer className="footer">
     <div className="footer-content">
@@ -361,36 +585,20 @@ const Footer: React.FC = () => (
   </footer>
 );
 
-const ProgressBar: React.FC = () => {
-  const [progress, setProgress] = useState(0);
-  
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const currentProgress = (window.scrollY / scrollHeight) * 100;
-      setProgress(currentProgress);
-    };
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  
-  return (
-    <div className="progress-bar">
-      <div className="progress-fill" style={{ height: `${progress}%` }} />
-      <div className="progress-wheel" style={{ top: `${progress}%` }} />
-    </div>
-  );
-};
-
+// ==================== MAIN COMPONENT ====================
 const BicycleHistoryClient: React.FC = () => {
   return (
     <div className="bicycle-history-container">
       <ProgressBar />
       <Hero />
-      {sections.map((section, index) => (
-        <Section key={section.id} section={section} index={index} />
-      ))}
+      <DraisineSection />
+      <TamboraQuote />
+      <TimelineSection />
+      <PennyFarthingSection />
+      <SafetyBicycleSection />
+      <WomensLiberationSection />
+      <GlobalStatsSection />
+      <ModernEraSection />
       <Sources />
       <Footer />
     </div>
@@ -398,4 +606,3 @@ const BicycleHistoryClient: React.FC = () => {
 };
 
 export default BicycleHistoryClient;
-
