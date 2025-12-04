@@ -229,7 +229,7 @@
 
 ### Core Requirement: Layout Diversity
 
-**CRITICAL**: Every scrollytelling piece MUST use at least **3 different layout patterns**. No two consecutive sections may use the same layout. The monotony of alternating left/right text blocks is explicitly prohibited.
+**CRITICAL**: Every scrollytelling piece MUST use at least **3 different layout patterns**. No two consecutive sections may use the same layout. The monotony of alternating left/right text blocks is explicitly prohibited. Images are **optional** unless requested—typography-forward designs are encouraged.
 
 ### Available Layout Patterns
 
@@ -372,49 +372,36 @@ Layout Count: split-screen(2), quote-monument(1), timeline(1),
 Consecutive Same: ❌ None — ✅ APPROVED
 ```
 
-### Media Integration Requirements
+### Media Integration (Optional)
 
-**Every scrollytelling piece SHOULD include:**
+**Images are OPTIONAL unless explicitly requested by the user.** Scrollytelling can be powerful with typography, whitespace, and animation alone.
 
-1. **At least 2-3 image sections** using one of:
-   - Unsplash/Pexels free stock images
-   - Public domain historical images (Library of Congress, Wikimedia)
-   - SVG illustrations (custom or subject-specific)
+**When images ARE requested, use:**
+1. Public domain historical images (Library of Congress, Wikimedia, archive.org)
+2. SVG illustrations (custom or subject-specific)
+3. Museum digital collections
+4. User-provided images
 
-2. **Image Sources (Prioritized):**
-   - Unsplash: `https://images.unsplash.com/photo-[id]?w=1200`
-   - Pexels: `https://images.pexels.com/photos/[id]/pexels-photo-[id].jpeg`
-   - Library of Congress: `https://www.loc.gov/pictures/`
-   - Wikimedia Commons: `https://commons.wikimedia.org/`
-   - Museum digital collections
-
-3. **Media Research Phase (Add to Workflow):**
-   After Design Research, research relevant imagery:
-   - Search Unsplash/Pexels for subject-related photos
-   - Search archive.org and Library of Congress for historical images
-   - Plan SVG illustrations for diagrams/icons
-   - Note image URLs and attribution
+**Do NOT automatically include stock photos.** A text-forward, typographically rich scrollytelling experience is often more elegant and immersive than one padded with generic imagery.
 
 ### Anti-Patterns (Layout Failures)
 
 ❌ **The Monotony Trap**: All sections use same alternating left/right layout
-❌ **Text Wall**: Multiple consecutive text-only sections
-❌ **Image Desert**: No visual variety, only text with small icons
 ❌ **Layout Chaos**: Too many different patterns with no rhythm
 ❌ **Mobile Neglect**: Layouts that collapse poorly on mobile
-❌ **Blog Grid**: Card grids with image-top/text-bottom look like blog listings, not editorial storytelling. Use comparison panels, staggered layouts, or horizontal scrolls instead.
-❌ **Stock Photo Cards**: Rectangular image cards with captions feel like a content index. For comparisons, use SVG illustrations, split panels, or interactive elements.
+❌ **Blog Grid**: Card grids with image-top/text-bottom look like blog listings, not editorial storytelling
+❌ **Stock Photo Padding**: Using generic stock photos to fill space instead of letting typography and whitespace breathe
 
 ### Layout Validation Checklist
 
 Before finalizing layout plan:
 - [ ] At least 3 different layout patterns used
 - [ ] No consecutive sections use identical layouts
-- [ ] At least 2 sections include meaningful imagery
 - [ ] Quote monuments reserved for truly impactful quotes
 - [ ] Data viz sections have actual data to visualize
 - [ ] Mobile behavior specified for complex layouts
 - [ ] Sticky-scroll used sparingly (max 1-2 per story)
+- [ ] Typography and whitespace given priority over stock imagery
 
 ---
 
@@ -473,7 +460,7 @@ Before finalizing layout plan:
 - ❌ **NEVER skip Design Research phase—every story demands its own visual identity**
 - ❌ **NEVER use the same layout pattern for all sections (minimum 3 different layouts required)**
 - ❌ **NEVER create consecutive sections with identical layout patterns**
-- ❌ **NEVER publish a story without at least 2 image/media sections**
+- ❌ **NEVER pad content with generic stock photos when typography would be more elegant**
 
 ## Design Research Framework (MANDATORY)
 
@@ -1230,7 +1217,7 @@ When working with this agent, reference the role by stating:
 
 **CRITICAL REQUIREMENTS**:
 1. **Design Research First**: Every story MUST begin with Design Research phase—unique visual identity derived from subject matter research. **NEVER copy designs from previous stories.**
-2. **Layout Variation Required**: Every story MUST use at least **3 different layout patterns**. No consecutive sections may use the same layout. Include at least 2 image/media sections.
+2. **Layout Variation Required**: Every story MUST use at least **3 different layout patterns**. No consecutive sections may use the same layout.
 3. **Narrative Excellence**: Every scrollytelling piece must have a clear arc with hook, development, and resolution
 4. **Visual-Narrative Unity**: Design decisions must serve the story AND emerge from subject research, never overshadow it
 5. **Factual Foundation**: All content must be researched and verified; spectacular visuals cannot excuse inaccuracy

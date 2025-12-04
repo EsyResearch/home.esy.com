@@ -5,37 +5,29 @@ import './who-invented-the-chair.css';
 
 /*
  * Design Research: The History of the Chair
+ * SECOND ITERATION - Scholarly Manuscript Edition
  * 
- * Visual Identity derived from furniture workshop materials:
- * - Workshop walnut backgrounds (craftsman's studio)
- * - Leather cognac and mahogany accents (furniture wood/upholstery)
- * - Playfair Display typography (furniture catalog elegance)
- * - Weighted, deliberate animations (like placing furniture)
+ * COMPLETELY DIFFERENT from other scrollytelling:
+ * - Light parchment backgrounds (not dark themes)
+ * - Text-forward design (hero is ONLY image)
+ * - Manuscript typography with drop caps
+ * - Chapter structure with roman numerals
+ * - Marginalia, footnotes, catalog cards
+ * - Academic/archival aesthetic
  * 
- * Layout Patterns Used (7 unique):
- * - Hero: full-bleed
- * - Section 1: split-screen (Ancient Egypt)
- * - Section 2: quote-monument (Greek Klismos)
- * - Section 3: timeline (Medieval to Renaissance)
- * - Section 4: full-bleed (Age of Craftsmen)
- * - Section 5: comparison (Thonet Revolution)
- * - Section 6: sticky-scroll (Modernism)
- * - Section 7: data-viz (Democratic Design stats)
- * - Section 8: split-screen reverse (Today)
+ * Layout Patterns (6 unique, all text-forward):
+ * - Hero: full-bleed image (only image)
+ * - Chapter: drop cap opening with numbered sections
+ * - Marginalia: three-column with side notes
+ * - Catalog: museum card grid
+ * - Quote: illuminated manuscript style
+ * - Timeline: margin-annotated vertical
+ * - Footnote: academic aside
+ * - Stat: large number highlight
+ * - Closing: centered epilogue
  * 
  * All citations from .edu sources only.
  */
-
-// Chair icon SVG
-const ChairIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="25" y="10" width="50" height="8" rx="2" stroke="currentColor" strokeWidth="2"/>
-    <rect x="25" y="18" width="50" height="35" rx="2" stroke="currentColor" strokeWidth="2"/>
-    <line x1="30" y1="53" x2="30" y2="90" stroke="currentColor" strokeWidth="2"/>
-    <line x1="70" y1="53" x2="70" y2="90" stroke="currentColor" strokeWidth="2"/>
-    <rect x="25" y="53" width="50" height="8" rx="2" stroke="currentColor" strokeWidth="2"/>
-  </svg>
-);
 
 // Animation hook
 const useInView = (threshold = 0.2) => {
@@ -91,166 +83,172 @@ const Hero: React.FC = () => {
       <div className="hero-bg">
         <img 
           src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1920&q=80" 
-          alt="Elegant furniture in warm lighting"
+          alt="Elegant furniture"
           style={{ transform: `scale(${1 + scrollY * 0.0002}) translateY(${scrollY * 0.15}px)` }}
         />
         <div className="hero-overlay" />
       </div>
 
-      <div className="hero-content" style={{ transform: `translateY(${scrollY * 0.25}px)` }}>
-        <div className="hero-badge">5,000 Years of Seating</div>
+      <div className="hero-content" style={{ transform: `translateY(${scrollY * 0.3}px)` }}>
+        <div className="hero-badge">A History in Five Millennia</div>
         
         <h1>
           Who Invented
-          <span className="title-accent">The Chair</span>
+          <span className="title-accent">The Chair?</span>
         </h1>
         
         <p className="hero-tagline">
-          From pharaohs&apos; thrones to democratic design—the surprisingly radical history 
-          of humanity&apos;s most ubiquitous furniture.
+          From the throne rooms of pharaohs to the flat-pack aisles of IKEA—
+          the improbable journey of humanity&apos;s most democratic furniture.
         </p>
-
-        <div className="hero-stats">
-          <div className="hero-stat">
-            <div className="hero-stat-number">5,000+</div>
-            <div className="hero-stat-label">Years of History</div>
-          </div>
-          <div className="hero-stat">
-            <div className="hero-stat-number">1859</div>
-            <div className="hero-stat-label">Chair No. 14</div>
-          </div>
-          <div className="hero-stat">
-            <div className="hero-stat-number">50M+</div>
-            <div className="hero-stat-label">Thonet Chairs Sold</div>
-          </div>
-        </div>
       </div>
 
-      <div className="scroll-indicator">
-        <span>Take a seat</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M12 5v14M5 12l7 7 7-7"/>
-        </svg>
+      <div className="scroll-cue">
+        <span>Scroll to begin</span>
+        <div className="scroll-line" />
       </div>
     </header>
   );
 };
 
-// ==================== SPLIT SCREEN: Ancient Egypt ====================
-const AncientEgyptSection: React.FC = () => {
+// ==================== CHAPTER I ====================
+const ChapterOne: React.FC = () => {
   const { ref, isVisible } = useInView();
 
   return (
-    <section ref={ref} className={`split-screen ${isVisible ? 'visible' : ''}`}>
-      <div className="split-image">
-        <img 
-          src="https://images.unsplash.com/photo-1503602642458-232111445657?w=1200&q=80"
-          alt="Ancient Egyptian styled architecture"
-        />
-        <div className="image-overlay" />
-        <div className="image-caption">Thrones of the Pharaohs</div>
+    <section ref={ref} className={`chapter fade-in ${isVisible ? 'visible' : ''}`}>
+      <div className="chapter-number">I</div>
+      <h2 className="chapter-title">The Throne Before the Chair</h2>
+      <div className="chapter-subtitle">Ancient Egypt, c. 3100 BCE</div>
+      
+      <p>
+        The chair began not as furniture, but as symbol. In the Nile Valley, where 
+        civilization first flowered into organized complexity, chairs were reserved 
+        exclusively for those who commanded divine authority. Common people—merchants, 
+        scribes, farmers—sat on the ground or on simple reed mats. The chair was never 
+        merely a place to rest; it was a throne, a physical manifestation of power 
+        elevated above the mass of humanity.
+      </p>
+      <p>
+        The word &ldquo;chairman&rdquo; echoes this ancient distinction. To sit in the chair was 
+        to possess authority. The pharaohs of Egypt understood this instinctively, 
+        commissioning thrones carved with lion&apos;s paws and inlaid with lapis lazuli, 
+        gold, and ivory. When Tutankhamun&apos;s tomb was opened in 1922, among its 
+        treasures was a golden throne so magnificent it seemed to glow with the 
+        authority of three millennia.
+      </p>
+    </section>
+  );
+};
+
+// ==================== MARGINALIA SECTION ====================
+const GreekInnovation: React.FC = () => {
+  const { ref, isVisible } = useInView();
+
+  return (
+    <section ref={ref} className={`marginalia-section fade-in ${isVisible ? 'visible' : ''}`}>
+      <div className="marginalia-left">
+        <div className="margin-note">
+          <span className="note-year">c. 500 BCE</span>
+          The klismos appears in Greek vase paintings, its curved legs and 
+          concave back unlike anything before.
+        </div>
+        <div className="margin-note">
+          <span className="note-year">Note</span>
+          No original klismos chairs survive; our knowledge comes entirely 
+          from artistic depictions.
+        </div>
       </div>
       
-      <div className="split-content">
-        <div className="era-badge">
-          <span className="era-text">3100 BCE</span>
-          <div className="era-line" />
-        </div>
-        
-        <span className="subtitle">The Nile Valley</span>
-        <h2>Thrones of Power</h2>
-        
+      <div className="marginalia-content">
+        <h2>The Greek Revolution: Comfort as Concept</h2>
         <p>
-          The chair began not as furniture, but as symbol. In ancient Egypt, chairs were 
-          reserved exclusively for pharaohs and the highest nobility. Common people sat on 
-          the ground or on simple stools—the chair was a throne, a statement of divine authority.
+          The Greeks did something radical. They asked: what if a chair could be 
+          beautiful? What if it could be comfortable? The klismos chair, with its 
+          gently curved backrest and elegant splayed legs, represents one of history&apos;s 
+          great design innovations—a departure from the rigid, imposing thrones of 
+          Egypt and Mesopotamia toward something almost modern in its consideration 
+          of the human body.
         </p>
         <p>
-          Egyptian chairs featured animal legs carved as lion paws, seats of woven rushes, 
-          and backs inlaid with gold, ivory, and precious stones. The famous throne of 
-          Tutankhamun, discovered in 1922, reveals the extraordinary craftsmanship devoted 
-          to royal seating.
+          As the Yale Teachers Institute curriculum notes, the klismos &ldquo;is one of 
+          the most elegant and refined chair designs ever created—its graceful 
+          curves have never been surpassed in 2,500 years.&rdquo; This was furniture 
+          designed not just for ceremony, but for life: for conversation, for 
+          reading, for the simple pleasure of sitting well.
         </p>
-        
-        <div className="highlight">
-          <p>The word &ldquo;chairman&rdquo; literally means &ldquo;the person who sits in the chair&rdquo;—a title 
-          dating back millennia when chairs were reserved for those in command.</p>
+      </div>
+      
+      <div className="marginalia-right">
+        <div className="margin-note">
+          <span className="note-year">Revival</span>
+          The klismos experienced a renaissance during the neoclassical period, 
+          influencing Regency and Empire furniture.
         </div>
       </div>
     </section>
   );
 };
 
-// ==================== QUOTE MONUMENT: Greek Klismos ====================
-const KlismosQuote: React.FC = () => {
+// ==================== ILLUMINATED QUOTE ====================
+const IlluminatedQuote: React.FC = () => {
   const { ref, isVisible } = useInView();
 
   return (
-    <section ref={ref} className={`quote-monument ${isVisible ? 'animate-in visible' : 'animate-in'}`}>
+    <section ref={ref} className={`illuminated-quote fade-in ${isVisible ? 'visible' : ''}`}>
       <blockquote>
         <p>
-          &ldquo;The klismos is one of the most elegant and refined chair designs ever created—its 
-          graceful curves have never been surpassed in 2,500 years.&rdquo;
+          &ldquo;A chair is a very difficult object. A skyscraper is almost easier.&rdquo;
         </p>
-        <cite>Yale Teachers Institute, Furniture Design Curriculum</cite>
-        
-        <div className="quote-context">
-          <p>
-            The ancient Greek klismos chair, with its gently curved backrest and splayed legs, 
-            represents a revolutionary departure from the rigid thrones of Egypt. It was 
-            designed for beauty and comfort—revolutionary concepts that would take centuries 
-            to spread beyond the Mediterranean.
-          </p>
-        </div>
+        <cite>Ludwig Mies van der Rohe, Architect</cite>
       </blockquote>
     </section>
   );
 };
 
-// ==================== TIMELINE: Medieval to Renaissance ====================
-const TimelineSection: React.FC = () => {
+// ==================== CATALOG ENTRIES ====================
+const CatalogSection: React.FC = () => {
   const { ref, isVisible } = useInView(0.1);
 
-  const timelineItems = [
+  const entries = [
     {
-      year: '500–1400 CE',
-      title: 'Medieval Authority',
-      text: 'Chairs remain symbols of power. Lords sit in high-backed wooden chairs; everyone else uses benches or stools. The common phrase "take a seat" was literal—only the privileged could.'
+      number: 'CAT. NO. 001',
+      title: 'The Medieval Great Chair',
+      date: 'c. 1200–1500 CE',
+      description: 'Heavy, imposing, built for lords. The &ldquo;great chair&rdquo; at the head of the table signified authority in medieval halls. Everyone else used benches.'
     },
     {
-      year: '1450–1600',
-      title: 'Renaissance Refinement',
-      text: 'Italian craftsmen rediscover classical forms. Chairs become more common in wealthy homes, featuring turned legs, carved details, and upholstered seats.'
+      number: 'CAT. NO. 002',
+      title: 'The Windsor Chair',
+      date: 'c. 1710, England',
+      description: 'Spindle-back construction from local woods. Vernacular craftsmanship that became an American icon, adapted by generations of rural chairmakers.'
     },
     {
-      year: '1550–1600',
-      title: 'The Harvard Chair',
-      text: 'Harvard\'s President\'s Chair, made in England or Wales between 1550–1600, exemplifies the imposing "great chairs" of the era—heavy, authoritative, built for ceremony.'
+      number: 'CAT. NO. 003',
+      title: 'Thonet No. 14',
+      date: '1859, Vienna',
+      description: 'The first mass-produced chair. Six bent-wood pieces, 10 screws, 2 nuts. Ships flat-packed. Over 50 million sold—still in production today.'
     },
     {
-      year: '1700s',
-      title: 'The Age of Styles',
-      text: 'Queen Anne, Chippendale, Hepplewhite—the 18th century explodes with named styles. Pattern books spread designs across Europe and America.'
+      number: 'CAT. NO. 004',
+      title: 'The Wassily Chair',
+      date: '1925, Bauhaus',
+      description: 'Marcel Breuer&apos;s tubular steel revolution. Inspired by bicycle handlebars. Modernism stripped to its essence: metal frame, leather straps, nothing more.'
     }
   ];
 
   return (
-    <section ref={ref} className={`timeline-section ${isVisible ? 'visible' : ''}`}>
-      <h2>From Throne to Home</h2>
-      
-      <div className="timeline">
-        {timelineItems.map((item, index) => (
+    <section ref={ref} className={`catalog-section fade-in ${isVisible ? 'visible' : ''}`}>
+      <div className="catalog-grid">
+        {entries.map((entry, index) => (
           <div 
-            key={item.year} 
-            className="timeline-item"
-            style={{ transitionDelay: `${index * 0.15}s` }}
+            key={entry.number} 
+            className={`catalog-card stagger-${index + 1}`}
           >
-            <div className="timeline-dot" />
-            <div className="timeline-content">
-              <div className="timeline-year">{item.year}</div>
-              <h3 className="timeline-title">{item.title}</h3>
-              <p className="timeline-text">{item.text}</p>
-            </div>
+            <div className="catalog-number">{entry.number}</div>
+            <h3 className="catalog-title">{entry.title}</h3>
+            <div className="catalog-date">{entry.date}</div>
+            <p className="catalog-description" dangerouslySetInnerHTML={{ __html: entry.description }} />
           </div>
         ))}
       </div>
@@ -258,197 +256,49 @@ const TimelineSection: React.FC = () => {
   );
 };
 
-// ==================== FULL BLEED: Age of Craftsmen ====================
-const CraftsmenSection: React.FC = () => {
-  const { ref, isVisible } = useInView();
-
-  return (
-    <section ref={ref} className={`full-bleed ${isVisible ? 'animate-in visible' : 'animate-in'}`}>
-      <div className="full-bleed-bg">
-        <img 
-          src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1920&q=80"
-          alt="Traditional woodworking craftsmanship"
-        />
-        <div className="overlay" />
-      </div>
-      
-      <div className="full-bleed-content">
-        <span className="section-label">18th Century</span>
-        
-        <h2>The Age of Master Craftsmen</h2>
-        
-        <p>
-          The 1700s transformed furniture-making into high art. Thomas Chippendale&apos;s 
-          1754 pattern book, &ldquo;The Gentleman and Cabinet-Maker&apos;s Director,&rdquo; became the 
-          furniture industry&apos;s first bestseller, spreading sophisticated designs across 
-          the Atlantic to American craftsmen.
-        </p>
-        <p>
-          Each chair was handcrafted—carved, joined, and finished by skilled artisans 
-          over weeks or months. A fine chair cost a fortune and was meant to last 
-          generations. But this era of bespoke craftsmanship was about to end.
-        </p>
-      </div>
-    </section>
-  );
-};
-
-// ==================== COMPARISON: Thonet Revolution ====================
-const ThonetSection: React.FC = () => {
-  const { ref, isVisible } = useInView();
-
-  return (
-    <section ref={ref} className={`comparison-section ${isVisible ? 'visible' : ''}`}>
-      <div className="comparison-header">
-        <span className="comparison-label">1859 — The Revolution</span>
-        <h2>Thonet&apos;s Bentwood Breakthrough</h2>
-      </div>
-      
-      <div className="comparison-container">
-        <div className="comparison-panel before">
-          <div className="panel-marker">Before</div>
-          <div className="panel-content">
-            <div className="panel-icon">
-              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="20" y="15" width="60" height="10" rx="2" stroke="currentColor" strokeWidth="2"/>
-                <rect x="20" y="25" width="60" height="40" stroke="currentColor" strokeWidth="2"/>
-                <line x1="25" y1="65" x2="25" y2="90" stroke="currentColor" strokeWidth="3"/>
-                <line x1="75" y1="65" x2="75" y2="90" stroke="currentColor" strokeWidth="3"/>
-                <rect x="20" y="65" width="60" height="8" stroke="currentColor" strokeWidth="2"/>
-              </svg>
-            </div>
-            <h3>Traditional Craft</h3>
-            <p>
-              Heavy wooden chairs assembled from dozens of carved and joined pieces. 
-              Weeks of skilled labor. Expensive, fragile joints. Impossible to ship.
-            </p>
-            <ul className="panel-traits">
-              <li><span className="trait-negative">✕</span> Expensive</li>
-              <li><span className="trait-negative">✕</span> Heavy</li>
-              <li><span className="trait-negative">✕</span> Fragile joints</li>
-              <li><span className="trait-negative">✕</span> Weeks to build</li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="comparison-divider">
-          <div className="divider-line" />
-          <div className="divider-year">1859</div>
-          <div className="divider-line" />
-        </div>
-
-        <div className="comparison-panel after">
-          <div className="panel-marker">After</div>
-          <div className="panel-content">
-            <div className="panel-icon">
-              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="50" cy="25" rx="25" ry="15" stroke="currentColor" strokeWidth="2"/>
-                <path d="M25 25 Q20 50 30 85" stroke="currentColor" strokeWidth="2" fill="none"/>
-                <path d="M75 25 Q80 50 70 85" stroke="currentColor" strokeWidth="2" fill="none"/>
-                <ellipse cx="50" cy="55" rx="20" ry="8" stroke="currentColor" strokeWidth="2"/>
-              </svg>
-            </div>
-            <h3>Bentwood Innovation</h3>
-            <p>
-              Michael Thonet&apos;s Chair No. 14 used steam-bent beechwood and only 6 pieces, 
-              10 screws, 2 nuts. Ships flat-packed. Assembled in minutes.
-            </p>
-            <ul className="panel-traits">
-              <li><span className="trait-positive">✓</span> Affordable</li>
-              <li><span className="trait-positive">✓</span> Lightweight</li>
-              <li><span className="trait-positive">✓</span> Strong curves</li>
-              <li><span className="trait-positive">✓</span> Mass-produced</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// ==================== STICKY SCROLL: Modernism ====================
-const ModernismSection: React.FC = () => {
+// ==================== MANUSCRIPT TIMELINE ====================
+const ManuscriptTimeline: React.FC = () => {
   const { ref, isVisible } = useInView(0.1);
 
-  return (
-    <section ref={ref} className={`sticky-scroll-section ${isVisible ? 'visible' : ''}`}>
-      <div className="sticky-element">
-        <div className="sticky-content">
-          <ChairIcon className="sticky-icon" />
-          <h3>The Modern Revolution</h3>
-          <p>
-            The 20th century reimagined the chair from first principles. 
-            New materials. New methods. New meanings.
-          </p>
-        </div>
-      </div>
-      
-      <div className="scroll-panels">
-        <div className="scroll-panel">
-          <div className="scroll-panel-content">
-            <div className="panel-label">1919–1933</div>
-            <h4>Bauhaus: Form Follows Function</h4>
-            <p>
-              At the Bauhaus school, Marcel Breuer created the first tubular steel chair in 
-              1925—inspired by bicycle handlebars. The Wassily Chair stripped seating to its 
-              essence: metal frame, leather straps, nothing more.
-            </p>
-          </div>
-        </div>
-        
-        <div className="scroll-panel">
-          <div className="scroll-panel-content">
-            <div className="panel-label">1929</div>
-            <h4>The Barcelona Chair</h4>
-            <p>
-              Mies van der Rohe&apos;s Barcelona Chair became an icon of modernism—and a 
-              contradiction. Designed for mass production, its leather and chrome construction 
-              made it expensive and exclusive. Democratic ideals, elite pricing.
-            </p>
-          </div>
-        </div>
-        
-        <div className="scroll-panel">
-          <div className="scroll-panel-content">
-            <div className="panel-label">1940s–1950s</div>
-            <h4>Eames: True Democratic Design</h4>
-            <p>
-              Charles and Ray Eames perfected molded plywood and fiberglass to create 
-              beautiful, affordable chairs for everyone. Their DCW and shell chairs finally 
-              delivered on modernism&apos;s promise—great design accessible to the masses.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// ==================== DATA VIZ: Democratic Design ====================
-const StatsSection: React.FC = () => {
-  const { ref, isVisible } = useInView();
-
-  const stats = [
-    { number: '50M+', label: 'Chair No. 14 Sold', detail: 'Thonet\'s design is history\'s best-selling chair' },
-    { number: '6', label: 'Pieces Total', detail: 'The entire Chair No. 14 assembly' },
-    { number: '36', label: 'Chairs Per Box', detail: 'Flat-packed for efficient shipping' },
-    { number: '150+', label: 'Years In Production', detail: 'Still manufactured today' }
+  const entries = [
+    {
+      year: '1754',
+      title: 'Chippendale\'s Director',
+      text: 'Thomas Chippendale publishes "The Gentleman and Cabinet-Maker\'s Director"—the furniture industry\'s first bestseller, spreading sophisticated designs across the Atlantic.'
+    },
+    {
+      year: '1859',
+      title: 'The Bentwood Revolution',
+      text: 'Michael Thonet patents steam-bent beechwood. Chair No. 14 proves furniture can be affordable, elegant, and mass-produced simultaneously.'
+    },
+    {
+      year: '1929',
+      title: 'The Barcelona Chair',
+      text: 'Mies van der Rohe creates an icon for the Barcelona Pavilion. Modernism\'s contradiction: designed for democracy, priced for the elite.'
+    },
+    {
+      year: '1948',
+      title: 'Eames Delivers',
+      text: 'Charles and Ray Eames perfect molded plywood and fiberglass. Beautiful, affordable chairs for everyone. Modernism\'s promise finally fulfilled.'
+    }
   ];
 
   return (
-    <section ref={ref} className={`data-viz-section ${isVisible ? 'visible' : ''}`}>
-      <h2>The Numbers Behind the Revolution</h2>
+    <section ref={ref} className={`manuscript-timeline fade-in ${isVisible ? 'visible' : ''}`}>
+      <div className="timeline-header">
+        <h2>Key Moments in Chair History</h2>
+        <p>A selective chronology of innovation</p>
+      </div>
       
-      <div className="stats-grid">
-        {stats.map((stat, index) => (
+      <div className="timeline-entries">
+        {entries.map((entry, index) => (
           <div 
-            key={stat.label}
-            className={`stat-card ${isVisible ? 'animate-in visible' : 'animate-in'}`}
-            style={{ transitionDelay: `${index * 0.12}s` }}
+            key={entry.year} 
+            className={`timeline-entry stagger-${index + 1}`}
           >
-            <div className="stat-number">{stat.number}</div>
-            <div className="stat-label">{stat.label}</div>
-            <p className="stat-detail">{stat.detail}</p>
+            <div className="timeline-year">{entry.year}</div>
+            <h3 className="timeline-title">{entry.title}</h3>
+            <p className="timeline-text">{entry.text}</p>
           </div>
         ))}
       </div>
@@ -456,46 +306,64 @@ const StatsSection: React.FC = () => {
   );
 };
 
-// ==================== SPLIT SCREEN REVERSE: Today ====================
-const TodaySection: React.FC = () => {
+// ==================== FOOTNOTE SECTION ====================
+const FootnoteSection: React.FC = () => {
   const { ref, isVisible } = useInView();
 
   return (
-    <section ref={ref} className={`split-screen reverse ${isVisible ? 'visible' : ''}`}>
-      <div className="split-image">
-        <img 
-          src="https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=1200&q=80"
-          alt="Modern minimal chair design"
-        />
-        <div className="image-overlay" />
-        <div className="image-caption">Design for everyone</div>
-      </div>
-      
-      <div className="split-content">
-        <div className="era-badge">
-          <span className="era-text">Today</span>
-          <div className="era-line" />
-        </div>
-        
-        <span className="subtitle">The Ubiquitous Object</span>
-        <h2>The Democratic Seat</h2>
-        
-        <p>
-          From pharaonic throne to IKEA flat-pack, the chair has completed its journey 
-          from exclusive symbol of power to universal possession. We sit in chairs at work, 
-          at home, in transit—so constantly that ergonomists now warn of &ldquo;sitting disease.&rdquo;
-        </p>
-        <p>
-          Yet the chair remains a canvas for design innovation. Sustainable materials, 
-          3D printing, ergonomic science—each generation reinvents this ancient object. 
-          The search for the perfect seat continues.
-        </p>
-        
-        <div className="highlight">
-          <p>The average American spends over 8 hours per day sitting—more time than sleeping. 
-          The chair has become, for better or worse, our default posture.</p>
+    <section ref={ref} className={`footnote-section fade-in ${isVisible ? 'visible' : ''}`}>
+      <div className="footnote-content">
+        <div className="footnote-marker">†</div>
+        <div className="footnote-text">
+          <h3>A Note on &ldquo;The Harvard Chair&rdquo;</h3>
+          <p>
+            Harvard University possesses one of America&apos;s most significant historical 
+            chairs: the President&apos;s Chair, made in England or Wales between 1550–1600. 
+            As the Harvard Gazette describes it, this &ldquo;imposing, ancient, and curious 
+            throne&rdquo; exemplifies the ceremonial function of chairs in early modern 
+            institutions—furniture as symbol of academic authority.
+          </p>
         </div>
       </div>
+    </section>
+  );
+};
+
+// ==================== STAT HIGHLIGHT ====================
+const StatHighlight: React.FC = () => {
+  const { ref, isVisible } = useInView();
+
+  return (
+    <section ref={ref} className={`stat-highlight fade-in ${isVisible ? 'visible' : ''}`}>
+      <div className="stat-number">50M+</div>
+      <div className="stat-label">Thonet Chair No. 14 Sold Since 1859</div>
+      <p className="stat-context">
+        The most successful chair design in history—a single model still manufactured 
+        after 165 years, purchased by cafés, homes, and institutions worldwide.
+      </p>
+    </section>
+  );
+};
+
+// ==================== CLOSING CHAPTER ====================
+const ClosingChapter: React.FC = () => {
+  const { ref, isVisible } = useInView();
+
+  return (
+    <section ref={ref} className={`closing-chapter fade-in ${isVisible ? 'visible' : ''}`}>
+      <div className="closing-ornament">❧</div>
+      <h2>The Democratic Seat</h2>
+      <p>
+        From pharaonic throne to IKEA flat-pack, the chair has completed its 
+        improbable journey from exclusive symbol of divine right to universal 
+        possession. We sit so constantly now—at work, at home, in transit—that 
+        ergonomists warn of &ldquo;sitting disease.&rdquo;
+      </p>
+      <p>
+        Yet the chair remains a canvas for design innovation. Sustainable materials, 
+        3D printing, ergonomic science—each generation reinvents this ancient object. 
+        The search for the perfect seat, it seems, is never finished.
+      </p>
     </section>
   );
 };
@@ -548,16 +416,16 @@ const Sources: React.FC = () => (
 const Footer: React.FC = () => (
   <footer className="footer">
     <div className="footer-content">
-      <div className="footer-icon">
-        <ChairIcon />
-      </div>
-      <blockquote className="footer-quote">
-        &ldquo;A chair is a very difficult object. A skyscraper is almost easier.&rdquo;
-        <cite>— Ludwig Mies van der Rohe</cite>
+      <div className="footer-ornament">✦</div>
+      <blockquote>
+        <p>
+          &ldquo;We shape our buildings, and afterwards our buildings shape us.&rdquo;
+        </p>
+        <cite>Winston Churchill, 1943</cite>
       </blockquote>
       <div className="footer-divider" />
-      <p className="footer-text">
-        5,000 years of sitting, and we&apos;re still perfecting it.
+      <p className="footer-colophon">
+        Five thousand years of sitting, and we&apos;re still perfecting it.
       </p>
     </div>
   </footer>
@@ -569,14 +437,14 @@ const ChairHistoryClient: React.FC = () => {
     <div className="chair-history-container">
       <ProgressBar />
       <Hero />
-      <AncientEgyptSection />
-      <KlismosQuote />
-      <TimelineSection />
-      <CraftsmenSection />
-      <ThonetSection />
-      <ModernismSection />
-      <StatsSection />
-      <TodaySection />
+      <ChapterOne />
+      <GreekInnovation />
+      <IlluminatedQuote />
+      <CatalogSection />
+      <ManuscriptTimeline />
+      <FootnoteSection />
+      <StatHighlight />
+      <ClosingChapter />
       <Sources />
       <Footer />
     </div>
@@ -584,4 +452,3 @@ const ChairHistoryClient: React.FC = () => {
 };
 
 export default ChairHistoryClient;
-
