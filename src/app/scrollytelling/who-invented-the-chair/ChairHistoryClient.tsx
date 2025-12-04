@@ -82,8 +82,8 @@ const Hero: React.FC = () => {
     <header className="hero">
       <div className="hero-bg">
         <img 
-          src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1920&q=80" 
-          alt="Elegant furniture"
+          src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Tutankhamun_throne.jpg" 
+          alt="Tutankhamun's Golden Throne, c. 1330 BCE, Egyptian Museum, Cairo"
           style={{ transform: `scale(${1 + scrollY * 0.0002}) translateY(${scrollY * 0.15}px)` }}
         />
         <div className="hero-overlay" />
