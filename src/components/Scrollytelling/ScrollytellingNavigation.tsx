@@ -46,7 +46,7 @@ const ScrollytellingNavigation: React.FC<ScrollytellingNavigationProps> = ({
         transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
       }}
     >
-      {/* Logo */}
+      {/* Logo - using transparent SVG */}
       <Link 
         href="/" 
         style={{ 
@@ -58,7 +58,7 @@ const ScrollytellingNavigation: React.FC<ScrollytellingNavigationProps> = ({
         }}
       >
         <Image
-          src="/esy-logo.png"
+          src="/esy-logos/logo-files/for-web/svg/color-no-bg.svg"
           alt="Esy"
           width={60}
           height={24}
