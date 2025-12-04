@@ -335,25 +335,25 @@ const SafetyBicycleSection: React.FC = () => {
       label: 'Before 1885',
       title: 'The High Wheeler',
       text: 'Massive front wheel, tiny rear. Fast but dangerous. Only for athletic young men. A status symbol for the daring few.',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80'
+      image: 'https://images.unsplash.com/photo-1511994298241-608e28f14fde?w=600&q=80' // vintage bicycle wheel
     },
     {
       label: 'After 1885',
       title: 'The Safety Bicycle',
       text: 'Equal-sized wheels. Chain drive. Diamond frame still used today. Anyone could ride—old, young, men, women.',
-      image: 'https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80'
+      image: 'https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=600&q=80' // classic bicycle
     },
     {
       label: 'The Innovation',
       title: 'Chain Drive',
       text: 'Starley\'s chain drive transferred power from pedals to rear wheel—no more direct pedaling on a giant wheel.',
-      image: 'https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?w=600&q=80'
+      image: 'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=600&q=80' // bicycle gears/chain
     },
     {
       label: 'The Legacy',
       title: '140 Years Later',
       text: 'Starley\'s basic diamond frame geometry remains virtually unchanged—proof of revolutionary design.',
-      image: 'https://images.unsplash.com/photo-1505705694340-019e1f774e3c?w=600&q=80'
+      image: 'https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=600&q=80' // modern road bike
     }
   ];
 
