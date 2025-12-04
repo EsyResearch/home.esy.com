@@ -82,7 +82,7 @@ const Hero: React.FC = () => {
     <header className="hero">
       <div className="hero-bg">
         <img 
-          src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Tutankhamun_throne.jpg" 
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Cairo%2C_museo_egizio%2C_trono_di_tutankhamon_02.JPG/1280px-Cairo%2C_museo_egizio%2C_trono_di_tutankhamon_02.JPG" 
           alt="Tutankhamun's Golden Throne, c. 1330 BCE, Egyptian Museum, Cairo"
           style={{ transform: `scale(${1 + scrollY * 0.0002}) translateY(${scrollY * 0.15}px)` }}
         />
