@@ -4,363 +4,340 @@ import { useEffect, useRef, useState } from 'react';
 import './who-invented-the-spoon.css';
 
 /*
- * Design Research: The History of the Spoon
+ * THE SPOON - Complete Redesign
  * 
- * Visual Identity derived from subject matter:
- * - Porcelain whites & Delft blues (fine dining, china tradition)
- * - Sterling silver tones (the iconic spoon material)
- * - Elegant, refined typography (Playfair Display, Cormorant Garamond)
- * - Gentle, stirring-like animations (not athletic or bouncing)
- * - Oval spoon bowl shapes as decorative motifs
+ * Anti-Pattern-Matching Applied:
+ * ✅ NO alternating left/right sections (was in original)
+ * ✅ NO section numbers in corners (was in original)
+ * ✅ NO drop-cap chapters (overused)
+ * ✅ NO diamond icon highlights (was in original)
  * 
- * This design is intentionally different from:
- * - Basketball (burnt orange, athletic, hardwood)
- * - Fork (Byzantine gold, ancient warmth)
+ * UNIQUE MECHANICS:
+ * 1. SVG spoon that draws itself on scroll (stroke-dashoffset)
+ * 2. Material texture sections (bone → wood → bronze → silver → steel)
+ * 3. Scooping arc animations (content arcs in with rotation)
+ * 4. Concentric ripple bowl data viz
+ * 5. Timeline with alternating scoop direction
+ * 6. Stirring motion for decorative elements
+ * 
+ * Forcing Question Answer:
+ * "An SVG spoon draws itself as you scroll, and content scoops into view
+ * with arc motion - could only work for a spoon story"
  */
 
-interface SectionData {
-  id: string;
-  era: string;
-  title: string;
-  subtitle: string;
-  content: string;
-  highlight?: string;
-}
-
-const sections: SectionData[] = [
-  {
-    id: 'prehistoric',
-    era: '30,000 BCE',
-    title: 'The First Scoop',
-    subtitle: 'Paleolithic Origins',
-    content: 'Long before agriculture, before pottery, before civilization itself, our ancestors faced a fundamental challenge: how to bring liquid and soft foods to their mouths. The solution was elegantly simple—a cupped shape attached to a handle. The earliest spoons were seashells, naturally curved and ready to use. In time, humans carved their own from bone, wood, and stone, creating what may be humanity\'s first purpose-built eating tool.',
-    highlight: 'A spoon engraved in reindeer antler from the Magdalenian period (17,000–12,000 BCE) survives today—evidence of 20,000 years of continuous use'
-  },
-  {
-    id: 'egypt',
-    era: '3000 BCE',
-    title: 'Sacred Vessels of the Nile',
-    subtitle: 'Ancient Egyptian Craftsmanship',
-    content: 'In the shadow of the pyramids, spoons became objects of beauty and ritual. Egyptian artisans carved spoons from ivory, flint, slate, and precious woods, adorning them with hieroglyphics and images of gods. These were not mere utensils—they were offerings to the divine, buried with pharaohs to nourish them in the afterlife. The spoon had transcended function to become symbol.',
-    highlight: 'Egyptian cosmetic spoons, used to mix and apply sacred oils, featured handles carved as swimming maidens and lotus flowers'
-  },
-  {
-    id: 'classical',
-    era: '500 BCE',
-    title: 'Bronze and Silver on Mediterranean Tables',
-    subtitle: 'Greek & Roman Innovation',
-    content: 'The Greeks called it mystron (μύστρον), and they used it alongside bread shaped into edible spoons called mystile. But it was Roman metalworkers who transformed the spoon into a dining essential. Roman spoons of bronze and silver featured a distinctive pointed handle—the cochlear—designed to extract snails and shellfish from their shells. Some had tiny forks at the end, precursors to cutlery still centuries away.',
-    highlight: 'The Latin word "cochlea" (snail shell) gave us the spoon\'s scientific connection—our inner ear\'s spiral cochlea was named for its spoon-bowl shape'
-  },
-  {
-    id: 'medieval',
-    era: '500–1400 CE',
-    title: 'Of Wood and Horn',
-    subtitle: 'Medieval Europe',
-    content: 'As Rome fell and Europe fragmented, the spoon became a marker of class. Peasants ate with spoons of wood or cattle horn—functional, disposable, and unmistakably humble. The wealthy displayed their status through spoons of silver and gold, passed down through generations. In monasteries, monks ate in silence, each with their own wooden spoon, a symbol of simple devotion. The spoon you carried revealed your place in the medieval world.',
-    highlight: 'Medieval travelers carried their own spoons in belt pouches—to eat at another\'s table without your own spoon was a mark of poverty'
-  },
-  {
-    id: 'renaissance',
-    era: '1500s',
-    title: 'Born with a Silver Spoon',
-    subtitle: 'The Age of the Apostle Spoon',
-    content: 'Tudor England transformed the spoon into a symbol of blessing and birthright. Wealthy godparents gifted newborns silver "Apostle spoons," their handles topped with figures of the twelve disciples. A full set of twelve marked extreme wealth; even a single spoon was a treasure. This custom gave English its most enduring idiom: "born with a silver spoon in one\'s mouth"—a phrase that has outlived the tradition by centuries.',
-    highlight: 'In Shakespeare\'s Henry VIII, Archbishop Cranmer jokes about being made a godfather: "Come, come, my lord, you\'d spare your spoons"'
-  },
-  {
-    id: 'tea',
-    era: '1650s',
-    title: 'A Revolution in Miniature',
-    subtitle: 'The Birth of the Teaspoon',
-    content: 'When tea and coffee conquered European palates in the 17th century, they demanded new tools. The teaspoon emerged—delicate, precious, and perfectly scaled to stir sugar into the bitter new beverages. The first recorded mention appeared in a 1686 London Gazette advertisement. These tiny spoons were exotic luxuries, made of gilt silver and kept in locked tea caddies. Within a century, no British household would be complete without them.',
-    highlight: 'Early teaspoons were so valuable they were kept locked away with the tea itself—both represented significant household wealth'
-  },
-  {
-    id: 'industrial',
-    era: '1800s',
-    title: 'Silver for the Masses',
-    subtitle: 'Industrial Revolution',
-    content: 'The factories of Sheffield and Birmingham democratized the silver spoon. Electroplating, invented in 1840, allowed base metals to be coated with silver, bringing the gleam of aristocratic tables to middle-class homes. Mass production standardized spoon design into the forms we recognize today: the soup spoon, the dessert spoon, the serving spoon. What had been heirloom became commodity—and everyone could set a proper table.',
-    highlight: 'By 1900, a complete silver-plated flatware set cost less than a week\'s wages—a luxury that would have been unimaginable a century earlier'
-  },
-  {
-    id: 'modern',
-    era: 'Today',
-    title: 'The Eternal Utensil',
-    subtitle: 'A Tool for All Humanity',
-    content: 'From stainless steel to biodegradable bamboo, from hospital wards to space stations, the spoon endures. It is the first utensil a child masters and often the last tool the elderly can use. It crosses every cultural boundary—chopstick cultures still use spoons for soups and rice. In a world of constant innovation, the spoon remains essentially unchanged: a bowl, a handle, and thirty thousand years of human ingenuity distilled into the simplest possible form.',
-    highlight: 'An estimated 5 billion spoons are manufactured each year—more than any other piece of cutlery'
-  }
-];
-
-// Elegant spoon silhouette icon
-const SpoonIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg className={className} viewBox="0 0 40 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="20" cy="18" rx="16" ry="14" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-    <ellipse cx="20" cy="18" rx="10" ry="8" stroke="currentColor" strokeWidth="0.5" fill="none" opacity="0.3"/>
-    <path d="M20 32 L20 96" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-  </svg>
-);
-
-// Small decorative diamond for highlights
-const DiamondIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 2L22 12L12 22L2 12L12 2Z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-    <path d="M12 6L18 12L12 18L6 12L12 6Z" fill="currentColor" opacity="0.3"/>
-  </svg>
-);
-
-const Section: React.FC<{ section: SectionData; index: number }> = ({ section, index }) => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        const progress = Math.max(0, Math.min(1, 1 - rect.top / windowHeight));
-        setScrollProgress(progress);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const isEven = index % 2 === 0;
-
-  return (
-    <section
-      ref={sectionRef}
-      className={`section ${isVisible ? 'visible' : ''}`}
-      style={{
-        '--scroll-progress': scrollProgress,
-        '--index': index,
-      } as React.CSSProperties}
-    >
-      <div className="section-bg" style={{
-        transform: `translateY(${scrollProgress * -30}px)`,
-      }}>
-        <div className="pattern-overlay" style={{
-          backgroundPosition: `${scrollProgress * 50}px ${scrollProgress * 25}px`
-        }} />
-      </div>
-      
-      <div className={`section-content ${isEven ? 'align-left' : 'align-right'}`}>
-        <div className="era-badge">
-          <span className="era-text">{section.era}</span>
-          <div className="era-line" />
-        </div>
-        
-        <div className="text-container">
-          <span className="subtitle">{section.subtitle}</span>
-          <h2 className="section-title">{section.title}</h2>
-          <p className="section-text">{section.content}</p>
-          
-          {section.highlight && (
-            <div className="highlight-box">
-              <DiamondIcon className="highlight-icon" />
-              <p className="highlight-text">{section.highlight}</p>
-            </div>
-          )}
-        </div>
-        
-        <div className="decorative-elements">
-          <div className="deco-oval" />
-          <div className="deco-handle" />
-        </div>
-      </div>
-      
-      <div className="section-number">
-        <span>{String(index + 1).padStart(2, '0')}</span>
-      </div>
-    </section>
-  );
-};
-
-const Hero: React.FC = () => {
-  const [scrollY, setScrollY] = useState(0);
-  
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  return (
-    <header className="hero">
-      <div className="hero-bg">
-        <div className="hero-gradient" />
-        <div className="hero-pattern" />
-      </div>
-      
-      <div className="hero-content" style={{ transform: `translateY(${scrollY * 0.3}px)` }}>
-        <div className="hero-badge">
-          <span>30,000 Years of History</span>
-        </div>
-        
-        <h1 className="hero-title">
-          <span className="title-line title-line-1">The History of the</span>
-          <span className="title-line title-line-2">Spoon</span>
-          <span className="title-line title-line-3">A Story of Human Ingenuity</span>
-        </h1>
-        
-        <p className="hero-tagline">
-          Humanity&apos;s oldest and most universal eating tool
-        </p>
-        
-        <div className="hero-spoon" style={{
-          transform: `translateY(${scrollY * 0.4}px) rotate(${-25 + scrollY * 0.03}deg)`
-        }}>
-          <SpoonIcon />
-        </div>
-        
-        <div className="scroll-indicator">
-          <span>Scroll to explore</span>
-          <div className="scroll-arrow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M12 5v14M5 12l7 7 7-7"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-      
-      <div className="hero-stats">
-        <div className="stat">
-          <span className="stat-number">30,000+</span>
-          <span className="stat-label">Years of Use</span>
-        </div>
-        <div className="stat">
-          <span className="stat-number">5 Billion</span>
-          <span className="stat-label">Made Yearly</span>
-        </div>
-        <div className="stat">
-          <span className="stat-number">Every</span>
-          <span className="stat-label">Culture on Earth</span>
-        </div>
-      </div>
-    </header>
-  );
-};
-
-const Sources: React.FC = () => (
-  <section className="sources-section">
-    <div className="sources-content">
-      <h3 className="sources-title">Sources & Further Reading</h3>
-      <ul className="sources-list">
-        <li>
-          <a href="https://en.wikipedia.org/wiki/Spoon" target="_blank" rel="noopener noreferrer">
-            &ldquo;Spoon&rdquo; — Wikipedia
-          </a>
-        </li>
-        <li>
-          <a href="https://www.britannica.com/topic/spoon" target="_blank" rel="noopener noreferrer">
-            &ldquo;Spoon&rdquo; — Encyclopedia Britannica
-          </a>
-        </li>
-        <li>
-          <a href="https://www.metmuseum.org/art/collection/search/237055" target="_blank" rel="noopener noreferrer">
-            Hungarian Silver Spoon (1599) — The Metropolitan Museum of Art
-          </a>
-        </li>
-        <li>
-          <a href="https://en.wikipedia.org/wiki/Teaspoon" target="_blank" rel="noopener noreferrer">
-            &ldquo;Teaspoon: History&rdquo; — Wikipedia
-          </a>
-        </li>
-        <li>
-          <a href="https://americanhistory.si.edu/collections/search?edan_q=spoon" target="_blank" rel="noopener noreferrer">
-            Spoon Collection — Smithsonian National Museum of American History
-          </a>
-        </li>
-        <li>
-          <a href="https://www.vam.ac.uk/collections/silver" target="_blank" rel="noopener noreferrer">
-            Silver Collection (including Apostle Spoons) — Victoria and Albert Museum
-          </a>
-        </li>
-        <li>
-          <a href="https://en.wikipedia.org/wiki/Apostle_spoon" target="_blank" rel="noopener noreferrer">
-            &ldquo;Apostle Spoon&rdquo; — Wikipedia
-          </a>
-        </li>
-      </ul>
-      <p className="sources-note">
-        This narrative was fact-checked against peer-reviewed sources and authoritative historical records.
-      </p>
-    </div>
-  </section>
-);
-
-const Footer: React.FC = () => (
-  <footer className="footer">
-    <div className="footer-content">
-      <div className="footer-icon">
-        <SpoonIcon />
-      </div>
-      <blockquote className="footer-quote">
-        &ldquo;The spoon is the most democratic of utensils—it belongs to no culture, yet serves them all.&rdquo;
-        <cite>— Bee Wilson, Consider the Fork</cite>
-      </blockquote>
-      <div className="footer-divider" />
-      <p className="footer-text">
-        From the first carved bone to the last biodegradable bamboo, the spoon endures.
-      </p>
-    </div>
-  </footer>
-);
-
-const ProgressBar: React.FC = () => {
+// ==================== HOOKS ====================
+const useScrollProgress = () => {
   const [progress, setProgress] = useState(0);
   
   useEffect(() => {
     const handleScroll = () => {
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const currentProgress = (window.scrollY / scrollHeight) * 100;
-      setProgress(currentProgress);
+      setProgress((window.scrollY / scrollHeight) * 100);
     };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
+  return progress;
+};
+
+const useInView = (threshold = 0.3) => {
+  const ref = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
+      { threshold }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [threshold]);
+  
+  return { ref, isVisible };
+};
+
+// ==================== PROGRESS SPOON ====================
+const ProgressSpoon: React.FC = () => {
+  const progress = useScrollProgress();
+  const dashOffset = 400 - (progress / 100) * 400;
+  
+  return (
+    <div className="progress-spoon">
+      <svg viewBox="0 0 40 180" preserveAspectRatio="xMidYMid meet">
+        <path 
+          className="spoon-outline"
+          d="M20 10 C5 10 5 45 20 45 C35 45 35 10 20 10 M20 45 L20 170"
+          style={{ strokeDashoffset: dashOffset }}
+        />
+      </svg>
+    </div>
+  );
+};
+
+// ==================== HERO ====================
+const Hero: React.FC = () => (
+  <header className="hero">
+    <div className="hero-texture" />
     
+    {/* Drawing Spoon SVG */}
+    <div className="hero-spoon-draw">
+      <svg viewBox="0 0 80 250" preserveAspectRatio="xMidYMid meet">
+        <path 
+          className="draw-path"
+          d="M40 20 C10 20 10 70 40 70 C70 70 70 20 40 20 M40 70 L40 230"
+        />
+      </svg>
+    </div>
+    
+    <div className="hero-content">
+      <div className="hero-eyebrow">30,000 Years of Human Ingenuity</div>
+      
+      <h1 className="hero-title">
+        <span className="line"><span>The</span></span>
+        <span className="line"><span>Spoon</span></span>
+      </h1>
+      
+      <p className="hero-tagline">
+        Humanity&apos;s first purpose-built eating tool, unchanged in essence for millennia.
+      </p>
+    </div>
+    
+    <div className="hero-scroll">
+      <span>Scoop into history</span>
+      <div className="scroll-bowl" />
+    </div>
+  </header>
+);
+
+// ==================== MATERIAL SECTIONS ====================
+const SpoonSVG: React.FC<{ isVisible: boolean }> = ({ isVisible }) => (
+  <svg className={`material-spoon-svg ${isVisible ? 'visible' : ''}`} viewBox="0 0 80 200" preserveAspectRatio="xMidYMid meet">
+    <ellipse className="spoon-fill" cx="40" cy="35" rx="30" ry="25" strokeWidth="2" />
+    <ellipse cx="40" cy="35" rx="18" ry="12" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.3" />
+    <rect className="spoon-fill" x="35" y="55" width="10" height="140" rx="5" strokeWidth="2" />
+  </svg>
+);
+
+interface MaterialSectionProps {
+  material: 'bone' | 'wood' | 'bronze' | 'silver' | 'steel';
+  era: string;
+  materialName: string;
+  title: string;
+  body: string;
+  fact: string;
+}
+
+const MaterialSection: React.FC<MaterialSectionProps> = ({ material, era, materialName, title, body, fact }) => {
+  const { ref, isVisible } = useInView(0.3);
+  
+  return (
+    <section ref={ref} className={`material-section ${material}`}>
+      <div className="material-texture" />
+      
+      <div className="material-content">
+        <div className={`material-text fade-scoop ${isVisible ? 'visible' : ''}`}>
+          <div className="material-era">{era}</div>
+          <div className="material-name">{materialName}</div>
+          <h2 className="material-title">{title}</h2>
+          <p className="material-body">{body}</p>
+          <div className="material-fact">{fact}</div>
+        </div>
+        
+        <div className="material-visual">
+          <SpoonSVG isVisible={isVisible} />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// ==================== RIPPLE DATA VIZ ====================
+const RippleSection: React.FC = () => {
+  const { ref, isVisible } = useInView(0.3);
+  
+  const stats = [
+    { value: '30,000+', label: 'Years of Continuous Use' },
+    { value: '5 Billion', label: 'Manufactured Annually' },
+    { value: 'Every', label: 'Culture on Earth' },
+  ];
+  
+  return (
+    <section ref={ref} className="ripple-section">
+      <div className="ripple-header">
+        <h2>The <span className="accent">Universal</span> Utensil</h2>
+      </div>
+      
+      <div className="ripple-grid">
+        {stats.map((stat, index) => (
+          <div key={stat.label} className="ripple-stat">
+            <div className="ripple-bowl">
+              <div className={`ripple-ring ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: `${index * 0.2}s` }} />
+              <div className={`ripple-ring ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: `${index * 0.2 + 0.1}s` }} />
+              <div className={`ripple-ring ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: `${index * 0.2 + 0.2}s` }} />
+            </div>
+            <div className="ripple-value">{stat.value}</div>
+            <div className="ripple-label">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+// ==================== TIMELINE ====================
+const Timeline: React.FC = () => {
+  const containerRef = useRef<HTMLElement>(null);
+  const [lineHeight, setLineHeight] = useState(0);
+  
+  const events = [
+    { year: '30,000 BCE', title: 'First Spoons', text: 'Seashells and carved bone become humanity\'s first scooping tools.' },
+    { year: '3,000 BCE', title: 'Egyptian Craft', text: 'Spoons carved from ivory and adorned with hieroglyphics for the afterlife.' },
+    { year: '500 BCE', title: 'Greek & Roman', text: 'Bronze and silver spoons with pointed cochlear handles for shellfish.' },
+    { year: '1500s', title: 'Apostle Spoons', text: 'Silver spoons gifted at christenings—"born with a silver spoon."' },
+    { year: '1650s', title: 'Teaspoon Born', text: 'Tea and coffee demand delicate, perfectly-scaled stirring tools.' },
+    { year: '1840', title: 'Electroplating', text: 'Sheffield factories bring silver-plated spoons to every home.' },
+  ];
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const containerHeight = containerRef.current.offsetHeight;
+      const progress = Math.max(0, Math.min(1, -rect.top / (containerHeight - window.innerHeight)));
+      setLineHeight(progress * 100);
+    };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
   return (
-    <div className="progress-bar">
-      <div className="progress-fill" style={{ height: `${progress}%` }} />
-      <div className="progress-indicator" style={{ top: `${progress}%` }} />
+    <section ref={containerRef} className="timeline-section">
+      <div className="timeline-header">
+        <h2>A Journey Through Time</h2>
+      </div>
+      
+      <div className="timeline-track">
+        <div className="timeline-line">
+          <div className="timeline-line-fill" style={{ height: `${lineHeight}%` }} />
+        </div>
+        
+        {events.map((event, index) => (
+          <TimelineEvent key={event.year} event={event} index={index} />
+        ))}
+      </div>
+    </section>
+  );
+};
+
+const TimelineEvent: React.FC<{ event: { year: string; title: string; text: string }; index: number }> = ({ event, index }) => {
+  const { ref, isVisible } = useInView(0.4);
+  
+  return (
+    <div ref={ref as React.RefObject<HTMLDivElement>} className={`timeline-event ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: `${index * 0.1}s` }}>
+      <div className="timeline-content">
+        <div className="timeline-year">{event.year}</div>
+        <h3 className="timeline-title">{event.title}</h3>
+        <p className="timeline-text">{event.text}</p>
+      </div>
+      <div className="timeline-dot" />
+      <div className="timeline-content" style={{ visibility: 'hidden' }} />
     </div>
   );
 };
 
+// ==================== SOURCES ====================
+const Sources: React.FC = () => (
+  <section className="sources-section">
+    <div className="sources-content">
+      <h3 className="sources-title">Sources & Further Reading</h3>
+      <div className="sources-grid">
+        <a href="https://en.wikipedia.org/wiki/Spoon" target="_blank" rel="noopener noreferrer">
+          Wikipedia — Spoon
+        </a>
+        <a href="https://www.britannica.com/topic/spoon" target="_blank" rel="noopener noreferrer">
+          Britannica — Spoon
+        </a>
+        <a href="https://www.metmuseum.org/art/collection/search/237055" target="_blank" rel="noopener noreferrer">
+          Met Museum — Silver Spoons
+        </a>
+        <a href="https://en.wikipedia.org/wiki/Apostle_spoon" target="_blank" rel="noopener noreferrer">
+          Wikipedia — Apostle Spoon
+        </a>
+      </div>
+      <p className="sources-note">
+        Researched using authoritative sources on culinary and material history.
+      </p>
+    </div>
+  </section>
+);
+
+// ==================== FOOTER ====================
+const Footer: React.FC = () => (
+  <footer className="footer">
+    <div className="footer-icon">🥄</div>
+    <p className="footer-quote">
+      &ldquo;The spoon is the most democratic of utensils—it belongs to no culture, yet serves them all.&rdquo;
+    </p>
+    <div className="footer-author">— Bee Wilson, Consider the Fork</div>
+    <p className="footer-tagline">From bone to stainless steel—30,000 years and counting.</p>
+  </footer>
+);
+
+// ==================== MAIN ====================
 const SpoonHistoryClient: React.FC = () => {
   return (
-    <div className="spoon-history-container">
-      <ProgressBar />
+    <div className="spoon-container">
+      <ProgressSpoon />
       <Hero />
-      {sections.map((section, index) => (
-        <Section key={section.id} section={section} index={index} />
-      ))}
+      
+      <MaterialSection
+        material="bone"
+        era="30,000 BCE"
+        materialName="Bone & Shell"
+        title="The First Scoop"
+        body="Long before pottery or agriculture, our ancestors faced a fundamental challenge: how to bring liquids and soft foods to their mouths. The solution was elegantly simple—seashells naturally curved for scooping, and bones carved into bowls with handles. These were humanity's first purpose-built eating tools."
+        fact="A spoon carved from reindeer antler, dating to 17,000 BCE, survives today in museum collections."
+      />
+      
+      <MaterialSection
+        material="wood"
+        era="5,000 BCE"
+        materialName="Carved Wood"
+        title="The Democratic Material"
+        body="As civilizations settled, wood became the spoon of the common people. Cheap, abundant, and easily carved, wooden spoons required no metalworking skills. Medieval peasants ate with spoons of wood or cattle horn—functional, disposable, and unmistakably humble. The wealthy displayed silver; everyone else had wood."
+        fact="Medieval travelers carried their own spoons in belt pouches—to eat without your own spoon was a mark of poverty."
+      />
+      
+      <MaterialSection
+        material="bronze"
+        era="3,000 BCE"
+        materialName="Bronze & Copper"
+        title="Metal Transforms the Table"
+        body="Egyptian artisans carved spoons from ivory and bronze, adorning them with hieroglyphics and images of gods. The Romans perfected the cochlear—a spoon with a pointed handle designed to extract snails and shellfish. Metal spoons became symbols of civilization itself."
+        fact="Egyptian cosmetic spoons featured handles carved as swimming maidens and lotus flowers."
+      />
+      
+      <MaterialSection
+        material="silver"
+        era="1500s"
+        materialName="Sterling Silver"
+        title="Born with a Silver Spoon"
+        body="Tudor England transformed the spoon into a symbol of blessing and birthright. Wealthy godparents gifted newborns silver 'Apostle spoons,' their handles topped with figures of the twelve disciples. This custom gave English its most enduring idiom about privilege and class."
+        fact="In Shakespeare's Henry VIII, Archbishop Cranmer jokes: 'Come, come, my lord, you'd spare your spoons.'"
+      />
+      
+      <MaterialSection
+        material="steel"
+        era="1840s"
+        materialName="Stainless Steel"
+        title="Silver for Everyone"
+        body="Electroplating, invented in 1840, allowed base metals to be coated with silver. The factories of Sheffield and Birmingham democratized the gleam of aristocratic tables. By 1900, a complete silver-plated set cost less than a week's wages. What had been heirloom became commodity."
+        fact="Today, an estimated 5 billion spoons are manufactured each year—more than any other piece of cutlery."
+      />
+      
+      <RippleSection />
+      <Timeline />
       <Sources />
       <Footer />
     </div>
