@@ -1,0 +1,797 @@
+/*
+ * THE ORIGINS OF SODA - Effervescent Scrollytelling
+ * 
+ * Design Research Report:
+ * 
+ * Visual Archaeology:
+ * - Materials: Glass bottles, carbonation bubbles, ice, condensation
+ * - Colors: Cola caramel, fizz white, ice blue, cherry red
+ * - Textures: Bubbles, liquid shimmer, condensation droplets
+ * - Eras: 1767 discovery → 1886 pharmacy → 1950s diner → modern
+ * 
+ * Anti-Pattern-Matching:
+ * - NO morphing SVG (used in Sneaker)
+ * - NO horizontal scroll gallery (used in Sneaker)
+ * - NO drop-cap chapters (overused)
+ * - NO alternating timeline (overused)
+ * - NO industrial black/white (used in Sneaker)
+ * 
+ * UNIQUE MECHANICS:
+ * 1. Rising bubble particles that respond to scroll
+ * 2. Liquid-fill sections that "pour in" on scroll
+ * 3. Continuous effervescent atmosphere
+ * 4. Bubble-based data visualization
+ * 
+ * Color Palette (derived from soda):
+ * - Deep Cola (#1A0F0A) - rich liquid depth
+ * - Caramel (#3E2723) - cola brown
+ * - Fizz White (#FFFFFF) - carbonation
+ * - Ice Blue (#E3F2FD) - cold glass
+ * - Cherry Pop (#E53935) - classic accent
+ * - Pharmacy Teal (#00796B) - vintage medicine
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  /* Soda-Derived Palette */
+  --color-cola-deep: #1A0F0A;
+  --color-cola: #3E2723;
+  --color-caramel: #5D4037;
+  --color-fizz: #FFFFFF;
+  --color-fizz-dim: rgba(255, 255, 255, 0.7);
+  --color-ice: #E3F2FD;
+  --color-condensation: rgba(227, 242, 253, 0.3);
+  --color-cherry: #E53935;
+  --color-pharmacy: #00796B;
+  --color-cream: #FFF8E1;
+  
+  /* Typography */
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  
+  /* Effervescent Motion */
+  --ease-bubble: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-pour: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============================================
+   BASE
+   ============================================ */
+.soda-container * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.soda-container {
+  font-family: var(--font-body);
+  background: var(--color-cola-deep);
+  color: var(--color-fizz);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ============================================
+   BUBBLE PARTICLES - The Signature Effect
+   ============================================ */
+.soda-container .bubble-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.soda-container .bubble {
+  position: absolute;
+  bottom: -20px;
+  background: radial-gradient(circle at 30% 30%, 
+    rgba(255, 255, 255, 0.8), 
+    rgba(255, 255, 255, 0.2) 50%, 
+    transparent 70%);
+  border-radius: 50%;
+  animation: rise linear infinite;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100vh) scale(0.8);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   PROGRESS - Liquid Fill Bar
+   ============================================ */
+.soda-container .progress-container {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 200px;
+  background: var(--color-cola);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 100;
+  border: 1px solid var(--color-caramel);
+}
+
+.soda-container .progress-liquid {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, var(--color-cherry), var(--color-cherry));
+  border-radius: 0 0 4px 4px;
+  transition: height 0.1s ease;
+}
+
+.soda-container .progress-bubbles {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 2px 20%, rgba(255,255,255,0.4) 1px, transparent 2px),
+    radial-gradient(circle at 6px 40%, rgba(255,255,255,0.3) 1px, transparent 2px),
+    radial-gradient(circle at 3px 60%, rgba(255,255,255,0.5) 1px, transparent 2px);
+  animation: fizz-bubbles 2s ease-in-out infinite;
+}
+
+@keyframes fizz-bubbles {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* ============================================
+   HERO - Immersive Fizz Atmosphere
+   ============================================ */
+.soda-container .hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  background: 
+    radial-gradient(ellipse at 50% 100%, var(--color-cola) 0%, var(--color-cola-deep) 70%);
+}
+
+.soda-container .hero-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(229, 57, 53, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(80px);
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.soda-container .hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  padding: 2rem;
+}
+
+.soda-container .hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--color-cherry);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fade-up 0.8s var(--ease-pour) 0.3s forwards;
+}
+
+.soda-container .hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+
+.soda-container .hero-title .line {
+  display: block;
+  overflow: hidden;
+}
+
+.soda-container .hero-title .line span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+  animation: slide-up 0.8s var(--ease-pour) forwards;
+}
+
+.soda-container .hero-title .line:nth-child(1) span { animation-delay: 0.4s; }
+.soda-container .hero-title .line:nth-child(2) span { animation-delay: 0.5s; color: var(--color-cherry); }
+
+.soda-container .hero-tagline {
+  font-size: 1.25rem;
+  color: var(--color-fizz-dim);
+  max-width: 500px;
+  margin: 0 auto;
+  opacity: 0;
+  animation: fade-up 0.8s var(--ease-pour) 0.7s forwards;
+}
+
+@keyframes slide-up {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-up {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.soda-container .hero-scroll {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  animation: fade-up 0.8s var(--ease-pour) 1s forwards;
+}
+
+.soda-container .hero-scroll span {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-fizz-dim);
+}
+
+.soda-container .scroll-bottle {
+  width: 20px;
+  height: 40px;
+  border: 2px solid var(--color-fizz-dim);
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.soda-container .scroll-bottle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 2px;
+  right: 2px;
+  height: 50%;
+  background: var(--color-cherry);
+  border-radius: 0 0 6px 6px;
+  animation: fill-bottle 2s ease-in-out infinite;
+}
+
+@keyframes fill-bottle {
+  0%, 100% { height: 30%; }
+  50% { height: 70%; }
+}
+
+/* ============================================
+   LIQUID FILL SECTION - Unique Mechanic
+   ============================================ */
+.soda-container .liquid-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.soda-container .liquid-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, var(--color-cola) 0%, var(--color-cola-deep) 100%);
+  transition: height 0.8s var(--ease-pour);
+}
+
+.soda-container .liquid-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.soda-container .liquid-era {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-cherry);
+  margin-bottom: 1rem;
+}
+
+.soda-container .liquid-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+}
+
+.soda-container .liquid-text {
+  font-size: 1.125rem;
+  line-height: 1.9;
+  color: var(--color-fizz-dim);
+  margin-bottom: 1.5rem;
+}
+
+.soda-container .liquid-highlight {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--color-cherry), var(--color-pharmacy));
+  padding: 1rem 1.5rem;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--color-fizz);
+  margin-top: 1rem;
+}
+
+/* ============================================
+   BUBBLE DATA VIZ - Unique Mechanic
+   ============================================ */
+.soda-container .bubble-data-section {
+  position: relative;
+  padding: 8rem 2rem;
+  background: var(--color-cola-deep);
+  overflow: hidden;
+}
+
+.soda-container .bubble-data-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.soda-container .bubble-data-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+}
+
+.soda-container .bubble-data-header h2 .cherry {
+  color: var(--color-cherry);
+}
+
+.soda-container .bubble-chart {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 3rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 400px;
+  padding: 2rem;
+}
+
+.soda-container .bubble-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.soda-container .bubble-circle {
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%,
+    rgba(229, 57, 53, 0.9),
+    rgba(229, 57, 53, 0.6) 50%,
+    rgba(229, 57, 53, 0.3) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 1s var(--ease-bubble);
+  box-shadow: 
+    inset 0 0 30px rgba(255, 255, 255, 0.1),
+    0 0 40px rgba(229, 57, 53, 0.3);
+}
+
+.soda-container .bubble-value {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-fizz);
+}
+
+.soda-container .bubble-unit {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-fizz-dim);
+}
+
+.soda-container .bubble-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-fizz-dim);
+  text-align: center;
+  max-width: 120px;
+}
+
+/* ============================================
+   POURING TIMELINE - Unique Mechanic
+   ============================================ */
+.soda-container .pour-timeline {
+  position: relative;
+  padding: 6rem 2rem;
+  background: linear-gradient(to bottom, var(--color-cola-deep), var(--color-cola));
+}
+
+.soda-container .pour-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.soda-container .pour-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+}
+
+.soda-container .pour-stream {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--color-cola);
+  transform: translateX(-50%);
+}
+
+.soda-container .pour-stream-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background: linear-gradient(to bottom, var(--color-cherry), var(--color-pharmacy));
+  transition: height 0.1s linear;
+}
+
+.soda-container .pour-events {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.soda-container .pour-event {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s var(--ease-pour);
+}
+
+.soda-container .pour-event.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.soda-container .pour-event:nth-child(odd) .pour-event-content {
+  grid-column: 1;
+  text-align: right;
+}
+
+.soda-container .pour-event:nth-child(odd) .pour-event-extra {
+  grid-column: 3;
+}
+
+.soda-container .pour-event:nth-child(even) .pour-event-content {
+  grid-column: 3;
+}
+
+.soda-container .pour-event:nth-child(even) .pour-event-extra {
+  grid-column: 1;
+  text-align: right;
+}
+
+.soda-container .pour-drop {
+  grid-column: 2;
+  width: 50px;
+  height: 50px;
+  background: var(--color-cola-deep);
+  border: 3px solid var(--color-cherry);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-cherry);
+  position: relative;
+  z-index: 3;
+}
+
+.soda-container .pour-event-year {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-cherry);
+  margin-bottom: 0.5rem;
+}
+
+.soda-container .pour-event-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.soda-container .pour-event-text {
+  font-size: 0.95rem;
+  color: var(--color-fizz-dim);
+  line-height: 1.6;
+}
+
+/* ============================================
+   COLA WARS - Split Pour
+   ============================================ */
+.soda-container .cola-wars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+}
+
+.soda-container .cola-side {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.soda-container .cola-side.coca {
+  background: linear-gradient(135deg, #b71c1c 0%, #7f0000 100%);
+}
+
+.soda-container .cola-side.pepsi {
+  background: linear-gradient(135deg, #0d47a1 0%, #002171 100%);
+}
+
+.soda-container .cola-side::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.soda-container .cola-brand {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.soda-container .cola-year {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
+}
+
+.soda-container .cola-founder {
+  font-size: 1rem;
+  line-height: 1.7;
+  opacity: 0.9;
+  margin-bottom: 1.5rem;
+}
+
+.soda-container .cola-fact {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+/* ============================================
+   SOURCES
+   ============================================ */
+.soda-container .sources-section {
+  padding: 5rem 2rem;
+  background: var(--color-cola);
+  border-top: 1px solid var(--color-caramel);
+}
+
+.soda-container .sources-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.soda-container .sources-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-caramel);
+}
+
+.soda-container .sources-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.soda-container .sources-list a {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-fizz-dim);
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  background: var(--color-cola-deep);
+  border: 1px solid var(--color-caramel);
+  transition: all 0.3s ease;
+}
+
+.soda-container .sources-list a:hover {
+  color: var(--color-cherry);
+  border-color: var(--color-cherry);
+}
+
+.soda-container .sources-note {
+  font-size: 0.75rem;
+  color: var(--color-fizz-dim);
+  opacity: 0.7;
+  margin-top: 1.5rem;
+  font-style: italic;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.soda-container .footer {
+  padding: 5rem 2rem;
+  background: var(--color-cola-deep);
+  text-align: center;
+}
+
+.soda-container .footer-fizz {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.soda-container .footer-quote {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  max-width: 600px;
+  margin: 0 auto 1rem;
+  line-height: 1.4;
+}
+
+.soda-container .footer-author {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-cherry);
+  margin-bottom: 2rem;
+}
+
+.soda-container .footer-tagline {
+  font-size: 0.9rem;
+  color: var(--color-fizz-dim);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+.soda-container .fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s var(--ease-pour);
+}
+
+.soda-container .fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .soda-container .cola-wars {
+    grid-template-columns: 1fr;
+  }
+  
+  .soda-container .pour-event {
+    grid-template-columns: 50px 1fr;
+    gap: 1.5rem;
+  }
+  
+  .soda-container .pour-event:nth-child(odd) .pour-event-content,
+  .soda-container .pour-event:nth-child(even) .pour-event-content {
+    grid-column: 2;
+    text-align: left;
+  }
+  
+  .soda-container .pour-drop {
+    grid-column: 1;
+  }
+  
+  .soda-container .pour-event-extra {
+    display: none;
+  }
+  
+  .soda-container .pour-stream {
+    left: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .soda-container .progress-container {
+    display: none;
+  }
+  
+  .soda-container .bubble-chart {
+    flex-direction: column;
+    height: auto;
+    gap: 2rem;
+  }
+  
+  .soda-container .sources-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .soda-container .bubble {
+    animation: none;
+    opacity: 0.3;
+  }
+  
+  .soda-container .fade-in,
+  .soda-container .pour-event {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
