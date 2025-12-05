@@ -1,0 +1,797 @@
+/*
+ * Design Research Report: The History of the Sneaker
+ * 
+ * Subject Visual Archaeology:
+ * - Materials: Vulcanized rubber, canvas, leather, mesh, foam, air cushioning
+ * - Cultural touchpoints: Basketball courts, hip-hop, streetwear, skateboarding
+ * - Key brands: Converse, Nike, Adidas, Jordan, Yeezy
+ * - Iconic moments: Chuck Taylor, Jesse Owens, Air Jordan, Run-DMC
+ * 
+ * Color Palette (Derived from sneaker culture):
+ * - Background: Court dark (#0D0D0F) - basketball court shadows
+ * - Surface: Rubber black (#161619) - classic sole color
+ * - Canvas: Off-white (#F5F5F0) - classic Converse canvas
+ * - Swoosh Red: (#E31837) - Nike iconic red
+ * - Jordan Royal: (#0057B8) - Air Jordan royal blue
+ * - Street Concrete: (#6B7280) - urban environment
+ * 
+ * Typography:
+ * - Display: Space Grotesk - bold, athletic, modern
+ * - Body: Inter - clean readability
+ * 
+ * Animation Philosophy:
+ * - Athletic energy but controlled
+ * - Swoosh-like reveals (fast entrance, smooth settle)
+ * - Court/street movement inspiration
+ * - Bounce and spring like cushioned soles
+ * 
+ * Layout Patterns Used (7 unique):
+ * - Hero: Full-bleed with stats
+ * - Chapter: Drop cap narrative
+ * - Timeline: Vertical with alternating sides
+ * - Quote Monument: Iconic quotes
+ * - Split-screen: Comparison sections
+ * - Data-viz: Statistics grid
+ * - Sticky-scroll: Evolution story
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Sneaker Culture Palette */
+  --color-court: #0D0D0F;
+  --color-rubber: #161619;
+  --color-asphalt: #1E1E22;
+  --color-canvas: #F5F5F0;
+  --color-canvas-muted: rgba(245, 245, 240, 0.8);
+  --color-canvas-faint: rgba(245, 245, 240, 0.5);
+  --color-swoosh-red: #E31837;
+  --color-jordan-royal: #0057B8;
+  --color-jordan-bred: #CE1141;
+  --color-concrete: #6B7280;
+  --color-court-line: #F97316;
+  
+  /* Typography */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  
+  /* Athletic Easing */
+  --ease-swoosh: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+.sneaker-history-container * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.sneaker-history-container {
+  font-family: var(--font-body);
+  background: var(--color-court);
+  color: var(--color-canvas);
+  overflow-x: hidden;
+  line-height: 1.7;
+  font-size: 18px;
+}
+
+/* ============================================
+   PROGRESS BAR - Swoosh inspired
+   ============================================ */
+.sneaker-history-container .progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--color-rubber);
+  z-index: 1000;
+}
+
+.sneaker-history-container .progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-swoosh-red), var(--color-jordan-royal));
+  transition: width 0.1s linear;
+}
+
+/* ============================================
+   HERO - Full Bleed Athletic
+   ============================================ */
+.sneaker-history-container .hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: 
+    radial-gradient(ellipse at 30% 70%, rgba(227, 24, 55, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 30%, rgba(0, 87, 184, 0.1) 0%, transparent 50%),
+    var(--color-court);
+}
+
+.sneaker-history-container .hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 1000px;
+  padding: 2rem;
+}
+
+.sneaker-history-container .hero-era {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-swoosh-red);
+  margin-bottom: 1.5rem;
+}
+
+.sneaker-history-container .hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 12vw, 8rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--color-canvas);
+  margin-bottom: 1.5rem;
+}
+
+.sneaker-history-container .hero h1 .title-accent {
+  display: block;
+  background: linear-gradient(135deg, var(--color-swoosh-red) 0%, var(--color-jordan-royal) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sneaker-history-container .hero-tagline {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--color-canvas-muted);
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+}
+
+.sneaker-history-container .hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(245, 245, 240, 0.1);
+}
+
+.sneaker-history-container .hero-stat {
+  text-align: center;
+}
+
+.sneaker-history-container .hero-stat-value {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-swoosh-red);
+}
+
+.sneaker-history-container .hero-stat-label {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-concrete);
+  margin-top: 0.25rem;
+}
+
+.sneaker-history-container .scroll-cue {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.sneaker-history-container .scroll-cue span {
+  font-family: var(--font-display);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-concrete);
+}
+
+.sneaker-history-container .scroll-line {
+  width: 2px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--color-swoosh-red), transparent);
+  animation: pulse-scroll 2s ease-in-out infinite;
+}
+
+@keyframes pulse-scroll {
+  0%, 100% { opacity: 0.5; height: 50px; }
+  50% { opacity: 1; height: 70px; }
+}
+
+/* ============================================
+   CHAPTER SECTIONS
+   ============================================ */
+.sneaker-history-container .chapter {
+  padding: 6rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.sneaker-history-container .chapter-era {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-swoosh-red);
+  margin-bottom: 1rem;
+}
+
+.sneaker-history-container .chapter-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-canvas);
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+}
+
+.sneaker-history-container .chapter p {
+  font-size: 1.0625rem;
+  color: var(--color-canvas-muted);
+  line-height: 1.85;
+  margin-bottom: 1.5rem;
+}
+
+.sneaker-history-container .chapter p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 700;
+  float: left;
+  line-height: 0.8;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  color: var(--color-swoosh-red);
+}
+
+/* ============================================
+   TIMELINE - Vertical with Court Lines
+   ============================================ */
+.sneaker-history-container .timeline-section {
+  padding: 6rem 2rem;
+  background: var(--color-rubber);
+  position: relative;
+}
+
+.sneaker-history-container .timeline-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(90deg, transparent 49.5%, rgba(249, 115, 22, 0.1) 49.5%, rgba(249, 115, 22, 0.1) 50.5%, transparent 50.5%);
+  pointer-events: none;
+}
+
+.sneaker-history-container .timeline-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.sneaker-history-container .timeline-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--color-canvas);
+}
+
+.sneaker-history-container .timeline-header p {
+  color: var(--color-canvas-faint);
+  margin-top: 0.5rem;
+}
+
+.sneaker-history-container .timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.sneaker-history-container .timeline-item {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.sneaker-history-container .timeline-item:nth-child(odd) .timeline-content {
+  grid-column: 1;
+  text-align: right;
+}
+
+.sneaker-history-container .timeline-item:nth-child(odd) .timeline-spacer {
+  grid-column: 3;
+}
+
+.sneaker-history-container .timeline-item:nth-child(even) .timeline-content {
+  grid-column: 3;
+  text-align: left;
+}
+
+.sneaker-history-container .timeline-item:nth-child(even) .timeline-spacer {
+  grid-column: 1;
+}
+
+.sneaker-history-container .timeline-marker {
+  grid-column: 2;
+  width: 20px;
+  height: 20px;
+  background: var(--color-swoosh-red);
+  border: 4px solid var(--color-court);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(227, 24, 55, 0.4);
+}
+
+.sneaker-history-container .timeline-year {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-court-line);
+  margin-bottom: 0.5rem;
+}
+
+.sneaker-history-container .timeline-title {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-canvas);
+  margin-bottom: 0.5rem;
+}
+
+.sneaker-history-container .timeline-text {
+  font-size: 0.9375rem;
+  color: var(--color-canvas-muted);
+  line-height: 1.6;
+}
+
+/* ============================================
+   QUOTE MONUMENT
+   ============================================ */
+.sneaker-history-container .quote-section {
+  padding: 8rem 2rem;
+  background: var(--color-court);
+  position: relative;
+  overflow: hidden;
+}
+
+.sneaker-history-container .quote-section::before {
+  content: '"';
+  position: absolute;
+  top: 1rem;
+  left: 5%;
+  font-family: var(--font-display);
+  font-size: 35vw;
+  font-weight: 700;
+  color: rgba(227, 24, 55, 0.05);
+  line-height: 1;
+}
+
+.sneaker-history-container .quote-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.sneaker-history-container .quote-content blockquote {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.sneaker-history-container .quote-content blockquote p {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 600;
+  color: var(--color-canvas);
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+}
+
+.sneaker-history-container .quote-content cite {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-swoosh-red);
+}
+
+/* ============================================
+   DATA VISUALIZATION
+   ============================================ */
+.sneaker-history-container .data-section {
+  padding: 6rem 2rem;
+  background: var(--color-asphalt);
+}
+
+.sneaker-history-container .data-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.sneaker-history-container .data-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--color-canvas);
+}
+
+.sneaker-history-container .data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.sneaker-history-container .data-card {
+  background: var(--color-rubber);
+  border: 1px solid rgba(245, 245, 240, 0.06);
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.sneaker-history-container .data-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-swoosh-red), var(--color-jordan-royal));
+}
+
+.sneaker-history-container .data-value {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 700;
+  color: var(--color-swoosh-red);
+  line-height: 1;
+}
+
+.sneaker-history-container .data-label {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-concrete);
+  margin-top: 0.75rem;
+}
+
+.sneaker-history-container .data-detail {
+  font-size: 0.875rem;
+  color: var(--color-canvas-muted);
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+/* ============================================
+   COMPARISON SECTION - Split Screen
+   ============================================ */
+.sneaker-history-container .comparison-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+}
+
+.sneaker-history-container .comparison-panel {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sneaker-history-container .comparison-panel.then {
+  background: var(--color-rubber);
+  border-right: 1px solid rgba(245, 245, 240, 0.1);
+}
+
+.sneaker-history-container .comparison-panel.now {
+  background: var(--color-court);
+}
+
+.sneaker-history-container .comparison-era {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-swoosh-red);
+  margin-bottom: 1rem;
+}
+
+.sneaker-history-container .comparison-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--color-canvas);
+  margin-bottom: 1.5rem;
+}
+
+.sneaker-history-container .comparison-text {
+  font-size: 1rem;
+  color: var(--color-canvas-muted);
+  line-height: 1.7;
+}
+
+.sneaker-history-container .comparison-stat {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(245, 245, 240, 0.1);
+}
+
+.sneaker-history-container .comparison-stat-value {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-jordan-royal);
+}
+
+.sneaker-history-container .comparison-stat-label {
+  font-size: 0.75rem;
+  color: var(--color-concrete);
+  margin-top: 0.25rem;
+}
+
+/* ============================================
+   SOURCES SECTION
+   ============================================ */
+.sneaker-history-container .sources-section {
+  padding: 5rem 2rem;
+  background: var(--color-rubber);
+  border-top: 1px solid rgba(245, 245, 240, 0.06);
+}
+
+.sneaker-history-container .sources-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.sneaker-history-container .sources-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-canvas);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(245, 245, 240, 0.1);
+}
+
+.sneaker-history-container .sources-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.sneaker-history-container .sources-list li {
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.sneaker-history-container .sources-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--color-swoosh-red);
+}
+
+.sneaker-history-container .sources-list a {
+  font-size: 0.9375rem;
+  color: var(--color-canvas-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sneaker-history-container .sources-list a:hover {
+  color: var(--color-swoosh-red);
+}
+
+.sneaker-history-container .sources-note {
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: var(--color-canvas-faint);
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(245, 245, 240, 0.06);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.sneaker-history-container .footer {
+  padding: 6rem 2rem;
+  background: linear-gradient(to bottom, var(--color-rubber), var(--color-court));
+}
+
+.sneaker-history-container .footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.sneaker-history-container .footer-icon {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.sneaker-history-container .footer blockquote {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.sneaker-history-container .footer blockquote p {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-canvas);
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.sneaker-history-container .footer blockquote cite {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-swoosh-red);
+}
+
+.sneaker-history-container .footer-divider {
+  width: 40px;
+  height: 3px;
+  background: var(--color-swoosh-red);
+  margin: 2rem 0;
+}
+
+.sneaker-history-container .footer-colophon {
+  font-size: 0.875rem;
+  color: var(--color-canvas-faint);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+.sneaker-history-container .fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s var(--ease-swoosh);
+}
+
+.sneaker-history-container .fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sneaker-history-container .slide-in-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: all 0.7s var(--ease-swoosh);
+}
+
+.sneaker-history-container .slide-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sneaker-history-container .slide-in-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: all 0.7s var(--ease-swoosh);
+}
+
+.sneaker-history-container .slide-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sneaker-history-container .stagger-1 { transition-delay: 0.1s; }
+.sneaker-history-container .stagger-2 { transition-delay: 0.2s; }
+.sneaker-history-container .stagger-3 { transition-delay: 0.3s; }
+.sneaker-history-container .stagger-4 { transition-delay: 0.4s; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .sneaker-history-container .comparison-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .sneaker-history-container .comparison-panel.then {
+    border-right: none;
+    border-bottom: 1px solid rgba(245, 245, 240, 0.1);
+  }
+  
+  .sneaker-history-container .timeline-item {
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+  }
+  
+  .sneaker-history-container .timeline-item:nth-child(odd) .timeline-content,
+  .sneaker-history-container .timeline-item:nth-child(even) .timeline-content {
+    grid-column: 2;
+    text-align: left;
+  }
+  
+  .sneaker-history-container .timeline-marker {
+    grid-column: 1;
+  }
+  
+  .sneaker-history-container .timeline-spacer {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .sneaker-history-container {
+    font-size: 16px;
+  }
+  
+  .sneaker-history-container .hero-stats {
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .sneaker-history-container .comparison-panel {
+    padding: 3rem 2rem;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .sneaker-history-container .fade-in,
+  .sneaker-history-container .slide-in-left,
+  .sneaker-history-container .slide-in-right {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .sneaker-history-container .scroll-line {
+    animation: none;
+  }
+}
+

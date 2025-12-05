@@ -36,20 +36,30 @@ interface Story {
 
 const stories: Story[] = [
   {
-    id: "who-invented-high-heels",
+    id: "who-invented-the-sneaker",
     number: "01",
+    title: "The Sneaker Story",
+    subtitle: "From Plimsolls to $75 Billion",
+    description: "How a rubber-soled shoe designed for silence became a global cultural force—from Charles Goodyear to Michael Jordan.",
+    category: "Culture & Fashion",
+    readTime: "12 min",
+    href: "/scrollytelling/who-invented-the-sneaker",
+    isNew: true,
+    isFeatured: true,
+  },
+  {
+    id: "who-invented-high-heels",
+    number: "02",
     title: "The High Heels Story",
     subtitle: "500 Years of Elevation",
     description: "From Persian cavalrymen to Parisian runways, the extraordinary journey of fashion's most provocative invention.",
     category: "Fashion History",
     readTime: "14 min",
     href: "/scrollytelling/who-invented-high-heels",
-    isNew: true,
-    isFeatured: true,
   },
   {
     id: "who-invented-the-bicycle",
-    number: "02",
+    number: "03",
     title: "The Bicycle Story",
     subtitle: "200 Years of Two Wheels",
     description: "The invention that changed transportation, liberated women, and became humanity's most efficient machine.",
@@ -59,7 +69,7 @@ const stories: Story[] = [
   },
   {
     id: "who-invented-the-spoon",
-    number: "03",
+    number: "04",
     title: "The Spoon Story",
     subtitle: "30,000 Years of Essential Tools",
     description: "From prehistoric bone carvings to silver apostle spoons—humanity's oldest eating utensil.",
@@ -69,7 +79,7 @@ const stories: Story[] = [
   },
   {
     id: "who-invented-basketball",
-    number: "04",
+    number: "05",
     title: "The Basketball Story",
     subtitle: "From Peach Baskets to Global Culture",
     description: "Dr. Naismith's 1891 invention becomes billion-dollar arenas and worldwide phenomenon.",
@@ -79,7 +89,7 @@ const stories: Story[] = [
   },
   {
     id: "who-invented-the-fork",
-    number: "05",
+    number: "06",
     title: "The Fork Story",
     subtitle: "4,000 Years of Revolution",
     description: "From ancient Mesopotamia through Byzantine courts to your dinner table.",
