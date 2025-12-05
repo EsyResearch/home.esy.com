@@ -34,7 +34,7 @@ interface Story {
   isFeatured?: boolean;
 }
 
-const stories: Story[] = [
+  const stories: Story[] = [
   {
     id: "who-invented-the-sneaker",
     number: "01",
@@ -87,17 +87,17 @@ const stories: Story[] = [
     readTime: "10 min",
     href: "/scrollytelling/who-invented-basketball",
   },
-  {
-    id: "who-invented-the-fork",
+    {
+      id: "who-invented-the-fork",
     number: "06",
     title: "The Fork Story",
     subtitle: "4,000 Years of Revolution",
     description: "From ancient Mesopotamia through Byzantine courts to your dinner table.",
-    category: "History",
-    readTime: "12 min",
-    href: "/scrollytelling/who-invented-the-fork",
-  },
-];
+      category: "History",
+      readTime: "12 min",
+      href: "/scrollytelling/who-invented-the-fork",
+    },
+  ];
 
 // ==================== COMPONENTS ====================
 
@@ -105,7 +105,7 @@ const EditorialHero: React.FC = () => {
   const featured = stories.find(s => s.isFeatured);
   const totalStories = stories.length;
   const totalTime = stories.reduce((acc, s) => acc + parseInt(s.readTime), 0);
-  
+
   return (
     <section className="editorial-hero">
       {/* Left: Masthead */}
@@ -152,10 +152,10 @@ const EditorialHero: React.FC = () => {
           <div className="hero-stat">
             <div className="hero-stat-value">∞</div>
             <div className="hero-stat-label">Years</div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
   );
 };
 
@@ -169,18 +169,18 @@ const StoryRow: React.FC<{ story: Story }> = ({ story }) => (
         <h3 className="story-title">{story.title}</h3>
         <p className="story-subtitle">{story.subtitle}</p>
         <p className="story-description">{story.description}</p>
-      </div>
-      
+              </div>
+
       <div className="story-meta">
         <Clock size={14} />
         <span>{story.readTime}</span>
-      </div>
-    </div>
-    
+                  </div>
+                </div>
+
     <div className="story-arrow">
       <ArrowRight size={18} />
-    </div>
-  </Link>
+            </div>
+          </Link>
 );
 
 const StoriesSection: React.FC = () => {
@@ -191,14 +191,14 @@ const StoriesSection: React.FC = () => {
       <div className="stories-header">
         <h2>All Stories</h2>
         <span className="stories-count">{stories.length} narratives</span>
-      </div>
-      
+                  </div>
+
       <div className="stories-list">
         {nonFeatured.map(story => (
           <StoryRow key={story.id} story={story} />
-        ))}
-      </div>
-    </section>
+            ))}
+          </div>
+        </section>
   );
 };
 
@@ -217,7 +217,7 @@ const ScrollytellingClient: React.FC = () => (
     <EditorialHero />
     <StoriesSection />
     <ComingSoon />
-  </div>
-);
+        </div>
+  );
 
 export default ScrollytellingClient;
