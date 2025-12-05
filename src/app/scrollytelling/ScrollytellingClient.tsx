@@ -36,20 +36,30 @@ interface Story {
 
   const stories: Story[] = [
   {
-    id: "who-invented-the-mirror",
+    id: "language-death",
     number: "01",
+    title: "Language Death",
+    subtitle: "The Silence of Extinction",
+    description: "7,168 languages exist today. Half will disappear by 2100. An exploration of what we lose when a language dies.",
+    category: "Linguistics",
+    readTime: "9 min",
+    href: "/scrollytelling/language-death",
+    isNew: true,
+    isFeatured: true,
+  },
+  {
+    id: "who-invented-the-mirror",
+    number: "02",
     title: "The Mirror",
     subtitle: "8,000 Years of Reflection",
     description: "From polished obsidian to smart mirrors—humanity's eternal quest to see itself.",
     category: "Material Culture",
     readTime: "10 min",
     href: "/scrollytelling/who-invented-the-mirror",
-    isNew: true,
-    isFeatured: true,
   },
   {
     id: "who-invented-soda",
-    number: "02",
+    number: "03",
     title: "The Fizz",
     subtitle: "From Pharmacy to Phenomenon",
     description: "How carbonated water became humanity's favorite way to celebrate, refresh, and rebel—one bubble at a time.",
@@ -59,7 +69,7 @@ interface Story {
   },
   {
     id: "who-invented-the-sneaker",
-    number: "03",
+    number: "04",
     title: "The Sneaker Story",
     subtitle: "From Plimsolls to $75 Billion",
     description: "How a rubber-soled shoe designed for silence became a global cultural force—from Charles Goodyear to Michael Jordan.",
