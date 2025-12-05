@@ -36,20 +36,30 @@ interface Story {
 
   const stories: Story[] = [
   {
-    id: "who-invented-soda",
+    id: "who-invented-the-mirror",
     number: "01",
+    title: "The Mirror",
+    subtitle: "8,000 Years of Reflection",
+    description: "From polished obsidian to smart mirrors—humanity's eternal quest to see itself.",
+    category: "Material Culture",
+    readTime: "10 min",
+    href: "/scrollytelling/who-invented-the-mirror",
+    isNew: true,
+    isFeatured: true,
+  },
+  {
+    id: "who-invented-soda",
+    number: "02",
     title: "The Fizz",
     subtitle: "From Pharmacy to Phenomenon",
     description: "How carbonated water became humanity's favorite way to celebrate, refresh, and rebel—one bubble at a time.",
     category: "Food & Beverage",
     readTime: "10 min",
     href: "/scrollytelling/who-invented-soda",
-    isNew: true,
-    isFeatured: true,
   },
   {
     id: "who-invented-the-sneaker",
-    number: "02",
+    number: "03",
     title: "The Sneaker Story",
     subtitle: "From Plimsolls to $75 Billion",
     description: "How a rubber-soled shoe designed for silence became a global cultural force—from Charles Goodyear to Michael Jordan.",
@@ -59,7 +69,7 @@ interface Story {
   },
   {
     id: "who-invented-high-heels",
-    number: "04",
+    number: "05",
     title: "The High Heels Story",
     subtitle: "500 Years of Elevation",
     description: "From Persian cavalrymen to Parisian runways, the extraordinary journey of fashion's most provocative invention.",
@@ -69,7 +79,7 @@ interface Story {
   },
   {
     id: "who-invented-the-bicycle",
-    number: "05",
+    number: "06",
     title: "The Bicycle Story",
     subtitle: "200 Years of Two Wheels",
     description: "The invention that changed transportation, liberated women, and became humanity's most efficient machine.",
@@ -79,7 +89,7 @@ interface Story {
   },
   {
     id: "who-invented-the-spoon",
-    number: "06",
+    number: "07",
     title: "The Spoon Story",
     subtitle: "30,000 Years of Essential Tools",
     description: "From prehistoric bone carvings to silver apostle spoons—humanity's oldest eating utensil.",
@@ -89,7 +99,7 @@ interface Story {
   },
   {
     id: "who-invented-basketball",
-    number: "07",
+    number: "08",
     title: "The Basketball Story",
     subtitle: "From Peach Baskets to Global Culture",
     description: "Dr. Naismith's 1891 invention becomes billion-dollar arenas and worldwide phenomenon.",
@@ -99,7 +109,7 @@ interface Story {
   },
   {
     id: "who-invented-the-fork",
-    number: "08",
+    number: "09",
     title: "The Fork Story",
     subtitle: "4,000 Years of Revolution",
     description: "From ancient Mesopotamia through Byzantine courts to your dinner table.",
