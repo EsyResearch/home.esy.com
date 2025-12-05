@@ -200,7 +200,9 @@
   font-weight: 700;
   line-height: 1;
   margin-bottom: 1.5rem;
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .ocean-container .hero-title .line {
@@ -213,6 +215,8 @@
   opacity: 0;
   transform: translateY(100%);
   animation: rise-up 1s var(--ease-sink) forwards;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 
 .ocean-container .hero-title .line:nth-child(1) span { animation-delay: 0.4s; }
