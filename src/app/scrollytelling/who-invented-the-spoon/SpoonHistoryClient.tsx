@@ -28,7 +28,7 @@ import './who-invented-the-spoon.css';
 // ==================== HOOKS ====================
 const useScrollProgress = () => {
   const [progress, setProgress] = useState(0);
-  
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -37,7 +37,7 @@ const useScrollProgress = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
+
   return progress;
 };
 
@@ -61,7 +61,7 @@ const useInView = (threshold = 0.3) => {
 const ProgressSpoon: React.FC = () => {
   const progress = useScrollProgress();
   const dashOffset = 400 - (progress / 100) * 400;
-  
+
   return (
     <div className="progress-spoon">
       <svg viewBox="0 0 40 180" preserveAspectRatio="xMidYMid meet">
@@ -88,8 +88,8 @@ const Hero: React.FC = () => (
           d="M40 20 C10 20 10 70 40 70 C70 70 70 20 40 20 M40 70 L40 230"
         />
       </svg>
-    </div>
-    
+      </div>
+      
     <div className="hero-content">
       <div className="hero-eyebrow">30,000 Years of Human Ingenuity</div>
       
@@ -101,8 +101,8 @@ const Hero: React.FC = () => (
       <p className="hero-tagline">
         Humanity&apos;s first purpose-built eating tool, unchanged in essence for millennia.
       </p>
-    </div>
-    
+        </div>
+        
     <div className="hero-scroll">
       <span>Scoop into history</span>
       <div className="scroll-bowl" />
@@ -210,7 +210,7 @@ const Timeline: React.FC = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
+
   return (
     <section ref={containerRef} className="timeline-section">
       <div className="timeline-header">
@@ -252,18 +252,18 @@ const Sources: React.FC = () => (
     <div className="sources-content">
       <h3 className="sources-title">Sources & Further Reading</h3>
       <div className="sources-grid">
-        <a href="https://en.wikipedia.org/wiki/Spoon" target="_blank" rel="noopener noreferrer">
+          <a href="https://en.wikipedia.org/wiki/Spoon" target="_blank" rel="noopener noreferrer">
           Wikipedia — Spoon
-        </a>
-        <a href="https://www.britannica.com/topic/spoon" target="_blank" rel="noopener noreferrer">
+          </a>
+          <a href="https://www.britannica.com/topic/spoon" target="_blank" rel="noopener noreferrer">
           Britannica — Spoon
-        </a>
-        <a href="https://www.metmuseum.org/art/collection/search/237055" target="_blank" rel="noopener noreferrer">
+          </a>
+          <a href="https://www.metmuseum.org/art/collection/search/237055" target="_blank" rel="noopener noreferrer">
           Met Museum — Silver Spoons
         </a>
-        <a href="https://en.wikipedia.org/wiki/Apostle_spoon" target="_blank" rel="noopener noreferrer">
+          <a href="https://en.wikipedia.org/wiki/Apostle_spoon" target="_blank" rel="noopener noreferrer">
           Wikipedia — Apostle Spoon
-        </a>
+          </a>
       </div>
       <p className="sources-note">
         Researched using authoritative sources on culinary and material history.
@@ -277,8 +277,8 @@ const Footer: React.FC = () => (
   <footer className="footer">
     <div className="footer-icon">🥄</div>
     <p className="footer-quote">
-      &ldquo;The spoon is the most democratic of utensils—it belongs to no culture, yet serves them all.&rdquo;
-    </p>
+        &ldquo;The spoon is the most democratic of utensils—it belongs to no culture, yet serves them all.&rdquo;
+      </p>
     <div className="footer-author">— Bee Wilson, Consider the Fork</div>
     <p className="footer-tagline">From bone to stainless steel—30,000 years and counting.</p>
   </footer>

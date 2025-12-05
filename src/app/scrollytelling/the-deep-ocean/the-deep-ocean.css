@@ -200,7 +200,7 @@
   font-weight: 700;
   line-height: 1;
   margin-bottom: 1.5rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -213,14 +213,22 @@
 .ocean-container .hero-title .line span {
   display: inline-block;
   opacity: 0;
-  transform: translateY(100%);
-  animation: rise-up 1s var(--ease-sink) forwards;
-  will-change: transform, opacity;
-  backface-visibility: hidden;
+  animation: hero-rise-up 1s var(--ease-sink) forwards;
 }
 
 .ocean-container .hero-title .line:nth-child(1) span { animation-delay: 0.4s; }
 .ocean-container .hero-title .line:nth-child(2) span { animation-delay: 0.6s; }
+
+@keyframes hero-rise-up {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
 
 .ocean-container .hero-subtitle {
   font-size: 1.25rem;

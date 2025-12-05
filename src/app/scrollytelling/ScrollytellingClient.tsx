@@ -127,17 +127,17 @@ interface Story {
     readTime: "10 min",
     href: "/scrollytelling/who-invented-basketball",
   },
-  {
-    id: "who-invented-the-fork",
+    {
+      id: "who-invented-the-fork",
     number: "10",
     title: "The Fork Story",
     subtitle: "4,000 Years of Revolution",
     description: "From ancient Mesopotamia through Byzantine courts to your dinner table.",
-    category: "History",
-    readTime: "12 min",
-    href: "/scrollytelling/who-invented-the-fork",
-  },
-];
+      category: "History",
+      readTime: "12 min",
+      href: "/scrollytelling/who-invented-the-fork",
+    },
+  ];
 
 // ==================== COMPONENTS ====================
 
