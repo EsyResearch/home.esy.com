@@ -36,20 +36,30 @@ interface Story {
 
   const stories: Story[] = [
   {
-    id: "evolution-of-mammary-glands",
+    id: "mammary-gland-evolution",
     number: "01",
+    title: "Mammary Gland Evolution",
+    subtitle: "Anatomical Journey",
+    description: "Detailed anatomical SVGs showing human breast cross-sections, alveoli, and comparative animal mammary systems—platypus to whale to human.",
+    category: "Biology & Anatomy",
+    readTime: "14 min",
+    href: "/scrollytelling/mammary-gland-evolution",
+    isNew: true,
+    isFeatured: true,
+  },
+  {
+    id: "evolution-of-mammary-glands",
+    number: "02",
     title: "Evolution of Mammary Glands",
     subtitle: "310 Million Years of Milk",
     description: "How a simple skin secretion became the defining feature of mammals. SVG cross-sections, evolutionary trees, and milk composition comparisons.",
     category: "Biology & Evolution",
     readTime: "12 min",
     href: "/scrollytelling/evolution-of-mammary-glands",
-    isNew: true,
-    isFeatured: true,
   },
   {
     id: "the-invention-of-the-car",
-    number: "02",
+    number: "03",
     title: "The Automobile",
     subtitle: "A Sketch-Style Journey",
     description: "Hand-drawn SVGs animate as you scroll through 138 years of automotive history—from Benz's patent to the electric future.",
@@ -59,7 +69,7 @@ interface Story {
   },
   {
     id: "the-invention-of-wine",
-    number: "03",
+    number: "04",
     title: "The Invention of Wine",
     subtitle: "8,000 Years in a Glass",
     description: "From Neolithic Georgia to billion-dollar Bordeaux—the story of humanity's most civilized beverage.",
@@ -69,7 +79,7 @@ interface Story {
   },
   {
     id: "the-pale-blue-dot",
-    number: "04",
+    number: "05",
     title: "The Pale Blue Dot",
     subtitle: "A Cosmic Perspective",
     description: "Scroll to zoom out 6 billion kilometers. Carl Sagan's reflection on the most humbling photograph ever taken.",
@@ -79,7 +89,7 @@ interface Story {
   },
   {
     id: "the-deep-ocean",
-    number: "05",
+    number: "06",
     title: "The Deep Ocean",
     subtitle: "Earth's Final Frontier",
     description: "Descend 10,935 meters into the abyss. From sunlit waters to Challenger Deep—71% of Earth, less than 0.001% explored.",
@@ -89,7 +99,7 @@ interface Story {
   },
   {
     id: "language-death",
-    number: "06",
+    number: "07",
     title: "Language Death",
     subtitle: "The Silence of Extinction",
     description: "7,168 languages exist today. Half will disappear by 2100. An exploration of what we lose when a language dies.",
@@ -99,7 +109,7 @@ interface Story {
   },
   {
     id: "who-invented-the-mirror",
-    number: "07",
+    number: "08",
     title: "The Mirror",
     subtitle: "8,000 Years of Reflection",
     description: "From polished obsidian to smart mirrors—humanity's eternal quest to see itself.",
@@ -109,7 +119,7 @@ interface Story {
   },
   {
     id: "who-invented-soda",
-    number: "08",
+    number: "09",
     title: "The Fizz",
     subtitle: "From Pharmacy to Phenomenon",
     description: "How carbonated water became humanity's favorite way to celebrate, refresh, and rebel—one bubble at a time.",
@@ -119,7 +129,7 @@ interface Story {
   },
   {
     id: "who-invented-the-sneaker",
-    number: "09",
+    number: "10",
     title: "The Sneaker Story",
     subtitle: "From Plimsolls to $75 Billion",
     description: "How a rubber-soled shoe designed for silence became a global cultural force—from Charles Goodyear to Michael Jordan.",
@@ -129,7 +139,7 @@ interface Story {
   },
   {
     id: "who-invented-high-heels",
-    number: "10",
+    number: "11",
     title: "The High Heels Story",
     subtitle: "500 Years of Elevation",
     description: "From Persian cavalrymen to Parisian runways, the extraordinary journey of fashion's most provocative invention.",
@@ -139,7 +149,7 @@ interface Story {
   },
   {
     id: "who-invented-the-bicycle",
-    number: "11",
+    number: "12",
     title: "The Bicycle Story",
     subtitle: "200 Years of Two Wheels",
     description: "The invention that changed transportation, liberated women, and became humanity's most efficient machine.",
@@ -149,7 +159,7 @@ interface Story {
   },
   {
     id: "who-invented-the-spoon",
-    number: "12",
+    number: "13",
     title: "The Spoon Story",
     subtitle: "30,000 Years of Essential Tools",
     description: "From prehistoric bone carvings to silver apostle spoons—humanity's oldest eating utensil.",
@@ -159,7 +169,7 @@ interface Story {
   },
   {
     id: "who-invented-basketball",
-    number: "13",
+    number: "14",
     title: "The Basketball Story",
     subtitle: "From Peach Baskets to Global Culture",
     description: "Dr. Naismith's 1891 invention becomes billion-dollar arenas and worldwide phenomenon.",
@@ -169,7 +179,7 @@ interface Story {
   },
     {
       id: "who-invented-the-fork",
-    number: "14",
+    number: "15",
     title: "The Fork Story",
     subtitle: "4,000 Years of Revolution",
     description: "From ancient Mesopotamia through Byzantine courts to your dinner table.",
