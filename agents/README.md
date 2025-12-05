@@ -63,9 +63,18 @@ our scrollytelling piece about [topic]. Focus on .edu and major news sources.
 
 **Key Features:**
 - Mandatory Design Research phase (unique visual identity per story)
+- **Anti-Pattern-Matching Protocol** — prevents reusing structural patterns, not just visual elements
 - **Layout Variation Required** (minimum 3 different patterns, no consecutive duplicates)
+- Requires 2+ unique interaction mechanics never used before
 - Coordinates 5 other agents (Research, Writer, Editor, UI/UX, Engineer)
 - Enforces Sources & Further Reading section
+
+**⚠️ Anti-Pattern-Matching Protocol:**
+Before creating any new scrollytelling:
+1. Audit last 3-5 stories for reused patterns
+2. Create a "banned list" of overused layouts/mechanics
+3. Identify 2+ unique interaction mechanics for this story
+4. Answer: "What interactive element could ONLY exist in this story?"
 
 **Available Layout Patterns:**
 | Pattern | Best For |

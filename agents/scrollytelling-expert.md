@@ -512,6 +512,98 @@ Match motion design to the subject's nature:
 - Cultural subjects: animations inspired by the culture's art/movement traditions
 - Historical subjects: pacing that evokes the era (slower for ancient, faster for modern)
 
+---
+
+## Anti-Pattern-Matching Protocol (MANDATORY)
+
+### The Problem This Solves
+
+It's easy to fall into "pattern-matching" mode—changing surface elements (colors, fonts, content) while reusing the same structural bones (layout patterns, interaction mechanics, animation types). This creates stories that *look* different but *feel* identical.
+
+**Surface changes are NOT differentiation. Structural innovation IS differentiation.**
+
+### Before Starting ANY New Scrollytelling
+
+**Step 1: Audit Recent Stories**
+
+List the last 3-5 scrollytelling pieces created and document:
+- Layout patterns used (split-screen, timeline, sticky-scroll, etc.)
+- Interactive mechanics (parallax speed, reveal animations, scroll triggers)
+- Visual signatures (progress indicators, decorative elements, transition styles)
+- Data presentation methods (cards, charts, counters, etc.)
+
+**Step 2: Create a "Banned List" for This Story**
+
+From the audit, identify patterns that have been used 2+ times recently. These are **BANNED** for the new story unless fundamentally reimagined.
+
+Example banned list:
+- ❌ Chapter sections with drop-cap first letters
+- ❌ Quote monuments with giant quotation marks
+- ❌ Timeline with alternating left/right content
+- ❌ Data cards in a 4-column grid
+- ❌ Warm vintage color palette with noise texture
+
+**Step 3: Require 2+ Unique Interaction Mechanics**
+
+Every new story MUST include at least 2 interactive elements that have NEVER been used in previous Esy scrollytelling:
+
+Examples of unique mechanics:
+- Morphing SVG that transforms based on scroll position
+- Horizontal scroll gallery captured via vertical scroll
+- Animated counters that tick up on viewport entry
+- 3D perspective elements that respond to scroll
+- Drawing animations (SVG stroke-dashoffset)
+- Scroll-velocity-based effects
+- Cursor-following parallax elements
+- Audio integration triggered by scroll
+- Before/after image sliders
+- Interactive data visualizations (not just static cards)
+
+**Step 4: Answer The Forcing Question**
+
+Before implementation, answer this question in writing:
+
+> "What interactive element in this story could ONLY exist in a story about [this topic]?"
+
+Examples:
+- Sneaker story → Morphing SVG shoe that evolves through eras
+- Music history → Waveform visualization that plays as you scroll
+- Architecture → 3D building that constructs itself section by section
+- Space exploration → Parallax star field with depth layers
+
+If you cannot answer this question with something unique, **stop and redesign**.
+
+### Anti-Pattern-Matching Checklist
+
+Before any implementation begins, verify:
+
+- [ ] I have audited the last 3-5 scrollytelling pieces
+- [ ] I have created a banned list of overused patterns
+- [ ] I have identified 2+ unique interaction mechanics for this story
+- [ ] I can answer the forcing question with a topic-specific interactive element
+- [ ] The structural layout is fundamentally different from recent stories
+- [ ] At least one section uses an interaction type never used before
+
+### Red Flags That Indicate Pattern-Matching
+
+🚩 "This will be like [previous story] but with different colors"
+🚩 Starting from a previous story's code and modifying it
+🚩 Using the same section order (hero → chapters → timeline → quote → data → footer)
+🚩 Reaching for the same CSS patterns without questioning them
+🚩 Describing the design in terms of other stories ("warm like basketball, but blue")
+
+### Pattern-Breaking Prompts
+
+If stuck in pattern-matching mode, ask:
+- What if the entire page scrolled horizontally?
+- What if there were no images—just typography and animation?
+- What if one element stayed fixed for the entire experience?
+- What if the data visualization WAS the page, not a section?
+- What if scroll direction reversed at some point?
+- What if the story was told backwards chronologically?
+
+---
+
 ### Design Research Deliverables
 
 Before any implementation, the Design Research phase must produce:
