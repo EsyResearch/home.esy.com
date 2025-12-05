@@ -238,10 +238,9 @@ const DeepOceanClient: React.FC = () => {
 
       {/* === HERO === */}
       <section className="hero">
-        <div className="hero-badge">Earth&apos;s Final Frontier</div>
+        <div className="hero-badge">EARTH&apos;S FINAL FRONTIER</div>
         <h1 className="hero-title">
-          <span className="line"><span>The Deep</span></span>
-          <span className="line"><span>Ocean</span></span>
+          The Deep<br />Ocean
         </h1>
         <p className="hero-subtitle">
           We have better maps of Mars than the ocean floor. 

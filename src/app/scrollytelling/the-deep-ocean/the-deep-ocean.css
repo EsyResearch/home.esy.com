@@ -149,7 +149,7 @@
   right: 0;
   height: 100vh;
   pointer-events: none;
-  z-index: 1;
+  z-index: 5;
   opacity: 1;
   transition: opacity 0.5s var(--ease-sink);
 }
@@ -159,7 +159,7 @@
   top: -50%;
   width: 200px;
   height: 200%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, transparent 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 100%);
   transform: rotate(15deg);
 }
 
@@ -181,62 +181,48 @@
   align-items: center;
   text-align: center;
   padding: 2rem;
-  z-index: 10;
+  z-index: 20;
 }
 
 .ocean-container .hero-badge {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.4em;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.8);
+  color: #FFFFFF;
   margin-bottom: 2rem;
-  opacity: 0;
-  animation: fade-in 1s var(--ease-sink) 0.3s forwards;
+  text-shadow: 0 2px 10px rgba(0, 50, 100, 0.5);
 }
 
 .ocean-container .hero-title {
-  font-size: clamp(3rem, 10vw, 7rem);
+  font-size: clamp(3.5rem, 12vw, 8rem);
   font-weight: 700;
   line-height: 1;
   margin-bottom: 1.5rem;
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  color: #FFFFFF;
+  text-shadow: 
+    0 2px 4px rgba(0, 30, 80, 0.4),
+    0 4px 20px rgba(0, 50, 120, 0.3),
+    0 8px 40px rgba(0, 50, 100, 0.2);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .ocean-container .hero-title .line {
   display: block;
-  overflow: hidden;
 }
 
 .ocean-container .hero-title .line span {
   display: inline-block;
-  opacity: 0;
-  animation: hero-rise-up 1s var(--ease-sink) forwards;
-}
-
-.ocean-container .hero-title .line:nth-child(1) span { animation-delay: 0.4s; }
-.ocean-container .hero-title .line:nth-child(2) span { animation-delay: 0.6s; }
-
-@keyframes hero-rise-up {
-  0% {
-    opacity: 0;
-    transform: translateY(100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) translateZ(0);
-  }
 }
 
 .ocean-container .hero-subtitle {
   font-size: 1.25rem;
-  font-weight: 300;
+  font-weight: 400;
   max-width: 600px;
   line-height: 1.7;
-  opacity: 0;
-  animation: fade-in 1s var(--ease-sink) 1s forwards;
+  color: #FFFFFF;
+  text-shadow: 0 2px 10px rgba(0, 50, 100, 0.4);
 }
 
 .ocean-container .hero-stats {
@@ -312,7 +298,7 @@
 }
 
 @keyframes rise-up {
-  to { opacity: 1; transform: translateY(0); }
+  to { opacity: 1; transform: translateY(0) translateZ(0); }
 }
 
 @keyframes fade-in {
