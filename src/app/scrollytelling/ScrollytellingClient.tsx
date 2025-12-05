@@ -32,6 +32,7 @@ interface Story {
   href: string;
   isNew?: boolean;
   isFeatured?: boolean;
+  draft?: boolean; // Draft stories are hidden from index but accessible via direct URL
 }
 
   const stories: Story[] = [
@@ -46,6 +47,7 @@ interface Story {
     href: "/scrollytelling/mammary-gland-evolution",
     isNew: true,
     isFeatured: true,
+    draft: true, // Hidden from index, accessible via direct URL
   },
   {
     id: "evolution-of-mammary-glands",
@@ -56,20 +58,23 @@ interface Story {
     category: "Biology & Evolution",
     readTime: "12 min",
     href: "/scrollytelling/evolution-of-mammary-glands",
+    draft: true, // Hidden from index, accessible via direct URL
   },
   {
     id: "the-invention-of-the-car",
-    number: "03",
+    number: "01",
     title: "The Automobile",
     subtitle: "A Sketch-Style Journey",
     description: "Hand-drawn SVGs animate as you scroll through 138 years of automotive history—from Benz's patent to the electric future.",
     category: "Transportation & Design",
     readTime: "11 min",
     href: "/scrollytelling/the-invention-of-the-car",
+    isNew: true,
+    isFeatured: true,
   },
   {
     id: "the-invention-of-wine",
-    number: "04",
+    number: "02",
     title: "The Invention of Wine",
     subtitle: "8,000 Years in a Glass",
     description: "From Neolithic Georgia to billion-dollar Bordeaux—the story of humanity's most civilized beverage.",
@@ -79,7 +84,7 @@ interface Story {
   },
   {
     id: "the-pale-blue-dot",
-    number: "05",
+    number: "03",
     title: "The Pale Blue Dot",
     subtitle: "A Cosmic Perspective",
     description: "Scroll to zoom out 6 billion kilometers. Carl Sagan's reflection on the most humbling photograph ever taken.",
@@ -89,7 +94,7 @@ interface Story {
   },
   {
     id: "the-deep-ocean",
-    number: "06",
+    number: "04",
     title: "The Deep Ocean",
     subtitle: "Earth's Final Frontier",
     description: "Descend 10,935 meters into the abyss. From sunlit waters to Challenger Deep—71% of Earth, less than 0.001% explored.",
@@ -99,7 +104,7 @@ interface Story {
   },
   {
     id: "language-death",
-    number: "07",
+    number: "05",
     title: "Language Death",
     subtitle: "The Silence of Extinction",
     description: "7,168 languages exist today. Half will disappear by 2100. An exploration of what we lose when a language dies.",
@@ -109,7 +114,7 @@ interface Story {
   },
   {
     id: "who-invented-the-mirror",
-    number: "08",
+    number: "06",
     title: "The Mirror",
     subtitle: "8,000 Years of Reflection",
     description: "From polished obsidian to smart mirrors—humanity's eternal quest to see itself.",
@@ -119,7 +124,7 @@ interface Story {
   },
   {
     id: "who-invented-soda",
-    number: "09",
+    number: "07",
     title: "The Fizz",
     subtitle: "From Pharmacy to Phenomenon",
     description: "How carbonated water became humanity's favorite way to celebrate, refresh, and rebel—one bubble at a time.",
@@ -129,7 +134,7 @@ interface Story {
   },
   {
     id: "who-invented-the-sneaker",
-    number: "10",
+    number: "08",
     title: "The Sneaker Story",
     subtitle: "From Plimsolls to $75 Billion",
     description: "How a rubber-soled shoe designed for silence became a global cultural force—from Charles Goodyear to Michael Jordan.",
@@ -139,7 +144,7 @@ interface Story {
   },
   {
     id: "who-invented-high-heels",
-    number: "11",
+    number: "09",
     title: "The High Heels Story",
     subtitle: "500 Years of Elevation",
     description: "From Persian cavalrymen to Parisian runways, the extraordinary journey of fashion's most provocative invention.",
@@ -149,7 +154,7 @@ interface Story {
   },
   {
     id: "who-invented-the-bicycle",
-    number: "12",
+    number: "10",
     title: "The Bicycle Story",
     subtitle: "200 Years of Two Wheels",
     description: "The invention that changed transportation, liberated women, and became humanity's most efficient machine.",
@@ -159,7 +164,7 @@ interface Story {
   },
   {
     id: "who-invented-the-spoon",
-    number: "13",
+    number: "11",
     title: "The Spoon Story",
     subtitle: "30,000 Years of Essential Tools",
     description: "From prehistoric bone carvings to silver apostle spoons—humanity's oldest eating utensil.",
@@ -169,7 +174,7 @@ interface Story {
   },
   {
     id: "who-invented-basketball",
-    number: "14",
+    number: "12",
     title: "The Basketball Story",
     subtitle: "From Peach Baskets to Global Culture",
     description: "Dr. Naismith's 1891 invention becomes billion-dollar arenas and worldwide phenomenon.",
@@ -179,7 +184,7 @@ interface Story {
   },
     {
       id: "who-invented-the-fork",
-    number: "15",
+    number: "13",
     title: "The Fork Story",
     subtitle: "4,000 Years of Revolution",
     description: "From ancient Mesopotamia through Byzantine courts to your dinner table.",
@@ -189,12 +194,17 @@ interface Story {
     },
   ];
 
+// ==================== HELPERS ====================
+
+// Filter out draft stories for public display
+const publishedStories = stories.filter(s => !s.draft);
+
 // ==================== COMPONENTS ====================
 
 const EditorialHero: React.FC = () => {
-  const featured = stories.find(s => s.isFeatured);
-  const totalStories = stories.length;
-  const totalTime = stories.reduce((acc, s) => acc + parseInt(s.readTime), 0);
+  const featured = publishedStories.find(s => s.isFeatured);
+  const totalStories = publishedStories.length;
+  const totalTime = publishedStories.reduce((acc, s) => acc + parseInt(s.readTime), 0);
 
   return (
     <section className="editorial-hero">
@@ -274,13 +284,13 @@ const StoryRow: React.FC<{ story: Story }> = ({ story }) => (
 );
 
 const StoriesSection: React.FC = () => {
-  const nonFeatured = stories.filter(s => !s.isFeatured);
+  const nonFeatured = publishedStories.filter(s => !s.isFeatured);
   
   return (
     <section className="stories-section">
       <div className="stories-header">
         <h2>All Stories</h2>
-        <span className="stories-count">{stories.length} narratives</span>
+        <span className="stories-count">{publishedStories.length} narratives</span>
                   </div>
 
       <div className="stories-list">
