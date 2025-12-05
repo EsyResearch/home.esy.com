@@ -1,0 +1,711 @@
+/*
+ * THE INVENTION OF THE CAR - A Sketch-Style Journey
+ * 
+ * UNIQUE THEME: Blueprint/Sketch Style
+ * - Hand-drawn SVG line art that animates
+ * - Blueprint grid background
+ * - Pencil sketch aesthetics
+ * - SVG stroke-dashoffset drawing animations
+ * - Technical drawing annotations
+ * 
+ * Anti-Pattern-Matching Applied:
+ * ✅ NO pouring/filling mechanics (Wine)
+ * ✅ NO horizontal parallax timeline (Wine)
+ * ✅ NO depth/darkness progression (Ocean)
+ * ✅ NO cosmic zoom (Pale Blue Dot)
+ * 
+ * UNIQUE MECHANICS:
+ * 1. Blueprint grid background
+ * 2. SVG cars that DRAW themselves as you scroll
+ * 3. Speedometer that tracks scroll progress as MPH
+ * 4. Road/track that extends with scroll
+ * 5. Technical annotations that appear
+ * 6. Evolution wheel showing car designs morphing
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Blueprint Palette */
+  --blueprint-dark: #0a1628;
+  --blueprint-mid: #1a2a4a;
+  --blueprint-line: #4a90d9;
+  --blueprint-light: #6ab0ff;
+  --blueprint-grid: rgba(74, 144, 217, 0.1);
+  --sketch-white: #f0f4f8;
+  --pencil-gray: #8899aa;
+  --highlight-orange: #ff6b35;
+  --chrome: #c0c0c0;
+  
+  /* Typography */
+  --font-sketch: 'Architects Daughter', cursive;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Space Grotesk', sans-serif;
+  
+  /* Drawing Animation */
+  --draw-speed: 2s;
+}
+
+/* ============================================
+   BASE - Blueprint Background
+   ============================================ */
+.car-story * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.car-story {
+  font-family: var(--font-display);
+  background: var(--blueprint-dark);
+  color: var(--sketch-white);
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Blueprint Grid */
+.car-story::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(var(--blueprint-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--blueprint-grid) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================================
+   SPEEDOMETER - Fixed Progress
+   ============================================ */
+.car-story .speedometer {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+  width: 120px;
+  height: 120px;
+}
+
+.car-story .speedo-bg {
+  fill: none;
+  stroke: var(--blueprint-line);
+  stroke-width: 2;
+  opacity: 0.3;
+}
+
+.car-story .speedo-fill {
+  fill: none;
+  stroke: var(--highlight-orange);
+  stroke-width: 4;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.car-story .speedo-value {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 500;
+  fill: var(--sketch-white);
+  text-anchor: middle;
+}
+
+.car-story .speedo-label {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  fill: var(--pencil-gray);
+  text-anchor: middle;
+  letter-spacing: 0.1em;
+}
+
+/* ============================================
+   ROAD TRACK - Extends with scroll
+   ============================================ */
+.car-story .road-track {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.car-story .road-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.car-story .road-line {
+  stroke: var(--blueprint-line);
+  stroke-width: 2;
+  stroke-dasharray: 20 10;
+  fill: none;
+}
+
+.car-story .road-edge {
+  stroke: var(--pencil-gray);
+  stroke-width: 1;
+  fill: none;
+}
+
+/* ============================================
+   SVG DRAWING ANIMATION BASE
+   ============================================ */
+.car-story .sketch-svg {
+  stroke: var(--blueprint-light);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.car-story .sketch-svg.drawing {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 2s ease-out;
+}
+
+.car-story .sketch-svg.drawn {
+  stroke-dashoffset: 0;
+}
+
+.car-story .sketch-fill {
+  fill: var(--blueprint-mid);
+  opacity: 0;
+  transition: opacity 0.5s ease 1.5s;
+}
+
+.car-story .sketch-svg.drawn .sketch-fill {
+  opacity: 0.5;
+}
+
+/* ============================================
+   HERO - Giant Wheel Drawing
+   ============================================ */
+.car-story .hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 2rem;
+}
+
+.car-story .hero-wheel {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  opacity: 0.15;
+}
+
+.car-story .wheel-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.car-story .wheel-outer {
+  stroke: var(--blueprint-line);
+  stroke-width: 3;
+  fill: none;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: draw-wheel 3s ease-out forwards;
+}
+
+.car-story .wheel-spoke {
+  stroke: var(--blueprint-line);
+  stroke-width: 1.5;
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: draw-spoke 1s ease-out forwards;
+}
+
+.car-story .wheel-spoke:nth-child(2) { animation-delay: 0.5s; }
+.car-story .wheel-spoke:nth-child(3) { animation-delay: 1s; }
+.car-story .wheel-spoke:nth-child(4) { animation-delay: 1.5s; }
+.car-story .wheel-spoke:nth-child(5) { animation-delay: 2s; }
+.car-story .wheel-spoke:nth-child(6) { animation-delay: 2.5s; }
+
+@keyframes draw-wheel {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes draw-spoke {
+  to { stroke-dashoffset: 0; }
+}
+
+.car-story .hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+.car-story .hero-year {
+  font-family: var(--font-sketch);
+  font-size: 1rem;
+  color: var(--highlight-orange);
+  margin-bottom: 1rem;
+  letter-spacing: 0.2em;
+}
+
+.car-story .hero-title {
+  font-family: var(--font-sketch);
+  font-size: clamp(3rem, 10vw, 5rem);
+  font-weight: 400;
+  line-height: 1;
+  margin: 0 0 0.25rem 0;
+  color: var(--sketch-white);
+}
+
+.car-story .hero-title-accent {
+  font-family: var(--font-sketch);
+  font-size: clamp(3.5rem, 12vw, 6rem);
+  font-weight: 400;
+  line-height: 1;
+  margin: 0 0 1.5rem 0;
+  color: var(--sketch-white);
+  position: relative;
+}
+
+.car-story .hero-title-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--highlight-orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: underline-draw 1s ease-out 1s forwards;
+}
+
+@keyframes underline-draw {
+  to { transform: scaleX(1); }
+}
+
+.car-story .hero-subtitle {
+  font-family: var(--font-sketch);
+  font-size: 1.25rem;
+  color: var(--pencil-gray);
+  line-height: 1.7;
+}
+
+.car-story .hero-scroll {
+  position: absolute;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.car-story .hero-scroll span {
+  font-family: var(--font-sketch);
+  font-size: 0.8rem;
+  color: var(--pencil-gray);
+}
+
+.car-story .scroll-wheel {
+  width: 30px;
+  height: 50px;
+  border: 2px solid var(--blueprint-line);
+  border-radius: 15px;
+  position: relative;
+}
+
+.car-story .scroll-wheel::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 10px;
+  background: var(--blueprint-light);
+  border-radius: 2px;
+  animation: wheel-roll 1.5s ease-in-out infinite;
+}
+
+@keyframes wheel-roll {
+  0%, 100% { top: 8px; opacity: 1; }
+  50% { top: 28px; opacity: 0.3; }
+}
+
+/* ============================================
+   CAR SKETCH SECTIONS
+   ============================================ */
+.car-story .sketch-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 2rem;
+  z-index: 10;
+}
+
+.car-story .sketch-container {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.car-story .car-drawing {
+  width: 500px;
+  height: 300px;
+  position: relative;
+}
+
+.car-story .car-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.car-story .sketch-content {
+  max-width: 450px;
+}
+
+.car-story .sketch-year {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--highlight-orange);
+  letter-spacing: 0.2em;
+  margin-bottom: 0.5rem;
+}
+
+.car-story .sketch-title {
+  font-family: var(--font-sketch);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.car-story .sketch-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--pencil-gray);
+  margin-bottom: 1rem;
+}
+
+/* Technical Annotations */
+.car-story .annotation {
+  font-family: var(--font-sketch);
+  font-size: 0.75rem;
+  fill: var(--highlight-orange);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.car-story .annotation.visible {
+  opacity: 1;
+}
+
+.car-story .annotation-line {
+  stroke: var(--highlight-orange);
+  stroke-width: 1;
+  stroke-dasharray: 5 3;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.car-story .annotation-line.visible {
+  opacity: 0.7;
+}
+
+/* ============================================
+   DATA DASHBOARD - Sketch Style
+   ============================================ */
+.car-story .data-dashboard {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  z-index: 10;
+  position: relative;
+}
+
+.car-story .dashboard-inner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  max-width: 800px;
+}
+
+.car-story .dash-item {
+  text-align: center;
+  padding: 2rem;
+  border: 2px dashed var(--blueprint-line);
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.car-story .dash-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.car-story .dash-value {
+  font-family: var(--font-sketch);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: var(--highlight-orange);
+  line-height: 1;
+}
+
+.car-story .dash-label {
+  font-family: var(--font-sketch);
+  font-size: 0.9rem;
+  color: var(--pencil-gray);
+  margin-top: 0.5rem;
+}
+
+/* ============================================
+   EVOLUTION STRIP - Cars morphing
+   ============================================ */
+.car-story .evolution-section {
+  padding: 4rem 2rem;
+  z-index: 10;
+  position: relative;
+}
+
+.car-story .evolution-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.car-story .evolution-header h2 {
+  font-family: var(--font-sketch);
+  font-size: 2.5rem;
+}
+
+.car-story .evolution-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.car-story .evolution-strip::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--blueprint-line), transparent);
+  z-index: 0;
+}
+
+.car-story .evo-car {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  background: var(--blueprint-dark);
+  padding: 1rem;
+}
+
+.car-story .evo-car svg {
+  width: 120px;
+  height: 80px;
+}
+
+.car-story .evo-year {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--highlight-orange);
+  margin-top: 0.5rem;
+}
+
+/* ============================================
+   QUOTE - Sketch bubble
+   ============================================ */
+.car-story .quote-section {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  z-index: 10;
+  position: relative;
+}
+
+.car-story .quote-bubble {
+  max-width: 600px;
+  padding: 3rem;
+  border: 3px solid var(--blueprint-line);
+  border-radius: 20px;
+  position: relative;
+  background: var(--blueprint-mid);
+}
+
+.car-story .quote-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50px;
+  width: 40px;
+  height: 40px;
+  border-right: 3px solid var(--blueprint-line);
+  border-bottom: 3px solid var(--blueprint-line);
+  transform: rotate(45deg);
+  background: var(--blueprint-mid);
+}
+
+.car-story .quote-text {
+  font-family: var(--font-sketch);
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.car-story .quote-author {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--highlight-orange);
+}
+
+/* ============================================
+   SOURCES
+   ============================================ */
+.car-story .sources {
+  padding: 4rem 2rem;
+  z-index: 10;
+  position: relative;
+  border-top: 1px dashed var(--blueprint-line);
+}
+
+.car-story .sources-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.car-story .sources h3 {
+  font-family: var(--font-sketch);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.car-story .sources-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.car-story .sources-list a {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--pencil-gray);
+  text-decoration: none;
+  padding: 0.75rem;
+  border: 1px dashed var(--blueprint-line);
+  transition: all 0.3s ease;
+}
+
+.car-story .sources-list a:hover {
+  color: var(--sketch-white);
+  border-color: var(--highlight-orange);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.car-story .car-footer {
+  padding: 4rem 2rem;
+  text-align: center;
+  z-index: 10;
+  position: relative;
+}
+
+.car-story .footer-sketch {
+  width: 200px;
+  height: 100px;
+  margin: 0 auto 2rem;
+}
+
+.car-story .footer-text {
+  font-family: var(--font-sketch);
+  font-size: 1.25rem;
+  color: var(--pencil-gray);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .car-story .speedometer {
+    width: 80px;
+    height: 80px;
+    bottom: 1rem;
+    right: 1rem;
+  }
+  
+  .car-story .sketch-container {
+    flex-direction: column;
+  }
+  
+  .car-story .car-drawing {
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  .car-story .dashboard-inner {
+    grid-template-columns: 1fr;
+  }
+  
+  .car-story .evolution-strip {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .car-story .evolution-strip::before {
+    display: none;
+  }
+  
+  .car-story .sources-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .car-story .hero-wheel {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .car-story .wheel-outer,
+  .car-story .wheel-spoke,
+  .car-story .scroll-wheel::after,
+  .car-story .sketch-svg,
+  .car-story .dash-item {
+    animation: none;
+    transition: none;
+    stroke-dashoffset: 0;
+    opacity: 1;
+    transform: none;
+  }
+}
+
