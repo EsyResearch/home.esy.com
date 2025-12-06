@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import MirrorHistoryClient from './MirrorHistoryClient';
+import { ScrollytellingWrapper } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'The History of the Mirror | 8,000 Years of Reflection | Esy',
@@ -36,6 +37,13 @@ export const metadata: Metadata = {
 };
 
 export default function MirrorHistoryPage() {
-  return <MirrorHistoryClient />;
+  return (
+    <ScrollytellingWrapper
+      title="The Mirror: 8,000 Years of Reflection"
+      description="From polished obsidian to the screen in your pocket—humanity's eternal quest to see itself."
+    >
+      <MirrorHistoryClient />
+    </ScrollytellingWrapper>
+  );
 }
 

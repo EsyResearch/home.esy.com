@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import FirearmClient from './FirearmClient';
+import { ScrollytellingWrapper } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'The Firearm | From Fire Lance to Modern Precision | Esy',
@@ -30,6 +31,13 @@ export const metadata: Metadata = {
 };
 
 export default function TheFirearmPage() {
-  return <FirearmClient />;
+  return (
+    <ScrollytellingWrapper
+      title="The Firearm: From Fire Lance to Modern Precision"
+      description="800 years of controlled explosions — interactive scrollytelling with rotating cylinder and muzzle flash effects."
+    >
+      <FirearmClient />
+    </ScrollytellingWrapper>
+  );
 }
 

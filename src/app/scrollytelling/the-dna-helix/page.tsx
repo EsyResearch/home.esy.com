@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import DNAHelixClient from './DNAHelixClient';
+import { ScrollytellingWrapper } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'DNA & The Double Helix | The Code of Life | Esy',
@@ -30,6 +31,13 @@ export const metadata: Metadata = {
 };
 
 export default function TheDNAHelixPage() {
-  return <DNAHelixClient />;
+  return (
+    <ScrollytellingWrapper
+      title="DNA & The Double Helix: The Code of Life"
+      description="Watch the double helix twist as you scroll — base pairs connect, Photo 51 reveals, genetic sequences type out."
+    >
+      <DNAHelixClient />
+    </ScrollytellingWrapper>
+  );
 }
 

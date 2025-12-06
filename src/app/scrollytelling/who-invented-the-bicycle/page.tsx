@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import BicycleHistoryClient from "./BicycleHistoryClient";
+import { ScrollytellingWrapper } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: "Who Invented the Bicycle? The 200-Year Story of Two Wheels | Esy Scrollytelling",
@@ -26,6 +27,13 @@ export const metadata: Metadata = {
 };
 
 export default function WhoInventedTheBicyclePage() {
-  return <BicycleHistoryClient />;
+  return (
+    <ScrollytellingWrapper
+      title="Who Invented the Bicycle? The 200-Year Story"
+      description="From Karl von Drais's running machine to modern carbon fiber racers."
+    >
+      <BicycleHistoryClient />
+    </ScrollytellingWrapper>
+  );
 }
 

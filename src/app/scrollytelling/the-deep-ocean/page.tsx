@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import DeepOceanClient from './DeepOceanClient';
+import { ScrollytellingWrapper } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'The Deep Ocean: Earth\'s Final Frontier | Esy',
@@ -35,6 +36,13 @@ export const metadata: Metadata = {
 };
 
 export default function DeepOceanPage() {
-  return <DeepOceanClient />;
+  return (
+    <ScrollytellingWrapper
+      title="The Deep Ocean: Earth's Final Frontier"
+      description="Descend 10,935 meters into the ocean's abyss. 71% of Earth, less than 0.001% explored."
+    >
+      <DeepOceanClient />
+    </ScrollytellingWrapper>
+  );
 }
 
