@@ -413,17 +413,24 @@ An **orchestrator agent** coordinates multiple specialized agents to produce com
                            ┌─────────────────────────────────────┐
                            │           DESIGN LAYER              │
                            │                                     │
-                           │  ┌───────────┐    ┌───────────┐    │
-                           │  │   UI/UX   │───►│ Immersive │    │
-                           │  │  DESIGN   │    │ Experience│    │
-                           │  │ (Visual)  │    │(Mobile UX)│    │
-                           │  └───────────┘    └───────────┘    │
-                           └──────────────┬──────────────────────┘
-                                          │
-                                          ▼
+                           │           ┌───────────┐             │
+                           │           │   UI/UX   │             │
+                           │           │  DESIGN   │             │
+                           │           │ (Visual)  │             │
+                           │           └─────┬─────┘             │
+                           └─────────────────┼───────────────────┘
+                                             │
+                                             ▼
                            ┌─────────────────────────────────────┐
-                           │       SOFTWARE ENGINEER             │
-                           │      (Implementation)               │
+                           │        IMPLEMENTATION LAYER         │
+                           │                                     │
+                           │  ┌───────────┐    ┌───────────────┐│
+                           │  │ SOFTWARE  │    │   IMMERSIVE   ││
+                           │  │ ENGINEER  │◄──►│   EXPERIENCE  ││
+                           │  │(Structure)│    │   ENGINEER    ││
+                           │  └───────────┘    │ (Mobile UX)   ││
+                           │                   │ ⚠️ MANDATORY  ││
+                           │                   └───────────────┘│
                            └─────────────────────────────────────┘
 ```
 
@@ -435,8 +442,12 @@ An **orchestrator agent** coordinates multiple specialized agents to produce com
 | **Historian Writer** | Sources + Brief | Narrative draft | Content complete |
 | **Historian Editor** | Draft | Fact-checked content | **APPROVAL REQUIRED** |
 | **UI/UX Design** | Visual direction | Refined design system | Mobile typography verified |
-| **Immersive Experience** | Design specs | Mobile-native implementation | 60fps on real devices |
-| **Software Engineer** | All above | Production code | Build passes |
+| **Software Engineer** | Content + Design | Component architecture, code structure | Build passes |
+| **Immersive Experience** ⚠️ | Design + Code | Mobile-native UX, 60fps animations, Theatre Bar | **REAL DEVICE TESTING** |
+
+**Implementation Layer Distinction:**
+- `software-engineering-expert.md` → Component architecture, data flow, TypeScript, accessibility
+- `immersive-experience-engineer.md` → Mobile-native feel, 60fps animations, touch interactions, Theatre Bar, hidden browser chrome
 
 ### Quality Gates (Blocking)
 
