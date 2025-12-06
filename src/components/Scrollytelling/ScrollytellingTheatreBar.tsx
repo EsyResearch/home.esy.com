@@ -15,16 +15,22 @@ interface ScrollytellingTheatreBarProps {
  * ScrollytellingTheatreBar - Elegant fixed bottom bar for scrollytelling
  * 
  * Design Philosophy (UI/UX + Immersive Experience):
- * - Fixed bottom bar creates "theatre frame" around content
+ * - Hidden at top of page — appears on scroll (non-intrusive)
+ * - Taller height for comfortable breathing room
+ * - Smooth slide-up animation on reveal
  * - All actions within natural thumb reach
  * - Clean, uncluttered with proper safe area padding
- * - Universal back arrow (←) is clearer than abstract grid icon
- * - Share options accessible but non-intrusive
- * - Mobile-first with graceful desktop enhancement
+ * 
+ * Behavior:
+ * - Hidden when scrollY < 100px (let hero breathe)
+ * - Slides up smoothly when user scrolls
+ * - Stays visible once revealed until user returns to top
  * 
  * Anatomy:
  * ┌──────────────────────────────────────────────────────────────┐
- * │  ← Stories  │     ████████░░░░░░  42%  •  10 min    │ Share │
+ * │                                                              │
+ * │  ← Stories       ████░░░░░  42%  •  10 min          Share   │
+ * │                                                              │
  * └──────────────────────────────────────────────────────────────┘
  */
 export default function ScrollytellingTheatreBar({
@@ -35,9 +41,13 @@ export default function ScrollytellingTheatreBar({
   backLabel = "Stories",
 }: ScrollytellingTheatreBarProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [shareUrl, setShareUrl] = useState("");
+
+  // Threshold: show bar after scrolling past 100px
+  const SCROLL_THRESHOLD = 100;
 
   useEffect(() => {
     setShareUrl(window.location.href);
@@ -48,6 +58,9 @@ export default function ScrollytellingTheatreBar({
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = Math.min((window.scrollY / scrollHeight) * 100, 100);
       setScrollProgress(progress);
+      
+      // Show/hide based on scroll position
+      setIsVisible(window.scrollY > SCROLL_THRESHOLD);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -90,8 +103,9 @@ export default function ScrollytellingTheatreBar({
     <>
       <style jsx>{`
         /* ==========================================
-           THEATRE BAR — Redesigned for Elegance
-           Mobile-first, safe area aware, uncluttered
+           THEATRE BAR — Scroll-Reveal Edition
+           Hidden at top, slides up on scroll
+           More height for breathing room
            ==========================================*/
         
         .theatre-bar {
@@ -101,8 +115,9 @@ export default function ScrollytellingTheatreBar({
           right: 0;
           z-index: 100;
           
-          /* Height + safe area for home indicator */
-          height: calc(52px + env(safe-area-inset-bottom, 0px));
+          /* INCREASED HEIGHT — More breathing room */
+          /* Mobile: 64px, Tablet: 68px, Desktop: 72px */
+          height: calc(64px + env(safe-area-inset-bottom, 0px));
           padding-bottom: env(safe-area-inset-bottom, 0px);
           
           /* Flex layout */
@@ -110,15 +125,28 @@ export default function ScrollytellingTheatreBar({
           align-items: center;
           justify-content: space-between;
           
-          /* Safe edge padding - never get cut off */
-          padding-left: max(1rem, env(safe-area-inset-left, 1rem));
-          padding-right: max(1rem, env(safe-area-inset-right, 1rem));
+          /* Safe edge padding */
+          padding-left: max(1.25rem, env(safe-area-inset-left, 1.25rem));
+          padding-right: max(1.25rem, env(safe-area-inset-right, 1.25rem));
           
           /* Elegant frosted glass */
           background: rgba(10, 10, 12, 0.94);
           backdrop-filter: blur(24px) saturate(180%);
           -webkit-backdrop-filter: blur(24px) saturate(180%);
           border-top: 1px solid rgba(255, 255, 255, 0.06);
+          
+          /* SCROLL REVEAL — Hidden by default, slides up */
+          transform: translateY(100%);
+          opacity: 0;
+          transition: 
+            transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+            opacity 0.3s ease;
+        }
+
+        /* Visible state — slides up into view */
+        .theatre-bar.visible {
+          transform: translateY(0);
+          opacity: 1;
         }
 
         /* Progress Line — Subtle gradient */
@@ -133,55 +161,71 @@ export default function ScrollytellingTheatreBar({
         }
 
         /* ==========================================
-           BACK BUTTON — Universal arrow, always labeled
+           STORIES BUTTON — Branded, elegant pill
            ==========================================*/
-        .theatre-back {
+        .theatre-stories-btn {
           display: flex;
           align-items: center;
           gap: 0.5rem;
-          padding: 0.5rem 0.75rem;
-          border-radius: 10px;
-          background: transparent;
-          border: none;
-          color: rgba(255, 255, 255, 0.8);
+          padding: 0.5rem 1rem 0.5rem 0.75rem;
+          border-radius: 100px;
+          background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+          border: 1px solid rgba(139, 92, 246, 0.3);
+          color: rgba(255, 255, 255, 0.95);
           font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
           font-size: 0.875rem;
-          font-weight: 500;
-          letter-spacing: -0.01em;
+          font-weight: 600;
+          letter-spacing: 0.01em;
           text-decoration: none;
           cursor: pointer;
-          transition: all 0.2s ease;
-          min-height: 40px; /* Touch target */
+          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+          min-height: 40px;
+          box-shadow: 
+            0 0 0 1px rgba(139, 92, 246, 0.1),
+            0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .theatre-back:hover {
-          background: rgba(255, 255, 255, 0.08);
+        .theatre-stories-btn:hover {
+          background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
+          border-color: rgba(139, 92, 246, 0.5);
+          box-shadow: 
+            0 0 0 1px rgba(139, 92, 246, 0.2),
+            0 4px 16px rgba(139, 92, 246, 0.15),
+            0 2px 8px rgba(0, 0, 0, 0.2);
+          transform: translateY(-1px);
+        }
+
+        .theatre-stories-btn:active {
+          transform: scale(0.98) translateY(0);
+          box-shadow: 
+            0 0 0 1px rgba(139, 92, 246, 0.3),
+            0 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .theatre-stories-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 24px;
+          height: 24px;
+          border-radius: 6px;
+          background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+          box-shadow: 0 2px 4px rgba(99, 102, 241, 0.3);
+          flex-shrink: 0;
+        }
+
+        .theatre-stories-icon svg {
+          width: 14px;
+          height: 14px;
           color: #fff;
         }
 
-        .theatre-back:active {
-          background: rgba(255, 255, 255, 0.12);
-          transform: scale(0.98);
-        }
-
-        .theatre-back-arrow {
-          font-size: 1.125rem;
-          font-weight: 300;
-          opacity: 0.7;
-          transition: transform 0.2s ease, opacity 0.2s ease;
-        }
-
-        .theatre-back:hover .theatre-back-arrow {
-          transform: translateX(-2px);
-          opacity: 1;
-        }
-
-        .theatre-back-text {
-          /* Always visible — clarity over minimalism */
+        .theatre-stories-text {
+          /* Text styling handled by parent */
         }
 
         /* ==========================================
-           CENTER — Progress info (elegant, minimal)
+           CENTER — Progress info (larger, more readable)
            ==========================================*/
         .theatre-center {
           position: absolute;
@@ -189,32 +233,32 @@ export default function ScrollytellingTheatreBar({
           transform: translateX(-50%);
           display: flex;
           align-items: center;
-          gap: 0.625rem;
-          color: rgba(255, 255, 255, 0.45);
+          gap: 0.75rem;
+          color: rgba(255, 255, 255, 0.5);
           font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
-          font-size: 0.75rem;
+          font-size: 0.8125rem;
           font-weight: 500;
           font-variant-numeric: tabular-nums;
         }
 
         .theatre-progress-text {
-          min-width: 32px;
+          min-width: 36px;
           text-align: right;
         }
 
         .theatre-dot {
-          width: 3px;
-          height: 3px;
+          width: 4px;
+          height: 4px;
           border-radius: 50%;
-          background: rgba(255, 255, 255, 0.25);
+          background: rgba(255, 255, 255, 0.3);
         }
 
         .theatre-read-time {
-          color: rgba(255, 255, 255, 0.35);
+          color: rgba(255, 255, 255, 0.4);
         }
 
         /* ==========================================
-           SHARE BUTTON — Clean, accessible
+           SHARE BUTTON — Larger, more comfortable
            ==========================================*/
         .theatre-share-area {
           position: relative;
@@ -227,14 +271,14 @@ export default function ScrollytellingTheatreBar({
           align-items: center;
           justify-content: center;
           gap: 0.5rem;
-          padding: 0.5rem 0.875rem;
-          min-height: 40px; /* Touch target */
-          border-radius: 10px;
+          padding: 0.625rem 1rem;
+          min-height: 44px; /* iOS touch target */
+          border-radius: 12px;
           background: rgba(255, 255, 255, 0.08);
           border: 1px solid rgba(255, 255, 255, 0.08);
-          color: rgba(255, 255, 255, 0.85);
+          color: rgba(255, 255, 255, 0.9);
           font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
-          font-size: 0.875rem;
+          font-size: 0.9375rem;
           font-weight: 500;
           cursor: pointer;
           transition: all 0.2s ease;
@@ -251,13 +295,9 @@ export default function ScrollytellingTheatreBar({
         }
 
         .theatre-share-btn svg {
-          width: 16px;
-          height: 16px;
+          width: 18px;
+          height: 18px;
           flex-shrink: 0;
-        }
-
-        .theatre-share-label {
-          /* Visible on mobile too for clarity */
         }
 
         /* ==========================================
@@ -270,13 +310,13 @@ export default function ScrollytellingTheatreBar({
           display: flex;
           flex-direction: column;
           gap: 2px;
-          padding: 6px;
+          padding: 8px;
           min-width: 180px;
           background: rgba(24, 24, 28, 0.98);
           backdrop-filter: blur(24px);
           -webkit-backdrop-filter: blur(24px);
           border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 14px;
+          border-radius: 16px;
           box-shadow: 
             0 -4px 24px rgba(0, 0, 0, 0.3),
             0 0 0 1px rgba(255, 255, 255, 0.05) inset;
@@ -296,14 +336,14 @@ export default function ScrollytellingTheatreBar({
         .theatre-share-option {
           display: flex;
           align-items: center;
-          gap: 10px;
-          padding: 10px 12px;
+          gap: 12px;
+          padding: 12px 14px;
           border-radius: 10px;
           background: transparent;
           border: none;
           color: rgba(255, 255, 255, 0.9);
           font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
-          font-size: 0.8125rem;
+          font-size: 0.875rem;
           font-weight: 500;
           text-decoration: none;
           cursor: pointer;
@@ -321,8 +361,8 @@ export default function ScrollytellingTheatreBar({
         }
 
         .theatre-share-option svg {
-          width: 18px;
-          height: 18px;
+          width: 20px;
+          height: 20px;
           flex-shrink: 0;
         }
 
@@ -340,27 +380,45 @@ export default function ScrollytellingTheatreBar({
         }
 
         /* ==========================================
-           RESPONSIVE — Mobile refinements
+           RESPONSIVE
            ==========================================*/
         @media (max-width: 480px) {
           .theatre-bar {
-            /* Slightly smaller on very small screens */
-            height: calc(50px + env(safe-area-inset-bottom, 0px));
+            height: calc(60px + env(safe-area-inset-bottom, 0px));
+            padding-left: max(1rem, env(safe-area-inset-left, 1rem));
+            padding-right: max(1rem, env(safe-area-inset-right, 1rem));
           }
 
-          .theatre-back {
-            padding: 0.5rem 0.625rem;
+          .theatre-stories-btn {
+            padding: 0.4rem 0.75rem 0.4rem 0.5rem;
             font-size: 0.8125rem;
+            gap: 0.375rem;
+            min-height: 36px;
+          }
+
+          .theatre-stories-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+          }
+
+          .theatre-stories-icon svg {
+            width: 12px;
+            height: 12px;
           }
 
           .theatre-share-btn {
-            padding: 0.5rem 0.75rem;
-            font-size: 0.8125rem;
+            padding: 0.5rem 0.875rem;
+            font-size: 0.875rem;
           }
 
-          /* Keep center visible but compact */
+          .theatre-share-btn svg {
+            width: 16px;
+            height: 16px;
+          }
+
           .theatre-center {
-            font-size: 0.6875rem;
+            font-size: 0.75rem;
             gap: 0.5rem;
           }
 
@@ -372,7 +430,6 @@ export default function ScrollytellingTheatreBar({
             display: none;
           }
 
-          /* Panel stays on screen */
           .theatre-share-panel {
             right: 0;
             min-width: 160px;
@@ -382,17 +439,27 @@ export default function ScrollytellingTheatreBar({
         /* Tablet+ */
         @media (min-width: 768px) {
           .theatre-bar {
-            height: calc(56px + env(safe-area-inset-bottom, 0px));
+            height: calc(68px + env(safe-area-inset-bottom, 0px));
             padding-left: max(1.5rem, env(safe-area-inset-left, 1.5rem));
             padding-right: max(1.5rem, env(safe-area-inset-right, 1.5rem));
           }
 
-          .theatre-back {
-            padding: 0.5rem 1rem;
+          .theatre-stories-btn {
+            padding: 0.5rem 1.25rem 0.5rem 0.875rem;
+          }
+
+          .theatre-stories-icon {
+            width: 26px;
+            height: 26px;
+          }
+
+          .theatre-stories-icon svg {
+            width: 15px;
+            height: 15px;
           }
 
           .theatre-share-btn {
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1.25rem;
           }
 
           .theatre-share-panel {
@@ -403,8 +470,9 @@ export default function ScrollytellingTheatreBar({
         /* Desktop */
         @media (min-width: 1024px) {
           .theatre-bar {
-            padding-left: 2rem;
-            padding-right: 2rem;
+            height: calc(72px + env(safe-area-inset-bottom, 0px));
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
           }
         }
 
@@ -412,34 +480,57 @@ export default function ScrollytellingTheatreBar({
            REDUCED MOTION
            ==========================================*/
         @media (prefers-reduced-motion: reduce) {
-          .theatre-bar,
-          .theatre-back,
+          .theatre-bar {
+            transition: opacity 0.15s ease;
+          }
+          
+          .theatre-bar:not(.visible) {
+            transform: translateY(0);
+            opacity: 0;
+            pointer-events: none;
+          }
+          
+          .theatre-stories-btn,
           .theatre-share-btn,
           .theatre-share-panel,
           .theatre-share-option,
-          .theatre-progress,
-          .theatre-back-arrow {
+          .theatre-progress {
             transition: none;
           }
           
-          .theatre-back:active,
+          .theatre-stories-btn:active,
           .theatre-share-btn:active {
             transform: none;
           }
         }
       `}</style>
 
-      <div className="theatre-bar">
+      <div className={`theatre-bar ${isVisible ? "visible" : ""}`}>
         {/* Progress Line */}
         <div 
           className="theatre-progress" 
           style={{ width: `${scrollProgress}%` }}
         />
 
-        {/* Back Button — Simple arrow + text */}
-        <Link href={backHref} className="theatre-back">
-          <span className="theatre-back-arrow">←</span>
-          <span className="theatre-back-text">{backLabel}</span>
+        {/* Stories Button — Branded pill with icon */}
+        <Link href={backHref} className="theatre-stories-btn">
+          <span className="theatre-stories-icon">
+            {/* Layered squares / collection icon */}
+            <svg 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            >
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <rect x="14" y="14" width="7" height="7" rx="1" />
+            </svg>
+          </span>
+          <span className="theatre-stories-text">{backLabel}</span>
         </Link>
 
         {/* Center — Progress & Read Time */}
