@@ -55,7 +55,7 @@ our scrollytelling piece about [topic]. Focus on .edu and major news sources.
 ### Scrollytelling Expert
 **File:** `scrollytelling-expert.md`
 
-**Role:** Award-winning digital storytelling architect specializing in immersive, scroll-based narrative experiences.
+**Role:** Award-winning digital storytelling architect specializing in immersive, **mobile-native**, scroll-based narrative experiences.
 
 **Best For:**
 - Creating new scrollytelling pages
@@ -63,12 +63,14 @@ our scrollytelling piece about [topic]. Focus on .edu and major news sources.
 - Orchestrating multi-agent content workflows
 
 **Key Features:**
+- **📱 Mobile-Native First** — Phone is the primary canvas; desktop enhances
 - Mandatory Design Research phase (unique visual identity per story)
-- **Anti-Pattern-Matching Protocol** — prevents reusing structural patterns, not just visual elements
+- **Anti-Pattern-Matching Protocol** — prevents reusing structural patterns
 - **Layout Variation Required** (minimum 3 different patterns, no consecutive duplicates)
 - Requires 2+ unique interaction mechanics never used before
-- Coordinates 5 other agents (Research, Writer, Editor, UI/UX, Engineer)
+- Coordinates **6 agents** (Research, Writer, Editor, UI/UX, Engineer, **Immersive Experience**)
 - Enforces Sources & Further Reading section
+- **Real device testing required** (not just browser responsive mode)
 
 **⚠️ Anti-Pattern-Matching Protocol:**
 Before creating any new scrollytelling:
@@ -108,6 +110,8 @@ the Gutenberg era, and use a medieval manuscript aesthetic.
 
 **Role:** World-class frontend engineer specializing in immersive web experiences, building app-like, scroll-driven, and native-feeling interfaces.
 
+**⚠️ MANDATORY for Scrollytelling:** This agent is required for every scrollytelling piece to ensure mobile-native feel. Designs created by `scrollytelling-expert.md` must be implemented through this agent.
+
 **Best For:**
 - Making web experiences feel like native apps
 - Scroll-driven animations and parallax
@@ -119,29 +123,31 @@ the Gutenberg era, and use a medieval manuscript aesthetic.
 
 **Key Features:**
 - Browser Invisibility philosophy (users forget they're in a browser)
-- 60fps animation guarantee
-- Mobile-first, touch-first approach
+- **60fps animation guarantee on mobile**
+- **Mobile-first, touch-first approach**
 - `prefers-reduced-motion` respect
 - GPU-accelerated animation patterns
 - Safe area handling (notches, home indicators)
+- Real device testing protocols
 
 **Invocation Examples:**
 ```
+# Implement mobile-native scrollytelling layer
+Using @agents/immersive-experience-engineer.md, implement the mobile-native 
+experience layer for this scrollytelling piece. Ensure 60fps animations, 
+proper safe area handling, and app-like feel on mobile devices.
+
 # Create immersive UI components
 Using @agents/immersive-experience-engineer.md, build a Theatre Bar 
 component with progress indicator and share panel.
 
-# Implement transitions
-Apply @agents/immersive-experience-engineer.md to create entry/exit 
-animations for scrollytelling pages.
-
 # Performance optimization
 Using @agents/immersive-experience-engineer.md, optimize the scroll 
-animations for 60fps on mobile devices.
+animations for 60fps on mid-tier Android devices.
 
-# App-like layout
-Apply @agents/immersive-experience-engineer.md to create a story-specific 
-layout that removes site chrome and feels like an app.
+# Touch interaction implementation
+Apply @agents/immersive-experience-engineer.md to implement touch-friendly 
+interactions with 44px+ tap targets and thumb-zone-aware layouts.
 ```
 
 ---
@@ -364,19 +370,22 @@ CTA copy on this landing page for better conversion.
 
 ### Scrollytelling Production Pipeline
 
-The recommended workflow for creating scrollytelling content:
+The recommended workflow for creating **mobile-native** scrollytelling content:
 
 ```
-1. @agents/scrollytelling-expert.md     → Design Research (unique visual identity)
-2. @agents/research-citations-expert.md → Source Discovery (Tier 1-2 only)
-3. @agents/scrollytelling-expert.md     → Story Architecture
-4. @agents/historian-writer-expert.md   → Narrative Draft
-5. @agents/historian-editor-expert.md   → Fact-Check
-6. @agents/research-citations-expert.md → Final Source Audit
-7. @agents/ui-ux-design-expert.md       → Visual Refinement
-8. @agents/software-engineering-expert.md → Implementation
-9. @agents/scrollytelling-expert.md     → Final Review
+1.  @agents/scrollytelling-expert.md        → Design Research (mobile-first visual identity)
+2.  @agents/research-citations-expert.md    → Source Discovery (Tier 1-2 only)
+3.  @agents/scrollytelling-expert.md        → Story Architecture (mobile layouts first)
+4.  @agents/historian-writer-expert.md      → Narrative Draft
+5.  @agents/historian-editor-expert.md      → Fact-Check
+6.  @agents/research-citations-expert.md    → Final Source Audit
+7.  @agents/ui-ux-design-expert.md          → Visual Refinement (mobile typography)
+8.  @agents/software-engineering-expert.md  → Component Implementation
+9.  @agents/immersive-experience-engineer.md → Mobile-Native Layer (60fps, touch, Theatre Bar)
+10. @agents/scrollytelling-expert.md        → Final Review (real device testing)
 ```
+
+**Key Addition:** Step 9 (`immersive-experience-engineer.md`) ensures the final experience feels like a native app, not a website. This includes 60fps animations, touch interactions, hidden browser chrome, and Theatre Bar integration.
 
 ### Quick Content Creation
 
@@ -410,6 +419,28 @@ For creating new agents or understanding the underlying architecture, see:
 3. **Chain Agents**: For complex tasks, invoke multiple agents in sequence
 4. **Trust the Framework**: Agents have built-in quality checks—let them work
 5. **Provide Context**: The more context you give, the better the output
+
+---
+
+## Mobile-First Scrollytelling (Critical)
+
+**70%+ of scrollytelling users are on mobile.** Every scrollytelling piece must:
+
+| Requirement | Agent Responsible |
+|-------------|-------------------|
+| Design mobile-first layouts | `scrollytelling-expert.md` |
+| 60fps animations on mobile | `immersive-experience-engineer.md` |
+| Touch-friendly (44px+ targets) | `immersive-experience-engineer.md` |
+| Safe area handling (notches) | `immersive-experience-engineer.md` |
+| Theatre Bar integration | `immersive-experience-engineer.md` |
+| Real device testing | Both |
+
+**Quick Mobile Check:**
+- [ ] Tested on real iPhone (not just browser)
+- [ ] Tested on real Android
+- [ ] All tap targets reachable with thumb
+- [ ] No horizontal scroll
+- [ ] Feels like an app, not a website
 
 ---
 

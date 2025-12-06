@@ -610,12 +610,12 @@ Current agents derived from this framework:
 | `historian-editor-expert.md` | History | Fact-Checker/Editor | ← Writer, ← Research |
 | `essayist-expert.md` | Academic Writing | Essay Instruction | Standalone |
 | `copywriter-marketing-expert.md` | Marketing | Conversion Copy | Standalone |
-| `software-engineering-expert.md` | Engineering | Full-Stack Dev | Standalone |
-| `ui-ux-design-expert.md` | Design | Interface Design | → Immersive Eng |
-| `immersive-experience-engineer.md` | Frontend/Animation | App-Like Web Experiences | ← UI/UX, ← Scrollytelling |
+| `software-engineering-expert.md` | Engineering | Full-Stack Dev | ← Scrollytelling |
+| `ui-ux-design-expert.md` | Design | Interface Design | → Immersive Eng, ← Scrollytelling |
+| `immersive-experience-engineer.md` | Frontend/Animation | **Mobile-Native Feel** | ← UI/UX, ← Scrollytelling (MANDATORY) |
 | `template-integration-engineer.md` | Frontend | Template → Next.js | Standalone |
 | `research-citations-expert.md` | Research | Source Discovery & Verification | → All content agents |
-| `scrollytelling-expert.md` | Digital Storytelling | Immersive Narratives | **Orchestrator** → Writer, Editor, Research, UI/UX, Immersive Eng |
+| `scrollytelling-expert.md` | Digital Storytelling | **Mobile-Native** Immersive Narratives | **Orchestrator** → Writer, Editor, Research, UI/UX, SW Eng, **Immersive Eng** |
 
 ---
 
