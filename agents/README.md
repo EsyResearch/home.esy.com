@@ -366,6 +366,137 @@ CTA copy on this landing page for better conversion.
 
 ---
 
+---
+
+## Orchestrator Architecture
+
+### What is an Orchestrator?
+
+An **orchestrator agent** coordinates multiple specialized agents to produce complex deliverables. Unlike standalone agents that work independently, orchestrators:
+
+1. **Define the workflow** — Sequence of agent invocations
+2. **Set quality gates** — Approval checkpoints between stages
+3. **Integrate outputs** — Combine deliverables from multiple agents
+4. **Enforce standards** — Ensure all agents follow shared requirements
+
+### Current Orchestrators
+
+| Orchestrator | Domain | Agents Coordinated | Output |
+|--------------|--------|-------------------|--------|
+| `scrollytelling-expert.md` | Digital Storytelling | 6 agents | Mobile-native scrollytelling pages |
+
+### Scrollytelling Orchestrator Architecture
+
+```
+                    ┌─────────────────────────────────────┐
+                    │      SCROLLYTELLING EXPERT          │
+                    │         (Orchestrator)              │
+                    │                                     │
+                    │  Responsibilities:                  │
+                    │  • Design Research (unique identity)│
+                    │  • Mobile-first layout planning     │
+                    │  • Story architecture               │
+                    │  • Quality gates & final review     │
+                    └──────────────┬──────────────────────┘
+                                   │
+           ┌───────────────────────┼───────────────────────┐
+           │                       │                       │
+           ▼                       ▼                       ▼
+    ┌─────────────┐        ┌─────────────┐        ┌─────────────┐
+    │  RESEARCH   │        │  HISTORIAN  │        │  HISTORIAN  │
+    │  CITATIONS  │───────►│   WRITER    │───────►│   EDITOR    │
+    │  (Sources)  │        │  (Content)  │        │(Fact-Check) │
+    └─────────────┘        └─────────────┘        └──────┬──────┘
+                                                         │
+                                                         │ Approved Content
+                                                         ▼
+                           ┌─────────────────────────────────────┐
+                           │           DESIGN LAYER              │
+                           │                                     │
+                           │  ┌───────────┐    ┌───────────┐    │
+                           │  │   UI/UX   │───►│ Immersive │    │
+                           │  │  DESIGN   │    │ Experience│    │
+                           │  │ (Visual)  │    │(Mobile UX)│    │
+                           │  └───────────┘    └───────────┘    │
+                           └──────────────┬──────────────────────┘
+                                          │
+                                          ▼
+                           ┌─────────────────────────────────────┐
+                           │       SOFTWARE ENGINEER             │
+                           │      (Implementation)               │
+                           └─────────────────────────────────────┘
+```
+
+### Agent Responsibilities in Orchestra
+
+| Agent | Input | Output | Quality Gate |
+|-------|-------|--------|--------------|
+| **Research Citations** | Topic | Tier 1-2 sources | Sources verified |
+| **Historian Writer** | Sources + Brief | Narrative draft | Content complete |
+| **Historian Editor** | Draft | Fact-checked content | **APPROVAL REQUIRED** |
+| **UI/UX Design** | Visual direction | Refined design system | Mobile typography verified |
+| **Immersive Experience** | Design specs | Mobile-native implementation | 60fps on real devices |
+| **Software Engineer** | All above | Production code | Build passes |
+
+### Quality Gates (Blocking)
+
+These checkpoints **must pass** before proceeding:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    QUALITY GATES                                │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  ① DESIGN RESEARCH COMPLETE                                    │
+│     └─ Unique visual identity derived from subject              │
+│     └─ Mobile-first layouts specified                           │
+│                                                                 │
+│  ② HISTORIAN EDITOR APPROVAL ⚠️ BLOCKING                       │
+│     └─ All facts verified                                       │
+│     └─ Sources authenticated                                    │
+│     └─ Cannot proceed without explicit approval                 │
+│                                                                 │
+│  ③ MOBILE DEVICE TESTING ⚠️ BLOCKING                           │
+│     └─ Tested on real iPhone                                    │
+│     └─ Tested on real Android                                   │
+│     └─ 60fps animations confirmed                               │
+│     └─ Cannot ship without device verification                  │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### When to Use Orchestrator vs Standalone
+
+| Scenario | Approach |
+|----------|----------|
+| Complete scrollytelling page | Use `scrollytelling-expert.md` (orchestrator) |
+| Just need sources | Use `research-citations-expert.md` (standalone) |
+| Just need fact-check | Use `historian-editor-expert.md` (standalone) |
+| Just need UI component | Use `ui-ux-design-expert.md` (standalone) |
+| Performance optimization only | Use `immersive-experience-engineer.md` (standalone) |
+| Complex, multi-deliverable project | Consider orchestrator pattern |
+
+### Invoking an Orchestrator
+
+When you invoke an orchestrator, it **automatically coordinates** all required agents:
+
+```
+# This single invocation triggers the full 6-agent workflow:
+Apply @agents/scrollytelling-expert.md to create a scrollytelling 
+experience about "The History of Coffee"
+
+# The orchestrator will:
+# 1. Conduct Design Research
+# 2. Coordinate source discovery
+# 3. Direct narrative writing
+# 4. Enforce fact-checking
+# 5. Guide visual refinement  
+# 6. Ensure mobile-native implementation
+# 7. Perform final review
+```
+
+---
+
 ## Multi-Agent Workflows
 
 ### Scrollytelling Production Pipeline
