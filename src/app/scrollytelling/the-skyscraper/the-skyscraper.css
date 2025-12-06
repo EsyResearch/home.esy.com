@@ -1,0 +1,812 @@
+/*
+ * THE SKYSCRAPER - Reaching for the Sky
+ * 
+ * DESIGN RESEARCH REPORT:
+ * 
+ * Visual Archaeology:
+ * - Art Deco architectural drawings
+ * - Construction site photography
+ * - Steel frame blueprints
+ * - 1930s NYC skyline postcards
+ * 
+ * Color Palette (Derived from subject):
+ * - Steel Gray (#5a6a7a) — structural steel
+ * - Glass Blue (#87ceeb) — curtain walls
+ * - Construction Orange (#ff6600) — safety, cranes
+ * - Concrete (#a0a0a0) — foundations
+ * - Art Deco Gold (#d4af37) — ornamental
+ * - Blueprint Blue (#1e3a5f) — plans
+ * - Sky Gradient — dawn to dusk
+ * 
+ * Typography:
+ * - Playfair Display — Art Deco elegance
+ * - Bebas Neue — Bold industrial
+ * - Roboto Mono — Technical specs
+ * 
+ * UNIQUE MECHANICS (Anti-Pattern Applied):
+ * ✅ NO revolver cylinder (Firearm)
+ * ✅ NO burning fuse (Gunpowder)
+ * ✅ Building that constructs FLOOR BY FLOOR
+ * ✅ Elevator that RISES with scroll
+ * ✅ Floor counter progress
+ * ✅ Steel frame drawing itself
+ * ✅ Height comparison visualization
+ * ✅ Crane lifting beams animation
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap');
+
+:root {
+  /* Skyscraper Palette */
+  --steel-gray: #5a6a7a;
+  --steel-dark: #3d4a5a;
+  --steel-light: #8090a0;
+  --glass-blue: #87ceeb;
+  --glass-dark: #5a9ab8;
+  --construction-orange: #ff6600;
+  --safety-yellow: #ffcc00;
+  --concrete: #a0a0a0;
+  --concrete-dark: #707070;
+  --art-deco-gold: #d4af37;
+  --blueprint-blue: #1e3a5f;
+  --sky-light: #e8f4fc;
+  --sky-blue: #87ceeb;
+  --sky-dusk: #2c3e50;
+  
+  /* Typography */
+  --font-deco: 'Playfair Display', serif;
+  --font-industrial: 'Bebas Neue', sans-serif;
+  --font-technical: 'Roboto Mono', monospace;
+}
+
+/* ============================================
+   BASE
+   ============================================ */
+.skyscraper-story * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.skyscraper-story {
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--sky-light);
+  color: var(--steel-dark);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ============================================
+   ELEVATOR PROGRESS INDICATOR
+   ============================================ */
+.skyscraper-story .elevator-progress {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skyscraper-story .elevator-shaft {
+  width: 40px;
+  height: 300px;
+  background: var(--steel-dark);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--steel-light);
+}
+
+.skyscraper-story .elevator-car {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 40px;
+  background: var(--art-deco-gold);
+  border-radius: 2px;
+  transition: bottom 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skyscraper-story .elevator-doors {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.skyscraper-story .elevator-door {
+  width: 50%;
+  height: 100%;
+  background: var(--steel-gray);
+  border: 1px solid var(--steel-dark);
+}
+
+.skyscraper-story .floor-indicator {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.skyscraper-story .floor-number {
+  font-family: var(--font-industrial);
+  font-size: 2rem;
+  color: var(--construction-orange);
+  line-height: 1;
+}
+
+.skyscraper-story .floor-label {
+  font-family: var(--font-technical);
+  font-size: 0.75rem;
+  color: var(--steel-light);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ============================================
+   BUILDING CONSTRUCTION ANIMATION
+   ============================================ */
+.skyscraper-story .construction-progress {
+  position: fixed;
+  left: 2rem;
+  bottom: 2rem;
+  z-index: 100;
+  width: 60px;
+}
+
+.skyscraper-story .mini-building {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  background: linear-gradient(to top, var(--concrete-dark) 0%, transparent 5%);
+}
+
+.skyscraper-story .building-floors {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, var(--steel-gray) 0%, var(--glass-blue) 100%);
+  transition: height 0.2s ease;
+  border-radius: 2px 2px 0 0;
+}
+
+.skyscraper-story .crane-arm {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 40px;
+  height: 4px;
+  background: var(--construction-orange);
+  transform-origin: left center;
+  animation: crane-swing 4s ease-in-out infinite;
+}
+
+.skyscraper-story .crane-cable {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  width: 2px;
+  height: 20px;
+  background: var(--steel-dark);
+}
+
+.skyscraper-story .crane-hook {
+  position: absolute;
+  top: 24px;
+  right: -4px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--construction-orange);
+  border-radius: 0 0 50% 50%;
+  border-top: none;
+}
+
+@keyframes crane-swing {
+  0%, 100% { transform: rotate(-15deg); }
+  50% { transform: rotate(15deg); }
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.skyscraper-story .hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: linear-gradient(180deg, var(--sky-light) 0%, var(--sky-blue) 50%, var(--sky-dusk) 100%);
+  padding: 2rem;
+  overflow: hidden;
+}
+
+/* Skyline silhouette at bottom */
+.skyscraper-story .hero-skyline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  opacity: 0.15;
+}
+
+.skyscraper-story .hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 700px;
+}
+
+.skyscraper-story .hero-era {
+  font-family: var(--font-technical);
+  font-size: 1rem;
+  color: var(--steel-gray);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.skyscraper-story .hero-title {
+  font-family: var(--font-deco);
+  font-size: clamp(3rem, 10vw, 5.5rem);
+  font-weight: 700;
+  color: var(--steel-dark);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.skyscraper-story .hero-title .accent {
+  color: var(--construction-orange);
+  display: block;
+  font-family: var(--font-industrial);
+  font-size: 0.5em;
+  letter-spacing: 0.2em;
+}
+
+.skyscraper-story .hero-subtitle {
+  font-family: var(--font-deco);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--steel-gray);
+  margin-bottom: 1.5rem;
+}
+
+.skyscraper-story .hero-description {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--steel-gray);
+}
+
+.skyscraper-story .hero-stats {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.skyscraper-story .hero-stat {
+  text-align: center;
+}
+
+.skyscraper-story .stat-number {
+  font-family: var(--font-industrial);
+  font-size: 2.5rem;
+  color: var(--construction-orange);
+  line-height: 1;
+}
+
+.skyscraper-story .stat-label {
+  font-family: var(--font-technical);
+  font-size: 0.75rem;
+  color: var(--steel-light);
+  text-transform: uppercase;
+}
+
+.skyscraper-story .hero-scroll {
+  position: absolute;
+  bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.skyscraper-story .hero-scroll span {
+  font-family: var(--font-technical);
+  font-size: 0.875rem;
+  color: var(--steel-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.skyscraper-story .scroll-arrow {
+  width: 20px;
+  height: 30px;
+  border: 2px solid var(--steel-gray);
+  border-radius: 10px;
+  position: relative;
+  animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+.skyscraper-story .scroll-arrow::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 8px;
+  background: var(--construction-orange);
+  border-radius: 2px;
+  animation: scroll-dot 2s ease-in-out infinite;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+@keyframes scroll-dot {
+  0%, 100% { opacity: 1; top: 6px; }
+  50% { opacity: 0.5; top: 14px; }
+}
+
+/* ============================================
+   CONTENT SECTIONS
+   ============================================ */
+.skyscraper-story .content-section {
+  padding: 6rem 2rem;
+  position: relative;
+}
+
+.skyscraper-story .content-section:nth-child(odd) {
+  background: var(--sky-light);
+}
+
+.skyscraper-story .content-section:nth-child(even) {
+  background: linear-gradient(180deg, #f0f5f9 0%, var(--sky-light) 100%);
+}
+
+.skyscraper-story .section-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.skyscraper-story .section-layout.reverse {
+  direction: rtl;
+}
+
+.skyscraper-story .section-layout.reverse > * {
+  direction: ltr;
+}
+
+.skyscraper-story .section-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.skyscraper-story .section-content {
+  max-width: 480px;
+}
+
+.skyscraper-story .section-era {
+  font-family: var(--font-technical);
+  font-size: 0.875rem;
+  color: var(--construction-orange);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+}
+
+.skyscraper-story .section-year {
+  font-family: var(--font-industrial);
+  font-size: 3rem;
+  color: var(--steel-dark);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.skyscraper-story .section-title {
+  font-family: var(--font-deco);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 600;
+  color: var(--steel-dark);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.skyscraper-story .section-text {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--steel-gray);
+  margin-bottom: 1rem;
+}
+
+.skyscraper-story .section-highlight {
+  font-family: var(--font-deco);
+  font-size: 1.125rem;
+  font-style: italic;
+  color: var(--steel-dark);
+  padding: 1rem 1.25rem;
+  background: rgba(212, 175, 55, 0.1);
+  border-left: 4px solid var(--art-deco-gold);
+  margin: 1.5rem 0;
+}
+
+/* ============================================
+   SVG BUILDING ILLUSTRATIONS
+   ============================================ */
+.skyscraper-story .building-svg {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+.skyscraper-story .steel-frame {
+  fill: none;
+  stroke: var(--steel-gray);
+  stroke-width: 2;
+}
+
+.skyscraper-story .glass-panel {
+  fill: var(--glass-blue);
+  stroke: var(--steel-dark);
+  stroke-width: 1;
+  opacity: 0.8;
+}
+
+.skyscraper-story .concrete-base {
+  fill: var(--concrete);
+  stroke: var(--concrete-dark);
+  stroke-width: 1;
+}
+
+.skyscraper-story .deco-detail {
+  fill: var(--art-deco-gold);
+  stroke: var(--steel-dark);
+  stroke-width: 0.5;
+}
+
+.skyscraper-story .draw-frame {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 1.5s ease;
+}
+
+.skyscraper-story .draw-frame.visible {
+  stroke-dashoffset: 0;
+}
+
+.skyscraper-story .fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.skyscraper-story .fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   HEIGHT COMPARISON SECTION
+   ============================================ */
+.skyscraper-story .height-section {
+  padding: 5rem 2rem;
+  background: var(--blueprint-blue);
+  color: white;
+}
+
+.skyscraper-story .height-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.skyscraper-story .height-title {
+  font-family: var(--font-deco);
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.skyscraper-story .height-subtitle {
+  font-family: var(--font-technical);
+  font-size: 0.875rem;
+  text-align: center;
+  color: var(--glass-blue);
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.skyscraper-story .height-comparison {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 350px;
+  padding: 0 1rem;
+}
+
+.skyscraper-story .height-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.skyscraper-story .height-bar {
+  width: 40px;
+  background: linear-gradient(to top, var(--steel-gray), var(--glass-blue));
+  border-radius: 2px 2px 0 0;
+  transition: height 1.5s ease;
+  position: relative;
+}
+
+.skyscraper-story .height-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 10px;
+  background: var(--art-deco-gold);
+  border-radius: 2px 2px 0 0;
+}
+
+.skyscraper-story .height-value {
+  font-family: var(--font-industrial);
+  font-size: 1.25rem;
+  color: var(--construction-orange);
+  margin-top: 0.75rem;
+}
+
+.skyscraper-story .height-name {
+  font-family: var(--font-technical);
+  font-size: 0.75rem;
+  color: var(--glass-blue);
+  margin-top: 0.25rem;
+  max-width: 80px;
+}
+
+.skyscraper-story .height-year {
+  font-size: 0.625rem;
+  color: var(--steel-light);
+}
+
+/* ============================================
+   STEEL FRAME SECTION
+   ============================================ */
+.skyscraper-story .frame-section {
+  padding: 4rem 2rem;
+  background: var(--steel-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.skyscraper-story .frame-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.skyscraper-story .frame-title {
+  font-family: var(--font-deco);
+  font-size: 1.75rem;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.skyscraper-story .frame-svg {
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.skyscraper-story .frame-beam {
+  fill: none;
+  stroke: var(--steel-light);
+  stroke-width: 4;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  transition: stroke-dashoffset 2s ease;
+}
+
+.skyscraper-story .frame-beam.visible {
+  stroke-dashoffset: 0;
+}
+
+.skyscraper-story .frame-rivet {
+  fill: var(--construction-orange);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.skyscraper-story .frame-rivet.visible {
+  opacity: 1;
+}
+
+/* ============================================
+   QUOTE
+   ============================================ */
+.skyscraper-story .quote-section {
+  padding: 5rem 2rem;
+  background: var(--art-deco-gold);
+  text-align: center;
+}
+
+.skyscraper-story .quote-inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.skyscraper-story .quote-text {
+  font-family: var(--font-deco);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-style: italic;
+  color: var(--steel-dark);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.skyscraper-story .quote-author {
+  font-family: var(--font-technical);
+  font-size: 0.875rem;
+  color: var(--steel-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ============================================
+   SOURCES
+   ============================================ */
+.skyscraper-story .sources-section {
+  padding: 4rem 2rem;
+  background: var(--sky-light);
+}
+
+.skyscraper-story .sources-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.skyscraper-story .sources-title {
+  font-family: var(--font-deco);
+  font-size: 1.5rem;
+  color: var(--steel-dark);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 3px solid var(--art-deco-gold);
+}
+
+.skyscraper-story .sources-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.skyscraper-story .sources-grid a {
+  font-size: 0.9375rem;
+  color: var(--steel-gray);
+  text-decoration: none;
+  padding: 1rem 1.25rem;
+  background: white;
+  border-radius: 4px;
+  border-left: 4px solid var(--art-deco-gold);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.skyscraper-story .sources-grid a:hover {
+  color: var(--steel-dark);
+  transform: translateX(4px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.skyscraper-story .story-footer {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: var(--steel-dark);
+  color: white;
+}
+
+.skyscraper-story .footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skyscraper-story .footer-skyline {
+  width: 200px;
+  height: 60px;
+  margin-bottom: 1.5rem;
+  opacity: 0.5;
+}
+
+.skyscraper-story .footer-text {
+  font-family: var(--font-deco);
+  font-size: 1.125rem;
+  font-style: italic;
+  color: var(--steel-light);
+  max-width: 500px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 900px) {
+  .skyscraper-story .section-layout,
+  .skyscraper-story .section-layout.reverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
+  }
+  
+  .skyscraper-story .elevator-progress {
+    right: 1rem;
+    top: auto;
+    bottom: 1rem;
+    transform: none;
+  }
+  
+  .skyscraper-story .elevator-shaft {
+    width: 30px;
+    height: 150px;
+  }
+  
+  .skyscraper-story .construction-progress {
+    left: 1rem;
+    bottom: 1rem;
+    width: 40px;
+  }
+  
+  .skyscraper-story .mini-building {
+    height: 100px;
+  }
+  
+  .skyscraper-story .height-comparison {
+    flex-wrap: wrap;
+    height: auto;
+    gap: 2rem;
+  }
+  
+  .skyscraper-story .hero-stats {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .skyscraper-story .crane-arm,
+  .skyscraper-story .scroll-bounce,
+  .skyscraper-story .scroll-dot,
+  .skyscraper-story .draw-frame,
+  .skyscraper-story .fade-up,
+  .skyscraper-story .frame-beam,
+  .skyscraper-story .height-bar,
+  .skyscraper-story .building-floors {
+    animation: none;
+    transition: none;
+    opacity: 1;
+    stroke-dashoffset: 0;
+    transform: none;
+  }
+}
+
