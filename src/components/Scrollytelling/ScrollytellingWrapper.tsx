@@ -13,11 +13,6 @@ interface ScrollytellingWrapperProps {
    * Story description for sharing
    */
   description?: string;
-  /**
-   * Theme for share widget - matches story aesthetic
-   * Default: "dark"
-   */
-  shareTheme?: "dark" | "light";
 }
 
 /**
@@ -44,7 +39,6 @@ export default function ScrollytellingWrapper({
   children,
   title,
   description = "",
-  shareTheme = "dark",
 }: ScrollytellingWrapperProps) {
   return (
     <>
@@ -52,8 +46,7 @@ export default function ScrollytellingWrapper({
       <ScrollytellingShare
         title={title}
         description={description}
-        theme={shareTheme}
-        showAfterScroll={0.1}
+        showAfterScroll={0.05}
       />
     </>
   );
