@@ -58,13 +58,13 @@ export default function ScrollytellingHeader() {
           display: flex;
           align-items: center;
           
-          /* Mobile: generous padding */
-          padding-left: 1.25rem;
-          padding-right: 1.25rem;
-          padding-bottom: 0.75rem;
+          /* Match main nav: Mobile padding 0.75rem 1rem */
+          padding-left: 1rem;
+          padding-right: 1rem;
+          padding-bottom: 0;
           
-          /* Total visual height: safe-area + content */
-          min-height: calc(56px + env(safe-area-inset-top, 0px));
+          /* Match main nav height with safe area */
+          min-height: calc(52px + env(safe-area-inset-top, 0px));
           
           background: transparent;
           transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -72,14 +72,13 @@ export default function ScrollytellingHeader() {
 
         /* Frosted glass state on scroll */
         .st-header.scrolled {
-          background: rgba(10, 10, 12, 0.8);
+          background: rgba(10, 10, 12, 0.85);
           backdrop-filter: blur(20px) saturate(180%);
           -webkit-backdrop-filter: blur(20px) saturate(180%);
           border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
-        /* Logo container */
+        /* Logo container - match main nav .logo positioning */
         .st-header-logo {
           display: flex;
           align-items: center;
@@ -100,13 +99,28 @@ export default function ScrollytellingHeader() {
           background: rgba(255, 255, 255, 0.08);
         }
 
-        /* Desktop: slightly larger */
-        @media (min-width: 768px) {
+        /* Tablet: match main nav padding */
+        @media (min-width: 769px) {
+          .st-header {
+            padding-left: 1rem;
+            padding-right: 1rem;
+          }
+        }
+
+        /* Medium screens: match main nav 1rem 1.5rem */
+        @media (min-width: 1024px) {
           .st-header {
             padding-left: 1.5rem;
             padding-right: 1.5rem;
-            padding-bottom: 1rem;
-            min-height: calc(64px + env(safe-area-inset-top, 0px));
+            min-height: calc(56px + env(safe-area-inset-top, 0px));
+          }
+        }
+
+        /* Large screens: match main nav 1rem 2rem */
+        @media (min-width: 1280px) {
+          .st-header {
+            padding-left: 2rem;
+            padding-right: 2rem;
           }
         }
 
