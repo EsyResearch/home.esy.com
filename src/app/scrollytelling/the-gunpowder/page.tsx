@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import GunpowderClient from './GunpowderClient';
-import { ScrollytellingWrapper } from "@/components/Scrollytelling";
+import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'Gunpowder | The Discovery That Changed Everything | Esy',
@@ -32,12 +32,13 @@ export const metadata: Metadata = {
 
 export default function TheGunpowderPage() {
   return (
-    <ScrollytellingWrapper
+    <ScrollytellingLayout
       title="Gunpowder: The Discovery That Changed Everything"
       description="From Tang Dynasty alchemy to modern warfare — the 75:15:10 formula that reshaped history."
+      readTime="14 min"
     >
       <GunpowderClient />
-    </ScrollytellingWrapper>
+    </ScrollytellingLayout>
   );
 }
 

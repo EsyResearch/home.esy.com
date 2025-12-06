@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import TheForkClient from "./TheForkClient";
-import { ScrollytellingWrapper } from "@/components/Scrollytelling";
+import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: "Who Invented the Fork? A Journey Through Time | Esy Scrollytelling",
@@ -28,12 +28,13 @@ export const metadata: Metadata = {
 
 export default function TheForkPage() {
   return (
-    <ScrollytellingWrapper
+    <ScrollytellingLayout
       title="The Fork: 4,000 Years of Revolution"
       description="From ancient Mesopotamia through Byzantine courts to your dinner table."
+      readTime="12 min"
     >
       <TheForkClient />
-    </ScrollytellingWrapper>
+    </ScrollytellingLayout>
   );
 }
 

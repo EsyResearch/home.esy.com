@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import SkyscraperClient from './SkyscraperClient';
-import { ScrollytellingWrapper } from "@/components/Scrollytelling";
+import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'The Skyscraper | Reaching for the Sky | Esy',
@@ -32,12 +32,13 @@ export const metadata: Metadata = {
 
 export default function TheSkyscraperPage() {
   return (
-    <ScrollytellingWrapper
+    <ScrollytellingLayout
       title="The Skyscraper: Reaching for the Sky"
       description="From 10-story buildings to 163-floor towers — watch buildings construct floor-by-floor as you scroll."
+      readTime="14 min"
     >
       <SkyscraperClient />
-    </ScrollytellingWrapper>
+    </ScrollytellingLayout>
   );
 }
 

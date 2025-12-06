@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import HoneyNeverSpoilsClient from "./HoneyNeverSpoilsClient";
-import { ScrollytellingWrapper } from "@/components/Scrollytelling";
+import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: "Honey Never Spoils: The Eternal Elixir | Esy",
@@ -46,12 +46,13 @@ export const metadata: Metadata = {
 
 export default function HoneyNeverSpoilsPage() {
   return (
-    <ScrollytellingWrapper
+    <ScrollytellingLayout
       title="Honey Never Spoils: The Eternal Elixir"
       description="Discover why 3,000-year-old honey found in Egyptian tombs is still perfectly edible."
+      readTime="11 min"
     >
       <HoneyNeverSpoilsClient />
-    </ScrollytellingWrapper>
+    </ScrollytellingLayout>
   );
 }
 

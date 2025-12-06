@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import HighHeelsHistoryClient from './HighHeelsHistoryClient';
-import { ScrollytellingWrapper } from "@/components/Scrollytelling";
+import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'Who Invented High Heels? The Complete History | Esy',
@@ -38,12 +38,13 @@ export const metadata: Metadata = {
 
 export default function HighHeelsHistoryPage() {
   return (
-    <ScrollytellingWrapper
+    <ScrollytellingLayout
       title="The High Heels Story: From Persian Cavalry to Parisian Runways"
       description="The extraordinary 500-year journey of fashion's most provocative invention."
+      readTime="14 min"
     >
       <HighHeelsHistoryClient />
-    </ScrollytellingWrapper>
+    </ScrollytellingLayout>
   );
 }
 

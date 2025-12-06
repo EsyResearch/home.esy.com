@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import SodaHistoryClient from './SodaHistoryClient';
-import { ScrollytellingWrapper } from "@/components/Scrollytelling";
+import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'The Origins of Soda | From Pharmacy to Phenomenon | Esy',
@@ -38,12 +38,13 @@ export const metadata: Metadata = {
 
 export default function SodaHistoryPage() {
   return (
-    <ScrollytellingWrapper
+    <ScrollytellingLayout
       title="The Origins of Soda: From Pharmacy to Phenomenon"
       description="How carbonated water became humanity's favorite way to celebrate, refresh, and rebel."
+      readTime="10 min"
     >
       <SodaHistoryClient />
-    </ScrollytellingWrapper>
+    </ScrollytellingLayout>
   );
 }
 

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import SneakerHistoryClient from './SneakerHistoryClient';
-import { ScrollytellingWrapper } from "@/components/Scrollytelling";
+import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'The History of the Sneaker | From Plimsolls to $75 Billion | Esy',
@@ -39,12 +39,13 @@ export const metadata: Metadata = {
 
 export default function SneakerHistoryPage() {
   return (
-    <ScrollytellingWrapper
+    <ScrollytellingLayout
       title="The Sneaker Story: From Plimsolls to Phenomenon"
       description="How a rubber-soled shoe designed for silence became a $75 billion cultural force."
+      readTime="12 min"
     >
       <SneakerHistoryClient />
-    </ScrollytellingWrapper>
+    </ScrollytellingLayout>
   );
 }
 

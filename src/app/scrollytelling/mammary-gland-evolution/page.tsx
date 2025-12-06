@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import MammaryGlandEvolutionClient from './MammaryGlandEvolutionClient';
-import { ScrollytellingWrapper } from "@/components/Scrollytelling";
+import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'Mammary Gland Evolution | Anatomical Journey | Esy',
@@ -32,12 +32,13 @@ export const metadata: Metadata = {
 
 export default function MammaryGlandEvolutionPage() {
   return (
-    <ScrollytellingWrapper
+    <ScrollytellingLayout
       title="Mammary Gland Evolution: Anatomical Journey"
       description="A detailed anatomical exploration of mammary gland evolution across species."
+      readTime="14 min"
     >
       <MammaryGlandEvolutionClient />
-    </ScrollytellingWrapper>
+    </ScrollytellingLayout>
   );
 }
 
