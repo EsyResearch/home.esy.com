@@ -36,6 +36,7 @@ export default function TheGunpowderPage() {
       title="Gunpowder: The Discovery That Changed Everything"
       description="From Tang Dynasty alchemy to modern warfare — the 75:15:10 formula that reshaped history."
       readTime="14 min"
+      storyId="the-gunpowder"
     >
       <GunpowderClient />
     </ScrollytellingLayout>

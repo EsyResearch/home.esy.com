@@ -36,6 +36,7 @@ export default function MammaryGlandEvolutionPage() {
       title="Mammary Gland Evolution: Anatomical Journey"
       description="A detailed anatomical exploration of mammary gland evolution across species."
       readTime="14 min"
+      storyId="mammary-gland-evolution"
     >
       <MammaryGlandEvolutionClient />
     </ScrollytellingLayout>

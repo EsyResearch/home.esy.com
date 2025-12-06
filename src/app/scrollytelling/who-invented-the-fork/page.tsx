@@ -32,6 +32,7 @@ export default function TheForkPage() {
       title="The Fork: 4,000 Years of Revolution"
       description="From ancient Mesopotamia through Byzantine courts to your dinner table."
       readTime="12 min"
+      storyId="who-invented-the-fork"
     >
       <TheForkClient />
     </ScrollytellingLayout>

@@ -41,6 +41,7 @@ export default function DeepOceanPage() {
       title="The Deep Ocean: Earth's Final Frontier"
       description="Descend 10,935 meters into the ocean's abyss. 71% of Earth, less than 0.001% explored."
       readTime="12 min"
+      storyId="the-deep-ocean"
     >
       <DeepOceanClient />
     </ScrollytellingLayout>

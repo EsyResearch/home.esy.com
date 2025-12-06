@@ -42,6 +42,7 @@ export default function MirrorHistoryPage() {
       title="The Mirror: 8,000 Years of Reflection"
       description="From polished obsidian to the screen in your pocket—humanity's eternal quest to see itself."
       readTime="10 min"
+      storyId="who-invented-the-mirror"
     >
       <MirrorHistoryClient />
     </ScrollytellingLayout>

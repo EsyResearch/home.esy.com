@@ -37,6 +37,7 @@ export default function LanguageDeathPage() {
       title="Language Death: The Silence of Extinction"
       description="7,168 languages exist today—half will disappear by 2100. Every 14 days, a language dies forever."
       readTime="9 min"
+      storyId="language-death"
     >
       <LanguageDeathClient />
     </ScrollytellingLayout>

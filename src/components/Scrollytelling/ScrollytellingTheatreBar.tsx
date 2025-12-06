@@ -120,32 +120,49 @@ export default function ScrollytellingTheatreBar({
           border-radius: 0 1px 1px 0;
         }
 
-        /* Back Button */
+        /* Back Button - Elegant Pill */
         .theatre-back {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
-          padding: 0.5rem 0.75rem;
-          border-radius: 8px;
-          background: transparent;
-          border: none;
+          gap: 0.375rem;
+          padding: 0.5rem 0.875rem;
+          border-radius: 100px;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           color: rgba(255, 255, 255, 0.7);
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-          font-size: 0.875rem;
+          font-size: 0.8125rem;
           font-weight: 500;
+          letter-spacing: -0.01em;
           text-decoration: none;
           cursor: pointer;
-          transition: all 0.2s ease;
+          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .theatre-back:hover {
-          background: rgba(255, 255, 255, 0.08);
-          color: rgba(255, 255, 255, 0.95);
+          background: rgba(255, 255, 255, 0.1);
+          border-color: rgba(255, 255, 255, 0.2);
+          color: #fff;
+          transform: translateX(-2px);
+        }
+
+        .theatre-back:active {
+          transform: scale(0.97);
         }
 
         .theatre-back svg {
-          width: 16px;
-          height: 16px;
+          width: 14px;
+          height: 14px;
+          opacity: 0.8;
+          transition: opacity 0.2s ease;
+        }
+
+        .theatre-back:hover svg {
+          opacity: 1;
+        }
+
+        .theatre-back-label {
+          display: inline;
         }
 
         /* Center Info */
@@ -304,7 +321,11 @@ export default function ScrollytellingTheatreBar({
             padding: 0 0.75rem;
           }
 
-          .theatre-back span {
+          .theatre-back {
+            padding: 0.5rem 0.625rem;
+          }
+
+          .theatre-back-label {
             display: none;
           }
 
@@ -324,6 +345,13 @@ export default function ScrollytellingTheatreBar({
             right: -8px;
           }
         }
+
+        /* Tablet and up - show labels */
+        @media (min-width: 641px) {
+          .theatre-back {
+            padding: 0.5rem 1rem 0.5rem 0.75rem;
+          }
+        }
       `}</style>
 
       <div className="theatre-bar">
@@ -333,11 +361,12 @@ export default function ScrollytellingTheatreBar({
           style={{ width: `${scrollProgress}%` }}
         />
 
-        {/* Back Button */}
+        {/* Back Button - Elegant Pill */}
         <Link href={backHref} className="theatre-back">
+          {/* Grid/Collection Icon */}
           <svg 
-            width="16" 
-            height="16" 
+            width="14" 
+            height="14" 
             viewBox="0 0 24 24" 
             fill="none" 
             stroke="currentColor" 
@@ -346,9 +375,12 @@ export default function ScrollytellingTheatreBar({
             strokeLinejoin="round"
             style={{ flexShrink: 0 }}
           >
-            <path d="M19 12H5M12 19l-7-7 7-7" />
+            <rect x="3" y="3" width="7" height="7" rx="1" />
+            <rect x="14" y="3" width="7" height="7" rx="1" />
+            <rect x="3" y="14" width="7" height="7" rx="1" />
+            <rect x="14" y="14" width="7" height="7" rx="1" />
           </svg>
-          <span>{backLabel}</span>
+          <span className="theatre-back-label">All Stories</span>
         </Link>
 
         {/* Center - Progress & Read Time */}

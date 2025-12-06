@@ -32,6 +32,7 @@ export default function HistoryOfTheSpoonPage() {
       title="The Spoon: 30,000 Years of Humanity's Essential Tool"
       description="From prehistoric bone carvings to modern stainless steel—humanity's oldest eating utensil."
       readTime="10 min"
+      storyId="who-invented-the-spoon"
     >
       <SpoonHistoryClient />
     </ScrollytellingLayout>

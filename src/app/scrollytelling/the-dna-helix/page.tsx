@@ -36,6 +36,7 @@ export default function TheDNAHelixPage() {
       title="DNA & The Double Helix: The Code of Life"
       description="Watch the double helix twist as you scroll — base pairs connect, Photo 51 reveals, genetic sequences type out."
       readTime="13 min"
+      storyId="the-dna-helix"
     >
       <DNAHelixClient />
     </ScrollytellingLayout>

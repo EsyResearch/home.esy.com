@@ -42,6 +42,7 @@ export default function SodaHistoryPage() {
       title="The Origins of Soda: From Pharmacy to Phenomenon"
       description="How carbonated water became humanity's favorite way to celebrate, refresh, and rebel."
       readTime="10 min"
+      storyId="who-invented-soda"
     >
       <SodaHistoryClient />
     </ScrollytellingLayout>

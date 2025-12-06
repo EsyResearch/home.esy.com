@@ -36,6 +36,7 @@ export default function TheSkyscraperPage() {
       title="The Skyscraper: Reaching for the Sky"
       description="From 10-story buildings to 163-floor towers — watch buildings construct floor-by-floor as you scroll."
       readTime="14 min"
+      storyId="the-skyscraper"
     >
       <SkyscraperClient />
     </ScrollytellingLayout>

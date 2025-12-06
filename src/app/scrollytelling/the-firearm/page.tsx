@@ -36,6 +36,7 @@ export default function TheFirearmPage() {
       title="The Firearm: From Fire Lance to Modern Precision"
       description="800 years of controlled explosions — interactive scrollytelling with rotating cylinder and muzzle flash effects."
       readTime="13 min"
+      storyId="the-firearm"
     >
       <FirearmClient />
     </ScrollytellingLayout>

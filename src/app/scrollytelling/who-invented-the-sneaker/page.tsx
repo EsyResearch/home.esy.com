@@ -43,6 +43,7 @@ export default function SneakerHistoryPage() {
       title="The Sneaker Story: From Plimsolls to Phenomenon"
       description="How a rubber-soled shoe designed for silence became a $75 billion cultural force."
       readTime="12 min"
+      storyId="who-invented-the-sneaker"
     >
       <SneakerHistoryClient />
     </ScrollytellingLayout>

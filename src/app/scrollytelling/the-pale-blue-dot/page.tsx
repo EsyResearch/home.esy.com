@@ -37,6 +37,7 @@ export default function PaleBlueDotPage() {
       title="The Pale Blue Dot: A Cosmic Perspective"
       description="Experience Carl Sagan's Pale Blue Dot. Scroll to zoom out 6 billion kilometers."
       readTime="10 min"
+      storyId="the-pale-blue-dot"
     >
       <PaleBlueDotClient />
     </ScrollytellingLayout>

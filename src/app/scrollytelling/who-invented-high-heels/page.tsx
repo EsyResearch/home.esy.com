@@ -42,6 +42,7 @@ export default function HighHeelsHistoryPage() {
       title="The High Heels Story: From Persian Cavalry to Parisian Runways"
       description="The extraordinary 500-year journey of fashion's most provocative invention."
       readTime="14 min"
+      storyId="who-invented-high-heels"
     >
       <HighHeelsHistoryClient />
     </ScrollytellingLayout>

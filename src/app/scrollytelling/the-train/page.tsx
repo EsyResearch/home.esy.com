@@ -36,6 +36,7 @@ export default function TheTrainPage() {
       title="The Train: Iron Horse of Industry"
       description="From Trevithick's first steam locomotive to 375 mph maglev trains — the complete history of rail."
       readTime="13 min"
+      storyId="the-train"
     >
       <TrainClient />
     </ScrollytellingLayout>

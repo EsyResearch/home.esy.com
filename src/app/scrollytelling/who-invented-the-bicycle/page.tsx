@@ -32,6 +32,7 @@ export default function WhoInventedTheBicyclePage() {
       title="Who Invented the Bicycle? The 200-Year Story"
       description="From Karl von Drais's running machine to modern carbon fiber racers."
       readTime="10 min"
+      storyId="who-invented-the-bicycle"
     >
       <BicycleHistoryClient />
     </ScrollytellingLayout>

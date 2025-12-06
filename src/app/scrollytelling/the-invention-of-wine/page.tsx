@@ -37,6 +37,7 @@ export default function WineHistoryPage() {
       title="The Invention of Wine: 8,000 Years in a Glass"
       description="From Neolithic Georgia to billion-dollar châteaux—the story of humanity's oldest fermented beverage."
       readTime="11 min"
+      storyId="the-invention-of-wine"
     >
       <WineHistoryClient />
     </ScrollytellingLayout>

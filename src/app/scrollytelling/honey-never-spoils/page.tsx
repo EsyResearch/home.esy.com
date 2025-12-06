@@ -50,6 +50,7 @@ export default function HoneyNeverSpoilsPage() {
       title="Honey Never Spoils: The Eternal Elixir"
       description="Discover why 3,000-year-old honey found in Egyptian tombs is still perfectly edible."
       readTime="11 min"
+      storyId="honey-never-spoils"
     >
       <HoneyNeverSpoilsClient />
     </ScrollytellingLayout>
