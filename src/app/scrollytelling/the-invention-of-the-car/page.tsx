@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import CarHistoryClient from './CarHistoryClient';
-import { ScrollytellingWrapper } from "@/components/Scrollytelling";
+import { ScrollytellingTheatreBar } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'The Invention of the Car | A Sketch-Style History | Esy',
@@ -31,12 +31,14 @@ export const metadata: Metadata = {
 
 export default function TheInventionOfTheCarPage() {
   return (
-    <ScrollytellingWrapper
-      title="The Automobile: A Sketch-Style Journey"
-      description="A hand-drawn journey through the invention that changed civilization."
-    >
+    <>
       <CarHistoryClient />
-    </ScrollytellingWrapper>
+      <ScrollytellingTheatreBar
+        title="The Automobile: A Sketch-Style Journey"
+        description="A hand-drawn journey through the invention that changed civilization."
+        readTime="11 min"
+      />
+    </>
   );
 }
 
