@@ -28,8 +28,8 @@ const MAX_FLOORS = 163; // Burj Khalifa
 const heightData = [
   { name: 'Home Insurance', year: '1885', height: 42, meters: 42, floors: 10 },
   { name: 'Woolworth', year: '1913', height: 241, meters: 241, floors: 57 },
-  { name: 'Chrysler', year: '1930', height: 319, meters: 319, floors: 77 },
   { name: 'Empire State', year: '1931', height: 381, meters: 381, floors: 102 },
+  { name: 'WTC', year: '1973', height: 417, meters: 417, floors: 110 },
   { name: 'Willis Tower', year: '1974', height: 442, meters: 442, floors: 108 },
   { name: 'Burj Khalifa', year: '2010', height: 828, meters: 828, floors: 163 },
 ];
