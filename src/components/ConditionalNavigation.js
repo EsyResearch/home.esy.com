@@ -1,7 +1,6 @@
 "use client"
 import { usePathname } from 'next/navigation';
 import ContextAwareNavigation from "@/components/Navigation/ContextAwareNavigation";
-import ScrollytellingNavigation from "@/components/Scrollytelling/ScrollytellingNavigation";
 import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
 import { getSearchContextFromPath } from '@/lib/searchContexts';
 
@@ -17,8 +16,9 @@ const ConditionalNavigation = () => {
     : pathname;
   const isEssayViewPage = normalizedPath?.startsWith('/essays/') && normalizedPath !== '/essays';
   
-  // Check if we're on scrollytelling pages (individual stories, not index)
-  const isScrollytellingPage = normalizedPath?.startsWith('/scrollytelling/');
+  // Check if we're on scrollytelling story pages (individual stories, not index)
+  // These pages have their own layout with ScrollytellingHeader + ScrollytellingTheatreBar
+  const isScrollytellingStoryPage = normalizedPath?.startsWith('/scrollytelling/') && normalizedPath !== '/scrollytelling';
   
   // Check if we're on prompt-library pages
   const isPromptLibraryPage = normalizedPath?.startsWith('/prompt-library');
@@ -40,14 +40,12 @@ const ConditionalNavigation = () => {
   // Check if we're on docs pages
   const isDocsPage = normalizedPath?.startsWith('/docs');
   
-  // Don't render the common navigation on essay view pages or docs pages
-  if (isEssayViewPage || isDocsPage) {
+  // Don't render navigation on:
+  // - Essay view pages (focused reading)
+  // - Docs pages (own navigation)
+  // - Scrollytelling story pages (own header via ScrollytellingHeader)
+  if (isEssayViewPage || isDocsPage || isScrollytellingStoryPage) {
     return null;
-  }
-  
-  // Render scrollytelling-specific navigation (logo only → full nav on scroll)
-  if (isScrollytellingPage) {
-    return <ScrollytellingNavigation />;
   }
 
   // Render the common navigation on all other pages

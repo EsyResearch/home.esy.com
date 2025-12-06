@@ -324,17 +324,6 @@ export default function ScrollytellingTheatreBar({
             right: -8px;
           }
         }
-
-        /* Pad body to prevent content from being hidden */
-        :global(body) {
-          padding-bottom: 56px;
-        }
-
-        @media (max-width: 640px) {
-          :global(body) {
-            padding-bottom: 52px;
-          }
-        }
       `}</style>
 
       <div className="theatre-bar">

@@ -6,12 +6,13 @@ import CopyrightFooter from "@/components/CopyrightFooter";
 const ConditionalFooter = () => {
   const pathname = usePathname();
   
-  // Check if we're on an essay view page (individual essay page)
-  // Only hide on individual essay pages, not the essays index page
   // Handle both trailing slash (production) and no trailing slash (development) cases
   const normalizedPath = pathname?.endsWith('/') && pathname.length > 1 
     ? pathname.slice(0, -1) 
     : pathname;
+  
+  // Check if we're on an essay view page (individual essay page)
+  // Only hide on individual essay pages, not the essays index page
   const isEssayViewPage = normalizedPath?.startsWith('/essays/') && normalizedPath !== '/essays';
   
   // Don't render the common footer on essay view pages for a focused reading experience
@@ -30,6 +31,13 @@ const ConditionalFooter = () => {
   // Check if we're on docs pages (they handle their own footer via DocsPageNav)
   const isDocsPage = normalizedPath?.startsWith('/docs');
   if (isDocsPage) {
+    return null;
+  }
+  
+  // Check if we're on scrollytelling story pages (individual stories, not index)
+  // These pages have their own footer via ScrollytellingTheatreBar
+  const isScrollytellingStoryPage = normalizedPath?.startsWith('/scrollytelling/') && normalizedPath !== '/scrollytelling';
+  if (isScrollytellingStoryPage) {
     return null;
   }
   

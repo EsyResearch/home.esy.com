@@ -1,0 +1,29 @@
+/**
+ * SCROLLYTELLING LAYOUT STYLES
+ * ============================
+ * 
+ * Mobile-first app-like layout for immersive story experiences.
+ * Handles spacing for fixed header (48/56px) and footer (52/56px).
+ */
+
+.scrollytelling-layout {
+  min-height: 100vh;
+  min-height: 100dvh; /* Use dynamic viewport height on mobile */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.scrollytelling-content {
+  flex: 1;
+  /* Bottom padding for Theatre Bar footer */
+  padding-bottom: 52px;
+}
+
+/* Desktop adjustments */
+@media (min-width: 768px) {
+  .scrollytelling-content {
+    padding-bottom: 56px;
+  }
+}
+
