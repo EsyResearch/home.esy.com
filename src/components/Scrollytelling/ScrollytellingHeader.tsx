@@ -74,6 +74,14 @@ export default function ScrollytellingHeader() {
             padding: 0 1.5rem;
           }
         }
+
+        /* Reduced Motion Support */
+        @media (prefers-reduced-motion: reduce) {
+          .st-header,
+          .st-header-logo {
+            transition: none;
+          }
+        }
       `}</style>
 
       <header className={`st-header ${hasScrolled ? "scrolled" : ""}`}>

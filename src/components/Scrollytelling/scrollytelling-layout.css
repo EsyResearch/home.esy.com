@@ -4,7 +4,46 @@
  * 
  * Mobile-first app-like layout for immersive story experiences.
  * Handles spacing for fixed header (48/56px) and footer (52/56px).
+ * 
+ * Immersive Features:
+ * - Hidden browser scrollbar (progress in Theatre Bar)
+ * - Entry animation on page load
+ * - Reduced motion support
+ * - Safe area handling for notches
  */
+
+/* ===========================================
+   IMMERSIVE: Hide Browser Scrollbar
+   =========================================== */
+
+/* Hide scrollbar on story pages - Theatre Bar shows progress */
+.scrollytelling-layout {
+  /* Firefox */
+  scrollbar-width: none;
+  /* IE/Edge */
+  -ms-overflow-style: none;
+}
+
+.scrollytelling-layout::-webkit-scrollbar {
+  /* Chrome/Safari/Opera */
+  display: none;
+}
+
+/* Also hide on html/body when in story context */
+html:has(.scrollytelling-layout),
+html:has(.scrollytelling-layout) body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html:has(.scrollytelling-layout)::-webkit-scrollbar,
+html:has(.scrollytelling-layout) body::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===========================================
+   LAYOUT STRUCTURE
+   =========================================== */
 
 .scrollytelling-layout {
   min-height: 100vh;
@@ -12,18 +51,107 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  background: #0a0a0c; /* Ensure dark background */
 }
 
 .scrollytelling-content {
   flex: 1;
   /* Bottom padding for Theatre Bar footer */
   padding-bottom: 52px;
+  /* Safe area for devices with home indicators */
+  padding-bottom: calc(52px + env(safe-area-inset-bottom, 0px));
+  
+  /* Entry Animation */
+  animation: story-enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Desktop adjustments */
+/* ===========================================
+   ENTRY ANIMATION
+   =========================================== */
+
+@keyframes story-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered content reveal */
+.scrollytelling-content > *:first-child {
+  animation: hero-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.1s;
+  opacity: 0;
+}
+
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ===========================================
+   REDUCED MOTION SUPPORT
+   =========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollytelling-content,
+  .scrollytelling-content > *:first-child {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  
+  /* Disable all transitions in story pages */
+  .scrollytelling-layout *,
+  .scrollytelling-layout *::before,
+  .scrollytelling-layout *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===========================================
+   SUBTLE EDGE VIGNETTE
+   =========================================== */
+
+.scrollytelling-layout::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  /* Subtle vignette on edges - creates "viewport" feeling */
+  background: radial-gradient(
+    ellipse at center,
+    transparent 70%,
+    rgba(0, 0, 0, 0.15) 100%
+  );
+  opacity: 0.5;
+}
+
+/* ===========================================
+   DESKTOP ADJUSTMENTS
+   =========================================== */
+
 @media (min-width: 768px) {
   .scrollytelling-content {
     padding-bottom: 56px;
+    padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+  }
+  
+  /* Vignette slightly more prominent on desktop */
+  .scrollytelling-layout::before {
+    opacity: 0.6;
   }
 }
 

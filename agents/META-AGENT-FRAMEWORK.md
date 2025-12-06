@@ -611,10 +611,11 @@ Current agents derived from this framework:
 | `essayist-expert.md` | Academic Writing | Essay Instruction | Standalone |
 | `copywriter-marketing-expert.md` | Marketing | Conversion Copy | Standalone |
 | `software-engineering-expert.md` | Engineering | Full-Stack Dev | Standalone |
-| `ui-ux-design-expert.md` | Design | Interface Design | Standalone |
+| `ui-ux-design-expert.md` | Design | Interface Design | → Immersive Eng |
+| `immersive-experience-engineer.md` | Frontend/Animation | App-Like Web Experiences | ← UI/UX, ← Scrollytelling |
 | `template-integration-engineer.md` | Frontend | Template → Next.js | Standalone |
 | `research-citations-expert.md` | Research | Source Discovery & Verification | → All content agents |
-| `scrollytelling-expert.md` | Digital Storytelling | Immersive Narratives | **Orchestrator** → Writer, Editor, Research, UI/UX, SW Eng |
+| `scrollytelling-expert.md` | Digital Storytelling | Immersive Narratives | **Orchestrator** → Writer, Editor, Research, UI/UX, Immersive Eng |
 
 ---
 

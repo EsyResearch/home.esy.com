@@ -9,6 +9,7 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 | Agent | Best For | Invocation Prefix |
 |-------|----------|-------------------|
 | [Scrollytelling Expert](#scrollytelling-expert) | Immersive scroll-based stories | `@agents/scrollytelling-expert.md` |
+| [Immersive Experience Engineer](#immersive-experience-engineer) | App-like web experiences, animations | `@agents/immersive-experience-engineer.md` |
 | [Research & Citations](#research--citations-expert) | Authoritative source discovery | `@agents/research-citations-expert.md` |
 | [Historian Writer](#historian-writer-expert) | Historical narrative content | `@agents/historian-writer-expert.md` |
 | [Historian Editor](#historian-editor-expert) | Fact-checking & verification | `@agents/historian-editor-expert.md` |
@@ -98,6 +99,49 @@ experience about "The History of the Bicycle"
 Using @agents/scrollytelling-expert.md, build an immersive narrative 
 about the invention of the printing press. Include 8 sections, emphasize 
 the Gutenberg era, and use a medieval manuscript aesthetic.
+```
+
+---
+
+### Immersive Experience Engineer
+**File:** `immersive-experience-engineer.md`
+
+**Role:** World-class frontend engineer specializing in immersive web experiences, building app-like, scroll-driven, and native-feeling interfaces.
+
+**Best For:**
+- Making web experiences feel like native apps
+- Scroll-driven animations and parallax
+- Entry/exit transitions
+- Custom UI chrome (theatre bars, custom headers)
+- Hiding browser UI and creating immersion
+- Performance optimization for animations
+- Touch/gesture interactions
+
+**Key Features:**
+- Browser Invisibility philosophy (users forget they're in a browser)
+- 60fps animation guarantee
+- Mobile-first, touch-first approach
+- `prefers-reduced-motion` respect
+- GPU-accelerated animation patterns
+- Safe area handling (notches, home indicators)
+
+**Invocation Examples:**
+```
+# Create immersive UI components
+Using @agents/immersive-experience-engineer.md, build a Theatre Bar 
+component with progress indicator and share panel.
+
+# Implement transitions
+Apply @agents/immersive-experience-engineer.md to create entry/exit 
+animations for scrollytelling pages.
+
+# Performance optimization
+Using @agents/immersive-experience-engineer.md, optimize the scroll 
+animations for 60fps on mobile devices.
+
+# App-like layout
+Apply @agents/immersive-experience-engineer.md to create a story-specific 
+layout that removes site chrome and feels like an app.
 ```
 
 ---

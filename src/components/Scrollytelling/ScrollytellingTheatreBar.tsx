@@ -314,6 +314,23 @@ export default function ScrollytellingTheatreBar({
           color: #22c55e;
         }
 
+        /* Reduced Motion Support */
+        @media (prefers-reduced-motion: reduce) {
+          .theatre-bar,
+          .theatre-back,
+          .theatre-share-btn,
+          .theatre-share-panel,
+          .theatre-share-option {
+            transition: none;
+          }
+          .theatre-back:hover {
+            transform: none;
+          }
+          .theatre-back:active {
+            transform: none;
+          }
+        }
+
         /* Responsive */
         @media (max-width: 640px) {
           .theatre-bar {

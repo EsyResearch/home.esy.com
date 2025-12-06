@@ -213,6 +213,31 @@
   transform: translateX(3px);
 }
 
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .endcard {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  
+  .endcard-next,
+  .endcard-pill,
+  .endcard-all,
+  .endcard-next-cta {
+    transition: none;
+  }
+  
+  .endcard-next:hover,
+  .endcard-next:hover .endcard-next-cta {
+    transform: none;
+  }
+  
+  .endcard-all:hover svg {
+    transform: none;
+  }
+}
+
 /* Desktop */
 @media (min-width: 768px) {
   .endcard {
