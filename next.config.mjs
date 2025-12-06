@@ -19,6 +19,11 @@ const nextConfig = {
   experimental: {
     mdxRs: true,
   },
+  // Disable the "N" dev indicator in bottom-left corner
+  devIndicators: {
+    appIsrStatus: false,
+    buildActivity: false,
+  },
 };
 
 export default withMDX({
