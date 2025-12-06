@@ -259,6 +259,17 @@ interface Story {
       readTime: "12 min",
       href: "/scrollytelling/who-invented-the-fork",
     },
+    {
+      id: "the-discovery-of-antibiotics",
+      number: "23",
+      title: "The Discovery of Antibiotics",
+      subtitle: "The Petri Dish That Saved 200 Million Lives",
+      description: "How Alexander Fleming's contaminated experiment in 1928 led to one of humanity's greatest medical breakthroughs—transforming a world where scratches could kill.",
+      category: "Medical History",
+      readTime: "10 min",
+      href: "/scrollytelling/the-discovery-of-antibiotics",
+      isNew: true,
+    },
   ];
 
 // ==================== HELPERS ====================
