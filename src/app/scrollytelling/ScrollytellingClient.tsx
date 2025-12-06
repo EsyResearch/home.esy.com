@@ -47,7 +47,6 @@ interface Story {
     href: "/scrollytelling/mammary-gland-evolution",
     isNew: true,
     isFeatured: true,
-    draft: true, // Hidden from index, accessible via direct URL
   },
   {
     id: "evolution-of-mammary-glands",
@@ -58,11 +57,10 @@ interface Story {
     category: "Biology & Evolution",
     readTime: "12 min",
     href: "/scrollytelling/evolution-of-mammary-glands",
-    draft: true, // Hidden from index, accessible via direct URL
   },
   {
     id: "eternal-honey",
-    number: "01",
+    number: "03",
     title: "Eternal Honey",
     subtitle: "Into the Pyramid",
     description: "Descend through multi-layer parallax into Giza's depths. Pyramid cross-sections reveal, tombs unlock, and 3,000-year-old honey glows in the darkness.",
@@ -70,11 +68,10 @@ interface Story {
     readTime: "12 min",
     href: "/scrollytelling/eternal-honey",
     isNew: true,
-    isFeatured: true,
   },
   {
     id: "honey-never-spoils",
-    number: "02",
+    number: "04",
     title: "Honey Never Spoils",
     subtitle: "The Eternal Elixir",
     description: "3,000-year-old honey from Egyptian tombs is still edible. Honeycomb cells fill, time counters tick, and golden drips reveal why honey defies time itself.",
@@ -84,7 +81,7 @@ interface Story {
   },
   {
     id: "the-dna-helix",
-    number: "03",
+    number: "05",
     title: "DNA & The Double Helix",
     subtitle: "The Code of Life",
     description: "The helix twists as you scroll—base pairs connect (A-T, G-C), Photo 51 reveals, genetic sequences type out. From Miescher's nuclein to CRISPR.",
@@ -94,7 +91,7 @@ interface Story {
   },
   {
     id: "the-skyscraper",
-    number: "04",
+    number: "06",
     title: "The Skyscraper",
     subtitle: "Reaching for the Sky",
     description: "An elevator rises floor-by-floor as you scroll—steel frames draw themselves, cranes lift beams, and buildings grow from 10 stories to 163 floors.",
@@ -104,7 +101,7 @@ interface Story {
   },
   {
     id: "the-firearm",
-    number: "05",
+    number: "07",
     title: "The Firearm",
     subtitle: "From Fire Lance to Precision",
     description: "A revolver cylinder rotates as you scroll—muzzle flashes, ammunition counters, and bullet trajectories trace 800 years of controlled explosions.",
@@ -114,7 +111,7 @@ interface Story {
   },
   {
     id: "the-gunpowder",
-    number: "06",
+    number: "08",
     title: "Gunpowder",
     subtitle: "The Discovery That Changed Everything",
     description: "A burning fuse tracks your progress through 1,200 years of explosive history—from Tang Dynasty alchemy to the 75:15:10 formula that reshaped warfare.",
@@ -124,7 +121,7 @@ interface Story {
   },
   {
     id: "the-train",
-    number: "07",
+    number: "09",
     title: "The Train",
     subtitle: "Iron Horse of Industry",
     description: "Locomotive wheels rotate as you scroll through 220 years of rail history—steam puffs, mile markers, and the race from 30 mph to 375 mph maglev.",
@@ -134,7 +131,7 @@ interface Story {
   },
   {
     id: "the-invention-of-the-car",
-    number: "08",
+    number: "10",
     title: "The Automobile",
     subtitle: "A Sketch-Style Journey",
     description: "Hand-drawn SVGs animate as you scroll through 138 years of automotive history—from Benz's patent to the electric future.",
@@ -144,7 +141,7 @@ interface Story {
   },
   {
     id: "the-invention-of-wine",
-    number: "09",
+    number: "11",
     title: "The Invention of Wine",
     subtitle: "8,000 Years in a Glass",
     description: "From Neolithic Georgia to billion-dollar Bordeaux—the story of humanity's most civilized beverage.",
@@ -154,7 +151,7 @@ interface Story {
   },
   {
     id: "the-pale-blue-dot",
-    number: "10",
+    number: "12",
     title: "The Pale Blue Dot",
     subtitle: "A Cosmic Perspective",
     description: "Scroll to zoom out 6 billion kilometers. Carl Sagan's reflection on the most humbling photograph ever taken.",
@@ -164,7 +161,7 @@ interface Story {
   },
   {
     id: "the-deep-ocean",
-    number: "11",
+    number: "13",
     title: "The Deep Ocean",
     subtitle: "Earth's Final Frontier",
     description: "Descend 10,935 meters into the abyss. From sunlit waters to Challenger Deep—71% of Earth, less than 0.001% explored.",
@@ -174,7 +171,7 @@ interface Story {
   },
   {
     id: "language-death",
-    number: "12",
+    number: "14",
     title: "Language Death",
     subtitle: "The Silence of Extinction",
     description: "7,168 languages exist today. Half will disappear by 2100. An exploration of what we lose when a language dies.",
@@ -184,7 +181,7 @@ interface Story {
   },
   {
     id: "who-invented-the-mirror",
-    number: "13",
+    number: "15",
     title: "The Mirror",
     subtitle: "8,000 Years of Reflection",
     description: "From polished obsidian to smart mirrors—humanity's eternal quest to see itself.",
@@ -194,7 +191,7 @@ interface Story {
   },
   {
     id: "who-invented-soda",
-    number: "14",
+    number: "16",
     title: "The Fizz",
     subtitle: "From Pharmacy to Phenomenon",
     description: "How carbonated water became humanity's favorite way to celebrate, refresh, and rebel—one bubble at a time.",
@@ -204,7 +201,7 @@ interface Story {
   },
   {
     id: "who-invented-the-sneaker",
-    number: "15",
+    number: "17",
     title: "The Sneaker Story",
     subtitle: "From Plimsolls to $75 Billion",
     description: "How a rubber-soled shoe designed for silence became a global cultural force—from Charles Goodyear to Michael Jordan.",
@@ -214,7 +211,7 @@ interface Story {
   },
   {
     id: "who-invented-high-heels",
-    number: "16",
+    number: "18",
     title: "The High Heels Story",
     subtitle: "500 Years of Elevation",
     description: "From Persian cavalrymen to Parisian runways, the extraordinary journey of fashion's most provocative invention.",
@@ -224,7 +221,7 @@ interface Story {
   },
   {
     id: "who-invented-the-bicycle",
-    number: "17",
+    number: "19",
     title: "The Bicycle Story",
     subtitle: "200 Years of Two Wheels",
     description: "The invention that changed transportation, liberated women, and became humanity's most efficient machine.",
@@ -234,7 +231,7 @@ interface Story {
   },
   {
     id: "who-invented-the-spoon",
-    number: "18",
+    number: "20",
     title: "The Spoon Story",
     subtitle: "30,000 Years of Essential Tools",
     description: "From prehistoric bone carvings to silver apostle spoons—humanity's oldest eating utensil.",
@@ -244,7 +241,7 @@ interface Story {
   },
   {
     id: "who-invented-basketball",
-    number: "19",
+    number: "21",
     title: "The Basketball Story",
     subtitle: "From Peach Baskets to Global Culture",
     description: "Dr. Naismith's 1891 invention becomes billion-dollar arenas and worldwide phenomenon.",
@@ -254,7 +251,7 @@ interface Story {
   },
     {
       id: "who-invented-the-fork",
-    number: "20",
+    number: "22",
     title: "The Fork Story",
     subtitle: "4,000 Years of Revolution",
     description: "From ancient Mesopotamia through Byzantine courts to your dinner table.",
