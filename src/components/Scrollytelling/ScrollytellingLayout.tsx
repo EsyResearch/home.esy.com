@@ -3,6 +3,7 @@
 import React from "react";
 import ScrollytellingHeader from "./ScrollytellingHeader";
 import ScrollytellingTheatreBar from "./ScrollytellingTheatreBar";
+import ScrollytellingEndCard from "./ScrollytellingEndCard";
 import "./scrollytelling-layout.css";
 
 interface ScrollytellingLayoutProps {
@@ -10,6 +11,7 @@ interface ScrollytellingLayoutProps {
   title: string;
   description?: string;
   readTime?: string;
+  storyId?: string; // For EndCard recommendations
 }
 
 /**
@@ -17,7 +19,7 @@ interface ScrollytellingLayoutProps {
  * =====================
  * 
  * App-like wrapper for immersive scrollytelling experiences.
- * Provides consistent header and footer across all story pages.
+ * Provides consistent header, footer, and end card across all story pages.
  * 
  * Anatomy (Mobile-First):
  * ┌─────────────────────────────────────────────┐
@@ -28,7 +30,14 @@ interface ScrollytellingLayoutProps {
  * │         (scrolls independently)             │
  * │                                             │
  * ├─────────────────────────────────────────────┤
- * │ ← Back │ ███░░░ 45% │ Share ↗   (Footer)   │  52px mobile / 56px desktop
+ * │                                             │
+ * │           End Card (What's Next)            │  Full viewport
+ * │     - Featured next story                   │
+ * │     - Related story pills                   │
+ * │     - Browse all stories                    │
+ * │                                             │
+ * ├─────────────────────────────────────────────┤
+ * │ ← Back │ ███░░░ 100% │ Share ↗  (Footer)   │  52px mobile / 56px desktop
  * └─────────────────────────────────────────────┘
  * 
  * Design Philosophy:
@@ -36,8 +45,8 @@ interface ScrollytellingLayoutProps {
  * - No traditional site navigation during story
  * - Logo links back to scrollytelling index
  * - Theatre Bar provides all actions (back, progress, share)
+ * - End Card promotes story discovery
  * - Mobile-first: thumb-reachable actions at bottom
- * - Content breathes between header and footer
  * 
  * Usage:
  * ```tsx
@@ -45,6 +54,7 @@ interface ScrollytellingLayoutProps {
  *   title="Story Title"
  *   description="Brief description for sharing"
  *   readTime="12 min"
+ *   storyId="the-story-slug"
  * >
  *   <YourStoryClient />
  * </ScrollytellingLayout>
@@ -55,16 +65,25 @@ export default function ScrollytellingLayout({
   title,
   description = "",
   readTime,
+  storyId,
 }: ScrollytellingLayoutProps) {
   return (
     <div className="scrollytelling-layout">
       {/* Minimal Header - Logo only */}
       <ScrollytellingHeader />
       
-      {/* Story Content - padded for header/footer */}
+      {/* Story Content */}
       <div className="scrollytelling-content">
         {children}
       </div>
+      
+      {/* End Card - What's Next (only if storyId provided) */}
+      {storyId && (
+        <ScrollytellingEndCard
+          currentStoryId={storyId}
+          storyTitle={title}
+        />
+      )}
       
       {/* Theatre Bar Footer - Back, Progress, Share */}
       <ScrollytellingTheatreBar

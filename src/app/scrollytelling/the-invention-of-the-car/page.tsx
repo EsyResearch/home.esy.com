@@ -45,6 +45,7 @@ export default function TheInventionOfTheCarPage() {
       title="The Automobile: A Sketch-Style Journey"
       description="A hand-drawn journey through the invention that changed civilization."
       readTime="11 min"
+      storyId="the-invention-of-the-car"
     >
       <CarHistoryClient />
     </ScrollytellingLayout>
