@@ -45,8 +45,6 @@ interface Story {
     category: "Biology & Anatomy",
     readTime: "14 min",
     href: "/scrollytelling/mammary-gland-evolution",
-    isNew: true,
-    isFeatured: true,
   },
   {
     id: "evolution-of-mammary-glands",
@@ -269,6 +267,7 @@ interface Story {
       readTime: "10 min",
       href: "/scrollytelling/the-discovery-of-antibiotics",
       isNew: true,
+      isFeatured: true,
     },
   ];
 

@@ -176,6 +176,9 @@
 - ❌ Never block scroll or trap users without escape
 - ❌ Never sacrifice content accessibility for visual effect
 
+### Intentional Omissions
+- **Exit Transitions**: Not implemented. View Transitions API lacks Safari support (major mobile browser). Entry animations on the destination page provide sufficient continuity. Exit animations would add complexity and make navigation feel slower. Decision: "not needed" rather than "incomplete."
+
 ## Collaboration Protocols
 
 ### Working With `ui-ux-design-expert.md`

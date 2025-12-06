@@ -5,18 +5,27 @@ import Link from "next/link";
 import Image from "next/image";
 
 /**
- * ScrollytellingHeader - Minimal header for immersive story experience
+ * ScrollytellingHeader - World-class minimal header for immersive stories
  * 
  * Design Philosophy (Mobile-First):
  * - Logo only, no distracting navigation
- * - Transparent by default, becomes frosted on scroll
- * - Compact height (48px mobile, 56px desktop)
+ * - Transparent by default, elegant frosted glass on scroll
+ * - Proper safe area handling for notches and status bars
+ * - Generous breathing room — logo never feels cramped
  * - Links to scrollytelling index (not home)
- * - Unobtrusive, lets content breathe
+ * 
+ * Mobile-First Dimensions:
+ * - Safe area top padding (notch/status bar)
+ * - 56px content height (touch-friendly)
+ * - 20px horizontal padding
+ * - Logo has visual breathing room
  * 
  * Anatomy:
  * ┌─────────────────────────────────────────────────┐
- * │ [Logo]                                          │
+ * │ (safe area inset)                               │
+ * ├─────────────────────────────────────────────────┤
+ * │     [Logo]                                      │
+ * │                                                 │
  * └─────────────────────────────────────────────────┘
  */
 export default function ScrollytellingHeader() {
@@ -41,37 +50,63 @@ export default function ScrollytellingHeader() {
           left: 0;
           right: 0;
           z-index: 90;
-          height: 48px;
+          
+          /* Safe area: respect notch/status bar */
+          padding-top: env(safe-area-inset-top, 0px);
+          
+          /* Content container */
           display: flex;
           align-items: center;
-          padding: 0 1rem;
+          
+          /* Mobile: generous padding */
+          padding-left: 1.25rem;
+          padding-right: 1.25rem;
+          padding-bottom: 0.75rem;
+          
+          /* Total visual height: safe-area + content */
+          min-height: calc(56px + env(safe-area-inset-top, 0px));
+          
           background: transparent;
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        /* Frosted glass state on scroll */
         .st-header.scrolled {
-          background: rgba(10, 10, 12, 0.85);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+          background: rgba(10, 10, 12, 0.8);
+          backdrop-filter: blur(20px) saturate(180%);
+          -webkit-backdrop-filter: blur(20px) saturate(180%);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
+        /* Logo container */
         .st-header-logo {
           display: flex;
           align-items: center;
           text-decoration: none;
-          opacity: 0.9;
-          transition: opacity 0.2s ease;
+          padding: 0.5rem;
+          margin: -0.5rem; /* Offset padding for larger touch target */
+          border-radius: 8px;
+          opacity: 0.95;
+          transition: opacity 0.2s ease, background 0.2s ease;
         }
 
         .st-header-logo:hover {
           opacity: 1;
+          background: rgba(255, 255, 255, 0.05);
         }
 
+        .st-header-logo:active {
+          background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Desktop: slightly larger */
         @media (min-width: 768px) {
           .st-header {
-            height: 56px;
-            padding: 0 1.5rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            padding-bottom: 1rem;
+            min-height: calc(64px + env(safe-area-inset-top, 0px));
           }
         }
 
@@ -89,8 +124,8 @@ export default function ScrollytellingHeader() {
           <Image
             src="/esy-logos/logo-files/for-web/svg/color-no-bg.svg"
             alt="Esy"
-            width={50}
-            height={20}
+            width={56}
+            height={24}
             style={{ height: "auto" }}
             priority
           />

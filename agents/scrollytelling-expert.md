@@ -1622,10 +1622,13 @@ When working with this agent, reference the role by stating:
    - `[name].css` with complete styling (including sources styles)
    - Any additional component files
 
-5. **Index Integration**
-   - Updated scrollytelling hub entry
+5. **Index Integration (MANDATORY)**
+   - Updated scrollytelling hub entry with `isNew: true`
+   - **New story MUST be set as `isFeatured: true`** (remove from previous featured story)
+   - Previous featured story gets `isFeatured` removed
    - Thumbnail/preview content
    - Category and metadata
+   - Story number incremented from previous highest
 
 ### Quality Indicators
 - **Mobile Experience**: 10/10 (feels native, app-like, tested on real devices) — **PRIMARY METRIC**
@@ -1692,7 +1695,8 @@ The following are **automatically included** in every scrollytelling piece:
 - ✅ Theatre Bar, ScrollytellingHeader, and immersive layout
 - ✅ Real mobile device testing (not just browser responsive mode)
 - ✅ Accessibility compliance (WCAG AA)
-- ✅ Updated scrollytelling index entry
+- ✅ Updated scrollytelling index entry with `isNew: true`
+- ✅ **New story becomes featured** (`isFeatured: true`, previous featured story unfeatured)
 
 ## Last Updated
 December 2024
