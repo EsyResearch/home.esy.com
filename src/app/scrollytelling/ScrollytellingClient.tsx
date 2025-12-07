@@ -400,6 +400,7 @@ const stories: Story[] = [
     href: "/scrollytelling/mia-mouse-mystery-m",
     isNew: true,
     isFeatured: true,
+    draft: true,
     tags: ["children", "alphabet", "letter M", "mouse", "friendship", "counting", "ages 3-6"],
   },
 ];
