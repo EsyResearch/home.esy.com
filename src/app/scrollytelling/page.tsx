@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 import ScrollytellingClient from "./ScrollytellingClient";
 
 export const metadata: Metadata = {
@@ -26,6 +27,10 @@ export const metadata: Metadata = {
 };
 
 export default function ScrollytellingPage() {
-  return <ScrollytellingClient />;
+  return (
+    <Suspense fallback={<div className="scrollytelling-loading" />}>
+      <ScrollytellingClient />
+    </Suspense>
+  );
 }
 
