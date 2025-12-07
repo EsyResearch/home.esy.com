@@ -8,6 +8,7 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 
 | Agent | Best For | Invocation Prefix |
 |-------|----------|-------------------|
+| [Invocation Enhancer](#scrollytelling-invocation-enhancer) | **🚀 Enhance any scrollytelling request** | `@agents/scrollytelling-invocation-enhancer.md` |
 | [Scrollytelling Expert](#scrollytelling-expert) | Immersive scroll-based stories | `@agents/scrollytelling-expert.md` |
 | [Children's Fiction Scrollytelling](#childrens-fiction-scrollytelling-agent) | **Magical stories for ages 3-6** | `@agents/childrens-fiction-scrollytelling-agent.md` |
 | [Children's Books Writer](#childrens-books-writer-expert) | **Picture book narratives, ages 3-6** | `@agents/childrens-books-writer-expert.md` |
@@ -53,6 +54,65 @@ our scrollytelling piece about [topic]. Focus on .edu and major news sources.
 ---
 
 ## Agent Details
+
+### Scrollytelling Invocation Enhancer
+**File:** `scrollytelling-invocation-enhancer.md`
+
+**Role:** Expert prompt architect that transforms rough requests into comprehensive, structured briefs for scrollytelling agents. Asks strategic clarifying questions when needed.
+
+**🚀 USE THIS FIRST:** Before invoking any scrollytelling agent, run your request through this enhancer for maximum quality output.
+
+**Best For:**
+- Transforming rough ideas into structured briefs
+- Getting strategic questions to maximize output quality
+- Auto-detecting target agent (children's vs general)
+- Generating character names, themes, and visual directions
+- Ensuring world-class scrollytelling output
+
+**Operating Modes:**
+| Mode | Trigger | Behavior |
+|------|---------|----------|
+| **Quick** | `enhance this request:` | Uses intelligent defaults, no questions |
+| **Guided** | `enhance with questions:` | Always asks 2-6 strategic questions first |
+| **Auto** | Just provide request | Asks questions only if ambiguous |
+
+**What It Does:**
+1. **Detects** which agent your request is for (children's or general)
+2. **Assesses** clarity — is the request clear or ambiguous?
+3. **Asks** 2-6 high-impact questions (if needed)
+4. **Fills gaps** with intelligent defaults
+5. **Outputs** a complete structured brief ready for the target agent
+
+**Invocation Examples:**
+```
+# Quick mode — trust the defaults
+Using @agents/scrollytelling-invocation-enhancer.md, enhance this request:
+"story about a bunny who learns to share"
+
+# Guided mode — I want to answer questions first
+Using @agents/scrollytelling-invocation-enhancer.md, enhance with questions:
+"a story about an owl"
+
+# Auto mode — ask if needed
+Using @agents/scrollytelling-invocation-enhancer.md:
+"scrollytelling about how coffee was discovered"
+```
+
+**Strategic Questions It Asks:**
+- 🎯 "What lesson should the child take away?"
+- 🌙 "Bedtime-cozy or playtime-energetic?"
+- 🔤 "Weave in counting, a letter, or pure story?"
+- ⏱️ "Quick story or journey story?"
+- 🎨 "Any visual inspiration?"
+
+**Why Use This:**
+| Without Enhancer | With Enhancer |
+|------------------|---------------|
+| "make a mouse story" | Full brief with character name, personality, theme, emotions, visual style, participation mechanics, animation priorities |
+| Gaps → suboptimal output | Strategic questions → exactly what you envisioned |
+| Agent makes assumptions | You control high-impact decisions |
+
+---
 
 ### Scrollytelling Expert
 **File:** `scrollytelling-expert.md`
