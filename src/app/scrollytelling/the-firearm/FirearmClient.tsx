@@ -638,11 +638,11 @@ const FirearmClient: React.FC = () => {
             <a href="https://www.nramuseum.org/guns/the-galleries.aspx" target="_blank" rel="noopener noreferrer">
               NRA National Firearms Museum: Historical Galleries
             </a>
-            <a href="https://www.smithsonianmag.com/history/gun-timeline-history-firearms-180973791/" target="_blank" rel="noopener noreferrer">
-              Smithsonian: A History of Firearms
+            <a href="https://americanhistory.si.edu/collections/search?edan_q=firearms" target="_blank" rel="noopener noreferrer">
+              Smithsonian: National Museum of American History Firearms Collection
             </a>
-            <a href="https://www.loc.gov/collections/samuel-colt-papers/" target="_blank" rel="noopener noreferrer">
-              Library of Congress: Samuel Colt Papers
+            <a href="https://guides.loc.gov/american-firearms" target="_blank" rel="noopener noreferrer">
+              Library of Congress: American Firearms Research Guide
             </a>
             <a href="https://smallarmssurvey.org/database/global-firearms-holdings" target="_blank" rel="noopener noreferrer">
               Small Arms Survey: Global Firearms Holdings
@@ -650,11 +650,11 @@ const FirearmClient: React.FC = () => {
             <a href="https://www.metmuseum.org/toah/hd/aams/hd_aams.htm" target="_blank" rel="noopener noreferrer">
               Metropolitan Museum: Arms and Armor
             </a>
-            <a href="https://www.militaryfactory.com/smallarms/guns-1800-1899.php" target="_blank" rel="noopener noreferrer">
-              Military Factory: Historical Firearms Database
+            <a href="https://daily.jstor.org/guns-in-america-foundations-and-key-concepts/" target="_blank" rel="noopener noreferrer">
+              JSTOR Daily: Guns in America — Foundations and Key Concepts
             </a>
-            <a href="https://www.jstor.org/stable/j.ctv10tq4g7" target="_blank" rel="noopener noreferrer">
-              JSTOR: The Gun (C.J. Chivers)
+            <a href="https://royalarmouries.org/collection?type=Firearm" target="_blank" rel="noopener noreferrer">
+              Royal Armouries: Firearms Collection (UK)
             </a>
           </div>
         </div>
