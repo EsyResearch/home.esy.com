@@ -186,6 +186,9 @@
   padding-right: 2rem;
   padding-bottom: 2rem;
   overflow: hidden;
+  /* Prevent any multi-column layout */
+  columns: unset;
+  column-count: unset;
 }
 
 /* Crosshair overlay */
@@ -215,6 +218,13 @@
   z-index: 10;
   text-align: center;
   max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  /* Prevent any column or layout splitting */
+  display: block;
+  break-inside: avoid;
+  columns: unset;
+  column-count: unset;
 }
 
 .firearm-story .hero-era {
@@ -232,6 +242,14 @@
   margin-bottom: 0.5rem;
   letter-spacing: 0.05em;
   text-shadow: 0 0 60px rgba(255, 87, 34, 0.2);
+  /* Ensure title stays on one line on desktop */
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .firearm-story .hero-title {
+    white-space: normal;
+  }
 }
 
 .firearm-story .hero-title .accent {
@@ -256,11 +274,18 @@
 
 .firearm-story .hero-scroll {
   position: absolute;
-  bottom: 15vh;
+  bottom: 8vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+}
+
+/* Mobile: gun needs to be higher due to theatre bar */
+@media (max-width: 900px) {
+  .firearm-story .hero-scroll {
+    bottom: 15vh;
+  }
 }
 
 .firearm-story .hero-scroll span {
