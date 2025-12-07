@@ -178,10 +178,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 12vh;
   position: relative;
   background: radial-gradient(ellipse at center, var(--gunmetal-dark) 0%, var(--void-black) 70%);
-  padding: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
   overflow: hidden;
 }
 
@@ -253,7 +256,7 @@
 
 .firearm-story .hero-scroll {
   position: absolute;
-  bottom: 3rem;
+  bottom: 15vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -266,26 +269,65 @@
 }
 
 .firearm-story .trigger-icon {
-  width: 30px;
-  height: 40px;
+  width: 100px;
+  height: 60px;
   position: relative;
 }
 
-.firearm-story .trigger-icon svg {
+.firearm-story .revolver-icon {
   width: 100%;
   height: 100%;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+}
+
+.firearm-story .revolver-icon .gun-metal {
+  fill: var(--gunmetal);
+  stroke: var(--smoke-gray);
+  stroke-width: 0.5;
+}
+
+.firearm-story .revolver-icon .gun-dark {
+  fill: var(--gunmetal-dark);
+  stroke: var(--gunmetal-light);
+  stroke-width: 0.5;
+}
+
+.firearm-story .revolver-icon .gun-wood {
+  fill: var(--wood-walnut);
+  stroke: var(--wood-light);
+  stroke-width: 0.5;
+}
+
+.firearm-story .revolver-icon .brass-chamber {
+  fill: var(--brass-gold);
+  stroke: var(--brass-dark);
+  stroke-width: 0.3;
 }
 
 .firearm-story .trigger-pull {
-  fill: none;
-  stroke: var(--brass-gold);
-  stroke-width: 2;
-  animation: trigger-bounce 1.5s ease-in-out infinite;
+  fill: var(--brass-gold);
+  stroke: var(--brass-dark);
+  stroke-width: 0.5;
+  transform-origin: 20px 39px;
+  animation: trigger-pull 2s ease-in-out infinite;
 }
 
-@keyframes trigger-bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(5px); }
+@keyframes trigger-pull {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(15deg); }
+}
+
+.firearm-story .scroll-arrow {
+  font-size: 1.5rem;
+  color: var(--brass-gold);
+  margin-top: 0.5rem;
+  animation: arrow-bounce 1.5s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+@keyframes arrow-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.8; }
+  50% { transform: translateY(8px); opacity: 1; }
 }
 
 /* ============================================
@@ -751,12 +793,20 @@
     direction: ltr;
   }
   
+  /* Fix 1 & 3: Position above Theatre Bar with safe area handling */
   .firearm-story .ammo-counter {
     right: 1rem;
     top: auto;
-    bottom: 1rem;
+    bottom: calc(80px + env(safe-area-inset-bottom, 0px));
     transform: none;
     flex-direction: row;
+    /* Fix 4: Add background for visibility */
+    background: rgba(10, 10, 12, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
   
   .firearm-story .ammo-bullets {
@@ -765,16 +815,25 @@
     margin-left: 0.5rem;
   }
   
+  /* Fix 1 & 3: Position above Theatre Bar with safe area handling */
   .firearm-story .cylinder-progress {
     left: 1rem;
     top: auto;
-    bottom: 1rem;
+    bottom: calc(80px + env(safe-area-inset-bottom, 0px));
     transform: none;
+    /* Fix 4: Add background for visibility */
+    background: rgba(10, 10, 12, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
   
+  /* Fix 2: Larger cylinder on mobile for visibility */
   .firearm-story .cylinder-svg {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
   }
   
   .firearm-story .target-display {
@@ -793,6 +852,35 @@
   
   .firearm-story .trajectory-inner {
     height: 200px;
+  }
+}
+
+/* Extra small screens - stack ammo counter vertically */
+@media (max-width: 480px) {
+  .firearm-story .ammo-counter {
+    flex-direction: column;
+    right: 0.75rem;
+    bottom: calc(70px + env(safe-area-inset-bottom, 0px));
+  }
+  
+  .firearm-story .ammo-bullets {
+    flex-direction: row;
+    margin-left: 0;
+    margin-top: 0.25rem;
+  }
+  
+  .firearm-story .ammo-number {
+    font-size: 1.75rem;
+  }
+  
+  .firearm-story .cylinder-progress {
+    left: 0.75rem;
+    bottom: calc(70px + env(safe-area-inset-bottom, 0px));
+  }
+  
+  .firearm-story .cylinder-svg {
+    width: 50px;
+    height: 50px;
   }
 }
 

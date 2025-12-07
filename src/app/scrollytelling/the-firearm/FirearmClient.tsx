@@ -176,13 +176,47 @@ const FirearmClient: React.FC = () => {
         <div className="hero-scroll">
           <span>Pull the trigger</span>
           <div className="trigger-icon">
-            <svg viewBox="0 0 30 40">
+            <svg viewBox="0 0 100 60" className="revolver-icon">
+              {/* Barrel */}
+              <rect x="45" y="18" width="50" height="10" rx="2" className="gun-metal" />
+              <rect x="90" y="20" width="8" height="6" rx="1" className="gun-dark" />
+              {/* Frame */}
               <path 
-                d="M15 5 L15 25 Q15 35 10 35 L5 35" 
+                d="M45 18 L45 38 L25 38 L20 45 L15 45 L15 35 L25 28 L45 18" 
+                className="gun-metal"
+              />
+              {/* Cylinder */}
+              <ellipse cx="38" cy="28" rx="14" ry="12" className="gun-metal" />
+              <circle cx="38" cy="28" r="8" className="gun-dark" />
+              {/* Chamber holes */}
+              <circle cx="38" cy="20" r="2.5" className="brass-chamber" />
+              <circle cx="45" cy="25" r="2.5" className="brass-chamber" />
+              <circle cx="45" cy="31" r="2.5" className="brass-chamber" />
+              <circle cx="38" cy="36" r="2.5" className="brass-chamber" />
+              <circle cx="31" cy="31" r="2.5" className="brass-chamber" />
+              <circle cx="31" cy="25" r="2.5" className="brass-chamber" />
+              {/* Grip */}
+              <path 
+                d="M15 35 L8 52 L14 54 L22 42 L25 38" 
+                className="gun-wood"
+              />
+              {/* Trigger */}
+              <path 
+                d="M22 40 L20 48 L18 47 L20 39" 
                 className="trigger-pull"
               />
+              {/* Trigger guard */}
+              <path 
+                d="M25 38 Q15 42 18 50 Q20 52 22 50 Q26 44 25 38" 
+                fill="none"
+                stroke="#5a5a5a"
+                strokeWidth="1.5"
+              />
+              {/* Hammer */}
+              <path d="M25 20 L28 12 L32 14 L29 22" className="gun-metal" />
             </svg>
           </div>
+          <div className="scroll-arrow">↓</div>
         </div>
       </section>
 
