@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import Logo from "@/components/Logo";
 
 interface ScrollytellingTheatreBarProps {
   title: string;
@@ -41,13 +42,10 @@ export default function ScrollytellingTheatreBar({
   backLabel = "Stories",
 }: ScrollytellingTheatreBarProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true); // Show immediately since header is removed
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [shareUrl, setShareUrl] = useState("");
-
-  // Threshold: show bar after scrolling past 100px
-  const SCROLL_THRESHOLD = 100;
 
   useEffect(() => {
     setShareUrl(window.location.href);
@@ -58,9 +56,7 @@ export default function ScrollytellingTheatreBar({
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = Math.min((window.scrollY / scrollHeight) * 100, 100);
       setScrollProgress(progress);
-      
-      // Show/hide based on scroll position
-      setIsVisible(window.scrollY > SCROLL_THRESHOLD);
+      // Always visible now - no threshold needed
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -161,67 +157,24 @@ export default function ScrollytellingTheatreBar({
         }
 
         /* ==========================================
-           STORIES BUTTON — Branded, elegant pill
+           LOGO LINK — Clean, minimal home navigation
            ==========================================*/
-        .theatre-stories-btn {
+        .theatre-logo-link {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
-          padding: 0.5rem 1rem 0.5rem 0.75rem;
-          border-radius: 100px;
-          background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
-          border: 1px solid rgba(139, 92, 246, 0.3);
-          color: rgba(255, 255, 255, 0.95);
-          font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
-          font-size: 0.875rem;
-          font-weight: 600;
-          letter-spacing: 0.01em;
           text-decoration: none;
           cursor: pointer;
-          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-          min-height: 40px;
-          box-shadow: 
-            0 0 0 1px rgba(139, 92, 246, 0.1),
-            0 2px 8px rgba(0, 0, 0, 0.2);
+          transition: opacity 0.2s ease, transform 0.2s ease;
+          opacity: 0.9;
         }
 
-        .theatre-stories-btn:hover {
-          background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
-          border-color: rgba(139, 92, 246, 0.5);
-          box-shadow: 
-            0 0 0 1px rgba(139, 92, 246, 0.2),
-            0 4px 16px rgba(139, 92, 246, 0.15),
-            0 2px 8px rgba(0, 0, 0, 0.2);
-          transform: translateY(-1px);
+        .theatre-logo-link:hover {
+          opacity: 1;
+          transform: scale(1.02);
         }
 
-        .theatre-stories-btn:active {
-          transform: scale(0.98) translateY(0);
-          box-shadow: 
-            0 0 0 1px rgba(139, 92, 246, 0.3),
-            0 1px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .theatre-stories-icon {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 24px;
-          height: 24px;
-          border-radius: 6px;
-          background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-          box-shadow: 0 2px 4px rgba(99, 102, 241, 0.3);
-          flex-shrink: 0;
-        }
-
-        .theatre-stories-icon svg {
-          width: 14px;
-          height: 14px;
-          color: #fff;
-        }
-
-        .theatre-stories-text {
-          /* Text styling handled by parent */
+        .theatre-logo-link:active {
+          transform: scale(0.98);
         }
 
         /* ==========================================
@@ -385,26 +338,14 @@ export default function ScrollytellingTheatreBar({
         @media (max-width: 480px) {
           .theatre-bar {
             height: calc(60px + env(safe-area-inset-bottom, 0px));
-            padding-left: max(1rem, env(safe-area-inset-left, 1rem));
+            padding-left: max(0.75rem, env(safe-area-inset-left, 0.75rem));
             padding-right: max(1rem, env(safe-area-inset-right, 1rem));
           }
 
-          .theatre-stories-btn {
-            padding: 0.4rem 0.75rem 0.4rem 0.5rem;
-            font-size: 0.8125rem;
-            gap: 0.375rem;
-            min-height: 36px;
-          }
-
-          .theatre-stories-icon {
-            width: 20px;
-            height: 20px;
-            border-radius: 5px;
-          }
-
-          .theatre-stories-icon svg {
-            width: 12px;
-            height: 12px;
+          .theatre-logo-link :global(img),
+          .theatre-logo-link :global(svg) {
+            height: 36px !important;
+            width: auto !important;
           }
 
           .theatre-share-btn {
@@ -444,20 +385,6 @@ export default function ScrollytellingTheatreBar({
             padding-right: max(1.5rem, env(safe-area-inset-right, 1.5rem));
           }
 
-          .theatre-stories-btn {
-            padding: 0.5rem 1.25rem 0.5rem 0.875rem;
-          }
-
-          .theatre-stories-icon {
-            width: 26px;
-            height: 26px;
-          }
-
-          .theatre-stories-icon svg {
-            width: 15px;
-            height: 15px;
-          }
-
           .theatre-share-btn {
             padding: 0.75rem 1.25rem;
           }
@@ -490,7 +417,7 @@ export default function ScrollytellingTheatreBar({
             pointer-events: none;
           }
           
-          .theatre-stories-btn,
+          .theatre-logo-link,
           .theatre-share-btn,
           .theatre-share-panel,
           .theatre-share-option,
@@ -498,7 +425,7 @@ export default function ScrollytellingTheatreBar({
             transition: none;
           }
           
-          .theatre-stories-btn:active,
+          .theatre-logo-link:active,
           .theatre-share-btn:active {
             transform: none;
           }
@@ -512,25 +439,15 @@ export default function ScrollytellingTheatreBar({
           style={{ width: `${scrollProgress}%` }}
         />
 
-        {/* Stories Button — Branded pill with icon */}
-        <Link href={backHref} className="theatre-stories-btn">
-          <span className="theatre-stories-icon">
-            {/* Layered squares / collection icon */}
-            <svg 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2.5" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-            >
-              <rect x="3" y="3" width="7" height="7" rx="1" />
-              <rect x="14" y="3" width="7" height="7" rx="1" />
-              <rect x="3" y="14" width="7" height="7" rx="1" />
-              <rect x="14" y="14" width="7" height="7" rx="1" />
-            </svg>
-          </span>
-          <span className="theatre-stories-text">{backLabel}</span>
+        {/* Logo — Links back to Stories */}
+        <Link href={backHref} className="theatre-logo-link" aria-label="Back to Stories">
+          <Logo 
+            suffix="" 
+            href="" 
+            showText={false} 
+            theme="dark"
+            size={48}
+          />
         </Link>
 
         {/* Center — Progress & Read Time */}

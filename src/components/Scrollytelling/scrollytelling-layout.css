@@ -61,7 +61,7 @@ html:has(.scrollytelling-layout) body::-webkit-scrollbar {
   /* Safe area for devices with home indicators */
   padding-bottom: calc(52px + env(safe-area-inset-bottom, 0px));
   
-  /* Entry Animation */
+  /* Entry Animation - opacity only to not break fixed positioning */
   animation: story-enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -72,31 +72,14 @@ html:has(.scrollytelling-layout) body::-webkit-scrollbar {
 @keyframes story-enter {
   from {
     opacity: 0;
-    transform: translateY(10px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
-/* Staggered content reveal */
-.scrollytelling-content > *:first-child {
-  animation: hero-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: 0.1s;
-  opacity: 0;
-}
-
-@keyframes hero-enter {
-  from {
-    opacity: 0;
-    transform: scale(1.02);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
+/* Staggered content reveal - removed to preserve fixed positioning */
+/* Note: Transform-based animations on parent containers break position:fixed in children */
 
 /* ===========================================
    REDUCED MOTION SUPPORT

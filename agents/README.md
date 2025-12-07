@@ -9,6 +9,7 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 | Agent | Best For | Invocation Prefix |
 |-------|----------|-------------------|
 | [Invocation Enhancer](#scrollytelling-invocation-enhancer) | **🚀 Enhance any scrollytelling request** | `@agents/scrollytelling-invocation-enhancer.md` |
+| [Audit Agent](#scrollytelling-audit-agent) | **🔍 Evaluate & improve experiences** | `@agents/scrollytelling-audit-agent.md` |
 | [Scrollytelling Expert](#scrollytelling-expert) | Immersive scroll-based stories | `@agents/scrollytelling-expert.md` |
 | [Children's Fiction Scrollytelling](#childrens-fiction-scrollytelling-agent) | **Magical stories for ages 3-6** | `@agents/childrens-fiction-scrollytelling-agent.md` |
 | [Children's Books Writer](#childrens-books-writer-expert) | **Picture book narratives, ages 3-6** | `@agents/childrens-books-writer-expert.md` |
@@ -111,6 +112,68 @@ Using @agents/scrollytelling-invocation-enhancer.md:
 | "make a mouse story" | Full brief with character name, personality, theme, emotions, visual style, participation mechanics, animation priorities |
 | Gaps → suboptimal output | Strategic questions → exactly what you envisioned |
 | Agent makes assumptions | You control high-impact decisions |
+
+---
+
+### Scrollytelling Audit Agent
+**File:** `scrollytelling-audit-agent.md`
+
+**Role:** Orchestrating auditor that coordinates specialist agents to evaluate completed scrollytelling experiences and produce approval-required improvement recommendations.
+
+**🔍 USE AFTER CREATING:** Run completed experiences through this agent to identify improvements before publishing.
+
+**Best For:**
+- Evaluating completed scrollytelling experiences
+- Identifying mobile-native issues
+- Auditing children's content for age-appropriateness
+- Performance and accessibility verification
+- Systematic quality improvement
+
+**Orchestrates:**
+- `scrollytelling-expert.md` — Narrative & design evaluation
+- `immersive-experience-engineer.md` — Mobile-native & performance
+- `childrens-fiction-scrollytelling-agent.md` — Age 3-6 specific (if children's content)
+
+**Audit Depths:**
+| Level | Time | Coverage |
+|-------|------|----------|
+| Quick | 5 min | Hero + 2-3 sections, first impressions |
+| Standard | 15 min | Full walkthrough, spot-checks |
+| Deep | 30+ min | Full specialist evaluations, real devices |
+
+**Invocation Examples:**
+```
+# Quick audit
+Using @agents/scrollytelling-audit-agent.md, conduct a quick audit of
+/scrollytelling/sammy-snail-super-speed
+Type: Children's Fiction
+
+# Standard audit with focus
+Using @agents/scrollytelling-audit-agent.md, conduct a standard audit of
+/scrollytelling/alphabet-adventure-train
+Type: Children's Fiction
+Focus areas: Touch targets, animation performance
+
+# Deep audit
+Using @agents/scrollytelling-audit-agent.md, conduct a deep audit of
+/scrollytelling/the-discovery-of-antibiotics
+Type: General
+```
+
+**Output Format:**
+The agent produces a structured audit report with:
+1. Overall scores by category
+2. 🔴 Critical issues (must fix)
+3. 🟡 Important issues (should fix)
+4. 🟢 Polish suggestions (nice to have)
+5. Approval checkboxes for each recommendation
+6. Positive findings (what's working)
+
+**Approval Flow:**
+```
+Issue presented → User marks [x] Approve / [ ] Defer / [ ] Reject → 
+Only approved fixes implemented
+```
 
 ---
 

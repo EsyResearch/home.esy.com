@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import ScrollytellingHeader from "./ScrollytellingHeader";
 import ScrollytellingTheatreBar from "./ScrollytellingTheatreBar";
 import ScrollytellingEndCard from "./ScrollytellingEndCard";
 import "./scrollytelling-layout.css";
@@ -69,10 +68,7 @@ export default function ScrollytellingLayout({
 }: ScrollytellingLayoutProps) {
   return (
     <div className="scrollytelling-layout">
-      {/* Minimal Header - Logo only */}
-      <ScrollytellingHeader />
-      
-      {/* Story Content */}
+      {/* Story Content - Full immersion, no header */}
       <div className="scrollytelling-content">
         {children}
       </div>
