@@ -898,6 +898,112 @@ experience about "The History of Coffee"
 
 ## Multi-Agent Workflows
 
+### Citation Audit Workflow
+
+The `citation-audit-agent.md` orchestrates a comprehensive verification process before any scrollytelling can be published.
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                      CITATION AUDIT WORKFLOW                            │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│  ① CONTENT EXTRACTION                                                  │
+│     └─ Read complete scrollytelling content                             │
+│     └─ Extract all factual claims                                       │
+│     └─ Extract all quotes and attributions                              │
+│     └─ Extract Sources & Further Reading section                        │
+│                                                                         │
+│  ② CLAIM INVENTORY                                                     │
+│     └─ List all verifiable claims with sections                         │
+│     └─ List all statistics with dates                                   │
+│     └─ 💬 EXTRACT QUOTES → Invoke quotes-audit-agent.md                │
+│                                                                         │
+│  ③ QUOTE VERIFICATION (Delegated to quotes-audit-agent.md)            │
+│     ┌─────────────────────────────────────────────────────────────┐    │
+│     │  Quotes Audit Agent                                          │    │
+│     │  • Trace quotes to primary sources                           │    │
+│     │  • Detect famous misattributions                             │    │
+│     │  • Verify speaker identity                                   │    │
+│     │  • Check context appropriateness                             │    │
+│     │  • Return verdicts: ✅/⚠️/🟡/❌/🚫                           │    │
+│     └─────────────────────────────────────────────────────────────┘    │
+│                                                                         │
+│  ④ SOURCE VERIFICATION                                                 │
+│     └─ Classify each source by Tier (1-4)                               │
+│     └─ Verify 80%+ are Tier 1-2                                         │
+│     └─ Flag any Tier 4 sources as critical                              │
+│                                                                         │
+│  ⑤ BROWSER-BASED LINK VERIFICATION ⚠️ MANDATORY                       │
+│     ┌─────────────────────────────────────────────────────────────┐    │
+│     │  For EACH URL in Sources section:                            │    │
+│     │  1. Navigate to URL using browser tools                      │    │
+│     │  2. Check page title matches expected content                │    │
+│     │  3. Detect sneaky redirects (page loads but wrong content)   │    │
+│     │  4. Log status: ✅ Working / ❌ Broken / ⚠️ Redirect         │    │
+│     │  5. Find replacement URLs for any broken links               │    │
+│     └─────────────────────────────────────────────────────────────┘    │
+│                                                                         │
+│  ⑥ GAP ANALYSIS                                                        │
+│     └─ Claims without adequate citation                                 │
+│     └─ Citations without claim connection                               │
+│     └─ Tier 3-4 sources needing upgrade                                 │
+│     └─ Broken links requiring replacement                               │
+│                                                                         │
+│  ⑦ REPORT & CERTIFICATION                                              │
+│     └─ Generate Citation Audit Report                                   │
+│     └─ List 🔴 Critical / 🟡 Important / 🟢 Polish issues              │
+│     └─ Issue certification: ✅ Approved / ❌ Rejected                   │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+**Browser Link Verification Process:**
+```
+Original URL → Browser Navigate → Check Result
+                                      │
+                    ┌─────────────────┼─────────────────┐
+                    │                 │                 │
+                    ▼                 ▼                 ▼
+              ✅ Page loads     ❌ 404/Error     ⚠️ Wrong content
+              with expected     Page not found   (sneaky redirect)
+              content                │                 │
+                    │                │                 │
+                    │                └────────┬────────┘
+                    │                         │
+                    ▼                         ▼
+               Keep URL              Search for replacement
+                                     • Same domain first
+                                     • Same institution
+                                     • Alternative Tier 1-2 source
+                                     • Archive.org as last resort
+```
+
+**Quote Verdict Integration:**
+| Quote Verdict | Citation Audit Impact | Required Action |
+|---------------|----------------------|-----------------|
+| ✅ Verified | No impact | None |
+| ⚠️ Plausible | Note in report | Add source note if possible |
+| 🟡 Disputed | 🟡 Important issue | Must add "origin disputed" |
+| ❌ Unverified | 🔴 Critical issue | Rephrase as paraphrase |
+| 🚫 Misattributed | 🔴 Critical issue | Correct or remove |
+
+**Example Invocation:**
+```
+Using @agents/citation-audit-agent.md, audit the citations for
+/scrollytelling/the-firearm
+Type: General
+
+# The agent will:
+# 1. Extract all claims and quotes
+# 2. Invoke quotes-audit-agent.md for quote verification
+# 3. Classify all sources by tier
+# 4. Navigate to EACH URL using browser tools
+# 5. Find replacements for broken links
+# 6. Produce certification report
+```
+
+---
+
 ### Scrollytelling Production Pipeline
 
 The recommended workflow for creating **mobile-native** scrollytelling content:
