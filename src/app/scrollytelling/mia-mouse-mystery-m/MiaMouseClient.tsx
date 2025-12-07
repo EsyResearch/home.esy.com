@@ -385,6 +385,7 @@ interface MCrumbProps {
   size?: "small" | "medium" | "large";
   onClick?: () => void;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 const MCrumb: React.FC<MCrumbProps> = ({
@@ -393,6 +394,7 @@ const MCrumb: React.FC<MCrumbProps> = ({
   size = "medium",
   onClick,
   className = "",
+  style,
 }) => {
   const sizeMap = {
     small: 40,
@@ -406,7 +408,7 @@ const MCrumb: React.FC<MCrumbProps> = ({
     <div
       className={`m-crumb ${found ? "found" : ""} ${glowing ? "glowing" : ""} ${className}`}
       onClick={onClick}
-      style={{ width: scale, height: scale }}
+      style={{ width: scale, height: scale, ...style }}
     >
       <svg viewBox="0 0 60 60" width="100%" height="100%">
         {/* Glow filter */}

@@ -1,0 +1,913 @@
+/*
+ * The Night the Stars Fell
+ * A Children's Fiction Scrollytelling Experience
+ * 
+ * Design Philosophy:
+ * - Warm, bedtime story aesthetic
+ * - Gentle animations that feel magical, not jarring
+ * - Large touch targets for children
+ * - Typography optimized for young readers
+ * - Mobile-first, portrait-oriented design
+ * 
+ * Color Palette (derived from night sky + starlight):
+ * - Night Sky: #0B1026 (deep indigo)
+ * - Starlight: #FFF8DC (warm cornsilk)
+ * - Moon Silver: #E8E8F0 (cool moonbeam)
+ * - Trail Gold: #FFD700 (fallen star path)
+ * - Grass Dark: #1A2F1A (nighttime garden)
+ * - Window Warm: #FF9F43 (cozy bedroom lamp)
+ * - Star Creature: #FFF4B8 (soft vulnerable glow)
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Quicksand:wght@400;500;600;700&family=Caveat:wght@400;500&display=swap');
+
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+.stars-story {
+  --night-sky: #0B1026;
+  --night-sky-light: #151B3A;
+  --starlight: #FFF8DC;
+  --starlight-soft: rgba(255, 248, 220, 0.8);
+  --moon-silver: #E8E8F0;
+  --trail-gold: #FFD700;
+  --trail-gold-soft: rgba(255, 215, 0, 0.6);
+  --grass-dark: #1A2F1A;
+  --grass-light: #2D4A2D;
+  --window-warm: #FF9F43;
+  --star-creature: #FFF4B8;
+  --star-glow: rgba(255, 244, 184, 0.5);
+  
+  --font-title: 'Abril Fatface', Georgia, serif;
+  --font-body: 'Quicksand', -apple-system, sans-serif;
+  --font-whisper: 'Caveat', cursive;
+  
+  --space-unit: 8px;
+  --transition-gentle: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-float: 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+.stars-story {
+  font-family: var(--font-body);
+  background: var(--night-sky);
+  color: var(--starlight);
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-size: 20px;
+  line-height: 1.8;
+}
+
+.stars-story * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+.story-title {
+  font-family: var(--font-title);
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--starlight);
+  text-shadow: 0 0 40px var(--star-glow);
+}
+
+.story-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-weight: 400;
+  color: var(--moon-silver);
+  margin-top: calc(var(--space-unit) * 2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.story-text {
+  font-family: var(--font-body);
+  font-size: clamp(1.125rem, 4vw, 1.375rem);
+  font-weight: 500;
+  line-height: 1.9;
+  color: var(--starlight);
+  max-width: 600px;
+}
+
+.story-text-emphasis {
+  font-style: italic;
+  color: var(--trail-gold);
+}
+
+.star-whisper {
+  font-family: var(--font-whisper);
+  font-size: clamp(1.25rem, 5vw, 1.75rem);
+  color: var(--star-creature);
+  font-style: italic;
+}
+
+.story-ending {
+  font-family: var(--font-title);
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: var(--trail-gold);
+  text-align: center;
+  text-shadow: 0 0 30px var(--trail-gold-soft);
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero-section {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: calc(var(--space-unit) * 4);
+  overflow: hidden;
+}
+
+.hero-stars-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero-star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--starlight);
+  border-radius: 50%;
+  animation: twinkle var(--twinkle-duration, 3s) ease-in-out infinite;
+  animation-delay: var(--twinkle-delay, 0s);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.hero-star:hover,
+.hero-star:active {
+  transform: scale(2);
+}
+
+.hero-star.large {
+  width: 6px;
+  height: 6px;
+}
+
+.hero-star.bright {
+  box-shadow: 0 0 10px var(--starlight), 0 0 20px var(--star-glow);
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.7); }
+}
+
+.falling-star {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--trail-gold);
+  border-radius: 50%;
+  box-shadow: 0 0 20px var(--trail-gold), 0 0 40px var(--trail-gold-soft);
+  opacity: 0;
+  transition: all var(--transition-float);
+}
+
+.falling-star.visible {
+  opacity: 1;
+}
+
+.falling-star.falling {
+  animation: starFall 3s ease-in forwards;
+}
+
+@keyframes starFall {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-100px, 400px);
+    opacity: 0;
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: calc(var(--space-unit) * 8);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--space-unit) * 1);
+  color: var(--moon-silver);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  animation: bobbing 2s ease-in-out infinite;
+}
+
+@keyframes bobbing {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+.scroll-indicator-arrow {
+  width: 24px;
+  height: 24px;
+  border-right: 2px solid var(--moon-silver);
+  border-bottom: 2px solid var(--moon-silver);
+  transform: rotate(45deg);
+}
+
+/* ============================================
+   CONTENT SECTIONS
+   ============================================ */
+.story-section {
+  position: relative;
+  min-height: 100dvh;
+  padding: calc(var(--space-unit) * 6) calc(var(--space-unit) * 3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.story-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (min-width: 768px) {
+  .story-section {
+    padding: calc(var(--space-unit) * 8);
+  }
+}
+
+/* ============================================
+   SECTION: THE MISSING STAR
+   ============================================ */
+.missing-star-section {
+  background: linear-gradient(180deg, var(--night-sky) 0%, var(--night-sky-light) 100%);
+}
+
+.window-scene {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space-unit) * 4);
+  align-items: center;
+  max-width: 800px;
+}
+
+@media (min-width: 768px) {
+  .window-scene {
+    flex-direction: row;
+    gap: calc(var(--space-unit) * 6);
+  }
+}
+
+.window-frame {
+  position: relative;
+  width: 200px;
+  height: 280px;
+  background: linear-gradient(180deg, var(--night-sky) 0%, var(--night-sky-light) 100%);
+  border: 8px solid var(--grass-dark);
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+}
+
+.window-glow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 159, 67, 0.2) 100%);
+}
+
+.luna-silhouette {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 80px;
+}
+
+.constellation-gap {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.constellation-gap:hover,
+.constellation-gap:active {
+  transform: scale(1.1);
+}
+
+.constellation-gap.tapped .gap-highlight {
+  opacity: 1;
+}
+
+.gap-highlight {
+  position: absolute;
+  inset: 0;
+  border: 2px dashed var(--trail-gold);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  animation: pulse-gentle 2s ease-in-out infinite;
+}
+
+@keyframes pulse-gentle {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+/* ============================================
+   SECTION: THE TRAIL
+   ============================================ */
+.trail-section {
+  background: linear-gradient(180deg, var(--night-sky-light) 0%, var(--grass-dark) 100%);
+}
+
+.trail-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  padding: calc(var(--space-unit) * 4);
+}
+
+.trail-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  pointer-events: none;
+}
+
+.trail-path {
+  fill: none;
+  stroke: var(--trail-gold);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  filter: drop-shadow(0 0 8px var(--trail-gold-soft));
+  transition: stroke-dashoffset 3s linear;
+}
+
+.trail-section.visible .trail-path {
+  stroke-dashoffset: 0;
+}
+
+.trail-dots {
+  display: flex;
+  gap: calc(var(--space-unit) * 2);
+  justify-content: center;
+  margin-top: calc(var(--space-unit) * 4);
+}
+
+.trail-dot {
+  width: 16px;
+  height: 16px;
+  background: var(--trail-gold);
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px var(--trail-gold-soft);
+}
+
+.trail-dot:hover,
+.trail-dot:active,
+.trail-dot.tapped {
+  opacity: 1;
+  transform: scale(1.3);
+  box-shadow: 0 0 20px var(--trail-gold);
+}
+
+/* ============================================
+   SECTION: THE FOREST
+   ============================================ */
+.forest-section {
+  background: var(--grass-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.parallax-forest {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.forest-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  transition: transform 0.1s linear;
+}
+
+.forest-layer-1 {
+  opacity: 0.3;
+}
+
+.forest-layer-2 {
+  opacity: 0.5;
+}
+
+.forest-layer-3 {
+  opacity: 0.7;
+}
+
+.tree-silhouette {
+  position: absolute;
+  bottom: 0;
+}
+
+.fireflies-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+}
+
+.firefly {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--star-creature);
+  border-radius: 50%;
+  opacity: 0.3;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  animation: float-firefly 4s ease-in-out infinite;
+}
+
+.firefly:hover,
+.firefly:active,
+.firefly.lit {
+  opacity: 1;
+  box-shadow: 0 0 15px var(--star-creature), 0 0 30px var(--star-glow);
+  transform: scale(1.5);
+}
+
+@keyframes float-firefly {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(10px, -15px); }
+  50% { transform: translate(-5px, -25px); }
+  75% { transform: translate(15px, -10px); }
+}
+
+.forest-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: calc(var(--space-unit) * 4);
+}
+
+/* ============================================
+   SECTION: FINDING THE STAR
+   ============================================ */
+.finding-section {
+  background: radial-gradient(ellipse at center, var(--night-sky-light) 0%, var(--night-sky) 70%);
+}
+
+.star-creature-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--space-unit) * 4);
+}
+
+.star-creature {
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.star-creature-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 20px var(--star-creature));
+}
+
+.star-creature.shivering .star-creature-svg {
+  animation: shiver 0.3s ease-in-out infinite;
+}
+
+.star-creature.calm .star-creature-svg {
+  animation: gentle-pulse 2s ease-in-out infinite;
+}
+
+@keyframes shiver {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
+@keyframes gentle-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    filter: drop-shadow(0 0 20px var(--star-creature));
+  }
+  50% { 
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 35px var(--star-creature));
+  }
+}
+
+/* ============================================
+   SECTION: THE CLIMB
+   ============================================ */
+.climb-section {
+  background: linear-gradient(180deg, var(--grass-dark) 0%, var(--night-sky-light) 50%, var(--night-sky) 100%);
+  min-height: 200dvh;
+  position: relative;
+}
+
+.climb-container {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: calc(var(--space-unit) * 12);
+}
+
+.climb-progress {
+  position: absolute;
+  left: calc(var(--space-unit) * 4);
+  top: 50%;
+  transform: translateY(-50%);
+  height: 200px;
+  width: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.climb-progress-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--trail-gold);
+  border-radius: 2px;
+  transition: height 0.3s ease;
+  box-shadow: 0 0 10px var(--trail-gold-soft);
+}
+
+.climbers {
+  position: relative;
+  width: 80px;
+  height: 100px;
+  transition: transform var(--transition-gentle);
+}
+
+.footholds {
+  position: absolute;
+  right: calc(var(--space-unit) * 4);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space-unit) * 3);
+}
+
+.foothold {
+  width: 60px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: transparent;
+  transition: all 0.3s ease;
+}
+
+.foothold:hover,
+.foothold:active,
+.foothold.revealed {
+  background: rgba(255, 215, 0, 0.1);
+  color: var(--trail-gold);
+  border: 1px solid var(--trail-gold-soft);
+}
+
+/* ============================================
+   SECTION: SUMMIT
+   ============================================ */
+.summit-section {
+  background: radial-gradient(ellipse at top, var(--night-sky-light) 0%, var(--night-sky) 60%);
+  position: relative;
+}
+
+.summit-stars {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.chime-star {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--starlight);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.chime-star:hover,
+.chime-star:active,
+.chime-star.chimed {
+  transform: scale(2);
+  box-shadow: 0 0 20px var(--starlight);
+}
+
+.summit-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 500px;
+}
+
+.constellation-with-gap {
+  width: 200px;
+  height: 200px;
+  margin: calc(var(--space-unit) * 4) auto;
+  position: relative;
+}
+
+.constellation-star {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--starlight);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--star-glow);
+}
+
+.constellation-empty {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 2px dashed var(--trail-gold-soft);
+  border-radius: 50%;
+  animation: pulse-gentle 2s ease-in-out infinite;
+}
+
+/* ============================================
+   SECTION: LETTING GO
+   ============================================ */
+.goodbye-section {
+  background: var(--night-sky);
+  position: relative;
+}
+
+.goodbye-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 30%, var(--night-sky) 80%);
+  pointer-events: none;
+}
+
+.goodbye-container {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 500px;
+}
+
+.rising-star {
+  width: 80px;
+  height: 80px;
+  margin: calc(var(--space-unit) * 4) auto;
+  cursor: pointer;
+  transition: all var(--transition-float);
+}
+
+.rising-star.rising {
+  animation: float-away 4s ease-out forwards;
+}
+
+@keyframes float-away {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-200px) scale(0.3);
+    opacity: 0.8;
+  }
+}
+
+.rising-star-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 30px var(--star-creature));
+  animation: gentle-pulse 2s ease-in-out infinite;
+}
+
+.rising-star:hover .rising-star-svg,
+.rising-star:active .rising-star-svg {
+  filter: drop-shadow(0 0 50px var(--trail-gold));
+}
+
+/* ============================================
+   SECTION: THE BRIGHTEST STAR
+   ============================================ */
+.finale-section {
+  background: var(--night-sky);
+  position: relative;
+  overflow: hidden;
+}
+
+.finale-sky {
+  position: absolute;
+  inset: 0;
+}
+
+.finale-star {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--starlight);
+  border-radius: 50%;
+  transition: all 0.5s ease;
+}
+
+.brightest-star {
+  width: 16px;
+  height: 16px;
+  background: var(--trail-gold);
+  box-shadow: 0 0 30px var(--trail-gold), 0 0 60px var(--trail-gold-soft);
+  animation: brightest-pulse 3s ease-in-out infinite;
+}
+
+@keyframes brightest-pulse {
+  0%, 100% {
+    box-shadow: 0 0 30px var(--trail-gold), 0 0 60px var(--trail-gold-soft);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 50px var(--trail-gold), 0 0 100px var(--trail-gold-soft);
+    transform: scale(1.2);
+  }
+}
+
+.finale-dancing .finale-star {
+  animation: star-dance 1s ease-in-out infinite;
+  animation-delay: var(--dance-delay, 0s);
+}
+
+@keyframes star-dance {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.3); }
+}
+
+.finale-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 500px;
+}
+
+.tap-anywhere {
+  font-size: 0.75rem;
+  color: var(--moon-silver);
+  margin-top: calc(var(--space-unit) * 4);
+  opacity: 0.6;
+  letter-spacing: 0.1em;
+}
+
+/* ============================================
+   SOURCES SECTION
+   ============================================ */
+.story-credits {
+  padding: calc(var(--space-unit) * 8) calc(var(--space-unit) * 4);
+  background: linear-gradient(180deg, var(--night-sky) 0%, var(--night-sky-light) 100%);
+  text-align: center;
+}
+
+.credits-content {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.credits-title {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  color: var(--trail-gold);
+  margin-bottom: calc(var(--space-unit) * 3);
+}
+
+.credits-text {
+  font-size: 0.875rem;
+  color: var(--moon-silver);
+  line-height: 1.8;
+}
+
+.credits-text a {
+  color: var(--starlight);
+  text-decoration: none;
+  border-bottom: 1px solid var(--trail-gold-soft);
+  transition: border-color 0.3s ease;
+}
+
+.credits-text a:hover {
+  border-color: var(--trail-gold);
+}
+
+/* ============================================
+   TOUCH TARGETS (Children-friendly)
+   ============================================ */
+.tap-target {
+  min-width: 60px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .stars-story *,
+  .stars-story *::before,
+  .stars-story *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .hero-star,
+  .firefly,
+  .star-creature-svg,
+  .rising-star-svg {
+    animation: none !important;
+  }
+}
+
+/* ============================================
+   MOBILE OPTIMIZATIONS
+   ============================================ */
+@media (max-width: 768px) {
+  .story-section {
+    padding: calc(var(--space-unit) * 4) calc(var(--space-unit) * 3);
+  }
+  
+  .story-text {
+    font-size: 1.125rem;
+  }
+  
+  .climb-progress {
+    left: calc(var(--space-unit) * 2);
+  }
+  
+  .footholds {
+    right: calc(var(--space-unit) * 2);
+  }
+}
+
+/* ============================================
+   SAFE AREAS
+   ============================================ */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .hero-section {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .story-credits {
+    padding-bottom: calc(var(--space-unit) * 8 + env(safe-area-inset-bottom));
+  }
+}
+
+

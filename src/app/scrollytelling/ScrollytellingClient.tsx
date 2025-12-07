@@ -385,6 +385,7 @@ const stories: Story[] = [
     format: "narrative",
     readTime: "5 min",
     href: "/scrollytelling/the-monster-under-my-bed",
+    draft: true,
     tags: ["children", "bedtime", "fiction", "monster", "friendship", "fear"],
   },
   {
