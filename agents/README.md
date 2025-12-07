@@ -10,6 +10,7 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 |-------|----------|-------------------|
 | [Invocation Enhancer](#scrollytelling-invocation-enhancer) | **🚀 Enhance any scrollytelling request** | `@agents/scrollytelling-invocation-enhancer.md` |
 | [Audit Agent](#scrollytelling-audit-agent) | **🔍 Evaluate & improve experiences** | `@agents/scrollytelling-audit-agent.md` |
+| [Citation Audit Agent](#citation-audit-agent) | **📚 Verify citations & source quality** | `@agents/citation-audit-agent.md` |
 | [Scrollytelling Expert](#scrollytelling-expert) | Immersive scroll-based stories | `@agents/scrollytelling-expert.md` |
 | [Children's Fiction Scrollytelling](#childrens-fiction-scrollytelling-agent) | **Magical stories for ages 3-6** | `@agents/childrens-fiction-scrollytelling-agent.md` |
 | [Children's Books Writer](#childrens-books-writer-expert) | **Picture book narratives, ages 3-6** | `@agents/childrens-books-writer-expert.md` |
@@ -173,6 +174,81 @@ The agent produces a structured audit report with:
 ```
 Issue presented → User marks [x] Approve / [ ] Defer / [ ] Reject → 
 Only approved fixes implemented
+```
+
+---
+
+### Citation Audit Agent
+**File:** `citation-audit-agent.md`
+
+**Role:** World-class research librarian and citation integrity specialist that audits scrollytelling experiences for source quality, claim-evidence alignment, and citation accuracy.
+
+**📚 USE BEFORE PUBLISHING:** Run completed experiences through this agent to verify all citations are valid, sources are credible, and claims are properly supported.
+
+**Best For:**
+- Verifying source credibility (Tier 1-4 classification)
+- Mapping claims to citations (gap analysis)
+- Detecting broken links
+- Verifying quote authenticity
+- Ensuring children's content has appropriate sources
+- Upgrading weak sources to authoritative alternatives
+
+**Source Tier System:**
+| Tier | Quality | Examples |
+|------|---------|----------|
+| Tier 1 | Gold Standard | JSTOR, .edu, peer-reviewed, museums, archives |
+| Tier 2 | Highly Credible | NYT, WSJ, Guardian, Britannica, major publishers |
+| Tier 3 | Use with Caution | Wikipedia (verify elsewhere), expert blogs |
+| Tier 4 | Red Flag (AVOID) | Social media, anonymous, self-published |
+
+**Audit Depths:**
+| Level | Time | Coverage |
+|-------|------|----------|
+| Quick | 5 min | Sources scan, link check, tier classification |
+| Standard | 15 min | Full claim mapping, source verification |
+| Deep | 30+ min | Quote verification, original source review |
+
+**Invocation Examples:**
+```
+# Standard citation audit
+Using @agents/citation-audit-agent.md, audit the citations for
+/scrollytelling/the-firearm
+Type: General
+
+# Deep audit with focus areas
+Using @agents/citation-audit-agent.md, conduct a deep citation audit of
+/scrollytelling/alphabet-adventure-train
+Type: Children's Fiction
+Focus areas: Educational accuracy, quote verification
+
+# Quick check before publishing
+Using @agents/citation-audit-agent.md, perform a quick citation audit of
+/scrollytelling/the-discovery-of-antibiotics
+```
+
+**What It Checks:**
+| Category | Checks |
+|----------|--------|
+| Claim-Citation Mapping | Every factual claim has Tier 1-2 source |
+| Source Quality | 80%+ sources are Tier 1-2, zero Tier 4 |
+| Link Integrity | All URLs functional and accessible |
+| Quote Accuracy | Verbatim, attributed, context-preserved |
+| Format Consistency | Uniform citation style throughout |
+
+**Output Format:**
+The agent produces a structured audit report with:
+1. Source tier distribution metrics
+2. 🔴 Critical issues (unsupported claims, Tier 4 sources)
+3. 🟡 Important issues (weak sources, broken links)
+4. 🟢 Polish suggestions (format, ordering)
+5. Unsupported claims inventory with suggested sources
+6. Link status report
+7. Certification status (Approved/Rejected)
+
+**Approval Flow:**
+```
+Critical issues found → Must fix before publishing →
+User approves fixes → Agent implements → Re-audit → Certification
 ```
 
 ---
@@ -618,6 +694,8 @@ An **orchestrator agent** coordinates multiple specialized agents to produce com
 |--------------|--------|-------------------|--------|
 | `scrollytelling-expert.md` | Digital Storytelling | 6 agents | Mobile-native scrollytelling pages |
 | `childrens-fiction-scrollytelling-agent.md` | **Children's Stories (3-6)** | 4 agents | Magical animated children's experiences |
+| `scrollytelling-audit-agent.md` | Quality Assurance | 3-4 agents | Experience audit reports |
+| `citation-audit-agent.md` | **Citation Integrity** | 2-3 agents | Source verification reports |
 
 ### Scrollytelling Orchestrator Architecture
 
@@ -701,7 +779,14 @@ These checkpoints **must pass** before proceeding:
 │     └─ Sources authenticated                                    │
 │     └─ Cannot proceed without explicit approval                 │
 │                                                                 │
-│  ③ MOBILE DEVICE TESTING ⚠️ BLOCKING                           │
+│  ③ CITATION AUDIT APPROVAL ⚠️ BLOCKING (NEW)                   │
+│     └─ All claims have Tier 1-2 source support                  │
+│     └─ All links functional                                     │
+│     └─ Zero Tier 4 sources                                      │
+│     └─ Quotes verified and attributed                           │
+│     └─ Cannot publish without citation certification            │
+│                                                                 │
+│  ④ MOBILE DEVICE TESTING ⚠️ BLOCKING                           │
 │     └─ Tested on real iPhone                                    │
 │     └─ Tested on real Android                                   │
 │     └─ 60fps animations confirmed                               │
@@ -758,10 +843,13 @@ The recommended workflow for creating **mobile-native** scrollytelling content:
 7.  @agents/ui-ux-design-expert.md          → Visual Refinement (mobile typography)
 8.  @agents/software-engineering-expert.md  → Component Implementation
 9.  @agents/immersive-experience-engineer.md → Mobile-Native Layer (60fps, touch, Theatre Bar)
-10. @agents/scrollytelling-expert.md        → Final Review (real device testing)
+10. @agents/citation-audit-agent.md         → Citation Verification (claim-source mapping) ⚠️ NEW
+11. @agents/scrollytelling-expert.md        → Final Review (real device testing)
 ```
 
-**Key Addition:** Step 9 (`immersive-experience-engineer.md`) ensures the final experience feels like a native app, not a website. This includes 60fps animations, touch interactions, hidden browser chrome, and Theatre Bar integration.
+**Key Additions:**
+- Step 9 (`immersive-experience-engineer.md`) ensures the final experience feels like a native app, not a website. This includes 60fps animations, touch interactions, hidden browser chrome, and Theatre Bar integration.
+- Step 10 (`citation-audit-agent.md`) verifies all citations are valid, sources are Tier 1-2, links work, and claims have proper support. **BLOCKING**: Cannot publish without citation certification.
 
 ### Quick Content Creation
 

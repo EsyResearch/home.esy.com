@@ -620,6 +620,7 @@ Current agents derived from this framework:
 | `childrens-fiction-scrollytelling-agent.md` | **Children's Scrollytelling** | Magical Story Experiences | **Orchestrator** → Children's Writer, UI/UX, SW Eng, Immersive Eng |
 | `scrollytelling-invocation-enhancer.md` | **Invocation Enhancement** | Brief Builder & Optimizer | **Pre-processor** → Scrollytelling Expert, Children's Fiction |
 | `scrollytelling-audit-agent.md` | **Quality Assurance** | Experience Auditor | **Orchestrator** → Scrollytelling Expert, Immersive Eng, Children's Fiction |
+| `citation-audit-agent.md` | **Citation Integrity** | Source & Citation Verifier | **Post-processor** → Scrollytelling Expert, Research Citations, Historian Editor |
 
 ---
 
