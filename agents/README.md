@@ -9,6 +9,8 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 | Agent | Best For | Invocation Prefix |
 |-------|----------|-------------------|
 | [Scrollytelling Expert](#scrollytelling-expert) | Immersive scroll-based stories | `@agents/scrollytelling-expert.md` |
+| [Children's Fiction Scrollytelling](#childrens-fiction-scrollytelling-agent) | **Magical stories for ages 3-6** | `@agents/childrens-fiction-scrollytelling-agent.md` |
+| [Children's Books Writer](#childrens-books-writer-expert) | **Picture book narratives, ages 3-6** | `@agents/childrens-books-writer-expert.md` |
 | [Immersive Experience Engineer](#immersive-experience-engineer) | App-like web experiences, animations | `@agents/immersive-experience-engineer.md` |
 | [Research & Citations](#research--citations-expert) | Authoritative source discovery | `@agents/research-citations-expert.md` |
 | [Historian Writer](#historian-writer-expert) | Historical narrative content | `@agents/historian-writer-expert.md` |
@@ -101,6 +103,114 @@ experience about "The History of the Bicycle"
 Using @agents/scrollytelling-expert.md, build an immersive narrative 
 about the invention of the printing press. Include 8 sections, emphasize 
 the Gutenberg era, and use a medieval manuscript aesthetic.
+```
+
+---
+
+### Children's Fiction Scrollytelling Agent
+**File:** `childrens-fiction-scrollytelling-agent.md`
+
+**Role:** Award-winning children's digital experience designer and interactive storytelling architect specializing in magical, scroll-based narrative experiences for young children ages 3-6.
+
+**⚠️ ORCHESTRATOR:** This agent coordinates the Children's Books Writer and other agents to create complete children's scrollytelling experiences.
+
+**Best For:**
+- Creating immersive, animated children's stories
+- SVG character animation and choreography
+- Interactive/participatory storytelling for ages 3-6
+- Short stories (5-10 minutes) and long stories (15-25 minutes)
+- Magical, delightful scroll-based experiences
+
+**Key Features:**
+- **📱 Tablet-Native First** — Tablets in small hands are the primary canvas
+- **56px+ touch targets** — Child-friendly interactions
+- **SVG Animation System** — Character expressions, environmental effects
+- **Participation Mechanics** — Count, find, help, choose interactions
+- **Unique Visual Identity** — Every story gets its own design research
+- **Age-Appropriate Everything** — Vocabulary, emotions, pacing for 3-6 year olds
+- **Parent-Child Experience** — Magical for kids, enjoyable for adults
+- Coordinates: Children's Books Writer, UI/UX, Software Engineer, Immersive Experience
+
+**Story Types:**
+| Type | Duration | Best For |
+|------|----------|----------|
+| Short | 5-10 min | Bedtime, single session, younger kids (3-4) |
+| Long | 15-25 min | Multi-chapter, journey stories, older kids (5-6) |
+
+**Participation Options:**
+- 🔢 Counting moments (tap to count objects)
+- 🔍 Finding/searching (where's the hidden frog?)
+- 🤝 Helping character (shake to wake, tap to open)
+- 🛤️ Making choices (which path should Bunny take?)
+
+**Invocation Examples:**
+```
+# Create a complete children's scrollytelling
+Using @agents/childrens-fiction-scrollytelling-agent.md, create a 
+magical scrollytelling experience about a curious kitten who 
+discovers a secret garden. Short format, cozy visual style, 
+include counting flowers participation.
+
+# With specific brief
+Apply @agents/childrens-fiction-scrollytelling-agent.md with this brief:
+- Theme: friendship and sharing
+- Length: Long (15-20 minutes)
+- Characters: A shy bear and an energetic squirrel
+- Visual style: Cozy autumn forest
+- Participation: Help characters gather acorns
+```
+
+---
+
+### Children's Books Writer Expert
+**File:** `childrens-books-writer-expert.md`
+
+**Role:** Award-winning children's author and early literacy specialist with 25+ years crafting beloved stories for young readers ages 3-6.
+
+**Best For:**
+- Writing picture book narratives
+- Creating age-appropriate dialogue and vocabulary
+- Crafting humor for young children
+- Developing memorable characters
+- Writing both short and long format stories
+
+**Key Features:**
+- **Early Reader Expertise** — Dolch sight words, 5-15 word sentences
+- **Read-Aloud Excellence** — Natural rhythm, fun to perform
+- **Humor Mastery** — Slapstick, wordplay, subverted expectations
+- **Emotional Truth** — Validates children's real feelings
+- **Educational Integration** — Learning woven naturally into story
+- **Animation Cue System** — [ANIMATION:], [SOUND:], [PARTICIPATION:] markers
+- **Rule of Three** — Three attempts, three friends, three discoveries
+
+**Story Architecture:**
+| Format | Duration | Structure | Word Count |
+|--------|----------|-----------|------------|
+| Short | 5-10 min | 3-beat (Spark → Adventure → Triumph) | 500-1,000 |
+| Long | 15-25 min | 5-act with chapters | 1,500-3,000 |
+
+**Character Archetypes:**
+- 🦸 The Plucky Underdog (small but mighty)
+- 🏠 The Reluctant Hero (discovers hidden courage)
+- 🔍 The Boundless Explorer (curiosity that cannot be contained)
+- ❤️ The Caring Friend (helps others before self)
+
+**Invocation Examples:**
+```
+# Write a short children's story
+Using @agents/childrens-books-writer-expert.md, write a short story 
+(5-10 minutes) about a ladybug who wants to fly to the moon. Include 
+animation cues and participation prompts for scrollytelling.
+
+# Write with specific requirements
+Apply @agents/childrens-books-writer-expert.md to write a long story 
+about three animal friends who build a treehouse. Theme: teamwork. 
+Include counting moments and sound effects.
+
+# Character-focused story
+Using @agents/childrens-books-writer-expert.md, create a bedtime story 
+featuring a sleepy cloud named Cumulus who can't fall asleep. 
+Gentle, cozy tone. 500-700 words.
 ```
 
 ---
@@ -384,6 +494,7 @@ An **orchestrator agent** coordinates multiple specialized agents to produce com
 | Orchestrator | Domain | Agents Coordinated | Output |
 |--------------|--------|-------------------|--------|
 | `scrollytelling-expert.md` | Digital Storytelling | 6 agents | Mobile-native scrollytelling pages |
+| `childrens-fiction-scrollytelling-agent.md` | **Children's Stories (3-6)** | 4 agents | Magical animated children's experiences |
 
 ### Scrollytelling Orchestrator Architecture
 

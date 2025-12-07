@@ -610,12 +610,14 @@ Current agents derived from this framework:
 | `historian-editor-expert.md` | History | Fact-Checker/Editor | ← Writer, ← Research |
 | `essayist-expert.md` | Academic Writing | Essay Instruction | Standalone |
 | `copywriter-marketing-expert.md` | Marketing | Conversion Copy | Standalone |
-| `software-engineering-expert.md` | Engineering | Full-Stack Dev | ← Scrollytelling |
-| `ui-ux-design-expert.md` | Design | Interface Design | → Immersive Eng, ← Scrollytelling |
-| `immersive-experience-engineer.md` | Frontend/Animation | **Mobile-Native Feel** | ← UI/UX, ← Scrollytelling (MANDATORY) |
+| `software-engineering-expert.md` | Engineering | Full-Stack Dev | ← Scrollytelling, ← Children's Fiction |
+| `ui-ux-design-expert.md` | Design | Interface Design | → Immersive Eng, ← Scrollytelling, ← Children's Fiction |
+| `immersive-experience-engineer.md` | Frontend/Animation | **Mobile-Native Feel** | ← UI/UX, ← Scrollytelling, ← Children's Fiction (MANDATORY) |
 | `template-integration-engineer.md` | Frontend | Template → Next.js | Standalone |
 | `research-citations-expert.md` | Research | Source Discovery & Verification | → All content agents |
 | `scrollytelling-expert.md` | Digital Storytelling | **Mobile-Native** Immersive Narratives | **Orchestrator** → Writer, Editor, Research, UI/UX, SW Eng, **Immersive Eng** |
+| `childrens-books-writer-expert.md` | **Children's Fiction (3-6)** | Picture Book Narratives | ← Children's Fiction Scrollytelling |
+| `childrens-fiction-scrollytelling-agent.md` | **Children's Scrollytelling** | Magical Story Experiences | **Orchestrator** → Children's Writer, UI/UX, SW Eng, Immersive Eng |
 
 ---
 

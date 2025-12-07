@@ -32,7 +32,8 @@ type StoryCategory =
   | 'Technology'
   | 'Culture'
   | 'Space'
-  | 'Education & Writing';
+  | 'Education & Writing'
+  | 'Children\'s Fiction';
 
 interface Story {
   id: string;
@@ -59,6 +60,7 @@ const CATEGORY_CONFIG: Record<StoryCategory, { color: string; label: string }> =
   'Culture': { color: '#EC4899', label: 'Culture' },
   'Space': { color: '#8B5CF6', label: 'Space' },
   'Education & Writing': { color: '#06B6D4', label: 'Education & Writing' },
+  'Children\'s Fiction': { color: '#FFD700', label: 'Children\'s Fiction' },
 };
 
 const FORMAT_CONFIG: Record<StoryFormat, { label: string; badge?: string }> = {
@@ -66,7 +68,7 @@ const FORMAT_CONFIG: Record<StoryFormat, { label: string; badge?: string }> = {
   'howto': { label: 'How To Guides', badge: 'GUIDE' },
 };
 
-const ALL_CATEGORIES: StoryCategory[] = ['Science', 'History', 'Technology', 'Culture', 'Space', 'Education & Writing'];
+const ALL_CATEGORIES: StoryCategory[] = ['Science', 'History', 'Technology', 'Culture', 'Space', 'Education & Writing', 'Children\'s Fiction'];
 
 // ==================== STORIES DATA ====================
 
@@ -358,9 +360,46 @@ const stories: Story[] = [
     format: "howto",
     readTime: "8 min",
     href: "/scrollytelling/how-to-write-an-essay",
+    tags: ["writing", "education"],
+  },
+  {
+    id: "the-night-the-stars-fell",
+    number: "25",
+    title: "The Night the Stars Fell",
+    subtitle: "A Children's Bedtime Story",
+    description: "An interactive bedtime story about a brave little girl who helps a fallen star find its way home. Tap stars, follow the golden trail, and climb to the top of the world.",
+    category: "Children's Fiction",
+    format: "narrative",
+    readTime: "5 min",
+    href: "/scrollytelling/the-night-the-stars-fell",
+    draft: true,
+    tags: ["children", "bedtime", "fiction", "stars", "friendship"],
+  },
+  {
+    id: "the-monster-under-my-bed",
+    number: "26",
+    title: "The Monster Under My Bed",
+    subtitle: "A Tale of Unlikely Friendship",
+    description: "Maya discovers the monster under her bed is actually afraid of the dark. A heartwarming interactive story with lovable characters, expressive animations, and tap-to-reveal moments.",
+    category: "Children's Fiction",
+    format: "narrative",
+    readTime: "5 min",
+    href: "/scrollytelling/the-monster-under-my-bed",
+    tags: ["children", "bedtime", "fiction", "monster", "friendship", "fear"],
+  },
+  {
+    id: "mia-mouse-mystery-m",
+    number: "27",
+    title: "Mia Mouse and the Mystery M",
+    subtitle: "A Curious Adventure",
+    description: "Follow curious Mia Mouse as she discovers mysterious M-shaped crumbs leading to a wonderful surprise! An interactive scrollytelling story with counting, tapping, and a heartwarming friendship ending.",
+    category: "Children's Fiction",
+    format: "narrative",
+    readTime: "6 min",
+    href: "/scrollytelling/mia-mouse-mystery-m",
     isNew: true,
     isFeatured: true,
-    tags: ["writing", "education"],
+    tags: ["children", "alphabet", "letter M", "mouse", "friendship", "counting", "ages 3-6"],
   },
 ];
 
