@@ -179,16 +179,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 12vh;
+  padding-top: 15vh;
   position: relative;
   background: radial-gradient(ellipse at center, var(--gunmetal-dark) 0%, var(--void-black) 70%);
   padding-left: 2rem;
   padding-right: 2rem;
   padding-bottom: 2rem;
   overflow: hidden;
-  /* Prevent any multi-column layout */
-  columns: unset;
-  column-count: unset;
+}
+
+/* Mobile: less top padding since screen is taller relative to width */
+@media (max-width: 768px) {
+  .firearm-story .hero {
+    padding-top: 10vh;
+  }
 }
 
 /* Crosshair overlay */
@@ -218,13 +222,12 @@
   z-index: 10;
   text-align: center;
   max-width: 700px;
-  width: 100%;
-  margin: 0 auto;
-  /* Prevent any column or layout splitting */
-  display: block;
-  break-inside: avoid;
-  columns: unset;
-  column-count: unset;
+  /* Override global grid styles from globals.css */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-template-columns: unset;
+  gap: unset;
 }
 
 .firearm-story .hero-era {
@@ -242,14 +245,6 @@
   margin-bottom: 0.5rem;
   letter-spacing: 0.05em;
   text-shadow: 0 0 60px rgba(255, 87, 34, 0.2);
-  /* Ensure title stays on one line on desktop */
-  white-space: nowrap;
-}
-
-@media (max-width: 600px) {
-  .firearm-story .hero-title {
-    white-space: normal;
-  }
 }
 
 .firearm-story .hero-title .accent {
@@ -274,17 +269,17 @@
 
 .firearm-story .hero-scroll {
   position: absolute;
-  bottom: 8vh;
+  bottom: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
 }
 
-/* Mobile: gun needs to be higher due to theatre bar */
-@media (max-width: 900px) {
+/* Mobile: pull trigger icon up more */
+@media (max-width: 768px) {
   .firearm-story .hero-scroll {
-    bottom: 15vh;
+    bottom: 12vh;
   }
 }
 

@@ -798,6 +798,54 @@ For creating new agents or understanding the underlying architecture, see:
 
 ---
 
+## ⚠️ Known Style Conflicts (Scrollytelling)
+
+### Global CSS Bleeding into Scrollytelling Pages
+
+**Problem:** The global `globals.css` file contains styles for common class names (like `.hero-content`) that can bleed into scrollytelling story pages and cause unexpected layout issues.
+
+**Specific Issue: `.hero-content` Two-Column Split**
+
+In `src/app/globals.css`:
+```css
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* Causes two-column layout! */
+  gap: 4rem;
+}
+```
+
+This global rule applies to ANY element with class `.hero-content`, including those inside scrollytelling stories. On wide screens (>1024px), this causes hero content to split into two columns unexpectedly.
+
+**Solution:** Always override global styles in scrollytelling-specific CSS:
+
+```css
+/* In your-story.css */
+.your-story .hero-content {
+  /* Override global grid styles */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-template-columns: unset;
+  gap: unset;
+}
+```
+
+**Prevention Checklist:**
+- [ ] Use unique class prefixes (`.firearm-story .hero-content` not just `.hero-content`)
+- [ ] Explicitly set `display`, `grid-template-columns`, `flex-direction` in story CSS
+- [ ] Test on wide desktop screens (1440px+) to catch layout bleed
+- [ ] Consider using CSS Modules or more specific selectors
+
+**Other Potentially Conflicting Global Classes:**
+- `.hero-title`, `.hero-subtitle`, `.hero-description`
+- `.section`, `.content`
+- Any generic layout class names
+
+**Rule of Thumb:** If your scrollytelling uses a class name that sounds generic, check `globals.css` for conflicts and add explicit overrides.
+
+---
+
 ## Mobile-First Scrollytelling (Critical)
 
 **70%+ of scrollytelling users are on mobile.** Every scrollytelling piece must:

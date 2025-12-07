@@ -175,9 +175,49 @@
 - ❌ Never ship without testing on real mobile devices
 - ❌ Never block scroll or trap users without escape
 - ❌ Never sacrifice content accessibility for visual effect
+- ❌ Never use generic class names without explicit style overrides (see Global CSS Conflicts below)
 
 ### Intentional Omissions
 - **Exit Transitions**: Not implemented. View Transitions API lacks Safari support (major mobile browser). Entry animations on the destination page provide sufficient continuity. Exit animations would add complexity and make navigation feel slower. Decision: "not needed" rather than "incomplete."
+
+### ⚠️ Global CSS Conflicts (CRITICAL)
+
+**Problem:** The Esy.com `globals.css` contains styles for generic class names that WILL bleed into scrollytelling pages and cause layout issues on wide screens.
+
+**Known Conflicting Classes in `globals.css`:**
+| Class | Global Style | Effect |
+|-------|-------------|--------|
+| `.hero-content` | `grid-template-columns: 1fr 1fr` | Splits hero into 2 columns on desktop |
+| `.hero-title` | Various typography | May override story-specific fonts |
+| `.hero-subtitle` | Various typography | May override story-specific fonts |
+
+**Mandatory Prevention Pattern:**
+
+For EVERY scrollytelling story, explicitly override potentially conflicting global styles:
+
+```css
+/* Pattern: Always scope to story container and reset grid/flex */
+.your-story .hero-content {
+  /* Override global grid from globals.css */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-template-columns: unset;
+  gap: unset;
+}
+```
+
+**Pre-Flight Checklist (Add to every scrollytelling):**
+- [ ] All classes scoped under story container (`.story-name .class`)
+- [ ] `.hero-content` explicitly set to `display: flex` or `display: block`
+- [ ] `grid-template-columns: unset` added if using flex
+- [ ] Tested on 1440px+ wide screens to catch column splits
+- [ ] Tested in Safari, Chrome, Firefox
+
+**Why This Happens:**
+Global CSS in `globals.css` is loaded site-wide. When a scrollytelling page uses a class name like `.hero-content`, the global styles apply FIRST, then story-specific styles layer on top. If story CSS doesn't explicitly override layout properties, the global grid layout persists.
+
+**Rule:** Treat every generic class name as "potentially poisoned" by globals. Always override.
 
 ## Collaboration Protocols
 
@@ -234,12 +274,14 @@ When working with this agent, reference the role by stating:
 For every immersive component:
 - [ ] Works on iOS Safari (the hardest browser)
 - [ ] Works on Android Chrome
-- [ ] Works on desktop browsers
+- [ ] Works on desktop browsers (including wide 1440px+ screens)
 - [ ] Respects `prefers-reduced-motion`
 - [ ] Handles viewport resize gracefully
 - [ ] No scroll jank at any point
 - [ ] Touch interactions feel native
 - [ ] Keyboard navigation maintained
+- [ ] **Global CSS overrides applied** (`.hero-content` grid reset, etc.)
+- [ ] Tested on wide desktop to catch column splits from global styles
 
 ## Technical Patterns Library
 
