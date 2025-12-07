@@ -615,13 +615,15 @@ Current agents derived from this framework:
 | `immersive-experience-engineer.md` | Frontend/Animation | **Mobile-Native Feel** | ← UI/UX, ← Scrollytelling, ← Children's Fiction (MANDATORY) |
 | `template-integration-engineer.md` | Frontend | Template → Next.js | Standalone |
 | `research-citations-expert.md` | Research | Source Discovery & Verification | → All content agents |
-| `scrollytelling-expert.md` | Digital Storytelling | **Mobile-Native** Immersive Narratives | **Orchestrator** → Writer, Editor, Research, UI/UX, SW Eng, **Immersive Eng** |
+| `scrollytelling-expert.md` | Digital Storytelling | **Mobile-Native** Immersive Narratives | **Orchestrator** → Writer, Editor, Research, UI/UX, SW Eng, **Immersive Eng**, SVG Expert, **Visual Auditor** |
 | `childrens-books-writer-expert.md` | **Children's Fiction (3-6)** | Picture Book Narratives | ← Children's Fiction Scrollytelling |
-| `childrens-fiction-scrollytelling-agent.md` | **Children's Scrollytelling** | Magical Story Experiences | **Orchestrator** → Children's Writer, UI/UX, SW Eng, Immersive Eng |
+| `childrens-fiction-scrollytelling-agent.md` | **Children's Scrollytelling** | Magical Story Experiences | **Orchestrator** → Children's Writer, UI/UX, SW Eng, Immersive Eng, SVG Expert, **Visual Auditor** |
 | `scrollytelling-invocation-enhancer.md` | **Invocation Enhancement** | Brief Builder & Optimizer | **Pre-processor** → Scrollytelling Expert, Children's Fiction |
 | `scrollytelling-audit-agent.md` | **Quality Assurance** | Experience Auditor | **Orchestrator** → Scrollytelling Expert, Immersive Eng, Children's Fiction |
 | `citation-audit-agent.md` | **Citation Integrity** | Source & Citation Verifier | **Post-processor** → Scrollytelling Expert, Research Citations, Historian Editor, Quotes Audit |
 | `quotes-audit-agent.md` | **Quote Verification** | Quote Authenticity Specialist | **Orchestrated by** Citation Audit Agent |
+| `svg-illustration-animation-expert.md` | **Visual Design** | SVG Illustrator & Animator | ← Scrollytelling, ← Children's Fiction, → Immersive Eng, ← UI/UX, → **Visual Auditor** |
+| `visual-auditor-agent.md` | **Visual Quality Assurance** | SVG Quality & Performance Certifier | **Post-processor** ← SVG Expert, → Scrollytelling, → Children's Fiction (MANDATORY) |
 
 ---
 

@@ -12,6 +12,7 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 | [Audit Agent](#scrollytelling-audit-agent) | **🔍 Evaluate & improve experiences** | `@agents/scrollytelling-audit-agent.md` |
 | [Citation Audit Agent](#citation-audit-agent) | **📚 Verify citations & source quality** | `@agents/citation-audit-agent.md` |
 | [Quotes Audit Agent](#quotes-audit-agent) | **💬 Verify quote authenticity** | `@agents/quotes-audit-agent.md` |
+| [Visual Auditor Agent](#visual-auditor-agent) | **🎨 Audit SVG quality & animation performance** | `@agents/visual-auditor-agent.md` |
 | [Scrollytelling Expert](#scrollytelling-expert) | Immersive scroll-based stories | `@agents/scrollytelling-expert.md` |
 | [Children's Fiction Scrollytelling](#childrens-fiction-scrollytelling-agent) | **Magical stories for ages 3-6** | `@agents/childrens-fiction-scrollytelling-agent.md` |
 | [Children's Books Writer](#childrens-books-writer-expert) | **Picture book narratives, ages 3-6** | `@agents/childrens-books-writer-expert.md` |
@@ -21,6 +22,7 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 | [Historian Editor](#historian-editor-expert) | Fact-checking & verification | `@agents/historian-editor-expert.md` |
 | [Software Engineer](#software-engineering-expert) | Full-stack development | `@agents/software-engineering-expert.md` |
 | [UI/UX Designer](#uiux-design-expert) | Interface & experience design | `@agents/ui-ux-design-expert.md` |
+| [SVG Illustration & Animation](#svg-illustration-animation-expert) | **Inline SVG visuals & motion** | `@agents/svg-illustration-animation-expert.md` |
 | [Template Integration](#template-integration-engineer) | Raw templates → Next.js pages | `@agents/template-integration-engineer.md` |
 | [Essayist](#essayist-expert) | Academic essay guidance | `@agents/essayist-expert.md` |
 | [Copywriter](#copywriter-marketing-expert) | Marketing & conversion copy | `@agents/copywriter-marketing-expert.md` |
@@ -322,6 +324,90 @@ Using @agents/quotes-audit-agent.md, verify the following quotes:
 
 ---
 
+### Visual Auditor Agent
+**File:** `visual-auditor-agent.md`
+
+**Role:** World-class visual quality assurance specialist and creative director that audits SVG illustrations and animations for technical quality, aesthetic excellence, performance, accessibility, and content relevance.
+
+**🎨 USE BEFORE PUBLISHING:** Run all custom SVG visual assets through this agent to verify they meet publication standards.
+
+**Best For:**
+- Auditing SVG technical quality (optimization, structure, code cleanliness)
+- Verifying animation performance (60fps on mobile)
+- Assessing visual composition and aesthetic excellence
+- Checking accessibility compliance (WCAG AA)
+- Evaluating content relevance and narrative alignment
+- Cross-browser and cross-device rendering validation
+- Cultural accuracy and sensitivity review
+
+**Five-Tier Audit Framework:**
+| Tier | Focus | Blocking? |
+|------|-------|-----------|
+| 1 | Technical Foundation | ✅ Yes |
+| 2 | Accessibility Compliance | ✅ Yes |
+| 3 | Animation Performance | ✅ Yes |
+| 4 | Visual Excellence | ⚠️ Important |
+| 5 | Content Relevance | ⚠️ Important |
+
+**Grading System:**
+| Grade | Score | Publication Status |
+|-------|-------|-------------------|
+| A+ | 97-100 | ✅ Ship immediately |
+| A | 93-96 | ✅ Ship |
+| A- | 90-92 | ✅ Ship with notes |
+| B+ | 87-89 | ✅ Ship after review |
+| B | 83-86 | ⚠️ Revise if time permits |
+| B- | 80-82 | ⚠️ Revise recommended |
+| C+ | 77-79 | ❌ Revise required |
+| C | 73-76 | ❌ Major revision required |
+| C-/D/F | <73 | ❌ Reject |
+
+**Category Weights:**
+- Technical Quality: 25%
+- Accessibility: 20%
+- Animation Performance: 20%
+- Visual Excellence: 20%
+- Content Relevance: 15%
+
+**Invocation Examples:**
+```
+# Standard visual audit
+Using @agents/visual-auditor-agent.md, audit the SVG illustrations for
+/scrollytelling/flavors-of-the-east
+Focus: Character illustrations, animation performance
+
+# Pre-publication certification
+Using @agents/visual-auditor-agent.md, perform a full certification audit
+on all visual assets for /scrollytelling/the-night-the-stars-fell
+
+# Performance-focused audit
+Apply @agents/visual-auditor-agent.md to audit animation performance 
+for the monster character SVG. Test on mobile devices.
+
+# Accessibility audit
+Using @agents/visual-auditor-agent.md, verify WCAG compliance for
+all SVG illustrations in the children's story.
+```
+
+**Output Format:**
+The agent produces a structured Visual Audit Report with:
+1. Executive summary with overall grade
+2. Five-tier category scores with weights
+3. 🔴 Blocking issues (must fix before publication)
+4. 🟡 Important issues (should fix)
+5. 🟢 Polish suggestions (nice to have)
+6. Detailed findings by category
+7. Remediation checklist
+8. Certification status (Approved/Rejected)
+
+**Collaboration:**
+- ← **SVG Illustration & Animation Expert**: Creates assets → Visual Auditor certifies
+- ← **Scrollytelling Expert**: Requests certification before publication
+- ← **Immersive Experience Engineer**: Performance validation
+- ← **Children's Fiction Agent**: Child-specific audit criteria
+
+---
+
 ### Scrollytelling Expert
 **File:** `scrollytelling-expert.md`
 
@@ -338,7 +424,7 @@ Using @agents/quotes-audit-agent.md, verify the following quotes:
 - **Anti-Pattern-Matching Protocol** — prevents reusing structural patterns
 - **Layout Variation Required** (minimum 3 different patterns, no consecutive duplicates)
 - Requires 2+ unique interaction mechanics never used before
-- Coordinates **6 agents** (Research, Writer, Editor, UI/UX, Engineer, **Immersive Experience**)
+- Coordinates **7 agents** (Research, Writer, Editor, UI/UX, **SVG Illustration**, Engineer, **Immersive Experience**)
 - Enforces Sources & Further Reading section
 - **Real device testing required** (not just browser responsive mode)
 
@@ -397,7 +483,7 @@ the Gutenberg era, and use a medieval manuscript aesthetic.
 - **Unique Visual Identity** — Every story gets its own design research
 - **Age-Appropriate Everything** — Vocabulary, emotions, pacing for 3-6 year olds
 - **Parent-Child Experience** — Magical for kids, enjoyable for adults
-- Coordinates: Children's Books Writer, UI/UX, Software Engineer, Immersive Experience
+- Coordinates: Children's Books Writer, UI/UX, **SVG Illustration & Animation**, Software Engineer, Immersive Experience
 
 **Story Types:**
 | Type | Duration | Best For |
@@ -672,6 +758,51 @@ for accessibility and usability issues.
 
 ---
 
+### SVG Illustration & Animation Expert
+**File:** `svg-illustration-animation-expert.md`
+
+**Role:** World-class illustrator and motion designer with 20+ years of experience creating scalable vector graphics, specializing in editorial illustration, character design, icon systems, and scroll-driven animation.
+
+**Best For:**
+- Creating inline SVG illustrations for scrollytelling
+- Character design and expression systems
+- Icon and symbol design
+- Food, object, and environmental illustration
+- Scroll-linked animations (steam, particles, morphing)
+- CSS and JavaScript animation choreography
+- Data visualization graphics
+
+**Core Capabilities:**
+- **Illustration**: Composition, color theory, shape language, character design
+- **SVG Mastery**: Path optimization, viewBox, gradients, filters, accessibility
+- **Animation**: Classical principles, timing/easing, scroll-linked motion
+- **Performance**: GPU-accelerated transforms, reduced motion support
+
+**Collaboration:**
+- ← **Scrollytelling Expert**: Provides visual direction, receives illustrated assets
+- ← **Children's Fiction Agent**: Character and scene illustrations
+- → **Immersive Experience Engineer**: Animation implementation
+- ← **UI/UX Designer**: Design system alignment
+
+**Invocation Examples:**
+```
+# Create character illustration
+Using @agents/svg-illustration-animation-expert.md, create an SVG 
+character design for Sammy Snail with expression variations and 
+animation-ready structure.
+
+# Design icon system
+Apply @agents/svg-illustration-animation-expert.md to design an 
+ingredient icon system for our Asian cuisine scrollytelling piece.
+
+# Animate existing SVG
+Using @agents/svg-illustration-animation-expert.md, add scroll-triggered
+animations to the wok illustration — fire flicker, tossing ingredients,
+and rising steam.
+```
+
+---
+
 ### Template Integration Engineer
 **File:** `template-integration-engineer.md`
 
@@ -761,10 +892,11 @@ An **orchestrator agent** coordinates multiple specialized agents to produce com
 
 | Orchestrator | Domain | Agents Coordinated | Output |
 |--------------|--------|-------------------|--------|
-| `scrollytelling-expert.md` | Digital Storytelling | 6 agents | Mobile-native scrollytelling pages |
+| `scrollytelling-expert.md` | Digital Storytelling | 7 agents | Mobile-native scrollytelling pages |
 | `childrens-fiction-scrollytelling-agent.md` | **Children's Stories (3-6)** | 4 agents | Magical animated children's experiences |
 | `scrollytelling-audit-agent.md` | Quality Assurance | 3-4 agents | Experience audit reports |
 | `citation-audit-agent.md` | **Citation Integrity** | 2-3 agents | Source verification reports |
+| `visual-auditor-agent.md` | **Visual Quality Assurance** | 1-2 agents | SVG certification reports |
 
 ### Scrollytelling Orchestrator Architecture
 
@@ -794,12 +926,13 @@ An **orchestrator agent** coordinates multiple specialized agents to produce com
                            ┌─────────────────────────────────────┐
                            │           DESIGN LAYER              │
                            │                                     │
-                           │           ┌───────────┐             │
-                           │           │   UI/UX   │             │
-                           │           │  DESIGN   │             │
-                           │           │ (Visual)  │             │
-                           │           └─────┬─────┘             │
-                           └─────────────────┼───────────────────┘
+                           │  ┌───────────┐    ┌───────────────┐│
+                           │  │   UI/UX   │    │     SVG       ││
+                           │  │  DESIGN   │───►│ ILLUSTRATION  ││
+                           │  │ (Visual)  │    │ & ANIMATION   ││
+                           │  └───────────┘    │ (Visual Assets)│
+                           │                   └───────┬───────┘│
+                           └───────────────────────────┼────────┘
                                              │
                                              ▼
                            ┌─────────────────────────────────────┐
@@ -823,7 +956,9 @@ An **orchestrator agent** coordinates multiple specialized agents to produce com
 | **Historian Writer** | Sources + Brief | Narrative draft | Content complete |
 | **Historian Editor** | Draft | Fact-checked content | **APPROVAL REQUIRED** |
 | **UI/UX Design** | Visual direction | Refined design system | Mobile typography verified |
-| **Software Engineer** | Content + Design | Component architecture, code structure | Build passes |
+| **SVG Illustration & Animation** | Design system | Inline SVG assets, animation CSS | Assets optimized, accessible |
+| **Visual Auditor** ⚠️ | SVG assets | Certification report, grade | **CERTIFICATION REQUIRED** |
+| **Software Engineer** | Content + Design + Certified SVGs | Component architecture, code structure | Build passes |
 | **Immersive Experience** ⚠️ | Design + Code | Mobile-native UX, 60fps animations, Theatre Bar | **REAL DEVICE TESTING** |
 
 **Implementation Layer Distinction:**
@@ -848,14 +983,21 @@ These checkpoints **must pass** before proceeding:
 │     └─ Sources authenticated                                    │
 │     └─ Cannot proceed without explicit approval                 │
 │                                                                 │
-│  ③ CITATION AUDIT APPROVAL ⚠️ BLOCKING (NEW)                   │
+│  ③ VISUAL AUDITOR CERTIFICATION ⚠️ BLOCKING (NEW)              │
+│     └─ All SVG assets audited (5-tier framework)                │
+│     └─ Technical quality verified (optimized, accessible)       │
+│     └─ Animation performance certified (60fps mobile)           │
+│     └─ Grade B+ or higher required for publication              │
+│     └─ Cannot integrate assets without certification            │
+│                                                                 │
+│  ④ CITATION AUDIT APPROVAL ⚠️ BLOCKING                         │
 │     └─ All claims have Tier 1-2 source support                  │
 │     └─ All links functional                                     │
 │     └─ Zero Tier 4 sources                                      │
 │     └─ Quotes verified and attributed                           │
 │     └─ Cannot publish without citation certification            │
 │                                                                 │
-│  ④ MOBILE DEVICE TESTING ⚠️ BLOCKING                           │
+│  ⑤ MOBILE DEVICE TESTING ⚠️ BLOCKING                           │
 │     └─ Tested on real iPhone                                    │
 │     └─ Tested on real Android                                   │
 │     └─ 60fps animations confirmed                               │
@@ -1009,22 +1151,28 @@ Type: General
 The recommended workflow for creating **mobile-native** scrollytelling content:
 
 ```
-1.  @agents/scrollytelling-expert.md        → Design Research (mobile-first visual identity)
-2.  @agents/research-citations-expert.md    → Source Discovery (Tier 1-2 only)
-3.  @agents/scrollytelling-expert.md        → Story Architecture (mobile layouts first)
-4.  @agents/historian-writer-expert.md      → Narrative Draft
-5.  @agents/historian-editor-expert.md      → Fact-Check
-6.  @agents/research-citations-expert.md    → Final Source Audit
-7.  @agents/ui-ux-design-expert.md          → Visual Refinement (mobile typography)
-8.  @agents/software-engineering-expert.md  → Component Implementation
-9.  @agents/immersive-experience-engineer.md → Mobile-Native Layer (60fps, touch, Theatre Bar)
-10. @agents/citation-audit-agent.md         → Citation Verification (claim-source mapping) ⚠️ NEW
-11. @agents/scrollytelling-expert.md        → Final Review (real device testing)
+1.  @agents/scrollytelling-expert.md              → Design Research (mobile-first visual identity)
+2.  @agents/research-citations-expert.md          → Source Discovery (Tier 1-2 only)
+3.  @agents/scrollytelling-expert.md              → Story Architecture (mobile layouts first)
+4.  @agents/historian-writer-expert.md            → Narrative Draft
+5.  @agents/historian-editor-expert.md            → Fact-Check
+6.  @agents/research-citations-expert.md          → Final Source Audit
+7.  @agents/scrollytelling-expert.md              → Content Integration
+8.  @agents/ui-ux-design-expert.md                → Visual Refinement (mobile typography)
+9.  @agents/svg-illustration-animation-expert.md  → Visual Assets (characters, icons, animations)
+10. @agents/visual-auditor-agent.md               → Visual Certification (SVG quality, performance, accessibility) ⚠️ NEW
+11. @agents/software-engineering-expert.md        → Component Implementation (with certified SVG assets)
+12. @agents/immersive-experience-engineer.md      → Mobile-Native Layer (60fps, touch, Theatre Bar)
+13. @agents/citation-audit-agent.md               → Citation Verification (claim-source mapping)
+14. @agents/scrollytelling-expert.md              → Final Review (real device testing)
 ```
 
-**Key Additions:**
-- Step 9 (`immersive-experience-engineer.md`) ensures the final experience feels like a native app, not a website. This includes 60fps animations, touch interactions, hidden browser chrome, and Theatre Bar integration.
-- Step 10 (`citation-audit-agent.md`) verifies all citations are valid, sources are Tier 1-2, links work, and claims have proper support. **BLOCKING**: Cannot publish without citation certification.
+**Key Steps:**
+- Step 9 (`svg-illustration-animation-expert.md`) creates all inline SVG illustrations — characters, icons, objects, environments — with animation-ready structure. **Invoked when custom visuals are needed.**
+- Step 10 (`visual-auditor-agent.md`) audits all SVG assets for technical quality, accessibility, animation performance, visual excellence, and content relevance. **BLOCKING**: Assets must receive certification (Grade B+ or higher) before integration.
+- Step 11 (`software-engineering-expert.md`) implements components using the certified SVG assets from step 10.
+- Step 12 (`immersive-experience-engineer.md`) ensures the final experience feels like a native app, not a website. This includes 60fps animations, touch interactions, hidden browser chrome, and Theatre Bar integration.
+- Step 13 (`citation-audit-agent.md`) verifies all citations are valid, sources are Tier 1-2, links work, and claims have proper support. **BLOCKING**: Cannot publish without citation certification.
 
 ### Quick Content Creation
 

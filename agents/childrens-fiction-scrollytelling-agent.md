@@ -899,6 +899,35 @@ const ChoiceMoment: React.FC<{
    - Safe area handling
    - Real device testing results
 
+### Working With svg-illustration-animation-expert.md
+**Role**: Character design, scene illustrations, and child-friendly animations
+
+**Why This Collaboration Matters**
+Children's stories live and die by their visuals. The SVG Illustration & Animation Expert ensures characters are warm, friendly, and expressive — with smooth animations that delight without overstimulating.
+
+**Handoff Protocol**
+1. **Children's Fiction Scrollytelling provides**:
+   - Character descriptions and personality traits
+   - Scene requirements per story beat
+   - Emotion moments needing expression changes
+   - Animation gentleness requirements
+   - Age-appropriate visual constraints
+
+2. **SVG Illustration & Animation Expert delivers**:
+   - Character SVGs with expression variations
+   - Scene illustrations (environments, objects)
+   - Gentle, child-safe animations
+   - Tap interaction visual feedback
+   - Celebration/reward animations
+
+**Children's Visual Requirements**
+- Rounded, soft shapes (no sharp edges)
+- Bright but not overstimulating colors
+- Clear, readable expressions
+- Large tap targets (44px+)
+- Gentle animation timing (no sudden movements)
+- Non-threatening character designs
+
 ---
 
 ## Creation Workflow
@@ -939,15 +968,19 @@ const ChoiceMoment: React.FC<{
 
 ### Phase 2: Visual Development (25%)
 
-1. **Character Design**
-   - SVG character creation
-   - Expression states
-   - Animation rigging
+**→ INVOKE `svg-illustration-animation-expert.md` for this phase**
 
-2. **Scene Design**
+1. **Character Design** (via SVG Illustration & Animation Expert)
+   - SVG character creation with expression variations
+   - Child-friendly shapes (rounded, soft)
+   - Animation-ready structure (grouped elements, meaningful IDs)
+   - Accessibility attributes (title, desc)
+
+2. **Scene Design** (via SVG Illustration & Animation Expert)
    - Environment SVGs
    - Parallax layer planning
    - Background elements
+   - Object and prop illustrations
 
 3. **Layout Planning**
    - Section-by-section layout assignment

@@ -1093,10 +1093,11 @@ The Scrollytelling Expert acts as **orchestrator**, coordinating **six specializ
 6. **Research & Citations Expert** → Final source audit, format citations for Sources section
 7. **Scrollytelling Expert** → Integrates approved content with Design Research-derived visual design
 8. **UI/UX Designer** → Refines visual system, ensures design aligns with subject research. **Mobile typography and spacing verified.**
-9. **Software Engineer** → Implements technical architecture with subject-specific styling
-10. **Immersive Experience Engineer** → **Mobile-native implementation**: 60fps animations, touch interactions, Theatre Bar integration, safe areas, hidden browser chrome. **Real device testing required.**
-11. **Citation Audit Agent** → **Pre-publish citation verification** ⚠️ BLOCKING: Verify all claims have Tier 1-2 source support, all links functional, quotes attributed, statistics dated. **Cannot publish without Citation Certification.**
-12. **Scrollytelling Expert** → Final review: verify design is unique, sources are authoritative, content is accurate, **mobile experience feels native and immersive**
+9. **SVG Illustration & Animation Expert** → **Visual asset creation**: Characters, icons, objects, environments as inline SVG. Animation-ready structure, accessibility attributes, optimized paths. **Invoked when custom illustrations are needed.**
+10. **Software Engineer** → Implements technical architecture with subject-specific styling and SVG assets
+11. **Immersive Experience Engineer** → **Mobile-native implementation**: 60fps animations, touch interactions, Theatre Bar integration, safe areas, hidden browser chrome. **Real device testing required.**
+12. **Citation Audit Agent** → **Pre-publish citation verification** ⚠️ BLOCKING: Verify all claims have Tier 1-2 source support, all links functional, quotes attributed, statistics dated. **Cannot publish without Citation Certification.**
+13. **Scrollytelling Expert** → Final review: verify design is unique, sources are authoritative, content is accurate, **mobile experience feels native and immersive**
 
 ### Working With research-citations-expert.md
 **Role**: Source discovery and citation authority — **MANDATORY for all research**
@@ -1270,6 +1271,48 @@ The Immersive Experience Engineer ensures that the beautiful designs created by 
 
 **Invocation**:
 > "Using your assigned role as a world-class frontend engineer specializing in immersive web experiences, implement the mobile-native experience layer for this scrollytelling piece. Ensure 60fps animations, proper safe area handling, and app-like feel on mobile devices."
+
+### Working With svg-illustration-animation-expert.md
+**Role**: Visual asset creation and animation design for all inline SVG elements
+
+**Division of Responsibilities**
+- **Scrollytelling Expert**: Visual direction brief, illustration needs per section, animation choreography intentions
+- **SVG Illustration & Animation Expert**: Character design, icon systems, object illustrations, animation CSS/JS
+- **Shared**: Visual storytelling decisions, style consistency, emotional impact through visuals
+
+**Why This Collaboration is Critical**
+All scrollytelling visuals are inline SVGs — not raster images. The SVG Illustration & Animation Expert ensures every character, icon, food illustration, and animated element is:
+- Visually compelling and on-brand
+- Technically optimized (minimal paths, clean code)
+- Animation-ready (grouped elements, meaningful IDs)
+- Accessible (title, desc, aria attributes)
+- Performant (GPU-accelerated transforms only)
+
+**Handoff Protocol**
+1. **Scrollytelling Expert provides**:
+   - Design Research Report with color palette and visual direction
+   - Section-by-section illustration needs
+   - Character descriptions and personality traits
+   - Animation choreography intentions
+   - Performance budget constraints
+
+2. **SVG Illustration & Animation Expert delivers**:
+   - Clean, optimized inline SVG code
+   - CSS animation keyframes and definitions
+   - Element IDs for JavaScript targeting
+   - Animation trigger recommendations
+   - Accessibility attributes (title, desc, aria)
+   - Style guide entry for consistency
+
+**Mandatory Collaboration Points**
+- [ ] Initial style direction alignment
+- [ ] Character design approval (for stories with characters)
+- [ ] Animation performance verification
+- [ ] Accessibility audit on all SVG elements
+- [ ] Cross-browser rendering check
+
+**Invocation**:
+> "Using @agents/svg-illustration-animation-expert.md, create the visual assets for this scrollytelling piece. Follow the Design Research Report palette and produce animation-ready SVGs for: [list of needed illustrations]."
 
 ### Working With citation-audit-agent.md
 **Role**: Citation integrity verification and source quality guardian — **MANDATORY before publishing**

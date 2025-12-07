@@ -413,7 +413,6 @@ const stories: Story[] = [
     readTime: "15 min",
     href: "/scrollytelling/alphabet-adventure-train",
     isNew: true,
-    isFeatured: true,
     tags: ["children", "alphabet", "ABC", "phonics", "letters", "learning", "train", "ages 3-5", "educational"],
   },
   {
@@ -429,6 +428,20 @@ const stories: Story[] = [
     isNew: true,
     draft: true,
     tags: ["children", "adventure", "snail", "speed", "friendship", "forest", "ages 4-5", "fun"],
+  },
+  {
+    id: "flavors-of-the-east",
+    number: "30",
+    title: "Flavors of the East",
+    subtitle: "A Culinary Journey Through Asia",
+    description: "From ancient Chinese soy fermentation to Myanmar's fermented tea salads — explore how ingredients, geography, and tradition shaped the cuisines of three nations across millennia.",
+    category: "Culture",
+    format: "narrative",
+    readTime: "18 min",
+    href: "/scrollytelling/flavors-of-the-east",
+    isNew: true,
+    isFeatured: true,
+    tags: ["food", "cuisine", "Asia", "China", "Thailand", "Myanmar", "history", "culture", "cooking", "fermentation"],
   },
 ];
 
