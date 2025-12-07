@@ -459,28 +459,110 @@ The agent will:
 - Check that educational claims align with pedagogical standards
 - Verify any scientific/nature content is accurate for young learners
 
+### Working With quotes-audit-agent.md (ORCHESTRATED)
+**Role**: Quote verification specialist — **Invoked by this agent**
+
+The Citation Audit Agent **orchestrates** the Quotes Audit Agent for all quote-related verification. When quotes are identified during the claim inventory phase, they are delegated to the Quotes Audit Agent for specialized verification.
+
+**Orchestration Flow**:
+```
+Citation Audit Agent
+    │
+    ├─► Extract all quotes during Phase 2 (Claim Inventory)
+    │
+    ├─► Invoke Quotes Audit Agent:
+    │   "Using @agents/quotes-audit-agent.md, verify all quotations:
+    │    1. "[Quote]" — Attributed to [Speaker]
+    │    2. "[Quote]" — Attributed to [Speaker]
+    │    ..."
+    │
+    ├─► Receive Quote Verification Report
+    │
+    └─► Incorporate verdicts into Citation Audit Report
+        - ✅ Verified quotes → Approved
+        - 🟡 Disputed quotes → Require attribution note
+        - ❌ Unverified quotes → Critical issue (must fix)
+        - 🚫 Misattributed quotes → Critical issue (must correct)
+```
+
+**When to Invoke**:
+- Any scrollytelling piece containing direct quotes
+- Content with attributed statements
+- Historical narratives with dialogue
+- Any piece where quote authenticity is questioned
+
+**Quote Issues Are Citation Issues**:
+- Misattributed quotes = ❌ Critical (same as unsourced claims)
+- Unverified quotes = 🟡 Important (must add disclaimer or rephrase)
+- Quotes without context = ⚠️ Review (may mislead readers)
+
+**Invocation Template**:
+```
+Using @agents/quotes-audit-agent.md, verify the following quotes 
+extracted from [scrollytelling title]:
+
+## Quotes to Verify
+1. "[Full quote text]"
+   - Attributed to: [Speaker name]
+   - Section: [Section name]
+   - Context given: [Date/occasion if any]
+
+2. "[Full quote text]"
+   - Attributed to: [Speaker name]
+   ...
+
+Produce a Quote Verification Report with verdicts and recommendations.
+```
+
 ---
 
 ## Special Audit Protocols
 
-### Quote Verification Protocol
+### Quote Verification Protocol (Delegated to quotes-audit-agent.md)
 
-For every quote in content:
+**IMPORTANT**: Quote verification is delegated to the specialized `quotes-audit-agent.md`. This section describes the handoff process.
 
-1. **Locate Original Source**
-   - Find primary source document
-   - Verify quote appears verbatim
-   - Check for ellipsis/truncation accuracy
+#### During Claim Inventory (Phase 2)
 
-2. **Verify Attribution**
-   - Confirm speaker identity
-   - Confirm date/context if provided
-   - Check for famous misattributions
+Extract all quotes and prepare for delegation:
 
-3. **Context Check**
-   - Ensure quote isn't taken out of context
-   - Verify quote supports claim made
-   - Flag quotes that could mislead
+```markdown
+## Quotes Extracted for Verification
+
+| # | Quote | Attributed To | Section | Context |
+|---|-------|---------------|---------|---------|
+| 1 | "[text]" | [Speaker] | [Section] | [Date/occasion] |
+| 2 | "[text]" | [Speaker] | [Section] | [None provided] |
+```
+
+#### Invoke Quotes Audit Agent
+
+After extraction, invoke:
+```
+Using @agents/quotes-audit-agent.md, verify these quotes and produce
+a Quote Verification Report with verdicts.
+```
+
+#### Integrate Verdicts
+
+Map quote verdicts to citation audit categories:
+
+| Quote Verdict | Citation Audit Impact |
+|---------------|----------------------|
+| ✅ Verified | No action needed |
+| ⚠️ Plausible | Add source note if possible |
+| 🟡 Disputed | **Must add "origin disputed" notation** |
+| ❌ Unverified | **Must rephrase as paraphrase or remove quotes** |
+| 🚫 Misattributed | **Critical: Must correct or remove** |
+
+#### Quote Fix Patterns
+
+When implementing quote fixes:
+
+1. **Unverified → Paraphrase**: Remove quotation marks, rephrase
+2. **Disputed → Add Note**: Keep quote, add "— origin disputed" or similar
+3. **Misattributed → Correct**: Fix speaker name or remove entirely
+4. **Editorial → Label**: Remove quotes, add "— Editorial synthesis"
 
 ### Statistics Verification Protocol
 
@@ -501,29 +583,76 @@ For every statistic:
    - Flag disputed methodologies
    - Note confidence intervals if applicable
 
-### Link Health Protocol
+### Link Health Protocol (MANDATORY BROWSER VERIFICATION)
 
-For every URL in Sources:
+**CRITICAL**: Link verification MUST use actual browser navigation to confirm accessibility. Do NOT assume links work based on URL structure alone.
 
-1. **Accessibility Test**
-   ```
-   Status Codes:
-   200 → ✅ Accessible
-   301/302 → ⚠️ Redirect (update URL)
-   403 → ⚠️ Forbidden (possible paywall)
-   404 → ❌ Broken (find alternative)
-   5xx → ⚠️ Server error (retest)
-   ```
+#### Step 1: Browser Navigation Test
 
-2. **Content Verification**
-   - Confirm linked page contains cited information
-   - Check for content changes since citing
-   - Verify anchor links go to correct section
+For **every URL** in the Sources section, use browser tools to physically visit the page:
 
-3. **Stability Assessment**
-   - Prefer DOIs for academic sources
-   - Prefer archive.org for news articles
-   - Flag ephemeral URLs (social media, dynamic pages)
+```
+Using browser tools:
+1. Navigate to each URL using mcp_cursor-ide-browser_browser_navigate
+2. Capture the resulting page title and URL
+3. Check for redirects, 404s, or content mismatches
+```
+
+#### Step 2: Status Classification
+
+| Result | Classification | Action Required |
+|--------|----------------|-----------------|
+| Page loads with expected content | ✅ **Working** | None |
+| Page loads but content unrelated | ❌ **Broken (Redirect)** | Find replacement URL |
+| 404 / Page Not Found | ❌ **Broken (404)** | Find replacement URL |
+| Paywall / Login required | ⚠️ **Restricted** | Note in sources OR find alternative |
+| Server error (5xx) | ⚠️ **Temporary** | Retest; flag if persists |
+
+#### Step 3: Content Relevance Check
+
+After confirming a page loads:
+- **Verify the page title** relates to the cited topic
+- **Check page URL** matches expected domain (watch for sneaky redirects)
+- **Confirm content type** is appropriate (not ads, unrelated articles)
+
+#### Step 4: Replacement Protocol
+
+For broken links:
+
+1. **Search for updated URL** on the same domain
+2. **Search for equivalent source** at same institution
+3. **Find alternative Tier 1-2 source** if original unavailable
+4. **Use archive.org Wayback Machine** as last resort
+
+#### Example Link Verification Session
+
+```markdown
+## Link Verification Log
+
+### Link 1: Smithsonian Firearms History
+- **Original URL**: smithsonianmag.com/history/gun-timeline-180973791/
+- **Browser Result**: Redirected to seahorse article (WRONG CONTENT)
+- **Status**: ❌ BROKEN
+- **Action**: Search Smithsonian for firearms content
+- **Replacement**: americanhistory.si.edu/collections/search?edan_q=firearms
+- **Verified**: ✅ Page loads with firearms collection
+
+### Link 2: Library of Congress Colt Papers
+- **Original URL**: loc.gov/collections/samuel-colt-papers/
+- **Browser Result**: 404 Page Not Found
+- **Status**: ❌ BROKEN
+- **Action**: Search LOC for firearms research guide
+- **Replacement**: guides.loc.gov/american-firearms
+- **Verified**: ✅ Page loads with firearms research guide
+```
+
+#### Stability Assessment
+
+After verification, assess long-term stability:
+- Prefer DOIs for academic sources (most stable)
+- Prefer institutional URLs over magazine articles
+- Consider archive.org backup for news articles
+- Flag social media or dynamic URLs as unstable
 
 ---
 

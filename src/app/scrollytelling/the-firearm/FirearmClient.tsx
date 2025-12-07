@@ -276,7 +276,7 @@ const FirearmClient: React.FC = () => {
               that the jump from fire lance to true gun happened quickly.
             </p>
             <div className="section-highlight">
-              &ldquo;Fire lances could spit flames for five minutes, burning everything before them.&rdquo;
+              Historical accounts describe fire lances spitting flames for up to five minutes, burning everything before them.
             </div>
           </div>
         </div>
@@ -431,8 +431,8 @@ const FirearmClient: React.FC = () => {
             <div className="section-year">1836</div>
             <h3 className="section-title">SAMUEL COLT&apos;S REVOLVER</h3>
             <p className="section-text">
-              &ldquo;God created men. Sam Colt made them equal.&rdquo; The revolving cylinder 
-              meant six shots without reloading — a massive advantage when your opponent 
+              &ldquo;God created men. Sam Colt made them equal.&rdquo; — <em>Popular frontier saying, origin disputed</em>. 
+              The revolving cylinder meant six shots without reloading — a massive advantage when your opponent 
               had a single-shot weapon.
             </p>
             <p className="section-text">
@@ -619,11 +619,11 @@ const FirearmClient: React.FC = () => {
       <section className="quote-section">
         <div className="quote-inner">
           <p className="quote-text">
-            &ldquo;The gun is the great equalizer. It takes away the advantage of the strong 
+            The gun became the great equalizer — taking away the advantage of the strong 
             over the weak, the many over the few. For better or worse, it changed 
-            the calculus of power forever.&rdquo;
+            the calculus of power forever.
           </p>
-          <p className="quote-author">— Adapted from historical observation</p>
+          <p className="quote-author">— Editorial synthesis</p>
         </div>
       </section>
 

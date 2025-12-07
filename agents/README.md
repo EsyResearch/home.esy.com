@@ -11,6 +11,7 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 | [Invocation Enhancer](#scrollytelling-invocation-enhancer) | **🚀 Enhance any scrollytelling request** | `@agents/scrollytelling-invocation-enhancer.md` |
 | [Audit Agent](#scrollytelling-audit-agent) | **🔍 Evaluate & improve experiences** | `@agents/scrollytelling-audit-agent.md` |
 | [Citation Audit Agent](#citation-audit-agent) | **📚 Verify citations & source quality** | `@agents/citation-audit-agent.md` |
+| [Quotes Audit Agent](#quotes-audit-agent) | **💬 Verify quote authenticity** | `@agents/quotes-audit-agent.md` |
 | [Scrollytelling Expert](#scrollytelling-expert) | Immersive scroll-based stories | `@agents/scrollytelling-expert.md` |
 | [Children's Fiction Scrollytelling](#childrens-fiction-scrollytelling-agent) | **Magical stories for ages 3-6** | `@agents/childrens-fiction-scrollytelling-agent.md` |
 | [Children's Books Writer](#childrens-books-writer-expert) | **Picture book narratives, ages 3-6** | `@agents/childrens-books-writer-expert.md` |
@@ -231,9 +232,24 @@ Using @agents/citation-audit-agent.md, perform a quick citation audit of
 |----------|--------|
 | Claim-Citation Mapping | Every factual claim has Tier 1-2 source |
 | Source Quality | 80%+ sources are Tier 1-2, zero Tier 4 |
-| Link Integrity | All URLs functional and accessible |
-| Quote Accuracy | Verbatim, attributed, context-preserved |
+| Link Integrity | **Browser-verified** — all URLs physically tested |
+| Quote Accuracy | **Orchestrates quotes-audit-agent.md** for verification |
 | Format Consistency | Uniform citation style throughout |
+
+**🔗 Browser-Based Link Verification (NEW):**
+This agent uses actual browser navigation to verify links work:
+```
+1. Navigate to each URL using browser tools
+2. Check page title matches expected content
+3. Detect redirects to wrong pages (sneaky 404s)
+4. Find replacement URLs for broken links
+```
+
+**💬 Quote Orchestration (NEW):**
+When quotes are detected, this agent invokes `quotes-audit-agent.md`:
+```
+Citation Audit → Extracts quotes → Quotes Audit Agent → Returns verdicts → Integrated into report
+```
 
 **Output Format:**
 The agent produces a structured audit report with:
@@ -250,6 +266,59 @@ The agent produces a structured audit report with:
 Critical issues found → Must fix before publishing →
 User approves fixes → Agent implements → Re-audit → Certification
 ```
+
+---
+
+### Quotes Audit Agent
+**File:** `quotes-audit-agent.md`
+
+**Role:** World-class quote verification specialist that authenticates quotations, identifies misattributions, and ensures proper citation standards for direct quotes.
+
+**💬 ORCHESTRATED BY CITATION AUDIT AGENT:** This agent is invoked by `citation-audit-agent.md` when quotes are detected in scrollytelling content. Do not invoke directly unless specifically auditing quotes.
+
+**Best For:**
+- Verifying quote authenticity against primary sources
+- Detecting famous misattributions (Einstein, Gandhi, etc.)
+- Ensuring proper attribution and context
+- Converting unverified quotes to paraphrases
+
+**Quote Verdicts:**
+| Verdict | Meaning | Action |
+|---------|---------|--------|
+| ✅ Verified | Primary source found | Approve |
+| ⚠️ Plausible | Secondary sources agree | Add source note |
+| 🟡 Disputed | Origin unclear | Must note "origin disputed" |
+| ❌ Unverified | No credible source | Rephrase as paraphrase |
+| 🚫 Misattributed | Wrong speaker | Critical fix required |
+
+**Quote Fix Patterns:**
+```
+UNVERIFIED → Remove quotes, rephrase:
+  Before: "Fire lances could spit flames for five minutes."
+  After:  Historical accounts describe fire lances spitting flames for up to five minutes.
+
+DISPUTED → Add attribution note:
+  Before: "God created men. Sam Colt made them equal."
+  After:  "God created men. Sam Colt made them equal." — Popular frontier saying, origin disputed
+
+EDITORIAL → Label clearly:
+  Before: "The gun is the great equalizer..."
+  After:  The gun became the great equalizer... — Editorial synthesis
+```
+
+**Invoked By:**
+The Citation Audit Agent automatically invokes this agent when quotes are found:
+```
+Using @agents/quotes-audit-agent.md, verify the following quotes:
+1. "[Quote text]" — Attributed to [Speaker]
+2. ...
+```
+
+**Red Flags Detected:**
+- Quotes found only on brainyquote.com / goodreads
+- "Too perfect" quotes for historical figures
+- Anachronistic language for the era
+- No date/context provided
 
 ---
 
