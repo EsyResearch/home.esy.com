@@ -82,7 +82,7 @@ The mobile screen has reachable and unreachable zones. Design accordingly:
 - Vertical scroll as primary navigation
 - Horizontal scroll as deliberate, exceptional choice
 
-**Layout Transformation Rules:**
+**Layout Transformation Rules$$:**
 ```
 Desktop Layout          →    Mobile Layout
 ─────────────────────────────────────────────
@@ -1095,7 +1095,8 @@ The Scrollytelling Expert acts as **orchestrator**, coordinating **six specializ
 8. **UI/UX Designer** → Refines visual system, ensures design aligns with subject research. **Mobile typography and spacing verified.**
 9. **Software Engineer** → Implements technical architecture with subject-specific styling
 10. **Immersive Experience Engineer** → **Mobile-native implementation**: 60fps animations, touch interactions, Theatre Bar integration, safe areas, hidden browser chrome. **Real device testing required.**
-11. **Scrollytelling Expert** → Final review: verify design is unique, sources are authoritative, content is accurate, **mobile experience feels native and immersive**
+11. **Citation Audit Agent** → **Pre-publish citation verification** ⚠️ BLOCKING: Verify all claims have Tier 1-2 source support, all links functional, quotes attributed, statistics dated. **Cannot publish without Citation Certification.**
+12. **Scrollytelling Expert** → Final review: verify design is unique, sources are authoritative, content is accurate, **mobile experience feels native and immersive**
 
 ### Working With research-citations-expert.md
 **Role**: Source discovery and citation authority — **MANDATORY for all research**
@@ -1269,6 +1270,53 @@ The Immersive Experience Engineer ensures that the beautiful designs created by 
 
 **Invocation**:
 > "Using your assigned role as a world-class frontend engineer specializing in immersive web experiences, implement the mobile-native experience layer for this scrollytelling piece. Ensure 60fps animations, proper safe area handling, and app-like feel on mobile devices."
+
+### Working With citation-audit-agent.md
+**Role**: Citation integrity verification and source quality guardian — **MANDATORY before publishing**
+
+**Division of Responsibilities**
+- **Scrollytelling Expert**: Content structure, source integration, narrative flow
+- **Citation Audit Agent**: Claim-citation mapping, source tier verification, link integrity, quote authentication
+- **Shared**: Ensuring claims meet sourcing standards, identifying gaps
+
+**Why This Collaboration is Critical**
+The Citation Audit Agent is the final quality gate for credibility. It ensures that every factual claim in the scrollytelling piece has appropriate source support, all links are functional, quotes are properly attributed, and the Sources section meets Esy's standards. Without this verification, published content may contain unsupported claims or broken references.
+
+**Handoff Protocol**
+1. **Scrollytelling Expert provides**:
+   - Complete implemented scrollytelling experience
+   - Sources section with all citations
+   - List of key factual claims
+   - Any quotes with attributions
+   - Statistics with dates/sources
+
+2. **Citation Audit Agent delivers**:
+   - Claim-citation mapping report
+   - Source tier analysis (must be 80%+ Tier 1-2)
+   - Link integrity report (all URLs tested)
+   - Quote verification status
+   - Gap analysis with suggested sources
+   - **Citation Certification** (Approved/Rejected)
+
+**Mandatory Collaboration Points**
+- [ ] All core factual claims have Tier 1-2 source support
+- [ ] All quotes are verified and properly attributed
+- [ ] All statistics have dated sources
+- [ ] All links in Sources section are functional
+- [ ] No Tier 4 sources present (social media, anonymous, etc.)
+- [ ] Source tier distribution meets 80%+ Tier 1-2 standard
+
+**Blocking Requirement**
+⚠️ **No scrollytelling piece may be published without Citation Audit Agent certification.** Critical issues (unsupported claims, Tier 4 sources, broken links) must be resolved before shipping.
+
+**Invocation**:
+> "Using @agents/citation-audit-agent.md, audit the citations for the scrollytelling experience at [path]. Type: [General/Children's Fiction]. Produce a full Citation Audit Report with certification status."
+
+**When to Invoke Citation Audit**
+1. **After implementation, before publishing** — Standard audit
+2. **When adding new factual claims** — Quick audit on new content
+3. **Periodically for published content** — Link health check
+4. **When sources are questioned** — Deep audit with quote verification
 
 ## Mandatory Sources Section
 
