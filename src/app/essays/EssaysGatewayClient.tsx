@@ -1,8 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Clock, Sparkles, BookOpen, PenTool, FileText } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowRight, Clock, Sparkles, BookOpen, PenTool, FileText, Search } from "lucide-react";
+import { useHeaderSearch } from "@/contexts/HeaderSearchContext";
 import './essays-gateway.css';
 
 /*
@@ -13,6 +15,7 @@ import './essays-gateway.css';
  * - Showcases Visual Essays, Text Essays, and Writing Guides
  * - Premium editorial aesthetic with clear navigation
  * - Optimized for essay-related SEO
+ * - Search bar that moves to header on scroll
  */
 
 // ==================== TYPES ====================
@@ -109,41 +112,71 @@ const guides: Guide[] = [
 
 // ==================== COMPONENTS ====================
 
-// Hero Section
-const Hero: React.FC = () => (
-  <section className="essays-hero">
-    <div className="essays-hero-content">
-      <span className="essays-hero-label">Essays</span>
-      <h1 className="essays-hero-title">
-        <span className="essays-hero-title-line">Examples,</span>
-        <span className="essays-hero-title-line">Explorations &</span>
-        <span className="essays-hero-title-line essays-hero-title-accent">Guides</span>
-      </h1>
-      <p className="essays-hero-description">
-        Discover essay examples, interactive visual essays, and step-by-step 
-        writing guides. Everything you need to write better essays.
-      </p>
-    </div>
-    
-    <div className="essays-hero-stats">
-      <div className="essays-hero-stat">
-        <Sparkles size={20} className="stat-icon" />
-        <span className="stat-value">24+</span>
-        <span className="stat-label">Visual Essays</span>
+// Hero Section with Search
+interface HeroProps {
+  searchBarRef: React.RefObject<HTMLDivElement>;
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
+  onSearch: () => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ searchBarRef, searchQuery, setSearchQuery, onSearch }) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      onSearch();
+    }
+  };
+
+  return (
+    <section className="essays-hero">
+      <div className="essays-hero-content">
+        <span className="essays-hero-label">Essays</span>
+        <h1 className="essays-hero-title">
+          <span className="essays-hero-title-line">Examples,</span>
+          <span className="essays-hero-title-line">Explorations &</span>
+          <span className="essays-hero-title-line essays-hero-title-accent">Guides</span>
+        </h1>
+        <p className="essays-hero-description">
+          Discover essay examples, interactive visual essays, and step-by-step 
+          writing guides. Everything you need to write better essays.
+        </p>
+        
+        {/* Search Bar */}
+        <div ref={searchBarRef} className="essays-hero-search">
+          <div className="essays-search-container">
+            <Search size={18} className="essays-search-icon" />
+            <input
+              type="text"
+              placeholder="Search essays, guides, and more..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleKeyDown}
+              className="essays-search-input"
+            />
+          </div>
+        </div>
       </div>
-      <div className="essays-hero-stat">
-        <FileText size={20} className="stat-icon" />
-        <span className="stat-value">3</span>
-        <span className="stat-label">Text Essays</span>
+      
+      <div className="essays-hero-stats">
+        <div className="essays-hero-stat">
+          <Sparkles size={20} className="stat-icon" />
+          <span className="stat-value">24+</span>
+          <span className="stat-label">Visual Essays</span>
+        </div>
+        <div className="essays-hero-stat">
+          <FileText size={20} className="stat-icon" />
+          <span className="stat-value">3</span>
+          <span className="stat-label">Text Essays</span>
+        </div>
+        <div className="essays-hero-stat">
+          <PenTool size={20} className="stat-icon" />
+          <span className="stat-value">1</span>
+          <span className="stat-label">Writing Guide</span>
+        </div>
       </div>
-      <div className="essays-hero-stat">
-        <PenTool size={20} className="stat-icon" />
-        <span className="stat-value">1</span>
-        <span className="stat-label">Writing Guide</span>
-      </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 // Featured Visual Essay
 const FeaturedVisualEssay: React.FC = () => (
@@ -308,9 +341,45 @@ interface EssaysGatewayClientProps {
 }
 
 const EssaysGatewayClient: React.FC<EssaysGatewayClientProps> = ({ textEssays }) => {
+  const router = useRouter();
+  const { setShowHeaderSearch } = useHeaderSearch();
+  const searchBarRef = useRef<HTMLDivElement>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Scroll detection for header search
+  useEffect(() => {
+    const handleScroll = () => {
+      if (searchBarRef.current) {
+        const searchBarRect = searchBarRef.current.getBoundingClientRect();
+        const shouldShowHeaderSearch = searchBarRect.bottom < 0;
+        setShowHeaderSearch(shouldShowHeaderSearch);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check initial state
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      setShowHeaderSearch(false); // Reset when leaving page
+    };
+  }, [setShowHeaderSearch]);
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      // Navigate to visual essays with search query
+      router.push(`/essays/visual?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
   return (
     <div className="essays-gateway">
-      <Hero />
+      <Hero 
+        searchBarRef={searchBarRef}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        onSearch={handleSearch}
+      />
       <FeaturedVisualEssay />
       <VisualEssaysSection />
       <TextEssaysSection essays={textEssays} />
