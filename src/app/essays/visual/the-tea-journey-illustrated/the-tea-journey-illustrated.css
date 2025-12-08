@@ -1,0 +1,1711 @@
+/*
+ * LEAVES OF TIME: THE GLOBAL JOURNEY OF TEA
+ * ==========================================
+ * ILLUSTRATED EDITION - Premium Visual Experience
+ * 
+ * ANIMATION PHILOSOPHY:
+ * - Every animation serves the narrative
+ * - 60fps minimum on mid-tier mobile
+ * - GPU-accelerated (transform/opacity only)
+ * - Staggered reveals for drama
+ * - Physics-based easing for naturalism
+ * 
+ * SVG ILLUSTRATION SYSTEM:
+ * - Hand-crafted vectors for each scene
+ * - Material-based color derivation
+ * - Animation-ready grouping structure
+ * - Accessibility attributes on all illustrations
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap');
+
+/* ============================================
+   CSS CUSTOM PROPERTIES - Illustrated Edition
+   ============================================ */
+:root {
+  /* Tea Material Palette */
+  --leaf-light: #7CB342;
+  --leaf-mid: #558B2F;
+  --leaf-dark: #33691E;
+  
+  --tea-gold: #C9A227;
+  --tea-amber: #D4A84D;
+  --tea-copper: #A07A30;
+  
+  --cream: #F5F1E3;
+  --cream-light: #FDFCFA;
+  --cream-dark: #E8E0CC;
+  
+  --terracotta: #B86B4C;
+  --terracotta-dark: #8B4A26;
+  --clay-red: #C4703A;
+  
+  --puerh-dark: #1A0F0A;
+  --puerh-mid: #2D1B14;
+  --wood-brown: #6B4423;
+  --wood-dark: #4A3020;
+  
+  --mist: #8FA98F;
+  --jade: #2D5A4A;
+  --jade-light: #4A7C59;
+  --jade-dark: #1E3D32;
+  
+  --ocean-deep: #0D1820;
+  --ocean-mid: #1A3A4A;
+  --british-blue: #4A6B8A;
+  
+  /* Typography */
+  --font-display: 'Spectral', Georgia, serif;
+  --font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Animation Easings */
+  --ease-natural: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-steep: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-slow: cubic-bezier(0.37, 0, 0.63, 1);
+  
+  /* Durations */
+  --dur-fast: 300ms;
+  --dur-normal: 600ms;
+  --dur-slow: 1000ms;
+  --dur-dramatic: 1500ms;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+.tea-illustrated {
+  font-family: var(--font-body);
+  background: var(--puerh-dark);
+  color: var(--cream);
+  overflow-x: hidden;
+  min-height: 100vh;
+  line-height: 1.75;
+}
+
+.tea-illustrated * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   LEAF PROGRESS INDICATOR
+   Unique: Tea leaf fills with color as you scroll
+   ============================================ */
+.leaf-progress-indicator {
+  position: fixed;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  width: 40px;
+  height: 120px;
+}
+
+.progress-leaf-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.progress-leaf-outline {
+  fill: none;
+  stroke: var(--jade);
+  stroke-width: 2;
+  opacity: 0.3;
+}
+
+.progress-leaf-fill {
+  fill: var(--jade-light);
+  transition: clip-path 0.15s ease-out;
+}
+
+.progress-vein {
+  stroke: var(--jade-dark);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+@media (max-width: 768px) {
+  .leaf-progress-indicator {
+    display: none;
+  }
+}
+
+/* ============================================
+   TEA LEAF SVG COMPONENT
+   ============================================ */
+.tea-leaf-svg {
+  width: 30px;
+  height: 50px;
+}
+
+.tea-leaf-svg .leaf-body {
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+.tea-leaf-svg .leaf-vein.central {
+  stroke-dasharray: 80;
+  stroke-dashoffset: 80;
+  animation: draw-vein 1.5s var(--ease-steep) forwards;
+}
+
+.tea-leaf-svg .leaf-vein.side {
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  animation: draw-vein 1s var(--ease-steep) forwards;
+}
+
+@keyframes draw-vein {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ============================================
+   HERO SECTION - Tea Plant Emergence
+   ============================================ */
+.hero-illustrated {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+/* Mountain Parallax Background */
+.hero-mountains {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.mountain-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.1s linear;
+}
+
+.mountain-layer.layer-1 path {
+  fill: var(--jade-dark);
+  opacity: 0.4;
+}
+
+.mountain-layer.layer-2 path {
+  fill: var(--jade);
+  opacity: 0.6;
+}
+
+.mountain-layer.layer-3 path {
+  fill: var(--jade-light);
+  opacity: 0.3;
+}
+
+/* Mist Animation */
+.mist-layer {
+  position: absolute;
+  width: 200%;
+  height: 30%;
+  bottom: 20%;
+  background: radial-gradient(ellipse at center, var(--mist) 0%, transparent 70%);
+  opacity: 0.15;
+}
+
+.mist-layer.mist-1 {
+  animation: mist-float 25s ease-in-out infinite;
+  left: -50%;
+}
+
+.mist-layer.mist-2 {
+  animation: mist-float 30s ease-in-out infinite reverse;
+  left: 0;
+  bottom: 30%;
+  opacity: 0.1;
+}
+
+@keyframes mist-float {
+  0%, 100% { transform: translateX(0) scaleX(1); }
+  50% { transform: translateX(10%) scaleX(1.1); }
+}
+
+/* Tea Plant Container */
+.hero-plant-container {
+  position: relative;
+  z-index: 3;
+  margin-bottom: 2rem;
+}
+
+.hero-plant-svg {
+  width: clamp(280px, 50vw, 400px);
+  height: auto;
+}
+
+/* Stem Drawing Animation */
+.plant-stem.anim-draw {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: draw-stem 2s var(--ease-steep) forwards;
+}
+
+@keyframes draw-stem {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Branch Drawing */
+.branch.anim-draw {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: draw-branch 1s var(--ease-steep) forwards;
+}
+
+.branch.delay-1 { animation-delay: 0.5s; }
+.branch.delay-2 { animation-delay: 0.7s; }
+.branch.delay-3 { animation-delay: 0.9s; }
+.branch.delay-4 { animation-delay: 1.1s; }
+
+@keyframes draw-branch {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Leaf Unfurl Animation */
+.leaf-unit.anim-unfurl {
+  opacity: 0;
+  transform: scale(0.3) rotate(-30deg);
+  transform-origin: center;
+  animation: unfurl-leaf 1.2s var(--ease-bounce) forwards;
+}
+
+.leaf-unit.leaf-1 { animation-delay: 1s; }
+.leaf-unit.leaf-2 { animation-delay: 1.2s; }
+.leaf-unit.leaf-3 { animation-delay: 1.4s; }
+.leaf-unit.leaf-4 { animation-delay: 1.6s; }
+
+@keyframes unfurl-leaf {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-30deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.1) rotate(5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.leaf-vein-path {
+  stroke: var(--jade-dark);
+  stroke-width: 1.5;
+  fill: none;
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  animation: draw-vein 1s var(--ease-steep) forwards 1.8s;
+}
+
+/* Bud Emergence */
+.bud-group.anim-emerge {
+  opacity: 0;
+  transform: translateY(10px) scale(0.5);
+  animation: emerge-bud 1s var(--ease-bounce) forwards 2s;
+}
+
+@keyframes emerge-bud {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.bud-leaf {
+  transform-origin: center bottom;
+}
+
+.bud-leaf.bud-1 { animation: sway-bud 4s ease-in-out infinite 2.2s; }
+.bud-leaf.bud-2 { animation: sway-bud 4.5s ease-in-out infinite 2.4s; }
+.bud-leaf.bud-3 { animation: sway-bud 4.2s ease-in-out infinite 2.3s; }
+
+@keyframes sway-bud {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(3deg); }
+}
+
+/* Small Accent Leaves Float */
+.small-leaf.anim-float {
+  animation: gentle-float 5s ease-in-out infinite;
+}
+
+.small-leaf.sl-1 { animation-delay: 0s; }
+.small-leaf.sl-2 { animation-delay: 1s; }
+
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0) rotate(var(--rotation, 0deg)); }
+  50% { transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg)); }
+}
+
+/* Flower Buds Pulse */
+.flower-bud {
+  animation: pulse-bud 3s ease-in-out infinite;
+}
+
+.flower-bud.fb-1 { animation-delay: 0s; }
+.flower-bud.fb-2 { animation-delay: 0.5s; }
+.flower-bud.fb-3 { animation-delay: 1s; }
+
+@keyframes pulse-bud {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% { 
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+/* Hero Content */
+.hero-content-illustrated {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+  max-width: 650px;
+}
+
+.era-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background: rgba(201, 162, 39, 0.1);
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.era-years {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--tea-gold);
+  line-height: 1;
+}
+
+.era-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tea-gold);
+  opacity: 0.8;
+}
+
+.hero-title-illustrated {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.title-word {
+  display: block;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: title-reveal 0.8s var(--ease-steep) forwards;
+}
+
+.title-word.tw-1 { 
+  font-size: clamp(3rem, 10vw, 5rem);
+  animation-delay: 0.3s;
+}
+.title-word.tw-2 { 
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-style: italic;
+  color: var(--cream-dark);
+  animation-delay: 0.5s;
+}
+.title-word.tw-3 { 
+  font-size: clamp(3.5rem, 12vw, 6rem);
+  color: var(--jade-light);
+  animation-delay: 0.7s;
+}
+
+@keyframes title-reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--cream-dark);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fade-in 1s var(--ease-natural) forwards 1s;
+}
+
+.hero-intro-illustrated {
+  font-size: 1.125rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: rgba(245, 241, 227, 0.85);
+  max-width: 550px;
+  margin: 0 auto;
+  opacity: 0;
+  animation: fade-in 1s var(--ease-natural) forwards 1.2s;
+}
+
+@keyframes fade-in {
+  to { opacity: 1; }
+}
+
+/* Scroll Prompt */
+.scroll-prompt-illustrated {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 4;
+  opacity: 0;
+  animation: fade-in 1s var(--ease-natural) forwards 2.5s;
+}
+
+.prompt-leaf {
+  animation: leaf-drop 2.5s ease-in-out infinite;
+}
+
+@keyframes leaf-drop {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  50% { 
+    transform: translateY(15px) rotate(10deg);
+    opacity: 0.6;
+  }
+}
+
+.prompt-text {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245, 241, 227, 0.5);
+}
+
+/* ============================================
+   SCENE TRANSITIONS & VISIBILITY
+   ============================================ */
+.scene-china,
+.scene-gongfu,
+.scene-japan,
+.scene-empire,
+.scene-processing,
+.scene-modern {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.8s var(--ease-steep), transform 0.8s var(--ease-steep);
+}
+
+.scene-china.visible,
+.scene-gongfu.visible,
+.scene-japan.visible,
+.scene-empire.visible,
+.scene-processing.visible,
+.scene-modern.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   SCENE 2: ANCIENT CHINA
+   ============================================ */
+.scene-china {
+  position: relative;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+@media (min-width: 900px) {
+  .scene-china {
+    flex-direction: row;
+    justify-content: center;
+    gap: 4rem;
+  }
+}
+
+.china-illustration {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 500px;
+}
+
+.china-scene-svg {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Mist blob animation */
+.mist-blob {
+  animation: mist-drift 20s ease-in-out infinite;
+}
+
+.mist-blob.mb-1 { animation-delay: 0s; }
+.mist-blob.mb-2 { animation-delay: 5s; }
+.mist-blob.mb-3 { animation-delay: 10s; }
+
+@keyframes mist-drift {
+  0%, 100% { transform: translateX(0); opacity: 0.3; }
+  50% { transform: translateX(30px); opacity: 0.15; }
+}
+
+/* Falling leaves in scene */
+.scene-leaf {
+  animation: fall-drift 6s ease-in-out infinite;
+}
+
+.scene-leaf.sl-1 { animation-delay: 0s; }
+.scene-leaf.sl-2 { animation-delay: 1s; }
+.scene-leaf.sl-3 { animation-delay: 2s; }
+.scene-leaf.sl-4 { animation-delay: 3s; }
+.scene-leaf.sl-5 { animation-delay: 4s; }
+.scene-leaf.sl-6 { animation-delay: 5s; }
+
+@keyframes fall-drift {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% {
+    transform: translateY(180px) translateX(40px) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+/* Steam wisps */
+.steam-wisp {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  animation: steam-curl 3s ease-out infinite;
+}
+
+.steam-wisp.sw-1 { animation-delay: 0s; }
+.steam-wisp.sw-2 { animation-delay: 0.5s; }
+.steam-wisp.sw-3 { animation-delay: 1s; }
+
+@keyframes steam-curl {
+  0% {
+    stroke-dashoffset: 50;
+    opacity: 0;
+  }
+  30% { opacity: 0.5; }
+  100% {
+    stroke-dashoffset: -50;
+    opacity: 0;
+  }
+}
+
+.year-text {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.china-content {
+  max-width: 500px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+}
+
+.section-text {
+  font-size: 1.0625rem;
+  line-height: 1.9;
+  color: rgba(245, 241, 227, 0.85);
+  margin-bottom: 1.25rem;
+}
+
+.section-text em {
+  color: var(--jade-light);
+  font-style: italic;
+}
+
+.illustrated-quote {
+  position: relative;
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+  background: rgba(45, 90, 74, 0.1);
+  border-left: 3px solid var(--jade);
+  border-radius: 0 8px 8px 0;
+}
+
+.illustrated-quote .quote-mark {
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: var(--jade);
+  opacity: 0.3;
+  line-height: 1;
+}
+
+.illustrated-quote p {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.illustrated-quote cite {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-style: normal;
+  color: var(--jade-light);
+}
+
+/* ============================================
+   SCENE 3: GONGFU TEA
+   ============================================ */
+.scene-gongfu {
+  position: relative;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  background: linear-gradient(180deg, var(--puerh-dark) 0%, var(--puerh-mid) 50%, var(--puerh-dark) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+@media (min-width: 900px) {
+  .scene-gongfu {
+    flex-direction: row;
+    justify-content: center;
+    gap: 4rem;
+  }
+}
+
+.gongfu-illustration {
+  flex-shrink: 0;
+}
+
+.yixing-svg {
+  width: clamp(280px, 40vw, 400px);
+  height: auto;
+}
+
+/* Tea pour animation */
+.tea-pour.anim-pour {
+  opacity: 0;
+  animation: pour-tea 4s ease-in-out infinite 2s;
+}
+
+@keyframes pour-tea {
+  0%, 10% { opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  90%, 100% { opacity: 0; }
+}
+
+.tea-drop {
+  animation: drop-fall 2s ease-in infinite;
+}
+
+.tea-drop.td-1 { animation-delay: 0s; }
+.tea-drop.td-2 { animation-delay: 0.3s; }
+
+@keyframes drop-fall {
+  0% { 
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% { 
+    transform: translateY(30px);
+    opacity: 0;
+  }
+}
+
+/* Steam curls */
+.steam-curl {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: curl-rise 4s ease-out infinite;
+}
+
+.steam-curl.sc-1 { animation-delay: 0s; }
+.steam-curl.sc-2 { animation-delay: 0.7s; }
+.steam-curl.sc-3 { animation-delay: 1.4s; }
+
+@keyframes curl-rise {
+  0% {
+    stroke-dashoffset: 60;
+    opacity: 0;
+    transform: translateY(0);
+  }
+  30% { opacity: 0.4; }
+  100% {
+    stroke-dashoffset: -60;
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.gongfu-content {
+  max-width: 500px;
+}
+
+.era-tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--tea-gold);
+  margin-bottom: 1rem;
+}
+
+.gongfu-facts {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.fact {
+  text-align: center;
+}
+
+.fact-number {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--tea-gold);
+  line-height: 1;
+}
+
+.fact-label {
+  font-size: 0.75rem;
+  color: rgba(245, 241, 227, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ============================================
+   SCENE 4: JAPAN - ZEN GARDEN
+   ============================================ */
+.scene-japan {
+  position: relative;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  background: var(--puerh-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.japan-illustration {
+  width: 100%;
+  max-width: 600px;
+}
+
+.zen-garden-svg {
+  width: 100%;
+  height: auto;
+}
+
+/* Sand raking animation */
+.sand-line.anim-rake {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: rake-sand 3s ease-out forwards;
+}
+
+.sand-line.anim-rake.delay-0 { animation-delay: 0.5s; }
+.sand-line.anim-rake.delay-1 { animation-delay: 0.6s; }
+.sand-line.anim-rake.delay-2 { animation-delay: 0.7s; }
+.sand-line.anim-rake.delay-3 { animation-delay: 0.8s; }
+
+@keyframes rake-sand {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Whisk animation */
+.chasen-group.anim-whisk {
+  transform-origin: 388px 100px;
+  animation: whisk-motion 2s ease-in-out infinite;
+}
+
+@keyframes whisk-motion {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(10deg); }
+  75% { transform: rotate(-10deg); }
+}
+
+/* Bamboo sway */
+.bamboo-stalk {
+  transform-origin: bottom center;
+  animation: bamboo-sway 6s ease-in-out infinite;
+}
+
+.bamboo-stalk.bs-1 { animation-delay: 0s; }
+.bamboo-stalk.bs-2 { animation-delay: 0.5s; }
+.bamboo-stalk.bs-3 { animation-delay: 1s; }
+.bamboo-stalk.bs-4 { animation-delay: 0.3s; }
+.bamboo-stalk.bs-5 { animation-delay: 0.8s; }
+.bamboo-stalk.bs-6 { animation-delay: 1.3s; }
+
+@keyframes bamboo-sway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(1deg); }
+}
+
+.japan-content {
+  max-width: 600px;
+  text-align: center;
+}
+
+/* Zen Principles Cards */
+.zen-principles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.principle-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background: rgba(143, 169, 143, 0.1);
+  border: 1px solid rgba(143, 169, 143, 0.3);
+  border-radius: 8px;
+  min-width: 100px;
+  transition: transform 0.3s var(--ease-bounce), background 0.3s ease;
+}
+
+.principle-card:hover {
+  transform: translateY(-5px);
+  background: rgba(143, 169, 143, 0.2);
+}
+
+.principle-card .kanji {
+  font-size: 2.5rem;
+  color: var(--mist);
+  line-height: 1;
+}
+
+.principle-card .romaji {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--cream);
+  margin: 0.5rem 0 0.25rem;
+}
+
+.principle-card .meaning {
+  font-size: 0.75rem;
+  color: rgba(245, 241, 227, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ============================================
+   SCENE 5: TRADE ROUTES MAP
+   ============================================ */
+.scene-trade {
+  position: relative;
+  min-height: 400vh;
+  background: var(--ocean-deep);
+}
+
+.trade-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.map-title-illustrated {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.map-subtitle-illustrated {
+  font-size: 1rem;
+  color: rgba(245, 241, 227, 0.6);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.world-map-illustrated {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+}
+
+.continent-shape {
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+/* Route animations */
+.route-path {
+  transition: stroke-dashoffset 1.5s var(--ease-steep);
+}
+
+.route-path.active {
+  filter: drop-shadow(0 0 8px var(--tea-gold));
+}
+
+.route-end {
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.5s var(--ease-bounce);
+}
+
+.route-end.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.route-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  fill: var(--cream);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.route-label.show {
+  opacity: 0.8;
+}
+
+.origin-label {
+  font-family: var(--font-display);
+  font-size: 12px;
+  fill: var(--tea-gold);
+}
+
+/* Ships sailing */
+.ships-group {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.ships-group.sailing {
+  opacity: 1;
+}
+
+.ships-group.sailing .ship {
+  animation: sail-rock 4s ease-in-out infinite;
+}
+
+@keyframes sail-rock {
+  0%, 100% { transform: translate(600px, 360px) rotate(0deg); }
+  25% { transform: translate(602px, 358px) rotate(2deg); }
+  75% { transform: translate(598px, 362px) rotate(-2deg); }
+}
+
+.ship-sail {
+  animation: billow 3s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+@keyframes billow {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(1.05); }
+}
+
+/* Caravan walking */
+.caravan-group {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.caravan-group.walking {
+  opacity: 1;
+}
+
+.caravan-group.walking .camel {
+  animation: camel-walk 2s ease-in-out infinite;
+}
+
+@keyframes camel-walk {
+  0%, 100% { transform: translate(650px, 180px) translateY(0); }
+  50% { transform: translate(650px, 180px) translateY(-3px); }
+}
+
+/* Timeline */
+.map-timeline-illustrated {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  opacity: 0.4;
+  transition: all 0.4s var(--ease-steep);
+}
+
+.timeline-item.active {
+  opacity: 1;
+  background: rgba(201, 162, 39, 0.2);
+  border: 1px solid var(--tea-gold);
+}
+
+.tl-year {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--tea-gold);
+}
+
+.tl-label {
+  font-size: 0.7rem;
+  color: var(--cream);
+  opacity: 0.8;
+}
+
+/* ============================================
+   SCENE 6: BRITISH EMPIRE
+   ============================================ */
+.scene-empire {
+  position: relative;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  background: linear-gradient(180deg, var(--ocean-deep) 0%, var(--puerh-dark) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+@media (min-width: 900px) {
+  .scene-empire {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.empire-illustration {
+  width: 100%;
+  max-width: 600px;
+}
+
+.british-scene-svg {
+  width: 100%;
+  height: auto;
+}
+
+/* Wave animation */
+.wave {
+  animation: wave-motion 8s ease-in-out infinite;
+}
+
+.wave.wave-1 { animation-delay: 0s; }
+.wave.wave-2 { animation-delay: 0.5s; }
+.wave.wave-3 { animation-delay: 1s; }
+.wave.wave-4 { animation-delay: 1.5s; }
+.wave.wave-5 { animation-delay: 2s; }
+.wave.wave-6 { animation-delay: 2.5s; }
+.wave.wave-7 { animation-delay: 3s; }
+.wave.wave-8 { animation-delay: 3.5s; }
+
+@keyframes wave-motion {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(20px); }
+}
+
+/* Ship rocking */
+.clipper-ship.anim-rock {
+  transform-origin: center bottom;
+  animation: ship-rock 5s ease-in-out infinite;
+}
+
+@keyframes ship-rock {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  25% { transform: rotate(2deg) translateY(-3px); }
+  75% { transform: rotate(-2deg) translateY(-3px); }
+}
+
+/* Sails billowing */
+.sails.anim-billow .sail {
+  animation: sail-billow 4s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+@keyframes sail-billow {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(1.03); }
+}
+
+/* Tea chests falling */
+.chest.anim-fall {
+  animation: chest-fall 5s ease-in infinite;
+}
+
+.chest.chest-1 { animation-delay: 0s; }
+.chest.chest-2 { animation-delay: 1.5s; }
+.chest.chest-3 { animation-delay: 3s; }
+
+@keyframes chest-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(120px) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(150px) rotate(60deg);
+    opacity: 0;
+  }
+}
+
+/* Splash */
+.splash {
+  animation: splash-ring 5s ease-out infinite;
+}
+
+.splash.sp-1 { animation-delay: 0.8s; }
+.splash.sp-2 { animation-delay: 2.3s; }
+
+@keyframes splash-ring {
+  0%, 15% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  20% {
+    transform: scale(0.5);
+    opacity: 0.6;
+  }
+  40% {
+    transform: scale(2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.year-overlay {
+  font-family: var(--font-display);
+  font-weight: 300;
+}
+
+.empire-content {
+  max-width: 500px;
+}
+
+.empire-quote {
+  background: rgba(74, 107, 138, 0.1);
+  border-left-color: var(--british-blue);
+}
+
+.empire-quote .quote-mark {
+  color: var(--british-blue);
+}
+
+/* ============================================
+   SCENE 7: PROCESSING
+   ============================================ */
+.scene-processing {
+  position: relative;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  background: var(--puerh-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+@media (min-width: 900px) {
+  .scene-processing {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.processing-illustration {
+  width: 100%;
+  max-width: 500px;
+}
+
+.processing-diagram-svg {
+  width: 100%;
+  height: auto;
+}
+
+.center-label {
+  font-family: var(--font-display);
+  font-size: 14px;
+  fill: var(--cream);
+}
+
+/* Tea nodes appear */
+.tea-node.anim-appear {
+  opacity: 0;
+  transform: scale(0);
+  animation: node-appear 0.6s var(--ease-bounce) forwards;
+}
+
+@keyframes node-appear {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.tea-name {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.tea-ox {
+  font-family: var(--font-body);
+}
+
+/* Oxidation arc drawing */
+.oxidation-arc.anim-draw {
+  stroke-dasharray: 1100;
+  stroke-dashoffset: 1100;
+  animation: draw-arc 3s var(--ease-steep) forwards 1s;
+}
+
+@keyframes draw-arc {
+  to { stroke-dashoffset: 0; }
+}
+
+.processing-content {
+  max-width: 500px;
+}
+
+.processing-key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+.key-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: rgba(245, 241, 227, 0.7);
+}
+
+.key-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.key-arrow {
+  color: var(--tea-gold);
+  font-size: 1.25rem;
+}
+
+/* ============================================
+   SCENE 8: MODERN STATS
+   ============================================ */
+.scene-modern {
+  position: relative;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  background: linear-gradient(180deg, var(--puerh-dark) 0%, var(--jade-dark) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modern-stats-visual {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 800px;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 700px) {
+  .modern-stats-visual {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stat-card-illustrated {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s var(--ease-steep);
+}
+
+.scene-modern.visible .stat-card-illustrated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scene-modern.visible .stat-card-illustrated.sc-1 { transition-delay: 0.1s; }
+.scene-modern.visible .stat-card-illustrated.sc-2 { transition-delay: 0.2s; }
+.scene-modern.visible .stat-card-illustrated.sc-3 { transition-delay: 0.3s; }
+.scene-modern.visible .stat-card-illustrated.sc-4 { transition-delay: 0.4s; }
+
+.stat-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 400;
+  color: var(--tea-gold);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-desc {
+  font-size: 0.8125rem;
+  color: rgba(245, 241, 227, 0.6);
+  line-height: 1.4;
+}
+
+.modern-content {
+  max-width: 650px;
+  text-align: center;
+}
+
+/* ============================================
+   SCENE 9: CLOSING
+   ============================================ */
+.scene-closing {
+  position: relative;
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: 
+    radial-gradient(ellipse at 50% 40%, var(--jade-dark) 0%, transparent 60%),
+    var(--puerh-dark);
+}
+
+.closing-illustration {
+  margin-bottom: 2rem;
+}
+
+.final-cup-svg {
+  width: clamp(200px, 35vw, 300px);
+  height: auto;
+}
+
+/* Steam animation */
+.steam-elaborate {
+  stroke-dasharray: 80;
+  stroke-dashoffset: 80;
+  animation: elaborate-steam 4s ease-out infinite;
+}
+
+.steam-elaborate.se-1 { animation-delay: 0s; }
+.steam-elaborate.se-2 { animation-delay: 0.5s; }
+.steam-elaborate.se-3 { animation-delay: 1s; }
+
+@keyframes elaborate-steam {
+  0% {
+    stroke-dashoffset: 80;
+    opacity: 0;
+  }
+  30% { opacity: 0.4; }
+  100% {
+    stroke-dashoffset: -80;
+    opacity: 0;
+  }
+}
+
+/* Floating leaves */
+.fl-leaf {
+  animation: leaf-drift-final 8s ease-in-out infinite;
+}
+
+.fl-leaf.fl-1 { animation-delay: 0s; }
+.fl-leaf.fl-2 { animation-delay: 2s; }
+.fl-leaf.fl-3 { animation-delay: 4s; }
+
+@keyframes leaf-drift-final {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--r, 0deg));
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-15px) rotate(calc(var(--r, 0deg) + 15deg));
+    opacity: 1;
+  }
+}
+
+.closing-content-illustrated {
+  max-width: 650px;
+  text-align: center;
+}
+
+.closing-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+}
+
+.closing-text {
+  font-size: 1.125rem;
+  line-height: 1.9;
+  color: rgba(245, 241, 227, 0.85);
+  margin-bottom: 1.25rem;
+}
+
+.final-quote {
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.final-quote p {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--jade-light);
+  margin-bottom: 0.75rem;
+}
+
+.final-quote cite {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-style: normal;
+  color: rgba(245, 241, 227, 0.5);
+}
+
+.closing-final {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--tea-gold);
+  margin-top: 2rem;
+}
+
+/* ============================================
+   SOURCES
+   ============================================ */
+.sources-illustrated {
+  padding: 4rem 2rem;
+  background: var(--puerh-dark);
+  border-top: 1px solid rgba(45, 90, 74, 0.3);
+}
+
+.sources-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.sources-title {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(245, 241, 227, 0.1);
+}
+
+.sources-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 600px) {
+  .sources-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .sources-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.sources-grid a {
+  display: block;
+  padding: 1rem;
+  font-size: 0.875rem;
+  color: rgba(245, 241, 227, 0.7);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(245, 241, 227, 0.05);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.sources-grid a:hover {
+  color: var(--cream);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--jade);
+  transform: translateY(-2px);
+}
+
+.sources-note {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(245, 241, 227, 0.1);
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: rgba(245, 241, 227, 0.4);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 480px) {
+  .hero-plant-svg {
+    width: 240px;
+  }
+  
+  .title-word.tw-1 { font-size: 2.5rem; }
+  .title-word.tw-2 { font-size: 1.5rem; }
+  .title-word.tw-3 { font-size: 3rem; }
+  
+  .zen-principles {
+    gap: 0.75rem;
+  }
+  
+  .principle-card {
+    padding: 1rem;
+    min-width: 80px;
+  }
+  
+  .principle-card .kanji {
+    font-size: 2rem;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .tea-illustrated *,
+  .tea-illustrated *::before,
+  .tea-illustrated *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .mist-layer,
+  .mountain-layer,
+  .steam-wisp,
+  .steam-curl,
+  .steam-elaborate,
+  .leaf-unit,
+  .bud-group,
+  .flower-bud,
+  .scene-leaf,
+  .clipper-ship,
+  .sails,
+  .chest,
+  .wave,
+  .bamboo-stalk,
+  .chasen-group {
+    animation: none !important;
+  }
+  
+  .scene-china,
+  .scene-gongfu,
+  .scene-japan,
+  .scene-empire,
+  .scene-processing,
+  .scene-modern {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .stat-card-illustrated {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .title-word {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================
+   GLOBAL CSS OVERRIDE
+   ============================================ */
+.tea-illustrated .hero-content-illustrated {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-template-columns: unset;
+  gap: unset;
+}
+
