@@ -943,7 +943,7 @@ export default function FirstBounceClient() {
             </div>
             
             <blockquote className="naismith-quote reveal">
-              <p>"The game must be interesting, easy to learn, and easy to play in winter and by artificial light."</p>
+              <p>{`"The game must be interesting, easy to learn, and easy to play in winter and by artificial light."`}</p>
               <cite>— Dr. James Naismith</cite>
             </blockquote>
           </div>
@@ -1046,7 +1046,7 @@ export default function FirstBounceClient() {
             </div>
             <div className="spread-panel reveal">
               <span className="panel-date">1892</span>
-              <h4>Women's Basketball</h4>
+              <h4>{`Women's Basketball`}</h4>
               <p>Senda Berenson adapts the rules at Smith College. A parallel evolution begins.</p>
             </div>
             <div className="spread-panel reveal">
@@ -1079,7 +1079,7 @@ export default function FirstBounceClient() {
               <div className="milestone reveal">
                 <span className="milestone-year">1992</span>
                 <h4>The Dream Team</h4>
-                <p>Jordan, Magic, Bird—America's gift to global sports culture.</p>
+                <p>{`Jordan, Magic, Bird—America's gift to global sports culture.`}</p>
               </div>
             </div>
           </div>
@@ -1137,7 +1137,7 @@ export default function FirstBounceClient() {
             <p className="reflection-line large">The game is simple.</p>
             <p className="reflection-line large">The game is infinite.</p>
             <p className="reflection-body">
-              A single idea from a winter gym became the world's most fluid language.
+              {`A single idea from a winter gym became the world's most fluid language.`}
             </p>
           </div>
           
@@ -1148,7 +1148,7 @@ export default function FirstBounceClient() {
           </div>
           
           <blockquote className="final-quote reveal">
-            <p>"The invention of basketball was not an accident. It was developed to meet a need."</p>
+            <p>{`"The invention of basketball was not an accident. It was developed to meet a need."`}</p>
             <cite>— Dr. James Naismith</cite>
           </blockquote>
         </div>

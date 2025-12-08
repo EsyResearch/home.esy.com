@@ -1146,7 +1146,7 @@ export default function OriginOfBreadClient() {
             </h1>
             
             <p className="cinematic-subtitle reveal">
-              A Cinematic History of Humanity's First Food
+              {`A Cinematic History of Humanity's First Food`}
             </p>
           </div>
           
@@ -1209,7 +1209,7 @@ export default function OriginOfBreadClient() {
             <div className="ritual-narrative">
               <p className="scientific-note">
                 <span className="era-badge">30,000 BCE</span>
-                At Grotta Paglicci in Italy, archaeologists discovered stone tools bearing traces of starch residue—evidence that our Paleolithic ancestors were grinding wild grains into flour long before the advent of agriculture. This paste, smeared onto hot stones and charred by fire, represents humanity's first attempt to transform grass into sustenance.
+                {`At Grotta Paglicci in Italy, archaeologists discovered stone tools bearing traces of starch residue—evidence that our Paleolithic ancestors were grinding wild grains into flour long before the advent of agriculture. This paste, smeared onto hot stones and charred by fire, represents humanity's first attempt to transform grass into sustenance.`}
               </p>
             </div>
           </div>
@@ -1271,7 +1271,7 @@ export default function OriginOfBreadClient() {
           </div>
           
           <blockquote className="featured-quote reveal">
-            <p>"The discovery of bread at Shubayqa 1 suggests that bread production was already established before plant cultivation began."</p>
+            <p>{`"The discovery of bread at Shubayqa 1 suggests that bread production was already established before plant cultivation began."`}</p>
             <cite>— Dr. Amaia Arranz-Otaegui, University of Copenhagen, 2018</cite>
           </blockquote>
         </div>
@@ -1311,17 +1311,17 @@ export default function OriginOfBreadClient() {
           <div className="narrative-block reveal">
             <p className="scientific-note">
               <span className="era-badge">9,500 BCE</span>
-              In the highlands of southeastern Turkey, near the volcanic slopes of Karacadağ, wild einkorn wheat (<em>Triticum monococcum</em>) underwent genetic transformation. DNA analysis by Manfred Heun's team (1997) identified this precise region as the birthplace of domesticated wheat—the genetic Eve of nearly all bread we eat today.
+              {`In the highlands of southeastern Turkey, near the volcanic slopes of Karacadağ, wild einkorn wheat (`}<em>Triticum monococcum</em>{`) underwent genetic transformation. DNA analysis by Manfred Heun's team (1997) identified this precise region as the birthplace of domesticated wheat—the genetic Eve of nearly all bread we eat today.`}
             </p>
           </div>
           
           <div className="deep-narrative reveal">
             <h3 className="subsection-title">The Neolithic Package</h3>
             <p>
-              The transition from foraging to farming—what archaeologists call the "Neolithic Revolution"—was neither sudden nor universal. It emerged gradually across the Fertile Crescent, a arc-shaped region stretching from the Persian Gulf through modern Iraq, Syria, Lebanon, Israel, and Jordan.
+              {`The transition from foraging to farming—what archaeologists call the "Neolithic Revolution"—was neither sudden nor universal. It emerged gradually across the Fertile Crescent, a arc-shaped region stretching from the Persian Gulf through modern Iraq, Syria, Lebanon, Israel, and Jordan.`}
             </p>
             <p>
-              Alongside wheat and barley, early farmers domesticated lentils, peas, chickpeas, bitter vetch, and flax. They developed irrigation, built permanent villages, and invented pottery for storage. The "Neolithic Package" was a complete transformation of human existence—from mobile to settled, from opportunistic to planned.
+              {`Alongside wheat and barley, early farmers domesticated lentils, peas, chickpeas, bitter vetch, and flax. They developed irrigation, built permanent villages, and invented pottery for storage. The "Neolithic Package" was a complete transformation of human existence—from mobile to settled, from opportunistic to planned.`}
             </p>
           </div>
           
@@ -1403,10 +1403,10 @@ export default function OriginOfBreadClient() {
           <div className="deep-narrative reveal">
             <h3 className="subsection-title">The Science of Rising</h3>
             <p>
-              Yeast fermentation is a byproduct of anaerobic respiration. When <em>Saccharomyces</em> encounters flour's starches (broken down into simple sugars by enzymes), it metabolizes these sugars into ethanol and carbon dioxide. The ethanol evaporates during baking, leaving behind the characteristic flavor compounds of fermented bread.
+              {`Yeast fermentation is a byproduct of anaerobic respiration. When `}<em>Saccharomyces</em>{` encounters flour's starches (broken down into simple sugars by enzymes), it metabolizes these sugars into ethanol and carbon dioxide. The ethanol evaporates during baking, leaving behind the characteristic flavor compounds of fermented bread.`}
             </p>
             <p>
-              The discovery was almost certainly accidental. A wet grain mixture left too long, a warm environment, and the ubiquitous presence of wild yeast created the conditions for spontaneous fermentation. The first person to bake this "spoiled" dough discovered something miraculous: bread that was lighter, more flavorful, and easier to digest.
+              {`The discovery was almost certainly accidental. A wet grain mixture left too long, a warm environment, and the ubiquitous presence of wild yeast created the conditions for spontaneous fermentation. The first person to bake this "spoiled" dough discovered something miraculous: bread that was lighter, more flavorful, and easier to digest.`}
             </p>
           </div>
         </div>
@@ -1435,7 +1435,7 @@ export default function OriginOfBreadClient() {
             </Voice>
             
             <Voice voice="unseen">
-              The Egyptians didn't just bake bread—they built a civilization upon it. Bread was currency, sacrament, and identity.
+              {`The Egyptians didn't just bake bread—they built a civilization upon it. Bread was currency, sacrament, and identity.`}
             </Voice>
             
             <Voice voice="eternal">
@@ -1446,14 +1446,14 @@ export default function OriginOfBreadClient() {
           <div className="narrative-block reveal">
             <p className="scientific-note">
               <span className="era-badge">4,000 BCE</span>
-              Ancient Egypt elevated breadmaking from subsistence to art. Archaeological evidence from tomb paintings, wooden models, and remarkably preserved loaves reveals a sophisticated baking industry. Delwen Samuel's microscopic analysis of 3,000-year-old bread samples (1996) identified cell structures remarkably similar to modern sourdough.
+              {`Ancient Egypt elevated breadmaking from subsistence to art. Archaeological evidence from tomb paintings, wooden models, and remarkably preserved loaves reveals a sophisticated baking industry. Delwen Samuel's microscopic analysis of 3,000-year-old bread samples (1996) identified cell structures remarkably similar to modern sourdough.`}
             </p>
           </div>
           
           <div className="deep-narrative reveal">
             <h3 className="subsection-title">Bread as Economy</h3>
             <p>
-              The Great Pyramid of Giza wasn't built by slaves—it was built by paid workers, and their wages were measured in bread and beer. Papyrus records detail daily rations: 10 loaves and a measure of beer per worker, with supervisors receiving more. The bakeries that fed pyramid construction were industrial operations, producing thousands of loaves daily.
+              {`The Great Pyramid of Giza wasn't built by slaves—it was built by paid workers, and their wages were measured in bread and beer. Papyrus records detail daily rations: 10 loaves and a measure of beer per worker, with supervisors receiving more. The bakeries that fed pyramid construction were industrial operations, producing thousands of loaves daily.`}
             </p>
             <p>
               Egyptian bread came in at least 40 distinct varieties, from simple emmer loaves to elaborate festival breads shaped like lotus flowers, fish, or sacred symbols. The hieroglyph for bread (𓏋) appears in countless contexts—it was one of the most fundamental concepts in Egyptian writing.
@@ -1474,15 +1474,15 @@ export default function OriginOfBreadClient() {
           <div className="deep-narrative reveal">
             <h3 className="subsection-title">Sacred Technology</h3>
             <p>
-              Egyptian bakers developed the closed oven—a dome-shaped structure that retained heat and allowed consistent temperatures. They understood sourdough fermentation, maintaining "mother" cultures passed from batch to batch. Tomb models show complete bakeries with dough bowls, proving trays, and specialized tools.
+              {`Egyptian bakers developed the closed oven—a dome-shaped structure that retained heat and allowed consistent temperatures. They understood sourdough fermentation, maintaining "mother" cultures passed from batch to batch. Tomb models show complete bakeries with dough bowls, proving trays, and specialized tools.`}
             </p>
             <p>
-              Bread accompanied the dead into the afterlife. Loaves placed in tombs were meant to sustain the <em>ka</em> (spirit) on its eternal journey. Many of these ritual loaves, preserved by Egypt's dry climate, survive today in museum collections—edible artifacts from 3,000 years past.
+              {`Bread accompanied the dead into the afterlife. Loaves placed in tombs were meant to sustain the `}<em>ka</em>{` (spirit) on its eternal journey. Many of these ritual loaves, preserved by Egypt's dry climate, survive today in museum collections—edible artifacts from 3,000 years past.`}
             </p>
           </div>
           
           <blockquote className="featured-quote reveal">
-            <p>"The analysis of Egyptian bread samples shows that the ancient Egyptians used complex fermentation processes similar to those of modern sourdough bread production."</p>
+            <p>{`"The analysis of Egyptian bread samples shows that the ancient Egyptians used complex fermentation processes similar to those of modern sourdough bread production."`}</p>
             <cite>— Dr. Delwen Samuel, Science, 1996</cite>
           </blockquote>
         </div>
@@ -1515,7 +1515,7 @@ export default function OriginOfBreadClient() {
             <div className="timeline-era reveal">
               <h3>Greece & Rome <span className="era-date">800 BCE – 400 CE</span></h3>
               <p>
-                The Greeks established professional bakers (<em>artokopos</em>) and developed white bread as a luxury. Romans industrialized production—by 100 CE, Rome had 329 commercial bakeries. The <em>annona</em> (grain dole) distributed free bread to citizens, making grain supply a matter of political survival.
+                {`The Greeks established professional bakers (`}<em>artokopos</em>{`) and developed white bread as a luxury. Romans industrialized production—by 100 CE, Rome had 329 commercial bakeries. The `}<em>annona</em>{` (grain dole) distributed free bread to citizens, making grain supply a matter of political survival.`}
               </p>
             </div>
             
@@ -1529,7 +1529,7 @@ export default function OriginOfBreadClient() {
             <div className="timeline-era reveal">
               <h3>The Industrial Revolution <span className="era-date">1800 – 1900 CE</span></h3>
               <p>
-                Roller mills replaced stone grinding, producing fine white flour at unprecedented scale. Commercial yeast (Louis Pasteur's pure cultures, 1857) eliminated the unpredictability of wild fermentation. The Chorleywood Bread Process (1961) accelerated production but divorced bread from craft.
+                {`Roller mills replaced stone grinding, producing fine white flour at unprecedented scale. Commercial yeast (Louis Pasteur's pure cultures, 1857) eliminated the unpredictability of wild fermentation. The Chorleywood Bread Process (1961) accelerated production but divorced bread from craft.`}
               </p>
             </div>
             
@@ -1568,19 +1568,19 @@ export default function OriginOfBreadClient() {
             <div className="tradition-grid">
               <div className="tradition-item">
                 <h4>Naan & Roti</h4>
-                <p>South Asia's tandoor-baked flatbreads, descended from ancient Persian traditions</p>
+                <p>{`South Asia's tandoor-baked flatbreads, descended from ancient Persian traditions`}</p>
               </div>
               <div className="tradition-item">
                 <h4>Tortilla</h4>
-                <p>Mesoamerica's corn-based bread, nixtamalized for 3,500 years</p>
+                <p>{`Mesoamerica's corn-based bread, nixtamalized for 3,500 years`}</p>
               </div>
               <div className="tradition-item">
                 <h4>Baguette</h4>
-                <p>France's iconic loaf, legally regulated for shape and ingredients</p>
+                <p>{`France's iconic loaf, legally regulated for shape and ingredients`}</p>
               </div>
               <div className="tradition-item">
                 <h4>Injera</h4>
-                <p>Ethiopia's sourdough flatbread, fermented with teff flour</p>
+                <p>{`Ethiopia's sourdough flatbread, fermented with teff flour`}</p>
               </div>
               <div className="tradition-item">
                 <h4>Pita</h4>
@@ -1588,7 +1588,7 @@ export default function OriginOfBreadClient() {
               </div>
               <div className="tradition-item">
                 <h4>Mantou</h4>
-                <p>China's steamed bread, rising in bamboo instead of ovens</p>
+                <p>{`China's steamed bread, rising in bamboo instead of ovens`}</p>
               </div>
             </div>
           </div>
@@ -1605,7 +1605,7 @@ export default function OriginOfBreadClient() {
               The next time you tear a piece of bread, pause. In your hands is 30,000 years of human ingenuity—the accumulated wisdom of countless ancestors who learned to transform tough grass seeds into nourishment. That simple act connects you to Paleolithic grinders, Natufian bakers, Egyptian priests, Roman citizens, medieval peasants, and artisan craftspeople. 
             </p>
             <p>
-              Bread is not merely food. It is memory made edible. It is civilization's first and most enduring technology. It is, in the most literal sense, what made us human.
+              {`Bread is not merely food. It is memory made edible. It is civilization's first and most enduring technology. It is, in the most literal sense, what made us human.`}
             </p>
           </div>
         </div>
