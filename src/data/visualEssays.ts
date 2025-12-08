@@ -11,7 +11,8 @@ export type StoryCategory =
   | 'Technology'
   | 'Culture'
   | 'Space'
-  | 'Education & Writing';
+  | 'Education & Writing'
+  | "Children's Fiction";
 
 export interface VisualEssay {
   id: string;
@@ -22,6 +23,7 @@ export interface VisualEssay {
   readTime: string;
   href: string;
   isNew?: boolean;
+  draft?: boolean;
   tags?: string[];
 }
 
@@ -32,6 +34,7 @@ export const CATEGORY_COLORS: Record<StoryCategory, string> = {
   'Culture': '#EC4899',
   'Space': '#8B5CF6',
   'Education & Writing': '#06B6D4',
+  "Children's Fiction": '#FFD700',
 };
 
 export const visualEssays: VisualEssay[] = [
@@ -277,15 +280,74 @@ export const visualEssays: VisualEssay[] = [
     isNew: true,
     tags: ["food", "culture", "asia"],
   },
+  // Children's Fiction (draft - not shown in production)
+  {
+    id: "the-night-the-stars-fell",
+    title: "The Night the Stars Fell",
+    subtitle: "A Children's Bedtime Story",
+    description: "An interactive bedtime story about a brave little girl who helps a fallen star find its way home.",
+    category: "Children's Fiction",
+    readTime: "5 min",
+    href: "/essays/visual/the-night-the-stars-fell",
+    draft: true,
+    tags: ["children", "bedtime", "fiction", "stars", "friendship"],
+  },
+  {
+    id: "the-monster-under-my-bed",
+    title: "The Monster Under My Bed",
+    subtitle: "A Tale of Unlikely Friendship",
+    description: "Maya discovers the monster under her bed is actually afraid of the dark. A heartwarming interactive story.",
+    category: "Children's Fiction",
+    readTime: "5 min",
+    href: "/essays/visual/the-monster-under-my-bed",
+    draft: true,
+    tags: ["children", "bedtime", "fiction", "monster", "friendship"],
+  },
+  {
+    id: "mia-mouse-mystery-m",
+    title: "Mia Mouse and the Mystery M",
+    subtitle: "A Curious Adventure",
+    description: "Follow curious Mia Mouse as she discovers mysterious M-shaped crumbs leading to a wonderful surprise!",
+    category: "Children's Fiction",
+    readTime: "6 min",
+    href: "/essays/visual/mia-mouse-mystery-m",
+    draft: true,
+    tags: ["children", "alphabet", "letter M", "mouse", "friendship"],
+  },
+  {
+    id: "alphabet-adventure-train",
+    title: "The Alphabet Adventure Train",
+    subtitle: "All Aboard for Learning!",
+    description: "Join the colorful train as it chugs through the alphabet, picking up letters and learning words along the way.",
+    category: "Children's Fiction",
+    readTime: "8 min",
+    href: "/essays/visual/alphabet-adventure-train",
+    draft: true,
+    tags: ["children", "alphabet", "learning", "train", "ages 3-6"],
+  },
+  {
+    id: "sammy-snail-super-speed",
+    title: "Sammy Snail's Super Speed Day",
+    subtitle: "Zoom! A Magical Adventure",
+    description: "Join Sammy Snail as he discovers a magical dew drop that gives him super speed!",
+    category: "Children's Fiction",
+    readTime: "8 min",
+    href: "/essays/visual/sammy-snail-super-speed",
+    draft: true,
+    tags: ["children", "adventure", "snail", "speed", "friendship"],
+  },
 ];
 
-// Helper function to search visual essays
+// Get only published (non-draft) visual essays
+export const publishedVisualEssays = visualEssays.filter(essay => !essay.draft);
+
+// Helper function to search visual essays (only published)
 export function searchVisualEssays(query: string): VisualEssay[] {
   if (!query.trim()) return [];
   
   const searchTerms = query.toLowerCase().split(' ').filter(Boolean);
   
-  return visualEssays.filter(essay => {
+  return publishedVisualEssays.filter(essay => {
     const searchableText = [
       essay.title,
       essay.subtitle,

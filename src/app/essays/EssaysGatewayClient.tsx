@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { ArrowRight, Clock } from "lucide-react";
 import { useHeaderSearch } from "@/contexts/HeaderSearchContext";
 import SearchBar from "@/components/SearchBar/SearchBar";
-import { visualEssays, searchVisualEssays, CATEGORY_COLORS } from "@/data/visualEssays";
+import { publishedVisualEssays, searchVisualEssays, CATEGORY_COLORS } from "@/data/visualEssays";
 import './essays-gateway.css';
 
 /*
@@ -64,7 +64,7 @@ interface SearchResult {
 // ==================== SAMPLE DATA ====================
 
 // Convert visual essays to preview format (show first 4)
-const visualEssayPreviews: VisualEssayPreview[] = visualEssays.slice(0, 4).map(essay => ({
+const visualEssayPreviews: VisualEssayPreview[] = publishedVisualEssays.slice(0, 4).map(essay => ({
   id: essay.id,
   title: essay.title,
   subtitle: essay.subtitle,
@@ -140,7 +140,7 @@ const Hero: React.FC<HeroProps> = ({
       
       <div className="essays-hero-metrics">
         <div className="essays-metric">
-          <span className="essays-metric-number">{visualEssays.length}</span>
+          <span className="essays-metric-number">{publishedVisualEssays.length}</span>
           <span className="essays-metric-label">Visual Essays</span>
         </div>
         <span className="essays-metric-divider" />

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Play, Sparkles } from "lucide-react";
-import { visualEssays, CATEGORY_COLORS, type VisualEssay } from "@/data/visualEssays";
+import { publishedVisualEssays, CATEGORY_COLORS, type VisualEssay } from "@/data/visualEssays";
 import './scrollytelling-showcase.css';
 
 /*
@@ -18,7 +18,7 @@ import './scrollytelling-showcase.css';
  */
 
 // Featured stories to showcase
-const featuredStories = visualEssays.slice(0, 6);
+const featuredStories = publishedVisualEssays.slice(0, 6);
 
 // ==================== COMPONENTS ====================
 
@@ -220,7 +220,7 @@ const FeaturedSection: React.FC = () => {
       
       <div className="featured-cta">
         <Link href="/essays/visual" className="view-all-link">
-          View all {visualEssays.length} Visual Essays
+          View all {publishedVisualEssays.length} Visual Essays
           <ArrowRight size={18} />
         </Link>
       </div>
@@ -245,7 +245,7 @@ const TechSection: React.FC = () => {
         
         <div className="tech-stats">
           <div className="tech-stat">
-            <span className="stat-number">{visualEssays.length}+</span>
+            <span className="stat-number">{publishedVisualEssays.length}+</span>
             <span className="stat-label">Visual Essays</span>
           </div>
           <div className="tech-stat-divider" />
