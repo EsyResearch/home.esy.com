@@ -385,8 +385,20 @@ const visualEssays: VisualEssay[] = [
     readTime: "18 min",
     href: "/essays/visual/the-cocoa-odyssey",
     isNew: true,
-    isFeatured: true,
     tags: ["cocoa", "chocolate", "history", "Mesoamerica", "Maya", "Aztec", "trade", "industry", "food"],
+  },
+  {
+    id: "the-golden-crunch",
+    number: "30",
+    title: "The Golden Crunch",
+    subtitle: "The Origins, Journey & Global Rise of Fried Chicken",
+    description: "From West African traditions and Scottish frying techniques to enslaved cooks in the American South, Jim Crow travel food, and the multi-hundred-billion-dollar global industry. The untold story of fried chicken.",
+    category: "History",
+    readTime: "20 min",
+    href: "/essays/visual/the-golden-crunch",
+    isNew: true,
+    isFeatured: true,
+    tags: ["fried chicken", "soul food", "African American history", "food history", "KFC", "fast food", "culinary anthropology", "global cuisine"],
   },
 ];
 
