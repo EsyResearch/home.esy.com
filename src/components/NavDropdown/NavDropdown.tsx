@@ -2,46 +2,33 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { Sparkles, FileText, PenTool, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import './NavDropdown.css';
 
-interface NavDropdownProps {
-  isLightMode?: boolean;
-}
-
-interface DropdownItem {
+export interface DropdownItem {
   href: string;
   icon: React.ReactNode;
   title: string;
   description: string;
-  accent?: string;
+  accent?: 'purple' | 'blue' | 'emerald' | 'amber' | 'cyan' | 'rose';
 }
 
-const essayItems: DropdownItem[] = [
-  {
-    href: '/essays/visual',
-    icon: <Sparkles size={18} />,
-    title: 'Visual Essays',
-    description: 'Interactive storytelling experiences',
-    accent: 'purple'
-  },
-  {
-    href: '/essays',
-    icon: <FileText size={18} />,
-    title: 'Essay Examples',
-    description: 'Academic writing samples',
-    accent: 'blue'
-  },
-  {
-    href: '/essays/guides',
-    icon: <PenTool size={18} />,
-    title: 'Writing Guides',
-    description: 'Step-by-step tutorials',
-    accent: 'emerald'
-  }
-];
+interface NavDropdownProps {
+  label: string;
+  items: DropdownItem[];
+  footerLink?: {
+    href: string;
+    text: string;
+  };
+  isLightMode?: boolean;
+}
 
-export default function NavDropdown({ isLightMode = false }: NavDropdownProps) {
+export default function NavDropdown({ 
+  label,
+  items,
+  footerLink,
+  isLightMode = false 
+}: NavDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -116,7 +103,7 @@ export default function NavDropdown({ isLightMode = false }: NavDropdownProps) {
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
-        <span>Essays</span>
+        <span>{label}</span>
         <ChevronDown 
           size={14} 
           className={`nav-dropdown-chevron ${isOpen ? 'rotated' : ''}`}
@@ -130,15 +117,15 @@ export default function NavDropdown({ isLightMode = false }: NavDropdownProps) {
           aria-orientation="vertical"
         >
           <div className="nav-dropdown-content">
-            {essayItems.map((item) => (
+            {items.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`nav-dropdown-item ${item.accent}`}
+                className={`nav-dropdown-item ${item.accent || ''}`}
                 role="menuitem"
                 onClick={() => setIsOpen(false)}
               >
-                <div className={`nav-dropdown-icon ${item.accent}`}>
+                <div className={`nav-dropdown-icon ${item.accent || ''}`}>
                   {item.icon}
                 </div>
                 <div className="nav-dropdown-text">
@@ -149,19 +136,20 @@ export default function NavDropdown({ isLightMode = false }: NavDropdownProps) {
             ))}
           </div>
           
-          {/* Subtle footer link to main essays page */}
-          <div className="nav-dropdown-footer">
-            <Link 
-              href="/essays" 
-              className="nav-dropdown-footer-link"
-              onClick={() => setIsOpen(false)}
-            >
-              View all essays →
-            </Link>
-          </div>
+          {/* Footer link */}
+          {footerLink && (
+            <div className="nav-dropdown-footer">
+              <Link 
+                href={footerLink.href} 
+                className="nav-dropdown-footer-link"
+                onClick={() => setIsOpen(false)}
+              >
+                {footerLink.text}
+              </Link>
+            </div>
+          )}
         </div>
       )}
     </div>
   );
 }
-

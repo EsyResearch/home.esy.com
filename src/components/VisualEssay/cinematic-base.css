@@ -1,0 +1,1023 @@
+/**
+ * ESY VISUAL ESSAY TEMPLATE V2.0 — CINEMATIC BASE CSS
+ * ====================================================
+ * 
+ * Foundation styles for the Five Immersive Movements and Five Visual Modes.
+ * Import this file into any visual essay that uses the V2 template.
+ * 
+ * Contents:
+ * 1. CSS Custom Properties (Design Tokens)
+ * 2. Movement Structure
+ * 3. Visual Mode 1: Sensory Overwhelm
+ * 4. Visual Mode 2: Historical Dreamscape
+ * 5. Visual Mode 3: Collision Montage
+ * 6. Visual Mode 4: Global Threads
+ * 7. Visual Mode 5: Stillness & Revelation
+ * 8. Narration System (Three Voices)
+ * 9. Interaction Mode Base Styles
+ * 10. Animation Keyframes
+ * 11. Responsive Adjustments
+ * 12. Reduced Motion Support
+ */
+
+/* ===========================================
+   1. CSS CUSTOM PROPERTIES (Design Tokens)
+   =========================================== */
+
+:root {
+  /* Typography */
+  --ve-font-display: 'Cormorant Garamond', Georgia, serif;
+  --ve-font-serif: 'Cormorant Garamond', Georgia, serif;
+  --ve-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Spacing */
+  --ve-space-xs: 0.5rem;
+  --ve-space-sm: 1rem;
+  --ve-space-md: 2rem;
+  --ve-space-lg: 4rem;
+  --ve-space-xl: 8rem;
+  --ve-space-2xl: 12rem;
+  
+  /* Timing */
+  --ve-duration-fast: 0.2s;
+  --ve-duration-normal: 0.4s;
+  --ve-duration-slow: 0.8s;
+  --ve-duration-glacial: 1.5s;
+  --ve-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ve-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Colors (Override in story-specific CSS) */
+  --ve-bg-primary: #0a0a0c;
+  --ve-bg-secondary: #111114;
+  --ve-text-primary: rgba(255, 255, 255, 0.95);
+  --ve-text-secondary: rgba(255, 255, 255, 0.7);
+  --ve-text-tertiary: rgba(255, 255, 255, 0.5);
+  --ve-accent: #6366f1;
+  --ve-accent-glow: rgba(99, 102, 241, 0.3);
+  --ve-border: rgba(255, 255, 255, 0.08);
+  
+  /* Dreamscape Mode */
+  --ve-dreamscape-sky: #1a1a2e;
+  --ve-dreamscape-earth: #0f0f1a;
+  
+  /* Map Mode */
+  --ve-map-bg: #0d1117;
+  --ve-map-land: #161b22;
+  --ve-map-border: #30363d;
+  --ve-map-route: #58a6ff;
+  --ve-map-label: rgba(255, 255, 255, 0.6);
+  
+  /* Safe areas */
+  --ve-safe-top: env(safe-area-inset-top, 0px);
+  --ve-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --ve-safe-left: env(safe-area-inset-left, 0px);
+  --ve-safe-right: env(safe-area-inset-right, 0px);
+}
+
+/* ===========================================
+   2. MOVEMENT STRUCTURE
+   =========================================== */
+
+.visual-essay {
+  min-height: 100dvh;
+  background: var(--ve-bg-primary);
+  color: var(--ve-text-primary);
+  font-family: var(--ve-font-serif);
+  overflow-x: hidden;
+}
+
+.movement {
+  position: relative;
+  min-height: 100dvh;
+  padding: var(--ve-space-lg) var(--ve-space-md);
+  padding-left: max(var(--ve-space-md), var(--ve-safe-left));
+  padding-right: max(var(--ve-space-md), var(--ve-safe-right));
+}
+
+/* Movement I: Invocation — Full viewport, atmospheric */
+.movement-invocation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100dvh;
+  padding-top: calc(var(--ve-space-xl) + var(--ve-safe-top));
+  padding-bottom: calc(var(--ve-space-xl) + var(--ve-safe-bottom));
+}
+
+.invocation-content {
+  max-width: 800px;
+  margin: 0 auto;
+  z-index: 10;
+}
+
+.invocation-title {
+  font-family: var(--ve-font-display);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--ve-space-md);
+  opacity: 0;
+  animation: ve-fade-in-up var(--ve-duration-glacial) var(--ve-ease-out) forwards;
+}
+
+.invocation-subtitle {
+  font-family: var(--ve-font-serif);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ve-text-secondary);
+  margin-bottom: var(--ve-space-lg);
+  opacity: 0;
+  animation: ve-fade-in-up var(--ve-duration-glacial) var(--ve-ease-out) 0.3s forwards;
+}
+
+.invocation-voice {
+  font-family: var(--ve-font-serif);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-style: italic;
+  color: var(--ve-text-tertiary);
+  max-width: 50ch;
+  margin: 0 auto;
+  opacity: 0;
+  animation: ve-fade-in-up var(--ve-duration-glacial) var(--ve-ease-out) 0.6s forwards;
+}
+
+/* Movement II: Ancestral Pulse — Memory-like flow */
+.movement-ancestral {
+  padding-top: var(--ve-space-2xl);
+  padding-bottom: var(--ve-space-2xl);
+}
+
+/* Movement III: Collision — High energy, dense */
+.movement-collision {
+  background: var(--ve-bg-secondary);
+  padding-top: var(--ve-space-xl);
+  padding-bottom: var(--ve-space-xl);
+}
+
+/* Movement IV: Modern Echo — Return to intimacy */
+.movement-modern {
+  padding-top: var(--ve-space-2xl);
+  padding-bottom: var(--ve-space-2xl);
+}
+
+/* Movement V: Revelation — Meditative stillness */
+.movement-revelation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 80vh;
+  padding-top: var(--ve-space-2xl);
+  padding-bottom: calc(var(--ve-space-2xl) + var(--ve-safe-bottom));
+}
+
+/* ===========================================
+   3. VISUAL MODE 1: SENSORY OVERWHELM
+   =========================================== */
+
+.mode-sensory-overwhelm {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+.sensory-anchor {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.sensory-texture {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  /* Noise texture via SVG data URI */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.sensory-loop {
+  animation: ve-sensory-pulse 8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.sensory-drift {
+  animation: ve-sensory-drift 20s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ===========================================
+   4. VISUAL MODE 2: HISTORICAL DREAMSCAPE
+   =========================================== */
+
+.mode-dreamscape {
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    var(--ve-dreamscape-sky) 0%,
+    var(--ve-dreamscape-earth) 100%
+  );
+}
+
+.dreamscape-element {
+  opacity: 0.85;
+  animation: ve-dreamscape-fade 1.5s ease-out forwards;
+}
+
+.dreamscape-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: ve-line-draw 3s ease-out forwards;
+}
+
+/* SVG Filter for watercolor effect — apply via filter: url(#ve-watercolor) */
+.dreamscape-watercolor-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* ===========================================
+   5. VISUAL MODE 3: COLLISION MONTAGE
+   =========================================== */
+
+.mode-collision {
+  --ve-collision-speed: 0.3s;
+}
+
+.collision-panel {
+  opacity: 0;
+  transform: scale(1.05);
+  transition: 
+    opacity var(--ve-collision-speed) var(--ve-ease-out),
+    transform var(--ve-collision-speed) var(--ve-ease-out);
+}
+
+.collision-panel.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.collision-contrast {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+@media (max-width: 768px) {
+  .collision-contrast {
+    grid-template-columns: 1fr;
+    gap: var(--ve-space-md);
+  }
+}
+
+.collision-divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ve-space-sm) 0;
+}
+
+.collision-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--ve-border);
+}
+
+.collision-divider-label {
+  position: relative;
+  z-index: 1;
+  padding: 0 var(--ve-space-sm);
+  background: var(--ve-bg-secondary);
+  font-family: var(--ve-font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ve-text-tertiary);
+}
+
+/* ===========================================
+   6. VISUAL MODE 4: GLOBAL THREADS (Maps)
+   =========================================== */
+
+.mode-global-threads {
+  position: relative;
+  background: var(--ve-map-bg);
+}
+
+.global-thread-map {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+}
+
+.map-landmass {
+  fill: var(--ve-map-land);
+  stroke: var(--ve-map-border);
+  stroke-width: 0.5;
+  transition: fill var(--ve-duration-normal) ease;
+}
+
+.map-landmass.highlighted {
+  fill: color-mix(in srgb, var(--ve-map-land) 70%, var(--ve-accent) 30%);
+}
+
+.map-route {
+  fill: none;
+  stroke: var(--ve-map-route);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+.map-route.animate {
+  animation: ve-route-draw 4s ease-out forwards;
+}
+
+.map-route-glow {
+  fill: none;
+  stroke: var(--ve-map-route);
+  stroke-width: 6;
+  stroke-linecap: round;
+  opacity: 0.3;
+  filter: blur(4px);
+}
+
+.map-marker {
+  fill: var(--ve-accent);
+  stroke: var(--ve-bg-primary);
+  stroke-width: 2;
+  opacity: 0;
+  transform-origin: center;
+  transform: scale(0);
+}
+
+.map-marker.visible {
+  opacity: 1;
+  transform: scale(1);
+  transition: 
+    opacity var(--ve-duration-normal) var(--ve-ease-out),
+    transform var(--ve-duration-normal) var(--ve-ease-out);
+}
+
+.map-label {
+  font-family: var(--ve-font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  fill: var(--ve-map-label);
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+/* ===========================================
+   7. VISUAL MODE 5: STILLNESS & REVELATION
+   =========================================== */
+
+.mode-stillness {
+  padding: 15vh var(--ve-space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.stillness-element {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.stillness-element.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: 
+    opacity var(--ve-duration-glacial) var(--ve-ease-out),
+    transform var(--ve-duration-glacial) var(--ve-ease-out);
+}
+
+.stillness-text {
+  font-family: var(--ve-font-serif);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  line-height: 1.7;
+  max-width: 65ch;
+  margin: 0 auto;
+  color: var(--ve-text-secondary);
+}
+
+.stillness-focal {
+  max-width: 400px;
+  margin: 0 auto var(--ve-space-lg);
+}
+
+/* ===========================================
+   8. NARRATION SYSTEM (Three Voices)
+   =========================================== */
+
+.narration-block {
+  max-width: 700px;
+  margin: 0 auto var(--ve-space-lg);
+}
+
+/* Voice 1: The Seen (Descriptive) */
+.voice-seen {
+  font-family: var(--ve-font-sans);
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--ve-text-tertiary);
+  margin-bottom: var(--ve-space-xs);
+  letter-spacing: 0.01em;
+}
+
+/* Voice 2: The Unseen (Contextual) */
+.voice-unseen {
+  font-family: var(--ve-font-serif);
+  font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+  line-height: 1.7;
+  color: var(--ve-text-primary);
+}
+
+/* Voice 3: The Eternal (Poetic) */
+.voice-eternal {
+  font-family: var(--ve-font-display);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 400;
+  font-style: italic;
+  text-align: center;
+  color: var(--ve-accent);
+  padding: var(--ve-space-lg) var(--ve-space-md);
+  margin: var(--ve-space-xl) 0;
+  border-top: 1px solid var(--ve-border);
+  border-bottom: 1px solid var(--ve-border);
+  line-height: 1.4;
+}
+
+.voice-eternal p {
+  margin: 0;
+}
+
+.voice-eternal::before,
+.voice-eternal::after {
+  content: '"';
+  color: var(--ve-accent-glow);
+}
+
+.voice-eternal::after {
+  content: '"';
+}
+
+/* ===========================================
+   9. INTERACTION MODE BASE STYLES
+   =========================================== */
+
+/* Oracle Items */
+.oracle-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.oracle-item {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: var(--ve-space-xs) var(--ve-space-sm);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--ve-border);
+  border-radius: 24px;
+  color: var(--ve-text-secondary);
+  font-family: var(--ve-font-sans);
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: all var(--ve-duration-normal) var(--ve-ease-out);
+  transform: translate(-50%, -50%);
+}
+
+.oracle-item:hover,
+.oracle-item:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--ve-accent);
+  color: var(--ve-text-primary);
+}
+
+.oracle-item.active {
+  background: var(--ve-accent);
+  border-color: var(--ve-accent);
+  color: white;
+}
+
+.oracle-glow {
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  background: var(--ve-accent-glow);
+  opacity: 0;
+  filter: blur(8px);
+  transition: opacity var(--ve-duration-normal) ease;
+  pointer-events: none;
+}
+
+.oracle-item.active .oracle-glow {
+  opacity: 1;
+}
+
+.oracle-reveal {
+  position: fixed;
+  bottom: calc(80px + var(--ve-safe-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 400px;
+  width: calc(100% - var(--ve-space-lg));
+  padding: var(--ve-space-md);
+  background: rgba(20, 20, 24, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--ve-border);
+  border-radius: 16px;
+  z-index: 100;
+  animation: ve-reveal-up var(--ve-duration-normal) var(--ve-ease-out);
+}
+
+.oracle-whisper {
+  font-family: var(--ve-font-serif);
+  font-size: 1.125rem;
+  font-style: italic;
+  color: var(--ve-accent);
+  margin-bottom: var(--ve-space-xs);
+}
+
+.oracle-history {
+  font-family: var(--ve-font-sans);
+  font-size: 0.875rem;
+  color: var(--ve-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Flavor Wheel */
+.flavor-wheel-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ve-space-md);
+}
+
+.flavor-wheel {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1;
+}
+
+.wheel-segments {
+  transition: transform var(--ve-duration-slow) var(--ve-ease-out);
+}
+
+.wheel-segment {
+  cursor: pointer;
+  transition: 
+    opacity var(--ve-duration-fast) ease,
+    transform var(--ve-duration-fast) ease;
+  transform-origin: center;
+}
+
+.wheel-segment:hover {
+  opacity: 0.9;
+}
+
+.wheel-segment.active {
+  transform: scale(1.02);
+}
+
+.wheel-center {
+  fill: var(--ve-bg-primary);
+  stroke: var(--ve-border);
+  stroke-width: 2;
+}
+
+.wheel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--ve-border);
+  color: var(--ve-text-secondary);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all var(--ve-duration-fast) ease;
+}
+
+.wheel-control:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--ve-text-primary);
+}
+
+.wheel-control.prev { left: 0; }
+.wheel-control.next { right: 0; }
+
+.flavor-detail {
+  text-align: center;
+  max-width: 400px;
+}
+
+.flavor-detail h3 {
+  font-family: var(--ve-font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: var(--ve-space-xs);
+}
+
+.flavor-detail p {
+  font-family: var(--ve-font-serif);
+  font-size: 1rem;
+  color: var(--ve-text-secondary);
+  margin-bottom: var(--ve-space-sm);
+}
+
+.flavor-notes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ve-space-xs);
+  justify-content: center;
+}
+
+.flavor-note {
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  font-family: var(--ve-font-sans);
+  font-size: 0.75rem;
+  color: var(--ve-text-tertiary);
+}
+
+/* Timefold Slider */
+.timefold-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: ew-resize;
+}
+
+.timefold-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.timefold-layer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.timefold-layer.blend {
+  transition: opacity 0.05s linear;
+}
+
+.timefold-indicator {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: white;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.timefold-indicator::before,
+.timefold-indicator::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+}
+
+.timefold-indicator::before { top: var(--ve-space-sm); }
+.timefold-indicator::after { bottom: var(--ve-space-sm); }
+
+.indicator-year {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 4px 12px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+  font-family: var(--ve-font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+}
+
+.timefold-labels {
+  position: absolute;
+  bottom: var(--ve-space-sm);
+  left: var(--ve-space-sm);
+  right: var(--ve-space-sm);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.era-label {
+  font-family: var(--ve-font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Whispering Object */
+.whispering-object {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.object-visual {
+  position: relative;
+  transition: transform var(--ve-duration-normal) var(--ve-ease-out);
+}
+
+.whispering-object:hover .object-visual,
+.whispering-object.active .object-visual {
+  transform: scale(1.02);
+}
+
+.object-glow {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(
+    circle at center,
+    var(--ve-accent-glow) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--ve-duration-normal) ease;
+  pointer-events: none;
+}
+
+.whispering-object.active .object-glow {
+  opacity: 1;
+}
+
+.object-memories {
+  min-height: 3rem;
+  margin-top: var(--ve-space-md);
+  text-align: center;
+}
+
+.memory-text {
+  font-family: var(--ve-font-serif);
+  font-size: 1.125rem;
+  font-style: italic;
+  color: var(--ve-text-secondary);
+  animation: ve-fade-in var(--ve-duration-slow) ease;
+}
+
+/* ===========================================
+   10. ANIMATION KEYFRAMES
+   =========================================== */
+
+@keyframes ve-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes ve-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ve-reveal-up {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes ve-sensory-pulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes ve-sensory-drift {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(1%, -1%) rotate(0.5deg);
+  }
+  50% {
+    transform: translate(0, -2%) rotate(0deg);
+  }
+  75% {
+    transform: translate(-1%, -1%) rotate(-0.5deg);
+  }
+}
+
+@keyframes ve-dreamscape-fade {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+  }
+  to {
+    opacity: 0.85;
+    filter: blur(0);
+  }
+}
+
+@keyframes ve-line-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ve-route-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ve-marker-appear {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Steam Animation */
+@keyframes ve-steam-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.8);
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) scale(1.2);
+  }
+}
+
+.steam-particle {
+  animation: ve-steam-rise 4s ease-out infinite;
+  will-change: transform, opacity;
+}
+
+.steam-particle:nth-child(2) { animation-delay: 0.5s; }
+.steam-particle:nth-child(3) { animation-delay: 1s; }
+.steam-particle:nth-child(4) { animation-delay: 1.5s; }
+.steam-particle:nth-child(5) { animation-delay: 2s; }
+
+/* ===========================================
+   11. RESPONSIVE ADJUSTMENTS
+   =========================================== */
+
+@media (max-width: 768px) {
+  :root {
+    --ve-space-lg: 3rem;
+    --ve-space-xl: 5rem;
+    --ve-space-2xl: 8rem;
+  }
+  
+  .movement {
+    padding-left: max(var(--ve-space-sm), var(--ve-safe-left));
+    padding-right: max(var(--ve-space-sm), var(--ve-safe-right));
+  }
+  
+  .narration-block {
+    padding-left: var(--ve-space-sm);
+    padding-right: var(--ve-space-sm);
+  }
+  
+  .voice-eternal {
+    padding: var(--ve-space-md);
+    margin: var(--ve-space-lg) 0;
+  }
+  
+  .oracle-reveal {
+    bottom: calc(70px + var(--ve-safe-bottom));
+    width: calc(100% - var(--ve-space-md));
+  }
+  
+  .flavor-wheel-container {
+    padding: 0 var(--ve-space-lg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .invocation-title {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+  }
+  
+  .narration-block {
+    max-width: 750px;
+  }
+}
+
+/* ===========================================
+   12. REDUCED MOTION SUPPORT
+   =========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .invocation-title,
+  .invocation-subtitle,
+  .invocation-voice {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .sensory-loop,
+  .sensory-drift {
+    animation: none;
+  }
+  
+  .steam-particle {
+    animation: none;
+    opacity: 0.4;
+  }
+  
+  .map-route {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ===========================================
+   SVG FILTER DEFINITIONS (Include in HTML)
+   =========================================== */
+
+/*
+Include this SVG in your component for watercolor effects:
+
+<svg className="dreamscape-watercolor-defs" aria-hidden="true">
+  <defs>
+    <filter id="ve-watercolor">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" result="displaced" />
+      <feGaussianBlur in="displaced" stdDeviation="0.5" />
+    </filter>
+  </defs>
+</svg>
+*/
+

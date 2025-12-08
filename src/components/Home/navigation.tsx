@@ -7,6 +7,7 @@ import Link from "next/link";
 import HeaderSearch from "@/components/HeaderSearch/HeaderSearch";
 import NewsletterModal from "@/components/NewsletterModal/NewsletterModal";
 import NavDropdown from "@/components/NavDropdown/NavDropdown";
+import { Sparkles, FileText, PenTool } from "lucide-react";
 import { getAllPrompts } from "@/lib/prompts";
 import { getCTAConfig, getResponsiveCTAText } from "@/lib/ctaMapping";
 import { lightTheme } from "@/lib/lightTheme";
@@ -515,7 +516,34 @@ export default function Navigation ({
           {/* Navigation */}
           <div className="nav-links">
             {/* Essays Dropdown */}
-            <NavDropdown isLightMode={isLightMode} />
+            <NavDropdown 
+              label="Essays"
+              items={[
+                {
+                  href: '/essays/visual',
+                  icon: <Sparkles size={18} />,
+                  title: 'Visual Essays',
+                  description: 'Interactive storytelling experiences',
+                  accent: 'purple'
+                },
+                {
+                  href: '/essays',
+                  icon: <FileText size={18} />,
+                  title: 'Essay Examples',
+                  description: 'Academic writing samples',
+                  accent: 'blue'
+                },
+                {
+                  href: '/essays/guides',
+                  icon: <PenTool size={18} />,
+                  title: 'Writing Guides',
+                  description: 'Step-by-step tutorials',
+                  accent: 'emerald'
+                }
+              ]}
+              footerLink={{ href: '/essays', text: 'View all essays →' }}
+              isLightMode={isLightMode} 
+            />
             
             {/* CTA Button */}
             {ctaConfig.isNewsletter ? (

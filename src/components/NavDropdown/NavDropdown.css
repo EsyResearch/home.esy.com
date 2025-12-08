@@ -185,6 +185,21 @@
   color: #34d399;
 }
 
+.nav-dropdown-icon.amber {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+}
+
+.nav-dropdown-icon.cyan {
+  background: rgba(6, 182, 212, 0.15);
+  color: #22d3ee;
+}
+
+.nav-dropdown-icon.rose {
+  background: rgba(244, 63, 94, 0.15);
+  color: #fb7185;
+}
+
 /* Light mode icon adjustments */
 .nav-dropdown-menu.light .nav-dropdown-icon.purple {
   background: rgba(139, 92, 246, 0.12);
@@ -201,6 +216,21 @@
   color: #059669;
 }
 
+.nav-dropdown-menu.light .nav-dropdown-icon.amber {
+  background: rgba(245, 158, 11, 0.12);
+  color: #d97706;
+}
+
+.nav-dropdown-menu.light .nav-dropdown-icon.cyan {
+  background: rgba(6, 182, 212, 0.12);
+  color: #0891b2;
+}
+
+.nav-dropdown-menu.light .nav-dropdown-icon.rose {
+  background: rgba(244, 63, 94, 0.12);
+  color: #e11d48;
+}
+
 /* Hover effect on icons */
 .nav-dropdown-item:hover .nav-dropdown-icon.purple {
   background: rgba(139, 92, 246, 0.25);
@@ -214,6 +244,21 @@
 
 .nav-dropdown-item:hover .nav-dropdown-icon.emerald {
   background: rgba(16, 185, 129, 0.25);
+  transform: scale(1.05);
+}
+
+.nav-dropdown-item:hover .nav-dropdown-icon.amber {
+  background: rgba(245, 158, 11, 0.25);
+  transform: scale(1.05);
+}
+
+.nav-dropdown-item:hover .nav-dropdown-icon.cyan {
+  background: rgba(6, 182, 212, 0.25);
+  transform: scale(1.05);
+}
+
+.nav-dropdown-item:hover .nav-dropdown-icon.rose {
+  background: rgba(244, 63, 94, 0.25);
   transform: scale(1.05);
 }
 
