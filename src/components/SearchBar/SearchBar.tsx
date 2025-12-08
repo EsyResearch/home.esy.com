@@ -570,7 +570,13 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 )}
                 <div style={styles.dropdownItemMeta}>
                   {result.category && (
-                    <span style={styles.dropdownItemCategory}>
+                    <span style={{
+                      ...styles.dropdownItemCategory,
+                      ...(result.metadata?.categoryColor ? {
+                        color: result.metadata.categoryColor,
+                        backgroundColor: `${result.metadata.categoryColor}15`
+                      } : {})
+                    }}>
                       {result.category}
                     </span>
                   )}

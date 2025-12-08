@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import type { SearchResult } from '@/components/SearchBar/SearchBar';
-import { visualEssays, searchVisualEssays, type VisualEssay } from '@/data/visualEssays';
+import { searchVisualEssays, CATEGORY_COLORS, type VisualEssay } from '@/data/visualEssays';
 
 interface Essay {
   id: string;
@@ -98,7 +98,8 @@ export const useEssaySearch = ({
         isPro: essay.isNew || false,
         metadata: {
           tags: essay.tags,
-          readTime: essay.readTime
+          readTime: essay.readTime,
+          categoryColor: CATEGORY_COLORS[essay.category]
         }
       }));
     

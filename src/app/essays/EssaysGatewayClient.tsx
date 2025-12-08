@@ -318,6 +318,9 @@ const EssaysGatewayClient: React.FC<EssaysGatewayClientProps> = ({ textEssays })
       category: `Visual Essay · ${essay.category}`,
       slug: essay.href,
       type: 'article' as const,
+      metadata: {
+        categoryColor: CATEGORY_COLORS[essay.category]
+      }
     }));
   }, [searchQuery]);
 
