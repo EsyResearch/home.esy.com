@@ -6,6 +6,7 @@ import Logo from "@/components/Logo";
 import Link from "next/link";
 import HeaderSearch from "@/components/HeaderSearch/HeaderSearch";
 import NewsletterModal from "@/components/NewsletterModal/NewsletterModal";
+import NavDropdown from "@/components/NavDropdown/NavDropdown";
 import { getAllPrompts } from "@/lib/prompts";
 import { getCTAConfig, getResponsiveCTAText } from "@/lib/ctaMapping";
 import { lightTheme } from "@/lib/lightTheme";
@@ -513,10 +514,10 @@ export default function Navigation ({
           
           {/* Navigation */}
           <div className="nav-links">
-            {/* <a href="/essays" className="nav-link">Essays</a> */}
-            {/* <a href="/research" className="nav-link">Research</a> */}
-            {/* <a href="/school" className="nav-link">School</a> */}
-            {/* <a href="/pricing" className="nav-link">Pricing</a> */}
+            {/* Essays Dropdown */}
+            <NavDropdown isLightMode={isLightMode} />
+            
+            {/* CTA Button */}
             {ctaConfig.isNewsletter ? (
               <button 
                 onClick={(e) => {
