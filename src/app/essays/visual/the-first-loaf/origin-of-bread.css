@@ -946,6 +946,412 @@
 }
 
 /* ============================================
+   EXPANDED SECTIONS — NATUFIAN
+   ============================================ */
+.origin-of-bread .movement-natufian {
+  background: linear-gradient(180deg, var(--void) 0%, var(--shadow) 50%, var(--smoke) 100%);
+  position: relative;
+}
+
+.origin-of-bread .natufian-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+.origin-of-bread .natufian-camp {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.origin-of-bread .natufian-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.origin-of-bread .narrative-block {
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.origin-of-bread .deep-narrative {
+  margin-top: var(--space-xl);
+  padding: var(--space-md);
+  background: rgba(5, 4, 3, 0.7);
+  border-left: 3px solid var(--grain-gold);
+  border-radius: 0 var(--space-2xs) var(--space-2xs) 0;
+}
+
+.origin-of-bread .deep-narrative p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--flour-mist);
+  margin-bottom: var(--space-sm);
+}
+
+.origin-of-bread .deep-narrative p:last-child {
+  margin-bottom: 0;
+}
+
+.origin-of-bread .deep-context {
+  margin-top: var(--space-lg);
+  padding: var(--space-md);
+  background: rgba(199, 164, 60, 0.08);
+  border-radius: var(--space-2xs);
+}
+
+.origin-of-bread .deep-context p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--flour-mist);
+  opacity: 0.9;
+}
+
+.origin-of-bread .subsection-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--grain-gold);
+  margin-bottom: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.origin-of-bread .subsection-title:first-child {
+  margin-top: 0;
+}
+
+.origin-of-bread .featured-quote {
+  margin: var(--space-xl) 0;
+  padding: var(--space-lg);
+  background: linear-gradient(135deg, rgba(199, 164, 60, 0.1) 0%, rgba(212, 69, 26, 0.05) 100%);
+  border-left: 4px solid var(--ember-glow);
+  border-radius: 0 var(--space-xs) var(--space-xs) 0;
+}
+
+.origin-of-bread .featured-quote p {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--flour-white);
+  margin-bottom: var(--space-sm);
+}
+
+.origin-of-bread .featured-quote cite {
+  font-size: 0.875rem;
+  font-style: normal;
+  color: var(--grain-dark);
+}
+
+/* ============================================
+   EXPANDED SECTIONS — AGRICULTURE
+   ============================================ */
+.origin-of-bread .movement-agriculture {
+  background: linear-gradient(180deg, var(--smoke) 0%, var(--shadow) 50%, var(--void-deep) 100%);
+  position: relative;
+}
+
+.origin-of-bread .crescent-backdrop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 600px;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.origin-of-bread .fertile-crescent {
+  width: 100%;
+  height: auto;
+}
+
+.origin-of-bread .agriculture-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.origin-of-bread .stat-highlight {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin: var(--space-xl) 0;
+  padding: var(--space-lg);
+  background: rgba(199, 164, 60, 0.1);
+  border-radius: var(--space-xs);
+}
+
+.origin-of-bread .stat-item {
+  text-align: center;
+}
+
+.origin-of-bread .stat-number {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--grain-gold);
+  line-height: 1.1;
+}
+
+.origin-of-bread .stat-label {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--flour-mist);
+  opacity: 0.8;
+  margin-top: var(--space-2xs);
+}
+
+/* ============================================
+   EXPANDED SECTIONS — EGYPT
+   ============================================ */
+.origin-of-bread .movement-egypt {
+  background: linear-gradient(180deg, #0D2538 0%, var(--shadow) 30%, var(--smoke) 100%);
+  position: relative;
+}
+
+.origin-of-bread .egypt-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  opacity: 0.7;
+  z-index: 1;
+}
+
+.origin-of-bread .egyptian-bakery {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.origin-of-bread .egypt-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: 40vh;
+}
+
+/* ============================================
+   EXPANDED SECTIONS — TIMELINE
+   ============================================ */
+.origin-of-bread .movement-timeline {
+  background: linear-gradient(180deg, var(--smoke) 0%, var(--shadow) 100%);
+}
+
+.origin-of-bread .timeline-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.origin-of-bread .timeline-visual {
+  margin: var(--space-xl) 0;
+  padding: var(--space-md) 0;
+  overflow-x: auto;
+}
+
+.origin-of-bread .bread-timeline {
+  width: 100%;
+  min-width: 500px;
+  height: auto;
+}
+
+.origin-of-bread .era-marker text {
+  font-family: var(--font-mono);
+  fill: var(--flour-mist);
+}
+
+.origin-of-bread .timeline-narrative {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.origin-of-bread .timeline-era {
+  padding: var(--space-md);
+  background: rgba(5, 4, 3, 0.6);
+  border-left: 3px solid var(--stone);
+  border-radius: 0 var(--space-xs) var(--space-xs) 0;
+  transition: border-color var(--duration-normal) var(--ease-out-expo);
+}
+
+.origin-of-bread .timeline-era:hover {
+  border-color: var(--grain-gold);
+}
+
+.origin-of-bread .timeline-era h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--flour-white);
+  margin-bottom: var(--space-xs);
+}
+
+.origin-of-bread .timeline-era .era-date {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--grain-gold);
+  margin-left: var(--space-sm);
+}
+
+.origin-of-bread .timeline-era p {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--flour-mist);
+  opacity: 0.9;
+}
+
+/* ============================================
+   EXPANDED SECTIONS — GLOBAL TRADITIONS
+   ============================================ */
+.origin-of-bread .global-traditions {
+  margin-top: var(--space-xl);
+}
+
+.origin-of-bread .tradition-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+.origin-of-bread .tradition-item {
+  padding: var(--space-md);
+  background: rgba(199, 164, 60, 0.08);
+  border-radius: var(--space-xs);
+  border-left: 3px solid var(--grain-dark);
+  transition: all var(--duration-normal) var(--ease-out-expo);
+}
+
+.origin-of-bread .tradition-item:hover {
+  background: rgba(199, 164, 60, 0.12);
+  border-color: var(--grain-gold);
+}
+
+.origin-of-bread .tradition-item h4 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--grain-gold);
+  margin-bottom: var(--space-2xs);
+}
+
+.origin-of-bread .tradition-item p {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--flour-mist);
+  opacity: 0.85;
+}
+
+/* ============================================
+   FINAL REFLECTION
+   ============================================ */
+.origin-of-bread .final-reflection {
+  margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  background: linear-gradient(135deg, rgba(199, 164, 60, 0.1) 0%, rgba(5, 4, 3, 0.8) 100%);
+  border-radius: var(--space-xs);
+}
+
+.origin-of-bread .final-reflection p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--flour-white);
+  margin-bottom: var(--space-md);
+}
+
+.origin-of-bread .final-reflection p:last-child {
+  margin-bottom: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.0625rem;
+  color: var(--grain-gold);
+}
+
+/* ============================================
+   FLAME ANIMATIONS — For Natufian & Egypt
+   ============================================ */
+.origin-of-bread .flame {
+  animation: flameFlicker 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes flameFlicker {
+  0% { 
+    opacity: 0.7; 
+    transform: scaleY(1) translateY(0);
+  }
+  100% { 
+    opacity: 1; 
+    transform: scaleY(1.1) translateY(-2px);
+  }
+}
+
+.origin-of-bread .camp-fire .flame:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.origin-of-bread .camp-fire .flame:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.origin-of-bread .oven-flames .flame {
+  animation: ovenFlame 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes ovenFlame {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* ============================================
+   TABLET BREAKPOINT — EXPANDED SECTIONS
+   ============================================ */
+@media (min-width: 768px) {
+  .origin-of-bread .stat-highlight {
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--space-2xl);
+  }
+  
+  .origin-of-bread .tradition-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .origin-of-bread .egypt-content {
+    padding-top: 30vh;
+  }
+}
+
+/* ============================================
+   DESKTOP BREAKPOINT — EXPANDED SECTIONS
+   ============================================ */
+@media (min-width: 1024px) {
+  .origin-of-bread .tradition-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .origin-of-bread .featured-quote {
+    margin-left: var(--space-lg);
+    margin-right: var(--space-lg);
+  }
+  
+  .origin-of-bread .stat-number {
+    font-size: 4rem;
+  }
+}
+
+/* ============================================
    PRINT STYLES
    ============================================ */
 @media print {
@@ -953,7 +1359,10 @@
   .origin-of-bread .primordial-ember,
   .origin-of-bread .flour-dust,
   .origin-of-bread .scroll-indicator,
-  .origin-of-bread .ancestral-backdrop {
+  .origin-of-bread .ancestral-backdrop,
+  .origin-of-bread .natufian-backdrop,
+  .origin-of-bread .egypt-backdrop,
+  .origin-of-bread .crescent-backdrop {
     display: none;
   }
   
