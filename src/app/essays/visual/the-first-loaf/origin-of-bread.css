@@ -1,0 +1,970 @@
+/*
+ * THE ORIGIN OF BREAD
+ * Cinematic Scrollytelling — Version II.1 (SVG-Strict)
+ * 
+ * DESIGN RESEARCH DERIVATION:
+ * Every color, font, and motion is derived from the subject itself:
+ * - Grain gold from wheat heads
+ * - Ember orange from primordial fire
+ * - Flour cream from milled particles
+ * - Void black from pre-fire darkness
+ * - Clay earth from fermentation vessels
+ * 
+ * ANIMATION PHILOSOPHY:
+ * - Slow, meditative drifts (grains as celestial bodies)
+ * - Scroll-triggered illumination
+ * - GPU-accelerated transforms only
+ * - Respect prefers-reduced-motion
+ * 
+ * MOBILE-NATIVE FIRST
+ * All measurements start mobile, enhance for desktop
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ============================================
+   DESIGN TOKENS — Derived from Subject Matter
+   ============================================ */
+:root {
+  /* Primordial palette — from darkness to light */
+  --void: #050403;
+  --void-deep: #020201;
+  --shadow: #0D0B09;
+  --smoke: #1A1612;
+  
+  /* Fire palette — from ember to flame */
+  --ember-core: #D4451A;
+  --ember-glow: #F5A623;
+  --flame-tip: #FFD93D;
+  
+  /* Grain palette — from husk to flour */
+  --grain-dark: #8B7355;
+  --grain-gold: #C7A43C;
+  --grain-light: #E8B84A;
+  --flour-mist: #F2EDE4;
+  --flour-white: #FDFBF7;
+  
+  /* Earth palette — clay and stone */
+  --stone: #4A4239;
+  --stone-warm: #6B6155;
+  --clay: #8B5E3C;
+  --clay-light: #A07050;
+  
+  /* Typography */
+  --font-display: 'EB Garamond', serif;
+  --font-body: 'Source Serif 4', serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  /* Spacing — mobile-first rhythm */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-sine: cubic-bezier(0.37, 0, 0.63, 1);
+  --ease-in-out-quad: cubic-bezier(0.45, 0, 0.55, 1);
+  
+  /* Durations — mobile-optimized (faster) */
+  --duration-instant: 100ms;
+  --duration-fast: 200ms;
+  --duration-normal: 350ms;
+  --duration-slow: 600ms;
+  --duration-slower: 1000ms;
+  --duration-cinematic: 1500ms;
+}
+
+/* ============================================
+   BASE RESET
+   ============================================ */
+.origin-of-bread {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.7;
+  background: var(--void);
+  color: var(--flour-mist);
+  overflow-x: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.origin-of-bread *,
+.origin-of-bread *::before,
+.origin-of-bread *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================
+   MOVEMENT SECTIONS — Base Layout
+   ============================================ */
+.origin-of-bread .movement {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: var(--space-lg) var(--space-sm);
+  padding-top: calc(var(--space-lg) + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(var(--space-lg) + env(safe-area-inset-bottom, 0px));
+}
+
+.origin-of-bread .movement-label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--grain-gold);
+  margin-bottom: var(--space-xs);
+}
+
+.origin-of-bread .section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--flour-white);
+  margin-bottom: var(--space-lg);
+}
+
+/* Reveal animation */
+.origin-of-bread .reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 
+    opacity var(--duration-slow) var(--ease-out-expo),
+    transform var(--duration-slow) var(--ease-out-expo);
+}
+
+.origin-of-bread .reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered delays */
+.origin-of-bread .reveal:nth-child(2) { transition-delay: 0.08s; }
+.origin-of-bread .reveal:nth-child(3) { transition-delay: 0.16s; }
+.origin-of-bread .reveal:nth-child(4) { transition-delay: 0.24s; }
+.origin-of-bread .reveal:nth-child(5) { transition-delay: 0.32s; }
+.origin-of-bread .reveal:nth-child(6) { transition-delay: 0.40s; }
+
+/* ============================================
+   MOVEMENT I — INVOCATION
+   Sensory Overwhelm: Cosmic grain field
+   ============================================ */
+.origin-of-bread .movement-invocation {
+  background: radial-gradient(
+    ellipse 100% 80% at 50% 100%,
+    #1A120A 0%,
+    var(--void) 60%,
+    var(--void-deep) 100%
+  );
+  min-height: 120vh;
+  min-height: 120dvh;
+}
+
+.origin-of-bread .invocation-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-sm);
+}
+
+.origin-of-bread .invocation-stage {
+  margin-bottom: var(--space-xl);
+}
+
+.origin-of-bread .cinematic-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 14vw, 7rem);
+  font-weight: 600;
+  line-height: 0.95;
+  margin-bottom: var(--space-md);
+}
+
+.origin-of-bread .title-line {
+  display: block;
+  color: var(--flour-white);
+}
+
+.origin-of-bread .title-accent {
+  color: var(--grain-gold);
+  text-shadow: 
+    0 0 60px rgba(199, 164, 60, 0.4),
+    0 0 120px rgba(199, 164, 60, 0.2);
+}
+
+.origin-of-bread .cinematic-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 3vw, 1.375rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--stone-warm);
+}
+
+/* Voice stack in invocation */
+.origin-of-bread .voice-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  margin-bottom: var(--space-xl);
+  max-width: 550px;
+}
+
+/* Scroll indicator */
+.origin-of-bread .scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-lg);
+}
+
+.origin-of-bread .scroll-indicator span {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: lowercase;
+  color: var(--stone-warm);
+}
+
+.origin-of-bread .scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--grain-gold), transparent);
+  animation: scroll-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes scroll-pulse {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  50% { opacity: 0.3; transform: scaleY(0.5); }
+}
+
+/* ============================================
+   COSMIC GRAIN FIELD
+   ============================================ */
+.origin-of-bread .cosmic-grain-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.origin-of-bread .grain-cosmos-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.origin-of-bread .cosmic-grain {
+  animation: grain-fall var(--duration) linear var(--delay) infinite;
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+@keyframes grain-fall {
+  0% {
+    transform: translate(var(--start-x), var(--start-y)) rotate(0deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: var(--glow-intensity);
+  }
+  90% {
+    opacity: var(--glow-intensity);
+  }
+  100% {
+    transform: translate(calc(var(--start-x) + var(--drift)), 110%) rotate(var(--rotation));
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   PRIMORDIAL EMBER
+   ============================================ */
+.origin-of-bread .primordial-ember {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.origin-of-bread .primordial-ember svg {
+  width: 100%;
+  height: 100%;
+}
+
+.origin-of-bread .ember-pulse {
+  animation: ember-breathe 4s ease-in-out infinite;
+}
+
+.origin-of-bread .ember-core-pulse {
+  animation: core-flicker 2s ease-in-out infinite;
+}
+
+@keyframes ember-breathe {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+@keyframes core-flicker {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+/* ============================================
+   FLOUR DUST
+   ============================================ */
+.origin-of-bread .flour-dust {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.origin-of-bread .flour-mote {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  background: var(--flour-mist);
+  border-radius: 50%;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: flour-drift var(--duration) ease-in-out var(--delay) infinite;
+}
+
+@keyframes flour-drift {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: var(--opacity);
+  }
+  80% {
+    opacity: var(--opacity);
+  }
+  100% {
+    transform: translate(15px, -30px);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   THREE-VOICE NARRATION SYSTEM
+   ============================================ */
+.origin-of-bread .voice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 4px;
+  max-width: 100%;
+}
+
+.origin-of-bread .voice-marker {
+  flex-shrink: 0;
+  font-size: 0.625rem;
+  margin-top: 0.35em;
+}
+
+.origin-of-bread .voice-text {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+/* Voice 1: The Seen — concrete, visual */
+.origin-of-bread .voice-seen {
+  background: rgba(139, 94, 60, 0.08);
+  border-left: 2px solid var(--clay);
+}
+
+.origin-of-bread .voice-seen .voice-marker {
+  color: var(--clay-light);
+}
+
+.origin-of-bread .voice-seen .voice-text {
+  color: var(--flour-white);
+}
+
+/* Voice 2: The Unseen — cultural layers */
+.origin-of-bread .voice-unseen {
+  background: rgba(199, 164, 60, 0.06);
+  border-left: 2px solid var(--grain-gold);
+}
+
+.origin-of-bread .voice-unseen .voice-marker {
+  color: var(--grain-gold);
+}
+
+.origin-of-bread .voice-unseen .voice-text {
+  color: var(--grain-light);
+  font-style: italic;
+}
+
+/* Voice 3: The Eternal — philosophical */
+.origin-of-bread .voice-eternal {
+  background: rgba(212, 69, 26, 0.08);
+  border-left: 2px solid var(--ember-core);
+}
+
+.origin-of-bread .voice-eternal .voice-marker {
+  color: var(--ember-glow);
+}
+
+.origin-of-bread .voice-eternal .voice-text {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--flour-white);
+}
+
+.origin-of-bread .voice-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+/* ============================================
+   MOVEMENT II — ANCESTRAL PULSE
+   Historical Dreamscape
+   ============================================ */
+.origin-of-bread .movement-ancestral {
+  background: linear-gradient(
+    180deg,
+    var(--void) 0%,
+    var(--shadow) 40%,
+    var(--smoke) 100%
+  );
+}
+
+.origin-of-bread .ancestral-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.origin-of-bread .abstract-plains {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.origin-of-bread .grass-stalk {
+  animation: grass-sway 4s ease-in-out infinite;
+  animation-delay: var(--delay);
+  transform-origin: bottom center;
+}
+
+@keyframes grass-sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+.origin-of-bread .ancestral-content {
+  position: relative;
+  z-index: 10;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Ritual scene — sticky layout on desktop */
+.origin-of-bread .ritual-scene {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+.origin-of-bread .ritual-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.origin-of-bread .stone-mortar {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+}
+
+.origin-of-bread .ritual-narrative {
+  text-align: center;
+}
+
+.origin-of-bread .scientific-note {
+  font-size: 0.9375rem;
+  color: rgba(242, 237, 228, 0.8);
+  line-height: 1.6;
+}
+
+.origin-of-bread .era-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  color: var(--grain-gold);
+  background: rgba(199, 164, 60, 0.1);
+  padding: var(--space-3xs) var(--space-xs);
+  border-radius: 3px;
+  margin-right: var(--space-xs);
+}
+
+/* ============================================
+   MOVEMENT III — COLLISION OF WORLDS
+   Fermentation Discovery
+   ============================================ */
+.origin-of-bread .movement-collision {
+  background: linear-gradient(
+    180deg,
+    var(--smoke) 0%,
+    var(--void) 50%,
+    var(--shadow) 100%
+  );
+}
+
+.origin-of-bread .collision-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.origin-of-bread .collision-catalyst {
+  font-size: 1.125rem;
+  color: var(--flour-mist);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.origin-of-bread .collision-catalyst em {
+  color: var(--ember-glow);
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Triptych layout */
+.origin-of-bread .collision-triptych {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.origin-of-bread .triptych-panel {
+  background: rgba(26, 22, 18, 0.6);
+  border: 1px solid rgba(199, 164, 60, 0.1);
+  border-radius: 12px;
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.origin-of-bread .clay-bowl,
+.origin-of-bread .clay-oven {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  margin-bottom: var(--space-md);
+}
+
+/* Clay bowl animations */
+.origin-of-bread .dough-mass {
+  transition: all var(--duration-slow) var(--ease-out-expo);
+}
+
+.origin-of-bread .rain-drop {
+  animation: rain-fall 1.5s ease-in infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes rain-fall {
+  0% { transform: translateY(-20px); opacity: 0; }
+  20% { opacity: 0.6; }
+  100% { transform: translateY(60px); opacity: 0; }
+}
+
+.origin-of-bread .yeast-spore {
+  animation: spore-drift 3s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes spore-drift {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(8px, 20px); }
+}
+
+.origin-of-bread .ferment-bubble {
+  animation: bubble-rise 2.5s ease-out infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes bubble-rise {
+  0% { transform: translateY(0); opacity: 0; }
+  20% { opacity: 0.7; }
+  100% { transform: translateY(-25px); opacity: 0; }
+}
+
+/* Clay oven animations */
+.origin-of-bread .fire-glow {
+  animation: fire-glow-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes fire-glow-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
+
+.origin-of-bread .flame {
+  animation: flame-dance 0.6s ease-in-out infinite;
+  animation-delay: var(--delay);
+  transform-origin: bottom center;
+}
+
+@keyframes flame-dance {
+  0%, 100% { transform: scaleY(1) scaleX(1); }
+  50% { transform: scaleY(1.15) scaleX(0.95); }
+}
+
+.origin-of-bread .panel-caption h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--flour-white);
+  margin-bottom: var(--space-2xs);
+}
+
+.origin-of-bread .panel-caption p {
+  font-size: 0.875rem;
+  color: rgba(242, 237, 228, 0.75);
+}
+
+/* ============================================
+   MOVEMENT IV — MODERN ECHO
+   Global Network Threads
+   ============================================ */
+.origin-of-bread .movement-echo {
+  background: linear-gradient(
+    180deg,
+    var(--shadow) 0%,
+    var(--void) 100%
+  );
+}
+
+.origin-of-bread .echo-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.origin-of-bread .echo-intro {
+  font-size: 1.0625rem;
+  color: var(--flour-mist);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto var(--space-xl);
+}
+
+.origin-of-bread .network-stage {
+  margin: var(--space-xl) 0;
+}
+
+.origin-of-bread .global-network {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Network animations */
+.origin-of-bread .thread {
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: draw-thread 2s ease forwards;
+}
+
+@keyframes draw-thread {
+  to { stroke-dashoffset: 0; }
+}
+
+.origin-of-bread .node {
+  transition: transform var(--duration-normal) var(--ease-out-expo);
+}
+
+.origin-of-bread .node-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  fill: var(--grain-light);
+  letter-spacing: 0.05em;
+}
+
+.origin-of-bread .network-particle {
+  animation: particle-pulse 4s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes particle-pulse {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
+}
+
+.origin-of-bread .echo-closing {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-xl);
+}
+
+.origin-of-bread .echo-closing .voice {
+  max-width: 600px;
+  text-align: center;
+}
+
+/* ============================================
+   SOURCES SECTION
+   ============================================ */
+.origin-of-bread .sources-section {
+  background: var(--void-deep);
+  padding: var(--space-2xl) var(--space-sm);
+}
+
+.origin-of-bread .sources-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.origin-of-bread .sources-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--flour-white);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--grain-gold);
+}
+
+.origin-of-bread .sources-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.origin-of-bread .sources-list li {
+  position: relative;
+  padding-left: var(--space-md);
+}
+
+.origin-of-bread .sources-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--grain-gold);
+  font-size: 0.875rem;
+}
+
+.origin-of-bread .sources-list a {
+  display: inline-block;
+  padding: var(--space-2xs) 0;
+  color: rgba(242, 237, 228, 0.75);
+  text-decoration: none;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  transition: color var(--duration-fast) ease;
+}
+
+.origin-of-bread .sources-list a:hover {
+  color: var(--grain-light);
+}
+
+.origin-of-bread .sources-note {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(107, 97, 85, 0.2);
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: rgba(242, 237, 228, 0.5);
+}
+
+/* ============================================
+   STORY FOOTER
+   ============================================ */
+.origin-of-bread .story-footer {
+  background: linear-gradient(180deg, var(--void-deep) 0%, #000 100%);
+  padding: var(--space-2xl) var(--space-sm);
+  padding-bottom: calc(var(--space-2xl) + env(safe-area-inset-bottom, 0px) + 80px);
+  text-align: center;
+}
+
+.origin-of-bread .footer-emblem {
+  width: 60px;
+  margin: 0 auto var(--space-md);
+  filter: drop-shadow(0 0 15px rgba(199, 164, 60, 0.3));
+}
+
+.origin-of-bread .footer-emblem svg {
+  width: 100%;
+  height: auto;
+}
+
+.origin-of-bread .footer-text {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--stone-warm);
+  max-width: 450px;
+  margin: 0 auto var(--space-md);
+  line-height: 1.6;
+}
+
+.origin-of-bread .footer-mark {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(199, 164, 60, 0.4);
+}
+
+/* ============================================
+   TABLET BREAKPOINT (768px+)
+   ============================================ */
+@media (min-width: 768px) {
+  .origin-of-bread {
+    font-size: 19px;
+  }
+  
+  .origin-of-bread .movement {
+    padding: var(--space-xl) var(--space-lg);
+  }
+  
+  .origin-of-bread .voice-text {
+    font-size: 1.0625rem;
+  }
+  
+  .origin-of-bread .ritual-scene {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .origin-of-bread .ritual-visual {
+    flex: 0 0 280px;
+  }
+  
+  .origin-of-bread .ritual-narrative {
+    text-align: left;
+  }
+  
+  .origin-of-bread .collision-triptych {
+    flex-direction: row;
+  }
+  
+  .origin-of-bread .triptych-panel {
+    flex: 1;
+  }
+  
+  .origin-of-bread .triptych-center {
+    flex: 1.2;
+  }
+}
+
+/* ============================================
+   DESKTOP BREAKPOINT (1024px+)
+   ============================================ */
+@media (min-width: 1024px) {
+  .origin-of-bread {
+    font-size: 20px;
+  }
+  
+  .origin-of-bread .movement {
+    padding: var(--space-2xl) var(--space-xl);
+  }
+  
+  .origin-of-bread .voice {
+    padding: var(--space-md) var(--space-lg);
+  }
+  
+  .origin-of-bread .sources-section,
+  .origin-of-bread .story-footer {
+    padding-left: var(--space-lg);
+    padding-right: var(--space-lg);
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .origin-of-bread .cosmic-grain,
+  .origin-of-bread .ember-pulse,
+  .origin-of-bread .ember-core-pulse,
+  .origin-of-bread .flour-mote,
+  .origin-of-bread .scroll-line,
+  .origin-of-bread .grass-stalk,
+  .origin-of-bread .rain-drop,
+  .origin-of-bread .yeast-spore,
+  .origin-of-bread .ferment-bubble,
+  .origin-of-bread .fire-glow,
+  .origin-of-bread .flame,
+  .origin-of-bread .thread,
+  .origin-of-bread .network-particle {
+    animation: none;
+  }
+  
+  .origin-of-bread .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  
+  .origin-of-bread .cosmic-grain {
+    opacity: 0.4;
+  }
+  
+  .origin-of-bread .thread {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+  .origin-of-bread .cosmic-grain-field,
+  .origin-of-bread .primordial-ember,
+  .origin-of-bread .flour-dust,
+  .origin-of-bread .scroll-indicator,
+  .origin-of-bread .ancestral-backdrop {
+    display: none;
+  }
+  
+  .origin-of-bread {
+    background: white;
+    color: #1a1a1a;
+  }
+  
+  .origin-of-bread .movement {
+    min-height: auto;
+    page-break-inside: avoid;
+  }
+}
+
