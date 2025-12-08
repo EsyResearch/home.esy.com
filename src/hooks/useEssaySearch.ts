@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import type { SearchResult } from '@/components/SearchBar/SearchBar';
+import { visualEssays, searchVisualEssays, type VisualEssay } from '@/data/visualEssays';
 
 interface Essay {
   id: string;
@@ -48,7 +49,7 @@ export const useEssaySearch = ({
     };
   }, [searchTerm, debounceMs]);
 
-  // Filter essays based on search term
+  // Filter essays based on search term (includes both text essays and visual essays)
   const searchResults = useMemo(() => {
     if (!debouncedSearchTerm.trim()) {
       return [];
@@ -56,7 +57,8 @@ export const useEssaySearch = ({
 
     const searchLower = debouncedSearchTerm.toLowerCase();
     
-    return essays
+    // Search text essays
+    const textEssayResults = essays
       .filter(essay => {
         return (
           essay.title.toLowerCase().includes(searchLower) ||
@@ -69,7 +71,6 @@ export const useEssaySearch = ({
           ))
         );
       })
-      .slice(0, maxResults)
       .map(essay => ({
         id: essay.id,
         title: essay.title,
@@ -84,6 +85,25 @@ export const useEssaySearch = ({
           tags: essay.tags
         }
       }));
+    
+    // Search visual essays
+    const visualEssayResults = searchVisualEssays(debouncedSearchTerm)
+      .map((essay: VisualEssay) => ({
+        id: essay.id,
+        title: essay.title,
+        description: essay.subtitle,
+        category: essay.category,
+        slug: essay.href,
+        type: 'article' as const,
+        isPro: essay.isNew || false,
+        metadata: {
+          tags: essay.tags,
+          readTime: essay.readTime
+        }
+      }));
+    
+    // Combine and limit results (visual essays first, then text essays)
+    return [...visualEssayResults, ...textEssayResults].slice(0, maxResults);
   }, [essays, debouncedSearchTerm, maxResults]);
 
   const showDropdown = searchTerm.length > 0;

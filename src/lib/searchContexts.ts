@@ -53,12 +53,12 @@ export const SEARCH_CONTEXTS: Record<SearchContext, SearchContextConfig> = {
   },
   'essays': {
     context: 'essays',
-    placeholder: 'Search essays...',
+    placeholder: 'Search visual essays...',
     dataSource: 'essays',
-    searchUrl: '/essays?search=',
+    searchUrl: '/essays/visual?q=',
     resultUrlPattern: '',
     shouldAlwaysExpand: true,
-    description: 'Search through academic essays and research'
+    description: 'Search through visual essays and research'
   },
   'blog': {
     context: 'blog',
