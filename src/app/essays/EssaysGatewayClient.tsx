@@ -315,7 +315,7 @@ const EssaysGatewayClient: React.FC<EssaysGatewayClientProps> = ({ textEssays })
       id: essay.id,
       title: essay.title,
       description: essay.subtitle,
-      category: essay.category,
+      category: `Visual Essay · ${essay.category}`,
       slug: essay.href,
       type: 'article' as const,
     }));
