@@ -1,36 +1,27 @@
-import { Metadata } from "next";
-import { Suspense } from "react";
-import ScrollytellingClient from "./ScrollytellingClient";
+import type { Metadata } from 'next';
+import ScrollytellingShowcase from './ScrollytellingShowcase';
 
 export const metadata: Metadata = {
-  title: "Scrollytelling - Immersive Narrative Experiences | Esy",
-  description:
-    "Explore captivating stories told through scroll-based interactive experiences. Discover historical narratives, cultural journeys, and educational tales that come alive as you scroll.",
-  keywords:
-    "scrollytelling, interactive stories, narrative design, immersive storytelling, visual narratives, educational stories, interactive journalism",
+  title: 'Scrollytelling | Interactive Visual Stories | Esy',
+  description: 'Experience scrollytelling - immersive, scroll-driven visual stories that bring ideas to life. Explore our collection of interactive essays on science, history, technology, and culture.',
+  keywords: [
+    'scrollytelling',
+    'scrollytelling examples',
+    'interactive stories',
+    'visual essays',
+    'scroll-based storytelling',
+    'immersive web experiences',
+    'digital storytelling',
+    'interactive journalism',
+  ],
   openGraph: {
-    title: "Scrollytelling - Immersive Narrative Experiences | Esy",
-    description:
-      "Stories that come alive as you scroll. Explore history, culture, and ideas through beautifully crafted interactive narratives.",
-    url: "https://esy.com/scrollytelling",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Scrollytelling - Immersive Narrative Experiences | Esy",
-    description:
-      "Stories that come alive as you scroll. Explore beautifully crafted interactive narratives.",
-  },
-  robots: {
-    index: true,
-    follow: true,
+    title: 'Scrollytelling | Interactive Visual Stories | Esy',
+    description: 'Immersive, scroll-driven visual stories that bring ideas to life through animation and storytelling.',
+    type: 'website',
+    url: 'https://esy.com/scrollytelling',
   },
 };
 
 export default function ScrollytellingPage() {
-  return (
-    <Suspense fallback={<div className="scrollytelling-loading" />}>
-      <ScrollytellingClient />
-    </Suspense>
-  );
+  return <ScrollytellingShowcase />;
 }
-

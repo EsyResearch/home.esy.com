@@ -19,10 +19,16 @@ const nextConfig = {
   experimental: {
     mdxRs: true,
   },
-  // Disable the "N" dev indicator in bottom-left corner
-  devIndicators: {
-    appIsrStatus: false,
-    buildActivity: false,
+  // Redirect all scrollytelling stories to /essays/visual/
+  async redirects() {
+    return [
+      // Catch-all redirect for scrollytelling stories
+      {
+        source: '/scrollytelling/:slug',
+        destination: '/essays/visual/:slug',
+        permanent: true,
+      },
+    ];
   },
 };
 
