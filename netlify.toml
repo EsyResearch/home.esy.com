@@ -8,6 +8,14 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
+# Redirect scrollytelling stories to visual essays (canonical URLs)
+# 301 permanent redirect for SEO
+[[redirects]]
+  from = "/scrollytelling/:slug"
+  to = "/essays/visual/:slug"
+  status = 301
+  force = true
+
 # Proxy /guide section to a separate Netlify site
 # This allows the guide to be maintained and deployed independently
 # while appearing as part of the main esy.com domain
