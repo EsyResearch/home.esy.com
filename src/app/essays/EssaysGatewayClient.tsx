@@ -6,7 +6,13 @@ import { useRouter } from "next/navigation";
 import { ArrowRight, Clock } from "lucide-react";
 import { useHeaderSearch } from "@/contexts/HeaderSearchContext";
 import SearchBar from "@/components/SearchBar/SearchBar";
-import { publishedVisualEssays, searchVisualEssays, CATEGORY_COLORS } from "@/data/visualEssays";
+import { 
+  publishedVisualEssays, 
+  featuredEssay, 
+  nonFeaturedEssays,
+  searchVisualEssays, 
+  CATEGORY_COLORS 
+} from "@/data/visualEssays";
 import './essays-gateway.css';
 
 /*
@@ -61,19 +67,32 @@ interface SearchResult {
   metadata?: Record<string, unknown>;
 }
 
-// ==================== SAMPLE DATA ====================
+// ==================== DERIVED DATA ====================
 
-// Convert visual essays to preview format (show first 4)
-const visualEssayPreviews: VisualEssayPreview[] = publishedVisualEssays.slice(0, 4).map(essay => ({
-  id: essay.id,
-  title: essay.title,
-  subtitle: essay.subtitle,
-  category: essay.category,
-  categoryColor: CATEGORY_COLORS[essay.category],
-  readTime: essay.readTime,
-  href: essay.href,
-  isNew: essay.isNew,
-}));
+// Convert visual essays to preview format
+// Shows featured essay + next 3 most recent (sorted by newest first from centralized data)
+const visualEssayPreviews: VisualEssayPreview[] = [
+  ...(featuredEssay ? [{
+    id: featuredEssay.id,
+    title: featuredEssay.title,
+    subtitle: featuredEssay.subtitle,
+    category: featuredEssay.category,
+    categoryColor: CATEGORY_COLORS[featuredEssay.category],
+    readTime: featuredEssay.readTime,
+    href: featuredEssay.href,
+    isNew: featuredEssay.isNew,
+  }] : []),
+  ...nonFeaturedEssays.slice(0, 3).map(essay => ({
+    id: essay.id,
+    title: essay.title,
+    subtitle: essay.subtitle,
+    category: essay.category,
+    categoryColor: CATEGORY_COLORS[essay.category],
+    readTime: essay.readTime,
+    href: essay.href,
+    isNew: essay.isNew,
+  })),
+];
 
 const guides: Guide[] = [
   {
@@ -96,6 +115,8 @@ interface HeroProps {
   searchResults: SearchResult[];
   onResultSelect: (result: SearchResult) => void;
   showDropdown: boolean;
+  examplesCount: number;
+  guidesCount: number;
 }
 
 const Hero: React.FC<HeroProps> = ({ 
@@ -106,6 +127,8 @@ const Hero: React.FC<HeroProps> = ({
   searchResults,
   onResultSelect,
   showDropdown,
+  examplesCount,
+  guidesCount,
 }) => {
   return (
     <section className="essays-hero">
@@ -145,13 +168,13 @@ const Hero: React.FC<HeroProps> = ({
         </div>
         <span className="essays-metric-divider" />
         <div className="essays-metric">
-          <span className="essays-metric-number">3</span>
-          <span className="essays-metric-label">Examples</span>
+          <span className="essays-metric-number">{examplesCount}</span>
+          <span className="essays-metric-label">{examplesCount === 1 ? 'Example' : 'Examples'}</span>
         </div>
         <span className="essays-metric-divider" />
         <div className="essays-metric">
-          <span className="essays-metric-number">1</span>
-          <span className="essays-metric-label">Guide</span>
+          <span className="essays-metric-number">{guidesCount}</span>
+          <span className="essays-metric-label">{guidesCount === 1 ? 'Guide' : 'Guides'}</span>
         </div>
       </div>
     </section>
@@ -350,6 +373,8 @@ const EssaysGatewayClient: React.FC<EssaysGatewayClientProps> = ({ textEssays })
         searchResults={searchResults}
         onResultSelect={handleResultSelect}
         showDropdown={showDropdown}
+        examplesCount={textEssays.length}
+        guidesCount={guides.length}
       />
       <VisualEssaysSection />
       <TextEssaysSection essays={textEssays} />

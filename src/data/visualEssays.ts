@@ -1,25 +1,31 @@
 /**
  * Visual Essays Data
  * 
- * Shared data source for all visual essays across the platform.
- * Used by /essays, /essays/visual, and search functionality.
+ * SINGLE SOURCE OF TRUTH for all visual essays across the platform.
+ * Used by /essays, /essays/visual, search functionality, and stats.
+ * 
+ * ORDERING: Essays are ordered by `number` (string, e.g., "01", "30").
+ * The LATEST essay (highest number) is automatically featured.
+ * Display order: Most recent first (descending by number).
  */
 
-export type StoryCategory = 
+export type EssayCategory = 
   | 'Science'
   | 'History' 
   | 'Technology'
   | 'Culture'
   | 'Space'
+  | 'Nature'
   | 'Education & Writing'
   | "Children's Fiction";
 
 export interface VisualEssay {
   id: string;
+  number: string;  // Used for ordering - highest = newest
   title: string;
   subtitle: string;
   description: string;
-  category: StoryCategory;
+  category: EssayCategory;
   readTime: string;
   href: string;
   isNew?: boolean;
@@ -27,22 +33,25 @@ export interface VisualEssay {
   tags?: string[];
 }
 
-export const CATEGORY_COLORS: Record<StoryCategory, string> = {
+export const CATEGORY_COLORS: Record<EssayCategory, string> = {
   'Science': '#10B981',
   'History': '#F59E0B',
   'Technology': '#3B82F6',
   'Culture': '#EC4899',
   'Space': '#8B5CF6',
-  'Education & Writing': '#06B6D4',
+  'Nature': '#06B6D4',
+  'Education & Writing': '#14B8A6',
   "Children's Fiction": '#FFD700',
 };
 
+// All visual essays - ordered by number ascending (will be reversed for display)
 export const visualEssays: VisualEssay[] = [
   {
     id: "mammary-gland-evolution",
+    number: "01",
     title: "Mammary Gland Evolution",
     subtitle: "Anatomical Journey",
-    description: "Detailed anatomical SVGs showing human breast cross-sections, alveoli, and comparative animal mammary systems.",
+    description: "Detailed anatomical SVGs showing human breast cross-sections, alveoli, and comparative animal mammary systems—platypus to whale to human.",
     category: "Science",
     readTime: "14 min",
     href: "/essays/visual/mammary-gland-evolution",
@@ -50,9 +59,10 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "evolution-of-mammary-glands",
+    number: "02",
     title: "Evolution of Mammary Glands",
     subtitle: "310 Million Years of Milk",
-    description: "How a simple skin secretion became the defining feature of mammals.",
+    description: "How a simple skin secretion became the defining feature of mammals. SVG cross-sections, evolutionary trees, and milk composition comparisons.",
     category: "Science",
     readTime: "12 min",
     href: "/essays/visual/evolution-of-mammary-glands",
@@ -60,20 +70,21 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "eternal-honey",
+    number: "03",
     title: "Eternal Honey",
     subtitle: "Into the Pyramid",
-    description: "Descend through multi-layer parallax into Giza's depths. Pyramid cross-sections reveal ancient secrets.",
+    description: "Descend through multi-layer parallax into Giza's depths. Pyramid cross-sections reveal, tombs unlock, and 3,000-year-old honey glows in the darkness.",
     category: "History",
     readTime: "12 min",
     href: "/essays/visual/eternal-honey",
-    isNew: true,
     tags: ["archaeology", "ancient", "food"],
   },
   {
     id: "honey-never-spoils",
+    number: "04",
     title: "Honey Never Spoils",
     subtitle: "The Eternal Elixir",
-    description: "3,000-year-old honey from Egyptian tombs is still edible. Discover why honey defies time itself.",
+    description: "3,000-year-old honey from Egyptian tombs is still edible. Honeycomb cells fill, time counters tick, and golden drips reveal why honey defies time itself.",
     category: "Science",
     readTime: "11 min",
     href: "/essays/visual/honey-never-spoils",
@@ -81,9 +92,10 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "the-dna-helix",
+    number: "05",
     title: "DNA & The Double Helix",
     subtitle: "The Code of Life",
-    description: "The helix twists as you scroll—base pairs connect, Photo 51 reveals, genetic sequences type out.",
+    description: "The helix twists as you scroll—base pairs connect (A-T, G-C), Photo 51 reveals, genetic sequences type out. From Miescher's nuclein to CRISPR.",
     category: "Science",
     readTime: "13 min",
     href: "/essays/visual/the-dna-helix",
@@ -91,9 +103,10 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "the-skyscraper",
+    number: "06",
     title: "The Skyscraper",
     subtitle: "Reaching for the Sky",
-    description: "An elevator rises floor-by-floor as you scroll through the history of vertical cities.",
+    description: "An elevator rises floor-by-floor as you scroll—steel frames draw themselves, cranes lift beams, and buildings grow from 10 stories to 163 floors.",
     category: "Technology",
     readTime: "14 min",
     href: "/essays/visual/the-skyscraper",
@@ -101,9 +114,10 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "the-firearm",
+    number: "07",
     title: "The Firearm",
     subtitle: "From Fire Lance to Precision",
-    description: "A revolver cylinder rotates as you scroll through 800 years of controlled explosions.",
+    description: "A revolver cylinder rotates as you scroll—muzzle flashes, ammunition counters, and bullet trajectories trace 800 years of controlled explosions.",
     category: "Technology",
     readTime: "13 min",
     href: "/essays/visual/the-firearm",
@@ -111,9 +125,10 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "the-gunpowder",
+    number: "08",
     title: "Gunpowder",
     subtitle: "The Discovery That Changed Everything",
-    description: "A burning fuse tracks your progress through 1,200 years of explosive history.",
+    description: "A burning fuse tracks your progress through 1,200 years of explosive history—from Tang Dynasty alchemy to the 75:15:10 formula that reshaped warfare.",
     category: "Technology",
     readTime: "14 min",
     href: "/essays/visual/the-gunpowder",
@@ -121,9 +136,10 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "the-train",
+    number: "09",
     title: "The Train",
     subtitle: "Iron Horse of Industry",
-    description: "Locomotive wheels rotate as you scroll through 220 years of rail history.",
+    description: "Locomotive wheels rotate as you scroll through 220 years of rail history—steam puffs, mile markers, and the race from 30 mph to 375 mph maglev.",
     category: "Technology",
     readTime: "13 min",
     href: "/essays/visual/the-train",
@@ -131,9 +147,10 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "the-invention-of-the-car",
+    number: "10",
     title: "The Automobile",
     subtitle: "A Sketch-Style Journey",
-    description: "Hand-drawn SVGs animate as you scroll through 138 years of automotive history.",
+    description: "Hand-drawn SVGs animate as you scroll through 138 years of automotive history—from Benz's patent to the electric future.",
     category: "Technology",
     readTime: "11 min",
     href: "/essays/visual/the-invention-of-the-car",
@@ -141,6 +158,7 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "the-invention-of-wine",
+    number: "11",
     title: "The Invention of Wine",
     subtitle: "8,000 Years in a Glass",
     description: "From Neolithic Georgia to billion-dollar Bordeaux—the story of humanity's most civilized beverage.",
@@ -151,6 +169,7 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "the-pale-blue-dot",
+    number: "12",
     title: "The Pale Blue Dot",
     subtitle: "A Cosmic Perspective",
     description: "Scroll to zoom out 6 billion kilometers. Carl Sagan's reflection on the most humbling photograph ever taken.",
@@ -161,19 +180,21 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "the-deep-ocean",
+    number: "13",
     title: "The Deep Ocean",
     subtitle: "Earth's Final Frontier",
-    description: "Descend 10,935 meters into the abyss. 71% of Earth, less than 0.001% explored.",
-    category: "Science",
+    description: "Descend 10,935 meters into the abyss. From sunlit waters to Challenger Deep—71% of Earth, less than 0.001% explored.",
+    category: "Nature",
     readTime: "12 min",
     href: "/essays/visual/the-deep-ocean",
     tags: ["nature", "exploration"],
   },
   {
     id: "language-death",
+    number: "14",
     title: "Language Death",
     subtitle: "The Silence of Extinction",
-    description: "7,168 languages exist today. Half will disappear by 2100. An exploration of what we lose.",
+    description: "7,168 languages exist today. Half will disappear by 2100. An exploration of what we lose when a language dies.",
     category: "Culture",
     readTime: "9 min",
     href: "/essays/visual/language-death",
@@ -181,6 +202,7 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "who-invented-the-mirror",
+    number: "15",
     title: "The Mirror",
     subtitle: "8,000 Years of Reflection",
     description: "From polished obsidian to smart mirrors—humanity's eternal quest to see itself.",
@@ -191,9 +213,10 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "who-invented-soda",
+    number: "16",
     title: "The Fizz",
     subtitle: "From Pharmacy to Phenomenon",
-    description: "How carbonated water became humanity's favorite way to celebrate, refresh, and rebel.",
+    description: "How carbonated water became humanity's favorite way to celebrate, refresh, and rebel—one bubble at a time.",
     category: "Culture",
     readTime: "10 min",
     href: "/essays/visual/who-invented-soda",
@@ -201,9 +224,10 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "who-invented-the-sneaker",
+    number: "17",
     title: "The Sneaker Story",
     subtitle: "From Plimsolls to $75 Billion",
-    description: "How a rubber-soled shoe designed for silence became a global cultural force.",
+    description: "How a rubber-soled shoe designed for silence became a global cultural force—from Charles Goodyear to Michael Jordan.",
     category: "Culture",
     readTime: "12 min",
     href: "/essays/visual/who-invented-the-sneaker",
@@ -211,9 +235,10 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "who-invented-high-heels",
+    number: "18",
     title: "The High Heels Story",
     subtitle: "500 Years of Elevation",
-    description: "From Persian cavalrymen to Parisian runways, fashion's most provocative invention.",
+    description: "From Persian cavalrymen to Parisian runways, the extraordinary journey of fashion's most provocative invention.",
     category: "Culture",
     readTime: "14 min",
     href: "/essays/visual/who-invented-high-heels",
@@ -221,6 +246,7 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "who-invented-the-bicycle",
+    number: "19",
     title: "The Bicycle Story",
     subtitle: "200 Years of Two Wheels",
     description: "The invention that changed transportation, liberated women, and became humanity's most efficient machine.",
@@ -231,6 +257,7 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "who-invented-the-spoon",
+    number: "20",
     title: "The Spoon Story",
     subtitle: "30,000 Years of Essential Tools",
     description: "From prehistoric bone carvings to silver apostle spoons—humanity's oldest eating utensil.",
@@ -241,6 +268,7 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "who-invented-basketball",
+    number: "21",
     title: "The Basketball Story",
     subtitle: "From Peach Baskets to Global Culture",
     description: "Dr. Naismith's 1891 invention becomes billion-dollar arenas and worldwide phenomenon.",
@@ -251,6 +279,7 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "who-invented-the-fork",
+    number: "22",
     title: "The Fork Story",
     subtitle: "4,000 Years of Revolution",
     description: "From ancient Mesopotamia through Byzantine courts to your dinner table.",
@@ -261,9 +290,10 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "the-discovery-of-antibiotics",
+    number: "23",
     title: "The Discovery of Antibiotics",
     subtitle: "The Petri Dish That Saved 200 Million Lives",
-    description: "How Alexander Fleming's contaminated experiment in 1928 led to humanity's greatest medical breakthrough.",
+    description: "How Alexander Fleming's contaminated experiment in 1928 led to one of humanity's greatest medical breakthroughs—transforming a world where scratches could kill.",
     category: "Science",
     readTime: "10 min",
     href: "/essays/visual/the-discovery-of-antibiotics",
@@ -271,18 +301,90 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "flavors-of-the-east",
+    number: "24",
     title: "Flavors of the East",
     subtitle: "A Culinary Journey Through Asia",
-    description: "Explore the rich tapestry of Asian cuisine through an interactive visual journey.",
+    description: "From ancient Chinese soy fermentation to Myanmar's fermented tea salads — explore how ingredients, geography, and tradition shaped the cuisines of three nations across millennia.",
     category: "Culture",
     readTime: "18 min",
     href: "/essays/visual/flavors-of-the-east",
+    tags: ["food", "cuisine", "Asia", "China", "Thailand", "Myanmar", "history", "culture"],
+  },
+  {
+    id: "the-ngapi-journey",
+    number: "25",
+    title: "The Ngapi Journey",
+    subtitle: "The History & Evolution of Fish Paste in Myanmar",
+    description: "Discover Myanmar's soul ingredient — 2,000 years of fermented fish paste, from prehistoric preservation to the umami backbone of Burmese cuisine. Explore regional varieties, fermentation science, and cultural significance.",
+    category: "Culture",
+    readTime: "16 min",
+    href: "/essays/visual/the-ngapi-journey",
+    tags: ["food", "fermentation", "Myanmar", "cuisine", "history", "umami", "preservation"],
+  },
+  {
+    id: "ngapi-fermented-soul",
+    number: "26",
+    title: "Ngapi: The Fermented Soul",
+    subtitle: "Why Myanmar Became the Land of Fermented Fish",
+    description: "An illustrated journey through Myanmar's geography, rivers, and monsoons — discovering why this land became the heartland of fermented fish. Rich SVG illustrations bring the story of ngapi to life.",
+    category: "Culture",
+    readTime: "18 min",
+    href: "/essays/visual/ngapi-fermented-soul",
     isNew: true,
-    tags: ["food", "culture", "asia"],
+    tags: ["food", "fermentation", "Myanmar", "geography", "illustration", "rivers", "monsoon", "preservation"],
+  },
+  {
+    id: "the-tea-journey",
+    number: "27",
+    title: "Leaves of Time",
+    subtitle: "The Global Journey of Tea",
+    description: "From wild mountain leaves in ancient China to the world's most consumed beverage after water. Trace 5,000 years of tea history through animated trade routes, ceremonial traditions, and the empires built on a single leaf.",
+    category: "Culture",
+    readTime: "18 min",
+    href: "/essays/visual/the-tea-journey",
+    isNew: true,
+    tags: ["tea", "history", "China", "Japan", "India", "trade", "ceremony", "empire", "culture"],
+  },
+  {
+    id: "the-tea-journey-illustrated",
+    number: "28",
+    title: "Leaves of Time",
+    subtitle: "The Global Journey of Tea (Illustrated Edition)",
+    description: "An award-winning illustrated journey through 5,000 years of tea history. Stunning hand-crafted SVG illustrations, intricate animations, and immersive scenes trace tea's path from ancient China to global phenomenon.",
+    category: "Culture",
+    readTime: "20 min",
+    href: "/essays/visual/the-tea-journey-illustrated",
+    isNew: true,
+    tags: ["tea", "history", "illustrated", "SVG", "animation", "China", "Japan", "India", "trade", "ceremony", "premium"],
+  },
+  {
+    id: "the-cocoa-odyssey",
+    number: "29",
+    title: "The Cocoa Odyssey",
+    subtitle: "From Ancient Ritual to Global Chocolate Empire",
+    description: "From sacred Mesoamerican drink to billion-dollar empires—the untold story of how a bitter bean conquered the world. Explore botanical origins, colonial transformation, and the modern chocolate industry.",
+    category: "History",
+    readTime: "18 min",
+    href: "/essays/visual/the-cocoa-odyssey",
+    isNew: true,
+    tags: ["cocoa", "chocolate", "history", "Mesoamerica", "Maya", "Aztec", "trade", "industry", "food"],
+  },
+  {
+    id: "the-golden-crunch",
+    number: "30",
+    title: "The Golden Crunch",
+    subtitle: "The Origins, Journey & Global Rise of Fried Chicken",
+    description: "From West African traditions and Scottish frying techniques to enslaved cooks in the American South, Jim Crow travel food, and the multi-hundred-billion-dollar global industry. The untold story of fried chicken.",
+    category: "History",
+    readTime: "20 min",
+    href: "/essays/visual/the-golden-crunch",
+    isNew: true,
+    tags: ["fried chicken", "soul food", "African American history", "food history", "KFC", "fast food", "culinary anthropology", "global cuisine"],
   },
   // Children's Fiction (draft - not shown in production)
   {
     id: "the-night-the-stars-fell",
+    number: "C01",
     title: "The Night the Stars Fell",
     subtitle: "A Children's Bedtime Story",
     description: "An interactive bedtime story about a brave little girl who helps a fallen star find its way home.",
@@ -294,6 +396,7 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "the-monster-under-my-bed",
+    number: "C02",
     title: "The Monster Under My Bed",
     subtitle: "A Tale of Unlikely Friendship",
     description: "Maya discovers the monster under her bed is actually afraid of the dark. A heartwarming interactive story.",
@@ -305,6 +408,7 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "mia-mouse-mystery-m",
+    number: "C03",
     title: "Mia Mouse and the Mystery M",
     subtitle: "A Curious Adventure",
     description: "Follow curious Mia Mouse as she discovers mysterious M-shaped crumbs leading to a wonderful surprise!",
@@ -316,6 +420,7 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "alphabet-adventure-train",
+    number: "C04",
     title: "The Alphabet Adventure Train",
     subtitle: "All Aboard for Learning!",
     description: "Join the colorful train as it chugs through the alphabet, picking up letters and learning words along the way.",
@@ -327,6 +432,7 @@ export const visualEssays: VisualEssay[] = [
   },
   {
     id: "sammy-snail-super-speed",
+    number: "C05",
     title: "Sammy Snail's Super Speed Day",
     subtitle: "Zoom! A Magical Adventure",
     description: "Join Sammy Snail as he discovers a magical dew drop that gives him super speed!",
@@ -338,10 +444,28 @@ export const visualEssays: VisualEssay[] = [
   },
 ];
 
-// Get only published (non-draft) visual essays
-export const publishedVisualEssays = visualEssays.filter(essay => !essay.draft);
+// ==================== DERIVED DATA ====================
 
-// Helper function to search visual essays (only published)
+// Published essays only (non-draft), sorted by number descending (newest first)
+export const publishedVisualEssays = visualEssays
+  .filter(essay => !essay.draft)
+  .sort((a, b) => parseInt(b.number) - parseInt(a.number));
+
+// Featured essay: Always the latest (first in sorted array)
+export const featuredEssay = publishedVisualEssays[0];
+
+// Essays excluding featured (for lists)
+export const nonFeaturedEssays = publishedVisualEssays.slice(1);
+
+// Total read time calculation
+export const totalReadTime = publishedVisualEssays.reduce(
+  (acc, essay) => acc + parseInt(essay.readTime), 
+  0
+);
+
+// ==================== HELPERS ====================
+
+// Search visual essays (only published)
 export function searchVisualEssays(query: string): VisualEssay[] {
   if (!query.trim()) return [];
   
@@ -360,3 +484,13 @@ export function searchVisualEssays(query: string): VisualEssay[] {
   });
 }
 
+// Get essays by category
+export function getEssaysByCategory(category: EssayCategory): VisualEssay[] {
+  return publishedVisualEssays.filter(essay => essay.category === category);
+}
+
+// Category counts for filters
+export const categoryCounts = publishedVisualEssays.reduce((acc, essay) => {
+  acc[essay.category] = (acc[essay.category] || 0) + 1;
+  return acc;
+}, {} as Record<EssayCategory, number>);
