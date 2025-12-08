@@ -1483,9 +1483,15 @@ const Sources: React.FC<{ sources: { title: string; url: string }[] }> = ({ sour
 
 ## Component Architecture Reference
 
+### Output Location
+
+**Default output directory**: `src/app/essays/visual/[story-slug]/`
+
+All scrollytelling/visual essay output goes to the Visual Essays section at `/essays/visual/` unless explicitly directed otherwise. The hub page is at `src/app/essays/visual/page.tsx` with data defined in `VisualEssaysClient.tsx`.
+
 ### Standard File Structure
 ```
-src/app/scrollytelling/[story-slug]/
+src/app/essays/visual/[story-slug]/
 ├── page.tsx                    # Metadata + renders Client
 ├── [StoryName]Client.tsx       # Main client component
 ├── [story-slug].css            # Story-specific styles
@@ -1653,7 +1659,8 @@ interface ScrollytellingStory {
 ```
 
 ## Project Context
-- **Primary Focus**: Esy.com scrollytelling experiences
+- **Primary Focus**: Esy.com Visual Essays (scrollytelling experiences)
+- **Output Location**: `src/app/essays/visual/` — all new stories go here unless directed otherwise
 - **Content Type**: Immersive, scroll-based narrative web experiences
 - **Target Audience**: Curious learners, students, educators, general educated audiences
 - **Standards**: Cinematic quality with journalistic rigor
@@ -1714,7 +1721,8 @@ When working with this agent, reference the role by stating:
    - Any additional component files
 
 5. **Index Integration (MANDATORY)**
-   - Updated scrollytelling hub entry with `isNew: true`
+   - Add entry to `visualEssays` array in `src/app/essays/visual/VisualEssaysClient.tsx`
+   - New story entry with `isNew: true`
    - **New story MUST be set as `isFeatured: true`** (remove from previous featured story)
    - Previous featured story gets `isFeatured` removed
    - Thumbnail/preview content
@@ -1786,7 +1794,7 @@ The following are **automatically included** in every scrollytelling piece:
 - ✅ Theatre Bar, ScrollytellingHeader, and immersive layout
 - ✅ Real mobile device testing (not just browser responsive mode)
 - ✅ Accessibility compliance (WCAG AA)
-- ✅ Updated scrollytelling index entry with `isNew: true`
+- ✅ Updated `visualEssays` array in `VisualEssaysClient.tsx` with `isNew: true`
 - ✅ **New story becomes featured** (`isFeatured: true`, previous featured story unfeatured)
 
 ## Last Updated

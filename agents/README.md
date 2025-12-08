@@ -2,6 +2,8 @@
 
 This directory contains specialized AI agents for the Esy.com ecosystem. Each agent is designed for a specific domain and can be invoked by referencing it in your prompt.
 
+**📍 Output Location:** All scrollytelling/visual essay output goes to `src/app/essays/visual/[story-slug]/` unless directed otherwise. The hub is at `/essays/visual/` with data in `VisualEssaysClient.tsx`.
+
 ---
 
 ## Quick Reference
@@ -149,18 +151,18 @@ Using @agents/scrollytelling-invocation-enhancer.md:
 ```
 # Quick audit
 Using @agents/scrollytelling-audit-agent.md, conduct a quick audit of
-/scrollytelling/sammy-snail-super-speed
+/essays/visual/sammy-snail-super-speed
 Type: Children's Fiction
 
 # Standard audit with focus
 Using @agents/scrollytelling-audit-agent.md, conduct a standard audit of
-/scrollytelling/alphabet-adventure-train
+/essays/visual/alphabet-adventure-train
 Type: Children's Fiction
 Focus areas: Touch targets, animation performance
 
 # Deep audit
 Using @agents/scrollytelling-audit-agent.md, conduct a deep audit of
-/scrollytelling/the-discovery-of-antibiotics
+/essays/visual/the-discovery-of-antibiotics
 Type: General
 ```
 
@@ -215,18 +217,18 @@ Only approved fixes implemented
 ```
 # Standard citation audit
 Using @agents/citation-audit-agent.md, audit the citations for
-/scrollytelling/the-firearm
+/essays/visual/the-firearm
 Type: General
 
 # Deep audit with focus areas
 Using @agents/citation-audit-agent.md, conduct a deep citation audit of
-/scrollytelling/alphabet-adventure-train
+/essays/visual/alphabet-adventure-train
 Type: Children's Fiction
 Focus areas: Educational accuracy, quote verification
 
 # Quick check before publishing
 Using @agents/citation-audit-agent.md, perform a quick citation audit of
-/scrollytelling/the-discovery-of-antibiotics
+/essays/visual/the-discovery-of-antibiotics
 ```
 
 **What It Checks:**
@@ -373,12 +375,12 @@ Using @agents/quotes-audit-agent.md, verify the following quotes:
 ```
 # Standard visual audit
 Using @agents/visual-auditor-agent.md, audit the SVG illustrations for
-/scrollytelling/flavors-of-the-east
+/essays/visual/flavors-of-the-east
 Focus: Character illustrations, animation performance
 
 # Pre-publication certification
 Using @agents/visual-auditor-agent.md, perform a full certification audit
-on all visual assets for /scrollytelling/the-night-the-stars-fell
+on all visual assets for /essays/visual/the-night-the-stars-fell
 
 # Performance-focused audit
 Apply @agents/visual-auditor-agent.md to audit animation performance 
@@ -822,7 +824,7 @@ Apply @agents/template-integration-engineer.md to
 
 # With specific routing
 Using @agents/template-integration-engineer.md, convert this 
-template to a Next.js page at /scrollytelling/[slug]
+template to a Next.js page at /essays/visual/[slug]
 ```
 
 ---
@@ -1132,7 +1134,7 @@ Original URL → Browser Navigate → Check Result
 **Example Invocation:**
 ```
 Using @agents/citation-audit-agent.md, audit the citations for
-/scrollytelling/the-firearm
+/essays/visual/the-firearm
 Type: General
 
 # The agent will:
