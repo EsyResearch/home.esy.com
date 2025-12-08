@@ -7,7 +7,7 @@ import Link from "next/link";
 import HeaderSearch from "@/components/HeaderSearch/HeaderSearch";
 import NewsletterModal from "@/components/NewsletterModal/NewsletterModal";
 import NavDropdown from "@/components/NavDropdown/NavDropdown";
-import { Sparkles, FileText, PenTool } from "lucide-react";
+import { VisualEssaysIcon, EssayExamplesIcon, WritingGuidesIcon } from "@/components/NavDropdown/NavDropdownIcons";
 import { getAllPrompts } from "@/lib/prompts";
 import { getCTAConfig, getResponsiveCTAText } from "@/lib/ctaMapping";
 import { lightTheme } from "@/lib/lightTheme";
@@ -521,21 +521,21 @@ export default function Navigation ({
               items={[
                 {
                   href: '/essays/visual',
-                  icon: <Sparkles size={18} />,
+                  icon: <VisualEssaysIcon size={20} />,
                   title: 'Visual Essays',
                   description: 'Interactive storytelling experiences',
                   accent: 'purple'
                 },
                 {
                   href: '/essays',
-                  icon: <FileText size={18} />,
+                  icon: <EssayExamplesIcon size={20} />,
                   title: 'Essay Examples',
                   description: 'Academic writing samples',
                   accent: 'blue'
                 },
                 {
                   href: '/essays/guides',
-                  icon: <PenTool size={18} />,
+                  icon: <WritingGuidesIcon size={20} />,
                   title: 'Writing Guides',
                   description: 'Step-by-step tutorials',
                   accent: 'emerald'
