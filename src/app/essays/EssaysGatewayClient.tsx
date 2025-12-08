@@ -3,8 +3,9 @@
 import React, { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Clock, Sparkles, BookOpen, PenTool, FileText, Search } from "lucide-react";
+import { ArrowRight, Clock, Sparkles, BookOpen, PenTool, FileText } from "lucide-react";
 import { useHeaderSearch } from "@/contexts/HeaderSearchContext";
+import SearchBar from "@/components/SearchBar/SearchBar";
 import './essays-gateway.css';
 
 /*
@@ -49,17 +50,6 @@ interface Guide {
 }
 
 // ==================== SAMPLE DATA ====================
-
-const featuredVisualEssay: VisualEssayPreview = {
-  id: "flavors-of-the-east",
-  title: "Flavors of the East",
-  subtitle: "A Culinary Journey Through Asia",
-  category: "Culture",
-  categoryColor: "#EC4899",
-  readTime: "18 min",
-  href: "/essays/visual/flavors-of-the-east",
-  isNew: true,
-};
 
 const visualEssayPreviews: VisualEssayPreview[] = [
   {
@@ -114,19 +104,13 @@ const guides: Guide[] = [
 
 // Hero Section with Search
 interface HeroProps {
-  searchBarRef: React.RefObject<HTMLDivElement>;
+  searchBarRef: React.RefObject<HTMLDivElement | null>;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
-  onSearch: () => void;
+  onSearch: (query: string) => void;
 }
 
 const Hero: React.FC<HeroProps> = ({ searchBarRef, searchQuery, setSearchQuery, onSearch }) => {
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      onSearch();
-    }
-  };
-
   return (
     <section className="essays-hero">
       <div className="essays-hero-content">
@@ -143,17 +127,14 @@ const Hero: React.FC<HeroProps> = ({ searchBarRef, searchQuery, setSearchQuery, 
         
         {/* Search Bar */}
         <div ref={searchBarRef} className="essays-hero-search">
-          <div className="essays-search-container">
-            <Search size={18} className="essays-search-icon" />
-            <input
-              type="text"
-              placeholder="Search essays, guides, and more..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onKeyDown={handleKeyDown}
-              className="essays-search-input"
-            />
-          </div>
+          <SearchBar
+            value={searchQuery}
+            onChange={setSearchQuery}
+            onSearch={onSearch}
+            placeholder="Search essays, guides, and more..."
+            context="general"
+            inputFontSize="1rem"
+          />
         </div>
       </div>
       
@@ -177,38 +158,6 @@ const Hero: React.FC<HeroProps> = ({ searchBarRef, searchQuery, setSearchQuery, 
     </section>
   );
 };
-
-// Featured Visual Essay
-const FeaturedVisualEssay: React.FC = () => (
-  <section className="featured-section">
-    <Link href={featuredVisualEssay.href} className="featured-visual-essay">
-      <div className="featured-badge">Featured Visual Essay</div>
-      <div className="featured-content">
-        <div className="featured-meta">
-          <span 
-            className="featured-category"
-            style={{ color: featuredVisualEssay.categoryColor }}
-          >
-            {featuredVisualEssay.category}
-          </span>
-          <span className="featured-time">
-            <Clock size={14} />
-            {featuredVisualEssay.readTime}
-          </span>
-          {featuredVisualEssay.isNew && <span className="featured-new">New</span>}
-        </div>
-        <h2 className="featured-title">{featuredVisualEssay.title}</h2>
-        <p className="featured-subtitle">{featuredVisualEssay.subtitle}</p>
-        <span className="featured-cta">
-          Read Essay <ArrowRight size={16} />
-        </span>
-      </div>
-      <div className="featured-decoration">
-        <Sparkles size={48} />
-      </div>
-    </Link>
-  </section>
-);
 
 // Visual Essays Section
 const VisualEssaysSection: React.FC = () => (
@@ -365,10 +314,11 @@ const EssaysGatewayClient: React.FC<EssaysGatewayClientProps> = ({ textEssays })
     };
   }, [setShowHeaderSearch]);
 
-  const handleSearch = () => {
-    if (searchQuery.trim()) {
+  const handleSearch = (query: string) => {
+    const searchTerm = query || searchQuery;
+    if (searchTerm.trim()) {
       // Navigate to visual essays with search query
-      router.push(`/essays/visual?q=${encodeURIComponent(searchQuery.trim())}`);
+      router.push(`/essays/visual?q=${encodeURIComponent(searchTerm.trim())}`);
     }
   };
 
@@ -380,7 +330,6 @@ const EssaysGatewayClient: React.FC<EssaysGatewayClientProps> = ({ textEssays })
         setSearchQuery={setSearchQuery}
         onSearch={handleSearch}
       />
-      <FeaturedVisualEssay />
       <VisualEssaysSection />
       <TextEssaysSection essays={textEssays} />
       <WritingGuidesSection />

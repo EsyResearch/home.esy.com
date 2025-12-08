@@ -59,7 +59,7 @@
   grid-template-columns: 1fr;
   gap: calc(var(--space-unit) * 4);
   padding: calc(var(--space-unit) * 6) calc(var(--space-unit) * 3);
-  padding-top: calc(var(--space-unit) * 10);
+  padding-top: calc(var(--space-unit) * 14);
   border-bottom: 1px solid var(--color-border);
   background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-bg) 100%);
 }
@@ -68,6 +68,7 @@
   .essays-hero {
     grid-template-columns: 1fr auto;
     padding: calc(var(--space-unit) * 10) calc(var(--space-unit) * 8);
+    padding-top: calc(var(--space-unit) * 16);
     align-items: end;
   }
 }
@@ -115,58 +116,12 @@
 /* Hero Search Bar */
 .essays-hero-search {
   margin-top: calc(var(--space-unit) * 4);
-  max-width: 500px;
-}
-
-.essays-search-container {
-  display: flex;
-  align-items: center;
-  gap: calc(var(--space-unit) * 1.5);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  padding: calc(var(--space-unit) * 1.75) calc(var(--space-unit) * 2.5);
-  transition: all var(--transition);
-}
-
-.essays-search-container:focus-within {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px var(--color-accent-muted);
-  background: var(--color-elevated);
-}
-
-.essays-search-icon {
-  color: var(--color-text-tertiary);
-  flex-shrink: 0;
-  transition: color var(--transition-fast);
-}
-
-.essays-search-container:focus-within .essays-search-icon {
-  color: var(--color-accent);
-}
-
-.essays-search-input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  color: var(--color-text);
-  min-width: 0;
-}
-
-.essays-search-input::placeholder {
-  color: var(--color-text-tertiary);
+  max-width: 520px;
 }
 
 @media (min-width: 768px) {
   .essays-hero-search {
     margin-top: calc(var(--space-unit) * 5);
-  }
-  
-  .essays-search-container {
-    padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 3);
   }
 }
 
