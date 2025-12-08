@@ -125,40 +125,71 @@
   }
 }
 
-.essays-hero-stats {
+/* Hero Metrics - Editorial Style */
+.essays-hero-metrics {
   display: flex;
+  align-items: center;
   gap: calc(var(--space-unit) * 3);
-  padding-top: calc(var(--space-unit) * 2);
+  padding-top: calc(var(--space-unit) * 4);
 }
 
 @media (min-width: 768px) {
-  .essays-hero-stats {
-    flex-direction: column;
-    gap: calc(var(--space-unit) * 2);
+  .essays-hero-metrics {
+    flex-direction: row;
+    gap: calc(var(--space-unit) * 4);
     padding-top: 0;
     padding-bottom: calc(var(--space-unit) * 2);
   }
 }
 
-.essays-hero-stat {
+.essays-metric {
   display: flex;
-  align-items: center;
-  gap: calc(var(--space-unit) * 1);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
 }
 
-.essays-hero-stat .stat-icon {
-  color: var(--color-accent);
+@media (min-width: 768px) {
+  .essays-metric {
+    align-items: center;
+  }
 }
 
-.essays-hero-stat .stat-value {
+.essays-metric-number {
   font-family: var(--font-editorial);
-  font-size: 1.25rem;
-  font-weight: 400;
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
 }
 
-.essays-hero-stat .stat-label {
-  font-size: 0.75rem;
+@media (min-width: 768px) {
+  .essays-metric-number {
+    font-size: 2.5rem;
+  }
+}
+
+.essays-metric-label {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--color-text-tertiary);
+}
+
+.essays-metric-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--color-border-strong);
+  opacity: 0.5;
+}
+
+@media (min-width: 768px) {
+  .essays-metric-divider {
+    height: 48px;
+  }
 }
 
 /* ============================================
@@ -360,11 +391,6 @@
   gap: calc(var(--space-unit) * 2);
 }
 
-.section-icon {
-  color: var(--color-accent);
-  flex-shrink: 0;
-  margin-top: 2px;
-}
 
 .section-title {
   font-family: var(--font-editorial);
@@ -621,17 +647,6 @@
   border-color: var(--color-accent-tertiary);
   transform: translateY(-2px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-}
-
-.guide-preview-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  background: rgba(52, 211, 153, 0.1);
-  border-radius: 12px;
-  color: var(--color-accent-tertiary);
 }
 
 .guide-preview-content {

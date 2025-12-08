@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Clock, Sparkles, BookOpen, PenTool, FileText } from "lucide-react";
+import { ArrowRight, Clock } from "lucide-react";
 import { useHeaderSearch } from "@/contexts/HeaderSearchContext";
 import SearchBar from "@/components/SearchBar/SearchBar";
+import { visualEssays, searchVisualEssays, CATEGORY_COLORS } from "@/data/visualEssays";
 import './essays-gateway.css';
 
 /*
@@ -16,7 +17,7 @@ import './essays-gateway.css';
  * - Showcases Visual Essays, Text Essays, and Writing Guides
  * - Premium editorial aesthetic with clear navigation
  * - Optimized for essay-related SEO
- * - Search bar that moves to header on scroll
+ * - Search bar with instant results dropdown
  */
 
 // ==================== TYPES ====================
@@ -49,46 +50,30 @@ interface Guide {
   href: string;
 }
 
+interface SearchResult {
+  id: string | number;
+  title: string;
+  description?: string;
+  category?: string;
+  slug?: string;
+  type?: 'prompt' | 'suggestion' | 'category' | 'article' | 'resource' | 'course';
+  isPro?: boolean;
+  metadata?: Record<string, unknown>;
+}
+
 // ==================== SAMPLE DATA ====================
 
-const visualEssayPreviews: VisualEssayPreview[] = [
-  {
-    id: "the-dna-helix",
-    title: "DNA & The Double Helix",
-    subtitle: "The Code of Life",
-    category: "Science",
-    categoryColor: "#10B981",
-    readTime: "13 min",
-    href: "/essays/visual/the-dna-helix",
-  },
-  {
-    id: "the-firearm",
-    title: "The Firearm",
-    subtitle: "From Fire Lance to Precision",
-    category: "Technology",
-    categoryColor: "#3B82F6",
-    readTime: "13 min",
-    href: "/essays/visual/the-firearm",
-  },
-  {
-    id: "honey-never-spoils",
-    title: "Honey Never Spoils",
-    subtitle: "The Eternal Elixir",
-    category: "Science",
-    categoryColor: "#10B981",
-    readTime: "11 min",
-    href: "/essays/visual/honey-never-spoils",
-  },
-  {
-    id: "the-pale-blue-dot",
-    title: "The Pale Blue Dot",
-    subtitle: "A Cosmic Perspective",
-    category: "Space",
-    categoryColor: "#8B5CF6",
-    readTime: "10 min",
-    href: "/essays/visual/the-pale-blue-dot",
-  },
-];
+// Convert visual essays to preview format (show first 4)
+const visualEssayPreviews: VisualEssayPreview[] = visualEssays.slice(0, 4).map(essay => ({
+  id: essay.id,
+  title: essay.title,
+  subtitle: essay.subtitle,
+  category: essay.category,
+  categoryColor: CATEGORY_COLORS[essay.category],
+  readTime: essay.readTime,
+  href: essay.href,
+  isNew: essay.isNew,
+}));
 
 const guides: Guide[] = [
   {
@@ -108,9 +93,20 @@ interface HeroProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
   onSearch: (query: string) => void;
+  searchResults: SearchResult[];
+  onResultSelect: (result: SearchResult) => void;
+  showDropdown: boolean;
 }
 
-const Hero: React.FC<HeroProps> = ({ searchBarRef, searchQuery, setSearchQuery, onSearch }) => {
+const Hero: React.FC<HeroProps> = ({ 
+  searchBarRef, 
+  searchQuery, 
+  setSearchQuery, 
+  onSearch,
+  searchResults,
+  onResultSelect,
+  showDropdown,
+}) => {
   return (
     <section className="essays-hero">
       <div className="essays-hero-content">
@@ -125,34 +121,37 @@ const Hero: React.FC<HeroProps> = ({ searchBarRef, searchQuery, setSearchQuery, 
           writing guides. Everything you need to write better essays.
         </p>
         
-        {/* Search Bar */}
+        {/* Search Bar with Instant Results */}
         <div ref={searchBarRef} className="essays-hero-search">
           <SearchBar
             value={searchQuery}
             onChange={setSearchQuery}
             onSearch={onSearch}
-            placeholder="Search essays, guides, and more..."
+            placeholder="Search visual essays..."
             context="general"
             inputFontSize="1rem"
+            showDropdown={showDropdown}
+            searchResults={searchResults}
+            onResultSelect={onResultSelect}
+            maxResults={8}
           />
         </div>
       </div>
       
-      <div className="essays-hero-stats">
-        <div className="essays-hero-stat">
-          <Sparkles size={20} className="stat-icon" />
-          <span className="stat-value">24+</span>
-          <span className="stat-label">Visual Essays</span>
+      <div className="essays-hero-metrics">
+        <div className="essays-metric">
+          <span className="essays-metric-number">{visualEssays.length}</span>
+          <span className="essays-metric-label">Visual Essays</span>
         </div>
-        <div className="essays-hero-stat">
-          <FileText size={20} className="stat-icon" />
-          <span className="stat-value">3</span>
-          <span className="stat-label">Text Essays</span>
+        <span className="essays-metric-divider" />
+        <div className="essays-metric">
+          <span className="essays-metric-number">3</span>
+          <span className="essays-metric-label">Examples</span>
         </div>
-        <div className="essays-hero-stat">
-          <PenTool size={20} className="stat-icon" />
-          <span className="stat-value">1</span>
-          <span className="stat-label">Writing Guide</span>
+        <span className="essays-metric-divider" />
+        <div className="essays-metric">
+          <span className="essays-metric-number">1</span>
+          <span className="essays-metric-label">Guide</span>
         </div>
       </div>
     </section>
@@ -164,7 +163,6 @@ const VisualEssaysSection: React.FC = () => (
   <section className="content-section">
     <div className="section-header">
       <div className="section-header-left">
-        <Sparkles size={20} className="section-icon" />
         <div>
           <h2 className="section-title">Visual Essays</h2>
           <p className="section-description">
@@ -208,7 +206,6 @@ const TextEssaysSection: React.FC<{ essays: TextEssay[] }> = ({ essays }) => (
   <section className="content-section">
     <div className="section-header">
       <div className="section-header-left">
-        <FileText size={20} className="section-icon" />
         <div>
           <h2 className="section-title">Essay Examples</h2>
           <p className="section-description">
@@ -246,7 +243,6 @@ const WritingGuidesSection: React.FC = () => (
   <section className="content-section guides-section">
     <div className="section-header">
       <div className="section-header-left">
-        <PenTool size={20} className="section-icon" />
         <div>
           <h2 className="section-title">Writing Guides</h2>
           <p className="section-description">
@@ -262,15 +258,11 @@ const WritingGuidesSection: React.FC = () => (
     <div className="guides-preview">
       {guides.map(guide => (
         <Link key={guide.id} href={guide.href} className="guide-preview-card">
-          <div className="guide-preview-icon">
-            <BookOpen size={28} />
-          </div>
           <div className="guide-preview-content">
             <span className="guide-preview-badge">Interactive Guide</span>
             <h3 className="guide-preview-title">{guide.title}</h3>
             <p className="guide-preview-subtitle">{guide.subtitle}</p>
             <div className="guide-preview-meta">
-              <Clock size={14} />
               <span>{guide.readTime} read</span>
             </div>
           </div>
@@ -314,11 +306,34 @@ const EssaysGatewayClient: React.FC<EssaysGatewayClientProps> = ({ textEssays })
     };
   }, [setShowHeaderSearch]);
 
+  // Search results with memoization
+  const searchResults = useMemo((): SearchResult[] => {
+    if (!searchQuery.trim()) return [];
+    
+    const results = searchVisualEssays(searchQuery);
+    return results.map(essay => ({
+      id: essay.id,
+      title: essay.title,
+      description: essay.subtitle,
+      category: essay.category,
+      slug: essay.href,
+      type: 'article' as const,
+    }));
+  }, [searchQuery]);
+
+  const showDropdown = searchQuery.length > 0 && searchResults.length > 0;
+
   const handleSearch = (query: string) => {
     const searchTerm = query || searchQuery;
     if (searchTerm.trim()) {
       // Navigate to visual essays with search query
       router.push(`/essays/visual?q=${encodeURIComponent(searchTerm.trim())}`);
+    }
+  };
+
+  const handleResultSelect = (result: SearchResult) => {
+    if (result.slug) {
+      router.push(result.slug);
     }
   };
 
@@ -329,6 +344,9 @@ const EssaysGatewayClient: React.FC<EssaysGatewayClientProps> = ({ textEssays })
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         onSearch={handleSearch}
+        searchResults={searchResults}
+        onResultSelect={handleResultSelect}
+        showDropdown={showDropdown}
       />
       <VisualEssaysSection />
       <TextEssaysSection essays={textEssays} />
