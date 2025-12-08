@@ -319,7 +319,7 @@ const TeaJourneyClient: React.FC = () => {
               beneath a tree when leaves drifted into his boiling water.
             </p>
             <p className="legend-text">
-              Whether myth or memory, this moment marks humanity's first recorded 
+              Whether myth or memory, this moment marks humanity&apos;s first recorded 
               encounter with tea—a beverage that would reshape civilizations.
             </p>
           </div>
@@ -348,7 +348,7 @@ const TeaJourneyClient: React.FC = () => {
         </div>
 
         <blockquote className="origins-quote">
-          <p>"Tea began as a medicine and grew into a beverage."</p>
+          <p>&quot;Tea began as a medicine and grew into a beverage.&quot;</p>
           <cite>— Kakuzō Okakura, The Book of Tea (1906)</cite>
         </blockquote>
       </section>
@@ -485,7 +485,7 @@ const TeaJourneyClient: React.FC = () => {
               <div className="ceremony-label">Chinese Gongfu</div>
               <div className="ceremony-desc">
                 Multiple short infusions. Tiny cups. Clay teapots seasoned over decades.
-                <em> "Kung fu" of tea—mastery through practice.</em>
+                <em> &quot;Kung fu&quot; of tea—mastery through practice.</em>
               </div>
               <svg className="ceremony-icon" viewBox="0 0 80 60" aria-hidden="true">
                 <ellipse className="yixing-body" cx="40" cy="40" rx="25" ry="15" />
@@ -542,7 +542,7 @@ const TeaJourneyClient: React.FC = () => {
           <div className="map-header">
             <h2 className="map-title">The Routes That Changed the World</h2>
             <p className="map-subtitle">
-              Scroll to trace tea's journey across continents
+              Scroll to trace tea&apos;s journey across continents
             </p>
           </div>
 
@@ -664,20 +664,20 @@ const TeaJourneyClient: React.FC = () => {
           <h2 className="empire-title">Tea, Taxes, and Revolution</h2>
           
           <p className="empire-text">
-            When Britain's East India Company gained a monopoly on tea sales to the American 
+            When Britain&apos;s East India Company gained a monopoly on tea sales to the American 
             colonies, it sparked more than protest. On December 16, 1773, colonists dumped 
             342 chests of tea into Boston Harbor—a symbolic act that ignited revolution.
           </p>
           
           <blockquote className="empire-quote">
-            <p>"This destruction of the Tea is so bold, so daring... it must have 
-            so important Consequences, and so lasting."</p>
+            <p>&quot;This destruction of the Tea is so bold, so daring... it must have 
+            so important Consequences, and so lasting.&quot;</p>
             <cite>— John Adams, December 17, 1773</cite>
           </blockquote>
 
           <p className="empire-text">
-            But tea's imperial story ran deeper. Britain's addiction to Chinese tea created 
-            a trade deficit that led to the Opium Wars. Tea didn't just build empires—it 
+            But tea&apos;s imperial story ran deeper. Britain&apos;s addiction to Chinese tea created 
+            a trade deficit that led to the Opium Wars. Tea didn&apos;t just build empires—it 
             broke them too.
           </p>
         </div>
@@ -698,7 +698,7 @@ const TeaJourneyClient: React.FC = () => {
 
           <div className="india-story">
             <p className="india-text">
-              Robert Fortune was a Scottish botanist with a dangerous mission: steal China's 
+              Robert Fortune was a Scottish botanist with a dangerous mission: steal China&apos;s 
               tea secrets. Disguised as a Chinese merchant—shaved head, traditional robes, 
               broken Mandarin—he infiltrated tea-growing regions that had never seen a Westerner.
             </p>
@@ -729,7 +729,7 @@ const TeaJourneyClient: React.FC = () => {
             <p className="india-text">
               Fortune delivered plants and expertise to the Himalayan foothills. Within decades, 
               Assam and Darjeeling rivaled—then surpassed—Chinese production. Britain had broken 
-              China's 5,000-year monopoly.
+              China&apos;s 5,000-year monopoly.
             </p>
           </div>
 
@@ -740,7 +740,7 @@ const TeaJourneyClient: React.FC = () => {
             </div>
             <div className="region-card darjeeling">
               <h3>Darjeeling</h3>
-              <p>The "Champagne of teas." Delicate, muscatel, prized.</p>
+              <p>The &quot;Champagne of teas.&quot; Delicate, muscatel, prized.</p>
             </div>
           </div>
         </div>
@@ -758,7 +758,7 @@ const TeaJourneyClient: React.FC = () => {
             <div className="ba-panel before">
               <span className="ba-label">Before 1869</span>
               <h3>Coffee Island</h3>
-              <p>Sri Lanka's highlands carpeted in coffee plantations. Export economy booming.</p>
+              <p>Sri Lanka&apos;s highlands carpeted in coffee plantations. Export economy booming.</p>
             </div>
             <div className="ba-divider">
               <svg viewBox="0 0 50 100" className="ba-arrow" aria-hidden="true">
@@ -775,13 +775,13 @@ const TeaJourneyClient: React.FC = () => {
 
           <div className="ceylon-text">
             <p>
-              The coffee blight that devastated Ceylon became tea's greatest opportunity. 
+              The coffee blight that devastated Ceylon became tea&apos;s greatest opportunity. 
               Scottish merchant Thomas Lipton bought failing coffee estates, planted tea, 
               and built a global brand on one radical idea: quality tea for everyone.
             </p>
             <div className="lipton-fact">
-              <span className="fact-quote">"Direct from the tea gardens to the teapot"</span>
-              <span className="fact-attr">— Lipton's revolutionary slogan</span>
+              <span className="fact-quote">&quot;Direct from the tea gardens to the teapot&quot;</span>
+              <span className="fact-attr">— Lipton&apos;s revolutionary slogan</span>
             </div>
           </div>
         </div>
@@ -910,7 +910,7 @@ const TeaJourneyClient: React.FC = () => {
           <h2 className="anatomy-title">The Perfect Leaf</h2>
           <p className="anatomy-subtitle">
             Not all leaves are created equal. The finest teas use only the bud and top two leaves—
-            the "two leaves and a bud" standard that determines quality worldwide.
+            the &quot;two leaves and a bud&quot; standard that determines quality worldwide.
           </p>
 
           <div className="anatomy-diagram">
@@ -985,7 +985,7 @@ const TeaJourneyClient: React.FC = () => {
           <div className="modern-trends">
             <div className="trend">
               <h3>Specialty Tea Renaissance</h3>
-              <p>Single-origin, artisan teas commanding premium prices—the "third wave" mirrors craft coffee.</p>
+              <p>Single-origin, artisan teas commanding premium prices—the &quot;third wave&quot; mirrors craft coffee.</p>
             </div>
             <div className="trend">
               <h3>Wellness & Mindfulness</h3>
@@ -1038,19 +1038,19 @@ const TeaJourneyClient: React.FC = () => {
           
           <p className="closing-text">
             From a wild leaf discovered by accident to the most consumed beverage 
-            on Earth, tea's journey mirrors humanity's own—across oceans, through 
+            on Earth, tea&apos;s journey mirrors humanity&apos;s own—across oceans, through 
             wars, into rituals sacred and mundane.
           </p>
 
           <div className="closing-quote">
             <blockquote>
-              "Tea is quiet and our thirst for tea is never satisfied."
+              &quot;Tea is quiet and our thirst for tea is never satisfied.&quot;
             </blockquote>
             <cite>— James Norwood Pratt</cite>
           </div>
 
           <p className="closing-final">
-            The next time you lift a cup, remember: you're drinking five thousand years 
+            The next time you lift a cup, remember: you&apos;re drinking five thousand years 
             of human history, one sip at a time.
           </p>
         </div>
@@ -1095,7 +1095,7 @@ const TeaJourneyClient: React.FC = () => {
             </li>
             <li>
               <a href="https://www.amazon.com/Tea-History-Global-Thousand-Years/dp/0300213883" target="_blank" rel="noopener noreferrer">
-                "Tea: A History of the Drink That Changed the World" — Laura C. Martin
+                &quot;Tea: A History of the Drink That Changed the World&quot; — Laura C. Martin
               </a>
             </li>
             <li>

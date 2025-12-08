@@ -470,12 +470,12 @@ const TeaJourneyIllustratedClient: React.FC = () => {
             such a tree when leaves drifted into his pot of boiling water.
           </p>
           <p className="section-text">
-            Whether myth or memory, this moment marks humanity's first encounter with tea—
+            Whether myth or memory, this moment marks humanity&apos;s first encounter with tea—
             a discovery that would reshape medicine, culture, trade, and empire across 
             every continent on Earth.
           </p>
           <blockquote className="illustrated-quote">
-            <span className="quote-mark">"</span>
+            <span className="quote-mark">&quot;</span>
             <p>Tea began as a medicine and grew into a beverage.</p>
             <cite>— Kakuzō Okakura, The Book of Tea</cite>
           </blockquote>
@@ -620,7 +620,7 @@ const TeaJourneyIllustratedClient: React.FC = () => {
           </p>
           <p className="section-text">
             The Yixing clay teapots of Jiangsu became treasures. Over decades, their porous 
-            walls absorbed tea's essence, each pot dedicated to a single variety, its flavor 
+            walls absorbed tea&apos;s essence, each pot dedicated to a single variety, its flavor 
             deepening with every brew.
           </p>
           <div className="gongfu-facts">
@@ -760,7 +760,7 @@ const TeaJourneyIllustratedClient: React.FC = () => {
           <p className="section-text">
             Buddhist monk Saichō returned from China carrying tea seeds and a philosophy. 
             In Japan, tea became <em>chadō</em>—the Way of Tea—a spiritual practice 
-            rooted in Zen Buddhism's pursuit of enlightenment through simplicity.
+            rooted in Zen Buddhism&apos;s pursuit of enlightenment through simplicity.
           </p>
           <p className="section-text">
             Sen no Rikyū perfected the ceremony in the 16th century, reducing it to 
@@ -799,7 +799,7 @@ const TeaJourneyIllustratedClient: React.FC = () => {
         <div className="trade-sticky">
           <h2 className="map-title-illustrated">Tea Conquers the World</h2>
           <p className="map-subtitle-illustrated">
-            Scroll to trace tea's journey across continents
+            Scroll to trace tea&apos;s journey across continents
           </p>
 
           <svg 
@@ -1095,20 +1095,20 @@ const TeaJourneyIllustratedClient: React.FC = () => {
           <span className="era-tag">December 16, 1773</span>
           <h2 className="section-title">Tea, Taxes & Revolution</h2>
           <p className="section-text">
-            When Britain's East India Company gained a monopoly on tea sales to the 
+            When Britain&apos;s East India Company gained a monopoly on tea sales to the 
             American colonies, it sparked more than protest. On a cold December night, 
             colonists disguised as Mohawk warriors dumped 342 chests—over 92,000 pounds 
             of tea—into Boston Harbor.
           </p>
           <blockquote className="illustrated-quote empire-quote">
-            <span className="quote-mark">"</span>
+            <span className="quote-mark">&quot;</span>
             <p>This destruction of the Tea is so bold, so daring... 
             it must have so important Consequences.</p>
             <cite>— John Adams, December 17, 1773</cite>
           </blockquote>
           <p className="section-text">
-            The "Boston Tea Party" ignited revolution. But tea's imperial story ran 
-            deeper still—Britain's addiction created a trade deficit that led to 
+            The &quot;Boston Tea Party&quot; ignited revolution. But tea&apos;s imperial story ran 
+            deeper still—Britain&apos;s addiction created a trade deficit that led to 
             the Opium Wars, reshaping Asia for centuries.
           </p>
         </div>
@@ -1204,7 +1204,7 @@ const TeaJourneyIllustratedClient: React.FC = () => {
           <p className="section-text">
             Every tea—from delicate white to earthy pu-erh—comes from the same plant: 
             <em>Camellia sinensis</em>. The difference lies in processing: when leaves 
-            are picked, how they're withered, rolled, and oxidized.
+            are picked, how they&apos;re withered, rolled, and oxidized.
           </p>
           <p className="section-text">
             Oxidation is the key. Like an apple browning when cut, tea leaves darken 
@@ -1273,7 +1273,7 @@ const TeaJourneyIllustratedClient: React.FC = () => {
           <h2 className="section-title">Tea Today</h2>
           <p className="section-text">
             From bubble tea shops in Taipei to wellness retreats in California, 
-            tea continues to evolve. The "third wave" of specialty tea mirrors 
+            tea continues to evolve. The &quot;third wave&quot; of specialty tea mirrors 
             craft coffee—single-origin, artisan-processed, commanding premium prices.
           </p>
           <p className="section-text">
@@ -1296,7 +1296,7 @@ const TeaJourneyIllustratedClient: React.FC = () => {
             role="img" 
             aria-labelledby="final-cup-title"
           >
-            <title id="final-cup-title">A cup of tea containing the world's history</title>
+            <title id="final-cup-title">A cup of tea containing the world&apos;s history</title>
             <defs>
               <clipPath id="cupClip">
                 <path d="M80 100 Q80 280 150 300 Q220 280 220 100" />
@@ -1368,15 +1368,15 @@ const TeaJourneyIllustratedClient: React.FC = () => {
           </p>
           <p className="closing-text">
             From a wild leaf discovered by accident to the most consumed beverage 
-            on Earth, tea's journey mirrors humanity's own—across oceans, through 
+            on Earth, tea&apos;s journey mirrors humanity&apos;s own—across oceans, through 
             wars, into rituals sacred and mundane.
           </p>
           <blockquote className="final-quote">
-            <p>"Tea is quiet and our thirst for tea is never satisfied."</p>
+            <p>&quot;Tea is quiet and our thirst for tea is never satisfied.&quot;</p>
             <cite>— James Norwood Pratt</cite>
           </blockquote>
           <p className="closing-final">
-            The next time you lift a cup, remember: you're drinking five thousand 
+            The next time you lift a cup, remember: you&apos;re drinking five thousand 
             years of human history, one sip at a time.
           </p>
         </div>
@@ -1405,7 +1405,7 @@ const TeaJourneyIllustratedClient: React.FC = () => {
               FAO: World Tea Production Statistics
             </a>
             <a href="https://www.amazon.com/Book-Tea-Kakuzo-Okakura/dp/0486200701" target="_blank" rel="noopener noreferrer">
-              "The Book of Tea" — Kakuzō Okakura
+              &quot;The Book of Tea&quot; — Kakuzō Okakura
             </a>
           </div>
           <p className="sources-note">
