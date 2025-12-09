@@ -430,16 +430,14 @@ const DocumentReveal: React.FC<{
   highlights?: number[];
   title: string;
 }> = ({ lines, highlights = [], title }) => {
-  const { containerRef, progress } = useScrollLock(2.5);
-  const visibleLines = Math.floor(progress * (lines.length + 1));
-  const isComplete = visibleLines >= lines.length;
-  const showHint = progress > 0.05 && progress < 0.95;
+  const { containerRef, progress } = useScrollLock(2);
+  const visibleLines = Math.floor(progress * lines.length);
   
   return (
     <div 
       ref={containerRef}
       className="document-reveal scroll-lock-container"
-      style={{ height: "280vh" }}
+      style={{ height: "200vh" }}
     >
       <div className="document-pinned">
         <div className="document-paper">
@@ -449,19 +447,14 @@ const DocumentReveal: React.FC<{
               <p 
                 key={i}
                 className={`document-line ${i < visibleLines ? "visible" : ""} ${highlights.includes(i) ? "highlighted" : ""}`}
-                style={{ transitionDelay: `${i * 30}ms` }}
+                style={{ transitionDelay: `${i * 50}ms` }}
               >
-                {line || "\u00A0"}
+                {line}
               </p>
             ))}
           </div>
-          <div className="document-seal" style={{ opacity: isComplete ? 1 : 0 }} />
+          <div className="document-seal" />
         </div>
-        {showHint && !isComplete && (
-          <div className="scroll-hint">
-            <span>Scroll to reveal</span>
-          </div>
-        )}
       </div>
     </div>
   );
@@ -624,11 +617,6 @@ const HeroSection: React.FC = () => {
           <p className="hero-subtitle">The Scientists, The Secret, The Bomb That Ended One War and Started Another</p>
         </div>
         
-        {/* Content warning */}
-        <div className="content-warning" style={{ opacity: progress < 0.05 ? 1 : 0 }}>
-          <p>This essay contains photographs of nuclear destruction and its human cost.</p>
-          <button className="skip-warning">Continue</button>
-        </div>
       </div>
     </header>
   );
@@ -1672,7 +1660,7 @@ const SourcesSection: React.FC = () => {
 
 const ManhattanProjectClient: React.FC = () => {
   const globalProgress = useGlobalScrollProgress();
-  const [showWarning, setShowWarning] = useState(true);
+  const [showWarning, setShowWarning] = useState(false); // Disabled content warning
   
   // Dismiss content warning
   const handleDismissWarning = useCallback(() => {

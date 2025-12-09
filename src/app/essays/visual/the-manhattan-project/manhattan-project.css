@@ -688,9 +688,9 @@
 }
 
 .document-pinned {
+  position: relative;
   height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: var(--space-md);
@@ -699,24 +699,6 @@
 .document-reveal.scroll-lock-container .document-pinned {
   position: sticky;
   top: 0;
-  background: var(--mp-bg-deep);
-}
-
-.document-reveal .scroll-hint {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--mp-font-mono);
-  font-size: 0.75rem;
-  color: var(--mp-text-secondary);
-  opacity: 0.6;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
 }
 
 .document-paper {
@@ -771,7 +753,7 @@
   height: 60px;
   border-radius: 50%;
   background: var(--dark-red);
-  transition: opacity 0.5s ease;
+  opacity: 0.8;
 }
 
 /* ==================== KEY FIGURE PROFILES ==================== */

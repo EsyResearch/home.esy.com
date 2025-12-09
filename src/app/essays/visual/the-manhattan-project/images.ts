@@ -34,10 +34,10 @@ export const heroImages = {
     photographer: "Berlyn Brixner"
   },
   trinityMushroom: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Trinity_Detonation_T%26B.jpg/800px-Trinity_Detonation_T%26B.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Trinity_Test_Mushroom_Cloud_12s.jpg",
     alt: "Trinity test mushroom cloud rising into the sky",
-    caption: "The mushroom cloud rose 8 miles into the New Mexico sky",
-    source: "U.S. Army",
+    caption: "The mushroom cloud rose 8 miles into the New Mexico sky — 12 seconds after detonation",
+    source: "National Nuclear Security Administration",
     date: "July 16, 1945"
   },
   oppenheimer: {
