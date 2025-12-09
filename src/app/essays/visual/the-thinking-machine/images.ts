@@ -199,6 +199,15 @@ export const goldenAgeImages = {
     license: "CC BY-SA 3.0",
     sourceUrl: "https://commons.wikimedia.org/wiki/File:MIT_Stata_Center.jpg",
   },
+  rosenblattPortrait: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Frank_Rosenblatt.jpg",
+    alt: "Frank Rosenblatt",
+    caption: "Frank Rosenblatt — built the Perceptron, predicted conscious machines, vindicated sixty years later",
+    source: "Wikimedia Commons",
+    date: "1960s",
+    license: "Public Domain",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Frank_Rosenblatt.jpg",
+  },
   perceptronMachine: {
     src: "https://upload.wikimedia.org/wikipedia/en/5/52/Mark_I_perceptron.jpeg",
     alt: "Mark I Perceptron at Cornell Aeronautical Laboratory",
@@ -225,6 +234,15 @@ export const goldenAgeImages = {
     date: "1966",
     license: "Public Domain",
     sourceUrl: "https://commons.wikimedia.org/wiki/File:ELIZA_conversation.png",
+  },
+  weizenbaumPortrait: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Joseph_Weizenbaum.jpg",
+    alt: "Joseph Weizenbaum",
+    caption: "Joseph Weizenbaum — created ELIZA, then became horrified by what he'd built",
+    source: "Ulrich Hansen / Wikimedia Commons",
+    date: "2005",
+    license: "CC BY-SA 4.0",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Joseph_Weizenbaum.jpg",
   },
   deepBlue: {
     src: "https://upload.wikimedia.org/wikipedia/commons/b/be/Deep_Blue.jpg",
@@ -323,13 +341,13 @@ export const believersImages = {
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Yoshua_Bengio_-_2017.jpg",
   },
   turingAward2018: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Geoffrey_Hinton_at_UofT.jpg",
-    alt: "Geoffrey Hinton receiving recognition",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Yann_LeCun_-_2018_%28cropped%29.jpg/440px-Yann_LeCun_-_2018_%28cropped%29.jpg",
+    alt: "Yann LeCun in 2018, Turing Award co-recipient",
     caption: "2019: The 'Godfathers of Deep Learning' receive computing's highest honor",
     source: "Wikimedia Commons",
-    date: "2019",
-    license: "CC BY 4.0",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:Geoffrey_Hinton_at_UofT.jpg",
+    date: "2018",
+    license: "CC BY-SA 4.0",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Yann_LeCun_-_2018_(cropped).jpg",
   },
 };
 
@@ -386,14 +404,14 @@ export const deepLearningImages = {
     license: "CC BY 2.0",
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Lee_Sedol_vs_AlphaGo,_2016_(cropped).jpg",
   },
-  leeSedolReaction: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Lee_Sedol_vs_AlphaGo%2C_2016_%28cropped%29.jpg",
-    alt: "Lee Sedol during the AlphaGo match",
-    caption: "Lee Sedol processes Move 37 — the move that showed machines could be creative",
-    source: "Google DeepMind / Wikimedia Commons",
+  leeSedolPortrait: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Lee_Se-Dol_-_2016_%28cropped%29.jpg",
+    alt: "Lee Sedol in 2016",
+    caption: "Lee Sedol — the Go master who became the face of humanity's first confrontation with superhuman AI",
+    source: "Wikimedia Commons",
     date: "2016",
     license: "CC BY 2.0",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:Lee_Sedol_vs_AlphaGo,_2016_(cropped).jpg",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Lee_Se-Dol_-_2016_(cropped).jpg",
   },
   demisHassabis: {
     src: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Demis_Hassabis_Royal_Society.jpg",
@@ -418,23 +436,32 @@ export const deepLearningImages = {
 // ==================== CHAPTER 10: THE TRANSFORMER ====================
 
 export const transformerImages = {
-  attentionPaper: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/8/8f/Attention_Is_All_You_Need.pdf",
-    alt: "Attention Is All You Need paper",
-    caption: "The 2017 paper that introduced the Transformer — eight pages that changed everything",
-    source: "Google Brain / Wikimedia Commons",
-    date: "2017",
-    license: "CC BY 4.0",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:Attention_Is_All_You_Need.pdf",
+  transformerArchitecture: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/8/8f/The-Transformer-model-architecture.png",
+    alt: "Transformer model architecture diagram",
+    caption: "The Transformer architecture — attention mechanisms that revolutionized AI",
+    source: "Wikimedia Commons",
+    date: "2020",
+    license: "CC BY-SA 4.0",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:The-Transformer-model-architecture.png",
+  },
+  attentionMechanism: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Neural_machine_translation.png",
+    alt: "Neural machine translation with attention",
+    caption: "Attention mechanism visualization — the insight that enabled transformers",
+    source: "Wikimedia Commons",
+    date: "2018",
+    license: "CC BY-SA 4.0",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Neural_machine_translation.png",
   },
   googleBrain: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
     alt: "Google logo",
     caption: "Google Brain — where the transformer architecture was invented",
     source: "Google / Wikimedia Commons",
     date: "2015",
-    license: "Public Domain (simple logo)",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:Google_%22G%22_Logo.svg",
+    license: "Public Domain (trademark)",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Google_2015_logo.svg",
   },
 };
 
