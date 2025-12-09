@@ -338,10 +338,12 @@ const BeforeAfterSlider: React.FC<{
       >
         {/* Before image (full width) */}
         <div className="slider-image before" aria-label={beforeAlt}>
-          <div className="photo-placeholder">
-            <span className="placeholder-text">{beforeAlt}</span>
-            <span className="label">BEFORE</span>
-          </div>
+          <img 
+            src={hiroshimaImages.hiroshimaBefore.src} 
+            alt={beforeAlt}
+            className="slider-photo"
+          />
+          <span className="label">BEFORE</span>
         </div>
         
         {/* After image (clipped) */}
@@ -350,10 +352,12 @@ const BeforeAfterSlider: React.FC<{
           style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
           aria-label={afterAlt}
         >
-          <div className="photo-placeholder after-placeholder">
-            <span className="placeholder-text">{afterAlt}</span>
-            <span className="label">AFTER</span>
-          </div>
+          <img 
+            src={hiroshimaImages.hiroshimaAfter.src} 
+            alt={afterAlt}
+            className="slider-photo"
+          />
+          <span className="label">AFTER</span>
         </div>
         
         {/* Slider handle */}
@@ -546,7 +550,7 @@ const HeroSection: React.FC = () => {
           aria-hidden="true"
         />
         
-        {/* Fireball photograph placeholder */}
+        {/* Fireball photograph */}
         <div 
           className="hero-fireball"
           style={{ 
@@ -554,10 +558,11 @@ const HeroSection: React.FC = () => {
             transform: `scale(${phase === "fireball" ? 1 + (progress - 0.6) * 0.5 : 1})`
           }}
         >
-          <div className="photo-placeholder fireball-photo">
-            <span className="placeholder-text">Trinity Fireball — 0.016 seconds after detonation</span>
-            <span className="placeholder-source">Berlyn Brixner / Los Alamos National Laboratory</span>
-          </div>
+          <img 
+            src={heroImages.trinityFireball.src}
+            alt={heroImages.trinityFireball.alt}
+            className="hero-photo-img fireball-photo"
+          />
         </div>
         
         {/* Mushroom cloud */}
@@ -568,10 +573,11 @@ const HeroSection: React.FC = () => {
             transform: `scale(${phase === "mushroom" ? 0.9 + (progress - 0.8) * 0.5 : 1})`
           }}
         >
-          <div className="photo-placeholder mushroom-photo">
-            <span className="placeholder-text">Trinity mushroom cloud — 8 miles high</span>
-            <span className="placeholder-source">Los Alamos National Laboratory</span>
-          </div>
+          <img 
+            src={heroImages.trinityMushroom.src}
+            alt={heroImages.trinityMushroom.alt}
+            className="hero-photo-img mushroom-photo"
+          />
         </div>
         
         {/* Oppenheimer overlay */}
@@ -580,9 +586,11 @@ const HeroSection: React.FC = () => {
           style={{ opacity: phase === "oppenheimer" ? 1 : 0 }}
         >
           <div className="oppenheimer-portrait">
-            <div className="photo-placeholder oppenheimer-photo">
-              <span className="placeholder-text">J. Robert Oppenheimer</span>
-            </div>
+            <img 
+              src={heroImages.oppenheimer.src}
+              alt={heroImages.oppenheimer.alt}
+              className="oppenheimer-photo-img"
+            />
           </div>
           <blockquote className="oppenheimer-quote">
             <p className="quote-text">
@@ -800,11 +808,13 @@ const Chapter2: React.FC = () => {
             date={chapter2Images.grovesOppenheimer.date}
           />
           <ArchivalPhoto
+            src={chapter2Images.losAlamosPostOffice?.src || ""}
             alt="PO Box 1663 — the only mailing address allowed"
             caption="Every letter, every package—addressed to a single PO Box."
-            source="National Archives"
+            source="Los Alamos National Laboratory"
           />
           <ArchivalPhoto
+            src={chapter2Images.losAlamosFamilies?.src || ""}
             alt="Scientists' families in the makeshift town"
             caption="Children were born in a city that didn't exist."
             source="Los Alamos Historical Society"
@@ -1024,8 +1034,9 @@ const Chapter4: React.FC = () => {
             date={gadgetImages.assembly.date}
           />
           <ArchivalPhoto
+            src={gadgetImages.implosionLenses?.src || ""}
             alt="Implosion lens system assembly"
-            caption="32 explosive lenses arranged in perfect symmetry."
+            caption="32 explosive lenses arranged in perfect symmetry — if even one was off, the bomb would fizzle."
             source="Los Alamos National Laboratory"
           />
         </div>
@@ -1065,10 +1076,11 @@ const Chapter5: React.FC = () => {
         
         {/* Tower at night */}
         <div className="trinity-stage tower-stage" style={{ opacity: phase === "tower" ? 1 : 0 }}>
-          <div className="photo-placeholder tower-photo">
-            <span className="placeholder-text">The Trinity tower at night, The Gadget suspended at 100 feet</span>
-            <span className="placeholder-source">Los Alamos National Laboratory</span>
-          </div>
+          <img 
+            src={trinityImages.towerWithGadget.src}
+            alt={trinityImages.towerWithGadget.alt}
+            className="trinity-photo tower-photo"
+          />
           <div className="scientist-names">
             <span>Oppenheimer</span>
             <span>Fermi</span>
@@ -1095,14 +1107,17 @@ const Chapter5: React.FC = () => {
         {/* Fireball sequence */}
         <div className="trinity-stage fireball-stage" style={{ opacity: phase === "fireball-sequence" ? 1 : 0 }}>
           <div className="fireball-sequence">
-            <div className="photo-placeholder fireball-1">
-              <span className="placeholder-text">0.006 seconds</span>
+            <div className="fireball-frame fireball-1">
+              <img src={trinityImages.fireball006.src} alt={trinityImages.fireball006.alt} />
+              <span className="fireball-time">0.006s</span>
             </div>
-            <div className="photo-placeholder fireball-2">
-              <span className="placeholder-text">0.016 seconds</span>
+            <div className="fireball-frame fireball-2">
+              <img src={trinityImages.fireball016.src} alt={trinityImages.fireball016.alt} />
+              <span className="fireball-time">0.016s</span>
             </div>
-            <div className="photo-placeholder fireball-3">
-              <span className="placeholder-text">0.025 seconds</span>
+            <div className="fireball-frame fireball-3">
+              <img src={trinityImages.fireball025.src} alt={trinityImages.fireball025.alt} />
+              <span className="fireball-time">0.025s</span>
             </div>
           </div>
           <p className="fireball-caption">
@@ -1112,10 +1127,11 @@ const Chapter5: React.FC = () => {
         
         {/* Mushroom cloud */}
         <div className="trinity-stage mushroom-stage" style={{ opacity: phase === "mushroom" ? 1 : 0 }}>
-          <div className="photo-placeholder mushroom-cloud">
-            <span className="placeholder-text">The mushroom cloud rose 8 miles into the sky</span>
-            <span className="placeholder-source">Los Alamos National Laboratory</span>
-          </div>
+          <img 
+            src={trinityImages.mushroomCloud.src}
+            alt={trinityImages.mushroomCloud.alt}
+            className="trinity-photo mushroom-cloud"
+          />
           <div className="observation-silhouettes">
             <div className="observer" />
             <div className="observer" />
@@ -1126,11 +1142,13 @@ const Chapter5: React.FC = () => {
         {/* Aftermath */}
         <div className="trinity-stage aftermath-stage" style={{ opacity: phase === "aftermath" ? 1 : 0 }}>
           <div className="aftermath-grid">
-            <div className="photo-placeholder">
-              <span className="placeholder-text">Oppenheimer and Groves at Ground Zero</span>
+            <div className="aftermath-photo">
+              <img src={trinityImages.groundZero.src} alt={trinityImages.groundZero.alt} />
+              <span className="photo-label">Oppenheimer and Groves at Ground Zero</span>
             </div>
-            <div className="photo-placeholder">
-              <span className="placeholder-text">The crater, fused sand turned to glass (trinitite)</span>
+            <div className="aftermath-photo">
+              <img src={trinityImages.trinitite.src} alt={trinityImages.trinitite.alt} />
+              <span className="photo-label">Trinitite — desert sand fused to glass</span>
             </div>
           </div>
           <blockquote className="bainbridge-quote">
@@ -1427,9 +1445,11 @@ const Chapter9: React.FC = () => {
           <div className="timeline-event">
             <span className="event-year">1946</span>
             <ArchivalPhoto
-              alt="Oppenheimer receiving the Medal of Merit from Groves"
-              caption="The hero of Los Alamos, honored by the nation he served."
-              source="National Archives"
+              src={reckoningImages.oppenheimerMedal.src}
+              alt={reckoningImages.oppenheimerMedal.alt}
+              caption={reckoningImages.oppenheimerMedal.caption}
+              source={reckoningImages.oppenheimerMedal.source}
+              date={reckoningImages.oppenheimerMedal.date}
               className="timeline-photo"
             />
           </div>
@@ -1524,12 +1544,13 @@ const EpilogueSection: React.FC = () => {
           className="memorial-section"
           style={{ opacity: progress > 0.4 ? 1 : 0 }}
         >
-          <div className="photo-placeholder memorial-photo">
-            <span className="placeholder-text">
-              Hiroshima Peace Memorial (Genbaku Dome) — the only structure left standing near the hypocenter
-            </span>
-            <span className="placeholder-source">Preserved as a monument to peace</span>
-          </div>
+          <ArchivalPhoto
+            src={epilogueImages.genbakuDome.src}
+            alt={epilogueImages.genbakuDome.alt}
+            caption={epilogueImages.genbakuDome.caption}
+            source={epilogueImages.genbakuDome.source}
+            className="memorial-photo"
+          />
         </div>
         
         <div 

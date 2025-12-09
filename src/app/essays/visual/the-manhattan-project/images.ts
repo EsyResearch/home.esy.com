@@ -101,6 +101,20 @@ export const chapter2Images = {
     source: "Los Alamos National Laboratory",
     date: "1944"
   },
+  losAlamosPostOffice: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Los_Alamos_Post_Office.jpg/800px-Los_Alamos_Post_Office.jpg",
+    alt: "PO Box 1663 — the only mailing address for all of Los Alamos",
+    caption: "Every letter, every package — addressed to a single PO Box. The whole city existed in secret.",
+    source: "Los Alamos National Laboratory",
+    date: "1944"
+  },
+  losAlamosFamilies: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Los_Alamos_housing.jpg/800px-Los_Alamos_housing.jpg",
+    alt: "Scientists' families in makeshift housing at Los Alamos",
+    caption: "Children were born in a city that didn't exist. Their birth certificates listed PO Box 1663.",
+    source: "Los Alamos Historical Society",
+    date: "1944"
+  },
   oppenheimerHat: {
     src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/JROppenheimer-LosAlamos.jpg/440px-JROppenheimer-LosAlamos.jpg",
     alt: "J. Robert Oppenheimer in his trademark porkpie hat",
@@ -185,6 +199,20 @@ export const gadgetImages = {
     caption: "The Gadget suspended atop the 100-foot tower — less than 24 hours before detonation",
     source: "Los Alamos National Laboratory",
     date: "July 15, 1945"
+  },
+  implosionLenses: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Explosive_Lenses_for_Fat_Man.jpg/800px-Explosive_Lenses_for_Fat_Man.jpg",
+    alt: "Explosive lens assembly for the implosion bomb",
+    caption: "32 explosive lenses arranged in perfect symmetry — if even one was off, the bomb would fizzle",
+    source: "Los Alamos National Laboratory",
+    date: "1945"
+  },
+  plutoniumCore: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Partially-reflected-plutonium-sphere.jpeg/440px-Partially-reflected-plutonium-sphere.jpeg",
+    alt: "A plutonium sphere similar to the bomb's core",
+    caption: "The heart of the bomb — 6.2 kg of plutonium-239, warm to the touch from radioactive decay",
+    source: "Los Alamos National Laboratory",
+    date: "1945"
   }
 };
 
@@ -197,10 +225,17 @@ export const trinityImages = {
     source: "Los Alamos National Laboratory",
     date: "July 16, 1945"
   },
+  towerWithGadget: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Trinity_Test_Site_-_Gadget_and_Tower.jpg/800px-Trinity_Test_Site_-_Gadget_and_Tower.jpg",
+    alt: "The Trinity tower at night, The Gadget suspended at 100 feet",
+    caption: "5:29 AM — the final countdown begins",
+    source: "Los Alamos National Laboratory",
+    date: "July 15, 1945"
+  },
   fireball006: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/d/dd/Trinity_Test_Fireball_25ms.jpg",
-    alt: "Trinity fireball at 0.025 seconds",
-    caption: "0.025 seconds — the expanding sphere of nuclear fire",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Trinity_explosion.jpg/800px-Trinity_explosion.jpg",
+    alt: "Trinity fireball at 0.006 seconds",
+    caption: "0.006 seconds — the impossible brightness of a new sun",
     source: "Los Alamos National Laboratory / Berlyn Brixner",
     date: "July 16, 1945",
     photographer: "Berlyn Brixner"
@@ -209,6 +244,14 @@ export const trinityImages = {
     src: "https://upload.wikimedia.org/wikipedia/commons/7/78/Trinity_Test_Fireball_16ms.jpg",
     alt: "Trinity fireball at 0.016 seconds",
     caption: "0.016 seconds — surface temperature hotter than the sun",
+    source: "Los Alamos National Laboratory / Berlyn Brixner",
+    date: "July 16, 1945",
+    photographer: "Berlyn Brixner"
+  },
+  fireball025: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/d/dd/Trinity_Test_Fireball_25ms.jpg",
+    alt: "Trinity fireball at 0.025 seconds",
+    caption: "0.025 seconds — the expanding sphere of nuclear fire",
     source: "Los Alamos National Laboratory / Berlyn Brixner",
     date: "July 16, 1945",
     photographer: "Berlyn Brixner"
@@ -226,6 +269,13 @@ export const trinityImages = {
     caption: "Oppenheimer and Groves examine the remains of the tower base — the sand had fused into green glass",
     source: "U.S. Army",
     date: "September 1945"
+  },
+  trinitite: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Trinitite.jpg/800px-Trinitite.jpg",
+    alt: "Trinitite — desert sand fused into glass by the nuclear explosion",
+    caption: "The crater, fused sand turned to green glass (trinitite) — the radioactive footprint of the atomic age",
+    source: "Los Alamos National Laboratory",
+    date: "1945"
   }
 };
 
