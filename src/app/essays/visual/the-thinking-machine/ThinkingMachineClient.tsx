@@ -77,13 +77,15 @@ const useIntersectionReveal = (threshold = 0.2) => {
 };
 
 // Scroll-lock hook for pinned animation sections
+// Uses RAF throttling for 60fps performance
 const useScrollLock = (sectionHeight: number = 3): ScrollLockState => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   const [isPinned, setIsPinned] = useState(false);
+  const ticking = useRef(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const updateScrollState = () => {
       if (!containerRef.current) return;
 
       const rect = containerRef.current.getBoundingClientRect();
@@ -105,10 +107,19 @@ const useScrollLock = (sectionHeight: number = 3): ScrollLockState => {
         setIsPinned(false);
         setProgress(sectionTop > 0 ? 0 : 1);
       }
+      
+      ticking.current = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking.current) {
+        requestAnimationFrame(updateScrollState);
+        ticking.current = true;
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
+    updateScrollState();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [sectionHeight]);
 
@@ -116,21 +127,31 @@ const useScrollLock = (sectionHeight: number = 3): ScrollLockState => {
 };
 
 // Global scroll progress for neural network progress bar
+// Uses RAF throttling for 60fps performance
 const useGlobalScrollProgress = () => {
   const [progress, setProgress] = useState(0);
+  const ticking = useRef(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const updateProgress = () => {
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       const scrollTop = window.scrollY;
       const scrollableHeight = documentHeight - windowHeight;
       const newProgress = Math.min(Math.max(scrollTop / scrollableHeight, 0), 1);
       setProgress(newProgress);
+      ticking.current = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking.current) {
+        requestAnimationFrame(updateProgress);
+        ticking.current = true;
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
+    updateProgress();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -139,64 +160,69 @@ const useGlobalScrollProgress = () => {
 
 // ==================== NEURAL NETWORK PROGRESS BAR ====================
 
-const NeuralNetworkProgressBar: React.FC<{ progress: number }> = ({ progress }) => {
-  // Calculate which layers are "active" based on progress
-  const layers = 8; // Input, 6 hidden layers, output
-  const nodesPerLayer = [1, 3, 5, 7, 5, 3, 2, 1]; // Network shape
-  const activeLayer = Math.floor(progress * layers);
-  
-  // Generate node positions
-  const nodes: { x: number; y: number; layer: number; id: string; active: boolean }[] = [];
-  const connections: { x1: number; y1: number; x2: number; y2: number; active: boolean; id: string }[] = [];
-  
-  const layerSpacing = 100 / (layers + 1);
-  
-  nodesPerLayer.forEach((nodeCount, layerIndex) => {
-    const layerY = (layerIndex + 1) * layerSpacing;
-    const nodeSpacing = 100 / (nodeCount + 1);
+// Memoized neural network structure for performance
+const useNeuralNetworkStructure = () => {
+  return useMemo(() => {
+    const layers = 8;
+    const nodesPerLayer = [1, 3, 5, 7, 5, 3, 2, 1];
+    const layerSpacing = 100 / (layers + 1);
     
-    for (let i = 0; i < nodeCount; i++) {
-      const nodeX = (i + 1) * nodeSpacing;
-      const isActive = layerIndex <= activeLayer;
-      nodes.push({
-        x: nodeX,
-        y: layerY,
-        layer: layerIndex,
-        id: `node-${layerIndex}-${i}`,
-        active: isActive,
-      });
+    const nodes: { x: number; y: number; layer: number; id: string }[] = [];
+    const connections: { x1: number; y1: number; x2: number; y2: number; fromLayer: number; toLayer: number; id: string }[] = [];
+    
+    nodesPerLayer.forEach((nodeCount, layerIndex) => {
+      const layerY = (layerIndex + 1) * layerSpacing;
+      const nodeSpacing = 100 / (nodeCount + 1);
       
-      // Create connections to previous layer
-      if (layerIndex > 0) {
-        const prevNodeCount = nodesPerLayer[layerIndex - 1];
-        const prevNodeSpacing = 100 / (prevNodeCount + 1);
-        const prevLayerY = layerIndex * layerSpacing;
+      for (let i = 0; i < nodeCount; i++) {
+        const nodeX = (i + 1) * nodeSpacing;
+        nodes.push({
+          x: nodeX,
+          y: layerY,
+          layer: layerIndex,
+          id: `node-${layerIndex}-${i}`,
+        });
         
-        for (let j = 0; j < prevNodeCount; j++) {
-          const prevNodeX = (j + 1) * prevNodeSpacing;
-          connections.push({
-            x1: prevNodeX,
-            y1: prevLayerY,
-            x2: nodeX,
-            y2: layerY,
-            active: isActive && layerIndex - 1 <= activeLayer,
-            id: `conn-${layerIndex}-${i}-${j}`,
-          });
+        if (layerIndex > 0) {
+          const prevNodeCount = nodesPerLayer[layerIndex - 1];
+          const prevNodeSpacing = 100 / (prevNodeCount + 1);
+          const prevLayerY = layerIndex * layerSpacing;
+          
+          for (let j = 0; j < prevNodeCount; j++) {
+            const prevNodeX = (j + 1) * prevNodeSpacing;
+            connections.push({
+              x1: prevNodeX,
+              y1: prevLayerY,
+              x2: nodeX,
+              y2: layerY,
+              fromLayer: layerIndex - 1,
+              toLayer: layerIndex,
+              id: `conn-${layerIndex}-${i}-${j}`,
+            });
+          }
         }
       }
-    }
-  });
+    });
+    
+    const chapterLabels = [
+      "TURING",
+      "DARTMOUTH",
+      "GOLDEN",
+      "WINTER",
+      "EXPERT",
+      "UNDERGROUND",
+      "IMAGENET",
+      "FUTURE",
+    ];
+    
+    return { nodes, connections, chapterLabels, layers };
+  }, []);
+};
 
-  const chapterLabels = [
-    "TURING",
-    "DARTMOUTH",
-    "GOLDEN",
-    "WINTER",
-    "EXPERT",
-    "UNDERGROUND",
-    "IMAGENET",
-    "FUTURE",
-  ];
+const NeuralNetworkProgressBar: React.FC<{ progress: number }> = ({ progress }) => {
+  // Use memoized structure - only activeLayer changes with progress
+  const { nodes, connections, chapterLabels, layers } = useNeuralNetworkStructure();
+  const activeLayer = Math.floor(progress * layers);
 
   return (
     <div className="neural-network-progress" role="progressbar" aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100}>
@@ -209,28 +235,34 @@ const NeuralNetworkProgressBar: React.FC<{ progress: number }> = ({ progress }) 
         </defs>
         
         {/* Connections */}
-        {connections.map((conn) => (
-          <line
-            key={conn.id}
-            x1={conn.x1}
-            y1={conn.y1}
-            x2={conn.x2}
-            y2={conn.y2}
-            className={`neural-connection ${conn.active ? "active" : ""}`}
-          />
-        ))}
+        {connections.map((conn) => {
+          const isActive = conn.toLayer <= activeLayer;
+          return (
+            <line
+              key={conn.id}
+              x1={conn.x1}
+              y1={conn.y1}
+              x2={conn.x2}
+              y2={conn.y2}
+              className={`neural-connection ${isActive ? "active" : ""}`}
+            />
+          );
+        })}
         
         {/* Nodes */}
-        {nodes.map((node) => (
-          <circle
-            key={node.id}
-            cx={node.x}
-            cy={node.y}
-            r={node.active ? 2.5 : 1.5}
-            className={`neural-node ${node.active ? "active" : ""}`}
-            fill={node.active ? "#00B4D8" : "#555"}
-          />
-        ))}
+        {nodes.map((node) => {
+          const isActive = node.layer <= activeLayer;
+          return (
+            <circle
+              key={node.id}
+              cx={node.x}
+              cy={node.y}
+              r={isActive ? 2.5 : 1.5}
+              className={`neural-node ${isActive ? "active" : ""}`}
+              fill={isActive ? "#00B4D8" : "#555"}
+            />
+          );
+        })}
         
         {/* Current position marker */}
         <circle
@@ -1586,6 +1618,11 @@ const ThinkingMachineClient: React.FC = () => {
 
   return (
     <article className="thinking-machine-story" aria-label="The Thinking Machine: A Visual History of Artificial Intelligence">
+      {/* Skip link for accessibility - allows keyboard users to bypass scroll-lock */}
+      <a href="#prologue" className="skip-link">
+        Skip to content
+      </a>
+      
       {/* Neural network progress bar */}
       <NeuralNetworkProgressBar progress={globalProgress} />
       
