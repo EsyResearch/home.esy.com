@@ -2,6 +2,20 @@
 
 import React, { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import "./manhattan-project.css";
+import {
+  heroImages,
+  prologueImages,
+  chapter1Images,
+  chapter2Images,
+  scientistImages,
+  gadgetImages,
+  trinityImages,
+  decisionImages,
+  hiroshimaImages,
+  nagasakiImages,
+  reckoningImages,
+  epilogueImages,
+} from "./images";
 
 // ============================================================================
 // DESIGN RESEARCH REPORT: THE MANHATTAN PROJECT
@@ -29,6 +43,7 @@ interface Scientist {
   age?: string;
   quote: string;
   photoPlaceholder: string;
+  photoSrc?: string;
 }
 
 // ==================== CUSTOM HOOKS ====================
@@ -229,8 +244,9 @@ const ArchivalPhoto: React.FC<ArchivalPhotoProps> = ({
   kenBurns = false,
 }) => {
   const { ref, isVisible } = useIntersectionReveal(0.1);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
   
-  // Placeholder for archival photo - would be replaced with actual image
   return (
     <figure 
       ref={ref}
@@ -238,8 +254,22 @@ const ArchivalPhoto: React.FC<ArchivalPhotoProps> = ({
       style={{ "--parallax-speed": parallaxSpeed } as React.CSSProperties}
     >
       <div className="photo-frame">
-        {src ? (
-          <img src={src} alt={alt} loading="lazy" />
+        {src && !imageError ? (
+          <>
+            <img 
+              src={src} 
+              alt={alt} 
+              loading="lazy" 
+              onLoad={() => setImageLoaded(true)}
+              onError={() => setImageError(true)}
+              style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.5s ease' }}
+            />
+            {!imageLoaded && (
+              <div className="photo-placeholder loading" aria-hidden="true">
+                <span className="placeholder-text">Loading...</span>
+              </div>
+            )}
+          </>
         ) : (
           <div className="photo-placeholder" aria-label={alt}>
             <span className="placeholder-text">{alt}</span>
@@ -347,6 +377,7 @@ const ScientistPortrait: React.FC<{ scientist: Scientist; delay: number }> = ({
   delay 
 }) => {
   const { ref, isVisible } = useIntersectionReveal(0.1);
+  const [imageLoaded, setImageLoaded] = useState(false);
   
   return (
     <article 
@@ -355,9 +386,27 @@ const ScientistPortrait: React.FC<{ scientist: Scientist; delay: number }> = ({
       style={{ animationDelay: `${delay}ms` }}
     >
       <div className="portrait-frame">
-        <div className="photo-placeholder portrait-photo">
-          <span className="placeholder-text">{scientist.photoPlaceholder}</span>
-        </div>
+        {scientist.photoSrc ? (
+          <>
+            <img 
+              src={scientist.photoSrc} 
+              alt={scientist.photoPlaceholder}
+              className="portrait-photo-img"
+              loading="lazy"
+              onLoad={() => setImageLoaded(true)}
+              style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.5s ease' }}
+            />
+            {!imageLoaded && (
+              <div className="photo-placeholder portrait-photo" aria-hidden="true">
+                <span className="placeholder-text">Loading...</span>
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="photo-placeholder portrait-photo">
+            <span className="placeholder-text">{scientist.photoPlaceholder}</span>
+          </div>
+        )}
         <div className="photo-vignette" />
       </div>
       <div className="portrait-info">
@@ -601,10 +650,11 @@ const PrologueSection: React.FC = () => {
         <div className="chapter-grid">
           <div className="chapter-visual">
             <ArchivalPhoto
-              alt="Albert Einstein at his desk, pen in hand — the famous refugee, the gentle pacifist"
-              caption="Einstein at his Princeton study, 1939. The pacifist who would set history on an irreversible course."
-              source="National Archives"
-              date="1939"
+              src={prologueImages.einstein.src}
+              alt={prologueImages.einstein.alt}
+              caption={prologueImages.einstein.caption}
+              source={prologueImages.einstein.source}
+              date={prologueImages.einstein.date}
               kenBurns
             />
           </div>
@@ -663,10 +713,11 @@ const Chapter1: React.FC = () => {
         <div className="chapter-grid">
           <div className="chapter-visual full-width">
             <ArchivalPhoto
-              alt="Chicago Pile-1 — the squash court beneath Stagg Field, University of Chicago"
-              caption="The graphite pile that achieved humanity's first self-sustaining nuclear chain reaction."
-              source="Argonne National Laboratory"
-              date="December 2, 1942"
+              src={chapter1Images.chicagoPile.src}
+              alt={chapter1Images.chicagoPile.alt}
+              caption={chapter1Images.chicagoPile.caption}
+              source={chapter1Images.chicagoPile.source}
+              date={chapter1Images.chicagoPile.date}
               className="hero-photo"
               kenBurns
             />
@@ -698,9 +749,10 @@ const Chapter1: React.FC = () => {
         
         <div className="key-figure featured">
           <ArchivalPhoto
-            alt="Enrico Fermi at the blackboard, chalk equations, quiet intensity"
-            caption="Fermi's preternatural calmness was legendary. He calculated survival odds during the Trinity test."
-            source="Los Alamos National Laboratory"
+            src={chapter1Images.fermi.src}
+            alt={chapter1Images.fermi.alt}
+            caption={chapter1Images.fermi.caption}
+            source={chapter1Images.fermi.source}
             className="figure-photo"
           />
           <div className="figure-content">
@@ -734,16 +786,18 @@ const Chapter2: React.FC = () => {
         
         <div className="photo-grid">
           <ArchivalPhoto
-            alt="Los Alamos main gate with guards"
-            caption="The only entrance to Site Y. All mail was censored."
-            source="Los Alamos National Laboratory"
-            date="1944"
+            src={chapter2Images.losAlamosGate.src}
+            alt={chapter2Images.losAlamosGate.alt}
+            caption={chapter2Images.losAlamosGate.caption}
+            source={chapter2Images.losAlamosGate.source}
+            date={chapter2Images.losAlamosGate.date}
           />
           <ArchivalPhoto
-            alt="Rows of hastily constructed laboratory buildings on the mesa"
-            caption="A city of 6,000 built in months—the greatest concentration of scientific genius ever assembled."
-            source="Los Alamos National Laboratory"
-            date="1944"
+            src={chapter2Images.grovesOppenheimer.src}
+            alt={chapter2Images.grovesOppenheimer.alt}
+            caption={chapter2Images.grovesOppenheimer.caption}
+            source={chapter2Images.grovesOppenheimer.source}
+            date={chapter2Images.grovesOppenheimer.date}
           />
           <ArchivalPhoto
             alt="PO Box 1663 — the only mailing address allowed"
@@ -784,9 +838,10 @@ const Chapter2: React.FC = () => {
         <div className="dual-profiles">
           <div className="key-figure">
             <ArchivalPhoto
-              alt="J. Robert Oppenheimer in his porkpie hat, cigarette in hand"
-              caption="Eyes that saw too much."
-              source="Los Alamos National Laboratory"
+              src={chapter2Images.oppenheimerHat.src}
+              alt={chapter2Images.oppenheimerHat.alt}
+              caption={chapter2Images.oppenheimerHat.caption}
+              source={chapter2Images.oppenheimerHat.source}
               className="figure-photo"
             />
             <h3>J. Robert Oppenheimer</h3>
@@ -801,9 +856,10 @@ const Chapter2: React.FC = () => {
           
           <div className="key-figure">
             <ArchivalPhoto
-              alt="General Leslie Groves in uniform, barrel-chested, immovable"
-              caption="The man who built the impossible."
-              source="National Archives"
+              src={chapter2Images.groves.src}
+              alt={chapter2Images.groves.alt}
+              caption={chapter2Images.groves.caption}
+              source={chapter2Images.groves.source}
               className="figure-photo"
             />
             <h3>General Leslie Groves</h3>
@@ -830,32 +886,37 @@ const Chapter3: React.FC = () => {
       name: "Niels Bohr",
       title: "The Father Figure",
       quote: "We are in a completely new situation that cannot be resolved by war.",
-      photoPlaceholder: "Bohr in contemplation, pipe in hand"
+      photoPlaceholder: "Bohr in contemplation, pipe in hand",
+      photoSrc: scientistImages.bohr.src
     },
     {
       name: "Richard Feynman",
       title: "The Irreverent Genius",
       age: "24",
       quote: "I learned to type with one hand so I could hold my wife's letters with the other.",
-      photoPlaceholder: "Feynman grinning, mischief incarnate"
+      photoPlaceholder: "Feynman grinning, mischief incarnate",
+      photoSrc: scientistImages.feynman.src
     },
     {
       name: "Leo Szilard",
       title: "The Conscience",
       quote: "We turned the switch, saw the flashes, watched for ten minutes, then switched everything off and went home.",
-      photoPlaceholder: "Szilard, intense gaze"
+      photoPlaceholder: "Szilard, intense gaze",
+      photoSrc: scientistImages.szilard.src
     },
     {
       name: "Edward Teller",
       title: "The Hawk",
       quote: "The main purpose of the H-bomb is to maintain peace.",
-      photoPlaceholder: "Teller, bushy eyebrows"
+      photoPlaceholder: "Teller, bushy eyebrows",
+      photoSrc: scientistImages.teller.src
     },
     {
       name: "Hans Bethe",
       title: "The Calculator",
       quote: "If we fight a war and win it with H-bombs, what history will remember is not the ideals we were fighting for.",
-      photoPlaceholder: "Bethe at the blackboard"
+      photoPlaceholder: "Bethe at the blackboard",
+      photoSrc: scientistImages.bethe.src
     },
     {
       name: "Klaus Fuchs",
@@ -943,10 +1004,11 @@ const Chapter4: React.FC = () => {
           
           <div className="chapter-visual">
             <ArchivalPhoto
-              alt="The Gadget being hoisted to the top of the Trinity tower"
-              caption="The device that would divide human history into before and after."
-              source="Los Alamos National Laboratory"
-              date="July 15, 1945"
+              src={gadgetImages.gadgetHoisted.src}
+              alt={gadgetImages.gadgetHoisted.alt}
+              caption={gadgetImages.gadgetHoisted.caption}
+              source={gadgetImages.gadgetHoisted.source}
+              date={gadgetImages.gadgetHoisted.date}
               className="hero-photo"
               kenBurns
             />
@@ -955,10 +1017,11 @@ const Chapter4: React.FC = () => {
         
         <div className="photo-grid">
           <ArchivalPhoto
-            alt="Scientists working on the Gadget components"
-            caption="Assembling the heart of the first nuclear weapon."
-            source="Los Alamos National Laboratory"
-            date="1945"
+            src={gadgetImages.assembly.src}
+            alt={gadgetImages.assembly.alt}
+            caption={gadgetImages.assembly.caption}
+            source={gadgetImages.assembly.source}
+            date={gadgetImages.assembly.date}
           />
           <ArchivalPhoto
             alt="Implosion lens system assembly"
@@ -1146,10 +1209,11 @@ const Chapter6: React.FC = () => {
         <div className="chapter-grid">
           <div className="chapter-visual">
             <ArchivalPhoto
-              alt="President Truman at Potsdam"
-              caption="82 days into his presidency, Truman learned of the bomb's existence. He authorized its use."
-              source="Harry S. Truman Library"
-              date="July 1945"
+              src={decisionImages.trumanPotsdam.src}
+              alt={decisionImages.trumanPotsdam.alt}
+              caption={decisionImages.trumanPotsdam.caption}
+              source={decisionImages.trumanPotsdam.source}
+              date={decisionImages.trumanPotsdam.date}
               className="truman-photo"
               kenBurns
             />
@@ -1197,16 +1261,18 @@ const Chapter7: React.FC = () => {
         
         <div className="photo-grid hiroshima-grid">
           <ArchivalPhoto
-            alt="The Enola Gay on Tinian Island"
-            caption="Named after pilot Paul Tibbets' mother."
-            source="National Archives"
-            date="August 6, 1945"
+            src={hiroshimaImages.enolaGay.src}
+            alt={hiroshimaImages.enolaGay.alt}
+            caption={hiroshimaImages.enolaGay.caption}
+            source={hiroshimaImages.enolaGay.source}
+            date={hiroshimaImages.enolaGay.date}
           />
           <ArchivalPhoto
-            alt="Colonel Paul Tibbets waving from the cockpit"
-            caption="12 hours to target."
-            source="National Archives"
-            date="August 6, 1945"
+            src={hiroshimaImages.tibbets.src}
+            alt={hiroshimaImages.tibbets.alt}
+            caption={hiroshimaImages.tibbets.caption}
+            source={hiroshimaImages.tibbets.source}
+            date={hiroshimaImages.tibbets.date}
           />
         </div>
         
@@ -1244,10 +1310,11 @@ const Chapter7: React.FC = () => {
         
         <div className="shadow-memorial">
           <ArchivalPhoto
-            alt="The human shadow burned into the Sumitomo Bank steps"
-            caption="A human, vaporized. Their shadow remains, burned into concrete. This image contains everything."
-            source="Hiroshima Peace Memorial Museum"
-            date="1945"
+            src={hiroshimaImages.humanShadow.src}
+            alt={hiroshimaImages.humanShadow.alt}
+            caption={hiroshimaImages.humanShadow.caption}
+            source={hiroshimaImages.humanShadow.source}
+            date={hiroshimaImages.humanShadow.date}
             className="shadow-photo"
           />
         </div>
@@ -1281,16 +1348,18 @@ const Chapter8: React.FC = () => {
         
         <div className="photo-grid">
           <ArchivalPhoto
-            alt="Fat Man being loaded onto Bockscar"
-            caption="The plutonium implosion bomb. More powerful than Little Boy."
-            source="National Archives"
-            date="August 9, 1945"
+            src={nagasakiImages.fatMan.src}
+            alt={nagasakiImages.fatMan.alt}
+            caption={nagasakiImages.fatMan.caption}
+            source={nagasakiImages.fatMan.source}
+            date={nagasakiImages.fatMan.date}
           />
           <ArchivalPhoto
-            alt="The Nagasaki mushroom cloud — the iconic color photograph"
-            caption="The only color photograph of a nuclear detonation in war."
-            source="National Archives"
-            date="August 9, 1945"
+            src={nagasakiImages.nagasakiCloud.src}
+            alt={nagasakiImages.nagasakiCloud.alt}
+            caption={nagasakiImages.nagasakiCloud.caption}
+            source={nagasakiImages.nagasakiCloud.source}
+            date={nagasakiImages.nagasakiCloud.date}
             className="color-photo"
           />
         </div>
@@ -1311,9 +1380,10 @@ const Chapter8: React.FC = () => {
         
         <div className="cathedral-section">
           <ArchivalPhoto
-            alt="The Urakami Cathedral before and after"
-            caption="The largest Christian church in Asia, built by generations of Japan's hidden Christians. Destroyed. Its congregation had gathered for confession."
-            source="Nagasaki Atomic Bomb Museum"
+            src={nagasakiImages.urakamiCathedral.src}
+            alt={nagasakiImages.urakamiCathedral.alt}
+            caption={nagasakiImages.urakamiCathedral.caption}
+            source={nagasakiImages.urakamiCathedral.source}
             className="cathedral-photo"
           />
           <p className="cathedral-note">
@@ -1367,9 +1437,10 @@ const Chapter9: React.FC = () => {
           <div className="timeline-event dark">
             <span className="event-year">1954</span>
             <ArchivalPhoto
-              alt="Oppenheimer during his security hearing"
-              caption="The architect of American nuclear supremacy, on trial for disloyalty."
-              source="Associated Press"
+              src={reckoningImages.oppenheimerHearing.src}
+              alt={reckoningImages.oppenheimerHearing.alt}
+              caption={reckoningImages.oppenheimerHearing.caption}
+              source={reckoningImages.oppenheimerHearing.source}
               className="timeline-photo"
             />
             <p className="event-description">
@@ -1390,10 +1461,11 @@ const Chapter9: React.FC = () => {
         
         <div className="oppenheimer-final">
           <ArchivalPhoto
-            alt="Oppenheimer in his final years, gaunt, haunted, aged beyond his time"
-            caption="The destroyer of worlds, destroyed."
-            source="Philippe Halsman"
-            date="1958"
+            src={reckoningImages.oppenheimerLate.src}
+            alt={reckoningImages.oppenheimerLate.alt}
+            caption={reckoningImages.oppenheimerLate.caption}
+            source={reckoningImages.oppenheimerLate.source}
+            date={reckoningImages.oppenheimerLate.date}
             className="final-portrait"
           />
           <div className="final-profile">
