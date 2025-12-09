@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import { usePathname } from 'next/navigation';
 import Logo from "@/components/Logo";
 import Link from "next/link";
+import { Menu, X } from "lucide-react";
 import HeaderSearch from "@/components/HeaderSearch/HeaderSearch";
 import NewsletterModal from "@/components/NewsletterModal/NewsletterModal";
 import NavDropdown from "@/components/NavDropdown/NavDropdown";
-import { VisualEssaysIcon, EssayExamplesIcon, WritingGuidesIcon } from "@/components/NavDropdown/NavDropdownIcons";
+import { VisualEssaysIcon, EssayExamplesIcon, WritingGuidesIcon, ChatGPTIcon, ClaudeIcon, GeminiIcon } from "@/components/NavDropdown/NavDropdownIcons";
 import { getAllPrompts } from "@/lib/prompts";
 import { getCTAConfig, getResponsiveCTAText } from "@/lib/ctaMapping";
 import { lightTheme } from "@/lib/lightTheme";
@@ -44,6 +45,7 @@ export default function Navigation ({
     const pathname = propPathname || hookPathname;
     const [searchData, setSearchData] = useState([]);
     const [isMobile, setIsMobile] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
     const [modalSource, setModalSource] = useState<'nav-tips' | 'nav-school' | 'other'>('other');
     const [isLightMode, setIsLightMode] = useState(false);
@@ -544,6 +546,36 @@ export default function Navigation ({
               footerLink={{ href: '/essays', text: 'View all essays →' }}
               isLightMode={isLightMode} 
             />
+
+            {/* Prompts Dropdown */}
+            <NavDropdown 
+              label="Prompts"
+              items={[
+                {
+                  href: '/templates/chatgpt-prompts',
+                  icon: <ChatGPTIcon size={20} />,
+                  title: 'ChatGPT Prompts',
+                  description: 'Optimized for OpenAI models',
+                  accent: 'emerald'
+                },
+                {
+                  href: '/templates/claude-prompts',
+                  icon: <ClaudeIcon size={20} />,
+                  title: 'Claude Prompts',
+                  description: 'Designed for Anthropic Claude',
+                  accent: 'amber'
+                },
+                {
+                  href: '/templates/gemini-prompts',
+                  icon: <GeminiIcon size={20} />,
+                  title: 'Gemini Prompts',
+                  description: 'Built for Google Gemini',
+                  accent: 'blue'
+                }
+              ]}
+              footerLink={{ href: '/templates', text: 'Browse all templates →' }}
+              isLightMode={isLightMode} 
+            />
             
             {/* CTA Button */}
             {ctaConfig.isNewsletter ? (
@@ -599,9 +631,98 @@ export default function Navigation ({
                 {responsiveCTA.text}
               </a>
             )}
+
+            {/* Mobile Menu Button */}
+            <button
+              className="mobile-menu-button"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
+              style={{ color: isLightMode ? '#1e293b' : '#ffffff' }}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
       </nav>
+
+      {/* Mobile Navigation Overlay */}
+      {isMobileMenuOpen && (
+        <div 
+          className="mobile-nav-overlay"
+          onClick={() => setIsMobileMenuOpen(false)}
+        >
+          <div 
+            className={`mobile-nav-panel ${isLightMode ? 'light' : 'dark'}`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Essays Section */}
+            <div className="mobile-nav-section">
+              <h3 className="mobile-nav-section-title">Essays</h3>
+              <Link href="/essays/visual" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
+                <div className="mobile-nav-icon purple"><VisualEssaysIcon size={20} /></div>
+                <div className="mobile-nav-text">
+                  <span className="mobile-nav-item-title">Visual Essays</span>
+                  <span className="mobile-nav-item-desc">Interactive storytelling</span>
+                </div>
+              </Link>
+              <Link href="/essays" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
+                <div className="mobile-nav-icon blue"><EssayExamplesIcon size={20} /></div>
+                <div className="mobile-nav-text">
+                  <span className="mobile-nav-item-title">Essay Examples</span>
+                  <span className="mobile-nav-item-desc">Academic writing samples</span>
+                </div>
+              </Link>
+              <Link href="/essays/guides" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
+                <div className="mobile-nav-icon emerald"><WritingGuidesIcon size={20} /></div>
+                <div className="mobile-nav-text">
+                  <span className="mobile-nav-item-title">Writing Guides</span>
+                  <span className="mobile-nav-item-desc">Step-by-step tutorials</span>
+                </div>
+              </Link>
+            </div>
+
+            {/* Prompts Section */}
+            <div className="mobile-nav-section">
+              <h3 className="mobile-nav-section-title">Prompts</h3>
+              <Link href="/templates/chatgpt-prompts" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
+                <div className="mobile-nav-icon emerald"><ChatGPTIcon size={20} /></div>
+                <div className="mobile-nav-text">
+                  <span className="mobile-nav-item-title">ChatGPT Prompts</span>
+                  <span className="mobile-nav-item-desc">Optimized for OpenAI</span>
+                </div>
+              </Link>
+              <Link href="/templates/claude-prompts" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
+                <div className="mobile-nav-icon amber"><ClaudeIcon size={20} /></div>
+                <div className="mobile-nav-text">
+                  <span className="mobile-nav-item-title">Claude Prompts</span>
+                  <span className="mobile-nav-item-desc">Designed for Anthropic</span>
+                </div>
+              </Link>
+              <Link href="/templates/gemini-prompts" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
+                <div className="mobile-nav-icon blue"><GeminiIcon size={20} /></div>
+                <div className="mobile-nav-text">
+                  <span className="mobile-nav-item-title">Gemini Prompts</span>
+                  <span className="mobile-nav-item-desc">Built for Google</span>
+                </div>
+              </Link>
+            </div>
+
+            {/* CTA Button */}
+            <div className="mobile-nav-cta">
+              <a 
+                href={ctaConfig.ctaHref}
+                target={ctaConfig.isProduct ? "_blank" : "_self"}
+                rel={ctaConfig.isProduct ? "noopener noreferrer" : undefined}
+                className="mobile-nav-cta-button"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {ctaConfig.ctaText}
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
       
       {/* Newsletter Modal */}
       <NewsletterModal 

@@ -466,8 +466,19 @@ export const visualEssays: VisualEssay[] = [
     category: "History",
     readTime: "22 min",
     href: "/essays/visual/the-manhattan-project",
-    isNew: true,
     tags: ["Manhattan Project", "atomic bomb", "nuclear weapons", "Oppenheimer", "Trinity test", "Hiroshima", "Nagasaki", "Los Alamos", "World War II", "nuclear history", "Enrico Fermi", "Einstein", "history of science", "military history"],
+  },
+  {
+    id: "the-thinking-machine",
+    number: "39",
+    title: "The Thinking Machine",
+    subtitle: "A Visual History of Artificial Intelligence",
+    description: "From Alan Turing's wartime imaginings to ChatGPT—an immersive photo-driven journey through 80 years of humanity's quest to build minds from mathematics. Experience the dreamers, the winters, and the revolution through archival photography and cinematic scroll-driven sequences.",
+    category: "Technology",
+    readTime: "25 min",
+    href: "/essays/visual/the-thinking-machine",
+    isNew: true,
+    tags: ["artificial intelligence", "AI history", "Alan Turing", "machine learning", "neural networks", "deep learning", "Geoffrey Hinton", "ChatGPT", "OpenAI", "Dartmouth conference", "AI winter", "computer science history", "Turing test", "technology history"],
   },
   // Children's Fiction (draft - not shown in production)
   {
