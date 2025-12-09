@@ -227,6 +227,47 @@ Original URL: [Direct link to source]
 
 ---
 
+## Required Skill: Image URL Extraction
+
+**CRITICAL:** When downloading or referencing images from archives, you MUST use the `image-url-extraction` skill to obtain direct image URLs.
+
+### Why This Matters
+Archive websites display images on HTML file pages (e.g., `commons.wikimedia.org/wiki/File:...`). Using these HTML URLs will fail—you need the direct image URL (e.g., `upload.wikimedia.org/wikipedia/commons/...`).
+
+### When to Apply
+- After navigating to any archive file page
+- Before downloading any image
+- Before adding any external image URL to `images.ts`
+- When a previous image URL attempt failed
+
+### How to Apply
+1. Identify the source from the URL pattern
+2. Open the matching reference in `@orchestration/skills/image-url-extraction/references/`
+3. Execute the extraction method (usually `curl` + `grep`)
+4. **Verify** the URL returns `Content-Type: image/*` before using
+
+### Quick Reference
+```bash
+# Wikimedia Commons
+curl -s "{file_page_url}" | grep -oE 'https://upload\.wikimedia\.org/wikipedia/commons/[a-f0-9]/[a-f0-9]{2}/[^"]+\.(jpg|png)' | grep -v thumb | head -1
+
+# Library of Congress
+curl -s "{item_url}" | grep -oE 'https://tile\.loc\.gov/storage-services/[^"]+\.(jpg|tif)' | head -1
+
+# Smithsonian
+curl -s "{object_url}" | grep -oE 'https://ids\.si\.edu/ids/[^"]+' | head -1
+
+# Met Museum API
+curl -s "https://collectionapi.metmuseum.org/public/collection/v1/objects/{id}" | grep -oE '"primaryImage":"[^"]+"' | cut -d'"' -f4
+```
+
+### Skill Location
+`@orchestration/skills/image-url-extraction/SKILL.md`
+
+**Never guess URL structures. Always extract and verify.**
+
+---
+
 ## Quality Assurance Framework
 
 ### Three-Tier Verification

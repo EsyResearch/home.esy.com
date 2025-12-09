@@ -1,3 +1,12 @@
+---
+status: REVIEWED
+topic: The History of AI
+generated: 2025-01-09
+visual_treatment: photorealistic
+chapters: 12
+figures: 15
+---
+
 # Example Invocation: The History of AI
 
 This is a condensed example demonstrating the complete invocation structure. Reference this for format and depth expectations.
