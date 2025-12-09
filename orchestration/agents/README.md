@@ -19,6 +19,7 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 | [Visual Auditor Agent](#visual-auditor-agent) | **🎨 Audit SVG quality & animation performance** | `@agents/visual-auditor-agent.md` |
 | [Visual Audit Reports](#visual-audit-reports) | **📁 SVG audit report archive** | `agents/VisualAuditReports/` |
 | [Immersive Scrolling Auditor](#immersive-scrolling-auditor) | **🎢 Scroll-lock & performance certification** | `@agents/immersive-scrolling-auditor.md` |
+| [Immersive Experience Auditor](#immersive-experience-auditor) | **🎭 Comprehensive experience QA (orchestrates scrolling)** | `@agents/immersive-experience-auditor.md` |
 | [README Curator](#readme-curator) | **📖 Documentation routing & maintenance** | `@agents/readme-curator.md` |
 | [Image Research & Licensing](#image-research--licensing-expert) | **🖼️ Archive image sourcing & rights** | `@agents/image-research-licensing-expert.md` |
 | [Scrollytelling Expert](#scrollytelling-expert) | Immersive scroll-based stories | `@agents/scrollytelling-expert.md` |
@@ -578,6 +579,81 @@ certification for visual essay "The Thinking Machine" prior to G7.
 - ← **Visual Essay Director**: Invokes for Gate 6 certification
 - ← **Immersive Experience Engineer**: Implementation partner for fixes
 - ← **Scrollytelling Expert**: Narrative-scroll synchronization review
+
+---
+
+### Immersive Experience Auditor
+**File:** `immersive-experience-auditor.md`
+
+**Role:** World-class digital experience QA director that orchestrates comprehensive experience verification, including animations, reveals, interactions, and content visibility.
+
+**🎭 COMPREHENSIVE QA ORCHESTRATOR:** This agent audits the complete experience—not just scroll performance. It catches issues like missing reveal animations, broken images, dead zones, and spec-to-implementation gaps.
+
+**Orchestrates:** `immersive-scrolling-auditor.md` for scroll-specific testing
+
+**Best For:**
+- Comprehensive pre-publication audits
+- Detecting missing animations/reveals
+- Finding broken images or invisible content
+- Comparing implementation against original brief
+- Diagnosing "why doesn't this animate?" issues
+
+**Audit Categories:**
+| Category | Weight | What's Checked |
+|----------|--------|----------------|
+| Content Visibility | 20% | Images load, text readable, no clipping |
+| Animation/Reveals | 20% | All designed animations trigger correctly |
+| Interaction Fidelity | 15% | Buttons, links, touch targets work |
+| Scroll Experience | 20% | Delegated to Scrolling Auditor |
+| Narrative Coherence | 15% | Story flow, no dead zones, pacing |
+| Accessibility | 10% | Reduced motion, keyboard nav, focus |
+
+**8-Phase Methodology:**
+1. Brief Review (5 min) — Understand what was designed
+2. Static Code Review (10 min) — Check hooks and structure
+3. Visual Walkthrough (15 min) — Experience as user
+4. Scroll Behavior Audit (delegated) — Invoke Scrolling Auditor
+5. Interaction Testing (10 min) — Click/tap everything
+6. Responsive Verification (10 min) — All viewports
+7. Accessibility Check (5 min) — Reduced motion, keyboard
+8. Report Synthesis — Compile and prioritize
+
+**Issue Severity:**
+| Severity | Example |
+|----------|---------|
+| 🔴 BLOCKING | Section doesn't render, images broken |
+| 🟠 CRITICAL | Animation never fires, interaction dead |
+| 🟡 IMPORTANT | Reveal timing off, stagger wrong order |
+| 🟢 POLISH | Easing could be smoother |
+
+**Invocation Examples:**
+```
+# Full audit
+Using @agents/immersive-experience-auditor.md, conduct a comprehensive 
+audit of the visual essay at src/app/essays/visual/the-thinking-machine/
+Include spec comparison against original brief.
+
+# Quick issue investigation
+Using @agents/immersive-experience-auditor.md, investigate why 
+"The Tragedy" section in Chapter 1 has no reveal animation.
+Diagnose and recommend fix.
+
+# Pre-publication check
+Using @agents/immersive-experience-auditor.md, perform final certification 
+for "The Thinking Machine" visual essay.
+```
+
+**Output:**
+1. Comprehensive audit report
+2. Certification status (CERTIFIED/CONDITIONAL/REJECTED)
+3. Prioritized issue list with severity
+4. Specific fix recommendations with code
+5. Spec-to-implementation comparison
+
+**Collaboration:**
+- → **Scrolling Auditor**: Delegates scroll-specific testing
+- → **Visual Essay Director**: Reports certification status
+- ← **Experience Engineer**: Implementation partner for fixes
 
 ---
 
