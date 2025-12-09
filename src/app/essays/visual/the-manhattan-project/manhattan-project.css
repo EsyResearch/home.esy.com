@@ -1780,6 +1780,7 @@
   align-items: center;
   justify-content: center;
   padding: var(--space-md);
+  background: var(--mp-bg-deep, #0D0D0D);
 }
 
 .epilogue .chapter-pinned.is-pinned {
@@ -1787,6 +1788,8 @@
   top: 0;
   left: 0;
   right: 0;
+  background: var(--mp-bg-deep, #0D0D0D);
+  z-index: 10;
 }
 
 .epilogue .chapter-header {
