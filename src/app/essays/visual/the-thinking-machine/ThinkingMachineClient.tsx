@@ -605,7 +605,26 @@ const PrologueSection: React.FC = () => {
       
       {/* Static content after scroll-lock completes */}
       <div className="prologue-conclusion" style={{ opacity: progress > 0.95 ? 1 : 0 }}>
+        {/* The Pioneers: Babbage and Lovelace */}
         <div className="photo-grid" style={{ marginTop: "var(--space-2xl)" }}>
+          <ArchivalPhoto
+            src={prologueImages.babbagePortrait?.src}
+            alt={prologueImages.babbagePortrait?.alt || "Charles Babbage"}
+            caption="Charles Babbage — the father of the computer, dreamed of thinking machines"
+            source="Wikimedia Commons"
+            date="1860"
+          />
+          <ArchivalPhoto
+            src={prologueImages.adaLovelace?.src}
+            alt={prologueImages.adaLovelace?.alt || "Ada Lovelace"}
+            caption="Ada Lovelace — wrote the first algorithm, imagined machines that could compose music"
+            source="Wikimedia Commons"
+            date="c. 1840"
+          />
+        </div>
+        
+        {/* The Machines */}
+        <div className="photo-grid" style={{ marginTop: "var(--space-xl)" }}>
           <ArchivalPhoto
             src={prologueImages.babbageEngine?.src}
             alt={prologueImages.babbageEngine?.alt || "Babbage's Difference Engine"}
@@ -617,6 +636,17 @@ const PrologueSection: React.FC = () => {
             src={prologueImages.eniac?.src}
             alt={prologueImages.eniac?.alt || "ENIAC computer with operators"}
             caption="ENIAC — the first general-purpose electronic computer, 1946"
+            source="U.S. Army / National Archives"
+            date="1946"
+          />
+        </div>
+        
+        {/* ENIAC Programmers */}
+        <div className="chapter-visual" style={{ marginTop: "var(--space-xl)", maxWidth: "600px", margin: "var(--space-xl) auto" }}>
+          <ArchivalPhoto
+            src={prologueImages.eniacProgrammers?.src}
+            alt={prologueImages.eniacProgrammers?.alt || "Women programming ENIAC"}
+            caption="Women programmers operating ENIAC — the hidden figures of early computing"
             source="U.S. Army / National Archives"
             date="1946"
           />
@@ -695,6 +725,17 @@ const Chapter1: React.FC = () => {
             caption="ACE — Turing's design for a stored-program computer"
             source="National Physical Laboratory"
             date="1950"
+          />
+        </div>
+        
+        {/* Bletchley Park */}
+        <div className="chapter-visual" style={{ marginTop: "var(--space-xl)", maxWidth: "700px", margin: "var(--space-xl) auto" }}>
+          <ArchivalPhoto
+            src={turingImages.bletchleyPark?.src}
+            alt={turingImages.bletchleyPark?.alt || "Bletchley Park mansion"}
+            caption="Bletchley Park — where Turing's codebreakers shortened World War II by years"
+            source="Wikimedia Commons"
+            date="2008"
           />
         </div>
         
@@ -1352,6 +1393,24 @@ const Chapter9: React.FC = () => {
           </div>
         </div>
         
+        {/* The protagonists */}
+        <div className="photo-grid" style={{ marginTop: "var(--space-xl)" }}>
+          <ArchivalPhoto
+            src={deepLearningImages.demisHassabis?.src}
+            alt={deepLearningImages.demisHassabis?.alt || "Demis Hassabis"}
+            caption="Demis Hassabis — former chess prodigy who founded DeepMind to build AGI"
+            source="Royal Society / Wikimedia"
+            date="2017"
+          />
+          <ArchivalPhoto
+            src={deepLearningImages.leeSedolPortrait?.src}
+            alt={deepLearningImages.leeSedolPortrait?.alt || "Lee Sedol"}
+            caption="Lee Sedol — the Go master who became the face of humanity's first confrontation with superhuman AI"
+            source="Wikimedia Commons"
+            date="2016"
+          />
+        </div>
+        
         <div className="key-figure" style={{ marginTop: "var(--space-xl)" }}>
           <h3>Demis Hassabis — The Game Player</h3>
           <span className="figure-title">Former chess prodigy who founded DeepMind</span>
@@ -1549,6 +1608,17 @@ const Chapter11: React.FC = () => {
           />
           <PioneerPortrait
             pioneer={{
+              name: "Daniela Amodei",
+              title: "The Institutional Architect",
+              era: "President of Anthropic",
+              quote: "Building the organizational guardrails for AI safety.",
+              photoPlaceholder: "Daniela Amodei",
+              photoSrc: foundationModelImages.danielaAmodei?.src,
+            }}
+            delay={200}
+          />
+          <PioneerPortrait
+            pioneer={{
               name: "Ilya Sutskever",
               title: "The Young Visionary",
               era: "Co-founder of OpenAI",
@@ -1556,7 +1626,7 @@ const Chapter11: React.FC = () => {
               photoPlaceholder: "Sutskever portrait",
               photoSrc: imageNetImages.ilyaSutskever?.src,
             }}
-            delay={200}
+            delay={300}
           />
         </div>
       </div>
@@ -1618,6 +1688,17 @@ const Chapter12: React.FC = () => {
           </div>
         </div>
         
+        {/* The Scale */}
+        <div className="chapter-visual" style={{ marginTop: "var(--space-xl)", maxWidth: "800px", margin: "var(--space-xl) auto" }}>
+          <ArchivalPhoto
+            src={reckoningImages.dataCenter?.src}
+            alt={reckoningImages.dataCenter?.alt || "Modern data center"}
+            caption="The scale of modern AI — entire power plants feeding rows of thinking machines"
+            source="CERN / Wikimedia Commons"
+            date="2010"
+          />
+        </div>
+        
         <div className="quote-monument" style={{ marginTop: "var(--space-xl)" }}>
           <blockquote>
             <p className="quote-text">
@@ -1671,7 +1752,18 @@ const EpilogueSection: React.FC = () => {
           </p>
         </div>
         
-        <div className="quote-monument">
+        {/* Turing statue - completing the circle */}
+        <div className="chapter-visual" style={{ marginTop: "var(--space-xl)", maxWidth: "500px", margin: "var(--space-xl) auto" }}>
+          <ArchivalPhoto
+            src={epilogueImages.turingStatue?.src}
+            alt={epilogueImages.turingStatue?.alt || "Alan Turing memorial statue"}
+            caption="Turing's statue in Manchester — the prophet remembered, finally honored"
+            source="Wikimedia Commons"
+            date="2007"
+          />
+        </div>
+        
+        <div className="quote-monument" style={{ marginTop: "var(--space-xl)" }}>
           <blockquote>
             <p className="quote-text" style={{ fontSize: "1.25rem" }}>
               In 2025, machines are asking humans to define what thinking means.
