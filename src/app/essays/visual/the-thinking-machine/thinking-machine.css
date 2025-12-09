@@ -463,6 +463,271 @@
   filter: grayscale(100%) contrast(1.1);
 }
 
+/* ==================== PROLOGUE TIMELINE ==================== */
+
+.prologue.scroll-lock-container {
+  position: relative;
+  min-height: auto;
+  padding: 0;
+}
+
+.prologue-pinned {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-xl) var(--space-md);
+  background: var(--ai-bg-primary);
+  will-change: transform;
+}
+
+.prologue-pinned.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  transform: translateZ(0); /* Safari iOS performance */
+}
+
+.prologue-timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  max-width: 700px;
+  text-align: center;
+  margin-top: var(--space-xl);
+}
+
+/* Year display - large, prominent */
+.timeline-year {
+  position: relative;
+}
+
+.year-display {
+  font-family: var(--font-mono);
+  font-size: clamp(2rem, 8vw, 4rem);
+  font-weight: 700;
+  color: var(--ai-neural-blue);
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 30px var(--ai-neural-blue-dim);
+}
+
+/* Timeline content - title and description */
+.timeline-content {
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.timeline-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 600;
+  color: var(--ai-text-primary);
+  margin: 0;
+  animation: fade-in-up 0.5s ease-out;
+}
+
+.timeline-description {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--ai-text-secondary);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 600px;
+  animation: fade-in-up 0.5s ease-out 0.1s both;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Timeline progress dots */
+.timeline-dots {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--ai-bg-elevated);
+  border-radius: 50px;
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ai-bg-tertiary);
+  border: 2px solid var(--ai-text-tertiary);
+  transition: all var(--duration-normal) var(--ease-out-expo);
+  position: relative;
+  cursor: default;
+}
+
+.timeline-dot.passed {
+  background: var(--ai-neural-blue-dim);
+  border-color: var(--ai-neural-blue);
+}
+
+.timeline-dot.active {
+  background: var(--ai-neural-blue);
+  border-color: var(--ai-neural-blue);
+  transform: scale(1.3);
+  box-shadow: 0 0 15px var(--ai-neural-blue);
+}
+
+.dot-year {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--ai-text-tertiary);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity var(--duration-fast);
+}
+
+.timeline-dot.active .dot-year {
+  opacity: 1;
+  color: var(--ai-neural-blue);
+}
+
+/* Era visual overlays - film grain effect */
+.era-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  transition: opacity var(--duration-slow);
+}
+
+.era-overlay.era-ancient {
+  mix-blend-mode: overlay;
+  background-color: rgba(139, 115, 85, 0.1);
+}
+
+.era-overlay.era-vintage {
+  mix-blend-mode: soft-light;
+  background-color: rgba(100, 80, 60, 0.08);
+}
+
+.era-overlay.era-sepia {
+  mix-blend-mode: color;
+  background-color: rgba(112, 66, 20, 0.05);
+}
+
+/* Visual era color treatments */
+.visual-era-ancient .timeline-title {
+  color: #d4c4a8;
+}
+
+.visual-era-ancient .year-display {
+  color: #b8a07a;
+  text-shadow: 0 0 30px rgba(184, 160, 122, 0.3);
+}
+
+.visual-era-vintage .timeline-title {
+  color: #e0d4c0;
+}
+
+.visual-era-vintage .year-display {
+  color: #c9a86c;
+  text-shadow: 0 0 30px rgba(201, 168, 108, 0.3);
+}
+
+.visual-era-sepia .timeline-title {
+  color: #f0e6d2;
+}
+
+.visual-era-sepia .year-display {
+  color: var(--ai-terminal-amber);
+  text-shadow: 0 0 30px rgba(255, 196, 61, 0.3);
+}
+
+.visual-era-photograph .timeline-title {
+  color: var(--ai-text-primary);
+}
+
+.visual-era-photograph .year-display {
+  color: var(--ai-neural-blue);
+  text-shadow: 0 0 30px var(--ai-neural-blue-dim);
+}
+
+/* Scroll hint */
+.prologue .scroll-hint {
+  position: absolute;
+  bottom: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--ai-text-tertiary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: opacity var(--duration-slow);
+}
+
+.prologue .scroll-arrow {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(8px); }
+  60% { transform: translateY(4px); }
+}
+
+/* Prologue conclusion - revealed after timeline */
+.prologue-conclusion {
+  padding: var(--space-xl) var(--space-md);
+  max-width: 1200px;
+  margin: 0 auto;
+  transition: opacity var(--duration-slow);
+}
+
+/* Mobile adjustments for timeline */
+@media (max-width: 768px) {
+  .timeline-dots {
+    gap: var(--space-sm);
+  }
+  
+  .timeline-dot {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .dot-year {
+    display: none;
+  }
+  
+  .timeline-content {
+    min-height: 120px;
+  }
+  
+  .prologue-timeline {
+    padding: 0 var(--space-sm);
+  }
+}
+
 /* ==================== CHAPTER STYLES ==================== */
 
 .chapter {

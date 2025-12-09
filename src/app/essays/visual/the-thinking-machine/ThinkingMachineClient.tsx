@@ -485,31 +485,127 @@ const HeroSection: React.FC = () => {
 
 // ==================== PROLOGUE: THE ETERNAL QUESTION ====================
 
+// Timeline milestones for the scroll-lock sequence
+const timelineMilestones = [
+  {
+    era: "myth",
+    year: "~400 BCE",
+    title: "Talos",
+    description: "The bronze giant of Greek mythology, built by Hephaestus to guard Crete. Humanity's first dream of an artificial protector.",
+    visual: "ancient",
+  },
+  {
+    era: "myth",
+    year: "16th Century",
+    title: "The Golem of Prague",
+    description: "Rabbi Loew shapes clay into a living servant. The word 'emet' (truth) animates; remove a letter and it becomes 'met' (death).",
+    visual: "ancient",
+  },
+  {
+    era: "literature",
+    year: "1818",
+    title: "Frankenstein",
+    description: "Mary Shelley asks what it would mean to create life from unliving matter—and what responsibility comes with creation.",
+    visual: "vintage",
+  },
+  {
+    era: "automata",
+    year: "1770",
+    title: "The Mechanical Turk",
+    description: "An 'automaton' chess player that fooled Europe. A fraud, but it planted a seed: could a machine truly play chess?",
+    visual: "vintage",
+  },
+  {
+    era: "calculation",
+    year: "1832",
+    title: "The Difference Engine",
+    description: "Charles Babbage designs a machine to calculate polynomial functions. Ada Lovelace sees further: it could manipulate symbols, not just numbers.",
+    visual: "sepia",
+  },
+  {
+    era: "electronic",
+    year: "1946",
+    title: "ENIAC",
+    description: "Thirty tons of vacuum tubes. 150 kilowatts of power. The first general-purpose electronic computer. Dreams become engineering.",
+    visual: "photograph",
+  },
+];
+
 const PrologueSection: React.FC = () => {
-  const { ref, isVisible } = useIntersectionReveal(0.1);
+  const { containerRef, progress, isPinned } = useScrollLock(3);
+  
+  // Calculate which milestone is active based on scroll progress
+  const activeMilestoneIndex = useMemo(() => {
+    const index = Math.floor(progress * timelineMilestones.length);
+    return Math.min(index, timelineMilestones.length - 1);
+  }, [progress]);
+  
+  const activeMilestone = timelineMilestones[activeMilestoneIndex];
+  
+  // Calculate the visual era for styling (ancient -> vintage -> sepia -> photograph)
+  const visualEra = activeMilestone?.visual || "ancient";
+  
+  // Progress within current milestone (0-1)
+  const milestoneProgress = useMemo(() => {
+    const segmentSize = 1 / timelineMilestones.length;
+    const segmentStart = activeMilestoneIndex * segmentSize;
+    return (progress - segmentStart) / segmentSize;
+  }, [progress, activeMilestoneIndex]);
 
   return (
-    <section id="prologue" className="chapter prologue era-foundations" ref={ref}>
-      <div className={`chapter-content ${isVisible ? "revealed" : ""}`}>
-        <header className="chapter-header">
+    <section 
+      id="prologue" 
+      className={`chapter prologue era-foundations scroll-lock-container visual-era-${visualEra}`}
+      ref={containerRef}
+      style={{ height: "350vh" }}
+    >
+      <div className={`prologue-pinned ${isPinned ? "is-pinned" : ""}`}>
+        <header className="chapter-header" style={{ marginBottom: "var(--space-lg)" }}>
           <span className="chapter-date">From Myth to Mathematics</span>
           <h2 className="chapter-title">The Eternal Question</h2>
           <p className="chapter-metaphor">Before there were computers, there were dreams</p>
         </header>
         
-        <div className="chapter-text centered">
-          <p className="chapter-intro">
-            Humanity has always dreamed of artificial beings. The bronze giant Talos guarding Crete. 
-            The golem of Prague. Frankenstein&apos;s creature. Mary Shelley asked in 1818 what it would 
-            mean to create life from unliving matter.
-          </p>
-          <p>
-            But dreams became engineering problems only when we built machines that could calculate—and 
-            someone asked whether calculation might become thought.
-          </p>
+        {/* Timeline visualization */}
+        <div className="prologue-timeline">
+          {/* Year indicator */}
+          <div className="timeline-year">
+            <span className="year-display">{activeMilestone?.year}</span>
+          </div>
+          
+          {/* Central content area */}
+          <div className="timeline-content">
+            <h3 className="timeline-title">{activeMilestone?.title}</h3>
+            <p className="timeline-description">{activeMilestone?.description}</p>
+          </div>
+          
+          {/* Progress dots */}
+          <div className="timeline-dots">
+            {timelineMilestones.map((milestone, index) => (
+              <div 
+                key={milestone.title}
+                className={`timeline-dot ${index === activeMilestoneIndex ? "active" : ""} ${index < activeMilestoneIndex ? "passed" : ""}`}
+                title={milestone.title}
+              >
+                <span className="dot-year">{milestone.year.replace("~", "")}</span>
+              </div>
+            ))}
+          </div>
         </div>
         
-        <div className="photo-grid">
+        {/* Visual treatment indicator - the "film grain" effect intensifies for older eras */}
+        <div className={`era-overlay era-${visualEra}`} style={{ opacity: visualEra === "ancient" ? 0.3 : visualEra === "vintage" ? 0.2 : visualEra === "sepia" ? 0.1 : 0 }} />
+        
+        {/* Transition hint */}
+        <div className="scroll-hint" style={{ opacity: progress < 0.1 ? 1 : 0 }}>
+          <span>Scroll through time</span>
+          <div className="scroll-arrow">↓</div>
+        </div>
+      </div>
+      
+      {/* Static content after scroll-lock completes */}
+      <div className="prologue-conclusion" style={{ opacity: progress > 0.95 ? 1 : 0 }}>
+        <div className="photo-grid" style={{ marginTop: "var(--space-2xl)" }}>
           <ArchivalPhoto
             src={prologueImages.babbageEngine?.src}
             alt={prologueImages.babbageEngine?.alt || "Babbage's Difference Engine"}
