@@ -525,12 +525,12 @@ const MovementII_Kindling: React.FC = () => {
             It began with bread.
           </p>
           <p className="narrative-body">
-            Thomas Farriner, the king's baker, retired for the night leaving embers 
+            Thomas Farriner, the king&apos;s baker, retired for the night leaving embers 
             smoldering in his oven. In the cramped, timber-built neighborhood of 
             Pudding Lane, straw and kindling lay everywhere.
           </p>
           <p className="narrative-body">
-            At one o'clock in the morning, a spark found fuel.
+            At one o&apos;clock in the morning, a spark found fuel.
           </p>
         </div>
       </div>
@@ -551,12 +551,12 @@ const MovementII_Kindling: React.FC = () => {
           <div className="context-item">
             <span className="context-icon">💨</span>
             <h4>East Wind</h4>
-            <p>Strong easterly winds would push flames west, toward the city's heart.</p>
+            <p>Strong easterly winds would push flames west, toward the city&apos;s heart.</p>
           </div>
           <div className="context-item">
             <span className="context-icon">😤</span>
             <h4>Official Dismissal</h4>
-            <p>Lord Mayor Bludworth scoffed: "A woman could piss it out."</p>
+            <p>Lord Mayor Bludworth scoffed: &quot;A woman could piss it out.&quot;</p>
           </div>
         </div>
       </div>
@@ -668,7 +668,7 @@ const MovementIV_Devastation: React.FC = () => {
         </div>
         <div className="painting-caption">
           <h4>Contemporary Witness</h4>
-          <p>"The Great Fire of London" • Anonymous, c. 1675 • Oil on panel</p>
+          <p>&quot;The Great Fire of London&quot; • Anonymous, c. 1675 • Oil on panel</p>
           <p className="caption-detail">View from a boat near Tower Wharf, showing Old London Bridge and the city ablaze. Collection of the Museum of London.</p>
         </div>
       </div>
@@ -688,7 +688,7 @@ const MovementIV_Devastation: React.FC = () => {
               />
             </div>
             <span className="label">Before: Medieval London</span>
-            <p className="comparison-caption">Dense timber buildings, narrow streets, Old St Paul's dominating the skyline</p>
+            <p className="comparison-caption">Dense timber buildings, narrow streets, Old St Paul&apos;s dominating the skyline</p>
           </div>
           <div className="destruction-arrow">
             <FlameAnimation className="arrow-flame" />
@@ -725,10 +725,10 @@ const MovementIV_Devastation: React.FC = () => {
       <div className="lost-landmarks">
         <h3>Lost Forever</h3>
         <ul className="landmark-list">
-          <li><strong>Old St Paul's Cathedral</strong> — The medieval masterpiece, already damaged, exploded as lead roofing melted and stone shattered</li>
+          <li><strong>Old St Paul&apos;s Cathedral</strong> — The medieval masterpiece, already damaged, exploded as lead roofing melted and stone shattered</li>
           <li><strong>The Guildhall</strong> — Seat of city government for 500 years, burned to its stone shell</li>
           <li><strong>87 Parish Churches</strong> — Centuries of worship, art, and community—gone in days</li>
-          <li><strong>The Royal Exchange</strong> — London's commercial heart, Thomas Gresham's monument</li>
+          <li><strong>The Royal Exchange</strong> — London&apos;s commercial heart, Thomas Gresham&apos;s monument</li>
           <li><strong>Newgate Prison</strong> — Prisoners fled as walls crumbled</li>
         </ul>
       </div>
@@ -800,12 +800,12 @@ const MovementV_Phoenix: React.FC = () => {
           <span className="photo-credit">Photo by Lena Polishko / Unsplash</span>
         </div>
         <div className={`dome-details ${domeVisible ? 'reveal' : ''}`}>
-          <h3>St Paul's Cathedral</h3>
-          <p className="dome-subtitle">Wren's Masterpiece • 1675-1710</p>
+          <h3>St Paul&apos;s Cathedral</h3>
+          <p className="dome-subtitle">Wren&apos;s Masterpiece • 1675-1710</p>
           <p className="dome-description">
-            Rising 365 feet from the rubble of Old St Paul's, Wren's cathedral 
+            Rising 365 feet from the rubble of Old St Paul&apos;s, Wren&apos;s cathedral 
             married English baroque with classical elegance. Its dome—inspired by 
-            St Peter's in Rome—became the symbol of London's resurrection.
+            St Peter&apos;s in Rome—became the symbol of London&apos;s resurrection.
           </p>
           <div className="dome-stats">
             <div className="dome-stat">
@@ -825,7 +825,7 @@ const MovementV_Phoenix: React.FC = () => {
       </div>
 
       <div className="wren-buildings-grid" ref={buildingsRef}>
-        <h3 className="buildings-title">Wren's London</h3>
+        <h3 className="buildings-title">Wren&apos;s London</h3>
         {wrenBuildings.map((building, index) => (
           <div 
             key={index}
@@ -841,8 +841,8 @@ const MovementV_Phoenix: React.FC = () => {
 
       <blockquote className="wren-epitaph">
         <p>{`"Si monumentum requiris, circumspice."`}</p>
-        <p className="translation">"If you seek his monument, look around you."</p>
-        <cite>— Inscription in St Paul's Cathedral, marking Wren's tomb</cite>
+        <p className="translation">&quot;If you seek his monument, look around you.&quot;</p>
+        <cite>— Inscription in St Paul&apos;s Cathedral, marking Wren&apos;s tomb</cite>
       </blockquote>
     </section>
   );
@@ -856,7 +856,7 @@ const MovementVI_Legacy: React.FC = () => {
       <div className="movement-header" ref={ref}>
         <span className={`movement-number ${isVisible ? 'reveal' : ''}`}>VI</span>
         <h2 className={`movement-title ${isVisible ? 'reveal' : ''}`}>Eternal Flame</h2>
-        <p className={`movement-subtitle ${isVisible ? 'reveal' : ''}`}>The Fire's Lasting Legacy</p>
+        <p className={`movement-subtitle ${isVisible ? 'reveal' : ''}`}>The Fire&apos;s Lasting Legacy</p>
       </div>
 
       <div className="legacy-grid">
@@ -865,7 +865,7 @@ const MovementVI_Legacy: React.FC = () => {
           <h4>Building Codes Revolution</h4>
           <p>
             The Rebuilding Act of 1667 mandated brick and stone construction, 
-            wider streets, and fire-resistant design—the world's first modern 
+            wider streets, and fire-resistant design—the world&apos;s first modern 
             building codes.
           </p>
         </div>
@@ -894,7 +894,7 @@ const MovementVI_Legacy: React.FC = () => {
           <span className="legacy-icon">📜</span>
           <h4>Urban Planning</h4>
           <p>
-            Though Wren's grand plan wasn't implemented, the fire demonstrated 
+            Though Wren&apos;s grand plan wasn&apos;t implemented, the fire demonstrated 
             the need for planned urban development—a principle that shapes 
             cities to this day.
           </p>
@@ -955,7 +955,7 @@ const SourcesSection: React.FC = () => {
           <ul>
             <li>
               <strong>Samuel Pepys</strong> — <em>The Diary of Samuel Pepys</em> (1666)
-              <span className="source-note">Eyewitness account of the fire's progress day by day</span>
+              <span className="source-note">Eyewitness account of the fire&apos;s progress day by day</span>
             </li>
             <li>
               <strong>John Evelyn</strong> — <em>Diary</em> (1666)
@@ -1013,7 +1013,7 @@ const SourcesSection: React.FC = () => {
             </li>
             <li>
               <a href="https://www.stpauls.co.uk/history-collections" target="_blank" rel="noopener noreferrer">
-                St Paul's Cathedral — History & Collections
+                St Paul&apos;s Cathedral — History &amp; Collections
               </a>
             </li>
           </ul>
@@ -1023,15 +1023,15 @@ const SourcesSection: React.FC = () => {
           <h3>Image Credits</h3>
           <ul>
             <li>
-              <strong>"The Great Fire of London"</strong> — Anonymous, c. 1675, oil on panel
+              <strong>&quot;The Great Fire of London&quot;</strong> — Anonymous, c. 1675, oil on panel
               <span className="source-note">Museum of London (Accession #000793). Public domain. <a href="https://commons.wikimedia.org/wiki/File:Great_Fire_London.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></span>
             </li>
             <li>
               <strong>Panorama of London (1616)</strong> — Claes Visscher
-              <span className="source-note">Pre-fire London showing Old St Paul's and medieval cityscape. Public domain. <a href="https://commons.wikimedia.org/wiki/File:Panorama_of_London_by_Claes_Van_Visscher,_1616.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></span>
+              <span className="source-note">Pre-fire London showing Old St Paul&apos;s and medieval cityscape. Public domain. <a href="https://commons.wikimedia.org/wiki/File:Panorama_of_London_by_Claes_Van_Visscher,_1616.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></span>
             </li>
             <li>
-              <strong>"London After the Fire"</strong> — Wenceslaus Hollar, 1666, etching
+              <strong>&quot;London After the Fire&quot;</strong> — Wenceslaus Hollar, 1666, etching
               <span className="source-note">View of London ruins looking from Southwark. Public domain. <a href="https://commons.wikimedia.org/wiki/File:London_after_the_fire.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></span>
             </li>
             <li>
@@ -1043,7 +1043,7 @@ const SourcesSection: React.FC = () => {
               <span className="source-note">Public domain. <a href="https://commons.wikimedia.org/wiki/File:Christopher_Wren.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></span>
             </li>
             <li>
-              <strong>St Paul's Cathedral Dome</strong> — Lena Polishko
+              <strong>St Paul&apos;s Cathedral Dome</strong> — Lena Polishko
               <span className="source-note">Unsplash License (free for all uses). <a href="https://unsplash.com/photos/o6Z240AZfjw" target="_blank" rel="noopener noreferrer">Unsplash</a></span>
             </li>
             <li>
