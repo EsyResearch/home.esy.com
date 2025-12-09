@@ -1516,7 +1516,7 @@ const EpilogueSection: React.FC = () => {
           <h2 className="chapter-title">The Inheritance</h2>
         </header>
         
-        <div className="inheritance-stats" style={{ opacity: progress < 0.5 ? 1 : 0.3 }}>
+        <div className="inheritance-stats" style={{ opacity: progress < 0.4 ? 1 : 0 }}>
           <div className="stat massive">
             <span className="stat-value">70,000+</span>
             <span className="stat-label">Nuclear warheads at peak (1986)</span>
@@ -1529,7 +1529,7 @@ const EpilogueSection: React.FC = () => {
         
         <div 
           className="memorial-section"
-          style={{ opacity: progress > 0.4 ? 1 : 0 }}
+          style={{ opacity: progress > 0.4 && progress < 0.7 ? 1 : 0 }}
         >
           <ArchivalPhoto
             src={epilogueImages.genbakuDome.src}
@@ -1543,8 +1543,7 @@ const EpilogueSection: React.FC = () => {
         <div 
           className="final-message"
           style={{ 
-            opacity: progress > 0.7 ? 1 : 0,
-            transform: `translateY(${(1 - progress) * 50}px)`
+            opacity: progress > 0.7 && progress < 0.9 ? 1 : 0
           }}
         >
           <blockquote className="final-quote">

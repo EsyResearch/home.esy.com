@@ -1775,12 +1775,8 @@
 .epilogue .chapter-pinned {
   position: relative;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-md);
   background: var(--mp-bg-deep, #0D0D0D);
+  overflow: hidden;
 }
 
 .epilogue .chapter-pinned.is-pinned {
@@ -1788,6 +1784,8 @@
   top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
+  height: 100vh;
   background: var(--mp-bg-deep, #0D0D0D);
   z-index: 10;
 }
@@ -1797,6 +1795,8 @@
   top: var(--space-lg);
   left: 0;
   right: 0;
+  text-align: center;
+  z-index: 5;
 }
 
 .epilogue .chapter-label {
@@ -1809,8 +1809,15 @@
 }
 
 .inheritance-stats {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
   transition: opacity var(--transition-slow);
+  width: 100%;
+  max-width: 800px;
+  padding: 0 var(--space-md);
 }
 
 .inheritance-stats .stat.massive .stat-value {
@@ -1825,8 +1832,13 @@
 }
 
 .memorial-section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   transition: opacity var(--transition-slow);
   max-width: 700px;
+  width: 90%;
 }
 
 .memorial-photo .photo-placeholder {
@@ -1834,7 +1846,12 @@
 }
 
 .final-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   max-width: 700px;
+  width: 90%;
   text-align: center;
   transition: all var(--transition-slow);
 }
