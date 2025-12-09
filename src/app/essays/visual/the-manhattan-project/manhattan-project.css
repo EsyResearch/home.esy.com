@@ -1686,8 +1686,10 @@
 }
 
 .event-description {
+  grid-column: 2; /* Stay in the second column, not the narrow 80px first column */
   margin-top: var(--space-sm);
   font-size: 0.9375rem;
+  line-height: 1.6;
 }
 
 .einstein-quote {
