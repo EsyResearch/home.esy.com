@@ -19,6 +19,8 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 | [Visual Auditor Agent](#visual-auditor-agent) | **🎨 Audit SVG quality & animation performance** | `@agents/visual-auditor-agent.md` |
 | [Visual Audit Reports](#visual-audit-reports) | **📁 SVG audit report archive** | `agents/VisualAuditReports/` |
 | [Immersive Scrolling Auditor](#immersive-scrolling-auditor) | **🎢 Scroll-lock & performance certification** | `@agents/immersive-scrolling-auditor.md` |
+| [README Curator](#readme-curator) | **📖 Documentation routing & maintenance** | `@agents/readme-curator.md` |
+| [Image Research & Licensing](#image-research--licensing-expert) | **🖼️ Archive image sourcing & rights** | `@agents/image-research-licensing-expert.md` |
 | [Scrollytelling Expert](#scrollytelling-expert) | Immersive scroll-based stories | `@agents/scrollytelling-expert.md` |
 | [Children's Fiction Scrollytelling](#childrens-fiction-scrollytelling-agent) | **Magical stories for ages 3-6** | `@agents/childrens-fiction-scrollytelling-agent.md` |
 | [Children's Books Writer](#childrens-books-writer-expert) | **Picture book narratives, ages 3-6** | `@agents/childrens-books-writer-expert.md` |
@@ -576,6 +578,104 @@ certification for visual essay "The Thinking Machine" prior to G7.
 - ← **Visual Essay Director**: Invokes for Gate 6 certification
 - ← **Immersive Experience Engineer**: Implementation partner for fixes
 - ← **Scrollytelling Expert**: Narrative-scroll synchronization review
+
+---
+
+### README Curator
+**File:** `readme-curator.md`
+
+**Role:** Expert technical documentation architect responsible for maintaining consistency, accuracy, and discoverability across the Esy orchestration documentation ecosystem.
+
+**📖 DOCUMENTATION STEWARD:** This agent determines which README to update and maintains cross-reference integrity across the orchestration system.
+
+**Best For:**
+- Determining where to document new features
+- Updating documentation after changes
+- Auditing documentation for consistency
+- Maintaining cross-reference integrity
+
+**Documentation Hierarchy:**
+| Level | README | Scope |
+|-------|--------|-------|
+| System | `orchestration/README.md` | Philosophy, component types, relationships |
+| Agents | `orchestration/agents/README.md` | Agent details, invocation, quality gates |
+| Skills | `orchestration/skills/README.md` | Skill anatomy, creation guide, index |
+
+**Routing Decision:**
+| Change Type | Target README |
+|-------------|---------------|
+| New component type | `orchestration/README.md` |
+| New relationship pattern | `orchestration/README.md` |
+| New agent | `orchestration/agents/README.md` |
+| New skill | `orchestration/skills/README.md` |
+| Quality gate change | Both system + agents |
+
+**Invocation Examples:**
+```
+# Update docs after a change
+Using @agents/readme-curator.md, update documentation to reflect 
+the new image-url-extraction skill.
+
+# Get routing advice
+Using @agents/readme-curator.md, determine where to document 
+[new feature]. Provide routing recommendation.
+
+# Full audit
+Using @agents/readme-curator.md, audit orchestration documentation 
+for consistency, broken links, and scope violations.
+```
+
+---
+
+### Image Research & Licensing Expert
+**File:** `image-research-licensing-expert.md`
+
+**Role:** World-class visual research specialist and digital archivist with expertise in public domain discovery, Creative Commons licensing, and archival research.
+
+**🖼️ IMAGE SOURCING:** This agent finds, verifies, and documents images from authoritative archives for visual essays.
+
+**Best For:**
+- Finding public domain images from archives
+- Verifying licensing and rights status
+- Documenting image provenance
+- Extracting direct image URLs (via skill)
+
+**Source Tier System:**
+| Tier | Quality | Examples |
+|------|---------|----------|
+| Tier 1 | Gold Standard | Wikimedia Commons, Library of Congress, Smithsonian |
+| Tier 2 | Highly Credible | Met Museum, National Archives, British Library |
+| Tier 3 | Use with Caution | Flickr Commons, aggregators |
+| Tier 4 | Avoid | Pinterest, social media, unverified |
+
+**Required Skill:** `@orchestration/skills/image-url-extraction/`
+
+When extracting image URLs from archive pages, this agent applies the `image-url-extraction` skill to reliably obtain direct URLs.
+
+**Invocation Examples:**
+```
+# Source images for a visual essay
+Using @agents/image-research-licensing-expert.md, find public domain 
+images for a visual essay about the history of computing. Focus on:
+- Alan Turing portraits
+- ENIAC photographs
+- Early computer labs
+
+# Verify image licensing
+Using @agents/image-research-licensing-expert.md, verify the licensing 
+status of these images and provide attribution text.
+
+# Fix broken image
+Apply @agents/image-research-licensing-expert.md to find a replacement 
+for the broken ACE computer image on Wikimedia Commons.
+```
+
+**Output:**
+1. Image candidates with thumbnails
+2. Complete documentation records
+3. Rights verification
+4. Attribution text ready for use
+5. Direct download links
 
 ---
 
@@ -1959,6 +2059,14 @@ This global rule applies to ANY element with class `.hero-content`, including th
 - [ ] All tap targets reachable with thumb
 - [ ] No horizontal scroll
 - [ ] Feels like an app, not a website
+
+---
+
+## See Also
+
+- **[Orchestration Overview](../README.md)** — System architecture, component types, relationships
+- **[Skills README](../skills/README.md)** — Procedural knowledge agents can apply
+- **[META-AGENT-FRAMEWORK](./META-AGENT-FRAMEWORK.md)** — Creating new agents
 
 ---
 

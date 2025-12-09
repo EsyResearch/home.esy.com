@@ -627,6 +627,8 @@ Current agents derived from this framework:
 | `visual-auditor-agent.md` | **Visual Quality Assurance** | SVG Quality & Performance Certifier | **Post-processor** ← SVG Expert, → Scrollytelling, → Children's Fiction (MANDATORY) |
 | `image-research-licensing-expert.md` | **Visual Research** | Public Domain & Rights Specialist | ← **Visual Essay Director**, ← Scrollytelling, → Citation Audit, → SVG Expert (references) |
 | `immersive-scrolling-auditor.md` | **Scroll QA** | Scroll-Lock & Performance Certifier | **Post-processor** ← Immersive Eng, ← Scrollytelling, → **Visual Essay Director** (Gate 6) |
+| `readme-curator.md` | **Documentation** | Documentation Routing & Maintenance | **Utility** — Maintains orchestration README hierarchy |
+| `image-research-licensing-expert.md` | **Visual Research** | Archive Image Sourcing & Rights | **Specialist** — Uses `image-url-extraction` skill |
 
 ---
 
