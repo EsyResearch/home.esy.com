@@ -68,13 +68,13 @@ export const prologueImages = {
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Ada_Lovelace_portrait.jpg",
   },
   eniac: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Eniac.jpg",
-    alt: "ENIAC computer at the University of Pennsylvania, 1946",
-    caption: "ENIAC — the first general-purpose electronic computer",
+    src: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Classic_shot_of_the_ENIAC_%28full_resolution%29.jpg",
+    alt: "ENIAC computer at the Moore School of Electrical Engineering, 1946",
+    caption: "ENIAC — the first general-purpose electronic computer, 1946",
     source: "U.S. Army Photo / Wikimedia Commons",
     date: "1946",
     license: "Public Domain (U.S. Government work)",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:Eniac.jpg",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Classic_shot_of_the_ENIAC_(full_resolution).jpg",
   },
   eniacProgrammers: {
     src: "https://upload.wikimedia.org/wikipedia/commons/3/3b/Two_women_operating_ENIAC.gif",
