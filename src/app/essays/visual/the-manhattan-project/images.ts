@@ -205,32 +205,36 @@ export const scientistImages = {
 // Chapter 4 Images - The Gadget
 export const gadgetImages = {
   assembly: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Trinity_device_being_assembled.jpg/800px-Trinity_device_being_assembled.jpg",
-    alt: "Scientists assembling the Trinity device",
-    caption: "The device that would divide human history into before and after",
-    source: "Los Alamos National Laboratory",
-    date: "July 1945"
+    src: "https://upload.wikimedia.org/wikipedia/commons/c/c6/R._Oppenheimer_oversees_final_assembly_of_the_gadget_%2810537627864%29.jpg",
+    alt: "Oppenheimer oversees final assembly of the Gadget",
+    caption: "Oppenheimer watches as scientists make final adjustments — the device that would divide human history",
+    source: "Los Alamos National Laboratory / Wikimedia Commons",
+    date: "July 1945",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:R._Oppenheimer_oversees_final_assembly_of_the_gadget_(10537627864).jpg"
   },
   gadgetHoisted: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Trinity_Test_Site_-_Gadget_and_Tower.jpg/800px-Trinity_Test_Site_-_Gadget_and_Tower.jpg",
-    alt: "The Gadget being hoisted to the top of the Trinity tower",
-    caption: "The Gadget suspended atop the 100-foot tower — less than 24 hours before detonation",
-    source: "Los Alamos National Laboratory",
-    date: "July 15, 1945"
+    src: "https://upload.wikimedia.org/wikipedia/commons/2/2d/The_gadget_in_the_Trinity_Test_Site_tower_%281945%29.jpg",
+    alt: "The Gadget installed in the Trinity test tower",
+    caption: "The Gadget in the Trinity tower — less than 24 hours before detonation",
+    source: "Los Alamos National Laboratory / Wikimedia Commons",
+    date: "July 15, 1945",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:The_gadget_in_the_Trinity_Test_Site_tower_(1945).jpg"
   },
   implosionLenses: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Explosive_Lenses_for_Fat_Man.jpg/800px-Explosive_Lenses_for_Fat_Man.jpg",
-    alt: "Explosive lens assembly for the implosion bomb",
+    src: "https://upload.wikimedia.org/wikipedia/commons/1/10/Explosive_lenses_of_Fat_Man.jpg",
+    alt: "Explosive lens assembly for Fat Man",
     caption: "32 explosive lenses arranged in perfect symmetry — if even one was off, the bomb would fizzle",
-    source: "Los Alamos National Laboratory",
-    date: "1945"
+    source: "Los Alamos National Laboratory / Wikimedia Commons",
+    date: "1945",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Explosive_lenses_of_Fat_Man.jpg"
   },
   plutoniumCore: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Partially-reflected-plutonium-sphere.jpeg/440px-Partially-reflected-plutonium-sphere.jpeg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/1/13/Partially-reflected-plutonium-sphere.jpeg",
     alt: "A plutonium sphere similar to the bomb's core",
     caption: "The heart of the bomb — 6.2 kg of plutonium-239, warm to the touch from radioactive decay",
-    source: "Los Alamos National Laboratory",
-    date: "1945"
+    source: "Los Alamos National Laboratory / Wikimedia Commons",
+    date: "1945",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Partially-reflected-plutonium-sphere.jpeg"
   }
 };
 
