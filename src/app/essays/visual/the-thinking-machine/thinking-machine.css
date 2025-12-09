@@ -794,6 +794,22 @@
   max-width: 200px;
 }
 
+.figure-photo img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  filter: grayscale(100%) contrast(1.1);
+  transition: filter var(--duration-slow);
+}
+
+.figure-photo img:hover {
+  filter: grayscale(80%) contrast(1.05);
+}
+
+.tragedy-portrait {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
 /* ==================== SCIENTIST PORTRAIT GALLERY ==================== */
 
 .scientists-gallery {

@@ -607,6 +607,20 @@ const Chapter1: React.FC = () => {
         </div>
         
         <div className="key-figure featured" style={{ marginTop: "var(--space-xl)" }}>
+          <div className="figure-photo">
+            {turingImages.turingTragedy?.src ? (
+              <img 
+                src={turingImages.turingTragedy.src} 
+                alt={turingImages.turingTragedy.alt}
+                className="tragedy-portrait"
+                loading="lazy"
+              />
+            ) : (
+              <div className="photo-placeholder">
+                <span className="placeholder-text">Turing, 1951</span>
+              </div>
+            )}
+          </div>
           <div className="figure-content">
             <h3>The Tragedy</h3>
             <p style={{ color: "var(--ai-text-secondary)", marginBottom: "var(--space-md)" }}>

@@ -135,6 +135,15 @@ export const turingImages = {
     license: "CC BY-SA 2.0",
     sourceUrl: "https://commons.wikimedia.org/wiki/File:ACE_computer_-_NRMA.jpg",
   },
+  turingTragedy: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_%281951%29.jpg",
+    alt: "Alan Turing in 1951, three years before his death",
+    caption: "Alan Turing, 1951 — three years before his tragic death",
+    source: "Elliott & Fry / Computer History Museum",
+    date: "1951",
+    license: "Public Domain",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Alan_Turing_(1951).jpg",
+  },
 };
 
 // ==================== CHAPTER 2: THE DARTMOUTH SUMMER ====================
