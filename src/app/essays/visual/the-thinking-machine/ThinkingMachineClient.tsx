@@ -638,6 +638,7 @@ const PrologueSection: React.FC = () => {
 
 const Chapter1: React.FC = () => {
   const { ref, isVisible } = useIntersectionReveal(0.1);
+  const { ref: tragedyRef, isVisible: tragedyVisible } = useIntersectionReveal(0.3);
 
   return (
     <section id="chapter-1" className="chapter chapter-1 era-foundations" ref={ref}>
@@ -706,7 +707,11 @@ const Chapter1: React.FC = () => {
           </blockquote>
         </div>
         
-        <div className="key-figure featured" style={{ marginTop: "var(--space-xl)" }}>
+        <div 
+          ref={tragedyRef}
+          className={`key-figure featured tragedy-section ${tragedyVisible ? "revealed" : ""}`} 
+          style={{ marginTop: "var(--space-xl)" }}
+        >
           <div className="figure-photo">
             {turingImages.turingTragedy?.src ? (
               <img 
