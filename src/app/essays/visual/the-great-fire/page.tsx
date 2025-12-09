@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 
 export default function TheGreatFirePage() {
   return (
-    <ScrollytellingLayout>
+    <ScrollytellingLayout title="The Great Fire of London">
       <GreatFireClient />
     </ScrollytellingLayout>
   );
