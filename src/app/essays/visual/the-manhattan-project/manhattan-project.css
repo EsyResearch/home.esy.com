@@ -688,7 +688,6 @@
 }
 
 .document-pinned {
-  position: relative;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -697,12 +696,9 @@
   padding: var(--space-md);
 }
 
-.document-pinned.is-pinned {
-  position: fixed;
+.document-reveal.scroll-lock-container .document-pinned {
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
   background: var(--mp-bg-deep);
 }
 
