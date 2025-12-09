@@ -136,10 +136,10 @@ export const turingImages = {
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Pilot_ACE_computer.jpg",
   },
   turingTragedy: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_%281951%29.jpg",
+    src: "/images/thinking-machine/turing-1951.jpg",
     alt: "Alan Turing in 1951, three years before his death",
     caption: "Alan Turing, 1951 — three years before his tragic death",
-    source: "Elliott & Fry / Computer History Museum",
+    source: "Elliott & Fry / National Portrait Gallery",
     date: "1951",
     license: "Public Domain",
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Alan_Turing_(1951).jpg",
