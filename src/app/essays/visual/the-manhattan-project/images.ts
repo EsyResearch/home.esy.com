@@ -257,12 +257,13 @@ export const trinityImages = {
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Trinity_Hoisting_Gadget_TR-384.jpg"
   },
   fireball006: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Trinity_explosion.jpg/800px-Trinity_explosion.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Trinity_Test_-_the_early_fireball_at_6_milliseconds_%2810537699766%29.jpg",
     alt: "Trinity fireball at 0.006 seconds",
     caption: "0.006 seconds — the impossible brightness of a new sun",
     source: "Los Alamos National Laboratory / Berlyn Brixner",
     date: "July 16, 1945",
-    photographer: "Berlyn Brixner"
+    photographer: "Berlyn Brixner",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Trinity_Test_-_the_early_fireball_at_6_milliseconds_(10537699766).jpg"
   },
   fireball016: {
     src: "https://upload.wikimedia.org/wikipedia/commons/7/78/Trinity_Test_Fireball_16ms.jpg",
@@ -270,15 +271,17 @@ export const trinityImages = {
     caption: "0.016 seconds — surface temperature hotter than the sun",
     source: "Los Alamos National Laboratory / Berlyn Brixner",
     date: "July 16, 1945",
-    photographer: "Berlyn Brixner"
+    photographer: "Berlyn Brixner",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Trinity_Test_Fireball_16ms.jpg"
   },
   fireball025: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/d/dd/Trinity_Test_Fireball_25ms.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Trinity_Test_Fireball-25ms.jpg",
     alt: "Trinity fireball at 0.025 seconds",
     caption: "0.025 seconds — the expanding sphere of nuclear fire",
     source: "Los Alamos National Laboratory / Berlyn Brixner",
     date: "July 16, 1945",
-    photographer: "Berlyn Brixner"
+    photographer: "Berlyn Brixner",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Trinity_Test_Fireball-25ms.jpg"
   },
   mushroomCloud: {
     src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Trinity_Detonation_T%26B.jpg/800px-Trinity_Detonation_T%26B.jpg",
