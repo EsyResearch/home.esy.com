@@ -679,37 +679,29 @@ const MovementIV_Devastation: React.FC = () => {
         <div className="before-after-container historical">
           <div className="city-before">
             <div className="historical-comparison-frame">
-              {/* 
-                IMAGE NEEDED: london-before-fire.jpg
-                Source: Visscher's Panorama of London, 1616
-                Download from: https://commons.wikimedia.org/wiki/File:Panorama_of_London_by_Claes_Visscher,_1616.jpg
-                Or use any pre-fire London view showing Old St Paul's
-              */}
-              <div className="image-placeholder before">
-                <span className="placeholder-icon">🏘️</span>
-                <span className="placeholder-text">Medieval London</span>
-                <span className="placeholder-year">Pre-1666</span>
-              </div>
+              <Image
+                src="/images/great-fire/london-panorama-visscher-1616.jpg"
+                alt="Panorama of London by Claes Visscher, 1616 - showing medieval London before the Great Fire"
+                width={500}
+                height={119}
+                className="comparison-image before-image"
+              />
             </div>
             <span className="label">Before: Medieval London</span>
             <p className="comparison-caption">Dense timber buildings, narrow streets, Old St Paul's dominating the skyline</p>
           </div>
           <div className="destruction-arrow">
-            <span className="arrow-icon">🔥</span>
+            <FlameAnimation className="arrow-flame" />
           </div>
           <div className="city-after">
             <div className="historical-comparison-frame ruins">
-              {/* 
-                IMAGE NEEDED: london-after-fire.jpg  
-                Source: Wenceslaus Hollar's view of London ruins, 1666
-                Download from: https://commons.wikimedia.org/wiki/File:London_after_the_fire.jpg
-                Or use any post-fire London ruins view
-              */}
-              <div className="image-placeholder after">
-                <span className="placeholder-icon">🏚️</span>
-                <span className="placeholder-text">Ashes & Ruin</span>
-                <span className="placeholder-year">Sept 1666</span>
-              </div>
+              <Image
+                src="/images/great-fire/great-fire-london-1675.jpg"
+                alt="The Great Fire of London, 1675 painting showing the city ablaze"
+                width={400}
+                height={233}
+                className="comparison-image after-image"
+              />
             </div>
             <span className="label">After: Ashes & Ruin</span>
             <p className="comparison-caption">436 acres destroyed, only stone shells and chimneys remaining</p>
@@ -797,7 +789,15 @@ const MovementV_Phoenix: React.FC = () => {
 
       <div className="dome-showcase" ref={domeRef}>
         <div className={`dome-illustration ${domeVisible ? 'reveal' : ''}`}>
-          <WrenDome />
+          <Image
+            src="/images/great-fire/st-pauls-framed-polishko.jpg"
+            alt="St Paul's Cathedral dome viewed between modern London buildings"
+            width={800}
+            height={1140}
+            className="st-pauls-photo"
+            priority={false}
+          />
+          <span className="photo-credit">Photo by Lena Polishko / Unsplash</span>
         </div>
         <div className={`dome-details ${domeVisible ? 'reveal' : ''}`}>
           <h3>St Paul's Cathedral</h3>
@@ -904,23 +904,14 @@ const MovementVI_Legacy: React.FC = () => {
       <div className="monument-section">
         <h3>The Monument</h3>
         <div className="monument-visual">
-          <svg viewBox="0 0 60 200" className="monument-svg" aria-label="The Monument to the Great Fire">
-            <defs>
-              <linearGradient id="monumentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#D4A574" />
-                <stop offset="50%" stopColor="#F5E6D3" />
-                <stop offset="100%" stopColor="#D4A574" />
-              </linearGradient>
-            </defs>
-            <rect x="20" y="40" width="20" height="155" fill="url(#monumentGradient)" />
-            <rect x="15" y="35" width="30" height="10" fill="var(--parchment)" />
-            <rect x="10" y="190" width="40" height="10" fill="var(--parchment)" />
-            {/* Urn of flames at top */}
-            <ellipse cx="30" cy="30" rx="15" ry="8" fill="var(--parchment)" />
-            <path d="M25 25 Q22 15 25 5 Q28 15 25 25" fill="var(--flame-gold)" className="monument-flame" />
-            <path d="M30 23 Q27 10 30 0 Q33 10 30 23" fill="var(--ember)" className="monument-flame" />
-            <path d="M35 25 Q32 15 35 5 Q38 15 35 25" fill="var(--flame-gold)" className="monument-flame" />
-          </svg>
+          <Image
+            src="/images/great-fire/monument-great-fire-london.jpg"
+            alt="The Monument to the Great Fire of London - a 202-foot Doric column topped with a gilded urn of flames"
+            width={356}
+            height={536}
+            className="monument-photo"
+          />
+          <span className="photo-credit">Photo: Wikimedia Commons / CC BY-SA 3.0</span>
         </div>
         <p className="monument-description">
           Standing 202 feet tall—the exact distance from Pudding Lane—the Monument 
@@ -1036,8 +1027,8 @@ const SourcesSection: React.FC = () => {
               <span className="source-note">Museum of London (Accession #000793). Public domain. <a href="https://commons.wikimedia.org/wiki/File:Great_Fire_London.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></span>
             </li>
             <li>
-              <strong>"London Before the Fire"</strong> — Claes Visscher, 1616, panoramic view
-              <span className="source-note">Panorama of London showing pre-fire cityscape with Old St Paul's. Public domain. <a href="https://commons.wikimedia.org/wiki/File:Panorama_of_London_by_Claes_Visscher,_1616.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></span>
+              <strong>Panorama of London (1616)</strong> — Claes Visscher
+              <span className="source-note">Pre-fire London showing Old St Paul's and medieval cityscape. Public domain. <a href="https://commons.wikimedia.org/wiki/File:Panorama_of_London_by_Claes_Van_Visscher,_1616.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></span>
             </li>
             <li>
               <strong>"London After the Fire"</strong> — Wenceslaus Hollar, 1666, etching
@@ -1050,6 +1041,14 @@ const SourcesSection: React.FC = () => {
             <li>
               <strong>Portrait of Sir Christopher Wren</strong> — After Sir Godfrey Kneller
               <span className="source-note">Public domain. <a href="https://commons.wikimedia.org/wiki/File:Christopher_Wren.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></span>
+            </li>
+            <li>
+              <strong>St Paul's Cathedral Dome</strong> — Lena Polishko
+              <span className="source-note">Unsplash License (free for all uses). <a href="https://unsplash.com/photos/o6Z240AZfjw" target="_blank" rel="noopener noreferrer">Unsplash</a></span>
+            </li>
+            <li>
+              <strong>The Monument to the Great Fire of London</strong>
+              <span className="source-note">CC BY-SA 3.0. <a href="https://commons.wikimedia.org/wiki/File:The_Monument_to_the_Great_Fire_of_London.JPG" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></span>
             </li>
           </ul>
         </div>

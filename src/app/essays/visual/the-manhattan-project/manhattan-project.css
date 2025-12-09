@@ -698,11 +698,22 @@
   align-items: center;
   justify-content: center;
   padding: var(--space-md);
+  background: var(--mp-bg-deep);
 }
 
-.document-reveal.scroll-lock-container .document-pinned {
-  position: sticky;
+.document-pinned.is-pinned {
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.document-pinned.is-complete {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .document-paper {
@@ -865,6 +876,13 @@
 .photo-placeholder.loading {
   position: absolute;
   inset: 0;
+}
+
+.archival-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.1);
 }
 
 /* Real photo images */
@@ -1239,6 +1257,13 @@
   left: 0;
   right: 0;
   z-index: 10;
+  transition: opacity var(--transition-slow);
+}
+
+/* Hide header during aftermath phase */
+.trinity-chapter.phase-aftermath .chapter-header {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .trinity-stage {
@@ -1247,15 +1272,61 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end; /* Push content to bottom */
   transition: opacity var(--transition-slow);
   padding: var(--space-md);
+  padding-top: 220px; /* Space for header - Chapter 5, date, TRINITY, tagline */
+  padding-bottom: 100px; /* Space for scientist names + progress bar */
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.tower-stage {
+  justify-content: flex-start; /* Start from top (after padding) */
+  padding-top: 35vh; /* Clear the header: Chapter 5 + date + TRINITY + tagline */
+}
+
+/* Show stages based on phase */
+.trinity-chapter.phase-tower .tower-stage,
+.trinity-chapter.phase-countdown .tower-stage,
+.trinity-chapter.phase-fireball-sequence .fireball-stage,
+.trinity-chapter.phase-mushroom .mushroom-stage,
+.trinity-chapter.phase-aftermath .aftermath-stage {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
 }
 
 .tower-photo {
-  width: 80vw;
-  max-width: 500px;
-  aspect-ratio: 4/5;
+  width: auto;
+  max-width: min(500px, 70vw);
+  max-height: calc(100vh - 420px); /* Leave room for header (260px) and scientist names + progress */
+  object-fit: contain;
+}
+
+.scientist-names {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-top: var(--space-sm);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--muted-gray);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.scientist-names span {
+  position: relative;
+}
+
+.scientist-names span:not(:last-child)::after {
+  content: "•";
+  position: absolute;
+  right: calc(-1 * var(--space-md) / 2 - 0.25em);
+  color: var(--dim-gray);
 }
 
 .trinity-countdown {
@@ -1285,6 +1356,12 @@
   background: var(--flash-white);
   z-index: 100;
   transition: opacity 0.2s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.trinity-flash.active {
+  opacity: 1;
 }
 
 .fireball-sequence {
@@ -1345,46 +1422,44 @@
 .bainbridge-quote {
   max-width: 500px;
   text-align: center;
+  margin-top: var(--space-md);
 }
 
 .bainbridge-quote p {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-style: italic;
   color: var(--warm-white);
+  margin-bottom: var(--space-xs);
 }
 
 .bainbridge-quote cite {
   display: block;
-  margin-top: var(--space-sm);
   font-size: 0.875rem;
   color: var(--muted-gray);
   font-style: normal;
 }
 
-.trinity-stats {
+.trinity-stats-inline {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-lg);
-  position: absolute;
-  bottom: var(--space-lg);
-  left: 0;
-  right: 0;
-  transition: opacity var(--transition-slow);
+  margin-top: var(--space-lg);
+  padding: var(--space-md) 0;
 }
 
-.trinity-stats .stat {
+.trinity-stats-inline .stat {
   text-align: center;
 }
 
-.trinity-stats .stat-value {
+.trinity-stats-inline .stat-value {
   display: block;
   font-family: var(--font-display);
   font-size: 2rem;
   color: var(--aged-gold);
 }
 
-.trinity-stats .stat-label {
+.trinity-stats-inline .stat-label {
   display: block;
   font-family: var(--font-sans);
   font-size: 0.75rem;

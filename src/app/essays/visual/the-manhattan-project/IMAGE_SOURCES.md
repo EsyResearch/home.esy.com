@@ -39,11 +39,25 @@ All images sourced are **U.S. Government works (Public Domain)** or **verified p
 
 | Placeholder | Image | Source | License | URL |
 |-------------|-------|--------|---------|-----|
-| Los Alamos gate | Main gate entrance | Los Alamos National Laboratory | Public Domain (U.S. Gov) | https://commons.wikimedia.org/wiki/File:Los_Alamos_Main_Gate.jpg |
-| Laboratory buildings | Tech Area buildings | LANL | Public Domain (U.S. Gov) | (via energy.gov Manhattan Project gallery) |
+| Los Alamos gate | Los Alamos Project Main Gate building | Oscar-Zero / RRMMSHS | Public Domain (U.S. Gov) | https://oscarzero.wordpress.com/page/12/?pages-list |
+| PO Box 1663 | Censored envelope to PO Box 1663 | Smithsonian National Postal Museum | CC0 / Public Domain | https://postalmuseum.si.edu/object/npm_2007.2029.1 |
 | Oppenheimer porkpie | Famous hat photo | LANL | Public Domain (U.S. Gov) | https://commons.wikimedia.org/wiki/File:Oppenheimer_porkpie.jpg |
-| General Groves | Official Army portrait | U.S. Army | Public Domain (U.S. Gov) | https://commons.wikimedia.org/wiki/File:Leslie_Groves.jpg |
+| General Groves | Official Army portrait | U.S. Army / Wikimedia Commons | Public Domain (U.S. Gov) | https://commons.wikimedia.org/wiki/File:Leslie_Groves.jpg |
 | Groves & Oppenheimer | At Trinity ground zero | U.S. Army | Public Domain (U.S. Gov) | https://commons.wikimedia.org/wiki/File:Groves_Oppenheimer.jpg |
+
+**PO Box 1663 Envelope Details:**
+- Object Number: 2007.2029.1
+- Date: May 1, 1944
+- Description: Letter addressed to Staff Sergeant William Cody at PO Box 1663, Santa Fe NM. Shows "Win the War" stamp (Scott 905) and U.S. Army Examiner censorship from Base 2035.
+- Currently on exhibit at the National Postal Museum, Washington DC
+
+| Hutments housing | Temporary pre-fab hutments | Dept. of Energy / National Trust | Public Domain (U.S. Gov) | https://savingplaces.org/stories/building-the-secret-cities-pre-fab-architecture-of-the-manhattan-project |
+
+**Hutments Details:**
+- Oak Ridge went from population ~1,000 to 75,000+ by war's end
+- Pre-fab homes manufactured every 30 minutes (~17 houses/day)
+- Designed by Skidmore, Owings & Merrill with Stone & Webster engineers
+- "Alphabet houses" named A through D by layout type
 
 ### Chapter 3 - The Minds
 
@@ -66,9 +80,10 @@ All images sourced are **U.S. Government works (Public Domain)** or **verified p
 
 ### Chapter 5 - Trinity
 
-| Placeholder | Image | Source | License | URL |
-|-------------|-------|--------|---------|-----|
-| Tower at night | Pre-test setup | LANL | Public Domain (U.S. Gov) | https://commons.wikimedia.org/wiki/File:Trinity_shot_color.jpg |
+| Placeholder | Image | Source | License | URL | Local Path |
+|-------------|-------|--------|---------|-----|------------|
+| Trinity tower | 100-foot tower in desert | LANL / Wikimedia Commons | Public Domain (U.S. Gov) | https://commons.wikimedia.org/wiki/File:Trinity_tower.jpg | `/images/manhattan-project/trinity-tower.jpg` |
+| Tower with Gadget | The Gadget being hoisted | LANL / Wikimedia Commons | Public Domain (U.S. Gov) | https://commons.wikimedia.org/wiki/File:Trinity_Hoisting_Gadget_TR-384.jpg | `/images/manhattan-project/trinity-hoisting-gadget.jpg` |
 | Fireball 0.006s | Rapatronic camera | Berlyn Brixner/LANL | Public Domain (U.S. Gov) | https://commons.wikimedia.org/wiki/File:Trinity_Test_Fireball_25ms.jpg |
 | Fireball 0.016s | Expanding sphere | Berlyn Brixner/LANL | Public Domain (U.S. Gov) | https://commons.wikimedia.org/wiki/File:Trinity_Test_Fireball_16ms.jpg |
 | Mushroom cloud | Full development | U.S. Army | Public Domain (U.S. Gov) | https://commons.wikimedia.org/wiki/File:Trinity_Detonation_T%26B.jpg |

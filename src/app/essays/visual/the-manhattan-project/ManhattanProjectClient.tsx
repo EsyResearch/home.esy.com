@@ -100,7 +100,8 @@ const useScrollLock = (sectionHeight: number = 3): ScrollLockState => {
         );
         setProgress(newProgress);
       } else {
-        setIsPinned(sectionTop > 0 ? false : true);
+        // Unpin when above or below the scroll-lock zone
+        setIsPinned(false);
         setProgress(sectionTop > 0 ? 0 : 1);
       }
     };
@@ -244,8 +245,6 @@ const ArchivalPhoto: React.FC<ArchivalPhotoProps> = ({
   kenBurns = false,
 }) => {
   const { ref, isVisible } = useIntersectionReveal(0.1);
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageError, setImageError] = useState(false);
   
   return (
     <figure 
@@ -254,22 +253,12 @@ const ArchivalPhoto: React.FC<ArchivalPhotoProps> = ({
       style={{ "--parallax-speed": parallaxSpeed } as React.CSSProperties}
     >
       <div className="photo-frame">
-        {src && !imageError ? (
-          <>
-            <img 
-              src={src} 
-              alt={alt} 
-              loading="lazy" 
-              onLoad={() => setImageLoaded(true)}
-              onError={() => setImageError(true)}
-              style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 0.5s ease' }}
-            />
-            {!imageLoaded && (
-              <div className="photo-placeholder loading" aria-hidden="true">
-                <span className="placeholder-text">Loading...</span>
-              </div>
-            )}
-          </>
+        {src ? (
+          <img 
+            src={src} 
+            alt={alt}
+            className="archival-img"
+          />
         ) : (
           <div className="photo-placeholder" aria-label={alt}>
             <span className="placeholder-text">{alt}</span>
@@ -430,8 +419,11 @@ const DocumentReveal: React.FC<{
   highlights?: number[];
   title: string;
 }> = ({ lines, highlights = [], title }) => {
-  const { containerRef, progress } = useScrollLock(2);
+  const { containerRef, progress, isPinned } = useScrollLock(2);
   const visibleLines = Math.floor(progress * lines.length);
+  
+  // When scrolled past (progress >= 1), position at bottom of container
+  const isComplete = progress >= 1 && !isPinned;
   
   return (
     <div 
@@ -439,7 +431,9 @@ const DocumentReveal: React.FC<{
       className="document-reveal scroll-lock-container"
       style={{ height: "200vh" }}
     >
-      <div className="document-pinned">
+      <div 
+        className={`document-pinned ${isPinned ? "is-pinned" : ""} ${isComplete ? "is-complete" : ""}`}
+      >
         <div className="document-paper">
           <h4 className="document-title">{title}</h4>
           <div className="document-content">
@@ -625,7 +619,7 @@ const HeroSection: React.FC = () => {
 // ==================== PROLOGUE: THE LETTER ====================
 
 const PrologueSection: React.FC = () => {
-  const { ref, isVisible } = useIntersectionReveal(0.2);
+  const { ref, isVisible } = useIntersectionReveal(0.05);
   const einsteinLetterLines = [
     "Sir,",
     "Some recent work by E. Fermi and L. Szilard, which has been",
@@ -680,19 +674,19 @@ const PrologueSection: React.FC = () => {
             </div>
           </div>
         </div>
-        
-        <DocumentReveal
-          title="Einstein-Szilard Letter to President Roosevelt"
-          lines={einsteinLetterLines}
-          highlights={[6, 7, 8, 9, 10]}
-        />
-        
-        <div className="chapter-aftermath">
-          <p>
-            Roosevelt&apos;s response: He created the Advisory Committee on Uranium. 
-            <strong> The first domino fell.</strong>
-          </p>
-        </div>
+      </div>
+      
+      <DocumentReveal
+        title="Einstein-Szilard Letter to President Roosevelt"
+        lines={einsteinLetterLines}
+        highlights={[6, 7, 8, 9, 10]}
+      />
+      
+      <div className="chapter-aftermath">
+        <p>
+          Roosevelt&apos;s response: He created the Advisory Committee on Uranium. 
+          <strong> The first domino fell.</strong>
+        </p>
       </div>
     </section>
   );
@@ -927,7 +921,8 @@ const Chapter3: React.FC = () => {
       name: "Klaus Fuchs",
       title: "The Spy",
       quote: "I had complete confidence in Russian policy.",
-      photoPlaceholder: "Fuchs, quiet and unassuming"
+      photoPlaceholder: "Fuchs, quiet and unassuming",
+      photoSrc: scientistImages.fuchs.src
     }
   ];
 
@@ -1070,7 +1065,7 @@ const Chapter5: React.FC = () => {
         </header>
         
         {/* Tower at night */}
-        <div className="trinity-stage tower-stage" style={{ opacity: phase === "tower" ? 1 : 0 }}>
+        <div className="trinity-stage tower-stage">
           <img 
             src={trinityImages.towerWithGadget.src}
             alt={trinityImages.towerWithGadget.alt}
@@ -1094,13 +1089,10 @@ const Chapter5: React.FC = () => {
         )}
         
         {/* Flash */}
-        <div 
-          className="trinity-flash"
-          style={{ opacity: phase === "flash" ? 1 : 0 }}
-        />
+        <div className={`trinity-flash ${phase === "flash" ? "active" : ""}`} />
         
         {/* Fireball sequence */}
-        <div className="trinity-stage fireball-stage" style={{ opacity: phase === "fireball-sequence" ? 1 : 0 }}>
+        <div className="trinity-stage fireball-stage">
           <div className="fireball-sequence">
             <div className="fireball-frame fireball-1">
               <img src={trinityImages.fireball006.src} alt={trinityImages.fireball006.alt} />
@@ -1121,7 +1113,7 @@ const Chapter5: React.FC = () => {
         </div>
         
         {/* Mushroom cloud */}
-        <div className="trinity-stage mushroom-stage" style={{ opacity: phase === "mushroom" ? 1 : 0 }}>
+        <div className="trinity-stage mushroom-stage">
           <img 
             src={trinityImages.mushroomCloud.src}
             alt={trinityImages.mushroomCloud.alt}
@@ -1135,7 +1127,7 @@ const Chapter5: React.FC = () => {
         </div>
         
         {/* Aftermath */}
-        <div className="trinity-stage aftermath-stage" style={{ opacity: phase === "aftermath" ? 1 : 0 }}>
+        <div className="trinity-stage aftermath-stage">
           <div className="aftermath-grid">
             <div className="aftermath-photo">
               <img src={trinityImages.groundZero.src} alt={trinityImages.groundZero.alt} />
@@ -1146,25 +1138,25 @@ const Chapter5: React.FC = () => {
               <span className="photo-label">Trinitite — desert sand fused to glass</span>
             </div>
           </div>
+          
           <blockquote className="bainbridge-quote">
             <p>&ldquo;Now we are all sons of bitches.&rdquo;</p>
             <cite>— Kenneth Bainbridge, Trinity Test Director</cite>
           </blockquote>
-        </div>
-        
-        {/* Stats */}
-        <div className="trinity-stats" style={{ opacity: phase === "aftermath" ? 1 : 0 }}>
-          <div className="stat">
-            <span className="stat-value">21,000</span>
-            <span className="stat-label">tons of TNT equivalent</span>
-          </div>
-          <div className="stat">
-            <span className="stat-value">8</span>
-            <span className="stat-label">miles high</span>
-          </div>
-          <div className="stat">
-            <span className="stat-value">100</span>
-            <span className="stat-label">miles away, people saw the flash</span>
+          
+          <div className="trinity-stats-inline">
+            <div className="stat">
+              <span className="stat-value">21,000</span>
+              <span className="stat-label">tons of TNT equivalent</span>
+            </div>
+            <div className="stat">
+              <span className="stat-value">8</span>
+              <span className="stat-label">miles high</span>
+            </div>
+            <div className="stat">
+              <span className="stat-value">100</span>
+              <span className="stat-label">miles away, people saw the flash</span>
+            </div>
           </div>
         </div>
       </div>

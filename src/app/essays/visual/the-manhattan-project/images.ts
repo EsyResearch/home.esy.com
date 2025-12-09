@@ -70,50 +70,56 @@ export const prologueImages = {
 // Chapter 1 Images - Chain Reaction
 export const chapter1Images = {
   chicagoPile: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/5/56/Chicago_pile_-_making_CP-1_-_critical_assembly_-_Fermi.jpg",
+    src: "/images/manhattan-project/chicago-pile-1.jpg",
     alt: "Chicago Pile-1, the first nuclear reactor, beneath Stagg Field",
     caption: "The graphite pile beneath the University of Chicago's squash court achieved the first self-sustaining nuclear chain reaction",
-    source: "Argonne National Laboratory",
-    date: "December 2, 1942"
+    source: "Argonne National Laboratory / Wikimedia Commons",
+    date: "December 2, 1942",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Stagg_Field_reactor.jpg"
   },
   fermi: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Enrico_Fermi_1943-49.jpg",
+    src: "/images/manhattan-project/enrico-fermi.jpg",
     alt: "Enrico Fermi, architect of the first nuclear reactor",
     caption: "Fermi's preternatural calmness was legendary — he calculated survival odds during the Trinity test",
-    source: "National Archives",
-    date: "1943-1949"
+    source: "National Archives / Wikimedia Commons",
+    date: "1943-1949",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Enrico_Fermi_1943-49.jpg"
   },
   cp1Team: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/1/19/Chicago_pile_one_at_the_first_self-sustained_nuclear_chain_reaction.jpg",
-    alt: "The Chicago Pile-1 team on the squash court steps",
+    src: "/images/manhattan-project/cp1-team.jpg",
+    alt: "The Chicago Pile-1 team at the University of Chicago, 1946",
     caption: "'The Italian navigator has just landed in the new world.' — The team that achieved the first chain reaction",
-    source: "University of Chicago",
-    date: "December 2, 1942"
+    source: "University of Chicago / Wikimedia Commons",
+    date: "1946",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Members_of_the_Chicago_Pile-1_team_at_the_University_of_Chicago,_1946.jpg"
   }
 };
 
 // Chapter 2 Images - Secret City
 export const chapter2Images = {
   losAlamosGate: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Main_Gate_Los_Alamos.jpg/800px-Main_Gate_Los_Alamos.jpg",
-    alt: "The main gate at Los Alamos with guards",
+    src: "/images/manhattan-project/los-alamos-project-main-gate.jpg",
+    alt: "Los Alamos Project Main Gate - Passes Must Be Presented to Guards",
     caption: "The only entrance to Site Y. All mail was censored, all lives classified.",
-    source: "Los Alamos National Laboratory",
-    date: "1944"
+    source: "Oscar-Zero / Ronald Reagan Minuteman Missile State Historic Site",
+    date: "1943-1945",
+    sourceUrl: "https://oscarzero.wordpress.com/page/12/?pages-list"
   },
   losAlamosPostOffice: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Los_Alamos_Post_Office.jpg/800px-Los_Alamos_Post_Office.jpg",
-    alt: "PO Box 1663 — the only mailing address for all of Los Alamos",
-    caption: "Every letter, every package — addressed to a single PO Box. The whole city existed in secret.",
-    source: "Los Alamos National Laboratory",
-    date: "1944"
+    src: "/images/manhattan-project/po-box-1663.jpg",
+    alt: "Censored envelope addressed to PO Box 1663, Santa Fe, New Mexico",
+    caption: "Every letter to Los Alamos went through PO Box 1663, Santa Fe. This cover shows Army censorship stamps — 'OPENED BY' and 'PASSED' — the price of secrecy.",
+    source: "Smithsonian National Postal Museum",
+    date: "May 1, 1944",
+    sourceUrl: "https://postalmuseum.si.edu/object/npm_2007.2029.1"
   },
   losAlamosFamilies: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Los_Alamos_housing.jpg/800px-Los_Alamos_housing.jpg",
-    alt: "Scientists' families in makeshift housing at Los Alamos",
-    caption: "Children were born in a city that didn't exist. Their birth certificates listed PO Box 1663.",
-    source: "Los Alamos Historical Society",
-    date: "1944"
+    src: "/images/manhattan-project/hutments.jpeg",
+    alt: "Temporary housing 'Hutments' at Oak Ridge during the Manhattan Project",
+    caption: "Thousands lived in hastily built hutments — pre-fab housing thrown up to accommodate the explosive growth of the Secret Cities.",
+    source: "Department of Energy / National Trust for Historic Preservation",
+    date: "1943-1945",
+    sourceUrl: "https://savingplaces.org/stories/building-the-secret-cities-pre-fab-architecture-of-the-manhattan-project"
   },
   oppenheimerHat: {
     src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/JROppenheimer-LosAlamos.jpg/440px-JROppenheimer-LosAlamos.jpg",
@@ -123,64 +129,76 @@ export const chapter2Images = {
     date: "1944"
   },
   groves: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Leslie_Groves.jpg/440px-Leslie_Groves.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/3/37/Leslie_Groves.jpg",
     alt: "General Leslie Groves in uniform",
     caption: "The man who built the impossible — Groves managed 125,000 workers and billions of dollars in total secrecy",
-    source: "U.S. Army",
-    date: "1944"
+    source: "U.S. Army / Wikimedia Commons",
+    date: "1944",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Leslie_Groves.jpg"
   },
   grovesOppenheimer: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Groves_Oppenheimer.jpg",
-    alt: "General Groves and Oppenheimer at Trinity ground zero",
-    caption: "Groves and Oppenheimer examine the remains of the Trinity tower at ground zero",
-    source: "U.S. Army",
-    date: "September 1945"
+    src: "https://www.atomicarchive.com/media/photographs/trinity/media/trinity-site-2.jpg",
+    alt: "Oppenheimer and Groves at Trinity Test Site",
+    caption: "In September 1945, Oppenheimer and Groves examine the remains of the steel test tower at ground zero",
+    source: "Atomic Archive / U.S. Army",
+    date: "September 1945",
+    sourceUrl: "https://www.atomicarchive.com/media/photographs/trinity/trinity-site-2.html"
   }
 };
 
 // Chapter 3 Images - The Minds
 export const scientistImages = {
   bohr: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Niels_Bohr.jpg/440px-Niels_Bohr.jpg",
+    src: "/images/manhattan-project/niels-bohr.jpg",
     alt: "Niels Bohr in contemplation, pipe in hand",
     caption: "The father figure — Bohr escaped Nazi-occupied Denmark and arrived under the codename 'Nicholas Baker'",
     source: "Nobel Foundation",
     date: "1922"
   },
   feynman: {
-    src: "https://upload.wikimedia.org/wikipedia/en/4/42/Richard_Feynman_Nobel.jpg",
+    src: "/images/manhattan-project/richard-feynman.jpg",
     alt: "Richard Feynman, the irreverent genius",
     caption: "The youngest group leader at Los Alamos, age 24. His wife died while he worked on the bomb.",
     source: "Nobel Foundation",
     date: "1965"
   },
   feynmanLosAlamos: {
-    src: "https://upload.wikimedia.org/wikipedia/en/e/e2/Feynman_at_Los_Alamos.jpg",
+    src: "/images/manhattan-project/feynman-los-alamos.jpg",
     alt: "Richard Feynman at Los Alamos with colleagues",
     caption: "Feynman (center) at Los Alamos — cracked safes for fun, played bongos, drove security crazy",
     source: "Los Alamos National Laboratory",
     date: "1944"
   },
   szilard: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Leo_Szilard.jpg/440px-Leo_Szilard.jpg",
+    src: "/images/manhattan-project/leo-szilard.jpg",
     alt: "Leo Szilard, the conscience of the project",
     caption: "Conceived the chain reaction in 1933, drafted the Einstein letter, then petitioned against using the bomb on civilians",
-    source: "Department of Energy",
-    date: "1940s"
+    source: "Department of Energy / Wikimedia Commons",
+    date: "1940s",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Leo_Szilard.jpg"
   },
   teller: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/EdwardTeller1958.jpg/440px-EdwardTeller1958.jpg",
+    src: "/images/manhattan-project/edward-teller.jpg",
     alt: "Edward Teller, the hawk",
     caption: "Even during the Manhattan Project, Teller was obsessed with building something bigger — the hydrogen bomb",
-    source: "Los Alamos National Laboratory",
-    date: "1958"
+    source: "Los Alamos National Laboratory / Wikimedia Commons",
+    date: "1958",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:EdwardTeller1958.jpg"
   },
   bethe: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Hans_Bethe.jpg/440px-Hans_Bethe.jpg",
+    src: "/images/manhattan-project/hans-bethe.jpg",
     alt: "Hans Bethe at the blackboard",
     caption: "The calculator — Bethe led the Theoretical Division and figured out how stars produce energy",
     source: "Cornell University",
     date: "1940s"
+  },
+  fuchs: {
+    src: "/images/manhattan-project/klaus-fuchs.png",
+    alt: "Klaus Fuchs Los Alamos ID badge photo",
+    caption: "The spy — Fuchs passed atomic secrets to the Soviets while working at the heart of Los Alamos",
+    source: "Los Alamos National Laboratory / Wikimedia Commons",
+    date: "1944",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Klaus_Fuchs_ID_badge.png"
   }
 };
 
@@ -219,18 +237,20 @@ export const gadgetImages = {
 // Chapter 5 Images - Trinity
 export const trinityImages = {
   towerNight: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Trinity_shot_color.jpg/800px-Trinity_shot_color.jpg",
-    alt: "Trinity test site before detonation",
-    caption: "The last moments before the atomic age began",
-    source: "Los Alamos National Laboratory",
-    date: "July 16, 1945"
+    src: "/images/manhattan-project/trinity-tower.jpg",
+    alt: "The 100-foot Trinity test tower standing in the New Mexico desert",
+    caption: "The 100-foot tower at Trinity Site — the last moments before the atomic age began",
+    source: "Los Alamos National Laboratory / Wikimedia Commons",
+    date: "July 1945",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Trinity_tower.jpg"
   },
   towerWithGadget: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Trinity_Test_Site_-_Gadget_and_Tower.jpg/800px-Trinity_Test_Site_-_Gadget_and_Tower.jpg",
-    alt: "The Trinity tower at night, The Gadget suspended at 100 feet",
-    caption: "5:29 AM — the final countdown begins",
-    source: "Los Alamos National Laboratory",
-    date: "July 15, 1945"
+    src: "/images/manhattan-project/trinity-hoisting-gadget.jpg",
+    alt: "The Gadget being hoisted to the top of the Trinity tower, suspended at 100 feet",
+    caption: "5:29 AM — The Gadget suspended atop the 100-foot tower, the final countdown begins",
+    source: "Los Alamos National Laboratory / Wikimedia Commons",
+    date: "July 15, 1945",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Trinity_Hoisting_Gadget_TR-384.jpg"
   },
   fireball006: {
     src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Trinity_explosion.jpg/800px-Trinity_explosion.jpg",
@@ -257,25 +277,28 @@ export const trinityImages = {
     photographer: "Berlyn Brixner"
   },
   mushroomCloud: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Trinity_Detonation_T%26B.jpg/800px-Trinity_Detonation_T%26B.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Trinity_Detonation_T%26B.jpg/800px-Trinity_Detonation_T%26B.jpg",
     alt: "Trinity mushroom cloud at full development",
     caption: "Eight miles high — visible from 100 miles away",
-    source: "U.S. Army",
-    date: "July 16, 1945"
+    source: "U.S. Army / Wikimedia Commons",
+    date: "July 16, 1945",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Trinity_Detonation_T%26B.jpg"
   },
   groundZero: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Groves_Oppenheimer.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/7/75/Groves_Oppenheimer.jpg",
     alt: "Groves and Oppenheimer at Trinity ground zero",
     caption: "Oppenheimer and Groves examine the remains of the tower base — the sand had fused into green glass",
-    source: "U.S. Army",
-    date: "September 1945"
+    source: "U.S. Army / Wikimedia Commons",
+    date: "September 1945",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Groves_Oppenheimer.jpg"
   },
   trinitite: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Trinitite.jpg/800px-Trinitite.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/5/54/Trinitite.jpg",
     alt: "Trinitite — desert sand fused into glass by the nuclear explosion",
-    caption: "The crater, fused sand turned to green glass (trinitite) — the radioactive footprint of the atomic age",
-    source: "Los Alamos National Laboratory",
-    date: "1945"
+    caption: "The crater floor, fused sand turned to green glass (trinitite) — the radioactive footprint of the atomic age",
+    source: "Wikimedia Commons",
+    date: "1945",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Trinitite.jpg"
   }
 };
 
