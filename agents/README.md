@@ -18,6 +18,7 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 | [Quotes Audit Agent](#quotes-audit-agent) | **💬 Verify quote authenticity** | `@agents/quotes-audit-agent.md` |
 | [Visual Auditor Agent](#visual-auditor-agent) | **🎨 Audit SVG quality & animation performance** | `@agents/visual-auditor-agent.md` |
 | [Visual Audit Reports](#visual-audit-reports) | **📁 SVG audit report archive** | `agents/VisualAuditReports/` |
+| [Immersive Scrolling Auditor](#immersive-scrolling-auditor) | **🎢 Scroll-lock & performance certification** | `@agents/immersive-scrolling-auditor.md` |
 | [Scrollytelling Expert](#scrollytelling-expert) | Immersive scroll-based stories | `@agents/scrollytelling-expert.md` |
 | [Children's Fiction Scrollytelling](#childrens-fiction-scrollytelling-agent) | **Magical stories for ages 3-6** | `@agents/childrens-fiction-scrollytelling-agent.md` |
 | [Children's Books Writer](#childrens-books-writer-expert) | **Picture book narratives, ages 3-6** | `@agents/childrens-books-writer-expert.md` |
@@ -89,20 +90,23 @@ our scrollytelling piece about [topic]. Focus on .edu and major news sources.
 | **5. Deployment & Monitoring** | Publish + track | Director |
 
 **Quality Gates (All Blocking):**
-| Gate | Pass Criteria |
-|------|---------------|
-| G1: Brief Approval | Complete brief with scope, timeline, criteria |
-| G2: Design Research | Unique visual identity from subject matter |
-| G3: Content Complete | All sections drafted, fact-checked |
-| G4: Citation Research | Tier 1-2 sources for all major claims |
-| G5: Citation Audit | Citation Certification achieved |
-| G6: Mobile Verification | Real device testing confirmed |
-| G7: Publication Approval | Director sign-off |
+| Gate | Pass Criteria | Certified By |
+|------|---------------|--------------|
+| G1: Brief Approval | Complete brief with scope, timeline, criteria | Director |
+| G2: Design Research | Unique visual identity from subject matter | Scrollytelling Expert |
+| G3: Content Complete | All sections drafted, fact-checked | Historian Editor |
+| G4: Citation Research | Tier 1-2 sources for all major claims | Research Expert |
+| G5: Citation Audit | Citation Certification achieved | Citation Audit Agent |
+| G6: Scroll Certification | Scroll-lock, 60fps, mobile device testing | **Scrolling Auditor** |
+| G7: Publication Approval | Director sign-off | Director |
+
+> 📖 **Learn More:** See [Quality Gates System](#quality-gates-system) for comprehensive documentation.
 
 **Orchestrates:**
 - `scrollytelling-expert.md` — Content and design creation
 - `research-citations-expert.md` — Source discovery and verification
 - `citation-audit-agent.md` — Citation integrity certification
+- `immersive-scrolling-auditor.md` — Scroll functionality certification
 
 **Invocation Examples:**
 ```
@@ -491,6 +495,87 @@ The agent produces a structured Visual Audit Report with:
 - ← **Scrollytelling Expert**: Requests certification before publication
 - ← **Immersive Experience Engineer**: Performance validation
 - ← **Children's Fiction Agent**: Child-specific audit criteria
+
+---
+
+### Immersive Scrolling Auditor
+**File:** `immersive-scrolling-auditor.md`
+
+**Role:** World-class frontend QA engineer specializing in scroll-driven experience certification, with expertise in scroll-lock verification, animation performance auditing, and mobile-native testing.
+
+**🎢 GATE 6 CERTIFIER:** This agent owns Gate 6 (Scroll Certification) in the Visual Essay Director pipeline. No visual essay publishes without scroll certification.
+
+**Best For:**
+- Verifying scroll-lock sections pin and release correctly
+- Certifying 60fps animation performance
+- Testing on real mobile devices (Safari iOS + Chrome Android)
+- Validating parallax and progress indicator accuracy
+- Ensuring accessibility (reduced motion) compliance
+- Cross-browser scroll behavior consistency
+
+**What It Audits:**
+| Category | Tests |
+|----------|-------|
+| Scroll-Lock | Pin entry/release, progress calculation, no user trapping |
+| Animation Performance | 60fps verification, jank detection, GPU acceleration |
+| Parallax | Layer depth, speed ratios, edge case handling |
+| Progress Indicators | Accuracy (±2%), smooth interpolation, chapter alignment |
+| Touch/Gesture | Response latency (<100ms), momentum, swipe recognition |
+| Accessibility | `prefers-reduced-motion`, focus management, skip links |
+
+**6-Phase Audit Methodology:**
+| Phase | Duration | Focus |
+|-------|----------|-------|
+| 1. Static Analysis | 5 min | Code review, patterns |
+| 2. Desktop Functional | 10 min | Chrome DevTools |
+| 3. Mobile Simulation | 5 min | DevTools emulation |
+| 4. **Real Device Testing** | 15 min | Safari iOS + Android (CRITICAL) |
+| 5. Edge Case Testing | 5 min | Stress testing |
+| 6. Accessibility Testing | 5 min | Reduced motion, screen readers |
+
+**Certification Thresholds:**
+| Status | Score | Criteria |
+|--------|-------|----------|
+| ✅ **CERTIFIED** | ≥8.0/10 | No Tier 1 failures |
+| ⚠️ **CONDITIONAL** | ≥6.0/10 | ≤2 Tier 1 failures (must fix) |
+| ❌ **REJECTED** | <6.0/10 | >2 Tier 1 failures |
+
+**Automatic Rejection (Red Lines):**
+- ❌ User trapped in scroll-lock
+- ❌ Complete failure on Safari iOS
+- ❌ Visible jank on mid-tier devices
+- ❌ No real mobile device testing performed
+
+**Invocation Examples:**
+```
+# Standard scroll audit for Gate 6
+Using @agents/immersive-scrolling-auditor.md, audit the scroll experience 
+for the visual essay at:
+Path: src/app/essays/visual/the-thinking-machine/
+Perform full 6-phase audit and produce certification report.
+
+# Targeted re-audit after fixes
+Using @agents/immersive-scrolling-auditor.md, verify fixes for:
+1. Safari iOS scroll-lock not releasing
+2. Progress bar jumping at 50%
+Perform targeted testing and update certification status.
+
+# Pre-publication verification
+Using @agents/immersive-scrolling-auditor.md, perform final Gate 6 
+certification for visual essay "The Thinking Machine" prior to G7.
+```
+
+**Output:**
+1. Scroll Audit Report with overall score
+2. Certification Status (CERTIFIED/CONDITIONAL/REJECTED)
+3. Tier 1 (blocking) issue list with fixes
+4. Device testing evidence log
+5. Performance recordings (DevTools)
+
+**Collaboration:**
+- ← **Visual Essay Director**: Invokes for Gate 6 certification
+- ← **Immersive Experience Engineer**: Implementation partner for fixes
+- ← **Scrollytelling Expert**: Narrative-scroll synchronization review
 
 ---
 
@@ -978,12 +1063,13 @@ An **orchestrator agent** coordinates multiple specialized agents to produce com
 
 | Orchestrator | Domain | Agents Coordinated | Output |
 |--------------|--------|-------------------|--------|
-| `visual-essay-director.md` | **Production Pipeline** | 3 orchestrators | **Publication-ready visual essays** |
+| `visual-essay-director.md` | **Production Pipeline** | 4 orchestrators | **Publication-ready visual essays** |
 | `scrollytelling-expert.md` | Digital Storytelling | 7 agents | Mobile-native scrollytelling pages |
 | `childrens-fiction-scrollytelling-agent.md` | **Children's Stories (3-6)** | 4 agents | Magical animated children's experiences |
 | `scrollytelling-audit-agent.md` | Quality Assurance | 3-4 agents | Experience audit reports |
-| `citation-audit-agent.md` | **Citation Integrity** | 2-3 agents | Source verification reports |
+| `citation-audit-agent.md` | **Citation Integrity (G5)** | 2-3 agents | Source verification reports |
 | `visual-auditor-agent.md` | **Visual Quality Assurance** | 1-2 agents | SVG certification reports |
+| `immersive-scrolling-auditor.md` | **Scroll QA (G6)** | 1-2 agents | Scroll certification reports |
 
 ### Visual Essay Director Architecture (Top-Level)
 
@@ -993,30 +1079,30 @@ An **orchestrator agent** coordinates multiple specialized agents to produce com
 │                      (Top-Level Pipeline Executive)                          │
 │                                                                             │
 │  Quality Gates: G1 Brief → G2 Design → G3 Content → G4 Sources →           │
-│                 G5 Citation Audit → G6 Mobile → G7 Publish                  │
+│                 G5 Citation Audit → G6 Scroll Cert → G7 Publish             │
 └─────────────────────────────────────────┬───────────────────────────────────┘
                                           │
-              ┌───────────────────────────┼───────────────────────────┐
-              │                           │                           │
-              ▼                           ▼                           ▼
-┌─────────────────────────┐  ┌─────────────────────────┐  ┌─────────────────────────┐
-│  SCROLLYTELLING EXPERT  │  │  RESEARCH & CITATIONS   │  │   CITATION AUDIT        │
-│     (Production)        │  │       EXPERT            │  │       AGENT             │
-│                         │  │   (Source Discovery)    │  │   (Verification)        │
-│  • Design Research      │  │                         │  │                         │
-│  • Content Creation     │  │  • Tier 1-2 sources     │  │  • Claim-citation map   │
-│  • Mobile-native impl   │  │  • Citation formatting  │  │  • Link verification    │
-│                         │  │  • Quote authentication │  │  • Certification        │
-│  Coordinates:           │  │                         │  │                         │
-│  ┌─────────────────┐   │  └─────────────────────────┘  │  Orchestrates:          │
-│  │ Historian Writer │   │                               │  • quotes-audit-agent   │
-│  │ Historian Editor │   │                               │  • research-citations   │
-│  │ UI/UX Designer   │   │                               │                         │
-│  │ SVG Expert       │   │                               └─────────────────────────┘
-│  │ Software Eng     │   │
-│  │ Immersive Eng    │   │
-│  └─────────────────┘   │
-└─────────────────────────┘
+         ┌────────────────────────────────┼────────────────────────────────┐
+         │                    │                    │                       │
+         ▼                    ▼                    ▼                       ▼
+┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
+│  SCROLLYTELLING │  │  RESEARCH &     │  │  CITATION AUDIT │  │  SCROLLING      │
+│     EXPERT      │  │  CITATIONS      │  │     AGENT       │  │    AUDITOR      │
+│  (Production)   │  │    EXPERT       │  │  (G5 Verify)    │  │  (G6 Verify)    │
+│                 │  │  (G4 Sources)   │  │                 │  │                 │
+│  • G2: Design   │  │                 │  │  • Claim-cite   │  │  • Scroll-lock  │
+│  • G3: Content  │  │  • Tier 1-2     │  │  • Link verify  │  │  • 60fps test   │
+│  • Mobile impl  │  │  • Quote auth   │  │  • Certify      │  │  • Safari iOS   │
+│                 │  │                 │  │                 │  │  • Real devices │
+│  Coordinates:   │  └─────────────────┘  │  Orchestrates:  │  │                 │
+│  ┌───────────┐ │                        │  • quotes-audit │  │  Certifies:     │
+│  │ Historian │ │                        │  • research-cit │  │  • Pin/release  │
+│  │ UI/UX     │ │                        │                 │  │  • Progress bar │
+│  │ SVG       │ │                        └─────────────────┘  │  • Touch/scroll │
+│  │ Software  │ │                                             │                 │
+│  │ Immersive │ │                                             └─────────────────┘
+│  └───────────┘ │
+└─────────────────┘
 ```
 
 **Pipeline Flow:**
@@ -1049,8 +1135,15 @@ User Request
          │
          ▼
 ┌─────────────────┐
-│ Visual Essay    │──► G6: Mobile Verification
-│ Director        │──► G7: Publication Approval
+│ Immersive       │──► G6: Scroll Certification
+│ Scrolling       │    ⚠️ REAL DEVICE TESTING REQUIRED
+│ Auditor         │    (Safari iOS + Chrome Android)
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ Visual Essay    │──► G7: Publication Approval
+│ Director        │
 └────────┬────────┘
          │
          ▼
@@ -1111,14 +1204,15 @@ User Request
 
 | Agent | Input | Output | Quality Gate |
 |-------|-------|--------|--------------|
-| **Research Citations** | Topic | Tier 1-2 sources | Sources verified |
+| **Research Citations** | Topic | Tier 1-2 sources | G4: Sources verified |
 | **Historian Writer** | Sources + Brief | Narrative draft | Content complete |
-| **Historian Editor** | Draft | Fact-checked content | **APPROVAL REQUIRED** |
+| **Historian Editor** | Draft | Fact-checked content | G3: **APPROVAL REQUIRED** |
 | **UI/UX Design** | Visual direction | Refined design system | Mobile typography verified |
 | **SVG Illustration & Animation** | Design system | Inline SVG assets, animation CSS | Assets optimized, accessible |
-| **Visual Auditor** ⚠️ | SVG assets | Certification report, grade | **CERTIFICATION REQUIRED** |
+| **Visual Auditor** ⚠️ | SVG assets | Certification report, grade | **SVG CERTIFICATION** |
 | **Software Engineer** | Content + Design + Certified SVGs | Component architecture, code structure | Build passes |
-| **Immersive Experience** ⚠️ | Design + Code | Mobile-native UX, 60fps animations, Theatre Bar | **REAL DEVICE TESTING** |
+| **Immersive Experience** ⚠️ | Design + Code | Mobile-native UX, 60fps animations, Theatre Bar | Implementation ready |
+| **Scrolling Auditor** ⚠️ | Implemented experience | Scroll certification report | G6: **SCROLL CERTIFICATION** |
 
 **Implementation Layer Distinction:**
 - `software-engineering-expert.md` → Component architecture, data flow, TypeScript, accessibility
@@ -1126,41 +1220,46 @@ User Request
 
 ### Quality Gates (Blocking)
 
-These checkpoints **must pass** before proceeding:
+These checkpoints **must pass** before proceeding. See [Quality Gates System](#quality-gates-system) for full documentation.
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    QUALITY GATES                                │
+│                    BLOCKING QUALITY GATES                       │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│  ① DESIGN RESEARCH COMPLETE                                    │
+│  G2: DESIGN RESEARCH COMPLETE                                   │
 │     └─ Unique visual identity derived from subject              │
 │     └─ Mobile-first layouts specified                           │
+│     └─ Certified by: Scrollytelling Expert                      │
 │                                                                 │
-│  ② HISTORIAN EDITOR APPROVAL ⚠️ BLOCKING                       │
+│  G3: HISTORIAN EDITOR APPROVAL ⚠️ BLOCKING                      │
 │     └─ All facts verified                                       │
 │     └─ Sources authenticated                                    │
 │     └─ Cannot proceed without explicit approval                 │
+│     └─ Certified by: Historian Editor                           │
 │                                                                 │
-│  ③ VISUAL AUDITOR CERTIFICATION ⚠️ BLOCKING (NEW)              │
+│  G4: VISUAL AUDITOR CERTIFICATION ⚠️ BLOCKING                   │
 │     └─ All SVG assets audited (5-tier framework)                │
 │     └─ Technical quality verified (optimized, accessible)       │
 │     └─ Animation performance certified (60fps mobile)           │
 │     └─ Grade B+ or higher required for publication              │
-│     └─ Cannot integrate assets without certification            │
+│     └─ Certified by: Visual Auditor Agent                       │
 │                                                                 │
-│  ④ CITATION AUDIT APPROVAL ⚠️ BLOCKING                         │
+│  G5: CITATION AUDIT APPROVAL ⚠️ BLOCKING                        │
 │     └─ All claims have Tier 1-2 source support                  │
-│     └─ All links functional                                     │
+│     └─ All links functional (browser-verified)                  │
 │     └─ Zero Tier 4 sources                                      │
 │     └─ Quotes verified and attributed                           │
-│     └─ Cannot publish without citation certification            │
+│     └─ Certified by: Citation Audit Agent                       │
 │                                                                 │
-│  ⑤ MOBILE DEVICE TESTING ⚠️ BLOCKING                           │
-│     └─ Tested on real iPhone                                    │
-│     └─ Tested on real Android                                   │
-│     └─ 60fps animations confirmed                               │
-│     └─ Cannot ship without device verification                  │
+│  G6: SCROLL CERTIFICATION ⚠️ BLOCKING (NEW)                     │
+│     └─ Scroll-lock sections pin/release correctly               │
+│     └─ 60fps animations on mid-tier mobile                      │
+│     └─ Safari iOS tested on REAL device                         │
+│     └─ Chrome Android tested on REAL device                     │
+│     └─ Progress indicators accurate (±2%)                       │
+│     └─ No user trapping in scroll-lock                          │
+│     └─ Certified by: Immersive Scrolling Auditor                │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -1175,6 +1274,334 @@ These checkpoints **must pass** before proceeding:
 | Just need UI component | Use `ui-ux-design-expert.md` (standalone) |
 | Performance optimization only | Use `immersive-experience-engineer.md` (standalone) |
 | Complex, multi-deliverable project | Consider orchestrator pattern |
+
+---
+
+## Quality Gates System
+
+### What Are Quality Gates?
+
+**Quality Gates** are mandatory checkpoints in the visual essay production pipeline. Each gate represents a specific quality standard that must be verified and certified before the project can advance to the next phase.
+
+Think of gates like airport security checkpoints:
+- You **cannot skip** a gate
+- Each gate has **specific criteria** that must pass
+- A **designated certifier** (agent or director) owns each gate
+- **Failure is blocking** — you fix issues before proceeding
+- Once passed, you **move forward** with confidence
+
+### Why Gates Matter
+
+| Without Gates | With Gates |
+|---------------|------------|
+| Publish broken scroll-lock | Scroll-lock verified on real devices |
+| Unverified citations slip through | Citation Certification required |
+| Mobile experience untested | Real device testing mandatory |
+| Quality varies per essay | Consistent excellence every time |
+| Issues found post-publication | Issues caught before deployment |
+| User trust erodes | User trust strengthened |
+
+### The Seven Gates
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                     VISUAL ESSAY QUALITY GATES                               │
+│                                                                             │
+│  ┌─────┐    ┌─────┐    ┌─────┐    ┌─────┐    ┌─────┐    ┌─────┐    ┌─────┐ │
+│  │ G1  │───►│ G2  │───►│ G3  │───►│ G4  │───►│ G5  │───►│ G6  │───►│ G7  │ │
+│  │Brief│    │Design│   │Content│  │Sources│  │Citation│ │Scroll│   │Publish││
+│  └─────┘    └─────┘    └─────┘    └─────┘    └─────┘    └─────┘    └─────┘ │
+│     │          │          │          │          │          │          │     │
+│  Director  Scrolly-   Historian  Research   Citation   Scrolling  Director │
+│            telling     Editor     Expert     Audit      Auditor            │
+│            Expert                            Agent                         │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+#### G1: Brief Approval
+**Owner:** Visual Essay Director
+**Phase Boundary:** Intake → Production
+
+| Criterion | Requirement |
+|-----------|-------------|
+| Scope Definition | Sections, read time, visual complexity defined |
+| Timeline | Milestones with target dates |
+| Success Criteria | Measurable quality thresholds |
+| User Approval | User has reviewed and approved brief |
+
+**Pass Condition:** Complete brief document with all sections filled.
+
+---
+
+#### G2: Design Research
+**Owner:** Scrollytelling Expert
+**Phase Boundary:** Pre-Production → Production
+
+| Criterion | Requirement |
+|-----------|-------------|
+| Unique Visual Identity | Not copied from previous essays |
+| Color Palette | Derived from subject matter |
+| Typography | Justified by era/character alignment |
+| Animation Philosophy | Matches subject nature |
+| Mobile-First Layouts | Phone is primary design canvas |
+
+**Pass Condition:** Design Research Report delivered with unique identity.
+
+**Example Design Research Output:**
+```markdown
+## Design Research Report: The Thinking Machine
+
+### Visual Archaeology
+- Subject: AI History (1943-2025)
+- Visual Language: Vacuum tubes → Neural networks → Data centers
+- Era Transitions: B&W → Kodachrome → Digital
+
+### Color System
+- Primary: #0A0A0F (Deep Black) — technology depth
+- Accent: #00B4D8 (Neural Blue) — connections, activations
+- Warning: #FF6B6B (Soft Red) — AI safety discussions
+
+### Typography
+- Display: Space Grotesk — technical, modern
+- Serif: Crimson Pro — historical gravitas
+- Mono: JetBrains Mono — code, data
+
+### Animation Philosophy
+- Neural network building progressively
+- Era color shifts on scroll
+- Typewriter text reveals
+```
+
+---
+
+#### G3: Content Complete
+**Owner:** Historian Editor
+**Phase Boundary:** Production → Citation Pipeline
+
+| Criterion | Requirement |
+|-----------|-------------|
+| All Sections Drafted | Every planned section written |
+| Fact-Check Complete | Historian Editor has verified facts |
+| Sources Identified | Major claims have source candidates |
+| Implementation Functional | Code builds and runs |
+
+**Pass Condition:** Explicit approval from Historian Editor.
+
+---
+
+#### G4: Citation Research
+**Owner:** Research & Citations Expert
+**Phase Boundary:** Citation Discovery
+
+| Criterion | Requirement |
+|-----------|-------------|
+| Minimum Source Count | Met project requirements (typically 10+) |
+| Tier Distribution | 80%+ are Tier 1-2 sources |
+| Claim Coverage | All major claims have citation |
+| Quote Authentication | Quotes traced to original sources |
+| URLs Accessible | Links verified working |
+
+**Source Tier System:**
+| Tier | Quality | Examples |
+|------|---------|----------|
+| Tier 1 | Gold Standard | .edu, JSTOR, peer-reviewed, museums |
+| Tier 2 | Highly Credible | NYT, Guardian, Britannica, major publishers |
+| Tier 3 | Use with Caution | Wikipedia, expert blogs |
+| Tier 4 | ❌ AVOID | Social media, anonymous, self-published |
+
+**Pass Condition:** Source package delivered with 80%+ Tier 1-2.
+
+---
+
+#### G5: Citation Audit
+**Owner:** Citation Audit Agent
+**Phase Boundary:** Citation Verification
+
+| Criterion | Requirement |
+|-----------|-------------|
+| Claim-Citation Mapping | Every factual claim mapped to source |
+| Source Quality | 80%+ Tier 1-2, zero Tier 4 |
+| Link Integrity | All URLs browser-verified functional |
+| Quote Accuracy | Quotes verified via Quotes Audit Agent |
+| Format Consistency | Uniform citation style |
+
+**Certification Status:**
+| Status | Meaning |
+|--------|---------|
+| ✅ Certified | All criteria pass, ready for G6 |
+| ⚠️ Conditional | Minor issues, fix before G7 |
+| ❌ Rejected | Critical issues, must fix and re-audit |
+
+**Pass Condition:** Citation Certification achieved.
+
+---
+
+#### G6: Scroll Certification ⭐ NEW
+**Owner:** Immersive Scrolling Auditor
+**Phase Boundary:** Pre-Publication
+
+| Criterion | Requirement |
+|-----------|-------------|
+| Scroll-Lock Functionality | All sections pin/release correctly |
+| Animation Performance | 60fps on mid-tier mobile devices |
+| Safari iOS Testing | Real device verification (MANDATORY) |
+| Chrome Android Testing | Real device verification |
+| Progress Indicator | Accurate within ±2% |
+| Accessibility | Reduced motion respected |
+| No User Trapping | Can always escape scroll-lock |
+
+**6-Phase Audit Methodology:**
+1. Static Analysis (5 min)
+2. Desktop Functional Testing (10 min)
+3. Mobile Simulation Testing (5 min)
+4. **Real Device Testing (15 min) — CRITICAL**
+5. Edge Case Testing (5 min)
+6. Accessibility Testing (5 min)
+
+**Certification Thresholds:**
+| Score | Status | Meaning |
+|-------|--------|---------|
+| ≥8.0/10 | ✅ CERTIFIED | Ready for G7 |
+| ≥6.0/10 | ⚠️ CONDITIONAL | Fix Tier 1 issues first |
+| <6.0/10 | ❌ REJECTED | Major rework required |
+
+**Automatic Rejection (Red Lines):**
+- ❌ User trapped in scroll-lock section
+- ❌ Complete failure on Safari iOS
+- ❌ Visible jank/stutter on mid-tier devices
+- ❌ No real mobile device testing performed
+
+**Pass Condition:** Scroll Certification achieved (CERTIFIED or CONDITIONAL with fixes completed).
+
+---
+
+#### G7: Publication Approval
+**Owner:** Visual Essay Director
+**Phase Boundary:** Approval → Deployment
+
+| Criterion | Requirement |
+|-----------|-------------|
+| All Gates Passed | G1-G6 verified complete |
+| No Outstanding Blockers | All critical issues resolved |
+| Index Entry Prepared | `visualEssays` array entry ready |
+| Metadata Complete | SEO, Open Graph, sitemap |
+| Final Review | Director has reviewed end-to-end |
+
+**Pass Condition:** Director sign-off on complete package.
+
+---
+
+### Gate Status Tracking
+
+During production, track gate status with this format:
+
+```markdown
+## Gate Status Report: [Essay Title]
+
+| Gate | Status | Date | Notes |
+|------|--------|------|-------|
+| G1: Brief Approval | ✅ Passed | Dec 8 | User approved |
+| G2: Design Research | ✅ Passed | Dec 8 | Neural network theme |
+| G3: Content Complete | ✅ Passed | Dec 9 | Editor approved |
+| G4: Citation Research | ✅ Passed | Dec 9 | 35 sources, 89% Tier 1-2 |
+| G5: Citation Audit | ✅ Certified | Dec 9 | Score: 9.2/10 |
+| G6: Scroll Certification | ⏳ In Progress | — | Awaiting real device test |
+| G7: Publication Approval | ⏳ Pending | — | Blocked by G6 |
+
+**Current Blocker:** G6 - Awaiting Safari iOS testing
+**Next Action:** Complete real device testing, invoke scrolling auditor
+```
+
+---
+
+### Tutorial: Working With Gates
+
+#### Scenario 1: Starting a New Visual Essay
+
+```
+# 1. Initiate production (starts at G1)
+Using @agents/visual-essay-director.md, initiate production for 
+a visual essay about "The History of Coffee".
+
+# Director will:
+# - Create production brief
+# - Define scope and timeline
+# - Present brief for G1 approval
+```
+
+#### Scenario 2: Gate Blocked - How to Proceed
+
+When a gate fails:
+
+```
+# Example: G5 Citation Audit failed
+
+## Citation Audit Result: ❌ REJECTED
+- Score: 5.8/10
+- Critical Issues:
+  - 3 claims lack Tier 1-2 citation
+  - 2 broken links
+  - 1 Tier 4 source present
+
+## Resolution Steps:
+1. Address critical issues first
+2. Invoke Research Expert for missing citations
+3. Fix broken links
+4. Remove/replace Tier 4 source
+5. Re-invoke Citation Audit Agent
+
+# Re-audit command:
+Using @agents/citation-audit-agent.md, re-audit citations for
+/essays/visual/history-of-coffee after fixes applied.
+Focus: Verify the 3 previously uncited claims now have sources.
+```
+
+#### Scenario 3: Expedited Production
+
+When timeline pressure exists:
+
+```
+# Request expedited production
+Using @agents/visual-essay-director.md, initiate expedited production
+for "Breaking News: AI Milestone" with 24-hour timeline.
+
+# Director will:
+# - Identify which gates can be parallelized (NOT skipped)
+# - G5 Citation Audit remains mandatory (no exceptions)
+# - G6 Scroll Certification remains mandatory (no exceptions)
+# - Document exception approval
+# - Schedule post-publication audit for accelerated gates
+```
+
+#### Scenario 4: Checking Gate Status Mid-Production
+
+```
+# Check current status
+Using @agents/visual-essay-director.md, provide gate status report
+for "The Thinking Machine" visual essay.
+
+# Director returns:
+# - Current gate position
+# - Pass/fail for completed gates
+# - Blockers if any
+# - Next actions required
+```
+
+---
+
+### Gate Ownership Summary
+
+| Gate | Owner Agent | Certification Output |
+|------|-------------|---------------------|
+| G1 | Visual Essay Director | Production Brief |
+| G2 | Scrollytelling Expert | Design Research Report |
+| G3 | Historian Editor | Fact-Check Approval |
+| G4 | Research & Citations Expert | Source Package |
+| G5 | Citation Audit Agent | Citation Certification |
+| G6 | **Immersive Scrolling Auditor** | Scroll Certification |
+| G7 | Visual Essay Director | Publication Approval |
+
+---
 
 ### Invoking an Orchestrator
 
@@ -1318,7 +1745,7 @@ For complete end-to-end production with quality gates and certification:
      ├─► Invokes scrollytelling-expert.md for content/design (G2, G3)
      ├─► Invokes research-citations-expert.md for sources (G4)
      ├─► Invokes citation-audit-agent.md for verification (G5)
-     ├─► Verifies mobile testing (G6)
+     ├─► Invokes immersive-scrolling-auditor.md for scroll certification (G6)
      └─► Signs off on publication (G7)
 ```
 
@@ -1327,20 +1754,21 @@ For complete end-to-end production with quality gates and certification:
 The detailed workflow for creating **mobile-native** scrollytelling content:
 
 ```
-1.  @agents/scrollytelling-expert.md              → Design Research (mobile-first visual identity)
-2.  @agents/research-citations-expert.md          → Source Discovery (Tier 1-2 only)
+1.  @agents/scrollytelling-expert.md              → Design Research (mobile-first visual identity) [G2]
+2.  @agents/research-citations-expert.md          → Source Discovery (Tier 1-2 only) [G4]
 3.  @agents/scrollytelling-expert.md              → Story Architecture (mobile layouts first)
 4.  @agents/historian-writer-expert.md            → Narrative Draft
-5.  @agents/historian-editor-expert.md            → Fact-Check
+5.  @agents/historian-editor-expert.md            → Fact-Check [G3]
 6.  @agents/research-citations-expert.md          → Final Source Audit
 7.  @agents/scrollytelling-expert.md              → Content Integration
 8.  @agents/ui-ux-design-expert.md                → Visual Refinement (mobile typography)
 9.  @agents/svg-illustration-animation-expert.md  → Visual Assets (characters, icons, animations)
-10. @agents/visual-auditor-agent.md               → Visual Certification (SVG quality, performance, accessibility) ⚠️ NEW
+10. @agents/visual-auditor-agent.md               → Visual Certification (SVG quality) ⚠️ BLOCKING
 11. @agents/software-engineering-expert.md        → Component Implementation (with certified SVG assets)
 12. @agents/immersive-experience-engineer.md      → Mobile-Native Layer (60fps, touch, Theatre Bar)
-13. @agents/citation-audit-agent.md               → Citation Verification (claim-source mapping)
-14. @agents/scrollytelling-expert.md              → Final Review (real device testing)
+13. @agents/citation-audit-agent.md               → Citation Verification (claim-source mapping) [G5]
+14. @agents/immersive-scrolling-auditor.md        → Scroll Certification (scroll-lock, 60fps, devices) [G6] ⚠️ NEW
+15. @agents/scrollytelling-expert.md              → Final Review → Publication Approval [G7]
 ```
 
 **When to Use Which:**
@@ -1357,7 +1785,8 @@ The detailed workflow for creating **mobile-native** scrollytelling content:
 - Step 10 (`visual-auditor-agent.md`) audits all SVG assets for technical quality, accessibility, animation performance, visual excellence, and content relevance. **BLOCKING**: Assets must receive certification (Grade B+ or higher) before integration.
 - Step 11 (`software-engineering-expert.md`) implements components using the certified SVG assets from step 10.
 - Step 12 (`immersive-experience-engineer.md`) ensures the final experience feels like a native app, not a website. This includes 60fps animations, touch interactions, hidden browser chrome, and Theatre Bar integration.
-- Step 13 (`citation-audit-agent.md`) verifies all citations are valid, sources are Tier 1-2, links work, and claims have proper support. **BLOCKING**: Cannot publish without citation certification.
+- Step 13 (`citation-audit-agent.md`) verifies all citations are valid, sources are Tier 1-2, links work, and claims have proper support. **BLOCKING (G5)**: Cannot publish without citation certification.
+- Step 14 (`immersive-scrolling-auditor.md`) certifies all scroll-driven functionality: scroll-lock pin/release, 60fps performance, progress indicators, Safari iOS + Chrome Android real device testing. **BLOCKING (G6)**: Cannot publish without scroll certification.
 
 ### Quick Content Creation
 
