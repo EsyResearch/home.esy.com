@@ -312,18 +312,20 @@ export const trinityImages = {
 // Chapter 6 Images - The Decision
 export const decisionImages = {
   trumanPotsdam: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Potsdam_conference_1945-8.jpg/800px-Potsdam_conference_1945-8.jpg",
-    alt: "President Truman at the Potsdam Conference with Stalin and Churchill",
+    src: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Potsdam_Conference_%28Joseph_Stalin%2C_Harry_S._Truman%29.jpg",
+    alt: "President Truman with Stalin at the Potsdam Conference",
     caption: "Truman at Potsdam — 82 days into his presidency, he learned of the bomb's existence",
-    source: "U.S. Army Signal Corps",
-    date: "July 1945"
+    source: "U.S. Army Signal Corps / Wikimedia Commons",
+    date: "July 1945",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Potsdam_Conference_(Joseph_Stalin,_Harry_S._Truman).jpg"
   },
   truman: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/TRUMAN_58-766-09_%28cropped%29.jpg/440px-TRUMAN_58-766-09_%28cropped%29.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/e/e2/Harry_S_Truman%2C_bw_half-length_photo_portrait%2C_facing_front%2C_1945.jpg",
     alt: "President Harry S. Truman, 1945",
     caption: "'The most terrible thing ever discovered' — Truman authorized its use without apparent hesitation",
-    source: "Harry S. Truman Library",
-    date: "1945"
+    source: "U.S. Government / Wikimedia Commons",
+    date: "1945",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Harry_S_Truman,_bw_half-length_photo_portrait,_facing_front,_1945.jpg"
   }
 };
 
