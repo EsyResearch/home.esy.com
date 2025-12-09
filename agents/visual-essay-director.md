@@ -108,7 +108,7 @@
 | **G3: Content Complete** | Production → Citation | All sections drafted, fact-checked by Historian Editor | ✅ Yes |
 | **G4: Citation Research** | Citation Pipeline | Tier 1-2 sources for all major claims | ✅ Yes |
 | **G5: Citation Audit** | Citation → Approval | Citation Certification achieved | ✅ Yes |
-| **G6: Mobile Verification** | Pre-Publication | Real device testing confirmed | ✅ Yes |
+| **G6: Scroll Certification** | Pre-Publication | Immersive Scrolling Auditor certification | ✅ Yes |
 | **G7: Publication Approval** | Approval → Deploy | Director sign-off on complete package | ✅ Yes |
 
 ---
@@ -411,17 +411,53 @@ If audit identifies critical issues:
 
 ### Phase 4: Publication Approval (10%)
 
+#### Step 1: Invoke Immersive Scrolling Auditor (Gate 6)
+
+```
+Using @agents/immersive-scrolling-auditor.md, audit the scroll experience 
+for the visual essay at:
+
+Path: src/app/essays/visual/[story-slug]/
+
+Perform full 6-phase audit:
+1. Static Analysis
+2. Desktop Functional Testing
+3. Mobile Simulation Testing
+4. Real Device Testing (CRITICAL - Safari iOS + Chrome Android)
+5. Edge Case Testing
+6. Accessibility Testing
+
+Produce certification report with:
+- Overall score (must achieve ≥8.0 for certification)
+- All Tier 1 items must PASS
+- Blocking issues identified with fix recommendations
+```
+
+#### Step 2: Review Scroll Certification
+
+| Criterion | Status | Notes |
+|-----------|--------|-------|
+| Scroll-Lock Functionality | ⏳/✅/❌ | |
+| Animation Performance (60fps) | ⏳/✅/❌ | |
+| Safari iOS Real Device | ⏳/✅/❌ | |
+| Chrome Android Real Device | ⏳/✅/❌ | |
+| Accessibility (Reduced Motion) | ⏳/✅/❌ | |
+| No User Trapping | ⏳/✅/❌ | |
+
+**Gate 6 Status**: ⏳ Pending / ✅ Certified / ❌ Rejected
+
 #### Pre-Publication Checklist
 
 **Content Quality**
-- [ ] All quality gates (G1-G5) passed
+- [ ] All quality gates (G1-G6) passed
 - [ ] Citation Certification achieved
+- [ ] Scroll Certification achieved
 - [ ] No critical issues outstanding
 - [ ] Design research uniqueness confirmed
 
 **Technical Quality**
-- [ ] Mobile device testing confirmed (iPhone + Android)
-- [ ] 60fps animations verified
+- [ ] Scroll Auditor certification achieved
+- [ ] 60fps animations verified (DevTools Performance panel)
 - [ ] Safe areas respected (notches, home indicators)
 - [ ] No console errors
 - [ ] Cross-browser compatibility verified
@@ -643,6 +679,36 @@ visual essay at [PATH]. Produce full Citation Audit Report.
 4. Director approves/rejects suggested fixes
 5. Fixes implemented and re-audited if needed
 6. Director accepts Certification when achieved
+
+### Working With immersive-scrolling-auditor.md
+**Role**: Scroll functionality certification for Gate 6
+
+**Division of Responsibilities**
+- **Visual Essay Director**: Audit invocation, certification acceptance, publication decision
+- **Immersive Scrolling Auditor**: Scroll-lock testing, performance verification, mobile certification
+- **Shared**: Quality standards, blocking issue prioritization
+
+**Invocation Protocol**
+```
+Using @agents/immersive-scrolling-auditor.md, audit the scroll experience 
+for the visual essay at [PATH]. Perform full 6-phase audit and produce 
+certification report.
+```
+
+**Handoff Protocol**
+1. Director invokes audit after implementation complete (post Gate 5)
+2. Scrolling Auditor performs 6-phase audit methodology
+3. Auditor delivers certification report with status
+4. Director reviews blocking issues
+5. Fixes implemented by Immersive Experience Engineer if needed
+6. Auditor performs targeted re-audit
+7. Director accepts certification for Gate 6
+
+**Certification Requirements**
+- Must achieve CERTIFIED or CONDITIONAL (with fixes completed) status
+- All Tier 1 (BLOCKING) items must pass
+- Safari iOS real device testing mandatory
+- 60fps performance verified with DevTools
 
 ### Exception Handling
 

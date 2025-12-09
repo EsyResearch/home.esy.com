@@ -40,6 +40,15 @@ export const heroImages = {
 // ==================== PROLOGUE: THE ETERNAL QUESTION ====================
 
 export const prologueImages = {
+  babbagePortrait: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Charles_Babbage_-_1860.jpg",
+    alt: "Charles Babbage portrait, 1860",
+    caption: "Charles Babbage — the father of the computer, dreamed of thinking machines",
+    source: "Wikimedia Commons",
+    date: "1860",
+    license: "Public Domain",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Charles_Babbage_-_1860.jpg",
+  },
   babbageEngine: {
     src: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Babbage_Difference_Engine.jpg",
     alt: "Babbage's Difference Engine No. 2",
@@ -48,6 +57,15 @@ export const prologueImages = {
     date: "1991 (replica of 1847 design)",
     license: "CC BY-SA 2.0",
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Babbage_Difference_Engine.jpg",
+  },
+  adaLovelace: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Ada_Lovelace_portrait.jpg",
+    alt: "Ada Lovelace portrait",
+    caption: "Ada Lovelace — wrote the first algorithm, imagined machines that could compose music",
+    source: "Wikimedia Commons",
+    date: "c. 1840",
+    license: "Public Domain",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Ada_Lovelace_portrait.jpg",
   },
   eniac: {
     src: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Eniac.jpg",
@@ -199,6 +217,33 @@ export const goldenAgeImages = {
     license: "Public Domain",
     sourceUrl: "https://commons.wikimedia.org/wiki/File:ELIZA_conversation.png",
   },
+  deepBlue: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/b/be/Deep_Blue.jpg",
+    alt: "IBM Deep Blue chess computer",
+    caption: "Deep Blue — the machine that defeated world chess champion Garry Kasparov in 1997",
+    source: "IBM / Wikimedia Commons",
+    date: "1997",
+    license: "CC BY-SA 2.0",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Deep_Blue.jpg",
+  },
+  kasparovDeepBlue: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/b/be/Kasparov_Versus_Deep_Blue.jpg",
+    alt: "Garry Kasparov playing against Deep Blue",
+    caption: "1997: Kasparov vs Deep Blue — humanity's first loss to a chess computer",
+    source: "Wikimedia Commons",
+    date: "1997",
+    license: "CC BY-SA 3.0",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Kasparov_Versus_Deep_Blue.jpg",
+  },
+  perceptronDiagram: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Perceptron_example.svg",
+    alt: "Perceptron neural network diagram",
+    caption: "The Perceptron — a simple neural network that sparked a revolution",
+    source: "Wikimedia Commons",
+    date: "2010",
+    license: "CC BY-SA 3.0",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Perceptron_example.svg",
+  },
 };
 
 // ==================== CHAPTER 4: THE FIRST WINTER ====================
@@ -219,6 +264,15 @@ export const expertSystemsImages = {
     date: "1985",
     license: "CC BY-SA 3.0",
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Symbolics-3640.png",
+  },
+  ibmWatson: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/0/0a/IBM_Watson.PNG",
+    alt: "IBM Watson on Jeopardy!",
+    caption: "IBM Watson — the expert system that won Jeopardy! in 2011",
+    source: "IBM / Wikimedia Commons",
+    date: "2011",
+    license: "Fair Use",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:IBM_Watson.PNG",
   },
 };
 
@@ -291,6 +345,15 @@ export const imageNetImages = {
     license: "CC BY-SA 4.0",
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Ilya_Sutskever_at_NeurIPS_2022.png",
   },
+  andrewNg: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/1/18/Andrew_Ng.jpg",
+    alt: "Andrew Ng",
+    caption: "Andrew Ng — brought deep learning to Google, then to millions through Coursera",
+    source: "Wikimedia Commons",
+    date: "2016",
+    license: "CC BY-SA 4.0",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Andrew_Ng.jpg",
+  },
   gpuCluster: {
     src: "https://upload.wikimedia.org/wikipedia/commons/d/d3/IBM_Blue_Gene_P_supercomputer.jpg",
     alt: "High-performance computing cluster",
@@ -346,8 +409,15 @@ export const deepLearningImages = {
 // ==================== CHAPTER 10: THE TRANSFORMER ====================
 
 export const transformerImages = {
-  // The transformer architecture is typically shown through diagrams
-  // rather than photographs - using data visualization in the essay
+  attentionPaper: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/8/8f/Attention_Is_All_You_Need.pdf",
+    alt: "Attention Is All You Need paper",
+    caption: "The 2017 paper that introduced the Transformer — eight pages that changed everything",
+    source: "Google Brain / Wikimedia Commons",
+    date: "2017",
+    license: "CC BY 4.0",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Attention_Is_All_You_Need.pdf",
+  },
   googleBrain: {
     src: "https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg",
     alt: "Google logo",
