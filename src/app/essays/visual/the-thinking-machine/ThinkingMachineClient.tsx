@@ -356,7 +356,7 @@ const PioneerPortrait: React.FC<{ pioneer: Pioneer; delay: number }> = ({
     <article 
       ref={ref}
       className={`scientist-portrait ${isVisible ? "revealed" : ""}`}
-      style={{ animationDelay: `${delay}ms` }}
+      style={{ transitionDelay: `${delay}ms` }}
     >
       <div className="portrait-frame">
         {pioneer.photoSrc ? (
@@ -786,6 +786,17 @@ const Chapter2: React.FC = () => {
           <h2 className="chapter-title">The Dartmouth Summer</h2>
           <p className="chapter-metaphor">The moment lightning struck—and a name was born</p>
         </header>
+        
+        {/* Chapter hero image */}
+        <div className="chapter-hero-image" style={{ marginBottom: "var(--space-xl)" }}>
+          <ArchivalPhoto
+            src={dartmouthImages.dartmouthCampus?.src}
+            alt={dartmouthImages.dartmouthCampus?.alt || "Dartmouth College campus"}
+            caption={dartmouthImages.dartmouthCampus?.caption || "Dartmouth College — where artificial intelligence got its name"}
+            source="Wikimedia Commons"
+            date="1956"
+          />
+        </div>
         
         <div className="chapter-text centered">
           <p className="chapter-intro">
