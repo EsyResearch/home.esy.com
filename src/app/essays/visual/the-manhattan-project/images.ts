@@ -413,44 +413,48 @@ export const nagasakiImages = {
 // Chapter 9 Images - The Reckoning
 export const reckoningImages = {
   oppenheimerMedal: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Groves_Oppenheimer.jpg",
-    alt: "Oppenheimer with Groves after the war",
+    src: "https://upload.wikimedia.org/wikipedia/commons/6/61/Trinity_Test_-_Oppenheimer_and_Groves_at_Ground_Zero_001.jpg",
+    alt: "Oppenheimer and Groves at Trinity Ground Zero",
     caption: "The hero of Los Alamos — honored by the nation he would soon be accused of betraying",
-    source: "U.S. Army",
-    date: "1945"
+    source: "U.S. Army / Wikimedia Commons",
+    date: "September 1945",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Trinity_Test_-_Oppenheimer_and_Groves_at_Ground_Zero_001.jpg"
   },
   oppenheimerHearing: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Atomic_Energy_Commission_Hearing.jpg/800px-Atomic_Energy_Commission_Hearing.jpg",
-    alt: "Oppenheimer at his security hearing",
+    src: "https://upload.wikimedia.org/wikipedia/commons/1/10/J._Robert_Oppenheimer_Testifies_to_Congress.jpg",
+    alt: "Oppenheimer testifying before Congress",
     caption: "The architect of American nuclear supremacy, on trial for disloyalty",
-    source: "Associated Press",
-    date: "1954"
+    source: "U.S. Government / Wikimedia Commons",
+    date: "1954",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:J._Robert_Oppenheimer_Testifies_to_Congress.jpg"
   },
   oppenheimerLate: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/JROppenheimer-1958.jpg/440px-JROppenheimer-1958.jpg",
-    alt: "Oppenheimer in his final years, gaunt and haunted",
+    src: "https://upload.wikimedia.org/wikipedia/commons/6/6a/J._Robert_Oppenheimer_visit_to_Israel_%28997009326988305171%29_%28cropped%29.jpg",
+    alt: "Oppenheimer in his later years during visit to Israel",
     caption: "The destroyer of worlds, destroyed. He died in 1967, never fully rehabilitated.",
-    source: "Philippe Halsman",
+    source: "Government Press Office (Israel) / Wikimedia Commons",
     date: "1958",
-    photographer: "Philippe Halsman"
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:J._Robert_Oppenheimer_visit_to_Israel_(997009326988305171)_(cropped).jpg"
   }
 };
 
 // Epilogue Images
 export const epilogueImages = {
   genbakuDome: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Genbaku_Dome04-r.JPG/800px-Genbaku_Dome04-r.JPG",
+    src: "https://upload.wikimedia.org/wikipedia/commons/5/51/A-Bomb_Dome.jpg",
     alt: "Hiroshima Peace Memorial (Genbaku Dome)",
     caption: "The only structure left standing near the hypocenter — preserved as a monument to peace",
-    source: "UNESCO World Heritage",
-    date: "Present day"
+    source: "Wikimedia Commons",
+    date: "Present day",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:A-Bomb_Dome.jpg"
   },
   peacePark: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Cenotaph_Hiroshima.jpg/800px-Cenotaph_Hiroshima.jpg",
-    alt: "Hiroshima Peace Memorial Park with eternal flame",
+    src: "https://upload.wikimedia.org/wikipedia/commons/4/4d/20181111_Hiroshima_Memorial_Cenotaph-2.jpg",
+    alt: "Hiroshima Peace Memorial Cenotaph",
     caption: "The eternal flame will burn until all nuclear weapons are abolished",
-    source: "Hiroshima Peace Memorial Museum",
-    date: "Present day"
+    source: "Wikimedia Commons",
+    date: "2018",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:20181111_Hiroshima_Memorial_Cenotaph-2.jpg"
   }
 };
 
