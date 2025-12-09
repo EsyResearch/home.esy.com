@@ -917,6 +917,24 @@ const Chapter3: React.FC = () => {
             date="1966"
           />
         </div>
+        
+        {/* Key figures of the Golden Age */}
+        <div className="photo-grid" style={{ marginTop: "var(--space-xl)" }}>
+          <ArchivalPhoto
+            src={goldenAgeImages.rosenblattPortrait?.src}
+            alt={goldenAgeImages.rosenblattPortrait?.alt || "Frank Rosenblatt"}
+            caption="Frank Rosenblatt — built the Perceptron, predicted conscious machines, vindicated sixty years later"
+            source="Cornell University"
+            date="1960s"
+          />
+          <ArchivalPhoto
+            src={goldenAgeImages.weizenbaumPortrait?.src}
+            alt={goldenAgeImages.weizenbaumPortrait?.alt || "Joseph Weizenbaum"}
+            caption="Joseph Weizenbaum — created ELIZA, then became horrified by what he'd built"
+            source="Ulrich Hansen / Wikimedia"
+            date="2005"
+          />
+        </div>
       </div>
     </section>
   );
@@ -1254,15 +1272,25 @@ const Chapter8: React.FC = () => {
           </div>
           
           <div className="chapter-visual">
-            <div className="key-figure">
-              <h3>Fei-Fei Li — The Data Visionary</h3>
-              <span className="figure-title">Created the catalyst</span>
-              <ul className="figure-facts">
-                <li>Created ImageNet when funding agencies called it &ldquo;unimportant&rdquo;</li>
-                <li>&ldquo;We realized algorithms weren&apos;t the bottleneck. Data was.&rdquo;</li>
-                <li>Democratized AI research by making ImageNet public</li>
-              </ul>
-            </div>
+            <ArchivalPhoto
+              src={imageNetImages.feifeiLi?.src}
+              alt={imageNetImages.feifeiLi?.alt || "Fei-Fei Li"}
+              caption="Fei-Fei Li — created ImageNet when funding agencies called it 'unimportant'"
+              source="ITU Pictures / Wikimedia"
+              date="2017"
+            />
+          </div>
+        </div>
+        
+        <div className="key-figure featured" style={{ marginTop: "var(--space-xl)" }}>
+          <div className="figure-content">
+            <h3>Fei-Fei Li — The Data Visionary</h3>
+            <span className="figure-title">Created the catalyst</span>
+            <ul className="figure-facts">
+              <li>Created ImageNet when funding agencies called it &ldquo;unimportant&rdquo;</li>
+              <li>&ldquo;We realized algorithms weren&apos;t the bottleneck. Data was.&rdquo;</li>
+              <li>Democratized AI research by making ImageNet public</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -1417,6 +1445,17 @@ const Chapter10: React.FC = () => {
             <span className="stat-value">2017</span>
             <span className="stat-label">The foundation was laid</span>
           </div>
+        </div>
+        
+        {/* Transformer architecture diagram */}
+        <div className="chapter-visual" style={{ marginTop: "var(--space-xl)", maxWidth: "500px", margin: "var(--space-xl) auto" }}>
+          <ArchivalPhoto
+            src={transformerImages.transformerArchitecture?.src}
+            alt={transformerImages.transformerArchitecture?.alt || "Transformer architecture diagram"}
+            caption="The Transformer architecture — attention mechanisms that revolutionized AI"
+            source="Wikimedia Commons"
+            date="2017"
+          />
         </div>
       </div>
     </section>
