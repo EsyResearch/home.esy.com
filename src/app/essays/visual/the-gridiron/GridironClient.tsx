@@ -993,6 +993,18 @@ const GridironClient: React.FC = () => {
             </li>
           </ul>
           
+          <h4 className="sources-subtitle">Image Credits</h4>
+          <ul className="sources-list">
+            <li>
+              <a href="https://commons.wikimedia.org/wiki/File:Walter_Camp._Portrait_by_George_M._Reevs.jpg" target="_blank" rel="noopener noreferrer">
+                Walter Camp Portrait by George M. Reevs (1909) — Wikimedia Commons, Public Domain
+              </a>
+              <span className="source-detail">
+                Originally published in The Century Illustrated Monthly Magazine, Volume 79
+              </span>
+            </li>
+          </ul>
+          
           <p className="sources-note">
             This narrative was fact-checked against authoritative historical records, 
             sports archives, and peer-reviewed research on American football history.

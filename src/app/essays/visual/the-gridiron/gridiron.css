@@ -1369,6 +1369,23 @@
   text-decoration: underline;
 }
 
+.sources-subtitle {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--chalk-white);
+  margin: var(--space-lg) 0 var(--space-sm) 0;
+  opacity: 0.8;
+}
+
+.source-detail {
+  display: block;
+  font-size: 0.75rem;
+  color: rgba(255, 250, 240, 0.4);
+  margin-top: 4px;
+  padding-left: var(--space-md);
+}
+
 .sources-note {
   font-size: 0.8125rem;
   font-style: italic;
