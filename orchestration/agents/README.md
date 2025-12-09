@@ -101,7 +101,8 @@ our scrollytelling piece about [topic]. Focus on .edu and major news sources.
 | G4: Citation Research | Tier 1-2 sources for all major claims | Research Expert |
 | G5: Citation Audit | Citation Certification achieved | Citation Audit Agent |
 | G6: Scroll Certification | Scroll-lock, 60fps, mobile device testing | **Scrolling Auditor** |
-| G7: Publication Approval | Director sign-off | Director |
+| G7: Mobile Verification | Real device tested (Safari iOS, Chrome Android) | Director |
+| G8: Publication Approval | Director sign-off | Director |
 
 > 📖 **Learn More:** See [Quality Gates System](#quality-gates-system) for comprehensive documentation.
 
@@ -1477,21 +1478,21 @@ Think of gates like airport security checkpoints:
 | Issues found post-publication | Issues caught before deployment |
 | User trust erodes | User trust strengthened |
 
-### The Seven Gates
+### The Eight Gates
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                     VISUAL ESSAY QUALITY GATES                               │
-│                                                                             │
-│  ┌─────┐    ┌─────┐    ┌─────┐    ┌─────┐    ┌─────┐    ┌─────┐    ┌─────┐ │
-│  │ G1  │───►│ G2  │───►│ G3  │───►│ G4  │───►│ G5  │───►│ G6  │───►│ G7  │ │
-│  │Brief│    │Design│   │Content│  │Sources│  │Citation│ │Scroll│   │Publish││
-│  └─────┘    └─────┘    └─────┘    └─────┘    └─────┘    └─────┘    └─────┘ │
-│     │          │          │          │          │          │          │     │
-│  Director  Scrolly-   Historian  Research   Citation   Scrolling  Director │
-│            telling     Editor     Expert     Audit      Auditor            │
-│            Expert                            Agent                         │
-└─────────────────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                        VISUAL ESSAY QUALITY GATES                                       │
+│                                                                                         │
+│  ┌─────┐   ┌─────┐   ┌─────┐   ┌─────┐   ┌─────┐   ┌─────┐   ┌─────┐   ┌─────┐        │
+│  │ G1  │──►│ G2  │──►│ G3  │──►│ G4  │──►│ G5  │──►│ G6  │──►│ G7  │──►│ G8  │        │
+│  │Brief│   │Design│  │Content│ │Sources│ │Citation│ │Scroll│  │Mobile│  │Publish│       │
+│  └─────┘   └─────┘   └─────┘   └─────┘   └─────┘   └─────┘   └─────┘   └─────┘        │
+│     │         │         │         │         │         │         │         │            │
+│  Director  Scrolly-  Historian Research  Citation  Scrolling Director  Director       │
+│            telling    Editor    Expert    Audit     Auditor                            │
+│            Expert                         Agent                                        │
+└────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 #### G1: Brief Approval
@@ -1637,7 +1638,7 @@ Think of gates like airport security checkpoints:
 **Certification Thresholds:**
 | Score | Status | Meaning |
 |-------|--------|---------|
-| ≥8.0/10 | ✅ CERTIFIED | Ready for G7 |
+| ≥8.0/10 | ✅ CERTIFIED | Ready for G7 (Mobile Verification) |
 | ≥6.0/10 | ⚠️ CONDITIONAL | Fix Tier 1 issues first |
 | <6.0/10 | ❌ REJECTED | Major rework required |
 
@@ -1651,13 +1652,29 @@ Think of gates like airport security checkpoints:
 
 ---
 
-#### G7: Publication Approval
+#### G7: Mobile Verification
+**Owner:** Visual Essay Director
+**Phase Boundary:** Pre-Publication
+
+| Criterion | Requirement |
+|-----------|-------------|
+| Safari iOS Real Device | Physical iPhone tested |
+| Chrome Android Real Device | Physical Android tested |
+| Safe Area Handling | Notches, home bars don't obscure content |
+| Touch Responsiveness | All interactions feel native |
+| Network Conditions | Tested on throttled 3G/4G |
+
+**Pass Condition:** Director confirms experience on real mobile devices.
+
+---
+
+#### G8: Publication Approval
 **Owner:** Visual Essay Director
 **Phase Boundary:** Approval → Deployment
 
 | Criterion | Requirement |
 |-----------|-------------|
-| All Gates Passed | G1-G6 verified complete |
+| All Gates Passed | G1-G7 verified complete |
 | No Outstanding Blockers | All critical issues resolved |
 | Index Entry Prepared | `visualEssays` array entry ready |
 | Metadata Complete | SEO, Open Graph, sitemap |
@@ -1681,7 +1698,9 @@ During production, track gate status with this format:
 | G3: Content Complete | ✅ Passed | Dec 9 | Editor approved |
 | G4: Citation Research | ✅ Passed | Dec 9 | 35 sources, 89% Tier 1-2 |
 | G5: Citation Audit | ✅ Certified | Dec 9 | Score: 9.2/10 |
-| G6: Scroll Certification | ⏳ In Progress | — | Awaiting real device test |
+| G6: Scroll Certification | ✅ Certified | Dec 9 | Score: 8.2/10 |
+| G7: Mobile Verification | ⏳ In Progress | — | Awaiting real device test |
+| G8: Publication Approval | ⏸️ Pending | — | Blocked on G7 |
 | G7: Publication Approval | ⏳ Pending | — | Blocked by G6 |
 
 **Current Blocker:** G6 - Awaiting Safari iOS testing

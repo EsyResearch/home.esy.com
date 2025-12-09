@@ -108,8 +108,9 @@
 | **G3: Content Complete** | Production → Citation | All sections drafted, fact-checked by Historian Editor | ✅ Yes |
 | **G4: Citation Research** | Citation Pipeline | Tier 1-2 sources for all major claims | ✅ Yes |
 | **G5: Citation Audit** | Citation → Approval | Citation Certification achieved | ✅ Yes |
-| **G6: Scroll Certification** | Pre-Publication | Immersive Scrolling Auditor certification | ✅ Yes |
-| **G7: Publication Approval** | Approval → Deploy | Director sign-off on complete package | ✅ Yes |
+| **G6: Scroll Certification** | Pre-Publication | Immersive Scrolling Auditor certification (≥8.0/10) | ✅ Yes |
+| **G7: Mobile Verification** | Pre-Publication | Real device testing (Safari iOS, Chrome Android) | ✅ Yes |
+| **G8: Publication Approval** | Approval → Deploy | Director sign-off on complete package | ✅ Yes |
 
 ---
 
@@ -495,8 +496,9 @@ Produce certification report with:
 | G3: Content Complete | ✅ |
 | G4: Citation Research | ✅ |
 | G5: Citation Audit | ✅ |
-| G6: Mobile Verification | ✅ |
-| G7: Publication Approval | ✅ |
+| G6: Scroll Certification | ✅ |
+| G7: Mobile Verification | ✅ |
+| G8: Publication Approval | ✅ |
 
 ### Citation Certification
 - **Certification Status**: ✅ Certified

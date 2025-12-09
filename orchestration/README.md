@@ -105,9 +105,10 @@ The system has three component types, each serving a distinct purpose:
 
 | Orchestrator | Domain | Agents Coordinated |
 |--------------|--------|-------------------|
-| `visual-essay-director.md` | Publication Pipeline | 4+ agents, 7 gates |
+| `visual-essay-director.md` | Publication Pipeline | 4+ agents, 8 gates |
 | `scrollytelling-expert.md` | Content Production | 7 agents |
 | `citation-audit-agent.md` | Source Verification | 2-3 agents |
+| `immersive-experience-auditor.md` | Experience QA | 1 agent (Scrolling Auditor) + direct checks |
 
 ---
 
@@ -152,7 +153,8 @@ The system has three component types, each serving a distinct purpose:
 │  │                  │──G4──► Research Expert (sources)                      │
 │  │                  │──G5──► Citation Audit (verification)                  │
 │  │                  │──G6──► Scrolling Auditor (certification)              │
-│  │                  │──G7──► Publication Approval                           │
+│  │                  │──G7──► Mobile Verification                            │
+│  │                  │──G8──► Publication Approval                           │
 │  └──────────────────┘                                                       │
 │                                                                              │
 │  When: Complex deliverable requires sequenced agents with quality gates     │
@@ -215,12 +217,12 @@ The system has three component types, each serving a distinct purpose:
 
 Orchestrators enforce **quality gates**—mandatory checkpoints that must pass before proceeding.
 
-### The Seven Gates (Visual Essay Pipeline)
+### The Eight Gates (Visual Essay Pipeline)
 
 ```
-G1 ──► G2 ──► G3 ──► G4 ──► G5 ──► G6 ──► G7
-Brief  Design Content Sources Citation Scroll  Publish
-       Research       Research Audit   Cert
+G1 ──► G2 ──► G3 ──► G4 ──► G5 ──► G6 ──► G7 ──► G8
+Brief  Design Content Sources Citation Scroll  Mobile  Publish
+                              Audit    Cert    Verify
 ```
 
 | Gate | Owner | What's Verified |
@@ -230,8 +232,9 @@ Brief  Design Content Sources Citation Scroll  Publish
 | G3 | Historian Editor | Facts verified |
 | G4 | Research Expert | Tier 1-2 sources |
 | G5 | Citation Audit | All claims supported |
-| G6 | Scrolling Auditor | 60fps, real device tested |
-| G7 | Director | Final approval |
+| G6 | Scrolling Auditor | 60fps, scroll-lock functional |
+| G7 | Director | Real device mobile verification |
+| G8 | Director | Final publication approval |
 
 **Deep Dive:** See [Quality Gates System](./agents/README.md#quality-gates-system) in Agents README.
 
