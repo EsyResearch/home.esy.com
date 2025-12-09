@@ -384,11 +384,12 @@ export const hiroshimaImages = {
 // Chapter 8 Images - Nagasaki
 export const nagasakiImages = {
   fatMan: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Fat_man.jpg/800px-Fat_man.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/2/2e/%22Fat_Man%22_Atomic_Bomb_%2827992893451%29.jpg",
     alt: "Fat Man atomic bomb",
     caption: "Fat Man — the plutonium implosion bomb, more powerful than Little Boy",
-    source: "U.S. Navy",
-    date: "August 1945"
+    source: "U.S. Navy / Wikimedia Commons",
+    date: "August 1945",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:%22Fat_Man%22_Atomic_Bomb_(27992893451).jpg"
   },
   nagasakiCloud: {
     src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Nagasakibomb.jpg/440px-Nagasakibomb.jpg",
@@ -396,14 +397,16 @@ export const nagasakiImages = {
     caption: "The only color photograph of a nuclear weapon used in war — August 9, 1945",
     source: "Charles Levy / U.S. Army",
     date: "August 9, 1945",
-    photographer: "Charles Levy"
+    photographer: "Charles Levy",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Nagasakibomb.jpg"
   },
   urakamiCathedral: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Urakami_Cathedral_-_The_Atomic_Bomb_Museum_in_Nagasaki.jpg/440px-Urakami_Cathedral_-_The_Atomic_Bomb_Museum_in_Nagasaki.jpg",
-    alt: "The Urakami Cathedral in ruins",
+    src: "https://upload.wikimedia.org/wikipedia/commons/a/a6/In_the_background%2C_a_Roman_Catholic_cathedral_on_a_hill_in_Nagasaki%2C_ca._1945_-_NARA_-_519385.jpg",
+    alt: "The Urakami Cathedral in ruins on a hill in Nagasaki",
     caption: "The largest Christian church in Asia, destroyed. Its congregation had gathered for confession.",
-    source: "Nagasaki Atomic Bomb Museum",
-    date: "1945"
+    source: "National Archives (NARA) / Wikimedia Commons",
+    date: "1945",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:In_the_background,_a_Roman_Catholic_cathedral_on_a_hill_in_Nagasaki,_ca._1945_-_NARA_-_519385.jpg"
   }
 };
 
