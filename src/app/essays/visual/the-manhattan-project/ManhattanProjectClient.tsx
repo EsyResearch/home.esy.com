@@ -430,16 +430,17 @@ const DocumentReveal: React.FC<{
   highlights?: number[];
   title: string;
 }> = ({ lines, highlights = [], title }) => {
-  const { containerRef, progress } = useScrollLock(2);
-  const visibleLines = Math.floor(progress * lines.length);
+  const { containerRef, progress, isPinned } = useScrollLock(2.5);
+  const visibleLines = Math.floor(progress * (lines.length + 1));
+  const isComplete = visibleLines >= lines.length;
   
   return (
     <div 
       ref={containerRef}
       className="document-reveal scroll-lock-container"
-      style={{ height: "200vh" }}
+      style={{ height: "280vh" }}
     >
-      <div className="document-pinned">
+      <div className={`document-pinned ${isPinned ? "is-pinned" : ""}`}>
         <div className="document-paper">
           <h4 className="document-title">{title}</h4>
           <div className="document-content">
@@ -447,14 +448,19 @@ const DocumentReveal: React.FC<{
               <p 
                 key={i}
                 className={`document-line ${i < visibleLines ? "visible" : ""} ${highlights.includes(i) ? "highlighted" : ""}`}
-                style={{ transitionDelay: `${i * 50}ms` }}
+                style={{ transitionDelay: `${i * 30}ms` }}
               >
-                {line}
+                {line || "\u00A0"}
               </p>
             ))}
           </div>
-          <div className="document-seal" />
+          <div className="document-seal" style={{ opacity: isComplete ? 1 : 0 }} />
         </div>
+        {isPinned && !isComplete && (
+          <div className="scroll-hint">
+            <span>Scroll to reveal</span>
+          </div>
+        )}
       </div>
     </div>
   );
