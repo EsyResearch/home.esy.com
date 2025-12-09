@@ -332,46 +332,52 @@ export const decisionImages = {
 // Chapter 7 Images - Hiroshima
 export const hiroshimaImages = {
   enolaGay: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/B-29_Enola_Gay_w_conditioned_air_cart.jpg/800px-B-29_Enola_Gay_w_conditioned_air_cart.jpg",
-    alt: "The Enola Gay on Tinian Island",
+    src: "https://upload.wikimedia.org/wikipedia/commons/7/70/B-29_Enola_Gay_w_Crews.jpg",
+    alt: "The Enola Gay B-29 with ground crew",
     caption: "Named after pilot Paul Tibbets' mother — 12 hours to target",
-    source: "U.S. Army Air Forces",
-    date: "August 1945"
+    source: "U.S. Army Air Forces / Wikimedia Commons",
+    date: "August 1945",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:B-29_Enola_Gay_w_Crews.jpg"
   },
   tibbets: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/6/6a/Tibbets-wave.jpg",
-    alt: "Colonel Paul Tibbets waving from the Enola Gay cockpit",
-    caption: "Tibbets waves from the cockpit before takeoff — August 6, 1945",
-    source: "U.S. Army Air Forces",
-    date: "August 6, 1945"
+    src: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Col_Paul_W._Tibbets%2C_Pilot_Of_B-29_Superfortress_%27Enola_Gay%27.jpg",
+    alt: "Colonel Paul Tibbets, pilot of the Enola Gay",
+    caption: "Tibbets, pilot of the Enola Gay — August 6, 1945",
+    source: "U.S. Army Air Forces / Wikimedia Commons",
+    date: "August 6, 1945",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Col_Paul_W._Tibbets,_Pilot_Of_B-29_Superfortress_%27Enola_Gay%27.jpg"
   },
   hiroshimaBefore: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Hiroshima_before_and_after.png/800px-Hiroshima_before_and_after.png",
-    alt: "Hiroshima before the atomic bomb",
-    caption: "Hiroshima — August 5, 1945. A city of 350,000.",
-    source: "U.S. Army Air Forces",
-    date: "August 5, 1945"
+    src: "https://upload.wikimedia.org/wikipedia/commons/0/09/Downtown_Hiroshima%2C_before_the_A-bomb.jpg",
+    alt: "Downtown Hiroshima before the atomic bomb",
+    caption: "Hiroshima — a city of 350,000, before 8:15 AM",
+    source: "U.S. Army Air Forces / Wikimedia Commons",
+    date: "1945",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Downtown_Hiroshima,_before_the_A-bomb.jpg"
   },
   hiroshimaAfter: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Hiroshima_aftermath.jpg/800px-Hiroshima_aftermath.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/a/a0/Hiroshima_aftermath.jpg",
     alt: "Hiroshima after the atomic bomb — complete devastation",
     caption: "The city disappeared in 43 seconds",
-    source: "U.S. Army Air Forces",
-    date: "August 7, 1945"
+    source: "U.S. Army Air Forces / Wikimedia Commons",
+    date: "August 1945",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Hiroshima_aftermath.jpg"
   },
   hiroshimaCloud: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Atomic_cloud_over_Hiroshima_-_NARA_542192_-_Edit.jpg/440px-Atomic_cloud_over_Hiroshima_-_NARA_542192_-_Edit.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/b/b7/Atomic_cloud_over_Hiroshima.jpg",
     alt: "Mushroom cloud over Hiroshima",
     caption: "8:15 AM local time — 80,000 killed instantly",
-    source: "National Archives (NARA)",
-    date: "August 6, 1945"
+    source: "U.S. Army Air Forces / Wikimedia Commons",
+    date: "August 6, 1945",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Atomic_cloud_over_Hiroshima.jpg"
   },
   humanShadow: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Human_Shadow_Etched_in_Stone.jpg/440px-Human_Shadow_Etched_in_Stone.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/3/3a/Human_shadow_on_stone_by_atomic_bombing_on_Hiroshima_-_Sumitomo_Bank%2C_Hiroshima_branch_-_around_December_1946.png",
     alt: "Human shadow burned into the Sumitomo Bank steps",
     caption: "A human, vaporized. Their shadow remains, burned into stone. This image contains everything.",
-    source: "Hiroshima Peace Memorial Museum",
-    date: "1945"
+    source: "Hiroshima Peace Memorial Museum / Wikimedia Commons",
+    date: "December 1946",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Human_shadow_on_stone_by_atomic_bombing_on_Hiroshima_-_Sumitomo_Bank,_Hiroshima_branch_-_around_December_1946.png"
   }
 };
 
