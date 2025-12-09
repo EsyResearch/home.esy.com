@@ -815,6 +815,14 @@
   margin: 3rem 0;
 }
 
+.before-after-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  text-align: center;
+  color: var(--parchment);
+  margin-bottom: 2rem;
+}
+
 .before-after-container {
   display: flex;
   flex-direction: column;
@@ -824,10 +832,19 @@
   margin: 0 auto;
 }
 
+.before-after-container.historical {
+  gap: 1.5rem;
+}
+
 @media (min-width: 768px) {
   .before-after-container {
     flex-direction: row;
     justify-content: center;
+  }
+  
+  .before-after-container.historical {
+    align-items: flex-start;
+    gap: 2rem;
   }
 }
 
@@ -835,7 +852,7 @@
 .city-after {
   text-align: center;
   flex: 1;
-  max-width: 400px;
+  max-width: 500px;
 }
 
 .city-before .skyline-svg,
@@ -844,15 +861,128 @@
   height: 120px;
 }
 
+/* Historical comparison frames */
+.historical-comparison-frame {
+  position: relative;
+  padding: 8px;
+  background: linear-gradient(135deg, #3D3226 0%, #2A231B 50%, #3D3226 100%);
+  border: 2px solid #5D4E37;
+  border-radius: 4px;
+  box-shadow: 
+    0 6px 25px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.historical-comparison-frame::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(212, 165, 116, 0.15);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.historical-comparison-frame.ruins {
+  border-color: rgba(157, 2, 8, 0.4);
+  box-shadow: 
+    0 6px 25px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(157, 2, 8, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.comparison-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+  filter: sepia(15%) contrast(1.05);
+}
+
+.comparison-caption {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  line-height: 1.4;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Image Placeholders (until real images are added) */
+.image-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 280px;
+  background: linear-gradient(135deg, var(--smoke) 0%, var(--charcoal) 100%);
+  border-radius: 2px;
+  padding: 2rem;
+}
+
+.image-placeholder.before {
+  background: linear-gradient(135deg, #3D3226 0%, #2A231B 100%);
+  border: 1px solid rgba(212, 165, 116, 0.2);
+}
+
+.image-placeholder.after {
+  background: linear-gradient(135deg, rgba(157, 2, 8, 0.2) 0%, var(--charcoal) 100%);
+  border: 1px solid rgba(157, 2, 8, 0.3);
+}
+
+.placeholder-icon {
+  font-size: 3rem;
+  opacity: 0.6;
+}
+
+.placeholder-text {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.placeholder-year {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
 .destruction-arrow {
-  font-size: 2rem;
-  color: var(--crimson);
-  transform: rotate(90deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.arrow-icon {
+  font-size: 2.5rem;
+  animation: pulse-fire 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-fire {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
 }
 
 @media (min-width: 768px) {
   .destruction-arrow {
-    transform: rotate(0);
+    margin: 0 1rem;
+  }
+  
+  .arrow-icon {
+    font-size: 3rem;
   }
 }
 

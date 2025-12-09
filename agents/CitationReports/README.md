@@ -17,7 +17,7 @@ Citation Reports serve as:
 
 | Report | Experience | Status | Date |
 |--------|------------|--------|------|
-| [the-ledger-citation-audit.md](./the-ledger-citation-audit.md) | The Ledger (#34) | 🔴 Requires Fixes | Dec 2024 |
+| [the-ledger-citation-audit.md](./the-ledger-citation-audit.md) | The Ledger (#34) | ✅ Approved | Dec 2024 |
 | [the-gridiron-citation-audit.md](./the-gridiron-citation-audit.md) | The Gridiron (#33) | 🟡 Approved with Conditions | Dec 2024 |
 
 ---

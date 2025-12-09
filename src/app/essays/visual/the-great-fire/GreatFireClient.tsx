@@ -673,27 +673,46 @@ const MovementIV_Devastation: React.FC = () => {
         </div>
       </div>
 
+      {/* Before/After Visual Comparison */}
       <div className="devastation-visual">
-        <div className="before-after-container">
+        <h3 className="before-after-title">The Transformation</h3>
+        <div className="before-after-container historical">
           <div className="city-before">
-            <MedievalSkyline />
+            <div className="historical-comparison-frame">
+              {/* 
+                IMAGE NEEDED: london-before-fire.jpg
+                Source: Visscher's Panorama of London, 1616
+                Download from: https://commons.wikimedia.org/wiki/File:Panorama_of_London_by_Claes_Visscher,_1616.jpg
+                Or use any pre-fire London view showing Old St Paul's
+              */}
+              <div className="image-placeholder before">
+                <span className="placeholder-icon">🏘️</span>
+                <span className="placeholder-text">Medieval London</span>
+                <span className="placeholder-year">Pre-1666</span>
+              </div>
+            </div>
             <span className="label">Before: Medieval London</span>
+            <p className="comparison-caption">Dense timber buildings, narrow streets, Old St Paul's dominating the skyline</p>
           </div>
-          <div className="destruction-arrow">→</div>
+          <div className="destruction-arrow">
+            <span className="arrow-icon">🔥</span>
+          </div>
           <div className="city-after">
-            <div className="ruins-illustration">
-              <svg viewBox="0 0 400 120" className="ruins-svg">
-                {/* Ruined building outlines */}
-                <path d="M20 120 L20 80 L35 80 L35 90 L50 90 L50 120" fill="none" stroke="var(--ash)" strokeWidth="2" />
-                <path d="M70 120 L70 70 L85 60 L100 70 L100 120" fill="none" stroke="var(--ash)" strokeWidth="2" />
-                <path d="M150 120 L150 40 L180 10 L210 40 L210 120" fill="none" stroke="var(--smoke)" strokeWidth="3" opacity="0.5" />
-                <path d="M240 120 L240 85 L265 75 L280 85 L280 120" fill="none" stroke="var(--ash)" strokeWidth="2" />
-                <path d="M300 120 L300 90 L320 80 L340 90 L340 120" fill="none" stroke="var(--ash)" strokeWidth="2" />
-                {/* Smoke rising */}
-                <path d="M180 10 Q175 -10 180 -30" stroke="var(--smoke)" strokeWidth="4" fill="none" opacity="0.4" />
-              </svg>
+            <div className="historical-comparison-frame ruins">
+              {/* 
+                IMAGE NEEDED: london-after-fire.jpg  
+                Source: Wenceslaus Hollar's view of London ruins, 1666
+                Download from: https://commons.wikimedia.org/wiki/File:London_after_the_fire.jpg
+                Or use any post-fire London ruins view
+              */}
+              <div className="image-placeholder after">
+                <span className="placeholder-icon">🏚️</span>
+                <span className="placeholder-text">Ashes & Ruin</span>
+                <span className="placeholder-year">Sept 1666</span>
+              </div>
             </div>
             <span className="label">After: Ashes & Ruin</span>
+            <p className="comparison-caption">436 acres destroyed, only stone shells and chimneys remaining</p>
           </div>
         </div>
       </div>
@@ -1015,6 +1034,14 @@ const SourcesSection: React.FC = () => {
             <li>
               <strong>"The Great Fire of London"</strong> — Anonymous, c. 1675, oil on panel
               <span className="source-note">Museum of London (Accession #000793). Public domain. <a href="https://commons.wikimedia.org/wiki/File:Great_Fire_London.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></span>
+            </li>
+            <li>
+              <strong>"London Before the Fire"</strong> — Claes Visscher, 1616, panoramic view
+              <span className="source-note">Panorama of London showing pre-fire cityscape with Old St Paul's. Public domain. <a href="https://commons.wikimedia.org/wiki/File:Panorama_of_London_by_Claes_Visscher,_1616.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></span>
+            </li>
+            <li>
+              <strong>"London After the Fire"</strong> — Wenceslaus Hollar, 1666, etching
+              <span className="source-note">View of London ruins looking from Southwark. Public domain. <a href="https://commons.wikimedia.org/wiki/File:London_after_the_fire.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></span>
             </li>
             <li>
               <strong>Portrait of Samuel Pepys</strong> — John Hayls, 1666, oil on canvas
