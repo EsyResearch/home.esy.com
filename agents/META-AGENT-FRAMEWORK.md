@@ -625,6 +625,7 @@ Current agents derived from this framework:
 | `quotes-audit-agent.md` | **Quote Verification** | Quote Authenticity Specialist | **Orchestrated by** Citation Audit Agent |
 | `svg-illustration-animation-expert.md` | **Visual Design** | SVG Illustrator & Animator | ← Scrollytelling, ← Children's Fiction, → Immersive Eng, ← UI/UX, → **Visual Auditor** |
 | `visual-auditor-agent.md` | **Visual Quality Assurance** | SVG Quality & Performance Certifier | **Post-processor** ← SVG Expert, → Scrollytelling, → Children's Fiction (MANDATORY) |
+| `image-research-licensing-expert.md` | **Visual Research** | Public Domain & Rights Specialist | ← **Visual Essay Director**, ← Scrollytelling, → Citation Audit, → SVG Expert (references) |
 
 ---
 
