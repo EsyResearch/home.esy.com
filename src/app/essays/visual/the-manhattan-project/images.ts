@@ -149,28 +149,28 @@ export const chapter2Images = {
 // Chapter 3 Images - The Minds
 export const scientistImages = {
   bohr: {
-    src: "/images/manhattan-project/niels-bohr.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Niels_Bohr.jpg/440px-Niels_Bohr.jpg",
     alt: "Niels Bohr in contemplation, pipe in hand",
     caption: "The father figure — Bohr escaped Nazi-occupied Denmark and arrived under the codename 'Nicholas Baker'",
     source: "Nobel Foundation",
     date: "1922"
   },
   feynman: {
-    src: "/images/manhattan-project/richard-feynman.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/en/4/42/Richard_Feynman_Nobel.jpg",
     alt: "Richard Feynman, the irreverent genius",
     caption: "The youngest group leader at Los Alamos, age 24. His wife died while he worked on the bomb.",
     source: "Nobel Foundation",
     date: "1965"
   },
   feynmanLosAlamos: {
-    src: "/images/manhattan-project/feynman-los-alamos.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/e/eb/Richard_Feynman_Los_Alamos_ID_badge.jpg",
     alt: "Richard Feynman at Los Alamos with colleagues",
     caption: "Feynman (center) at Los Alamos — cracked safes for fun, played bongos, drove security crazy",
     source: "Los Alamos National Laboratory",
     date: "1944"
   },
   szilard: {
-    src: "/images/manhattan-project/leo-szilard.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Leo_Szilard.jpg/440px-Leo_Szilard.jpg",
     alt: "Leo Szilard, the conscience of the project",
     caption: "Conceived the chain reaction in 1933, drafted the Einstein letter, then petitioned against using the bomb on civilians",
     source: "Department of Energy / Wikimedia Commons",
@@ -178,7 +178,7 @@ export const scientistImages = {
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Leo_Szilard.jpg"
   },
   teller: {
-    src: "/images/manhattan-project/edward-teller.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/EdwardTeller1958.jpg/440px-EdwardTeller1958.jpg",
     alt: "Edward Teller, the hawk",
     caption: "Even during the Manhattan Project, Teller was obsessed with building something bigger — the hydrogen bomb",
     source: "Los Alamos National Laboratory / Wikimedia Commons",
@@ -186,14 +186,14 @@ export const scientistImages = {
     sourceUrl: "https://commons.wikimedia.org/wiki/File:EdwardTeller1958.jpg"
   },
   bethe: {
-    src: "/images/manhattan-project/hans-bethe.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Hans_Bethe.jpg/440px-Hans_Bethe.jpg",
     alt: "Hans Bethe at the blackboard",
     caption: "The calculator — Bethe led the Theoretical Division and figured out how stars produce energy",
     source: "Cornell University",
     date: "1940s"
   },
   fuchs: {
-    src: "/images/manhattan-project/klaus-fuchs.png",
+    src: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Klaus_Fuchs_ID_badge.png",
     alt: "Klaus Fuchs Los Alamos ID badge photo",
     caption: "The spy — Fuchs passed atomic secrets to the Soviets while working at the heart of Los Alamos",
     source: "Los Alamos National Laboratory / Wikimedia Commons",
