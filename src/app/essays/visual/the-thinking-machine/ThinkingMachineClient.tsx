@@ -389,17 +389,21 @@ const HeroSection: React.FC = () => {
   const { containerRef, progress, isPinned } = useScrollLock(4);
   
   const phase = useMemo(() => {
-    if (progress < 0.15) return "question";
-    if (progress < 0.35) return "silhouettes";
-    if (progress < 0.55) return "dialogue";
-    if (progress < 0.75) return "evolution";
-    if (progress < 0.9) return "turing";
+    // Extended question phase (0-22%) to allow reading "— Alan Turing, 1950" attribution
+    // Typewriter completes around 10%, holds for ~12% more scroll before fading
+    if (progress < 0.22) return "question";
+    if (progress < 0.40) return "silhouettes";
+    if (progress < 0.58) return "dialogue";
+    if (progress < 0.76) return "evolution";
+    if (progress < 0.90) return "turing";
     return "title";
   }, [progress]);
 
   // Typewriter effect for the question
+  // Multiplier of 8 means typewriter completes at ~12.5% progress
+  // leaving ~10% of the question phase to read the attribution
   const question = "Can a machine think?";
-  const visibleChars = phase === "question" ? Math.floor(progress * 6 * question.length) : question.length;
+  const visibleChars = phase === "question" ? Math.floor(progress * 8 * question.length) : question.length;
   const displayQuestion = question.slice(0, Math.min(visibleChars, question.length));
   
   return (
@@ -421,11 +425,11 @@ const HeroSection: React.FC = () => {
         
         {/* Silhouettes: Human vs Machine */}
         <div className="hero-silhouettes" style={{ opacity: phase === "silhouettes" || phase === "dialogue" ? 1 : 0 }}>
-          <div className={`silhouette-human ${progress > 0.2 ? "visible" : ""}`}>
+          <div className={`silhouette-human ${progress > 0.27 ? "visible" : ""}`}>
             <div className="silhouette-icon" />
             <span style={{ marginTop: "1rem", color: "#888" }}>Human</span>
           </div>
-          <div className={`silhouette-machine ${progress > 0.25 ? "visible" : ""}`}>
+          <div className={`silhouette-machine ${progress > 0.32 ? "visible" : ""}`}>
             <div className="silhouette-icon" />
             <span style={{ marginTop: "1rem", color: "#888" }}>Machine</span>
           </div>
@@ -434,16 +438,16 @@ const HeroSection: React.FC = () => {
         {/* Dialogue: The Imitation Game */}
         {phase === "dialogue" && (
           <div className="hero-dialogue">
-            <div className={`dialogue-line human ${progress > 0.38 ? "visible" : ""}`}>
+            <div className={`dialogue-line human ${progress > 0.43 ? "visible" : ""}`}>
               What do you think about poetry?
             </div>
-            <div className={`dialogue-line machine ${progress > 0.42 ? "visible" : ""}`}>
+            <div className={`dialogue-line machine ${progress > 0.47 ? "visible" : ""}`}>
               Poetry speaks to the human condition in ways I find fascinating.
             </div>
-            <div className={`dialogue-line human ${progress > 0.46 ? "visible" : ""}`}>
+            <div className={`dialogue-line human ${progress > 0.51 ? "visible" : ""}`}>
               Which response was human?
             </div>
-            <div className={`dialogue-line machine ${progress > 0.50 ? "visible" : ""}`}>
+            <div className={`dialogue-line machine ${progress > 0.55 ? "visible" : ""}`}>
               Does it matter?
             </div>
           </div>
