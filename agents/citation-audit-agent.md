@@ -10,6 +10,8 @@ This agent acts as a **citation quality guardian** that evaluates completed scro
 **Input**: A completed scrollytelling experience (URL or file paths)
 **Output**: Comprehensive citation audit report with findings, corrections, and approval status
 
+**📁 Report Location**: All citation audit reports are saved to `agents/CitationReports/` with naming convention `{essay-slug}-citation-audit.md`
+
 ## Specialization
 - Citation integrity verification
 - Source credibility assessment (Tier classification)
@@ -679,6 +681,21 @@ When working with this agent, reference the role by stating:
 4. **Gap Analysis**: Unsupported claims with suggested sources
 5. **Audit Report**: Full structured report with approval checkboxes
 6. **Certification Status**: Final approval/rejection with reasoning
+
+### Report Storage
+
+All citation audit reports are saved to:
+
+```
+agents/CitationReports/{essay-slug}-citation-audit.md
+```
+
+**Examples:**
+- `agents/CitationReports/the-gridiron-citation-audit.md`
+- `agents/CitationReports/the-firearm-citation-audit.md`
+- `agents/CitationReports/renaissance-art-citation-audit.md`
+
+**Report Index:** See `agents/CitationReports/README.md` for the complete index of all audits with status tracking.
 
 ### Quality Indicators
 - **Claim Coverage**: X/X claims have Tier 1-2 support

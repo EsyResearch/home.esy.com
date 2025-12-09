@@ -1,0 +1,800 @@
+/* ============================================================================
+   THE LEDGER - Visual Essay Design System
+   ============================================================================
+   Visual Identity: Weighty institutional elegance → digital ethereal flux
+   Derived From: Metal coins, paper currency, digital transactions
+   Animation Philosophy: Heavy/metallic → paper flutter → digital dissolution
+   ============================================================================ */
+
+/* ==================== DESIGN TOKENS ==================== */
+:root {
+  /* Primary Palette - Derived from money's materials */
+  --coin-gold: #D4AF37;
+  --coin-gold-light: #F0D78C;
+  --coin-gold-dark: #9E7B1B;
+  --patina-bronze: #CD7F32;
+  --patina-bronze-dark: #8B5A2B;
+  --silver-coin: #C0C0C0;
+  --silver-dark: #A9A9A9;
+  
+  /* Paper Money */
+  --dollar-green: #85BB65;
+  --dollar-green-dark: #5A8A3C;
+  --paper-cream: #F5F5DC;
+  --ink-black: #1A1A1A;
+  
+  /* Digital/Crypto */
+  --electric-cyan: #00D4FF;
+  --electric-cyan-glow: rgba(0, 212, 255, 0.3);
+  --bitcoin-orange: #F7931A;
+  --blockchain-purple: #8B5CF6;
+  
+  /* Backgrounds - Era transition */
+  --vault-black: #0D0D0D;
+  --digital-dark: #0A0A1A;
+  --ledger-cream: #FAF8F0;
+  
+  /* Text */
+  --text-primary: #FAFAFA;
+  --text-secondary: #A0A0A0;
+  --text-accent: var(--coin-gold);
+  
+  /* Typography */
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+  
+  /* Spacing */
+  --section-padding: clamp(2rem, 8vw, 6rem);
+  --content-max-width: 1200px;
+  
+  /* Transitions */
+  --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ==================== BASE STYLES ==================== */
+.ledger-story {
+  background: linear-gradient(180deg, 
+    var(--vault-black) 0%,
+    var(--vault-black) 40%,
+    var(--digital-dark) 100%
+  );
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: var(--font-body);
+}
+
+/* ==================== SCROLL PROGRESS ==================== */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+}
+
+.scroll-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, 
+    var(--patina-bronze) 0%,
+    var(--coin-gold) 30%,
+    var(--dollar-green) 60%,
+    var(--electric-cyan) 100%
+  );
+  transition: width 0.1s linear;
+}
+
+/* ==================== VALUE COUNTER (Unique Interaction) ==================== */
+.value-counter {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(13, 13, 13, 0.9);
+  border: 1px solid var(--coin-gold);
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  color: var(--coin-gold);
+  z-index: 999;
+  backdrop-filter: blur(10px);
+  transition: all 0.5s var(--transition-smooth);
+}
+
+.value-counter.era-ancient {
+  border-color: var(--patina-bronze);
+  color: var(--patina-bronze);
+}
+
+.value-counter.era-coin {
+  border-color: var(--coin-gold);
+  color: var(--coin-gold);
+}
+
+.value-counter.era-paper {
+  border-color: var(--dollar-green);
+  color: var(--dollar-green);
+}
+
+.value-counter.era-digital {
+  border-color: var(--electric-cyan);
+  color: var(--electric-cyan);
+  box-shadow: 0 0 20px var(--electric-cyan-glow);
+}
+
+.value-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* ==================== SECTION BASE ==================== */
+.ledger-section {
+  min-height: 100vh;
+  padding: var(--section-padding);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s var(--transition-smooth),
+              transform 0.8s var(--transition-smooth);
+}
+
+.ledger-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==================== HERO SECTION ==================== */
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  background: radial-gradient(ellipse at center bottom,
+    rgba(212, 175, 55, 0.15) 0%,
+    transparent 60%
+  );
+}
+
+.hero-visual {
+  margin-bottom: 2rem;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 10vw, 7rem);
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.hero-title .accent {
+  display: block;
+  color: var(--coin-gold);
+  text-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+.hero-question {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 4vw, 2rem);
+  font-style: italic;
+  color: var(--coin-gold-light);
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-left: 3px solid var(--coin-gold);
+  text-align: left;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.scroll-arrow {
+  font-size: 1.5rem;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* ==================== SPLIT SCREEN LAYOUT ==================== */
+.split-screen {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .split-screen {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+  
+  .split-screen.reverse {
+    direction: rtl;
+  }
+  
+  .split-screen.reverse > * {
+    direction: ltr;
+  }
+}
+
+.split-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.split-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ==================== SECTION BADGE ==================== */
+.section-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--coin-gold);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--coin-gold);
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.section-badge.paper-era {
+  color: var(--dollar-green);
+  border-color: var(--dollar-green);
+}
+
+.section-badge.digital-era {
+  color: var(--electric-cyan);
+  border-color: var(--electric-cyan);
+}
+
+/* ==================== TYPOGRAPHY ==================== */
+.ledger-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.ledger-section .lead {
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.ledger-section p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+/* ==================== TIMELINE SECTION ==================== */
+.timeline-section {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+.timeline-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg,
+    var(--patina-bronze) 0%,
+    var(--coin-gold) 50%,
+    var(--dollar-green) 100%
+  );
+}
+
+.timeline-event {
+  position: relative;
+  padding: 2rem 0;
+  padding-left: 3rem;
+}
+
+.timeline-event::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 2.5rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--coin-gold);
+  border: 3px solid var(--vault-black);
+}
+
+.timeline-event.bronze::before {
+  background: var(--patina-bronze);
+}
+
+.timeline-event.paper::before {
+  background: var(--dollar-green);
+}
+
+.event-year {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--coin-gold);
+  margin-bottom: 0.5rem;
+}
+
+.event-content h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.event-content p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ==================== STICKY SCROLL SECTION ==================== */
+.sticky-scroll-section {
+  position: relative;
+  min-height: 300vh;
+}
+
+.sticky-element {
+  position: sticky;
+  top: 15vh;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.scroll-panels {
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  right: 0;
+}
+
+.scroll-panel {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--section-padding);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.scroll-panel h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  color: var(--coin-gold);
+  margin-bottom: 1rem;
+}
+
+/* ==================== COMPARISON SECTION ==================== */
+.comparison-section {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+.comparison-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.comparison-container {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+@media (max-width: 768px) {
+  .comparison-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.comparison-panel {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.comparison-panel.before {
+  border-color: var(--patina-bronze);
+}
+
+.comparison-panel.after {
+  border-color: var(--dollar-green);
+}
+
+.comparison-panel h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.comparison-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.divider-year {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  color: var(--coin-gold);
+  font-weight: 700;
+}
+
+.divider-arrow {
+  font-size: 2rem;
+  color: var(--coin-gold);
+  margin: 1rem 0;
+}
+
+/* ==================== QUOTE MONUMENT ==================== */
+.quote-monument-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  background: radial-gradient(ellipse at center,
+    rgba(212, 175, 55, 0.1) 0%,
+    transparent 50%
+  );
+}
+
+.monument-backdrop {
+  margin-bottom: 3rem;
+}
+
+.monument-quote {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.monument-quote p {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.monument-quote cite {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--coin-gold);
+  font-style: normal;
+}
+
+.monument-context {
+  max-width: 600px;
+  margin: 3rem auto 0;
+  text-align: left;
+}
+
+/* ==================== DATA VIZ SECTION ==================== */
+.data-viz-section {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+.data-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.data-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s var(--transition-smooth),
+              border-color 0.3s var(--transition-smooth);
+}
+
+.data-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--electric-cyan);
+}
+
+.data-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.data-value {
+  font-family: var(--font-mono);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--electric-cyan);
+  margin-bottom: 0.5rem;
+}
+
+.data-label {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.data-description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ==================== LEGACY SECTION ==================== */
+.legacy-section {
+  text-align: center;
+  position: relative;
+  background: linear-gradient(180deg,
+    var(--digital-dark) 0%,
+    rgba(0, 212, 255, 0.05) 50%,
+    var(--digital-dark) 100%
+  );
+}
+
+.legacy-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--section-padding);
+}
+
+.legacy-content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+}
+
+.legacy-lead {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.final-insight {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-style: italic;
+  color: var(--electric-cyan);
+  padding: 2rem;
+  border: 1px solid var(--electric-cyan);
+  border-radius: 12px;
+  margin: 3rem 0;
+  background: rgba(0, 212, 255, 0.05);
+}
+
+/* ==================== SOURCES SECTION ==================== */
+.sources-section {
+  background: rgba(0, 0, 0, 0.3);
+  padding: var(--section-padding);
+}
+
+.sources-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.sources-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+}
+
+.sources-subtitle {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin: 2rem 0 1rem;
+}
+
+.sources-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sources-list li a {
+  color: var(--electric-cyan);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sources-list li a:hover {
+  color: var(--coin-gold);
+  text-decoration: underline;
+}
+
+.sources-note {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* ==================== SVG ILLUSTRATIONS ==================== */
+.coin-illustration {
+  width: 100%;
+  max-width: 300px;
+}
+
+.coin-stack {
+  animation: coinBounce 3s ease-in-out infinite;
+}
+
+@keyframes coinBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.barter-illustration,
+.cowrie-illustration,
+.paper-illustration,
+.digital-illustration {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Coin mint animation */
+.coin-mint {
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.5s ease, transform 0.5s var(--transition-bounce);
+}
+
+.coin-mint.minted {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Digital particles */
+.digital-particle {
+  animation: particleFloat 4s ease-in-out infinite;
+}
+
+@keyframes particleFloat {
+  0%, 100% { 
+    transform: translateY(0) translateX(0);
+    opacity: 0.5;
+  }
+  50% { 
+    transform: translateY(-20px) translateX(10px);
+    opacity: 1;
+  }
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  .value-counter {
+    top: auto;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1rem;
+    padding: 8px 14px;
+  }
+  
+  .timeline {
+    padding-left: 1.5rem;
+  }
+  
+  .timeline-event {
+    padding-left: 2rem;
+  }
+  
+  .comparison-divider {
+    padding: 2rem 0;
+  }
+  
+  .divider-arrow {
+    transform: rotate(90deg);
+  }
+}
+
+/* ==================== REDUCED MOTION ==================== */
+@media (prefers-reduced-motion: reduce) {
+  .ledger-section {
+    transition: opacity 0.3s ease;
+    transform: none;
+  }
+  
+  .coin-stack,
+  .digital-particle,
+  .scroll-indicator,
+  .scroll-arrow {
+    animation: none;
+  }
+  
+  .coin-mint {
+    transition: opacity 0.3s ease;
+    transform: none;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+

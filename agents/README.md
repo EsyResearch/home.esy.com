@@ -14,8 +14,10 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 | [Invocation Enhancer](#scrollytelling-invocation-enhancer) | **🚀 Enhance any scrollytelling request** | `@agents/scrollytelling-invocation-enhancer.md` |
 | [Audit Agent](#scrollytelling-audit-agent) | **🔍 Evaluate & improve experiences** | `@agents/scrollytelling-audit-agent.md` |
 | [Citation Audit Agent](#citation-audit-agent) | **📚 Verify citations & source quality** | `@agents/citation-audit-agent.md` |
+| [Citation Reports](#citation-reports) | **📁 Audit report archive** | `agents/CitationReports/` |
 | [Quotes Audit Agent](#quotes-audit-agent) | **💬 Verify quote authenticity** | `@agents/quotes-audit-agent.md` |
 | [Visual Auditor Agent](#visual-auditor-agent) | **🎨 Audit SVG quality & animation performance** | `@agents/visual-auditor-agent.md` |
+| [Visual Audit Reports](#visual-audit-reports) | **📁 SVG audit report archive** | `agents/VisualAuditReports/` |
 | [Scrollytelling Expert](#scrollytelling-expert) | Immersive scroll-based stories | `@agents/scrollytelling-expert.md` |
 | [Children's Fiction Scrollytelling](#childrens-fiction-scrollytelling-agent) | **Magical stories for ages 3-6** | `@agents/childrens-fiction-scrollytelling-agent.md` |
 | [Children's Books Writer](#childrens-books-writer-expert) | **Picture book narratives, ages 3-6** | `@agents/childrens-books-writer-expert.md` |
@@ -269,6 +271,8 @@ Only approved fixes implemented
 **Role:** World-class research librarian and citation integrity specialist that audits scrollytelling experiences for source quality, claim-evidence alignment, and citation accuracy.
 
 **📚 USE BEFORE PUBLISHING:** Run completed experiences through this agent to verify all citations are valid, sources are credible, and claims are properly supported.
+
+**📁 Reports Directory:** All audit reports are saved to `agents/CitationReports/` — see [CitationReports/README.md](./CitationReports/README.md) for the full index.
 
 **Best For:**
 - Verifying source credibility (Tier 1-4 classification)
@@ -1376,6 +1380,44 @@ For comprehensive, structured agent invocations, see:
 | Template | Purpose | Target Agent |
 |----------|---------|--------------|
 | [Visual Essay Creation](./InvocationTemplates/visual-essay-creation.md) | Novel, unique visual essays with cinematic quality | Visual Essay Director |
+
+---
+
+## Citation Reports
+
+**`CitationReports/`** — Archive of citation audit reports for all visual essays:
+
+| File | Purpose |
+|------|---------|
+| [README.md](./CitationReports/README.md) | Index of all audits with status tracking |
+| `{slug}-citation-audit.md` | Individual audit reports |
+
+**Current Reports:**
+| Report | Experience | Status |
+|--------|------------|--------|
+| [the-gridiron-citation-audit.md](./CitationReports/the-gridiron-citation-audit.md) | The Gridiron (#33) | 🟡 Approved with Conditions |
+
+New reports are automatically saved here by `@agents/citation-audit-agent.md`.
+
+---
+
+## Visual Audit Reports
+
+**`VisualAuditReports/`** — Archive of SVG/animation audit reports for all visual essays:
+
+| File | Purpose |
+|------|---------|
+| [README.md](./VisualAuditReports/README.md) | Index of all audits with grades |
+| `{slug}-visual-audit.md` | Individual audit reports |
+
+**Current Reports:**
+| Report | Experience | Grade | Status |
+|--------|------------|-------|--------|
+| [the-ledger-visual-audit.md](./VisualAuditReports/the-ledger-visual-audit.md) | The Ledger (#34) | A- (91/100) | ✅ Certified |
+
+New reports are automatically saved here by `@agents/visual-auditor-agent.md`.
+
+---
 
 **Why Use Templates?**
 - **Uniqueness enforcement** — Explicit checks against existing work

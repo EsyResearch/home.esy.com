@@ -1,0 +1,1710 @@
+/* ===========================================
+   THE GREAT FIRE OF LONDON
+   From Ashes to Empire
+   Museum-Grade, Fire-Driven Styling
+   ===========================================
+   
+   COLOR PALETTE (Derived from fire, ash, and Georgian architecture):
+   - Ember orange: #E85D04 (living flame)
+   - Flame gold: #FAA307 (fire highlight)
+   - Flame tip: #FFBA08 (brightest point)
+   - Flame core: #DC2F02 (deep heat)
+   - Deep crimson: #9D0208 (destruction, urgency)
+   - Ash gray: #6C757D (aftermath)
+   - Charcoal: #1A1A1D (night, smoke)
+   - Smoke: #3D3D3D (atmospheric depth)
+   - Parchment cream: #F5E6D3 (historical documents)
+   - Wren white: #F8F9FA (architectural renewal)
+   
+   TYPOGRAPHY:
+   - Display: Serif for historical gravitas
+   - Body: Clean sans for readability
+   - Accents: Italic serif for quotes
+*/
+
+/* ===========================================
+   CSS CUSTOM PROPERTIES
+   =========================================== */
+.great-fire-essay {
+  /* Fire Palette */
+  --ember: #E85D04;
+  --ember-glow: rgba(232, 93, 4, 0.6);
+  --flame-gold: #FAA307;
+  --flame-tip: #FFBA08;
+  --flame-core: #DC2F02;
+  --crimson: #9D0208;
+  
+  /* Neutral Palette */
+  --ash: #6C757D;
+  --charcoal: #1A1A1D;
+  --smoke: #3D3D3D;
+  --night: #0D0D0F;
+  --parchment: #F5E6D3;
+  --parchment-dark: #E8D4BC;
+  --wren-white: #F8F9FA;
+  
+  /* Functional Colors */
+  --text-primary: var(--parchment);
+  --text-secondary: #B8B0A8;
+  --text-muted: var(--ash);
+  --background-primary: var(--charcoal);
+  --background-secondary: var(--smoke);
+  --accent: var(--ember);
+  
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  /* Spacing */
+  --section-padding: clamp(3rem, 8vw, 6rem);
+  --content-max-width: 800px;
+  --wide-max-width: 1200px;
+  
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-dramatic: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  /* Fire glow */
+  --fire-glow: 0 0 40px rgba(232, 93, 4, 0.3), 0 0 80px rgba(232, 93, 4, 0.15);
+}
+
+/* ===========================================
+   BASE STYLES
+   =========================================== */
+.great-fire-essay {
+  background: var(--charcoal);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ===========================================
+   PROGRESS BAR — Fire trail
+   =========================================== */
+.fire-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--crimson), var(--ember), var(--flame-gold));
+  transform-origin: left;
+  z-index: 1000;
+  box-shadow: var(--fire-glow);
+}
+
+/* ===========================================
+   HERO SECTION
+   =========================================== */
+.fire-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  overflow: hidden;
+  background: 
+    radial-gradient(ellipse at 50% 100%, rgba(232, 93, 4, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 0%, rgba(26, 26, 29, 1) 0%, var(--charcoal) 100%);
+}
+
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+
+.hero-date {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--ember);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--ember);
+  border-radius: 2px;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.title-line {
+  display: block;
+}
+
+.title-line.accent {
+  color: var(--ember);
+  text-shadow: var(--fire-glow);
+}
+
+.hero-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-style: italic;
+  color: var(--flame-gold);
+  margin-bottom: 1.5rem;
+}
+
+.hero-description {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.meta-item {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.hero-flame-decoration {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 180px;
+  opacity: 0.3;
+}
+
+.hero-flame {
+  width: 100%;
+  height: 100%;
+}
+
+/* ===========================================
+   EMBER PARTICLES
+   =========================================== */
+.ember-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ember-particle {
+  position: absolute;
+  bottom: -10px;
+  background: radial-gradient(circle, var(--flame-gold) 0%, var(--ember) 50%, transparent 70%);
+  border-radius: 50%;
+  animation: ember-rise 3s ease-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes ember-rise {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(var(--drift, 0)) scale(0.3);
+    opacity: 0;
+  }
+}
+
+/* ===========================================
+   ASH PARTICLES
+   =========================================== */
+.ash-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ash-particle {
+  position: absolute;
+  top: -10px;
+  background: var(--ash);
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: ash-fall 5s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes ash-fall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(100vh) translateX(var(--sway, 0)) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ===========================================
+   FLAME SVG ANIMATION
+   =========================================== */
+.flame-svg {
+  filter: drop-shadow(0 0 10px var(--ember-glow));
+}
+
+.flame-main {
+  animation: flame-flicker 0.5s ease-in-out infinite alternate;
+  transform-origin: bottom center;
+}
+
+.flame-inner {
+  animation: flame-flicker 0.3s ease-in-out infinite alternate-reverse;
+  transform-origin: bottom center;
+}
+
+.flame-core-path {
+  animation: flame-pulse 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes flame-flicker {
+  0% {
+    transform: scaleX(1) scaleY(1);
+  }
+  100% {
+    transform: scaleX(0.95) scaleY(1.05);
+  }
+}
+
+@keyframes flame-pulse {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+/* ===========================================
+   MOVEMENT SECTIONS
+   =========================================== */
+.movement {
+  position: relative;
+  padding: var(--section-padding) 1.5rem;
+  overflow: hidden;
+}
+
+.movement-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.movement-number {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--ember);
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition-dramatic);
+}
+
+.movement-number.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.movement-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition-dramatic);
+  transition-delay: 0.1s;
+}
+
+.movement-title.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.movement-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition-dramatic);
+  transition-delay: 0.2s;
+}
+
+.movement-subtitle.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===========================================
+   INVOCATION (Movement I)
+   =========================================== */
+.invocation {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--night);
+}
+
+.invocation-canvas {
+  text-align: center;
+  position: relative;
+}
+
+.spark-container {
+  width: 20px;
+  height: 20px;
+  margin: 0 auto 3rem;
+  position: relative;
+}
+
+.single-spark {
+  width: 8px;
+  height: 8px;
+  background: var(--flame-gold);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 1s ease-out;
+}
+
+.spark-glow {
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle, var(--ember-glow) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}
+
+.spark-container.ignite .single-spark {
+  transform: translate(-50%, -50%) scale(1);
+  animation: spark-pulse 1.5s ease-in-out infinite;
+}
+
+.spark-container.ignite .spark-glow {
+  opacity: 1;
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes spark-pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px var(--flame-gold), 0 0 20px var(--ember);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--flame-gold), 0 0 40px var(--ember);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+.invocation-text {
+  max-width: 500px;
+}
+
+.invocation-line {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-style: italic;
+  color: var(--text-secondary);
+  margin: 0.5rem 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition-dramatic);
+}
+
+.invocation-text.reveal .invocation-line:nth-child(1) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
+.invocation-text.reveal .invocation-line:nth-child(2) { transition-delay: 0.5s; opacity: 1; transform: translateY(0); }
+.invocation-text.reveal .invocation-line:nth-child(3) { transition-delay: 0.7s; opacity: 1; transform: translateY(0); }
+.invocation-text.reveal .invocation-line:nth-child(4) { transition-delay: 0.9s; opacity: 1; transform: translateY(0); color: var(--ember); }
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.scroll-flame {
+  width: 30px;
+  height: 45px;
+  margin: 1rem auto 0;
+}
+
+.mini-flame {
+  width: 100%;
+  height: 100%;
+}
+
+/* ===========================================
+   KINDLING (Movement II)
+   =========================================== */
+.kindling {
+  background: 
+    radial-gradient(ellipse at 50% 100%, rgba(232, 93, 4, 0.08) 0%, transparent 40%),
+    var(--charcoal);
+}
+
+.kindling-scene {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  max-width: var(--content-max-width);
+  margin: 0 auto 3rem;
+}
+
+@media (min-width: 768px) {
+  .kindling-scene {
+    grid-template-columns: 200px 1fr;
+    align-items: center;
+  }
+}
+
+.bakery-illustration {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: var(--transition-dramatic);
+}
+
+.bakery-illustration.reveal {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.bakery-svg {
+  width: 150px;
+  height: 150px;
+}
+
+.oven-flame {
+  animation: flame-flicker 0.4s ease-in-out infinite alternate;
+  transform-origin: bottom center;
+}
+
+.smoke-wisp {
+  animation: smoke-rise 2s ease-out infinite;
+  opacity: 0.5;
+}
+
+@keyframes smoke-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.kindling-narrative {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: var(--transition-dramatic);
+  transition-delay: 0.2s;
+}
+
+.kindling-narrative.reveal {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.narrative-lead {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--ember);
+  margin-bottom: 1rem;
+}
+
+.narrative-body {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+/* Context Panel */
+.context-panel {
+  max-width: var(--wide-max-width);
+  margin: 3rem auto;
+  padding: 2rem;
+  background: rgba(61, 61, 61, 0.3);
+  border-radius: 8px;
+  border-left: 4px solid var(--ember);
+}
+
+.panel-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--parchment);
+}
+
+.context-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.context-item {
+  text-align: center;
+}
+
+.context-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.context-item h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--flame-gold);
+}
+
+.context-item p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Quotes */
+.pepys-quote,
+.witness-quote,
+.wren-epitaph,
+.final-quote {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(232, 93, 4, 0.1) 0%, transparent 100%);
+  border-left: 3px solid var(--ember);
+  font-family: var(--font-display);
+  font-style: italic;
+}
+
+.pepys-quote p,
+.witness-quote p,
+.wren-epitaph p,
+.final-quote p {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  color: var(--parchment);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.pepys-quote cite,
+.witness-quote cite,
+.wren-epitaph cite,
+.final-quote cite {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: normal;
+}
+
+/* ===========================================
+   INFERNO (Movement III)
+   =========================================== */
+.inferno {
+  background: 
+    radial-gradient(ellipse at 50% 30%, rgba(157, 2, 8, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(232, 93, 4, 0.15) 0%, transparent 40%),
+    var(--charcoal);
+  padding-bottom: 4rem;
+}
+
+.skyline-scene {
+  max-width: 100%;
+  margin: 2rem auto;
+  overflow: hidden;
+}
+
+.skyline-svg {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: block;
+  transition: var(--transition-dramatic);
+}
+
+.skyline-svg.burning .building {
+  animation: building-burn 0.5s ease-in-out infinite alternate;
+}
+
+.skyline-svg.burning .building-flame {
+  animation: flame-flicker 0.3s ease-in-out infinite alternate;
+  opacity: 0.9;
+}
+
+.skyline-svg.burning .cathedral-flame {
+  animation: flame-flicker 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes building-burn {
+  0% {
+    filter: brightness(1);
+  }
+  100% {
+    filter: brightness(1.1) drop-shadow(0 -5px 10px var(--ember-glow));
+  }
+}
+
+/* Timeline */
+.timeline-section {
+  max-width: var(--content-max-width);
+  margin: 4rem auto;
+}
+
+.timeline-track {
+  position: relative;
+  padding-left: 60px;
+}
+
+.timeline-track::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--ember), var(--crimson));
+}
+
+.timeline-event {
+  position: relative;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: var(--transition-dramatic);
+}
+
+.timeline-event.reveal {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.event-marker {
+  position: absolute;
+  left: -50px;
+  top: 0;
+  width: 40px;
+  height: 60px;
+}
+
+.marker-flame {
+  width: 100%;
+  height: 100%;
+}
+
+.event-content {
+  padding: 1rem 1.5rem;
+  background: rgba(61, 61, 61, 0.4);
+  border-radius: 8px;
+  border-left: 3px solid var(--ember);
+}
+
+.event-time {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--flame-gold);
+  display: block;
+}
+
+.event-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.event-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--parchment);
+  margin-bottom: 0.5rem;
+}
+
+.event-detail {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Witness Accounts */
+.witness-accounts {
+  max-width: var(--content-max-width);
+  margin: 4rem auto;
+}
+
+.accounts-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--parchment);
+}
+
+.witness-quote.evelyn {
+  border-left-color: var(--flame-gold);
+}
+
+/* ===========================================
+   DEVASTATION (Movement IV)
+   =========================================== */
+.devastation {
+  background: 
+    linear-gradient(to bottom, var(--charcoal) 0%, rgba(26, 26, 29, 0.95) 100%);
+}
+
+.devastation-visual {
+  margin: 3rem 0;
+}
+
+.before-after-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  max-width: var(--wide-max-width);
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .before-after-container {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.city-before,
+.city-after {
+  text-align: center;
+  flex: 1;
+  max-width: 400px;
+}
+
+.city-before .skyline-svg,
+.ruins-svg {
+  width: 100%;
+  height: 120px;
+}
+
+.destruction-arrow {
+  font-size: 2rem;
+  color: var(--crimson);
+  transform: rotate(90deg);
+}
+
+@media (min-width: 768px) {
+  .destruction-arrow {
+    transform: rotate(0);
+  }
+}
+
+.label {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.ruins-illustration {
+  opacity: 0.6;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.5rem;
+  max-width: var(--wide-max-width);
+  margin: 4rem auto;
+  padding: 0 1rem;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background: rgba(61, 61, 61, 0.3);
+  border-radius: 8px;
+  border-top: 3px solid var(--crimson);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition-dramatic);
+}
+
+.stat-card.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stat-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--ember);
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* Lost Landmarks */
+.lost-landmarks {
+  max-width: var(--content-max-width);
+  margin: 4rem auto;
+  padding: 2rem;
+  background: rgba(61, 61, 61, 0.3);
+  border-radius: 8px;
+}
+
+.lost-landmarks h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--crimson);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.landmark-list {
+  list-style: none;
+  padding: 0;
+}
+
+.landmark-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(108, 117, 125, 0.3);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.landmark-list li strong {
+  color: var(--parchment);
+}
+
+.landmark-list li:last-child {
+  border-bottom: none;
+}
+
+.devastation-note {
+  max-width: var(--content-max-width);
+  margin: 3rem auto;
+  padding: 1.5rem;
+  background: rgba(157, 2, 8, 0.15);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+}
+
+/* ===========================================
+   PHOENIX (Movement V)
+   =========================================== */
+.phoenix {
+  background: 
+    radial-gradient(ellipse at 50% 0%, rgba(250, 163, 7, 0.1) 0%, transparent 50%),
+    linear-gradient(to bottom, var(--charcoal), var(--smoke));
+}
+
+.phoenix-rising {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 80px;
+  height: 80px;
+  opacity: 0.3;
+}
+
+.phoenix-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.phoenix-svg.animate .phoenix-body {
+  animation: phoenix-rise 2s ease-out forwards;
+}
+
+.phoenix-svg.animate .phoenix-wing-left {
+  animation: wing-flap-left 0.6s ease-in-out infinite alternate;
+  transform-origin: right center;
+}
+
+.phoenix-svg.animate .phoenix-wing-right {
+  animation: wing-flap-right 0.6s ease-in-out infinite alternate;
+  transform-origin: left center;
+}
+
+@keyframes phoenix-rise {
+  0% {
+    transform: translateY(20px);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes wing-flap-left {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-10deg);
+  }
+}
+
+@keyframes wing-flap-right {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(10deg);
+  }
+}
+
+/* Wren Introduction */
+.wren-introduction {
+  max-width: var(--content-max-width);
+  margin: 0 auto 4rem;
+  text-align: center;
+}
+
+.wren-lead {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--flame-gold);
+  margin-bottom: 1.5rem;
+}
+
+.wren-body {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.wren-body strong {
+  color: var(--parchment);
+}
+
+/* Dome Showcase */
+.dome-showcase {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  max-width: var(--wide-max-width);
+  margin: 4rem auto;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .dome-showcase {
+    grid-template-columns: 250px 1fr;
+  }
+}
+
+.dome-illustration {
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: var(--transition-dramatic);
+}
+
+.dome-illustration.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wren-dome-svg {
+  width: 200px;
+  height: 250px;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+}
+
+.dome-details {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: var(--transition-dramatic);
+  transition-delay: 0.2s;
+}
+
+.dome-details.reveal {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.dome-details h3 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--parchment);
+  margin-bottom: 0.25rem;
+}
+
+.dome-subtitle {
+  font-size: 0.9rem;
+  color: var(--flame-gold);
+  margin-bottom: 1rem;
+}
+
+.dome-description {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.dome-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.dome-stat {
+  text-align: center;
+}
+
+.dome-stat .value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--wren-white);
+}
+
+.dome-stat .label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0;
+}
+
+/* Wren Buildings Grid */
+.wren-buildings-grid {
+  max-width: var(--wide-max-width);
+  margin: 4rem auto;
+}
+
+.buildings-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--parchment);
+}
+
+.building-card {
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  background: rgba(248, 249, 250, 0.05);
+  border-radius: 8px;
+  border-left: 3px solid var(--flame-gold);
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: var(--transition-dramatic);
+}
+
+.building-card.reveal {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.building-year {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--flame-gold);
+}
+
+.building-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--parchment);
+  margin: 0.25rem 0 0.5rem;
+}
+
+.building-description {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Wren Epitaph */
+.wren-epitaph {
+  text-align: center;
+  border-left: none;
+  border-top: 1px solid var(--flame-gold);
+  border-bottom: 1px solid var(--flame-gold);
+  padding: 3rem 2rem;
+  background: transparent;
+}
+
+.wren-epitaph .translation {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-style: normal;
+}
+
+/* ===========================================
+   LEGACY (Movement VI)
+   =========================================== */
+.legacy {
+  background: var(--charcoal);
+}
+
+.legacy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: var(--wide-max-width);
+  margin: 3rem auto;
+}
+
+.legacy-item {
+  padding: 2rem;
+  background: rgba(61, 61, 61, 0.3);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.legacy-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.legacy-item h4 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--flame-gold);
+  margin-bottom: 0.75rem;
+}
+
+.legacy-item p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Monument Section */
+.monument-section {
+  text-align: center;
+  max-width: var(--content-max-width);
+  margin: 4rem auto;
+}
+
+.monument-section h3 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+  color: var(--parchment);
+}
+
+.monument-visual {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.monument-svg {
+  width: 60px;
+  height: 200px;
+}
+
+.monument-flame {
+  animation: flame-flicker 0.4s ease-in-out infinite alternate;
+  transform-origin: bottom center;
+}
+
+.monument-description {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Final Reflection */
+.final-reflection {
+  max-width: var(--content-max-width);
+  margin: 4rem auto;
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.reflection-line {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin: 1rem 0;
+}
+
+.reflection-line.large {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--ember);
+}
+
+.reflection-body {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 2rem auto;
+}
+
+/* ===========================================
+   SOURCES SECTION
+   =========================================== */
+.sources-section {
+  padding: var(--section-padding) 1.5rem;
+  background: var(--smoke);
+}
+
+.sources-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--parchment);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition-dramatic);
+}
+
+.sources-title.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: var(--wide-max-width);
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition-dramatic);
+  transition-delay: 0.2s;
+}
+
+.sources-grid.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.source-category h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--flame-gold);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(250, 163, 7, 0.3);
+}
+
+.source-category ul {
+  list-style: none;
+  padding: 0;
+}
+
+.source-category li {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.source-category li strong {
+  color: var(--parchment);
+}
+
+.source-category li em {
+  color: var(--text-muted);
+}
+
+.source-note {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.source-category a {
+  color: var(--ember);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.source-category a:hover {
+  color: var(--flame-gold);
+  text-decoration: underline;
+}
+
+/* ===========================================
+   FOOTER
+   =========================================== */
+.fire-footer {
+  padding: 4rem 2rem;
+  background: var(--night);
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.footer-phoenix {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1.5rem;
+  opacity: 0.6;
+}
+
+.footer-text {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.footer-credit {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.footer-credit strong {
+  color: var(--ember);
+}
+
+/* ===========================================
+   ANIMATIONS — Pulse and Glow
+   =========================================== */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--ember-glow);
+  }
+  50% {
+    box-shadow: 0 0 15px var(--ember-glow), 0 0 25px rgba(232, 93, 4, 0.3);
+  }
+}
+
+/* ===========================================
+   REDUCED MOTION
+   =========================================== */
+@media (prefers-reduced-motion: reduce) {
+  .ember-particle,
+  .ash-particle,
+  .flame-main,
+  .flame-inner,
+  .flame-core-path,
+  .oven-flame,
+  .smoke-wisp,
+  .monument-flame,
+  .building-flame,
+  .phoenix-body,
+  .phoenix-wing-left,
+  .phoenix-wing-right {
+    animation: none !important;
+  }
+  
+  .spark-container.ignite .single-spark,
+  .spark-container.ignite .spark-glow {
+    animation: none !important;
+  }
+  
+  .movement-number,
+  .movement-title,
+  .movement-subtitle,
+  .timeline-event,
+  .stat-card,
+  .building-card,
+  .dome-illustration,
+  .dome-details,
+  .kindling-narrative,
+  .bakery-illustration,
+  .invocation-line,
+  .sources-title,
+  .sources-grid {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ===========================================
+   RESPONSIVE ADJUSTMENTS
+   =========================================== */
+@media (max-width: 600px) {
+  .timeline-track {
+    padding-left: 50px;
+  }
+  
+  .timeline-track::before {
+    left: 15px;
+  }
+  
+  .event-marker {
+    left: -42px;
+    width: 30px;
+    height: 45px;
+  }
+  
+  .context-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .dome-stats {
+    justify-content: center;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .pepys-quote,
+  .witness-quote,
+  .wren-epitaph,
+  .final-quote {
+    padding: 1.5rem;
+  }
+  
+  .witness-portrait-quote {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .wren-portrait-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .historical-painting-reveal {
+    margin: 2rem 0;
+  }
+  
+  .painting-frame {
+    border-width: 8px;
+  }
+}
+
+/* ===========================================
+   HISTORICAL IMAGES — Portraits & Paintings
+   =========================================== */
+
+/* Portrait Frames */
+.portrait-frame {
+  position: relative;
+  display: inline-block;
+  padding: 8px;
+  background: linear-gradient(135deg, #8B7355 0%, #5D4E37 50%, #8B7355 100%);
+  border-radius: 4px;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.portrait-frame::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(212, 165, 116, 0.3);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.historical-portrait {
+  display: block;
+  border-radius: 2px;
+  filter: sepia(10%) contrast(1.05);
+}
+
+.portrait-caption {
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+/* Pepys Portrait Quote Layout */
+.witness-portrait-quote {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  max-width: var(--content-max-width);
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+.pepys-portrait {
+  flex-shrink: 0;
+}
+
+.pepys-quote.with-portrait {
+  flex: 1;
+  margin: 0;
+  padding: 2rem;
+}
+
+/* Wren Portrait Section */
+.wren-portrait-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.wren-portrait {
+  flex-shrink: 0;
+}
+
+.wren-text {
+  flex: 1;
+}
+
+/* Historical Painting Reveal */
+.historical-painting-reveal {
+  max-width: var(--wide-max-width);
+  margin: 3rem auto 4rem;
+  padding: 0 1.5rem;
+}
+
+.painting-frame {
+  position: relative;
+  padding: 12px;
+  background: linear-gradient(135deg, #3D3226 0%, #2A231B 50%, #3D3226 100%);
+  border: 3px solid #5D4E37;
+  border-radius: 4px;
+  box-shadow: 
+    0 8px 40px rgba(0, 0, 0, 0.5),
+    0 2px 10px rgba(232, 93, 4, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.painting-frame::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(212, 165, 116, 0.2);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.historical-painting {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
+.painting-overlay {
+  position: absolute;
+  inset: 12px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 70%,
+    rgba(26, 26, 29, 0.4) 100%
+  );
+  pointer-events: none;
+  border-radius: 2px;
+}
+
+.painting-caption {
+  text-align: center;
+  padding: 1.5rem 1rem 0.5rem;
+  background: transparent;
+}
+
+.painting-caption h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--flame-gold);
+  margin: 0 0 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.painting-caption p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0 0 0.25rem;
+  font-style: italic;
+}
+
+.painting-caption .caption-detail {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: normal;
+  max-width: 600px;
+  margin: 0.5rem auto 0;
+  line-height: 1.5;
+}
+
