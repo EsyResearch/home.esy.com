@@ -10,6 +10,7 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 
 | Agent | Best For | Invocation Prefix |
 |-------|----------|-------------------|
+| [Visual Essay Director](#visual-essay-director) | **🎬 END-TO-END PRODUCTION PIPELINE** | `@agents/visual-essay-director.md` |
 | [Invocation Enhancer](#scrollytelling-invocation-enhancer) | **🚀 Enhance any scrollytelling request** | `@agents/scrollytelling-invocation-enhancer.md` |
 | [Audit Agent](#scrollytelling-audit-agent) | **🔍 Evaluate & improve experiences** | `@agents/scrollytelling-audit-agent.md` |
 | [Citation Audit Agent](#citation-audit-agent) | **📚 Verify citations & source quality** | `@agents/citation-audit-agent.md` |
@@ -61,6 +62,85 @@ our scrollytelling piece about [topic]. Focus on .edu and major news sources.
 ---
 
 ## Agent Details
+
+### Visual Essay Director
+**File:** `visual-essay-director.md`
+
+**Role:** Award-winning editorial director and digital publishing executive that orchestrates the complete visual essay production pipeline from brief to publication.
+
+**🎬 TOP-LEVEL ORCHESTRATOR:** This is the highest-level agent for visual essay production. It coordinates the entire pipeline including content creation, citation research, and audit verification.
+
+**Best For:**
+- End-to-end visual essay production management
+- Quality gate enforcement across all phases
+- Citation integrity oversight (research + audit)
+- Publication readiness approval
+- Multi-project coordination
+
+**Pipeline Phases:**
+| Phase | Description | Owner |
+|-------|-------------|-------|
+| **1. Intake & Planning** | Brief development, scope, timeline | Director |
+| **2. Production** | Content & design creation | → Scrollytelling Expert |
+| **3. Citation Pipeline** | Source research + audit | → Research Expert → Citation Audit |
+| **4. Publication Approval** | Final quality gates | Director |
+| **5. Deployment & Monitoring** | Publish + track | Director |
+
+**Quality Gates (All Blocking):**
+| Gate | Pass Criteria |
+|------|---------------|
+| G1: Brief Approval | Complete brief with scope, timeline, criteria |
+| G2: Design Research | Unique visual identity from subject matter |
+| G3: Content Complete | All sections drafted, fact-checked |
+| G4: Citation Research | Tier 1-2 sources for all major claims |
+| G5: Citation Audit | Citation Certification achieved |
+| G6: Mobile Verification | Real device testing confirmed |
+| G7: Publication Approval | Director sign-off |
+
+**Orchestrates:**
+- `scrollytelling-expert.md` — Content and design creation
+- `research-citations-expert.md` — Source discovery and verification
+- `citation-audit-agent.md` — Citation integrity certification
+
+**Invocation Examples:**
+```
+# Start new visual essay production
+Using @agents/visual-essay-director.md, initiate production for a 
+visual essay about "The History of the Bicycle".
+
+Key details:
+- Target read time: 10-12 minutes
+- Include timeline of major innovations
+- Vintage photography aesthetic
+
+# Check production status
+Using @agents/visual-essay-director.md, provide status update on 
+the visual essay "The History of Coffee" currently in production.
+
+# Final publication approval
+Using @agents/visual-essay-director.md, conduct final publication 
+approval review for the visual essay at 
+src/app/essays/visual/history-of-coffee/
+```
+
+**Output:**
+1. Production Brief with scope and timeline
+2. Gate Status Reports for each checkpoint
+3. Citation Pipeline coordination records
+4. Publication Approval Document
+5. Deployment confirmation
+
+**When to Use:**
+| Scenario | Use Director? |
+|----------|---------------|
+| Complete visual essay from scratch | ✅ Yes |
+| Just need content creation | ❌ Use scrollytelling-expert directly |
+| Just need citations | ❌ Use research-citations-expert directly |
+| Just need citation audit | ❌ Use citation-audit-agent directly |
+| Multiple essays in parallel | ✅ Yes (project tracking) |
+| Strict quality gates needed | ✅ Yes |
+
+---
 
 ### Scrollytelling Invocation Enhancer
 **File:** `scrollytelling-invocation-enhancer.md`
@@ -894,11 +974,84 @@ An **orchestrator agent** coordinates multiple specialized agents to produce com
 
 | Orchestrator | Domain | Agents Coordinated | Output |
 |--------------|--------|-------------------|--------|
+| `visual-essay-director.md` | **Production Pipeline** | 3 orchestrators | **Publication-ready visual essays** |
 | `scrollytelling-expert.md` | Digital Storytelling | 7 agents | Mobile-native scrollytelling pages |
 | `childrens-fiction-scrollytelling-agent.md` | **Children's Stories (3-6)** | 4 agents | Magical animated children's experiences |
 | `scrollytelling-audit-agent.md` | Quality Assurance | 3-4 agents | Experience audit reports |
 | `citation-audit-agent.md` | **Citation Integrity** | 2-3 agents | Source verification reports |
 | `visual-auditor-agent.md` | **Visual Quality Assurance** | 1-2 agents | SVG certification reports |
+
+### Visual Essay Director Architecture (Top-Level)
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         VISUAL ESSAY DIRECTOR                                │
+│                      (Top-Level Pipeline Executive)                          │
+│                                                                             │
+│  Quality Gates: G1 Brief → G2 Design → G3 Content → G4 Sources →           │
+│                 G5 Citation Audit → G6 Mobile → G7 Publish                  │
+└─────────────────────────────────────────┬───────────────────────────────────┘
+                                          │
+              ┌───────────────────────────┼───────────────────────────┐
+              │                           │                           │
+              ▼                           ▼                           ▼
+┌─────────────────────────┐  ┌─────────────────────────┐  ┌─────────────────────────┐
+│  SCROLLYTELLING EXPERT  │  │  RESEARCH & CITATIONS   │  │   CITATION AUDIT        │
+│     (Production)        │  │       EXPERT            │  │       AGENT             │
+│                         │  │   (Source Discovery)    │  │   (Verification)        │
+│  • Design Research      │  │                         │  │                         │
+│  • Content Creation     │  │  • Tier 1-2 sources     │  │  • Claim-citation map   │
+│  • Mobile-native impl   │  │  • Citation formatting  │  │  • Link verification    │
+│                         │  │  • Quote authentication │  │  • Certification        │
+│  Coordinates:           │  │                         │  │                         │
+│  ┌─────────────────┐   │  └─────────────────────────┘  │  Orchestrates:          │
+│  │ Historian Writer │   │                               │  • quotes-audit-agent   │
+│  │ Historian Editor │   │                               │  • research-citations   │
+│  │ UI/UX Designer   │   │                               │                         │
+│  │ SVG Expert       │   │                               └─────────────────────────┘
+│  │ Software Eng     │   │
+│  │ Immersive Eng    │   │
+│  └─────────────────┘   │
+└─────────────────────────┘
+```
+
+**Pipeline Flow:**
+```
+User Request
+     │
+     ▼
+┌─────────────────┐
+│ Visual Essay    │──► G1: Brief Approval
+│ Director        │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ Scrollytelling  │──► G2: Design Research
+│ Expert          │──► G3: Content Complete
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ Research &      │──► G4: Citation Research
+│ Citations       │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ Citation        │──► G5: Citation Audit
+│ Audit Agent     │    ⚠️ CERTIFICATION REQUIRED
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ Visual Essay    │──► G6: Mobile Verification
+│ Director        │──► G7: Publication Approval
+└────────┬────────┘
+         │
+         ▼
+   📦 PUBLISH
+```
 
 ### Scrollytelling Orchestrator Architecture
 
@@ -1150,7 +1303,24 @@ Type: General
 
 ### Scrollytelling Production Pipeline
 
-The recommended workflow for creating **mobile-native** scrollytelling content:
+**Option A: Use Visual Essay Director (Recommended for Full Production)**
+
+For complete end-to-end production with quality gates and certification:
+
+```
+@agents/visual-essay-director.md
+     │
+     ├─► Develops production brief (G1)
+     ├─► Invokes scrollytelling-expert.md for content/design (G2, G3)
+     ├─► Invokes research-citations-expert.md for sources (G4)
+     ├─► Invokes citation-audit-agent.md for verification (G5)
+     ├─► Verifies mobile testing (G6)
+     └─► Signs off on publication (G7)
+```
+
+**Option B: Direct Pipeline (For Experienced Users)**
+
+The detailed workflow for creating **mobile-native** scrollytelling content:
 
 ```
 1.  @agents/scrollytelling-expert.md              → Design Research (mobile-first visual identity)
@@ -1169,6 +1339,15 @@ The recommended workflow for creating **mobile-native** scrollytelling content:
 14. @agents/scrollytelling-expert.md              → Final Review (real device testing)
 ```
 
+**When to Use Which:**
+| Scenario | Recommended Approach |
+|----------|---------------------|
+| New to visual essays | Use Visual Essay Director |
+| Strict quality requirements | Use Visual Essay Director |
+| Multiple essays in progress | Use Visual Essay Director |
+| Quick iteration / familiar workflow | Use Direct Pipeline |
+| Specific phase only (e.g., just citations) | Invoke specific agent directly |
+
 **Key Steps:**
 - Step 9 (`svg-illustration-animation-expert.md`) creates all inline SVG illustrations — characters, icons, objects, environments — with animation-ready structure. **Invoked when custom visuals are needed.**
 - Step 10 (`visual-auditor-agent.md`) audits all SVG assets for technical quality, accessibility, animation performance, visual excellence, and content relevance. **BLOCKING**: Assets must receive certification (Grade B+ or higher) before integration.
@@ -1185,6 +1364,37 @@ Using @agents/scrollytelling-expert.md with support from
 @agents/research-citations-expert.md, create a complete 
 scrollytelling experience about [topic] with verified sources.
 ```
+
+---
+
+## Invocation Templates
+
+For comprehensive, structured agent invocations, see:
+
+**`InvocationTemplates/`** — Pre-built templates for maximum-quality agent invocations:
+
+| Template | Purpose | Target Agent |
+|----------|---------|--------------|
+| [Visual Essay Creation](./InvocationTemplates/visual-essay-creation.md) | Novel, unique visual essays with cinematic quality | Visual Essay Director |
+
+**Why Use Templates?**
+- **Uniqueness enforcement** — Explicit checks against existing work
+- **Intelligent defaults** — Fills gaps when you want to move fast
+- **Strategic questioning** — Optional deep customization
+- **Award-winning standards** — Technical and creative requirements defined
+
+**How to Use:**
+```
+Using @agents/InvocationTemplates/visual-essay-creation.md,
+create a visual essay about [YOUR TOPIC]
+```
+
+**Operating Modes:**
+| Mode | Trigger | Behavior |
+|------|---------|----------|
+| **Quick** | "just run with it" | Apply defaults, proceed immediately |
+| **Guided** | "guide me through" | Ask all questions interactively |
+| **Auto** | Just provide topic | Ask 3-5 key questions, fill rest |
 
 ---
 

@@ -400,8 +400,19 @@ export const visualEssays: VisualEssay[] = [
     category: "History",
     readTime: "15 min",
     href: "/essays/visual/the-first-bounce",
-    isNew: true,
     tags: ["basketball", "James Naismith", "sports history", "1891", "YMCA", "invention", "Springfield", "peach basket", "NBA", "Olympics"],
+  },
+  {
+    id: "the-gridiron",
+    number: "33",
+    title: "The Gridiron",
+    subtitle: "How American Football Conquered America",
+    description: "From deadly college brawls to 113 million Super Bowl viewers—the extraordinary story of how a chaotic rugby variant became America's most watched sport. Explore Walter Camp's revolution, the 1905 death crisis, and football's rise to cultural dominance.",
+    category: "History",
+    readTime: "16 min",
+    href: "/essays/visual/the-gridiron",
+    isNew: true,
+    tags: ["american football", "NFL", "Super Bowl", "Walter Camp", "sports history", "college football", "forward pass", "gridiron", "stadium", "touchdowns"],
   },
   // Children's Fiction (draft - not shown in production)
   {

@@ -606,6 +606,7 @@ Current agents derived from this framework:
 
 | Agent | Domain | Primary Role | Collaboration |
 |-------|--------|--------------|---------------|
+| `visual-essay-director.md` | **Editorial Direction** | **Pipeline Executive** | **TOP-LEVEL ORCHESTRATOR** → Scrollytelling Expert, Research Citations, Citation Audit |
 | `historian-writer-expert.md` | History | Narrative Writer | → Editor, ← Research |
 | `historian-editor-expert.md` | History | Fact-Checker/Editor | ← Writer, ← Research |
 | `essayist-expert.md` | Academic Writing | Essay Instruction | Standalone |
@@ -614,13 +615,13 @@ Current agents derived from this framework:
 | `ui-ux-design-expert.md` | Design | Interface Design | → Immersive Eng, ← Scrollytelling, ← Children's Fiction |
 | `immersive-experience-engineer.md` | Frontend/Animation | **Mobile-Native Feel** | ← UI/UX, ← Scrollytelling, ← Children's Fiction (MANDATORY) |
 | `template-integration-engineer.md` | Frontend | Template → Next.js | Standalone |
-| `research-citations-expert.md` | Research | Source Discovery & Verification | → All content agents |
-| `scrollytelling-expert.md` | Digital Storytelling | **Mobile-Native** Immersive Narratives | **Orchestrator** → Writer, Editor, Research, UI/UX, SW Eng, **Immersive Eng**, SVG Expert, **Visual Auditor** |
+| `research-citations-expert.md` | Research | Source Discovery & Verification | → All content agents, ← **Visual Essay Director** |
+| `scrollytelling-expert.md` | Digital Storytelling | **Mobile-Native** Immersive Narratives | **Orchestrator** → Writer, Editor, Research, UI/UX, SW Eng, **Immersive Eng**, SVG Expert, **Visual Auditor**; ← **Visual Essay Director** |
 | `childrens-books-writer-expert.md` | **Children's Fiction (3-6)** | Picture Book Narratives | ← Children's Fiction Scrollytelling |
 | `childrens-fiction-scrollytelling-agent.md` | **Children's Scrollytelling** | Magical Story Experiences | **Orchestrator** → Children's Writer, UI/UX, SW Eng, Immersive Eng, SVG Expert, **Visual Auditor** |
 | `scrollytelling-invocation-enhancer.md` | **Invocation Enhancement** | Brief Builder & Optimizer | **Pre-processor** → Scrollytelling Expert, Children's Fiction |
 | `scrollytelling-audit-agent.md` | **Quality Assurance** | Experience Auditor | **Orchestrator** → Scrollytelling Expert, Immersive Eng, Children's Fiction |
-| `citation-audit-agent.md` | **Citation Integrity** | Source & Citation Verifier | **Post-processor** → Scrollytelling Expert, Research Citations, Historian Editor, Quotes Audit |
+| `citation-audit-agent.md` | **Citation Integrity** | Source & Citation Verifier | **Post-processor** → Scrollytelling Expert, Research Citations, Historian Editor, Quotes Audit; ← **Visual Essay Director** |
 | `quotes-audit-agent.md` | **Quote Verification** | Quote Authenticity Specialist | **Orchestrated by** Citation Audit Agent |
 | `svg-illustration-animation-expert.md` | **Visual Design** | SVG Illustrator & Animator | ← Scrollytelling, ← Children's Fiction, → Immersive Eng, ← UI/UX, → **Visual Auditor** |
 | `visual-auditor-agent.md` | **Visual Quality Assurance** | SVG Quality & Performance Certifier | **Post-processor** ← SVG Expert, → Scrollytelling, → Children's Fiction (MANDATORY) |

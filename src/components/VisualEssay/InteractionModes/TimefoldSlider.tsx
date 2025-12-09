@@ -376,3 +376,4 @@ export const TimefoldSlider: React.FC<TimefoldSliderProps> = ({
 
 export default TimefoldSlider;
 
+
