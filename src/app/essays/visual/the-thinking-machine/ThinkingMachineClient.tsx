@@ -817,9 +817,12 @@ const Chapter2: React.FC = () => {
     return Math.floor(revealProgress * proposalPhrases.length);
   }, [progress]);
   
-  // Show the "punchline" after all phrases revealed
-  const showPunchline = progress > 0.55;
-  const showFounders = progress > 0.75;
+  // Staggered punchline reveal for dramatic impact
+  const showPunchlineLine1 = progress > 0.52; // "They believed... 2 months"
+  const showPunchlineLine2 = progress > 0.60; // "It would take 70 years" (the twist)
+  const showPunchlineLine3 = progress > 0.68; // "They were brilliant..." (conclusion)
+  const showPunchline = progress > 0.52; // Container visibility
+  const showFounders = progress > 0.78;
   
   const founders: Pioneer[] = [
     {
@@ -904,15 +907,15 @@ const Chapter2: React.FC = () => {
           </div>
         </div>
         
-        {/* The Punchline */}
+        {/* The Punchline - staggered reveal for dramatic impact */}
         <div className={`proposal-punchline ${showPunchline ? "visible" : ""}`}>
-          <p className="punchline-text">
+          <p className={`punchline-text ${showPunchlineLine1 ? "revealed" : ""}`}>
             They believed they could solve it in <span className="time-contrast">2 months</span>.
           </p>
-          <p className="punchline-reality">
+          <p className={`punchline-reality ${showPunchlineLine2 ? "revealed" : ""}`}>
             It would take <span className="time-contrast">70 years</span>.
           </p>
-          <p className="punchline-conclusion">
+          <p className={`punchline-conclusion ${showPunchlineLine3 ? "revealed" : ""}`}>
             They were brilliant. They were wrong about the timeline.<br />
             <strong>But they were right that it could be done.</strong>
           </p>
