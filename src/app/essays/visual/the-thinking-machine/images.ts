@@ -200,7 +200,7 @@ export const goldenAgeImages = {
     sourceUrl: "https://commons.wikimedia.org/wiki/File:MIT_Stata_Center.jpg",
   },
   rosenblattPortrait: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Frank_Rosenblatt.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/3/3b/Frank_Rosenblatt.jpg",
     alt: "Frank Rosenblatt",
     caption: "Frank Rosenblatt — built the Perceptron, predicted conscious machines, vindicated sixty years later",
     source: "Wikimedia Commons",
@@ -218,13 +218,13 @@ export const goldenAgeImages = {
     sourceUrl: "https://en.wikipedia.org/wiki/File:Mark_I_perceptron.jpeg",
   },
   shakey: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/e/ef/SRI_Shakey_with_samples.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/c/c3/SRI_Shakey_robot%2C_1969%2C_Computer_History_Museum.jpg",
     alt: "Shakey the robot at SRI International",
     caption: "Shakey — the first mobile robot to reason about its actions",
-    source: "SRI International / Wikimedia Commons",
+    source: "Computer History Museum / Wikimedia Commons",
     date: "1969",
     license: "CC BY-SA 3.0",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:SRI_Shakey_with_samples.jpg",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:SRI_Shakey_robot,_1969,_Computer_History_Museum.jpg",
   },
   elizaTerminal: {
     src: "https://upload.wikimedia.org/wikipedia/commons/7/79/ELIZA_conversation.png",
@@ -236,7 +236,7 @@ export const goldenAgeImages = {
     sourceUrl: "https://commons.wikimedia.org/wiki/File:ELIZA_conversation.png",
   },
   weizenbaumPortrait: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Joseph_Weizenbaum.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/1/17/Joseph_Weizenbaum.jpg",
     alt: "Joseph Weizenbaum",
     caption: "Joseph Weizenbaum — created ELIZA, then became horrified by what he'd built",
     source: "Ulrich Hansen / Wikimedia Commons",
