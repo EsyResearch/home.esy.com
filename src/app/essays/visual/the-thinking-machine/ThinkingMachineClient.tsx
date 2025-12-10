@@ -996,38 +996,151 @@ const Chapter3: React.FC = () => {
 
 // ==================== CHAPTER 4: THE FIRST WINTER ====================
 
+// Freeze headlines that stack during scroll-lock
+const freezeHeadlines = [
+  { year: "1973", text: "AI Has Failed to Achieve Its Grandiose Objectives", source: "Lighthill Report" },
+  { year: "1974", text: "DARPA Cuts AI Funding by 75%", source: "Department of Defense" },
+  { year: "1975", text: "Machine Translation: A Decade of Disappointment", source: "ALPAC Report" },
+  { year: "1976", text: "Thinking Machines Remain a Fantasy", source: "Science Magazine" },
+  { year: "1978", text: "Neural Networks: A Dead End?", source: "AI Review" },
+  { year: "1980", text: "The AI Winter Deepens", source: "MIT Technology Review" },
+];
+
 const Chapter4: React.FC = () => {
-  const { ref, isVisible } = useIntersectionReveal(0.1);
+  const { containerRef, progress, isPinned } = useScrollLock(3);
+  const { ref: contentRef, isVisible } = useIntersectionReveal(0.1);
+  
+  // Calculate which headlines are visible based on scroll progress
+  const visibleHeadlineCount = Math.min(
+    Math.floor(progress * (freezeHeadlines.length + 1)),
+    freezeHeadlines.length
+  );
+  
+  // Funding graph animation: rises then falls
+  // 0-30% progress: graph rises (optimism of 1960s)
+  // 30-100% progress: graph plummets (the freeze)
+  const graphProgress = useMemo(() => {
+    if (progress < 0.3) {
+      // Rising phase: 0 -> 100%
+      return progress / 0.3;
+    } else {
+      // Falling phase: 100% -> 10%
+      const fallProgress = (progress - 0.3) / 0.7;
+      return 1 - (fallProgress * 0.9); // Falls to 10%
+    }
+  }, [progress]);
+  
+  // Temperature effect: gets colder as scroll progresses
+  const coldness = Math.min(progress * 1.2, 1);
 
   return (
-    <section id="chapter-4" className="chapter chapter-4 era-foundations" ref={ref}>
-      <div className={`chapter-content ${isVisible ? "revealed" : ""}`}>
-        <header className="chapter-header">
+    <section 
+      id="chapter-4" 
+      className={`chapter chapter-4 era-winter scroll-lock-container ${isPinned ? "is-pinned" : ""}`}
+      ref={containerRef}
+      style={{ height: "300vh" }}
+    >
+      {/* Scroll-lock "The Freeze" visualization */}
+      <div className={`freeze-pinned ${isPinned ? "is-pinned" : ""}`}>
+        <header className="chapter-header" style={{ marginBottom: "var(--space-lg)" }}>
           <span className="chapter-number">Chapter 4</span>
           <span className="chapter-date">1973-1980</span>
           <h2 className="chapter-title">The First Winter</h2>
           <p className="chapter-metaphor">When the funding froze</p>
         </header>
         
-        <div className="chapter-text centered">
-          <p className="chapter-intro" style={{ color: "var(--ai-text-muted)" }}>
-            Reality arrived like a cold front.
-          </p>
+        {/* Funding Graph Visualization */}
+        <div className="freeze-graph-container">
+          <div className="freeze-graph">
+            <div className="graph-label-y">AI Funding</div>
+            <div className="graph-area">
+              {/* Graph bars representing funding levels by year */}
+              <div className="graph-bars">
+                {[1965, 1967, 1969, 1971, 1973, 1975, 1977, 1979].map((year, index) => {
+                  // Calculate height based on progress
+                  let targetHeight;
+                  if (year <= 1971) {
+                    // Pre-winter: rising
+                    targetHeight = 30 + (index * 10);
+                  } else {
+                    // Post-1973: falling
+                    const fallIndex = index - 4;
+                    targetHeight = 70 - (fallIndex * 15);
+                  }
+                  
+                  // Animate based on scroll progress
+                  const barProgress = Math.min(progress * 2, 1);
+                  const currentHeight = year <= 1971 
+                    ? targetHeight * barProgress 
+                    : progress > 0.3 
+                      ? targetHeight * Math.max(0.1, 1 - ((progress - 0.3) / 0.7))
+                      : targetHeight * barProgress;
+                  
+                  return (
+                    <div 
+                      key={year}
+                      className={`graph-bar ${year >= 1973 ? "frozen" : "warm"}`}
+                      style={{ 
+                        height: `${currentHeight}%`,
+                        opacity: progress > 0.05 ? 1 : 0,
+                        transitionDelay: `${index * 0.05}s`
+                      }}
+                    >
+                      <span className="bar-year">{year}</span>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="graph-label-x">Year</div>
+            </div>
+          </div>
         </div>
         
+        {/* Stacking Headlines */}
+        <div className="freeze-headlines">
+          {freezeHeadlines.slice(0, visibleHeadlineCount).map((headline, index) => (
+            <div 
+              key={headline.year}
+              className="freeze-headline"
+              style={{ 
+                animationDelay: `${index * 0.1}s`,
+                opacity: 1,
+              }}
+            >
+              <span className="headline-year">{headline.year}</span>
+              <span className="headline-text">&ldquo;{headline.text}&rdquo;</span>
+              <span className="headline-source">— {headline.source}</span>
+            </div>
+          ))}
+        </div>
+        
+        {/* Cold overlay effect */}
+        <div 
+          className="freeze-overlay" 
+          style={{ opacity: coldness * 0.3 }}
+        />
+        
+        {/* Scroll hint */}
+        <div className="scroll-hint" style={{ opacity: progress < 0.1 ? 1 : 0 }}>
+          <span>Scroll to witness the freeze</span>
+          <div className="scroll-arrow">↓</div>
+        </div>
+      </div>
+      
+      {/* Static content after scroll-lock */}
+      <div 
+        className={`chapter-content winter-content ${progress > 0.95 ? "revealed" : ""}`}
+        ref={contentRef}
+        style={{ 
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          opacity: progress > 0.9 ? 1 : 0,
+          transition: "opacity 0.6s ease"
+        }}
+      >
         <div className="chapter-text centered">
-          <p>
-            The Lighthill Report in Britain declared AI had failed to achieve its 
-            &ldquo;grandiose objectives.&rdquo; DARPA slashed funding. Machine translation 
-            projects collapsed. The promises of 1956 looked like hubris.
-          </p>
-          
-          <p>
-            The fundamental problem: early AI could handle toy problems but collapsed 
-            on real-world complexity. Symbolic logic couldn&apos;t scale. Neural networks 
-            hit mathematical walls.
-          </p>
-          
           <blockquote className="historic-quote">
             <p>&ldquo;In no part of the field have the discoveries made so far produced 
             the major impact that was then promised.&rdquo;</p>
@@ -1041,18 +1154,18 @@ const Chapter4: React.FC = () => {
           </p>
         </div>
         
-        {/* Stats section - full width, outside grid */}
+        {/* Stats section */}
         <div className="data-stats" style={{ marginTop: "var(--space-xl)" }}>
-          <div className="stat-card">
-            <span className="stat-value" style={{ color: "var(--ai-warning-red)" }}>-75%</span>
+          <div className="stat-card frozen">
+            <span className="stat-value" style={{ color: "var(--ai-frost-blue, #6BA3BE)" }}>-75%</span>
             <span className="stat-label">DARPA AI funding cut</span>
           </div>
-          <div className="stat-card">
-            <span className="stat-value" style={{ color: "var(--ai-warning-red)" }}>0</span>
+          <div className="stat-card frozen">
+            <span className="stat-value" style={{ color: "var(--ai-frost-blue, #6BA3BE)" }}>0</span>
             <span className="stat-label">Major neural network papers, 1975-1982</span>
           </div>
-          <div className="stat-card">
-            <span className="stat-value" style={{ color: "var(--ai-text-muted)" }}>7</span>
+          <div className="stat-card frozen">
+            <span className="stat-value" style={{ color: "var(--ai-frost-blue, #6BA3BE)" }}>7</span>
             <span className="stat-label">Years of &ldquo;AI Winter&rdquo;</span>
           </div>
         </div>

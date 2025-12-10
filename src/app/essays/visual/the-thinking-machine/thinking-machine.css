@@ -863,6 +863,269 @@
   filter: grayscale(100%) sepia(30%) contrast(1.1);
 }
 
+/* Era: AI Winter - Cold, desaturated, frost-edged */
+.era-winter {
+  --era-tint: rgba(107, 163, 190, 0.08);
+  --ai-frost-blue: #6BA3BE;
+  --ai-ice-gray: #A8B5BD;
+  --ai-winter-dark: #1a2a33;
+  background: linear-gradient(
+    180deg,
+    var(--ai-bg-primary) 0%,
+    var(--ai-winter-dark) 50%,
+    var(--ai-bg-primary) 100%
+  );
+}
+
+.era-winter .archival-photo img {
+  filter: grayscale(70%) contrast(1.1) brightness(0.9);
+}
+
+.era-winter .chapter-title {
+  color: var(--ai-frost-blue);
+}
+
+.era-winter .chapter-metaphor {
+  color: var(--ai-ice-gray);
+}
+
+/* Freeze scroll-lock styles */
+.era-winter.scroll-lock-container {
+  position: relative;
+  min-height: auto;
+  padding: 0;
+}
+
+.freeze-pinned {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-xl) var(--space-md);
+  background: linear-gradient(
+    180deg,
+    var(--ai-bg-primary) 0%,
+    #0d1a20 100%
+  );
+  will-change: transform;
+}
+
+.freeze-pinned.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  transform: translateZ(0);
+}
+
+/* Funding Graph */
+.freeze-graph-container {
+  width: 100%;
+  max-width: 600px;
+  margin: var(--space-xl) auto;
+  padding: var(--space-lg);
+}
+
+.freeze-graph {
+  position: relative;
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.graph-label-y {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--ai-ice-gray);
+  margin-right: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.graph-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.graph-bars {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: var(--space-xs);
+  border-bottom: 1px solid var(--ai-ice-gray);
+  border-left: 1px solid var(--ai-ice-gray);
+  padding: var(--space-sm);
+}
+
+.graph-bar {
+  flex: 1;
+  max-width: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  transition: height 0.5s ease-out, background 0.3s ease;
+  border-radius: 2px 2px 0 0;
+}
+
+.graph-bar.warm {
+  background: linear-gradient(
+    180deg,
+    rgba(244, 162, 97, 0.8) 0%,
+    rgba(244, 162, 97, 0.4) 100%
+  );
+}
+
+.graph-bar.frozen {
+  background: linear-gradient(
+    180deg,
+    rgba(107, 163, 190, 0.8) 0%,
+    rgba(107, 163, 190, 0.3) 100%
+  );
+}
+
+.bar-year {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--ai-ice-gray);
+  margin-top: var(--space-xs);
+  position: absolute;
+  bottom: -20px;
+}
+
+.graph-label-x {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--ai-ice-gray);
+  text-align: center;
+  margin-top: var(--space-md);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Freeze Headlines */
+.freeze-headlines {
+  width: 100%;
+  max-width: 700px;
+  margin: var(--space-xl) auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.freeze-headline {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-md);
+  background: rgba(26, 42, 51, 0.8);
+  border-left: 3px solid var(--ai-frost-blue);
+  animation: headlineSlideIn 0.4s ease-out forwards;
+  transform: translateX(-20px);
+  opacity: 0;
+}
+
+@keyframes headlineSlideIn {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.headline-year {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ai-frost-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: var(--space-xs);
+}
+
+.headline-text {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 600;
+  color: var(--ai-text-primary);
+  font-style: italic;
+  line-height: 1.3;
+}
+
+.headline-source {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--ai-ice-gray);
+  margin-top: var(--space-xs);
+}
+
+/* Freeze overlay - frost effect */
+.freeze-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(107, 163, 190, 0.1) 50%,
+    rgba(107, 163, 190, 0.2) 100%
+  );
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+/* Winter content after scroll-lock */
+.winter-content {
+  background: var(--ai-bg-primary);
+  padding: var(--space-2xl) var(--space-md);
+}
+
+.winter-content .historic-quote {
+  border-left-color: var(--ai-frost-blue);
+}
+
+.winter-content .historic-quote p {
+  color: var(--ai-frost-blue);
+}
+
+.stat-card.frozen {
+  border-top-color: var(--ai-frost-blue);
+  background: rgba(26, 42, 51, 0.6);
+}
+
+/* Mobile adjustments for freeze */
+@media (max-width: 768px) {
+  .freeze-graph-container {
+    padding: var(--space-md);
+  }
+  
+  .freeze-graph {
+    height: 150px;
+  }
+  
+  .graph-bar {
+    max-width: 30px;
+  }
+  
+  .freeze-headlines {
+    padding: 0 var(--space-sm);
+  }
+  
+  .freeze-headline {
+    padding: var(--space-sm);
+  }
+  
+  .headline-text {
+    font-size: 0.9rem;
+  }
+}
+
 /* Era 2: Golden Age & First Winter (1956-1980) - Kodachrome */
 .era-golden-age {
   --era-tint: rgba(244, 162, 97, 0.03);
