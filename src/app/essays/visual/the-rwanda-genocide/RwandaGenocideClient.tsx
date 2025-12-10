@@ -130,6 +130,75 @@ function useScrollLockHero(scrollDepth: number = 1200) {
   return { containerRef, isLocked, progress, isComplete, skipToEnd };
 }
 
+/**
+ * Hook for inline scroll-lock sequences within chapters
+ * Lighter weight than hero - triggers when element is in center of viewport
+ */
+function useScrollLockSequence(scrollDepth: number = 800) {
+  const [isActive, setIsActive] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const accumulatedScroll = useRef(0);
+
+  useEffect(() => {
+    if (isComplete) return;
+
+    const checkPosition = () => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const viewportCenter = window.innerHeight / 2;
+      
+      // Activate when element center is in viewport center zone
+      if (rect.top < viewportCenter && rect.bottom > viewportCenter && !isComplete) {
+        if (!isActive) {
+          setIsActive(true);
+        }
+      }
+    };
+
+    const handleWheel = (e: WheelEvent) => {
+      if (!isActive || isComplete) return;
+      if (!containerRef.current) return;
+      
+      const rect = containerRef.current.getBoundingClientRect();
+      const viewportCenter = window.innerHeight / 2;
+      
+      // Only capture if still centered
+      if (rect.top < viewportCenter && rect.bottom > viewportCenter) {
+        e.preventDefault();
+        accumulatedScroll.current += e.deltaY;
+        const newProgress = Math.max(0, Math.min(100, (accumulatedScroll.current / scrollDepth) * 100));
+        setProgress(newProgress);
+        
+        if (newProgress >= 100) {
+          setIsComplete(true);
+          setIsActive(false);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', checkPosition, { passive: true });
+    window.addEventListener('wheel', handleWheel, { passive: false });
+
+    // Initial check
+    checkPosition();
+
+    return () => {
+      window.removeEventListener('scroll', checkPosition);
+      window.removeEventListener('wheel', handleWheel);
+    };
+  }, [isActive, isComplete, scrollDepth]);
+
+  const skip = () => {
+    setProgress(100);
+    setIsComplete(true);
+    setIsActive(false);
+  };
+
+  return { containerRef, isActive, progress, isComplete, skip };
+}
+
 // ============================================================================
 // TYPES
 // ============================================================================
@@ -389,13 +458,14 @@ const ProgressFlame: React.FC<{ progress: number; currentChapter: number }> = ({
   );
 };
 
-// Section Component with Intersection Observer
+// Section Component with Intersection Observer and Accessibility
 const Section: React.FC<{
   id: string;
   className?: string;
   children: React.ReactNode;
   onVisible?: () => void;
-}> = ({ id, className = "", children, onVisible }) => {
+  ariaLabel?: string;
+}> = ({ id, className = "", children, onVisible, ariaLabel }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -419,6 +489,8 @@ const Section: React.FC<{
       ref={sectionRef}
       id={id}
       className={`section ${className} ${isVisible ? "visible" : ""}`}
+      aria-label={ariaLabel}
+      tabIndex={-1}
     >
       {children}
     </section>
@@ -845,6 +917,125 @@ const KeyFigureCard: React.FC<{ figure: KeyFigure }> = ({ figure }) => {
   );
 };
 
+// ============================================================================
+// SCROLL-LOCK SEQUENCES - In-chapter immersive moments
+// ============================================================================
+
+/**
+ * "The Roadblock" - Chapter 5 Scroll-Lock Sequence
+ * Per spec: A road stretches before the viewer. As user scrolls, a roadblock 
+ * appears: logs, tires, Interahamwe with machetes. A hand extends into frame, 
+ * holding an ID card. The words are visible: TUTSI. The machete rises.
+ */
+const RoadblockSequence: React.FC = () => {
+  const { containerRef, progress, isComplete, skip } = useScrollLockSequence(1000);
+
+  // Stage calculations based on spec:
+  // 0-20%: Open road, peaceful
+  // 20-40%: Roadblock appears
+  // 40-60%: Approach, ID card demanded
+  // 60-80%: Card shown: TUTSI
+  // 80-100%: Machete rises. Black.
+
+  const getOpacity = (start: number, end: number) => {
+    if (progress < start) return 0;
+    if (progress >= end) return 1;
+    return (progress - start) / (end - start);
+  };
+
+  const getFadeOut = (start: number, duration: number = 15) => {
+    if (progress < start) return 1;
+    return Math.max(0, 1 - (progress - start) / duration);
+  };
+
+  return (
+    <div 
+      ref={containerRef}
+      className={`roadblock-sequence ${isComplete ? 'complete' : ''}`}
+      role="region"
+      aria-label="Interactive roadblock sequence"
+    >
+      <div className="roadblock-scene">
+        {/* Stage 1: Open road (0-20%) */}
+        <div 
+          className="roadblock-stage roadblock-road"
+          style={{ opacity: getFadeOut(20) }}
+        >
+          <p className="roadblock-narration">A road in Rwanda. April 1994.</p>
+          <div className="road-visual">
+            <div className="road-line" />
+          </div>
+        </div>
+
+        {/* Stage 2: Roadblock appears (20-40%) */}
+        <div 
+          className="roadblock-stage roadblock-barrier"
+          style={{ opacity: getOpacity(15, 25) * getFadeOut(45) }}
+        >
+          <div className="barrier-visual">
+            <div className="barrier-log" />
+            <div className="barrier-log" />
+            <div className="barrier-tire" />
+          </div>
+          <p className="roadblock-narration">Roadblock ahead.</p>
+        </div>
+
+        {/* Stage 3: The demand (40-60%) */}
+        <div 
+          className="roadblock-stage roadblock-demand"
+          style={{ opacity: getOpacity(35, 45) * getFadeOut(65) }}
+        >
+          <p className="roadblock-demand-text">
+            &ldquo;Carte d&apos;identité.&rdquo;
+          </p>
+          <p className="roadblock-subtext">Show your papers.</p>
+        </div>
+
+        {/* Stage 4: The card revealed (60-80%) */}
+        <div 
+          className="roadblock-stage roadblock-card-reveal"
+          style={{ opacity: getOpacity(55, 65) * getFadeOut(85) }}
+        >
+          <div className="roadblock-id-card">
+            <span className="card-header">CARTE D&apos;IDENTITÉ</span>
+            <span className="card-ethnic">TUTSI</span>
+          </div>
+        </div>
+
+        {/* Stage 5: The darkness (80-100%) */}
+        <div 
+          className="roadblock-stage roadblock-end"
+          style={{ opacity: getOpacity(75, 90) }}
+        >
+          <div className="roadblock-darkness" style={{ opacity: getOpacity(85, 95) }} />
+          <p className="roadblock-final-text" style={{ opacity: getOpacity(90, 98) }}>
+            This happened over one million times in 100 days.
+          </p>
+        </div>
+      </div>
+
+      {/* Progress indicator */}
+      {!isComplete && (
+        <div className="roadblock-progress">
+          <div className="roadblock-progress-fill" style={{ width: `${progress}%` }} />
+        </div>
+      )}
+
+      {/* Skip button */}
+      {!isComplete && progress > 0 && (
+        <button className="roadblock-skip" onClick={skip}>
+          Skip
+        </button>
+      )}
+
+      {/* Scroll prompt */}
+      {progress < 5 && !isComplete && (
+        <p className="roadblock-prompt">Scroll to continue</p>
+      )}
+    </div>
+  );
+};
+
 // Timeline Event
 const TimelineEvent: React.FC<{
   date: string;
@@ -972,6 +1163,11 @@ const RwandaGenocideClient: React.FC = () => {
 
   return (
     <div className="rwanda-genocide-essay">
+      {/* Skip Link for Accessibility */}
+      <a href="#before-the-storm" className="skip-link">
+        Skip to main content
+      </a>
+
       {/* Progress Indicator */}
       <ProgressFlame progress={progress} currentChapter={currentChapter} />
 
@@ -1209,18 +1405,8 @@ const RwandaGenocideClient: React.FC = () => {
             Presidential Guard and army established roadblocks. The Interahamwe fanned out with 
             machetes and lists of names. The radio instructed: &ldquo;The graves are not yet full.&rdquo;
           </p>
-          <div className="roadblock-visual">
-            <p className="roadblock-text">
-              At roadblocks across Rwanda, a single question determined life or death:
-            </p>
-            <div className="roadblock-card">
-              <span className="card-label">CARTE D&apos;IDENTITÉ</span>
-              <span className="card-ethnicity">TUTSI</span>
-            </div>
-            <p className="roadblock-aftermath">
-              This happened 1.5 million times in 100 days.
-            </p>
-          </div>
+          {/* Scroll-Lock Sequence: "The Roadblock" */}
+          <RoadblockSequence />
           <p>
             Churches became killing grounds. At Nyarubuye, 35,000 were murdered in the church compound. 
             At Ntarama, over 5,000. At Murambi Technical School, 45,000. The sanctuaries became abattoirs.

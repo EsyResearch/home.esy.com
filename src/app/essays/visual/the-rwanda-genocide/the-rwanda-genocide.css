@@ -753,17 +753,55 @@
    SECTIONS & CHAPTERS
    ============================================================================ */
 
+/* ============================================================================
+   SECTION ANIMATIONS - GPU Accelerated Entrance
+   ============================================================================ */
+
 .section {
   padding: var(--spacing-section) var(--padding-text);
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity var(--duration-slow) var(--easing-smooth),
-              transform var(--duration-slow) var(--easing-smooth);
+  transform: translateY(40px) translateZ(0);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+  backface-visibility: hidden;
 }
 
 .section.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) translateZ(0);
+}
+
+/* Staggered content reveal within visible sections */
+.section.visible .chapter-header {
+  animation: contentReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.section.visible .chapter-image-container {
+  animation: contentReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+  opacity: 0;
+}
+
+.section.visible .chapter-content {
+  animation: contentReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+  opacity: 0;
+}
+
+.section.visible .chapter-content > *:nth-child(1) { animation-delay: 0.35s; }
+.section.visible .chapter-content > *:nth-child(2) { animation-delay: 0.45s; }
+.section.visible .chapter-content > *:nth-child(3) { animation-delay: 0.55s; }
+.section.visible .chapter-content > *:nth-child(4) { animation-delay: 0.65s; }
+.section.visible .chapter-content > *:nth-child(5) { animation-delay: 0.75s; }
+
+@keyframes contentReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
 }
 
 .chapter {
@@ -1217,48 +1255,266 @@
   margin-top: 1rem;
 }
 
-/* Roadblock Visual */
-.roadblock-visual {
-  text-align: center;
-  padding: 2rem;
-  margin: 2rem 0;
-  background: rgba(0, 0, 0, 0.3);
+/* ============================================================================
+   ROADBLOCK SCROLL-LOCK SEQUENCE
+   ============================================================================ */
+
+.roadblock-sequence {
+  position: relative;
+  min-height: 60vh;
+  margin: 3rem 0;
   border-radius: 8px;
+  overflow: hidden;
+  background: linear-gradient(to bottom, 
+    rgba(0, 0, 0, 0.8) 0%, 
+    rgba(0, 0, 0, 0.95) 100%
+  );
 }
 
-.roadblock-text {
-  font-size: 1rem;
+.roadblock-scene {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.roadblock-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  transition: opacity 0.3s ease;
+}
+
+/* Stage 1: The Road */
+.roadblock-road .roadblock-narration {
+  font-family: var(--font-quote);
+  font-size: 1.125rem;
   color: var(--color-text-secondary);
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+.road-visual {
+  width: 100%;
+  max-width: 400px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+.road-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-memorial-gold) 0px,
+    var(--color-memorial-gold) 20px,
+    transparent 20px,
+    transparent 40px
+  );
+  transform: translateY(-50%);
+}
+
+/* Stage 2: The Barrier */
+.roadblock-barrier {
+  flex-direction: column;
+}
+
+.barrier-visual {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
   margin-bottom: 1.5rem;
 }
 
-.roadblock-card {
-  display: inline-block;
+.barrier-log {
+  width: 80px;
+  height: 12px;
+  background: #5D4037;
+  border-radius: 6px;
+  transform: rotate(-5deg);
+}
+
+.barrier-log:nth-child(2) {
+  transform: rotate(3deg);
+}
+
+.barrier-tire {
+  width: 40px;
+  height: 40px;
+  border: 8px solid #1a1a1a;
+  border-radius: 50%;
+  background: #333;
+}
+
+/* Stage 3: The Demand */
+.roadblock-demand-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.roadblock-subtext {
+  font-family: var(--font-quote);
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* Stage 4: The Card */
+.roadblock-id-card {
   background: #F5F5DC;
-  padding: 1rem 2rem;
+  padding: 1.5rem 3rem;
   border-radius: 4px;
-  margin-bottom: 1.5rem;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  animation: cardTremble 0.1s ease-in-out infinite;
 }
 
-.roadblock-card .card-label {
+@keyframes cardTremble {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-1px); }
+  75% { transform: translateX(1px); }
+}
+
+.roadblock-id-card .card-header {
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
   color: #666;
   display: block;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
-.roadblock-card .card-ethnicity {
+.roadblock-id-card .card-ethnic {
   font-family: var(--font-mono);
-  font-size: 1.25rem;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--color-blood-red);
+  display: block;
 }
 
-.roadblock-aftermath {
+/* Stage 5: The Darkness */
+.roadblock-end {
+  background: transparent;
+}
+
+.roadblock-darkness {
+  position: absolute;
+  inset: 0;
+  background: var(--color-void-black);
+  transition: opacity 0.5s ease;
+}
+
+.roadblock-final-text {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-mono);
-  font-size: 0.9375rem;
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
   color: var(--color-text-muted);
+  text-align: center;
+  max-width: 400px;
+}
+
+/* Progress & Controls */
+.roadblock-progress {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.roadblock-progress-fill {
+  height: 100%;
+  background: var(--color-memorial-gold);
+  transition: width 0.1s linear;
+}
+
+.roadblock-skip {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.375rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.roadblock-skip:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.roadblock-prompt {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  animation: promptPulse 2s ease-in-out infinite;
+}
+
+@keyframes promptPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Reduced motion for roadblock */
+@media (prefers-reduced-motion: reduce) {
+  .roadblock-sequence {
+    min-height: auto;
+    padding: 2rem;
+  }
+
+  .roadblock-scene {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .roadblock-stage {
+    position: relative;
+    opacity: 1 !important;
+    padding: 1rem;
+  }
+
+  .roadblock-id-card {
+    animation: none;
+  }
+
+  .roadblock-progress,
+  .roadblock-skip,
+  .roadblock-prompt {
+    display: none;
+  }
+
+  .roadblock-darkness {
+    display: none;
+  }
 }
 
 /* Genocide Stats */
@@ -1738,12 +1994,27 @@
    IMAGE CONTAINERS
    ============================================================================ */
 
+/* ============================================================================
+   IMAGE CONTAINERS - Loading States & Transitions
+   ============================================================================ */
+
 .chapter-image-container {
   position: relative;
   width: 100%;
   margin: 2rem 0 3rem;
   border-radius: 8px;
   overflow: hidden;
+  /* Skeleton loading background */
+  background: linear-gradient(
+    90deg,
+    var(--color-elevated-black) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    var(--color-elevated-black) 100%
+  );
+  background-size: 200% 100%;
+  animation: imageLoading 1.5s ease-in-out infinite;
+  /* Aspect ratio placeholder to prevent layout shift */
+  aspect-ratio: 16 / 9;
 }
 
 .chapter-image-container.memorial-image {
@@ -1754,11 +2025,30 @@
   border: 1px solid rgba(34, 139, 34, 0.3);
 }
 
+@keyframes imageLoading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 .chapter-image {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
   border-radius: 8px;
+  object-fit: cover;
+  /* Fade in when loaded */
+  opacity: 0;
+  animation: imageFadeIn 0.5s ease forwards;
+}
+
+@keyframes imageFadeIn {
+  to { opacity: 1; }
+}
+
+/* Stop skeleton animation once image is present */
+.chapter-image-container:has(.chapter-image) {
+  animation: none;
+  background: transparent;
 }
 
 .image-caption {
@@ -1886,20 +2176,106 @@
    ACCESSIBILITY
    ============================================================================ */
 
+/* ============================================================================
+   SKIP LINK - Keyboard Navigation Accessibility
+   ============================================================================ */
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  padding: 1rem 2rem;
+  background: var(--color-memorial-gold);
+  color: var(--color-void-black);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 8px 8px;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 2px;
+}
+
+/* ============================================================================
+   REDUCED MOTION - Comprehensive Accessibility Support
+   ============================================================================ */
+
 @media (prefers-reduced-motion: reduce) {
-  .rwanda-genocide-essay * {
-    animation: none !important;
-    transition: none !important;
+  /* Disable all animations and transitions */
+  .rwanda-genocide-essay *,
+  .rwanda-genocide-essay *::before,
+  .rwanda-genocide-essay *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
-  
+
+  /* Ensure all sections are visible immediately */
   .section {
     opacity: 1;
     transform: none;
+    will-change: auto;
   }
-  
+
+  .section.visible .chapter-header,
+  .section.visible .chapter-image-container,
+  .section.visible .chapter-content,
+  .section.visible .chapter-content > * {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  /* Rising metrics visible */
   .rising-metrics .metric-card {
     opacity: 1;
     transform: none;
+  }
+
+  /* Hero scroll-lock becomes static */
+  .hero-scroll-lock {
+    position: relative;
+    height: auto;
+    min-height: 100dvh;
+  }
+
+  .hero-scroll-lock .hero-stage {
+    position: relative;
+    opacity: 1 !important;
+    padding: 2rem;
+  }
+
+  .hero-scroll-lock .hero-stage-1,
+  .hero-scroll-lock .hero-stage-9 {
+    display: block;
+  }
+
+  .hero-scroll-lock .hero-stage-2,
+  .hero-scroll-lock .hero-stage-4,
+  .hero-scroll-lock .hero-stage-5,
+  .hero-scroll-lock .hero-stage-6,
+  .hero-scroll-lock .hero-stage-7,
+  .hero-scroll-lock .hero-stage-8 {
+    display: none;
+  }
+
+  .hero-progress,
+  .hero-skip,
+  .hero-scroll-prompt {
+    display: none;
+  }
+
+  /* Flame animations disabled */
+  .flame-svg,
+  .memorial-flame-large {
+    animation: none;
   }
 }
 
