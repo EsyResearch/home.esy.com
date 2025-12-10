@@ -314,13 +314,13 @@ export const secondWinterImages = {
 
 export const believersImages = {
   hintonToronto: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Geoffrey_Hinton_at_UofT.jpg",
-    alt: "Geoffrey Hinton at University of Toronto",
+    src: "https://upload.wikimedia.org/wikipedia/commons/3/30/Geoffrey_E._Hinton%2C_2024_Nobel_Prize_Laureate_in_Physics_%28cropped1%29.jpg",
+    alt: "Hinton at whiteboard",
     caption: "Geoffrey Hinton in Toronto — kept neural networks alive when the world had given up",
-    source: "University of Toronto / Wikimedia Commons",
-    date: "2019",
-    license: "CC BY 4.0",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:Geoffrey_Hinton_at_UofT.jpg",
+    source: "Nobel Foundation / Wikimedia Commons",
+    date: "2024",
+    license: "CC BY-SA 4.0",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Geoffrey_E._Hinton,_2024_Nobel_Prize_Laureate_in_Physics_(cropped1).jpg",
   },
   lecunBellLabs: {
     src: "https://upload.wikimedia.org/wikipedia/commons/2/22/Yann_LeCun_-_2018_%28cropped%29.jpg",
@@ -332,13 +332,13 @@ export const believersImages = {
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Yann_LeCun_-_2018_(cropped).jpg",
   },
   bengioMontreal: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/1/18/Yoshua_Bengio_-_2017.jpg",
-    alt: "Yoshua Bengio",
+    src: "https://upload.wikimedia.org/wikipedia/commons/1/1e/Yoshua_Bengio_2019_cropped.jpg",
+    alt: "Bengio at conference",
     caption: "Yoshua Bengio — built Montreal into an AI powerhouse while the world ignored him",
     source: "Wikimedia Commons",
-    date: "2017",
+    date: "2019",
     license: "CC BY-SA 4.0",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:Yoshua_Bengio_-_2017.jpg",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Yoshua_Bengio_2019_cropped.jpg",
   },
   turingAward2018: {
     src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Yann_LeCun_-_2018_%28cropped%29.jpg/440px-Yann_LeCun_-_2018_%28cropped%29.jpg",
