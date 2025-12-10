@@ -871,7 +871,7 @@ const Chapter2: React.FC = () => {
         {/* The Proposal - revealed phrase by phrase */}
         <div 
           className="proposal-document"
-          style={{ opacity: showFounders ? 0 : 1, transition: "opacity 0.4s ease" }}
+          style={{ opacity: showPunchline ? 0 : 1, transition: "opacity 0.4s ease" }}
         >
           <div className="proposal-header">
             <span className="proposal-label">THE DARTMOUTH PROPOSAL</span>
