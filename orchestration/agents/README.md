@@ -36,6 +36,7 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 | [Template Integration](#template-integration-engineer) | Raw templates → Next.js pages | `@agents/template-integration-engineer.md` |
 | [Essayist](#essayist-expert) | Academic essay guidance | `@agents/essayist-expert.md` |
 | [Copywriter](#copywriter-marketing-expert) | Marketing & conversion copy | `@agents/copywriter-marketing-expert.md` |
+| [SEO Specialist](#seo-specialist-expert) | **🔍 Technical SEO, content optimization, SERP domination** | `@agents/seo-specialist-expert.md` |
 
 ---
 
@@ -1289,6 +1290,79 @@ copy for the Esy.com homepage hero section.
 Apply @agents/copywriter-marketing-expert.md to improve the 
 CTA copy on this landing page for better conversion.
 ```
+
+---
+
+### SEO Specialist Expert
+**File:** `seo-specialist-expert.md`
+
+**Role:** World-class SEO strategist and search marketing expert with 20+ years of experience driving organic growth, specializing in technical SEO, content optimization, SERP domination, and algorithmic adaptation.
+
+**🔍 SEARCH VISIBILITY:** This agent ensures content ranks well and captures SERP features, driving organic discovery.
+
+**Best For:**
+- Technical SEO audits (crawlability, indexation, Core Web Vitals)
+- Content optimization for search
+- Keyword research and topic mapping
+- Featured snippet capture strategies
+- Schema markup and structured data
+- Link building strategy
+- Local SEO optimization
+- Algorithm update response
+
+**Expertise Areas:**
+| Domain | Capabilities |
+|--------|--------------|
+| Technical SEO | Crawlability, indexation, site architecture, page speed, Core Web Vitals |
+| On-Page SEO | Title tags, meta descriptions, headers, content optimization, schema |
+| SERP Features | Featured snippets, PAA, knowledge panels, rich results |
+| Content Strategy | Keyword research, topic clustering, content briefs, SEO writing |
+| Link Building | Backlink analysis, acquisition strategies, authority building |
+| Analytics | Search Console, GA4, ranking tracking, ROI measurement |
+
+**Integration Points:**
+- **G3 (Content Complete)**: SEO review of visual essays before publication
+- **Content Writers**: Provides keyword targets and content briefs
+- **Software Engineers**: Technical SEO implementation specs
+
+**Red Lines:**
+- ❌ Never employ black-hat tactics (cloaking, link schemes, keyword stuffing)
+- ❌ Never guarantee specific rankings
+- ❌ Never sacrifice user experience for search optimization
+
+**Invocation Examples:**
+```
+# Technical SEO audit
+Using @agents/seo-specialist-expert.md, conduct a technical SEO audit 
+of esy.com focusing on Core Web Vitals and JavaScript rendering.
+
+# Content optimization
+Using @agents/seo-specialist-expert.md, optimize the visual essay at 
+/essays/visual/the-thinking-machine for search. Target: "history of AI"
+
+# Keyword research
+Using @agents/seo-specialist-expert.md, conduct keyword research for 
+a visual essay about "The History of Coffee." Include featured snippet 
+opportunities.
+
+# Featured snippet strategy
+Using @agents/seo-specialist-expert.md, develop a featured snippet 
+capture strategy for [query]. Analyze current SERP and recommend 
+content structure.
+
+# SEO content brief
+Using @agents/seo-specialist-expert.md, create an SEO content brief 
+for a new visual essay about [topic]. Include keywords, structure, 
+and schema requirements.
+```
+
+**Output:**
+1. Technical SEO audit reports with prioritized fixes
+2. Content optimization guides (titles, metas, headers, schema)
+3. Keyword research packages with clustering
+4. SERP analysis and feature capture strategies
+5. Link building strategy and opportunity lists
+6. Performance reports with actionable recommendations
 
 ---
 
