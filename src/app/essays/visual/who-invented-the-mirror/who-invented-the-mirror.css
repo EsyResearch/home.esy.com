@@ -729,6 +729,167 @@
 }
 
 /* ============================================
+   FINAL CHAPTER - Staggered Reveal
+   ============================================ */
+.mirror-container .final-chapter-section {
+  position: relative;
+  padding: 10rem 2rem;
+  background: linear-gradient(
+    180deg,
+    var(--color-obsidian) 0%,
+    rgba(15, 15, 15, 1) 50%,
+    var(--color-obsidian) 100%
+  );
+  overflow: hidden;
+}
+
+.mirror-container .final-chapter-container {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* Header */
+.mirror-container .final-header {
+  text-align: center;
+}
+
+.mirror-container .final-era {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--color-venetian-gold);
+  margin-bottom: 1.5rem;
+}
+
+.mirror-container .final-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-mercury);
+  margin-bottom: 2rem;
+}
+
+.mirror-container .final-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.mirror-container .divider-line {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-venetian-gold),
+    transparent
+  );
+}
+
+.mirror-container .divider-icon {
+  color: var(--color-venetian-gold);
+  font-size: 0.6rem;
+  opacity: 0.8;
+}
+
+/* Paragraphs */
+.mirror-container .final-paragraph {
+  text-align: center;
+}
+
+.mirror-container .final-paragraph p {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: var(--color-silver);
+  margin-bottom: 1rem;
+}
+
+.mirror-container .final-paragraph p:last-child {
+  margin-bottom: 0;
+}
+
+.mirror-container .final-highlight {
+  font-size: 1.25rem !important;
+  font-style: italic;
+  color: var(--color-mercury) !important;
+  margin-top: 1.5rem !important;
+}
+
+.mirror-container .final-callout {
+  font-size: 1.15rem !important;
+  color: var(--color-silver-dark) !important;
+  padding: 1.5rem 2rem;
+  margin-top: 1.5rem !important;
+  background: var(--color-glass);
+  border-left: 2px solid var(--color-venetian-gold);
+  text-align: left;
+}
+
+.mirror-container .final-conclusion {
+  font-size: 1.3rem !important;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-venetian-gold) !important;
+  margin-top: 1.5rem !important;
+}
+
+/* Visual Breaks */
+.mirror-container .final-visual-break {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  opacity: 0;
+  transition: opacity 1s ease 0.3s;
+}
+
+.mirror-container .final-visual-break.visible {
+  opacity: 1;
+}
+
+.mirror-container .mirror-shard {
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-silver),
+    var(--color-venetian-gold),
+    var(--color-silver),
+    transparent
+  );
+  position: relative;
+}
+
+.mirror-container .mirror-shard::before,
+.mirror-container .mirror-shard::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--color-silver-dark);
+  transform: rotate(45deg);
+}
+
+.mirror-container .mirror-shard::before {
+  top: -12px;
+  left: -3px;
+}
+
+.mirror-container .mirror-shard::after {
+  bottom: -12px;
+  left: -3px;
+}
+
+/* ============================================
    FOOTER
    ============================================ */
 .mirror-container .footer {

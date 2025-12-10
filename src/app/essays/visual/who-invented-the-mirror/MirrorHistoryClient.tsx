@@ -302,28 +302,94 @@ const MirrorSVGSection: React.FC = () => {
 
 // ==================== FINAL CHAPTER ====================
 const FinalChapter: React.FC = () => {
-  const { ref, isVisible } = useInView(0.3);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const para1Ref = useRef<HTMLDivElement>(null);
+  const para2Ref = useRef<HTMLDivElement>(null);
+  const para3Ref = useRef<HTMLDivElement>(null);
+  
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const [para1Visible, setPara1Visible] = useState(false);
+  const [para2Visible, setPara2Visible] = useState(false);
+  const [para3Visible, setPara3Visible] = useState(false);
+
+  useEffect(() => {
+    const createObserver = (
+      ref: React.RefObject<HTMLDivElement>,
+      setter: (visible: boolean) => void,
+      threshold: number
+    ) => {
+      const observer = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setter(true); },
+        { threshold }
+      );
+      if (ref.current) observer.observe(ref.current);
+      return observer;
+    };
+
+    const observers = [
+      createObserver(headerRef, setHeaderVisible, 0.5),
+      createObserver(para1Ref, setPara1Visible, 0.6),
+      createObserver(para2Ref, setPara2Visible, 0.6),
+      createObserver(para3Ref, setPara3Visible, 0.6),
+    ];
+
+    return () => observers.forEach(obs => obs.disconnect());
+  }, []);
 
   return (
-    <section ref={ref} className="reflection-section">
-      <div className="reflection-content" style={{ maxWidth: '700px' }}>
-        <div className={`reflection-text fade-up ${isVisible ? 'visible' : ''}`} style={{ gridColumn: '1 / -1', textAlign: 'center' }}>
-          <div className="reflection-era">1835 — The Modern Mirror</div>
-          <h2 className="reflection-title">Justus von Liebig&apos;s Revolution</h2>
-          <p className="reflection-body">
+    <section className="final-chapter-section">
+      <div className="final-chapter-container">
+        {/* Header with era and title */}
+        <div ref={headerRef} className={`final-header fade-up ${headerVisible ? 'visible' : ''}`}>
+          <div className="final-era">1835 — The Modern Mirror</div>
+          <h2 className="final-title">Justus von Liebig&apos;s Revolution</h2>
+          <div className="final-divider">
+            <span className="divider-line" />
+            <span className="divider-icon">◆</span>
+            <span className="divider-line" />
+          </div>
+        </div>
+
+        {/* Paragraph 1: The Discovery */}
+        <div ref={para1Ref} className={`final-paragraph fade-up ${para1Visible ? 'visible' : ''}`}>
+          <p>
             In 1835, German chemist Justus von Liebig discovered that depositing a thin layer of 
-            metallic silver onto glass created the clearest, most durable mirrors ever made. 
+            metallic silver onto glass created the clearest, most durable mirrors ever made.
+          </p>
+          <p className="final-highlight">
             His silver nitrate process made mirrors affordable for everyone—not just royalty.
           </p>
-          <p className="reflection-body">
-            Within decades, mirrors transformed from rare luxuries into household necessities. 
-            The person staring back at you in the bathroom mirror each morning? You can thank 
-            a 19th-century chemist for that daily encounter with your own reflection.
+        </div>
+
+        {/* Visual Break */}
+        <div className={`final-visual-break ${para1Visible ? 'visible' : ''}`}>
+          <div className="mirror-shard" />
+        </div>
+
+        {/* Paragraph 2: The Transformation */}
+        <div ref={para2Ref} className={`final-paragraph fade-up ${para2Visible ? 'visible' : ''}`}>
+          <p>
+            Within decades, mirrors transformed from rare luxuries into household necessities.
           </p>
-          <p className="reflection-body">
+          <p className="final-callout">
+            The person staring back at you in the bathroom mirror each morning? 
+            You can thank a 19th-century chemist for that daily encounter with your own reflection.
+          </p>
+        </div>
+
+        {/* Visual Break */}
+        <div className={`final-visual-break ${para2Visible ? 'visible' : ''}`}>
+          <div className="mirror-shard" />
+        </div>
+
+        {/* Paragraph 3: Modern Day */}
+        <div ref={para3Ref} className={`final-paragraph fade-up ${para3Visible ? 'visible' : ''}`}>
+          <p>
             Today, mirrors are everywhere: in our pockets as smartphone cameras, on our walls as 
-            smart displays, in telescopes peering at distant galaxies. After 8,000 years, we&apos;re 
-            still fascinated by the simple act of seeing ourselves.
+            smart displays, in telescopes peering at distant galaxies.
+          </p>
+          <p className="final-conclusion">
+            After 8,000 years, we&apos;re still fascinated by the simple act of seeing ourselves.
           </p>
         </div>
       </div>
