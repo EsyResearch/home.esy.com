@@ -10,30 +10,124 @@ import { rwandaImages } from "./images";
 // ============================================================================
 
 /**
- * Hook for hero parallax effect with scroll-driven fade
+ * Hook for scroll-lock hero sequence
+ * Locks viewport and drives animation via scroll input
  */
-function useHeroParallax() {
-  const [offset, setOffset] = useState(0);
-  const [opacity, setOpacity] = useState(1);
+function useScrollLockHero(scrollDepth: number = 1200) {
+  const [isLocked, setIsLocked] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const accumulatedScroll = useRef(0);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
+    if (isComplete) return;
+
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const heroHeight = window.innerHeight;
+      if (!containerRef.current) return;
       
-      // Parallax: background moves at 50% of scroll speed
-      setOffset(scrollY * 0.5);
+      const rect = containerRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
       
-      // Fade out hero content as user scrolls
-      const fadeProgress = Math.min(scrollY / (heroHeight * 0.6), 1);
-      setOpacity(1 - fadeProgress);
+      // Check if hero is in view and should lock
+      if (rect.top <= 0 && rect.bottom > viewportHeight * 0.5 && !isComplete) {
+        if (!isLocked) {
+          setIsLocked(true);
+          lastScrollY.current = window.scrollY;
+        }
+      }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const handleWheel = (e: WheelEvent) => {
+      if (!isLocked || isComplete) return;
+      
+      // Prevent default scroll
+      e.preventDefault();
+      
+      // Accumulate scroll input
+      accumulatedScroll.current += e.deltaY;
+      
+      // Calculate progress (0-100)
+      const newProgress = Math.max(0, Math.min(100, (accumulatedScroll.current / scrollDepth) * 100));
+      setProgress(newProgress);
+      
+      // Check if complete
+      if (newProgress >= 100) {
+        setIsComplete(true);
+        setIsLocked(false);
+      }
+    };
 
-  return { offset, opacity };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isLocked || isComplete) return;
+      
+      // Space or arrow down advances
+      if (e.key === ' ' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        accumulatedScroll.current += 100;
+        const newProgress = Math.min(100, (accumulatedScroll.current / scrollDepth) * 100);
+        setProgress(newProgress);
+        if (newProgress >= 100) {
+          setIsComplete(true);
+          setIsLocked(false);
+        }
+      }
+      
+      // Escape skips
+      if (e.key === 'Escape') {
+        skipToEnd();
+      }
+    };
+
+    // Touch handling for mobile
+    let touchStartY = 0;
+    const handleTouchStart = (e: TouchEvent) => {
+      if (!isLocked || isComplete) return;
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!isLocked || isComplete) return;
+      e.preventDefault();
+      
+      const touchY = e.touches[0].clientY;
+      const deltaY = touchStartY - touchY;
+      touchStartY = touchY;
+      
+      accumulatedScroll.current += deltaY * 2; // Amplify touch
+      const newProgress = Math.max(0, Math.min(100, (accumulatedScroll.current / scrollDepth) * 100));
+      setProgress(newProgress);
+      
+      if (newProgress >= 100) {
+        setIsComplete(true);
+        setIsLocked(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+    };
+  }, [isLocked, isComplete, scrollDepth]);
+
+  const skipToEnd = () => {
+    setProgress(100);
+    setIsComplete(true);
+    setIsLocked(false);
+    accumulatedScroll.current = scrollDepth;
+  };
+
+  return { containerRef, isLocked, progress, isComplete, skipToEnd };
 }
 
 // ============================================================================
@@ -365,103 +459,204 @@ const QuoteMonument: React.FC<{
 // IMMERSIVE HERO SECTION
 // ============================================================================
 
-const HeroSection: React.FC = () => {
-  const { offset, opacity } = useHeroParallax();
-  const [isLoaded, setIsLoaded] = useState(false);
+// ============================================================================
+// SCROLL-LOCK HERO SECTION (Per Spec Layer 3)
+// ============================================================================
 
-  // Trigger entrance animations after mount
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoaded(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
+const HeroSection: React.FC = () => {
+  const { containerRef, isLocked, progress, isComplete, skipToEnd } = useScrollLockHero(1200);
+  
+  // Calculate which stage we're in based on progress
+  // Stage 1: 0-10% - Hills panorama
+  // Stage 2: 10-20% - Descend toward church
+  // Stage 3: 20-35% - Church doors
+  // Stage 4: 35-50% - Inside church
+  // Stage 5: 50-65% - Text about murder
+  // Stage 6: 65-80% - Survivor photo/names
+  // Stage 7: 80-90% - 1,000,000 number
+  // Stage 8: 90-95% - Statistics
+  // Stage 9: 95-100% - KWIBUKA title
+  
+  const getStageOpacity = (stageStart: number, stageEnd: number) => {
+    if (progress < stageStart) return 0;
+    if (progress >= stageEnd) return 1;
+    return (progress - stageStart) / (stageEnd - stageStart);
+  };
+  
+  const isStageActive = (stageStart: number) => progress >= stageStart;
+  
+  // Camera zoom effect (simulated via scale)
+  const zoomLevel = 1 + (progress / 100) * 0.3; // 1x to 1.3x
+  
+  // Darken as we progress into the horror
+  const darkenLevel = Math.min(progress / 50, 1) * 0.4;
 
   return (
-    <section className="hero-section">
-      {/* Parallax Background */}
-      <div 
-        className="hero-background"
-        style={{ 
-          transform: `translateY(${offset}px) translateZ(0)`,
-          willChange: 'transform'
-        }}
-      >
-        <Image
-          src={rwandaImages.thousandHills.url}
-          alt={rwandaImages.thousandHills.alt}
-          fill
-          className="hero-image"
-          priority
-          style={{ objectFit: "cover" }}
+    <section 
+      ref={containerRef}
+      className={`hero-section hero-scroll-lock ${isLocked ? 'is-locked' : ''} ${isComplete ? 'is-complete' : ''}`}
+    >
+      {/* Background with zoom effect */}
+      <div className="hero-background">
+        <div 
+          className="hero-image-wrapper"
+          style={{ 
+            transform: `scale(${zoomLevel}) translateZ(0)`,
+            willChange: 'transform'
+          }}
+        >
+          <Image
+            src={rwandaImages.thousandHills.url}
+            alt={rwandaImages.thousandHills.alt}
+            fill
+            className="hero-image"
+            priority
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+        {/* Progressive darkening */}
+        <div 
+          className="hero-darken"
+          style={{ opacity: darkenLevel }}
         />
         <div className="hero-gradient" />
       </div>
 
-      {/* Animated Content */}
+      {/* Stage 1: 0-10% - Opening panorama text */}
       <div 
-        className={`hero-content ${isLoaded ? 'hero-content--visible' : ''}`}
+        className="hero-stage hero-stage-1"
+        style={{ opacity: progress < 10 ? 1 : Math.max(0, 1 - (progress - 10) / 10) }}
+      >
+        <p className="hero-location">Rwanda</p>
+        <p className="hero-tagline">The Land of a Thousand Hills</p>
+      </div>
+
+      {/* Stage 2-3: 10-35% - Descending to church */}
+      <div 
+        className="hero-stage hero-stage-2"
         style={{ 
-          opacity: opacity,
-          transform: `translateY(${offset * 0.2}px) translateZ(0)`,
-          willChange: 'transform, opacity'
+          opacity: getStageOpacity(10, 20) * (progress < 35 ? 1 : Math.max(0, 1 - (progress - 35) / 15))
         }}
       >
-        {/* Opening - First to appear */}
-        <div className={`hero-opening ${isLoaded ? 'hero-animate hero-animate--1' : ''}`}>
-          <p className="hero-location">Ntarama Church, Rwanda</p>
-          <p className="hero-context">
-            On April 15, 1994, over 5,000 people were murdered here.
-            <br />
-            They had come seeking sanctuary. The killers followed them inside.
-          </p>
-        </div>
+        <p className="hero-location">Ntarama Church</p>
+        <p className="hero-tagline">April 1994</p>
+      </div>
 
-        {/* Statistics - Animated count-up */}
-        <div className={`hero-stats ${isLoaded ? 'hero-animate hero-animate--2' : ''}`}>
-          <AnimatedStatistic 
-            endValue={1000000} 
-            label="Murdered" 
-            sublabel="in 100 days" 
-            variant="large"
-            formatValue={(n) => n.toLocaleString()}
-            duration={2500}
-          />
-          <div className="stats-row">
-            <AnimatedStatistic 
-              endValue={10000} 
-              label="per day" 
-              variant="small"
-              formatValue={(n) => n.toLocaleString()}
-              duration={2000}
-              delay={300}
-            />
-            <AnimatedStatistic 
-              endValue={400} 
-              label="per hour" 
-              variant="small"
-              duration={1800}
-              delay={500}
-            />
-            <AnimatedStatistic 
-              endValue={7} 
-              label="per minute" 
-              variant="small"
-              duration={1500}
-              delay={700}
-            />
+      {/* Stage 4: 35-50% - Inside the church */}
+      <div 
+        className="hero-stage hero-stage-4"
+        style={{ 
+          opacity: getStageOpacity(35, 45) * (progress < 50 ? 1 : Math.max(0, 1 - (progress - 50) / 15))
+        }}
+      >
+        <p className="hero-church-text">
+          The doors were open.<br />
+          Darkness inside.<br />
+          Silence where there should be life.
+        </p>
+      </div>
+
+      {/* Stage 5: 50-65% - The horror text */}
+      <div 
+        className="hero-stage hero-stage-5"
+        style={{ 
+          opacity: getStageOpacity(50, 58) * (progress < 65 ? 1 : Math.max(0, 1 - (progress - 65) / 15))
+        }}
+      >
+        <p className="hero-murder-text">
+          On April 15, 1994, over 5,000 people were murdered at Ntarama Church.
+        </p>
+        <p className="hero-murder-subtext">
+          They had come seeking sanctuary.<br />
+          The killers followed them inside.
+        </p>
+      </div>
+
+      {/* Stage 6: 65-80% - Memorial context */}
+      <div 
+        className="hero-stage hero-stage-6"
+        style={{ 
+          opacity: getStageOpacity(65, 72) * (progress < 80 ? 1 : Math.max(0, 1 - (progress - 80) / 10))
+        }}
+      >
+        <p className="hero-memorial-text">
+          This church is now a memorial.<br />
+          These bones are real.
+        </p>
+      </div>
+
+      {/* Stage 7: 80-90% - The number */}
+      <div 
+        className="hero-stage hero-stage-7"
+        style={{ opacity: getStageOpacity(80, 85) * (progress < 90 ? 1 : Math.max(0, 1 - (progress - 90) / 5)) }}
+      >
+        <div className="hero-main-stat">
+          <span className="hero-stat-number">
+            {Math.floor(getStageOpacity(80, 88) * 1000000).toLocaleString()}
+          </span>
+          <span className="hero-stat-label">Murdered</span>
+          <span className="hero-stat-sublabel">in 100 days</span>
+        </div>
+      </div>
+
+      {/* Stage 8: 90-95% - Scale statistics */}
+      <div 
+        className="hero-stage hero-stage-8"
+        style={{ opacity: getStageOpacity(90, 93) * (progress < 95 ? 1 : Math.max(0, 1 - (progress - 95) / 5)) }}
+      >
+        <div className="hero-scale-stats">
+          <div className="hero-scale-stat">
+            <span className="scale-number">10,000</span>
+            <span className="scale-label">per day</span>
+          </div>
+          <div className="hero-scale-stat">
+            <span className="scale-number">400</span>
+            <span className="scale-label">per hour</span>
+          </div>
+          <div className="hero-scale-stat">
+            <span className="scale-number">7</span>
+            <span className="scale-label">per minute</span>
           </div>
         </div>
+        <p className="hero-scale-context">
+          The scale of industrial genocide achieved with machetes.
+        </p>
+      </div>
 
-        {/* Title - Dramatic reveal */}
-        <div className={`hero-title-container ${isLoaded ? 'hero-animate hero-animate--3' : ''}`}>
-          <h1 className="hero-title">KWIBUKA</h1>
-          <p className="hero-subtitle">A Hundred Days of Darkness, A Generation of Light</p>
-          <p className="hero-translation">
-            <em>Kwibuka</em> — &ldquo;To remember&rdquo;
-          </p>
-        </div>
+      {/* Stage 9: 95-100% - KWIBUKA title */}
+      <div 
+        className="hero-stage hero-stage-9"
+        style={{ opacity: getStageOpacity(95, 98) }}
+      >
+        <h1 className="hero-title">KWIBUKA</h1>
+        <p className="hero-subtitle">A Hundred Days of Darkness, A Generation of Light</p>
+        <p className="hero-translation">
+          <em>Kwibuka</em> — &ldquo;To remember&rdquo;
+        </p>
+      </div>
 
-        {/* Scroll Indicator - Part of hero content flow */}
-        <div className={`scroll-indicator ${isLoaded ? 'hero-animate hero-animate--4' : ''}`}>
+      {/* Progress indicator */}
+      <div className="hero-progress">
+        <div 
+          className="hero-progress-fill"
+          style={{ height: `${progress}%` }}
+        />
+      </div>
+
+      {/* Skip affordance */}
+      {!isComplete && (
+        <button 
+          className="hero-skip"
+          onClick={skipToEnd}
+          aria-label="Skip introduction"
+        >
+          Skip intro
+        </button>
+      )}
+
+      {/* Scroll prompt (only at start) */}
+      {progress < 5 && (
+        <div className="hero-scroll-prompt">
           <span>Scroll to begin</span>
           <div className="scroll-arrow">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -469,7 +664,7 @@ const HeroSection: React.FC = () => {
             </svg>
           </div>
         </div>
-      </div>
+      )}
     </section>
   );
 };
