@@ -491,18 +491,46 @@ const HeroSection: React.FC = () => {
   // Darken as we progress into the horror
   const darkenLevel = Math.min(progress / 50, 1) * 0.4;
 
+  // Calculate image crossfade opacities
+  // Image 1: Hills (0-35%)
+  // Image 2: Church interior (35-65%)
+  // Image 3: Child survivors (65-80%)
+  // Image 4: Fade to dark for stats (80-100%)
+  
+  const getImageOpacity = (imageStart: number, imageEnd: number) => {
+    const fadeInDuration = 10; // 10% fade in
+    const fadeOutDuration = 10; // 10% fade out
+    
+    if (progress < imageStart) return 0;
+    if (progress < imageStart + fadeInDuration) {
+      return (progress - imageStart) / fadeInDuration;
+    }
+    if (progress < imageEnd - fadeOutDuration) return 1;
+    if (progress < imageEnd) {
+      return 1 - (progress - (imageEnd - fadeOutDuration)) / fadeOutDuration;
+    }
+    return 0;
+  };
+
+  // Image opacities
+  const hillsOpacity = progress < 35 ? 1 : Math.max(0, 1 - (progress - 35) / 15);
+  const churchOpacity = getImageOpacity(30, 70);
+  const survivorsOpacity = getImageOpacity(62, 85);
+
   return (
     <section 
       ref={containerRef}
       className={`hero-section hero-scroll-lock ${isLocked ? 'is-locked' : ''} ${isComplete ? 'is-complete' : ''}`}
     >
-      {/* Background with zoom effect */}
+      {/* Background with multiple images crossfading */}
       <div className="hero-background">
+        {/* Image 1: Hills panorama (0-35%) */}
         <div 
           className="hero-image-wrapper"
           style={{ 
             transform: `scale(${zoomLevel}) translateZ(0)`,
-            willChange: 'transform'
+            opacity: hillsOpacity,
+            willChange: 'transform, opacity'
           }}
         >
           <Image
@@ -514,6 +542,41 @@ const HeroSection: React.FC = () => {
             style={{ objectFit: "cover" }}
           />
         </div>
+        
+        {/* Image 2: Church interior (35-70%) */}
+        <div 
+          className="hero-image-wrapper hero-image-church"
+          style={{ 
+            opacity: churchOpacity,
+            willChange: 'opacity'
+          }}
+        >
+          <Image
+            src={rwandaImages.ntaramaChurch.url}
+            alt={rwandaImages.ntaramaChurch.alt}
+            fill
+            className="hero-image hero-image--dark"
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+        
+        {/* Image 3: Child survivors (65-85%) */}
+        <div 
+          className="hero-image-wrapper hero-image-survivors"
+          style={{ 
+            opacity: survivorsOpacity,
+            willChange: 'opacity'
+          }}
+        >
+          <Image
+            src={rwandaImages.childSurvivors.url}
+            alt={rwandaImages.childSurvivors.alt}
+            fill
+            className="hero-image hero-image--survivors"
+            style={{ objectFit: "cover", objectPosition: "center top" }}
+          />
+        </div>
+        
         {/* Progressive darkening */}
         <div 
           className="hero-darken"
