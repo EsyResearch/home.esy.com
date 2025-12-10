@@ -469,6 +469,7 @@
   position: relative;
   min-height: auto;
   padding: 0;
+  overflow: visible;
 }
 
 .prologue-pinned {
@@ -698,10 +699,17 @@
 
 /* Prologue conclusion - revealed after timeline */
 .prologue-conclusion {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   padding: var(--space-xl) var(--space-md);
+  padding-bottom: var(--space-2xl);
   max-width: 1200px;
   margin: 0 auto;
   transition: opacity var(--duration-slow);
+  background: var(--ai-bg-primary);
+  z-index: 5;
 }
 
 /* Mobile adjustments for timeline */
