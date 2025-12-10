@@ -168,7 +168,7 @@ export const dartmouthImages = {
     sourceUrl: "https://commons.wikimedia.org/wiki/File:John_McCarthy_Stanford.jpg",
   },
   minskyPortrait: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/0/0a/Marvin_Minsky_at_OLPCb.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/2/28/Marvin_Minsky_at_OLPCb.jpg",
     alt: "Marvin Minsky",
     caption: "Marvin Minsky — co-founder of MIT AI Lab, polymath visionary",
     source: "Wikimedia Commons",
@@ -177,7 +177,7 @@ export const dartmouthImages = {
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Marvin_Minsky_at_OLPCb.jpg",
   },
   shannonPortrait: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/9/9c/ClaudeShannon_MFO3807.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/9/99/ClaudeShannon_MFO3807.jpg",
     alt: "Claude Shannon",
     caption: "Claude Shannon — father of information theory, built chess machines and maze-solving robots",
     source: "Wikimedia Commons / Mathematisches Forschungsinstitut Oberwolfach",
