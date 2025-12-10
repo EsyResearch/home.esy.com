@@ -627,6 +627,160 @@ orchestration/audits/[essay-slug]/YYYY-MM-DD-comprehensive-audit.md
 
 ---
 
+## Audit Version History System
+
+### Purpose
+Maintain a complete audit trail across all domains for each essay. Track certification status changes, fixes applied, and quality evolution over time.
+
+### Version History Storage
+
+Each essay maintains audit history in its dedicated directory:
+
+```
+orchestration/audits/[essay-slug]/
+├── AUDIT-HISTORY.md           # Master audit history for this essay
+├── 2024-12-10-comprehensive-audit.md
+├── 2024-12-15-re-audit.md
+└── ...
+```
+
+### AUDIT-HISTORY.md Template
+
+```markdown
+# Audit History: [Essay Title]
+
+## Essay Information
+- **Slug**: [essay-slug]
+- **Path**: src/app/essays/visual/[slug]/
+- **First Audit**: YYYY-MM-DD
+- **Current Certification**: [✅ CERTIFIED / ⚠️ CONDITIONAL / ❌ REJECTED]
+
+---
+
+## Certification Timeline
+
+| Version | Date | Status | Score | Blocking Issues | Auditor |
+|---------|------|--------|-------|-----------------|---------|
+| v1.0 | YYYY-MM-DD | ❌ REJECTED | 5.2/10 | 3 | Meta Audit Orchestrator |
+| v1.1 | YYYY-MM-DD | ⚠️ CONDITIONAL | 7.1/10 | 0 | Meta Audit Orchestrator |
+| v2.0 | YYYY-MM-DD | ✅ CERTIFIED | 8.5/10 | 0 | Meta Audit Orchestrator |
+
+---
+
+## Domain History
+
+### Citation Domain
+| Version | Date | Action | Score Change | Details |
+|---------|------|--------|--------------|---------|
+| v1.0 | YYYY-MM-DD | INIT | N/A → 5/10 | Initial audit, 2 critical issues |
+| v1.1 | YYYY-MM-DD | QUOTE-FIX | 5 → 7/10 | Fixed unverified quote |
+| v1.2 | YYYY-MM-DD | SRC-UPG | 7 → 8.5/10 | Added Tier 1 sources |
+
+### Scroll Domain
+| Version | Date | Action | Score Change | Details |
+|---------|------|--------|--------------|---------|
+| v1.0 | YYYY-MM-DD | INIT | N/A → 8/10 | No blocking issues |
+
+### Experience Domain
+[...]
+
+### Visual Domain
+[...]
+
+### SEO Domain
+[...]
+
+---
+
+## Fix History
+
+### Blocking Issues Resolved
+| # | Issue | Domain | Fixed In | Fix Description |
+|---|-------|--------|----------|-----------------|
+| 1 | Unverified quote | Citation | v1.1 | Replaced with verified quote |
+| 2 | Broken source link | Citation | v1.1 | Updated URL |
+
+### Critical Issues Resolved
+[...]
+
+---
+
+## Audit Reports Archive
+- [v2.0 Comprehensive Audit](./2024-12-15-comprehensive-audit.md)
+- [v1.1 Re-Audit](./2024-12-12-re-audit.md)
+- [v1.0 Initial Audit](./2024-12-10-comprehensive-audit.md)
+```
+
+### Master Audit Changelog
+
+A global changelog tracking all audits across all essays:
+
+```
+orchestration/audits/CHANGELOG.md
+```
+
+Format:
+```markdown
+# Audit Changelog
+
+## December 2024
+
+### 2024-12-10
+- **the-mirror** [CITATION] v1.1: Fixed unverified quotes, upgraded sources → APPROVED
+- **the-mirror** [META] v1.0 → v1.1: Certification upgraded from NEEDS WORK to APPROVED
+
+### 2024-12-09
+- **the-gridiron** [SEO] v1.2: Fixed missing meta descriptions
+- **the-ledger** [META] v1.0: Initial comprehensive audit → CERTIFIED
+
+### 2024-12-08
+- **the-fork** [SCROLL] v1.0: Initial scroll audit, 2 Tier 2 issues found
+```
+
+### Version Numbering Convention
+
+| Pattern | Meaning |
+|---------|---------|
+| v1.0 | Initial audit |
+| v1.X | Incremental fixes within same audit cycle |
+| v2.0 | Major re-audit (content significantly changed) |
+| v2.X | Incremental fixes after major re-audit |
+
+### Integration Requirements
+
+**Every comprehensive audit MUST**:
+1. Check for existing AUDIT-HISTORY.md
+2. Increment version appropriately
+3. Update certification timeline
+4. Log all domain score changes
+5. Record any fixes applied
+6. Update master CHANGELOG.md
+
+**Every fix implementation MUST**:
+1. Reference the issue # from the audit report
+2. Log the before/after state
+3. Update domain history
+4. Update fix history table
+
+### Querying Audit History
+
+**For a specific essay:**
+```
+orchestration/audits/[essay-slug]/AUDIT-HISTORY.md
+```
+
+**For global audit activity:**
+```
+orchestration/audits/CHANGELOG.md
+```
+
+**For citation-specific history:**
+```
+orchestration/agents/CitationReports/CHANGELOG.md
+```
+
+---
+
 ## Last Updated
 December 2024
 

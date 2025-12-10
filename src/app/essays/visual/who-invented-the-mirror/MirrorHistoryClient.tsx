@@ -218,10 +218,10 @@ const MercurySection: React.FC = () => {
   const { ref, isVisible } = useInView(0.3);
 
   const stats = [
-    { value: '$4.2B', unit: '', label: 'Global Mirror Market' },
-    { value: '8,000', unit: 'yrs', label: 'Years of History' },
-    { value: '17', unit: 'min', label: 'Daily Mirror Time' },
-    { value: '93%', unit: '', label: 'Homes with Mirrors' },
+    { value: '$145B', unit: '', label: 'Global Mirror Market', source: '2024' },
+    { value: '8,000', unit: 'yrs', label: 'Years of History', source: '' },
+    { value: '38', unit: 'min', label: 'Avg. Daily Mirror Time', source: '2014 Survey' },
+    { value: '85%', unit: '', label: 'Homes with Mirrors', source: 'Est.' },
   ];
 
   return (
@@ -292,8 +292,8 @@ const MirrorSVGSection: React.FC = () => {
         </svg>
         
         <div className="mirror-quote">
-          <p>&ldquo;The mirror is a tool of self-confrontation.&rdquo;</p>
-          <cite>— Anish Kapoor</cite>
+          <p>&ldquo;We don&apos;t see things as they are, we see them as we are.&rdquo;</p>
+          <cite>— Anaïs Nin</cite>
         </div>
       </div>
     </section>
@@ -403,21 +403,31 @@ const Sources: React.FC = () => (
     <div className="sources-content">
       <h3 className="sources-title">Sources & Further Reading</h3>
       <div className="sources-grid">
+        {/* Tier 1 - Academic/Institutional */}
+        <a href="https://www.britannica.com/biography/Justus-baron-von-Liebig" target="_blank" rel="noopener noreferrer">
+          Britannica — Justus von Liebig Biography
+        </a>
         <a href="https://www.britannica.com/technology/mirror-optics" target="_blank" rel="noopener noreferrer">
           Britannica — Mirror Optics
         </a>
+        <a href="https://www.mcgill.ca/oss/article/you-asked/how-are-mirrors-made" target="_blank" rel="noopener noreferrer">
+          McGill University — How Mirrors Are Made
+        </a>
+        {/* Tier 2 - Reputable Publications */}
         <a href="https://www.livescience.com/34466-who-invented-mirror.html" target="_blank" rel="noopener noreferrer">
           LiveScience — History of Mirrors
         </a>
-        <a href="https://en.wikipedia.org/wiki/Mirror" target="_blank" rel="noopener noreferrer">
-          Wikipedia — Mirror
+        <a href="https://www.britannica.com/art/Venetian-glass" target="_blank" rel="noopener noreferrer">
+          Britannica — Venetian Glass & Murano
         </a>
+        {/* Tier 3 - Reference (Supporting) */}
         <a href="https://en.wikipedia.org/wiki/Chinese_magic_mirror" target="_blank" rel="noopener noreferrer">
           Wikipedia — Chinese Magic Mirrors
         </a>
       </div>
       <p className="sources-note">
-        This narrative was researched using authoritative sources on optics and material history.
+        Statistics: Global mirror market data from Business Research Insights (2024). 
+        Daily mirror time from international surveys (2014-2015).
       </p>
     </div>
   </section>
@@ -430,7 +440,7 @@ const Footer: React.FC = () => (
     <p className="footer-quote">
       &ldquo;What you see in the mirror is not what others see.&rdquo;
     </p>
-    <div className="footer-author">— Ancient Wisdom</div>
+    <div className="footer-author">— Unknown</div>
     <p className="footer-tagline">8,000 years of asking: Who is that looking back?</p>
   </footer>
 );

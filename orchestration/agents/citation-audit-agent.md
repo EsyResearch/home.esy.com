@@ -705,6 +705,101 @@ agents/CitationReports/{essay-slug}-citation-audit.md
 - **Format Consistency**: [Consistent/Inconsistent]
 - **Overall Integrity**: [Approved/Needs Work/Rejected]
 
+## Citation Version History System
+
+### Purpose
+Track all citation changes, fixes, and audits over time for each essay. This provides an audit trail, enables rollback decisions, and identifies recurring patterns.
+
+### Version History Storage
+
+All citation version histories are stored in the audit report under a dedicated section:
+
+```markdown
+## Citation Version History
+
+| Version | Date | Action | Details | Author |
+|---------|------|--------|---------|--------|
+| v1.0 | YYYY-MM-DD | Initial audit | First citation audit completed | Citation Audit Agent |
+| v1.1 | YYYY-MM-DD | Quote fix | Replaced unverified Kapoor quote with verified Nin quote | Citation Audit Agent |
+| v1.2 | YYYY-MM-DD | Source upgrade | Added 3 Tier 1 sources, removed 1 Wikipedia | Citation Audit Agent |
+| v2.0 | YYYY-MM-DD | Re-audit | Full re-audit after major content update | Citation Audit Agent |
+```
+
+### Change Types
+
+| Action Type | Code | Description |
+|-------------|------|-------------|
+| Initial audit | `INIT` | First citation audit for essay |
+| Quote fix | `QUOTE-FIX` | Quote corrected, verified, or removed |
+| Source added | `SRC-ADD` | New source added to essay |
+| Source removed | `SRC-REM` | Source removed from essay |
+| Source upgraded | `SRC-UPG` | Source replaced with higher-tier alternative |
+| Statistic fix | `STAT-FIX` | Statistic corrected or sourced |
+| Link fix | `LINK-FIX` | Broken link repaired |
+| Re-audit | `RE-AUDIT` | Full re-audit conducted |
+| Certification | `CERT` | Certification status changed |
+
+### Changelog Entry Format
+
+For each fix implemented, append to the Citation Version History:
+
+```markdown
+### [v1.X] - YYYY-MM-DD
+
+**Action**: [QUOTE-FIX | SRC-ADD | SRC-UPG | etc.]
+**Issue Reference**: Issue #X from audit report
+**Before**: [What was there before]
+**After**: [What it was changed to]
+**Rationale**: [Why this fix was made]
+**Verification**: [How the fix was verified]
+```
+
+### Master Citation Changelog
+
+A global changelog tracking all citation changes across all essays is maintained at:
+
+```
+orchestration/agents/CitationReports/CHANGELOG.md
+```
+
+Format:
+```markdown
+# Citation Fixes Changelog
+
+## December 2024
+
+### 2024-12-10
+- **the-mirror** [v1.1] QUOTE-FIX: Replaced unverified Anish Kapoor quote with verified Anaïs Nin quote
+- **the-mirror** [v1.1] STAT-FIX: Corrected market size ($4.2B → $145B), daily mirror time, homes percentage
+- **the-mirror** [v1.1] SRC-UPG: Added McGill University, Britannica Liebig bio, Britannica Venetian Glass
+
+### 2024-12-09
+- **the-gridiron** [v1.2] LINK-FIX: Updated broken NFL.com archive link
+- **the-ledger** [v1.0] INIT: Initial citation audit completed
+```
+
+### Integration with Audit Reports
+
+Every citation audit report MUST include:
+
+1. **Version number** in the header
+2. **Previous version reference** (if exists)
+3. **Citation Version History section** at the end
+4. **Diff summary** showing changes from previous version
+
+### Querying Version History
+
+To review citation history for an essay:
+```
+View the Citation Version History section in:
+orchestration/agents/CitationReports/{essay-slug}-citation-audit.md
+
+Or check the master changelog:
+orchestration/agents/CitationReports/CHANGELOG.md
+```
+
+---
+
 ## Last Updated
 December 2024
 
