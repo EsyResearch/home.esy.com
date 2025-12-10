@@ -1292,104 +1292,177 @@ const Chapter6: React.FC = () => {
 
 // ==================== CHAPTER 7: THE BELIEVERS ====================
 
+// Timeline milestones for "The Three Who Believed" scroll-lock
+const believersTimeline = [
+  { year: "1986", event: "Hinton publishes backpropagation paper", phase: "obscurity" },
+  { year: "1989", event: "LeCun creates convolutional networks at Bell Labs", phase: "obscurity" },
+  { year: "1993", event: "Bengio begins language modeling research", phase: "obscurity" },
+  { year: "2000", event: "Neural networks declared 'dead' by mainstream AI", phase: "wilderness" },
+  { year: "2006", event: "Hinton's deep belief networks paper", phase: "awakening" },
+  { year: "2012", event: "AlexNet wins ImageNet — the world notices", phase: "awakening" },
+  { year: "2018", event: "Turing Award: Vindication", phase: "triumph" },
+];
+
 const Chapter7: React.FC = () => {
-  const { ref, isVisible } = useIntersectionReveal(0.1);
+  const { containerRef, progress, isPinned } = useScrollLock(4);
+  const { ref: contentRef, isVisible } = useIntersectionReveal(0.1);
   
-  const believers: Pioneer[] = [
-    {
-      name: "Geoffrey Hinton",
-      title: "The Godfather of Deep Learning",
-      era: "Toronto",
-      quote: "I've always believed this would work. I just didn't know when.",
-      photoPlaceholder: "Hinton at whiteboard",
-      photoSrc: believersImages.hintonToronto?.src,
-    },
-    {
-      name: "Yann LeCun",
-      title: "The Convolutional Pioneer",
-      era: "Bell Labs → Facebook AI",
-      quote: "Deep learning will transform the world.",
-      photoPlaceholder: "LeCun with digit recognition",
-      photoSrc: believersImages.lecunBellLabs?.src,
-    },
-    {
-      name: "Yoshua Bengio",
-      title: "The Quiet Architect",
-      era: "Montreal",
-      quote: "We were outcasts. We believed anyway.",
-      photoPlaceholder: "Bengio at conference",
-      photoSrc: believersImages.bengioMontreal?.src,
-    },
-  ];
+  // Calculate which phase we're in based on progress
+  const currentTimelineIndex = useMemo(() => {
+    const index = Math.floor(progress * believersTimeline.length);
+    return Math.min(index, believersTimeline.length - 1);
+  }, [progress]);
+  
+  const currentMilestone = believersTimeline[currentTimelineIndex];
+  const phase = currentMilestone?.phase || "obscurity";
+  
+  // Portrait visibility: appear sequentially in first 40% of scroll
+  const hintonVisible = progress > 0.08;
+  const lecunVisible = progress > 0.16;
+  const bengioVisible = progress > 0.24;
+  
+  // Color saturation increases as we approach "awakening" and "triumph"
+  const saturation = useMemo(() => {
+    if (progress < 0.5) return 0; // Grayscale during obscurity/wilderness
+    if (progress < 0.7) return (progress - 0.5) / 0.2; // Fade in color
+    return 1; // Full color during triumph
+  }, [progress]);
+  
+  // Turing Award reveal in final phase
+  const showTuringAward = progress > 0.85;
 
   return (
-    <section id="chapter-7" className="chapter chapter-7 era-neural-underground" ref={ref}>
-      <div className={`chapter-content ${isVisible ? "revealed" : ""}`}>
-        <header className="chapter-header">
+    <section 
+      id="chapter-7" 
+      className={`chapter chapter-7 era-neural-underground scroll-lock-container ${isPinned ? "is-pinned" : ""}`}
+      ref={containerRef}
+      style={{ height: "400vh" }}
+    >
+      {/* Scroll-lock "The Three Who Believed" */}
+      <div className={`believers-pinned ${isPinned ? "is-pinned" : ""}`}>
+        <header className="chapter-header" style={{ marginBottom: "var(--space-md)" }}>
           <span className="chapter-number">Chapter 7</span>
-          <span className="chapter-date">1986-2006</span>
+          <span className="chapter-date">1986-2018</span>
           <h2 className="chapter-title">The Believers</h2>
           <p className="chapter-metaphor">The monks who preserved knowledge through the dark ages</p>
         </header>
         
-        <div className="chapter-text centered">
-          <p className="chapter-intro">
-            While mainstream AI focused on symbolic reasoning and expert systems, a small 
-            community kept neural networks alive. They were considered fringe. 
-            &ldquo;Connectionists&rdquo; was sometimes a slur.
-          </p>
+        {/* Timeline indicator */}
+        <div className="believers-timeline">
+          <span className="timeline-year-display">{currentMilestone?.year}</span>
+          <span className="timeline-event-display">{currentMilestone?.event}</span>
         </div>
         
-        <div className="scientists-gallery">
-          {believers.map((believer, index) => (
-            <PioneerPortrait key={believer.name} pioneer={believer} delay={index * 100} />
-          ))}
-        </div>
-        
-        <div className="chapter-text centered" style={{ marginTop: "var(--space-xl)" }}>
-          <p>
-            In 2006, Hinton published a paper on &ldquo;deep belief networks&rdquo;—a technique 
-            that made training deep neural networks practical. The term &ldquo;deep learning&rdquo; 
-            entered the vocabulary.
-          </p>
-          <p style={{ color: "var(--ai-neural-blue)" }}>
-            <strong>The winter began to thaw.</strong>
-          </p>
-        </div>
-        
-        {/* Turing Award Collage - The Three Together */}
-        <div className="turing-award-collage" style={{ marginTop: "var(--space-xl)" }}>
-          <div className="collage-portraits">
-            <div className="collage-portrait">
+        {/* Three portraits - appear sequentially, gain color over time */}
+        <div 
+          className="believers-portraits"
+          style={{ 
+            filter: `grayscale(${1 - saturation}) contrast(${1 + saturation * 0.1})`,
+          }}
+        >
+          {/* Hinton */}
+          <div className={`believer-portrait ${hintonVisible ? "visible" : ""}`}>
+            <div className="portrait-image">
               <img 
                 src={believersImages.hintonToronto?.src} 
                 alt="Geoffrey Hinton"
                 loading="lazy"
               />
-              <span className="collage-name">Hinton</span>
             </div>
-            <div className="collage-portrait">
+            <div className="portrait-info">
+              <h3>Geoffrey Hinton</h3>
+              <span className="portrait-title">The Godfather of Deep Learning</span>
+              <span className="portrait-location">Toronto</span>
+              <p className="portrait-quote">&ldquo;I&apos;ve always believed this would work. I just didn&apos;t know when.&rdquo;</p>
+            </div>
+          </div>
+          
+          {/* LeCun */}
+          <div className={`believer-portrait ${lecunVisible ? "visible" : ""}`}>
+            <div className="portrait-image">
               <img 
                 src={believersImages.lecunBellLabs?.src} 
                 alt="Yann LeCun"
                 loading="lazy"
               />
-              <span className="collage-name">LeCun</span>
             </div>
-            <div className="collage-portrait">
+            <div className="portrait-info">
+              <h3>Yann LeCun</h3>
+              <span className="portrait-title">The Convolutional Pioneer</span>
+              <span className="portrait-location">Bell Labs → Facebook AI</span>
+              <p className="portrait-quote">&ldquo;Deep learning will transform the world.&rdquo;</p>
+            </div>
+          </div>
+          
+          {/* Bengio */}
+          <div className={`believer-portrait ${bengioVisible ? "visible" : ""}`}>
+            <div className="portrait-image">
               <img 
                 src={believersImages.bengioMontreal?.src} 
                 alt="Yoshua Bengio"
                 loading="lazy"
               />
-              <span className="collage-name">Bengio</span>
+            </div>
+            <div className="portrait-info">
+              <h3>Yoshua Bengio</h3>
+              <span className="portrait-title">The Quiet Architect</span>
+              <span className="portrait-location">Montreal</span>
+              <p className="portrait-quote">&ldquo;We were outcasts. We believed anyway.&rdquo;</p>
             </div>
           </div>
-          <div className="collage-caption">
-            <p className="collage-title">2019: The &ldquo;Godfathers of Deep Learning&rdquo;</p>
-            <p className="collage-subtitle">Receive computing&apos;s highest honor — the ACM Turing Award</p>
-            <p className="collage-tagline">Vindication forty years in the making.</p>
+        </div>
+        
+        {/* Turing Award reveal */}
+        <div 
+          className={`believers-award ${showTuringAward ? "visible" : ""}`}
+        >
+          <div className="award-content">
+            <span className="award-year">2018</span>
+            <h3 className="award-title">ACM Turing Award</h3>
+            <p className="award-subtitle">&ldquo;For conceptual and engineering breakthroughs that have made deep neural networks a critical component of computing&rdquo;</p>
+            <p className="award-tagline">Vindication forty years in the making.</p>
           </div>
+        </div>
+        
+        {/* Progress indicator */}
+        <div className="believers-progress">
+          {believersTimeline.map((milestone, index) => (
+            <div 
+              key={milestone.year}
+              className={`progress-dot ${index <= currentTimelineIndex ? "active" : ""} ${milestone.phase}`}
+              title={`${milestone.year}: ${milestone.event}`}
+            />
+          ))}
+        </div>
+        
+        {/* Scroll hint */}
+        <div className="scroll-hint" style={{ opacity: progress < 0.05 ? 1 : 0 }}>
+          <span>Scroll through four decades</span>
+          <div className="scroll-arrow">↓</div>
+        </div>
+      </div>
+      
+      {/* Static content after scroll-lock */}
+      <div 
+        className={`chapter-content believers-conclusion`}
+        ref={contentRef}
+        style={{ 
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          opacity: progress > 0.95 ? 1 : 0,
+          transition: "opacity 0.6s ease"
+        }}
+      >
+        <div className="chapter-text centered">
+          <p>
+            They published papers no one read. They trained students who couldn&apos;t get jobs. 
+            They believed in an idea the world had abandoned.
+          </p>
+          <p style={{ color: "var(--ai-neural-blue)", marginTop: "var(--space-md)" }}>
+            <strong>And they were right.</strong>
+          </p>
         </div>
       </div>
     </section>

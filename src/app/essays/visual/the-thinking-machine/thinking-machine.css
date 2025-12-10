@@ -1438,6 +1438,260 @@
   will-change: auto; /* Reset after animation */
 }
 
+/* ==================== CHAPTER 7: BELIEVERS SCROLL-LOCK ==================== */
+
+.era-neural-underground.scroll-lock-container {
+  position: relative;
+  min-height: auto;
+  padding: 0;
+}
+
+.believers-pinned {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-xl) var(--space-md);
+  background: var(--ai-bg-primary);
+  will-change: transform;
+}
+
+.believers-pinned.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  transform: translateZ(0);
+}
+
+/* Timeline display */
+.believers-timeline {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.timeline-year-display {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 700;
+  color: var(--ai-neural-blue);
+  line-height: 1;
+  margin-bottom: var(--space-xs);
+}
+
+.timeline-event-display {
+  display: block;
+  font-size: clamp(0.875rem, 2vw, 1.125rem);
+  color: var(--ai-text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Three portraits grid */
+.believers-portraits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  max-width: 1000px;
+  width: 100%;
+  margin: var(--space-xl) auto;
+  transition: filter 0.5s ease;
+}
+
+.believer-portrait {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.believer-portrait.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.portrait-image {
+  width: 100%;
+  max-width: 200px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--ai-neural-blue);
+  box-shadow: 0 4px 30px rgba(0, 180, 216, 0.3);
+  margin-bottom: var(--space-md);
+}
+
+.portrait-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.portrait-info h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ai-text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.portrait-title {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--ai-neural-blue);
+  margin-bottom: var(--space-xs);
+}
+
+.portrait-location {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ai-text-tertiary);
+  margin-bottom: var(--space-sm);
+}
+
+.portrait-quote {
+  font-style: italic;
+  font-size: 0.875rem;
+  color: var(--ai-text-secondary);
+  max-width: 250px;
+}
+
+/* Turing Award overlay */
+.believers-award {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 15, 0.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+.believers-award.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.award-content {
+  text-align: center;
+  max-width: 600px;
+  padding: var(--space-xl);
+}
+
+.award-year {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 700;
+  color: var(--ai-neural-blue);
+  line-height: 1;
+  margin-bottom: var(--space-md);
+  text-shadow: 0 0 40px rgba(0, 180, 216, 0.5);
+}
+
+.award-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--ai-text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.award-subtitle {
+  font-size: 1rem;
+  color: var(--ai-text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-lg);
+}
+
+.award-tagline {
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--ai-computation-purple);
+}
+
+/* Progress dots */
+.believers-progress {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  margin-top: var(--space-xl);
+}
+
+.progress-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ai-bg-tertiary);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.progress-dot.active {
+  transform: scale(1.2);
+}
+
+.progress-dot.active.obscurity {
+  background: var(--ai-text-tertiary);
+}
+
+.progress-dot.active.wilderness {
+  background: var(--ai-ice-gray, #A8B5BD);
+}
+
+.progress-dot.active.awakening {
+  background: var(--ai-neural-blue);
+}
+
+.progress-dot.active.triumph {
+  background: var(--ai-computation-purple);
+  box-shadow: 0 0 10px var(--ai-computation-purple);
+}
+
+/* Believers conclusion */
+.believers-conclusion {
+  background: var(--ai-bg-primary);
+  padding: var(--space-2xl) var(--space-md);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .believers-portraits {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    max-width: 300px;
+  }
+  
+  .portrait-image {
+    max-width: 150px;
+  }
+  
+  .portrait-quote {
+    max-width: 100%;
+  }
+  
+  .believers-progress {
+    position: fixed;
+    bottom: var(--space-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10, 10, 15, 0.8);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: 20px;
+  }
+}
+
 /* Turing Award Collage */
 .turing-award-collage {
   max-width: 900px;
