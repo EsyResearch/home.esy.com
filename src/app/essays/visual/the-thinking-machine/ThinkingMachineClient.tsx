@@ -812,14 +812,14 @@ const Chapter2: React.FC = () => {
   
   // Calculate how many phrases to show based on scroll progress
   const visiblePhraseCount = useMemo(() => {
-    // First 60% of scroll reveals phrases one by one
-    const revealProgress = Math.min(progress / 0.6, 1);
+    // First 50% of scroll reveals phrases one by one
+    const revealProgress = Math.min(progress / 0.5, 1);
     return Math.floor(revealProgress * proposalPhrases.length);
   }, [progress]);
   
   // Show the "punchline" after all phrases revealed
-  const showPunchline = progress > 0.65;
-  const showFounders = progress > 0.8;
+  const showPunchline = progress > 0.55;
+  const showFounders = progress > 0.75;
   
   const founders: Pioneer[] = [
     {

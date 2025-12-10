@@ -1751,11 +1751,13 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding: var(--space-xl) var(--space-md);
+  padding: var(--space-lg) var(--space-md);
+  padding-top: var(--space-xl);
   background: var(--ai-bg-primary);
   will-change: transform;
+  overflow-y: auto;
 }
 
 .proposal-pinned.is-pinned {
@@ -1770,8 +1772,8 @@
 /* Proposal document styling */
 .proposal-document {
   max-width: 700px;
-  margin: var(--space-xl) auto;
-  padding: var(--space-xl);
+  margin: var(--space-lg) auto;
+  padding: var(--space-lg);
   background: rgba(20, 20, 24, 0.8);
   border: 1px solid var(--ai-text-tertiary);
   border-radius: 4px;
@@ -1794,8 +1796,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--space-lg);
-  padding-bottom: var(--space-md);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
   border-bottom: 1px solid var(--ai-text-tertiary);
 }
 
@@ -1815,8 +1817,8 @@
 
 .proposal-text {
   font-family: var(--font-serif, Georgia, serif);
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
-  line-height: 1.8;
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  line-height: 1.7;
   color: var(--ai-text-secondary);
 }
 
