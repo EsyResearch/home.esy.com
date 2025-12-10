@@ -1340,15 +1340,28 @@ const Chapter7: React.FC = () => {
     >
       {/* Scroll-lock "The Three Who Believed" */}
       <div className={`believers-pinned ${isPinned ? "is-pinned" : ""}`}>
-        <header className="chapter-header" style={{ marginBottom: "var(--space-md)" }}>
+        <header 
+          className="chapter-header" 
+          style={{ 
+            marginBottom: "var(--space-md)",
+            opacity: showTuringAward ? 0 : 1,
+            transition: "opacity 0.4s ease"
+          }}
+        >
           <span className="chapter-number">Chapter 7</span>
           <span className="chapter-date">1986-2018</span>
           <h2 className="chapter-title">The Believers</h2>
           <p className="chapter-metaphor">The monks who preserved knowledge through the dark ages</p>
         </header>
         
-        {/* Timeline indicator */}
-        <div className="believers-timeline">
+        {/* Timeline indicator - hide when Turing Award shows */}
+        <div 
+          className="believers-timeline"
+          style={{
+            opacity: showTuringAward ? 0 : 1,
+            transition: "opacity 0.4s ease"
+          }}
+        >
           <span className="timeline-year-display">{currentMilestone?.year}</span>
           <span className="timeline-event-display">{currentMilestone?.event}</span>
         </div>
@@ -1419,13 +1432,36 @@ const Chapter7: React.FC = () => {
           <div className="award-content">
             <span className="award-year">2018</span>
             <h3 className="award-title">ACM Turing Award</h3>
+            
+            {/* Three portraits in a row */}
+            <div className="award-portraits">
+              <div className="award-portrait">
+                <img src={believersImages.hintonToronto?.src} alt="Hinton" />
+                <span>Hinton</span>
+              </div>
+              <div className="award-portrait">
+                <img src={believersImages.lecunBellLabs?.src} alt="LeCun" />
+                <span>LeCun</span>
+              </div>
+              <div className="award-portrait">
+                <img src={believersImages.bengioMontreal?.src} alt="Bengio" />
+                <span>Bengio</span>
+              </div>
+            </div>
+            
             <p className="award-subtitle">&ldquo;For conceptual and engineering breakthroughs that have made deep neural networks a critical component of computing&rdquo;</p>
             <p className="award-tagline">Vindication forty years in the making.</p>
           </div>
         </div>
         
-        {/* Progress indicator */}
-        <div className="believers-progress">
+        {/* Progress indicator - hide when Turing Award shows */}
+        <div 
+          className="believers-progress"
+          style={{
+            opacity: showTuringAward ? 0 : 1,
+            transition: "opacity 0.4s ease"
+          }}
+        >
           {believersTimeline.map((milestone, index) => (
             <div 
               key={milestone.year}
