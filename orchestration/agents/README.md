@@ -20,6 +20,7 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 | [Visual Audit Reports](#visual-audit-reports) | **📁 SVG audit report archive** | `agents/VisualAuditReports/` |
 | [Immersive Scrolling Auditor](#immersive-scrolling-auditor) | **🎢 Scroll-lock & performance certification** | `@agents/immersive-scrolling-auditor.md` |
 | [Immersive Experience Auditor](#immersive-experience-auditor) | **🎭 Comprehensive experience QA (orchestrates scrolling)** | `@agents/immersive-experience-auditor.md` |
+| [Meta Audit Orchestrator](#meta-audit-orchestrator) | **🔬 Multi-domain audit coordinator** | `@agents/meta-audit-orchestrator.md` |
 | [README Curator](#readme-curator) | **📖 Documentation routing & maintenance** | `@agents/readme-curator.md` |
 | [Image Research & Licensing](#image-research--licensing-expert) | **🖼️ Archive image sourcing & rights** | `@agents/image-research-licensing-expert.md` |
 | [Scrollytelling Expert](#scrollytelling-expert) | Immersive scroll-based stories | `@agents/scrollytelling-expert.md` |
@@ -658,6 +659,74 @@ for "The Thinking Machine" visual essay.
 
 ---
 
+### Meta Audit Orchestrator
+**File:** `meta-audit-orchestrator.md`
+
+**Role:** World-class quality assurance director that orchestrates comprehensive multi-domain audits by coordinating all specialist audit agents.
+
+**🔬 TOP-LEVEL AUDIT COORDINATOR:** This agent runs comprehensive audits across all quality domains—scroll, experience, visual, citations, and quotes—producing unified certification reports.
+
+**Best For:**
+- Pre-publication comprehensive audits
+- Multi-domain quality certification
+- Synthesizing findings across audit types
+- Single source of truth for publication readiness
+- Identifying cross-domain issue patterns
+
+**Orchestrates:**
+| Agent | Domain | Focus |
+|-------|--------|-------|
+| `immersive-scrolling-auditor.md` | Scroll | Scroll-lock, 60fps, mobile |
+| `immersive-experience-auditor.md` | Experience | Animations, reveals, interactions |
+| `visual-auditor-agent.md` | Visual | SVG quality, accessibility |
+| `citation-audit-agent.md` | Citations | Source integrity, links |
+| `quotes-audit-agent.md` | Quotes | Quote verification |
+
+**Certification Matrix:**
+| Status | Criteria |
+|--------|----------|
+| ✅ **CERTIFIED** | All domains pass minimum thresholds, no blocking issues |
+| ⚠️ **CONDITIONAL** | 1-2 domains below threshold OR ≤3 non-blocking issues |
+| ❌ **REJECTED** | >2 domains below threshold OR any blocking issue |
+
+**Report Storage:**
+```
+orchestration/audits/[essay-slug]/YYYY-MM-DD-comprehensive-audit.md
+```
+
+**Invocation Examples:**
+```
+# Full comprehensive audit
+Using @agents/meta-audit-orchestrator.md, conduct a comprehensive 
+audit of the visual essay at:
+Path: src/app/essays/visual/the-thinking-machine/
+Spec: src/app/essays/visual/the-thinking-machine/EXPERIENCE-SPEC.md
+
+# Targeted domain audit
+Using @agents/meta-audit-orchestrator.md, audit scroll and experience 
+domains only for the visual essay at src/app/essays/visual/[slug]/
+
+# Re-certification after fixes
+Using @agents/meta-audit-orchestrator.md, verify fixes for issues 
+identified in previous audit and update certification status.
+```
+
+**Output:**
+1. Comprehensive audit report with all domain findings
+2. Overall certification status
+3. Prioritized remediation plan by impact
+4. Cross-domain issue analysis
+5. Individual domain reports (linked)
+
+**Collaboration:**
+- → **Scrolling Auditor**: Delegates scroll-specific testing
+- → **Experience Auditor**: Delegates experience verification
+- → **Visual Auditor**: Delegates SVG quality assessment
+- → **Citation Audit**: Delegates source verification
+- → **Visual Essay Director**: Reports certification status
+
+---
+
 ### README Curator
 **File:** `readme-curator.md`
 
@@ -1247,6 +1316,7 @@ An **orchestrator agent** coordinates multiple specialized agents to produce com
 | `citation-audit-agent.md` | **Citation Integrity (G5)** | 2-3 agents | Source verification reports |
 | `visual-auditor-agent.md` | **Visual Quality Assurance** | 1-2 agents | SVG certification reports |
 | `immersive-scrolling-auditor.md` | **Scroll QA (G6)** | 1-2 agents | Scroll certification reports |
+| `meta-audit-orchestrator.md` | **Comprehensive QA** | 5 agents | Unified certification reports |
 
 ### Visual Essay Director Architecture (Top-Level)
 
@@ -2043,6 +2113,66 @@ New reports are automatically saved here by `@agents/visual-auditor-agent.md`.
 
 ---
 
+## Audit Reports (Centralized)
+
+**`orchestration/audits/`** — Centralized storage for all audit reports, organized by essay:
+
+```
+orchestration/audits/
+├── README.md                          # Audit system overview
+├── the-thinking-machine/              # All audits for this essay
+│   ├── README.md                      # Essay audit history
+│   ├── 2024-12-09-scroll-audit.md     # Scroll certification
+│   └── 2024-12-10-experience-audit.md # Experience audit
+└── [other-essay-slug]/
+```
+
+**Naming Convention:** `YYYY-MM-DD-[type]-audit.md`
+
+**Audit Types:**
+| Type | Agent | Focus |
+|------|-------|-------|
+| `scroll-audit` | Scrolling Auditor | Scroll-lock, performance |
+| `experience-audit` | Experience Auditor | Animations, reveals |
+| `visual-audit` | Visual Auditor | SVG quality |
+| `citation-audit` | Citation Audit | Source integrity |
+| `comprehensive-audit` | Meta Audit Orchestrator | All domains |
+
+---
+
+## Experience Specifications
+
+Each visual essay should have an **EXPERIENCE-SPEC.md** documenting expected behaviors:
+
+**Location:** `src/app/essays/visual/[slug]/EXPERIENCE-SPEC.md`
+
+**Purpose:** Documents what SHOULD happen (prescriptive) — the source of truth for auditing.
+
+**Contents:**
+- Scroll-lock sequences with progress thresholds
+- Animation timings and triggers
+- Reveal patterns per section
+- Expected behaviors per chapter
+- Implementation status tracker
+
+**Example:**
+```markdown
+## Chapter 2: The Dartmouth Summer
+**Type:** Scroll-Lock Sequence
+**Scroll Depth:** 350vh
+
+| Progress | Phase | Content |
+|----------|-------|---------|
+| 0-50% | Proposal Reveal | Phrases appear progressively |
+| 52% | Punchline 1 | "They believed... 2 months" |
+| 60% | Punchline 2 | "It would take 70 years" |
+| 78%+ | Founders | McCarthy, Minsky, Shannon portraits |
+```
+
+**Used By:** Meta Audit Orchestrator, Experience Auditor, Scrolling Auditor
+
+---
+
 **Why Use Templates?**
 - **Uniqueness enforcement** — Explicit checks against existing work
 - **Intelligent defaults** — Fills gaps when you want to move fast
@@ -2161,6 +2291,7 @@ This global rule applies to ANY element with class `.hero-content`, including th
 
 - **[Orchestration Overview](../README.md)** — System architecture, component types, relationships
 - **[Skills README](../skills/README.md)** — Procedural knowledge agents can apply
+- **[Audits Directory](../audits/README.md)** — Centralized audit reports by essay
 - **[META-AGENT-FRAMEWORK](./META-AGENT-FRAMEWORK.md)** — Creating new agents
 
 ---
