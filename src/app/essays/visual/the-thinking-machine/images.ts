@@ -100,7 +100,7 @@ export const turingImages = {
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Alan_Turing_Aged_16.jpg",
   },
   turingStatue: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Sackville_Park_Turing_plaque.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/b/ba/Sackville_Park_Turing_plaque.jpg",
     alt: "Memorial plaque for Alan Turing in Sackville Park, Manchester",
     caption: "Memorial to Alan Turing — the prophet remembered, finally honored",
     source: "Wikimedia Commons",
@@ -109,7 +109,7 @@ export const turingImages = {
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Sackville_Park_Turing_plaque.jpg",
   },
   bletchleyPark: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/f/f7/Bletchley_Park_-_Draco2008.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/8/82/Bletchley_Park_-_Draco2008.jpg",
     alt: "Bletchley Park mansion",
     caption: "Bletchley Park — where Turing's codebreakers shortened World War II by years",
     source: "Wikimedia Commons",
@@ -150,7 +150,7 @@ export const turingImages = {
 
 export const dartmouthImages = {
   dartmouthCampus: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/8/84/Dartmouth_College_campus_2007-10-20_09.JPG",
+    src: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Dartmouth_College_campus_2007-10-20_09.JPG",
     alt: "Dartmouth College campus",
     caption: "Dartmouth College — where artificial intelligence got its name",
     source: "Wikimedia Commons",
@@ -323,7 +323,7 @@ export const believersImages = {
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Geoffrey_Hinton_at_UofT.jpg",
   },
   lecunBellLabs: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/1/10/Yann_LeCun_-_2018_%28cropped%29.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/2/22/Yann_LeCun_-_2018_%28cropped%29.jpg",
     alt: "Yann LeCun",
     caption: "Yann LeCun — his ConvNets read millions of checks no one cared about yet",
     source: "Wikimedia Commons",
@@ -341,7 +341,7 @@ export const believersImages = {
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Yoshua_Bengio_-_2017.jpg",
   },
   turingAward2018: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Yann_LeCun_-_2018_%28cropped%29.jpg/440px-Yann_LeCun_-_2018_%28cropped%29.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Yann_LeCun_-_2018_%28cropped%29.jpg/440px-Yann_LeCun_-_2018_%28cropped%29.jpg",
     alt: "Yann LeCun in 2018, Turing Award co-recipient",
     caption: "2019: The 'Godfathers of Deep Learning' receive computing's highest honor",
     source: "Wikimedia Commons",
@@ -478,13 +478,13 @@ export const foundationModelImages = {
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Sam_Altman_TechCrunch_SF_2019_Day_2_Oct_3_(cropped).jpg",
   },
   darioAmodei: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Dario_Amodei.png",
+    src: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Dario_Amodei_in_2023.jpg",
     alt: "Dario Amodei",
     caption: "Dario Amodei — left OpenAI to build 'safer' AI at Anthropic",
-    source: "Anthropic / Wikimedia Commons",
+    source: "Wikimedia Commons",
     date: "2023",
     license: "CC BY-SA 4.0",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:Dario_Amodei.png",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Dario_Amodei_in_2023.jpg",
   },
   danielaAmodei: {
     src: "https://upload.wikimedia.org/wikipedia/commons/9/90/Daniela_Amodei.png",
