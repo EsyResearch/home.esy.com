@@ -464,58 +464,67 @@ const QuoteMonument: React.FC<{
 // ============================================================================
 
 const HeroSection: React.FC = () => {
-  const { containerRef, isLocked, progress, isComplete, skipToEnd } = useScrollLockHero(1200);
+  // AUDIT FIX: Increased scroll depth from 1200px to 2400px for proper pacing
+  // Per Immersive Experience Engineer: "Dramatic moments have appropriate scroll depth"
+  const { containerRef, isLocked, progress, isComplete, skipToEnd } = useScrollLockHero(2400);
   
-  // Calculate which stage we're in based on progress
-  // Stage 1: 0-10% - Hills panorama
-  // Stage 2: 10-20% - Descend toward church
-  // Stage 3: 20-35% - Church doors
-  // Stage 4: 35-50% - Inside church
-  // Stage 5: 50-65% - Text about murder
-  // Stage 6: 65-80% - Survivor photo/names
-  // Stage 7: 80-90% - 1,000,000 number
-  // Stage 8: 90-95% - Statistics
-  // Stage 9: 95-100% - KWIBUKA title
+  // RECALIBRATED STAGE TIMING (2400px scroll depth)
+  // Each stage now has proper breathing room for content absorption
+  // 
+  // Stage 1: 0-12%   (288px) - Hills panorama - peaceful opening
+  // Stage 2: 12-25%  (312px) - Church approach - building tension
+  // Stage 3: 25-38%  (312px) - Inside church text - horror dawns
+  // Stage 4: 38-52%  (336px) - Murder text - the revelation
+  // Stage 5: 52-65%  (312px) - Memorial context - processing
+  // Stage 6: 65-78%  (312px) - 1,000,000 number - THE DRAMATIC MOMENT
+  // Stage 7: 78-90%  (288px) - Scale statistics - comprehending scale
+  // Stage 8: 90-100% (240px) - KWIBUKA title - resolution
   
-  const getStageOpacity = (stageStart: number, stageEnd: number) => {
+  // Opacity helper with proper fade timing
+  // fadeIn: 5% for smooth entry, hold, then fadeOut: 8% for graceful exit
+  const getStageOpacity = (stageStart: number, peakStart: number, peakEnd: number, stageEnd: number) => {
     if (progress < stageStart) return 0;
-    if (progress >= stageEnd) return 1;
-    return (progress - stageStart) / (stageEnd - stageStart);
+    // Fade in
+    if (progress < peakStart) {
+      return (progress - stageStart) / (peakStart - stageStart);
+    }
+    // Hold at full opacity
+    if (progress < peakEnd) return 1;
+    // Fade out
+    if (progress < stageEnd) {
+      return 1 - (progress - peakEnd) / (stageEnd - peakEnd);
+    }
+    return 0;
   };
-  
-  const isStageActive = (stageStart: number) => progress >= stageStart;
   
   // Camera zoom effect (simulated via scale)
   const zoomLevel = 1 + (progress / 100) * 0.3; // 1x to 1.3x
   
   // Darken as we progress into the horror
-  const darkenLevel = Math.min(progress / 50, 1) * 0.4;
+  const darkenLevel = Math.min(progress / 50, 1) * 0.5;
 
-  // Calculate image crossfade opacities
-  // Image 1: Hills (0-35%)
-  // Image 2: Church interior (35-65%)
-  // Image 3: Child survivors (65-80%)
-  // Image 4: Fade to dark for stats (80-100%)
+  // RECALIBRATED IMAGE CROSSFADES
+  // Image 1: Hills (0-40%) - longer presence for the peaceful opening
+  // Image 2: Church interior (35-68%) - the horror
+  // Image 3: Child survivors (60-82%) - the human cost
+  // Image 4: Fade to dark for stats (78-100%) - abstraction for processing
   
-  const getImageOpacity = (imageStart: number, imageEnd: number) => {
-    const fadeInDuration = 10; // 10% fade in
-    const fadeOutDuration = 10; // 10% fade out
-    
+  const getImageOpacity = (imageStart: number, imageEnd: number, fadeIn: number = 8, fadeOut: number = 8) => {
     if (progress < imageStart) return 0;
-    if (progress < imageStart + fadeInDuration) {
-      return (progress - imageStart) / fadeInDuration;
+    if (progress < imageStart + fadeIn) {
+      return (progress - imageStart) / fadeIn;
     }
-    if (progress < imageEnd - fadeOutDuration) return 1;
+    if (progress < imageEnd - fadeOut) return 1;
     if (progress < imageEnd) {
-      return 1 - (progress - (imageEnd - fadeOutDuration)) / fadeOutDuration;
+      return 1 - (progress - (imageEnd - fadeOut)) / fadeOut;
     }
     return 0;
   };
 
-  // Image opacities
-  const hillsOpacity = progress < 35 ? 1 : Math.max(0, 1 - (progress - 35) / 15);
-  const churchOpacity = getImageOpacity(30, 70);
-  const survivorsOpacity = getImageOpacity(62, 85);
+  // Image opacities with extended durations
+  const hillsOpacity = progress < 40 ? 1 : Math.max(0, 1 - (progress - 40) / 12);
+  const churchOpacity = getImageOpacity(32, 68, 8, 10);
+  const survivorsOpacity = getImageOpacity(58, 82, 8, 10);
 
   return (
     <section 
@@ -585,32 +594,28 @@ const HeroSection: React.FC = () => {
         <div className="hero-gradient" />
       </div>
 
-      {/* Stage 1: 0-10% - Opening panorama text */}
+      {/* Stage 1: 0-12% - Opening panorama (288px of scroll) */}
       <div 
         className="hero-stage hero-stage-1"
-        style={{ opacity: progress < 10 ? 1 : Math.max(0, 1 - (progress - 10) / 10) }}
+        style={{ opacity: getStageOpacity(0, 2, 8, 14) }}
       >
         <p className="hero-location">Rwanda</p>
         <p className="hero-tagline">The Land of a Thousand Hills</p>
       </div>
 
-      {/* Stage 2-3: 10-35% - Descending to church */}
+      {/* Stage 2: 12-25% - Church approach (312px of scroll) */}
       <div 
         className="hero-stage hero-stage-2"
-        style={{ 
-          opacity: getStageOpacity(10, 20) * (progress < 35 ? 1 : Math.max(0, 1 - (progress - 35) / 15))
-        }}
+        style={{ opacity: getStageOpacity(10, 14, 20, 28) }}
       >
         <p className="hero-location">Ntarama Church</p>
         <p className="hero-tagline">April 1994</p>
       </div>
 
-      {/* Stage 4: 35-50% - Inside the church */}
+      {/* Stage 3: 25-38% - Inside the church (312px of scroll) */}
       <div 
         className="hero-stage hero-stage-4"
-        style={{ 
-          opacity: getStageOpacity(35, 45) * (progress < 50 ? 1 : Math.max(0, 1 - (progress - 50) / 15))
-        }}
+        style={{ opacity: getStageOpacity(23, 27, 33, 40) }}
       >
         <p className="hero-church-text">
           The doors were open.<br />
@@ -619,12 +624,10 @@ const HeroSection: React.FC = () => {
         </p>
       </div>
 
-      {/* Stage 5: 50-65% - The horror text */}
+      {/* Stage 4: 38-52% - The murder revelation (336px of scroll) */}
       <div 
         className="hero-stage hero-stage-5"
-        style={{ 
-          opacity: getStageOpacity(50, 58) * (progress < 65 ? 1 : Math.max(0, 1 - (progress - 65) / 15))
-        }}
+        style={{ opacity: getStageOpacity(36, 40, 47, 55) }}
       >
         <p className="hero-murder-text">
           On April 15, 1994, over 5,000 people were murdered at Ntarama Church.
@@ -635,12 +638,10 @@ const HeroSection: React.FC = () => {
         </p>
       </div>
 
-      {/* Stage 6: 65-80% - Memorial context */}
+      {/* Stage 5: 52-65% - Memorial context (312px of scroll) */}
       <div 
         className="hero-stage hero-stage-6"
-        style={{ 
-          opacity: getStageOpacity(65, 72) * (progress < 80 ? 1 : Math.max(0, 1 - (progress - 80) / 10))
-        }}
+        style={{ opacity: getStageOpacity(50, 54, 60, 67) }}
       >
         <p className="hero-memorial-text">
           This church is now a memorial.<br />
@@ -648,24 +649,27 @@ const HeroSection: React.FC = () => {
         </p>
       </div>
 
-      {/* Stage 7: 80-90% - The number */}
+      {/* Stage 6: 65-78% - THE NUMBER (312px of scroll - dramatic moment) */}
       <div 
         className="hero-stage hero-stage-7"
-        style={{ opacity: getStageOpacity(80, 85) * (progress < 90 ? 1 : Math.max(0, 1 - (progress - 90) / 5)) }}
+        style={{ opacity: getStageOpacity(63, 67, 73, 80) }}
       >
         <div className="hero-main-stat">
           <span className="hero-stat-number">
-            {Math.floor(getStageOpacity(80, 88) * 1000000).toLocaleString()}
+            {/* Count up as user scrolls through this stage */}
+            {progress < 65 ? '0' : 
+             progress >= 75 ? '1,000,000' :
+             Math.floor(((progress - 65) / 10) * 1000000).toLocaleString()}
           </span>
           <span className="hero-stat-label">Murdered</span>
           <span className="hero-stat-sublabel">in 100 days</span>
         </div>
       </div>
 
-      {/* Stage 8: 90-95% - Scale statistics */}
+      {/* Stage 7: 78-90% - Scale statistics (288px of scroll) */}
       <div 
         className="hero-stage hero-stage-8"
-        style={{ opacity: getStageOpacity(90, 93) * (progress < 95 ? 1 : Math.max(0, 1 - (progress - 95) / 5)) }}
+        style={{ opacity: getStageOpacity(76, 80, 86, 92) }}
       >
         <div className="hero-scale-stats">
           <div className="hero-scale-stat">
@@ -686,10 +690,10 @@ const HeroSection: React.FC = () => {
         </p>
       </div>
 
-      {/* Stage 9: 95-100% - KWIBUKA title */}
+      {/* Stage 8: 90-100% - KWIBUKA title (240px of scroll - resolution) */}
       <div 
         className="hero-stage hero-stage-9"
-        style={{ opacity: getStageOpacity(95, 98) }}
+        style={{ opacity: getStageOpacity(88, 92, 100, 100) }}
       >
         <h1 className="hero-title">KWIBUKA</h1>
         <p className="hero-subtitle">A Hundred Days of Darkness, A Generation of Light</p>
