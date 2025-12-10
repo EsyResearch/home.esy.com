@@ -791,8 +791,35 @@ const Chapter1: React.FC = () => {
 
 // ==================== CHAPTER 2: THE DARTMOUTH SUMMER ====================
 
+// The Dartmouth Proposal phrases to reveal progressively
+const proposalPhrases = [
+  { text: "We propose that a", highlight: false },
+  { text: "2-month, 10-man study", highlight: true, emphasis: "timeline" },
+  { text: "of", highlight: false },
+  { text: "artificial intelligence", highlight: true, emphasis: "name" },
+  { text: "be carried out...", highlight: false },
+  { text: "An attempt will be made to find how to make machines", highlight: false },
+  { text: "use language,", highlight: true, emphasis: "capability" },
+  { text: "form abstractions and concepts,", highlight: true, emphasis: "capability" },
+  { text: "solve kinds of problems now reserved for humans,", highlight: true, emphasis: "audacity" },
+  { text: "and", highlight: false },
+  { text: "improve themselves.", highlight: true, emphasis: "audacity" },
+];
+
 const Chapter2: React.FC = () => {
-  const { ref, isVisible } = useIntersectionReveal(0.1);
+  const { containerRef, progress, isPinned } = useScrollLock(3.5);
+  const { ref: contentRef, isVisible } = useIntersectionReveal(0.1);
+  
+  // Calculate how many phrases to show based on scroll progress
+  const visiblePhraseCount = useMemo(() => {
+    // First 60% of scroll reveals phrases one by one
+    const revealProgress = Math.min(progress / 0.6, 1);
+    return Math.floor(revealProgress * proposalPhrases.length);
+  }, [progress]);
+  
+  // Show the "punchline" after all phrases revealed
+  const showPunchline = progress > 0.65;
+  const showFounders = progress > 0.8;
   
   const founders: Pioneer[] = [
     {
@@ -819,57 +846,132 @@ const Chapter2: React.FC = () => {
   ];
 
   return (
-    <section id="chapter-2" className="chapter chapter-2 era-golden-age" ref={ref}>
-      <div className={`chapter-content ${isVisible ? "revealed" : ""}`}>
-        <header className="chapter-header">
+    <section 
+      id="chapter-2" 
+      className={`chapter chapter-2 era-golden-age scroll-lock-container ${isPinned ? "is-pinned" : ""}`}
+      ref={containerRef}
+      style={{ height: "350vh" }}
+    >
+      {/* Scroll-lock "The Proposal" */}
+      <div className={`proposal-pinned ${isPinned ? "is-pinned" : ""}`}>
+        <header 
+          className="chapter-header" 
+          style={{ 
+            marginBottom: "var(--space-md)",
+            opacity: showFounders ? 0 : 1,
+            transition: "opacity 0.4s ease"
+          }}
+        >
           <span className="chapter-number">Chapter 2</span>
           <span className="chapter-date">Summer 1956 — Dartmouth College</span>
           <h2 className="chapter-title">The Dartmouth Summer</h2>
           <p className="chapter-metaphor">The moment lightning struck—and a name was born</p>
         </header>
         
-        {/* Chapter hero image */}
-        <div className="chapter-hero-image" style={{ marginBottom: "var(--space-xl)" }}>
-          <ArchivalPhoto
-            src={dartmouthImages.dartmouthCampus?.src}
-            alt={dartmouthImages.dartmouthCampus?.alt || "Dartmouth College campus"}
-            caption={dartmouthImages.dartmouthCampus?.caption || "Dartmouth College — where artificial intelligence got its name"}
-            source="Wikimedia Commons"
-            date="1956"
-          />
+        {/* The Proposal - revealed phrase by phrase */}
+        <div 
+          className="proposal-document"
+          style={{ opacity: showFounders ? 0 : 1, transition: "opacity 0.4s ease" }}
+        >
+          <div className="proposal-header">
+            <span className="proposal-label">THE DARTMOUTH PROPOSAL</span>
+            <span className="proposal-year">1955</span>
+          </div>
+          
+          <div className="proposal-text">
+            {proposalPhrases.map((phrase, index) => {
+              const isVisible = index < visiblePhraseCount;
+              const isLatest = index === visiblePhraseCount - 1;
+              
+              return (
+                <span 
+                  key={index}
+                  className={`
+                    proposal-phrase 
+                    ${isVisible ? "visible" : ""} 
+                    ${isLatest ? "latest" : ""}
+                    ${phrase.highlight ? `highlight-${phrase.emphasis}` : ""}
+                  `}
+                >
+                  {phrase.text}{" "}
+                </span>
+              );
+            })}
+          </div>
+          
+          <div className="proposal-citation">
+            — McCarthy, Minsky, Rochester, Shannon
+          </div>
         </div>
         
+        {/* The Punchline */}
+        <div className={`proposal-punchline ${showPunchline ? "visible" : ""}`}>
+          <p className="punchline-text">
+            They believed they could solve it in <span className="time-contrast">2 months</span>.
+          </p>
+          <p className="punchline-reality">
+            It would take <span className="time-contrast">70 years</span>.
+          </p>
+          <p className="punchline-conclusion">
+            They were brilliant. They were wrong about the timeline.<br />
+            <strong>But they were right that it could be done.</strong>
+          </p>
+        </div>
+        
+        {/* Founders overlay */}
+        <div className={`founders-overlay ${showFounders ? "visible" : ""}`}>
+          <h3 className="founders-title">The Founders</h3>
+          <div className="founders-grid">
+            {founders.map((founder, index) => (
+              <div 
+                key={founder.name} 
+                className="founder-card"
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
+                <div className="founder-photo">
+                  {founder.photoSrc ? (
+                    <img src={founder.photoSrc} alt={founder.name} loading="lazy" />
+                  ) : (
+                    <div className="photo-placeholder">{founder.photoPlaceholder}</div>
+                  )}
+                </div>
+                <div className="founder-info">
+                  <h4>{founder.name}</h4>
+                  <span className="founder-title">{founder.title}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Scroll hint */}
+        <div className="scroll-hint" style={{ opacity: progress < 0.05 ? 1 : 0 }}>
+          <span>Scroll to read the proposal</span>
+          <div className="scroll-arrow">↓</div>
+        </div>
+      </div>
+      
+      {/* Static content after scroll-lock */}
+      <div 
+        className="chapter-content dartmouth-conclusion"
+        ref={contentRef}
+        style={{ 
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          opacity: progress > 0.95 ? 1 : 0,
+          transition: "opacity 0.6s ease"
+        }}
+      >
         <div className="chapter-text centered">
-          <p className="chapter-intro">
-            In the summer of 1956, ten men gathered at Dartmouth College for a two-month 
-            workshop. Their proposal was audacious:
-          </p>
-        </div>
-        
-        <blockquote className="historic-quote" style={{ maxWidth: 800, margin: "var(--space-xl) auto" }}>
           <p>
-            &ldquo;We propose that a 2-month, 10-man study of artificial intelligence be carried out... 
-            An attempt will be made to find how to make machines use language, form abstractions 
-            and concepts, solve kinds of problems now reserved for humans, and improve themselves.&rdquo;
-          </p>
-          <cite>— The Dartmouth Proposal, 1955</cite>
-        </blockquote>
-        
-        <div className="chapter-text centered">
-          <p>
-            They gave the field its name: <strong>artificial intelligence</strong>. 
-            They believed they could solve it in a summer.
+            That summer, they gave the field its name: <strong style={{ color: "var(--ai-neural-blue)" }}>artificial intelligence</strong>.
           </p>
           <p>
-            They were brilliant. They were wrong about the timeline. But they were right 
-            that it could be done.
+            The workshop didn&apos;t solve AI. But it created a community, a vocabulary, 
+            and a dream that would survive decades of disappointment.
           </p>
-        </div>
-        
-        <div className="scientists-gallery">
-          {founders.map((founder, index) => (
-            <PioneerPortrait key={founder.name} pioneer={founder} delay={index * 100} />
-          ))}
         </div>
       </div>
     </section>

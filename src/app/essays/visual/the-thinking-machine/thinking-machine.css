@@ -1737,6 +1737,303 @@
   }
 }
 
+/* ==================== CHAPTER 2: DARTMOUTH PROPOSAL SCROLL-LOCK ==================== */
+
+.chapter-2.scroll-lock-container {
+  position: relative;
+  min-height: auto;
+  padding: 0;
+}
+
+.proposal-pinned {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-xl) var(--space-md);
+  background: var(--ai-bg-primary);
+  will-change: transform;
+}
+
+.proposal-pinned.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  transform: translateZ(0);
+}
+
+/* Proposal document styling */
+.proposal-document {
+  max-width: 700px;
+  margin: var(--space-xl) auto;
+  padding: var(--space-xl);
+  background: rgba(20, 20, 24, 0.8);
+  border: 1px solid var(--ai-text-tertiary);
+  border-radius: 4px;
+  position: relative;
+}
+
+.proposal-document::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid var(--ai-text-tertiary);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.proposal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--ai-text-tertiary);
+}
+
+.proposal-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ai-text-tertiary);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.proposal-year {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--ai-neural-blue);
+}
+
+.proposal-text {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.8;
+  color: var(--ai-text-secondary);
+}
+
+.proposal-phrase {
+  opacity: 0;
+  transition: opacity 0.4s ease, color 0.4s ease;
+}
+
+.proposal-phrase.visible {
+  opacity: 1;
+}
+
+.proposal-phrase.latest {
+  color: var(--ai-text-primary);
+}
+
+/* Highlight styles for different emphasis types */
+.proposal-phrase.highlight-timeline {
+  color: var(--ai-warning-red);
+  font-weight: 600;
+}
+
+.proposal-phrase.highlight-name {
+  color: var(--ai-neural-blue);
+  font-weight: 700;
+  font-style: italic;
+}
+
+.proposal-phrase.highlight-capability {
+  color: var(--ai-computation-purple);
+}
+
+.proposal-phrase.highlight-audacity {
+  color: var(--ai-circuit-green);
+  font-weight: 600;
+}
+
+.proposal-citation {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--ai-text-tertiary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ai-text-tertiary);
+  text-align: right;
+}
+
+/* Punchline reveal */
+.proposal-punchline {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  max-width: 600px;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.proposal-punchline.visible {
+  opacity: 1;
+}
+
+.punchline-text,
+.punchline-reality {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  color: var(--ai-text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.time-contrast {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+}
+
+.punchline-text .time-contrast {
+  color: var(--ai-warning-red);
+  background: rgba(255, 107, 107, 0.1);
+}
+
+.punchline-reality .time-contrast {
+  color: var(--ai-neural-blue);
+  background: rgba(0, 180, 216, 0.1);
+  font-size: 1.3em;
+}
+
+.punchline-conclusion {
+  font-size: 1.125rem;
+  color: var(--ai-text-tertiary);
+  margin-top: var(--space-lg);
+}
+
+.punchline-conclusion strong {
+  color: var(--ai-text-primary);
+}
+
+/* Founders overlay */
+.founders-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--ai-bg-primary);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+  z-index: 20;
+  padding: var(--space-xl);
+}
+
+.founders-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.founders-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: var(--ai-text-primary);
+  margin-bottom: var(--space-xl);
+  text-align: center;
+}
+
+.founders-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  max-width: 900px;
+}
+
+.founder-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: founderReveal 0.6s ease forwards;
+}
+
+@keyframes founderReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.founder-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--ai-neural-blue);
+  margin-bottom: var(--space-md);
+  box-shadow: 0 4px 20px rgba(0, 180, 216, 0.3);
+}
+
+.founder-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.founder-info h4 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--ai-text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.founder-title {
+  font-size: 0.875rem;
+  color: var(--ai-neural-blue);
+}
+
+/* Dartmouth conclusion */
+.dartmouth-conclusion {
+  background: var(--ai-bg-primary);
+  padding: var(--space-2xl) var(--space-md);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .proposal-document {
+    padding: var(--space-md);
+    margin: var(--space-md);
+  }
+  
+  .founders-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  
+  .founder-card {
+    flex-direction: row;
+    text-align: left;
+    gap: var(--space-md);
+  }
+  
+  .founder-photo {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    margin-bottom: 0;
+  }
+  
+  .proposal-punchline {
+    bottom: 10%;
+    padding: 0 var(--space-md);
+  }
+}
+
 /* ==================== CHAPTER 8: IMAGENET SCROLL-LOCK ==================== */
 
 .chapter-8.scroll-lock-container {
