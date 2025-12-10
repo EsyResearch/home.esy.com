@@ -47,35 +47,35 @@
 | `visual-auditor-agent.md` | Visual | SVG quality, accessibility, performance | Grade < B- or blocking defects |
 | `citation-audit-agent.md` | Citations | Source integrity, links, claims | Critical issues present |
 | `quotes-audit-agent.md` | Quotes | Quote verification, attribution | Misattributed or fabricated quotes |
+| `seo-audit-agent.md` | SEO | On-page, technical, content, schema | Grade < C or blocking issues |
 
 ### Audit Dependencies
 
 ```
-                    ┌─────────────────────────┐
-                    │  Meta Audit Orchestrator │
-                    └───────────┬─────────────┘
-                                │
-        ┌───────────────────────┼───────────────────────┐
-        │                       │                       │
-        ▼                       ▼                       ▼
-┌───────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│    SCROLL     │    │   EXPERIENCE    │    │    CONTENT      │
-│    AUDIT      │    │     AUDIT       │    │    AUDITS       │
-└───────────────┘    └────────┬────────┘    └────────┬────────┘
-                              │                      │
-                              │              ┌───────┴───────┐
-                              │              │               │
-                              ▼              ▼               ▼
-                    ┌─────────────────┐ ┌─────────┐ ┌───────────┐
-                    │  Scroll Audit   │ │Citation │ │  Visual   │
-                    │  (delegated)    │ │  Audit  │ │  Audit    │
-                    └─────────────────┘ └────┬────┘ └───────────┘
-                                             │
-                                             ▼
-                                     ┌───────────────┐
-                                     │ Quotes Audit  │
-                                     │ (delegated)   │
-                                     └───────────────┘
+                         ┌─────────────────────────┐
+                         │  Meta Audit Orchestrator │
+                         └───────────┬─────────────┘
+                                     │
+        ┌────────────────┬───────────┼───────────┬────────────────┐
+        │                │           │           │                │
+        ▼                ▼           ▼           ▼                ▼
+┌───────────────┐ ┌───────────┐ ┌─────────┐ ┌─────────┐ ┌─────────────┐
+│    SCROLL     │ │EXPERIENCE │ │ CONTENT │ │ VISUAL  │ │     SEO     │
+│    AUDIT      │ │   AUDIT   │ │ AUDITS  │ │  AUDIT  │ │    AUDIT    │
+└───────────────┘ └─────┬─────┘ └────┬────┘ └─────────┘ └─────────────┘
+                        │            │
+                        │     ┌──────┴──────┐
+                        │     │             │
+                        ▼     ▼             ▼
+              ┌───────────────┐  ┌───────────────┐
+              │ Scroll Audit  │  │ Citation Audit│
+              │  (delegated)  │  └───────┬───────┘
+              └───────────────┘          │
+                                         ▼
+                                 ┌───────────────┐
+                                 │ Quotes Audit  │
+                                 │  (delegated)  │
+                                 └───────────────┘
 ```
 
 ### Parallelization Strategy
@@ -84,6 +84,7 @@
 - Scroll Audit
 - Visual Audit  
 - Citation Audit (triggers Quotes Audit internally)
+- SEO Audit
 
 **Sequential Dependencies:**
 - Experience Audit → Scroll Audit (incorporates scroll findings)
@@ -158,6 +159,7 @@ Launch independent audits simultaneously:
 - [ ] Dispatch Scroll Audit (if scroll-lock present)
 - [ ] Dispatch Visual Audit (if custom SVGs present)
 - [ ] Dispatch Citation Audit (if sources section present)
+- [ ] Dispatch SEO Audit (for all published/pre-publication pages)
 
 ### Phase 3: Sequential Audit Dispatch (Variable)
 Launch dependent audits:
@@ -201,6 +203,7 @@ Produce comprehensive audit report:
 | Visual | Visual Auditor | B- (80) | Any blocking defect |
 | Citations | Citation Audit | 7.0/10 | Critical issues |
 | Quotes | Quotes Audit | N/A | Misattributed/fabricated |
+| SEO | SEO Audit Agent | C (60/100) | Any 🔴 Blocking issue |
 
 ### Aggregate Certification Thresholds
 
@@ -224,10 +227,11 @@ Produce comprehensive audit report:
 
 | Pattern | Domains Affected | Root Cause |
 |---------|------------------|------------|
-| Performance degradation | Scroll + Experience + Visual | Unoptimized animations |
+| Performance degradation | Scroll + Experience + Visual + SEO | Unoptimized animations, poor CWV |
 | Accessibility gaps | Experience + Visual + Scroll | Missing reduced motion |
-| Content integrity | Citations + Quotes + Experience | Unverified claims |
-| Mobile failures | Scroll + Experience | Safari iOS incompatibility |
+| Content integrity | Citations + Quotes + Experience + SEO | Unverified claims, E-E-A-T gaps |
+| Mobile failures | Scroll + Experience + SEO | Safari iOS incompatibility, mobile usability |
+| Discoverability issues | SEO + Citations | Missing metadata, poor schema |
 
 ---
 
@@ -258,6 +262,7 @@ Produce comprehensive audit report:
 | Visual | X/100 (Grade) | 🟢/🟡/🔴 | Visual Auditor |
 | Citations | X.X/10 | 🟢/🟡/🔴 | Citation Audit |
 | Quotes | Pass/Fail | 🟢/🔴 | Quotes Audit |
+| SEO | X/100 (Grade) | 🟢/🟡/🔴 | SEO Audit Agent |
 
 ### Key Findings Summary
 - ✅ [Major success 1]
@@ -332,6 +337,30 @@ Produce comprehensive audit report:
 
 ---
 
+### 5. SEO Audit
+**Conducted by**: SEO Audit Agent
+**Grade**: [Letter Grade] ([X]/100)
+**Status**: [CERTIFIED / CONDITIONAL / REJECTED]
+
+[Summary of SEO audit findings]
+
+**Category Breakdown**:
+| Category | Score |
+|----------|-------|
+| Technical Foundation | X/25 |
+| On-Page Elements | X/25 |
+| Content Quality | X/20 |
+| Page Experience | X/15 |
+| Structured Data | X/10 |
+| E-E-A-T Signals | X/5 |
+
+**Blocking Issues**: [List or None]
+**Quick Wins**: [List]
+
+[Link to full SEO audit report]
+
+---
+
 ## Cross-Domain Findings
 
 ### Issues Spanning Multiple Domains
@@ -395,6 +424,7 @@ The following issues were reported by multiple audits (counted once):
 | Experience | [Time] | [Time] | [X min] |
 | Visual | [Time] | [Time] | [X min] |
 | Citation | [Time] | [Time] | [X min] |
+| SEO | [Time] | [Time] | [X min] |
 
 ### Report Location
 `orchestration/audits/[slug]/YYYY-MM-DD-comprehensive-audit.md`
@@ -444,10 +474,13 @@ Meta Audit Orchestrator
     ├─► Invoke: @agents/visual-auditor-agent.md
     │   "Audit all SVG assets in [path]. Produce quality report."
     │
-    └─► Invoke: @agents/citation-audit-agent.md
-        "Audit citations for [path]. Type: Visual Essay."
-        │
-        └─► (Internally invokes @agents/quotes-audit-agent.md)
+    ├─► Invoke: @agents/citation-audit-agent.md
+    │   "Audit citations for [path]. Type: Visual Essay."
+    │   │
+    │   └─► (Internally invokes @agents/quotes-audit-agent.md)
+    │
+    └─► Invoke: @agents/seo-audit-agent.md
+        "Audit SEO for [URL]. Target keywords: [keywords]."
 ```
 
 **Handoff Protocol**

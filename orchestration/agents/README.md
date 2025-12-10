@@ -666,7 +666,7 @@ for "The Thinking Machine" visual essay.
 
 **Role:** World-class quality assurance director that orchestrates comprehensive multi-domain audits by coordinating all specialist audit agents.
 
-**🔬 TOP-LEVEL AUDIT COORDINATOR:** This agent runs comprehensive audits across all quality domains—scroll, experience, visual, citations, and quotes—producing unified certification reports.
+**🔬 TOP-LEVEL AUDIT COORDINATOR:** This agent runs comprehensive audits across all quality domains—scroll, experience, visual, citations, quotes, and SEO—producing unified certification reports.
 
 **Best For:**
 - Pre-publication comprehensive audits
@@ -683,6 +683,7 @@ for "The Thinking Machine" visual essay.
 | `visual-auditor-agent.md` | Visual | SVG quality, accessibility |
 | `citation-audit-agent.md` | Citations | Source integrity, links |
 | `quotes-audit-agent.md` | Quotes | Quote verification |
+| `seo-audit-agent.md` | SEO | On-page, technical, schema, E-E-A-T |
 
 **Certification Matrix:**
 | Status | Criteria |
@@ -725,6 +726,7 @@ identified in previous audit and update certification status.
 - → **Experience Auditor**: Delegates experience verification
 - → **Visual Auditor**: Delegates SVG quality assessment
 - → **Citation Audit**: Delegates source verification
+- → **SEO Audit Agent**: Delegates search optimization verification
 - → **Visual Essay Director**: Reports certification status
 
 ---
@@ -1469,7 +1471,7 @@ An **orchestrator agent** coordinates multiple specialized agents to produce com
 | `citation-audit-agent.md` | **Citation Integrity (G5)** | 2-3 agents | Source verification reports |
 | `visual-auditor-agent.md` | **Visual Quality Assurance** | 1-2 agents | SVG certification reports |
 | `immersive-scrolling-auditor.md` | **Scroll QA (G6)** | 1-2 agents | Scroll certification reports |
-| `meta-audit-orchestrator.md` | **Comprehensive QA** | 5 agents | Unified certification reports |
+| `meta-audit-orchestrator.md` | **Comprehensive QA** | 6 agents | Unified certification reports |
 
 ### Visual Essay Director Architecture (Top-Level)
 
