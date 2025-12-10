@@ -1357,20 +1357,39 @@ const Chapter7: React.FC = () => {
           </p>
         </div>
         
-        <div className="photo-grid" style={{ marginTop: "var(--space-xl)" }}>
-          <ArchivalPhoto
-            src={believersImages.turingAward2018?.src}
-            alt="Hinton, LeCun, and Bengio receiving Turing Award"
-            caption="2019: The 'Godfathers of Deep Learning' receive computing's highest honor"
-            source="ACM"
-            date="2019"
-          />
-        </div>
-        
-        <div className="chapter-text centered" style={{ marginTop: "var(--space-lg)" }}>
-          <p style={{ fontStyle: "italic", color: "var(--ai-text-secondary)" }}>
-            Vindication forty years in the making.
-          </p>
+        {/* Turing Award Collage - The Three Together */}
+        <div className="turing-award-collage" style={{ marginTop: "var(--space-xl)" }}>
+          <div className="collage-portraits">
+            <div className="collage-portrait">
+              <img 
+                src={believersImages.hintonToronto?.src} 
+                alt="Geoffrey Hinton"
+                loading="lazy"
+              />
+              <span className="collage-name">Hinton</span>
+            </div>
+            <div className="collage-portrait">
+              <img 
+                src={believersImages.lecunBellLabs?.src} 
+                alt="Yann LeCun"
+                loading="lazy"
+              />
+              <span className="collage-name">LeCun</span>
+            </div>
+            <div className="collage-portrait">
+              <img 
+                src={believersImages.bengioMontreal?.src} 
+                alt="Yoshua Bengio"
+                loading="lazy"
+              />
+              <span className="collage-name">Bengio</span>
+            </div>
+          </div>
+          <div className="collage-caption">
+            <p className="collage-title">2019: The &ldquo;Godfathers of Deep Learning&rdquo;</p>
+            <p className="collage-subtitle">Receive computing&apos;s highest honor — the ACM Turing Award</p>
+            <p className="collage-tagline">Vindication forty years in the making.</p>
+          </div>
         </div>
       </div>
     </section>

@@ -1438,6 +1438,99 @@
   will-change: auto; /* Reset after animation */
 }
 
+/* Turing Award Collage */
+.turing-award-collage {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.collage-portraits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.collage-portrait {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 2px solid var(--ai-neural-blue);
+  box-shadow: 0 4px 20px rgba(0, 180, 216, 0.2);
+}
+
+.collage-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(20%);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.collage-portrait:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+.collage-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-sm);
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--ai-text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.collage-caption {
+  padding: var(--space-lg);
+  background: var(--ai-bg-secondary);
+  border-radius: 8px;
+  border-top: 3px solid var(--ai-neural-blue);
+}
+
+.collage-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 600;
+  color: var(--ai-text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.collage-subtitle {
+  font-size: 1rem;
+  color: var(--ai-text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.collage-tagline {
+  font-style: italic;
+  color: var(--ai-neural-blue);
+  font-size: 1.125rem;
+}
+
+@media (max-width: 640px) {
+  .collage-portraits {
+    gap: var(--space-sm);
+  }
+  
+  .collage-name {
+    font-size: 0.75rem;
+    padding: var(--space-xs);
+  }
+  
+  .collage-caption {
+    padding: var(--space-md);
+  }
+}
+
 .portrait-frame {
   position: relative;
   aspect-ratio: 3/4;
