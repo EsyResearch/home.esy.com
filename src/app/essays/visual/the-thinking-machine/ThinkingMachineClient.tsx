@@ -1507,63 +1507,169 @@ const Chapter7: React.FC = () => {
 
 // ==================== CHAPTER 8: THE IMAGENET MOMENT ====================
 
+// ImageNet error rates by year (approximate historical data)
+const imageNetErrorRates = [
+  { year: 2010, errorRate: 28.2, method: "Traditional CV" },
+  { year: 2011, errorRate: 25.8, method: "SIFT + SVM" },
+  { year: 2012, errorRate: 16.4, method: "AlexNet", isAlexNet: true },
+  { year: 2013, errorRate: 11.7, method: "ZFNet" },
+  { year: 2014, errorRate: 6.7, method: "GoogLeNet" },
+  { year: 2015, errorRate: 3.6, method: "ResNet" },
+];
+
 const Chapter8: React.FC = () => {
-  const { ref, isVisible } = useIntersectionReveal(0.1);
+  const { containerRef, progress, isPinned } = useScrollLock(3.5);
+  const { ref: contentRef, isVisible } = useIntersectionReveal(0.1);
+  
+  // Calculate which year to show based on scroll progress
+  const currentYearIndex = useMemo(() => {
+    const index = Math.floor(progress * imageNetErrorRates.length);
+    return Math.min(index, imageNetErrorRates.length - 1);
+  }, [progress]);
+  
+  const currentData = imageNetErrorRates[currentYearIndex];
+  const isCliffMoment = currentData?.isAlexNet && progress > 0.3 && progress < 0.5;
+  
+  // Show "Everything Changed" after 2012
+  const showRevolution = progress > 0.7;
 
   return (
-    <section id="chapter-8" className="chapter chapter-8 era-deep-learning" ref={ref}>
-      <div className={`chapter-content ${isVisible ? "revealed" : ""}`}>
-        <header className="chapter-header">
+    <section 
+      id="chapter-8" 
+      className={`chapter chapter-8 era-deep-learning scroll-lock-container ${isPinned ? "is-pinned" : ""}`}
+      ref={containerRef}
+      style={{ height: "350vh" }}
+    >
+      {/* Scroll-lock "The Collapse" */}
+      <div className={`imagenet-pinned ${isPinned ? "is-pinned" : ""}`}>
+        <header 
+          className="chapter-header" 
+          style={{ 
+            marginBottom: "var(--space-md)",
+            opacity: showRevolution ? 0 : 1,
+            transition: "opacity 0.4s ease"
+          }}
+        >
           <span className="chapter-number">Chapter 8</span>
           <span className="chapter-date">2012</span>
           <h2 className="chapter-title">The ImageNet Moment</h2>
           <p className="chapter-metaphor">The shot heard round the world</p>
         </header>
         
-        <div className="chapter-text centered">
-          <p className="chapter-intro">
-            Every year, computer vision researchers competed on ImageNet—a dataset of 
-            millions of labeled images. Progress was incremental. Single percentage 
-            points gained through years of work.
-          </p>
+        {/* Year indicator */}
+        <div 
+          className="imagenet-year-display"
+          style={{ opacity: showRevolution ? 0 : 1, transition: "opacity 0.4s ease" }}
+        >
+          <span className={`year-number ${isCliffMoment ? "cliff-moment" : ""}`}>
+            {currentData?.year}
+          </span>
+          <span className="method-name">{currentData?.method}</span>
         </div>
         
-        <div className="quote-monument">
-          <blockquote>
-            <p className="quote-text">
-              In 2012, a team from Toronto entered a deep neural network called AlexNet. 
-              It didn&apos;t just win. <span style={{ color: "var(--ai-circuit-green)" }}>It crushed the competition.</span>
+        {/* Error rate graph */}
+        <div 
+          className="imagenet-graph"
+          style={{ opacity: showRevolution ? 0 : 1, transition: "opacity 0.4s ease" }}
+        >
+          <div className="graph-container">
+            <div className="graph-y-axis">
+              <span>30%</span>
+              <span>20%</span>
+              <span>10%</span>
+              <span>0%</span>
+            </div>
+            <div className="graph-bars-area">
+              {imageNetErrorRates.map((data, index) => {
+                const isVisible = index <= currentYearIndex;
+                const isCurrentYear = index === currentYearIndex;
+                const barHeight = (data.errorRate / 30) * 100;
+                
+                return (
+                  <div 
+                    key={data.year}
+                    className={`graph-bar-wrapper ${isVisible ? "visible" : ""} ${isCurrentYear ? "current" : ""} ${data.isAlexNet ? "alexnet" : ""}`}
+                  >
+                    <div 
+                      className="graph-bar"
+                      style={{ 
+                        height: isVisible ? `${barHeight}%` : "0%",
+                        background: data.isAlexNet 
+                          ? "var(--ai-circuit-green)" 
+                          : index > 2 
+                            ? "var(--ai-neural-blue)" 
+                            : "var(--ai-text-tertiary)"
+                      }}
+                    />
+                    <span className="bar-label">{data.year}</span>
+                    {isVisible && (
+                      <span className="bar-value">{data.errorRate}%</span>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <p className="graph-caption">ImageNet Top-5 Error Rate</p>
+        </div>
+        
+        {/* The Cliff moment callout */}
+        <div className={`cliff-callout ${isCliffMoment ? "visible" : ""}`}>
+          <span className="cliff-drop">↓ 10%</span>
+          <span className="cliff-text">The cliff. Everything changes.</span>
+        </div>
+        
+        {/* Revolution overlay */}
+        <div className={`revolution-overlay ${showRevolution ? "visible" : ""}`}>
+          <div className="revolution-content">
+            <span className="revolution-year">2012</span>
+            <h3 className="revolution-title">AlexNet</h3>
+            <p className="revolution-quote">
+              &ldquo;It didn&apos;t just win. <span style={{ color: "var(--ai-circuit-green)" }}>It crushed the competition.</span>&rdquo;
             </p>
-          </blockquote>
-        </div>
-        
-        <div className="data-stats">
-          <div className="stat-card">
-            <span className="stat-value" style={{ color: "var(--ai-circuit-green)" }}>-10%</span>
-            <span className="stat-label">Error rate dropped in one year</span>
-          </div>
-          <div className="stat-card">
-            <span className="stat-value">2012</span>
-            <span className="stat-label">The inflection point</span>
-          </div>
-          <div className="stat-card">
-            <span className="stat-value">∞</span>
-            <span className="stat-label">Everything changed</span>
+            <div className="revolution-stats">
+              <div className="rev-stat">
+                <span className="rev-value">-10%</span>
+                <span className="rev-label">Error drop in one year</span>
+              </div>
+              <div className="rev-stat">
+                <span className="rev-value">10×</span>
+                <span className="rev-label">More progress than previous decade</span>
+              </div>
+            </div>
+            <p className="revolution-tagline">The modern AI revolution had begun.</p>
           </div>
         </div>
         
-        <div className="chapter-grid" style={{ marginTop: "var(--space-xl)" }}>
+        {/* Scroll hint */}
+        <div className="scroll-hint" style={{ opacity: progress < 0.05 ? 1 : 0 }}>
+          <span>Scroll through the competition</span>
+          <div className="scroll-arrow">↓</div>
+        </div>
+      </div>
+      
+      {/* Static content after scroll-lock */}
+      <div 
+        className="chapter-content imagenet-conclusion"
+        ref={contentRef}
+        style={{ 
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          opacity: progress > 0.95 ? 1 : 0,
+          transition: "opacity 0.6s ease"
+        }}
+      >
+        <div className="chapter-grid">
           <div className="chapter-text">
-            <p>
-              Error rates dropped by over ten percentage points in a single year—more 
-              progress than the entire previous decade combined.
-            </p>
             <p>
               The field went into shock. Within months, every major tech company was 
               hiring neural network researchers.
             </p>
-            <p style={{ color: "var(--ai-neural-blue)" }}>
-              <strong>The modern AI revolution had begun.</strong>
+            <p>
+              Fei-Fei Li had spent years building ImageNet when funding agencies called 
+              it &ldquo;unimportant.&rdquo; Her dataset became the proving ground for a revolution.
             </p>
           </div>
           
@@ -1577,7 +1683,14 @@ const Chapter8: React.FC = () => {
             />
           </div>
         </div>
-        
+      </div>
+    </section>
+  );
+};
+
+// Keep the key-figure section separate for potential reuse
+const Chapter8KeyFigure: React.FC = () => {
+  return (
         <div className="key-figure featured" style={{ marginTop: "var(--space-xl)" }}>
           <div className="figure-photo">
             {imageNetImages.feifeiLi?.src ? (
