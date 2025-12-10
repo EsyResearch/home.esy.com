@@ -1015,44 +1015,45 @@ const Chapter4: React.FC = () => {
           </p>
         </div>
         
-        <div className="chapter-grid">
-          <div className="chapter-text">
-            <p>
-              The Lighthill Report in Britain declared AI had failed to achieve its 
-              &ldquo;grandiose objectives.&rdquo; DARPA slashed funding. Machine translation 
-              projects collapsed. The promises of 1956 looked like hubris.
-            </p>
-            
-            <p>
-              The fundamental problem: early AI could handle toy problems but collapsed 
-              on real-world complexity. Symbolic logic couldn&apos;t scale. Neural networks 
-              hit mathematical walls.
-            </p>
-            
-            <blockquote className="historic-quote">
-              <p>&ldquo;In no part of the field have the discoveries made so far produced 
-              the major impact that was then promised.&rdquo;</p>
-              <cite>— Sir James Lighthill, 1973</cite>
-            </blockquote>
-            
-            <p>
-              The dream froze. Those who remained became cautious. The word &ldquo;AI&rdquo; 
-              itself became toxic. Researchers rebranded their work as &ldquo;machine learning&rdquo; 
-              or &ldquo;expert systems&rdquo;—anything but artificial intelligence.
-            </p>
-          </div>
+        <div className="chapter-text centered">
+          <p>
+            The Lighthill Report in Britain declared AI had failed to achieve its 
+            &ldquo;grandiose objectives.&rdquo; DARPA slashed funding. Machine translation 
+            projects collapsed. The promises of 1956 looked like hubris.
+          </p>
           
-          <div className="chapter-visual">
-            <div className="data-stats">
-              <div className="stat-card">
-                <span className="stat-value" style={{ color: "var(--ai-warning-red)" }}>-75%</span>
-                <span className="stat-label">DARPA AI funding cut</span>
-              </div>
-              <div className="stat-card">
-                <span className="stat-value" style={{ color: "var(--ai-warning-red)" }}>0</span>
-                <span className="stat-label">Major neural network papers, 1975-1982</span>
-              </div>
-            </div>
+          <p>
+            The fundamental problem: early AI could handle toy problems but collapsed 
+            on real-world complexity. Symbolic logic couldn&apos;t scale. Neural networks 
+            hit mathematical walls.
+          </p>
+          
+          <blockquote className="historic-quote">
+            <p>&ldquo;In no part of the field have the discoveries made so far produced 
+            the major impact that was then promised.&rdquo;</p>
+            <cite>— Sir James Lighthill, 1973</cite>
+          </blockquote>
+          
+          <p>
+            The dream froze. Those who remained became cautious. The word &ldquo;AI&rdquo; 
+            itself became toxic. Researchers rebranded their work as &ldquo;machine learning&rdquo; 
+            or &ldquo;expert systems&rdquo;—anything but artificial intelligence.
+          </p>
+        </div>
+        
+        {/* Stats section - full width, outside grid */}
+        <div className="data-stats" style={{ marginTop: "var(--space-xl)" }}>
+          <div className="stat-card">
+            <span className="stat-value" style={{ color: "var(--ai-warning-red)" }}>-75%</span>
+            <span className="stat-label">DARPA AI funding cut</span>
+          </div>
+          <div className="stat-card">
+            <span className="stat-value" style={{ color: "var(--ai-warning-red)" }}>0</span>
+            <span className="stat-label">Major neural network papers, 1975-1982</span>
+          </div>
+          <div className="stat-card">
+            <span className="stat-value" style={{ color: "var(--ai-text-muted)" }}>7</span>
+            <span className="stat-label">Years of &ldquo;AI Winter&rdquo;</span>
           </div>
         </div>
       </div>
