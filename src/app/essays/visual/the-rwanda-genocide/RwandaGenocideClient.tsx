@@ -595,9 +595,10 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* Stage 1: 0-12% - Opening panorama (288px of scroll) */}
+      {/* VISIBLE IMMEDIATELY at start, then fades out as user scrolls */}
       <div 
         className="hero-stage hero-stage-1"
-        style={{ opacity: getStageOpacity(0, 2, 8, 14) }}
+        style={{ opacity: progress < 8 ? 1 : Math.max(0, 1 - (progress - 8) / 6) }}
       >
         <p className="hero-location">Rwanda</p>
         <p className="hero-tagline">The Land of a Thousand Hills</p>
