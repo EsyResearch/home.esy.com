@@ -38,6 +38,7 @@ Create a skill when you observe:
 |-------|---------|---------|
 | [image-url-extraction](./image-url-extraction/) | Extract direct image URLs from archive HTML pages | `image-research-licensing-expert.md` |
 | [visual-essay-invocation](./visual-essay-invocation/) | Generate comprehensive visual essay briefs | `visual-essay-director.md` |
+| [seo-element-extraction](./seo-element-extraction/) | Extract all SEO-relevant elements from webpages | `seo-audit-agent.md` |
 
 ---
 

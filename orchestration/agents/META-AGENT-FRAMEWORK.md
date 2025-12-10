@@ -632,6 +632,7 @@ Current agents derived from this framework:
 | `image-research-licensing-expert.md` | **Visual Research** | Archive Image Sourcing & Rights | **Specialist** — Uses `image-url-extraction` skill |
 | `meta-audit-orchestrator.md` | **Quality Orchestration** | Multi-Domain Audit Coordinator | **TOP-LEVEL ORCHESTRATOR** → Scrolling Auditor, Experience Auditor, Visual Auditor, Citation Audit, Quotes Audit |
 | `seo-specialist-expert.md` | **Search Optimization** | SEO Strategy & Organic Growth | **Specialist** — Technical SEO, Content Optimization, SERP Features, Link Strategy |
+| `seo-audit-agent.md` | **SEO Quality Assurance** | Page-Level SEO Auditor & Grader | **Auditor** → SEO Specialist, Visual Essay Director (G3); Uses `seo-element-extraction` skill |
 
 ---
 

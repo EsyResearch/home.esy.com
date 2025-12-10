@@ -37,6 +37,7 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 | [Essayist](#essayist-expert) | Academic essay guidance | `@agents/essayist-expert.md` |
 | [Copywriter](#copywriter-marketing-expert) | Marketing & conversion copy | `@agents/copywriter-marketing-expert.md` |
 | [SEO Specialist](#seo-specialist-expert) | **🔍 Technical SEO, content optimization, SERP domination** | `@agents/seo-specialist-expert.md` |
+| [SEO Audit Agent](#seo-audit-agent) | **📊 Page-level SEO auditing & grading** | `@agents/seo-audit-agent.md` |
 
 ---
 
@@ -1363,6 +1364,84 @@ and schema requirements.
 4. SERP analysis and feature capture strategies
 5. Link building strategy and opportunity lists
 6. Performance reports with actionable recommendations
+
+---
+
+### SEO Audit Agent
+**File:** `seo-audit-agent.md`
+
+**Role:** World-class SEO audit specialist with 20+ years of experience conducting rigorous technical and content audits, specializing in objective page-level analysis, algorithmic compliance verification, and actionable optimization scoring.
+
+**📊 COMPREHENSIVE AUDITOR:** This agent conducts exhaustive, evidence-based SEO audits with objective grading (A+ to F scale). Every finding is supported by specific evidence, and all recommendations are actionable.
+
+**Key Capabilities:**
+- **On-Page Element Auditing**: Title tags, meta descriptions, headers, URLs, internal/external links, images
+- **Technical SEO Verification**: Crawlability, indexability, canonicalization, mobile-friendliness
+- **Content Quality Assessment**: Word count, readability, keyword usage, search intent alignment
+- **Core Web Vitals Analysis**: LCP, INP, CLS measurement and optimization
+- **Structured Data Validation**: Schema markup presence, validity, and rich result eligibility
+- **E-E-A-T Signal Evaluation**: Experience, Expertise, Authoritativeness, Trustworthiness
+- **Competitive Benchmarking**: SERP position context, competitor comparison
+
+**Grading Scale:**
+| Grade | Score | Definition |
+|-------|-------|------------|
+| A+/A/A- | 85-100 | Excellent — Well-optimized, minor refinements only |
+| B+/B/B- | 70-84 | Good — Solid foundation with clear opportunities |
+| C+/C/C- | 55-69 | Fair — Multiple issues affecting ranking potential |
+| D | 45-54 | Failing — Critical issues blocking potential |
+| F | 0-44 | Critical — Fundamental failures, urgent remediation |
+
+**Category Weights:**
+| Category | Weight |
+|----------|--------|
+| Technical Foundation | 25% |
+| On-Page Elements | 25% |
+| Content Quality | 20% |
+| Page Experience | 15% |
+| Structured Data | 10% |
+| E-E-A-T Signals | 5% |
+
+**Uses Skill:** `@skills/seo-element-extraction` — Systematic extraction of all SEO elements from pages
+
+**Invocation Examples:**
+```markdown
+# Standard page audit
+Using @agents/seo-audit-agent.md, conduct a comprehensive SEO audit of:
+
+URL: https://esy.com/essays/visual/the-thinking-machine
+Target Keywords: history of artificial intelligence, AI timeline
+Search Intent: Informational
+
+Provide full scored report with prioritized recommendations.
+
+# Pre-publication audit
+Using @agents/seo-audit-agent.md, perform pre-publication SEO audit 
+for visual essay "[Title]". Verify title, meta, schema, and provide 
+go/no-go recommendation.
+
+# Competitive audit
+Using @agents/seo-audit-agent.md, audit [URL] with competitive focus.
+Include detailed gap analysis against top 3 ranking competitors.
+
+# Quick assessment
+Using @agents/seo-audit-agent.md, provide rapid SEO assessment of [URL].
+Focus on blocking issues and critical fixes only.
+```
+
+**Output:**
+1. Full audit report with overall letter grade (A+ to F)
+2. Category breakdown scores (Technical, On-Page, Content, etc.)
+3. Issue registry classified by severity (🔴 Blocking → ⚪ Minor)
+4. Prioritized recommendations with effort/impact estimates
+5. Optimized element rewrites (title, meta, H1, schema)
+6. Quick wins list for immediate implementation
+7. Competitive benchmarking data
+
+**Collaboration:**
+- Works with `seo-specialist-expert.md` for strategy implementation
+- Integrates with `visual-essay-director.md` at G3 (Content Complete)
+- Provides data to content writers for optimization
 
 ---
 
