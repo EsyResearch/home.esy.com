@@ -924,6 +924,19 @@ const Chapter3: React.FC = () => {
         </div>
         
         <div className="key-figure featured" style={{ marginTop: "var(--space-xl)" }}>
+          <div className="figure-photo">
+            {goldenAgeImages.rosenblattPortrait?.src ? (
+              <img 
+                src={goldenAgeImages.rosenblattPortrait.src} 
+                alt={goldenAgeImages.rosenblattPortrait.alt}
+                loading="lazy"
+              />
+            ) : (
+              <div className="photo-placeholder">
+                <span className="placeholder-text">Rosenblatt</span>
+              </div>
+            )}
+          </div>
           <div className="figure-content">
             <h3>Frank Rosenblatt — The Neural Network Pioneer</h3>
             <span className="figure-title">Vindicated sixty years later</span>
@@ -1324,6 +1337,19 @@ const Chapter8: React.FC = () => {
         </div>
         
         <div className="key-figure featured" style={{ marginTop: "var(--space-xl)" }}>
+          <div className="figure-photo">
+            {imageNetImages.feifeiLi?.src ? (
+              <img 
+                src={imageNetImages.feifeiLi.src} 
+                alt={imageNetImages.feifeiLi.alt}
+                loading="lazy"
+              />
+            ) : (
+              <div className="photo-placeholder">
+                <span className="placeholder-text">Fei-Fei Li</span>
+              </div>
+            )}
+          </div>
           <div className="figure-content">
             <h3>Fei-Fei Li — The Data Visionary</h3>
             <span className="figure-title">Created the catalyst</span>
@@ -1411,14 +1437,29 @@ const Chapter9: React.FC = () => {
           />
         </div>
         
-        <div className="key-figure" style={{ marginTop: "var(--space-xl)" }}>
-          <h3>Demis Hassabis — The Game Player</h3>
-          <span className="figure-title">Former chess prodigy who founded DeepMind</span>
-          <ul className="figure-facts">
-            <li>Founded DeepMind with the explicit goal of building AGI</li>
-            <li>AlphaGo, AlphaFold, Gemini</li>
-            <li>&ldquo;We&apos;re building the most transformative technology in human history&rdquo;</li>
-          </ul>
+        <div className="key-figure featured" style={{ marginTop: "var(--space-xl)" }}>
+          <div className="figure-photo">
+            {deepLearningImages.demisHassabis?.src ? (
+              <img 
+                src={deepLearningImages.demisHassabis.src} 
+                alt={deepLearningImages.demisHassabis.alt}
+                loading="lazy"
+              />
+            ) : (
+              <div className="photo-placeholder">
+                <span className="placeholder-text">Demis Hassabis</span>
+              </div>
+            )}
+          </div>
+          <div className="figure-content">
+            <h3>Demis Hassabis — The Game Player</h3>
+            <span className="figure-title">Former chess prodigy who founded DeepMind</span>
+            <ul className="figure-facts">
+              <li>Founded DeepMind with the explicit goal of building AGI</li>
+              <li>AlphaGo, AlphaFold, Gemini</li>
+              <li>&ldquo;We&apos;re building the most transformative technology in human history&rdquo;</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
