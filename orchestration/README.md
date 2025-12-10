@@ -9,10 +9,12 @@ The orchestration system coordinates specialized AI agents and procedural skills
 | I want to... | Start here |
 |--------------|------------|
 | Create a visual essay | `@orchestration/agents/visual-essay-director.md` |
+| Run a comprehensive audit | `@orchestration/agents/meta-audit-orchestrator.md` |
 | Understand available agents | `@orchestration/agents/README.md` |
 | Use a specific skill | `@orchestration/skills/[skill-name]/SKILL.md` |
 | Update documentation | `@orchestration/agents/readme-curator.md` |
 | Create a new agent | `@orchestration/agents/META-AGENT-FRAMEWORK.md` |
+| View audit reports | `@orchestration/audits/` |
 
 ---
 
@@ -109,6 +111,7 @@ The system has three component types, each serving a distinct purpose:
 | `scrollytelling-expert.md` | Content Production | 7 agents |
 | `citation-audit-agent.md` | Source Verification | 2-3 agents |
 | `immersive-experience-auditor.md` | Experience QA | 1 agent (Scrolling Auditor) + direct checks |
+| `meta-audit-orchestrator.md` | **Comprehensive QA** | 5 agents (Scroll, Experience, Visual, Citation, Quotes) |
 
 ---
 
@@ -251,11 +254,17 @@ orchestration/
 │   ├── META-AGENT-FRAMEWORK.md    ← How to create new agents
 │   ├── readme-curator.md          ← Documentation management agent
 │   ├── visual-essay-director.md   ← Top-level orchestrator
+│   ├── meta-audit-orchestrator.md ← Comprehensive audit coordinator
 │   ├── scrollytelling-expert.md   ← Content production orchestrator
 │   ├── [15+ specialist agents]
 │   ├── CitationReports/           ← Citation audit archives
-│   ├── VisualAuditReports/        ← Visual audit archives
-│   └── scroll-audits/             ← Scroll certification archives
+│   └── VisualAuditReports/        ← Visual audit archives
+│
+├── audits/                        ← All audit reports (organized by essay)
+│   ├── README.md                  ← Audit system overview
+│   └── [essay-slug]/              ← Audits for specific essay
+│       ├── README.md              ← Essay audit history
+│       └── YYYY-MM-DD-*-audit.md  ← Timestamped audit reports
 │
 └── skills/
     ├── README.md                  ← Skills overview, creation guide
