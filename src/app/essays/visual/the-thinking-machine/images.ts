@@ -284,13 +284,13 @@ export const firstWinterImages = {
 
 export const expertSystemsImages = {
   lispMachine: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Symbolics-3640.png",
-    alt: "Symbolics 3640 LISP Machine",
+    src: "https://upload.wikimedia.org/wikipedia/commons/5/5a/Symbolics_LISP_Workstation_%28Computer_History_Museum%29.jpg",
+    alt: "Symbolics LISP machine",
     caption: "LISP machines — specialized AI hardware that briefly created an industry",
-    source: "Wikimedia Commons",
-    date: "1985",
-    license: "CC BY-SA 3.0",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:Symbolics-3640.png",
+    source: "Computer History Museum",
+    date: "1980s",
+    license: "CC BY-SA 4.0",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Symbolics_LISP_Workstation_(Computer_History_Museum).jpg",
   },
   ibmWatson: {
     src: "https://upload.wikimedia.org/wikipedia/commons/0/0a/IBM_Watson.PNG",
