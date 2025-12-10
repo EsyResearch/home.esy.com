@@ -10,7 +10,7 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 
 | Agent | Best For | Invocation Prefix |
 |-------|----------|-------------------|
-| [Visual Essay Director](#visual-essay-director) | **🎬 END-TO-END PRODUCTION PIPELINE** | `@agents/visual-essay-director.md` |
+| [Visual Essay Orchestrator](#visual-essay-orchestrator) | **🎬 END-TO-END PRODUCTION PIPELINE** | `@agents/visual-essay-orchestrator.md` |
 | [Invocation Enhancer](#scrollytelling-invocation-enhancer) | **🚀 Enhance any scrollytelling request** | `@agents/scrollytelling-invocation-enhancer.md` |
 | [Audit Agent](#scrollytelling-audit-agent) | **🔍 Evaluate & improve experiences** | `@agents/scrollytelling-audit-agent.md` |
 | [Citation Audit Agent](#citation-audit-agent) | **📚 Verify citations & source quality** | `@agents/citation-audit-agent.md` |
@@ -72,8 +72,8 @@ our scrollytelling piece about [topic]. Focus on .edu and major news sources.
 
 ## Agent Details
 
-### Visual Essay Director
-**File:** `visual-essay-director.md`
+### Visual Essay Orchestrator
+**File:** `visual-essay-orchestrator.md`
 
 **Role:** Award-winning editorial director and digital publishing executive that orchestrates the complete visual essay production pipeline from brief to publication.
 
@@ -118,7 +118,7 @@ our scrollytelling piece about [topic]. Focus on .edu and major news sources.
 **Invocation Examples:**
 ```
 # Start new visual essay production
-Using @agents/visual-essay-director.md, initiate production for a 
+Using @agents/visual-essay-orchestrator.md, initiate production for a 
 visual essay about "The History of the Bicycle".
 
 Key details:
@@ -127,11 +127,11 @@ Key details:
 - Vintage photography aesthetic
 
 # Check production status
-Using @agents/visual-essay-director.md, provide status update on 
+Using @agents/visual-essay-orchestrator.md, provide status update on 
 the visual essay "The History of Coffee" currently in production.
 
 # Final publication approval
-Using @agents/visual-essay-director.md, conduct final publication 
+Using @agents/visual-essay-orchestrator.md, conduct final publication 
 approval review for the visual essay at 
 src/app/essays/visual/history-of-coffee/
 ```
@@ -510,7 +510,7 @@ The agent produces a structured Visual Audit Report with:
 
 **Role:** World-class frontend QA engineer specializing in scroll-driven experience certification, with expertise in scroll-lock verification, animation performance auditing, and mobile-native testing.
 
-**🎢 GATE 6 CERTIFIER:** This agent owns Gate 6 (Scroll Certification) in the Visual Essay Director pipeline. No visual essay publishes without scroll certification.
+**🎢 GATE 6 CERTIFIER:** This agent owns Gate 6 (Scroll Certification) in the Visual Essay Orchestrator pipeline. No visual essay publishes without scroll certification.
 
 **Best For:**
 - Verifying scroll-lock sections pin and release correctly
@@ -580,7 +580,7 @@ certification for visual essay "The Thinking Machine" prior to G7.
 5. Performance recordings (DevTools)
 
 **Collaboration:**
-- ← **Visual Essay Director**: Invokes for Gate 6 certification
+- ← **Visual Essay Orchestrator**: Invokes for Gate 6 certification
 - ← **Immersive Experience Engineer**: Implementation partner for fixes
 - ← **Scrollytelling Expert**: Narrative-scroll synchronization review
 
@@ -656,7 +656,7 @@ for "The Thinking Machine" visual essay.
 
 **Collaboration:**
 - → **Scrolling Auditor**: Delegates scroll-specific testing
-- → **Visual Essay Director**: Reports certification status
+- → **Visual Essay Orchestrator**: Reports certification status
 - ← **Experience Engineer**: Implementation partner for fixes
 
 ---
@@ -727,7 +727,7 @@ identified in previous audit and update certification status.
 - → **Visual Auditor**: Delegates SVG quality assessment
 - → **Citation Audit**: Delegates source verification
 - → **SEO Audit Agent**: Delegates search optimization verification
-- → **Visual Essay Director**: Reports certification status
+- → **Visual Essay Orchestrator**: Reports certification status
 
 ---
 
@@ -1442,7 +1442,7 @@ Focus on blocking issues and critical fixes only.
 
 **Collaboration:**
 - Works with `seo-specialist-expert.md` for strategy implementation
-- Integrates with `visual-essay-director.md` at G3 (Content Complete)
+- Integrates with `visual-essay-orchestrator.md` at G3 (Content Complete)
 - Provides data to content writers for optimization
 
 ---
@@ -1464,7 +1464,7 @@ An **orchestrator agent** coordinates multiple specialized agents to produce com
 
 | Orchestrator | Domain | Agents Coordinated | Output |
 |--------------|--------|-------------------|--------|
-| `visual-essay-director.md` | **Production Pipeline** | 4 orchestrators | **Publication-ready visual essays** |
+| `visual-essay-orchestrator.md` | **Production Pipeline** | 4 orchestrators | **Publication-ready visual essays** |
 | `scrollytelling-expert.md` | Digital Storytelling | 7 agents | Mobile-native scrollytelling pages |
 | `childrens-fiction-scrollytelling-agent.md` | **Children's Stories (3-6)** | 4 agents | Magical animated children's experiences |
 | `scrollytelling-audit-agent.md` | Quality Assurance | 3-4 agents | Experience audit reports |
@@ -1473,7 +1473,7 @@ An **orchestrator agent** coordinates multiple specialized agents to produce com
 | `immersive-scrolling-auditor.md` | **Scroll QA (G6)** | 1-2 agents | Scroll certification reports |
 | `meta-audit-orchestrator.md` | **Comprehensive QA** | 6 agents | Unified certification reports |
 
-### Visual Essay Director Architecture (Top-Level)
+### Visual Essay Orchestrator Architecture (Top-Level)
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -1721,7 +1721,7 @@ Think of gates like airport security checkpoints:
 ```
 
 #### G1: Brief Approval
-**Owner:** Visual Essay Director
+**Owner:** Visual Essay Orchestrator
 **Phase Boundary:** Intake → Production
 
 | Criterion | Requirement |
@@ -1878,7 +1878,7 @@ Think of gates like airport security checkpoints:
 ---
 
 #### G7: Mobile Verification
-**Owner:** Visual Essay Director
+**Owner:** Visual Essay Orchestrator
 **Phase Boundary:** Pre-Publication
 
 | Criterion | Requirement |
@@ -1894,7 +1894,7 @@ Think of gates like airport security checkpoints:
 ---
 
 #### G8: Publication Approval
-**Owner:** Visual Essay Director
+**Owner:** Visual Essay Orchestrator
 **Phase Boundary:** Approval → Deployment
 
 | Criterion | Requirement |
@@ -1940,7 +1940,7 @@ During production, track gate status with this format:
 
 ```
 # 1. Initiate production (starts at G1)
-Using @agents/visual-essay-director.md, initiate production for 
+Using @agents/visual-essay-orchestrator.md, initiate production for 
 a visual essay about "The History of Coffee".
 
 # Director will:
@@ -1982,7 +1982,7 @@ When timeline pressure exists:
 
 ```
 # Request expedited production
-Using @agents/visual-essay-director.md, initiate expedited production
+Using @agents/visual-essay-orchestrator.md, initiate expedited production
 for "Breaking News: AI Milestone" with 24-hour timeline.
 
 # Director will:
@@ -1997,7 +1997,7 @@ for "Breaking News: AI Milestone" with 24-hour timeline.
 
 ```
 # Check current status
-Using @agents/visual-essay-director.md, provide gate status report
+Using @agents/visual-essay-orchestrator.md, provide gate status report
 for "The Thinking Machine" visual essay.
 
 # Director returns:
@@ -2013,13 +2013,13 @@ for "The Thinking Machine" visual essay.
 
 | Gate | Owner Agent | Certification Output |
 |------|-------------|---------------------|
-| G1 | Visual Essay Director | Production Brief |
+| G1 | Visual Essay Orchestrator | Production Brief |
 | G2 | Scrollytelling Expert | Design Research Report |
 | G3 | Historian Editor | Fact-Check Approval |
 | G4 | Research & Citations Expert | Source Package |
 | G5 | Citation Audit Agent | Citation Certification |
 | G6 | **Immersive Scrolling Auditor** | Scroll Certification |
-| G7 | Visual Essay Director | Publication Approval |
+| G7 | Visual Essay Orchestrator | Publication Approval |
 
 ---
 
@@ -2154,12 +2154,12 @@ Type: General
 
 ### Scrollytelling Production Pipeline
 
-**Option A: Use Visual Essay Director (Recommended for Full Production)**
+**Option A: Use Visual Essay Orchestrator (Recommended for Full Production)**
 
 For complete end-to-end production with quality gates and certification:
 
 ```
-@agents/visual-essay-director.md
+@agents/visual-essay-orchestrator.md
      │
      ├─► Develops production brief (G1)
      ├─► Invokes scrollytelling-expert.md for content/design (G2, G3)
@@ -2194,9 +2194,9 @@ The detailed workflow for creating **mobile-native** scrollytelling content:
 **When to Use Which:**
 | Scenario | Recommended Approach |
 |----------|---------------------|
-| New to visual essays | Use Visual Essay Director |
-| Strict quality requirements | Use Visual Essay Director |
-| Multiple essays in progress | Use Visual Essay Director |
+| New to visual essays | Use Visual Essay Orchestrator |
+| Strict quality requirements | Use Visual Essay Orchestrator |
+| Multiple essays in progress | Use Visual Essay Orchestrator |
 | Quick iteration / familiar workflow | Use Direct Pipeline |
 | Specific phase only (e.g., just citations) | Invoke specific agent directly |
 
@@ -2228,7 +2228,7 @@ For comprehensive, structured agent invocations, see:
 
 | Template | Purpose | Target Agent |
 |----------|---------|--------------|
-| [Visual Essay Creation](./InvocationTemplates/visual-essay-creation.md) | Novel, unique visual essays with cinematic quality | Visual Essay Director |
+| [Visual Essay Creation](./InvocationTemplates/visual-essay-creation.md) | Novel, unique visual essays with cinematic quality | Visual Essay Orchestrator |
 
 ---
 
@@ -2373,6 +2373,8 @@ For creating new agents or understanding the underlying architecture, see:
 ---
 
 ## ⚠️ Known Style Conflicts (Scrollytelling)
+
+> 📄 **Full documentation with copy-paste fix:** [`docs/fixes/visual-essays/PATTERN-global-css-hero-content-fix.md`](../../docs/fixes/visual-essays/PATTERN-global-css-hero-content-fix.md)
 
 ### Global CSS Bleeding into Scrollytelling Pages
 

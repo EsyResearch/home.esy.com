@@ -629,7 +629,7 @@
 - **Scrollytelling Expert**: User experience, narrative flow, visual design
 - **Shared**: Page speed optimization, content structure
 
-### Working With `visual-essay-director.md`
+### Working With `visual-essay-orchestrator.md`
 **Integration Point**: G3 (Content Complete) — SEO review before publication
 **Responsibilities**:
 - Verify target keywords identified

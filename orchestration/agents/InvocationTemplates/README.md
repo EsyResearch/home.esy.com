@@ -15,7 +15,7 @@ These templates ensure:
 
 | Template | Purpose | Primary Agent |
 |----------|---------|---------------|
-| [Visual Essay Creation](./visual-essay-creation.md) | Novel, unique visual essays with cinematic quality | Visual Essay Director |
+| [Visual Essay Creation](./visual-essay-creation.md) | Novel, unique visual essays with cinematic quality | Visual Essay Orchestrator |
 | *More coming...* | | |
 
 ## How to Use Templates

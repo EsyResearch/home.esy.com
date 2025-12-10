@@ -75,7 +75,7 @@ This skill is primarily invoked by:
 ## Related Agents
 
 - `image-research-licensing-expert.md` — Primary consumer of this skill
-- `visual-essay-director.md` — Quality gate verification
+- `visual-essay-orchestrator.md` — Quality gate verification
 
 ---
 

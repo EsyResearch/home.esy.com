@@ -56,18 +56,29 @@ This directory contains detailed documentation of all fixes and resolved issues 
 
 ## Quick Links
 
+### 🔥 Common Patterns (Check These First!)
+
+These are **recurring issues** that affect multiple pages. Check here before debugging:
+
+| Pattern | Symptoms | Quick Fix |
+|---------|----------|-----------|
+| [**Global CSS Hero Conflict**](./visual-essays/PATTERN-global-css-hero-content-fix.md) | Hero invisible, two-column split on wide screens | Override `grid-template-columns: unset` |
+
 ### Recent Fixes
-- [Coming soon...]
+- [2025-01-25 Essays Header/Footer Production](./2025-01-25-essays-header-footer-production.md)
+- [2025-01-20 Example Style Mismatch](./2025-01-20-example-style-mismatch.md)
 
 ### By Category
 - **Bugs**: [List of bug fixes]
 - **Performance**: [List of performance fixes]
 - **Security**: [List of security fixes]
+- **CSS Patterns**: [Global CSS Hero Conflict](./visual-essays/PATTERN-global-css-hero-content-fix.md)
 
 ### By Component
 - **Navigation**: [Navigation-related fixes]
 - **Authentication**: [Auth-related fixes]
 - **Content**: [Content management fixes]
+- **Visual Essays**: [visual-essays/](./visual-essays/) — Scrollytelling fix patterns
 
 ## Maintenance
 

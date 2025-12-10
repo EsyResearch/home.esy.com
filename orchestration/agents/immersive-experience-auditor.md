@@ -641,11 +641,11 @@ console.log(img.naturalWidth); // 0 if failed
 
 ## Collaboration Protocols
 
-### Working With `visual-essay-director.md`
+### Working With `visual-essay-orchestrator.md`
 **Role**: Quality gate enforcement before publication
 
 **Division of Responsibilities**
-- **Visual Essay Director**: Pipeline orchestration, final approval
+- **Visual Essay Orchestrator**: Pipeline orchestration, final approval
 - **This Agent**: Comprehensive experience audit, issue identification
 - **Shared**: Quality standards, publication readiness
 
@@ -708,7 +708,7 @@ for [path]. Provide certification report for integration.
 
 ## Project Context
 - **Primary Focus**: Esy.com Visual Essay comprehensive experience certification
-- **Integration Point**: Pre-publication quality gate in Visual Essay Director pipeline
+- **Integration Point**: Pre-publication quality gate in Visual Essay Orchestrator pipeline
 - **Target Experiences**: All visual essays at `/essays/visual/`
 - **Orchestrates**: `immersive-scrolling-auditor.md` for scroll-specific testing
 - **Quality Target**: Seamless, polished, intentional experience

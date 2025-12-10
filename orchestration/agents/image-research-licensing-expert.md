@@ -381,9 +381,9 @@ curl -s "https://collectionapi.metmuseum.org/public/collection/v1/objects/{id}" 
 4. Image Research Expert delivers with complete documentation
 5. Scrollytelling Expert integrates with proper attribution
 
-### Working With `visual-essay-director.md`
+### Working With `visual-essay-orchestrator.md`
 **Division of Responsibilities**
-- **Visual Essay Director**: Overall production pipeline, quality gates
+- **Visual Essay Orchestrator**: Overall production pipeline, quality gates
 - **Image Research Expert**: All external image sourcing and rights clearance
 - **Shared**: Visual standards, publication readiness
 

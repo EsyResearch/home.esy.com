@@ -180,11 +180,20 @@
   50% { transform: translateX(100%) rotate(0deg); }
 }
 
+/* Override global .hero-content grid styles from globals.css 
+   Using .mirror-container scoping for higher specificity */
 .mirror-container .hero-content {
   position: relative;
   z-index: 2;
   max-width: 900px;
   padding: 2rem;
+  /* CRITICAL: Override global grid properties that cause two-column split */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  grid-template-columns: unset;
+  gap: unset;
 }
 
 .mirror-container .hero-eyebrow {
@@ -196,9 +205,14 @@
   color: var(--color-venetian-gold);
   margin-bottom: 2rem;
   opacity: 0;
-  animation: fade-in 1s var(--ease-shimmer) 0.3s forwards;
+  animation-name: fade-in;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-delay: 0.3s;
+  animation-fill-mode: forwards;
 }
 
+/* Override global .hero-title styles from globals.css */
 .mirror-container .hero-title {
   font-family: var(--font-display);
   font-size: clamp(4rem, 15vw, 10rem);
@@ -206,6 +220,12 @@
   line-height: 0.9;
   letter-spacing: -0.02em;
   margin-bottom: 1rem;
+  /* Override global gradient/animation - but allow children to override */
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  background-clip: border-box;
+  animation: none;
+  color: var(--color-mercury);
 }
 
 .mirror-container .hero-title .line {
@@ -217,14 +237,23 @@
   display: inline-block;
   opacity: 0;
   transform: translateY(100%);
-  animation: slide-up 1s var(--ease-shimmer) forwards;
+  animation-name: slide-up;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: forwards;
 }
 
-.mirror-container .hero-title .line:nth-child(1) span { animation-delay: 0.4s; }
-.mirror-container .hero-title .line:nth-child(2) span { 
+.mirror-container .hero-title .line:nth-child(1) span { 
+  animation-delay: 0.4s;
+  color: var(--color-mercury);
+}
+
+.mirror-container .hero .hero-content .hero-title .line:nth-child(2) span { 
   animation-delay: 0.5s; 
   font-style: italic;
-  background: linear-gradient(135deg, var(--color-silver), var(--color-mercury), var(--color-silver));
+  /* Explicitly set gradient for "Mirror" text - high specificity */
+  background-image: linear-gradient(135deg, #C0C0C0, #E8E8E8, #C0C0C0);
+  background-color: transparent;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -239,7 +268,11 @@
   max-width: 500px;
   margin: 0 auto;
   opacity: 0;
-  animation: fade-in 1s var(--ease-shimmer) 0.8s forwards;
+  animation-name: fade-in;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-delay: 0.8s;
+  animation-fill-mode: forwards;
 }
 
 @keyframes slide-up {
@@ -260,7 +293,11 @@
   align-items: center;
   gap: 1rem;
   opacity: 0;
-  animation: fade-in 1s var(--ease-shimmer) 1.2s forwards;
+  animation-name: fade-in;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-delay: 1.2s;
+  animation-fill-mode: forwards;
 }
 
 .mirror-container .hero-scroll span {
@@ -358,7 +395,9 @@
   font-style: italic;
   color: var(--color-silver-dark);
   transform: scaleX(-1);
-  transition: transform 1s var(--ease-shimmer), color 1s ease;
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), 
+              color 1s ease,
+              opacity 0.8s ease;
   opacity: 0.5;
 }
 
@@ -417,7 +456,7 @@
 
 .mirror-container .symmetry-item {
   padding: 2rem;
-  transition: transform 0.5s var(--ease-reflect);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .mirror-container .symmetry-item.left {
@@ -529,7 +568,7 @@
     inset 0 -20px 40px rgba(0, 0, 0, 0.3),
     0 10px 40px rgba(192, 192, 192, 0.2);
   transform: scale(0);
-  transition: transform 0.8s var(--ease-shimmer);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .mirror-container .mercury-droplet.visible {
@@ -602,7 +641,7 @@
   stroke-width: 1;
   stroke-dasharray: 200;
   stroke-dashoffset: 200;
-  transition: stroke-dashoffset 1.5s var(--ease-shimmer);
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .mirror-container .mirror-frame-svg.visible .reflection-line {
@@ -733,7 +772,8 @@
 .mirror-container .fade-up {
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.8s var(--ease-shimmer);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .mirror-container .fade-up.visible {

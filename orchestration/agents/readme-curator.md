@@ -44,13 +44,32 @@ orchestration/
 │       • Quality gates (detailed)
 │       • Agent-specific workflows
 │
+├── audits/
+│   └── README.md                 ← AUDIT LEVEL
+│       • Audit system overview
+│       • Essay-specific audit directories
+│       • Report naming conventions
+│
 └── skills/
-    └── README.md                 ← SKILL LEVEL
-        • What is a skill
-        • Skills vs agents
-        • Current skills index
-        • Creating new skills
-        • Skill anatomy
+    ├── README.md                 ← SKILL LEVEL
+    │   • What is a skill
+    │   • Skills vs agents
+    │   • Current skills index
+    │   • Creating new skills
+    │   • Skill anatomy
+    │
+    └── [skill-name]/
+        ├── SKILL.md              ← SKILL DEFINITION
+        ├── README.md             ← Skill quick reference
+        ├── examples/             ← EXAMPLE LEVEL (condensed format references)
+        │   └── README.md         • What examples are for
+        │                         • How to use them
+        ├── specs/                ← SPEC LEVEL (finished production specs)
+        │   └── README.md         • Spec status index
+        │                         • Current specs catalog
+        │                         • Status levels (DRAFT/REVIEWED/IMPLEMENTED)
+        ├── references/           ← Patterns and templates
+        └── lenses/               ← Subject-specific guidance
 ```
 
 ---
@@ -100,6 +119,8 @@ When documentation needs updating, use this decision tree to determine which REA
 | New quality gate | Both system + agents | Cross-cutting concern |
 | New skill added | `orchestration/skills/README.md` | Skill catalog |
 | Skill procedure updated | Specific skill's `SKILL.md` | Skill-specific |
+| New spec added | `skills/[skill]/specs/README.md` | Spec catalog |
+| Spec status changed | `skills/[skill]/specs/README.md` | Spec-specific |
 | New orchestrator | Both system + agents | Important at both levels |
 | Workflow change | `orchestration/agents/README.md` | Agent workflow |
 | Directory structure change | `orchestration/README.md` | System overview |
@@ -113,6 +134,7 @@ Some changes require updates to multiple READMEs:
 | New orchestrator agent | `orchestration/README.md` (orchestrator table) + `agents/README.md` (agent details) |
 | New quality gate | `orchestration/README.md` (gate summary) + `agents/README.md` (gate details) |
 | Skill used by agent | `skills/README.md` (index) + agent file (skill reference) + `agents/README.md` (if major) |
+| New visual essay spec | `skills/visual-essay-invocation/specs/README.md` (catalog) + `INVOCATION-GUIDE.md` (if notable) |
 
 ---
 
@@ -284,7 +306,7 @@ After any documentation update:
 ### Works With
 
 - **All Agents** — Documents their capabilities
-- **Visual Essay Director** — Documents pipeline
+- **Visual Essay Orchestrator** — Documents pipeline
 - **META-AGENT-FRAMEWORK** — Uses its patterns for new agent docs
 
 ### Invoked By
@@ -302,6 +324,8 @@ After any documentation update:
   - `orchestration/README.md` (system)
   - `orchestration/agents/README.md` (agents)
   - `orchestration/skills/README.md` (skills)
+  - `orchestration/audits/README.md` (audit reports)
+  - `orchestration/skills/visual-essay-invocation/specs/README.md` (specs)
 - **Goal:** Maintain clear, discoverable, consistent documentation that helps users understand and use the orchestration system effectively
 
 ---

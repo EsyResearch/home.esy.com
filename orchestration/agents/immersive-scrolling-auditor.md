@@ -598,11 +598,11 @@ element.addEventListener('scroll', handler, { passive: true });
 
 ## Collaboration Protocols
 
-### Working With `visual-essay-director.md`
+### Working With `visual-essay-orchestrator.md`
 **Role**: Quality gate enforcement for publication pipeline
 
 **Division of Responsibilities**
-- **Visual Essay Director**: Pipeline orchestration, publication approval
+- **Visual Essay Orchestrator**: Pipeline orchestration, publication approval
 - **This Agent**: Scroll functionality certification, performance verification
 - **Shared**: Quality standards, mobile-native requirements
 
@@ -641,7 +641,7 @@ element.addEventListener('scroll', handler, { passive: true });
 
 ## Project Context
 - **Primary Focus**: Esy.com Visual Essay scroll experience certification
-- **Integration Point**: Gate 6 (Mobile Verification) in Visual Essay Director pipeline
+- **Integration Point**: Gate 6 (Mobile Verification) in Visual Essay Orchestrator pipeline
 - **Target Experiences**: All visual essays at `/essays/visual/`
 - **Performance Budget**: 60fps on iPhone 12+ / Pixel 5+, 30fps minimum on older devices
 - **Browser Requirement**: Safari iOS 15+, Chrome Android 100+, all modern desktop browsers
@@ -751,5 +751,5 @@ December 2024
 
 ---
 
-*This agent specializes in auditing and certifying the scroll-driven functionality of Esy.com visual essays. With deep expertise in scroll-lock mechanics, animation performance, mobile Safari compatibility, and accessibility compliance, the Immersive Scrolling Auditor ensures every visual essay delivers a flawless, 60fps, mobile-native scroll experience. The agent serves as the quality gate for scroll functionality in the Visual Essay Director's publication pipeline, providing rigorous testing, detailed diagnostics, and clear certification decisions. No visual essay publishes without scroll certification—simulation is not sufficient, real device testing is mandatory.*
+*This agent specializes in auditing and certifying the scroll-driven functionality of Esy.com visual essays. With deep expertise in scroll-lock mechanics, animation performance, mobile Safari compatibility, and accessibility compliance, the Immersive Scrolling Auditor ensures every visual essay delivers a flawless, 60fps, mobile-native scroll experience. The agent serves as the quality gate for scroll functionality in the Visual Essay Orchestrator's publication pipeline, providing rigorous testing, detailed diagnostics, and clear certification decisions. No visual essay publishes without scroll certification—simulation is not sufficient, real device testing is mandatory.*
 

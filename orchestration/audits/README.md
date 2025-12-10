@@ -39,7 +39,7 @@ YYYY-MM-DD-[audit-type]-audit.md
 
 ## Audit Lifecycle
 
-1. **Triggered** — Audit requested by Visual Essay Director or user
+1. **Triggered** — Audit requested by Visual Essay Orchestrator or user
 2. **In Progress** — Audit agent(s) conducting assessment
 3. **Complete** — Report generated with certification status
 4. **Addressed** — Blocking issues fixed (if any)
@@ -57,7 +57,7 @@ YYYY-MM-DD-[audit-type]-audit.md
 
 - **Audit Agents**: `orchestration/agents/` — Agent definitions
 - **Experience Specs**: `src/app/essays/visual/[slug]/EXPERIENCE-SPEC.md` — Expected behaviors
-- **Visual Essay Director**: `orchestration/agents/visual-essay-director.md` — Pipeline orchestration
+- **Visual Essay Orchestrator**: `orchestration/agents/visual-essay-orchestrator.md` — Pipeline orchestration
 
 ---
 

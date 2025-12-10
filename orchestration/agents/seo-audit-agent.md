@@ -902,7 +902,7 @@ High-impact changes requiring minimal effort:
 4. SEO Specialist oversees remediation
 5. Audit Agent re-audits to verify fixes
 
-### Working With `visual-essay-director.md`
+### Working With `visual-essay-orchestrator.md`
 **Integration Point**: G3 (Content Complete) — SEO audit before publication
 
 **Responsibilities**
@@ -937,7 +937,7 @@ High-impact changes requiring minimal effort:
 - **Primary Focus**: Esy.com page-level SEO quality assurance
 - **Content Types**: Visual essays, educational content, landing pages
 - **Target Audience**: Content creators, editors, SEO stakeholders
-- **Integration**: Pre-publication quality gate in Visual Essay Director pipeline
+- **Integration**: Pre-publication quality gate in Visual Essay Orchestrator pipeline
 - **Standards**: Google Search Central guidelines compliance
 - **Goal**: Ensure every published page has maximum ranking potential
 

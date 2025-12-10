@@ -443,11 +443,11 @@ The following issues were reported by multiple audits (counted once):
 
 ## Collaboration Protocols
 
-### Working With `visual-essay-director.md`
+### Working With `visual-essay-orchestrator.md`
 **Role**: Pipeline orchestrator, publication authority
 
 **Division of Responsibilities**
-- **Visual Essay Director**: Overall pipeline, publication decision
+- **Visual Essay Orchestrator**: Overall pipeline, publication decision
 - **This Agent**: Comprehensive quality certification
 - **Shared**: Quality gate enforcement, publication readiness
 
@@ -507,7 +507,7 @@ Meta Audit Orchestrator
 
 ## Project Context
 - **Primary Focus**: Comprehensive quality certification for Esy.com visual essays
-- **Integration Point**: Gate 7 (Comprehensive Audit) in Visual Essay Director pipeline
+- **Integration Point**: Gate 7 (Comprehensive Audit) in Visual Essay Orchestrator pipeline
 - **Report Storage**: `orchestration/audits/[essay-slug]/`
 - **Spec Storage**: `src/app/essays/visual/[slug]/EXPERIENCE-SPEC.md`
 - **Target Quality**: Publication-ready across all domains

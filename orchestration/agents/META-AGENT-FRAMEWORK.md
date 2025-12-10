@@ -606,7 +606,7 @@ Current agents derived from this framework:
 
 | Agent | Domain | Primary Role | Collaboration |
 |-------|--------|--------------|---------------|
-| `visual-essay-director.md` | **Editorial Direction** | **Pipeline Executive** | **TOP-LEVEL ORCHESTRATOR** → Scrollytelling Expert, Research Citations, Citation Audit, **Scroll Auditor** |
+| `visual-essay-orchestrator.md` | **Editorial Direction** | **Pipeline Executive** | **TOP-LEVEL ORCHESTRATOR** → Scrollytelling Expert, Research Citations, Citation Audit, **Scroll Auditor** |
 | `historian-writer-expert.md` | History | Narrative Writer | → Editor, ← Research |
 | `historian-editor-expert.md` | History | Fact-Checker/Editor | ← Writer, ← Research |
 | `essayist-expert.md` | Academic Writing | Essay Instruction | Standalone |
@@ -615,24 +615,25 @@ Current agents derived from this framework:
 | `ui-ux-design-expert.md` | Design | Interface Design | → Immersive Eng, ← Scrollytelling, ← Children's Fiction |
 | `immersive-experience-engineer.md` | Frontend/Animation | **Mobile-Native Feel** | ← UI/UX, ← Scrollytelling, ← Children's Fiction, → **Scroll Auditor** (MANDATORY) |
 | `template-integration-engineer.md` | Frontend | Template → Next.js | Standalone |
-| `research-citations-expert.md` | Research | Source Discovery & Verification | → All content agents, ← **Visual Essay Director** |
-| `scrollytelling-expert.md` | Digital Storytelling | **Mobile-Native** Immersive Narratives | **Orchestrator** → Writer, Editor, Research, UI/UX, SW Eng, **Immersive Eng**, SVG Expert, **Visual Auditor**; ← **Visual Essay Director** |
+| `research-citations-expert.md` | Research | Source Discovery & Verification | → All content agents, ← **Visual Essay Orchestrator** |
+| `scrollytelling-expert.md` | Digital Storytelling | **Mobile-Native** Immersive Narratives | **Orchestrator** → Writer, Editor, Research, UI/UX, SW Eng, **Immersive Eng**, SVG Expert, **Visual Auditor**; ← **Visual Essay Orchestrator** |
 | `childrens-books-writer-expert.md` | **Children's Fiction (3-6)** | Picture Book Narratives | ← Children's Fiction Scrollytelling |
 | `childrens-fiction-scrollytelling-agent.md` | **Children's Scrollytelling** | Magical Story Experiences | **Orchestrator** → Children's Writer, UI/UX, SW Eng, Immersive Eng, SVG Expert, **Visual Auditor** |
 | `scrollytelling-invocation-enhancer.md` | **Invocation Enhancement** | Brief Builder & Optimizer | **Pre-processor** → Scrollytelling Expert, Children's Fiction |
 | `scrollytelling-audit-agent.md` | **Quality Assurance** | Experience Auditor | **Orchestrator** → Scrollytelling Expert, Immersive Eng, Children's Fiction |
-| `citation-audit-agent.md` | **Citation Integrity** | Source & Citation Verifier | **Post-processor** → Scrollytelling Expert, Research Citations, Historian Editor, Quotes Audit; ← **Visual Essay Director** |
+| `citation-audit-agent.md` | **Citation Integrity** | Source & Citation Verifier | **Post-processor** → Scrollytelling Expert, Research Citations, Historian Editor, Quotes Audit; ← **Visual Essay Orchestrator** |
 | `quotes-audit-agent.md` | **Quote Verification** | Quote Authenticity Specialist | **Orchestrated by** Citation Audit Agent |
 | `svg-illustration-animation-expert.md` | **Visual Design** | SVG Illustrator & Animator | ← Scrollytelling, ← Children's Fiction, → Immersive Eng, ← UI/UX, → **Visual Auditor** |
 | `visual-auditor-agent.md` | **Visual Quality Assurance** | SVG Quality & Performance Certifier | **Post-processor** ← SVG Expert, → Scrollytelling, → Children's Fiction (MANDATORY) |
-| `image-research-licensing-expert.md` | **Visual Research** | Public Domain & Rights Specialist | ← **Visual Essay Director**, ← Scrollytelling, → Citation Audit, → SVG Expert (references) |
-| `immersive-scrolling-auditor.md` | **Scroll QA** | Scroll-Lock & Performance Certifier | **Post-processor** ← Immersive Eng, ← Scrollytelling, → **Visual Essay Director** (Gate 6) |
-| `immersive-experience-auditor.md` | **Experience QA** | Comprehensive Experience Certifier | **Orchestrator** → Scrolling Auditor, → Visual Essay Director |
+| `image-research-licensing-expert.md` | **Visual Research** | Public Domain & Rights Specialist | ← **Visual Essay Orchestrator**, ← Scrollytelling, → Citation Audit, → SVG Expert (references) |
+| `immersive-scrolling-auditor.md` | **Scroll QA** | Scroll-Lock & Performance Certifier | **Post-processor** ← Immersive Eng, ← Scrollytelling, → **Visual Essay Orchestrator** (Gate 6) |
+| `immersive-experience-auditor.md` | **Experience QA** | Comprehensive Experience Certifier | **Orchestrator** → Scrolling Auditor, → Visual Essay Orchestrator |
 | `readme-curator.md` | **Documentation** | Documentation Routing & Maintenance | **Utility** — Maintains orchestration README hierarchy |
 | `image-research-licensing-expert.md` | **Visual Research** | Archive Image Sourcing & Rights | **Specialist** — Uses `image-url-extraction` skill |
 | `meta-audit-orchestrator.md` | **Quality Orchestration** | Multi-Domain Audit Coordinator | **TOP-LEVEL ORCHESTRATOR** → Scrolling Auditor, Experience Auditor, Visual Auditor, Citation Audit, Quotes Audit |
 | `seo-specialist-expert.md` | **Search Optimization** | SEO Strategy & Organic Growth | **Specialist** — Technical SEO, Content Optimization, SERP Features, Link Strategy |
-| `seo-audit-agent.md` | **SEO Quality Assurance** | Page-Level SEO Auditor & Grader | **Auditor** → SEO Specialist, Visual Essay Director (G3); Uses `seo-element-extraction` skill |
+| `seo-audit-agent.md` | **SEO Quality Assurance** | Page-Level SEO Auditor & Grader | **Auditor** → SEO Specialist, Visual Essay Orchestrator (G3); Uses `seo-element-extraction` skill |
+| `visual-essay-invocation-agent.md` | **Spec Generation** | Visual Essay Specification Architect | **Pre-processor** → Visual Essay Orchestrator (Phase 1); Uses `visual-essay-invocation` skill → stores to `specs/` |
 
 ---
 

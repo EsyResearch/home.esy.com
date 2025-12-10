@@ -181,7 +181,10 @@ If user triggers Quick Mode:
    - 2 unique interaction mechanics
    - Narrative structure based on subject's natural chronology
 5. Present complete brief for confirmation
-6. If user approves (or says "proceed"), invoke Visual Essay Director immediately
+6. If user approves (or says "proceed"):
+   a. Invoke Visual Essay Invocation Agent to generate spec
+   b. Spec stored to specs/[topic-slug].md
+   c. Invoke Visual Essay Orchestrator with spec reference
 ```
 
 #### Auto Mode Flow (Default)
@@ -329,18 +332,30 @@ Perfect! Here's the final brief:
 
 ═══════════════════════════════════════════════════════════════
 
-Ready to proceed? I'll invoke the Visual Essay Director to begin production.
+Ready to proceed? I'll generate the spec and then invoke the Visual Essay Orchestrator to begin production.
 ```
 
-Then invoke:
+Then follow this two-step process:
 
+**Step 1: Generate Spec via Invocation Agent**
 ```
-Using @agents/visual-essay-director.md, initiate production for this visual essay:
+Using @agents/visual-essay-invocation-agent.md, generate a complete 
+invocation spec for this visual essay:
 
 [PASTE COMPLETE BRIEF FROM ABOVE]
 
+Store to specs/[topic-slug].md with [DRAFT] status.
+```
+
+**Step 2: Invoke Orchestrator with Spec Reference**
+```
+Using @agents/visual-essay-orchestrator.md, initiate production for the 
+visual essay using the spec at:
+
+@orchestration/skills/visual-essay-invocation/specs/[topic-slug].md
+
 REQUIREMENTS:
-1. Complete production pipeline (all 7 quality gates)
+1. Complete production pipeline (all 8 quality gates)
 2. Design Research phase — unique visual identity required
 3. Mobile-native first — 60FPS on mid-tier devices
 4. Citation Certification required before publication
@@ -489,9 +504,10 @@ European adoption, Gutenberg intersection, modern production
 
 ═══════════════════════════════════════════════════════════════
 
-Proceeding to invoke Visual Essay Director...
+Proceeding to generate spec and invoke orchestrator...
 
-[INVOKES @agents/visual-essay-director.md WITH COMPLETE BRIEF]
+[STEP 1: INVOKES @agents/visual-essay-invocation-agent.md → stores to specs/the-paper-trail.md]
+[STEP 2: INVOKES @agents/visual-essay-orchestrator.md WITH SPEC REFERENCE]
 ```
 
 ---

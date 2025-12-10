@@ -460,7 +460,7 @@ H1: [text]
 
 ### Secondary Consumers
 - **`seo-specialist-expert.md`** — For optimization planning
-- **`visual-essay-director.md`** — For pre-publication checks
+- **`visual-essay-orchestrator.md`** — For pre-publication checks
 - **Content writers** — For current state documentation
 
 ---
