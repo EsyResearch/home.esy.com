@@ -1688,37 +1688,6 @@ const Chapter8: React.FC = () => {
   );
 };
 
-// Keep the key-figure section separate for potential reuse
-const Chapter8KeyFigure: React.FC = () => {
-  return (
-        <div className="key-figure featured" style={{ marginTop: "var(--space-xl)" }}>
-          <div className="figure-photo">
-            {imageNetImages.feifeiLi?.src ? (
-              <img 
-                src={imageNetImages.feifeiLi.src} 
-                alt={imageNetImages.feifeiLi.alt}
-                loading="lazy"
-              />
-            ) : (
-              <div className="photo-placeholder">
-                <span className="placeholder-text">Fei-Fei Li</span>
-              </div>
-            )}
-          </div>
-          <div className="figure-content">
-            <h3>Fei-Fei Li — The Data Visionary</h3>
-            <span className="figure-title">Created the catalyst</span>
-            <ul className="figure-facts">
-              <li>Created ImageNet when funding agencies called it &ldquo;unimportant&rdquo;</li>
-              <li>&ldquo;We realized algorithms weren&apos;t the bottleneck. Data was.&rdquo;</li>
-              <li>Democratized AI research by making ImageNet public</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
 
 // ==================== CHAPTER 9: DEEP LEARNING CONQUERS ====================
 
