@@ -19,6 +19,8 @@ export type EssayCategory =
   | 'Education & Writing'
   | "Children's Fiction";
 
+export type VisualStyle = 'photorealistic' | 'illustrated' | 'mixed';
+
 export interface VisualEssay {
   id: string;
   number: string;  // Used for ordering - highest = newest
@@ -31,6 +33,7 @@ export interface VisualEssay {
   isNew?: boolean;
   draft?: boolean;
   tags?: string[];
+  visualStyle?: VisualStyle;  // 'photorealistic' for photo essays, 'illustrated' for SVG-based
 }
 
 export const CATEGORY_COLORS: Record<EssayCategory, string> = {
@@ -401,6 +404,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "22 min",
     href: "/essays/visual/the-manhattan-project",
     tags: ["Manhattan Project", "atomic bomb", "nuclear weapons", "Oppenheimer", "Trinity test", "Hiroshima", "Nagasaki", "Los Alamos", "World War II", "nuclear history", "Enrico Fermi", "Einstein", "history of science", "military history"],
+    visualStyle: "photorealistic",
   },
   {
     id: "the-thinking-machine",
@@ -412,6 +416,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "25 min",
     href: "/essays/visual/the-thinking-machine",
     tags: ["artificial intelligence", "AI history", "Alan Turing", "machine learning", "neural networks", "deep learning", "Geoffrey Hinton", "ChatGPT", "OpenAI", "Dartmouth conference", "AI winter", "computer science history", "Turing test", "technology history"],
+    visualStyle: "photorealistic",
   },
   {
     id: "the-ramayana",
@@ -423,6 +428,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "22 min",
     href: "/essays/visual/the-ramayana",
     tags: ["Ramayana", "Hindu mythology", "Indian epic", "Rama", "Sita", "Hanuman", "Ravana", "dharma", "Indian art", "Pahari miniatures", "Chola bronze", "Angkor Wat", "mythology", "Diwali", "Ram Lila", "Sanskrit epic", "Valmiki", "Southeast Asian art"],
+    visualStyle: "photorealistic",
   },
   {
     id: "the-holocaust",
@@ -434,6 +440,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "30 min",
     href: "/essays/visual/the-holocaust",
     tags: ["Holocaust", "Shoah", "Nazi Germany", "World War II", "genocide", "Anne Frank", "Elie Wiesel", "Auschwitz", "concentration camps", "Jewish history", "remembrance", "never forget", "antisemitism", "visual essay"],
+    visualStyle: "photorealistic",
   },
   {
     id: "the-diamond-cartel",
@@ -457,6 +464,20 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/visual/the-fork",
     isNew: true,
     tags: ["fork history", "eating utensils", "Byzantine Empire", "Catherine de Medici", "Thomas Coryat", "dining etiquette", "cultural history", "material culture", "Theophanu", "Peter Damian", "table manners", "civilization", "photorealistic"],
+    visualStyle: "photorealistic",
+  },
+  {
+    id: "the-rwanda-genocide",
+    number: "44",
+    title: "Kwibuka",
+    subtitle: "A Hundred Days of Darkness, A Generation of Light",
+    description: "How colonial division and international abandonment enabled the murder of one million Rwandans—and how a shattered nation chose reconciliation over revenge to become Africa's most remarkable transformation. A photorealistic visual essay bearing witness to the 1994 Genocide against the Tutsi.",
+    category: "History",
+    readTime: "35 min",
+    href: "/essays/visual/the-rwanda-genocide",
+    isNew: true,
+    tags: ["Rwanda genocide", "Tutsi", "Hutu", "1994", "Paul Kagame", "Kigali", "genocide", "reconciliation", "Gacaca", "African history", "colonialism", "UN failure", "RPF", "East Africa", "never again", "Kwibuka", "photorealistic"],
+    visualStyle: "photorealistic",
   },
   // Children's Fiction (draft - not shown in production)
   {
@@ -571,3 +592,13 @@ export const categoryCounts = publishedVisualEssays.reduce((acc, essay) => {
   acc[essay.category] = (acc[essay.category] || 0) + 1;
   return acc;
 }, {} as Record<EssayCategory, number>);
+
+// Photo essays (photorealistic visual style)
+export const photoEssays = publishedVisualEssays.filter(
+  essay => essay.visualStyle === 'photorealistic'
+);
+
+// Illustrated essays (non-photorealistic, for the main visual essays section)
+export const illustratedEssays = publishedVisualEssays.filter(
+  essay => essay.visualStyle !== 'photorealistic'
+);

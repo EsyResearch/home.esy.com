@@ -1,0 +1,1898 @@
+/* ============================================================================
+   RWANDA GENOCIDE VISUAL ESSAY - "KWIBUKA"
+   Design Research: Memorial flame gold, hope green, void black
+   Typography: Playfair Display, Source Serif Pro, Crimson Pro
+   ============================================================================ */
+
+/* ============================================================================
+   CSS CUSTOM PROPERTIES
+   ============================================================================ */
+
+.rwanda-genocide-essay {
+  /* Primary Colors */
+  --color-void-black: #0D0D0D;
+  --color-elevated-black: #1A1A1A;
+  --color-memorial-gold: #B8860B;
+  --color-hope-green: #228B22;
+  
+  /* Secondary Colors */
+  --color-ash-grey: #696969;
+  --color-blood-red: #8B0000;
+  --color-colonial-sepia: #704214;
+  --color-reconciliation-blue: #4169E1;
+  
+  /* Text Colors */
+  --color-text-primary: rgba(255, 255, 255, 0.92);
+  --color-text-secondary: rgba(255, 255, 255, 0.65);
+  --color-text-muted: rgba(255, 255, 255, 0.45);
+  
+  /* Semantic Colors */
+  --color-chapter-marker: #DAA520;
+  --color-timeline-line: rgba(184, 134, 11, 0.4);
+  --color-quote-accent: #B8860B;
+  
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Source Serif Pro', Georgia, serif;
+  --font-quote: 'Crimson Pro', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-sans: 'Source Sans Pro', -apple-system, sans-serif;
+  
+  /* Sizing - Mobile First */
+  --font-size-hero: 2.5rem;
+  --font-size-h1: 2rem;
+  --font-size-h2: 1.5rem;
+  --font-size-h3: 1.25rem;
+  --font-size-body: 18px;
+  --font-size-small: 0.875rem;
+  --line-height-body: 1.7;
+  
+  /* Spacing */
+  --spacing-section: 6rem;
+  --spacing-content: 2rem;
+  --max-width-text: 100%;
+  --padding-text: 1.25rem;
+  
+  /* Animation */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 600ms;
+  --easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Base */
+  background-color: var(--color-void-black);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  min-height: 100dvh;
+}
+
+/* Desktop Enhancement */
+@media (min-width: 768px) {
+  .rwanda-genocide-essay {
+    --font-size-hero: 4.5rem;
+    --font-size-h1: 3rem;
+    --font-size-h2: 2rem;
+    --font-size-h3: 1.5rem;
+    --font-size-body: 20px;
+    --max-width-text: 720px;
+    --padding-text: 2rem;
+    --spacing-section: 10rem;
+  }
+}
+
+/* ============================================================================
+   CONTENT WARNING
+   ============================================================================ */
+
+.content-warning-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: var(--color-void-black);
+}
+
+.content-warning-modal {
+  max-width: 600px;
+  padding: 2.5rem;
+  background: var(--color-elevated-black);
+  border: 1px solid rgba(184, 134, 11, 0.3);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.warning-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1.5rem;
+  color: var(--color-memorial-gold);
+}
+
+.warning-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.content-warning-modal h2 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--color-text-primary);
+}
+
+.warning-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+}
+
+.warning-text strong {
+  color: var(--color-text-primary);
+}
+
+.warning-note {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.warning-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.btn-continue {
+  padding: 1rem 2rem;
+  background: var(--color-memorial-gold);
+  color: var(--color-void-black);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--easing-smooth);
+}
+
+.btn-continue:hover {
+  background: #DAA520;
+}
+
+.btn-exit {
+  padding: 0.875rem 1.5rem;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--easing-smooth);
+}
+
+.btn-exit:hover {
+  border-color: var(--color-text-secondary);
+  color: var(--color-text-primary);
+}
+
+.crisis-note {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  margin-top: 1.5rem;
+}
+
+.crisis-note a {
+  color: var(--color-memorial-gold);
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .warning-buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+/* ============================================================================
+   PROGRESS FLAME
+   ============================================================================ */
+
+.progress-flame-container {
+  position: fixed;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .progress-flame-container {
+    display: block;
+  }
+}
+
+.flame-track {
+  position: relative;
+  width: 24px;
+  height: 400px;
+  background: rgba(184, 134, 11, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.flame-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, var(--color-memorial-gold), #DAA520);
+  border-radius: 12px;
+  transition: height var(--duration-normal) var(--easing-smooth);
+}
+
+.flame-marker {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  opacity: 0.3;
+  transition: opacity var(--duration-normal) var(--easing-smooth);
+}
+
+.flame-marker.lit,
+.flame-marker.current {
+  opacity: 1;
+}
+
+.flame-marker.current .flame-icon {
+  animation: flicker 1.5s ease-in-out infinite;
+}
+
+.flame-icon {
+  width: 12px;
+  height: 12px;
+  color: var(--color-memorial-gold);
+}
+
+.flame-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.progress-label {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-memorial-gold);
+  text-align: center;
+  margin-top: 0.75rem;
+  opacity: 0.7;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+  50% { opacity: 0.8; transform: translateX(-50%) scale(1.1); }
+}
+
+/* ============================================================================
+   HERO SECTION - IMMERSIVE
+   ============================================================================ */
+
+.hero-section {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem var(--padding-text);
+  padding-top: calc(env(safe-area-inset-top) + 1rem);
+  padding-bottom: 1.5rem;
+  overflow: hidden;
+  /* GPU layer for smooth parallax */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* More padding on larger screens */
+@media (min-height: 800px) {
+  .hero-section {
+    padding: 2rem var(--padding-text);
+    padding-top: calc(env(safe-area-inset-top) + 2rem);
+    padding-bottom: 2rem;
+  }
+}
+
+.hero-background {
+  position: absolute;
+  inset: -50px; /* Extra space for parallax movement */
+  z-index: 0;
+  /* GPU acceleration for parallax */
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.hero-image {
+  /* Slight darkening for text readability */
+  filter: brightness(0.4) saturate(0.8);
+  transition: filter 1s ease;
+}
+
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: 
+    /* Vignette effect */
+    radial-gradient(ellipse at center, transparent 40%, rgba(13, 13, 13, 0.6) 100%),
+    /* Blood-red glow at bottom */
+    radial-gradient(ellipse at center bottom, rgba(139, 0, 0, 0.2) 0%, transparent 50%),
+    /* Top and bottom fade to black */
+    linear-gradient(to bottom, var(--color-void-black) 0%, transparent 20%, transparent 80%, var(--color-void-black) 100%);
+  pointer-events: none;
+}
+
+/* Hero Content - Override any global .hero-content styles */
+.rwanda-genocide-essay .hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 900px;
+  /* Override any global grid from globals.css */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-template-columns: unset;
+  gap: unset;
+  /* GPU acceleration */
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* ============================================================================
+   HERO ENTRANCE ANIMATIONS
+   ============================================================================ */
+
+/* Initial hidden state for all animated elements */
+.hero-opening,
+.hero-stats,
+.hero-title-container,
+.scroll-indicator {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Staggered entrance - each element has increasing delay */
+.hero-animate.hero-animate--1 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+.hero-animate.hero-animate--2 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s;
+}
+
+.hero-animate.hero-animate--3 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.9s;
+}
+
+.hero-animate.hero-animate--4 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 1.4s;
+}
+
+/* Title special treatment - scale up slightly */
+.hero-title-container.hero-animate--3 .hero-title {
+  animation: titleReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.9s both;
+}
+
+@keyframes titleReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+    letter-spacing: 0.5em;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    letter-spacing: 0.2em;
+  }
+}
+
+/* Memorial flame glow effect on title */
+.hero-title {
+  position: relative;
+  text-shadow: 
+    0 0 40px rgba(184, 134, 11, 0.3),
+    0 0 80px rgba(184, 134, 11, 0.1);
+}
+
+/* Stats count-up visual feedback */
+.hero-stats .stat-value {
+  font-variant-numeric: tabular-nums;
+  transition: color 0.3s ease;
+}
+
+/* Pulse effect when stats are counting */
+.hero-stats .statistic {
+  transition: transform 0.3s ease;
+}
+
+/* ============================================================================
+   REDUCED MOTION - Hero Section
+   ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-opening,
+  .hero-stats,
+  .hero-title-container {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  
+  .scroll-indicator {
+    opacity: 1 !important;
+    transform: translateX(-50%);
+    transition: none;
+  }
+  
+  .hero-title-container .hero-title {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .hero-background {
+    transform: none !important;
+    will-change: auto;
+  }
+  
+  .rwanda-genocide-essay .hero-content {
+    transform: none !important;
+    opacity: 1 !important;
+    will-change: auto;
+  }
+
+  .scroll-arrow {
+    animation: none;
+  }
+}
+
+/* ============================================================================
+   HERO SECTION - RESPONSIVE
+   ============================================================================ */
+
+.hero-opening {
+  margin-bottom: 1.5rem;
+}
+
+/* Ensure proper spacing in hero content flow */
+.rwanda-genocide-essay .hero-content > * {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Hero vertical rhythm */
+.rwanda-genocide-essay .hero-content {
+  gap: 0;
+}
+
+/* More spacing on taller screens */
+@media (min-height: 800px) {
+  .hero-opening {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.hero-location {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-memorial-gold);
+  margin-bottom: 1rem;
+}
+
+.hero-context {
+  font-family: var(--font-quote);
+  font-size: clamp(0.9rem, 2vw, 1.125rem);
+  font-style: italic;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.hero-stats {
+  margin: 0 0 1.5rem;
+  /* Stack large stat above small stats row */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+/* More spacing on taller screens */
+@media (min-height: 800px) {
+  .hero-stats {
+    margin: 0 0 2.5rem;
+  }
+  
+  .stats-row {
+    gap: 3rem;
+    margin-top: 1.5rem;
+  }
+}
+
+.hero-title-container {
+  margin: 0 0 1rem;
+}
+
+@media (min-height: 800px) {
+  .hero-title-container {
+    margin: 0 0 1.5rem;
+  }
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 7vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 2vw, 1.25rem);
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.hero-translation {
+  font-family: var(--font-quote);
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  color: var(--color-memorial-gold);
+}
+
+.scroll-indicator {
+  /* Part of hero content flow */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-height: 800px) {
+  .scroll-indicator {
+    margin-top: 2rem;
+  }
+}
+
+/* Only animate AFTER entrance animation completes */
+.scroll-indicator.hero-animate--4 {
+  animation: scrollPulse 2.5s ease-in-out 2s infinite;
+}
+
+.scroll-indicator span {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.scroll-arrow {
+  width: 24px;
+  height: 24px;
+  color: var(--color-memorial-gold);
+  animation: arrowBounce 2.5s ease-in-out 2s infinite;
+}
+
+.scroll-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* ============================================================================
+   STATISTICS
+   ============================================================================ */
+
+.statistic {
+  text-align: center;
+}
+
+/* Large statistic - the main number (1,000,000) */
+.statistic-large {
+  margin-bottom: 0.25rem;
+}
+
+.statistic-large .stat-value {
+  font-family: var(--font-mono);
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.statistic-large .stat-label {
+  font-size: 0.875rem;
+  margin-top: 0.375rem;
+}
+
+.statistic-large .stat-sublabel {
+  font-size: 0.75rem;
+}
+
+.statistic-medium .stat-value {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* Small stats - the per-day/hour/minute numbers */
+.statistic-small {
+  min-width: 80px;
+}
+
+.statistic-small .stat-value {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-memorial-gold);
+  line-height: 1;
+}
+
+.statistic-small .stat-label {
+  font-size: 0.75rem;
+  margin-top: 0.375rem;
+  color: var(--color-text-muted);
+}
+
+.stat-label {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin-top: 0.25rem;
+}
+
+.stat-sublabel {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 0.125rem;
+}
+
+@media (min-width: 768px) and (min-height: 800px) {
+  .statistic-large .stat-label {
+    font-size: 1rem;
+  }
+
+  .statistic-medium .stat-value {
+    font-size: 2.5rem;
+  }
+  
+  .statistic-small .stat-value {
+    font-size: 1.5rem;
+  }
+  
+  .statistic-small .stat-label {
+    font-size: 0.8125rem;
+  }
+}
+
+/* ============================================================================
+   SECTIONS & CHAPTERS
+   ============================================================================ */
+
+.section {
+  padding: var(--spacing-section) var(--padding-text);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity var(--duration-slow) var(--easing-smooth),
+              transform var(--duration-slow) var(--easing-smooth);
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.chapter {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.chapter-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-timeline-line);
+}
+
+.chapter-number {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-memorial-gold);
+  margin-bottom: 0.75rem;
+}
+
+.chapter-title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-h1);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.chapter-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.chapter-era {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-memorial-gold);
+  margin-bottom: 1rem;
+}
+
+.chapter-metaphor {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.chapter-content {
+  max-width: var(--max-width-text);
+  margin: 0 auto;
+}
+
+.chapter-content p {
+  margin-bottom: 1.5rem;
+}
+
+.lead-paragraph {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--color-text-primary);
+}
+
+.lead-paragraph::first-letter {
+  float: left;
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  line-height: 0.8;
+  padding-right: 0.5rem;
+  color: var(--color-memorial-gold);
+}
+
+/* Chapter Warning */
+.chapter-warning {
+  background: rgba(139, 0, 0, 0.15);
+  border-left: 3px solid var(--color-blood-red);
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  border-radius: 0 4px 4px 0;
+}
+
+.chapter-warning p {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Colonial Era Styling */
+.colonial-era {
+  position: relative;
+}
+
+.colonial-era::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(112, 66, 20, 0.05), transparent);
+  pointer-events: none;
+}
+
+/* Genocide Chapter */
+.genocide-chapter {
+  filter: grayscale(30%);
+}
+
+/* Liberation Chapter */
+.liberation-chapter {
+  position: relative;
+}
+
+.liberation-chapter::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to top, rgba(34, 139, 34, 0.05), transparent);
+  pointer-events: none;
+}
+
+/* Rising Chapter */
+.rising-chapter {
+  position: relative;
+}
+
+.rising-chapter::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(to bottom, rgba(34, 139, 34, 0.08), transparent);
+  pointer-events: none;
+}
+
+/* ============================================================================
+   EMPHASIS BLOCKS
+   ============================================================================ */
+
+.emphasis-block {
+  background: var(--color-elevated-black);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-left: 3px solid var(--color-memorial-gold);
+  border-radius: 0 4px 4px 0;
+}
+
+.emphasis-block p {
+  font-family: var(--font-quote);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ============================================================================
+   QUOTE MONUMENT
+   ============================================================================ */
+
+.quote-monument {
+  padding: 3rem 0;
+  margin: 3rem 0;
+  text-align: center;
+}
+
+.quote-monument blockquote {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.quote-monument blockquote p {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.quote-monument cite {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-style: normal;
+  color: var(--color-memorial-gold);
+  display: block;
+}
+
+.quote-context {
+  font-family: var(--font-quote);
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+  display: block;
+  margin-top: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .quote-monument blockquote p {
+    font-size: 2rem;
+  }
+}
+
+/* ============================================================================
+   KEY FIGURE CARDS
+   ============================================================================ */
+
+.key-figure-card {
+  background: var(--color-elevated-black);
+  border: 1px solid rgba(184, 134, 11, 0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.figure-header {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.figure-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.figure-epithet {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 0.9375rem;
+  color: var(--color-memorial-gold);
+}
+
+.figure-contributions {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.figure-contributions li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+}
+
+.figure-contributions li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-memorial-gold);
+}
+
+.figure-quote {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  padding: 1rem;
+  background: rgba(184, 134, 11, 0.1);
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+
+.figure-fate {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================================
+   TIMELINE
+   ============================================================================ */
+
+.timeline-container {
+  position: relative;
+  padding-left: 2rem;
+  margin: 2rem 0;
+}
+
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-timeline-line);
+}
+
+.timeline-event {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-left: 1.5rem;
+}
+
+.timeline-event::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 0.5rem;
+  width: 10px;
+  height: 10px;
+  background: var(--color-memorial-gold);
+  border-radius: 50%;
+  transform: translateX(-4px);
+}
+
+.timeline-date {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-memorial-gold);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-content h4 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ============================================================================
+   SPECIAL VISUALS
+   ============================================================================ */
+
+/* ID Card Visual */
+.id-card-visual {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.id-card {
+  background: #F5F5DC;
+  padding: 1.5rem;
+  border-radius: 4px;
+  max-width: 300px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.id-card-header {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: #333;
+  text-align: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #999;
+}
+
+.id-card-field {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.field-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.field-value {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.ethnic-field {
+  color: var(--color-blood-red);
+}
+
+.id-card-caption {
+  font-family: var(--font-quote);
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: #666;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ccc;
+}
+
+/* Radio Visual */
+.radio-visual {
+  background: var(--color-elevated-black);
+  border: 1px solid rgba(139, 0, 0, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.radio-dial {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.radio-label {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-blood-red);
+}
+
+.radio-frequency {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.radio-transcript p {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--color-blood-red);
+}
+
+.radio-caption {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-top: 1rem;
+}
+
+/* Roadblock Visual */
+.roadblock-visual {
+  text-align: center;
+  padding: 2rem;
+  margin: 2rem 0;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+.roadblock-text {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.roadblock-card {
+  display: inline-block;
+  background: #F5F5DC;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.roadblock-card .card-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: #666;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.roadblock-card .card-ethnicity {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-blood-red);
+}
+
+.roadblock-aftermath {
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+}
+
+/* Genocide Stats */
+.genocide-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  margin: 3rem 0;
+  padding: 2rem;
+  background: rgba(139, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Weapons Stat */
+.weapons-stat {
+  text-align: center;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+/* UN Failure Visual */
+.un-failure-visual {
+  margin: 2rem 0;
+}
+
+.empty-chamber {
+  background: var(--color-elevated-black);
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.chamber-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.chamber-debate {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.death-counter {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.death-counter .counter-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  display: block;
+}
+
+.death-counter .counter-value {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  color: var(--color-blood-red);
+  display: block;
+  margin: 0.5rem 0;
+}
+
+/* Liberation Choice */
+.liberation-choice {
+  background: rgba(34, 139, 34, 0.1);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.liberation-choice h4 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+}
+
+.liberation-choice p {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+}
+
+.choice-result {
+  font-weight: 500;
+  color: var(--color-hope-green);
+}
+
+/* Exodus Visual */
+.exodus-visual {
+  text-align: center;
+  padding: 2rem;
+  margin: 2rem 0;
+  background: var(--color-elevated-black);
+  border-radius: 8px;
+}
+
+.exodus-stat {
+  margin-bottom: 1.5rem;
+}
+
+.exodus-caption {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+}
+
+/* Regional Impact */
+.regional-impact {
+  background: rgba(139, 0, 0, 0.08);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.regional-impact h4 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+}
+
+.impact-note {
+  font-family: var(--font-quote);
+  font-style: italic;
+  color: var(--color-text-muted);
+  margin-top: 1rem;
+}
+
+/* Gacaca Visual */
+.gacaca-visual {
+  background: var(--color-elevated-black);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.gacaca-visual h4 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+}
+
+.gacaca-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================================
+   RISING METRICS
+   ============================================================================ */
+
+.rising-metrics {
+  margin: 3rem 0;
+}
+
+.metrics-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  text-align: center;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.metrics-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  text-align: center;
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.metric-card {
+  background: var(--color-elevated-black);
+  padding: 1.25rem;
+  border-radius: 8px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.rising-metrics.animate .metric-card {
+  animation: riseIn 0.6s var(--easing-smooth) forwards;
+}
+
+@keyframes riseIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.metric-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.metric-comparison {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.metric-before {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-ash-grey);
+}
+
+.metric-arrow {
+  color: var(--color-memorial-gold);
+}
+
+.metric-after {
+  font-family: var(--font-mono);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-hope-green);
+}
+
+.metric-sublabel {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
+}
+
+/* Transformation Details */
+.transformation-details {
+  background: rgba(34, 139, 34, 0.08);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+/* Complexity Note */
+.complexity-note {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: var(--color-elevated-black);
+  border-radius: 8px;
+}
+
+.complexity-note h4 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+}
+
+.complexity-note p {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+}
+
+.undeniable {
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+/* ============================================================================
+   MEMORIAL SECTION
+   ============================================================================ */
+
+.memorial-section {
+  padding: 6rem var(--padding-text);
+  text-align: center;
+  background: linear-gradient(to bottom, var(--color-void-black), rgba(184, 134, 11, 0.05));
+}
+
+.memorial-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.memorial-flame-large {
+  width: 80px;
+  height: 120px;
+  margin: 0 auto 2rem;
+}
+
+.flame-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.flame-path {
+  animation: flameDance 3s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+@keyframes flameDance {
+  0%, 100% { transform: scaleY(1) scaleX(1); }
+  50% { transform: scaleY(1.05) scaleX(0.95); }
+}
+
+.memorial-title {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-memorial-gold);
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+}
+
+.memorial-translation {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 3rem;
+}
+
+.memorial-text p {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.memorial-closing {
+  font-size: 1.125rem;
+  color: var(--color-text-primary);
+  margin-top: 2rem;
+}
+
+.memorial-phrase {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-timeline-line);
+}
+
+.phrase-kinyarwanda {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-memorial-gold);
+  margin-bottom: 0.5rem;
+}
+
+.phrase-translation {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 768px) {
+  .memorial-title {
+    font-size: 4rem;
+  }
+}
+
+/* ============================================================================
+   SOURCES SECTION
+   ============================================================================ */
+
+.sources-section {
+  padding: 4rem var(--padding-text);
+  background: linear-gradient(135deg, var(--color-elevated-black) 0%, var(--color-void-black) 100%);
+}
+
+.sources-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.sources-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-timeline-line);
+}
+
+.sources-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.sources-list li {
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.sources-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--color-memorial-gold);
+}
+
+.sources-list a {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--easing-smooth);
+}
+
+.sources-list a:hover {
+  color: var(--color-memorial-gold);
+  text-decoration: underline;
+}
+
+.source-type {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.125rem 0.5rem;
+  border-radius: 3px;
+}
+
+.sources-note {
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================================
+   FOOTER
+   ============================================================================ */
+
+.essay-footer {
+  padding: 3rem var(--padding-text);
+  text-align: center;
+  background: var(--color-void-black);
+  border-top: 1px solid var(--color-timeline-line);
+}
+
+.footer-dedication {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+}
+
+.footer-phrase {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--color-memorial-gold);
+}
+
+/* ============================================================================
+   IMAGE CONTAINERS
+   ============================================================================ */
+
+.chapter-image-container {
+  position: relative;
+  width: 100%;
+  margin: 2rem 0 3rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.chapter-image-container.memorial-image {
+  border: 1px solid rgba(139, 0, 0, 0.3);
+}
+
+.chapter-image-container.modern-rwanda {
+  border: 1px solid rgba(34, 139, 34, 0.3);
+}
+
+.chapter-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.image-caption {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-top: 0.75rem;
+  font-style: italic;
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Figure with Image */
+.figure-with-image {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.figure-with-image.horizontal {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.figure-image-container {
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(184, 134, 11, 0.3);
+}
+
+.figure-image-container.small {
+  width: 150px;
+}
+
+.figure-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .figure-with-image {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .figure-image-container {
+    width: 200px;
+  }
+  
+  .figure-image-container.small {
+    width: 180px;
+  }
+}
+
+/* Survivors Section */
+.survivors-section {
+  margin: 2rem 0;
+}
+
+.survivor-image-container {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.survivor-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* International Figures */
+.international-figures {
+  margin: 2rem 0;
+}
+
+/* Clinton Visit */
+.clinton-visit-image {
+  margin: 2rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Reconciliation Images */
+.reconciliation-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  justify-content: center;
+}
+
+.reconciliation-image {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(34, 139, 34, 0.3);
+}
+
+/* Memorial Hero Image */
+.memorial-image-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 3rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(184, 134, 11, 0.3);
+}
+
+.memorial-hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================================
+   ACCESSIBILITY
+   ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .rwanda-genocide-essay * {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .section {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .rising-metrics .metric-card {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Focus States */
+.rwanda-genocide-essay a:focus,
+.rwanda-genocide-essay button:focus {
+  outline: 2px solid var(--color-memorial-gold);
+  outline-offset: 2px;
+}
+
+/* High Contrast */
+@media (prefers-contrast: high) {
+  .rwanda-genocide-essay {
+    --color-text-secondary: rgba(255, 255, 255, 0.85);
+    --color-text-muted: rgba(255, 255, 255, 0.7);
+  }
+}
+
