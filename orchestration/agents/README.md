@@ -10,7 +10,7 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 
 ```
 agents/
-├── orchestrators/     # 🎬 Top-level coordination (4 agents)
+├── orchestrators/     # 🎬 Top-level coordination (5 agents)
 ├── auditors/          # 🔍 Quality verification (7 agents)
 ├── content/           # 📚 Content creation (4 agents)
 ├── research/          # 🔬 Source discovery (2 agents)
@@ -29,6 +29,7 @@ agents/
 | [Visual Essay Orchestrator](#visual-essay-orchestrator) | **END-TO-END PRODUCTION** | `@agents/orchestrators/visual-essay-orchestrator.md` |
 | [Research Orchestrator](#research-orchestrator) | **Research pipeline (Phase 2)** | `@agents/orchestrators/research-orchestrator.md` |
 | [Meta Audit Orchestrator](#meta-audit-orchestrator) | Multi-domain audit coordination | `@agents/orchestrators/meta-audit-orchestrator.md` |
+| [QA Remediation Orchestrator](#qa-remediation-orchestrator) | **Iterative fix loop** (audit→fix→reaudit) | `@agents/orchestrators/qa-remediation-orchestrator.md` |
 | [Scrollytelling Expert](#scrollytelling-expert) | Immersive scroll-based stories | `@agents/orchestrators/scrollytelling-expert.md` |
 
 ### 🔍 Auditors
@@ -783,6 +784,76 @@ identified in previous audit and update certification status.
 - → **Citation Audit**: Delegates source verification
 - → **SEO Audit Agent**: Delegates search optimization verification
 - → **Visual Essay Orchestrator**: Reports certification status
+
+---
+
+### QA Remediation Orchestrator
+**File:** `orchestrators/qa-remediation-orchestrator.md`
+
+**Role:** World-class quality engineering director that orchestrates iterative audit-fix-reaudit loops until publication-ready quality is achieved.
+
+**🔄 FIX LOOP COORDINATOR:** This agent takes audit findings and systematically routes issues to appropriate fixers, verifies fixes through re-audit, and iterates until all issues are resolved.
+
+**Best For:**
+- Fixing issues found during audits (section-by-section or full essay)
+- Iterating until scroll-lock, animations, and images work correctly
+- Routing issues to correct specialist (engineer vs image researcher)
+- Verifying fixes don't introduce regressions
+- Post-audit remediation before publication
+
+**Invocation Modes:**
+| Mode | Flag | Behavior |
+|------|------|----------|
+| **Auto** | `--auto` | Fix immediately, report after |
+| **Approval** | `--approval` | Present issues, await approval before fixing |
+| **Report Only** | `--report-only` | Audit only, no fixes |
+
+**Scope Options:**
+| Scope | Example | Description |
+|-------|---------|-------------|
+| Full Essay | `audit /essays/visual/the-fork` | All sections |
+| Explicit Sections | `audit Hero, Ch1-3` | Named sections |
+| Range | `audit sections 2-5` | Numeric range |
+| Single Section | `audit Ch4` | Deep-dive one section |
+
+**Issue Routing:**
+| Issue Type | Routed To |
+|------------|-----------|
+| Scroll-lock, animations, reveals | `immersive-experience-engineer.md` |
+| Broken/missing images | `image-research-licensing-expert.md` |
+| SVG issues | `svg-illustration-animation-expert.md` |
+| CSS/code bugs | `software-engineering-expert.md` |
+| Citation/content | Manual flag (editorial decision) |
+
+**Invocation Examples:**
+```
+# Full essay remediation (auto mode)
+Using @agents/orchestrators/qa-remediation-orchestrator.md, conduct
+a full QA remediation for:
+Path: src/app/essays/visual/the-fork/
+Mode: --auto
+Max iterations: 3
+
+# Targeted section remediation (approval mode)
+Using @agents/orchestrators/qa-remediation-orchestrator.md, conduct
+targeted QA remediation for:
+Path: src/app/essays/visual/the-holocaust/
+Sections: Hero, Ch1, Ch2
+Mode: --approval
+```
+
+**Output:**
+- QA Remediation Report stored at `orchestration/audits/[slug]/QA-REMEDIATION-[date].md`
+- Per-section pass/fail status
+- Issues found, fixed, and remaining
+- Score progression across iterations
+
+**Collaboration:**
+- ← **Meta Audit Orchestrator**: Receives issue list from comprehensive audit
+- → **Immersive Experience Engineer**: Delegates scroll/animation fixes
+- → **Image Research Expert**: Delegates image sourcing
+- → **Software Engineering Expert**: Delegates code fixes
+- → **Auditors**: Re-invokes for verification
 
 ---
 

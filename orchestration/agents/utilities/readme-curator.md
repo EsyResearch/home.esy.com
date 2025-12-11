@@ -199,7 +199,7 @@ Some changes require updates to multiple documents:
 | Change | Documents to Update |
 |--------|---------------------|
 | **New agent** | `agents/README.md` + `AGENT-REGISTRY.md` + `agents/[category]/README.md` |
-| **New orchestrator** | All of the above + `FRAMEWORK.md` (if changes pipeline) |
+| **New orchestrator** | `agents/README.md` + `AGENT-REGISTRY.md` + `orchestrators/README.md` + `FRAMEWORK.md` (if changes pipeline) |
 | **New quality gate** | `FRAMEWORK.md` (gate system) + `AGENT-REGISTRY.md` (gate ownership) |
 | **New agent category** | `AGENT-REGISTRY.md` + create `agents/[category]/README.md` + update `agents/README.md` |
 | **Pipeline change** | `FRAMEWORK.md` + `visual-essay-orchestrator.md` + affected orchestrators |
@@ -543,6 +543,8 @@ When invoking this agent:
 December 11, 2025
 
 ### Recent Changes
+- Added QA Remediation Orchestrator to documentation routing rules
+- Clarified multi-document update requirements for new orchestrators
 - Added creation date header
 - Updated Documentation Hierarchy to reflect current structure
 - Added FRAMEWORK.md and INVOCATION-GUIDE.md to system level

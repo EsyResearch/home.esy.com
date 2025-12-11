@@ -13,7 +13,7 @@ agents/
 ├── AGENT-REGISTRY.md            # This file
 ├── META-AGENT-FRAMEWORK.md      # Agent creation template
 │
-├── orchestrators/               # 🎬 Top-level coordination (4)
+├── orchestrators/               # 🎬 Top-level coordination (5)
 ├── auditors/                    # 🔍 Quality verification (7)
 ├── content/                     # 📚 Content creation (5)
 ├── research/                    # 🔬 Source discovery (2)
@@ -34,6 +34,7 @@ agents/
 | [Visual Essay Orchestrator](./orchestrators/visual-essay-orchestrator.md) | **TOP-LEVEL** — End-to-end production pipeline | `orchestrators/` |
 | [Research Orchestrator](./orchestrators/research-orchestrator.md) | **Research pipeline** — Phase 2, domain routing, package assembly | `orchestrators/` |
 | [Meta Audit Orchestrator](./orchestrators/meta-audit-orchestrator.md) | Multi-domain audit coordination | `orchestrators/` |
+| [QA Remediation Orchestrator](./orchestrators/qa-remediation-orchestrator.md) | **Iterative fix loop** — Audit→Fix→Reaudit until passing | `orchestrators/` |
 | [Scrollytelling Expert](./orchestrators/scrollytelling-expert.md) | Mobile-native immersive narratives | `orchestrators/` |
 
 ### 🔍 Auditors
@@ -258,14 +259,14 @@ See [META-AGENT-FRAMEWORK.md](./META-AGENT-FRAMEWORK.md) for the complete agent 
 
 | Category | Count | Key Responsibility |
 |----------|-------|-------------------|
-| 🎬 Orchestrators | 4 | Multi-agent coordination |
+| 🎬 Orchestrators | 5 | Multi-agent coordination |
 | 🔍 Auditors | 7 | Quality verification |
 | 📚 Content | 4 | Content creation |
 | 🔬 Research | 3 | Source discovery |
 | 🌏 Regional | 2 | Subject expertise |
 | ⚙️ Engineering | 7 | Technical implementation |
 | 🔧 Utilities | 3 | Support functions |
-| **Total** | **30** | |
+| **Total** | **31** | |
 
 ---
 

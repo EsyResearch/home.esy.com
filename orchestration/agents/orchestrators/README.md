@@ -11,6 +11,7 @@ Top-level agents that coordinate multiple specialist agents to produce complex d
 | [Visual Essay Orchestrator](./visual-essay-orchestrator.md) | **TOP-LEVEL** — End-to-end production pipeline | Research Orchestrator, Scrollytelling, Meta Audit |
 | [Research Orchestrator](./research-orchestrator.md) | **Research pipeline** — Phase 2 of visual essay production | Brainstorming, Research Citations, Citation Audit, Regional Experts |
 | [Meta Audit Orchestrator](./meta-audit-orchestrator.md) | Multi-domain audit coordination | All 6 audit agents |
+| [QA Remediation Orchestrator](./qa-remediation-orchestrator.md) | **Iterative fix loop** — Audit→Fix→Reaudit | Auditors (input), Engineers (fixes) |
 | [Scrollytelling Expert](./scrollytelling-expert.md) | Mobile-native immersive narratives | 7 specialist agents |
 
 ---
@@ -21,6 +22,7 @@ Top-level agents that coordinate multiple specialist agents to produce complex d
 |----------|-------|
 | Complete visual essay from scratch | Visual Essay Orchestrator |
 | Comprehensive quality audit | Meta Audit Orchestrator |
+| Fix issues found in audit (iterative) | QA Remediation Orchestrator |
 | New scrollytelling experience | Scrollytelling Expert |
 
 ---
@@ -41,11 +43,15 @@ Visual Essay Orchestrator (TOP)
 │   ├── SVG Illustration
 │   ├── Software Engineering
 │   └── Immersive Engineer
-└── Meta Audit Orchestrator (Phase 4)
-    ├── Scrolling Auditor
-    ├── Citation Audit
-    ├── Visual Auditor
-    └── SEO Audit
+├── Meta Audit Orchestrator (Phase 4)
+│   ├── Scrolling Auditor
+│   ├── Citation Audit
+│   ├── Visual Auditor
+│   └── SEO Audit
+└── QA Remediation Orchestrator (Phase 4.5 - if issues found)
+    ├── INPUT: Auditors (find issues)
+    ├── FIX: Engineers (resolve issues)
+    └── VERIFY: Re-audit (confirm fixes)
 ```
 
 ---
