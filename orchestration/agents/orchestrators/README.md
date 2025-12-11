@@ -12,7 +12,6 @@ Top-level agents that coordinate multiple specialist agents to produce complex d
 | [Research Orchestrator](./research-orchestrator.md) | **Research pipeline** — Phase 2 of visual essay production | Brainstorming, Research Citations, Citation Audit, Regional Experts |
 | [Meta Audit Orchestrator](./meta-audit-orchestrator.md) | Multi-domain audit coordination | All 6 audit agents |
 | [Scrollytelling Expert](./scrollytelling-expert.md) | Mobile-native immersive narratives | 7 specialist agents |
-| [Children's Fiction Scrollytelling](./childrens-fiction-scrollytelling-agent.md) | Magical stories for ages 3-6 | Children's Writer, UI/UX, SVG, Engineers |
 
 ---
 
@@ -23,7 +22,6 @@ Top-level agents that coordinate multiple specialist agents to produce complex d
 | Complete visual essay from scratch | Visual Essay Orchestrator |
 | Comprehensive quality audit | Meta Audit Orchestrator |
 | New scrollytelling experience | Scrollytelling Expert |
-| Children's picture book experience | Children's Fiction Scrollytelling |
 
 ---
 
@@ -65,4 +63,5 @@ for a visual essay about "[TOPIC]".
 
 - [Agent Registry](../AGENT-REGISTRY.md) — Complete agent index
 - [Main README](../README.md) — Detailed documentation
+
 

@@ -35,7 +35,6 @@ agents/
 | [Research Orchestrator](./orchestrators/research-orchestrator.md) | **Research pipeline** — Phase 2, domain routing, package assembly | `orchestrators/` |
 | [Meta Audit Orchestrator](./orchestrators/meta-audit-orchestrator.md) | Multi-domain audit coordination | `orchestrators/` |
 | [Scrollytelling Expert](./orchestrators/scrollytelling-expert.md) | Mobile-native immersive narratives | `orchestrators/` |
-| [Children's Fiction Scrollytelling](./orchestrators/childrens-fiction-scrollytelling-agent.md) | Magical stories for ages 3-6 | `orchestrators/` |
 
 ### 🔍 Auditors
 *Quality verification and certification*
@@ -61,7 +60,6 @@ agents/
 |-------|--------|------|
 | [Historian Writer](./content/historian-writer-expert.md) | Historical Narrative | `content/` |
 | [Historian Editor](./content/historian-editor-expert.md) | Fact-Checking (G3) | `content/` |
-| [Children's Books Writer](./content/childrens-books-writer-expert.md) | Age 3-6 Picture Books | `content/` |
 | [Essayist Expert](./content/essayist-expert.md) | Academic Writing | `content/` |
 | [Copywriter Marketing](./content/copywriter-marketing-expert.md) | Conversion Copy | `content/` |
 
@@ -260,14 +258,14 @@ See [META-AGENT-FRAMEWORK.md](./META-AGENT-FRAMEWORK.md) for the complete agent 
 
 | Category | Count | Key Responsibility |
 |----------|-------|-------------------|
-| 🎬 Orchestrators | 5 | Multi-agent coordination |
+| 🎬 Orchestrators | 4 | Multi-agent coordination |
 | 🔍 Auditors | 7 | Quality verification |
-| 📚 Content | 5 | Content creation |
+| 📚 Content | 4 | Content creation |
 | 🔬 Research | 3 | Source discovery |
 | 🌏 Regional | 2 | Subject expertise |
 | ⚙️ Engineering | 7 | Technical implementation |
 | 🔧 Utilities | 3 | Support functions |
-| **Total** | **32** | |
+| **Total** | **30** | |
 
 ---
 

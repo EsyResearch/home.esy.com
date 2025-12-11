@@ -547,3 +547,4 @@ Minimum sources: [number]
 ---
 
 *This framework document defines the core architecture of the Esy orchestration system. For implementation details, see individual agent files.*
+

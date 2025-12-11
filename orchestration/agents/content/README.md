@@ -10,7 +10,6 @@ Specialist agents focused on content creation, writing, and editorial work.
 |-------|--------|----------------|
 | [Historian Writer](./historian-writer-expert.md) | Historical Narrative | Compelling storytelling from research |
 | [Historian Editor](./historian-editor-expert.md) | Fact-Checking | Accuracy verification, Gate G3 |
-| [Children's Books Writer](./childrens-books-writer-expert.md) | Children's Fiction | Age 3-6 picture book narratives |
 | [Essayist Expert](./essayist-expert.md) | Academic Writing | Essay structure & argumentation |
 | [Copywriter Marketing](./copywriter-marketing-expert.md) | Marketing Copy | Conversion-focused messaging |
 
@@ -43,7 +42,6 @@ Research & Citations (research/)
 |----------|-------|
 | Historical narrative content | Historian Writer |
 | Fact-checking & verification | Historian Editor |
-| Children's picture book stories | Children's Books Writer |
 | Academic essay guidance | Essayist Expert |
 | Marketing & conversion copy | Copywriter Marketing |
 
@@ -52,7 +50,6 @@ Research & Citations (research/)
 ## Collaboration
 
 - **Historian Writer + Editor** work as a pair (writer creates, editor verifies)
-- **Children's Books Writer** feeds into Children's Fiction Scrollytelling orchestrator
 - All content creators receive sources from **Research & Citations** (research/)
 
 ---
@@ -71,4 +68,5 @@ narrative about [HISTORICAL TOPIC] based on the research provided.
 - [Research Agents](../research/README.md) — Source discovery
 - [Regional Experts](../regional/README.md) — Subject matter specialists
 - [Scrollytelling Expert](../orchestrators/scrollytelling-expert.md) — Coordinates content creation
+
 

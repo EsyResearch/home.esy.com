@@ -12,7 +12,7 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 agents/
 ├── orchestrators/     # 🎬 Top-level coordination (4 agents)
 ├── auditors/          # 🔍 Quality verification (7 agents)
-├── content/           # 📚 Content creation (5 agents)
+├── content/           # 📚 Content creation (4 agents)
 ├── research/          # 🔬 Source discovery (2 agents)
 ├── regional/          # 🌏 Regional specialists (2 agents)
 ├── engineering/       # ⚙️ Technical implementation (7 agents)
@@ -30,7 +30,6 @@ agents/
 | [Research Orchestrator](#research-orchestrator) | **Research pipeline (Phase 2)** | `@agents/orchestrators/research-orchestrator.md` |
 | [Meta Audit Orchestrator](#meta-audit-orchestrator) | Multi-domain audit coordination | `@agents/orchestrators/meta-audit-orchestrator.md` |
 | [Scrollytelling Expert](#scrollytelling-expert) | Immersive scroll-based stories | `@agents/orchestrators/scrollytelling-expert.md` |
-| [Children's Fiction Scrollytelling](#childrens-fiction-scrollytelling-agent) | Magical stories for ages 3-6 | `@agents/orchestrators/childrens-fiction-scrollytelling-agent.md` |
 
 ### 🔍 Auditors
 | Agent | Best For | Invocation |
@@ -50,7 +49,6 @@ agents/
 |-------|----------|------------|
 | [Historian Writer](#historian-writer-expert) | Historical narrative content | `@agents/content/historian-writer-expert.md` |
 | [Historian Editor](#historian-editor-expert) | Fact-checking & verification | `@agents/content/historian-editor-expert.md` |
-| [Children's Books Writer](#childrens-books-writer-expert) | Picture book narratives, ages 3-6 | `@agents/content/childrens-books-writer-expert.md` |
 | [Essayist](#essayist-expert) | Academic essay guidance | `@agents/content/essayist-expert.md` |
 | [Copywriter](#copywriter-marketing-expert) | Marketing & conversion copy | `@agents/content/copywriter-marketing-expert.md` |
 
@@ -213,7 +211,6 @@ src/app/essays/visual/history-of-coffee/
 **Best For:**
 - Transforming rough ideas into structured briefs
 - Getting strategic questions to maximize output quality
-- Auto-detecting target agent (children's vs general)
 - Generating character names, themes, and visual directions
 - Ensuring world-class scrollytelling output
 
@@ -225,11 +222,10 @@ src/app/essays/visual/history-of-coffee/
 | **Auto** | Just provide request | Asks questions only if ambiguous |
 
 **What It Does:**
-1. **Detects** which agent your request is for (children's or general)
-2. **Assesses** clarity — is the request clear or ambiguous?
-3. **Asks** 2-6 high-impact questions (if needed)
-4. **Fills gaps** with intelligent defaults
-5. **Outputs** a complete structured brief ready for the target agent
+1. **Assesses** clarity — is the request clear or ambiguous?
+2. **Asks** 2-6 high-impact questions (if needed)
+3. **Fills gaps** with intelligent defaults
+4. **Outputs** a complete structured brief ready for the target agent
 
 **Invocation Examples:**
 ```
@@ -272,14 +268,12 @@ Using @agents/scrollytelling-invocation-enhancer.md:
 **Best For:**
 - Evaluating completed scrollytelling experiences
 - Identifying mobile-native issues
-- Auditing children's content for age-appropriateness
 - Performance and accessibility verification
 - Systematic quality improvement
 
 **Orchestrates:**
 - `scrollytelling-expert.md` — Narrative & design evaluation
 - `immersive-experience-engineer.md` — Mobile-native & performance
-- `childrens-fiction-scrollytelling-agent.md` — Age 3-6 specific (if children's content)
 
 **Audit Depths:**
 | Level | Time | Coverage |
@@ -292,19 +286,16 @@ Using @agents/scrollytelling-invocation-enhancer.md:
 ```
 # Quick audit
 Using @agents/scrollytelling-audit-agent.md, conduct a quick audit of
-/essays/visual/sammy-snail-super-speed
-Type: Children's Fiction
+/essays/visual/the-history-of-coffee
 
 # Standard audit with focus
 Using @agents/scrollytelling-audit-agent.md, conduct a standard audit of
-/essays/visual/alphabet-adventure-train
-Type: Children's Fiction
+/essays/visual/the-fork
 Focus areas: Touch targets, animation performance
 
 # Deep audit
 Using @agents/scrollytelling-audit-agent.md, conduct a deep audit of
 /essays/visual/the-discovery-of-antibiotics
-Type: General
 ```
 
 **Output Format:**
@@ -338,7 +329,6 @@ Only approved fixes implemented
 - Mapping claims to citations (gap analysis)
 - Detecting broken links
 - Verifying quote authenticity
-- Ensuring children's content has appropriate sources
 - Upgrading weak sources to authoritative alternatives
 
 **📂 Research Directory Requirement (NEW):**
@@ -382,9 +372,8 @@ Type: General
 
 # Deep audit with focus areas
 Using @agents/citation-audit-agent.md, conduct a deep citation audit of
-/essays/visual/alphabet-adventure-train
-Type: Children's Fiction
-Focus areas: Educational accuracy, quote verification
+/essays/visual/the-history-of-burmese-cuisine
+Focus areas: Historical accuracy, quote verification
 
 # Quick check before publishing
 Using @agents/citation-audit-agent.md, perform a quick citation audit of
@@ -550,7 +539,7 @@ for the monster character SVG. Test on mobile devices.
 
 # Accessibility audit
 Using @agents/visual-auditor-agent.md, verify WCAG compliance for
-all SVG illustrations in the children's story.
+all SVG illustrations in the visual essay.
 ```
 
 **Output Format:**
@@ -568,7 +557,6 @@ The agent produces a structured Visual Audit Report with:
 - ← **SVG Illustration & Animation Expert**: Creates assets → Visual Auditor certifies
 - ← **Scrollytelling Expert**: Requests certification before publication
 - ← **Immersive Experience Engineer**: Performance validation
-- ← **Children's Fiction Agent**: Child-specific audit criteria
 
 ---
 
@@ -949,114 +937,6 @@ the Gutenberg era, and use a medieval manuscript aesthetic.
 
 ---
 
-### Children's Fiction Scrollytelling Agent
-**File:** `orchestrators/childrens-fiction-scrollytelling-agent.md`
-
-**Role:** Award-winning children's digital experience designer and interactive storytelling architect specializing in magical, scroll-based narrative experiences for young children ages 3-6.
-
-**⚠️ ORCHESTRATOR:** This agent coordinates the Children's Books Writer and other agents to create complete children's scrollytelling experiences.
-
-**Best For:**
-- Creating immersive, animated children's stories
-- SVG character animation and choreography
-- Interactive/participatory storytelling for ages 3-6
-- Short stories (5-10 minutes) and long stories (15-25 minutes)
-- Magical, delightful scroll-based experiences
-
-**Key Features:**
-- **📱 Tablet-Native First** — Tablets in small hands are the primary canvas
-- **56px+ touch targets** — Child-friendly interactions
-- **SVG Animation System** — Character expressions, environmental effects
-- **Participation Mechanics** — Count, find, help, choose interactions
-- **Unique Visual Identity** — Every story gets its own design research
-- **Age-Appropriate Everything** — Vocabulary, emotions, pacing for 3-6 year olds
-- **Parent-Child Experience** — Magical for kids, enjoyable for adults
-- Coordinates: Children's Books Writer, UI/UX, **SVG Illustration & Animation**, Software Engineer, Immersive Experience
-
-**Story Types:**
-| Type | Duration | Best For |
-|------|----------|----------|
-| Short | 5-10 min | Bedtime, single session, younger kids (3-4) |
-| Long | 15-25 min | Multi-chapter, journey stories, older kids (5-6) |
-
-**Participation Options:**
-- 🔢 Counting moments (tap to count objects)
-- 🔍 Finding/searching (where's the hidden frog?)
-- 🤝 Helping character (shake to wake, tap to open)
-- 🛤️ Making choices (which path should Bunny take?)
-
-**Invocation Examples:**
-```
-# Create a complete children's scrollytelling
-Using @agents/childrens-fiction-scrollytelling-agent.md, create a 
-magical scrollytelling experience about a curious kitten who 
-discovers a secret garden. Short format, cozy visual style, 
-include counting flowers participation.
-
-# With specific brief
-Apply @agents/childrens-fiction-scrollytelling-agent.md with this brief:
-- Theme: friendship and sharing
-- Length: Long (15-20 minutes)
-- Characters: A shy bear and an energetic squirrel
-- Visual style: Cozy autumn forest
-- Participation: Help characters gather acorns
-```
-
----
-
-### Children's Books Writer Expert
-**File:** `content/childrens-books-writer-expert.md`
-
-**Role:** Award-winning children's author and early literacy specialist with 25+ years crafting beloved stories for young readers ages 3-6.
-
-**Best For:**
-- Writing picture book narratives
-- Creating age-appropriate dialogue and vocabulary
-- Crafting humor for young children
-- Developing memorable characters
-- Writing both short and long format stories
-
-**Key Features:**
-- **Early Reader Expertise** — Dolch sight words, 5-15 word sentences
-- **Read-Aloud Excellence** — Natural rhythm, fun to perform
-- **Humor Mastery** — Slapstick, wordplay, subverted expectations
-- **Emotional Truth** — Validates children's real feelings
-- **Educational Integration** — Learning woven naturally into story
-- **Animation Cue System** — [ANIMATION:], [SOUND:], [PARTICIPATION:] markers
-- **Rule of Three** — Three attempts, three friends, three discoveries
-
-**Story Architecture:**
-| Format | Duration | Structure | Word Count |
-|--------|----------|-----------|------------|
-| Short | 5-10 min | 3-beat (Spark → Adventure → Triumph) | 500-1,000 |
-| Long | 15-25 min | 5-act with chapters | 1,500-3,000 |
-
-**Character Archetypes:**
-- 🦸 The Plucky Underdog (small but mighty)
-- 🏠 The Reluctant Hero (discovers hidden courage)
-- 🔍 The Boundless Explorer (curiosity that cannot be contained)
-- ❤️ The Caring Friend (helps others before self)
-
-**Invocation Examples:**
-```
-# Write a short children's story
-Using @agents/childrens-books-writer-expert.md, write a short story 
-(5-10 minutes) about a ladybug who wants to fly to the moon. Include 
-animation cues and participation prompts for scrollytelling.
-
-# Write with specific requirements
-Apply @agents/childrens-books-writer-expert.md to write a long story 
-about three animal friends who build a treehouse. Theme: teamwork. 
-Include counting moments and sound effects.
-
-# Character-focused story
-Using @agents/childrens-books-writer-expert.md, create a bedtime story 
-featuring a sleepy cloud named Cumulus who can't fall asleep. 
-Gentle, cozy tone. 500-700 words.
-```
-
----
-
 ### Immersive Experience Engineer
 **File:** `engineering/immersive-experience-engineer.md`
 
@@ -1347,7 +1227,6 @@ for accessibility and usability issues.
 
 **Collaboration:**
 - ← **Scrollytelling Expert**: Provides visual direction, receives illustrated assets
-- ← **Children's Fiction Agent**: Character and scene illustrations
 - → **Immersive Experience Engineer**: Animation implementation
 - ← **UI/UX Designer**: Design system alignment
 
@@ -1612,7 +1491,6 @@ An **orchestrator agent** coordinates multiple specialized agents to produce com
 |--------------|--------|-------------------|--------|
 | `visual-essay-orchestrator.md` | **Production Pipeline** | 4 orchestrators | **Publication-ready visual essays** |
 | `scrollytelling-expert.md` | Digital Storytelling | 7 agents | Mobile-native scrollytelling pages |
-| `childrens-fiction-scrollytelling-agent.md` | **Children's Stories (3-6)** | 4 agents | Magical animated children's experiences |
 | `scrollytelling-audit-agent.md` | Quality Assurance | 3-4 agents | Experience audit reports |
 | `citation-audit-agent.md` | **Citation Integrity (G5)** | 2-3 agents | Source verification reports |
 | `visual-auditor-agent.md` | **Visual Quality Assurance** | 1-2 agents | SVG certification reports |
