@@ -15,6 +15,7 @@ Quality verification and certification agents that ensure content meets Esy stan
 | [Immersive Scrolling Auditor](./immersive-scrolling-auditor.md) | Scroll Performance | G6 | Scroll Certification |
 | [Immersive Experience Auditor](./immersive-experience-auditor.md) | Overall Experience | — | Experience Certification |
 | [SEO Audit Agent](./seo-audit-agent.md) | Search Optimization | — | SEO Grade A+ to F |
+| [Spec Compliance Auditor](./spec-compliance-auditor.md) | **Spec vs Output** | — | Compliance Score (%) |
 
 ---
 
@@ -37,6 +38,7 @@ Quality verification and certification agents that ensure content meets Esy stan
 | Full experience review | Immersive Experience Auditor |
 | Scroll-lock & 60fps check | Immersive Scrolling Auditor |
 | SEO optimization check | SEO Audit Agent |
+| **Verify output matches spec** | Spec Compliance Auditor |
 | **Comprehensive QA** | Use Meta Audit Orchestrator (orchestrators/) |
 
 ---
@@ -50,7 +52,8 @@ Meta Audit Orchestrator
 ├── Visual Auditor
 ├── Citation Audit (G5)
 │   └── Quotes Audit
-└── SEO Audit
+├── SEO Audit
+└── Spec Compliance Auditor ← NEW (verifies output matches spec)
         │
         ▼
    CERTIFICATION
@@ -59,11 +62,18 @@ Meta Audit Orchestrator
 
 ---
 
-## Invocation Pattern
+## Invocation Patterns
 
 ```
 Using @agents/auditors/citation-audit-agent.md, audit the citations for
 /essays/visual/[SLUG]
+```
+
+```
+Using @agents/auditors/spec-compliance-auditor.md, audit spec compliance:
+
+Spec: orchestration/skills/visual-essay-invocation/specs/[slug].md
+Essay: src/app/essays/visual/[slug]/
 ```
 
 ---
@@ -72,5 +82,6 @@ Using @agents/auditors/citation-audit-agent.md, audit the citations for
 
 - [Agent Registry](../AGENT-REGISTRY.md) — Complete agent index
 - [Meta Audit Orchestrator](../orchestrators/meta-audit-orchestrator.md) — Coordinates all auditors
+
 
 

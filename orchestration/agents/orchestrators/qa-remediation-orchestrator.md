@@ -126,6 +126,19 @@
 
 ---
 
+## Required Inputs
+
+### Mandatory Parameters
+
+| Parameter | Description | Example |
+|-----------|-------------|---------|
+| **Essay Path** | Path to the built visual essay | `src/app/essays/visual/the-fork/` |
+| **Spec Path** | Path to the invocation spec (SOURCE OF TRUTH) | `orchestration/skills/visual-essay-invocation/specs/the-fork.md` |
+
+> **CRITICAL**: The spec is the authoritative source of truth. Every audit and fix must reference what the spec defined. Without a spec path, the orchestrator cannot verify if deviations are bugs or intentional.
+
+---
+
 ## Invocation Modes
 
 ### Scope Modes
@@ -181,11 +194,24 @@
 | **Citation** | Missing source | **Manual flag** | — |
 | **SEO** | Missing meta | Software Engineering Expert | `engineering/` |
 | **SEO** | Schema errors | Software Engineering Expert | `engineering/` |
+| **Spec** | Missing chapter from spec | Scrollytelling Expert | `orchestrators/` |
+| **Spec** | Scroll-lock deviates from spec choreography | Immersive Experience Engineer + spec context | `engineering/` |
+| **Spec** | Missing figure profile | Scrollytelling Expert | `orchestrators/` |
+| **Spec** | Progress bar concept mismatch | Immersive Experience Engineer | `engineering/` |
+| **Spec** | Design system deviation | Software Engineering Expert | `engineering/` |
+| **Spec** | Visual asset missing | Image Research & Licensing Expert | `research/` |
 
 ### Routing Decision Tree
 
 ```
 Issue Detected
+    │
+    ├─► Is it a SPEC DEVIATION?
+    │       │
+    │       ├─► Missing chapter/content → Scrollytelling Expert (with spec context)
+    │       ├─► Scroll-lock choreography wrong → Immersive Exp Engineer (with spec %)
+    │       ├─► Design system off → Software Engineering Expert (with spec colors)
+    │       └─► Missing figure → Scrollytelling Expert (with spec profile)
     │
     ├─► Is it scroll/animation/interaction?
     │       └─► Immersive Experience Engineer
@@ -205,6 +231,8 @@ Issue Detected
     └─► Unknown?
             └─► Flag for human review
 ```
+
+> **Key Principle**: For spec deviations, ALWAYS pass the spec context to the fixer agent. Don't just say "fix scroll-lock" — say "fix scroll-lock to match spec: 0-20% title reveal, 20-50% text stagger, 50-100% image parallax".
 
 ---
 
@@ -226,7 +254,10 @@ Dispatch auditors based on scope:
 - [ ] Invoke Immersive Experience Auditor for all targeted sections
 - [ ] Invoke Visual Auditor for images and SVGs
 - [ ] Invoke Citation Audit for source verification
+- [ ] **Invoke Spec Compliance Auditor against provided spec** ← REQUIRED
 - [ ] Compile findings by section
+
+> **Spec Compliance**: The Spec Compliance Auditor compares the built essay against the invocation spec, identifying missing chapters, deviated scroll-lock choreography, missing figures, and design system mismatches.
 
 ### Phase 3: Issue Triage (5 minutes)
 
@@ -403,6 +434,7 @@ Produce QA Remediation Report:
 | `immersive-experience-auditor.md` | Animations, reveals | `@agents/auditors/immersive-experience-auditor.md` |
 | `visual-auditor-agent.md` | SVG, images | `@agents/auditors/visual-auditor-agent.md` |
 | `citation-audit-agent.md` | Sources, links | `@agents/auditors/citation-audit-agent.md` |
+| `spec-compliance-auditor.md` | **Spec vs output verification** | `@agents/auditors/spec-compliance-auditor.md` |
 
 ### Fixer Agents (Output)
 
@@ -444,7 +476,8 @@ Produce QA Remediation Report:
 Using @agents/orchestrators/qa-remediation-orchestrator.md, conduct 
 a full QA remediation for:
 
-Path: src/app/essays/visual/the-fork/
+Essay: src/app/essays/visual/the-fork/
+Spec: orchestration/skills/visual-essay-invocation/specs/the-fork.md
 Mode: --auto
 Max iterations: 3
 
@@ -456,7 +489,8 @@ Fix all identified issues automatically and produce a QA report.
 Using @agents/orchestrators/qa-remediation-orchestrator.md, conduct 
 targeted QA remediation for:
 
-Path: src/app/essays/visual/the-holocaust/
+Essay: src/app/essays/visual/the-holocaust/
+Spec: orchestration/skills/visual-essay-invocation/specs/the-holocaust.md
 Sections: Hero, Ch1, Ch2
 Mode: --approval
 
@@ -468,7 +502,8 @@ Present all issues for approval before fixing.
 Using @agents/orchestrators/qa-remediation-orchestrator.md, conduct 
 a QA assessment for:
 
-Path: src/app/essays/visual/the-history-of-burmese-cuisine/
+Essay: src/app/essays/visual/the-history-of-burmese-cuisine/
+Spec: orchestration/skills/visual-essay-invocation/specs/the-history-of-burmese-cuisine.md
 Mode: --report-only
 
 Do not fix anything. Produce a comprehensive issue report.
@@ -479,11 +514,25 @@ Do not fix anything. Produce a comprehensive issue report.
 Using @agents/orchestrators/qa-remediation-orchestrator.md, focus on 
 Chapter 4 only:
 
-Path: src/app/essays/visual/the-cocoa-odyssey/
+Essay: src/app/essays/visual/the-cocoa-odyssey/
+Spec: orchestration/skills/visual-essay-invocation/specs/the-cocoa-odyssey.md
 Section: Ch4
 Mode: --auto
 
-This section has persistent scroll-lock issues. Fix and verify.
+This section has persistent scroll-lock issues. Fix and verify against spec.
+```
+
+### Manual Issue Investigation
+```
+Using @agents/orchestrators/qa-remediation-orchestrator.md, investigate 
+and fix this issue I found in browser:
+
+Essay: src/app/essays/visual/the-fork/
+Spec: orchestration/skills/visual-essay-invocation/specs/the-fork.md
+Issue: "Chapter 3 scroll-lock doesn't release properly on mobile"
+Mode: --auto
+
+Cross-reference against spec choreography and fix.
 ```
 
 ### Post-Fix Verification
@@ -491,8 +540,9 @@ This section has persistent scroll-lock issues. Fix and verify.
 Using @agents/orchestrators/qa-remediation-orchestrator.md, verify 
 fixes from previous session:
 
-Path: src/app/essays/visual/the-fork/
-Previous Report: orchestration/audits/the-fork/QA-REMEDIATION-2024-12-11.md
+Essay: src/app/essays/visual/the-fork/
+Spec: orchestration/skills/visual-essay-invocation/specs/the-fork.md
+Previous Report: orchestration/audits/the-fork/QA-REMEDIATION-2025-12-11.md
 Sections: Hero, Ch3 (previously failing)
 
 Re-audit and confirm fixes are working.
@@ -592,8 +642,16 @@ When invoking this agent:
 ---
 
 ## Last Updated
-December 11, 2024
+December 11, 2025
+
+### Recent Changes
+- Added **Spec Path as required input** — spec is source of truth
+- Added **Spec Compliance Auditor** to Phase 2 audit dispatch
+- Added **Spec deviation issue types** to routing matrix
+- Updated routing to pass **spec context to fixer agents**
+- Updated invocation examples with spec paths
+- See [INVOCATION-EXAMPLES.md](./INVOCATION-EXAMPLES.md) for more patterns
 
 ---
 
-*This agent orchestrates the audit-fix-reaudit loop for Esy.com visual essays, transforming audit findings into verified fixes through systematic iteration. Rather than producing static issue lists, the QA Remediation Orchestrator actively coordinates specialist agents to resolve problems, verifies fixes through re-audit, and iterates until quality targets are met. The result: publication-ready experiences with documented quality assurance.*
+*This agent orchestrates the audit-fix-reaudit loop for Esy.com visual essays, transforming audit findings into verified fixes through systematic iteration. The invocation spec is the source of truth—every audit includes spec compliance verification, and every fix receives spec context. Rather than producing static issue lists, the QA Remediation Orchestrator actively coordinates specialist agents to resolve problems, verifies fixes through re-audit, and iterates until quality targets are met. The result: publication-ready experiences that match their specifications.*

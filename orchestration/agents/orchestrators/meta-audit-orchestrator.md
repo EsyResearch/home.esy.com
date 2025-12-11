@@ -36,6 +36,19 @@
 
 ---
 
+## Required Inputs
+
+### Mandatory Parameters
+
+| Parameter | Description | Example |
+|-----------|-------------|---------|
+| **Essay Path** | Path to the built visual essay | `src/app/essays/visual/the-fork/` |
+| **Spec Path** | Path to the invocation spec (SOURCE OF TRUTH) | `orchestration/skills/visual-essay-invocation/specs/the-fork.md` |
+
+> **CRITICAL**: The spec is the authoritative source of truth. Comprehensive audits must verify that the built essay matches what was specified.
+
+---
+
 ## Audit Domain Registry
 
 ### Specialist Audit Agents
@@ -48,6 +61,7 @@
 | `citation-audit-agent.md` | Citations | Source integrity, links, claims | Critical issues present |
 | `quotes-audit-agent.md` | Quotes | Quote verification, attribution | Misattributed or fabricated quotes |
 | `seo-audit-agent.md` | SEO | On-page, technical, content, schema | Grade < C or blocking issues |
+| `spec-compliance-auditor.md` | **Spec Compliance** | Output matches invocation spec | Score < 70% or missing elements |
 
 ### Audit Dependencies
 
@@ -56,26 +70,21 @@
                          │  Meta Audit Orchestrator │
                          └───────────┬─────────────┘
                                      │
-        ┌────────────────┬───────────┼───────────┬────────────────┐
-        │                │           │           │                │
-        ▼                ▼           ▼           ▼                ▼
-┌───────────────┐ ┌───────────┐ ┌─────────┐ ┌─────────┐ ┌─────────────┐
-│    SCROLL     │ │EXPERIENCE │ │ CONTENT │ │ VISUAL  │ │     SEO     │
-│    AUDIT      │ │   AUDIT   │ │ AUDITS  │ │  AUDIT  │ │    AUDIT    │
-└───────────────┘ └─────┬─────┘ └────┬────┘ └─────────┘ └─────────────┘
-                        │            │
-                        │     ┌──────┴──────┐
-                        │     │             │
-                        ▼     ▼             ▼
-              ┌───────────────┐  ┌───────────────┐
-              │ Scroll Audit  │  │ Citation Audit│
-              │  (delegated)  │  └───────┬───────┘
-              └───────────────┘          │
-                                         ▼
-                                 ┌───────────────┐
-                                 │ Quotes Audit  │
-                                 │  (delegated)  │
-                                 └───────────────┘
+   ┌──────────────┬──────────────┬───┴───┬──────────────┬──────────────┐
+   │              │              │       │              │              │
+   ▼              ▼              ▼       ▼              ▼              ▼
+┌────────┐  ┌──────────┐  ┌──────────┐ ┌────────┐ ┌─────────┐ ┌────────────┐
+│ SCROLL │  │EXPERIENCE│  │  SPEC    │ │ VISUAL │ │ CONTENT │ │    SEO     │
+│ AUDIT  │  │  AUDIT   │  │COMPLIANCE│ │ AUDIT  │ │ AUDITS  │ │   AUDIT    │
+└────────┘  └────┬─────┘  └──────────┘ └────────┘ └────┬────┘ └────────────┘
+                 │                                      │
+                 │                               ┌──────┴──────┐
+                 │                               │             │
+                 ▼                               ▼             ▼
+       ┌───────────────┐               ┌───────────────┐ ┌───────────┐
+       │ Scroll Audit  │               │ Citation Audit│ │  Quotes   │
+       │  (delegated)  │               └───────────────┘ │   Audit   │
+       └───────────────┘                                 └───────────┘
 ```
 
 ### Parallelization Strategy
@@ -85,6 +94,7 @@
 - Visual Audit  
 - Citation Audit (triggers Quotes Audit internally)
 - SEO Audit
+- **Spec Compliance Audit** (compares spec vs output)
 
 **Sequential Dependencies:**
 - Experience Audit → Scroll Audit (incorporates scroll findings)
@@ -160,6 +170,7 @@ Launch independent audits simultaneously:
 - [ ] Dispatch Visual Audit (if custom SVGs present)
 - [ ] Dispatch Citation Audit (if sources section present)
 - [ ] Dispatch SEO Audit (for all published/pre-publication pages)
+- [ ] **Dispatch Spec Compliance Audit** (compares spec vs output) — REQUIRED
 
 ### Phase 3: Sequential Audit Dispatch (Variable)
 Launch dependent audits:
@@ -204,6 +215,7 @@ Produce comprehensive audit report:
 | Citations | Citation Audit | 7.0/10 | Critical issues |
 | Quotes | Quotes Audit | N/A | Misattributed/fabricated |
 | SEO | SEO Audit Agent | C (60/100) | Any 🔴 Blocking issue |
+| **Spec Compliance** | Spec Compliance Auditor | 70% | Missing chapters or core elements |
 
 ### Aggregate Certification Thresholds
 
@@ -232,6 +244,7 @@ Produce comprehensive audit report:
 | Content integrity | Citations + Quotes + Experience + SEO | Unverified claims, E-E-A-T gaps |
 | Mobile failures | Scroll + Experience + SEO | Safari iOS incompatibility, mobile usability |
 | Discoverability issues | SEO + Citations | Missing metadata, poor schema |
+| **Spec deviation** | Spec Compliance + Experience + Scroll | Built essay doesn't match invocation spec |
 
 ---
 
@@ -465,21 +478,24 @@ The following issues were reported by multiple audits (counted once):
 ```
 Meta Audit Orchestrator
     │
-    ├─► Invoke: @agents/immersive-scrolling-auditor.md
+    ├─► Invoke: @agents/auditors/immersive-scrolling-auditor.md
     │   "Audit scroll experience for [path]. Produce certification report."
     │
-    ├─► Invoke: @agents/immersive-experience-auditor.md
+    ├─► Invoke: @agents/auditors/immersive-experience-auditor.md
     │   "Conduct comprehensive experience audit for [path]."
     │
-    ├─► Invoke: @agents/visual-auditor-agent.md
+    ├─► Invoke: @agents/auditors/visual-auditor-agent.md
     │   "Audit all SVG assets in [path]. Produce quality report."
     │
-    ├─► Invoke: @agents/citation-audit-agent.md
+    ├─► Invoke: @agents/auditors/citation-audit-agent.md
     │   "Audit citations for [path]. Type: Visual Essay."
     │   │
-    │   └─► (Internally invokes @agents/quotes-audit-agent.md)
+    │   └─► (Internally invokes @agents/auditors/quotes-audit-agent.md)
     │
-    └─► Invoke: @agents/seo-audit-agent.md
+    ├─► Invoke: @agents/auditors/spec-compliance-auditor.md
+    │   "Audit spec compliance: Spec [spec-path], Essay [essay-path]."
+    │
+    └─► Invoke: @agents/auditors/seo-audit-agent.md
         "Audit SEO for [URL]. Target keywords: [keywords]."
 ```
 
@@ -532,37 +548,42 @@ When working with this agent, reference the role by stating:
 
 **Full Comprehensive Audit:**
 ```
-Using @agents/meta-audit-orchestrator.md, conduct a comprehensive 
-audit of the visual essay at:
+Using @agents/orchestrators/meta-audit-orchestrator.md, conduct a comprehensive 
+audit of the visual essay:
 
-Path: src/app/essays/visual/[slug]/
-Spec: src/app/essays/visual/[slug]/EXPERIENCE-SPEC.md
+Essay: src/app/essays/visual/[slug]/
+Spec: orchestration/skills/visual-essay-invocation/specs/[slug].md
 
-Orchestrate all relevant specialist audits and produce a unified
-certification report.
+Orchestrate all domain audits (including spec compliance) and produce 
+unified certification report.
 ```
 
 **Targeted Domain Audit:**
 ```
-Using @agents/meta-audit-orchestrator.md, conduct audits for the 
+Using @agents/orchestrators/meta-audit-orchestrator.md, conduct audits for the 
 following domains only:
 
-Domains: Scroll, Experience
-Path: src/app/essays/visual/[slug]/
+Essay: src/app/essays/visual/[slug]/
+Spec: orchestration/skills/visual-essay-invocation/specs/[slug].md
+Domains: Scroll, Experience, Spec Compliance
 
 Skip visual and citation audits (already certified).
 ```
 
 **Re-Certification After Fixes:**
 ```
-Using @agents/meta-audit-orchestrator.md, verify fixes for issues 
+Using @agents/orchestrators/meta-audit-orchestrator.md, verify fixes for issues 
 identified in the previous comprehensive audit:
 
-Previous Report: orchestration/audits/[slug]/2024-12-10-comprehensive-audit.md
+Essay: src/app/essays/visual/[slug]/
+Spec: orchestration/skills/visual-essay-invocation/specs/[slug].md
+Previous Report: orchestration/audits/[slug]/2025-12-10-comprehensive-audit.md
 Fixed Issues: #1, #2, #5
 
 Conduct targeted re-audits and update certification status.
 ```
+
+See [INVOCATION-EXAMPLES.md](./INVOCATION-EXAMPLES.md) for more patterns.
 
 ---
 
@@ -782,7 +803,16 @@ orchestration/agents/CitationReports/CHANGELOG.md
 ---
 
 ## Last Updated
-December 2024
+December 11, 2025
+
+### Recent Changes
+- Added **Spec Path as required input** — spec is source of truth
+- Added **Spec Compliance Auditor** to audit domain registry
+- Added spec compliance to parallel audit dispatch (Phase 2)
+- Added spec compliance to certification matrix (70% threshold)
+- Updated orchestration protocol with spec compliance invocation
+- Updated comprehensive audit report template with spec compliance domain
+- See [INVOCATION-EXAMPLES.md](./INVOCATION-EXAMPLES.md) for invocation patterns
 
 ---
 
