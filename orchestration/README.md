@@ -8,12 +8,14 @@ The orchestration system coordinates specialized AI agents and procedural skills
 
 | I want to... | Start here |
 |--------------|------------|
-| **Learn how to invoke agents** | [`INVOCATION-GUIDE.md`](./INVOCATION-GUIDE.md) ⭐ |
-| Create a visual essay | `@orchestration/agents/visual-essay-orchestrator.md` |
-| Run a comprehensive audit | `@orchestration/agents/meta-audit-orchestrator.md` |
+| **Understand the framework** | [`FRAMEWORK.md`](./FRAMEWORK.md) ⭐ |
+| **Learn how to invoke agents** | [`INVOCATION-GUIDE.md`](./INVOCATION-GUIDE.md) |
+| Create a visual essay | `@orchestration/agents/orchestrators/visual-essay-orchestrator.md` |
+| Conduct research | `@orchestration/agents/orchestrators/research-orchestrator.md` |
+| Run a comprehensive audit | `@orchestration/agents/orchestrators/meta-audit-orchestrator.md` |
 | Understand available agents | `@orchestration/agents/README.md` |
 | Use a specific skill | `@orchestration/skills/[skill-name]/SKILL.md` |
-| Update documentation | `@orchestration/agents/readme-curator.md` |
+| Update documentation | `@orchestration/agents/utilities/readme-curator.md` |
 | Create a new agent | `@orchestration/agents/META-AGENT-FRAMEWORK.md` |
 | View audit reports | `@orchestration/audits/` |
 

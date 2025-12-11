@@ -195,10 +195,54 @@
 }
 
 /* ============================================
-   HERO SECTION - TYPEWRITER
+   HERO SECTION - TYPEWRITER WITH SCROLL-LOCK
    ============================================ */
 
-.hero {
+/* Scroll-lock container - creates scrollable space for the animation */
+.essay-story .hero-scroll-lock-container {
+  position: relative;
+  background: var(--paper-cream);
+}
+
+/* Pinned content during scroll-lock */
+.essay-story .hero-pinned {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1.5rem;
+  background: var(--paper-cream);
+  will-change: transform;
+  /* Override any global grid/flex properties */
+  grid-template-columns: unset;
+  gap: unset;
+}
+
+/* When pinned (scroll-locked), fix the content to viewport */
+.essay-story .hero-pinned.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  /* Ensure proper layering on Safari iOS */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* When complete (scrolled past), anchor to bottom of container */
+.essay-story .hero-pinned.is-complete {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Legacy hero class for compatibility */
+.essay-story .hero {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
@@ -207,9 +251,12 @@
   padding: 2rem 1.5rem;
   position: relative;
   background: var(--paper-cream);
+  /* Override any global grid/flex properties */
+  grid-template-columns: unset;
+  gap: unset;
 }
 
-.typewriter-paper {
+.essay-story .typewriter-paper {
   width: 100%;
   max-width: 600px;
   background: white;
@@ -223,7 +270,7 @@
 }
 
 /* Notebook lines */
-.typewriter-paper::before {
+.essay-story .typewriter-paper::before {
   content: '';
   position: absolute;
   top: 3rem;
@@ -240,7 +287,7 @@
 }
 
 /* Red margin line */
-.typewriter-paper::after {
+.essay-story .typewriter-paper::after {
   content: '';
   position: absolute;
   top: 0;
@@ -251,7 +298,7 @@
   opacity: 0.3;
 }
 
-.typewriter-header {
+.essay-story .typewriter-header {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--pencil-gray);
@@ -260,7 +307,7 @@
   justify-content: space-between;
 }
 
-.typewriter-content {
+.essay-story .typewriter-content {
   font-family: var(--font-mono);
   font-size: 1rem;
   line-height: 1.75;
@@ -268,12 +315,12 @@
   position: relative;
 }
 
-.typewriter-text {
+.essay-story .typewriter-text {
   white-space: pre-wrap;
   word-break: break-word;
 }
 
-.typewriter-cursor {
+.essay-story .typewriter-cursor {
   display: inline-block;
   width: 2px;
   height: 1.2em;
@@ -288,12 +335,22 @@
   51%, 100% { opacity: 0; }
 }
 
-.hero-title {
+/* Scope hero-title to prevent global CSS conflicts */
+.essay-story .hero-title {
   text-align: center;
   margin-top: 3rem;
+  /* Override global styles */
+  font-size: unset;
+  font-weight: unset;
+  line-height: unset;
+  background: unset;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+  background-clip: unset;
+  animation: unset;
 }
 
-.hero-title h1 {
+.essay-story .hero-title h1 {
   font-family: var(--font-display);
   font-size: clamp(2rem, 6vw, 3.5rem);
   font-weight: 600;
@@ -301,14 +358,18 @@
   margin: 0 0 0.5rem;
 }
 
-.hero-subtitle {
+/* Scope hero-subtitle to prevent global CSS conflicts */
+.essay-story .hero-subtitle {
   font-family: var(--font-mono);
   font-size: 0.875rem;
   color: var(--pencil-gray);
   letter-spacing: 0.05em;
+  /* Override global styles */
+  margin-bottom: unset;
+  line-height: unset;
 }
 
-.scroll-hint {
+.essay-story .scroll-hint {
   position: absolute;
   bottom: 2rem;
   left: 50%;
@@ -323,7 +384,7 @@
   animation: float 2s ease-in-out infinite;
 }
 
-.scroll-hint svg {
+.essay-story .scroll-hint svg {
   width: 20px;
   height: 20px;
 }
@@ -334,12 +395,12 @@
 }
 
 @media (min-width: 768px) {
-  .typewriter-paper {
+  .essay-story .typewriter-paper {
     padding: 3rem 2.5rem;
     min-height: 450px;
   }
   
-  .typewriter-content {
+  .essay-story .typewriter-content {
     font-size: 1.125rem;
   }
 }
@@ -1218,9 +1279,48 @@
 }
 
 /* ============================================
-   STEP 9: PROOFREAD
+   STEP 9: PROOFREAD WITH SCROLL-LOCK
    ============================================ */
 
+/* Scroll-lock container for proofread checklist */
+.essay-story .proofread-scroll-lock-container {
+  position: relative;
+  background: white;
+}
+
+/* Pinned content during scroll-lock */
+.essay-story .proofread-pinned {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--section-padding);
+  background: white;
+  will-change: transform;
+}
+
+/* When pinned, fix to viewport */
+.essay-story .proofread-pinned.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* When complete (scrolled past), anchor to bottom of container */
+.essay-story .proofread-pinned.is-complete {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Legacy class for compatibility */
 .proofread-section {
   background: white;
 }
@@ -1248,11 +1348,7 @@
   transform: translateX(0);
 }
 
-.checklist-item:nth-child(1) { transition-delay: 0.1s; }
-.checklist-item:nth-child(2) { transition-delay: 0.2s; }
-.checklist-item:nth-child(3) { transition-delay: 0.3s; }
-.checklist-item:nth-child(4) { transition-delay: 0.4s; }
-.checklist-item:nth-child(5) { transition-delay: 0.5s; }
+/* Stagger delays now handled by inline styles for scroll-lock */
 
 .checklist-icon {
   width: 24px;
@@ -1285,6 +1381,32 @@
   font-size: 0.875rem;
   color: var(--ink-light);
   margin: 0;
+}
+
+/* Completion indicator */
+.checklist-complete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: var(--success-green-light);
+  border-radius: 8px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.complete-icon {
+  font-size: 1.25rem;
+}
+
+.complete-text {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--success-green);
 }
 
 /* ============================================

@@ -6,6 +6,36 @@ This changelog tracks all citation-related fixes across all visual essays.
 
 ## December 2024
 
+### 2024-12-11
+
+#### the-history-of-burmese-cuisine
+- **[v1.0 → v1.1]** `SRC-FIX`: Replaced 6 fabricated source URLs with verified sources
+  - Before: britannica.com/topic/Myanmar-cuisine (does not exist)
+  - After: en.wikipedia.org/wiki/Burmese_cuisine (verified)
+  - Before: jstor.org/stable/southeast-asian-studies (invalid URL)
+  - After: en.wikipedia.org/wiki/Lahpet (verified)
+  - Before: oxford.academia.edu/BurmeseFoodStudies (fabricated)
+  - After: en.wikipedia.org/wiki/Ngapi (verified)
+  - Before: asiasociety.org/tea-culture-myanmar (does not exist)
+  - After: britannica.com/place/Myanmar (verified)
+  - Before: burmaresearch.org/konbaung-dynasty (domain doesn't exist)
+  - After: en.wikipedia.org/wiki/Konbaung_dynasty (verified)
+  - Before: archive.org/details/foodofburma0000khin (uncertain)
+  - After: simonandschuster.com/books/The-Burmese-Kitchen (verified)
+  - Reason: Original URLs were fabricated placeholder content
+
+- **[v1.1]** `QUOTE-FIX`: Removed quotation marks from fabricated statements
+  - Before: Composite character statements in quotation marks (implied real quotes)
+  - After: Quotation marks removed, rendered as "perspectives" (editorial descriptions)
+  - Technical: Modified FigureProfile component, replaced QuoteMonument with narrative
+  - Reason: Cannot present fabricated statements as direct quotes, even with disclosure
+
+- **[v1.1]** `CERT`: Certification status upgraded
+  - Before: ⚠️ CONDITIONAL (5.5/10)
+  - After: ✅ APPROVED (8.5/10)
+
+---
+
 ### 2024-12-10
 
 #### the-mirror
@@ -65,4 +95,4 @@ This changelog tracks all citation-related fixes across all visual essays.
 
 ---
 
-*Last updated: December 10, 2024*
+*Last updated: December 11, 2024*

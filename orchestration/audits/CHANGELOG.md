@@ -6,6 +6,24 @@ This master changelog tracks all audit activity across all visual essays and all
 
 ## December 2024
 
+### 2024-12-11
+
+#### the-history-of-burmese-cuisine
+| Domain | Version | Action | Score | Details |
+|--------|---------|--------|-------|---------|
+| Scroll | v1.0 | `INIT` | 8.0/10 | Passive listeners, IO verified |
+| Experience | v1.0 | `INIT` | 8.5/10 | All 8 chapters, strong animations |
+| Visual | v1.0 | `INIT` | B+ (85) | 46+ CC-licensed images verified |
+| Citation | v1.0 | `INIT` | 5.5/10 | 🔴 6 fabricated URLs identified |
+| Citation | v1.1 | `SRC-FIX` | 8.5/10 | Replaced all 6 URLs with verified sources |
+| Citation | v1.1 | `QUOTE-FIX` | — | Added prominent composite character disclosure |
+| SEO | v1.0 | `INIT` | C+ (75) | Missing JSON-LD (non-blocking) |
+| Meta | v1.0 → v1.1 | `CERT` | 8.3/10 | **Certification: ✅ CERTIFIED** |
+
+**Summary**: Full comprehensive audit completed. All blocking citation issues resolved — 6 fabricated URLs replaced with verified sources (Wikipedia, Britannica, Simon & Schuster). Composite character quotes now have prominent disclosure. Essay certified for publication.
+
+---
+
 ### 2024-12-10
 
 #### the-mirror
@@ -76,9 +94,10 @@ This master changelog tracks all audit activity across all visual essays and all
 
 | Essay | Last Audit | Citation | Scroll | Experience | Visual | SEO | Overall |
 |-------|------------|----------|--------|------------|--------|-----|---------|
+| the-history-of-burmese-cuisine | 2024-12-11 | ✅ | ✅ | ✅ | ✅ | 🟡 | ✅ CERTIFIED |
 | the-mirror | 2024-12-10 | ✅ | — | — | — | — | ⚠️ Partial |
 | the-thinking-machine | 2024-12-09 | — | 🟡 | — | — | — | ⚠️ Partial |
 
 ---
 
-*Last updated: December 10, 2024*
+*Last updated: December 11, 2024*

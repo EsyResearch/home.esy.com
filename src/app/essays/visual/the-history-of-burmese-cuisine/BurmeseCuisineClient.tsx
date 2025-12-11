@@ -348,7 +348,13 @@ const FigurePortraitPlaceholder: React.FC = () => (
 );
 
 // Figure Profile Component
+// Note: Contemporary figures are composite characters. Their "perspectives" are editorial 
+// syntheses representing common viewpoints among practitioners, not direct quotes.
 const FigureProfile: React.FC<{ figure: FigureData }> = ({ figure }) => {
+  // Historical figures with images have verified/attributed quotes
+  // Contemporary figures (no image) have editorial perspectives, not quotes
+  const isHistoricalFigure = !!figure.image;
+  
   return (
     <article className="figure-profile fade-in">
       {figure.image ? (
@@ -370,12 +376,32 @@ const FigureProfile: React.FC<{ figure: FigureData }> = ({ figure }) => {
         </h4>
         <p className="figure-role">{figure.role}</p>
         <div className="figure-quote">
-          {figure.quoteBurmese && (
-            <p className="figure-quote-burmese burmese-script">
-              &ldquo;{figure.quoteBurmese}&rdquo;
-            </p>
+          {isHistoricalFigure ? (
+            // Historical figures: show as attributed quote (still needs verification)
+            <>
+              {figure.quoteBurmese && (
+                <p className="figure-quote-burmese burmese-script">
+                  &ldquo;{figure.quoteBurmese}&rdquo;
+                </p>
+              )}
+              <p className="figure-quote-english">
+                &ldquo;{figure.quoteEnglish}&rdquo;
+                <span className="quote-attribution"> — attributed</span>
+              </p>
+            </>
+          ) : (
+            // Contemporary composite figures: show as perspective (no quotes)
+            <>
+              {figure.quoteBurmese && (
+                <p className="figure-quote-burmese burmese-script">
+                  {figure.quoteBurmese}
+                </p>
+              )}
+              <p className="figure-quote-english figure-perspective">
+                {figure.quoteEnglish}
+              </p>
+            </>
           )}
-          <p className="figure-quote-english">&ldquo;{figure.quoteEnglish}&rdquo;</p>
         </div>
         <p className="figure-significance">{figure.significance}</p>
       </div>
@@ -434,36 +460,36 @@ const ImageWithCaption: React.FC<{
 const Sources: React.FC = () => {
   const sources = [
     {
-      title: 'Myanmar Cuisine: A Journey Through History and Flavors',
-      url: 'https://www.britannica.com/topic/Myanmar-cuisine',
+      title: 'Burmese Cuisine — Wikipedia',
+      url: 'https://en.wikipedia.org/wiki/Burmese_cuisine',
     },
     {
-      title: 'The Food of Burma: Authentic Recipes from the Land of the Golden Pagoda',
-      url: 'https://archive.org/details/foodofburma0000khin',
+      title: 'Mohinga: Myanmar\'s National Dish — Wikipedia',
+      url: 'https://en.wikipedia.org/wiki/Mohinga',
     },
     {
-      title: 'Laphet: The Fermented Tea Leaf Tradition of Myanmar',
-      url: 'https://www.jstor.org/stable/southeast-asian-studies',
+      title: 'Lahpet: Fermented Tea Leaf Tradition — Wikipedia',
+      url: 'https://en.wikipedia.org/wiki/Lahpet',
     },
     {
-      title: 'Ngapi: The Soul of Burmese Cuisine',
-      url: 'https://www.oxford.academia.edu/BurmeseFoodStudies',
+      title: 'Ngapi: Fermented Fish Paste — Wikipedia',
+      url: 'https://en.wikipedia.org/wiki/Ngapi',
     },
     {
-      title: 'Colonial Burma and the Transformation of Cuisine (1824-1948)',
-      url: 'https://www.cambridge.org/core/journals/modern-asian-studies',
+      title: 'The Burmese Kitchen by Copeland Marks & Aung Thein (1987)',
+      url: 'https://www.simonandschuster.com/books/The-Burmese-Kitchen/Copeland-Marks/9780871317681',
     },
     {
-      title: 'Tea Culture in Myanmar: From Shan Highlands to Urban Tea Shops',
-      url: 'https://asiasociety.org/tea-culture-myanmar',
+      title: 'Myanmar: History and Cultural Life — Encyclopedia Britannica',
+      url: 'https://www.britannica.com/place/Myanmar',
     },
     {
-      title: 'Burmese Days by George Orwell - Food Observations',
+      title: 'Burmese Days by George Orwell — Project Gutenberg',
       url: 'https://www.gutenberg.org/ebooks/1105',
     },
     {
-      title: 'The Konbaung Dynasty and Royal Cuisine (1752-1885)',
-      url: 'https://www.burmaresearch.org/konbaung-dynasty',
+      title: 'Konbaung Dynasty — Wikipedia',
+      url: 'https://en.wikipedia.org/wiki/Konbaung_dynasty',
     },
   ];
 
@@ -481,9 +507,17 @@ const Sources: React.FC = () => {
           ))}
         </ul>
         <p className="sources-note">
-          This narrative draws from academic sources, culinary archives, and oral histories
-          of Burmese cuisine spanning over 2,000 years. All quotes from contemporary figures
-          are composite representations based on documented interviews and ethnographic research.
+          <strong>A Note on Figures:</strong> The contemporary figures in this essay (Daw Khin Nyunt, 
+          U Kyaw Soe, Daw Than Myint, Sao Kham Hlaing, U Tin Maung, Chef Suu Kyi Win, Ko Zaw Naing, 
+          and Ma Aye Aye Win) are composite characters representing archetypal practitioners, scholars, 
+          and diaspora community members. Their perspectives are editorial descriptions based on 
+          ethnographic research and journalistic accounts — not direct quotes. Historical figures 
+          (King Mindon, Queen Supayalat, George Orwell) are real; their statements are paraphrased 
+          and marked as &ldquo;attributed&rdquo; where primary sources have not been verified.
+        </p>
+        <p className="sources-note">
+          This narrative draws from Wikipedia&apos;s well-referenced articles on Burmese cuisine, 
+          Encyclopedia Britannica, published cookbooks, and historical archives.
         </p>
       </div>
     </section>
@@ -1384,11 +1418,17 @@ export default function BurmeseCuisineClient() {
               serve homesick communities and curious Americans alike.
             </p>
 
-            <QuoteMonument
-              quoteBurmese="ချက်ပြုတ်နည်းသုံးခုနဲ့ ခြောက်ငါးပိ တစ်အိတ်ယူလာခဲ့တယ်။ ကျန်တာအကုန် အရသာနဲ့ မှတ်မိရတယ်။"
-              quoteEnglish="I came with three recipes in my head and a bag of dried ngapi. Everything else, I had to remember by taste."
-              attribution="Ma Aye Aye Win, Oakland, California"
-            />
+            {/* Narrative perspective - composite character representing diaspora restaurateurs */}
+            <div className="diaspora-perspective fade-in">
+              <p className="perspective-burmese burmese-script">
+                ချက်ပြုတ်နည်းသုံးခုနဲ့ ခြောက်ငါးပိ တစ်အိတ်ယူလာခဲ့တယ်။ ကျန်တာအကုန် အရသာနဲ့ မှတ်မိရတယ်။
+              </p>
+              <p className="perspective-english">
+                Many diaspora restaurateurs describe leaving Myanmar with just a few recipes 
+                in their heads and a bag of dried ngapi. Everything else, they had to 
+                remember by taste — reconstructing homeland flavors from memory alone.
+              </p>
+            </div>
 
             <p className="fade-in">
               Diaspora cuisine is cuisine under pressure. When ingredients are unavailable, 

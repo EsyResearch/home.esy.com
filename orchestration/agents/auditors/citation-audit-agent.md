@@ -147,12 +147,19 @@ This agent acts as a **citation quality guardian** that evaluates completed scro
 
 ## Audit Process
 
+### Phase 0: Research Directory Check
+1. Verify `research/` directory exists in essay folder
+2. Verify `research/CITATIONS.md` exists
+3. If missing: Flag as **BLOCKING** issue — must be created before audit can proceed
+4. If present: Load citation log for cross-reference during audit
+
 ### Phase 1: Content Extraction
 1. Read complete scrollytelling content
 2. Extract all factual claims (dates, names, statistics, events)
 3. Extract all quotes and attributions
 4. Extract Sources & Further Reading section
 5. Identify content type (general vs. children's)
+6. Cross-reference with CITATIONS.md for any discrepancies
 
 ### Phase 2: Claim Inventory
 Create exhaustive list of verifiable claims:
@@ -665,6 +672,108 @@ After verification, assess long-term stability:
 - **Approval Model**: All critical issues must be resolved before publishing
 - **Goal**: Ensure every Esy scrollytelling piece stands up to source scrutiny
 
+---
+
+## Essay Research Directory Structure
+
+Every visual essay **MUST** have a `research/` directory containing a `CITATIONS.md` file that serves as the **single source of truth** for all citations.
+
+### Directory Structure
+
+```
+src/app/essays/visual/[essay-slug]/
+├── [EssayName]Client.tsx      # Main essay component
+├── [essay-name].css           # Essay styles
+├── images.ts                  # Image assets with licensing
+├── page.tsx                   # Next.js page
+└── research/                  # ← REQUIRED
+    ├── README.md              # Research directory overview
+    └── CITATIONS.md           # ← CITATION LOG (Single Source of Truth)
+```
+
+### CITATIONS.md Requirements
+
+The citation log MUST contain:
+
+1. **Sources Section Citations** — Every source in the essay's Sources section
+   - Title, URL, Type, Tier classification
+   - Access date, verification status
+   - Claims supported by this source
+
+2. **Image Citations** — Summary of image licensing
+   - License type distribution
+   - Link to full details in `images.ts`
+
+3. **Quotes & Attributions** — Status of all quoted statements
+   - Direct quotes: Must have primary source verification
+   - Attributed quotes: Must be marked as "attributed" if unverified
+   - Editorial perspectives: Must NOT use quotation marks
+
+4. **Factual Claims** — Major claims requiring citation support
+   - Claim text, chapter location
+   - Citation status (verified/pending)
+
+5. **Version History** — Changes to citations over time
+
+6. **Audit Trail** — Record of citation audits
+
+### Audit Integration
+
+When auditing an essay, the Citation Audit Agent MUST:
+
+1. **Check for research directory existence**
+   - If missing: Create it and flag as blocking issue
+
+2. **Verify CITATIONS.md is present and complete**
+   - All sources in essay must be logged
+   - All logged sources must appear in essay
+
+3. **Cross-reference essay against log**
+   - Sources in essay ↔ Sources in CITATIONS.md
+   - Any mismatch is a critical issue
+
+4. **Update CITATIONS.md after fixes**
+   - All citation changes must be reflected in the log
+   - Update version history
+
+### Citation Log Template
+
+```markdown
+# Citation Log: [Essay Title]
+
+## Sources Section Citations
+
+### Source 1: [Title]
+| Field | Value |
+|-------|-------|
+| **Title** | [Full title] |
+| **URL** | [Full URL] |
+| **Type** | [Tier classification] |
+| **Accessed** | [Date] |
+| **Status** | ✅ Verified / ⚠️ Pending / ❌ Broken |
+| **Supports Claims** | [What claims this source supports] |
+
+## Quotes & Attributions
+
+| Figure | Quote | Source Status |
+|--------|-------|---------------|
+| [Name] | [Quote text] | ✅ Verified / ⚠️ Unverified |
+
+## Version History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| v1.0 | YYYY-MM-DD | Initial log |
+```
+
+### Red Lines for Citation Logs
+
+- ❌ **NEVER publish without a research/CITATIONS.md file**
+- ❌ **NEVER have sources in essay that aren't logged**
+- ❌ **NEVER have logged sources that aren't in essay**
+- ❌ **NEVER mark a quote as "verified" without primary source**
+- ❌ **NEVER use quotation marks for unverified statements**
+
 ## Usage Instructions
 
 When working with this agent, reference the role by stating:
@@ -675,12 +784,14 @@ When working with this agent, reference the role by stating:
 ## Deliverables
 
 ### Standard Audit Output
-1. **Claim Inventory**: Complete list of all factual claims with citation status
-2. **Source Tier Analysis**: Classification of all sources with distribution metrics
-3. **Link Status Report**: Accessibility status for all URLs
-4. **Gap Analysis**: Unsupported claims with suggested sources
-5. **Audit Report**: Full structured report with approval checkboxes
-6. **Certification Status**: Final approval/rejection with reasoning
+1. **Research Directory Check**: Verify `research/CITATIONS.md` exists and is complete
+2. **Claim Inventory**: Complete list of all factual claims with citation status
+3. **Source Tier Analysis**: Classification of all sources with distribution metrics
+4. **Link Status Report**: Accessibility status for all URLs
+5. **Citation Log Sync**: Verify essay sources match CITATIONS.md (bidirectional)
+6. **Gap Analysis**: Unsupported claims with suggested sources
+7. **Audit Report**: Full structured report with approval checkboxes
+8. **Certification Status**: Final approval/rejection with reasoning
 
 ### Report Storage
 
@@ -801,7 +912,13 @@ orchestration/agents/CitationReports/CHANGELOG.md
 ---
 
 ## Last Updated
-December 2024
+December 11, 2024
+
+### Recent Changes
+- Added Essay Research Directory Structure requirement
+- All essays must have `research/CITATIONS.md` as single source of truth
+- Added Phase 0 (Research Directory Check) to audit process
+- Updated deliverables to include Citation Log Sync check
 
 ---
 

@@ -41,6 +41,12 @@ const ConditionalFooter = () => {
     return null;
   }
   
+  // Check if we're on the photo-essays landing page (immersive experience with own footer)
+  const isPhotoEssaysPage = normalizedPath === '/photo-essays';
+  if (isPhotoEssaysPage) {
+    return null;
+  }
+  
   // Render the common footer on all other pages
   return <Footer />;
 };

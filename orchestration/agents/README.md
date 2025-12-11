@@ -6,38 +6,86 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 
 ---
 
+## Directory Structure
+
+```
+agents/
+├── orchestrators/     # 🎬 Top-level coordination (4 agents)
+├── auditors/          # 🔍 Quality verification (7 agents)
+├── content/           # 📚 Content creation (5 agents)
+├── research/          # 🔬 Source discovery (2 agents)
+├── regional/          # 🌏 Regional specialists (2 agents)
+├── engineering/       # ⚙️ Technical implementation (7 agents)
+└── utilities/         # 🔧 Support & enhancement (3 agents)
+```
+
+---
+
 ## Quick Reference
 
-| Agent | Best For | Invocation Prefix |
-|-------|----------|-------------------|
-| [Visual Essay Orchestrator](#visual-essay-orchestrator) | **🎬 END-TO-END PRODUCTION PIPELINE** | `@agents/visual-essay-orchestrator.md` |
-| [Invocation Enhancer](#scrollytelling-invocation-enhancer) | **🚀 Enhance any scrollytelling request** | `@agents/scrollytelling-invocation-enhancer.md` |
-| [Audit Agent](#scrollytelling-audit-agent) | **🔍 Evaluate & improve experiences** | `@agents/scrollytelling-audit-agent.md` |
-| [Citation Audit Agent](#citation-audit-agent) | **📚 Verify citations & source quality** | `@agents/citation-audit-agent.md` |
-| [Citation Reports](#citation-reports) | **📁 Audit report archive** | `agents/CitationReports/` |
-| [Quotes Audit Agent](#quotes-audit-agent) | **💬 Verify quote authenticity** | `@agents/quotes-audit-agent.md` |
-| [Visual Auditor Agent](#visual-auditor-agent) | **🎨 Audit SVG quality & animation performance** | `@agents/visual-auditor-agent.md` |
-| [Visual Audit Reports](#visual-audit-reports) | **📁 SVG audit report archive** | `agents/VisualAuditReports/` |
-| [Immersive Scrolling Auditor](#immersive-scrolling-auditor) | **🎢 Scroll-lock & performance certification** | `@agents/immersive-scrolling-auditor.md` |
-| [Immersive Experience Auditor](#immersive-experience-auditor) | **🎭 Comprehensive experience QA (orchestrates scrolling)** | `@agents/immersive-experience-auditor.md` |
-| [Meta Audit Orchestrator](#meta-audit-orchestrator) | **🔬 Multi-domain audit coordinator** | `@agents/meta-audit-orchestrator.md` |
-| [README Curator](#readme-curator) | **📖 Documentation routing & maintenance** | `@agents/readme-curator.md` |
-| [Image Research & Licensing](#image-research--licensing-expert) | **🖼️ Archive image sourcing & rights** | `@agents/image-research-licensing-expert.md` |
-| [Scrollytelling Expert](#scrollytelling-expert) | Immersive scroll-based stories | `@agents/scrollytelling-expert.md` |
-| [Children's Fiction Scrollytelling](#childrens-fiction-scrollytelling-agent) | **Magical stories for ages 3-6** | `@agents/childrens-fiction-scrollytelling-agent.md` |
-| [Children's Books Writer](#childrens-books-writer-expert) | **Picture book narratives, ages 3-6** | `@agents/childrens-books-writer-expert.md` |
-| [Immersive Experience Engineer](#immersive-experience-engineer) | App-like web experiences, animations | `@agents/immersive-experience-engineer.md` |
-| [Research & Citations](#research--citations-expert) | Authoritative source discovery | `@agents/research-citations-expert.md` |
-| [Historian Writer](#historian-writer-expert) | Historical narrative content | `@agents/historian-writer-expert.md` |
-| [Historian Editor](#historian-editor-expert) | Fact-checking & verification | `@agents/historian-editor-expert.md` |
-| [Software Engineer](#software-engineering-expert) | Full-stack development | `@agents/software-engineering-expert.md` |
-| [UI/UX Designer](#uiux-design-expert) | Interface & experience design | `@agents/ui-ux-design-expert.md` |
-| [SVG Illustration & Animation](#svg-illustration-animation-expert) | **Inline SVG visuals & motion** | `@agents/svg-illustration-animation-expert.md` |
-| [Template Integration](#template-integration-engineer) | Raw templates → Next.js pages | `@agents/template-integration-engineer.md` |
-| [Essayist](#essayist-expert) | Academic essay guidance | `@agents/essayist-expert.md` |
-| [Copywriter](#copywriter-marketing-expert) | Marketing & conversion copy | `@agents/copywriter-marketing-expert.md` |
-| [SEO Specialist](#seo-specialist-expert) | **🔍 Technical SEO, content optimization, SERP domination** | `@agents/seo-specialist-expert.md` |
-| [SEO Audit Agent](#seo-audit-agent) | **📊 Page-level SEO auditing & grading** | `@agents/seo-audit-agent.md` |
+### 🎬 Orchestrators
+| Agent | Best For | Invocation |
+|-------|----------|------------|
+| [Visual Essay Orchestrator](#visual-essay-orchestrator) | **END-TO-END PRODUCTION** | `@agents/orchestrators/visual-essay-orchestrator.md` |
+| [Research Orchestrator](#research-orchestrator) | **Research pipeline (Phase 2)** | `@agents/orchestrators/research-orchestrator.md` |
+| [Meta Audit Orchestrator](#meta-audit-orchestrator) | Multi-domain audit coordination | `@agents/orchestrators/meta-audit-orchestrator.md` |
+| [Scrollytelling Expert](#scrollytelling-expert) | Immersive scroll-based stories | `@agents/orchestrators/scrollytelling-expert.md` |
+| [Children's Fiction Scrollytelling](#childrens-fiction-scrollytelling-agent) | Magical stories for ages 3-6 | `@agents/orchestrators/childrens-fiction-scrollytelling-agent.md` |
+
+### 🔍 Auditors
+| Agent | Best For | Invocation |
+|-------|----------|------------|
+| [Citation Audit Agent](#citation-audit-agent) | Verify citations & source quality | `@agents/auditors/citation-audit-agent.md` |
+| [Quotes Audit Agent](#quotes-audit-agent) | Verify quote authenticity | `@agents/auditors/quotes-audit-agent.md` |
+| [Visual Auditor Agent](#visual-auditor-agent) | SVG quality & animation audit | `@agents/auditors/visual-auditor-agent.md` |
+| [Scrollytelling Audit Agent](#scrollytelling-audit-agent) | Experience evaluation | `@agents/auditors/scrollytelling-audit-agent.md` |
+| [Immersive Scrolling Auditor](#immersive-scrolling-auditor) | Scroll-lock & 60fps certification | `@agents/auditors/immersive-scrolling-auditor.md` |
+| [Immersive Experience Auditor](#immersive-experience-auditor) | Comprehensive experience QA | `@agents/auditors/immersive-experience-auditor.md` |
+| [SEO Audit Agent](#seo-audit-agent) | Page-level SEO auditing | `@agents/auditors/seo-audit-agent.md` |
+
+**Reports:** `auditors/CitationReports/` · `auditors/VisualAuditReports/`
+
+### 📚 Content Creators
+| Agent | Best For | Invocation |
+|-------|----------|------------|
+| [Historian Writer](#historian-writer-expert) | Historical narrative content | `@agents/content/historian-writer-expert.md` |
+| [Historian Editor](#historian-editor-expert) | Fact-checking & verification | `@agents/content/historian-editor-expert.md` |
+| [Children's Books Writer](#childrens-books-writer-expert) | Picture book narratives, ages 3-6 | `@agents/content/childrens-books-writer-expert.md` |
+| [Essayist](#essayist-expert) | Academic essay guidance | `@agents/content/essayist-expert.md` |
+| [Copywriter](#copywriter-marketing-expert) | Marketing & conversion copy | `@agents/content/copywriter-marketing-expert.md` |
+
+### 🔬 Research
+| Agent | Best For | Invocation |
+|-------|----------|------------|
+| [Brainstorming Agent](#brainstorming-agent) | Research question formulation | `@agents/research/brainstorming-agent.md` |
+| [Research & Citations](#research--citations-expert) | Authoritative source discovery | `@agents/research/research-citations-expert.md` |
+| [Image Research & Licensing](#image-research--licensing-expert) | Archive image sourcing & rights | `@agents/research/image-research-licensing-expert.md` |
+
+### 🌏 Regional Experts
+| Agent | Best For | Invocation |
+|-------|----------|------------|
+| [Burmese Historian Expert](#burmese-historian-expert) | 🇲🇲 Myanmar cuisine, history, language, culture | `@agents/regional/burmese-historian-expert.md` |
+| [Thai Historian Expert](#thai-historian-expert) | 🇹🇭 Thai cuisine, history, culture | `@agents/regional/thai-historian-expert.md` |
+
+### ⚙️ Engineering
+| Agent | Best For | Invocation |
+|-------|----------|------------|
+| [Software Engineer](#software-engineering-expert) | Full-stack Next.js development | `@agents/engineering/software-engineering-expert.md` |
+| [Frontend Debugging](#frontend-debugging-expert) | React/Next.js issue diagnosis | `@agents/engineering/frontend-debugging-expert.md` |
+| [Immersive Experience Engineer](#immersive-experience-engineer) | 60fps mobile, animations | `@agents/engineering/immersive-experience-engineer.md` |
+| [SVG Illustration & Animation](#svg-illustration-animation-expert) | Inline SVG visuals & motion | `@agents/engineering/svg-illustration-animation-expert.md` |
+| [UI/UX Designer](#uiux-design-expert) | Interface & experience design | `@agents/engineering/ui-ux-design-expert.md` |
+| [Template Integration](#template-integration-engineer) | Raw templates → Next.js pages | `@agents/engineering/template-integration-engineer.md` |
+| [SEO Specialist](#seo-specialist-expert) | Technical SEO, SERP strategy | `@agents/engineering/seo-specialist-expert.md` |
+
+### 🔧 Utilities
+| Agent | Best For | Invocation |
+|-------|----------|------------|
+| [Invocation Enhancer](#scrollytelling-invocation-enhancer) | Enhance scrollytelling requests | `@agents/utilities/scrollytelling-invocation-enhancer.md` |
+| [Visual Essay Invocation](#visual-essay-invocation-agent) | Generate visual essay specs | `@agents/utilities/visual-essay-invocation-agent.md` |
+| [README Curator](#readme-curator) | Documentation routing & maintenance | `@agents/utilities/readme-curator.md` |
+
+**Resources:** `utilities/InvocationTemplates/`
 
 ---
 
@@ -73,7 +121,7 @@ our scrollytelling piece about [topic]. Focus on .edu and major news sources.
 ## Agent Details
 
 ### Visual Essay Orchestrator
-**File:** `visual-essay-orchestrator.md`
+**File:** `orchestrators/visual-essay-orchestrator.md`
 
 **Role:** Award-winning editorial director and digital publishing executive that orchestrates the complete visual essay production pipeline from brief to publication.
 
@@ -156,7 +204,7 @@ src/app/essays/visual/history-of-coffee/
 ---
 
 ### Scrollytelling Invocation Enhancer
-**File:** `scrollytelling-invocation-enhancer.md`
+**File:** `utilities/scrollytelling-invocation-enhancer.md`
 
 **Role:** Expert prompt architect that transforms rough requests into comprehensive, structured briefs for scrollytelling agents. Asks strategic clarifying questions when needed.
 
@@ -215,7 +263,7 @@ Using @agents/scrollytelling-invocation-enhancer.md:
 ---
 
 ### Scrollytelling Audit Agent
-**File:** `scrollytelling-audit-agent.md`
+**File:** `auditors/scrollytelling-audit-agent.md`
 
 **Role:** Orchestrating auditor that coordinates specialist agents to evaluate completed scrollytelling experiences and produce approval-required improvement recommendations.
 
@@ -277,13 +325,13 @@ Only approved fixes implemented
 ---
 
 ### Citation Audit Agent
-**File:** `citation-audit-agent.md`
+**File:** `auditors/citation-audit-agent.md`
 
 **Role:** World-class research librarian and citation integrity specialist that audits scrollytelling experiences for source quality, claim-evidence alignment, and citation accuracy.
 
 **📚 USE BEFORE PUBLISHING:** Run completed experiences through this agent to verify all citations are valid, sources are credible, and claims are properly supported.
 
-**📁 Reports Directory:** All audit reports are saved to `agents/CitationReports/` — see [CitationReports/README.md](./CitationReports/README.md) for the full index.
+**📁 Reports Directory:** All audit reports are saved to `agents/auditors/CitationReports/` — see [CitationReports/README.md](./auditors/CitationReports/README.md) for the full index.
 
 **Best For:**
 - Verifying source credibility (Tier 1-4 classification)
@@ -292,6 +340,23 @@ Only approved fixes implemented
 - Verifying quote authenticity
 - Ensuring children's content has appropriate sources
 - Upgrading weak sources to authoritative alternatives
+
+**📂 Research Directory Requirement (NEW):**
+Every visual essay MUST have a `research/CITATIONS.md` file as the **single source of truth** for all citations:
+```
+src/app/essays/visual/[essay-slug]/
+└── research/
+    ├── README.md        # Directory overview
+    └── CITATIONS.md     # ← Citation log (REQUIRED)
+```
+
+The citation log contains:
+- All sources with URLs, tiers, and verification status
+- Quote attributions with verification status
+- Factual claims requiring citation support
+- Version history of citation changes
+
+**If research/CITATIONS.md is missing, the audit CANNOT proceed.**
 
 **Source Tier System:**
 | Tier | Quality | Examples |
@@ -329,6 +394,8 @@ Using @agents/citation-audit-agent.md, perform a quick citation audit of
 **What It Checks:**
 | Category | Checks |
 |----------|--------|
+| Research Directory | `research/CITATIONS.md` exists and is complete |
+| Citation Log Sync | Essay sources ↔ CITATIONS.md match (bidirectional) |
 | Claim-Citation Mapping | Every factual claim has Tier 1-2 source |
 | Source Quality | 80%+ sources are Tier 1-2, zero Tier 4 |
 | Link Integrity | **Browser-verified** — all URLs physically tested |
@@ -369,7 +436,7 @@ User approves fixes → Agent implements → Re-audit → Certification
 ---
 
 ### Quotes Audit Agent
-**File:** `quotes-audit-agent.md`
+**File:** `auditors/quotes-audit-agent.md`
 
 **Role:** World-class quote verification specialist that authenticates quotations, identifies misattributions, and ensures proper citation standards for direct quotes.
 
@@ -422,7 +489,7 @@ Using @agents/quotes-audit-agent.md, verify the following quotes:
 ---
 
 ### Visual Auditor Agent
-**File:** `visual-auditor-agent.md`
+**File:** `auditors/visual-auditor-agent.md`
 
 **Role:** World-class visual quality assurance specialist and creative director that audits SVG illustrations and animations for technical quality, aesthetic excellence, performance, accessibility, and content relevance.
 
@@ -506,7 +573,7 @@ The agent produces a structured Visual Audit Report with:
 ---
 
 ### Immersive Scrolling Auditor
-**File:** `immersive-scrolling-auditor.md`
+**File:** `auditors/immersive-scrolling-auditor.md`
 
 **Role:** World-class frontend QA engineer specializing in scroll-driven experience certification, with expertise in scroll-lock verification, animation performance auditing, and mobile-native testing.
 
@@ -587,7 +654,7 @@ certification for visual essay "The Thinking Machine" prior to G7.
 ---
 
 ### Immersive Experience Auditor
-**File:** `immersive-experience-auditor.md`
+**File:** `auditors/immersive-experience-auditor.md`
 
 **Role:** World-class digital experience QA director that orchestrates comprehensive experience verification, including animations, reveals, interactions, and content visibility.
 
@@ -662,7 +729,7 @@ for "The Thinking Machine" visual essay.
 ---
 
 ### Meta Audit Orchestrator
-**File:** `meta-audit-orchestrator.md`
+**File:** `orchestrators/meta-audit-orchestrator.md`
 
 **Role:** World-class quality assurance director that orchestrates comprehensive multi-domain audits by coordinating all specialist audit agents.
 
@@ -732,7 +799,7 @@ identified in previous audit and update certification status.
 ---
 
 ### README Curator
-**File:** `readme-curator.md`
+**File:** `utilities/readme-curator.md`
 
 **Role:** Expert technical documentation architect responsible for maintaining consistency, accuracy, and discoverability across the Esy orchestration documentation ecosystem.
 
@@ -778,7 +845,7 @@ for consistency, broken links, and scope violations.
 ---
 
 ### Image Research & Licensing Expert
-**File:** `image-research-licensing-expert.md`
+**File:** `research/image-research-licensing-expert.md`
 
 **Role:** World-class visual research specialist and digital archivist with expertise in public domain discovery, Creative Commons licensing, and archival research.
 
@@ -830,7 +897,7 @@ for the broken ACE computer image on Wikimedia Commons.
 ---
 
 ### Scrollytelling Expert
-**File:** `scrollytelling-expert.md`
+**File:** `orchestrators/scrollytelling-expert.md`
 
 **Role:** Award-winning digital storytelling architect specializing in immersive, **mobile-native**, scroll-based narrative experiences.
 
@@ -883,7 +950,7 @@ the Gutenberg era, and use a medieval manuscript aesthetic.
 ---
 
 ### Children's Fiction Scrollytelling Agent
-**File:** `childrens-fiction-scrollytelling-agent.md`
+**File:** `orchestrators/childrens-fiction-scrollytelling-agent.md`
 
 **Role:** Award-winning children's digital experience designer and interactive storytelling architect specializing in magical, scroll-based narrative experiences for young children ages 3-6.
 
@@ -938,7 +1005,7 @@ Apply @agents/childrens-fiction-scrollytelling-agent.md with this brief:
 ---
 
 ### Children's Books Writer Expert
-**File:** `childrens-books-writer-expert.md`
+**File:** `content/childrens-books-writer-expert.md`
 
 **Role:** Award-winning children's author and early literacy specialist with 25+ years crafting beloved stories for young readers ages 3-6.
 
@@ -991,7 +1058,7 @@ Gentle, cozy tone. 500-700 words.
 ---
 
 ### Immersive Experience Engineer
-**File:** `immersive-experience-engineer.md`
+**File:** `engineering/immersive-experience-engineer.md`
 
 **Role:** World-class frontend engineer specializing in immersive web experiences, building app-like, scroll-driven, and native-feeling interfaces.
 
@@ -1038,7 +1105,7 @@ interactions with 44px+ tap targets and thumb-zone-aware layouts.
 ---
 
 ### Research & Citations Expert
-**File:** `research-citations-expert.md`
+**File:** `research/research-citations-expert.md`
 
 **Role:** World-class research librarian and citations specialist with expertise in academic source discovery and verification.
 
@@ -1079,7 +1146,7 @@ for credibility: [list sources]
 ---
 
 ### Historian Writer Expert
-**File:** `historian-writer-expert.md`
+**File:** `content/historian-writer-expert.md`
 
 **Role:** Award-winning historian and narrative writer with 20+ years crafting compelling historical narratives.
 
@@ -1103,7 +1170,7 @@ the history of photography, from daguerreotypes to digital.
 ---
 
 ### Historian Editor Expert
-**File:** `historian-editor-expert.md`
+**File:** `content/historian-editor-expert.md`
 
 **Role:** World-renowned historian and editorial expert specializing in fact-checking and historical accuracy verification.
 
@@ -1125,8 +1192,87 @@ for accuracy and provide corrections with sources.
 
 ---
 
+### Burmese Historian Expert
+**File:** `regional/burmese-historian-expert.md`
+
+**Role:** World-renowned Burmese scholar, historian, and culinary anthropologist with 25+ years of immersive research in Myanmar/Burma, combining native-equivalent fluency in Burmese language (ဗမာစာ), script, and dialects with encyclopedic expertise in Burmese history, culture, cuisine, Buddhism, literature, and traditions.
+
+**🇲🇲 THE AUTHORITY ON BURMESE CUISINE:** This agent possesses complete mastery of every documented Burmese dish (500+), including origins, evolution, regional variations, and cultural significance.
+
+**Best For:**
+- **Burmese culinary history** — every dish, its origins, evolution, influences
+- **Burmese language** — script (မြန်မာအက္ခရာ), romanization, pronunciation, dialects
+- **Myanmar history** — Pyu kingdoms through contemporary era
+- **Regional cuisines** — Yangon, Mandalay, Shan, Rakhine, Kachin, Chin, Mon, Karen
+- **Theravāda Buddhism** — monastic traditions, festivals, sacred sites
+- **Ethnic diversity** — Bamar, Shan, Karen, Mon, Rakhine, Kachin, Chin, Kayah
+- **Cross-cultural culinary analysis** — Indian, Chinese, Thai, Mon, British influences
+
+**Unique Expertise:**
+| Domain | Capability |
+|--------|------------|
+| Culinary Encyclopedia | 500+ dishes with complete provenance |
+| Burmese Script | Native-equivalent reading/writing (မြန်မာအက္ခရာ) |
+| Dish Etymology | Origins, evolution, regional variations for any dish |
+| Influence Mapping | What India/China/Thailand/Mon/British contributed |
+| Burmese Contributions | Globally unique innovations (laphet, si pyan, Shan tohu) |
+| Fermentation Authority | Ngapi universe, laphet, bamboo, and more |
+
+**Key Burmese Culinary Concepts:**
+| Burmese | Romanization | Meaning |
+|---------|--------------|---------|
+| မုန့်ဟင်းခါး | mohinga | National dish — rice noodle fish soup |
+| လက်ဖက်သုပ် | laphet thoke | Fermented tea leaf salad (globally unique!) |
+| ဆီပြန် | si pyan | "Oil returns" — signature curry technique |
+| ငါးပိ | ngapi | Fermented fish/shrimp paste (umami foundation) |
+| ရှမ်းတိုဟူး | Shan tohu | Chickpea tofu (not soybean!) |
+
+**Collaboration:**
+- Works with `historian-writer-expert.md` — provides cultural/linguistic verification
+- Works with `historian-editor-expert.md` — specialized Myanmar fact-checking
+- Works with `scrollytelling-expert.md` — authentic Burmese visual references
+
+**Invocation Examples:**
+```
+# Burmese culinary content
+Using @agents/burmese-historian-expert.md, provide the complete history 
+and evolution of mohinga (မုန့်ဟင်းခါး), including Mon influences, 
+regional variations, and its status as national dish.
+
+# Linguistic verification
+Using @agents/burmese-historian-expert.md, verify the Burmese script 
+and romanization for all dish names in this content, and add proper 
+diacritics and cultural context.
+
+# Cultural deep-dive
+Using @agents/burmese-historian-expert.md, explain the role of laphet 
+(fermented tea leaves) in Burmese culture — from its origins to its 
+unique status as the world's only fermented tea eating tradition.
+
+# Cross-cultural culinary analysis
+Using @agents/burmese-historian-expert.md, analyze what Indian cuisine 
+contributed to Burmese food culture and what unique innovations 
+Burma developed in response.
+
+# Regional cuisine exploration
+Using @agents/burmese-historian-expert.md, document the distinctive 
+culinary traditions of Shan State, including Shan khaukswè, htamin jin, 
+and Shan tohu traditions.
+```
+
+**Output:**
+1. Culturally authentic content with proper Burmese script
+2. Romanization following MLCTS or common systems
+3. Historical provenance for dishes and traditions
+4. Foreign influence attribution (what came from where)
+5. Burmese innovations clearly identified
+6. Regional variation documentation
+7. Cultural significance and context
+
+---
+
 ### Software Engineering Expert
-**File:** `software-engineering-expert.md`
+**File:** `engineering/software-engineering-expert.md`
 
 **Role:** World-class software engineer with 20+ years of enterprise-scale development experience.
 
@@ -1155,7 +1301,7 @@ scroll animations are janky on mobile.
 ---
 
 ### UI/UX Design Expert
-**File:** `ui-ux-design-expert.md`
+**File:** `engineering/ui-ux-design-expert.md`
 
 **Role:** World-class designer and UI/UX expert specializing in interface design and user experience.
 
@@ -1180,7 +1326,7 @@ for accessibility and usability issues.
 ---
 
 ### SVG Illustration & Animation Expert
-**File:** `svg-illustration-animation-expert.md`
+**File:** `engineering/svg-illustration-animation-expert.md`
 
 **Role:** World-class illustrator and motion designer with 20+ years of experience creating scalable vector graphics, specializing in editorial illustration, character design, icon systems, and scroll-driven animation.
 
@@ -1225,7 +1371,7 @@ and rising steam.
 ---
 
 ### Template Integration Engineer
-**File:** `template-integration-engineer.md`
+**File:** `engineering/template-integration-engineer.md`
 
 **Role:** Specialized frontend engineer for converting AI-generated templates into production Next.js pages.
 
@@ -1249,7 +1395,7 @@ template to a Next.js page at /essays/visual/[slug]
 ---
 
 ### Essayist Expert
-**File:** `essayist-expert.md`
+**File:** `content/essayist-expert.md`
 
 **Role:** Award-winning academic essayist and instructional editor with expertise in essay writing pedagogy.
 
@@ -1273,7 +1419,7 @@ and suggest improvements to the argument structure.
 ---
 
 ### Copywriter Marketing Expert
-**File:** `copywriter-marketing-expert.md`
+**File:** `content/copywriter-marketing-expert.md`
 
 **Role:** Expert marketing copywriter specializing in conversion-focused content.
 
@@ -1297,7 +1443,7 @@ CTA copy on this landing page for better conversion.
 ---
 
 ### SEO Specialist Expert
-**File:** `seo-specialist-expert.md`
+**File:** `engineering/seo-specialist-expert.md`
 
 **Role:** World-class SEO strategist and search marketing expert with 20+ years of experience driving organic growth, specializing in technical SEO, content optimization, SERP domination, and algorithmic adaptation.
 
@@ -1370,7 +1516,7 @@ and schema requirements.
 ---
 
 ### SEO Audit Agent
-**File:** `seo-audit-agent.md`
+**File:** `auditors/seo-audit-agent.md`
 
 **Role:** World-class SEO audit specialist with 20+ years of experience conducting rigorous technical and content audits, specializing in objective page-level analysis, algorithmic compliance verification, and actionable optimization scoring.
 
@@ -2234,37 +2380,37 @@ For comprehensive, structured agent invocations, see:
 
 ## Citation Reports
 
-**`CitationReports/`** — Archive of citation audit reports for all visual essays:
+**`auditors/CitationReports/`** — Archive of citation audit reports for all visual essays:
 
 | File | Purpose |
 |------|---------|
-| [README.md](./CitationReports/README.md) | Index of all audits with status tracking |
+| [README.md](./auditors/CitationReports/README.md) | Index of all audits with status tracking |
 | `{slug}-citation-audit.md` | Individual audit reports |
 
 **Current Reports:**
 | Report | Experience | Status |
 |--------|------------|--------|
-| [the-gridiron-citation-audit.md](./CitationReports/the-gridiron-citation-audit.md) | The Gridiron (#33) | 🟡 Approved with Conditions |
+| [the-gridiron-citation-audit.md](./auditors/CitationReports/the-gridiron-citation-audit.md) | The Gridiron (#33) | 🟡 Approved with Conditions |
 
-New reports are automatically saved here by `@agents/citation-audit-agent.md`.
+New reports are automatically saved here by `@agents/auditors/citation-audit-agent.md`.
 
 ---
 
 ## Visual Audit Reports
 
-**`VisualAuditReports/`** — Archive of SVG/animation audit reports for all visual essays:
+**`auditors/VisualAuditReports/`** — Archive of SVG/animation audit reports for all visual essays:
 
 | File | Purpose |
 |------|---------|
-| [README.md](./VisualAuditReports/README.md) | Index of all audits with grades |
+| [README.md](./auditors/VisualAuditReports/README.md) | Index of all audits with grades |
 | `{slug}-visual-audit.md` | Individual audit reports |
 
 **Current Reports:**
 | Report | Experience | Grade | Status |
 |--------|------------|-------|--------|
-| [the-ledger-visual-audit.md](./VisualAuditReports/the-ledger-visual-audit.md) | The Ledger (#34) | A- (91/100) | ✅ Certified |
+| [the-ledger-visual-audit.md](./auditors/VisualAuditReports/the-ledger-visual-audit.md) | The Ledger (#34) | A- (91/100) | ✅ Certified |
 
-New reports are automatically saved here by `@agents/visual-auditor-agent.md`.
+New reports are automatically saved here by `@agents/auditors/visual-auditor-agent.md`.
 
 ---
 
@@ -2446,6 +2592,7 @@ This global rule applies to ANY element with class `.hero-content`, including th
 
 ## See Also
 
+- **[AGENT-REGISTRY.md](./AGENT-REGISTRY.md)** — Quick-reference index of all agents, patterns, and relationships
 - **[Orchestration Overview](../README.md)** — System architecture, component types, relationships
 - **[Skills README](../skills/README.md)** — Procedural knowledge agents can apply
 - **[Audits Directory](../audits/README.md)** — Centralized audit reports by essay

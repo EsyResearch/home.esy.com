@@ -1153,6 +1153,113 @@
 }
 
 /* ===========================================
+   REVEALED BLOCK ANIMATIONS
+   =========================================== */
+
+.revealed-block {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: 
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+.revealed-block.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===========================================
+   CHAPTER HEADER STAGGER ANIMATION
+   =========================================== */
+
+.chapter-header .chapter-number,
+.chapter-header .chapter-title,
+.chapter-header .chapter-era {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+.chapter-header.visible .chapter-number {
+  opacity: 0.3;
+  transform: translateY(0);
+  transition-delay: 0ms;
+}
+
+.chapter-header.visible .chapter-title {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 150ms;
+}
+
+.chapter-header.visible .chapter-era {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 300ms;
+}
+
+/* ===========================================
+   TINE EXPLANATION ANIMATION
+   =========================================== */
+
+.tine-explanation .tine-item {
+  opacity: 0;
+  transform: translateY(16px) scale(0.95);
+  transition: 
+    opacity var(--duration-normal) var(--ease-out),
+    transform var(--duration-normal) var(--ease-out),
+    background var(--duration-normal) var(--ease-out),
+    border-color var(--duration-normal) var(--ease-out);
+}
+
+.tine-explanation.visible .tine-item.revealed {
+  opacity: 0.5;
+  transform: translateY(0) scale(1);
+}
+
+.tine-explanation.visible .tine-item.active {
+  opacity: 1;
+  border-color: var(--accent);
+  background: var(--accent-glow);
+}
+
+.tine-explanation.visible .tine-item.active .tine-count {
+  color: var(--accent);
+}
+
+/* ===========================================
+   GLOBAL TRADITION STAGGER ANIMATION
+   =========================================== */
+
+.global-tradition {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: 
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+.global-tradition.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.global-tradition h4,
+.global-tradition p {
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+  transition-delay: 200ms;
+}
+
+.global-tradition.visible h4,
+.global-tradition.visible p {
+  opacity: 1;
+}
+
+/* ===========================================
    REDUCED MOTION
    =========================================== */
 
@@ -1182,6 +1289,41 @@
     opacity: 1;
     transform: none;
   }
+  
+  .revealed-block {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .chapter-header .chapter-number,
+  .chapter-header .chapter-title,
+  .chapter-header .chapter-era {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .chapter-header .chapter-number {
+    opacity: 0.3;
+  }
+  
+  .tine-explanation .tine-item {
+    opacity: 0.5;
+    transform: none;
+  }
+  
+  .tine-explanation .tine-item.active {
+    opacity: 1;
+  }
+  
+  .global-tradition {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .global-tradition h4,
+  .global-tradition p {
+    opacity: 1;
+  }
 }
 
 /* ===========================================
@@ -1205,3 +1347,6 @@
     padding: var(--space-md);
   }
 }
+
+
+

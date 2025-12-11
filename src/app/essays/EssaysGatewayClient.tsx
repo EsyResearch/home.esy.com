@@ -10,6 +10,7 @@ import {
   publishedVisualEssays, 
   featuredEssay, 
   nonFeaturedEssays,
+  photoEssays,
   searchVisualEssays, 
   CATEGORY_COLORS 
 } from "@/data/visualEssays";
@@ -181,7 +182,49 @@ const Hero: React.FC<HeroProps> = ({
   );
 };
 
-// Visual Essays Section
+// Photo Essays Callout (Editorial promotion linking to immersive landing)
+const PhotoEssaysCallout: React.FC = () => {
+  // Featured photo essay for the callout
+  const featured = photoEssays[0]; // Manhattan Project
+
+  return (
+    <section className="photo-essays-callout">
+      <Link href="/photo-essays" className="photo-callout-link">
+        {/* Background image */}
+        <div className="photo-callout-bg">
+          <img 
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Trinity_Detonation_T%26B.jpg/800px-Trinity_Detonation_T%26B.jpg"
+            alt="Trinity nuclear test - Photo Essays collection"
+            className="photo-callout-image"
+          />
+          <div className="photo-callout-overlay" />
+        </div>
+        
+        {/* Content */}
+        <div className="photo-callout-content">
+          <span className="photo-callout-label">Documentary Collection</span>
+          <h2 className="photo-callout-title">Photo Essays</h2>
+          <p className="photo-callout-description">
+            History told through archival photography. Immersive narratives exploring 
+            humanity&apos;s pivotal moments.
+          </p>
+          
+          <div className="photo-callout-stats">
+            <span className="photo-callout-stat">{photoEssays.length} Essays</span>
+            <span className="photo-callout-divider">·</span>
+            <span className="photo-callout-stat">100+ Archival Images</span>
+          </div>
+          
+          <span className="photo-callout-cta">
+            Explore Photo Essays <ArrowRight size={16} />
+          </span>
+        </div>
+      </Link>
+    </section>
+  );
+};
+
+// Visual Essays Section (Illustrated/SVG-based essays)
 const VisualEssaysSection: React.FC = () => (
   <section className="content-section">
     <div className="section-header">
@@ -376,6 +419,7 @@ const EssaysGatewayClient: React.FC<EssaysGatewayClientProps> = ({ textEssays })
         examplesCount={textEssays.length}
         guidesCount={guides.length}
       />
+      <PhotoEssaysCallout />
       <VisualEssaysSection />
       <TextEssaysSection essays={textEssays} />
       <WritingGuidesSection />

@@ -352,6 +352,137 @@ const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
 };
 
 // ===========================================
+// SCROLL-REVEALED NARRATIVE BLOCK
+// ===========================================
+
+interface RevealedBlockProps {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}
+
+const RevealedBlock: React.FC<RevealedBlockProps> = ({ children, className = '', delay = 0 }) => {
+  const [ref, isVisible] = useIntersectionReveal<HTMLDivElement>({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
+  
+  return (
+    <div 
+      ref={ref}
+      className={`revealed-block ${isVisible ? 'visible' : ''} ${className}`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  );
+};
+
+// ===========================================
+// CHAPTER HEADER WITH STAGGER
+// ===========================================
+
+interface ChapterHeaderProps {
+  number: string;
+  title: string;
+  era: string;
+}
+
+const ChapterHeader: React.FC<ChapterHeaderProps> = ({ number, title, era }) => {
+  const [ref, isVisible] = useIntersectionReveal<HTMLDivElement>({
+    threshold: 0.3,
+    triggerOnce: true,
+  });
+  
+  return (
+    <div ref={ref} className={`chapter-header ${isVisible ? 'visible' : ''}`}>
+      <span className="chapter-number">{number}</span>
+      <h2 className="chapter-title">{title}</h2>
+      <span className="chapter-era">{era}</span>
+    </div>
+  );
+};
+
+// ===========================================
+// TINE EXPLANATION WITH SCROLL PROGRESS
+// ===========================================
+
+interface TineExplanationProps {
+  scrollProgress: number;
+}
+
+const TineExplanation: React.FC<TineExplanationProps> = ({ scrollProgress }) => {
+  const [ref, isVisible] = useIntersectionReveal<HTMLDivElement>({
+    threshold: 0.3,
+    triggerOnce: true,
+  });
+  
+  // Determine which tine is active based on section scroll progress
+  // This creates a sequential reveal effect
+  const getActiveIndex = () => {
+    if (scrollProgress < 0.5) return 0;
+    if (scrollProgress < 0.7) return 1;
+    return 2;
+  };
+  
+  const activeIndex = getActiveIndex();
+  
+  const tines = [
+    { count: 2, description: 'Spears, but cannot scoop' },
+    { count: 3, description: 'Better, but still unstable' },
+    { count: 4, description: 'Pierce, scoop, lift, stabilize—perfect' },
+  ];
+  
+  return (
+    <div ref={ref} className={`tine-explanation ${isVisible ? 'visible' : ''}`}>
+      {tines.map((tine, index) => (
+        <div 
+          key={tine.count}
+          className={`tine-item ${index === activeIndex ? 'active' : ''} ${isVisible ? 'revealed' : ''}`}
+          style={{ transitionDelay: `${index * 150}ms` }}
+        >
+          <span className="tine-count">{tine.count}</span>
+          <p>{tine.description}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+// ===========================================
+// GLOBAL TRADITION CARD WITH REVEAL
+// ===========================================
+
+interface GlobalTraditionProps {
+  imageSrc: string;
+  imageAlt: string;
+  title: string;
+  description: string;
+  index: number;
+}
+
+const GlobalTradition: React.FC<GlobalTraditionProps> = ({ 
+  imageSrc, imageAlt, title, description, index 
+}) => {
+  const [ref, isVisible] = useIntersectionReveal<HTMLDivElement>({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
+  
+  return (
+    <div 
+      ref={ref}
+      className={`global-tradition ${isVisible ? 'visible' : ''}`}
+      style={{ transitionDelay: `${index * 100}ms` }}
+    >
+      <ImageReveal src={imageSrc} alt={imageAlt} era="modern" />
+      <h4>{title}</h4>
+      <p>{description}</p>
+    </div>
+  );
+};
+
+// ===========================================
 // TIMELINE PROGRESS INDICATOR
 // ===========================================
 
@@ -435,17 +566,17 @@ export default function TheForkClient() {
           ============================================ */}
       <section className="prologue">
         <div className="prologue-content">
-          <p className="prologue-text large">
+          <RevealedBlock className="prologue-text large" delay={0}>
             For ten thousand generations, the hand was the first tool.
-          </p>
-          <p className="prologue-text">
+          </RevealedBlock>
+          <RevealedBlock className="prologue-text" delay={200}>
             Then came a tiny pronged instrument—and with it, a distance. 
             Between finger and food. Between animal and aspirant. 
             Between what we were and what we wished to become.
-          </p>
-          <p className="prologue-text">
+          </RevealedBlock>
+          <RevealedBlock className="prologue-text" delay={400}>
             This is the story of that distance.
-          </p>
+          </RevealedBlock>
         </div>
       </section>
       
@@ -453,11 +584,11 @@ export default function TheForkClient() {
           CHAPTER 1: THE BYZANTINE BITE
           ============================================ */}
       <section className="chapter chapter-1 era-byzantine" id="byzantine">
-        <div className="chapter-header">
-          <span className="chapter-number">I</span>
-          <h2 className="chapter-title">The Byzantine Bite</h2>
-          <span className="chapter-era">Constantinople, 4th–11th Century</span>
-        </div>
+        <ChapterHeader 
+          number="I" 
+          title="The Byzantine Bite" 
+          era="Constantinople, 4th–11th Century" 
+        />
         
         <ImageReveal 
           src={IMAGES.byzantine.court}
@@ -539,11 +670,11 @@ export default function TheForkClient() {
           CHAPTER 2: THE DEVIL'S INSTRUMENT
           ============================================ */}
       <section className="chapter chapter-2 era-medieval" id="medieval">
-        <div className="chapter-header">
-          <span className="chapter-number">II</span>
-          <h2 className="chapter-title">The Devil's Instrument</h2>
-          <span className="chapter-era">Medieval Europe, 11th–15th Century</span>
-        </div>
+        <ChapterHeader 
+          number="II" 
+          title="The Devil's Instrument" 
+          era="Medieval Europe, 11th–15th Century" 
+        />
         
         <ImageReveal 
           src={IMAGES.medieval.manuscript}
@@ -615,11 +746,11 @@ export default function TheForkClient() {
           CHAPTER 3: THE MEDICI TOUCH
           ============================================ */}
       <section className="chapter chapter-3 era-renaissance" id="renaissance">
-        <div className="chapter-header">
-          <span className="chapter-number">III</span>
-          <h2 className="chapter-title">The Medici Touch</h2>
-          <span className="chapter-era">Renaissance Italy, 15th–16th Century</span>
-        </div>
+        <ChapterHeader 
+          number="III" 
+          title="The Medici Touch" 
+          era="Renaissance Italy, 15th–16th Century" 
+        />
         
         <ImageReveal 
           src={IMAGES.renaissance.banquet}
@@ -696,11 +827,11 @@ export default function TheForkClient() {
           CHAPTER 4: THE ENGLISH CURIOSITY
           ============================================ */}
       <section className="chapter chapter-4 era-renaissance" id="english">
-        <div className="chapter-header">
-          <span className="chapter-number">IV</span>
-          <h2 className="chapter-title">The English Curiosity</h2>
-          <span className="chapter-era">England, 16th–17th Century</span>
-        </div>
+        <ChapterHeader 
+          number="IV" 
+          title="The English Curiosity" 
+          era="England, 16th–17th Century" 
+        />
         
         <ImageReveal 
           src={IMAGES.english.crudities}
@@ -773,11 +904,11 @@ export default function TheForkClient() {
           CHAPTER 5: THE INDUSTRIAL APPETITE
           ============================================ */}
       <section className="chapter chapter-5 era-industrial" id="industrial">
-        <div className="chapter-header">
-          <span className="chapter-number">V</span>
-          <h2 className="chapter-title">The Industrial Appetite</h2>
-          <span className="chapter-era">18th–19th Century</span>
-        </div>
+        <ChapterHeader 
+          number="V" 
+          title="The Industrial Appetite" 
+          era="18th–19th Century" 
+        />
         
         <ImageReveal 
           src={IMAGES.industrial.massProduced}
@@ -855,11 +986,11 @@ export default function TheForkClient() {
           CHAPTER 6: THE FOUR-TINED TRIUMPH
           ============================================ */}
       <section className="chapter chapter-6 era-modern" id="modern">
-        <div className="chapter-header">
-          <span className="chapter-number">VI</span>
-          <h2 className="chapter-title">The Four-Tined Triumph</h2>
-          <span className="chapter-era">19th–20th Century</span>
-        </div>
+        <ChapterHeader 
+          number="VI" 
+          title="The Four-Tined Triumph" 
+          era="19th–20th Century" 
+        />
         
         <ImageReveal 
           src={IMAGES.modern.jensen}
@@ -876,20 +1007,7 @@ export default function TheForkClient() {
           </VoiceUnseen>
         </div>
         
-        <div className="tine-explanation">
-          <div className="tine-item">
-            <span className="tine-count">2</span>
-            <p>Spears, but cannot scoop</p>
-          </div>
-          <div className="tine-item">
-            <span className="tine-count">3</span>
-            <p>Better, but still unstable</p>
-          </div>
-          <div className="tine-item active">
-            <span className="tine-count">4</span>
-            <p>Pierce, scoop, lift, stabilize—perfect</p>
-          </div>
-        </div>
+        <TineExplanation scrollProgress={scrollProgress} />
         
         <FigureProfile
           name="Emily Post"
@@ -946,11 +1064,11 @@ export default function TheForkClient() {
           CHAPTER 7: THE GLOBAL TABLE
           ============================================ */}
       <section className="chapter chapter-7 era-modern" id="global">
-        <div className="chapter-header">
-          <span className="chapter-number">VII</span>
-          <h2 className="chapter-title">The Global Table</h2>
-          <span className="chapter-era">Present Day</span>
-        </div>
+        <ChapterHeader 
+          number="VII" 
+          title="The Global Table" 
+          era="Present Day" 
+        />
         
         <div className="narrative-block intro">
           <VoiceUnseen>
@@ -959,45 +1077,34 @@ export default function TheForkClient() {
         </div>
         
         <div className="global-grid">
-          <div className="global-tradition">
-            <ImageReveal 
-              src={IMAGES.global.western}
-              alt="Formal Western table setting with fork, knife, and spoon"
-              era="modern"
-            />
-            <h4>Western</h4>
-            <p>Fork, knife, spoon. Individual portions. Distance from food.</p>
-          </div>
-          
-          <div className="global-tradition">
-            <ImageReveal 
-              src={IMAGES.global.chopsticks}
-              alt="Japanese table setting with chopsticks on hashioki rest"
-              era="modern"
-            />
-            <h4>East Asian</h4>
-            <p>Chopsticks: 5,000 years old. No cutting at the table—that's for the kitchen.</p>
-          </div>
-          
-          <div className="global-tradition">
-            <ImageReveal 
-              src={IMAGES.global.indian}
-              alt="Indian thali with hand reaching toward food"
-              era="modern"
-            />
-            <h4>South Asian</h4>
-            <p>Each finger channels different energy. The fork interrupts that flow.</p>
-          </div>
-          
-          <div className="global-tradition">
-            <ImageReveal 
-              src={IMAGES.global.ethiopian}
-              alt="Ethiopian mesob with injera and communal dishes"
-              era="modern"
-            />
-            <h4>Ethiopian</h4>
-            <p>Injera is utensil. Eating from a common plate is not poverty—it is intimacy.</p>
-          </div>
+          <GlobalTradition
+            imageSrc={IMAGES.global.western}
+            imageAlt="Formal Western table setting with fork, knife, and spoon"
+            title="Western"
+            description="Fork, knife, spoon. Individual portions. Distance from food."
+            index={0}
+          />
+          <GlobalTradition
+            imageSrc={IMAGES.global.chopsticks}
+            imageAlt="Japanese table setting with chopsticks on hashioki rest"
+            title="East Asian"
+            description="Chopsticks: 5,000 years old. No cutting at the table—that's for the kitchen."
+            index={1}
+          />
+          <GlobalTradition
+            imageSrc={IMAGES.global.indian}
+            imageAlt="Indian thali with hand reaching toward food"
+            title="South Asian"
+            description="Each finger channels different energy. The fork interrupts that flow."
+            index={2}
+          />
+          <GlobalTradition
+            imageSrc={IMAGES.global.ethiopian}
+            imageAlt="Ethiopian mesob with injera and communal dishes"
+            title="Ethiopian"
+            description="Injera is utensil. Eating from a common plate is not poverty—it is intimacy."
+            index={3}
+          />
         </div>
         
         <div className="narrative-block">
@@ -1031,21 +1138,23 @@ export default function TheForkClient() {
         </div>
         
         <div className="epilogue-content">
-          <h2 className="epilogue-title">The Distance Between</h2>
+          <RevealedBlock delay={0}>
+            <h2 className="epilogue-title">The Distance Between</h2>
+          </RevealedBlock>
           
-          <p className="epilogue-text">
+          <RevealedBlock className="epilogue-text" delay={200}>
             The fork in your hand represents centuries of controversy, class warfare, 
             and cultural negotiation. What medieval clergy called satanic vanity is 
             now so ubiquitous it's invisible.
-          </p>
+          </RevealedBlock>
           
-          <p className="epilogue-text">
+          <RevealedBlock className="epilogue-text" delay={400}>
             Nothing about our daily rituals is inevitable.
-          </p>
+          </RevealedBlock>
           
-          <p className="epilogue-closing">
+          <RevealedBlock className="epilogue-closing" delay={600}>
             You will never look at a table setting the same way.
-          </p>
+          </RevealedBlock>
         </div>
       </section>
       

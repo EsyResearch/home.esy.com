@@ -256,3 +256,6 @@
 
 *This design research ensures the Diamond Cartel visual essay has a unique identity derived from its subject matter—the contrast between manufactured luxury and exploited reality, the shift from romance to revelation, and the visual language of brilliance built on blood.*
 
+
+
+

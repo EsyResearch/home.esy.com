@@ -722,6 +722,45 @@
   color: var(--color-text-muted);
 }
 
+/* For composite figures - perspectives without quotation marks */
+.figure-quote-english.figure-perspective {
+  font-style: normal;
+  color: var(--jasmine-rice);
+  opacity: 0.9;
+}
+
+.quote-attribution {
+  font-size: var(--text-sm);
+  font-style: normal;
+  color: var(--banana-blossom-pink);
+  opacity: 0.7;
+}
+
+/* Diaspora perspective block (narrative, not quote) */
+.diaspora-perspective {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-xl);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius-lg);
+  margin: var(--space-2xl) 0;
+}
+
+.diaspora-perspective .perspective-burmese {
+  font-size: var(--text-xl);
+  color: var(--turmeric-gold);
+  margin-bottom: var(--space-lg);
+  line-height: 1.6;
+}
+
+.diaspora-perspective .perspective-english {
+  font-size: var(--text-lg);
+  font-style: italic;
+  color: var(--jasmine-rice);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
 /* ============================================================================
    QUOTE MONUMENTS
    ============================================================================ */
@@ -1937,18 +1976,25 @@
 }
 
 .skip-link {
-  position: absolute;
-  top: -40px;
+  position: fixed;
+  top: 0;
   left: 0;
   background: var(--turmeric-gold);
   color: var(--tamarind-dark);
   padding: var(--space-sm) var(--space-md);
   z-index: 1000;
-  transition: top var(--duration-fast) ease;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 var(--border-radius-sm) 0;
+  /* Hidden by default using transform */
+  transform: translateY(-100%);
+  transition: transform var(--duration-fast) ease;
 }
 
 .skip-link:focus {
-  top: 0;
+  transform: translateY(0);
+  outline: 2px solid var(--jasmine-rice);
+  outline-offset: 2px;
 }
 
 /* Focus styles */

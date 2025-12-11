@@ -37,3 +37,6 @@ export default function DiamondCartelPage() {
   return <DiamondCartelClient />;
 }
 
+
+
+

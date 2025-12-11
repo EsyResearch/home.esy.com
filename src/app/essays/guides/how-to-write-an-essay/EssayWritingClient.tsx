@@ -53,7 +53,7 @@ const useIntersectionObserver = () => {
   return { ref, isVisible };
 };
 
-// Scroll progress hook
+// Scroll progress hook for global progress (word count, grade)
 const useScrollProgress = () => {
   const [progress, setProgress] = useState(0);
 
@@ -70,6 +70,77 @@ const useScrollProgress = () => {
   }, []);
 
   return progress;
+};
+
+// Scroll-lock hook for pinned animation sections
+// Uses RAF throttling for 60fps performance
+interface ScrollLockState {
+  containerRef: React.RefObject<HTMLDivElement | null>;
+  progress: number;
+  isPinned: boolean;
+  isComplete?: boolean;
+}
+
+interface ScrollLockStateExtended extends ScrollLockState {
+  isComplete: boolean;
+}
+
+const useScrollLock = (sectionHeight: number = 3): ScrollLockStateExtended => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+  const [isPinned, setIsPinned] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
+  const ticking = useRef(false);
+
+  useEffect(() => {
+    const updateScrollState = () => {
+      if (!containerRef.current) return;
+
+      const rect = containerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const sectionTop = rect.top;
+      const sectionTotalHeight = rect.height;
+
+      const scrollableDistance = sectionTotalHeight - windowHeight;
+      const scrolledIntoSection = -sectionTop;
+
+      if (sectionTop <= 0 && scrolledIntoSection <= scrollableDistance) {
+        // Currently in the scroll-lock zone
+        setIsPinned(true);
+        setIsComplete(false);
+        const newProgress = Math.min(
+          Math.max(scrolledIntoSection / scrollableDistance, 0),
+          1
+        );
+        setProgress(newProgress);
+      } else if (sectionTop > 0) {
+        // Above the section (haven't reached it yet)
+        setIsPinned(false);
+        setIsComplete(false);
+        setProgress(0);
+      } else {
+        // Below the section (scrolled past it)
+        setIsPinned(false);
+        setIsComplete(true);
+        setProgress(1);
+      }
+      
+      ticking.current = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking.current) {
+        requestAnimationFrame(updateScrollState);
+        ticking.current = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    updateScrollState();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [sectionHeight]);
+
+  return { containerRef, progress, isPinned, isComplete };
 };
 
 // Word Count Ticker Component
@@ -106,42 +177,72 @@ const GradeIndicator: React.FC<{ progress: number; visible: boolean }> = ({ prog
   );
 };
 
-// Typewriter Effect Component
-const TypewriterHero: React.FC<{ progress: number }> = ({ progress }) => {
-  const [displayText, setDisplayText] = useState("");
+// Typewriter Hero Component with Scroll-Lock
+const TypewriterHero: React.FC = () => {
+  const { containerRef, progress, isPinned, isComplete } = useScrollLock(2.5);
   
-  useEffect(() => {
-    // Only type during the first ~15% of scroll
-    const typingProgress = Math.min(progress / 15, 1);
-    const charsToShow = Math.floor(typingProgress * ESSAY_TEXT.length);
-    setDisplayText(ESSAY_TEXT.slice(0, charsToShow));
-  }, [progress]);
+  // Typewriter types during first 70% of scroll-lock progress
+  // Remaining 30% shows the title and allows reader to absorb
+  const typingProgress = Math.min(progress / 0.7, 1);
+  const charsToShow = Math.floor(typingProgress * ESSAY_TEXT.length);
+  const displayText = ESSAY_TEXT.slice(0, charsToShow);
+  
+  // Show title after typing completes (progress > 70%)
+  const showTitle = progress > 0.7;
+  // Hide scroll hint after user starts scrolling
+  const showScrollHint = progress < 0.05;
+
+  // Determine pinned state class
+  const getPinnedClass = () => {
+    if (isPinned) return "is-pinned";
+    if (isComplete) return "is-complete";
+    return "";
+  };
 
   return (
-    <section className="hero">
-      <div className="typewriter-paper">
-        <div className="typewriter-header">
-          <span>Essay Draft</span>
-          <span>Page 1</span>
+    <section 
+      ref={containerRef}
+      className="hero-scroll-lock-container"
+      style={{ height: "250vh" }}
+    >
+      <div className={`hero-pinned ${getPinnedClass()}`}>
+        <div className="typewriter-paper">
+          <div className="typewriter-header">
+            <span>Essay Draft</span>
+            <span>Page 1</span>
+          </div>
+          <div className="typewriter-content">
+            <p className="typewriter-text">
+              {displayText}
+              <span className="typewriter-cursor" />
+            </p>
+          </div>
         </div>
-        <div className="typewriter-content">
-          <p className="typewriter-text">
-            {displayText}
-            <span className="typewriter-cursor" />
-          </p>
+        
+        <div 
+          className="hero-title"
+          style={{ 
+            opacity: showTitle ? 1 : 0,
+            transform: showTitle ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.6s ease, transform 0.6s ease"
+          }}
+        >
+          <h1>How to Write an Essay</h1>
+          <p className="hero-subtitle">A step-by-step visual guide</p>
         </div>
-      </div>
-      
-      <div className="hero-title">
-        <h1>How to Write an Essay</h1>
-        <p className="hero-subtitle">A step-by-step visual guide</p>
-      </div>
 
-      <div className="scroll-hint">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M12 5v14M5 12l7 7 7-7" />
-        </svg>
-        <span>Scroll to begin</span>
+        <div 
+          className="scroll-hint"
+          style={{ 
+            opacity: showScrollHint ? 1 : 0,
+            transition: "opacity 0.4s ease"
+          }}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M12 5v14M5 12l7 7 7-7" />
+          </svg>
+          <span>Scroll to begin</span>
+        </div>
       </div>
     </section>
   );
@@ -623,48 +724,82 @@ const CHECKLIST_ITEMS = [
   { title: "Final Read", description: "Print it out or change the font to see it with fresh eyes" },
 ];
 
-// Step 9: Proofread
+// Step 9: Proofread with Scroll-Lock (Assembly Pattern)
+// User scrolls to check off each item - feels like completing the checklist
 const ProofreadSection: React.FC = () => {
-  const { ref, isVisible } = useIntersectionObserver();
-  const [checkedItems, setCheckedItems] = useState<number[]>([]);
+  const { containerRef, progress, isPinned, isComplete } = useScrollLock(2);
+  
+  // Calculate how many items should be checked based on scroll progress
+  // Each item gets ~18% of scroll progress (5 items, leaving 10% buffer at end)
+  const checkedCount = Math.min(
+    Math.floor(progress / 0.18),
+    CHECKLIST_ITEMS.length
+  );
+  
+  // Items are "visible" once we've started scrolling into the section
+  const isVisible = progress > 0;
+  
+  // Show completion message when all items checked
+  const allChecked = checkedCount >= CHECKLIST_ITEMS.length;
 
-  useEffect(() => {
-    if (isVisible) {
-      // Automatically check items with delays
-      CHECKLIST_ITEMS.forEach((_, index) => {
-        setTimeout(() => {
-          setCheckedItems(prev => [...prev, index]);
-        }, 500 + index * 400);
-      });
-    }
-  }, [isVisible]);
+  // Determine pinned state class
+  const getPinnedClass = () => {
+    if (isPinned) return "is-pinned";
+    if (isComplete) return "is-complete";
+    return "";
+  };
 
   return (
     <section 
-      ref={ref as React.RefObject<HTMLElement>}
-      className={`step-section proofread-section ${isVisible ? "visible" : ""}`}
+      ref={containerRef}
+      className="proofread-scroll-lock-container"
+      style={{ height: "200vh" }}
     >
-      <div className="step-header">
-        <div className="step-number">Step 9</div>
-        <h2 className="step-title">Proofread Checklist</h2>
-      </div>
+      <div className={`proofread-pinned ${getPinnedClass()}`}>
+        <div className="step-header">
+          <div className="step-number">Step 9</div>
+          <h2 className="step-title">Proofread Checklist</h2>
+        </div>
 
-      <div className="step-content">
-        <div className="proofread-checklist">
-          {CHECKLIST_ITEMS.map((item, index) => (
-            <div 
-              key={index}
-              className={`checklist-item ${isVisible ? "visible" : ""} ${checkedItems.includes(index) ? "checked" : ""}`}
-            >
-              <div className="checklist-icon">
-                {checkedItems.includes(index) ? "✓" : ""}
-              </div>
-              <div className="checklist-content">
-                <h4>{item.title}</h4>
-                <p>{item.description}</p>
-              </div>
-            </div>
-          ))}
+        <div className="step-content">
+          <div className="proofread-checklist">
+            {CHECKLIST_ITEMS.map((item, index) => {
+              const isChecked = index < checkedCount;
+              // Stagger the reveal animation slightly
+              const itemVisible = progress > (index * 0.05);
+              
+              return (
+                <div 
+                  key={index}
+                  className={`checklist-item ${itemVisible ? "visible" : ""} ${isChecked ? "checked" : ""}`}
+                  style={{
+                    transitionDelay: `${index * 0.05}s`
+                  }}
+                >
+                  <div className="checklist-icon">
+                    {isChecked ? "✓" : ""}
+                  </div>
+                  <div className="checklist-content">
+                    <h4>{item.title}</h4>
+                    <p>{item.description}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          
+          {/* Completion indicator */}
+          <div 
+            className="checklist-complete"
+            style={{
+              opacity: allChecked ? 1 : 0,
+              transform: allChecked ? "translateY(0)" : "translateY(10px)",
+              transition: "opacity 0.4s ease, transform 0.4s ease"
+            }}
+          >
+            <span className="complete-icon">✨</span>
+            <span className="complete-text">Ready to submit!</span>
+          </div>
         </div>
       </div>
     </section>
@@ -770,7 +905,7 @@ const EssayWritingClient: React.FC = () => {
       <GradeIndicator progress={progress} visible={showIndicators} />
 
       {/* Content Sections */}
-      <TypewriterHero progress={progress} />
+      <TypewriterHero />
       <PromptSection />
       <BrainstormSection />
       <OutlineSection />
