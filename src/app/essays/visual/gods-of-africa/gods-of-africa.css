@@ -1,0 +1,816 @@
+/* ============================================================================
+   GODS OF AFRICA — A Journey from Light to Terror
+   Visual Essay CSS
+   ============================================================================
+   Design System: Gold-to-Void Journey
+   Typography: Cinzel (display), Source Serif Pro (body)
+   Progress: "The Light Fades" — transforming color temperature bar
+   ============================================================================ */
+
+/* ==================== CSS CUSTOM PROPERTIES ==================== */
+
+:root {
+  /* Creation/Divine Colors */
+  --gold-divine: #D4AF37;
+  --gold-bright: #FFD700;
+  --gold-warm: #F5C542;
+  
+  /* Tradition Colors */
+  --yoruba-indigo: #2C3E6E;
+  --akan-gold: #D4AF37;
+  --fon-crimson: #722F37;
+  --egyptian-lapis: #1E3A5F;
+  --zulu-ochre: #CC7722;
+  
+  /* Journey Colors */
+  --flame-amber: #CC7722;
+  --blood-ochre: #8B4513;
+  --threshold-gray: #4A4A4A;
+  --terror-cold: #0D1B2A;
+  --void-black: #0A0A0B;
+  
+  /* Semantic Colors */
+  --creator-glow: #FFD700;
+  --trickster-flame: #F5A623;
+  --death-shadow: #4A4A4A;
+  --terror-void: #0D0D0D;
+  --living-flame: #FF6B35;
+  
+  /* Text Colors */
+  --text-primary: #F5F5F5;
+  --text-secondary: rgba(245, 245, 245, 0.8);
+  --text-muted: rgba(245, 245, 245, 0.6);
+  --text-faint: rgba(245, 245, 245, 0.4);
+  
+  /* Typography */
+  --font-display: 'Cinzel', serif;
+  --font-divine: 'Cinzel Decorative', serif;
+  --font-body: 'Source Serif Pro', Georgia, serif;
+  --font-ui: 'Inter', -apple-system, sans-serif;
+  
+  /* Mobile-First Sizing */
+  --font-size-hero: 2.5rem;
+  --font-size-chapter: 1.75rem;
+  --font-size-section: 1.5rem;
+  --font-size-body: 18px;
+  --line-height-body: 1.65;
+  
+  /* Spacing */
+  --section-padding: 4rem 1.25rem;
+  --content-max-width: 720px;
+  
+  /* Animation */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 600ms;
+  --duration-ceremonial: 1200ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Desktop enhancements */
+@media (min-width: 768px) {
+  :root {
+    --font-size-hero: 4.5rem;
+    --font-size-chapter: 2.75rem;
+    --font-size-section: 2rem;
+    --font-size-body: 20px;
+    --section-padding: 6rem 2rem;
+  }
+}
+
+/* ==================== GLOBAL STYLES ==================== */
+
+.gods-of-africa {
+  background: var(--void-black);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+.gods-of-africa * {
+  box-sizing: border-box;
+}
+
+/* ==================== THE LIGHT FADES PROGRESS BAR ==================== */
+
+.light-fades-progress {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.light-fades-track {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.light-fades-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--progress, 0%);
+  transition: height 100ms linear;
+}
+
+/* The gradient shifts from gold to void as progress increases */
+.light-fades-fill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--gold-divine) 0%,
+    var(--flame-amber) 25%,
+    var(--fon-crimson) 50%,
+    var(--threshold-gray) 75%,
+    var(--terror-cold) 100%
+  );
+}
+
+/* Current position ember */
+.light-fades-ember {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ember-color, var(--gold-divine));
+  box-shadow: 
+    0 0 10px var(--ember-color, var(--gold-divine)),
+    0 0 20px var(--ember-color, var(--gold-divine));
+  transition: background 300ms, box-shadow 300ms;
+}
+
+/* Chapter markers */
+.light-fades-markers {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10vh 0;
+}
+
+.light-fades-marker {
+  width: 8px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  margin-left: -2px;
+  transition: background 300ms;
+}
+
+.light-fades-marker.passed {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* ==================== HERO SECTION ==================== */
+
+.hero-section {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: var(--section-padding);
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 50% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(10, 10, 11, 1) 0%, transparent 50%),
+    var(--void-black);
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.6;
+}
+
+.hero-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--gold-divine);
+  border-radius: 50%;
+  animation: float-particle 8s ease-in-out infinite;
+}
+
+@keyframes float-particle {
+  0%, 100% { 
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% { 
+    transform: translateY(-30px) scale(1.5);
+    opacity: 0.8;
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.hero-overline {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold-divine);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fade-up 1s var(--ease-out) 0.3s forwards;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-hero);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 1rem;
+  background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold-divine) 50%, var(--flame-amber) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0;
+  animation: fade-up 1s var(--ease-out) 0.5s forwards;
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fade-up 1s var(--ease-out) 0.7s forwards;
+}
+
+@media (min-width: 768px) {
+  .hero-subtitle {
+    font-size: 1.5rem;
+  }
+}
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: fade-up 1s var(--ease-out) 1s forwards;
+}
+
+.scroll-text {
+  font-family: var(--font-ui);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold-divine), transparent);
+  animation: scroll-pulse 2s ease-in-out infinite;
+}
+
+@keyframes scroll-pulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+@keyframes fade-up {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+/* ==================== CHAPTER SECTIONS ==================== */
+
+.chapter-section {
+  position: relative;
+  padding: var(--section-padding);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chapter-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--duration-ceremonial) var(--ease-out);
+  pointer-events: none;
+}
+
+.chapter-section.visible::before {
+  opacity: 1;
+}
+
+/* Chapter background treatments by phase */
+.chapter-section[data-phase="creation"]::before {
+  background: radial-gradient(ellipse at 50% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+}
+
+.chapter-section[data-phase="order"]::before {
+  background: radial-gradient(ellipse at 50% 50%, rgba(44, 62, 110, 0.1) 0%, transparent 70%);
+}
+
+.chapter-section[data-phase="trickster"]::before {
+  background: radial-gradient(ellipse at 50% 50%, rgba(245, 166, 35, 0.08) 0%, transparent 70%);
+}
+
+.chapter-section[data-phase="threshold"]::before {
+  background: radial-gradient(ellipse at 50% 50%, rgba(74, 74, 74, 0.1) 0%, transparent 70%);
+}
+
+.chapter-section[data-phase="terror"]::before {
+  background: radial-gradient(ellipse at 50% 50%, rgba(13, 27, 42, 0.3) 0%, transparent 70%);
+}
+
+.chapter-content {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ==================== CHAPTER HEADER ==================== */
+
+.chapter-header {
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all var(--duration-ceremonial) var(--ease-out);
+}
+
+.chapter-section.visible .chapter-header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.chapter-number {
+  font-family: var(--font-ui);
+  font-size: 0.6875rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--chapter-accent, var(--gold-divine));
+  margin-bottom: 0.75rem;
+}
+
+.chapter-title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-chapter);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0 0 1rem;
+  color: var(--text-primary);
+}
+
+.chapter-epigraph {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-style: italic;
+  color: var(--text-muted);
+  padding-left: 1rem;
+  border-left: 2px solid var(--chapter-accent, var(--gold-divine));
+}
+
+.chapter-epigraph cite {
+  display: block;
+  font-style: normal;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  color: var(--text-faint);
+}
+
+/* ==================== DIVINE FIGURE PROFILES ==================== */
+
+.divine-figure {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all var(--duration-slow) var(--ease-out);
+}
+
+.chapter-section.visible .divine-figure {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.divine-figure.featured {
+  border-color: var(--figure-accent, var(--gold-divine));
+  border-width: 1px 1px 1px 3px;
+}
+
+.figure-name {
+  font-family: var(--font-divine);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--figure-accent, var(--gold-divine));
+  margin: 0 0 0.25rem;
+}
+
+.figure-epithet {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.figure-domains {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.figure-domain {
+  font-family: var(--font-ui);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 100px;
+  color: var(--text-secondary);
+}
+
+.figure-description {
+  font-size: var(--font-size-body);
+  color: var(--text-secondary);
+  line-height: var(--line-height-body);
+  margin-bottom: 1.5rem;
+}
+
+.figure-quote {
+  font-style: italic;
+  color: var(--text-muted);
+  padding-left: 1rem;
+  border-left: 2px solid var(--figure-accent, var(--gold-divine));
+}
+
+/* ==================== NARRATIVE PROSE ==================== */
+
+.narrative-block {
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--duration-slow) var(--ease-out);
+}
+
+.chapter-section.visible .narrative-block {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.narrative-block p {
+  font-size: var(--font-size-body);
+  color: var(--text-secondary);
+  line-height: var(--line-height-body);
+  margin-bottom: 1.5rem;
+}
+
+.narrative-block p:last-child {
+  margin-bottom: 0;
+}
+
+/* Drop cap for chapter openings */
+.narrative-block.has-dropcap p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  float: left;
+  line-height: 0.8;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  color: var(--chapter-accent, var(--gold-divine));
+}
+
+/* ==================== QUOTE MONUMENTS ==================== */
+
+.quote-monument {
+  padding: 4rem 1.5rem;
+  margin: 3rem 0;
+  text-align: center;
+  position: relative;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all var(--duration-ceremonial) var(--ease-out);
+}
+
+.chapter-section.visible .quote-monument {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.quote-monument::before {
+  content: '"';
+  font-family: var(--font-display);
+  font-size: 6rem;
+  color: var(--chapter-accent, var(--gold-divine));
+  opacity: 0.2;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 1;
+}
+
+.quote-monument blockquote {
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.5;
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .quote-monument blockquote {
+    font-size: 2rem;
+  }
+}
+
+.quote-monument cite {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ==================== TERROR PHASE SPECIAL EFFECTS ==================== */
+
+.chapter-section[data-phase="terror"] {
+  --chapter-accent: var(--terror-cold);
+}
+
+.chapter-section[data-phase="terror"] .chapter-title {
+  color: var(--terror-cold);
+  text-shadow: 0 0 30px rgba(13, 27, 42, 0.8);
+}
+
+/* Creeping shadow reveal for terror content */
+.terror-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+.terror-reveal::before,
+.terror-reveal::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: var(--void-black);
+  transition: transform var(--duration-ceremonial) var(--ease-out);
+  z-index: 1;
+}
+
+.terror-reveal::before {
+  left: 0;
+  transform: translateX(0);
+}
+
+.terror-reveal::after {
+  right: 0;
+  transform: translateX(0);
+}
+
+.chapter-section.visible .terror-reveal::before {
+  transform: translateX(-100%);
+}
+
+.chapter-section.visible .terror-reveal::after {
+  transform: translateX(100%);
+}
+
+.terror-reveal-content {
+  position: relative;
+  z-index: 0;
+}
+
+/* Terror figure special styling */
+.divine-figure.terror {
+  background: rgba(13, 27, 42, 0.3);
+  border-color: var(--terror-cold);
+}
+
+.divine-figure.terror .figure-name {
+  color: var(--terror-cold);
+  text-shadow: 0 0 20px var(--terror-cold);
+}
+
+/* ==================== STAGGER ANIMATIONS ==================== */
+
+.chapter-section.visible .divine-figure:nth-child(1) { transition-delay: 0.1s; }
+.chapter-section.visible .divine-figure:nth-child(2) { transition-delay: 0.2s; }
+.chapter-section.visible .divine-figure:nth-child(3) { transition-delay: 0.3s; }
+.chapter-section.visible .narrative-block:nth-child(1) { transition-delay: 0.1s; }
+.chapter-section.visible .narrative-block:nth-child(2) { transition-delay: 0.2s; }
+.chapter-section.visible .narrative-block:nth-child(3) { transition-delay: 0.3s; }
+
+/* ==================== SOURCES SECTION ==================== */
+
+.sources-section {
+  padding: 4rem 1.5rem;
+  background: linear-gradient(135deg, #0D0D0D 0%, #050505 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sources-content {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+.sources-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.sources-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.sources-list li {
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.sources-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--gold-divine);
+}
+
+.sources-list a {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.sources-list a:hover {
+  color: var(--gold-divine);
+  text-decoration: underline;
+}
+
+.sources-note {
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: var(--text-faint);
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ==================== EPILOGUE ==================== */
+
+.epilogue-section {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: var(--section-padding);
+  position: relative;
+}
+
+.epilogue-flame {
+  width: 60px;
+  height: 80px;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.flame-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.flame-glow {
+  fill: var(--living-flame);
+  filter: url(#flame-blur);
+  animation: flame-dance 1.5s ease-in-out infinite;
+}
+
+.flame-core {
+  fill: var(--gold-bright);
+  animation: flame-dance 1.5s ease-in-out infinite 0.1s;
+}
+
+@keyframes flame-dance {
+  0%, 100% { 
+    transform: scaleY(1) scaleX(1);
+    opacity: 0.9;
+  }
+  50% { 
+    transform: scaleY(1.1) scaleX(0.95);
+    opacity: 1;
+  }
+}
+
+.epilogue-text {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .epilogue-text {
+    font-size: 1.5rem;
+  }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .hero-particle {
+    display: none;
+  }
+}
+
+/* ==================== TRANSITION DIVIDERS ==================== */
+
+.transition-divider {
+  height: 1px;
+  margin: 4rem auto;
+  max-width: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.transition-divider::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--divider-color, var(--gold-divine)), transparent);
+  opacity: 0.5;
+}
+
+/* Phase-specific divider colors */
+.transition-divider[data-phase="creation"] { --divider-color: var(--gold-divine); }
+.transition-divider[data-phase="order"] { --divider-color: var(--yoruba-indigo); }
+.transition-divider[data-phase="trickster"] { --divider-color: var(--trickster-flame); }
+.transition-divider[data-phase="threshold"] { --divider-color: var(--threshold-gray); }
+.transition-divider[data-phase="terror"] { --divider-color: var(--terror-cold); }
+

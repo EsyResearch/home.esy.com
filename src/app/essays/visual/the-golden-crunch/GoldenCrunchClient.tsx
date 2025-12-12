@@ -3,6 +3,98 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import './the-golden-crunch.css';
 
+// Pre-generate stable bubble positions to avoid hydration mismatch
+const generateBubbleStyles = (count: number, seed: number = 42) => {
+  // Seeded pseudo-random number generator for consistent SSR/client values
+  const seededRandom = (s: number) => {
+    const x = Math.sin(s) * 10000;
+    return x - Math.floor(x);
+  };
+  
+  return Array.from({ length: count }).map((_, i) => ({
+    left: `${10 + seededRandom(seed + i * 1) * 80}%`,
+    animationDelay: `${seededRandom(seed + i * 2) * 3}s`,
+    animationDuration: `${2 + seededRandom(seed + i * 3) * 2}s`,
+    width: `${8 + seededRandom(seed + i * 4) * 16}px`,
+    height: `${8 + seededRandom(seed + i * 5) * 16}px`,
+  }));
+};
+
+const HERO_BUBBLE_STYLES = generateBubbleStyles(20, 42);
+
+// Pre-generate stable crispy dot positions
+const generateCrispyDots = (count: number, seed: number = 100) => {
+  const seededRandom = (s: number) => {
+    const x = Math.sin(s) * 10000;
+    return x - Math.floor(x);
+  };
+  
+  return Array.from({ length: count }).map((_, i) => ({
+    cx: 210 + seededRandom(seed + i * 1) * 80,
+    cy: 180 + seededRandom(seed + i * 2) * 50,
+    r: 2 + seededRandom(seed + i * 3) * 2,
+  }));
+};
+
+const CRISPY_DOTS = generateCrispyDots(8, 100);
+
+// Scroll-lock state interface
+interface ScrollLockState {
+  containerRef: React.RefObject<HTMLDivElement>;
+  progress: number;
+  isPinned: boolean;
+}
+
+// Scroll-lock hook for pinned animation sections
+// Uses RAF throttling for 60fps performance
+const useScrollLock = (sectionHeight: number = 3): ScrollLockState => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+  const [isPinned, setIsPinned] = useState(false);
+  const ticking = useRef(false);
+
+  useEffect(() => {
+    const updateScrollState = () => {
+      if (!containerRef.current) return;
+
+      const rect = containerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const sectionTop = rect.top;
+      const sectionTotalHeight = rect.height;
+
+      const scrollableDistance = sectionTotalHeight - windowHeight;
+      const scrolledIntoSection = -sectionTop;
+
+      if (sectionTop <= 0 && scrolledIntoSection <= scrollableDistance && scrolledIntoSection >= 0) {
+        setIsPinned(true);
+        const newProgress = Math.min(
+          Math.max(scrolledIntoSection / scrollableDistance, 0),
+          1
+        );
+        setProgress(newProgress);
+      } else {
+        setIsPinned(false);
+        setProgress(sectionTop > 0 ? 0 : 1);
+      }
+      
+      ticking.current = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking.current) {
+        requestAnimationFrame(updateScrollState);
+        ticking.current = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    updateScrollState();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [sectionHeight]);
+
+  return { containerRef, progress, isPinned };
+};
+
 /**
  * THE GOLDEN CRUNCH - The Origins, Journey & Global Rise of Fried Chicken
  * 
@@ -107,38 +199,29 @@ const timelineEvents = [
 // ==================== COMPONENT ====================
 
 const GoldenCrunchClient: React.FC = () => {
-  // Scroll-driven state
-  const [fryProgress, setFryProgress] = useState(0);
+  // Scroll-lock for frying animation section
+  const { containerRef: fryContainerRef, progress: fryProgress, isPinned: isFryPinned } = useScrollLock(3);
+  
+  // Derived values from fry progress
+  const oilTemp = 150 + fryProgress * 200;
+  const bubbleIntensity = fryProgress;
+
+  // Other scroll-driven state
   const [mapPhase, setMapPhase] = useState(0);
   const [activeSpice, setActiveSpice] = useState(0);
   const [visibleTitans, setVisibleTitans] = useState<number[]>([]);
   const [jimCrowSlider, setJimCrowSlider] = useState(50);
-  const [oilTemp, setOilTemp] = useState(150);
-  const [bubbleIntensity, setBubbleIntensity] = useState(0);
   const [activeTimeline, setActiveTimeline] = useState(0);
   const [selectedRegion, setSelectedRegion] = useState<number | null>(null);
 
   // Refs for intersection observers
-  const frySectionRef = useRef<HTMLDivElement>(null);
   const mapSectionRef = useRef<HTMLDivElement>(null);
   const titanRefs = useRef<(HTMLDivElement | null)[]>([]);
   const timelineSectionRef = useRef<HTMLDivElement>(null);
   const scienceSectionRef = useRef<HTMLDivElement>(null);
 
-  // Scroll handler for animations
+  // Scroll handler for animations (fry section now uses dedicated scroll-lock hook)
   const handleScroll = useCallback(() => {
-    // Frying animation section
-    if (frySectionRef.current) {
-      const rect = frySectionRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      if (rect.top < viewportHeight && rect.bottom > 0) {
-        const progress = Math.max(0, Math.min(1, (viewportHeight - rect.top) / (rect.height + viewportHeight / 2)));
-        setFryProgress(progress);
-        setOilTemp(150 + progress * 200);
-        setBubbleIntensity(progress);
-      }
-    }
-
     // Map migration section
     if (mapSectionRef.current) {
       const rect = mapSectionRef.current.getBoundingClientRect();
@@ -156,16 +239,6 @@ const GoldenCrunchClient: React.FC = () => {
       if (rect.top < viewportHeight && rect.bottom > 0) {
         const progress = Math.max(0, Math.min(1, (viewportHeight - rect.top) / rect.height));
         setActiveTimeline(Math.floor(progress * timelineEvents.length));
-      }
-    }
-
-    // Science/Maillard section
-    if (scienceSectionRef.current) {
-      const rect = scienceSectionRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      if (rect.top < viewportHeight && rect.bottom > 0) {
-        const progress = Math.max(0, Math.min(1, (viewportHeight - rect.top) / rect.height));
-        setOilTemp(150 + progress * 200);
       }
     }
   }, []);
@@ -213,17 +286,11 @@ const GoldenCrunchClient: React.FC = () => {
         <div className="hero-bg">
           {/* Animated oil bubbles */}
           <div className="oil-bubbles">
-            {Array.from({ length: 20 }).map((_, i) => (
+            {HERO_BUBBLE_STYLES.map((style, i) => (
               <div 
                 key={i} 
                 className="bubble"
-                style={{
-                  left: `${10 + Math.random() * 80}%`,
-                  animationDelay: `${Math.random() * 3}s`,
-                  animationDuration: `${2 + Math.random() * 2}s`,
-                  width: `${8 + Math.random() * 16}px`,
-                  height: `${8 + Math.random() * 16}px`,
-                }}
+                style={style}
               />
             ))}
           </div>
@@ -259,18 +326,23 @@ const GoldenCrunchClient: React.FC = () => {
         </div>
       </section>
 
-      {/* ==================== SCENE 1: FRYING ANIMATION ==================== */}
-      <section className="fry-section" ref={frySectionRef}>
-        <div className="section-header">
-          <span className="section-number">01</span>
-          <h2>A Crunch Heard Around the World</h2>
-          <p className="section-lead">
-            The transformation from raw to golden perfection takes mere minutes—but 
-            the cultural journey behind this moment spans centuries and continents.
-          </p>
-        </div>
+      {/* ==================== SCENE 1: FRYING ANIMATION (SCROLL-LOCK) ==================== */}
+      <div 
+        className="fry-scroll-lock" 
+        ref={fryContainerRef}
+        style={{ height: '300vh' }}
+      >
+        <div className={`fry-scroll-lock-inner ${isFryPinned ? 'is-pinned' : ''}`}>
+          <div className="section-header">
+            <span className="section-number">01</span>
+            <h2>A Crunch Heard Around the World</h2>
+            <p className="section-lead">
+              The transformation from raw to golden perfection takes mere minutes—but 
+              the cultural journey behind this moment spans centuries and continents.
+            </p>
+          </div>
 
-        <div className="fry-animation-container">
+          <div className="fry-animation-container">
           {/* Interactive frying pan SVG */}
           <svg className="fry-pan" viewBox="0 0 500 400" aria-label="Animated frying chicken visualization">
             {/* Pan base */}
@@ -323,12 +395,12 @@ const GoldenCrunchClient: React.FC = () => {
                 strokeWidth="2"
               />
               {/* Crispy texture dots */}
-              {fryProgress > 0.4 && Array.from({ length: 8 }).map((_, i) => (
+              {fryProgress > 0.4 && CRISPY_DOTS.map((dot, i) => (
                 <circle
                   key={i}
-                  cx={210 + Math.random() * 80}
-                  cy={180 + Math.random() * 50}
-                  r={2 + Math.random() * 2}
+                  cx={dot.cx}
+                  cy={dot.cy}
+                  r={dot.r}
                   fill="#8B4513"
                   opacity={fryProgress - 0.4}
                 />
@@ -376,8 +448,14 @@ const GoldenCrunchClient: React.FC = () => {
               <span className="stage-name">Golden</span>
             </div>
           </div>
+          
+          {/* Scroll progress indicator for this section */}
+          <div className="fry-progress-indicator">
+            <div className="fry-progress-bar" style={{ width: `${fryProgress * 100}%` }} />
+          </div>
         </div>
-      </section>
+        </div>
+      </div>
 
       {/* ==================== SCENE 2: WEST AFRICAN ORIGINS ==================== */}
       <section className="origins-section">

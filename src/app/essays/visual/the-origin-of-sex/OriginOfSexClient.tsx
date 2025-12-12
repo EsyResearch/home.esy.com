@@ -49,6 +49,7 @@ const useScrollLock = (
   const isActiveRef = useRef(false);
   const accumulatedDeltaRef = useRef(0);
   const lockDistanceRef = useRef(0);
+  const hasUserScrolledRef = useRef(false);
 
   const skipToEnd = useCallback(() => {
     setState({ isLocked: false, progress: 100, isComplete: true });
@@ -67,8 +68,8 @@ const useScrollLock = (
       const rect = element.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
 
-      // Activate lock when hero top reaches viewport top
-      if (rect.top <= 0 && rect.bottom > viewportHeight * 0.5 && !state.isComplete) {
+      // Activate lock when hero top reaches viewport top AND user has scrolled
+      if (rect.top <= 0 && rect.bottom > viewportHeight * 0.5 && !state.isComplete && hasUserScrolledRef.current) {
         if (!isActiveRef.current) {
           isActiveRef.current = true;
           accumulatedDeltaRef.current = 0;
@@ -89,6 +90,20 @@ const useScrollLock = (
     };
 
     const handleWheel = (e: WheelEvent) => {
+      // Mark that user has started scrolling
+      if (!hasUserScrolledRef.current && e.deltaY > 0) {
+        hasUserScrolledRef.current = true;
+        // Check if we should activate lock now
+        const rect = element.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        if (rect.top <= 0 && rect.bottom > viewportHeight * 0.5 && !state.isComplete) {
+          isActiveRef.current = true;
+          accumulatedDeltaRef.current = 0;
+          document.body.style.overflow = "hidden";
+          setState(prev => ({ ...prev, isLocked: true }));
+        }
+      }
+      
       if (isActiveRef.current && !state.isComplete) {
         e.preventDefault();
         
@@ -118,9 +133,23 @@ const useScrollLock = (
     };
 
     const handleTouchMove = (e: TouchEvent) => {
+      const touchDelta = touchStartY - e.touches[0].clientY;
+      
+      // Mark that user has started scrolling (downward swipe)
+      if (!hasUserScrolledRef.current && touchDelta > 10) {
+        hasUserScrolledRef.current = true;
+        const rect = element.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        if (rect.top <= 0 && rect.bottom > viewportHeight * 0.5 && !state.isComplete) {
+          isActiveRef.current = true;
+          accumulatedDeltaRef.current = 0;
+          document.body.style.overflow = "hidden";
+          setState(prev => ({ ...prev, isLocked: true }));
+        }
+      }
+      
       if (isActiveRef.current && !state.isComplete) {
         e.preventDefault();
-        const touchDelta = touchStartY - e.touches[0].clientY;
         touchStartY = e.touches[0].clientY;
         
         accumulatedDeltaRef.current += touchDelta * 2; // Multiply for responsiveness
@@ -144,8 +173,7 @@ const useScrollLock = (
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
     window.addEventListener("touchmove", handleTouchMove, { passive: false });
 
-    // Initial check
-    handleScroll();
+    // Don't call handleScroll on mount - wait for user interaction
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -414,18 +442,42 @@ const ScrollLockHero: React.FC = () => {
     );
   }
 
-  // Convert progress (0-100) to phase values (0-1)
-  // Phase 1: 0-20% - Division line appears, pulses
-  // Phase 2: 20-40% - Letters emerge (S, E, X)
-  // Phase 3: 40-60% - Word forms, Latin etymology appears
-  // Phase 4: 60-80% - Branches of meaning grow
-  // Phase 5: 80-100% - Title card emerges
+  // ===========================================
+  // PHASE CALCULATIONS
+  // ===========================================
+  // Each phase is 20% of scroll progress (0-100)
+  // Phases should cleanly hand off to the next - no overlapping!
+  
   const normalizedProgress = progress / 100;
+  
+  // Phase activation (0 to 1 within each phase's range)
   const phase1 = Math.min(1, normalizedProgress * 5);                           // 0-20%
   const phase2 = Math.max(0, Math.min(1, (normalizedProgress - 0.2) * 5));      // 20-40%
   const phase3 = Math.max(0, Math.min(1, (normalizedProgress - 0.4) * 5));      // 40-60%
   const phase4 = Math.max(0, Math.min(1, (normalizedProgress - 0.6) * 5));      // 60-80%
   const phase5 = Math.max(0, Math.min(1, (normalizedProgress - 0.8) * 5));      // 80-100%
+  
+  // ===========================================
+  // LAYER VISIBILITY - Clean Handoffs
+  // ===========================================
+  // Each layer fades OUT as the next fades IN
+  
+  // Division Line: visible in Phase 1, fades out during Phase 2
+  const divisionLineOpacity = phase2 < 0.5 
+    ? 1 
+    : Math.max(0, 1 - (phase2 - 0.5) * 2);
+  
+  // Letters: fade in during Phase 2, fade out during Phase 3
+  const lettersOpacity = phase2 * (phase3 < 0.5 ? 1 : Math.max(0, 1 - (phase3 - 0.5) * 2));
+  
+  // Etymology: fade in during Phase 3, fade out during Phase 4
+  const etymologyOpacity = phase3 * (phase4 < 0.5 ? 1 : Math.max(0, 1 - (phase4 - 0.5) * 2));
+  
+  // Branches: fade in during Phase 4, fade out during Phase 5
+  const branchesOpacity = phase4 * (phase5 < 0.5 ? 1 : Math.max(0, 1 - (phase5 - 0.5) * 2));
+  
+  // Title: fade in during Phase 5, stays visible
+  const titleOpacity = phase5;
 
   // Initial state: show pulsing line even before scrolling
   const showInitialLine = progress === 0 && !isLocked;
@@ -459,154 +511,155 @@ const ScrollLockHero: React.FC = () => {
         )}
 
         {/* Phase 1: The Division Line (0-20%) */}
-        <div 
-          className="hero-division-layer"
-          style={{ opacity: 1 }}
-        >
+        {divisionLineOpacity > 0 && (
           <div 
-            className={`division-line-animated ${showInitialLine ? 'pulsing' : ''}`}
-            style={{ 
-              height: `${lineHeight}vh`,
-              opacity: phase3 > 0.5 ? 1 - ((phase3 - 0.5) * 2) : 1,
-            }}
-          />
-        </div>
+            className="hero-division-layer"
+            style={{ opacity: divisionLineOpacity }}
+          >
+            <div 
+              className={`division-line-animated ${showInitialLine ? 'pulsing' : ''}`}
+              style={{ height: `${lineHeight}vh` }}
+            />
+          </div>
+        )}
 
         {/* Phase 2: Letters Emerge (20-40%) */}
-        <div 
-          className="hero-letters-layer"
-          style={{ opacity: phase2 }}
-        >
-          <div className="letters-container">
-            <span 
-              className="letter-s"
-              style={{ 
-                opacity: phase2,
-                transform: `translateX(${(1 - phase2) * -50}px)`,
-              }}
-            >S</span>
-            <span 
-              className="letter-e"
-              style={{ 
-                opacity: phase2,
-                transform: `scale(${0.5 + phase2 * 0.5})`,
-              }}
-            >E</span>
-            <span 
-              className="letter-x"
-              style={{ 
-                opacity: phase2,
-                transform: `translateX(${(1 - phase2) * 50}px)`,
-              }}
-            >X</span>
-          </div>
-          <p 
-            className="whisper-text"
-            style={{ 
-              opacity: phase2 * (1 - phase3),
-              transform: `translateY(${(1 - phase2) * 20}px)`,
-            }}
+        {lettersOpacity > 0 && (
+          <div 
+            className="hero-letters-layer"
+            style={{ opacity: lettersOpacity }}
           >
-            In the beginning, there was division.
-          </p>
-        </div>
-
-        {/* Phase 3: Etymology Reveals (40-60%) */}
-        <div 
-          className="hero-etymology-layer"
-          style={{ opacity: phase3 * (1 - phase4) }}
-        >
-          <div className="etymology-reveal">
-            <div 
-              className="root-word"
-              style={{ 
-                opacity: phase3,
-                transform: `translateY(${(1 - phase3) * 20}px)`,
-              }}
-            >
-              <span className="word-latin">secare</span>
-              <span className="word-arrow">→</span>
-              <span className="word-latin">sexus</span>
+            <div className="letters-container">
+              <span 
+                className="letter-s"
+                style={{ 
+                  transform: `translateX(${(1 - phase2) * -50}px)`,
+                }}
+              >S</span>
+              <span 
+                className="letter-e"
+                style={{ 
+                  transform: `scale(${0.5 + phase2 * 0.5})`,
+                }}
+              >E</span>
+              <span 
+                className="letter-x"
+                style={{ 
+                  transform: `translateX(${(1 - phase2) * 50}px)`,
+                }}
+              >X</span>
             </div>
             <p 
-              className="root-meaning"
+              className="whisper-text"
               style={{ 
-                opacity: Math.max(0, phase3 - 0.3) * 1.4,
-                transform: `translateY(${(1 - phase3) * 15}px)`,
+                opacity: phase3 < 0.3 ? 1 : Math.max(0, 1 - (phase3 - 0.3) * 1.4),
+                transform: `translateY(${(1 - phase2) * 20}px)`,
               }}
             >
-              "to cut, to sever, to divide"
+              In the beginning, there was division.
             </p>
           </div>
-        </div>
+        )}
 
-        {/* Phase 4: Branches of Meaning (60-80%) */}
-        <div 
-          className="hero-branches-layer"
-          style={{ opacity: phase4 * (1 - phase5 * 0.5) }}
-        >
-          <div className="meaning-branches">
-            <div 
-              className="central-word"
-              style={{ opacity: phase4 }}
-            >
-              SEXUS
-            </div>
-            <div className="branches-container">
-              {[
-                { word: 'gender', angle: -60, delay: 0 },
-                { word: 'category', angle: -20, delay: 0.1 },
-                { word: 'half', angle: 20, delay: 0.2 },
-                { word: 'division', angle: 60, delay: 0.3 },
-              ].map((branch) => (
-                <div 
-                  key={branch.word}
-                  className="meaning-branch"
-                  style={{ 
-                    opacity: Math.max(0, phase4 - branch.delay) * 1.4,
-                    transform: `rotate(${branch.angle}deg) translateX(${phase4 * 100}px)`,
-                  }}
-                >
-                  <span className="branch-word">{branch.word}</span>
-                </div>
-              ))}
+        {/* Phase 3: Etymology Reveals (40-60%) */}
+        {etymologyOpacity > 0 && (
+          <div 
+            className="hero-etymology-layer"
+            style={{ opacity: etymologyOpacity }}
+          >
+            <div className="etymology-reveal">
+              <div 
+                className="root-word"
+                style={{ 
+                  transform: `translateY(${(1 - phase3) * 20}px)`,
+                }}
+              >
+                <span className="word-latin">secare</span>
+                <span className="word-arrow">→</span>
+                <span className="word-latin">sexus</span>
+              </div>
+              <p 
+                className="root-meaning"
+                style={{ 
+                  opacity: Math.max(0, phase3 - 0.3) * 1.4,
+                  transform: `translateY(${(1 - phase3) * 15}px)`,
+                }}
+              >
+                "to cut, to sever, to divide"
+              </p>
             </div>
           </div>
-        </div>
+        )}
+
+        {/* Phase 4: Branches of Meaning (60-80%) */}
+        {branchesOpacity > 0 && (
+          <div 
+            className="hero-branches-layer"
+            style={{ opacity: branchesOpacity }}
+          >
+            <div className="meaning-branches">
+              <div 
+                className="central-word"
+                style={{ opacity: phase4 }}
+              >
+                SEXUS
+              </div>
+              <div className="branches-container">
+                {[
+                  { word: 'gender', angle: -60, delay: 0 },
+                  { word: 'category', angle: -20, delay: 0.1 },
+                  { word: 'half', angle: 20, delay: 0.2 },
+                  { word: 'division', angle: 60, delay: 0.3 },
+                ].map((branch) => (
+                  <div 
+                    key={branch.word}
+                    className="meaning-branch"
+                    style={{ 
+                      opacity: Math.max(0, phase4 - branch.delay) * 1.4,
+                      transform: `rotate(${branch.angle}deg) translateX(${phase4 * 100}px)`,
+                    }}
+                  >
+                    <span className="branch-word">{branch.word}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Phase 5: Title Card (80-100%) */}
-        <div 
-          className="hero-title-layer"
-          style={{ opacity: phase5 }}
-        >
-          <p 
-            className="hero-etymology-tag"
-            style={{ 
-              opacity: phase5,
-              transform: `translateY(${(1 - phase5) * 20}px)`,
-            }}
+        {titleOpacity > 0 && (
+          <div 
+            className="hero-title-layer"
+            style={{ opacity: titleOpacity }}
           >
-            Etymology
-          </p>
-          <h1 
-            className="hero-title-word"
-            style={{ 
-              opacity: phase5,
-              letterSpacing: `${0.5 - phase5 * 0.35}em`,
-            }}
-          >
-            SEX
-          </h1>
-          <p 
-            className="hero-subtitle"
-            style={{ 
-              opacity: Math.max(0, phase5 - 0.3) * 1.4,
-              transform: `translateY(${(1 - phase5) * 15}px)`,
-            }}
-          >
-            How a word meaning "to divide" became the most charged word in the English language
-          </p>
-        </div>
+            <p 
+              className="hero-etymology-tag"
+              style={{ 
+                transform: `translateY(${(1 - phase5) * 20}px)`,
+              }}
+            >
+              Etymology
+            </p>
+            <h1 
+              className="hero-title-word"
+              style={{ 
+                letterSpacing: `${0.5 - phase5 * 0.35}em`,
+              }}
+            >
+              SEX
+            </h1>
+            <p 
+              className="hero-subtitle"
+              style={{ 
+                opacity: Math.max(0, phase5 - 0.3) * 1.4,
+                transform: `translateY(${(1 - phase5) * 15}px)`,
+              }}
+            >
+              How a word meaning "to divide" became the most charged word in the English language
+            </p>
+          </div>
+        )}
 
         {/* Initial prompt text (visible only at start) */}
         {showInitialLine && (

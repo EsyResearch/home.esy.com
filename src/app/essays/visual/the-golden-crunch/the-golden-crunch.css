@@ -340,8 +340,53 @@
 }
 
 /* ============================================
-   FRY ANIMATION SECTION
+   FRY ANIMATION SECTION (SCROLL-LOCK)
    ============================================ */
+
+/* Scroll-lock outer container */
+.golden-crunch .fry-scroll-lock {
+  position: relative;
+  background: linear-gradient(180deg, var(--warm-black) 0%, var(--warm-dark) 100%);
+}
+
+/* Scroll-lock sticky inner - pins while scrolling through container */
+.golden-crunch .fry-scroll-lock-inner {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-lg) var(--space-md);
+  overflow: hidden;
+}
+
+.golden-crunch .fry-scroll-lock-inner.is-pinned {
+  /* Visual feedback when locked - element is pinned */
+}
+
+/* Progress indicator at bottom of scroll-lock section */
+.golden-crunch .fry-progress-indicator {
+  position: absolute;
+  bottom: var(--space-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.golden-crunch .fry-progress-bar {
+  height: 100%;
+  background: var(--golden-crust);
+  border-radius: 2px;
+  transition: width 50ms linear;
+}
+
+/* Legacy class for backwards compatibility */
 .golden-crunch .fry-section {
   padding: var(--space-2xl) var(--space-md);
   background: linear-gradient(180deg, var(--warm-black) 0%, var(--warm-dark) 100%);
@@ -1850,6 +1895,16 @@
   .golden-crunch .route-path,
   .golden-crunch .fusion-point {
     animation: none;
+  }
+  
+  /* Disable scroll-lock pinning for reduced motion */
+  .golden-crunch .fry-scroll-lock {
+    height: auto !important;
+  }
+  
+  .golden-crunch .fry-scroll-lock-inner {
+    position: relative;
+    height: auto;
   }
   
   .golden-crunch .bubble {

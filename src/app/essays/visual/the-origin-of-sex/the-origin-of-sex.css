@@ -316,6 +316,19 @@
   }
 }
 
+/* ===========================================
+   HERO LAYER TRANSITIONS
+   Each layer has smooth opacity transitions for clean handoffs
+   =========================================== */
+
+.origin-of-sex-essay .hero-division-layer,
+.origin-of-sex-essay .hero-letters-layer,
+.origin-of-sex-essay .hero-etymology-layer,
+.origin-of-sex-essay .hero-branches-layer,
+.origin-of-sex-essay .hero-title-layer {
+  transition: opacity 150ms ease-out;
+}
+
 /* Phase 1: Division Line Layer */
 .origin-of-sex-essay .hero-division-layer {
   position: absolute;
@@ -361,7 +374,7 @@
 }
 
 /* Phase 2: Letters Layer */
-.hero-letters-layer {
+.origin-of-sex-essay .hero-letters-layer {
   position: absolute;
   inset: 0;
   display: flex;
@@ -371,16 +384,16 @@
   pointer-events: none;
 }
 
-.letters-container {
+.origin-of-sex-essay .letters-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0;
 }
 
-.letter-s,
-.letter-e,
-.letter-x {
+.origin-of-sex-essay .letter-s,
+.origin-of-sex-essay .letter-e,
+.origin-of-sex-essay .letter-x {
   font-family: var(--font-display);
   font-size: clamp(4rem, 15vw, 10rem);
   font-weight: 600;
@@ -388,14 +401,14 @@
   text-shadow: 
     0 0 40px rgba(201, 169, 98, 0.3),
     0 0 80px rgba(201, 169, 98, 0.15);
-  transition: transform 100ms ease-out, opacity 100ms ease-out;
+  transition: transform 100ms ease-out;
 }
 
-.letter-e {
+.origin-of-sex-essay .letter-e {
   color: var(--color-division);
 }
 
-.whisper-text {
+.origin-of-sex-essay .whisper-text {
   font-family: var(--font-display);
   font-size: clamp(1rem, 2.5vw, 1.5rem);
   font-style: italic;
@@ -406,7 +419,7 @@
 }
 
 /* Phase 3: Etymology Layer */
-.hero-etymology-layer {
+.origin-of-sex-essay .hero-etymology-layer {
   position: absolute;
   inset: 0;
   display: flex;
@@ -415,20 +428,20 @@
   pointer-events: none;
 }
 
-.etymology-reveal {
+.origin-of-sex-essay .etymology-reveal {
   text-align: center;
 }
 
-.root-word {
+.origin-of-sex-essay .root-word {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-md);
   margin-bottom: var(--space-md);
-  transition: transform 150ms ease-out, opacity 150ms ease-out;
+  transition: transform 150ms ease-out;
 }
 
-.word-latin {
+.origin-of-sex-essay .word-latin {
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-style: italic;
@@ -436,12 +449,12 @@
   color: var(--accent-latin);
 }
 
-.word-arrow {
+.origin-of-sex-essay .word-arrow {
   font-size: 1.5rem;
   color: var(--text-tertiary);
 }
 
-.root-meaning {
+.origin-of-sex-essay .root-meaning {
   font-family: var(--font-body);
   font-size: clamp(1rem, 2vw, 1.25rem);
   color: var(--text-secondary);
@@ -449,7 +462,7 @@
 }
 
 /* Phase 4: Branches Layer */
-.hero-branches-layer {
+.origin-of-sex-essay .hero-branches-layer {
   position: absolute;
   inset: 0;
   display: flex;
@@ -458,14 +471,14 @@
   pointer-events: none;
 }
 
-.meaning-branches {
+.origin-of-sex-essay .meaning-branches {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.central-word {
+.origin-of-sex-essay .central-word {
   font-family: var(--font-display);
   font-size: clamp(2rem, 6vw, 4rem);
   font-weight: 600;
@@ -473,9 +486,10 @@
   color: var(--text-primary);
   text-transform: uppercase;
   text-shadow: 0 0 30px rgba(201, 169, 98, 0.3);
+  transition: opacity 150ms ease-out;
 }
 
-.branches-container {
+.origin-of-sex-essay .branches-container {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -484,7 +498,7 @@
   height: 200px;
 }
 
-.meaning-branch {
+.origin-of-sex-essay .meaning-branch {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -494,7 +508,7 @@
   transition: transform 200ms ease-out, opacity 200ms ease-out;
 }
 
-.branch-word {
+.origin-of-sex-essay .branch-word {
   font-family: var(--font-etymology);
   font-size: 0.875rem;
   letter-spacing: 0.1em;
@@ -508,7 +522,7 @@
 }
 
 /* Phase 5: Title Layer */
-.hero-title-layer {
+.origin-of-sex-essay .hero-title-layer {
   position: absolute;
   inset: 0;
   display: flex;
@@ -520,17 +534,17 @@
   pointer-events: none;
 }
 
-.hero-etymology-tag {
+.origin-of-sex-essay .hero-etymology-tag {
   font-family: var(--font-etymology);
   font-size: 0.75rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--accent-latin);
   margin-bottom: var(--space-md);
-  transition: transform 150ms ease-out, opacity 150ms ease-out;
+  transition: transform 150ms ease-out;
 }
 
-.hero-title-word {
+.origin-of-sex-essay .hero-title-word {
   font-family: var(--font-display);
   font-size: clamp(4rem, 15vw, 12rem);
   font-weight: 600;
@@ -543,7 +557,7 @@
   transition: letter-spacing 200ms ease-out;
 }
 
-.hero-subtitle {
+.origin-of-sex-essay .hero-subtitle {
   font-family: var(--font-body);
   font-size: clamp(1rem, 2.5vw, 1.375rem);
   font-style: italic;
@@ -553,7 +567,7 @@
 }
 
 /* Initial Prompt (before scrolling) */
-.hero-initial-prompt {
+.origin-of-sex-essay .hero-initial-prompt {
   position: absolute;
   top: 20%;
   left: 50%;
@@ -563,7 +577,7 @@
   animation: fadeInPrompt 1.5s ease-out 0.5s both;
 }
 
-.initial-question {
+.origin-of-sex-essay .initial-question {
   font-family: var(--font-display);
   font-size: clamp(1.25rem, 3vw, 2rem);
   font-style: italic;
@@ -585,7 +599,7 @@
 }
 
 /* Scroll Indicator */
-.scroll-indicator-hero {
+.origin-of-sex-essay .scroll-indicator-hero {
   position: absolute;
   bottom: var(--space-lg);
   left: 50%;
@@ -597,7 +611,7 @@
   transition: opacity 200ms ease-out;
 }
 
-.scroll-indicator-hero span {
+.origin-of-sex-essay .scroll-indicator-hero span {
   font-family: var(--font-ui);
   font-size: 0.625rem;
   letter-spacing: 0.2em;
@@ -605,7 +619,7 @@
   color: var(--text-muted);
 }
 
-.scroll-line-animated {
+.origin-of-sex-essay .scroll-line-animated {
   width: 1px;
   height: 48px;
   background: linear-gradient(180deg, var(--text-tertiary) 0%, transparent 100%);
@@ -630,12 +644,12 @@
 
 /* Mobile adjustments for hero */
 @media (max-width: 768px) {
-  .branches-container {
+  .origin-of-sex-essay .branches-container {
     width: 280px;
     height: 140px;
   }
   
-  .meaning-branch {
+  .origin-of-sex-essay .meaning-branch {
     transform: rotate(var(--angle)) translateX(60px) !important;
   }
 }
