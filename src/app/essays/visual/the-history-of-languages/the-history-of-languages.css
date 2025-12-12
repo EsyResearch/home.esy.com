@@ -741,15 +741,25 @@
    9. WRITING SYSTEMS TIMELINE
    ========================================= */
 
+/* Writing Systems Timeline - Scroll-Locked */
 .writing-timeline-container {
-  width: 100%;
-  padding: 2rem;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  background: var(--lang-bg-primary);
 }
 
 .writing-timeline {
   position: relative;
-  max-width: 1000px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 900px;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .timeline-track {
@@ -757,9 +767,10 @@
   left: 50%;
   top: 0;
   bottom: 0;
-  width: 2px;
+  width: 3px;
   background: var(--lang-border);
   transform: translateX(-50%);
+  z-index: 1;
 }
 
 .timeline-fill {
@@ -769,71 +780,146 @@
   width: 100%;
   background: linear-gradient(to bottom, var(--lang-gold), var(--lang-blue));
   transition: height 0.1s linear;
+  transition: height 0.1s linear;
 }
 
 .timeline-event {
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  margin-bottom: 3rem;
+  gap: 1.5rem;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .timeline-event.visible {
   opacity: 1;
+  transform: translateY(0);
 }
 
-.timeline-event:nth-child(odd) {
-  flex-direction: row;
-  text-align: right;
-  padding-right: calc(50% + 2rem);
-}
-
-.timeline-event:nth-child(even) {
-  flex-direction: row-reverse;
-  text-align: left;
-  padding-left: calc(50% + 2rem);
-}
-
+/* Marker in center column */
 .timeline-marker {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 12px;
-  height: 12px;
+  grid-column: 2;
+  width: 16px;
+  height: 16px;
   background: var(--lang-bg-primary);
-  border: 2px solid var(--lang-gold);
+  border: 3px solid var(--lang-border);
   border-radius: 50%;
   z-index: 2;
+  transition: all 0.3s ease;
 }
 
 .timeline-event.visible .timeline-marker {
   background: var(--lang-gold);
-  box-shadow: 0 0 15px var(--lang-gold-glow);
+  border-color: var(--lang-gold);
+  box-shadow: 0 0 20px var(--lang-gold-glow);
+}
+
+/* Event content */
+.event-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Odd events: content on left */
+.timeline-event:nth-child(odd) .event-content {
+  grid-column: 1;
+  text-align: right;
+  padding-right: 1rem;
+}
+
+.timeline-event:nth-child(odd)::after {
+  content: '';
+  grid-column: 3;
+}
+
+/* Even events: content on right */
+.timeline-event:nth-child(even)::before {
+  content: '';
+  grid-column: 1;
+}
+
+.timeline-event:nth-child(even) .event-content {
+  grid-column: 3;
+  text-align: left;
+  padding-left: 1rem;
 }
 
 .event-year {
   font-family: 'Inter', sans-serif;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--lang-gold);
-  margin-bottom: 0.25rem;
+  letter-spacing: 0.05em;
 }
 
 .event-system {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.25rem;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 500;
   color: var(--lang-text-primary);
-  margin-bottom: 0.25rem;
+  line-height: 1.2;
 }
 
 .event-region {
   font-family: 'Inter', sans-serif;
-  font-size: 0.6875rem;
+  font-size: 0.7rem;
+  font-weight: 500;
   color: var(--lang-text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
+}
+
+/* Timeline header */
+.writing-evolution .sequence-pinned::before {
+  content: 'The Evolution of Writing';
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-style: italic;
+  color: var(--lang-text-secondary);
+  white-space: nowrap;
+  z-index: 10;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .writing-timeline {
+    height: 80vh;
+  }
+  
+  .timeline-event {
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+  }
+  
+  .timeline-marker {
+    grid-column: 1;
+  }
+  
+  .timeline-event .event-content,
+  .timeline-event:nth-child(odd) .event-content,
+  .timeline-event:nth-child(even) .event-content {
+    grid-column: 2;
+    text-align: left;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  .timeline-event:nth-child(odd)::after,
+  .timeline-event:nth-child(even)::before {
+    display: none;
+  }
+  
+  .timeline-track {
+    left: 8px;
+  }
 }
 
 /* =========================================

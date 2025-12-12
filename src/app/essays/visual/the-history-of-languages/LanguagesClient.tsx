@@ -614,6 +614,12 @@ const Chapter2: React.FC = () => {
       >
         <a href="#chapter-3" className="skip-sequence">Skip to next chapter</a>
         <div className="sequence-pinned">
+          {/* Progress bar */}
+          <div 
+            className="scroll-progress-bar"
+            style={{ width: `${progress * 100}%` }}
+          />
+          
           <div className="writing-timeline-container">
             <div className="writing-timeline">
               <div className="timeline-track">
@@ -621,13 +627,12 @@ const Chapter2: React.FC = () => {
               </div>
               
               {writingSystemsTimeline.slice(0, 7).map((event, i) => {
-                const eventProgress = i / 7;
+                const eventProgress = (i + 0.5) / 7; // Offset so first shows at ~7% progress
                 const isVisible = progress >= eventProgress;
                 return (
                   <div 
                     key={event.system}
                     className={`timeline-event ${isVisible ? 'visible' : ''}`}
-                    style={{ transitionDelay: `${i * 100}ms` }}
                   >
                     <div className="timeline-marker" />
                     <div className="event-content">
