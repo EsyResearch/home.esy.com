@@ -612,16 +612,16 @@
   min-height: 150vh; /* Extended for scroll-driven animation */
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   padding: var(--toy-space-xl) var(--toy-space-md);
-  overflow: hidden;
+  /* No overflow:hidden - it breaks sticky positioning */
 }
 
 .hero-section .hero-content {
   position: sticky;
-  top: 50%;
+  top: 50vh;
   transform: translateY(-50%);
+  z-index: 2;
 }
 
 .hero-section.complete .hero-content {
