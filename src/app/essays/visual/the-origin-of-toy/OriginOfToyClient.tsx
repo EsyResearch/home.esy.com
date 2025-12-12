@@ -1,9 +1,20 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, Clock, ChevronDown, ExternalLink } from "lucide-react";
 import "./the-origin-of-toy.css";
+import {
+  chapter1Images,
+  chapter2Images,
+  chapter3Images,
+  chapter4Images,
+  chapter5Images,
+  chapter6Images,
+  chapter7Images,
+  type ToyImage,
+} from "./images";
 
 /*
  * THE ETYMOLOGY OF PLAY
@@ -283,6 +294,57 @@ const EtymologyBranch: React.FC<{
   </div>
 );
 
+// Figure Image Component
+const FigureImage: React.FC<{
+  image: ToyImage;
+  priority?: boolean;
+}> = ({ image, priority = false }) => {
+  const ref = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true);
+      },
+      { threshold: 0.1 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <figure ref={ref} className={`figure-image ${isVisible ? "visible" : ""} era-${image.era}`}>
+      <div className="figure-image-container">
+        <Image
+          src={image.src}
+          alt={image.alt}
+          fill
+          sizes="(max-width: 768px) 100vw, 700px"
+          priority={priority}
+          className="figure-img"
+        />
+      </div>
+      <figcaption>
+        <p className="figure-caption">{image.caption}</p>
+        <p className="figure-attribution">{image.attribution}</p>
+      </figcaption>
+    </figure>
+  );
+};
+
+// Image Gallery Component
+const ImageGallery: React.FC<{
+  images: ToyImage[];
+  columns?: 1 | 2;
+}> = ({ images, columns = 2 }) => (
+  <div className={`image-gallery columns-${columns}`}>
+    {images.map((img) => (
+      <FigureImage key={img.id} image={img} />
+    ))}
+  </div>
+);
+
 // Sources Section
 const SourcesSection: React.FC = () => (
   <section className="sources-section">
@@ -342,6 +404,8 @@ const OriginOfToyClient: React.FC = () => {
           era="England, 1300–1500"
           metaphor="When 'toy' meant whispered scandal—the word's lost first life."
         >
+          <FigureImage image={chapter1Images[0]} priority />
+
           <div className="content-block">
             <p>
               The word &ldquo;toy&rdquo; first appears in English around 1303, and it has nothing 
@@ -356,6 +420,8 @@ const OriginOfToyClient: React.FC = () => {
             definition="Daliance; amorous sport or play; trifling behavior"
             source="Middle English Dictionary"
           />
+
+          <ImageGallery images={chapter1Images.slice(1)} columns={2} />
 
           <div className="content-block">
             <p>
@@ -395,6 +461,8 @@ const OriginOfToyClient: React.FC = () => {
           era="Early Modern England, 1500–1650"
           metaphor="When 'toy' meant everything except plaything—the word at its wildest."
         >
+          <FigureImage image={chapter2Images[0]} />
+
           <div className="content-block">
             <p>
               Shakespeare used &ldquo;toy&rdquo; over thirty times—<em>never once</em> meaning 
@@ -404,11 +472,15 @@ const OriginOfToyClient: React.FC = () => {
             </p>
           </div>
 
+          <ImageGallery images={chapter2Images.slice(1, 3)} columns={2} />
+
           <QuoteMonument
             quote="These are but wild and whirling toys."
             attribution="Hamlet"
             year="1601"
           />
+
+          <FigureImage image={chapter2Images[3]} />
 
           <div className="content-block">
             <p>
@@ -443,6 +515,8 @@ const OriginOfToyClient: React.FC = () => {
           era="17th–18th Century"
           metaphor="When childhood itself was invented—and claimed a word."
         >
+          <ImageGallery images={chapter3Images.slice(0, 2)} columns={2} />
+
           <div className="content-block">
             <p>
               The 17th and 18th centuries invented childhood as we know it. Philosophers like 
@@ -454,11 +528,15 @@ const OriginOfToyClient: React.FC = () => {
             </p>
           </div>
 
+          <FigureImage image={chapter3Images[2]} />
+
           <DictionaryEntry
             era="1755"
             definition="TOY: A petty commodity; a trifle; a thing of no value; a plaything; a bauble."
             source="Samuel Johnson's Dictionary"
           />
+
+          <FigureImage image={chapter3Images[3]} />
 
           <div className="content-block">
             <p>
@@ -468,6 +546,8 @@ const OriginOfToyClient: React.FC = () => {
               for cultivating innocent joy.
             </p>
           </div>
+
+          <FigureImage image={chapter3Images[4]} />
 
           <div className="figure-grid">
             <FigureProfile
@@ -500,6 +580,8 @@ const OriginOfToyClient: React.FC = () => {
           era="Nuremberg & European Toymaking, 1600–1850"
           metaphor="When 'toy' became a profession—the word gains weight."
         >
+          <FigureImage image={chapter4Images[0]} />
+
           <div className="content-block">
             <p>
               Nuremberg claimed the title &ldquo;Toy Capital of the World&rdquo; by the 18th century. 
@@ -513,6 +595,8 @@ const OriginOfToyClient: React.FC = () => {
               been &ldquo;trifles&rdquo; were now serious business.
             </p>
           </div>
+
+          <ImageGallery images={chapter4Images.slice(1, 3)} columns={2} />
 
           <div className="craft-showcase">
             <div className="craft-item">
@@ -528,6 +612,8 @@ const OriginOfToyClient: React.FC = () => {
               <span className="craft-region">Thuringia</span>
             </div>
           </div>
+
+          <FigureImage image={chapter4Images[3]} />
 
           <div className="content-block">
             <p>
@@ -546,6 +632,8 @@ const OriginOfToyClient: React.FC = () => {
           era="Victorian Era to Early 20th Century"
           metaphor="When toys became products—and 'toy' became synonymous with childhood."
         >
+          <FigureImage image={chapter5Images[0]} />
+
           <div className="content-block">
             <p>
               The Industrial Revolution transformed toys from handcraft to mass product. Factories 
@@ -554,6 +642,8 @@ const OriginOfToyClient: React.FC = () => {
               For the first time, toys reached beyond the wealthy.
             </p>
           </div>
+
+          <ImageGallery images={chapter5Images.slice(1, 3)} columns={2} />
 
           <div className="stat-block">
             <div className="stat-item">
@@ -565,6 +655,8 @@ const OriginOfToyClient: React.FC = () => {
               <span className="stat-label">Hamleys opens in London</span>
             </div>
           </div>
+
+          <FigureImage image={chapter5Images[3]} />
 
           <div className="content-block">
             <p>
@@ -587,6 +679,8 @@ const OriginOfToyClient: React.FC = () => {
           era="20th Century to Present"
           metaphor="When 'toy' outgrew the nursery—the word's modern migrations."
         >
+          <FigureImage image={chapter6Images[0]} />
+
           <div className="content-block">
             <p>
               The 20th century secured &ldquo;toy&rdquo; as a children&apos;s word—but the word refused to 
@@ -595,6 +689,8 @@ const OriginOfToyClient: React.FC = () => {
               ancient association with adult pleasure. &ldquo;Executive toys&rdquo; colonized office desks.
             </p>
           </div>
+
+          <ImageGallery images={chapter6Images.slice(1)} columns={2} />
 
           <div className="etymology-tree">
             <div className="tree-trunk">TOY</div>
@@ -648,6 +744,8 @@ const OriginOfToyClient: React.FC = () => {
           era="Present Day and Reflection"
           metaphor="What the journey of one word teaches us about permission to play."
         >
+          <FigureImage image={chapter7Images[0]} />
+
           <div className="content-block">
             <p>
               Johan Huizinga, the Dutch historian, argued that play is older than culture itself. 
@@ -655,6 +753,8 @@ const OriginOfToyClient: React.FC = () => {
               essential to life. The word &ldquo;toy&rdquo; carries this weight now, but it didn&apos;t always.
             </p>
           </div>
+
+          <FigureImage image={chapter7Images[2]} />
 
           <QuoteMonument
             quote="Play is older than culture, for culture, however inadequately defined, always presupposes human society, and animals have not waited for man to teach them their playing."

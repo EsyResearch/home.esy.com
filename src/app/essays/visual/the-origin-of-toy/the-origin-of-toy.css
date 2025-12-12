@@ -648,6 +648,107 @@
   border-top: 1px solid rgba(247, 243, 235, 0.06);
 }
 
+/* ==================== FIGURE IMAGES ==================== */
+
+.figure-image {
+  margin: var(--toy-space-md) 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--toy-duration-slow) var(--toy-ease-out);
+}
+
+.figure-image.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.figure-image-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--toy-bg-elevated);
+}
+
+.figure-img {
+  object-fit: cover;
+  transition: transform var(--toy-duration-slow) ease;
+}
+
+.figure-image:hover .figure-img {
+  transform: scale(1.02);
+}
+
+/* Era-specific image treatments */
+.figure-image.era-medieval .figure-image-container {
+  filter: sepia(0.3) contrast(1.05);
+}
+
+.figure-image.era-renaissance .figure-image-container {
+  filter: saturate(1.1) contrast(1.02);
+}
+
+.figure-image.era-enlightenment .figure-image-container {
+  filter: sepia(0.15) brightness(1.02);
+}
+
+.figure-image.era-victorian .figure-image-container {
+  filter: sepia(0.4) contrast(1.1) brightness(0.95);
+}
+
+.figure-image.era-modern .figure-image-container {
+  filter: none;
+}
+
+.figure-image figcaption {
+  padding: var(--toy-space-sm) 0;
+}
+
+.figure-caption {
+  font-family: var(--toy-font-serif);
+  font-size: 0.9375rem;
+  font-style: italic;
+  color: var(--toy-text-secondary);
+  margin: 0 0 0.25rem 0;
+}
+
+.figure-attribution {
+  font-family: var(--toy-font-mono);
+  font-size: 0.6875rem;
+  color: var(--toy-text-tertiary);
+  margin: 0;
+}
+
+/* Image Gallery */
+.image-gallery {
+  display: grid;
+  gap: var(--toy-space-md);
+  margin: var(--toy-space-md) 0;
+}
+
+.image-gallery.columns-1 {
+  grid-template-columns: 1fr;
+}
+
+.image-gallery.columns-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 768px) {
+  .image-gallery.columns-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.image-gallery .figure-image {
+  margin: 0;
+}
+
+.image-gallery .figure-image-container {
+  aspect-ratio: 3/2;
+}
+
 /* ==================== ETYMOLOGY TREE ==================== */
 
 .etymology-tree {
