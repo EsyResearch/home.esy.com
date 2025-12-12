@@ -196,6 +196,8 @@ const EssayHeader: React.FC<{ scrolled: boolean }> = ({ scrolled }) => (
 );
 
 // Hero Section with SCROLL-DRIVEN word fragmentation
+// Spec choreography: 0-15% word appears, 15-30% flicker/cracks, 30-50% fracture/TOYE,
+// 50-70% annotations, 70-85% swirl/settle, 85-100% title card + block
 const HeroSection: React.FC = () => {
   const heroRef = useRef<HTMLElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -211,62 +213,130 @@ const HeroSection: React.FC = () => {
       
       // Calculate progress: 0 at top, 100 when hero is scrolled past
       const scrolled = -rect.top;
-      const progress = Math.min(100, Math.max(0, (scrolled / (heroHeight * 0.8)) * 100));
+      const progress = Math.min(100, Math.max(0, (scrolled / (heroHeight * 0.7)) * 100));
       
       setScrollProgress(progress);
-      if (progress >= 95) setIsComplete(true);
+      if (progress >= 98) setIsComplete(true);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Initial check
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Map scroll progress to animation stages (0-4)
-  const stage = isComplete ? 4 : Math.floor(scrollProgress / 25);
 
   const handleSkip = useCallback(() => {
     setIsComplete(true);
     setScrollProgress(100);
-    // Scroll past the hero
     if (heroRef.current) {
       const heroBottom = heroRef.current.offsetTop + heroRef.current.offsetHeight;
       window.scrollTo({ top: heroBottom - 100, behavior: "smooth" });
     }
   }, []);
 
+  // Spec-precise phase calculations
+  const phase1 = scrollProgress >= 0 && scrollProgress < 15;   // 0-15%: Word appears
+  const phase2 = scrollProgress >= 15 && scrollProgress < 30;  // 15-30%: Flicker/cracks
+  const phase3 = scrollProgress >= 30 && scrollProgress < 50;  // 30-50%: Fracture/TOYE
+  const phase4 = scrollProgress >= 50 && scrollProgress < 70;  // 50-70%: Annotations
+  const phase5 = scrollProgress >= 70 && scrollProgress < 85;  // 70-85%: Swirl/settle
+  const phase6 = scrollProgress >= 85;                         // 85-100%: Title card
+
+  // Derived states for animations
+  const wordVisible = scrollProgress >= 5;
+  const flickering = phase2;
+  const cracking = scrollProgress >= 20;
+  const fracturing = scrollProgress >= 30;
+  const toyeVisible = scrollProgress >= 35;
+  const annotationsVisible = scrollProgress >= 50;
+  const annotationsSwirling = phase5;
+  const titleVisible = scrollProgress >= 85;
+
+  // Calculate flicker intensity (peaks at 22%)
+  const flickerIntensity = phase2 ? Math.sin((scrollProgress - 15) * 0.4) * 0.3 : 0;
+  
+  // Calculate crack spread (0 to 1 from 20-30%)
+  const crackSpread = cracking ? Math.min(1, (scrollProgress - 20) / 10) : 0;
+  
+  // Modern word fade out (30-50%)
+  const modernOpacity = fracturing ? Math.max(0.15, 1 - (scrollProgress - 30) / 25) : 1;
+  
+  // TOYE fade in (35-50%)
+  const toyeOpacity = toyeVisible ? Math.min(1, (scrollProgress - 35) / 15) : 0;
+  
+  // Annotation individual opacities with stagger
+  const annotationOpacities = [
+    annotationsVisible ? Math.min(1, (scrollProgress - 50) / 8) : 0,
+    annotationsVisible ? Math.min(1, (scrollProgress - 53) / 8) : 0,
+    annotationsVisible ? Math.min(1, (scrollProgress - 56) / 8) : 0,
+    annotationsVisible ? Math.min(1, (scrollProgress - 59) / 8) : 0,
+  ];
+  
+  // Swirl rotation (70-85%)
+  const swirlRotation = annotationsSwirling ? (scrollProgress - 70) * 8 : 0;
+  const swirlScale = annotationsSwirling ? 1 + (scrollProgress - 70) * 0.01 : 1;
+  
+  // Title card fade (85-100%)
+  const titleOpacity = titleVisible ? Math.min(1, (scrollProgress - 85) / 12) : 0;
+
   return (
-    <section ref={heroRef} className={`hero-section scroll-lock-section ${isComplete ? "complete" : ""}`}>
-      <div className="hero-background">
+    <section 
+      ref={heroRef} 
+      className={`hero-section scroll-lock-section ${isComplete ? "complete" : ""}`}
+      style={{ 
+        // Start in darkness, fade in background
+        backgroundColor: scrollProgress < 5 ? "#000" : undefined,
+      }}
+    >
+      {/* Background transitions from pure black to parchment texture */}
+      <div 
+        className="hero-background"
+        style={{ opacity: Math.min(1, scrollProgress / 10) }}
+      >
         <div className="parchment-texture" />
-        <div className="floating-definitions">
-          {stage >= 2 && (
-            <>
-              <span className="def-float def-1" style={{ opacity: Math.min(1, (scrollProgress - 50) / 15) }}>
-                amorous dalliance
-              </span>
-              <span className="def-float def-2" style={{ opacity: Math.min(1, (scrollProgress - 55) / 15) }}>
-                a trifle
-              </span>
-              <span className="def-float def-3" style={{ opacity: Math.min(1, (scrollProgress - 60) / 15) }}>
-                foolish behavior
-              </span>
-              <span className="def-float def-4" style={{ opacity: Math.min(1, (scrollProgress - 65) / 15) }}>
-                something worthless
-              </span>
-            </>
-          )}
+        
+        {/* Floating annotations (50-85%) */}
+        <div 
+          className={`floating-definitions ${annotationsSwirling ? "swirling" : ""}`}
+          style={{
+            transform: annotationsSwirling ? `rotate(${swirlRotation}deg) scale(${swirlScale})` : "none",
+            opacity: phase6 ? Math.max(0, 1 - (scrollProgress - 85) / 10) : 1,
+          }}
+        >
+          <span 
+            className="def-float def-1" 
+            style={{ opacity: annotationOpacities[0] }}
+          >
+            amorous dalliance
+          </span>
+          <span 
+            className="def-float def-2" 
+            style={{ opacity: annotationOpacities[1] }}
+          >
+            a trifle
+          </span>
+          <span 
+            className="def-float def-3" 
+            style={{ opacity: annotationOpacities[2] }}
+          >
+            foolish behavior
+          </span>
+          <span 
+            className="def-float def-4" 
+            style={{ opacity: annotationOpacities[3] }}
+          >
+            something worthless
+          </span>
         </div>
       </div>
 
       {/* Skip affordance */}
-      {!isComplete && scrollProgress > 10 && (
+      {!isComplete && scrollProgress > 15 && (
         <button className="skip-button" onClick={handleSkip} aria-label="Skip animation">
           Skip →
         </button>
       )}
 
-      {/* Progress indicator for scroll-lock */}
+      {/* Progress indicator */}
       {!isComplete && scrollProgress > 5 && (
         <div className="scroll-lock-progress" aria-hidden="true">
           <div className="progress-fill" style={{ width: `${scrollProgress}%` }} />
@@ -274,22 +344,43 @@ const HeroSection: React.FC = () => {
       )}
 
       <div className="hero-content">
-        <div className={`word-container ${stage >= 1 ? "visible" : ""}`}>
+        {/* Phase 1-3: Word transformation (0-50%) */}
+        <div 
+          className={`word-container ${wordVisible ? "visible" : ""}`}
+          style={{ opacity: phase6 ? Math.max(0, 1 - (scrollProgress - 85) / 10) : 1 }}
+        >
+          {/* Modern "TOY" - appears at 5%, flickers at 15-30%, fades at 30-50% */}
           <div 
-            className={`modern-word ${stage >= 2 ? "fragmenting" : ""}`}
+            className={`modern-word ${flickering ? "flickering" : ""} ${cracking ? "cracking" : ""} ${fracturing ? "fragmenting" : ""}`}
             style={{ 
-              opacity: stage >= 2 ? Math.max(0.3, 1 - (scrollProgress - 50) / 30) : 1,
-              transform: stage >= 2 ? `translateY(${(scrollProgress - 50) * 0.5}px) scale(${1 - (scrollProgress - 50) * 0.003})` : "none"
+              opacity: wordVisible ? modernOpacity + flickerIntensity : 0,
+              filter: cracking ? `blur(${crackSpread * 0.5}px)` : "none",
+              transform: fracturing 
+                ? `translateY(${(scrollProgress - 30) * 0.8}px) scale(${1 - (scrollProgress - 30) * 0.005})` 
+                : "none",
             }}
           >
-            <span>T</span>
-            <span>O</span>
-            <span>Y</span>
+            <span style={{ animationDelay: "0s" }}>T</span>
+            <span style={{ animationDelay: "0.1s" }}>O</span>
+            <span style={{ animationDelay: "0.2s" }}>Y</span>
+            
+            {/* Hairline cracks overlay (15-30%) */}
+            {cracking && (
+              <div 
+                className="crack-overlay"
+                style={{ opacity: crackSpread }}
+              />
+            )}
           </div>
-          {stage >= 2 && (
+          
+          {/* Medieval "TOYE" - emerges at 35-50% */}
+          {toyeVisible && (
             <div 
               className="medieval-word"
-              style={{ opacity: Math.min(1, (scrollProgress - 50) / 20) }}
+              style={{ 
+                opacity: toyeOpacity,
+                transform: `translateY(${20 - toyeOpacity * 20}px)`,
+              }}
             >
               <span className="blackletter">T</span>
               <span className="blackletter">O</span>
@@ -299,29 +390,41 @@ const HeroSection: React.FC = () => {
           )}
         </div>
 
-        {stage >= 3 && (
+        {/* Revelation text (30-50%) */}
+        {fracturing && !phase6 && (
           <p 
             className="hero-revelation"
-            style={{ opacity: Math.min(1, (scrollProgress - 75) / 15) }}
+            style={{ opacity: Math.min(1, (scrollProgress - 35) / 15) }}
           >
             Before it meant plaything, &ldquo;toy&rdquo; meant something else entirely.
           </p>
         )}
 
-        {(stage >= 4 || isComplete) && (
+        {/* Phase 6: Title card + wooden block (85-100%) */}
+        {titleVisible && (
           <div 
             className="title-card"
-            style={{ opacity: isComplete ? 1 : Math.min(1, (scrollProgress - 90) / 10) }}
+            style={{ opacity: titleOpacity }}
           >
             <h1 className="essay-title">{ESSAY_META.title}</h1>
             <p className="essay-subtitle">{ESSAY_META.subtitle}</p>
+            
+            {/* Wooden toy block beneath title - spec requirement */}
+            <div className="hero-block" style={{ opacity: Math.min(1, (scrollProgress - 90) / 8) }}>
+              <span className="block-letter">T</span>
+            </div>
+            
+            <p className="hero-tagline" style={{ opacity: Math.min(1, (scrollProgress - 93) / 7) }}>
+              Building understanding, block by block.
+            </p>
           </div>
         )}
 
+        {/* Initial scroll indicator (0-10%) */}
         {scrollProgress < 10 && (
-          <div className="scroll-indicator">
+          <div className="scroll-indicator" style={{ opacity: 1 - scrollProgress / 10 }}>
             <ChevronDown size={24} />
-            <span>Scroll to explore</span>
+            <span>Scroll to discover</span>
           </div>
         )}
       </div>
