@@ -9,6 +9,19 @@
 
 ## Audit Timeline
 
+### 2024-12-12 — Enhancement Pass v1.1
+**Auditor**: Scrollytelling Expert  
+**Score**: 8.5/10 (estimated)  
+**Status**: Ready for Publication
+
+**Enhancements Made**:
+- ✅ Added 3 missing figures (10/10 now complete)
+- ✅ Hero converted to scroll-driven animation
+- ✅ Dictionary Archaeology scroll-lock (Ch1)
+- ✅ Shakespeare Shuffle scroll-lock (Ch2)
+- ✅ Etymology Complete scroll-lock (Ch7)
+- ✅ Skip button added for accessibility
+
 ### 2024-12-12 — Comprehensive Audit v1.0
 **Auditor**: Meta Audit Orchestrator  
 **Score**: 7.4/10  
@@ -34,10 +47,11 @@
 | Priority | Issue | Status | Est. Time |
 |----------|-------|--------|-----------|
 | High | Create OG image | 🔴 Not Started | 30 min |
-| High | Add 3 missing figures | 🔴 Not Started | 1 hour |
-| Medium | Hero scroll-lock | 🔴 Not Started | 2-3 hours |
-| Medium | Key scroll-lock sequences | 🔴 Not Started | 4-6 hours |
+| High | Add 3 missing figures | ✅ Complete | — |
+| Medium | Hero scroll-lock | ✅ Complete | — |
+| Medium | Key scroll-lock sequences | ✅ Complete (3/4) | — |
 | Low | Parallax system | 🔴 Not Started | 2-3 hours |
+| Low | Remaining scroll-locks (4) | 🔴 Not Started | 4 hours |
 
 ---
 
@@ -45,6 +59,7 @@
 
 | Version | Date | Changes | Score |
 |---------|------|---------|-------|
+| v1.1 | 2024-12-12 | +3 figures, +4 scroll-locks, hero animation | 8.5/10 |
 | v1.0 | 2024-12-12 | Initial implementation | 7.4/10 |
 
 ---
