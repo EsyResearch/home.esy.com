@@ -815,8 +815,9 @@ const EtymologyComplete: React.FC = () => {
           const moveToCenter = Math.min(1, fragmentProgress);
           const startAngle = (index / meanings.length) * 360;
           const radius = 150 * (1 - moveToCenter);
-          const x = Math.cos((startAngle * Math.PI) / 180) * radius;
-          const y = Math.sin((startAngle * Math.PI) / 180) * radius;
+          // Round to avoid hydration mismatch from floating-point precision
+          const x = Math.round(Math.cos((startAngle * Math.PI) / 180) * radius);
+          const y = Math.round(Math.sin((startAngle * Math.PI) / 180) * radius);
           
           return (
             <div
