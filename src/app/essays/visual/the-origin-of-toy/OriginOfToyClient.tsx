@@ -242,7 +242,9 @@ const HeroSection: React.FC = () => {
   const phase6 = scrollProgress >= 85;                         // 85-100%: Title card
 
   // Derived states for animations
-  const wordVisible = scrollProgress >= 5;
+  // Word should be visible immediately (spec: 0-15% word appears)
+  const wordVisible = true; // Always visible, fades in with scroll
+  const wordOpacity = Math.min(1, 0.3 + scrollProgress * 0.14); // Start at 30% opacity, reach 100% by ~5%
   const flickering = phase2;
   const cracking = scrollProgress >= 20;
   const fracturing = scrollProgress >= 30;
@@ -282,15 +284,11 @@ const HeroSection: React.FC = () => {
     <section 
       ref={heroRef} 
       className={`hero-section scroll-lock-section ${isComplete ? "complete" : ""}`}
-      style={{ 
-        // Start in darkness, fade in background
-        backgroundColor: scrollProgress < 5 ? "#000" : undefined,
-      }}
     >
-      {/* Background transitions from pure black to parchment texture */}
+      {/* Background - subtle from start, builds with scroll */}
       <div 
         className="hero-background"
-        style={{ opacity: Math.min(1, scrollProgress / 10) }}
+        style={{ opacity: Math.min(1, 0.15 + scrollProgress / 12) }}
       >
         <div className="parchment-texture" />
         
@@ -349,11 +347,11 @@ const HeroSection: React.FC = () => {
           className={`word-container ${wordVisible ? "visible" : ""}`}
           style={{ opacity: phase6 ? Math.max(0, 1 - (scrollProgress - 85) / 10) : 1 }}
         >
-          {/* Modern "TOY" - appears at 5%, flickers at 15-30%, fades at 30-50% */}
+          {/* Modern "TOY" - visible immediately, flickers at 15-30%, fades at 30-50% */}
           <div 
             className={`modern-word ${flickering ? "flickering" : ""} ${cracking ? "cracking" : ""} ${fracturing ? "fragmenting" : ""}`}
             style={{ 
-              opacity: wordVisible ? modernOpacity + flickerIntensity : 0,
+              opacity: fracturing ? modernOpacity + flickerIntensity : wordOpacity + flickerIntensity,
               filter: cracking ? `blur(${crackSpread * 0.5}px)` : "none",
               transform: fracturing 
                 ? `translateY(${(scrollProgress - 30) * 0.8}px) scale(${1 - (scrollProgress - 30) * 0.005})` 
