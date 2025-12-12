@@ -193,17 +193,441 @@
   color: var(--toy-text-primary);
 }
 
+/* ==================== SCROLL-LOCK SYSTEM ==================== */
+
+.scroll-lock-section {
+  position: relative;
+}
+
+.skip-button {
+  position: fixed;
+  bottom: var(--toy-space-md);
+  right: var(--toy-space-md);
+  padding: 0.5rem 1rem;
+  background: rgba(15, 13, 9, 0.8);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 4px;
+  color: var(--toy-text-secondary);
+  font-family: var(--toy-font-sans);
+  font-size: 0.75rem;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all var(--toy-duration-fast) ease;
+  z-index: 50;
+}
+
+.skip-button:hover {
+  opacity: 1;
+  background: rgba(15, 13, 9, 0.95);
+  border-color: var(--toy-accent-gold);
+  color: var(--toy-text-primary);
+}
+
+.scroll-lock-progress {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 100;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--toy-accent-gold), var(--toy-accent-terracotta));
+  transition: width 0.1s ease-out;
+}
+
+/* ==================== DICTIONARY ARCHAEOLOGY ==================== */
+
+.dictionary-archaeology {
+  min-height: 80vh;
+  padding: var(--toy-space-xl) var(--toy-space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--toy-space-lg);
+}
+
+.archaeology-header {
+  text-align: center;
+}
+
+.archaeology-label {
+  display: block;
+  font-family: var(--toy-font-mono);
+  font-size: 0.75rem;
+  color: var(--toy-accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.archaeology-instruction {
+  font-family: var(--toy-font-serif);
+  font-style: italic;
+  color: var(--toy-text-tertiary);
+}
+
+.dictionary-layers {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--toy-space-sm);
+}
+
+.dict-layer {
+  padding: var(--toy-space-md);
+  border-radius: 8px;
+  transition: all var(--toy-duration-slow) var(--toy-ease-out);
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.dict-layer.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dict-layer.current {
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+}
+
+.dict-layer.modern {
+  background: var(--toy-bg-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dict-layer.vintage {
+  background: linear-gradient(135deg, #2a2520 0%, #1f1a16 100%);
+  border: 1px solid rgba(200, 180, 140, 0.2);
+}
+
+.dict-layer.victorian {
+  background: linear-gradient(135deg, #252018 0%, #1a1610 100%);
+  border: 1px solid rgba(180, 160, 120, 0.25);
+  filter: sepia(0.1);
+}
+
+.dict-layer.johnson {
+  background: linear-gradient(135deg, #1f1912 0%, #15120e 100%);
+  border: 1px solid rgba(160, 140, 100, 0.3);
+  filter: sepia(0.2);
+}
+
+.dict-layer.medieval {
+  background: linear-gradient(135deg, #1a150e 0%, #12100c 100%);
+  border: 2px solid var(--toy-accent-gold);
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.2);
+}
+
+.layer-era {
+  font-family: var(--toy-font-mono);
+  font-size: 0.7rem;
+  color: var(--toy-accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.layer-year {
+  font-family: var(--toy-font-mono);
+  font-size: 0.65rem;
+  color: var(--toy-text-tertiary);
+  margin-top: 0.25rem;
+}
+
+.layer-word {
+  font-family: var(--toy-font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--toy-text-primary);
+  margin: 0.5rem 0;
+}
+
+.dict-layer.medieval .layer-word {
+  font-family: 'Times New Roman', serif;
+  font-style: italic;
+}
+
+.layer-def {
+  font-family: var(--toy-font-serif);
+  font-size: 1rem;
+  color: var(--toy-text-secondary);
+  font-style: italic;
+}
+
+.archaeology-footer {
+  text-align: center;
+  padding-top: var(--toy-space-md);
+}
+
+.archaeology-insight {
+  font-family: var(--toy-font-serif);
+  font-size: 1.1rem;
+  color: var(--toy-text-primary);
+}
+
+/* ==================== SHAKESPEARE SHUFFLE ==================== */
+
+.shakespeare-shuffle {
+  min-height: 70vh;
+  padding: var(--toy-space-xl) var(--toy-space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--toy-space-lg);
+}
+
+.shuffle-header {
+  text-align: center;
+}
+
+.shuffle-label {
+  font-family: var(--toy-font-mono);
+  font-size: 0.75rem;
+  color: var(--toy-accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.card-deck {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-deck.stacked .folio-card {
+  position: absolute;
+}
+
+.card-deck.spread .folio-card {
+  position: absolute;
+}
+
+.folio-card {
+  width: 200px;
+  padding: var(--toy-space-md);
+  background: linear-gradient(135deg, #2a2418 0%, #1f1a14 100%);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: 4px;
+  transition: all var(--toy-duration-slow) var(--toy-ease-out);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.folio-card.revealed {
+  opacity: 1;
+}
+
+.card-play {
+  font-family: var(--toy-font-mono);
+  font-size: 0.7rem;
+  color: var(--toy-accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.card-quote {
+  font-family: var(--toy-font-serif);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--toy-text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.card-meaning {
+  font-family: var(--toy-font-sans);
+  font-size: 0.75rem;
+  color: var(--toy-text-tertiary);
+}
+
+.shuffle-conclusion {
+  text-align: center;
+  padding: var(--toy-space-md);
+  animation: fadeIn var(--toy-duration-slow) var(--toy-ease-out);
+}
+
+.shuffle-conclusion p {
+  font-family: var(--toy-font-serif);
+  font-size: 1.1rem;
+  color: var(--toy-text-secondary);
+  margin: 0.5rem 0;
+}
+
+.conclusion-emphasis {
+  font-size: 1.3rem !important;
+  color: var(--toy-accent-gold) !important;
+  font-weight: 600;
+}
+
+/* ==================== ETYMOLOGY COMPLETE ==================== */
+
+.etymology-complete {
+  min-height: 80vh;
+  padding: var(--toy-space-xl) var(--toy-space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--toy-space-lg);
+}
+
+.complete-header {
+  text-align: center;
+}
+
+.complete-label {
+  font-family: var(--toy-font-mono);
+  font-size: 0.75rem;
+  color: var(--toy-accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.meaning-fragments {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.meaning-fragment {
+  position: absolute;
+  text-align: center;
+  transition: all var(--toy-duration-slow) var(--toy-ease-out);
+}
+
+.fragment-text {
+  display: block;
+  font-family: var(--toy-font-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--toy-text-secondary);
+}
+
+.fragment-era {
+  display: block;
+  font-family: var(--toy-font-mono);
+  font-size: 0.6rem;
+  color: var(--toy-text-tertiary);
+  margin-top: 0.25rem;
+}
+
+.final-word {
+  text-align: center;
+  padding: var(--toy-space-lg);
+  animation: scaleIn var(--toy-duration-slow) var(--toy-ease-out);
+}
+
+.final-letters {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.final-letters span {
+  font-family: var(--toy-font-display);
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--toy-accent-gold);
+  text-shadow: 0 4px 30px rgba(212, 175, 55, 0.4);
+}
+
+.final-meaning {
+  font-family: var(--toy-font-serif);
+  font-size: 1.2rem;
+  color: var(--toy-text-primary);
+  margin-top: var(--toy-space-md);
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Mobile adjustments for scroll-lock sequences */
+@media (max-width: 768px) {
+  .dictionary-archaeology,
+  .shakespeare-shuffle,
+  .etymology-complete {
+    min-height: 60vh;
+    padding: var(--toy-space-lg) var(--toy-space-sm);
+  }
+
+  .dict-layer {
+    padding: var(--toy-space-sm);
+  }
+
+  .layer-word {
+    font-size: 1.5rem;
+  }
+
+  .folio-card {
+    width: 160px;
+    padding: var(--toy-space-sm);
+  }
+
+  .card-deck.spread .folio-card {
+    transform: none !important;
+    position: relative;
+  }
+
+  .card-deck.spread {
+    flex-direction: column;
+    height: auto;
+    gap: var(--toy-space-sm);
+  }
+
+  .final-letters span {
+    font-size: 3rem;
+  }
+}
+
 /* ==================== HERO SECTION ==================== */
 
 .hero-section {
   position: relative;
-  min-height: 100dvh;
+  min-height: 150vh; /* Extended for scroll-driven animation */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: var(--toy-space-xl) var(--toy-space-md);
   overflow: hidden;
+}
+
+.hero-section .hero-content {
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hero-section.complete .hero-content {
+  position: relative;
+  top: auto;
+  transform: none;
 }
 
 .hero-background {

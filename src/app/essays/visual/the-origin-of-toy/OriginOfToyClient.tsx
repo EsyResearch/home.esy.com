@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, Clock, ChevronDown, ExternalLink } from "lucide-react";
@@ -15,6 +15,96 @@ import {
   chapter7Images,
   type ToyImage,
 } from "./images";
+
+// ==================== SCROLL-LOCK HOOK ====================
+
+interface ScrollLockState {
+  isLocked: boolean;
+  progress: number; // 0-100
+  stage: number;    // For multi-stage animations
+}
+
+const useScrollLock = (
+  ref: React.RefObject<HTMLElement>,
+  lockHeight: number = 400, // vh units of scroll to complete
+  stages: number = 5
+): ScrollLockState => {
+  const [state, setState] = useState<ScrollLockState>({
+    isLocked: false,
+    progress: 0,
+    stage: 0,
+  });
+  const scrollStartRef = useRef(0);
+  const isActiveRef = useRef(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const handleScroll = () => {
+      const rect = element.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const scrollLockDistance = (lockHeight / 100) * viewportHeight;
+
+      // Check if we should activate the lock
+      if (rect.top <= 0 && rect.bottom > viewportHeight * 0.5) {
+        if (!isActiveRef.current) {
+          isActiveRef.current = true;
+          scrollStartRef.current = window.scrollY;
+          document.body.style.overflow = "hidden";
+        }
+
+        // Calculate progress based on scroll within the lock zone
+        const scrollDelta = window.scrollY - scrollStartRef.current;
+        const progress = Math.min(100, Math.max(0, (scrollDelta / scrollLockDistance) * 100));
+        const stage = Math.floor((progress / 100) * stages);
+
+        setState({ isLocked: true, progress, stage });
+
+        // Release lock when complete
+        if (progress >= 100) {
+          document.body.style.overflow = "";
+          isActiveRef.current = false;
+        }
+      } else if (rect.top > viewportHeight * 0.2) {
+        // Reset when scrolling back up
+        if (isActiveRef.current) {
+          document.body.style.overflow = "";
+          isActiveRef.current = false;
+        }
+        setState({ isLocked: false, progress: 0, stage: 0 });
+      }
+    };
+
+    // Use wheel event for scroll-lock behavior
+    const handleWheel = (e: WheelEvent) => {
+      if (isActiveRef.current && state.progress < 100) {
+        e.preventDefault();
+        const scrollLockDistance = (lockHeight / 100) * window.innerHeight;
+        const newProgress = Math.min(100, Math.max(0, state.progress + (e.deltaY / scrollLockDistance) * 20));
+        const newStage = Math.floor((newProgress / 100) * stages);
+        
+        setState({ isLocked: true, progress: newProgress, stage: newStage });
+
+        if (newProgress >= 100) {
+          document.body.style.overflow = "";
+          isActiveRef.current = false;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("wheel", handleWheel, { passive: false });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("wheel", handleWheel);
+      document.body.style.overflow = "";
+    };
+  }, [ref, lockHeight, stages, state.progress]);
+
+  return state;
+};
 
 /*
  * THE ETYMOLOGY OF PLAY
@@ -105,45 +195,102 @@ const EssayHeader: React.FC<{ scrolled: boolean }> = ({ scrolled }) => (
   </header>
 );
 
-// Hero Section with word fragmentation animation
+// Hero Section with SCROLL-DRIVEN word fragmentation
 const HeroSection: React.FC = () => {
-  const [stage, setStage] = useState(0);
+  const heroRef = useRef<HTMLElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
-    const timers = [
-      setTimeout(() => setStage(1), 500),
-      setTimeout(() => setStage(2), 2000),
-      setTimeout(() => setStage(3), 3500),
-      setTimeout(() => setStage(4), 5000),
-    ];
-    return () => timers.forEach(clearTimeout);
+    const handleScroll = () => {
+      const hero = heroRef.current;
+      if (!hero) return;
+
+      const rect = hero.getBoundingClientRect();
+      const heroHeight = hero.offsetHeight;
+      
+      // Calculate progress: 0 at top, 100 when hero is scrolled past
+      const scrolled = -rect.top;
+      const progress = Math.min(100, Math.max(0, (scrolled / (heroHeight * 0.8)) * 100));
+      
+      setScrollProgress(progress);
+      if (progress >= 95) setIsComplete(true);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initial check
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Map scroll progress to animation stages (0-4)
+  const stage = isComplete ? 4 : Math.floor(scrollProgress / 25);
+
+  const handleSkip = useCallback(() => {
+    setIsComplete(true);
+    setScrollProgress(100);
+    // Scroll past the hero
+    if (heroRef.current) {
+      const heroBottom = heroRef.current.offsetTop + heroRef.current.offsetHeight;
+      window.scrollTo({ top: heroBottom - 100, behavior: "smooth" });
+    }
   }, []);
 
   return (
-    <section className="hero-section">
+    <section ref={heroRef} className={`hero-section scroll-lock-section ${isComplete ? "complete" : ""}`}>
       <div className="hero-background">
         <div className="parchment-texture" />
         <div className="floating-definitions">
           {stage >= 2 && (
             <>
-              <span className="def-float def-1">amorous dalliance</span>
-              <span className="def-float def-2">a trifle</span>
-              <span className="def-float def-3">foolish behavior</span>
-              <span className="def-float def-4">something worthless</span>
+              <span className="def-float def-1" style={{ opacity: Math.min(1, (scrollProgress - 50) / 15) }}>
+                amorous dalliance
+              </span>
+              <span className="def-float def-2" style={{ opacity: Math.min(1, (scrollProgress - 55) / 15) }}>
+                a trifle
+              </span>
+              <span className="def-float def-3" style={{ opacity: Math.min(1, (scrollProgress - 60) / 15) }}>
+                foolish behavior
+              </span>
+              <span className="def-float def-4" style={{ opacity: Math.min(1, (scrollProgress - 65) / 15) }}>
+                something worthless
+              </span>
             </>
           )}
         </div>
       </div>
 
+      {/* Skip affordance */}
+      {!isComplete && scrollProgress > 10 && (
+        <button className="skip-button" onClick={handleSkip} aria-label="Skip animation">
+          Skip →
+        </button>
+      )}
+
+      {/* Progress indicator for scroll-lock */}
+      {!isComplete && scrollProgress > 5 && (
+        <div className="scroll-lock-progress" aria-hidden="true">
+          <div className="progress-fill" style={{ width: `${scrollProgress}%` }} />
+        </div>
+      )}
+
       <div className="hero-content">
         <div className={`word-container ${stage >= 1 ? "visible" : ""}`}>
-          <div className={`modern-word ${stage >= 2 ? "fragmenting" : ""}`}>
+          <div 
+            className={`modern-word ${stage >= 2 ? "fragmenting" : ""}`}
+            style={{ 
+              opacity: stage >= 2 ? Math.max(0.3, 1 - (scrollProgress - 50) / 30) : 1,
+              transform: stage >= 2 ? `translateY(${(scrollProgress - 50) * 0.5}px) scale(${1 - (scrollProgress - 50) * 0.003})` : "none"
+            }}
+          >
             <span>T</span>
             <span>O</span>
             <span>Y</span>
           </div>
           {stage >= 2 && (
-            <div className="medieval-word">
+            <div 
+              className="medieval-word"
+              style={{ opacity: Math.min(1, (scrollProgress - 50) / 20) }}
+            >
               <span className="blackletter">T</span>
               <span className="blackletter">O</span>
               <span className="blackletter">Y</span>
@@ -153,22 +300,30 @@ const HeroSection: React.FC = () => {
         </div>
 
         {stage >= 3 && (
-          <p className="hero-revelation">
+          <p 
+            className="hero-revelation"
+            style={{ opacity: Math.min(1, (scrollProgress - 75) / 15) }}
+          >
             Before it meant plaything, &ldquo;toy&rdquo; meant something else entirely.
           </p>
         )}
 
-        {stage >= 4 && (
-          <div className="title-card">
+        {(stage >= 4 || isComplete) && (
+          <div 
+            className="title-card"
+            style={{ opacity: isComplete ? 1 : Math.min(1, (scrollProgress - 90) / 10) }}
+          >
             <h1 className="essay-title">{ESSAY_META.title}</h1>
             <p className="essay-subtitle">{ESSAY_META.subtitle}</p>
           </div>
         )}
 
-        <div className="scroll-indicator">
-          <ChevronDown size={24} />
-          <span>Scroll to explore</span>
-        </div>
+        {scrollProgress < 10 && (
+          <div className="scroll-indicator">
+            <ChevronDown size={24} />
+            <span>Scroll to explore</span>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -345,6 +500,251 @@ const ImageGallery: React.FC<{
   </div>
 );
 
+// Dictionary Archaeology Scroll-Lock Sequence
+const DictionaryArchaeology: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const rect = container.getBoundingClientRect();
+      const containerHeight = container.offsetHeight;
+      const viewportHeight = window.innerHeight;
+
+      // Calculate how far through the section we are
+      const scrolled = viewportHeight - rect.top;
+      const totalScroll = containerHeight + viewportHeight * 0.5;
+      const progress = Math.min(100, Math.max(0, (scrolled / totalScroll) * 100));
+      
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const definitions = [
+    { era: "Modern", year: "2024", def: "A thing for a child to play with", style: "modern" },
+    { era: "Early 20th C.", year: "1920", def: "An article for children's amusement", style: "vintage" },
+    { era: "Victorian", year: "1888", def: "A plaything; a bauble; a trifle", style: "victorian" },
+    { era: "Johnson", year: "1755", def: "A petty commodity; a thing of no value; a plaything", style: "johnson" },
+    { era: "Medieval", year: "c. 1303", def: "Daliance; amorous sport; foolyssh behavoir", style: "medieval" },
+  ];
+
+  // Calculate which layer is active based on scroll progress
+  const activeLayer = Math.min(4, Math.floor(scrollProgress / 20));
+
+  return (
+    <div ref={containerRef} className="dictionary-archaeology">
+      <div className="archaeology-header">
+        <span className="archaeology-label">Scroll-Lock: Dictionary Archaeology</span>
+        <span className="archaeology-instruction">Scroll to excavate the word&apos;s history</span>
+      </div>
+      
+      <div className="dictionary-layers">
+        {definitions.map((def, index) => {
+          const isActive = index <= activeLayer;
+          const isCurrent = index === activeLayer;
+          const layerProgress = Math.max(0, Math.min(100, (scrollProgress - index * 20) * 5));
+          
+          return (
+            <div
+              key={def.era}
+              className={`dict-layer ${def.style} ${isActive ? "visible" : ""} ${isCurrent ? "current" : ""}`}
+              style={{
+                opacity: isActive ? Math.min(1, layerProgress / 100) : 0,
+                transform: `translateY(${isActive ? 0 : 30}px)`,
+                zIndex: definitions.length - index,
+              }}
+            >
+              <div className="layer-era">{def.era}</div>
+              <div className="layer-year">{def.year}</div>
+              <div className="layer-word">toy</div>
+              <div className="layer-def">{def.def}</div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="archaeology-footer">
+        <p className="archaeology-insight">
+          {activeLayer >= 4 
+            ? "The original meaning revealed: before playthings, there was dalliance."
+            : "Keep scrolling to dig deeper into history..."}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+// Shakespeare Shuffle Scroll-Lock Sequence  
+const ShakespeareShuffle: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const rect = container.getBoundingClientRect();
+      const containerHeight = container.offsetHeight;
+      const viewportHeight = window.innerHeight;
+
+      const scrolled = viewportHeight - rect.top;
+      const totalScroll = containerHeight + viewportHeight * 0.3;
+      const progress = Math.min(100, Math.max(0, (scrolled / totalScroll) * 100));
+      
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const shakespeareUses = [
+    { play: "Hamlet", quote: "These are but wild and whirling toys", meaning: "fantasies" },
+    { play: "Much Ado", quote: "This is a very scurvy toy of Fortune's", meaning: "trick" },
+    { play: "Winter's Tale", quote: "A toy in blood", meaning: "fancy, whim" },
+    { play: "Othello", quote: "Trifles light as air", meaning: "related: trifles" },
+    { play: "King Lear", quote: "As flies to wanton boys", meaning: "sport, play" },
+  ];
+
+  const visibleCards = Math.min(5, Math.floor(scrollProgress / 15) + 1);
+  const isSpread = scrollProgress > 60;
+  const showConclusion = scrollProgress > 85;
+
+  return (
+    <div ref={containerRef} className="shakespeare-shuffle">
+      <div className="shuffle-header">
+        <span className="shuffle-label">Scroll-Lock: Shakespeare&apos;s Thirty Uses</span>
+      </div>
+
+      <div className={`card-deck ${isSpread ? "spread" : "stacked"}`}>
+        {shakespeareUses.map((use, index) => {
+          const isVisible = index < visibleCards;
+          const spreadOffset = isSpread ? (index - 2) * 120 : index * 4;
+          
+          return (
+            <div
+              key={use.play}
+              className={`folio-card ${isVisible ? "revealed" : ""}`}
+              style={{
+                transform: `
+                  translateX(${spreadOffset}px) 
+                  translateY(${isVisible ? 0 : 50}px)
+                  rotate(${isSpread ? (index - 2) * 5 : index * 0.5}deg)
+                `,
+                opacity: isVisible ? 1 : 0,
+                zIndex: shakespeareUses.length - index,
+              }}
+            >
+              <div className="card-play">{use.play}</div>
+              <div className="card-quote">&ldquo;{use.quote}&rdquo;</div>
+              <div className="card-meaning">meaning: {use.meaning}</div>
+            </div>
+          );
+        })}
+      </div>
+
+      {showConclusion && (
+        <div className="shuffle-conclusion">
+          <p>Shakespeare used &ldquo;toy&rdquo; over 30 times.</p>
+          <p className="conclusion-emphasis">Never once meaning &ldquo;child&apos;s plaything.&rdquo;</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+// Etymology Complete Scroll-Lock (for Ch7)
+const EtymologyComplete: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const rect = container.getBoundingClientRect();
+      const containerHeight = container.offsetHeight;
+      const viewportHeight = window.innerHeight;
+
+      const scrolled = viewportHeight - rect.top;
+      const totalScroll = containerHeight + viewportHeight * 0.3;
+      const progress = Math.min(100, Math.max(0, (scrolled / totalScroll) * 100));
+      
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const meanings = [
+    { text: "dalliance", era: "1303" },
+    { text: "trifle", era: "1400s" },
+    { text: "ornament", era: "1500s" },
+    { text: "fancy", era: "1600s" },
+    { text: "bauble", era: "1700s" },
+    { text: "plaything", era: "1800s" },
+  ];
+
+  const assemblyProgress = scrollProgress / 100;
+  const finalReveal = scrollProgress > 85;
+
+  return (
+    <div ref={containerRef} className="etymology-complete">
+      <div className="complete-header">
+        <span className="complete-label">The Word Reassembles</span>
+      </div>
+
+      <div className="meaning-fragments">
+        {meanings.map((m, index) => {
+          const fragmentProgress = Math.max(0, (scrollProgress - index * 12) / 20);
+          const moveToCenter = Math.min(1, fragmentProgress);
+          const startAngle = (index / meanings.length) * 360;
+          const radius = 150 * (1 - moveToCenter);
+          const x = Math.cos((startAngle * Math.PI) / 180) * radius;
+          const y = Math.sin((startAngle * Math.PI) / 180) * radius;
+          
+          return (
+            <div
+              key={m.text}
+              className="meaning-fragment"
+              style={{
+                transform: `translate(${x}px, ${y}px)`,
+                opacity: fragmentProgress > 0 ? Math.min(1, fragmentProgress * 2) : 0.3,
+              }}
+            >
+              <span className="fragment-text">{m.text}</span>
+              <span className="fragment-era">{m.era}</span>
+            </div>
+          );
+        })}
+      </div>
+
+      {finalReveal && (
+        <div className="final-word" style={{ opacity: (scrollProgress - 85) / 15 }}>
+          <span className="final-letters">
+            <span>T</span>
+            <span>O</span>
+            <span>Y</span>
+          </span>
+          <p className="final-meaning">A word that carries seven centuries of meaning.</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
 // Sources Section
 const SourcesSection: React.FC = () => (
   <section className="sources-section">
@@ -445,6 +845,9 @@ const OriginOfToyClient: React.FC = () => {
               "His Canterbury Tales established many words in English literature",
             ]}
           />
+
+          {/* Scroll-Lock: Dictionary Archaeology */}
+          <DictionaryArchaeology />
         </ChapterSection>
 
         {/* Quote: Peter Damian */}
@@ -495,17 +898,32 @@ const OriginOfToyClient: React.FC = () => {
             </p>
           </div>
 
-          <FigureProfile
-            name="William Shakespeare"
-            epithet="Master of Semantic Range"
-            years="1564–1616"
-            contributions={[
-              "Used 'toy' 30+ times, never meaning 'child's plaything'",
-              "His uses include: fancy, whim, ornament, trifle, idle imagination",
-              "Demonstrates the word's breadth before semantic narrowing",
-            ]}
-            quote="This is a very scurvy toy of Fortune's."
-          />
+          {/* Scroll-Lock: Shakespeare Shuffle */}
+          <ShakespeareShuffle />
+
+          <div className="figure-grid">
+            <FigureProfile
+              name="William Shakespeare"
+              epithet="Master of Semantic Range"
+              years="1564–1616"
+              contributions={[
+                "Used 'toy' 30+ times, never meaning 'child's plaything'",
+                "His uses include: fancy, whim, ornament, trifle, idle imagination",
+                "Demonstrates the word's breadth before semantic narrowing",
+              ]}
+              quote="This is a very scurvy toy of Fortune's."
+            />
+            <FigureProfile
+              name="Robert Cawdrey"
+              epithet="The First Dictionary Maker"
+              years="c. 1538–1604"
+              contributions={[
+                "Compiled 'A Table Alphabeticall' (1604)—first English dictionary",
+                "Captured early definitions showing 'toy' as trifle and ornament",
+                "Preserved evidence of how Elizabethans understood common words",
+              ]}
+            />
+          </div>
         </ChapterSection>
 
         {/* Chapter 3: The Children's Claim */}
@@ -623,6 +1041,18 @@ const OriginOfToyClient: React.FC = () => {
               tradition, the pride of expertise.
             </p>
           </div>
+
+          <FigureProfile
+            name="The Nuremberg Toymakers"
+            epithet="Craftsmen Who Gave 'Toy' Weight"
+            years="16th–19th Century"
+            contributions={[
+              "Established Nuremberg as 'Toy Capital of the World' by 1700s",
+              "Guild system elevated toymaking to recognized profession",
+              "Exported tin soldiers, wooden figures, and mechanical toys worldwide",
+              "Families like Märklin and Bing made 'toymaker' a proud identity",
+            ]}
+          />
         </ChapterSection>
 
         {/* Chapter 5: Industry and Innocence */}
@@ -670,6 +1100,19 @@ const OriginOfToyClient: React.FC = () => {
               dalliance—retreated to archaic status.
             </p>
           </div>
+
+          <FigureProfile
+            name="A.C. Gilbert"
+            epithet="The Man Who Saved Christmas"
+            years="1884–1961"
+            contributions={[
+              "Invented the Erector Set (1913)—educational construction toy",
+              "Olympic gold medalist who became toy magnate",
+              "During WWI, lobbied Congress to exempt toy industry from war production",
+              "Earned nickname 'The Man Who Saved Christmas' for ensuring toys remained available",
+            ]}
+            quote="Hello, Boys! Make Lots of Toys!"
+          />
         </ChapterSection>
 
         {/* Chapter 6: The Living Word */}
@@ -785,6 +1228,9 @@ const OriginOfToyClient: React.FC = () => {
               "His work reframed how scholars understand toys and games",
             ]}
           />
+
+          {/* Scroll-Lock: Etymology Complete */}
+          <EtymologyComplete />
         </ChapterSection>
 
         {/* Revelation / Closing */}
