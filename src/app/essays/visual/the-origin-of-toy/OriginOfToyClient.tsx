@@ -242,11 +242,10 @@ const HeroSection: React.FC = () => {
   const phase6 = scrollProgress >= 85;                         // 85-100%: Title card
 
   // Derived states for animations
-  // Per scroll-lock-patterns.md "The Transformation" pattern:
-  // 0%: Darkness (theatrical), 0.5-5%: Word fades in, 5-15%: Word fully visible
+  // Word visible immediately on load for good web UX
+  // Starts at 80% opacity, reaches 100% quickly with scroll
   const wordVisible = true;
-  // Word emerges from darkness: 0% at scroll 0, rapidly reaches 100% by scroll 5%
-  const wordOpacity = scrollProgress <= 0 ? 0 : Math.min(1, scrollProgress / 5);
+  const wordOpacity = Math.min(1, 0.8 + scrollProgress * 0.04);
   const flickering = phase2;
   const cracking = scrollProgress >= 20;
   const fracturing = scrollProgress >= 30;
@@ -287,10 +286,10 @@ const HeroSection: React.FC = () => {
       ref={heroRef} 
       className={`hero-section scroll-lock-section ${isComplete ? "complete" : ""}`}
     >
-      {/* Background - starts dark per spec, builds with scroll */}
+      {/* Background - visible on load, builds with scroll */}
       <div 
         className="hero-background"
-        style={{ opacity: Math.min(1, scrollProgress / 15) }}
+        style={{ opacity: Math.min(1, 0.3 + scrollProgress / 20) }}
       >
         <div className="parchment-texture" />
         
