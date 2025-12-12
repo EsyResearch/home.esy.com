@@ -8,6 +8,7 @@ Technical implementation agents for frontend development, design, and optimizati
 
 | Agent | Domain | Key Capability |
 |-------|--------|----------------|
+| [Frontend Architecture Expert](./frontend-architecture-expert.md) | **Library Strategy** | React/Next.js ecosystem, library selection, scrollytelling patterns, performance architecture |
 | [Software Engineering](./software-engineering-expert.md) | Full-Stack | Next.js, TypeScript, component architecture |
 | [Frontend Debugging](./frontend-debugging-expert.md) | Debugging | React/Next.js issue diagnosis |
 | [Immersive Experience Engineer](./immersive-experience-engineer.md) | Performance | 60fps mobile, touch, Theatre Bar, native feel |
@@ -46,6 +47,10 @@ Technical implementation agents for frontend development, design, and optimizati
 
 | Scenario | Agent |
 |----------|-------|
+| **Evaluate animation libraries** | **Frontend Architecture Expert** |
+| **Choose between frameworks** | **Frontend Architecture Expert** |
+| **Design scrollytelling architecture** | **Frontend Architecture Expert** |
+| **Review performance strategy** | **Frontend Architecture Expert** |
 | Build new components/pages | Software Engineering |
 | Debug React/Next.js issues | Frontend Debugging |
 | Optimize scroll animations | Immersive Experience Engineer |
@@ -92,5 +97,8 @@ scroll performance for [ESSAY] to achieve 60fps on mobile devices.
 - [Scrollytelling Expert](../orchestrators/scrollytelling-expert.md) — Coordinates engineering work
 - [Visual Auditor](../auditors/visual-auditor-agent.md) — Audits SVG quality
 - [Immersive Scrolling Auditor](../auditors/immersive-scrolling-auditor.md) — Certifies scroll performance
+
+
+
 
 

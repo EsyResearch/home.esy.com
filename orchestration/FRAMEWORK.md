@@ -32,7 +32,7 @@ The Esy orchestration framework is a multi-agent system designed to produce high
 | **Single Source of Truth** | Every essay has a `research/` directory with canonical citations |
 | **Orchestrator Pattern** | Complex tasks are coordinated by orchestrator agents |
 
-### Three Pillars of Orchestration
+### Four Pillars of Orchestration
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -40,16 +40,19 @@ The Esy orchestration framework is a multi-agent system designed to produce high
 │                         Coordinates entire pipeline                          │
 └─────────────────────────────────────┬───────────────────────────────────────┘
                                       │
-            ┌─────────────────────────┼─────────────────────────┐
-            │                         │                         │
-            ▼                         ▼                         ▼
-   ┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐
-   │    RESEARCH     │       │  SCROLLYTELLING │       │   META AUDIT    │
-   │  ORCHESTRATOR   │       │     EXPERT      │       │  ORCHESTRATOR   │
-   │                 │       │                 │       │                 │
-   │  Phase 2:       │       │  Phase 3:       │       │  Phase 4:       │
-   │  Research       │       │  Production     │       │  Audit          │
-   └─────────────────┘       └─────────────────┘       └─────────────────┘
+      ┌───────────────────────────────┼───────────────────────────────┐
+      │                    │                    │                      │
+      ▼                    ▼                    ▼                      ▼
+┌───────────────┐  ┌───────────────┐  ┌───────────────┐  ┌───────────────┐
+│   RESEARCH    │  │  INVOCATION   │  │ SCROLLYTELLING│  │  META AUDIT   │
+│ ORCHESTRATOR  │  │    AGENT      │  │    EXPERT     │  │ ORCHESTRATOR  │
+│               │  │               │  │               │  │               │
+│  Phase 2:     │  │  Phase 3:     │  │  Phase 4:     │  │  Phase 5:     │
+│  Research     │  │  Spec Build   │  │  Production   │  │  Audit        │
+│               │  │  (from res.)  │  │               │  │               │
+│  Uses SKILL.md│  │  Uses res. +  │  │  Implements   │  │  Verifies     │
+│  as blueprint │  │  SKILL.md     │  │  the spec     │  │  everything   │
+└───────────────┘  └───────────────┘  └───────────────┘  └───────────────┘
 ```
 
 ---
@@ -63,51 +66,58 @@ The Esy orchestration framework is a multi-agent system designed to produce high
 │                              VISUAL ESSAY ORCHESTRATOR                                   │
 └─────────────────────────────────────────────────────────────────────────────────────────┘
                                           │
-        ┌─────────────┬───────────────────┼───────────────────┬─────────────┐
-        │             │                   │                   │             │
-        ▼             ▼                   ▼                   ▼             ▼
-  ┌───────────┐ ┌───────────┐       ┌───────────┐       ┌───────────┐ ┌───────────┐
-  │  PHASE 1  │ │  PHASE 2  │       │  PHASE 3  │       │  PHASE 4  │ │  PHASE 5  │
-  │           │ │           │       │           │       │           │ │           │
-  │  INTAKE   │ │ RESEARCH  │       │PRODUCTION │       │   AUDIT   │ │  PUBLISH  │
-  │ PLANNING  │►│ORCHESTRAT.│──────►│           │──────►│           │►│           │
-  │           │ │           │       │           │       │           │ │           │
-  │    G1     │ │    G2     │       │  G3, G4   │       │  G5, G6   │ │  G7, G8   │
-  └───────────┘ └─────┬─────┘       └─────┬─────┘       └───────────┘ └───────────┘
-                      │                   │
-                      │   research/       │
-                      │   package         │
-                      └──────────────────►│
-                                          │
-                                    Writers reference
-                                    research during
-                                    production
+  ┌─────────────┬─────────────┬───────────┼───────────┬─────────────┬─────────────┐
+  │             │             │           │           │             │             │
+  ▼             ▼             ▼           ▼           ▼             ▼             ▼
+┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐
+│ PHASE 1 │ │ PHASE 2 │ │ PHASE 3 │ │ PHASE 4 │ │ PHASE 5 │ │ PHASE 6 │
+│         │ │         │ │         │ │         │ │         │ │         │
+│ INTAKE  │►│RESEARCH │►│  SPEC   │►│PRODUCT- │►│  AUDIT  │►│ PUBLISH │
+│         │ │         │ │ BUILD   │ │  ION    │ │         │ │         │
+│         │ │(uses    │ │(from    │ │(imple-  │ │         │ │         │
+│   G1    │ │SKILL.md)│ │research)│ │ments)   │ │ G6, G7  │ │ G8, G9  │
+└─────────┘ └────┬────┘ └────┬────┘ └────┬────┘ └─────────┘ └─────────┘
+     │           │  G2       │  G3       │ G4, G5
+     │           │           │           │
+     ▼           ▼           ▼           │
+  SKILL.md ──► research/ ──► spec ──────►│
+  (research    package      (built       │
+   blueprint)  (fills in    from         │
+               template)    research)    │
 ```
 
 ### Phase Descriptions
 
 | Phase | Name | Owner | Gates | Output |
 |-------|------|-------|-------|--------|
-| 1 | Intake & Planning | Visual Essay Orchestrator | G1 | Brief, scope, timeline |
-| 2 | Research | Research Orchestrator | G2 | `research/` package |
-| 3 | Production | Scrollytelling Expert | G3, G4 | Content & design |
-| 4 | Audit | Meta Audit Orchestrator | G5, G6 | Certification |
-| 5 | Publish | Visual Essay Orchestrator | G7, G8 | Deployed essay |
+| 1 | Intake | Visual Essay Orchestrator | G1 | Scope + SKILL.md research requirements |
+| 2 | Research | Research Orchestrator | G2 | `research/` package (maps to SKILL.md) |
+| 3 | Spec Construction | Visual Essay Invocation Agent | G3 | 6-layer spec (built from research) |
+| 4 | Production | Scrollytelling Expert | G4, G5 | Content & design implementation |
+| 5 | Audit | Meta Audit Orchestrator | G6, G7 | Certification |
+| 6 | Publish | Visual Essay Orchestrator | G8, G9 | Deployed essay |
 
-### Critical Flow: Research → Production
+### Critical Flow: SKILL.md → Research → Spec → Production
 
 ```
-Research Orchestrator produces:          Writers consume during production:
-                                         
-research/                                ┌─────────────────────────────────┐
-├── RESEARCH-BRIEF.md    ───────────────►│ Understand scope & questions    │
-├── CITATIONS.md         ───────────────►│ Cite these sources (not invent) │
-├── SYNTHESIS.md         ───────────────►│ Build narrative from findings   │
-├── GAPS.md              ───────────────►│ Know what to avoid claiming     │
-└── CONFIDENCE-MATRIX.md ───────────────►│ Match confidence to language    │
+SKILL.md defines           Research Orchestrator        Invocation Agent      Writers implement
+what spec needs:           gathers:                     builds spec:          the spec:
+
+┌──────────────────┐      ┌──────────────────┐      ┌──────────────────┐      ┌──────────────────┐
+│Layer 4: Figures  │─────►│ FIGURES.md       │─────►│ Figure profiles  │─────►│ Content uses     │
+│Layer 4: Quotes   │─────►│ QUOTES.md        │─────►│ Verified quotes  │─────►│ verified data    │
+│Layer 4: Timeline │─────►│ TIMELINE.md      │─────►│ Narrative arc    │─────►│ from spec        │
+│Layer 5: Visuals  │─────►│ VISUALS.md       │─────►│ Asset specs      │─────►│ (which came from │
+│Layer 5: Eras     │─────►│ ERA-GUIDE.md     │─────►│ Era treatments   │─────►│ research)        │
+└──────────────────┘      └──────────────────┘      └──────────────────┘      └──────────────────┘
+                                   │
+                                   ▼
+                          GAPS.md documents what
+                          CANNOT be claimed →
+                          spec avoids these
 ```
 
-**Key Insight:** Writers cannot fabricate sources because real sources already exist in the research package.
+**Key Insight:** The spec is built FROM research, not before it. Writers implement the spec, which is already grounded in verified sources. No orphan claims possible.
 
 ---
 
@@ -316,28 +326,43 @@ Research depth adapts to content type and complexity. Three modes are available:
 
 ### Gate Definitions
 
-| Gate | Name | Owner | Blocks | Pass Criteria |
-|------|------|-------|--------|---------------|
-| **G1** | Brief Approval | Visual Essay Orchestrator | Research | Complete brief with scope, timeline |
-| **G2** | Research Complete | Research Orchestrator | Production | Research package exists, minimum sources met |
-| **G3** | Design Research | Scrollytelling Expert | Content | Visual identity from subject matter |
-| **G4** | Content Complete | Historian Editor | Audit | All sections drafted, fact-checked |
-| **G5** | Citation Audit | Citation Audit Agent | Scroll | Citation certification achieved |
-| **G6** | Scroll Certification | Immersive Scrolling Auditor | Mobile | 60fps, scroll-lock verified |
-| **G7** | Mobile Verification | Visual Essay Orchestrator | Publish | Real device tested |
-| **G8** | Publication Approval | Visual Essay Orchestrator | Deploy | Director sign-off |
+| Gate | Name | Phase | Owner | Blocks | Pass Criteria |
+|------|------|-------|-------|--------|---------------|
+| **G1** | Intake Approval | 1→2 | Visual Essay Orchestrator | Research | Scope defined, SKILL.md requirements identified |
+| **G2** | Research Complete | 2→3 | Research Orchestrator | Spec | Research package complete, maps to SKILL.md |
+| **G3** | Spec Approval | 3→4 | Visual Essay Orchestrator | Production | 6-layer spec built from research, no orphan claims |
+| **G4** | Design Research | 4 | Scrollytelling Expert | Content | Visual identity from subject matter |
+| **G5** | Content Complete | 4→5 | Historian Editor | Audit | All sections drafted, fact-checked |
+| **G6** | Citation Audit | 5 | Citation Audit Agent | Scroll | Citation certification achieved |
+| **G7** | Scroll Certification | 5 | Immersive Scrolling Auditor | Mobile | 60fps, scroll-lock verified |
+| **G8** | Mobile Verification | 5→6 | Visual Essay Orchestrator | Publish | Real device tested |
+| **G9** | Publication Approval | 6 | Visual Essay Orchestrator | Deploy | Director sign-off |
 
 ### G2 Requirements (Research Complete)
 
-The Research Orchestrator must verify:
+The Research Orchestrator must verify research package satisfies SKILL.md requirements:
 
 - [ ] `research/` directory exists
+- [ ] `FIGURES.md` has 5-15 figures with imagery availability confirmed
+- [ ] `QUOTES.md` has 10+ verified quotes with sources
+- [ ] `TIMELINE.md` maps major events chronologically
+- [ ] `VISUALS.md` identifies archive/visual sources
 - [ ] `CITATIONS.md` contains minimum sources (varies by depth)
 - [ ] All sources are Tier 1-2 (or justified exceptions)
 - [ ] All links verified working
-- [ ] No critical gaps for core claims
+- [ ] `GAPS.md` documents what cannot be verified
 - [ ] Domain expert sign-off (if applicable)
-- [ ] Quote authenticity validated
+
+### G3 Requirements (Spec Approval)
+
+The Visual Essay Orchestrator must verify spec is research-backed:
+
+- [ ] Spec follows 6-layer SKILL.md structure
+- [ ] All figure profiles sourced from `research/FIGURES.md`
+- [ ] All quotes verified in `research/QUOTES.md`
+- [ ] Narrative arc matches `research/TIMELINE.md`
+- [ ] No claims from `research/GAPS.md` appear in spec
+- [ ] Appropriate lens applied (mythology, history, etc.)
 
 ---
 
@@ -394,40 +419,51 @@ orchestration/agents/
 ### Agent Relationships
 
 ```
-                              ORCHESTRATORS
-    ┌─────────────────────────────────────────────────────────────────────┐
-    │                                                                      │
-    │   Visual Essay    ───────►  Research      ───────►  Meta Audit      │
-    │   Orchestrator              Orchestrator            Orchestrator    │
-    │        │                         │                       │          │
-    └────────┼─────────────────────────┼───────────────────────┼──────────┘
+                                    ORCHESTRATORS
+    ┌─────────────────────────────────────────────────────────────────────────────┐
+    │                                                                              │
+    │   Visual Essay    ───────►  Research      ───────►  Meta Audit              │
+    │   Orchestrator              Orchestrator            Orchestrator            │
+    │        │                         │                       │                  │
+    └────────┼─────────────────────────┼───────────────────────┼──────────────────┘
              │                         │                       │
-             │         ┌───────────────┼───────────────┐       │
-             │         │               │               │       │
-             │         ▼               ▼               ▼       │
-             │    ┌─────────┐    ┌─────────┐    ┌─────────┐   │
-             │    │Brainstm.│    │Research │    │Citation │   │
-             │    │ Agent   │    │Citations│    │ Audit   │◄──┘
-             │    └─────────┘    │ Expert  │    └─────────┘
-             │                   └────┬────┘
-             │                        │
-             │         ┌──────────────┼──────────────┐
-             │         │              │              │
-             │         ▼              ▼              ▼
-             │    ┌─────────┐   ┌─────────┐   ┌─────────┐
-             │    │Regional │   │Historian│   │ Image   │
-             │    │Experts  │   │Writer/  │   │Research │
-             │    │         │   │Editor   │   │         │
-             │    └─────────┘   └─────────┘   └─────────┘
-             │
-             │
-             ▼
-    ┌─────────────────────────────────────────────────────────────────────┐
-    │                         PRODUCTION                                   │
-    │                                                                      │
-    │   Scrollytelling Expert ──► Content Agents ──► Engineering Agents   │
-    │                                                                      │
-    └─────────────────────────────────────────────────────────────────────┘
+             │    SKILL.md as          │                       │
+             │    research blueprint   │                       │
+             │         │               │                       │
+             │         ▼               │                       │
+             │    ┌─────────────┐      │                       │
+             │    │ SKILL.md    │──────┘ (guides research)     │
+             │    │ Template    │                              │
+             │    └──────┬──────┘                              │
+             │           │                                     │
+             │           │   research/                         │
+             │           │   package                           │
+             │           ▼                                     │
+             │    ┌─────────────┐                              │
+             │    │ Invocation  │◄─── builds spec from research│
+             │    │   Agent     │                              │
+             │    └──────┬──────┘                              │
+             │           │                                     │
+             │           │   6-layer spec                      │
+             │           ▼                                     │
+             │    ┌─────────────────────────────────────────────────────────────┐
+             │    │                         PRODUCTION                          │
+             │    │                                                             │
+             └───►│   Scrollytelling Expert ──► Content Agents ──► Engineering  │
+                  │   (implements the spec, which is research-backed)           │
+                  └─────────────────────────────────────────────────────────────┘
+                                          │
+                                          ▼
+    ┌─────────────────────────────────────────────────────────────────────────────┐
+    │                              RESEARCH AGENTS                                 │
+    │                                                                              │
+    │    ┌─────────┐    ┌─────────┐    ┌─────────┐    ┌─────────┐    ┌─────────┐ │
+    │    │Brainstm.│    │Research │    │Citation │    │Regional │    │ Image   │ │
+    │    │ Agent   │    │Citations│    │ Audit   │    │Experts  │    │Research │ │
+    │    │         │    │ Expert  │    │         │    │         │    │         │ │
+    │    └─────────┘    └─────────┘    └─────────┘    └─────────┘    └─────────┘ │
+    │                                                                              │
+    └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -436,7 +472,7 @@ orchestration/agents/
 
 ### Directory Structure
 
-Every visual essay must have a `research/` directory:
+Every visual essay must have a `research/` directory. The structure maps to SKILL.md requirements:
 
 ```
 src/app/essays/visual/[essay-slug]/
@@ -446,12 +482,34 @@ src/app/essays/visual/[essay-slug]/
 ├── page.tsx
 └── research/                    ← REQUIRED
     ├── README.md                # Directory overview
+    │
+    │  SKILL.md-Aligned Files (for spec construction):
+    ├── FIGURES.md               # 5-15 figures with imagery (Layer 4)
+    ├── QUOTES.md                # 10+ verified quotes (Layer 4)
+    ├── TIMELINE.md              # Chronological events (Layer 4)
+    ├── VISUALS.md               # Archive/visual sources (Layer 4)
+    ├── ERA-GUIDE.md             # Period treatments (Layer 5)
+    │
+    │  Standard Research Files:
     ├── CITATIONS.md             # All sources (REQUIRED)
     ├── SYNTHESIS.md             # Key findings (Standard+)
     ├── RESEARCH-BRIEF.md        # Questions, scope (Deep only)
-    ├── GAPS.md                  # Unanswered questions (Deep only)
+    ├── GAPS.md                  # What cannot be verified (Deep only)
     └── CONFIDENCE-MATRIX.md     # Claim confidence (Deep only)
 ```
+
+### SKILL.md Alignment
+
+The research package is designed to directly feed the spec construction:
+
+| Research File | SKILL.md Layer | Invocation Agent Uses For |
+|---------------|----------------|---------------------------|
+| `FIGURES.md` | Layer 4: Chapter Schema | Figure profiles with verified data |
+| `QUOTES.md` | Layer 4: Chapter Schema | Key figure quotes with sources |
+| `TIMELINE.md` | Layer 4: Chapter Schema | Narrative beats, chronological arc |
+| `VISUALS.md` | Layer 4: Chapter Schema | Visual assets specification |
+| `ERA-GUIDE.md` | Layer 5: Design System | Era/mood treatments |
+| `GAPS.md` | All layers | What to AVOID claiming |
 
 ### CITATIONS.md Specification
 
@@ -533,6 +591,7 @@ Minimum sources: [number]
 
 | Version | Date | Changes |
 |---------|------|---------|
+| v1.1 | December 11, 2024 | Research → Spec flow: SKILL.md now serves as research blueprint. Spec construction happens AFTER research, using verified data. Added Phase 3 (Spec Construction), renumbered to 6 phases. Added G3 (Spec Approval), G9 (Publication). Research package now includes SKILL.md-aligned files (FIGURES.md, QUOTES.md, TIMELINE.md, VISUALS.md, ERA-GUIDE.md). |
 | v1.0 | December 11, 2024 | Initial framework documentation |
 
 ---
@@ -547,4 +606,5 @@ Minimum sources: [number]
 ---
 
 *This framework document defines the core architecture of the Esy orchestration system. For implementation details, see individual agent files.*
+
 

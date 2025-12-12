@@ -8,6 +8,7 @@ Support agents for request enhancement, documentation, and workflow optimization
 
 | Agent | Purpose |
 |-------|---------|
+| [Visual Essay Intake Enhancer](./visual-essay-intake-enhancer.md) | Transform rough visual essay requests → structured intake documents |
 | [Scrollytelling Invocation Enhancer](./scrollytelling-invocation-enhancer.md) | Transform rough requests → structured briefs |
 | [Visual Essay Invocation Agent](./visual-essay-invocation-agent.md) | Generate detailed specs for visual essays |
 | [README Curator](./readme-curator.md) | Documentation routing & maintenance |
@@ -26,8 +27,9 @@ Support agents for request enhancement, documentation, and workflow optimization
 
 | Scenario | Agent |
 |----------|-------|
-| Improve a rough request before sending to scrollytelling agent | Invocation Enhancer |
-| Generate a detailed visual essay specification | Visual Essay Invocation Agent |
+| Improve a rough visual essay request before sending to orchestrator | Visual Essay Intake Enhancer |
+| Improve a rough request before sending to scrollytelling agent | Scrollytelling Invocation Enhancer |
+| Generate a detailed visual essay specification (from research) | Visual Essay Invocation Agent |
 | Update documentation after changes | README Curator |
 | Determine where to document something | README Curator |
 
@@ -35,8 +37,41 @@ Support agents for request enhancement, documentation, and workflow optimization
 
 ## Workflow: Request Enhancement
 
+### Visual Essay Pipeline
+
 ```
-Rough Idea
+Rough Idea ("visual essay about semiconductors")
+    │
+    ▼
+┌─────────────────────────────┐
+│ Visual Essay Intake         │
+│ Enhancer                    │
+│                             │
+│ • Assesses clarity          │
+│ • Asks strategic questions  │
+│ • Translates vague→concrete │
+│ • Outputs structured intake │
+└──────────────┬──────────────┘
+               │
+               ▼
+        Structured Intake Document
+               │
+               ▼
+┌─────────────────────────────┐
+│ Visual Essay Orchestrator   │
+│ (orchestrators/)            │
+│                             │
+│ Phase 1: Intake ← HERE      │
+│ Phase 2: Research           │
+│ Phase 3: Spec Construction  │
+│ ...                         │
+└─────────────────────────────┘
+```
+
+### Scrollytelling Pipeline
+
+```
+Rough Idea ("story about a bunny")
     │
     ▼
 ┌─────────────────────────────┐
@@ -61,7 +96,7 @@ Rough Idea
 
 ---
 
-## Operating Modes (Invocation Enhancer)
+## Operating Modes (Both Enhancers)
 
 | Mode | Trigger | Behavior |
 |------|---------|----------|
@@ -69,16 +104,22 @@ Rough Idea
 | **Guided** | `enhance with questions:` | Always asks 2-6 strategic questions |
 | **Auto** | Just provide request | Asks questions only if ambiguous |
 
+Both the Visual Essay Intake Enhancer and Scrollytelling Invocation Enhancer support these modes.
+
 ---
 
 ## Invocation Pattern
 
 ```
-# Enhance a rough request
+# Enhance a rough visual essay request
+Using @agents/utilities/visual-essay-intake-enhancer.md, enhance this request:
+"visual essay about the history of semiconductors"
+
+# Enhance a rough scrollytelling request
 Using @agents/utilities/scrollytelling-invocation-enhancer.md, enhance this request:
 "story about a bunny who learns to share"
 
-# Generate visual essay spec
+# Generate visual essay spec (from research package)
 Using @agents/utilities/visual-essay-invocation-agent.md, create a detailed 
 specification for a visual essay about [TOPIC].
 
@@ -94,5 +135,6 @@ Using @agents/utilities/readme-curator.md, determine where to document
 - [Agent Registry](../AGENT-REGISTRY.md) — Complete agent index
 - [Orchestrators](../orchestrators/README.md) — Receive enhanced requests
 - [InvocationTemplates](./InvocationTemplates/README.md) — Template examples
+
 
 

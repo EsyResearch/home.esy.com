@@ -355,7 +355,7 @@ export const believersImages = {
 
 export const imageNetImages = {
   feifeiLi: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Fei-Fei_Li_at_AI_for_Good_2017.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/c/c7/Fei-Fei_Li_at_AI_for_Good_2017.jpg",
     alt: "Fei-Fei Li at AI for Good Summit",
     caption: "Fei-Fei Li — created ImageNet when funding agencies called it 'unimportant'",
     source: "ITU Pictures / Wikimedia Commons",
@@ -364,13 +364,13 @@ export const imageNetImages = {
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Fei-Fei_Li_at_AI_for_Good_2017.jpg",
   },
   ilyaSutskever: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/2/28/Ilya_Sutskever_at_NeurIPS_2022.png",
-    alt: "Ilya Sutskever at NeurIPS",
+    src: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Ilya_Sutskever_and_Sam_Altman_in_TAU_%28cropped%29.jpg",
+    alt: "Ilya Sutskever",
     caption: "Ilya Sutskever — co-designed AlexNet, later co-founded OpenAI",
     source: "Wikimedia Commons",
-    date: "2022",
+    date: "2023",
     license: "CC BY-SA 4.0",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:Ilya_Sutskever_at_NeurIPS_2022.png",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Ilya_Sutskever_and_Sam_Altman_in_TAU_(cropped).jpg",
   },
   andrewNg: {
     src: "https://upload.wikimedia.org/wikipedia/commons/1/18/Andrew_Ng.jpg",
@@ -396,31 +396,31 @@ export const imageNetImages = {
 
 export const deepLearningImages = {
   alphaGoMatch: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Lee_Sedol_vs_AlphaGo%2C_2016_%28cropped%29.jpg",
-    alt: "Lee Sedol during the historic AlphaGo match",
-    caption: "March 2016: Lee Sedol contemplates against AlphaGo — a machine demonstrating creativity",
-    source: "Google DeepMind / Wikimedia Commons",
-    date: "2016",
-    license: "CC BY 2.0",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:Lee_Sedol_vs_AlphaGo,_2016_(cropped).jpg",
-  },
-  leeSedolPortrait: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Lee_Se-Dol_-_2016_%28cropped%29.jpg",
-    alt: "Lee Sedol in 2016",
-    caption: "Lee Sedol — the Go master who became the face of humanity's first confrontation with superhuman AI",
+    src: "https://upload.wikimedia.org/wikipedia/commons/2/23/Lee_Sedol_%28B%29_vs_AlphaGo_%28W%29_-_Game_1.jpg",
+    alt: "Lee Sedol vs AlphaGo Game 1 board position",
+    caption: "March 2016: Lee Sedol vs AlphaGo — a machine demonstrating creativity",
     source: "Wikimedia Commons",
     date: "2016",
-    license: "CC BY 2.0",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:Lee_Se-Dol_-_2016_(cropped).jpg",
+    license: "CC BY-SA 4.0",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Lee_Sedol_(B)_vs_AlphaGo_(W)_-_Game_1.jpg",
+  },
+  leeSedolPortrait: {
+    src: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Lee_Se-dol_2012.jpg",
+    alt: "Lee Sedol portrait",
+    caption: "Lee Sedol — the Go master who became the face of humanity's first confrontation with superhuman AI",
+    source: "Wikimedia Commons",
+    date: "2012",
+    license: "CC BY-SA 3.0",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Lee_Se-dol_2012.jpg",
   },
   demisHassabis: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Demis_Hassabis_Royal_Society.jpg",
-    alt: "Demis Hassabis at the Royal Society",
+    src: "https://upload.wikimedia.org/wikipedia/commons/d/da/Demis_Hassabis%2C_2024_Nobel_Prize_Laureate_in_Chemistry_%28cropped%29.jpg",
+    alt: "Demis Hassabis, Nobel Prize Laureate",
     caption: "Demis Hassabis — former chess prodigy who founded DeepMind to build AGI",
-    source: "Royal Society / Wikimedia Commons",
-    date: "2017",
+    source: "Nobel Foundation / Wikimedia Commons",
+    date: "2024",
     license: "CC BY-SA 4.0",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:Demis_Hassabis_Royal_Society.jpg",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Demis_Hassabis,_2024_Nobel_Prize_Laureate_in_Chemistry_(cropped).jpg",
   },
   goBoard: {
     src: "https://upload.wikimedia.org/wikipedia/commons/2/2a/FloorGoban.JPG",
@@ -469,13 +469,13 @@ export const transformerImages = {
 
 export const foundationModelImages = {
   samAltman: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Sam_Altman_TechCrunch_SF_2019_Day_2_Oct_3_%28cropped%29.jpg",
-    alt: "Sam Altman at TechCrunch",
+    src: "https://upload.wikimedia.org/wikipedia/commons/8/83/Sam_Altman%2C_June_2023_%28GPOABG244%29_%28cropped%29.jpeg",
+    alt: "Sam Altman",
     caption: "Sam Altman — the face of AI's mainstream moment",
-    source: "TechCrunch / Wikimedia Commons",
-    date: "2019",
-    license: "CC BY 2.0",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:Sam_Altman_TechCrunch_SF_2019_Day_2_Oct_3_(cropped).jpg",
+    source: "GPO / Wikimedia Commons",
+    date: "2023",
+    license: "CC BY-SA 3.0",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Sam_Altman,_June_2023_(GPOABG244)_(cropped).jpeg",
   },
   darioAmodei: {
     src: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Dario_Amodei_in_2023.jpg",
@@ -487,13 +487,14 @@ export const foundationModelImages = {
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Dario_Amodei_in_2023.jpg",
   },
   danielaAmodei: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/9/90/Daniela_Amodei.png",
+    // No public domain image available - component will use placeholder
+    src: "",
     alt: "Daniela Amodei",
     caption: "Daniela Amodei — building the organizational guardrails for AI safety",
-    source: "Anthropic / Wikimedia Commons",
+    source: "Anthropic",
     date: "2023",
-    license: "CC BY-SA 4.0",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:Daniela_Amodei.png",
+    license: "N/A",
+    sourceUrl: "",
   },
 };
 
@@ -501,13 +502,13 @@ export const foundationModelImages = {
 
 export const reckoningImages = {
   hintonWarning: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Geoffrey_Hinton_at_UofT.jpg",
-    alt: "Geoffrey Hinton speaking",
+    src: "https://upload.wikimedia.org/wikipedia/commons/0/09/Geoffrey_Hinton_-_Collision_2023_-_Centre_Stage_RCZ_1307_%28cropped%29.jpg",
+    alt: "Geoffrey Hinton speaking at Collision 2023",
     caption: "2023: The godfather of deep learning warns about what he helped create",
-    source: "University of Toronto / Wikimedia Commons",
-    date: "2019",
-    license: "CC BY 4.0",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:Geoffrey_Hinton_at_UofT.jpg",
+    source: "Collision Conf / Wikimedia Commons",
+    date: "2023",
+    license: "CC BY 2.0",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Geoffrey_Hinton_-_Collision_2023_-_Centre_Stage_RCZ_1307_(cropped).jpg",
   },
   dataCenter: {
     src: "https://upload.wikimedia.org/wikipedia/commons/d/d7/CERN_Server_03.jpg",
@@ -524,7 +525,7 @@ export const reckoningImages = {
 
 export const epilogueImages = {
   turingStatue: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Alan_Turing_Memorial_Closer.jpg",
+    src: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Alan_Turing_Memorial_Closer.jpg",
     alt: "Alan Turing memorial statue in Manchester",
     caption: "Turing's statue in Manchester — the prophet remembered, finally honored",
     source: "Wikimedia Commons",

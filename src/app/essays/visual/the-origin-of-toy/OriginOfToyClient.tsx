@@ -203,6 +203,7 @@ const HeroSection: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isPinned, setIsPinned] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [debugInfo, setDebugInfo] = useState({ sectionHeight: 0, scrollable: 0, scrolled: 0 });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -217,6 +218,13 @@ const HeroSection: React.FC = () => {
       // Scrollable distance = total height minus one viewport (content stays pinned for that duration)
       const scrollableDistance = sectionTotalHeight - windowHeight;
       const scrolledIntoSection = -sectionTop;
+      
+      // Debug info
+      setDebugInfo({
+        sectionHeight: Math.round(sectionTotalHeight),
+        scrollable: Math.round(scrollableDistance),
+        scrolled: Math.round(scrolledIntoSection),
+      });
       
       // Check if we're in the pinned zone
       if (sectionTop <= 0 && scrolledIntoSection <= scrollableDistance) {
@@ -296,14 +304,18 @@ const HeroSection: React.FC = () => {
   const titleOpacity = titleVisible ? Math.min(1, (scrollProgress - 85) / 12) : 0;
 
   return (
-    <section 
-      ref={heroRef} 
-      className={`hero-section scroll-lock-section ${isComplete ? "complete" : ""}`}
+    <section
+      ref={heroRef}
+      className={`hero-section scroll-lock-section ${isPinned ? "pinned" : ""} ${isComplete ? "complete" : ""}`}
+      style={{ height: "400vh" }} // CRITICAL: Explicit height for scroll-lock calculation
     >
       {/* Background - visible on load, builds with scroll */}
       <div 
         className="hero-background"
-        style={{ opacity: Math.min(1, 0.3 + scrollProgress / 20) }}
+        style={{ 
+          opacity: Math.min(1, 0.3 + scrollProgress / 20),
+          willChange: "opacity", // GPU hint
+        }}
       >
         <div className="parchment-texture" />
         
@@ -313,6 +325,7 @@ const HeroSection: React.FC = () => {
           style={{
             transform: annotationsSwirling ? `rotate(${swirlRotation}deg) scale(${swirlScale})` : "none",
             opacity: phase6 ? Math.max(0, 1 - (scrollProgress - 85) / 10) : 1,
+            willChange: "transform, opacity", // GPU hint
           }}
         >
           <span 
@@ -342,25 +355,55 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Skip affordance */}
-      {!isComplete && scrollProgress > 15 && (
+      {/* Skip affordance - visible during scroll-lock per spec */}
+      {isPinned && !isComplete && (
         <button className="skip-button" onClick={handleSkip} aria-label="Skip animation">
           Skip →
         </button>
       )}
 
-      {/* Progress indicator */}
-      {!isComplete && scrollProgress > 5 && (
+      {/* Progress indicator - visible during scroll-lock */}
+      {isPinned && !isComplete && (
         <div className="scroll-lock-progress" aria-hidden="true">
-          <div className="progress-fill" style={{ width: `${scrollProgress}%` }} />
+          <div 
+            className="progress-fill" 
+            style={{ 
+              width: `${scrollProgress}%`,
+              willChange: "width", // GPU hint for smooth progress
+            }} 
+          />
         </div>
       )}
+
+      {/* DEBUG: Remove after fixing */}
+      <div style={{
+        position: "fixed",
+        top: 10,
+        left: 10,
+        background: "rgba(0,0,0,0.9)",
+        color: "#0f0",
+        padding: "10px",
+        fontFamily: "monospace",
+        fontSize: "12px",
+        zIndex: 9999,
+        borderRadius: "4px",
+      }}>
+        <div>Progress: {scrollProgress.toFixed(1)}%</div>
+        <div>Pinned: {isPinned ? "YES" : "NO"}</div>
+        <div>Section H: {debugInfo.sectionHeight}px</div>
+        <div>Scrollable: {debugInfo.scrollable}px</div>
+        <div>Scrolled: {debugInfo.scrolled}px</div>
+        <div>Phase: {scrollProgress < 15 ? "1-WORD" : scrollProgress < 30 ? "2-FLICKER" : scrollProgress < 50 ? "3-FRACTURE" : scrollProgress < 70 ? "4-ANNOTATIONS" : scrollProgress < 85 ? "5-SWIRL" : "6-TITLE"}</div>
+      </div>
 
       <div className="hero-content">
         {/* Phase 1-3: Word transformation (0-50%) */}
         <div 
           className={`word-container ${wordVisible ? "visible" : ""}`}
-          style={{ opacity: phase6 ? Math.max(0, 1 - (scrollProgress - 85) / 10) : 1 }}
+          style={{ 
+            opacity: phase6 ? Math.max(0, 1 - (scrollProgress - 85) / 10) : 1,
+            willChange: "opacity",
+          }}
         >
           {/* Modern "TOY" - visible immediately, flickers at 15-30%, fades at 30-50% */}
           <div 
@@ -370,7 +413,8 @@ const HeroSection: React.FC = () => {
               filter: cracking ? `blur(${crackSpread * 0.5}px)` : "none",
               transform: fracturing 
                 ? `translateY(${(scrollProgress - 30) * 0.8}px) scale(${1 - (scrollProgress - 30) * 0.005})` 
-                : "none",
+                : "translateZ(0)", // Force GPU layer even when not animating
+              willChange: "transform, opacity, filter",
             }}
           >
             <span style={{ animationDelay: "0s" }}>T</span>
@@ -392,7 +436,8 @@ const HeroSection: React.FC = () => {
               className="medieval-word"
               style={{ 
                 opacity: toyeOpacity,
-                transform: `translateY(${20 - toyeOpacity * 20}px)`,
+                transform: `translateY(${20 - toyeOpacity * 20}px) translateZ(0)`,
+                willChange: "transform, opacity",
               }}
             >
               <span className="blackletter">T</span>
@@ -417,7 +462,11 @@ const HeroSection: React.FC = () => {
         {titleVisible && (
           <div 
             className="title-card"
-            style={{ opacity: titleOpacity }}
+            style={{ 
+              opacity: titleOpacity,
+              transform: "translateZ(0)", // Force GPU layer
+              willChange: "opacity",
+            }}
           >
             <h1 className="essay-title">{ESSAY_META.title}</h1>
             <p className="essay-subtitle">{ESSAY_META.subtitle}</p>

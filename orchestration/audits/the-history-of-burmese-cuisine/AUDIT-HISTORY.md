@@ -15,6 +15,7 @@
 | v0.5 | 2024-12-11 | ✅ CERTIFIED | 8.5/10 | 0 | Experience/Visual (Ch 1-4 only) |
 | v1.0 | 2024-12-11 | ⚠️ CONDITIONAL | 7.4/10 | 1 | Meta Audit Orchestrator |
 | v1.1 | 2024-12-11 | ✅ CERTIFIED | 8.3/10 | 0 | Meta Audit Orchestrator |
+| v1.2 | 2024-12-11 | ✅ CERTIFIED | 9.0/10 | 0 | QA Remediation Orchestrator |
 
 ---
 
@@ -69,11 +70,14 @@
 | — | Image grid stagger | Experience | v0.5 | Added CSS stagger delays |
 | — | Figure portrait placeholder | Visual | v0.5 | Added CSS silhouette component |
 | — | Fabricated quotes in quotation marks | Citation | v1.1 | Removed quotation marks, rendered as perspectives not quotes |
+| — | Broken indianSamosa image (404) | Visual | v1.2 | Replaced with Samosa-Indian-popular-snack.jpg |
+| — | Broken indianNaan image (404) | Visual | v1.2 | Replaced with Tandoor-flatbread-inside-the-tandoor-oven.jpg |
 
 ---
 
 ## Audit Reports Archive
-- [v1.0 Comprehensive Audit](./2024-12-11-comprehensive-audit.md) ← Current
+- [v1.2 QA Remediation](./QA-REMEDIATION-2024-12-11.md) ← Current
+- [v1.0 Comprehensive Audit](./2024-12-11-comprehensive-audit.md)
 - [v0.5 Partial Audit (Ch 1-4)](../../src/app/essays/visual/the-history-of-burmese-cuisine/AUDIT-REPORT-CH1-4.md)
 
 ---
@@ -85,6 +89,7 @@
 
 ---
 
-*Last updated: December 11, 2024*
+*Last updated: December 11, 2024 (v1.2 QA Remediation)*
+
 
 

@@ -432,3 +432,5 @@ export const getImagesByEra = (era: ToyImage["era"]): ToyImage[] =>
 // Helper to get image by ID
 export const getImageById = (id: string): ToyImage | undefined =>
   allImages.find(img => img.id === id);
+
+

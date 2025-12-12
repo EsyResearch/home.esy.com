@@ -47,3 +47,5 @@ export const metadata: Metadata = {
 export default function OriginOfToyPage() {
   return <OriginOfToyClient />;
 }
+
+

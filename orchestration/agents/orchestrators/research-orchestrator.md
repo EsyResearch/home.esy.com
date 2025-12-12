@@ -522,3 +522,7 @@ December 11, 2025
 
 *This agent specializes in orchestrating comprehensive research pipelines for Esy.com visual essays, ensuring that content creation is always preceded by thorough, domain-appropriate source discovery. The Research Orchestrator coordinates brainstorming, citation research, and validation phases while routing to domain experts (regional historians, subject specialists) as needed. It enforces the research-first philosophy that prevents source fabrication by establishing verified foundations before any writing begins. Ideal for Visual Essay Orchestrator integration at Phase 2 (G2: Research Complete) of the production pipeline.*
 
+
+
+
+

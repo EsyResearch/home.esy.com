@@ -41,3 +41,7 @@ The `CITATIONS.md` file contains:
 *Every visual essay should have a research directory with a CITATIONS.md file.*
 
 
+
+
+
+

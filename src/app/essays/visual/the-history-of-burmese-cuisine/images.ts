@@ -297,16 +297,16 @@ export const foodImages: Record<string, ImageAsset> = {
   },
   // Transformation comparison images for Chapter 5
   indianSamosa: {
-    url: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Samosa-Indian.jpg',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/f/f3/Samosa-Indian-popular-snack.jpg',
     alt: 'Traditional Indian samosa - deep-fried potato-filled pastry',
     attribution: 'Unknown photographer',
-    license: 'CC BY-SA 3.0',
+    license: 'CC BY-SA 4.0',
     source: 'Wikimedia Commons',
     chapter: 5,
     category: 'food',
   },
   indianNaan: {
-    url: 'https://upload.wikimedia.org/wikipedia/commons/3/3a/NaanInTandoor.jpg',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/b/ba/Tandoor-flatbread-inside-the-tandoor-oven.jpg',
     alt: 'Indian naan bread being baked in a tandoor oven',
     attribution: 'Unknown photographer',
     license: 'CC BY-SA 4.0',

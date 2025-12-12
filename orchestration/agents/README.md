@@ -80,7 +80,8 @@ agents/
 ### 🔧 Utilities
 | Agent | Best For | Invocation |
 |-------|----------|------------|
-| [Invocation Enhancer](#scrollytelling-invocation-enhancer) | Enhance scrollytelling requests | `@agents/utilities/scrollytelling-invocation-enhancer.md` |
+| [Visual Essay Intake Enhancer](#visual-essay-intake-enhancer) | Enhance rough visual essay requests | `@agents/utilities/visual-essay-intake-enhancer.md` |
+| [Scrollytelling Invocation Enhancer](#scrollytelling-invocation-enhancer) | Enhance scrollytelling requests | `@agents/utilities/scrollytelling-invocation-enhancer.md` |
 | [Visual Essay Invocation](#visual-essay-invocation-agent) | Generate visual essay specs | `@agents/utilities/visual-essay-invocation-agent.md` |
 | [README Curator](#readme-curator) | Documentation routing & maintenance | `@agents/utilities/readme-curator.md` |
 
@@ -199,6 +200,64 @@ src/app/essays/visual/history-of-coffee/
 | Just need citation audit | ❌ Use citation-audit-agent directly |
 | Multiple essays in parallel | ✅ Yes (project tracking) |
 | Strict quality gates needed | ✅ Yes |
+
+---
+
+### Visual Essay Intake Enhancer
+**File:** `utilities/visual-essay-intake-enhancer.md`
+
+**Role:** Expert brief architect that transforms rough visual essay requests into comprehensive, structured intake documents for the Visual Essay Orchestrator. Asks strategic clarifying questions when needed.
+
+**🚀 USE THIS FIRST:** Before invoking the Visual Essay Orchestrator, run your rough request through this enhancer to ensure maximum quality output.
+
+**Best For:**
+- Transforming rough visual essay ideas into structured intakes
+- Translating vague requirements ("cool visuals") into concrete specifications
+- Capturing tone preferences as actionable directives
+- Getting strategic questions about scope, audience, and approach
+
+**Operating Modes:**
+| Mode | Trigger | Behavior |
+|------|---------|----------|
+| **Quick** | `enhance this request:` | Uses intelligent defaults, no questions |
+| **Guided** | `enhance with questions:` | Always asks 2-6 strategic questions first |
+| **Auto** | Just provide request | Asks questions only if ambiguous |
+
+**What It Does:**
+1. **Assesses** clarity — is the request specific or vague?
+2. **Asks** 2-6 high-impact questions (if needed)
+3. **Translates** vague adjectives into concrete requirements
+4. **Outputs** a complete intake document for the Visual Essay Orchestrator
+
+**Invocation Examples:**
+```
+# Quick mode — trust the defaults
+Using @agents/utilities/visual-essay-intake-enhancer.md, enhance this request:
+"visual essay about semiconductors with cool visuals"
+
+# Guided mode — I want to answer questions first
+Using @agents/utilities/visual-essay-intake-enhancer.md, enhance with questions:
+"I want a visual essay about the history of computing"
+
+# Auto mode — ask if needed
+Using @agents/utilities/visual-essay-intake-enhancer.md:
+"create a visual essay about the fork's journey from scandal to necessity"
+```
+
+**Strategic Questions It Asks:**
+- 🎯 "What's the ONE thing readers should understand after this essay?"
+- 👥 "Complete beginners, curious generalists, or knowledgeable readers?"
+- 🎭 "Any narrative tone to avoid? (e.g., too dramatic, too academic)"
+- 📊 "Data-heavy with visualizations, or more narrative-driven?"
+- 🎨 "Photorealistic, illustrated, or mixed visual treatment?"
+
+**Why Use This:**
+| Without Enhancer | With Enhancer |
+|------------------|---------------|
+| "cool visuals" | Specific: archival photography + data visualizations |
+| Undefined audience | Clear: curious generalists |
+| No tone guidance | Directive: educator mode, avoid purple prose |
+| Vague scope | Prioritized: 5 ranked scope items |
 
 ---
 

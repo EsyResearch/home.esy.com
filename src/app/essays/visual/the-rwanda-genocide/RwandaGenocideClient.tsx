@@ -477,7 +477,10 @@ const Section: React.FC<{
           onVisible?.();
         }
       },
-      { threshold: 0.2 }
+      { 
+        threshold: 0.05,  // Trigger when just 5% visible
+        rootMargin: '100px 0px'  // Start loading 100px before entering viewport
+      }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);

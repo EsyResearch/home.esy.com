@@ -242,12 +242,13 @@
 /* ==================== DICTIONARY ARCHAEOLOGY ==================== */
 
 .dictionary-archaeology {
-  min-height: 80vh;
+  min-height: 120vh; /* Increased for comfortable 5-layer excavation (spec: 800-1000px scroll depth) */
   padding: var(--toy-space-xl) var(--toy-space-md);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--toy-space-lg);
+  position: relative;
 }
 
 .archaeology-header {
@@ -369,6 +370,90 @@
   font-family: var(--toy-font-serif);
   font-size: 1.1rem;
   color: var(--toy-text-primary);
+  min-height: 1.5em; /* Prevent layout shift when text changes */
+}
+
+.archaeology-citation {
+  margin-top: var(--toy-space-sm);
+  min-height: 1.25em;
+}
+
+.citation-text {
+  font-family: var(--toy-font-serif);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--toy-accent-gold);
+  opacity: 0;
+  animation: fadeIn var(--toy-duration-slow) var(--toy-ease-out) forwards;
+}
+
+/* Excavation Progress Indicator - Shows dig depth through dictionary history */
+.excavation-progress {
+  position: absolute;
+  right: var(--toy-space-md);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--toy-space-xs);
+}
+
+.excavation-track {
+  position: relative;
+  width: 4px;
+  height: 180px;
+  background: rgba(247, 243, 235, 0.1);
+  border-radius: 2px;
+}
+
+.excavation-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(180deg, var(--toy-accent-gold), var(--toy-era-medieval));
+  border-radius: 2px;
+  transition: height 0.3s ease-out;
+}
+
+.excavation-markers {
+  position: absolute;
+  inset: 0;
+}
+
+.excavation-marker {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--toy-bg-elevated);
+  border: 2px solid rgba(247, 243, 235, 0.2);
+  transition: all var(--toy-duration-fast) ease;
+}
+
+.excavation-marker.reached {
+  background: var(--toy-accent-gold);
+  border-color: var(--toy-accent-gold);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+}
+
+.excavation-label {
+  font-family: var(--toy-font-mono);
+  font-size: 0.625rem;
+  color: var(--toy-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* Hide excavation progress on mobile - too cramped */
+@media (max-width: 768px) {
+  .excavation-progress {
+    display: none;
+  }
 }
 
 /* ==================== SHAKESPEARE SHUFFLE ==================== */
@@ -569,7 +654,11 @@
 
 /* Mobile adjustments for scroll-lock sequences */
 @media (max-width: 768px) {
-  .dictionary-archaeology,
+  .dictionary-archaeology {
+    min-height: 90vh; /* Reduced from 120vh but still enough for 5 layers on mobile */
+    padding: var(--toy-space-lg) var(--toy-space-sm);
+  }
+  
   .shakespeare-shuffle,
   .etymology-complete {
     min-height: 60vh;
@@ -610,7 +699,7 @@
 /* SCROLL-LOCK HERO: Proper sticky pattern */
 .hero-section {
   position: relative;
-  min-height: 300vh; /* Extended height creates scroll depth for animation */
+  /* HEIGHT SET INLINE via style prop - must be explicit for scroll-lock calculation */
   /* CRITICAL: No overflow:hidden - it breaks position: sticky */
 }
 
@@ -624,6 +713,14 @@
   align-items: center;
   justify-content: center;
   z-index: 2;
+  /* GPU acceleration for smooth scroll-lock */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Pinned state - content is actively in scroll-lock zone */
+.hero-section.pinned .hero-content {
+  /* Visual feedback that scroll-lock is active (optional debug) */
 }
 
 .hero-section.complete .hero-content {
@@ -701,6 +798,9 @@
   font-weight: 400;
   color: var(--toy-text-primary);
   transition: all var(--toy-duration-slow) var(--toy-ease-out);
+  /* GPU acceleration for scroll-driven animation */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Phase 2: Flicker effect (15-30%) */
@@ -772,11 +872,13 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) translateZ(0);
   display: flex;
   gap: 0.05em;
   font-size: clamp(3rem, 12vw, 8rem);
   transition: all var(--toy-duration-slow) var(--toy-ease-out);
+  /* GPU acceleration */
+  backface-visibility: hidden;
 }
 
 .blackletter {

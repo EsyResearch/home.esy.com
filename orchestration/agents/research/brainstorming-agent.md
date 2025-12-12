@@ -430,3 +430,7 @@ December 11, 2025
 
 *This agent specializes in the critical first phase of research: formulating the questions, hypotheses, and scope that guide all subsequent source discovery. The Brainstorming Agent ensures research is well-directed by producing comprehensive research briefs with primary/secondary/exploratory questions, testable hypotheses, multilingual keywords, adjacent topic maps, and clear scope definitions. Orchestrated by the Research Orchestrator during Phase 1, this agent's output directly enables the Research Citations Expert to conduct focused, effective source discovery. Ideal for Standard and Deep depth modes where thorough research design precedes source hunting.*
 
+
+
+
+

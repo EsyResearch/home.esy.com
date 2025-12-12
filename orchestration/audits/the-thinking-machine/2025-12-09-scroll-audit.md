@@ -3,7 +3,7 @@
 ## Visual Essay Information
 - **Title**: The Thinking Machine: A Visual History of Artificial Intelligence
 - **Path**: `src/app/essays/visual/the-thinking-machine/`
-- **Audit Date**: December 9, 2024
+- **Audit Date**: December 9, 2025
 - **Auditor**: Immersive Scrolling Auditor
 - **Audit Duration**: 45 minutes
 
@@ -184,6 +184,6 @@ const handleScroll = () => {
 **Upon Completion**: Re-audit targeted sections, update to CERTIFIED if passing.
 
 **Auditor Sign-off**: Immersive Scrolling Auditor  
-**Date**: December 9, 2024  
+**Date**: December 9, 2025  
 **Commit**: 376a08d
 

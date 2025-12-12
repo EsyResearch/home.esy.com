@@ -70,19 +70,28 @@
 │                     (Executive Orchestrator)                                 │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                             │
-│  PHASE 1: INTAKE & PLANNING                                                 │
+│  PHASE 1: INTAKE ──────────────────────────────────────────────────────    │
 │  ┌─────────────────────────────────────────────────────────────────────┐   │
-│  │  • Brief Development (via Visual Essay Invocation Agent)            │   │
-│  │  • Scope Definition                                                  │   │
-│  │  • Timeline Establishment                                            │   │
-│  │  • Success Criteria Definition                                       │   │
+│  │  • Receive topic/idea from user                                     │   │
+│  │  • Define scope, audience, timeline                                 │   │
+│  │  • Reference SKILL.md to identify research requirements             │   │
+│  │  • Pass research blueprint to Research Orchestrator                 │   │
 │  └─────────────────────────────────────────────────────────────────────┘   │
 │                                    │                                        │
 │                                    ▼                                        │
-│  PHASE 2: RESEARCH ────────────────────────────────────────────────────    │
+│  PHASE 2: RESEARCH (Guided by SKILL.md) ───────────────────────────────    │
 │  ┌─────────────────────────────────────────────────────────────────────┐   │
 │  │                    RESEARCH ORCHESTRATOR                             │   │
-│  │              (Research Pipeline Coordinator)                         │   │
+│  │        (Uses SKILL.md as Research Blueprint)                         │   │
+│  │                                                                      │   │
+│  │    SKILL.md Requirements → Research Targets:                         │   │
+│  │    ┌──────────────────────────────────────────────────────────┐     │   │
+│  │    │ • Layer 4 Figure Profiles → Find 5-15 figures w/ imagery │     │   │
+│  │    │ • Layer 4 Key Quotes     → Gather verified quotes        │     │   │
+│  │    │ • Layer 4 Narrative Beats→ Map timeline of events        │     │   │
+│  │    │ • Layer 5 Era Treatments → Identify archive sources      │     │   │
+│  │    │ • Visual Treatment       → Confirm visual materials      │     │   │
+│  │    └──────────────────────────────────────────────────────────┘     │   │
 │  │                                                                      │   │
 │  │    ┌──────────────┐ ┌──────────────┐ ┌──────────────┐               │   │
 │  │    │ Brainstorm   │ │  Research    │ │  Citation    │               │   │
@@ -94,14 +103,33 @@
 │  │                           │                                          │   │
 │  │                           ▼                                          │   │
 │  │                    research/ package                                 │   │
-│  │                    (CITATIONS.md, SYNTHESIS.md, etc.)                │   │
+│  │          (CITATIONS.md, FIGURES.md, TIMELINE.md, VISUALS.md)         │   │
 │  └─────────────────────────────────────────────────────────────────────┘   │
 │                                    │                                        │
 │                                    ▼                                        │
-│  PHASE 3: PRODUCTION ──────────────────────────────────────────────────    │
+│  PHASE 3: SPEC CONSTRUCTION ───────────────────────────────────────────    │
+│  ┌─────────────────────────────────────────────────────────────────────┐   │
+│  │                 VISUAL ESSAY INVOCATION AGENT                        │   │
+│  │         (Builds spec FROM research package)                          │   │
+│  │                                                                      │   │
+│  │    research/ package + SKILL.md template → Complete Spec             │   │
+│  │    ┌──────────────────────────────────────────────────────────┐     │   │
+│  │    │ • Figure profiles populated with verified data           │     │   │
+│  │    │ • Quotes are pre-verified with sources                   │     │   │
+│  │    │ • Narrative arc grounded in confirmed events             │     │   │
+│  │    │ • Visual treatment based on available materials          │     │   │
+│  │    │ • No orphan claims — everything research-backed          │     │   │
+│  │    └──────────────────────────────────────────────────────────┘     │   │
+│  │                           │                                          │   │
+│  │                           ▼                                          │   │
+│  │              specs/[topic-slug].md (6-layer invocation)              │   │
+│  └─────────────────────────────────────────────────────────────────────┘   │
+│                                    │                                        │
+│                                    ▼                                        │
+│  PHASE 4: PRODUCTION ──────────────────────────────────────────────────    │
 │  ┌─────────────────────────────────────────────────────────────────────┐   │
 │  │                    SCROLLYTELLING EXPERT                             │   │
-│  │         (Content & Design — Uses research/ package)                  │   │
+│  │         (Implements spec + uses research/ package)                   │   │
 │  │                                                                      │   │
 │  │    ┌──────────────┐ ┌──────────────┐ ┌──────────────┐               │   │
 │  │    │  Historian   │ │  Historian   │ │   UI/UX      │               │   │
@@ -116,7 +144,7 @@
 │  └─────────────────────────────────────────────────────────────────────┘   │
 │                                    │                                        │
 │                                    ▼                                        │
-│  PHASE 4: AUDIT ───────────────────────────────────────────────────────    │
+│  PHASE 5: AUDIT ───────────────────────────────────────────────────────    │
 │  ┌─────────────────────────────────────────────────────────────────────┐   │
 │  │                    META AUDIT ORCHESTRATOR                           │   │
 │  │              (Comprehensive Quality Verification)                    │   │
@@ -128,7 +156,7 @@
 │  └─────────────────────────────────────────────────────────────────────┘   │
 │                                    │                                        │
 │                                    ▼                                        │
-│  PHASE 5: PUBLISH ─────────────────────────────────────────────────────    │
+│  PHASE 6: PUBLISH ─────────────────────────────────────────────────────    │
 │  ┌─────────────────────────────────────────────────────────────────────┐   │
 │  │  • Publication Approval & Sign-Off                                  │   │
 │  │  • Mobile-Native Experience Verification                            │   │
@@ -144,16 +172,17 @@
 
 | Gate | Phase | Pass Criteria | Owner | Blocking? |
 |------|-------|---------------|-------|-----------|
-| **G1: Brief Approval** | Intake → Research | Complete brief with scope, timeline, success criteria | Visual Essay Orchestrator | ✅ Yes |
-| **G2: Research Complete** | Research → Production | Research package exists, sources verified, domain experts consulted | **Research Orchestrator** | ✅ Yes |
-| **G3: Design Research** | Pre-Production | Unique visual identity derived from subject matter | Scrollytelling Expert | ✅ Yes |
-| **G4: Content Complete** | Production → Audit | All sections drafted, fact-checked, uses research package | Historian Editor | ✅ Yes |
-| **G5: Citation Audit** | Audit | Citation Certification achieved (content vs. research match) | Citation Audit Agent | ✅ Yes |
-| **G6: Scroll Certification** | Audit | Immersive Scrolling Auditor certification (≥8.0/10) | Scrolling Auditor | ✅ Yes |
-| **G7: Mobile Verification** | Pre-Publish | Real device testing (Safari iOS, Chrome Android) | Visual Essay Orchestrator | ✅ Yes |
-| **G8: Publication Approval** | Publish | Director sign-off on complete package | Visual Essay Orchestrator | ✅ Yes |
+| **G1: Intake Approval** | Intake → Research | Scope defined, SKILL.md requirements identified, research targets clear | Visual Essay Orchestrator | ✅ Yes |
+| **G2: Research Complete** | Research → Spec | Research package complete: figures, quotes, timeline, visuals all verified | **Research Orchestrator** | ✅ Yes |
+| **G3: Spec Approval** | Spec → Production | 6-layer spec complete, all content research-backed, no orphan claims | Visual Essay Orchestrator | ✅ Yes |
+| **G4: Design Research** | Pre-Production | Unique visual identity derived from subject matter | Scrollytelling Expert | ✅ Yes |
+| **G5: Content Complete** | Production → Audit | All sections drafted, fact-checked, uses research package | Historian Editor | ✅ Yes |
+| **G6: Citation Audit** | Audit | Citation Certification achieved (content vs. research match) | Citation Audit Agent | ✅ Yes |
+| **G7: Scroll Certification** | Audit | Immersive Scrolling Auditor certification (≥8.0/10) | Scrolling Auditor | ✅ Yes |
+| **G8: Mobile Verification** | Pre-Publish | Real device testing (Safari iOS, Chrome Android) | Visual Essay Orchestrator | ✅ Yes |
+| **G9: Publication Approval** | Publish | Director sign-off on complete package | Visual Essay Orchestrator | ✅ Yes |
 
-> **Key Change**: G2 is now "Research Complete" owned by the Research Orchestrator. Research happens BEFORE production, ensuring writers have verified sources to cite.
+> **Key Change**: Research (G2) now happens BEFORE Spec construction (G3). SKILL.md serves as the research blueprint—research gathers exactly what the spec template requires. The Invocation Agent then builds the spec using verified research, ensuring no orphan claims.
 
 ---
 
@@ -228,85 +257,85 @@
 
 ## Workflow Protocols
 
-### Phase 1: Intake & Planning (10%)
+### Phase 1: Intake (5%)
 
-#### Step 1: Brief Development
+#### Step 1: Receive and Scope Request
 
-Transform user request into structured production brief by invoking the **Visual Essay Invocation Agent** (`@orchestration/agents/visual-essay-invocation-agent.md`).
+Receive user's topic idea and establish project parameters.
 
-**Agent Invocation**:
-```
-Using @agents/visual-essay-invocation-agent.md, generate a complete 
-invocation spec for a visual essay about [TOPIC].
+**Intake Questionnaire**:
+- **Topic**: What subject should this visual essay explore?
+- **Target Audience**: Experts, beginners, or general curious?
+- **Visual Treatment**: Photorealistic, illustrated, or mythological?
+- **Timeline**: Any publication deadline?
+- **Special Requirements**: Specific figures, events, or perspectives to include?
 
-Context:
-- Target audience: [audience]
-- Visual treatment preference: [if specified]
-- Any specific requirements: [requirements]
-```
+#### Step 2: Reference SKILL.md for Research Requirements
 
-The Invocation Agent will:
-1. Apply the visual-essay-invocation skill framework
-2. Identify topic type and apply appropriate lens (e.g., `lenses/mythology.md` for sacred narratives)
-3. Generate complete six-layer invocation
-4. Store completed spec to `specs/[topic-slug].md` with `[DRAFT]` status
-5. Provide handoff summary with key metrics
+Analyze `@orchestration/skills/visual-essay-invocation/SKILL.md` to identify what research must gather:
 
-**Production Brief Template**:
+**SKILL.md Research Blueprint**:
+
+| Spec Requirement | Research Must Gather |
+|------------------|---------------------|
+| Layer 4: Figure Profiles | 5-15 key figures with available imagery and verified quotes |
+| Layer 4: Chapter Narrative | Timeline of verified events and turning points |
+| Layer 4: Visual Assets | Archive sources, art, photography availability |
+| Layer 5: Era Treatments | Historical periods requiring distinct visual processing |
+| Step 2: "Available photography" | Confirm imagery exists for each proposed figure |
+| Step 4: Scroll-lock sequences | Key moments worth highlighting as locked sequences |
+
+**Research Requirements Brief**:
 
 ```markdown
-## Visual Essay Production Brief
+## Research Requirements Brief
 
 ### Project Identification
 - **Working Title**: [Title]
-- **Director**: Visual Essay Orchestrator
+- **Topic**: [Topic]
 - **Date Initiated**: [Date]
-- **Target Publication**: [Date]
 
-### Core Concept
-- **Central Question**: What question does this essay answer?
-- **Thesis**: One-sentence takeaway for readers
-- **Emotional Journey**: Beginning → Middle → End feelings
-- **Target Audience**: Who is this for?
+### Research Targets (from SKILL.md)
 
-### Scope Definition
-- **Estimated Sections**: [6-10 typical]
-- **Target Read Time**: [8-15 minutes typical]
-- **Visual Complexity**: [Standard / Enhanced / Premium]
-- **Citation Requirements**: [Minimum source count]
+#### Figures (Layer 4)
+- Target: 5-15 key figures
+- Requirements per figure:
+  - [ ] Verified biographical information
+  - [ ] At least one quotable statement with source
+  - [ ] Available photography or portraiture
+  - [ ] Key contributions documented
 
-### Key Content Requirements
-- [ ] Specific dates/timeline required
-- [ ] Notable quotes to feature
-- [ ] Data visualizations needed
-- [ ] Custom SVG illustrations required
-- [ ] Specific imagery style
+#### Timeline/Events (Layer 4)
+- Requirements:
+  - [ ] Major events chronologically mapped
+  - [ ] Turning points identified
+  - [ ] Cause-effect relationships documented
 
-### Success Criteria
-- **Quality Threshold**: [Specific metrics]
-- **Citation Standard**: 80%+ Tier 1-2 sources
-- **Mobile Performance**: 60fps animations on mid-tier devices
-- **Accessibility**: WCAG AA compliance
+#### Visual Materials (Layer 4 + 5)
+- Requirements:
+  - [ ] Archive sources identified
+  - [ ] Era-appropriate imagery located
+  - [ ] Visual treatment feasibility confirmed
 
-### Timeline
-| Milestone | Target Date | Owner |
-|-----------|-------------|-------|
-| Design Research Complete | [Date] | Scrollytelling Expert |
-| Content Draft Complete | [Date] | Scrollytelling Expert |
-| Citation Research Complete | [Date] | Research Expert |
-| Citation Audit Complete | [Date] | Citation Audit Agent |
-| Publication Approval | [Date] | Visual Essay Orchestrator |
-| Deployment | [Date] | Visual Essay Orchestrator |
+#### Quotes (Layer 4)
+- Requirements:
+  - [ ] Minimum 10 verified quotes with sources
+  - [ ] Attribution confirmed for each
+
+### Research Depth
+- [ ] Deep (15-25 sources for full visual essay)
+- [ ] Standard (10-15 sources)
+- [ ] Quick (5-10 sources for shorter piece)
 ```
 
-#### Step 2: Gate 1 Approval
+#### Step 3: Gate 1 Approval
 
-Before proceeding to production:
-- [ ] Brief is complete with all required sections
-- [ ] Scope is realistic for timeline
-- [ ] Success criteria are measurable
-- [ ] No blockers identified
-- [ ] User has approved brief
+Before proceeding to research:
+- [ ] Topic is viable for visual essay treatment
+- [ ] Research requirements clearly defined
+- [ ] SKILL.md research targets identified
+- [ ] Research depth determined
+- [ ] User has approved scope
 
 **Gate 1 Status**: ⏳ Pending / ✅ Approved / ❌ Rejected
 
@@ -314,74 +343,144 @@ Before proceeding to production:
 
 ### Phase 2: Research (25%)
 
-Research happens BEFORE production. The Research Orchestrator ensures verified sources exist before writers begin.
+Research happens BEFORE spec construction. The Research Orchestrator uses SKILL.md as its research blueprint, gathering exactly what the spec template requires.
 
-#### Step 1: Invoke Research Orchestrator
+#### Step 1: Invoke Research Orchestrator with SKILL.md Requirements
 
 ```
 Using @agents/orchestrators/research-orchestrator.md:
 
-Topic: [Topic from approved brief]
+Topic: [Topic from approved intake]
 Depth: Deep (for full visual essays) | Standard | Quick
 Domain: Auto (let orchestrator detect and confirm)
 
-Conduct comprehensive research and produce research package.
+Research Blueprint: @orchestration/skills/visual-essay-invocation/SKILL.md
+
+Research must satisfy these SKILL.md requirements:
+- Layer 4 Figure Profiles: Find 5-15 figures with imagery + quotes
+- Layer 4 Narrative Beats: Map verified timeline of events
+- Layer 4 Visual Assets: Identify available archive/visual materials
+- Layer 5 Era Treatments: Document historical periods for visual processing
+- Quotes: Minimum 10 verified quotes with sources
+
+Produce research package that MAPS to spec template.
 ```
 
 The Research Orchestrator will:
-1. **Detect domain** — Identify History, Regional, Culinary, etc. lenses
-2. **Brainstorm** — Formulate research questions and hypotheses (via Brainstorming Agent)
-3. **Discover sources** — Find Tier 1-2 sources (via Research Citations Expert)
-4. **Route to experts** — Consult regional/domain specialists as needed
-5. **Validate** — Verify all links and quotes (via Citation Audit Agent)
-6. **Assemble package** — Create `research/` directory with all files
+1. **Reference SKILL.md** — Understand what the spec template needs
+2. **Detect domain** — Identify History, Regional, Culinary, etc. lenses
+3. **Brainstorm** — Formulate research questions targeting SKILL.md requirements
+4. **Discover sources** — Find Tier 1-2 sources for figures, quotes, events
+5. **Route to experts** — Consult regional/domain specialists as needed
+6. **Validate** — Verify all links, quotes, and imagery availability
+7. **Assemble package** — Create `research/` directory with spec-ready files
 
 #### Step 2: Review Research Package
 
-Evaluate Research Orchestrator deliverables:
+Evaluate Research Orchestrator deliverables against SKILL.md requirements:
 
-| Requirement | Status | Notes |
-|-------------|--------|-------|
-| research/ directory exists | ⏳/✅/❌ | |
-| CITATIONS.md complete | ⏳/✅/❌ | |
-| Minimum sources met (15-25 for Deep) | ⏳/✅/❌ | |
-| SYNTHESIS.md present | ⏳/✅/❌ | |
-| All links verified | ⏳/✅/❌ | |
-| Domain experts consulted | ⏳/✅/❌ | |
-| Gaps documented in GAPS.md | ⏳/✅/❌ | |
+| SKILL.md Requirement | Research Deliverable | Status | Notes |
+|----------------------|---------------------|--------|-------|
+| Layer 4: Figure Profiles | FIGURES.md (5-15 figures with imagery) | ⏳/✅/❌ | |
+| Layer 4: Key Quotes | QUOTES.md (10+ verified with sources) | ⏳/✅/❌ | |
+| Layer 4: Narrative Beats | TIMELINE.md (events mapped) | ⏳/✅/❌ | |
+| Layer 4: Visual Assets | VISUALS.md (archive sources) | ⏳/✅/❌ | |
+| Layer 5: Era Treatments | ERA-GUIDE.md (period treatments) | ⏳/✅/❌ | |
+| General | CITATIONS.md (all sources) | ⏳/✅/❌ | |
+| General | SYNTHESIS.md (key findings) | ⏳/✅/❌ | |
+| General | GAPS.md (what couldn't be verified) | ⏳/✅/❌ | |
 
 #### Step 3: Gate 2 Approval
 
-Before proceeding to production:
-- [ ] Research package is complete
+Before proceeding to spec construction:
+- [ ] Research package maps to SKILL.md requirements
+- [ ] Figure profiles have confirmed imagery availability
+- [ ] Quotes are verified with sources
+- [ ] Timeline is documented with sources
 - [ ] All sources are Tier 1-2 (or exceptions documented)
-- [ ] No critical gaps for core claims
-- [ ] Writers have sources to cite (no fabrication needed)
+- [ ] GAPS.md documents what cannot be claimed
 
 **Gate 2 Status**: ⏳ Pending / ✅ Approved / ❌ Rejected
 
 ---
 
-### Phase 3: Production (40%)
+### Phase 3: Spec Construction (15%)
+
+The spec is now constructed FROM the research package, not before it. Every element in the spec is grounded in verified research.
+
+#### Step 1: Invoke Invocation Agent with Research Package
+
+```
+Using @agents/utilities/visual-essay-invocation-agent.md:
+
+Topic: [Topic]
+Research Package: [essay-slug]/research/
+
+Build the six-layer spec using the research package:
+- FIGURES.md → Populate Layer 4 figure profiles
+- QUOTES.md → Use verified quotes only
+- TIMELINE.md → Structure narrative arc from confirmed events
+- VISUALS.md → Specify visual assets based on available materials
+- ERA-GUIDE.md → Define era treatments
+- GAPS.md → Avoid claims we couldn't verify
+
+Apply appropriate lens if applicable (mythology, history, etc.)
+Store completed spec to specs/[topic-slug].md
+```
+
+The Invocation Agent will:
+1. **Ingest research package** — Load all research files
+2. **Apply SKILL.md template** — Follow six-layer architecture
+3. **Populate from research** — Figure profiles, quotes, timeline all from verified sources
+4. **Flag gaps** — Note where research gaps limit the spec
+5. **Apply lens** — Use mythology/history/technology lens if appropriate
+6. **Store spec** — Save to `specs/[topic-slug].md` with `[DRAFT]` status
+
+#### Step 2: Review Spec for Research Alignment
+
+| Spec Element | Research Source | Verified? | Notes |
+|--------------|-----------------|-----------|-------|
+| Figure 1 profile | FIGURES.md | ⏳/✅/❌ | |
+| Figure 2 profile | FIGURES.md | ⏳/✅/❌ | |
+| Key quotes | QUOTES.md | ⏳/✅/❌ | |
+| Chapter 1 narrative | TIMELINE.md | ⏳/✅/❌ | |
+| Visual treatment | VISUALS.md | ⏳/✅/❌ | |
+| Era treatments | ERA-GUIDE.md | ⏳/✅/❌ | |
+
+#### Step 3: Gate 3 Approval
+
+Before proceeding to production:
+- [ ] Spec follows six-layer structure
+- [ ] All figure profiles sourced from research
+- [ ] All quotes verified in research package
+- [ ] Narrative arc matches verified timeline
+- [ ] No orphan claims (everything research-backed)
+- [ ] GAPS.md items are NOT claimed in spec
+- [ ] Spec stored with [DRAFT] status
+
+**Gate 3 Status**: ⏳ Pending / ✅ Approved / ❌ Rejected
+
+---
+
+### Phase 4: Production (35%)
 
 #### Step 1: Invoke Scrollytelling Expert
 
 ```
 Using @agents/orchestrators/scrollytelling-expert.md, create an immersive visual essay 
-following this production brief:
+following this spec:
 
-[INSERT COMPLETE BRIEF]
-
+Spec Location: specs/[topic-slug].md
 Research Package Location: [essay-slug]/research/
-- CITATIONS.md contains all verified sources — USE THESE
-- SYNTHESIS.md contains key findings to build narrative from
-- GAPS.md documents what we couldn't verify — AVOID claiming these
+
+The spec is already research-backed. Use it as the authoritative guide.
+Reference research/CITATIONS.md for source attribution in implementation.
 
 Requirements:
 1. Begin with Design Research phase — unique visual identity required
 2. Mobile-native first — phone is primary design canvas
 3. Minimum 3 different layout patterns, no consecutive same layouts
-4. Use sources from research/CITATIONS.md — DO NOT fabricate new sources
+4. All content comes from spec (which is research-backed)
 5. Real mobile device testing required before completion
 6. Integrate with Immersive Experience Engineer for 60fps animations
 
@@ -393,7 +492,7 @@ Deliver:
 - Mobile testing confirmation
 ```
 
-> **Critical**: Writers must use the research package as their source foundation. No fabricating sources — the research is already done.
+> **Critical**: The spec IS the source of truth. The spec was built from research. Writers implement the spec.
 
 #### Step 2: Monitor Production Milestones
 
@@ -408,25 +507,25 @@ Track progress against timeline:
 | Implementation Complete | ⏳/✅/❌ | |
 | Mobile Testing | ⏳/✅/❌ | |
 
-#### Step 3: Gate 2-3 Verification
+#### Step 3: Gate 4-5 Verification
 
-**Gate 2: Design Research**
+**Gate 4: Design Research**
 - [ ] Design Research Report delivered
 - [ ] Visual identity is unique (not copied from previous essays)
 - [ ] Color palette derived from subject matter
 - [ ] Typography justified by era/character alignment
 - [ ] Animation philosophy matches subject nature
 
-**Gate 3: Content Complete**
+**Gate 5: Content Complete**
 - [ ] All sections drafted
 - [ ] Historian Editor fact-check complete
-- [ ] Sources identified for major claims
+- [ ] Content matches spec (which is research-backed)
 - [ ] Implementation functional
 - [ ] Mobile testing performed
 
 ---
 
-### Phase 4: Audit (15%)
+### Phase 5: Audit (10%)
 
 With research complete (Phase 2) and production complete (Phase 3), the audit phase verifies everything aligns.
 
@@ -478,7 +577,7 @@ If audit identifies issues:
 
 ---
 
-### Phase 5: Publish (10%)
+### Phase 6: Publish (10%)
 
 #### Step 1: Invoke Immersive Scrolling Auditor (Gate 6)
 
@@ -841,23 +940,25 @@ When Citation Audit fails certification repeatedly:
 
 ### Visual Essay Invocation Agent
 
-During Phase 1 (Intake & Planning), invoke `@orchestration/agents/visual-essay-invocation-agent.md` to generate the production spec.
+During Phase 3 (Spec Construction), invoke `@orchestration/agents/utilities/visual-essay-invocation-agent.md` to build the spec FROM the research package.
 
-**Purpose**: The Invocation Agent transforms user requests into comprehensive, production-ready specifications stored in the specs directory, ensuring consistent, high-quality visual essay development.
+**Purpose**: The Invocation Agent transforms the research package into comprehensive, production-ready specifications. It uses SKILL.md as the template and populates it with verified research data.
 
 **When to Invoke**:
-- During brief development (Phase 1, Step 1)
-- When user requests a new visual essay, immersive explainer, or scroll-driven narrative
+- After research package is complete (Phase 3)
+- When Gate 2 (Research Complete) has passed
 - Before invoking Scrollytelling Expert
 
 **Agent Capabilities**:
 
 | Capability | Description |
 |------------|-------------|
-| Six-layer architecture | Complete specification following invocation template |
+| Six-layer architecture | Complete specification following SKILL.md template |
+| Research integration | Populates spec from FIGURES.md, QUOTES.md, TIMELINE.md |
 | Lens auto-selection | Applies mythology, history, technology lenses as appropriate |
 | Scroll-lock choreography | Percentage-based animation specifications |
-| Figure profiling | Key figures with visual descriptions |
+| Figure profiling | Key figures with research-verified data |
+| Gap awareness | Avoids claims documented in GAPS.md |
 | Spec storage | Saves to `specs/[topic-slug].md` with proper frontmatter |
 
 **Spec Storage Location**:
@@ -868,23 +969,28 @@ orchestration/skills/visual-essay-invocation/specs/[topic-slug].md
 **Invocation Integration**:
 
 ```
-# Phase 1, Step 1: Brief Development
+# Phase 3: Spec Construction
 
-1. Receive user topic request
+1. Research package complete (Gate 2 passed)
 2. Invoke Visual Essay Invocation Agent:
-   Using @agents/visual-essay-invocation-agent.md, generate a complete 
-   invocation spec for [TOPIC]
-3. Agent generates six-layer invocation with lens application
-4. Agent stores spec to specs/[topic-slug].md with [DRAFT] status
-5. Review handoff summary from agent
-6. Proceed to Gate 1 approval
+   Using @agents/utilities/visual-essay-invocation-agent.md, build a complete 
+   invocation spec for [TOPIC] using research package at [PATH]
+3. Agent ingests research files (FIGURES.md, QUOTES.md, TIMELINE.md, etc.)
+4. Agent populates SKILL.md template with verified data
+5. Agent stores spec to specs/[topic-slug].md with [DRAFT] status
+6. Review spec for research alignment
+7. Proceed to Gate 3 approval
 ```
 
 **Spec Quality Check**:
 - [ ] Spec follows six-layer structure
+- [ ] All figure profiles sourced from research/FIGURES.md
+- [ ] All quotes verified in research/QUOTES.md
+- [ ] Narrative beats match research/TIMELINE.md
+- [ ] Visual assets reference research/VISUALS.md
+- [ ] No claims from research/GAPS.md appear in spec
 - [ ] Appropriate lens applied (if topic matches)
 - [ ] All scroll-lock sequences have percentage choreography
-- [ ] Figure profiles include photograph descriptions
 - [ ] Progress bar concept matches subject matter
 - [ ] Spec stored to `specs/` with [DRAFT] status and YAML frontmatter
 
