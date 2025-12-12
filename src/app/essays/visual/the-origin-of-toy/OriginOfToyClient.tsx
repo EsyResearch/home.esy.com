@@ -201,6 +201,7 @@ const EssayHeader: React.FC<{ scrolled: boolean }> = ({ scrolled }) => (
 const HeroSection: React.FC = () => {
   const heroRef = useRef<HTMLElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isPinned, setIsPinned] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
@@ -209,14 +210,27 @@ const HeroSection: React.FC = () => {
       if (!hero) return;
 
       const rect = hero.getBoundingClientRect();
-      const heroHeight = hero.offsetHeight;
+      const windowHeight = window.innerHeight;
+      const sectionTop = rect.top;
+      const sectionTotalHeight = rect.height;
       
-      // Calculate progress: 0 at top, 100 when hero is scrolled past
-      const scrolled = -rect.top;
-      const progress = Math.min(100, Math.max(0, (scrolled / (heroHeight * 0.7)) * 100));
+      // Scrollable distance = total height minus one viewport (content stays pinned for that duration)
+      const scrollableDistance = sectionTotalHeight - windowHeight;
+      const scrolledIntoSection = -sectionTop;
       
-      setScrollProgress(progress);
-      if (progress >= 98) setIsComplete(true);
+      // Check if we're in the pinned zone
+      if (sectionTop <= 0 && scrolledIntoSection <= scrollableDistance) {
+        setIsPinned(true);
+        // Progress 0-100 as we scroll through the section
+        const progress = Math.min(100, Math.max(0, (scrolledIntoSection / scrollableDistance) * 100));
+        setScrollProgress(progress);
+        if (progress >= 98) setIsComplete(true);
+      } else {
+        setIsPinned(false);
+        // Before entering: 0, after exiting: 100
+        setScrollProgress(sectionTop > 0 ? 0 : 100);
+        if (sectionTop <= 0) setIsComplete(true);
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -616,9 +630,10 @@ const DictionaryArchaeology: React.FC = () => {
       const containerHeight = container.offsetHeight;
       const viewportHeight = window.innerHeight;
 
-      // Calculate how far through the section we are
+      // Improved scroll calculation: More scroll depth for comfortable 5-layer reveal
+      // Spec recommends 800-1000px scroll depth per scroll-lock sequence
       const scrolled = viewportHeight - rect.top;
-      const totalScroll = containerHeight + viewportHeight * 0.5;
+      const totalScroll = containerHeight + viewportHeight * 0.8; // Increased from 0.5 for deeper excavation
       const progress = Math.min(100, Math.max(0, (scrolled / totalScroll) * 100));
       
       setScrollProgress(progress);
@@ -629,12 +644,14 @@ const DictionaryArchaeology: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Spec-precise definitions: Each layer excavates deeper into the word's history
+  // CRITICAL: Johnson layer must include "Amorous dalliance" to bridge modern→medieval meanings
   const definitions = [
     { era: "Modern", year: "2024", def: "A thing for a child to play with", style: "modern" },
     { era: "Early 20th C.", year: "1920", def: "An article for children's amusement", style: "vintage" },
-    { era: "Victorian", year: "1888", def: "A plaything; a bauble; a trifle", style: "victorian" },
-    { era: "Johnson", year: "1755", def: "A petty commodity; a thing of no value; a plaything", style: "johnson" },
-    { era: "Medieval", year: "c. 1303", def: "Daliance; amorous sport; foolyssh behavoir", style: "medieval" },
+    { era: "Victorian", year: "1888", def: "A thing of little value; a trifle; a plaything", style: "victorian" },
+    { era: "Johnson", year: "1755", def: "A petty commodity; a trifle; a thing of no value. Also: Amorous dalliance.", style: "johnson" },
+    { era: "Medieval", year: "c. 1303", def: "Toye: Daliance. Foolyssh behavoir.", style: "medieval" },
   ];
 
   // Calculate which layer is active based on scroll progress
@@ -645,6 +662,29 @@ const DictionaryArchaeology: React.FC = () => {
       <div className="archaeology-header">
         <span className="archaeology-label">Scroll-Lock: Dictionary Archaeology</span>
         <span className="archaeology-instruction">Scroll to excavate the word&apos;s history</span>
+      </div>
+      
+      {/* Excavation depth indicator - shows how deep we've dug */}
+      <div className="excavation-progress" aria-label={`Excavation depth: ${Math.round(scrollProgress)}%`}>
+        <div className="excavation-track">
+          <div 
+            className="excavation-fill" 
+            style={{ height: `${scrollProgress}%` }}
+          />
+          <div className="excavation-markers">
+            {definitions.map((def, index) => (
+              <div 
+                key={def.era} 
+                className={`excavation-marker ${index <= activeLayer ? "reached" : ""}`}
+                style={{ top: `${index * 20}%` }}
+                title={def.era}
+              />
+            ))}
+          </div>
+        </div>
+        <span className="excavation-label">
+          {activeLayer < 4 ? `${definitions.length - activeLayer - 1} more layers` : "Origin reached"}
+        </span>
       </div>
       
       <div className="dictionary-layers">
@@ -674,9 +714,16 @@ const DictionaryArchaeology: React.FC = () => {
 
       <div className="archaeology-footer">
         <p className="archaeology-insight">
-          {activeLayer >= 4 
-            ? "The original meaning revealed: before playthings, there was dalliance."
-            : "Keep scrolling to dig deeper into history..."}
+          {activeLayer === 0 && "The familiar definition. But what lies beneath?"}
+          {activeLayer === 1 && "A century ago, still innocent..."}
+          {activeLayer === 2 && "The Victorians hint at something more: 'a trifle.'"}
+          {activeLayer === 3 && "Johnson reveals the secret: 'Amorous dalliance.'"}
+          {activeLayer >= 4 && "The original meaning revealed: before playthings, there was dalliance."}
+        </p>
+        <p className="archaeology-citation">
+          {activeLayer >= 4 && (
+            <span className="citation-text">&ldquo;To find what a word truly means, read its first definitions.&rdquo;</span>
+          )}
         </p>
       </div>
     </div>
