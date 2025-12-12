@@ -172,7 +172,7 @@ const DivineFigureProfile: React.FC<{ figure: DivineFigure }> = ({ figure }) => 
         ))}
       </div>
       <p className="figure-description">{figure.description}</p>
-      {figure.quote && <p className="figure-quote">"{figure.quote}"</p>}
+      {figure.quote && <p className="figure-quote">&ldquo;{figure.quote}&rdquo;</p>}
     </article>
   );
 };
@@ -203,7 +203,7 @@ const ChapterSection: React.FC<{ chapter: Chapter }> = ({ chapter }) => {
           <h2 className="chapter-title">{chapter.title}</h2>
           {chapter.epigraph && (
             <div className="chapter-epigraph">
-              "{chapter.epigraph.text}"
+              &ldquo;{chapter.epigraph.text}&rdquo;
               <cite>— {chapter.epigraph.source}</cite>
             </div>
           )}

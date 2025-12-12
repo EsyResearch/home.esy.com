@@ -67,6 +67,11 @@ const useScrollLock = (
     const handleScroll = () => {
       const rect = element.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
+      
+      // Detect user has scrolled via any method (keyboard, scrollbar, etc.)
+      if (window.scrollY > 10 && !hasUserScrolledRef.current) {
+        hasUserScrolledRef.current = true;
+      }
 
       // Activate lock when hero top reaches viewport top AND user has scrolled
       if (rect.top <= 0 && rect.bottom > viewportHeight * 0.5 && !state.isComplete && hasUserScrolledRef.current) {
@@ -168,10 +173,41 @@ const useScrollLock = (
       }
     };
 
+    // Handle keyboard scroll for accessibility
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isActiveRef.current || state.isComplete) return;
+      
+      const scrollKeys = ['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Space', ' '];
+      if (scrollKeys.includes(e.key)) {
+        e.preventDefault();
+        
+        // Simulate scroll progress based on key
+        const delta = (e.key === 'ArrowDown' || e.key === 'Space' || e.key === ' ') ? 40 :
+                     (e.key === 'ArrowUp') ? -40 :
+                     (e.key === 'PageDown') ? 150 :
+                     (e.key === 'PageUp') ? -150 : 0;
+        
+        accumulatedDeltaRef.current += delta;
+        
+        const newProgress = Math.min(100, Math.max(0, 
+          (accumulatedDeltaRef.current / lockDistanceRef.current) * 100
+        ));
+
+        setState(prev => ({ ...prev, progress: newProgress }));
+
+        if (newProgress >= 100) {
+          document.body.style.overflow = "";
+          isActiveRef.current = false;
+          setState({ isLocked: false, progress: 100, isComplete: true });
+        }
+      }
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
     window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    window.addEventListener("keydown", handleKeyDown);
 
     // Don't call handleScroll on mount - wait for user interaction
 
@@ -180,6 +216,7 @@ const useScrollLock = (
       window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
     };
   }, [ref, lockHeight, state.isComplete]);
