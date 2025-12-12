@@ -1793,4 +1793,46 @@
     animation: none;
     opacity: 0.5;
   }
+  
+  /* Scroll-lock sequences: show all content immediately */
+  .scroll-lock-sequence {
+    height: auto !important;
+  }
+  
+  .sequence-pinned {
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  /* Show all narrative lines */
+  .narrative-line {
+    opacity: 1;
+    transform: none;
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  
+  /* Disable pulse animations */
+  .pulse-ring,
+  .origin-dot {
+    animation: none;
+    opacity: 0.5;
+  }
+  
+  .origin-dot.visible {
+    animation: none;
+  }
+  
+  /* Show all timeline markers */
+  .timeline-marker {
+    opacity: 1;
+    transform: none;
+  }
+  
+  /* Earth photo static */
+  .earth-photo {
+    transform: none !important;
+    filter: brightness(0.8) saturate(1.1) !important;
+  }
 }

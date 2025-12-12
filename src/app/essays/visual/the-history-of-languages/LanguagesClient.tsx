@@ -380,7 +380,7 @@ const HeroSection: React.FC = () => {
 
 const Chapter1: React.FC = () => {
   const { ref, isVisible } = useIntersectionReveal(0.1);
-  const { containerRef, progress } = useScrollLock(3);
+  const { containerRef, progress } = useScrollLock(1.5); // 150vh = ~1350px scroll depth
 
   return (
     <section id="chapter-1" className="chapter chapter-1" ref={ref}>
@@ -453,7 +453,7 @@ const Chapter1: React.FC = () => {
       <div 
         ref={containerRef}
         className="scroll-lock-sequence speech-spread"
-        style={{ height: "300vh" }}
+        style={{ height: "150vh" }}
         id="seq-speech-spread"
       >
         <a href="#chapter-2" className="skip-sequence">Skip to next chapter</a>
@@ -518,7 +518,7 @@ const Chapter1: React.FC = () => {
 
 const Chapter2: React.FC = () => {
   const { ref, isVisible } = useIntersectionReveal(0.1);
-  const { containerRef, progress } = useScrollLock(3);
+  const { containerRef, progress } = useScrollLock(1.5); // 150vh = ~1350px scroll depth
 
   const champollion: Figure = {
     name: "Jean-François Champollion",
@@ -606,10 +606,10 @@ const Chapter2: React.FC = () => {
       </div>
 
       {/* Scroll-Lock Sequence: "The Evolution of Scripts" */}
-      <div 
+      <div
         ref={containerRef}
         className="scroll-lock-sequence writing-evolution"
-        style={{ height: "300vh" }}
+        style={{ height: "150vh" }}
         id="seq-writing-evolution"
       >
         <a href="#chapter-3" className="skip-sequence">Skip to next chapter</a>
@@ -761,7 +761,7 @@ const Chapter3: React.FC = () => {
 
 const Chapter4: React.FC = () => {
   const { ref, isVisible } = useIntersectionReveal(0.1);
-  const { containerRef, progress } = useScrollLock(2.5);
+  const { containerRef, progress } = useScrollLock(1.5); // 150vh = ~1350px scroll depth
 
   const sejong: Figure = {
     name: "King Sejong the Great",
@@ -853,10 +853,10 @@ const Chapter4: React.FC = () => {
       </div>
 
       {/* Scroll-Lock Sequence: "The Spread of Scripts" */}
-      <div 
+      <div
         ref={containerRef}
         className="scroll-lock-sequence"
-        style={{ height: "250vh" }}
+        style={{ height: "150vh" }}
         id="seq-alphabet-spread"
       >
         <a href="#chapter-5" className="skip-sequence">Skip to next chapter</a>
