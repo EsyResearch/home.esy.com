@@ -35,7 +35,7 @@ interface ShowcaseEssay {
   size?: 'featured' | 'standard';
 }
 
-// Hand-picked essays with stunning hero images
+// Hand-picked essays with their actual hero images
 const SHOWCASE_ESSAYS: ShowcaseEssay[] = [
   {
     id: 'manhattan-project',
@@ -45,8 +45,8 @@ const SHOWCASE_ESSAYS: ShowcaseEssay[] = [
     categoryColor: '#F59E0B',
     readTime: '22 min',
     href: '/essays/visual/the-manhattan-project',
-    // Trinity nuclear test - the iconic color mushroom cloud
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/9/95/Ivy_Mike_-_mushroom_cloud.jpg',
+    // Trinity test mushroom cloud - actual hero image from essay
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Trinity_Test_Mushroom_Cloud_12s.jpg',
     size: 'featured',
   },
   {
@@ -57,7 +57,7 @@ const SHOWCASE_ESSAYS: ShowcaseEssay[] = [
     categoryColor: '#EC4899',
     readTime: '25 min',
     href: '/essays/visual/the-history-of-languages',
-    // Library of Alexandria - stunning reconstruction
+    // Library of Alexandria - actual hero image from essay
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/6/64/Ancientlibraryalex.jpg',
     size: 'featured',
   },
@@ -69,8 +69,8 @@ const SHOWCASE_ESSAYS: ShowcaseEssay[] = [
     categoryColor: '#F59E0B',
     readTime: '25 min',
     href: '/essays/visual/the-word-robot',
-    // Karel Čapek's R.U.R. poster or vintage robot imagery
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/8/87/Capek_play.jpg',
+    // Metropolis (1927) poster - the Machine-Man Maria that defined robot aesthetics
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Metropolis_poster_3.jpg',
     size: 'standard',
   },
   {
@@ -81,7 +81,7 @@ const SHOWCASE_ESSAYS: ShowcaseEssay[] = [
     categoryColor: '#F59E0B',
     readTime: '24 min',
     href: '/essays/visual/the-word-animal',
-    // Stunning wolf portrait representing the animal kingdom
+    // Wolf portrait - actual hero image from essay
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/6/69/Canis_lupus_laying_in_grass.jpg',
     size: 'standard',
   },
