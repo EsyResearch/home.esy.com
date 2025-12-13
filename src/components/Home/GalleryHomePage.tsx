@@ -3,6 +3,7 @@
 import React from 'react';
 import GalleryHero from './GalleryHero';
 import CuratedGallery from './CuratedGallery';
+import RobotSpotlight from './RobotSpotlight';
 import EarlyAccessSection from './EarlyAccessSection';
 import QuietToolsSection from './QuietToolsSection';
 import './GalleryHomePage.css';
@@ -52,6 +53,9 @@ const GalleryHomePage: React.FC = () => {
 
         {/* Curated Gallery - Featured + hand-picked essays */}
         <CuratedGallery />
+
+        {/* Robot Essay Spotlight - Cinematic visual showcase */}
+        <RobotSpotlight />
 
         {/* Early Access - Non-charity monetization */}
         <EarlyAccessSection />
