@@ -47,13 +47,7 @@ const ConditionalFooter = () => {
     return null;
   }
   
-  // Check if we're on the homepage (gallery-first design with own footer)
-  const isHomePage = normalizedPath === '' || normalizedPath === '/';
-  if (isHomePage) {
-    return null;
-  }
-  
-  // Render the common footer on all other pages
+  // Render the common footer on all other pages (including homepage)
   return <Footer />;
 };
 

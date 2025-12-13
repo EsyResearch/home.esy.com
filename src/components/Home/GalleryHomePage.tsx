@@ -6,7 +6,6 @@ import GalleryHero from './GalleryHero';
 import CuratedGallery from './CuratedGallery';
 import EarlyAccessSection from './EarlyAccessSection';
 import QuietToolsSection from './QuietToolsSection';
-import Footer from './footer';
 import './GalleryHomePage.css';
 
 /**
@@ -64,9 +63,6 @@ const GalleryHomePage: React.FC = () => {
         {/* Quiet Tools - De-emphasized app mention */}
         <QuietToolsSection />
       </main>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 };

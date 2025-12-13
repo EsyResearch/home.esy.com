@@ -41,7 +41,7 @@ export default function Footer () {
               <Logo suffix={logoSuffix} href="" showText={false} />
             </div>
             <p className="footer-desc" style={{ color: elevatedDarkTheme.muted }}>
-            Write your next essay with Esy, an AI Agent that does the boring research and helps you write smarter papers.
+            Visual essays and research-driven storytelling exploring history, language, power, and ideas.
             </p>
             <div className="footer-socials">
               <a href="https://www.x.com/@esyResearch" target="_blank" className="social-link">

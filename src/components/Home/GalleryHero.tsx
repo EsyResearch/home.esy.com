@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 
 /**
@@ -10,7 +11,7 @@ import { ArrowRight, ChevronDown } from 'lucide-react';
  * Cinematic, full-viewport hero section that positions Esy as an authority
  * through visual essays. No SaaS messaging, no signup forms, no AI mentions.
  * 
- * Design: Editorial, museum-quality aesthetic with warm gold accents
+ * Design: Editorial aesthetic with brand purple→pink gradient
  * Typography: Cormorant Garamond for editorial elegance
  * 
  * SEO: Semantic HTML, accessible, descriptive alt text
@@ -23,6 +24,17 @@ const GalleryHero: React.FC = () => {
       <div className="hero-background" aria-hidden="true">
         <div className="hero-gradient-overlay" />
         <div className="hero-noise" />
+        
+        {/* Featured Visual - Adds visual interest */}
+        <div className="hero-featured-image">
+          <Image
+            src="/images/great-fire/great-fire-london-1675.jpg"
+            alt=""
+            fill
+            priority
+            sizes="(max-width: 1024px) 0vw, 45vw"
+          />
+        </div>
       </div>
 
       {/* Hero Content */}

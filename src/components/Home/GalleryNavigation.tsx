@@ -55,14 +55,14 @@ const GalleryNavigation: React.FC = () => {
         {/* Logo */}
         <Link href="/" className="gallery-logo" aria-label="Esy homepage">
           <Image
-            src="/esy-logos/esy-logo-icon-white.png"
-            alt=""
-            width={36}
-            height={36}
+            src="/esy-logos/logo-files/for-web/png/white-logo-no-bg.png"
+            alt="Esy"
+            width={100}
+            height={40}
             className="gallery-logo-icon"
             priority
+            style={{ objectFit: 'contain' }}
           />
-          <span className="gallery-logo-text">esy</span>
         </Link>
 
         {/* Desktop Navigation */}
