@@ -177,60 +177,277 @@
   background: rgba(255, 255, 255, 0.4);
 }
 
-/* ==================== HERO SECTION ==================== */
+/* ==================== SCROLL-LOCK HERO SYSTEM ==================== */
 
-.hero-section {
+/* Container that creates the scroll depth for the lock effect */
+.hero-scroll-lock-container {
   position: relative;
-  min-height: 100dvh;
+  height: calc(100vh + 1500px); /* Viewport + scroll depth */
+}
+
+/* Pinned hero that stays in place during scroll */
+.hero-section.hero-pinned {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: var(--section-padding);
   overflow: hidden;
 }
 
-.hero-background {
-  position: absolute;
-  inset: 0;
-  background: 
-    radial-gradient(ellipse at 50% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 60%),
-    radial-gradient(ellipse at 50% 100%, rgba(10, 10, 11, 1) 0%, transparent 50%),
-    var(--void-black);
+/* When complete, release the sticky positioning */
+.hero-scroll-lock-container.is-complete .hero-section.hero-pinned {
+  position: relative;
+  height: 100vh;
 }
 
+/* Dynamic background with light/shadow intensity */
+.gods-of-africa .hero-background {
+  position: absolute;
+  inset: 0;
+  background: var(--void-black);
+  transition: background 0.3s ease;
+}
+
+.gods-of-africa .hero-background::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    rgba(212, 175, 55, calc(0.25 * var(--light-intensity, 1))) 0%,
+    transparent 60%
+  );
+  transition: opacity 0.3s ease;
+}
+
+.gods-of-africa .hero-background::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    transparent 0%,
+    rgba(10, 10, 11, calc(0.8 * var(--shadow-intensity, 0))) 70%
+  );
+  pointer-events: none;
+}
+
+/* Central divine light source */
+.hero-central-light {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 215, 0, 0.4) 0%,
+    rgba(212, 175, 55, 0.2) 30%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Particles */
 .hero-particles {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  opacity: 0.6;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
 }
 
 .hero-particle {
   position: absolute;
-  width: 2px;
-  height: 2px;
   background: var(--gold-divine);
   border-radius: 50%;
   animation: float-particle 8s ease-in-out infinite;
+  box-shadow: 0 0 6px var(--gold-divine);
 }
 
 @keyframes float-particle {
   0%, 100% { 
     transform: translateY(0) scale(1);
-    opacity: 0.3;
+    opacity: 0.4;
   }
   50% { 
-    transform: translateY(-30px) scale(1.5);
-    opacity: 0.8;
+    transform: translateY(-40px) scale(1.3);
+    opacity: 0.9;
   }
 }
 
-.hero-content {
+/* African continent layer */
+.hero-continent-layer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 350px;
+  pointer-events: none;
+}
+
+.africa-continent-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.africa-outline {
+  transition: stroke-dashoffset 0.1s linear;
+}
+
+/* Tradition light sources */
+.tradition-lights {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.tradition-light {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.light-pulse {
+  width: 20px;
+  height: 20px;
+  background: var(--light-color, var(--gold-divine));
+  border-radius: 50%;
+  box-shadow: 
+    0 0 20px var(--light-color, var(--gold-divine)),
+    0 0 40px var(--light-color, var(--gold-divine)),
+    0 0 60px rgba(255, 215, 0, 0.3);
+  animation: light-pulse 2s ease-in-out infinite;
+}
+
+@keyframes light-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+.light-label {
+  margin-top: 8px;
+  font-family: var(--font-ui);
+  font-size: 0.625rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* Shadow overlay */
+.hero-shadow-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(to right, var(--void-black) 0%, transparent 30%, transparent 70%, var(--void-black) 100%),
+    linear-gradient(to bottom, var(--void-black) 0%, transparent 40%, transparent 60%, var(--void-black) 100%);
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+/* Phase text reveals */
+.hero-phase-text {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+  text-align: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.phase-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--text-primary);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  margin: 0;
+  text-align: center;
+  padding: 0 2rem;
+  /* Hidden by default */
+  opacity: 0;
+  transform: translateY(20px);
+  visibility: hidden;
+}
+
+@media (min-width: 768px) {
+  .phase-text {
+    font-size: 2rem;
+  }
+}
+
+.phase-text.active {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.phase-text.past {
+  opacity: 0;
+  transform: translateY(-30px);
+  visibility: hidden;
+}
+
+/* Golden eye */
+.golden-eye {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 80px;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  z-index: 4;
+}
+
+.eye-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Hero content (title card) */
+/* Override global .hero-content grid styles from globals.css */
+.gods-of-africa .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 10;
   max-width: 800px;
+  padding: 0 2rem;
+  /* Explicitly override global grid layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* Explicitly unset global grid properties */
+  grid-template-columns: unset;
+  gap: unset;
+  /* Smooth transitions for reveal */
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .hero-overline {
@@ -240,11 +457,9 @@
   text-transform: uppercase;
   color: var(--gold-divine);
   margin-bottom: 1.5rem;
-  opacity: 0;
-  animation: fade-up 1s var(--ease-out) 0.3s forwards;
 }
 
-.hero-title {
+.gods-of-africa .hero-title {
   font-family: var(--font-display);
   font-size: var(--font-size-hero);
   font-weight: 700;
@@ -254,17 +469,13 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  opacity: 0;
-  animation: fade-up 1s var(--ease-out) 0.5s forwards;
 }
 
 .hero-subtitle {
   font-family: var(--font-body);
   font-size: 1.25rem;
   color: var(--text-secondary);
-  margin-bottom: 2rem;
-  opacity: 0;
-  animation: fade-up 1s var(--ease-out) 0.7s forwards;
+  margin-bottom: 0;
 }
 
 @media (min-width: 768px) {
@@ -273,6 +484,7 @@
   }
 }
 
+/* Scroll indicator */
 .hero-scroll-indicator {
   position: absolute;
   bottom: 2rem;
@@ -282,8 +494,8 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  opacity: 0;
-  animation: fade-up 1s var(--ease-out) 1s forwards;
+  transition: opacity 0.5s ease;
+  z-index: 10;
 }
 
 .scroll-text {
@@ -304,6 +516,54 @@
 @keyframes scroll-pulse {
   0%, 100% { opacity: 0.3; transform: scaleY(1); }
   50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+/* Skip button */
+.hero-skip-button {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 20;
+}
+
+.hero-skip-button:hover {
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-lock-container {
+    height: 100vh;
+  }
+  
+  .hero-section.hero-pinned {
+    position: relative;
+  }
+  
+  .hero-particle,
+  .light-pulse,
+  .scroll-line {
+    animation: none;
+  }
+  
+  .phase-text,
+  .golden-eye,
+  .gods-of-africa .hero-content {
+    transition-duration: 0.01ms;
+  }
 }
 
 @keyframes fade-up {

@@ -292,3 +292,4 @@ This photo visual essay requires **100+ years of photography** showing the evolu
 
 *This visual archive guide supports the visual essay "ROBOT — The Word That Imagined Our Future." Image research should prioritize photography that shows both robots AND human reactions/interactions.*
 
+

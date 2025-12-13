@@ -250,3 +250,4 @@ AI may be used only for:
 - Decorative elements (patterns, textures)
 - Infographics (maps, timelines)
 
+

@@ -1,47 +1,55 @@
-/* ============================================================================
-   THE WORD ROBOT — Visual Essay Styles
-   
-   Design System:
-   - Era-variable typography (6 distinct font families)
-   - Assembly line progress bar
-   - Dark industrial aesthetic with era color accents
-   - Mobile-first responsive design
-   ============================================================================ */
-
-/* ==================== FONTS ==================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&family=Nunito:wght@600;700;800&family=Oswald:wght@500;600;700&family=Playfair+Display:wght@600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
+/* ==================== ROBOT — GRAND MACHINA ==================== */
+/* Visual Essay: The Word That Built Our Future */
+/* Design System: Brutalist Industrial */
 
 /* ==================== CSS VARIABLES ==================== */
 
 :root {
-  /* Base Colors */
-  --color-void-black: #0A0A0F;
-  --color-machine-steel: #1A1A2E;
-  --color-surface: #12121A;
-  --color-constructivist-red: #C41E3A;
-  --color-helvetica-white: #E8E8E8;
-  --color-text-muted: rgba(232, 232, 232, 0.7);
-  --color-text-faint: rgba(232, 232, 232, 0.5);
-  --color-border: rgba(255, 255, 255, 0.1);
+  /* Void and Structure */
+  --color-void-black: #050507;
+  --color-machine-steel: #0D0F12;
+  --color-elevated-surface: #14171C;
+  --color-card-surface: #1A1E24;
+  --color-border: rgba(184, 196, 208, 0.1);
   
-  /* Era Accent Colors */
-  --color-era-1920s: #D4A84B;
-  --color-era-1950s: #E07020;
-  --color-era-1970s: #2E7D32;
-  --color-era-1980s: #FF2400;
-  --color-era-2000s: #F4A261;
-  --color-era-2020s: #3A86FF;
+  /* Metal and Material */
+  --color-brushed-chrome: #B8C4D0;
+  --color-warm-chrome: #C5CCD6;
+  --color-copper-wire: #B87333;
+  --color-copper-glow: #D4956A;
+  --color-oxidized-copper: #7A5C3E;
+  
+  /* Signal Colors */
+  --color-safety-red: #FF2200;
+  --color-terminator-red: #CC0000;
+  --color-crt-green: #00FF41;
+  --color-terminal-green: #00CC33;
+  --color-warning-amber: #FFAA00;
+  
+  /* Human Elements */
+  --color-synthetic-skin: #E8D5C4;
+  --color-interface-glow: #4A9EFF;
+  
+  /* Text */
+  --color-text-primary: #E8E8EC;
+  --color-text-secondary: #9CA3AF;
+  --color-text-muted: #6B7280;
+  --color-text-faint: #4B5563;
+  
+  /* Era Accents */
+  --color-era-1920s: #C41E3A;
+  --color-era-1940s: #E6A817;
+  --color-era-1960s: #4A90A4;
+  --color-era-1980s: #FF2200;
+  --color-era-2000s: #F5A623;
+  --color-era-2020s: #4A9EFF;
   
   /* Typography */
-  --font-display-1920s: 'Playfair Display', Georgia, serif;
-  --font-display-1950s: 'Space Grotesk', sans-serif;
-  --font-display-1970s: 'Inter', sans-serif;
-  --font-display-1980s: 'Oswald', sans-serif;
-  --font-display-2000s: 'Nunito', sans-serif;
-  --font-display-2020s: 'Inter', sans-serif;
-  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  --font-display-1920s: 'Bebas Neue', 'Anton', sans-serif;
+  --font-display-1980s: 'Orbitron', sans-serif;
   
   /* Spacing */
   --spacing-xs: 0.5rem;
@@ -52,23 +60,36 @@
   --spacing-2xl: 4rem;
   --spacing-3xl: 6rem;
   
-  /* Timing */
-  --duration-fast: 150ms;
-  --duration-normal: 300ms;
-  --duration-slow: 500ms;
+  /* Animation */
   --easing-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --easing-industrial: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 800ms;
 }
 
 /* ==================== BASE STYLES ==================== */
 
 .robot-essay {
   background: var(--color-void-black);
-  color: var(--color-helvetica-white);
+  color: var(--color-text-primary);
   font-family: var(--font-body);
   font-size: 18px;
   line-height: 1.7;
   min-height: 100vh;
   overflow-x: hidden;
+  position: relative;
+}
+
+/* Factory noise texture overlay */
+.robot-essay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
 
 /* ==================== ASSEMBLY PROGRESS BAR ==================== */
@@ -78,61 +99,81 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 48px;
-  background: linear-gradient(180deg, var(--color-machine-steel) 0%, rgba(26, 26, 46, 0.9) 100%);
-  backdrop-filter: blur(8px);
-  z-index: 1000;
+  height: 56px;
+  background: linear-gradient(
+    180deg,
+    var(--color-machine-steel) 0%,
+    var(--color-void-black) 100%
+  );
+  border-bottom: 1px solid var(--color-border);
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: var(--spacing-xs);
   padding: 0 var(--spacing-md);
-  border-bottom: 1px solid var(--color-border);
 }
 
 .assembly-conveyor {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
-  flex: 1;
-  max-width: 400px;
+  gap: 0.25rem;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(184, 196, 208, 0.05) 10%,
+    rgba(184, 196, 208, 0.05) 90%,
+    transparent 100%
+  );
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  position: relative;
 }
 
-.conveyor-belt {
-  flex: 1;
-  height: 2px;
-  background: var(--color-border);
-  border-radius: 1px;
-}
-
-.assembly-letters {
-  display: flex;
-  gap: 2px;
+.assembly-conveyor::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 20px,
+    rgba(184, 196, 208, 0.03) 20px,
+    rgba(184, 196, 208, 0.03) 21px
+  );
+  pointer-events: none;
 }
 
 .assembly-letter {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 700;
   opacity: 0.2;
   transition: all var(--duration-normal) var(--easing-smooth);
-  min-width: 1.5rem;
-  text-align: center;
+  position: relative;
 }
 
-.assembly-letter.visible {
+.assembly-letter.forged {
   opacity: 1;
 }
 
-.assembly-letter.active {
-  transform: scale(1.2);
-  text-shadow: 0 0 20px currentColor;
+.assembly-letter.forging {
+  opacity: 1;
+  animation: forge 400ms var(--easing-industrial);
+}
+
+@keyframes forge {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); filter: brightness(2); }
+  100% { transform: scale(1); }
 }
 
 /* Era-specific fonts for progress letters */
-.assembly-letter.era-1920s { font-family: var(--font-display-1920s); color: var(--color-era-1920s); }
-.assembly-letter.era-1950s { font-family: var(--font-display-1950s); color: var(--color-era-1950s); }
-.assembly-letter.era-1970s { font-family: var(--font-display-1970s); color: var(--color-era-1970s); }
-.assembly-letter.era-1980s { font-family: var(--font-display-1980s); color: var(--color-era-1980s); }
-.assembly-letter.era-2000s { font-family: var(--font-display-2000s); color: var(--color-era-2000s); }
+.assembly-letter[data-era="1920s"] { font-family: var(--font-display-1920s); color: var(--color-era-1920s); }
+.assembly-letter[data-era="1940s"] { font-family: var(--font-display); color: var(--color-era-1940s); }
+.assembly-letter[data-era="1960s"] { font-family: var(--font-body); color: var(--color-era-1960s); }
+.assembly-letter[data-era="1980s"] { font-family: var(--font-display-1980s); color: var(--color-era-1980s); }
+.assembly-letter[data-era="2000s"] { font-family: var(--font-body); color: var(--color-era-2000s); }
+.assembly-letter[data-era="2020s"] { font-family: var(--font-display); color: var(--color-era-2020s); }
 
 .assembly-percentage {
   font-family: var(--font-mono);
@@ -140,6 +181,7 @@
   color: var(--color-text-muted);
   min-width: 3rem;
   text-align: right;
+  margin-left: var(--spacing-md);
 }
 
 /* ==================== HERO SECTION ==================== */
@@ -152,8 +194,9 @@
   align-items: center;
   position: relative;
   padding: var(--spacing-3xl) var(--spacing-md);
-  padding-top: calc(48px + var(--spacing-3xl));
+  padding-top: calc(56px + var(--spacing-3xl));
   text-align: center;
+  overflow: hidden;
 }
 
 .hero-background {
@@ -165,88 +208,155 @@
 .hero-gradient {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 30%, rgba(196, 30, 58, 0.15) 0%, transparent 60%),
-              radial-gradient(ellipse at 20% 80%, rgba(212, 168, 75, 0.1) 0%, transparent 40%),
-              linear-gradient(180deg, var(--color-void-black) 0%, var(--color-machine-steel) 100%);
+  background: 
+    radial-gradient(ellipse at 50% 20%, rgba(255, 34, 0, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(184, 115, 51, 0.06) 0%, transparent 40%),
+    radial-gradient(ellipse at 80% 60%, rgba(74, 158, 255, 0.04) 0%, transparent 40%),
+    linear-gradient(180deg, var(--color-void-black) 0%, var(--color-machine-steel) 100%);
 }
 
-.hero-noise {
+.hero-sparks {
   position: absolute;
   inset: 0;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  overflow: hidden;
+  opacity: 0.6;
 }
 
-.hero-content {
+.spark {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--color-copper-glow);
+  border-radius: 50%;
+  animation: spark-fall 3s ease-out infinite;
+}
+
+@keyframes spark-fall {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100px) scale(0);
+  }
+}
+
+/* Override global .hero-content grid styles */
+.robot-hero .hero-content {
   position: relative;
-  z-index: 1;
-  max-width: 800px;
+  z-index: 2;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  grid-template-columns: unset;
+  gap: unset;
 }
 
-.hero-etymology {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-lg);
+.hero-forging-text {
   font-family: var(--font-mono);
   font-size: 0.875rem;
-  color: var(--color-text-muted);
-}
-
-.etymology-word {
-  color: var(--color-era-1920s);
-  font-weight: 500;
-}
-
-.etymology-arrow {
-  color: var(--color-constructivist-red);
-}
-
-.etymology-meaning {
-  font-style: italic;
-}
-
-.hero-title {
+  color: var(--color-copper-glow);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
   margin-bottom: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
 }
 
-.title-main {
+.hero-forging-text::before,
+.hero-forging-text::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-copper-wire));
+}
+
+.hero-forging-text::after {
+  background: linear-gradient(90deg, var(--color-copper-wire), transparent);
+}
+
+/* Override global .hero-title styles */
+.robot-hero .hero-title {
+  margin-bottom: var(--spacing-lg);
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  background-clip: border-box;
+  -webkit-background-clip: border-box;
+  animation: none;
+}
+
+.hero-title-main {
   display: block;
-  font-family: var(--font-display-1920s);
-  font-size: clamp(3rem, 12vw, 7rem);
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  background: linear-gradient(135deg, var(--color-helvetica-white) 0%, var(--color-era-1920s) 100%);
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 18vw, 14rem);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  line-height: 0.9;
+  background: linear-gradient(
+    135deg,
+    var(--color-brushed-chrome) 0%,
+    var(--color-text-primary) 30%,
+    var(--color-copper-glow) 70%,
+    var(--color-brushed-chrome) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  line-height: 1.1;
+  text-shadow: 0 0 60px rgba(184, 115, 51, 0.3);
 }
 
-.title-sub {
+.hero-title-sub {
   display: block;
-  font-family: var(--font-body);
-  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 4vw, 2rem);
   font-weight: 400;
-  color: var(--color-text-muted);
-  margin-top: var(--spacing-sm);
+  color: var(--color-text-secondary);
+  margin-top: var(--spacing-md);
+  letter-spacing: 0.05em;
 }
 
 .hero-tagline {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   color: var(--color-text-muted);
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto var(--spacing-xl);
   line-height: 1.6;
+  font-style: italic;
 }
 
-.hero-stats {
+.hero-meta {
   display: flex;
   justify-content: center;
   gap: var(--spacing-xl);
   margin-bottom: var(--spacing-2xl);
   flex-wrap: wrap;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.meta-value {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-brushed-chrome);
+  line-height: 1;
+}
+
+.meta-label {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.25rem;
 }
 
 .hero-scroll-cue {
@@ -256,23 +366,293 @@
   gap: var(--spacing-sm);
   color: var(--color-text-faint);
   font-size: 0.875rem;
-  animation: pulse 2s ease-in-out infinite;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
 }
 
 .scroll-arrow {
-  width: 20px;
-  height: 20px;
-  border-right: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
+  width: 24px;
+  height: 24px;
+  border-right: 2px solid var(--color-copper-wire);
+  border-bottom: 2px solid var(--color-copper-wire);
   transform: rotate(45deg);
+  animation: scroll-bounce 2s ease-in-out infinite;
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 0.5; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(5px); }
+@keyframes scroll-bounce {
+  0%, 100% { transform: rotate(45deg) translateY(0); }
+  50% { transform: rotate(45deg) translateY(8px); }
+}
+
+/* ==================== CHAPTER STYLES ==================== */
+
+.chapter {
+  position: relative;
+  padding: var(--spacing-3xl) var(--spacing-md);
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all var(--duration-slow) var(--easing-smooth);
+}
+
+.chapter.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.chapter-header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chapter-number {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  display: block;
+  margin-bottom: var(--spacing-sm);
+}
+
+.chapter-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 8vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: var(--spacing-sm);
+}
+
+.chapter-temporal {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.chapter-intro {
+  max-width: 800px;
+  margin: 0 auto var(--spacing-2xl);
+}
+
+.lead-paragraph {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+.lead-paragraph strong {
+  color: var(--color-text-primary);
+}
+
+/* Era-specific chapter styling */
+.chapter[data-era="1920s"] {
+  --era-accent: var(--color-era-1920s);
+}
+
+.chapter[data-era="1940s"] {
+  --era-accent: var(--color-era-1940s);
+}
+
+.chapter[data-era="1960s"] {
+  --era-accent: var(--color-era-1960s);
+}
+
+.chapter[data-era="1980s"] {
+  --era-accent: var(--color-era-1980s);
+  background: linear-gradient(180deg, var(--color-void-black) 0%, #080008 50%, var(--color-void-black) 100%);
+}
+
+.chapter[data-era="2000s"] {
+  --era-accent: var(--color-era-2000s);
+}
+
+.chapter[data-era="2020s"] {
+  --era-accent: var(--color-era-2020s);
+}
+
+.chapter-title {
+  color: var(--era-accent, var(--color-text-primary));
+}
+
+/* ==================== CONTENT BLOCKS ==================== */
+
+.content-block {
+  max-width: 800px;
+  margin: 0 auto var(--spacing-2xl);
+}
+
+.content-block h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-primary);
+}
+
+.content-block p {
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-secondary);
+}
+
+.content-block p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==================== FIGURE CARDS ==================== */
+
+.figures-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  max-width: 1200px;
+  margin: var(--spacing-2xl) auto;
+  padding: 0 var(--spacing-md);
+}
+
+.figure-card {
+  background: var(--color-card-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: var(--spacing-lg);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--easing-smooth);
+}
+
+.figure-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(184, 196, 208, 0.02) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+}
+
+.figure-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--era-accent, var(--color-copper-wire));
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px var(--era-accent, var(--color-copper-wire));
+}
+
+.figure-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.figure-role {
+  font-size: 0.875rem;
+  color: var(--era-accent, var(--color-copper-glow));
+  margin-bottom: var(--spacing-sm);
+}
+
+.figure-years {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-md);
+}
+
+.figure-contributions {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--spacing-md);
+}
+
+.figure-contributions li {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  padding-left: 1rem;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.figure-contributions li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--era-accent, var(--color-copper-wire));
+}
+
+.figure-quote {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  padding: var(--spacing-sm);
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 2px solid var(--era-accent, var(--color-copper-wire));
+  margin-top: var(--spacing-sm);
+}
+
+/* ==================== QUOTE MONUMENTS ==================== */
+
+.quote-monument {
+  background: linear-gradient(
+    135deg,
+    var(--color-elevated-surface) 0%,
+    var(--color-machine-steel) 100%
+  );
+  border-left: 4px solid var(--era-accent, var(--color-copper-wire));
+  padding: var(--spacing-xl) var(--spacing-lg);
+  margin: var(--spacing-2xl) auto;
+  max-width: 900px;
+  position: relative;
+}
+
+.quote-monument::before {
+  content: '"';
+  position: absolute;
+  top: var(--spacing-sm);
+  left: var(--spacing-md);
+  font-size: 5rem;
+  font-family: var(--font-display);
+  color: var(--era-accent, var(--color-copper-wire));
+  opacity: 0.15;
+  line-height: 1;
+}
+
+.quote-monument blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+.quote-monument p {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+  font-style: italic;
+}
+
+.quote-monument cite {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  font-style: normal;
+  display: block;
 }
 
 /* ==================== DATA STATS ==================== */
+
+.stats-grid {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-2xl);
+  flex-wrap: wrap;
+  margin: var(--spacing-2xl) 0;
+}
 
 .data-stat {
   display: flex;
@@ -282,567 +662,228 @@
 }
 
 .data-value {
-  font-family: var(--font-display-1950s);
-  font-size: 2.5rem;
+  font-family: var(--font-display);
+  font-size: 3rem;
   font-weight: 700;
-  color: var(--color-helvetica-white);
+  color: var(--color-brushed-chrome);
   line-height: 1;
 }
 
 .data-label {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: var(--color-text-muted);
-  margin-top: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.5rem;
 }
 
 .data-source {
-  font-size: 0.75rem;
+  font-size: 0.625rem;
   font-family: var(--font-mono);
   color: var(--color-text-faint);
   margin-top: 0.25rem;
-}
-
-/* ==================== SECTIONS ==================== */
-
-.robot-section {
-  padding: var(--spacing-3xl) var(--spacing-md);
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s var(--easing-smooth);
-}
-
-.robot-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.chapter {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-/* Era-specific section styling */
-.robot-section.era-1920s { --accent: var(--color-era-1920s); }
-.robot-section.era-1950s { --accent: var(--color-era-1950s); }
-.robot-section.era-1970s { --accent: var(--color-era-1970s); }
-.robot-section.era-1980s { --accent: var(--color-era-1980s); }
-.robot-section.era-2000s { --accent: var(--color-era-2000s); }
-.robot-section.era-2020s { --accent: var(--color-era-2020s); }
-
-/* ==================== CHAPTER HEADERS ==================== */
-
-.chapter-header {
-  text-align: center;
-  margin-bottom: var(--spacing-2xl);
-  padding-bottom: var(--spacing-lg);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.chapter-number {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--accent, var(--color-text-muted));
-  margin-bottom: var(--spacing-sm);
-}
-
-.chapter-title {
-  font-size: clamp(2rem, 6vw, 3rem);
-  font-weight: 700;
-  margin-bottom: var(--spacing-xs);
-  line-height: 1.2;
-}
-
-/* Era-specific title fonts */
-.era-1920s .chapter-title { font-family: var(--font-display-1920s); }
-.era-1950s .chapter-title { font-family: var(--font-display-1950s); }
-.era-1970s .chapter-title { font-family: var(--font-display-1970s); }
-.era-1980s .chapter-title { font-family: var(--font-display-1980s); text-transform: uppercase; }
-.era-2000s .chapter-title { font-family: var(--font-display-2000s); }
-.era-2020s .chapter-title { font-family: var(--font-display-2020s); }
-
-.chapter-date {
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  color: var(--accent, var(--color-text-muted));
-}
-
-/* ==================== CHAPTER INTRO ==================== */
-
-.chapter-intro {
-  margin-bottom: var(--spacing-xl);
-}
-
-.lead-paragraph {
-  font-size: 1.25rem;
-  line-height: 1.7;
-  color: var(--color-helvetica-white);
-}
-
-.lead-paragraph strong {
-  color: var(--accent, var(--color-era-1920s));
-}
-
-/* ==================== CONTENT BLOCKS ==================== */
-
-.content-block {
-  margin-bottom: var(--spacing-xl);
-}
-
-.content-block h3 {
-  font-family: var(--font-display-1950s);
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: var(--spacing-md);
-  color: var(--color-helvetica-white);
-}
-
-.content-block p {
-  margin-bottom: var(--spacing-md);
-  color: var(--color-text-muted);
-}
-
-.content-block p:last-child {
-  margin-bottom: 0;
-}
-
-.content-block em {
-  font-style: italic;
-  color: var(--color-helvetica-white);
-}
-
-/* ==================== QUOTE MONUMENT ==================== */
-
-.quote-monument {
-  padding: var(--spacing-2xl) var(--spacing-lg);
-  margin: var(--spacing-2xl) calc(-1 * var(--spacing-md));
-  background: linear-gradient(135deg, var(--color-machine-steel) 0%, var(--color-surface) 100%);
-  border-left: 4px solid var(--accent, var(--color-constructivist-red));
-  text-align: center;
-}
-
-.quote-monument blockquote {
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.quote-monument p {
-  font-family: var(--font-display-1920s);
-  font-size: clamp(1.25rem, 4vw, 1.75rem);
-  line-height: 1.5;
-  font-style: italic;
-  color: var(--color-helvetica-white);
-  margin-bottom: var(--spacing-md);
-}
-
-.quote-monument cite {
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  color: var(--accent, var(--color-text-muted));
-  font-style: normal;
-}
-
-/* Era-specific quote styling */
-.quote-monument.era-1920s { border-color: var(--color-era-1920s); }
-.quote-monument.era-1950s { border-color: var(--color-era-1950s); }
-.quote-monument.era-1970s { border-color: var(--color-era-1970s); }
-.quote-monument.era-1980s { border-color: var(--color-era-1980s); }
-.quote-monument.era-2000s { border-color: var(--color-era-2000s); }
-.quote-monument.era-2020s { border-color: var(--color-era-2020s); }
-
-/* ==================== FIGURE CARDS ==================== */
-
-.figures-grid {
-  display: grid;
-  gap: var(--spacing-lg);
-  margin: var(--spacing-xl) 0;
-}
-
-@media (min-width: 768px) {
-  .figures-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.figure-card {
-  background: var(--color-surface);
-  border-radius: 12px;
-  padding: var(--spacing-lg);
-  border: 1px solid var(--color-border);
-  transition: all var(--duration-normal) var(--easing-smooth);
-}
-
-.figure-card:hover {
-  border-color: var(--accent, var(--color-constructivist-red));
-  transform: translateY(-4px);
-}
-
-.figure-header {
-  display: flex;
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-md);
-}
-
-.figure-avatar {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent, var(--color-constructivist-red)) 0%, var(--color-machine-steel) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.figure-initial {
-  font-family: var(--font-display-1920s);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-helvetica-white);
-}
-
-.figure-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.figure-name {
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin-bottom: 2px;
-}
-
-.figure-epithet {
-  font-size: 0.875rem;
-  color: var(--accent, var(--color-text-muted));
-}
-
-.figure-years {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--color-text-faint);
-}
-
-.figure-contributions {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 var(--spacing-md) 0;
-}
-
-.figure-contributions li {
-  position: relative;
-  padding-left: var(--spacing-md);
-  margin-bottom: var(--spacing-xs);
-  font-size: 0.9375rem;
-  color: var(--color-text-muted);
-}
-
-.figure-contributions li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: var(--accent, var(--color-constructivist-red));
-}
-
-.figure-quote {
-  background: var(--color-machine-steel);
-  border-radius: 8px;
-  padding: var(--spacing-md);
-  margin-bottom: var(--spacing-sm);
-}
-
-.figure-quote p {
-  font-style: italic;
-  font-size: 0.9375rem;
-  margin-bottom: var(--spacing-xs);
-  color: var(--color-helvetica-white);
-}
-
-.figure-quote cite {
-  font-size: 0.75rem;
-  font-family: var(--font-mono);
-  color: var(--color-text-faint);
-  font-style: normal;
-}
-
-.figure-legacy {
-  font-size: 0.875rem;
-  color: var(--color-text-faint);
-  font-style: italic;
-}
-
-/* Era-specific figure card accents */
-.figure-card.era-1920s { --accent: var(--color-era-1920s); }
-.figure-card.era-1950s { --accent: var(--color-era-1950s); }
-.figure-card.era-1970s { --accent: var(--color-era-1970s); }
-.figure-card.era-1980s { --accent: var(--color-era-1980s); }
-.figure-card.era-2000s { --accent: var(--color-era-2000s); }
-.figure-card.era-2020s { --accent: var(--color-era-2020s); }
-
-/* ==================== LAWS CONTAINER ==================== */
-
-.laws-container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-  margin: var(--spacing-lg) 0;
-}
-
-.law-card {
-  display: flex;
-  gap: var(--spacing-md);
-  padding: var(--spacing-md);
-  background: var(--color-surface);
-  border-radius: 8px;
-  border: 1px solid var(--color-border);
-}
-
-.law-number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: var(--color-era-1950s);
-  border-radius: 50%;
-  font-family: var(--font-display-1950s);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-void-black);
-  flex-shrink: 0;
-}
-
-.law-card p {
-  margin: 0;
-  font-size: 0.9375rem;
-  color: var(--color-text-muted);
-  line-height: 1.5;
-}
-
-/* ==================== PERCEPTION GAP ==================== */
-
-.perception-gap {
-  background: linear-gradient(135deg, var(--color-machine-steel) 0%, var(--color-surface) 100%);
-  border-radius: 12px;
-  padding: var(--spacing-xl);
-  margin: var(--spacing-xl) 0;
-  border: 1px solid var(--color-border);
-}
-
-.perception-gap h3 {
-  font-family: var(--font-display-2020s);
-  font-size: 1.5rem;
-  margin-bottom: var(--spacing-lg);
-  text-align: center;
-}
-
-.gap-stats {
-  display: flex;
-  justify-content: center;
-  gap: var(--spacing-2xl);
-  margin-bottom: var(--spacing-lg);
-  flex-wrap: wrap;
-}
-
-.gap-stats .data-value {
-  font-size: 3rem;
-  color: var(--color-era-2020s);
-}
-
-.gap-context {
-  text-align: center;
-  color: var(--color-text-muted);
-  max-width: 600px;
-  margin: 0 auto;
 }
 
 /* ==================== TIMELINE ==================== */
 
-.timeline-section {
-  background: var(--color-surface);
-  padding: var(--spacing-3xl) var(--spacing-md);
-}
-
-.timeline-container {
+.timeline {
   max-width: 900px;
-  margin: 0 auto;
-}
-
-.timeline-title {
-  font-family: var(--font-display-1950s);
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: var(--spacing-2xl);
-}
-
-.timeline-track {
+  margin: var(--spacing-2xl) auto;
+  padding: 0 var(--spacing-md);
   position: relative;
-  padding-left: var(--spacing-lg);
 }
 
-.timeline-track::before {
+.timeline::before {
   content: '';
   position: absolute;
-  left: 0;
+  left: 50%;
   top: 0;
   bottom: 0;
   width: 2px;
   background: linear-gradient(
     180deg,
-    var(--color-era-1920s) 0%,
-    var(--color-era-1950s) 20%,
-    var(--color-era-1970s) 40%,
-    var(--color-era-1980s) 60%,
-    var(--color-era-2000s) 80%,
-    var(--color-era-2020s) 100%
+    transparent 0%,
+    var(--color-copper-wire) 10%,
+    var(--color-copper-wire) 90%,
+    transparent 100%
   );
+  transform: translateX(-50%);
 }
 
 .timeline-event {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-lg);
   position: relative;
-  padding-bottom: var(--spacing-lg);
-  padding-left: var(--spacing-lg);
-}
-
-.timeline-event::before {
-  content: '';
-  position: absolute;
-  left: calc(-1 * var(--spacing-lg) - 5px);
-  top: 4px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--color-void-black);
-  border: 2px solid var(--accent, var(--color-constructivist-red));
 }
 
 .timeline-year {
   font-family: var(--font-mono);
   font-size: 0.875rem;
+  color: var(--color-copper-glow);
+  width: 80px;
+  text-align: right;
+  padding-right: var(--spacing-md);
+  flex-shrink: 0;
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--color-copper-wire);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin: 0.25rem var(--spacing-md);
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-content {
+  flex: 1;
+  padding-left: var(--spacing-md);
+}
+
+.timeline-title {
   font-weight: 600;
-  color: var(--accent, var(--color-constructivist-red));
+  color: var(--color-text-primary);
   margin-bottom: 0.25rem;
 }
 
-.timeline-content h4 {
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-
-.timeline-content p {
-  font-size: 0.9375rem;
+.timeline-description {
+  font-size: 0.875rem;
   color: var(--color-text-muted);
-  margin: 0;
 }
 
-/* Timeline era colors */
-.timeline-event.era-1920s { --accent: var(--color-era-1920s); }
-.timeline-event.era-1950s { --accent: var(--color-era-1950s); }
-.timeline-event.era-1970s { --accent: var(--color-era-1970s); }
-.timeline-event.era-1980s { --accent: var(--color-era-1980s); }
-.timeline-event.era-2000s { --accent: var(--color-era-2000s); }
-.timeline-event.era-2020s { --accent: var(--color-era-2020s); }
+/* ==================== ERA TRANSITIONS ==================== */
+
+.era-transition {
+  height: 150px;
+  position: relative;
+  margin: var(--spacing-xl) 0;
+}
+
+.era-transition::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-copper-glow) 20%,
+    var(--color-copper-wire) 50%,
+    var(--color-copper-glow) 80%,
+    transparent 100%
+  );
+  box-shadow: 0 0 20px var(--color-copper-glow);
+}
 
 /* ==================== CONCLUSION ==================== */
 
 .conclusion {
   text-align: center;
   padding: var(--spacing-3xl) var(--spacing-md);
-}
-
-.conclusion-content {
-  max-width: 800px;
-  margin: 0 auto;
+  background: linear-gradient(
+    180deg,
+    var(--color-void-black) 0%,
+    var(--color-machine-steel) 50%,
+    var(--color-void-black) 100%
+  );
 }
 
 .conclusion-title {
-  font-family: var(--font-display-1920s);
-  font-size: clamp(2rem, 6vw, 3rem);
-  margin-bottom: var(--spacing-xl);
-  background: linear-gradient(135deg, var(--color-helvetica-white) 0%, var(--color-era-1920s) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.conclusion-text {
-  font-size: 1.125rem;
-  line-height: 1.8;
-  color: var(--color-text-muted);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  color: var(--color-brushed-chrome);
   margin-bottom: var(--spacing-lg);
 }
 
-.conclusion-final {
+.conclusion-text {
+  max-width: 700px;
+  margin: 0 auto var(--spacing-xl);
   font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--color-helvetica-white);
-  margin-top: var(--spacing-xl);
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+}
+
+.conclusion-question {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-copper-glow);
+  font-style: italic;
 }
 
 /* ==================== SOURCES SECTION ==================== */
 
 .sources-section {
+  background: var(--color-machine-steel);
   padding: var(--spacing-2xl) var(--spacing-md);
-  background: linear-gradient(135deg, var(--color-machine-steel) 0%, var(--color-void-black) 100%);
   border-top: 1px solid var(--color-border);
-}
-
-.sources-content {
-  max-width: 700px;
-  margin: 0 auto;
 }
 
 .sources-title {
-  font-family: var(--font-display-1920s);
+  font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--color-helvetica-white);
   margin-bottom: var(--spacing-lg);
-  padding-bottom: var(--spacing-sm);
-  border-bottom: 1px solid var(--color-border);
+  text-align: center;
+  color: var(--color-text-primary);
 }
 
-.sources-list {
+.sources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.source-category {
+  background: var(--color-card-surface);
+  padding: var(--spacing-lg);
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+}
+
+.source-category-title {
+  font-size: 0.875rem;
+  color: var(--color-copper-glow);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--spacing-md);
+}
+
+.source-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 var(--spacing-lg) 0;
+  margin: 0;
 }
 
-.sources-list li {
-  margin-bottom: var(--spacing-sm);
-  padding-left: var(--spacing-md);
+.source-list li {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
   position: relative;
 }
 
-.sources-list li::before {
-  content: '→';
+.source-list li::before {
+  content: '—';
   position: absolute;
   left: 0;
-  color: var(--color-era-1920s);
-}
-
-.sources-list a {
-  font-size: 0.9375rem;
-  color: var(--color-text-muted);
-  text-decoration: none;
-  transition: color var(--duration-fast);
-}
-
-.sources-list a:hover {
-  color: var(--color-era-1920s);
-  text-decoration: underline;
-}
-
-.sources-note {
-  font-size: 0.8125rem;
-  font-style: italic;
   color: var(--color-text-faint);
-  padding-top: var(--spacing-md);
-  border-top: 1px solid var(--color-border);
+}
+
+.source-list a {
+  color: var(--color-interface-glow);
+  text-decoration: none;
+}
+
+.source-list a:hover {
+  text-decoration: underline;
 }
 
 /* ==================== FOOTER ==================== */
@@ -851,15 +892,21 @@
   padding: var(--spacing-2xl) var(--spacing-md);
   text-align: center;
   border-top: 1px solid var(--color-border);
+  background: var(--color-void-black);
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-brushed-chrome), var(--color-copper-glow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--spacing-sm);
 }
 
 .footer-text {
-  font-family: var(--font-display-1920s);
-  font-size: 1.25rem;
-  margin-bottom: var(--spacing-xs);
-}
-
-.footer-credit {
   font-size: 0.875rem;
   color: var(--color-text-faint);
 }
@@ -878,43 +925,61 @@
   }
   
   .assembly-progress-bar {
-    height: 40px;
+    height: 48px;
   }
   
   .assembly-letter {
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
   
-  .hero-stats {
+  .hero-title-main {
+    letter-spacing: 0.1em;
+  }
+  
+  .hero-meta {
     gap: var(--spacing-lg);
   }
   
-  .data-value {
+  .meta-value {
     font-size: 2rem;
-  }
-  
-  .quote-monument {
-    padding: var(--spacing-lg) var(--spacing-md);
-    margin: var(--spacing-lg) calc(-1 * var(--spacing-md));
   }
   
   .figures-grid {
     grid-template-columns: 1fr;
   }
   
-  .gap-stats {
+  .quote-monument {
+    padding: var(--spacing-lg) var(--spacing-md);
+    margin-left: var(--spacing-md);
+    margin-right: var(--spacing-md);
+  }
+  
+  .quote-monument p {
+    font-size: 1.25rem;
+  }
+  
+  .stats-grid {
     gap: var(--spacing-lg);
   }
   
-  .gap-stats .data-value {
+  .data-value {
     font-size: 2.5rem;
+  }
+  
+  .timeline::before {
+    left: 20px;
+  }
+  
+  .timeline-year {
+    width: 60px;
+    font-size: 0.75rem;
   }
 }
 
 /* ==================== REDUCED MOTION ==================== */
 
 @media (prefers-reduced-motion: reduce) {
-  .robot-section {
+  .chapter {
     opacity: 1;
     transform: none;
     transition: none;
@@ -924,7 +989,15 @@
     transition: none;
   }
   
+  .assembly-letter.forging {
+    animation: none;
+  }
+  
   .hero-scroll-cue {
+    animation: none;
+  }
+  
+  .scroll-arrow {
     animation: none;
   }
   
@@ -935,5 +1008,9 @@
   .figure-card:hover {
     transform: none;
   }
+  
+  .spark {
+    animation: none;
+    display: none;
+  }
 }
-

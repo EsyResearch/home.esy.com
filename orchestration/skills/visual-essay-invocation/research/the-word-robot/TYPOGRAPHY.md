@@ -362,3 +362,4 @@ This approach makes the *form* of the essay reinforce its *content*—the evolut
 
 *This typography research supports the visual essay "ROBOT — The Word That Imagined Our Future." Typography is a special requirement—the essay's visual identity should evolve alongside the word's meaning.*
 
+

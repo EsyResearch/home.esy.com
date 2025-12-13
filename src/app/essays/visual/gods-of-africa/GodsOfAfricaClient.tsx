@@ -92,6 +92,214 @@ const useGlobalScrollProgress = () => {
   return progress;
 };
 
+// ==================== SCROLL-LOCK HERO HOOK ====================
+
+const useScrollLockHero = (scrollDepth: number = 1500) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [heroProgress, setHeroProgress] = useState(0);
+  const [isLocked, setIsLocked] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
+  const containerStartRef = useRef<number | null>(null);
+  const ticking = useRef(false);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    // Store the initial offset once
+    if (containerStartRef.current === null) {
+      containerStartRef.current = container.getBoundingClientRect().top + window.scrollY;
+    }
+
+    const updateProgress = () => {
+      const containerStart = containerStartRef.current ?? 0;
+      const scrollY = window.scrollY;
+      
+      // How far we've scrolled past the container start
+      const scrolledPast = scrollY - containerStart;
+      
+      // Progress through the scroll-lock sequence (0 to 1)
+      const progress = Math.min(Math.max(scrolledPast / scrollDepth, 0), 1);
+      
+      // Locked when we're inside the scroll range
+      const locked = scrolledPast >= 0 && scrolledPast < scrollDepth;
+      
+      setHeroProgress(progress);
+      setIsLocked(locked);
+      setIsComplete(progress >= 1);
+      ticking.current = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking.current) {
+        requestAnimationFrame(updateProgress);
+        ticking.current = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    updateProgress();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [scrollDepth]);
+
+  return { containerRef, heroProgress, isLocked, isComplete };
+};
+
+// ==================== AFRICAN CONTINENT SVG ====================
+
+const AfricaContinent: React.FC<{ progress: number }> = ({ progress }) => {
+  // Simplified Africa outline path
+  const pathLength = 2000; // Approximate path length
+  const drawProgress = Math.min(Math.max((progress - 0.15) / 0.2, 0), 1); // Draw from 15-35%
+  
+  return (
+    <svg
+      className="africa-continent-svg"
+      viewBox="0 0 400 450"
+      style={{
+        opacity: progress > 0.1 ? 1 : 0,
+        transition: "opacity 0.5s ease",
+      }}
+    >
+      <defs>
+        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FFD700" />
+          <stop offset="100%" stopColor="#D4AF37" />
+        </linearGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+          <feMerge>
+            <feMergeNode in="coloredBlur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      {/* Simplified Africa outline */}
+      <path
+        className="africa-outline"
+        d="M200,20 C240,25 280,40 300,60 C320,80 340,120 350,160 C360,200 355,240 340,280 C325,320 300,360 280,390 C260,420 220,440 180,435 C140,430 100,400 80,360 C60,320 50,280 55,240 C60,200 80,160 100,120 C120,80 160,40 200,20 Z"
+        fill="none"
+        stroke="url(#goldGradient)"
+        strokeWidth="2"
+        filter="url(#glow)"
+        style={{
+          strokeDasharray: pathLength,
+          strokeDashoffset: pathLength * (1 - drawProgress),
+          transition: "stroke-dashoffset 0.1s linear",
+        }}
+      />
+    </svg>
+  );
+};
+
+// ==================== TRADITION LIGHT SOURCES ====================
+
+interface TraditionLight {
+  id: string;
+  name: string;
+  x: number;
+  y: number;
+  color: string;
+}
+
+const traditionLights: TraditionLight[] = [
+  { id: "nigeria", name: "Yoruba", x: 48, y: 38, color: "#FFD700" },
+  { id: "ghana", name: "Akan", x: 38, y: 42, color: "#D4AF37" },
+  { id: "egypt", name: "Egyptian", x: 65, y: 15, color: "#F5C542" },
+  { id: "southafrica", name: "Zulu", x: 55, y: 85, color: "#CC7722" },
+];
+
+const TraditionLights: React.FC<{ progress: number }> = ({ progress }) => {
+  // Lights appear from 35-55%, then dim from 55-90%
+  const appearProgress = Math.min(Math.max((progress - 0.35) / 0.2, 0), 1);
+  const dimProgress = Math.min(Math.max((progress - 0.55) / 0.35, 0), 1);
+  const opacity = appearProgress * (1 - dimProgress * 0.8);
+
+  return (
+    <div className="tradition-lights" style={{ opacity }}>
+      {traditionLights.map((light, index) => (
+        <div
+          key={light.id}
+          className="tradition-light"
+          style={{
+            left: `${light.x}%`,
+            top: `${light.y}%`,
+            "--light-color": light.color,
+            opacity: Math.min(appearProgress * (index + 1) * 0.3, 1),
+            transform: `scale(${0.5 + appearProgress * 0.5})`,
+          } as React.CSSProperties}
+        >
+          <div className="light-pulse" />
+          <span className="light-label">{light.name}</span>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+// ==================== GOLDEN EYE REVEAL ====================
+
+const GoldenEye: React.FC<{ progress: number }> = ({ progress }) => {
+  // Eye appears from 75-100%
+  const eyeProgress = Math.min(Math.max((progress - 0.75) / 0.25, 0), 1);
+  
+  return (
+    <div
+      className="golden-eye"
+      style={{
+        opacity: eyeProgress,
+        transform: `scale(${0.5 + eyeProgress * 0.5})`,
+      }}
+    >
+      <svg viewBox="0 0 100 60" className="eye-svg">
+        <defs>
+          <radialGradient id="eyeGradient" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#FFD700" />
+            <stop offset="50%" stopColor="#D4AF37" />
+            <stop offset="100%" stopColor="#8B4513" />
+          </radialGradient>
+          <filter id="eyeGlow">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        {/* Eye shape */}
+        <ellipse
+          cx="50"
+          cy="30"
+          rx="45"
+          ry="25"
+          fill="none"
+          stroke="#D4AF37"
+          strokeWidth="2"
+          filter="url(#eyeGlow)"
+        />
+        {/* Iris */}
+        <circle
+          cx="50"
+          cy="30"
+          r="15"
+          fill="url(#eyeGradient)"
+          filter="url(#eyeGlow)"
+        />
+        {/* Pupil */}
+        <ellipse
+          cx="50"
+          cy="30"
+          rx="5"
+          ry="8"
+          fill="#0A0A0B"
+        />
+        {/* Highlight */}
+        <circle cx="45" cy="26" r="3" fill="rgba(255,255,255,0.6)" />
+      </svg>
+    </div>
+  );
+};
+
 // ==================== THE LIGHT FADES PROGRESS BAR ====================
 
 const chapterMarkers = [
@@ -498,6 +706,169 @@ const sources = [
 
 // ==================== MAIN COMPONENT ====================
 
+// ==================== SCROLL-LOCK HERO SECTION ====================
+
+const ScrollLockHero: React.FC = () => {
+  const { containerRef, heroProgress, isLocked, isComplete } = useScrollLockHero(1500);
+  
+  // Memoize particle positions to prevent re-renders
+  const particlePositions = useMemo(() => 
+    [...Array(30)].map(() => ({
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      delay: Math.random() * 5,
+      size: 1 + Math.random() * 2,
+    })), []
+  );
+
+  // Phase text reveals based on scroll progress
+  const phases = [
+    { start: 0, end: 0.15, text: "In the beginning, there was light..." },
+    { start: 0.15, end: 0.35, text: "...and the gods shaped the world." },
+    { start: 0.35, end: 0.55, text: "Every people had their creators..." },
+    { start: 0.55, end: 0.75, text: "...their tricksters..." },
+    { start: 0.75, end: 0.9, text: "...and their terrors." },
+  ];
+
+  // Determine current phase
+  const currentPhase = phases.findIndex(
+    (p) => heroProgress >= p.start && heroProgress < p.end
+  );
+  
+  // Calculate light intensity (dims after 55%)
+  const lightIntensity = heroProgress < 0.55 
+    ? Math.min(heroProgress / 0.35, 1) 
+    : Math.max(1 - (heroProgress - 0.55) / 0.35, 0.2);
+
+  // Shadow intensity (increases after 55%)
+  const shadowIntensity = Math.min(Math.max((heroProgress - 0.55) / 0.35, 0), 1);
+
+  // Title card appears at 90%+
+  const showTitleCard = heroProgress >= 0.9;
+
+  return (
+    <div
+      ref={containerRef}
+      className={`hero-scroll-lock-container ${isLocked ? "is-locked" : ""} ${isComplete ? "is-complete" : ""}`}
+    >
+      <section className="hero-section hero-pinned">
+        {/* Dynamic background that shifts from gold to void */}
+        <div
+          className="hero-background"
+          style={{
+            "--light-intensity": lightIntensity,
+            "--shadow-intensity": shadowIntensity,
+          } as React.CSSProperties}
+        />
+
+        {/* Central light source */}
+        <div
+          className="hero-central-light"
+          style={{
+            opacity: lightIntensity,
+            transform: `scale(${0.5 + heroProgress * 0.5})`,
+          }}
+        />
+
+        {/* Animated particles that respond to scroll */}
+        <div className="hero-particles" style={{ opacity: lightIntensity }}>
+          {particlePositions.map((pos, i) => (
+            <div
+              key={i}
+              className="hero-particle"
+              style={{
+                left: `${pos.left}%`,
+                top: `${pos.top}%`,
+                animationDelay: `${pos.delay}s`,
+                width: `${pos.size}px`,
+                height: `${pos.size}px`,
+                opacity: lightIntensity,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* African continent outline (traces from 15-35%) */}
+        <div className="hero-continent-layer">
+          <AfricaContinent progress={heroProgress} />
+        </div>
+
+        {/* Tradition light sources (appear 35-55%, dim after) */}
+        <TraditionLights progress={heroProgress} />
+
+        {/* Shadow overlay that creeps in */}
+        <div
+          className="hero-shadow-overlay"
+          style={{ opacity: shadowIntensity * 0.7 }}
+        />
+
+        {/* Progressive text reveals */}
+        <div className="hero-phase-text">
+          {phases.map((phase, index) => {
+            const isActive = heroProgress >= phase.start && heroProgress < phase.end;
+            const isPast = heroProgress >= phase.end;
+            return (
+              <p
+                key={index}
+                className={`phase-text ${isActive ? "active" : ""} ${isPast ? "past" : ""}`}
+              >
+                {phase.text}
+              </p>
+            );
+          })}
+        </div>
+
+        {/* Golden eye (reveals 75-100%) */}
+        <GoldenEye progress={heroProgress} />
+
+        {/* Title card (appears at 90%+) */}
+        <div
+          className="hero-content"
+          style={{
+            opacity: showTitleCard ? 1 : 0,
+            transform: `translateY(${showTitleCard ? 0 : 30}px)`,
+          }}
+        >
+          <span className="hero-overline">A Visual Essay</span>
+          <h1 className="hero-title">Gods of Africa</h1>
+          <p className="hero-subtitle">A Journey from Light to Terror</p>
+        </div>
+
+        {/* Scroll indicator (only at start and end) */}
+        <div
+          className="hero-scroll-indicator"
+          style={{
+            opacity: heroProgress < 0.05 || isComplete ? 1 : 0,
+          }}
+        >
+          <span className="scroll-text">
+            {isComplete ? "Continue Scrolling" : "Scroll to Begin"}
+          </span>
+          <div className="scroll-line" />
+        </div>
+
+        {/* Skip button (appears after 2s of lock) */}
+        {isLocked && heroProgress > 0.1 && heroProgress < 0.9 && (
+          <button
+            className="hero-skip-button"
+            onClick={() => {
+              const container = containerRef.current;
+              if (container) {
+                const targetScroll = container.offsetTop + 2500;
+                window.scrollTo({ top: targetScroll, behavior: "smooth" });
+              }
+            }}
+          >
+            Skip Intro →
+          </button>
+        )}
+      </section>
+    </div>
+  );
+};
+
+// ==================== MAIN COMPONENT ====================
+
 export default function GodsOfAfricaClient() {
   const progress = useGlobalScrollProgress();
 
@@ -505,32 +876,8 @@ export default function GodsOfAfricaClient() {
     <div className="gods-of-africa">
       <LightFadesProgress progress={progress} />
 
-      {/* HERO */}
-      <section className="hero-section">
-        <div className="hero-background" />
-        <div className="hero-particles">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="hero-particle"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-              }}
-            />
-          ))}
-        </div>
-        <div className="hero-content">
-          <span className="hero-overline">A Visual Essay</span>
-          <h1 className="hero-title">Gods of Africa</h1>
-          <p className="hero-subtitle">A Journey from Light to Terror</p>
-        </div>
-        <div className="hero-scroll-indicator">
-          <span className="scroll-text">Scroll to Begin</span>
-          <div className="scroll-line" />
-        </div>
-      </section>
+      {/* SCROLL-LOCK HERO */}
+      <ScrollLockHero />
 
       {/* CHAPTERS */}
       {chapters.map((chapter) => (

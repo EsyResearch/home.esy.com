@@ -1173,18 +1173,18 @@ const EUVDiagram: React.FC<{ progress: number }> = ({ progress }) => {
 
 // Timeline Item Component (extracted to use hooks properly)
 const TimelineItem: React.FC<{ event: TimelineEvent; index: number }> = ({ event, index }) => {
-  const { ref, isVisible } = useIntersectionReveal(0.2);
-  return (
-    <div 
-      ref={ref}
-      className={`sr-timeline-item ${isVisible ? 'visible' : ''}`}
-      style={{ '--delay': `${(index % 5) * 50}ms` } as React.CSSProperties}
-    >
-      <span className="sr-timeline-year">{event.year}</span>
-      <h4 className="sr-timeline-title">{event.title}</h4>
-      <p className="sr-timeline-description">{event.description}</p>
-    </div>
-  );
+        const { ref, isVisible } = useIntersectionReveal(0.2);
+        return (
+          <div 
+            ref={ref}
+            className={`sr-timeline-item ${isVisible ? 'visible' : ''}`}
+            style={{ '--delay': `${(index % 5) * 50}ms` } as React.CSSProperties}
+          >
+            <span className="sr-timeline-year">{event.year}</span>
+            <h4 className="sr-timeline-title">{event.title}</h4>
+            <p className="sr-timeline-description">{event.description}</p>
+          </div>
+        );
 };
 
 // Timeline Component

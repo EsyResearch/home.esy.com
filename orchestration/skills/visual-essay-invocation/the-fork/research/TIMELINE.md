@@ -114,3 +114,4 @@
 | Charles I declaration (1633) | ⚠️ Attributed | Cited but primary source uncertain |
 | Emily Post's Etiquette (1922) | ✅ Verified | Published work |
 
+

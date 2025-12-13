@@ -175,3 +175,4 @@ This research supports that tone because:
 - The reversals are dramatic (devil's tool → mark of civilization)
 - The modern perspective allows gentle irony (we still stress about fork placement)
 
+

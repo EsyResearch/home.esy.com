@@ -747,3 +747,4 @@ None required—no graphic violence or disturbing imagery. Essay explores etymol
 *This invocation transforms the humble word "toy" into a window onto centuries of human ambivalence about play—our permission and our guilt, our joy and our dismissal. Through the archaeology of a single syllable, the reader discovers that language is never innocent, that words carry the arguments of generations, and that the toy in a child's hand resonates with medieval scandal and Enlightenment philosophy alike.*
 
 
+

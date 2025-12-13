@@ -151,3 +151,4 @@ If deeper research becomes possible:
 
 *This gaps document ensures the visual essay "ROBOT — The Word That Imagined Our Future" does not make unsupported claims. All gaps are documented for writer awareness.*
 
+

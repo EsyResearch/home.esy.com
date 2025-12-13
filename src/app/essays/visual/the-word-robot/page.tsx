@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import TheWordRobotClient from "./TheWordRobotClient";
 
 export const metadata: Metadata = {
-  title: "ROBOT — The Word That Imagined Our Future | Esy Visual Essay",
+  title: "ROBOT — Grand Machina | Esy Visual Essay",
   description:
-    "From Karel Čapek's 1920 Czech play to ChatGPT—trace the 105-year journey of the word 'robot' through etymology, science fiction, industrial automation, and AI. A photorealistic visual essay with era-evolving typography.",
+    "The Word That Built Our Future, and Now Shares Our Bed. From Karel Čapek's 1920 Czech play to human-robot intimacy—trace the 105-year journey of 'robot' through etymology, industry, fear, domestication, and coexistence.",
   keywords: [
     "robot etymology",
     "robot history",
@@ -15,29 +15,31 @@ export const metadata: Metadata = {
     "Three Laws of Robotics",
     "Terminator",
     "Roomba",
+    "human robot relationships",
+    "robot intimacy",
+    "uncanny valley",
     "AI robots",
-    "word origin robot",
-    "robot perception",
-    "automation history",
+    "humanoid robots",
     "visual essay",
     "scrollytelling",
   ],
   openGraph: {
-    title: "ROBOT — The Word That Imagined Our Future",
+    title: "ROBOT — Grand Machina",
     description:
-      "How a Czech word born in 1920 shaped humanity's relationship with machines for over a century. A visual essay tracing robot from etymology to AI.",
+      "The Word That Built Our Future, and Now Shares Our Bed. 105 years of robot—from forced labor to intimate companion.",
     type: "article",
     url: "https://esy.com/essays/visual/the-word-robot",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ROBOT — The Word That Imagined Our Future",
+    title: "ROBOT — Grand Machina",
     description:
-      "From 'robota' (forced labor) to ChatGPT—the 105-year journey of the word that imagined our technological future.",
+      "From 'robota' (forced labor) to living, working, and loving machines—the 105-year journey of the word that built our future.",
   },
 };
 
 export default function TheWordRobotPage() {
   return <TheWordRobotClient />;
 }
+
 

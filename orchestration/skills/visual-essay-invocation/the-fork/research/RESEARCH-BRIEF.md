@@ -211,3 +211,4 @@
 - Consult GAPS.md before stating contested claims as fact
 - FIGURES.md provides biographical context for all 12 key figures
 
+

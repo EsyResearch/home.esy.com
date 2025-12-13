@@ -13,3 +13,4 @@ Master changelog tracking all citation changes across all visual essays.
   - 0 critical issues, 0 important issues
   - Quotes verified: Peter Damian (c. 1062), Thomas Coryat (1611)
 
+

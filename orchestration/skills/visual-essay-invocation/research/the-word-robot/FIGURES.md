@@ -313,3 +313,4 @@ Contemporary technology criticism, digital sociology
 
 *This figure profile document supports the visual essay "ROBOT — The Word That Imagined Our Future." Each figure represents a key moment in the word's evolution.*
 
+
