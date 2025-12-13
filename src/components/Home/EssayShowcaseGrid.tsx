@@ -69,8 +69,8 @@ const SHOWCASE_ESSAYS: ShowcaseEssay[] = [
     categoryColor: '#F59E0B',
     readTime: '25 min',
     href: '/essays/visual/the-word-robot',
-    // Metropolis (1927) poster - the Machine-Man Maria that defined robot aesthetics
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Metropolis_poster_3.jpg',
+    // Actual hero from the essay - dramatic typography
+    heroImage: '/images/robot/robot-hero.jpg',
     size: 'standard',
   },
   {
