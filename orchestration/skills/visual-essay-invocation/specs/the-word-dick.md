@@ -519,3 +519,4 @@ This essay treats etymology with scholarly respect. The word is examined as ling
 
 *This spec was generated from verified research package. All claims, quotes, and dates trace to sources in `research/CITATIONS.md`. Claims documented in `research/GAPS.md` have been avoided or qualified with appropriate hedging language.*
 
+

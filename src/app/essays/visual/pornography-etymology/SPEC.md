@@ -489,3 +489,4 @@ Footer section with three categories:
 *Spec completed for Visual Essay: "SOLD — The Etymology of Pornography"*
 *Status: DRAFT → Ready for Gate 3 Review*
 
+

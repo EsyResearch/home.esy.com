@@ -652,6 +652,8 @@ Current agents derived from this framework:
 | `seo-specialist-expert.md` | **Search Optimization** | SEO Strategy & Organic Growth | **Specialist** — Technical SEO, Content Optimization, SERP Features, Link Strategy |
 | `seo-audit-agent.md` | **SEO Quality Assurance** | Page-Level SEO Auditor & Grader | **Auditor** → SEO Specialist, Visual Essay Orchestrator (G3); Uses `seo-element-extraction` skill |
 | `visual-essay-invocation-agent.md` | **Spec Generation** | Visual Essay Specification Architect | **Pre-processor** → Visual Essay Orchestrator (Phase 1); Uses `visual-essay-invocation` skill → stores to `specs/` |
+| `meta-prompt-enhancer.md` | **Universal Enhancement** | Prompt Architect & Instruction Designer | **Universal Pre-processor** → Any AI System, Any Agent; Uses CRISP-E framework (Context, Role, Intent, Specifics, Parameters, Examples) |
+| `social-media-meta-expert.md` | **Social Sharing Optimization** | Social Meta Specialist (Audit + Implementation) | **Dual-Role Expert** — Audit Mode (QA gate), Implementation Mode (fixes), Advisory Mode (strategy); OG, Twitter Cards, JSON-LD; → Visual Essay Orchestrator (publish gate) |
 
 ---
 
@@ -680,9 +682,11 @@ This meta-framework should evolve as patterns emerge:
 ---
 
 ## Last Updated
-December 11, 2025
+December 13, 2025
 
 ### Recent Changes
+- Added Social Media Meta Expert to registry (dual-role: audit + implementation)
+- Added Meta Prompt Enhancer to registry (universal pre-processor)
 - Added creation date requirement (`> Created: [Month Day, Year]`) to agent template
 - Updated metadata section to require creation date
 - Updated agent creation checklist to verify creation date

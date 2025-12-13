@@ -195,3 +195,4 @@
 - Quote attributions: Cross-referenced with multiple sources
 - Visual rights: Confirmed for educational/editorial use
 
+

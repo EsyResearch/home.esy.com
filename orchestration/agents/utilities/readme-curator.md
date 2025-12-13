@@ -208,6 +208,26 @@ Some changes require updates to multiple documents:
 | **Audit completed** | `audits/CHANGELOG.md` + `audits/[essay]/AUDIT-HISTORY.md` |
 | **Citation report** | `auditors/CitationReports/README.md` (if new essay) |
 | **Visual audit report** | `auditors/VisualAuditReports/README.md` (if new essay) |
+| **Social media audit report** | `engineering/SocialMediaAuditReports/README.md` + `[essay]/` |
+
+### Agent Role Patterns
+
+Agents follow different role patterns based on their function:
+
+| Pattern | Description | Example |
+|---------|-------------|---------|
+| **Single-Role** | One focused function | `historian-writer-expert.md` (writes only) |
+| **Auditor** | QA/verification only | `citation-audit-agent.md` (audits only) |
+| **Dual-Role** | Handles both audit AND execution | `social-media-meta-expert.md` (audit + fix) |
+| **Orchestrator** | Coordinates other agents | `visual-essay-orchestrator.md` |
+| **Pre-processor** | Enhances input for other agents | `meta-prompt-enhancer.md` |
+
+**Dual-Role Agents**: When the expertise to audit and the expertise to fix are identical, a single agent with multiple operating modes is preferred over two separate agents. These agents typically offer:
+- **Audit Mode**: Analyze and produce reports (for QA gates)
+- **Implementation Mode**: Generate/fix issues (for active remediation)
+- **Advisory Mode**: Strategic recommendations (for planning)
+
+Examples: `social-media-meta-expert.md`, `seo-specialist-expert.md`
 
 ### Agent Category System
 
@@ -512,6 +532,7 @@ After any documentation update:
   **Report Level:**
   - `agents/auditors/CitationReports/README.md`
   - `agents/auditors/VisualAuditReports/README.md`
+  - `agents/engineering/SocialMediaAuditReports/README.md`
   - `agents/utilities/InvocationTemplates/README.md`
 
   **Audit Level:**
@@ -540,9 +561,13 @@ When invoking this agent:
 ---
 
 ## Last Updated
-December 11, 2025
+December 13, 2025
 
 ### Recent Changes
+- Added Social Media Audit Reports directory to report level documentation
+- Added social media audit report routing rule
+- Added Agent Role Patterns section documenting single-role, auditor, dual-role, orchestrator, and pre-processor patterns
+- Documented dual-role agent pattern (agents that handle both audit AND execution in one)
 - Added QA Remediation Orchestrator to documentation routing rules
 - Clarified multi-document update requirements for new orchestrators
 - Added creation date header

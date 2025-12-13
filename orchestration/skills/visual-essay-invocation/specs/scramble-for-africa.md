@@ -730,3 +730,4 @@ This visual essay contains documentary photographs of colonial violence, includi
 
 *This invocation spec was generated from comprehensive research package. All claims trace to verified sources in CITATIONS.md. Figures, quotes, and timeline events are research-backed. Ready for production.*
 
+

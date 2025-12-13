@@ -69,3 +69,4 @@ This package is designed to support the Visual Essay Invocation Agent in buildin
 
 *This research package was assembled following the Research Orchestrator protocol for Deep mode visual essay production.*
 
+

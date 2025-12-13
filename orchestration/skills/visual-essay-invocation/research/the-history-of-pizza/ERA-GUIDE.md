@@ -274,3 +274,4 @@ Each maintains the essay's visual system while acknowledging cultural context.
 5. **Documentary moments** (crowds, streets, process) can be grittier than portraits
 
 
+

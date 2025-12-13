@@ -175,3 +175,4 @@
 
 Total span: 2,500+ years of linguistic and conceptual evolution.
 
+

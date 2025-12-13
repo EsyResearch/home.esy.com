@@ -719,3 +719,4 @@ Six-layer depth for industrial monumentality:
 
 *This invocation was generated from research package v2 (22 sources, G2 passed). All figure profiles, quotes, and timeline events are research-backed. Visual treatment ("Grand Machina") reflects approved intake for raw, industrial, eye-popping aesthetic with intimacy dimension.*
 
+

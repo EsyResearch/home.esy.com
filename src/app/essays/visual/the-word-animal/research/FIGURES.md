@@ -270,3 +270,4 @@ Limited verified imagery for ancient figures (Aristotle, Pliny, Isidore). Use:
 - Renaissance artistic interpretations
 - Medieval manuscript illuminations
 
+

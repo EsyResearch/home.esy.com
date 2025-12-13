@@ -29,12 +29,27 @@ export const metadata: Metadata = {
       "The Word That Built Our Future, and Now Shares Our Bed. 105 years of robot—from forced labor to intimate companion.",
     type: "article",
     url: "https://esy.com/essays/visual/the-word-robot",
+    siteName: "Esy",
+    locale: "en_US",
+    images: [
+      {
+        url: "https://esy.com/images/robot/robot-hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "ROBOT — Grand Machina: A visual essay exploring the 105-year journey of the word robot from Czech forced labor to intimate companion",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "ROBOT — Grand Machina",
     description:
       "From 'robota' (forced labor) to living, working, and loving machines—the 105-year journey of the word that built our future.",
+    site: "@esy",
+    images: ["https://esy.com/images/robot/robot-hero.jpg"],
+  },
+  alternates: {
+    canonical: "https://esy.com/essays/visual/the-word-robot",
   },
 };
 

@@ -650,3 +650,4 @@ All sources cited in footer section with:
 
 *This invocation spec was generated from the research package at `research/`. All figures, quotes, and timeline events are verified against primary and secondary sources. No orphan claims—everything is research-backed.*
 
+

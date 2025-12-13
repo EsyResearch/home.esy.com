@@ -178,3 +178,4 @@ Modern English: porn — viscerally compelling content (semantic drift)
 *Research compiled for Visual Essay: "The Etymology of Pornography"*
 *Status: VERIFIED*
 
+

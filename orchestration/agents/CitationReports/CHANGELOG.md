@@ -14,3 +14,4 @@ Master changelog tracking all citation changes across all visual essays.
   - Quotes verified: Peter Damian (c. 1062), Thomas Coryat (1611)
 
 
+
