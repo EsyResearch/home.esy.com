@@ -399,14 +399,6 @@ const EssaysSection: React.FC<EssaysSectionProps> = ({
   );
 };
 
-// Back to Essays Link
-const BackToEssays: React.FC = () => (
-  <div className="back-link-container">
-    <Link href="/essays" className="back-link">
-      ← Back to Essays
-    </Link>
-  </div>
-);
 
 // Coming Soon
 const ComingSoon: React.FC = () => (
@@ -449,12 +441,13 @@ const VisualEssaysClient: React.FC = () => {
     router.replace(newUrl, { scroll: false });
   }, [searchQuery, selectedCategory, viewMode, router]);
 
-  // Sticky detection
+  // Sticky detection - account for fixed navigation header (80px)
   useEffect(() => {
+    const HEADER_HEIGHT = 80;
     const handleScroll = () => {
       if (discoveryBarRef.current) {
         const rect = discoveryBarRef.current.getBoundingClientRect();
-        setIsSticky(rect.top <= 0);
+        setIsSticky(rect.top <= HEADER_HEIGHT);
       }
     };
 
@@ -499,7 +492,6 @@ const VisualEssaysClient: React.FC = () => {
 
   return (
     <div className="visual-essays-index">
-      <BackToEssays />
       <EditorialHero />
       
       <div ref={discoveryBarRef}>

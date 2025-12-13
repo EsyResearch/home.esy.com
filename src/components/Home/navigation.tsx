@@ -49,6 +49,12 @@ export default function Navigation ({
     const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
     const [modalSource, setModalSource] = useState<'nav-tips' | 'nav-school' | 'other'>('other');
     const [isLightMode, setIsLightMode] = useState(false);
+    
+    // Pages that use the simplified homepage navigation style (Essays + App only)
+    const normalizedPathForNav = pathname?.endsWith('/') && pathname.length > 1 
+      ? pathname.slice(0, -1) 
+      : pathname || '';
+    const isSimplifiedNav = normalizedPathForNav === '/' || normalizedPathForNav === '' || normalizedPathForNav === '/essays/visual';
 
     // Detect theme from various sources with page-specific logic
     useEffect(() => {
@@ -517,8 +523,8 @@ export default function Navigation ({
           
           {/* Navigation */}
           <div className="nav-links">
-            {/* Homepage: Direct Essays link | Other pages: Essays Dropdown */}
-            {(pathname === '/' || pathname === '') ? (
+            {/* Homepage/Visual Essays: Direct Essays link | Other pages: Essays Dropdown */}
+            {isSimplifiedNav ? (
               <>
                 <Link 
                   href="/essays/visual" 
@@ -577,8 +583,8 @@ export default function Navigation ({
               />
             )}
 
-            {/* Prompts Dropdown - Hidden on homepage */}
-            {pathname !== '/' && pathname !== '' && (
+            {/* Prompts Dropdown - Hidden on simplified nav pages */}
+            {!isSimplifiedNav && (
               <NavDropdown 
                 label="Prompts"
                 items={[
@@ -609,8 +615,8 @@ export default function Navigation ({
               />
             )}
             
-            {/* CTA - Homepage: muted link | Other pages: button */}
-            {(pathname === '/' || pathname === '') ? (
+            {/* CTA - Simplified nav: muted link | Other pages: button */}
+            {isSimplifiedNav ? (
               <a 
                 href={ctaConfig.ctaHref}
                 target="_blank"
@@ -687,8 +693,8 @@ export default function Navigation ({
               </a>
             )}
 
-            {/* Mobile Menu Button - Hidden on homepage */}
-            {(pathname !== '/' && pathname !== '') && (
+            {/* Mobile Menu Button - Hidden on simplified nav pages */}
+            {!isSimplifiedNav && (
               <button
                 className="mobile-menu-button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -703,8 +709,8 @@ export default function Navigation ({
         </div>
       </nav>
 
-      {/* Mobile Navigation Overlay - Hidden on homepage */}
-      {isMobileMenuOpen && (pathname !== '/' && pathname !== '') && (
+      {/* Mobile Navigation Overlay - Hidden on simplified nav pages */}
+      {isMobileMenuOpen && !isSimplifiedNav && (
         <div 
           className="mobile-nav-overlay"
           onClick={() => setIsMobileMenuOpen(false)}
@@ -713,8 +719,8 @@ export default function Navigation ({
             className={`mobile-nav-panel ${isLightMode ? 'light' : 'dark'}`}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Homepage: Simple Essays link | Other pages: Full Essays section */}
-            {(pathname === '/' || pathname === '') ? (
+            {/* Simplified nav: Simple Essays link | Other pages: Full Essays section */}
+            {isSimplifiedNav ? (
               <div className="mobile-nav-section">
                 <Link href="/essays/visual" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
                   <div className="mobile-nav-icon purple"><VisualEssaysIcon size={20} /></div>

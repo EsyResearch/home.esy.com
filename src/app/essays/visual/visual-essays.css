@@ -38,7 +38,7 @@
   --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --transition-fast: 0.15s ease;
   
-  --header-height: 64px;
+  --header-height: 80px;
 }
 
 /* ============================================
@@ -49,6 +49,7 @@
   background: var(--color-bg);
   color: var(--color-text);
   min-height: 100vh;
+  padding-top: var(--header-height);
 }
 
 .visual-essays-index * {
@@ -72,35 +73,6 @@
   .mobile-only {
     display: none;
   }
-}
-
-/* ============================================
-   BACK LINK
-   ============================================ */
-.back-link-container {
-  padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 3);
-  padding-top: calc(var(--space-unit) * 3);
-  border-bottom: 1px solid var(--color-border);
-}
-
-@media (min-width: 768px) {
-  .back-link-container {
-    padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 8);
-    padding-top: calc(var(--space-unit) * 3);
-  }
-}
-
-.back-link {
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: var(--color-text-tertiary);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-.back-link:hover {
-  color: var(--color-accent);
 }
 
 /* ============================================
@@ -392,7 +364,7 @@
 
 .discovery-bar.sticky {
   position: sticky;
-  top: 0;
+  top: var(--header-height);
   background: rgba(10, 10, 11, 0.95);
   backdrop-filter: blur(12px);
   border-bottom-color: var(--color-border-strong);
