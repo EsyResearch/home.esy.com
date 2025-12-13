@@ -687,22 +687,24 @@ export default function Navigation ({
               </a>
             )}
 
-            {/* Mobile Menu Button */}
-            <button
-              className="mobile-menu-button"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isMobileMenuOpen}
-              style={{ color: isLightMode ? '#1e293b' : '#ffffff' }}
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            {/* Mobile Menu Button - Hidden on homepage */}
+            {(pathname !== '/' && pathname !== '') && (
+              <button
+                className="mobile-menu-button"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isMobileMenuOpen}
+                style={{ color: isLightMode ? '#1e293b' : '#ffffff' }}
+              >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            )}
           </div>
         </div>
       </nav>
 
-      {/* Mobile Navigation Overlay */}
-      {isMobileMenuOpen && (
+      {/* Mobile Navigation Overlay - Hidden on homepage */}
+      {isMobileMenuOpen && (pathname !== '/' && pathname !== '') && (
         <div 
           className="mobile-nav-overlay"
           onClick={() => setIsMobileMenuOpen(false)}
