@@ -23,6 +23,9 @@ const ConditionalNavigation = () => {
   // Check if we're on the photo-essays landing page (immersive experience with own header)
   const isPhotoEssaysPage = normalizedPath === '/photo-essays';
   
+  // Check if we're on the homepage (gallery-first design with own navigation)
+  const isHomePage = normalizedPath === '' || normalizedPath === '/';
+  
   // Check if we're on prompt-library pages
   const isPromptLibraryPage = normalizedPath?.startsWith('/prompt-library');
   const isPromptLibraryIndex = normalizedPath === '/prompt-library';
@@ -44,11 +47,12 @@ const ConditionalNavigation = () => {
   const isDocsPage = normalizedPath?.startsWith('/docs');
   
   // Don't render navigation on:
+  // - Homepage (gallery-first design with own navigation)
   // - Essay view pages (focused reading)
   // - Docs pages (own navigation)
   // - Scrollytelling story pages (own header via ScrollytellingHeader)
   // - Photo essays landing page (immersive experience with own header)
-  if (isEssayViewPage || isDocsPage || isScrollytellingStoryPage || isPhotoEssaysPage) {
+  if (isHomePage || isEssayViewPage || isDocsPage || isScrollytellingStoryPage || isPhotoEssaysPage) {
     return null;
   }
 
