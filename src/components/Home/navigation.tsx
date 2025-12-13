@@ -528,7 +528,8 @@ export default function Navigation ({
                   opacity: 1,
                   textDecoration: 'none',
                   position: 'relative',
-                  paddingBottom: '2px'
+                  paddingBottom: '2px',
+                  marginRight: '2rem'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderBottom = '1px solid rgba(180, 140, 255, 0.6)';
