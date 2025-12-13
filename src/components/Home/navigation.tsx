@@ -519,27 +519,33 @@ export default function Navigation ({
           <div className="nav-links">
             {/* Homepage: Direct Essays link | Other pages: Essays Dropdown */}
             {(pathname === '/' || pathname === '') ? (
-              <Link 
-                href="/essays/visual" 
-                className="nav-link homepage-essays-link"
-                style={{
-                  color: 'rgba(255, 255, 255, 0.92)',
-                  fontWeight: 500,
-                  opacity: 1,
-                  textDecoration: 'none',
-                  position: 'relative',
-                  paddingBottom: '2px',
-                  marginRight: '2rem'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderBottom = '1px solid rgba(180, 140, 255, 0.6)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderBottom = 'none';
-                }}
-              >
-                Essays
-              </Link>
+              <>
+                <Link 
+                  href="/essays/visual" 
+                  className="nav-link homepage-essays-link"
+                  style={{
+                    color: 'rgba(255, 255, 255, 0.92)',
+                    fontWeight: 500,
+                    opacity: 1,
+                    textDecoration: 'none',
+                    position: 'relative',
+                    paddingBottom: '2px'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderBottom = '1px solid rgba(180, 140, 255, 0.6)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderBottom = 'none';
+                  }}
+                >
+                  Essays
+                </Link>
+                <span style={{ 
+                  color: 'rgba(255, 255, 255, 0.25)', 
+                  margin: '0 1.5rem',
+                  fontWeight: 300
+                }}>·</span>
+              </>
             ) : (
               <NavDropdown 
                 label="Essays"
