@@ -592,8 +592,22 @@ export default function Navigation ({
               />
             )}
             
-            {/* CTA Button */}
-            {ctaConfig.isNewsletter ? (
+            {/* CTA - Homepage: muted link | Other pages: button */}
+            {(pathname === '/' || pathname === '') ? (
+              <a 
+                href={ctaConfig.ctaHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-link"
+                style={{
+                  color: isLightMode ? 'rgba(71, 85, 105, 0.6)' : 'rgba(148, 163, 184, 0.6)',
+                  textShadow: isLightMode ? 'none' : '0 1px 2px rgba(0, 0, 0, 0.2)',
+                  textDecoration: 'none'
+                }}
+              >
+                {responsiveCTA.text}
+              </a>
+            ) : ctaConfig.isNewsletter ? (
               <button 
                 onClick={(e) => {
                   e.preventDefault();
@@ -738,18 +752,35 @@ export default function Navigation ({
               </>
             )}
 
-            {/* CTA Button */}
-            <div className="mobile-nav-cta">
-              <a 
-                href={ctaConfig.ctaHref}
-                target={ctaConfig.isProduct ? "_blank" : "_self"}
-                rel={ctaConfig.isProduct ? "noopener noreferrer" : undefined}
-                className="mobile-nav-cta-button"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {ctaConfig.ctaText}
-              </a>
-            </div>
+            {/* CTA - Homepage: muted link | Other pages: button */}
+            {(pathname === '/' || pathname === '') ? (
+              <div className="mobile-nav-section" style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1rem' }}>
+                <a 
+                  href={ctaConfig.ctaHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mobile-nav-item"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  style={{ opacity: 0.6 }}
+                >
+                  <div className="mobile-nav-text">
+                    <span className="mobile-nav-item-title">{ctaConfig.ctaText} →</span>
+                  </div>
+                </a>
+              </div>
+            ) : (
+              <div className="mobile-nav-cta">
+                <a 
+                  href={ctaConfig.ctaHref}
+                  target={ctaConfig.isProduct ? "_blank" : "_self"}
+                  rel={ctaConfig.isProduct ? "noopener noreferrer" : undefined}
+                  className="mobile-nav-cta-button"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {ctaConfig.ctaText}
+                </a>
+              </div>
+            )}
           </div>
         </div>
       )}
