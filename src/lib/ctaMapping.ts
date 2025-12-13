@@ -16,6 +16,13 @@ export interface CTAMapping {
 
 // CTA mapping configuration
 export const ctaMapping: CTAMapping = {
+  // Homepage - gallery-first, link to app
+  '/': {
+    ctaText: 'App',
+    ctaHref: 'https://app.esy.com',
+    isProduct: true
+  },
+  
   // Docs pages
   '/docs': {
     ctaText: 'Try Esy Free',
