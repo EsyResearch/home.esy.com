@@ -5,10 +5,13 @@ import Link from 'next/link';
 import { Clock, ArrowRight } from 'lucide-react';
 import { 
   publishedVisualEssays, 
-  featuredEssay,
   CATEGORY_COLORS,
   type VisualEssay 
 } from '@/data/visualEssays';
+
+// Explicitly featured essay on homepage (override auto-derived latest)
+const FEATURED_ESSAY_ID = 'the-manhattan-project';
+const featuredEssay = publishedVisualEssays.find(e => e.id === FEATURED_ESSAY_ID);
 
 /**
  * CuratedGallery Component
@@ -23,11 +26,11 @@ import {
 // Hand-picked essays showing range (manually curated for quality)
 const CURATED_ESSAY_IDS = [
   'the-diamond-cartel',        // Business/manipulation narrative - compelling story
-  'the-manhattan-project',     // Historical/photorealistic - serious topic
+  'the-scramble-for-africa',   // Historical colonialism - serious topic
   'the-holocaust',             // Important/heavy - demonstrates gravitas
   'the-tea-journey-illustrated', // Beautiful/cultural - showcases craft
   'the-silicon-revolution',    // Technology - demonstrates range
-  'the-scramble-for-africa',   // Newest - shows ongoing work
+  'the-ramayana',              // Cultural/mythology - demonstrates diversity
 ];
 
 // Get curated essays from the data
