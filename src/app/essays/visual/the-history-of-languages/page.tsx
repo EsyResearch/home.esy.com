@@ -29,12 +29,27 @@ export const metadata: Metadata = {
       "From cave paintings to emoji—7,000 languages, 100,000 years, one human story. An immersive visual journey.",
     url: "https://esy.com/essays/visual/the-history-of-languages",
     type: "article",
+    siteName: "Esy",
+    locale: "en_US",
+    images: [
+      {
+        url: "https://esy.com/og/the-history-of-languages.png",
+        width: 1200,
+        height: 630,
+        alt: "Mama — The Word That Every Language Shares: The History of Languages visual essay",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "The History of Languages: Humanity's Greatest Invention",
     description:
       "From the first word spoken to the last language endangered—the story of how humans learned to share their minds.",
+    site: "@EsyResearch",
+    images: ["https://esy.com/og/the-history-of-languages.png"],
+  },
+  alternates: {
+    canonical: "https://esy.com/essays/visual/the-history-of-languages",
   },
 };
 

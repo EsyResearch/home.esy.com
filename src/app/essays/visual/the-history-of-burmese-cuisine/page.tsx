@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     description:
       'A visual journey through 2,000 years of Myanmar\'s culinary heritage — from ancient fermentation to modern diaspora kitchens.',
     type: 'article',
+    url: 'https://esy.com/essays/visual/the-history-of-burmese-cuisine',
     locale: 'en_US',
     siteName: 'Esy',
     images: [
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
         url: 'https://upload.wikimedia.org/wikipedia/commons/4/40/Myanmar%E2%80%99s_Traditional_Food_-_Mohinga.jpg',
         width: 1200,
         height: 630,
-        alt: 'Mohinga - Myanmar\'s national dish',
+        alt: 'Mohinga - Myanmar\'s national dish, a fish-based rice noodle soup',
       },
     ],
   },
@@ -44,9 +45,11 @@ export const metadata: Metadata = {
     title: 'The History of Burmese Cuisine | Esy Visual Essay',
     description:
       'Explore 2,000 years of Myanmar\'s culinary heritage through an immersive visual journey.',
+    site: '@EsyResearch',
+    images: ['https://upload.wikimedia.org/wikipedia/commons/4/40/Myanmar%E2%80%99s_Traditional_Food_-_Mohinga.jpg'],
   },
   alternates: {
-    canonical: '/essays/visual/the-history-of-burmese-cuisine',
+    canonical: 'https://esy.com/essays/visual/the-history-of-burmese-cuisine',
   },
   robots: {
     index: true,
