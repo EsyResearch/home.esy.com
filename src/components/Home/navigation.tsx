@@ -521,10 +521,20 @@ export default function Navigation ({
             {(pathname === '/' || pathname === '') ? (
               <Link 
                 href="/essays/visual" 
-                className="nav-link"
+                className="nav-link homepage-essays-link"
                 style={{
-                  color: isLightMode ? '#475569' : '#94a3b8',
-                  textShadow: isLightMode ? 'none' : '0 1px 2px rgba(0, 0, 0, 0.2)'
+                  color: 'rgba(255, 255, 255, 0.92)',
+                  fontWeight: 500,
+                  opacity: 1,
+                  textDecoration: 'none',
+                  position: 'relative',
+                  paddingBottom: '2px'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderBottom = '1px solid rgba(180, 140, 255, 0.6)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderBottom = 'none';
                 }}
               >
                 Essays
@@ -598,11 +608,20 @@ export default function Navigation ({
                 href={ctaConfig.ctaHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="nav-link"
+                className="nav-link homepage-app-link"
                 style={{
-                  color: isLightMode ? 'rgba(71, 85, 105, 0.6)' : 'rgba(148, 163, 184, 0.6)',
-                  textShadow: isLightMode ? 'none' : '0 1px 2px rgba(0, 0, 0, 0.2)',
+                  color: 'rgba(255, 255, 255, 0.55)',
+                  fontWeight: 400,
+                  opacity: 0.65,
                   textDecoration: 'none'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = 'rgba(255, 255, 255, 0.75)';
+                  e.currentTarget.style.opacity = '1';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'rgba(255, 255, 255, 0.55)';
+                  e.currentTarget.style.opacity = '0.65';
                 }}
               >
                 {responsiveCTA.text}
