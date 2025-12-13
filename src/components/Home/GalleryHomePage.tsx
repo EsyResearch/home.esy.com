@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import GalleryNavigation from './GalleryNavigation';
 import GalleryHero from './GalleryHero';
 import CuratedGallery from './CuratedGallery';
 import EarlyAccessSection from './EarlyAccessSection';
@@ -46,9 +45,6 @@ import './GalleryHomePage.css';
 const GalleryHomePage: React.FC = () => {
   return (
     <div className="gallery-homepage">
-      {/* Navigation - Minimal, essay-focused */}
-      <GalleryNavigation />
-
       {/* Main Content */}
       <main>
         {/* Hero - Cinematic, full-viewport */}
