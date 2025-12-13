@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     title: "ROBOT — Grand Machina",
     description:
       "From 'robota' (forced labor) to living, working, and loving machines—the 105-year journey of the word that built our future.",
-    site: "@esy",
+    site: "@EsyResearch",
     images: ["https://esy.com/images/robot/robot-hero.jpg"],
   },
   alternates: {

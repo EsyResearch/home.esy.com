@@ -45,7 +45,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Esy — Visual Essays That Unfold",
     description: "Cinematic, research-driven essays exploring history, language, power, and ideas.",
-    site: "@esy",
+    site: "@EsyResearch",
     images: ["https://esy.com/og/homepage.png"],
   },
   alternates: {
