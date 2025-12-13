@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import NewHomepage from '@/components/Home/NewHomepage';
-import NewHomepageElevated from '@/components/Home/NewHomepageElevated';
+import SaaSHomePage from '@/components/Home/SaaSHomePage';
 
 export default function ThemeComparison() {
   const [showElevated, setShowElevated] = useState(false);
@@ -185,7 +185,7 @@ export default function ThemeComparison() {
       </div>
 
       {/* Theme Display */}
-      {showElevated ? <NewHomepageElevated /> : <NewHomepage />}
+      {showElevated ? <SaaSHomePage /> : <NewHomepage />}
     </div>
   );
 }
