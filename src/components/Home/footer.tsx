@@ -70,8 +70,6 @@ export default function Footer () {
               { href: "/essays/", text: "Essays" },
               { href: "/templates/", text: "Templates" },
               { href: "/scrollytelling/", text: "Scrollytelling" },
-              { href: "/ai-writing-tools/", text: "AI Writing Tools" },
-              { href: "/writing-prompts/", text: "Writing Prompts" },
             ]}
           />
           
@@ -91,7 +89,6 @@ export default function Footer () {
               { href: "/docs/", text: "Docs" },
               { href: "/ai-essay-writer/", text: "AI Essay Writer" },
               { href: "/agentic-workflows/", text: "Agentic Workflows" },
-              { href: "/extended-school-year/", text: "Extended School Year" },
               { href: "/prompt-library/", text: "Prompt Library" },
             ]}
           />

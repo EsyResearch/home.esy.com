@@ -46,9 +46,9 @@ export const ctaMapping: CTAMapping = {
   
   // Essays pages
   '/essays': {
-    ctaText: 'Join Esy School',
-    ctaHref: '#newsletter', // Newsletter signup route
-    isNewsletter: true
+    ctaText: 'App',
+    ctaHref: 'https://app.esy.com',
+    isProduct: true
   },
   
   // Prompt library pages
@@ -81,10 +81,10 @@ export function getDynamicCTA(): string {
   return dynamicCTAPool[index];
 }
 
-// Default fallback CTA (now dynamic)
+// Default fallback CTA
 export const defaultCTA: CTAConfig = {
-  ctaText: getDynamicCTA(),
-  ctaHref: 'https://app.esy.com/signup',
+  ctaText: 'App',
+  ctaHref: 'https://app.esy.com',
   isProduct: true
 };
 
@@ -115,10 +115,10 @@ export function getCTAConfig(pathname: string): CTAConfig {
     }
   }
   
-  // Return dynamic default if no match found
+  // Return default if no match found
   return {
-    ctaText: getDynamicCTA(),
-    ctaHref: 'https://app.esy.com/signup',
+    ctaText: 'App',
+    ctaHref: 'https://app.esy.com',
     isProduct: true
   };
 }
