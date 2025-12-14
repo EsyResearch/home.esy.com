@@ -182,7 +182,7 @@
 ```
 
 **Direct Image URL**: `https://images.metmuseum.org/CRDImages/rl/original/DT738.jpg`  
-**Verification**: ✅ Content-Type: image/jpeg  
+**Verification**: ✅ Content-Type: image/jpeg
 **Met Museum Collection Page**: https://www.metmuseum.org/art/collection/search/459082
 
 ---

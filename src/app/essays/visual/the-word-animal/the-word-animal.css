@@ -240,6 +240,87 @@
 }
 
 /* ===========================================
+   MOBILE CHAPTER NAVIGATION DOTS
+   Per spec: "Hidden on mobile (replaced by chapter dots)"
+   =========================================== */
+
+.chapter-dots {
+  display: none; /* Hidden on desktop */
+  position: fixed;
+  right: var(--space-sm);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 90;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+@media (max-width: 768px) {
+  .chapter-dots {
+    display: flex;
+  }
+}
+
+.chapter-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.dot-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(248, 244, 235, 0.2);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.chapter-dot.passed .dot-indicator {
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(196, 147, 105, 0.4);
+}
+
+.chapter-dot.current .dot-indicator {
+  width: 10px;
+  height: 10px;
+  background: var(--text-primary);
+  box-shadow: 0 0 12px rgba(248, 244, 235, 0.5);
+}
+
+.dot-label {
+  position: absolute;
+  right: 100%;
+  margin-right: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(4px);
+  transition: all var(--duration-normal) var(--ease-out);
+  pointer-events: none;
+}
+
+.chapter-dot:hover .dot-label,
+.chapter-dot:focus .dot-label,
+.chapter-dot.current .dot-label {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--text-tertiary);
+}
+
+.chapter-dot.current .dot-label {
+  color: var(--accent);
+}
+
+/* ===========================================
    ERA-SPECIFIC THEMING
    =========================================== */
 
@@ -280,39 +361,58 @@
 }
 
 /* ===========================================
-   SKIP LINK (Accessibility)
+   SCROLL-LOCK SYSTEM
+   Per spec: ./specs/invocation-spec.md
    =========================================== */
 
-.skip-link {
-  position: absolute;
-  top: -100px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  background: var(--bg-elevated);
-  color: var(--text-primary);
-  padding: var(--space-sm) var(--space-md);
-  border-radius: 4px;
-  font-family: var(--font-ui);
-  font-size: 0.875rem;
-  text-decoration: none;
-  transition: top var(--duration-fast) var(--ease-out);
+.hero-scroll-lock-container {
+  position: relative;
+  /* Height set inline for scroll calculation */
 }
 
-.skip-link:focus {
-  top: var(--space-md);
-  outline: 2px solid var(--accent-ancient);
-  outline-offset: 2px;
-}
-
-/* ===========================================
-   MOBILE PROGRESS BAR
-   =========================================== */
-
-.mobile-progress-bar {
-  display: none;
-  position: fixed;
+.hero-scroll-lock-container .hero-section.hero-pinned {
+  position: sticky;
   top: 0;
+  height: 100vh;
+  will-change: transform;
+}
+
+.hero-scroll-lock-container.is-complete .hero-section.hero-pinned {
+  position: relative;
+}
+
+/* Skip Button - accessibility requirement */
+.scroll-lock-skip {
+  position: fixed;
+  bottom: var(--space-md);
+  right: var(--space-md);
+  padding: 0.5rem 1rem;
+  background: rgba(7, 9, 8, 0.85);
+  border: 1px solid rgba(248, 244, 235, 0.2);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: all var(--duration-fast) var(--ease-out);
+  z-index: 100;
+}
+
+.scroll-lock-skip:hover,
+.scroll-lock-skip:focus {
+  opacity: 1;
+  background: rgba(7, 9, 8, 0.95);
+  border-color: var(--accent-ancient);
+  color: var(--text-primary);
+  outline: none;
+}
+
+/* Progress Indicator - shows during scroll-lock */
+.scroll-lock-progress {
+  position: fixed;
+  bottom: 0;
   left: 0;
   right: 0;
   height: 3px;
@@ -320,24 +420,39 @@
   z-index: 100;
 }
 
-.mobile-progress-fill {
+.scroll-lock-progress-fill {
   height: 100%;
   background: linear-gradient(
     90deg,
     var(--accent-ancient) 0%,
-    var(--accent-medieval) 20%,
-    var(--accent-renaissance) 40%,
-    var(--accent-enlightenment) 60%,
-    var(--accent-darwin) 80%,
+    var(--accent-medieval) 25%,
+    var(--accent-renaissance) 50%,
+    var(--accent-enlightenment) 75%,
     var(--accent-modern) 100%
   );
-  transition: width 100ms linear;
+  transition: width 0.1s ease-out;
 }
 
-@media (max-width: 768px) {
-  .mobile-progress-bar {
-    display: block;
-  }
+/* Phase-based transitions for scroll-lock hero */
+.hero-section.hero-pinned .hero-kicker,
+.hero-section.hero-pinned .hero-title,
+.hero-section.hero-pinned .hero-title-animus,
+.hero-section.hero-pinned .hero-title-connector,
+.hero-section.hero-pinned .hero-title-animal,
+.hero-section.hero-pinned .hero-subtitle,
+.hero-section.hero-pinned .hero-scroll-cue {
+  transition: opacity var(--duration-normal) var(--ease-out), 
+              transform var(--duration-normal) var(--ease-out);
+}
+
+/* Phase 1: Pure darkness */
+.hero-section.hero-pinned.phase-1 .hero-background {
+  background: var(--bg-deep);
+}
+
+/* Phase 2: Eye/image emerges */
+.hero-section.hero-pinned.phase-2 .hero-image {
+  animation: breathPulse 2s ease-in-out infinite;
 }
 
 /* ===========================================
@@ -353,218 +468,14 @@
   overflow: hidden;
 }
 
-/* Scroll-lock hero specific styles */
-.hero-section.hero-scroll-lock {
-  min-height: 300vh; /* Scrollable area for lock */
-}
-
-.hero-section.hero-scroll-lock .hero-background,
-.hero-section.hero-scroll-lock .hero-content {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.hero-section.hero-scroll-lock .hero-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-section.hero-scroll-lock.is-complete .hero-background,
-.hero-section.hero-scroll-lock.is-complete .hero-content {
-  position: absolute;
-}
-
-/* Skip button for scroll-lock */
-.scroll-lock-skip {
-  position: fixed;
-  bottom: var(--space-lg);
-  right: var(--space-lg);
-  z-index: 100;
-  background: rgba(7, 9, 8, 0.8);
-  border: 1px solid rgba(248, 244, 235, 0.2);
-  color: var(--text-secondary);
-  padding: var(--space-xs) var(--space-md);
-  border-radius: 4px;
-  font-family: var(--font-ui);
-  font-size: 0.75rem;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  transition: all var(--duration-fast) var(--ease-out);
-}
-
-.scroll-lock-skip:hover {
-  background: rgba(7, 9, 8, 0.95);
-  border-color: var(--accent-ancient);
-  color: var(--text-primary);
-}
-
-/* Progress indicator for scroll-lock */
-.scroll-lock-progress {
-  position: fixed;
-  right: var(--space-md);
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3px;
-  height: 120px;
-  background: rgba(248, 244, 235, 0.1);
-  border-radius: 2px;
-  z-index: 100;
-  overflow: hidden;
-}
-
-.scroll-lock-progress-fill {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--accent-ancient);
-  border-radius: 2px;
-  transition: height 100ms linear;
-}
-
-/* Remove default animations for scroll-lock hero */
-.hero-section.hero-scroll-lock .hero-kicker,
-.hero-section.hero-scroll-lock .hero-title,
-.hero-section.hero-scroll-lock .hero-subtitle {
-  animation: none;
-  opacity: 1;
-}
-
-/* Static hero (reduced motion) */
-.hero-section.hero-static {
-  min-height: 100vh;
-}
-
+/* Static hero (for reduced motion or after scroll-lock) */
 .hero-section.hero-static .hero-kicker,
 .hero-section.hero-static .hero-title,
-.hero-section.hero-static .hero-subtitle {
-  animation: none;
+.hero-section.hero-static .hero-subtitle,
+.hero-section.hero-static .hero-scroll-cue {
   opacity: 1;
-}
-
-@media (max-width: 768px) {
-  .scroll-lock-skip {
-    bottom: var(--space-md);
-    right: var(--space-md);
-    padding: var(--space-xs) var(--space-sm);
-  }
-  
-  .scroll-lock-progress {
-    display: none; /* Mobile uses top progress bar */
-  }
-}
-
-/* ===========================================
-   SCROLL-LOCK ZOOM COMPONENT
-   "The Zoom" pattern per scroll-lock-patterns.md
-   =========================================== */
-
-.scroll-lock-zoom-container {
-  position: relative;
-  width: 100%;
-  max-width: var(--wide-width);
-  margin: var(--space-lg) auto;
-  min-height: 200vh; /* Scrollable area for lock */
-}
-
-.scroll-lock-zoom-container .zoom-viewport {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: min(90vw, var(--wide-width));
-  aspect-ratio: 3 / 2;
-  overflow: hidden;
-  border-radius: 8px;
-  background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
-}
-
-.scroll-lock-zoom-container.is-complete .zoom-viewport {
-  position: relative;
-  top: auto;
-  left: auto;
   transform: none;
-  width: 100%;
-}
-
-.scroll-lock-zoom-container.zoom-static .zoom-viewport {
-  position: relative;
-  top: auto;
-  left: auto;
-  transform: none;
-  width: 100%;
-  min-height: auto;
-}
-
-.scroll-lock-zoom-container.zoom-static {
-  min-height: auto;
-}
-
-.zoom-image-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-origin: center center;
-  transition: transform 100ms linear;
-}
-
-.zoom-image {
-  object-fit: contain;
-  object-position: center center;
-  filter: sepia(0.2) saturate(0.75) brightness(0.92);
-}
-
-.zoom-overlay {
-  position: absolute;
-  inset: 0;
-  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.4);
-  pointer-events: none;
-}
-
-/* Zoom-specific skip button positioning */
-.scroll-lock-zoom-container .zoom-skip {
-  position: fixed;
-}
-
-/* Zoom-specific progress bar positioning */
-.scroll-lock-zoom-container .zoom-progress {
-  position: fixed;
-}
-
-/* Caption transitions */
-.zoom-caption-original,
-.zoom-caption-focus {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  transition: opacity var(--duration-normal) var(--ease-out);
-}
-
-.scroll-lock-zoom-container.is-complete .zoom-caption-original,
-.scroll-lock-zoom-container.is-complete .zoom-caption-focus {
-  position: relative;
-  margin-top: var(--space-sm);
-}
-
-.zoom-caption-focus {
-  color: var(--accent-darwin);
-  font-style: italic;
-}
-
-@media (max-width: 768px) {
-  .scroll-lock-zoom-container {
-    min-height: 150vh;
-  }
-  
-  .scroll-lock-zoom-container .zoom-viewport {
-    width: 95vw;
-  }
+  animation: none;
 }
 
 .hero-background {
@@ -618,8 +529,8 @@
   text-transform: uppercase;
   color: var(--accent-ancient);
   margin-bottom: var(--space-md);
-  transition: opacity var(--duration-normal) var(--ease-out), 
-              transform var(--duration-normal) var(--ease-out);
+  opacity: 0;
+  animation: fadeUp var(--duration-breath) var(--ease-out) 0.3s forwards;
 }
 
 .hero-title {
@@ -629,6 +540,8 @@
   gap: clamp(0.75rem, 3vw, 1.5rem);
   flex-wrap: wrap;
   margin-bottom: var(--space-md);
+  opacity: 0;
+  animation: fadeUp var(--duration-breath) var(--ease-out) 0.5s forwards;
 }
 
 .hero-title-animus,
@@ -638,12 +551,6 @@
   font-weight: 500;
   letter-spacing: 0.12em;
   color: var(--text-primary);
-  transition: opacity var(--duration-normal) var(--ease-out), 
-              transform var(--duration-normal) var(--ease-out);
-}
-
-.hero-title-connector {
-  transition: opacity var(--duration-normal) var(--ease-out);
 }
 
 .hero-title-animus {
@@ -684,8 +591,8 @@
   color: var(--text-secondary);
   max-width: 600px;
   margin-bottom: var(--space-xl);
-  transition: opacity var(--duration-normal) var(--ease-out), 
-              transform var(--duration-normal) var(--ease-out);
+  opacity: 0;
+  animation: fadeUp var(--duration-breath) var(--ease-out) 0.7s forwards;
 }
 
 .hero-scroll-cue {

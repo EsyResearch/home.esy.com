@@ -12,29 +12,28 @@
 
 ## Executive Summary
 
-### Certification Status: 🟢 CERTIFIED (Exceptional)
+### Certification Status: 🟢 CERTIFIED (with recommendations)
 
-**Overall Score**: 9.2/10 (Updated after scroll-lock implementation)
+**Overall Score**: 8.2/10
 
 | Category | Score | Status |
 |----------|-------|--------|
 | Content Visibility | 9/10 | 🟢 |
-| Animation/Reveals | 9/10 | 🟢 |
-| Interaction Fidelity | 9/10 | 🟢 |
-| Scroll Experience | 9/10 | 🟢 |
-| Narrative Coherence | 10/10 | 🟢 |
-| Accessibility | 9/10 | 🟢 |
+| Animation/Reveals | 8/10 | 🟢 |
+| Interaction Fidelity | 7/10 | 🟡 |
+| Scroll Experience | 7/10 | 🟡 |
+| Narrative Coherence | 9/10 | 🟢 |
+| Accessibility | 8/10 | 🟢 |
 
 ### Key Findings Summary
 - ✅ Beautiful era-specific theming with evolving typography
 - ✅ Breathing progress bar creates unique "anima" metaphor
 - ✅ All images load correctly, reveals trigger properly
 - ✅ Reduced motion fallbacks implemented
-- ✅ **Hero scroll-lock "The Reveal" pattern implemented**
-- ✅ **Darwin Tree "The Zoom" pattern implemented**
-- ✅ **Mobile progress indicator added**
-- ✅ **Skip links for accessibility added**
-- 🟡 Font loading may cause brief FOUT (minor)
+- 🟡 No scroll-lock patterns implemented (missed opportunity)
+- 🟡 Progress bar hidden on mobile with no alternative
+- 🟡 No skip links for accessibility
+- 🟡 Font loading may cause brief FOUT
 
 ---
 
@@ -246,36 +245,55 @@ None blocking - essay is publication-ready.
 
 ## Recommended Improvements
 
-### ✅ IMPLEMENTED (December 14, 2025)
+### HIGH Priority
 
-1. **✅ Mobile Progress Indicator** — DONE
-   - Added fixed top progress bar for mobile (≤768px)
-   - Gradient matches era colors
-   - Visible feedback during scroll
+1. **Add Mobile Progress Indicator**
+   - Current: Progress bar hidden on mobile
+   - Fix: Add subtle top-of-screen progress bar or percentage
+   
+   ```css
+   @media (max-width: 768px) {
+     .mobile-progress {
+       position: fixed;
+       top: 0;
+       left: 0;
+       right: 0;
+       height: 3px;
+       background: linear-gradient(90deg, var(--accent) var(--progress), transparent var(--progress));
+       z-index: 100;
+     }
+   }
+   ```
 
-2. **✅ Skip Link for Accessibility** — DONE
-   - Added "Skip to content" link (visible on focus)
-   - Skip buttons on all scroll-lock sections
-   - Full keyboard accessibility
+2. **Add Skip Link for Accessibility**
+   - Current: No skip affordance
+   - Fix: Add "Skip to Sources" or "Skip to next chapter" links
+   
+   ```tsx
+   <a href="#sources" className="skip-link">
+     Skip to Sources
+   </a>
+   ```
 
-3. **✅ Hero Scroll-Lock "The Reveal"** — DONE
-   - Implemented per scroll-lock-patterns.md
-   - 200vh scroll depth with 5 phases
-   - Progressive reveal: Kicker → ANIMUS → Arrow → ANIMAL → Subtitle
-   - Skip affordance and touch support
+### MEDIUM Priority
 
-4. **✅ Darwin Tree "The Zoom"** — DONE
-   - Implemented per scroll-lock-patterns.md
-   - 150vh scroll depth
-   - 2.5x zoom focusing on "I think" annotation
-   - Caption transitions from general to focused
+3. **Consider Hero Scroll-Lock**
+   - Implement "The Reveal" pattern for dramatic entry
+   - Lock for 600-800px scroll depth
+   - Progressive reveal of title elements
+   - Would elevate from good to exceptional
 
-### REMAINING (Future Enhancement)
-
-5. **Add Chapter Navigation**
+4. **Add Chapter Navigation**
    - Floating chapter dots or mini-nav
    - Click to jump between eras
    - Helps orientation on long scroll
+
+### LOW Priority
+
+5. **Darwin Tree Zoom Enhancement**
+   - "The Zoom" pattern on Tree of Life image
+   - Focus on "I think" annotation
+   - Highlights pivotal historical moment
 
 6. **Font Loading Optimization**
    - Consider `font-display: swap` for all fonts
