@@ -17,7 +17,7 @@
  * - Organic animations reflecting living things
  */
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -31,6 +31,157 @@ import {
   useReducedMotion,
 } from '@/components/VisualEssay';
 import './the-word-animal.css';
+
+// ===========================================
+// SCROLL-LOCK HOOK
+// Per scroll-lock-patterns.md specification
+// ===========================================
+
+interface ScrollLockState {
+  isLocked: boolean;
+  progress: number; // 0-100
+  isComplete: boolean;
+}
+
+const useScrollLock = (
+  ref: React.RefObject<HTMLElement | null>,
+  lockHeight: number = 300 // vh units of scroll to complete
+): ScrollLockState & { skipToEnd: () => void } => {
+  const [state, setState] = useState<ScrollLockState>({
+    isLocked: false,
+    progress: 0,
+    isComplete: false,
+  });
+  const isActiveRef = useRef(false);
+  const accumulatedDeltaRef = useRef(0);
+  const lockDistanceRef = useRef(0);
+  const hasUserScrolledRef = useRef(false);
+
+  const skipToEnd = useCallback(() => {
+    setState({ isLocked: false, progress: 100, isComplete: true });
+    document.body.style.overflow = "";
+    isActiveRef.current = false;
+  }, []);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    lockDistanceRef.current = (lockHeight / 100) * window.innerHeight;
+
+    const handleScroll = () => {
+      const rect = element.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      
+      if (window.scrollY > 10 && !hasUserScrolledRef.current) {
+        hasUserScrolledRef.current = true;
+      }
+
+      if (rect.top <= 0 && rect.bottom > viewportHeight * 0.5 && !state.isComplete && hasUserScrolledRef.current) {
+        if (!isActiveRef.current) {
+          isActiveRef.current = true;
+          accumulatedDeltaRef.current = 0;
+          document.body.style.overflow = "hidden";
+          setState(prev => ({ ...prev, isLocked: true }));
+        }
+      } else if (rect.top > viewportHeight * 0.2) {
+        if (isActiveRef.current) {
+          document.body.style.overflow = "";
+          isActiveRef.current = false;
+        }
+        if (!state.isComplete) {
+          setState({ isLocked: false, progress: 0, isComplete: false });
+          accumulatedDeltaRef.current = 0;
+        }
+      }
+    };
+
+    const handleWheel = (e: WheelEvent) => {
+      if (!hasUserScrolledRef.current && e.deltaY > 0) {
+        hasUserScrolledRef.current = true;
+        const rect = element.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        if (rect.top <= 0 && rect.bottom > viewportHeight * 0.5 && !state.isComplete) {
+          isActiveRef.current = true;
+          accumulatedDeltaRef.current = 0;
+          document.body.style.overflow = "hidden";
+          setState(prev => ({ ...prev, isLocked: true }));
+        }
+      }
+      
+      if (isActiveRef.current && !state.isComplete) {
+        e.preventDefault();
+        accumulatedDeltaRef.current += e.deltaY;
+        
+        const newProgress = Math.min(100, Math.max(0, 
+          (accumulatedDeltaRef.current / lockDistanceRef.current) * 100
+        ));
+
+        setState(prev => ({ ...prev, progress: newProgress }));
+
+        if (newProgress >= 100) {
+          document.body.style.overflow = "";
+          isActiveRef.current = false;
+          setState({ isLocked: false, progress: 100, isComplete: true });
+        }
+      }
+    };
+
+    let touchStartY = 0;
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      const touchDelta = touchStartY - e.touches[0].clientY;
+      
+      if (!hasUserScrolledRef.current && touchDelta > 10) {
+        hasUserScrolledRef.current = true;
+        const rect = element.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        if (rect.top <= 0 && rect.bottom > viewportHeight * 0.5 && !state.isComplete) {
+          isActiveRef.current = true;
+          accumulatedDeltaRef.current = 0;
+          document.body.style.overflow = "hidden";
+          setState(prev => ({ ...prev, isLocked: true }));
+        }
+      }
+
+      if (isActiveRef.current && !state.isComplete) {
+        e.preventDefault();
+        accumulatedDeltaRef.current += touchDelta;
+        touchStartY = e.touches[0].clientY;
+
+        const newProgress = Math.min(100, Math.max(0,
+          (accumulatedDeltaRef.current / lockDistanceRef.current) * 100
+        ));
+
+        setState(prev => ({ ...prev, progress: newProgress }));
+
+        if (newProgress >= 100) {
+          document.body.style.overflow = "";
+          isActiveRef.current = false;
+          setState({ isLocked: false, progress: 100, isComplete: true });
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+      document.body.style.overflow = "";
+    };
+  }, [ref, lockHeight, state.isComplete]);
+
+  return { ...state, skipToEnd };
+};
 
 // ===========================================
 // IMAGE SOURCES - Verified Public Domain / CC Licensed
@@ -406,22 +557,139 @@ const ImageReveal: React.FC<ImageRevealProps> = ({ src, alt, caption, era, conta
 };
 
 // ===========================================
-// MAIN CLIENT COMPONENT
+// SCROLL-LOCK ZOOM: "THE ZOOM" PATTERN
+// For Darwin's Tree of Life
 // ===========================================
 
-export default function WordAnimalClient() {
-  const { progress: scrollProgress } = useCinematicScroll();
+interface ScrollLockZoomProps {
+  src: string;
+  alt: string;
+  caption: string;
+  zoomCaption: string;
+}
+
+const ScrollLockZoom: React.FC<ScrollLockZoomProps> = ({ src, alt, caption, zoomCaption }) => {
+  const zoomRef = useRef<HTMLDivElement>(null);
   const prefersReduced = useReducedMotion();
   
+  // Use scroll-lock hook: 150vh of scroll to complete
+  const { isLocked, progress, isComplete, skipToEnd } = useScrollLock(zoomRef, 150);
+
+  // For reduced motion, show final zoomed state
+  if (prefersReduced) {
+    return (
+      <div className="scroll-lock-zoom-container zoom-static" ref={zoomRef}>
+        <div className="zoom-viewport">
+          <div className="zoom-image-wrapper" style={{ transform: 'scale(2.5) translate(-10%, -15%)' }}>
+            <Image
+              src={src}
+              alt={alt}
+              fill
+              sizes="(max-width: 768px) 100vw, 900px"
+              className="zoom-image"
+            />
+          </div>
+          <div className="zoom-overlay" />
+        </div>
+        <p className="image-caption">{zoomCaption}</p>
+      </div>
+    );
+  }
+
+  // ===========================================
+  // ZOOM CALCULATIONS
+  // ===========================================
+  const normalizedProgress = progress / 100;
+  
+  // Zoom from 1x to 2.5x, focusing on top-left where "I think" is written
+  const scale = 1 + (normalizedProgress * 1.5);
+  const translateX = normalizedProgress * -10; // Pan left toward "I think"
+  const translateY = normalizedProgress * -15; // Pan up toward "I think"
+  
+  // Caption transitions: original fades out, zoom caption fades in
+  const originalCaptionOpacity = Math.max(0, 1 - normalizedProgress * 3);
+  const zoomCaptionOpacity = Math.max(0, Math.min(1, (normalizedProgress - 0.7) * 3.33));
+
   return (
-    <VisualEssay className="word-animal-essay">
-      {/* Breathing Progress Bar */}
-      <BreathingProgress progress={scrollProgress} />
+    <div 
+      className={`scroll-lock-zoom-container ${isLocked ? 'is-locked' : ''} ${isComplete ? 'is-complete' : ''}`}
+      ref={zoomRef}
+    >
+      {/* Skip Button */}
+      {isLocked && !isComplete && (
+        <button 
+          className="scroll-lock-skip zoom-skip"
+          onClick={skipToEnd}
+          aria-label="Skip zoom animation"
+        >
+          Skip ↓
+        </button>
+      )}
       
-      {/* ============================================
-          HERO: FIRST BREATH
-          ============================================ */}
-      <header className="hero-section">
+      {/* Progress Indicator */}
+      {isLocked && !isComplete && (
+        <div className="scroll-lock-progress zoom-progress" aria-hidden="true">
+          <div 
+            className="scroll-lock-progress-fill" 
+            style={{ height: `${progress}%` }} 
+          />
+        </div>
+      )}
+      
+      <div className="zoom-viewport">
+        <div 
+          className="zoom-image-wrapper"
+          style={{ 
+            transform: `scale(${scale}) translate(${translateX}%, ${translateY}%)`,
+          }}
+        >
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            sizes="(max-width: 768px) 100vw, 900px"
+            className="zoom-image"
+          />
+        </div>
+        <div className="zoom-overlay" />
+        <div className="image-grain" />
+      </div>
+      
+      {/* Original caption (fades out) */}
+      <p 
+        className="image-caption zoom-caption-original"
+        style={{ opacity: isComplete ? 0 : originalCaptionOpacity }}
+      >
+        {caption}
+      </p>
+      
+      {/* Zoomed caption (fades in) */}
+      <p 
+        className="image-caption zoom-caption-focus"
+        style={{ opacity: isComplete ? 1 : zoomCaptionOpacity }}
+      >
+        {zoomCaption}
+      </p>
+    </div>
+  );
+};
+
+// ===========================================
+// SCROLL-LOCK HERO: THE REVEAL PATTERN
+// Per scroll-lock-patterns.md specification
+// ===========================================
+
+const ScrollLockHero: React.FC = () => {
+  const heroRef = useRef<HTMLElement>(null);
+  const prefersReduced = useReducedMotion();
+  
+  // Use scroll-lock hook: 200vh of scroll to complete the sequence
+  const { isLocked, progress, isComplete, skipToEnd } = useScrollLock(heroRef, 200);
+
+  // For reduced motion, show final state immediately
+  if (prefersReduced) {
+    return (
+      <header className="hero-section hero-static" ref={heroRef}>
         <div className="hero-background">
           <Image
             src={IMAGES.hero.main}
@@ -433,11 +701,9 @@ export default function WordAnimalClient() {
           <div className="hero-overlay" />
           <div className="hero-grain" />
         </div>
-        
         <div className="hero-content">
-          <span className="hero-kicker">The Etymology of</span>
-          
-          <h1 className="hero-title">
+          <span className="hero-kicker" style={{ opacity: 1 }}>The Etymology of</span>
+          <h1 className="hero-title" style={{ opacity: 1 }}>
             <span className="hero-title-animus">ANIMUS</span>
             <span className="hero-title-connector">
               <svg viewBox="0 0 60 24" className="arrow-svg">
@@ -446,17 +712,198 @@ export default function WordAnimalClient() {
             </span>
             <span className="hero-title-animal">ANIMAL</span>
           </h1>
-          
-          <p className="hero-subtitle">
+          <p className="hero-subtitle" style={{ opacity: 1 }}>
             The Word That Named Every Creature That Breathes
           </p>
+        </div>
+      </header>
+    );
+  }
+
+  // ===========================================
+  // PHASE CALCULATIONS - "The Reveal" Pattern
+  // ===========================================
+  const normalizedProgress = progress / 100;
+  
+  // Phase 1 (0-25%): Kicker fades in
+  const phase1 = Math.min(1, normalizedProgress * 4);
+  
+  // Phase 2 (25-50%): ANIMUS appears
+  const phase2 = Math.max(0, Math.min(1, (normalizedProgress - 0.25) * 4));
+  
+  // Phase 3 (50-70%): Arrow animates
+  const phase3 = Math.max(0, Math.min(1, (normalizedProgress - 0.5) * 5));
+  
+  // Phase 4 (70-90%): ANIMAL appears with gradient
+  const phase4 = Math.max(0, Math.min(1, (normalizedProgress - 0.7) * 5));
+  
+  // Phase 5 (90-100%): Subtitle fades in
+  const phase5 = Math.max(0, Math.min(1, (normalizedProgress - 0.9) * 10));
+
+  // Before any scroll, show initial state with breathing animation
+  const showInitialCue = progress === 0 && !isLocked;
+
+  return (
+    <header 
+      className={`hero-section hero-scroll-lock ${isLocked ? 'is-locked' : ''} ${isComplete ? 'is-complete' : ''}`}
+      ref={heroRef}
+    >
+      <div className="hero-background">
+        <Image
+          src={IMAGES.hero.main}
+          alt={IMAGES.hero.alt}
+          fill
+          priority
+          className="hero-image"
+          style={{
+            transform: `scale(${1 + normalizedProgress * 0.05})`,
+          }}
+        />
+        <div className="hero-overlay" />
+        <div className="hero-grain" />
+      </div>
+      
+      {/* Skip Button (Accessibility) */}
+      {isLocked && !isComplete && (
+        <button 
+          className="scroll-lock-skip"
+          onClick={skipToEnd}
+          aria-label="Skip intro animation"
+        >
+          Skip Intro ↓
+        </button>
+      )}
+      
+      {/* Progress Indicator (visible during scroll-lock) */}
+      {isLocked && !isComplete && (
+        <div className="scroll-lock-progress" aria-hidden="true">
+          <div 
+            className="scroll-lock-progress-fill" 
+            style={{ height: `${progress}%` }} 
+          />
+        </div>
+      )}
+      
+      <div className="hero-content">
+        {/* Phase 1: Kicker */}
+        <span 
+          className="hero-kicker"
+          style={{ 
+            opacity: isComplete ? 1 : phase1,
+            transform: `translateY(${isComplete ? 0 : (1 - phase1) * 20}px)`,
+          }}
+        >
+          The Etymology of
+        </span>
+        
+        <h1 className="hero-title">
+          {/* Phase 2: ANIMUS */}
+          <span 
+            className="hero-title-animus"
+            style={{ 
+              opacity: isComplete ? 1 : phase2,
+              transform: `translateY(${isComplete ? 0 : (1 - phase2) * 30}px)`,
+            }}
+          >
+            ANIMUS
+          </span>
           
+          {/* Phase 3: Arrow */}
+          <span 
+            className="hero-title-connector"
+            style={{ 
+              opacity: isComplete ? 1 : phase3,
+            }}
+          >
+            <svg viewBox="0 0 60 24" className="arrow-svg">
+              <path 
+                d="M0 12h50M45 6l10 6-10 6" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2"
+                style={{
+                  strokeDasharray: 60,
+                  strokeDashoffset: isComplete ? 0 : 60 - (phase3 * 60),
+                }}
+              />
+            </svg>
+          </span>
+          
+          {/* Phase 4: ANIMAL */}
+          <span 
+            className="hero-title-animal"
+            style={{ 
+              opacity: isComplete ? 1 : phase4,
+              transform: `translateY(${isComplete ? 0 : (1 - phase4) * 30}px)`,
+            }}
+          >
+            ANIMAL
+          </span>
+        </h1>
+        
+        {/* Phase 5: Subtitle */}
+        <p 
+          className="hero-subtitle"
+          style={{ 
+            opacity: isComplete ? 1 : phase5,
+            transform: `translateY(${isComplete ? 0 : (1 - phase5) * 20}px)`,
+          }}
+        >
+          The Word That Named Every Creature That Breathes
+        </p>
+        
+        {/* Initial scroll cue - only before scroll-lock activates */}
+        {showInitialCue && (
           <div className="hero-scroll-cue">
             <span>Begin the Journey</span>
             <div className="scroll-breath" />
           </div>
-        </div>
-      </header>
+        )}
+      </div>
+    </header>
+  );
+};
+
+// ===========================================
+// MOBILE PROGRESS INDICATOR
+// ===========================================
+
+const MobileProgress: React.FC<{ progress: number }> = ({ progress }) => {
+  return (
+    <div className="mobile-progress-bar" aria-hidden="true">
+      <div 
+        className="mobile-progress-fill" 
+        style={{ width: `${progress * 100}%` }} 
+      />
+    </div>
+  );
+};
+
+// ===========================================
+// MAIN CLIENT COMPONENT
+// ===========================================
+
+export default function WordAnimalClient() {
+  const { progress: scrollProgress } = useCinematicScroll();
+  const prefersReduced = useReducedMotion();
+  
+  return (
+    <VisualEssay className="word-animal-essay">
+      {/* Breathing Progress Bar (Desktop) */}
+      <BreathingProgress progress={scrollProgress} />
+      
+      {/* Mobile Progress Bar */}
+      <MobileProgress progress={scrollProgress} />
+      
+      {/* Skip Link for Accessibility */}
+      <a href="#ancient" className="skip-link">
+        Skip to content
+      </a>
+      
+      {/* ============================================
+          HERO: FIRST BREATH (Scroll-Lock)
+          ============================================ */}
+      <ScrollLockHero />
       
       {/* ============================================
           PROLOGUE
@@ -807,12 +1254,11 @@ export default function WordAnimalClient() {
           era="darwin"
         />
         
-        <ImageReveal
+        <ScrollLockZoom
           src={IMAGES.darwin.tree}
           alt={IMAGES.darwin.treeAlt}
           caption="The tree of life—Darwin's radical insight that all life is connected"
-          era="darwin"
-          contain
+          zoomCaption="&quot;I think&quot; — Darwin's first sketch of the theory that would change everything"
         />
         
         <div className="narrative-block">
