@@ -44,7 +44,7 @@ const SHOWCASE_ESSAYS: ShowcaseEssay[] = [
     category: 'History',
     categoryColor: '#F59E0B',
     readTime: '22 min',
-    href: '/essays/visual/the-manhattan-project',
+    href: '/essays/the-manhattan-project',
     // Trinity test mushroom cloud - actual hero image from essay
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Trinity_Test_Mushroom_Cloud_12s.jpg',
     size: 'featured',
@@ -56,7 +56,7 @@ const SHOWCASE_ESSAYS: ShowcaseEssay[] = [
     category: 'Culture',
     categoryColor: '#EC4899',
     readTime: '25 min',
-    href: '/essays/visual/the-history-of-languages',
+    href: '/essays/the-history-of-languages',
     // Library of Alexandria - actual hero image from essay
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/6/64/Ancientlibraryalex.jpg',
     size: 'featured',
@@ -68,7 +68,7 @@ const SHOWCASE_ESSAYS: ShowcaseEssay[] = [
     category: 'History',
     categoryColor: '#F59E0B',
     readTime: '25 min',
-    href: '/essays/visual/the-word-robot',
+    href: '/essays/the-word-robot',
     // Actual hero from the essay - dramatic typography
     heroImage: '/images/robot/robot-hero.jpg',
     size: 'standard',
@@ -80,7 +80,7 @@ const SHOWCASE_ESSAYS: ShowcaseEssay[] = [
     category: 'History',
     categoryColor: '#F59E0B',
     readTime: '24 min',
-    href: '/essays/visual/the-word-animal',
+    href: '/essays/the-word-animal',
     // Wolf portrait - actual hero image from essay
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/6/69/Canis_lupus_laying_in_grass.jpg',
     size: 'standard',
@@ -154,7 +154,7 @@ const EssayShowcaseGrid: React.FC = () => {
 
       {/* Footer CTA */}
       <footer className="showcase-footer">
-        <Link href="/essays/visual/" className="showcase-view-all">
+        <Link href="/essays/" className="showcase-view-all">
           <span>View All Visual Essays</span>
           <ArrowRight size={16} />
         </Link>

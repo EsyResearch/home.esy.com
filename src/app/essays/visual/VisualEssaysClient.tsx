@@ -412,7 +412,11 @@ const ComingSoon: React.FC = () => (
 
 // ==================== MAIN ====================
 
-const VisualEssaysClient: React.FC = () => {
+interface VisualEssaysClientProps {
+  basePath?: string;
+}
+
+const VisualEssaysClient: React.FC<VisualEssaysClientProps> = ({ basePath = '/essays/visual' }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const discoveryBarRef = useRef<HTMLDivElement>(null);
@@ -436,10 +440,10 @@ const VisualEssaysClient: React.FC = () => {
     if (viewMode !== 'grid') params.set('view', viewMode);
 
     const queryString = params.toString();
-    const newUrl = queryString ? `?${queryString}` : '/essays/visual';
+    const newUrl = queryString ? `?${queryString}` : basePath;
     
     router.replace(newUrl, { scroll: false });
-  }, [searchQuery, selectedCategory, viewMode, router]);
+  }, [searchQuery, selectedCategory, viewMode, router, basePath]);
 
   // Sticky detection - account for fixed navigation header (80px)
   useEffect(() => {

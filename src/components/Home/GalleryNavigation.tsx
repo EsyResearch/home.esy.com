@@ -67,10 +67,10 @@ const GalleryNavigation: React.FC = () => {
 
         {/* Desktop Navigation */}
         <div className="gallery-nav-links">
-          <Link href="/essays/visual/" className="gallery-nav-link">
+          <Link href="/essays/" className="gallery-nav-link">
             Essays
           </Link>
-          <Link href="/essays/visual/#early-access" className="gallery-nav-link">
+          <Link href="/essays/#early-access" className="gallery-nav-link">
             Early Access
           </Link>
           <a 
@@ -107,7 +107,7 @@ const GalleryNavigation: React.FC = () => {
           role="menu"
         >
           <Link 
-            href="/essays/visual/" 
+            href="/essays/" 
             className="gallery-mobile-link"
             onClick={() => setIsMobileMenuOpen(false)}
             role="menuitem"
@@ -115,7 +115,7 @@ const GalleryNavigation: React.FC = () => {
             Essays
           </Link>
           <Link 
-            href="/essays/visual/#early-access" 
+            href="/essays/#early-access" 
             className="gallery-mobile-link"
             onClick={() => setIsMobileMenuOpen(false)}
             role="menuitem"

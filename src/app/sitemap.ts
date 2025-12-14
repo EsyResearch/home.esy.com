@@ -43,10 +43,17 @@ function findPageFiles(dir: string, baseDir: string = dir): string[] {
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://esy.com'
   
+  // Routes to exclude from sitemap (disabled pages)
+  const excludedRoutes = [
+    '/ai-writing-tools',
+    '/essays/visual',
+  ]
+  
   // Automatically discover all static routes from the app directory
   const appDir = path.join(process.cwd(), 'src/app')
   const discoveredRoutes = findPageFiles(appDir)
     .map(route => route === '/' ? '' : route)
+    .filter(route => !excludedRoutes.includes(route))
     .sort((a, b) => {
       if (a === '') return -1
       if (b === '') return 1

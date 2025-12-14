@@ -149,7 +149,7 @@ export function createVisualEssayMetadata(config: VisualEssayMetadataConfig): Me
   const imageAlt = config.imageAlt || ogTitle;
   
   // Canonical URL (with trailing slash to match Next.js trailingSlash: true config)
-  const canonicalUrl = `${SITE_URL}/essays/visual/${config.slug}/`;
+  const canonicalUrl = `${SITE_URL}/essays/${config.slug}/`;
   
   // Build the metadata object
   const metadata: Metadata = {

@@ -58,12 +58,12 @@ When adding new pages or links, follow these guidelines:
 
 ```tsx
 // Correct - with trailing slash
-<Link href="/essays/visual/">Visual Essays</Link>
+<Link href="/essays/">Essays</Link>
 <Link href="/about/">About</Link>
 <Link href={`/glossary/${term.slug}/`}>{term.name}</Link>
 
 // Incorrect - missing trailing slash (causes redirect)
-<Link href="/essays/visual">Visual Essays</Link>
+<Link href="/essays">Essays</Link>
 <Link href="/about">About</Link>
 ```
 
@@ -72,12 +72,12 @@ When adding new pages or links, follow these guidelines:
 ```tsx
 // Correct
 alternates: {
-  canonical: 'https://esy.com/essays/visual/the-word-animal/'
+  canonical: 'https://esy.com/essays/the-word-animal/'
 }
 
 // Incorrect
 alternates: {
-  canonical: 'https://esy.com/essays/visual/the-word-animal'
+  canonical: 'https://esy.com/essays/the-word-animal'
 }
 ```
 
@@ -85,7 +85,7 @@ alternates: {
 
 ```tsx
 openGraph: {
-  url: 'https://esy.com/essays/visual/the-word-animal/',  // With slash
+  url: 'https://esy.com/essays/the-word-animal/',  // With slash
 }
 ```
 
@@ -117,7 +117,7 @@ export const metadata = createVisualEssayMetadata({
 });
 ```
 
-The helper generates: `https://esy.com/essays/visual/the-word-animal/`
+The helper generates: `https://esy.com/essays/the-word-animal/`
 
 ## Hash Links
 
@@ -125,10 +125,10 @@ For anchor links with hashes, add the trailing slash before the hash:
 
 ```tsx
 // Correct
-<Link href="/essays/visual/#early-access">Early Access</Link>
+<Link href="/essays/#early-access">Early Access</Link>
 
 // Incorrect
-<Link href="/essays/visual#early-access">Early Access</Link>
+<Link href="/essays#early-access">Early Access</Link>
 ```
 
 ## Verification
@@ -172,7 +172,7 @@ The following files were updated to enforce this standard (December 2024):
 
 ### Canonical Tags
 - `src/lib/visual-essay-metadata.ts`
-- `src/app/essays/visual/*/page.tsx` (all visual essays)
+- `src/app/essays/*/page.tsx` (all visual essays)
 - `src/app/photo-essays/page.tsx`
 
 ### Navigation & Footers

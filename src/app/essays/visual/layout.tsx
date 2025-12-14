@@ -31,7 +31,7 @@ import { Metadata } from 'next';
 /**
  * Shared metadata defaults for all visual essays.
  * 
- * These values are inherited by all pages under /essays/visual/*
+ * These values are inherited by all pages under /essays/*
  * Individual pages can override any of these values.
  * 
  * Note: Images and URLs must be set per-page as they are unique.

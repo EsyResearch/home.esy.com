@@ -527,7 +527,7 @@ export default function Navigation ({
             {isSimplifiedNav ? (
               <>
                 <Link 
-                  href="/essays/visual/" 
+                  href="/essays/" 
                   className="nav-link homepage-essays-link"
                   style={{
                     color: 'rgba(255, 255, 255, 0.9)',
@@ -563,7 +563,7 @@ export default function Navigation ({
                 label="Essays"
                 items={[
                   {
-                    href: '/essays/visual/',
+                    href: '/essays/',
                     icon: <VisualEssaysIcon size={20} />,
                     title: 'Visual Essays',
                     description: 'Interactive storytelling experiences',
@@ -727,7 +727,7 @@ export default function Navigation ({
             {/* Simplified nav: Simple Essays link | Other pages: Full Essays section */}
             {isSimplifiedNav ? (
               <div className="mobile-nav-section">
-                <Link href="/essays/visual/" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link href="/essays/" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
                   <div className="mobile-nav-icon purple"><VisualEssaysIcon size={20} /></div>
                   <div className="mobile-nav-text">
                     <span className="mobile-nav-item-title">Visual Essays</span>
@@ -740,7 +740,7 @@ export default function Navigation ({
                 {/* Essays Section */}
                 <div className="mobile-nav-section">
                   <h3 className="mobile-nav-section-title">Essays</h3>
-                  <Link href="/essays/visual/" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link href="/essays/" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
                     <div className="mobile-nav-icon purple"><VisualEssaysIcon size={20} /></div>
                     <div className="mobile-nav-text">
                       <span className="mobile-nav-item-title">Visual Essays</span>

@@ -32,7 +32,7 @@ const essayShowcases = [
     alt: essayImages.manhattanProject.alt,
     pullQuote: "I am become Death, the destroyer of worlds.",
     quoteAttribution: "J. Robert Oppenheimer",
-    href: "/essays/visual/the-manhattan-project",
+    href: "/essays/the-manhattan-project",
     readTime: "22 min",
     imageAttribution: null, // Public Domain - no attribution required
   },
@@ -44,7 +44,7 @@ const essayShowcases = [
     alt: essayImages.holocaust.alt,
     pullQuote: "For the dead and the living, we must bear witness.",
     quoteAttribution: "Elie Wiesel",
-    href: "/essays/visual/the-holocaust",
+    href: "/essays/the-holocaust",
     readTime: "30 min",
     imageAttribution: null, // Public Domain - no attribution required
   },
@@ -56,7 +56,7 @@ const essayShowcases = [
     alt: essayImages.thinkingMachine.alt,
     pullQuote: "Can machines think?",
     quoteAttribution: "Alan Turing, 1950",
-    href: "/essays/visual/the-thinking-machine",
+    href: "/essays/the-thinking-machine",
     readTime: "25 min",
     imageAttribution: null, // Public Domain - no attribution required
   },
@@ -68,7 +68,7 @@ const essayShowcases = [
     alt: essayImages.ramayana.alt,
     pullQuote: "Truth is one; sages call it by various names.",
     quoteAttribution: "Rig Veda",
-    href: "/essays/visual/the-ramayana",
+    href: "/essays/the-ramayana",
     readTime: "22 min",
     imageAttribution: null, // CC0 Met Museum - no attribution required
   },
@@ -80,7 +80,7 @@ const essayShowcases = [
     alt: essayImages.fork.alt,
     pullQuote: "The fork was once condemned as satanic vanity.",
     quoteAttribution: "Byzantine chronicles",
-    href: "/essays/visual/the-fork",
+    href: "/essays/the-fork",
     readTime: "25 min",
     imageAttribution: essayImages.fork.attribution, // CC BY-SA 3.0 - attribution required
   },

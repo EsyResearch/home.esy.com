@@ -12,7 +12,7 @@ import './scrollytelling-showcase.css';
  * Design Philosophy:
  * - Demonstrates scrollytelling technology through the page itself
  * - Premium, immersive landing experience
- * - Links to canonical URLs at /essays/visual/
+ * - Links to canonical URLs at /essays/
  * - Targets "scrollytelling" keyword for SEO
  * - NOT a content hub - that's /essays/visual
  */
