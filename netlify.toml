@@ -8,11 +8,17 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-# Redirect scrollytelling stories to visual essays (canonical URLs)
-# 301 permanent redirect for SEO
+# Redirect /essays/visual/* to /essays/* (canonical URLs)
 [[redirects]]
-  from = "/scrollytelling/:slug"
-  to = "/essays/visual/:slug"
+  from = "/essays/visual/*"
+  to = "/essays/:splat"
+  status = 301
+  force = true
+
+# Redirect scrollytelling stories to essays (canonical URLs)
+[[redirects]]
+  from = "/scrollytelling/*"
+  to = "/essays/:splat"
   status = 301
   force = true
 

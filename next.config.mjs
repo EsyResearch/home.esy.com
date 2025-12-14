@@ -19,13 +19,19 @@ const nextConfig = {
   experimental: {
     mdxRs: true,
   },
-  // Redirect all scrollytelling stories to /essays/visual/
+  // Redirect legacy paths to /essays/
   async redirects() {
     return [
-      // Catch-all redirect for scrollytelling stories
+      // Redirect /essays/visual/* to /essays/*
+      {
+        source: '/essays/visual/:slug',
+        destination: '/essays/:slug',
+        permanent: true,
+      },
+      // Redirect /scrollytelling/* directly to /essays/*
       {
         source: '/scrollytelling/:slug',
-        destination: '/essays/visual/:slug',
+        destination: '/essays/:slug',
         permanent: true,
       },
     ];
