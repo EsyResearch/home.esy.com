@@ -67,9 +67,9 @@ export default function Footer () {
           <FooterColumn 
             title="Explore"
             links={[
-              { href: "/essays/", text: "Essays" },
-              { href: "/templates/", text: "Templates" },
+              { href: "/essays/", text: "Visual Essays" },
               { href: "/scrollytelling/", text: "Scrollytelling" },
+              { href: "/templates/", text: "Research Templates" },
             ]}
           />
           
@@ -77,7 +77,7 @@ export default function Footer () {
             title="Learn"
             links={[
               { href: "/school/", text: "School" },
-              { href: "/glossary/", text: "Glossary" },
+              { href: "/agentic-workflows/", text: "Agentic Workflows" },
               { href: "/how-to-write/", text: "How to Write" },
               { href: "/docs/how-to-write-an-essay/", text: "How to Write an Essay" },
             ]}
@@ -87,8 +87,7 @@ export default function Footer () {
             title="Resources"
             links={[
               { href: "/docs/", text: "Docs" },
-              { href: "/ai-essay-writer/", text: "AI Essay Writer" },
-              { href: "/agentic-workflows/", text: "Agentic Workflows" },
+              { href: "/glossary/", text: "Glossary" },
               { href: "/prompt-library/", text: "Prompt Library" },
             ]}
           />
@@ -96,7 +95,7 @@ export default function Footer () {
           <FooterColumn 
             title="Company"
             links={[
-              { href: "/about/", text: "About Us" },
+              { href: "/about/", text: "About" },
               { href: "/blog/", text: "Blog" },
               { href: "/contact/", text: "Contact" },
               { href: "/privacy/", text: "Privacy" },
