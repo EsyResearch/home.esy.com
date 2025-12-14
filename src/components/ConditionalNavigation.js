@@ -80,7 +80,7 @@ const ConditionalNavigation = () => {
   // - On essays index only after scrolling past main search
   // - On templates index only after scrolling past main search
   // - On scrollytelling index only after scrolling past discovery bar
-  // - Always on about, privacy, terms, agentic-workflows (no in-page search)
+  // - NO search on about, privacy, terms, agentic-workflows (informational pages)
   const shouldShowHeaderSearch = 
     (isPromptLibraryPage && (isPromptLibraryIndex ? showHeaderSearch : true)) ||
     (isGlossaryPage && (isGlossaryIndex ? showHeaderSearch : true)) ||
@@ -88,11 +88,7 @@ const ConditionalNavigation = () => {
     (isTemplatesPage && (isTemplatesIndex ? showHeaderSearch : true)) ||
     (isScrollytellingIndex && showHeaderSearch) ||
     (isEssaysPage && showHeaderSearch) ||
-    (isHomepage && showHeaderSearch) ||
-    isAboutPage ||
-    isPrivacyPage ||
-    isTermsPage ||
-    isAgenticWorkflowsPage;
+    (isHomepage && showHeaderSearch);
   
   // Determine search context using centralized system
   const searchContext = getSearchContextFromPath(pathname);
