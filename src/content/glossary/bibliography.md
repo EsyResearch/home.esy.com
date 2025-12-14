@@ -2,42 +2,43 @@
 title: "Bibliography"
 category: "citation"
 description: "A list of sources cited or consulted in a research project"
-difficulty: "Beginner"
 relatedTerms: ["citation", "mla-format", "apa-format", "research"]
 ---
 
-## Overview
+A bibliography is a list of all sources cited or consulted during research. It appears at the end of your paper and provides complete publication information.
 
-A bibliography is a comprehensive list of all sources cited or consulted during research. It appears at the end of academic papers and provides complete publication information for each source, allowing readers to locate and verify the original materials.
+## Types
 
-## Usage
+| Type | Contents |
+|------|----------|
+| **Works Cited** (MLA) | Only sources directly cited |
+| **References** (APA) | Sources cited in the paper |
+| **Bibliography** | All sources consulted, cited or not |
+| **Annotated** | Includes brief descriptions of each source |
 
-### Types of Bibliographies
-- **Works Cited**: Only sources directly cited in the paper
-- **References**: Complete list of sources (APA style)
-- **Bibliography**: All sources consulted, whether cited or not
-- **Annotated Bibliography**: Includes brief descriptions of each source
+## Formatting Rules
 
-### Formatting Requirements
-- Alphabetical order by author's last name
-- Consistent formatting style (MLA, APA, Chicago)
-- Complete publication information
-- Proper indentation and spacing
+- Alphabetize by author's last name
+- Use hanging indent (first line flush, subsequent indented)
+- Double-space entries
+- Follow your citation style consistently
 
 ## Examples
 
-### MLA Works Cited
-```
-Smith, John. "The Impact of Social Media." Journal of Communication, vol. 15, no. 3, 2020, pp. 42-58.
-Johnson, Mary. Digital Age Communication. University Press, 2019.
-```
+**MLA:**
+Smith, John. "Social Media Impact." *Journal of Communication*, vol. 15, no. 3, 2020, pp. 42-58.
 
-### APA References
-```
-Smith, J. (2020). The impact of social media. Journal of Communication, 15(3), 42-58.
-Johnson, M. (2019). Digital age communication. University Press.
-```
+**APA:**
+Smith, J. (2020). Social media impact. *Journal of Communication*, 15(3), 42-58.
 
-## History
+**Chicago:**
+Smith, John. "Social Media Impact." *Journal of Communication* 15, no. 3 (2020): 42-58.
 
-The bibliography format evolved from medieval manuscript catalogs and library inventories. The modern academic bibliography developed in the 19th century as universities standardized research documentation practices. 
+> Your bibliography is your essay's paper trail—it shows readers where your evidence comes from.
+
+## Quick Tips
+
+- Build your bibliography as you research
+- Double-check formatting against official guidelines
+- Include all required information (author, title, date, etc.)
+- Use citation management tools to stay organized

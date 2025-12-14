@@ -2,39 +2,41 @@
 title: "Citation"
 category: "citation"
 description: "A reference to a source of information used in writing"
-difficulty: "Beginner"
-relatedTerms: ["mla-format", "apa-format", "evidence", "research"]
+relatedTerms: ["mla-format", "apa-format", "evidence", "plagiarism"]
 ---
 
-## Overview
+A citation is a reference to a source used in your writing. It gives credit to original authors, allows readers to verify claims, and demonstrates research depth.
 
-A citation is a reference to a source of information used in your writing. It serves multiple purposes: giving credit to original authors, allowing readers to verify your claims, and demonstrating the depth of your research.
+## When to Cite
 
-## Usage
-
-### Why Citations Matter
-- **Academic integrity**: Shows you're not claiming others' ideas as your own
-- **Reader verification**: Allows readers to check your sources
-- **Research depth**: Demonstrates thorough research and engagement
-
-### When to Cite
-- **Quote directly** from a source
+- **Quote** directly from a source
 - **Paraphrase** someone else's ideas
 - **Summarize** research or findings
 - **Use statistics** or data
+- **Reference** specific facts that aren't common knowledge
 
-## Examples
+## Major Citation Styles
 
-### MLA In-Text Citation
-```
-"According to recent studies, social media usage has increased dramatically" (Smith 45).
-```
+| Style | Used In |
+|-------|---------|
+| **MLA** | Literature, humanities, arts |
+| **APA** | Psychology, social sciences, education |
+| **Chicago** | History, some humanities |
 
-### APA In-Text Citation
-```
-"Recent studies indicate that social media usage has increased dramatically" (Smith, 2020, p. 45).
-```
+## In-Text Examples
 
-## History
+**MLA:** "Social media affects teenagers" (Smith 45).
 
-Citation practices evolved from medieval scholarly traditions. The modern academic citation system developed in the 19th century as universities formalized research standards and plagiarism prevention measures. 
+**APA:** "Social media affects teenagers" (Smith, 2020, p. 45).
+
+**Chicago:** Social media affects teenagers.¹
+
+> When in doubt, cite. It's better to over-cite than to risk plagiarism.
+
+## Quick Tips
+
+- Cite as you write, not after
+- Keep track of all your sources
+- Use citation management tools (Zotero, EasyBib)
+- Follow your instructor's preferred style
+- Always verify generated citations against official guidelines

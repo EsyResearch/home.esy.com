@@ -1,0 +1,256 @@
+/* GlossaryTermPage - Simplified layout with CSS Grid */
+
+.page {
+  --content-width: 680px;
+  --gap: 2rem;
+  
+  display: grid;
+  grid-template-columns: 1fr min(var(--content-width), calc(100% - var(--gap) * 2)) 1fr;
+  min-height: 100vh;
+  padding-top: 6rem;
+  background: #0a0a0f;
+  color: #e4e4e7;
+}
+
+.page > * {
+  grid-column: 2;
+}
+
+/* Article */
+.article {
+  padding: 2rem 0 6rem;
+}
+
+.article header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--badge-color) 20%, transparent);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--badge-color) 10%, transparent);
+  color: var(--badge-color);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.article h1 {
+  margin: 0;
+  font-family: var(--font-literata), Georgia, serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #fafafa;
+}
+
+.pronunciation {
+  margin: 0.75rem 0 0;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: #71717a;
+}
+
+/* Prose - cascading markdown styles */
+.prose {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: #d4d4d8;
+}
+
+.prose h2 {
+  margin: 2.25rem 0 0.875rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-family: var(--font-literata), Georgia, serif;
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: #fafafa;
+}
+
+.prose h2:first-child {
+  margin-top: 0;
+}
+
+.prose h3 {
+  margin: 1.75rem 0 0.625rem;
+  font-family: var(--font-literata), Georgia, serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #e4e4e7;
+}
+
+.prose p {
+  margin: 0 0 1rem;
+  color: #a1a1aa;
+}
+
+.prose strong {
+  font-weight: 600;
+  color: #fafafa;
+}
+
+.prose em {
+  font-style: italic;
+  color: #d4d4d8;
+}
+
+.prose ul,
+.prose ol {
+  margin: 0 0 1.25rem;
+  padding-left: 1.25rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
+  color: #a1a1aa;
+}
+
+.prose li::marker {
+  color: #6366f1;
+}
+
+.prose blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.08));
+  border-left: 3px solid #6366f1;
+  border-radius: 0 8px 8px 0;
+  font-style: normal;
+}
+
+.prose blockquote p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: #d4d4d8;
+}
+
+.prose blockquote strong {
+  color: #a5b4fc;
+}
+
+.prose code {
+  padding: 0.15rem 0.4rem;
+  background: rgba(99, 102, 241, 0.12);
+  border-radius: 4px;
+  font-family: 'SF Mono', 'Fira Code', Consolas, monospace;
+  font-size: 0.875em;
+  color: #a5b4fc;
+}
+
+.prose pre {
+  margin: 1.25rem 0;
+  padding: 1rem 1.25rem;
+  background: #18181b;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.prose pre code {
+  padding: 0;
+  background: none;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #e4e4e7;
+}
+
+.prose table {
+  width: 100%;
+  margin: 1.25rem 0;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.prose th,
+.prose td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.prose th {
+  font-weight: 600;
+  color: #fafafa;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.prose td {
+  color: #a1a1aa;
+}
+
+/* Footer */
+.article footer {
+  margin-top: 3rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.article footer h2 {
+  margin: 0 0 0.875rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #52525b;
+}
+
+.related {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.related a {
+  padding: 0.5rem 0.875rem;
+  background: #18181b;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: capitalize;
+  color: #a1a1aa;
+  transition: all 0.15s ease;
+}
+
+.related a:hover {
+  background: #27272a;
+  border-color: rgba(99, 102, 241, 0.3);
+  color: #fafafa;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .page {
+    --gap: 1rem;
+    padding-top: 5rem;
+  }
+
+  .article {
+    padding: 1.5rem 0 4rem;
+  }
+
+  .article h1 {
+    font-size: 2rem;
+  }
+
+  .prose {
+    font-size: 1rem;
+  }
+
+  .prose h2 {
+    font-size: 1.25rem;
+  }
+}

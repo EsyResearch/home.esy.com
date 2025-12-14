@@ -1,39 +1,76 @@
-import React from 'react';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getGlossaryTerm, getAllGlossarySlugs } from '@/lib/glossaryUtils';
-import GlossaryTermRenderer from '@/components/Glossary/GlossaryTermRenderer';
+import GlossaryTermPage from '@/components/Glossary/GlossaryTermPage';
 
 // Generate static params for all known terms
 export async function generateStaticParams() {
   const slugs = getAllGlossarySlugs();
-  
-  return slugs.map((slug) => ({
-    id: slug,
-  }));
+  return slugs.map((slug) => ({ id: slug }));
 }
 
-const GlossaryTermPage = async ({ params }: { params: Promise<{ id: string }> }) => {
-  try {
-    const { id } = await params;
-    const termData = await getGlossaryTerm(id);
-    
-    if (!termData) {
-      notFound();
-    }
-    
-    const { meta, content, isCompiled } = termData;
+// Generate metadata for SEO
+export async function generateMetadata({ 
+  params 
+}: { 
+  params: Promise<{ id: string }> 
+}): Promise<Metadata> {
+  const { id } = await params;
+  const termData = await getGlossaryTerm(id);
+  
+  if (!termData) {
+    return {
+      title: 'Term Not Found | Esy Glossary',
+    };
+  }
 
-    return (
-      <GlossaryTermRenderer 
-        meta={meta} 
-        Content={isCompiled ? content : null}
-        content={isCompiled ? null : content}
-      />
-    );
-  } catch (error) {
-    console.error('Glossary term page error:', error);
+  const { meta } = termData;
+  const title = `${meta.title} - Definition & Examples | Esy Glossary`;
+  const description = meta.description || `Learn about ${meta.title} in academic writing. Clear definition, usage examples, and related terms.`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'article',
+      url: `https://esy.com/glossary/${id}`,
+    },
+    twitter: {
+      card: 'summary',
+      title,
+      description,
+    },
+  };
+}
+
+export default async function Page({ 
+  params 
+}: { 
+  params: Promise<{ id: string }> 
+}) {
+  const { id } = await params;
+  const termData = await getGlossaryTerm(id);
+
+  if (!termData) {
     notFound();
   }
-};
 
-export default GlossaryTermPage; 
+  const { meta, content } = termData;
+
+  // Remove frontmatter from content if present
+  const cleanContent = content?.replace(/^---[\s\S]*?---/, '').trim() || '';
+
+  const term = {
+    slug: id,
+    title: meta.title || id.replace(/-/g, ' '),
+    category: meta.category?.toLowerCase() || 'writing',
+    description: meta.description || '',
+    pronunciation: meta.pronunciation,
+    relatedTerms: meta.relatedTerms || [],
+    content: cleanContent,
+  };
+
+  return <GlossaryTermPage term={term} />;
+}

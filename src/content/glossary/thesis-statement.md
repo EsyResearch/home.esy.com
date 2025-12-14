@@ -1,42 +1,36 @@
 ---
 title: "Thesis Statement"
 category: "writing"
-description: "A clear, concise statement that presents the main argument or claim of an essay"
-difficulty: "Intermediate"
-relatedTerms: ["essay", "argumentative-essay", "introduction", "outline"]
+description: "A clear, concise statement that presents the main argument of an essay"
+relatedTerms: ["essay", "introduction", "outline", "argumentative-essay"]
 ---
 
-## Overview
+A thesis statement is a sentence that presents the central argument or claim of your essay. It appears at the end of your introduction and guides everything that follows.
 
-A thesis statement is a clear, concise sentence that presents the main argument or claim of an essay. It serves as the foundation for the entire paper, guiding both the writer and reader through the argument.
+## Characteristics of a Strong Thesis
 
-## Usage
+- **Specific** — clearly states what the essay will discuss
+- **Arguable** — presents a debatable position
+- **Focused** — addresses one main idea
+- **Clear** — uses precise language
 
-### Characteristics of a Strong Thesis Statement
-- **Specific**: Clearly states what the essay will discuss
-- **Arguable**: Presents a position that can be debated
-- **Focused**: Addresses one main idea or argument
-- **Clear**: Uses precise language and avoids vague terms
+## Placement
 
-### Placement and Function
-- Typically appears at the end of the introduction
-- Guides the development of body paragraphs
-- Helps maintain focus throughout the essay
+The thesis typically appears as the last sentence of your introduction, serving as a bridge between your hook/background and your body paragraphs.
 
-## Examples
+## Example
 
-### Weak Thesis Statement
-```
-Social media is bad for teenagers.
-```
-*Problem: Too broad and lacks specificity*
+**Weak:**
+"Social media is bad for teenagers."
 
-### Strong Thesis Statement
-```
-Excessive social media use negatively impacts teenage sleep patterns, academic performance, and face-to-face social skills.
-```
-*Solution: Specific, arguable, and focused*
+**Strong:**
+"Excessive social media use negatively impacts teenage sleep patterns, academic performance, and face-to-face social skills."
 
-## History
+> The strong version is specific, arguable, and previews three supporting points.
 
-The concept of a thesis statement evolved from classical rhetoric, particularly Aristotle's emphasis on clear proposition statements. The modern academic thesis statement developed in the 19th century as universities formalized essay writing requirements. 
+## Quick Tips
+
+- Make sure your thesis can be debated
+- Avoid vague words like "good," "bad," or "interesting"
+- Include a roadmap of your main points
+- Revise your thesis as your essay develops

@@ -1,43 +1,51 @@
 ---
 title: "Research"
 category: "research"
-description: "Systematic investigation to discover new knowledge or validate existing information"
-difficulty: "Beginner"
+description: "Systematic investigation to discover information and validate claims"
 relatedTerms: ["evidence", "citation", "analysis", "brainstorming"]
 ---
 
-## Overview
+Research is the systematic process of gathering, analyzing, and interpreting information to answer questions or support arguments. It forms the foundation of credible academic writing.
 
-Research is the systematic process of gathering, analyzing, and interpreting information to answer questions or solve problems. It forms the foundation of academic writing and critical thinking.
+## Types of Research
 
-## Usage
+| Type | Description |
+|------|-------------|
+| **Primary** | Original data collection (surveys, interviews, experiments) |
+| **Secondary** | Analysis of existing sources (books, articles, studies) |
+| **Qualitative** | Focus on understanding and interpretation |
+| **Quantitative** | Focus on measurement and statistics |
 
-### Types of Research
-- **Primary Research**: Original data collection (surveys, experiments)
-- **Secondary Research**: Analysis of existing sources (literature review)
-- **Qualitative**: Focus on understanding and interpretation
-- **Quantitative**: Focus on measurement and statistics
+## The Research Process
 
-### Research Process
-1. Identify research question
-2. Review existing literature
-3. Design methodology
-4. Collect data
-5. Analyze findings
-6. Draw conclusions
+1. **Define** your research question
+2. **Review** existing literature
+3. **Gather** relevant sources
+4. **Evaluate** source credibility
+5. **Analyze** findings
+6. **Synthesize** into your argument
 
-## Examples
+## Evaluating Sources
 
-### Research Question
-```
-How does social media usage affect academic performance in college students?
-```
+- **Authority** — Who wrote it? What are their credentials?
+- **Accuracy** — Can claims be verified?
+- **Currency** — Is the information current?
+- **Purpose** — Why was this created?
+- **Objectivity** — Is there bias?
 
-### Literature Review
-```
-Previous studies (Smith, 2020; Johnson, 2019) have shown mixed results regarding social media's impact on academic performance.
-```
+> Good research means finding credible sources, not just convenient ones.
 
-## History
+## Where to Find Sources
 
-Research methodology has evolved from ancient philosophical inquiry to modern scientific methods. The scientific method, developed during the Renaissance, established systematic approaches to knowledge discovery that continue to influence academic research today. 
+- Academic databases (JSTOR, Google Scholar)
+- Library catalogs
+- Peer-reviewed journals
+- Government reports
+- Reputable news organizations
+
+## Quick Tips
+
+- Start early—good research takes time
+- Keep organized notes with full citation info
+- Look for primary sources when possible
+- Consider multiple perspectives

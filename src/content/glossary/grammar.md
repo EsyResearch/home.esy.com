@@ -2,42 +2,40 @@
 title: "Grammar"
 category: "grammar"
 description: "Rules and conventions governing the structure and use of language"
-difficulty: "Beginner"
 relatedTerms: ["sentence-structure", "punctuation", "writing"]
 ---
 
-## Overview
+Grammar is the set of rules that govern how words combine to form meaningful sentences. Correct grammar ensures clear, professional communication.
 
-Grammar encompasses the rules and conventions that govern how words are combined to form meaningful sentences. It includes syntax, morphology, and usage patterns that ensure clear communication.
+## Key Concepts
 
-## Usage
+| Concept | Description |
+|---------|-------------|
+| **Parts of Speech** | Nouns, verbs, adjectives, adverbs, etc. |
+| **Subject-Verb Agreement** | Subjects and verbs must match in number |
+| **Tense Consistency** | Maintain the same tense throughout |
+| **Pronoun Agreement** | Pronouns must match their antecedents |
 
-### Key Grammar Concepts
-- **Parts of Speech**: Nouns, verbs, adjectives, adverbs, etc.
-- **Sentence Structure**: Subject-verb agreement, clause relationships
-- **Punctuation**: Commas, periods, semicolons, apostrophes
-- **Tense**: Past, present, future verb forms
+## Common Errors
 
-### Common Grammar Rules
-- Subject-verb agreement
-- Proper pronoun usage
-- Consistent verb tense
-- Correct article usage (a, an, the)
+**Subject-Verb Agreement:**
+- ❌ The students *writes* essays.
+- ✓ The students *write* essays.
 
-## Examples
+**Pronoun Agreement:**
+- ❌ Everyone should bring *their* book. (informal)
+- ✓ Everyone should bring *his or her* book. (formal)
 
-### Subject-Verb Agreement
-```
-The student writes essays. (singular)
-The students write essays. (plural)
-```
+**Run-on Sentences:**
+- ❌ I like writing it is fun.
+- ✓ I like writing. It is fun.
+- ✓ I like writing; it is fun.
 
-### Pronoun Usage
-```
-Incorrect: Each student should bring their book.
-Correct: Each student should bring his or her book.
-```
+> Grammar errors distract readers from your ideas.
 
-## History
+## Quick Tips
 
-Grammar study began with ancient Greek and Roman scholars. Modern English grammar was formalized in the 18th century, with influential works like "A Grammar of the English Language" by William Cobbett (1818) establishing many conventions still used today. 
+- Read your work aloud to catch errors
+- Use grammar checkers as a starting point, not final authority
+- Learn the rules you break most often
+- When in doubt, simplify the sentence

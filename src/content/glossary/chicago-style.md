@@ -1,43 +1,45 @@
 ---
 title: "Chicago Style"
 category: "citation"
-description: "Chicago Manual of Style formatting for academic and professional writing"
-difficulty: "Intermediate"
-relatedTerms: ["citation", "apa-format", "mla-format"]
+description: "Chicago Manual of Style citation format for academic and professional writing"
+relatedTerms: ["citation", "apa-format", "mla-format", "bibliography"]
 ---
 
-## Overview
+Chicago Style is a comprehensive citation format used primarily in history, humanities, and professional publishing. It offers two systems: Notes-Bibliography and Author-Date.
 
-Chicago Style is a comprehensive writing and citation format used in history, literature, and the humanities. It offers two citation systems: Notes-Bibliography and Author-Date.
+## When to Use Chicago
 
-## Usage
-
-### When to Use Chicago Style
 - History papers and research
-- Literature and humanities
+- Some literature and humanities courses
 - Professional publishing
 - Art history and cultural studies
 
-### Key Features
-- Footnotes or endnotes for citations
-- Bibliography or reference list
-- Flexible formatting options
-- Emphasis on readability
+## Two Systems
 
-## Examples
+| System | Format | Best For |
+|--------|--------|----------|
+| **Notes-Bibliography** | Footnotes + bibliography | History, arts |
+| **Author-Date** | Parenthetical citations | Sciences, social sciences |
 
-### Notes-Bibliography System
-```
-1. John Smith, "Article Title," Journal Name 45, no. 2 (2020): 123.
-2. Mary Johnson, Book Title (City: Publisher, 2019), 45.
-```
+## Notes-Bibliography Examples
 
-### Author-Date System
-```
-(Smith 2020, 123)
-(Johnson 2019, 45)
-```
+**Footnote:**
+1. John Smith, "Article Title," *Journal Name* 45, no. 2 (2020): 123.
 
-## History
+**Bibliography:**
+Smith, John. "Article Title." *Journal Name* 45, no. 2 (2020): 120-135.
 
-First published in 1906, the Chicago Manual of Style has been the authoritative guide for American English usage and publishing. The 17th edition (2017) reflects modern digital publishing practices. 
+## Author-Date Examples
+
+**In-text:** (Smith 2020, 123)
+
+**Reference:** Smith, John. 2020. "Article Title." *Journal Name* 45 (2): 120-135.
+
+> Chicago's flexibility makes it adaptable to many disciplines.
+
+## Quick Tips
+
+- Check which system your instructor prefers
+- Footnotes allow for commentary, not just citations
+- Use shortened footnotes for repeated sources
+- Ibid. refers to the immediately preceding source
