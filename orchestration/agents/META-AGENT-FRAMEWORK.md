@@ -650,6 +650,7 @@ Current agents derived from this framework:
 | `meta-audit-orchestrator.md` | **Quality Orchestration** | Multi-Domain Audit Coordinator | **TOP-LEVEL ORCHESTRATOR** → Scrolling Auditor, Experience Auditor, Visual Auditor, Citation Audit, Quotes Audit |
 | `qa-remediation-orchestrator.md` | **Quality Remediation** | Iterative Fix Loop Coordinator | **ORCHESTRATOR** → Auditors (input), Engineers (fixes), Re-audit (verify); ← Meta Audit Orchestrator |
 | `seo-specialist-expert.md` | **Search Optimization** | SEO Strategy & Organic Growth | **Specialist** — Technical SEO, Content Optimization, SERP Features, Link Strategy |
+| `sitemap-canonical-expert.md` | **Sitemap & URL Architecture** | Sitemap Specialist & URL Standardization | **Specialist** — Sitemap generation, Canonical enforcement, Trailing slash policy, Crawl optimization; → SEO Specialist, → Software Engineer |
 | `seo-audit-agent.md` | **SEO Quality Assurance** | Page-Level SEO Auditor & Grader | **Auditor** → SEO Specialist, Visual Essay Orchestrator (G3); Uses `seo-element-extraction` skill |
 | `visual-essay-invocation-agent.md` | **Spec Generation** | Visual Essay Specification Architect | **Pre-processor** → Visual Essay Orchestrator (Phase 1); Uses `visual-essay-invocation` skill → stores to `specs/` |
 | `meta-prompt-enhancer.md` | **Universal Enhancement** | Prompt Architect & Instruction Designer | **Universal Pre-processor** → Any AI System, Any Agent; Uses CRISP-E framework (Context, Role, Intent, Specifics, Parameters, Examples) |
@@ -682,9 +683,10 @@ This meta-framework should evolve as patterns emerge:
 ---
 
 ## Last Updated
-December 13, 2025
+December 14, 2024
 
 ### Recent Changes
+- Added Sitemap & Canonical Expert to registry (sitemap generation, URL standardization, trailing slash enforcement)
 - Added Social Media Meta Expert to registry (dual-role: audit + implementation)
 - Added Meta Prompt Enhancer to registry (universal pre-processor)
 - Added creation date requirement (`> Created: [Month Day, Year]`) to agent template
