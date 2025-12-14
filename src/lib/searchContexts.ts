@@ -11,13 +11,14 @@ export type SearchContext =
   | 'glossary' 
   | 'school' 
   | 'essays' 
+  | 'scrollytelling'
   | 'blog' 
   | 'general';
 
 export interface SearchContextConfig {
   context: SearchContext;
   placeholder: string;
-  dataSource: 'prompts' | 'templates' | 'glossary' | 'school' | 'essays' | 'blog' | 'none';
+  dataSource: 'prompts' | 'templates' | 'glossary' | 'school' | 'essays' | 'scrollytelling' | 'blog' | 'none';
   searchUrl: string;
   resultUrlPattern: string;
   shouldAlwaysExpand: boolean;
@@ -70,6 +71,15 @@ export const SEARCH_CONTEXTS: Record<SearchContext, SearchContextConfig> = {
     shouldAlwaysExpand: true,
     description: 'Search through visual essays and research'
   },
+  'scrollytelling': {
+    context: 'scrollytelling',
+    placeholder: 'Search stories...',
+    dataSource: 'scrollytelling',
+    searchUrl: '/scrollytelling?q=',
+    resultUrlPattern: '/scrollytelling/',
+    shouldAlwaysExpand: true,
+    description: 'Search through interactive scrollytelling stories'
+  },
   'blog': {
     context: 'blog',
     placeholder: 'Search articles, topics, or authors...',
@@ -105,10 +115,13 @@ export const getSearchContextFromPath = (pathname: string): SearchContext => {
   if (pathname?.startsWith('/templates')) return 'templates';
   if (pathname?.startsWith('/glossary')) return 'glossary';
   if (pathname?.startsWith('/school')) return 'school';
+  if (pathname?.startsWith('/scrollytelling')) return 'scrollytelling';
   if (pathname?.startsWith('/essays')) return 'essays';
   if (pathname?.startsWith('/blog')) return 'blog';
   // Homepage uses essays context for search
   if (pathname === '/' || pathname === '') return 'essays';
+  // Info pages use essays context
+  if (pathname === '/about' || pathname === '/privacy' || pathname === '/terms' || pathname === '/agentic-workflows') return 'essays';
   return 'general';
 };
 

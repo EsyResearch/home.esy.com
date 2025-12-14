@@ -48,6 +48,15 @@ const ConditionalNavigation = () => {
   // Check if we're on the homepage
   const isHomepage = normalizedPath === '' || normalizedPath === '/';
   
+  // Check if we're on scrollytelling index
+  const isScrollytellingIndex = normalizedPath === '/scrollytelling';
+  
+  // Check if we're on static info pages (always show header search)
+  const isAboutPage = normalizedPath === '/about';
+  const isPrivacyPage = normalizedPath === '/privacy';
+  const isTermsPage = normalizedPath === '/terms';
+  const isAgenticWorkflowsPage = normalizedPath === '/agentic-workflows';
+  
   // Check if we're on docs pages
   const isDocsPage = normalizedPath?.startsWith('/docs');
   
@@ -70,13 +79,20 @@ const ConditionalNavigation = () => {
   // - On school index only after scrolling past main search
   // - On essays index only after scrolling past main search
   // - On templates index only after scrolling past main search
+  // - On scrollytelling index only after scrolling past discovery bar
+  // - Always on about, privacy, terms, agentic-workflows (no in-page search)
   const shouldShowHeaderSearch = 
     (isPromptLibraryPage && (isPromptLibraryIndex ? showHeaderSearch : true)) ||
     (isGlossaryPage && (isGlossaryIndex ? showHeaderSearch : true)) ||
     (isSchoolPage && (isSchoolIndex ? showHeaderSearch : isSchoolArticlePage)) ||
     (isTemplatesPage && (isTemplatesIndex ? showHeaderSearch : true)) ||
+    (isScrollytellingIndex && showHeaderSearch) ||
     (isEssaysPage && showHeaderSearch) ||
-    (isHomepage && showHeaderSearch);
+    (isHomepage && showHeaderSearch) ||
+    isAboutPage ||
+    isPrivacyPage ||
+    isTermsPage ||
+    isAgenticWorkflowsPage;
   
   // Determine search context using centralized system
   const searchContext = getSearchContextFromPath(pathname);

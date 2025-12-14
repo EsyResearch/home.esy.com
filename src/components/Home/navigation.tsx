@@ -33,7 +33,7 @@ export const getPageSuffix = (pathname) => {
 
 interface NavigationProps {
   showHeaderSearch?: boolean;
-  searchContext?: 'prompt-library' | 'templates' | 'glossary' | 'school' | 'essays' | 'blog' | 'general';
+  searchContext?: 'prompt-library' | 'templates' | 'glossary' | 'school' | 'essays' | 'scrollytelling' | 'blog' | 'general';
   pathname?: string;
 }
 
@@ -55,7 +55,7 @@ export default function Navigation ({
     const normalizedPathForNav = pathname?.endsWith('/') && pathname.length > 1 
       ? pathname.slice(0, -1) 
       : pathname || '';
-    const isSimplifiedNav = normalizedPathForNav === '/' || normalizedPathForNav === '' || normalizedPathForNav === '/essays' || normalizedPathForNav === '/school' || normalizedPathForNav === '/glossary' || normalizedPathForNav === '/prompt-library' || normalizedPathForNav === '/templates';
+    const isSimplifiedNav = normalizedPathForNav === '/' || normalizedPathForNav === '' || normalizedPathForNav === '/essays' || normalizedPathForNav === '/school' || normalizedPathForNav === '/glossary' || normalizedPathForNav === '/prompt-library' || normalizedPathForNav === '/templates' || normalizedPathForNav === '/scrollytelling' || normalizedPathForNav === '/about' || normalizedPathForNav === '/privacy' || normalizedPathForNav === '/terms' || normalizedPathForNav === '/agentic-workflows';
 
     // Detect theme from various sources with page-specific logic
     useEffect(() => {
@@ -307,6 +307,9 @@ export default function Navigation ({
             .then(res => res.json())
             .then(essays => setSearchData(essays))
             .catch(console.error);
+        } else if (searchContext === 'scrollytelling') {
+          // Scrollytelling page has its own built-in search, pass empty data for header
+          setSearchData([]);
         } else if (searchContext === 'blog') {
           // Blog posts data
           const blogPosts = [

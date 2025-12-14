@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef, useMemo, useCallback } from "react"
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { ArrowRight, Clock, Search, Grid, List, ChevronDown, X, SlidersHorizontal } from "lucide-react";
+import { useScrollHeaderSearch } from '@/hooks/useScrollHeaderSearch';
 import './scrollytelling-index.css';
 
 /*
@@ -890,6 +891,9 @@ const ScrollytellingClient: React.FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const discoveryBarRef = useRef<HTMLDivElement>(null);
+
+  // Show header search when discovery bar scrolls out of view
+  useScrollHeaderSearch(discoveryBarRef);
 
   // State from URL params
   const [searchQuery, setSearchQuery] = useState(searchParams.get('q') || '');
