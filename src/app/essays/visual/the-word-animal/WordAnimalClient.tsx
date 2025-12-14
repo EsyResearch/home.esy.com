@@ -104,6 +104,10 @@ const IMAGES = {
     libraryAlt: 'Natural history cabinet from Ferrante Imperato Dell\'Historia Naturale (1599)',
   },
   darwin: {
+    // Charles Darwin portrait - Public Domain (Julia Margaret Cameron, 1868)
+    // Source: Wikimedia Commons - https://commons.wikimedia.org/wiki/File:Charles_Darwin_photograph_by_Julia_Margaret_Cameron,_1868.jpg
+    portrait: 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Charles_Darwin_photograph_by_Julia_Margaret_Cameron%2C_1868.jpg',
+    portraitAlt: 'Charles Darwin portrait photograph by Julia Margaret Cameron (1868)',
     // Darwin finches - Public Domain (John Gould, 1845)
     finches: 'https://upload.wikimedia.org/wikipedia/commons/9/97/Darwin%27s_finches.jpeg',
     finchesAlt: 'Darwin\'s finches illustration by John Gould (1845) showing beak variations',
@@ -824,8 +828,8 @@ export default function WordAnimalClient() {
           name="Charles Darwin"
           epithet="The Father of Evolution"
           dates="1809–1882"
-          imageSrc={IMAGES.darwin.finches}
-          imageAlt="Bird species representing evolutionary diversity"
+          imageSrc={IMAGES.darwin.portrait}
+          imageAlt={IMAGES.darwin.portraitAlt}
           contributions={[
             "Proposed evolution by natural selection",
             "United all animals through common ancestry",
@@ -1077,7 +1081,11 @@ export default function WordAnimalClient() {
                 Public Domain, via <a href="https://commons.wikimedia.org/wiki/File:RitrattoMuseoFerranteImperato.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
               </li>
               <li>
-                <strong>Darwin's Finches:</strong> John Gould (1845), 
+                <strong>Darwin Portrait:</strong> Julia Margaret Cameron (1868),
+                Public Domain, via <a href="https://commons.wikimedia.org/wiki/File:Charles_Darwin_photograph_by_Julia_Margaret_Cameron,_1868.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              </li>
+              <li>
+                <strong>Darwin's Finches:</strong> John Gould (1845),
                 Public Domain, via <a href="https://commons.wikimedia.org/wiki/File:Darwin%27s_finches.jpeg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
               </li>
               <li>

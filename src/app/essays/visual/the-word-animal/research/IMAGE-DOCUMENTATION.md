@@ -298,7 +298,44 @@
 
 ---
 
-### 8. Darwin Era: Darwin's Finches
+### 8. Darwin Era: Charles Darwin Portrait
+
+```markdown
+## Image Documentation
+
+**Asset**: darwin-portrait-cameron.jpg
+**Title**: Charles Darwin photograph by Julia Margaret Cameron
+**Creator**: Julia Margaret Cameron
+**Date**: 1868
+**Medium**: Albumen print photograph
+
+**Source Institution**: Wikimedia Commons
+**Collection**: Wikipedia Commons - History of Science
+**Accession Number**: N/A
+**Source URL**: https://commons.wikimedia.org/wiki/File:Charles_Darwin_photograph_by_Julia_Margaret_Cameron,_1868.jpg
+
+**Rights Status**: Public Domain
+**Rights Verification**: 
+- Created 1868 (definitively before 1928)
+- Julia Margaret Cameron died 1879 (life + 70 years = 1949)
+- Works published before 1928 are definitively public domain
+**Usage Restrictions**: None (public domain)
+
+**Attribution Required**: Courtesy attribution recommended
+**Attribution Text**:
+> Julia Margaret Cameron, Charles Darwin photograph (1868), Public Domain, via Wikimedia Commons
+
+**Provenance Notes**: Portrait photograph of Charles Darwin by renowned Victorian photographer Julia Margaret Cameron. One of the most famous photographs of Darwin, taken when he was 59 years old.
+**Verification Date**: December 14, 2025
+**Researcher**: Image Research & Licensing Expert
+```
+
+**Direct Image URL**: `https://upload.wikimedia.org/wikipedia/commons/a/a0/Charles_Darwin_photograph_by_Julia_Margaret_Cameron%2C_1868.jpg`  
+**Verification**: ✅ Content-Type: image/jpeg
+
+---
+
+### 9. Darwin Era: Darwin's Finches
 
 ```markdown
 ## Image Documentation
@@ -335,7 +372,7 @@
 
 ---
 
-### 9. Darwin Era: Tree of Life Sketch
+### 10. Darwin Era: Tree of Life Sketch
 
 ```markdown
 ## Image Documentation
@@ -372,7 +409,7 @@
 
 ---
 
-### 10. Darwin Era: Trilobite Fossil
+### 11. Darwin Era: Trilobite Fossil
 
 ```markdown
 ## Image Documentation
@@ -406,7 +443,7 @@
 
 ---
 
-### 11. Modern Era: Chimpanzee Portrait
+### 12. Modern Era: Chimpanzee Portrait
 
 ```markdown
 ## Image Documentation
@@ -440,7 +477,7 @@
 
 ---
 
-### 12. Modern Era: DNA Structure
+### 13. Modern Era: DNA Structure
 
 ```markdown
 ## Image Documentation
