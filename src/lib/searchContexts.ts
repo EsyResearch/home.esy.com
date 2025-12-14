@@ -96,6 +96,8 @@ export const getSearchContextFromPath = (pathname: string): SearchContext => {
   if (pathname?.startsWith('/school')) return 'school';
   if (pathname?.startsWith('/essays')) return 'essays';
   if (pathname?.startsWith('/blog')) return 'blog';
+  // Homepage uses essays context for search
+  if (pathname === '/' || pathname === '') return 'essays';
   return 'general';
 };
 

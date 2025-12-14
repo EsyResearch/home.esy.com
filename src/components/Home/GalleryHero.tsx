@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, ChevronDown } from 'lucide-react';
+import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
 
 /**
  * GalleryHero Component
@@ -18,8 +19,31 @@ import { ArrowRight, ChevronDown } from 'lucide-react';
  */
 
 const GalleryHero: React.FC = () => {
+  const heroRef = useRef<HTMLElement>(null);
+  const { setShowHeaderSearch } = useHeaderSearch();
+
+  // Show header search when hero scrolls out of view
+  useEffect(() => {
+    const handleScroll = () => {
+      if (heroRef.current) {
+        const heroRect = heroRef.current.getBoundingClientRect();
+        // Show search when hero is mostly scrolled past (bottom of hero above viewport)
+        const shouldShowSearch = heroRect.bottom < 100;
+        setShowHeaderSearch(shouldShowSearch);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check initial state
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      setShowHeaderSearch(false); // Reset when leaving page
+    };
+  }, [setShowHeaderSearch]);
+
   return (
-    <section className="gallery-hero" aria-labelledby="hero-title">
+    <section ref={heroRef} className="gallery-hero" aria-labelledby="hero-title">
       {/* Atmospheric Background */}
       <div className="hero-background" aria-hidden="true">
         <div className="hero-gradient-overlay" />

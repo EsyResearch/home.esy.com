@@ -41,6 +41,9 @@ const ConditionalNavigation = () => {
   // Check if we're on essays page
   const isEssaysPage = normalizedPath === '/essays';
   
+  // Check if we're on the homepage
+  const isHomepage = normalizedPath === '' || normalizedPath === '/';
+  
   // Check if we're on docs pages
   const isDocsPage = normalizedPath?.startsWith('/docs');
   
@@ -66,7 +69,8 @@ const ConditionalNavigation = () => {
     (isPromptLibraryPage && (isPromptLibraryIndex ? showHeaderSearch : true)) ||
     (isGlossaryPage && (isGlossaryIndex ? showHeaderSearch : true)) ||
     (isSchoolPage && (isSchoolIndex ? showHeaderSearch : isSchoolArticlePage)) ||
-    (isEssaysPage && showHeaderSearch);
+    (isEssaysPage && showHeaderSearch) ||
+    (isHomepage && showHeaderSearch);
   
   // Determine search context using centralized system
   const searchContext = getSearchContextFromPath(pathname);
