@@ -29,6 +29,10 @@ This directory contains technical documentation for the Esy.com project.
 - `SEARCH_CONTEXT_SYSTEM.md` - Search functionality documentation
 - `SITEMAP.md` - Complete site structure
 
+### Front-End Patterns
+- `/front-end/` - Reusable front-end patterns and components
+  - `IMAGE_DISPLAY_PATTERNS.md` - Cover vs. Contain modes for responsive images
+
 ### Quick Start
 - `QUICK_START.md` - Getting started guide
 

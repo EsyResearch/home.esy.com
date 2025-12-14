@@ -374,16 +374,17 @@ interface ImageRevealProps {
   alt: string;
   caption?: string;
   era: 'ancient' | 'medieval' | 'renaissance' | 'enlightenment' | 'darwin' | 'modern';
+  contain?: boolean; // For illustrations/diagrams that shouldn't be cropped
 }
 
-const ImageReveal: React.FC<ImageRevealProps> = ({ src, alt, caption, era }) => {
+const ImageReveal: React.FC<ImageRevealProps> = ({ src, alt, caption, era, contain = false }) => {
   const [ref, isVisible] = useIntersectionReveal<HTMLDivElement>({
     threshold: 0.15,
     triggerOnce: true,
   });
   
   return (
-    <div ref={ref} className={`image-reveal era-${era} ${isVisible ? 'visible' : ''}`}>
+    <div ref={ref} className={`image-reveal era-${era} ${isVisible ? 'visible' : ''} ${contain ? 'contain-image' : ''}`}>
       <div className="image-reveal-inner">
         <Image
           src={src}
@@ -685,6 +686,7 @@ export default function WordAnimalClient() {
           alt={IMAGES.renaissance.anatomyAlt}
           caption="Comparative anatomy revealed hidden connections across species"
           era="renaissance"
+          contain
         />
         
         <FigureProfile
@@ -726,6 +728,7 @@ export default function WordAnimalClient() {
           alt={IMAGES.enlightenment.taxonomyAlt}
           caption="Systema Naturae—the book that named every living thing"
           era="enlightenment"
+          contain
         />
         
         <div className="narrative-block">
@@ -805,6 +808,7 @@ export default function WordAnimalClient() {
           alt={IMAGES.darwin.treeAlt}
           caption="The tree of life—Darwin's radical insight that all life is connected"
           era="darwin"
+          contain
         />
         
         <div className="narrative-block">
@@ -878,6 +882,7 @@ export default function WordAnimalClient() {
           alt={IMAGES.modern.dnaAlt}
           caption="DNA sequencing reveals the molecular definition of 'animal'"
           era="modern"
+          contain
         />
         
         <div className="narrative-block">

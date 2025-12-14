@@ -711,15 +711,18 @@
 
 .figure-image-wrapper {
   position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 8px;
+  background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
 }
 
 .figure-image {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: contain;
-  object-position: center top;
-  border-radius: 8px;
-  background: var(--bg-surface);
+  object-position: center center;
+  padding: var(--space-xs);
 }
 
 /* Era treatments for portraits */
@@ -855,21 +858,30 @@
 .image-reveal-inner {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
   border-radius: 8px;
   background: var(--bg-elevated);
 }
 
 .reveal-image {
-  object-fit: contain;
-  object-position: center;
-  background: var(--bg-surface);
+  object-fit: cover;
+  object-position: center center;
   transition: transform var(--duration-breath) var(--ease-out);
 }
 
 .image-reveal.visible .reveal-image {
   transform: scale(1.02);
+}
+
+/* For illustrations/diagrams that shouldn't be cropped */
+.image-reveal.contain-image .image-reveal-inner {
+  background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+}
+
+.image-reveal.contain-image .reveal-image {
+  object-fit: contain;
+  padding: var(--space-sm);
 }
 
 .image-vignette {
