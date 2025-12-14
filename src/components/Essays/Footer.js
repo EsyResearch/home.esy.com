@@ -40,10 +40,8 @@ const Footer = () => {
             fontSize: '0.813rem'
           }}>
             <Link href="/about/" style={{ color: elevatedDarkTheme.muted, textDecoration: 'none', transition: 'color 0.2s' }}>About</Link>
-            <Link href="/blog/" style={{ color: elevatedDarkTheme.muted, textDecoration: 'none', transition: 'color 0.2s' }}>Blog</Link>
             <Link href="/privacy/" style={{ color: elevatedDarkTheme.muted, textDecoration: 'none', transition: 'color 0.2s' }}>Privacy</Link>
             <Link href="/terms/" style={{ color: elevatedDarkTheme.muted, textDecoration: 'none', transition: 'color 0.2s' }}>Terms</Link>
-            <Link href="/contact/" style={{ color: elevatedDarkTheme.muted, textDecoration: 'none', transition: 'color 0.2s' }}>Contact</Link>
           </nav>
 
           <p style={{ 

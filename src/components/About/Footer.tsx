@@ -102,9 +102,8 @@ const Footer: React.FC<FooterProps> = ({ currentTheme }) => {
             </h4>
             <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
               <Link href="/about/" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>About</Link>
-              <Link href="/blog/" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Blog</Link>
-              <Link href="/contact/" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Contact</Link>
               <Link href="/privacy/" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Privacy</Link>
+              <Link href="/terms/" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Terms</Link>
             </nav>
           </div>
         </div>
