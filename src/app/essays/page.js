@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import EssaysGatewayClient from "./EssaysGatewayClient";
+import VisualEssaysClient from "./VisualEssaysClient";
 
 export const metadata = {
   title: "Visual Essays - Interactive Essay Examples | Esy",
@@ -39,8 +39,8 @@ export const metadata = {
 
 export default function EssaysHub() {
   return (
-    <Suspense fallback={<div className="essays-loading" />}>
-      <EssaysGatewayClient textEssays={[]} />
+    <Suspense fallback={<div className="visual-essays-loading" />}>
+      <VisualEssaysClient basePath="/essays" />
     </Suspense>
   );
 }
