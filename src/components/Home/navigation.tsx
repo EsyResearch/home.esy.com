@@ -530,27 +530,33 @@ export default function Navigation ({
                   href="/essays/visual" 
                   className="nav-link homepage-essays-link"
                   style={{
-                    color: 'rgba(255, 255, 255, 0.92)',
+                    color: 'rgba(255, 255, 255, 0.9)',
                     fontWeight: 500,
                     opacity: 1,
                     textDecoration: 'none',
                     position: 'relative',
-                    paddingBottom: '2px'
+                    letterSpacing: '0.01em'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderBottom = '1px solid rgba(180, 140, 255, 0.6)';
+                    e.currentTarget.style.color = 'rgba(255, 255, 255, 1)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderBottom = 'none';
+                    e.currentTarget.style.color = 'rgba(255, 255, 255, 0.9)';
                   }}
                 >
                   Essays
                 </Link>
-                <span style={{ 
-                  color: 'rgba(255, 255, 255, 0.25)', 
-                  margin: '0 1.5rem',
-                  fontWeight: 300
-                }}>·</span>
+                {/* Subtle vertical divider */}
+                <span 
+                  className="homepage-nav-divider"
+                  aria-hidden="true"
+                  style={{
+                    width: '1px',
+                    height: '14px',
+                    background: 'rgba(255, 255, 255, 0.2)',
+                    flexShrink: 0
+                  }}
+                />
               </>
             ) : (
               <NavDropdown 
@@ -625,16 +631,16 @@ export default function Navigation ({
                 style={{
                   color: 'rgba(255, 255, 255, 0.55)',
                   fontWeight: 400,
-                  opacity: 0.65,
-                  textDecoration: 'none'
+                  textDecoration: 'none',
+                  letterSpacing: '0.01em',
+                  transition: 'color 0.2s ease',
+                  marginRight: '0.5rem'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = 'rgba(255, 255, 255, 0.75)';
-                  e.currentTarget.style.opacity = '1';
+                  e.currentTarget.style.color = 'rgba(255, 255, 255, 0.85)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.color = 'rgba(255, 255, 255, 0.55)';
-                  e.currentTarget.style.opacity = '0.65';
                 }}
               >
                 {responsiveCTA.text}

@@ -239,6 +239,22 @@ html {
   opacity: 0.8;
 }
 
+/* Homepage simplified navigation */
+.homepage-essays-link,
+.homepage-app-link {
+  font-size: 0.9375rem; /* 15px - slightly refined */
+}
+
+.nav-links:has(.homepage-essays-link) {
+  gap: 1.25rem; /* Spacing around the divider */
+}
+
+/* Prevent default opacity hover - controlled via inline styles */
+.homepage-essays-link:hover,
+.homepage-app-link:hover {
+  opacity: 1;
+}
+
 .nav-cta {
   padding: 0.5rem 1.5rem;
   background: #8b5cf6;
@@ -1482,6 +1498,16 @@ html {
 @media (max-width: 768px) {
   .nav-links {
     display: flex;
+  }
+  
+  /* Mobile: Simplified homepage nav spacing */
+  .nav-links:has(.homepage-essays-link) {
+    gap: 1rem;
+  }
+  
+  .homepage-essays-link,
+  .homepage-app-link {
+    font-size: 0.875rem; /* 14px on mobile */
   }
   
   .hero-title {
