@@ -44,7 +44,7 @@ export default function Footer () {
             Visual essays and research-driven storytelling exploring history, language, power, and ideas.
             </p>
             <div className="footer-socials">
-              <a href="https://esyresearch.substack.com" target="_blank" className="social-link" aria-label="Substack">
+              <a href="https://research.esy.com" target="_blank" className="social-link" aria-label="Substack">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style={{ color: elevatedDarkTheme.subtle }}>
                   <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24l9.56-5.39 9.52 5.39V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
                 </svg>
