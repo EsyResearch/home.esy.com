@@ -78,7 +78,6 @@ export default function Footer () {
             links={[
               { href: "/school/", text: "School" },
               { href: "/agentic-workflows/", text: "Agentic Workflows" },
-              { href: "/how-to-write/", text: "How to Write" },
               { href: "/docs/how-to-write-an-essay/", text: "How to Write an Essay" },
             ]}
           />
@@ -96,10 +95,7 @@ export default function Footer () {
             title="Company"
             links={[
               { href: "/about/", text: "About" },
-              { href: "/blog/", text: "Blog" },
-              { href: "/contact/", text: "Contact" },
               { href: "/privacy/", text: "Privacy" },
-              { href: "/cookies/", text: "Cookies" },
               { href: "/terms/", text: "Terms" }
             ]}
           />
@@ -107,6 +103,9 @@ export default function Footer () {
         
         <div className="footer-bottom">
           <p style={{ color: elevatedDarkTheme.faint }}>&copy; 2025 Esy, LLC. All rights reserved.</p>
+          <p style={{ color: elevatedDarkTheme.faint, marginTop: '0.5rem' }}>
+            <a href="mailto:research@esy.com" style={{ color: elevatedDarkTheme.faint }}>research@esy.com</a>
+          </p>
         </div>
       </footer>
     );

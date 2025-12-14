@@ -47,6 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const excludedRoutes = [
     '/ai-writing-tools',
     '/essays/visual',
+    '/blog',
   ]
   
   // Automatically discover all static routes from the app directory

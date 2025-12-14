@@ -50,13 +50,13 @@ export default async function Page({
 }: { 
   params: Promise<{ id: string }> 
 }) {
-  const { id } = await params;
-  const termData = await getGlossaryTerm(id);
-
-  if (!termData) {
-    notFound();
-  }
-
+    const { id } = await params;
+    const termData = await getGlossaryTerm(id);
+    
+    if (!termData) {
+      notFound();
+    }
+    
   const { meta, content } = termData;
 
   // Remove frontmatter from content if present
