@@ -7,6 +7,7 @@
 
 export type SearchContext = 
   | 'prompt-library' 
+  | 'templates'
   | 'glossary' 
   | 'school' 
   | 'essays' 
@@ -16,7 +17,7 @@ export type SearchContext =
 export interface SearchContextConfig {
   context: SearchContext;
   placeholder: string;
-  dataSource: 'prompts' | 'glossary' | 'school' | 'essays' | 'blog' | 'none';
+  dataSource: 'prompts' | 'templates' | 'glossary' | 'school' | 'essays' | 'blog' | 'none';
   searchUrl: string;
   resultUrlPattern: string;
   shouldAlwaysExpand: boolean;
@@ -32,6 +33,15 @@ export const SEARCH_CONTEXTS: Record<SearchContext, SearchContextConfig> = {
     resultUrlPattern: '/prompt-library/',
     shouldAlwaysExpand: true,
     description: 'Search through AI prompts and templates'
+  },
+  'templates': {
+    context: 'templates',
+    placeholder: 'Search templates...',
+    dataSource: 'templates',
+    searchUrl: '/templates?search=',
+    resultUrlPattern: '/templates/',
+    shouldAlwaysExpand: true,
+    description: 'Search through writing templates and frameworks'
   },
   'glossary': {
     context: 'glossary',
@@ -92,6 +102,7 @@ export const getSearchContextConfig = (context: SearchContext): SearchContextCon
  */
 export const getSearchContextFromPath = (pathname: string): SearchContext => {
   if (pathname?.startsWith('/prompt-library')) return 'prompt-library';
+  if (pathname?.startsWith('/templates')) return 'templates';
   if (pathname?.startsWith('/glossary')) return 'glossary';
   if (pathname?.startsWith('/school')) return 'school';
   if (pathname?.startsWith('/essays')) return 'essays';

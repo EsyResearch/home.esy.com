@@ -41,6 +41,10 @@ const ConditionalNavigation = () => {
   // Check if we're on essays page
   const isEssaysPage = normalizedPath === '/essays';
   
+  // Check if we're on templates pages
+  const isTemplatesPage = normalizedPath?.startsWith('/templates');
+  const isTemplatesIndex = normalizedPath === '/templates';
+  
   // Check if we're on the homepage
   const isHomepage = normalizedPath === '' || normalizedPath === '/';
   
@@ -65,10 +69,12 @@ const ConditionalNavigation = () => {
   // - Always on school article pages (/school/articles/*)
   // - On school index only after scrolling past main search
   // - On essays index only after scrolling past main search
+  // - On templates index only after scrolling past main search
   const shouldShowHeaderSearch = 
     (isPromptLibraryPage && (isPromptLibraryIndex ? showHeaderSearch : true)) ||
     (isGlossaryPage && (isGlossaryIndex ? showHeaderSearch : true)) ||
     (isSchoolPage && (isSchoolIndex ? showHeaderSearch : isSchoolArticlePage)) ||
+    (isTemplatesPage && (isTemplatesIndex ? showHeaderSearch : true)) ||
     (isEssaysPage && showHeaderSearch) ||
     (isHomepage && showHeaderSearch);
   

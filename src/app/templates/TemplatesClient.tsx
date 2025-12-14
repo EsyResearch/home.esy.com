@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import { Sparkles, ArrowRight, Brain, Zap, Search } from 'lucide-react';
 import { elevatedDarkTheme } from '@/lib/theme';
+import { useScrollHeaderSearch } from '@/hooks/useScrollHeaderSearch';
 import {
   templateCategories,
   getAllTemplates,
@@ -22,11 +23,15 @@ import {
 } from '@/components/templates';
 
 export default function TemplatesClient() {
+  const searchBarRef = useRef<HTMLDivElement>(null);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [activeSubcategory, setActiveSubcategory] = useState<string | null>(null);
   const [activeDifficulty, setActiveDifficulty] = useState<TemplateDifficulty | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [showFilters, setShowFilters] = useState(true);
+
+  // Show header search when in-page search scrolls out of view
+  useScrollHeaderSearch(searchBarRef);
 
   // Get subcategories for active category
   const subcategories = useMemo(() => {
@@ -168,11 +173,13 @@ export default function TemplatesClient() {
           </p>
 
           {/* Search */}
-          <TemplateSearch
-            value={searchQuery}
-            onChange={setSearchQuery}
-            placeholder="Search prompts by title, description, or tags..."
-          />
+          <div ref={searchBarRef}>
+            <TemplateSearch
+              value={searchQuery}
+              onChange={setSearchQuery}
+              placeholder="Search prompts by title, description, or tags..."
+            />
+          </div>
         </div>
       </section>
 

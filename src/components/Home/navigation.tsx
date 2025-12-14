@@ -10,6 +10,7 @@ import NewsletterModal from "@/components/NewsletterModal/NewsletterModal";
 import NavDropdown from "@/components/NavDropdown/NavDropdown";
 import { VisualEssaysIcon, EssayExamplesIcon, WritingGuidesIcon, ChatGPTIcon, ClaudeIcon, GeminiIcon } from "@/components/NavDropdown/NavDropdownIcons";
 import { getAllPrompts } from "@/lib/prompts";
+import { getAllTemplates } from "@/lib/templates";
 import { getCTAConfig, getResponsiveCTAText } from "@/lib/ctaMapping";
 import { lightTheme } from "@/lib/lightTheme";
 
@@ -32,7 +33,7 @@ export const getPageSuffix = (pathname) => {
 
 interface NavigationProps {
   showHeaderSearch?: boolean;
-  searchContext?: 'prompt-library' | 'glossary' | 'school' | 'essays' | 'blog' | 'general';
+  searchContext?: 'prompt-library' | 'templates' | 'glossary' | 'school' | 'essays' | 'blog' | 'general';
   pathname?: string;
 }
 
@@ -287,6 +288,16 @@ export default function Navigation ({
             .then(res => res.json())
             .then(terms => setSearchData(terms))
             .catch(console.error);
+        } else if (searchContext === 'templates') {
+          // Load templates data
+          const templates = getAllTemplates().map(t => ({
+            id: t.slug,
+            slug: t.slug,
+            title: t.title,
+            description: t.description,
+            category: t.category,
+          }));
+          setSearchData(templates);
         } else if (searchContext === 'school') {
           // For school context, we'll pass empty data for now since school uses its own search
           setSearchData([]);
