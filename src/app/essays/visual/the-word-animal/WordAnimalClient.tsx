@@ -687,7 +687,7 @@ const ScrollLockSection: React.FC<ScrollLockSectionProps> = ({
   
   // If user prefers reduced motion, show complete state
   if (prefersReduced) {
-    return (
+  return (
       <div className={`scroll-lock-section ${className} reduced-motion`}>
         {children(100, 5)}
       </div>
@@ -1257,7 +1257,7 @@ const DNASpiral: React.FC = () => {
               />
             ))}
           </div>
-          
+      
           {/* DNA helix forming */}
           <div 
             className="dna-helix"
@@ -1318,25 +1318,60 @@ const DNASpiral: React.FC = () => {
 // SCROLL-LOCK HERO: "FIRST BREATH"
 // Per spec: 1200px lock duration
 // Choreography: Darkness → Eye → Breath → Title → Subtitle
+// Per immersive-experience-engineer.md: 
+// - Start with visual hook, not pure darkness
+// - Progressive reveal tied to scroll
+// - Smooth, premium feel
 // ===========================================
 
 const ScrollLockHero: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const prefersReduced = useReducedMotion();
+  const [heroProgress, setHeroProgress] = useState(0);
+  const [isHeroComplete, setIsHeroComplete] = useState(false);
   
-  // 120vh = ~1200px scroll depth per spec
-  const { isLocked, progress, isComplete, skipToEnd } = useScrollLock(heroRef, 120);
+  // Use Intersection Observer for scroll-based progress
+  useEffect(() => {
+    const element = heroRef.current;
+    if (!element || prefersReduced) return;
+    
+    const handleScroll = () => {
+      const rect = element.getBoundingClientRect();
+      const elementHeight = element.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      
+      // Calculate progress based on how much the hero has been scrolled through
+      // Hero is 300vh tall, so we progress as we scroll through it
+      const scrolled = -rect.top;
+      const scrollableDistance = elementHeight - viewportHeight;
+      
+      if (scrollableDistance > 0) {
+        const progress = Math.min(100, Math.max(0, (scrolled / scrollableDistance) * 100));
+        setHeroProgress(progress);
+        
+        if (progress >= 100 && !isHeroComplete) {
+          setIsHeroComplete(true);
+        }
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial check
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [prefersReduced, isHeroComplete]);
   
   // Calculate phase based on progress (per spec choreography)
   const getPhase = () => {
-    if (progress < 20) return 1; // The Darkness
-    if (progress < 40) return 2; // Eye Emerges
-    if (progress < 60) return 3; // The Breath
-    if (progress < 80) return 4; // Title Reveal
+    if (heroProgress < 15) return 1; // The Darkness + Eye hint
+    if (heroProgress < 35) return 2; // Eye Emerges
+    if (heroProgress < 55) return 3; // The Breath
+    if (heroProgress < 75) return 4; // Title Reveal
     return 5; // Subtitle & Release
   };
   
   const phase = getPhase();
+  const progress = heroProgress;
   
   // If user prefers reduced motion, show complete state immediately
   if (prefersReduced) {
@@ -1357,7 +1392,7 @@ const ScrollLockHero: React.FC = () => {
         <div className="hero-content">
           <span className="hero-kicker">The Etymology of</span>
           
-          <h1 className="hero-title">
+          <h1 className="hero-title" style={{ opacity: 1 }}>
             <span className="hero-title-animus">ANIMUS</span>
             <span className="hero-title-connector">
               <svg viewBox="0 0 60 24" className="arrow-svg">
@@ -1383,11 +1418,11 @@ const ScrollLockHero: React.FC = () => {
   return (
     <div 
       ref={heroRef}
-      className={`hero-scroll-lock-container ${isLocked ? 'is-locked' : ''} ${isComplete ? 'is-complete' : ''}`}
-      style={{ height: '400vh' }} // Height for scroll calculation
+      className={`hero-scroll-lock-container ${isHeroComplete ? 'is-complete' : ''}`}
+      style={{ height: '300vh' }} // Scroll distance for hero reveal
     >
       <header className={`hero-section hero-pinned phase-${phase}`}>
-        {/* Background - always present but darkness overlay adjusts */}
+        {/* Background with hero image */}
         <div className="hero-background">
           <Image
             src={IMAGES.hero.main}
@@ -1396,17 +1431,24 @@ const ScrollLockHero: React.FC = () => {
             priority
             className="hero-image"
             style={{ 
-              opacity: phase >= 2 ? Math.min(1, (progress - 20) / 20) : 0,
-              filter: `brightness(${0.2 + (progress / 100) * 0.15}) saturate(${0.5 + (progress / 100) * 0.3})`
+              // Start with image visible but dark, brighten as we scroll
+              opacity: Math.min(1, 0.3 + (progress / 100) * 0.7),
+              filter: `brightness(${0.25 + (progress / 100) * 0.25}) saturate(${0.6 + (progress / 100) * 0.4})`
             }}
           />
           <div 
             className="hero-overlay"
             style={{ 
-              opacity: phase === 1 ? 1 : Math.max(0.3, 1 - (progress / 100) * 0.7)
+              // Overlay fades as we progress
+              opacity: Math.max(0.4, 1 - (progress / 100) * 0.6)
             }}
           />
           <div className="hero-grain" />
+          
+          {/* Subtle breathing pulse on initial load - visual hook */}
+          {phase === 1 && (
+            <div className="hero-breath-indicator" />
+          )}
         </div>
         
         {/* Hero Content - reveals progressively */}
@@ -1415,20 +1457,22 @@ const ScrollLockHero: React.FC = () => {
           <span 
             className="hero-kicker"
             style={{
-              opacity: phase >= 3 ? Math.min(1, (progress - 40) / 20) : 0,
-              transform: `translateY(${phase >= 3 ? 0 : 20}px)`
+              opacity: phase >= 3 ? Math.min(1, (progress - 35) / 20) : 0,
+              transform: `translateY(${phase >= 3 ? 0 : 20}px)`,
+              transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
             The Etymology of
           </span>
           
           {/* Phase 4+: Title reveals */}
-          <h1 className="hero-title">
+          <h1 className="hero-title" style={{ opacity: 1 }}>
             <span 
               className="hero-title-animus"
               style={{
-                opacity: phase >= 4 ? Math.min(1, (progress - 60) / 10) : 0,
-                transform: `translateY(${phase >= 4 ? 0 : 30}px)`
+                opacity: phase >= 4 ? Math.min(1, (progress - 55) / 15) : 0,
+                transform: `translateY(${phase >= 4 ? 0 : 30}px)`,
+                transition: 'opacity 0.6s ease, transform 0.6s ease'
               }}
             >
               ANIMUS
@@ -1436,8 +1480,9 @@ const ScrollLockHero: React.FC = () => {
             <span 
               className="hero-title-connector"
               style={{
-                opacity: phase >= 4 ? Math.min(1, (progress - 65) / 10) : 0,
-                transform: `scale(${phase >= 4 ? 1 : 0.8})`
+                opacity: phase >= 4 ? Math.min(1, (progress - 60) / 10) : 0,
+                transform: `scale(${phase >= 4 ? 1 : 0.8})`,
+                transition: 'opacity 0.4s ease, transform 0.4s ease'
               }}
             >
               <svg viewBox="0 0 60 24" className="arrow-svg">
@@ -1447,15 +1492,17 @@ const ScrollLockHero: React.FC = () => {
                   stroke="currentColor" 
                   strokeWidth="2"
                   strokeDasharray="100"
-                  strokeDashoffset={phase >= 4 ? Math.max(0, 100 - (progress - 60) * 5) : 100}
+                  strokeDashoffset={phase >= 4 ? Math.max(0, 100 - (progress - 55) * 3) : 100}
+                  style={{ transition: 'stroke-dashoffset 0.3s ease' }}
                 />
               </svg>
             </span>
             <span 
               className="hero-title-animal"
               style={{
-                opacity: phase >= 4 ? Math.min(1, (progress - 70) / 10) : 0,
-                transform: `translateY(${phase >= 4 ? 0 : 30}px)`
+                opacity: phase >= 4 ? Math.min(1, (progress - 65) / 15) : 0,
+                transform: `translateY(${phase >= 4 ? 0 : 30}px)`,
+                transition: 'opacity 0.6s ease, transform 0.6s ease'
               }}
             >
               ANIMAL
@@ -1466,8 +1513,9 @@ const ScrollLockHero: React.FC = () => {
           <p 
             className="hero-subtitle"
             style={{
-              opacity: phase >= 5 ? Math.min(1, (progress - 80) / 10) : 0,
-              transform: `translateY(${phase >= 5 ? 0 : 20}px)`
+              opacity: phase >= 5 ? Math.min(1, (progress - 75) / 15) : 0,
+              transform: `translateY(${phase >= 5 ? 0 : 20}px)`,
+              transition: 'opacity 0.6s ease, transform 0.6s ease'
             }}
           >
             The Word That Named Every Creature That Breathes
@@ -1476,27 +1524,17 @@ const ScrollLockHero: React.FC = () => {
           <div 
             className="hero-scroll-cue"
             style={{
-              opacity: phase >= 5 ? Math.min(1, (progress - 90) / 10) : 0
+              opacity: phase >= 5 ? Math.min(1, (progress - 85) / 15) : (phase === 1 ? 0.6 : 0),
+              transition: 'opacity 0.6s ease'
             }}
           >
-            <span>Begin the Journey</span>
+            <span>{phase === 1 ? 'Scroll to Begin' : 'Begin the Journey'}</span>
             <div className="scroll-breath" />
           </div>
         </div>
         
-        {/* Skip Button - always visible during lock per accessibility spec */}
-        {isLocked && !isComplete && (
-          <button 
-            className="scroll-lock-skip"
-            onClick={skipToEnd}
-            aria-label="Skip introduction animation"
-          >
-            Skip intro
-          </button>
-        )}
-        
-        {/* Progress Indicator */}
-        {isLocked && !isComplete && (
+        {/* Progress Indicator at bottom */}
+        {!isHeroComplete && progress > 5 && (
           <div className="scroll-lock-progress" aria-hidden="true">
             <div 
               className="scroll-lock-progress-fill" 
