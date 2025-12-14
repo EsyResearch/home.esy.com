@@ -33,6 +33,53 @@ import {
 import './the-word-animal.css';
 
 // ===========================================
+// PARALLAX DEPTH SYSTEM
+// Per spec: 5-layer parallax with different speeds
+// Layer 0: 0.0 (static) | Layer 1: 0.2 (slow) | Layer 2: 0.5 (mid)
+// Layer 3: 1.0 (normal) | Layer 4: 1.3 (foreground)
+// ===========================================
+
+const PARALLAX_SPEEDS = {
+  static: 0,
+  slow: 0.2,
+  mid: 0.5,
+  normal: 1.0,
+  foreground: 1.3,
+};
+
+interface ParallaxState {
+  offset: number;
+  scrollY: number;
+}
+
+const useParallax = (speed: keyof typeof PARALLAX_SPEEDS = 'normal'): ParallaxState => {
+  const [state, setState] = useState<ParallaxState>({ offset: 0, scrollY: 0 });
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const offset = scrollY * PARALLAX_SPEEDS[speed];
+      setState({ offset, scrollY });
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [speed]);
+  
+  return state;
+};
+
+// Helper to apply parallax transform
+const getParallaxStyle = (scrollY: number, layer: number): React.CSSProperties => {
+  const speeds = [0, 0.2, 0.5, 1.0, 1.3];
+  const speed = speeds[layer] || 1.0;
+  return {
+    transform: `translateY(${scrollY * (1 - speed)}px)`,
+    willChange: 'transform',
+  };
+};
+
+// ===========================================
 // SCROLL-LOCK HOOK
 // Per spec: ./specs/invocation-spec.md
 // Following: orchestration/skills/visual-essay-invocation/references/scroll-lock-patterns.md
@@ -613,6 +660,661 @@ const ImageReveal: React.FC<ImageRevealProps> = ({ src, alt, caption, era, conta
 };
 
 // ===========================================
+// REUSABLE SCROLL-LOCK SECTION
+// Wrapper for chapter scroll-lock sequences
+// ===========================================
+
+interface ScrollLockSectionProps {
+  id: string;
+  lockHeight: number; // vh units
+  className?: string;
+  children: (progress: number, phase: number) => React.ReactNode;
+  onSkip?: () => void;
+}
+
+const ScrollLockSection: React.FC<ScrollLockSectionProps> = ({ 
+  id, 
+  lockHeight, 
+  className = '', 
+  children,
+}) => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const prefersReduced = useReducedMotion();
+  const { isLocked, progress, isComplete, skipToEnd } = useScrollLock(sectionRef, lockHeight);
+  
+  // Calculate phase (0-4 based on 25% intervals, or 0-5 for finer control)
+  const phase = Math.floor(progress / 20);
+  
+  // If user prefers reduced motion, show complete state
+  if (prefersReduced) {
+    return (
+      <div className={`scroll-lock-section ${className} reduced-motion`}>
+        {children(100, 5)}
+      </div>
+    );
+  }
+  
+  return (
+    <div 
+      ref={sectionRef}
+      id={id}
+      className={`scroll-lock-container ${className} ${isLocked ? 'is-locked' : ''} ${isComplete ? 'is-complete' : ''}`}
+      style={{ height: `${lockHeight + 100}vh` }}
+    >
+      <div className="scroll-lock-pinned">
+        {children(progress, phase)}
+        
+        {/* Skip button */}
+        {isLocked && !isComplete && (
+          <button 
+            className="scroll-lock-skip"
+            onClick={skipToEnd}
+            aria-label="Skip animation"
+          >
+            Skip
+          </button>
+        )}
+        
+        {/* Progress indicator */}
+        {isLocked && !isComplete && (
+          <div className="scroll-lock-progress" aria-hidden="true">
+            <div 
+              className="scroll-lock-progress-fill" 
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+// ===========================================
+// CHAPTER 1: ETYMOLOGY CRYSTALLIZATION
+// Duration: 800px | Choreography: Stone → Etymology → Definition → Breath
+// ===========================================
+
+const EtymologyCrystallization: React.FC = () => {
+  const { scrollY } = useParallax('normal');
+  
+  return (
+    <ScrollLockSection id="etymology-lock" lockHeight={80} className="etymology-crystallization">
+      {(progress, phase) => (
+        <div className="crystallization-stage">
+          {/* Layer 1: Stone inscription background (slow parallax) */}
+          <div
+            className="stone-texture parallax-layer-1"
+            style={{ 
+              opacity: Math.min(1, progress / 25),
+              ...getParallaxStyle(scrollY, 1)
+            }}
+          />
+
+          {/* Layer 2: ANIMA inscription (mid parallax) */}
+          <div
+            className="anima-inscription parallax-layer-2"
+            style={{
+              opacity: phase >= 0 ? Math.min(1, progress / 25) : 0,
+              textShadow: phase >= 1 ? `0 0 ${20 + progress * 0.5}px var(--accent-ancient)` : 'none',
+              ...getParallaxStyle(scrollY, 2)
+            }}
+          >
+            <span className="inscription-text">ANIMA</span>
+          </div>
+
+          {/* Layer 3: Etymology breakdown (normal parallax) */}
+          <div
+            className="etymology-breakdown parallax-layer-3"
+            style={{
+              opacity: phase >= 1 ? Math.min(1, (progress - 25) / 25) : 0,
+              transform: `translateY(${phase >= 1 ? 0 : 30}px)`,
+            }}
+          >
+            <div className="etymology-chain">
+              <span className="chain-link">*h₂enh₁- (PIE)</span>
+              <span className="chain-arrow">→</span>
+              <span className="chain-link">anima (Latin)</span>
+              <span className="chain-arrow">→</span>
+              <span className="chain-link">animalis</span>
+            </div>
+          </div>
+
+          {/* Layer 3: Definition unfolds */}
+          <div
+            className="definition-reveal parallax-layer-3"
+            style={{
+              opacity: phase >= 2 ? Math.min(1, (progress - 50) / 25) : 0,
+              transform: `translateY(${phase >= 2 ? 0 : 20}px)`
+            }}
+          >
+            <p className="definition-text">
+              <em>&ldquo;breath, soul, life force&rdquo;</em>
+            </p>
+            <p className="definition-subtext">
+              The invisible force that separates the living from the dead
+            </p>
+          </div>
+
+          {/* Layer 5: Dust particles overlay */}
+          <div
+            className="dust-particles parallax-layer-5"
+            style={{
+              opacity: phase >= 1 ? 0.3 : 0,
+            }}
+          />
+
+          {/* Layer 4: Breathing animation (foreground) */}
+          <div
+            className="breath-animation parallax-layer-4"
+            style={{
+              opacity: phase >= 3 ? Math.min(1, (progress - 75) / 25) : 0,
+              ...getParallaxStyle(scrollY, 4)
+            }}
+          >
+            <div 
+              className="breath-circle"
+              style={{
+                transform: `scale(${1 + Math.sin(progress * 0.1) * 0.1})`,
+              }}
+            />
+          </div>
+        </div>
+      )}
+    </ScrollLockSection>
+  );
+};
+
+// ===========================================
+// CHAPTER 2: BESTIARY UNFOLD
+// Duration: 1000px | Choreography: Parchment → Book opens → Illuminate → Meaning
+// ===========================================
+
+const BestiaryUnfold: React.FC = () => {
+  const { scrollY } = useParallax('normal');
+  
+  return (
+    <ScrollLockSection id="bestiary-lock" lockHeight={100} className="bestiary-unfold">
+      {(progress, phase) => (
+        <div className="bestiary-stage">
+          {/* Layer 1: Deep vellum background */}
+          <div
+            className="parchment-texture parallax-layer-1"
+            style={{ 
+              opacity: Math.min(1, progress / 30),
+              ...getParallaxStyle(scrollY, 1)
+            }}
+          />
+
+          {/* Layer 2: Manuscript page */}
+          <div
+            className="bestiary-book parallax-layer-2"
+            style={{
+              opacity: phase >= 1 ? Math.min(1, (progress - 30) / 20) : 0,
+              ...getParallaxStyle(scrollY, 2)
+            }}
+          >
+            <div
+              className="book-page left"
+              style={{
+                transform: `perspective(1000px) rotateY(${Math.min(0, -60 + (progress - 30) * 2)}deg)`
+              }}
+            />
+            <div
+              className="book-page right"
+              style={{
+                transform: `perspective(1000px) rotateY(${Math.max(0, 60 - (progress - 30) * 2)}deg)`
+              }}
+            />
+          </div>
+
+          {/* Layer 3: Illuminated details */}
+          <div
+            className="illuminated-animals parallax-layer-3"
+            style={{
+              opacity: phase >= 2 ? Math.min(1, (progress - 50) / 20) : 0,
+            }}
+          >
+            {['lion', 'eagle', 'pelican'].map((animal, i) => (
+              <div
+                key={animal}
+                className={`illuminated-creature ${animal}`}
+                style={{
+                  opacity: progress > 50 + i * 7 ? 1 : 0,
+                  filter: `brightness(${1 + (progress > 50 + i * 7 ? 0.5 : 0)})`,
+                  transitionDelay: `${i * 150}ms`
+                }}
+              />
+            ))}
+          </div>
+          
+          {/* Layer 5: Candlelight flicker overlay */}
+          <div 
+            className="candlelight-flicker parallax-layer-5"
+            style={{ opacity: phase >= 1 ? 0.5 : 0 }}
+          />
+          
+          {/* Moral meaning text */}
+          <div 
+            className="moral-meaning"
+            style={{
+              opacity: phase >= 3 ? Math.min(1, (progress - 70) / 30) : 0,
+              transform: `translateY(${phase >= 3 ? 0 : 20}px)`
+            }}
+          >
+            <p className="meaning-text">
+              "Each creature a letter in God's alphabet"
+            </p>
+          </div>
+        </div>
+      )}
+    </ScrollLockSection>
+  );
+};
+
+// ===========================================
+// CHAPTER 3: CABINET REVEAL
+// Duration: 800px | Choreography: Doors → Open → Specimens → Full cabinet
+// ===========================================
+
+const CabinetReveal: React.FC = () => {
+  const { scrollY } = useParallax('normal');
+  
+  return (
+    <ScrollLockSection id="cabinet-lock" lockHeight={80} className="cabinet-reveal">
+      {(progress, phase) => (
+        <div className="cabinet-stage">
+          {/* Layer 1: Dark wood background */}
+          <div 
+            className="wood-texture parallax-layer-1" 
+            style={getParallaxStyle(scrollY, 1)}
+          />
+
+          {/* Layer 2: Cabinet structure */}
+          <div 
+            className="cabinet-doors parallax-layer-2"
+            style={getParallaxStyle(scrollY, 2)}
+          >
+            <div
+              className="door left"
+              style={{
+                transform: `perspective(1000px) rotateY(${Math.min(0, -90 + progress * 1.8)}deg)`
+              }}
+            />
+            <div
+              className="door right"
+              style={{
+                transform: `perspective(1000px) rotateY(${Math.max(0, 90 - progress * 1.8)}deg)`
+              }}
+            />
+          </div>
+
+          {/* Layer 3: Specimens (staggered reveal) */}
+          <div
+            className="specimens-grid parallax-layer-3"
+            style={{
+              opacity: phase >= 2 ? Math.min(1, (progress - 50) / 25) : 0,
+            }}
+          >
+            {[1, 2, 3, 4, 5, 6].map((n, i) => (
+              <div
+                key={n}
+                className="specimen"
+                style={{
+                  opacity: progress > 50 + i * 4 ? 1 : 0,
+                  transform: `scale(${progress > 50 + i * 4 ? 1 : 0.8})`,
+                  transitionDelay: `${i * 100}ms`
+                }}
+              />
+            ))}
+          </div>
+          
+          {/* Layer 4: Glass reflections */}
+          <div 
+            className="glass-reflection parallax-layer-4"
+            style={{ 
+              opacity: phase >= 2 ? 0.3 : 0,
+              ...getParallaxStyle(scrollY, 4)
+            }}
+          />
+
+          {/* Pull back view */}
+          <div
+            className="cabinet-pullback"
+            style={{
+              opacity: phase >= 4 ? Math.min(1, (progress - 75) / 25) : 0,
+              transform: `scale(${phase >= 4 ? 0.9 + (100 - progress) * 0.001 : 1})`
+            }}
+          >
+            <p className="cabinet-label">The Cabinet of Curiosities</p>
+          </div>
+        </div>
+      )}
+    </ScrollLockSection>
+  );
+};
+
+// ===========================================
+// CHAPTER 4: CLASSIFICATION CASCADE
+// Duration: 1000px | Choreography: Animalia → Branches → Names → Primates → Homo sapiens
+// ===========================================
+
+const ClassificationCascade: React.FC = () => {
+  const { scrollY } = useParallax('normal');
+  
+  return (
+    <ScrollLockSection id="classification-lock" lockHeight={100} className="classification-cascade">
+      {(progress, phase) => (
+        <div className="classification-stage">
+          {/* Layer 1: Cream parchment background */}
+          <div 
+            className="cream-parchment parallax-layer-1" 
+            style={getParallaxStyle(scrollY, 1)}
+          />
+          
+          {/* ANIMALIA centered */}
+          <div 
+            className="kingdom-title"
+            style={{
+              opacity: Math.min(1, progress / 20),
+              transform: `scale(${phase >= 1 ? 0.8 : 1}) translateY(${phase >= 1 ? -30 : 0}%)`
+            }}
+          >
+            ANIMALIA
+          </div>
+          
+          {/* Branches growing */}
+          <svg 
+            className="taxonomy-tree"
+            viewBox="0 0 400 300"
+            style={{
+              opacity: phase >= 1 ? Math.min(1, (progress - 20) / 20) : 0,
+            }}
+          >
+            {/* Main trunk */}
+            <path 
+              d="M200 50 L200 100"
+              stroke="var(--accent-enlightenment)"
+              strokeWidth="3"
+              fill="none"
+              strokeDasharray="50"
+              strokeDashoffset={phase >= 1 ? Math.max(0, 50 - (progress - 20) * 2.5) : 50}
+            />
+            {/* Branches */}
+            {[-80, -40, 0, 40, 80].map((x, i) => (
+              <path 
+                key={i}
+                d={`M200 100 L${200 + x} 150`}
+                stroke="var(--accent-enlightenment)"
+                strokeWidth="2"
+                fill="none"
+                strokeDasharray="70"
+                strokeDashoffset={progress > 30 + i * 5 ? 0 : 70}
+                style={{ transition: 'stroke-dashoffset 0.3s ease' }}
+              />
+            ))}
+          </svg>
+          
+          {/* Species names cascade */}
+          <div 
+            className="species-names"
+            style={{
+              opacity: phase >= 2 ? Math.min(1, (progress - 40) / 20) : 0,
+            }}
+          >
+            {['Mammalia', 'Aves', 'Reptilia', 'Amphibia', 'Pisces'].map((name, i) => (
+              <span 
+                key={name}
+                className="species-name"
+                style={{
+                  opacity: progress > 40 + i * 4 ? 1 : 0,
+                  transform: `translateY(${progress > 40 + i * 4 ? 0 : 10}px)`,
+                  transitionDelay: `${i * 50}ms`
+                }}
+              >
+                {name}
+              </span>
+            ))}
+          </div>
+          
+          {/* Zoom to Primates */}
+          <div 
+            className="primates-zoom"
+            style={{
+              opacity: phase >= 3 ? Math.min(1, (progress - 60) / 20) : 0,
+              transform: `scale(${phase >= 3 ? 1 + (progress - 60) * 0.005 : 1})`
+            }}
+          >
+            <span className="primate-label">PRIMATES</span>
+          </div>
+          
+          {/* Homo sapiens highlight */}
+          <div 
+            className="homo-sapiens"
+            style={{
+              opacity: phase >= 4 ? Math.min(1, (progress - 80) / 20) : 0,
+            }}
+          >
+            <span 
+              className="sapiens-name"
+              style={{
+                animation: phase >= 4 ? 'pulse 1.5s ease-in-out infinite' : 'none'
+              }}
+            >
+              <em>Homo sapiens</em>
+            </span>
+          </div>
+        </div>
+      )}
+    </ScrollLockSection>
+  );
+};
+
+// ===========================================
+// CHAPTER 5: TREE GROWTH
+// Duration: 1200px | Choreography: Point → Branches → Phyla → Primates → Human
+// ===========================================
+
+const TreeGrowth: React.FC = () => {
+  const { scrollY } = useParallax('normal');
+  
+  return (
+    <ScrollLockSection id="tree-lock" lockHeight={120} className="tree-growth">
+      {(progress, phase) => (
+        <div className="tree-stage">
+          {/* Layer 1: Deep sepia background */}
+          <div 
+            className="sepia-wash parallax-layer-1" 
+            style={getParallaxStyle(scrollY, 1)}
+          />
+
+          {/* Layer 2: Tree structure (drawing animation) */}
+          <div
+            className="origin-point parallax-layer-2"
+            style={{
+              opacity: Math.min(1, progress / 20),
+              transform: `scale(${Math.min(1, progress / 10)})`,
+              ...getParallaxStyle(scrollY, 2)
+            }}
+          />
+          
+          {/* Tree branches growing */}
+          <svg 
+            className="evolution-tree"
+            viewBox="0 0 500 400"
+            style={{ opacity: phase >= 1 ? 1 : 0 }}
+          >
+            {/* Main trunk */}
+            <path 
+              d="M250 350 Q250 250 250 200"
+              stroke="var(--accent-darwin)"
+              strokeWidth="4"
+              fill="none"
+              strokeDasharray="200"
+              strokeDashoffset={Math.max(0, 200 - progress * 5)}
+            />
+            
+            {/* Major branches */}
+            {[
+              { path: "M250 200 Q200 150 150 100", label: "Arthropoda" },
+              { path: "M250 200 Q220 130 180 80", label: "Mollusca" },
+              { path: "M250 200 Q250 150 250 80", label: "Chordata" },
+              { path: "M250 200 Q280 130 320 80", label: "Cnidaria" },
+              { path: "M250 200 Q300 150 350 100", label: "Porifera" },
+            ].map((branch, i) => (
+              <g key={i}>
+                <path 
+                  d={branch.path}
+                  stroke="var(--accent-darwin)"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeDasharray="150"
+                  strokeDashoffset={progress > 30 ? Math.max(0, 150 - (progress - 30) * 4) : 150}
+                  style={{ transition: 'stroke-dashoffset 0.1s ease' }}
+                />
+                <text 
+                  x={branch.path.includes('150 100') ? 130 : branch.path.includes('350') ? 360 : 250}
+                  y={branch.path.includes('150 100') ? 90 : branch.path.includes('350') ? 90 : 70}
+                  className="branch-label"
+                  style={{
+                    opacity: progress > 50 + i * 5 ? 1 : 0,
+                    fontSize: '10px',
+                    fill: 'var(--text-tertiary)'
+                  }}
+                >
+                  {branch.label}
+                </text>
+              </g>
+            ))}
+            
+            {/* Primate branch highlight */}
+            <path 
+              d="M250 80 Q260 50 280 30"
+              stroke="var(--accent-modern)"
+              strokeWidth="3"
+              fill="none"
+              strokeDasharray="80"
+              strokeDashoffset={phase >= 3 ? 0 : 80}
+              style={{ transition: 'stroke-dashoffset 0.5s ease' }}
+            />
+          </svg>
+          
+          {/* Human silhouette */}
+          <div 
+            className="human-silhouette"
+            style={{
+              opacity: phase >= 4 ? Math.min(1, (progress - 80) / 20) : 0,
+              transform: `scale(${phase >= 4 ? 1 : 0.8})`
+            }}
+          >
+            <svg viewBox="0 0 50 100" className="silhouette-svg">
+              <ellipse cx="25" cy="15" rx="10" ry="12" fill="currentColor" />
+              <path d="M25 27 L25 60 M25 35 L10 50 M25 35 L40 50 M25 60 L15 90 M25 60 L35 90" 
+                stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" />
+            </svg>
+          </div>
+        </div>
+      )}
+    </ScrollLockSection>
+  );
+};
+
+// ===========================================
+// CHAPTER 6: DNA SPIRAL
+// Duration: 800px | Choreography: Particles → Helix → 98% → Diversity
+// ===========================================
+
+const DNASpiral: React.FC = () => {
+  const { scrollY } = useParallax('normal');
+  
+  return (
+    <ScrollLockSection id="dna-lock" lockHeight={80} className="dna-spiral">
+      {(progress, phase) => (
+        <div className="dna-stage">
+          {/* Layer 1: Clean laboratory white background */}
+          <div 
+            className="lab-white parallax-layer-1" 
+            style={getParallaxStyle(scrollY, 1)}
+          />
+
+          {/* Layer 2: DNA structure (animated rotation) */}
+          <div
+            className="particles parallax-layer-2"
+            style={{
+              opacity: phase < 2 ? 1 : 0,
+              ...getParallaxStyle(scrollY, 2)
+            }}
+          >
+            {Array.from({ length: 20 }).map((_, i) => (
+              <div
+                key={i}
+                className="particle"
+                style={{
+                  left: `${20 + (i % 5) * 15}%`,
+                  top: `${20 + Math.floor(i / 5) * 15}%`,
+                  transform: `translate(${(50 - (20 + (i % 5) * 15)) * (1 - progress / 50)}%, ${(50 - (20 + Math.floor(i / 5) * 15)) * (1 - progress / 50)}%)`,
+                  opacity: progress < 25 ? 1 : Math.max(0, 1 - (progress - 25) / 25)
+                }}
+              />
+            ))}
+          </div>
+          
+          {/* DNA helix forming */}
+          <div 
+            className="dna-helix"
+            style={{
+              opacity: phase >= 1 ? Math.min(1, (progress - 25) / 25) : 0,
+              transform: `rotateY(${progress * 3}deg)`
+            }}
+          >
+            <svg viewBox="0 0 100 200" className="helix-svg">
+              {Array.from({ length: 10 }).map((_, i) => {
+                const y = 20 + i * 18;
+                const offset = Math.sin(i * 0.8 + progress * 0.05) * 20;
+                return (
+                  <g key={i}>
+                    <circle cx={50 + offset} cy={y} r="4" fill="var(--accent-modern)" />
+                    <circle cx={50 - offset} cy={y} r="4" fill="var(--accent-ancient)" />
+                    <line 
+                      x1={50 + offset} y1={y} 
+                      x2={50 - offset} y2={y} 
+                      stroke="var(--text-muted)" 
+                      strokeWidth="2"
+                      opacity={progress > 50 ? 1 : 0}
+                    />
+                  </g>
+                );
+              })}
+            </svg>
+          </div>
+          
+          {/* 98% statistic */}
+          <div 
+            className="dna-statistic"
+            style={{
+              opacity: phase >= 2 ? Math.min(1, (progress - 50) / 25) : 0,
+              transform: `scale(${phase >= 2 ? 1 : 0.8})`
+            }}
+          >
+            <span className="stat-number">~99%</span>
+            <span className="stat-label">DNA shared with chimpanzees</span>
+          </div>
+          
+          {/* Diversity montage transition */}
+          <div 
+            className="diversity-fade"
+            style={{
+              opacity: phase >= 3 ? Math.min(1, (progress - 75) / 25) : 0,
+            }}
+          >
+            <p className="diversity-text">From breath to biology, from soul to sequence</p>
+          </div>
+        </div>
+      )}
+    </ScrollLockSection>
+  );
+};
+
+// ===========================================
 // SCROLL-LOCK HERO: "FIRST BREATH"
 // Per spec: 1200px lock duration
 // Choreography: Darkness → Eye → Breath → Title → Subtitle
@@ -856,7 +1558,10 @@ export default function WordAnimalClient() {
       
       {/* ============================================
           CHAPTER 1: THE BREATH OF LIFE
+          Scroll-Lock: "Etymology Crystallization" (800px)
           ============================================ */}
+      <EtymologyCrystallization />
+      
       <section className="chapter era-ancient" id="ancient">
         <ChapterHeader
           number="I"
@@ -944,7 +1649,10 @@ export default function WordAnimalClient() {
       
       {/* ============================================
           CHAPTER 2: BEASTS IN PARCHMENT
+          Scroll-Lock: "Bestiary Unfold" (1000px)
           ============================================ */}
+      <BestiaryUnfold />
+      
       <section className="chapter era-medieval" id="medieval">
         <ChapterHeader
           number="II"
@@ -1025,7 +1733,10 @@ export default function WordAnimalClient() {
       
       {/* ============================================
           CHAPTER 3: THE CABINET OF NATURE
+          Scroll-Lock: "Cabinet Reveal" (800px)
           ============================================ */}
+      <CabinetReveal />
+      
       <section className="chapter era-renaissance" id="renaissance">
         <ChapterHeader
           number="III"
@@ -1087,7 +1798,10 @@ export default function WordAnimalClient() {
       
       {/* ============================================
           CHAPTER 4: NAMING THE KINGDOM
+          Scroll-Lock: "Classification Cascade" (1000px)
           ============================================ */}
+      <ClassificationCascade />
+      
       <section className="chapter era-enlightenment" id="enlightenment">
         <ChapterHeader
           number="IV"
@@ -1167,7 +1881,10 @@ export default function WordAnimalClient() {
       
       {/* ============================================
           CHAPTER 5: THE FAMILY TREE
+          Scroll-Lock: "Tree Growth" (1200px)
           ============================================ */}
+      <TreeGrowth />
+      
       <section className="chapter era-darwin" id="darwin">
         <ChapterHeader
           number="V"
@@ -1241,7 +1958,10 @@ export default function WordAnimalClient() {
       
       {/* ============================================
           CHAPTER 6: COUSINS IN THE MIRROR
+          Scroll-Lock: "DNA Spiral" (800px)
           ============================================ */}
+      <DNASpiral />
+      
       <section className="chapter era-modern" id="modern">
         <ChapterHeader
           number="VI"
