@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import VisualEssaysClient from "./visual/VisualEssaysClient";
+import EssaysGatewayClient from "./EssaysGatewayClient";
 
 export const metadata = {
   title: "Visual Essays - Interactive Essay Examples | Esy",
@@ -19,7 +19,7 @@ export const metadata = {
     title: "Visual Essays - Interactive Essay Examples | Esy",
     description:
       "Essays that come alive as you explore. Discover history, science, and culture through beautifully crafted interactive narratives.",
-    url: "https://esy.com/essays",
+    url: "https://esy.com/essays/",
     type: "website",
   },
   twitter: {
@@ -32,12 +32,15 @@ export const metadata = {
     index: true,
     follow: true,
   },
+  alternates: {
+    canonical: "https://esy.com/essays/",
+  },
 };
 
 export default function EssaysHub() {
   return (
-    <Suspense fallback={<div className="visual-essays-loading" />}>
-      <VisualEssaysClient basePath="/essays" />
+    <Suspense fallback={<div className="essays-loading" />}>
+      <EssaysGatewayClient textEssays={[]} />
     </Suspense>
   );
 }

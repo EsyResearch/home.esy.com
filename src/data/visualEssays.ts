@@ -2,7 +2,7 @@
  * Visual Essays Data
  * 
  * SINGLE SOURCE OF TRUTH for all visual essays across the platform.
- * Used by /essays, /essays/visual, search functionality, and stats.
+ * Used by /essays, search functionality, and stats.
  * 
  * ORDERING: Essays are ordered by `number` (string, e.g., "01", "30").
  * The LATEST essay (highest number) is automatically featured.

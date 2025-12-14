@@ -414,7 +414,7 @@ const FinalCTA: React.FC = () => {
         </p>
         
         <div className="pe-cta-buttons">
-          <Link href="/essays/visual" className="pe-button primary">
+          <Link href="/essays/" className="pe-button primary">
             All Visual Essays
             <ArrowRight size={18} />
           </Link>

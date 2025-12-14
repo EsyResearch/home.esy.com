@@ -14,7 +14,7 @@ import './scrollytelling-showcase.css';
  * - Premium, immersive landing experience
  * - Links to canonical URLs at /essays/
  * - Targets "scrollytelling" keyword for SEO
- * - NOT a content hub - that's /essays/visual
+ * - NOT a content hub - that's /essays/
  */
 
 // Featured stories to showcase
@@ -71,7 +71,7 @@ const Hero: React.FC = () => {
         </p>
         
         <div className="hero-cta-group">
-          <Link href="/essays/visual" className="hero-cta-primary">
+          <Link href="/essays/" className="hero-cta-primary">
             <Play size={18} />
             Explore Visual Essays
           </Link>
@@ -219,7 +219,7 @@ const FeaturedSection: React.FC = () => {
       </div>
       
       <div className="featured-cta">
-        <Link href="/essays/visual" className="view-all-link">
+        <Link href="/essays/" className="view-all-link">
           View all {publishedVisualEssays.length} Visual Essays
           <ArrowRight size={18} />
         </Link>
@@ -275,7 +275,7 @@ const CTASection: React.FC = () => {
         <p className="cta-description">
           Explore our growing collection of visual essays
         </p>
-        <Link href="/essays/visual" className="cta-button">
+        <Link href="/essays/" className="cta-button">
           <Play size={20} />
           Start Exploring
         </Link>

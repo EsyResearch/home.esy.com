@@ -236,7 +236,7 @@ const VisualEssaysSection: React.FC = () => (
           </p>
         </div>
       </div>
-      <Link href="/essays/visual" className="section-link">
+      <Link href="/essays/" className="section-link">
         Explore all <ArrowRight size={14} />
       </Link>
     </div>
@@ -379,7 +379,7 @@ const EssaysGatewayClient: React.FC<EssaysGatewayClientProps> = ({ textEssays })
     const searchTerm = query || searchQuery;
     if (searchTerm.trim()) {
       // Navigate to visual essays with search query
-      router.push(`/essays/visual?q=${encodeURIComponent(searchTerm.trim())}`);
+      router.push(`/essays/?q=${encodeURIComponent(searchTerm.trim())}`);
     }
   };
 
