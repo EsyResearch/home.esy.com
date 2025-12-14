@@ -1952,22 +1952,6 @@ Each paragraph transitions smoothly, using sensory details to ground readers in 
                       Continue Free
                     </button>
                   </div>
-                  <p style={{
-                    fontSize: '0.813rem',
-                    color: 'rgba(255, 255, 255, 0.5)',
-                    textAlign: 'center'
-                  }}>
-                    Already have an account?{' '}
-                    <a
-                      href="/login"
-                      style={{
-                        color: '#8b5cf6',
-                        textDecoration: 'none'
-                      }}
-                    >
-                      Sign in
-                    </a>
-                  </p>
                 </div>
               ) : null}
             </div>

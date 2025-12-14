@@ -54,7 +54,7 @@ const Navigation = ({ scrolled }) => {
               }}>
                 Research
               </Link>
-              <Link href="/library/" style={{ 
+              <Link href="/prompt-library/" style={{ 
                 color: 'rgba(255, 255, 255, 0.6)', 
                 textDecoration: 'none',
                 fontSize: '0.875rem',

@@ -374,7 +374,7 @@ const NotFoundPage = () => {
                 Or formulate your own inquiry
               </p>
               
-              <Link href="/search">
+              <Link href="/essays/">
                 <button
                   style={{
                     padding: '0.875rem 2rem',

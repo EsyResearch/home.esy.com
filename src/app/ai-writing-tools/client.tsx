@@ -679,7 +679,7 @@ const AIWritingToolsHub = () => {
             flexWrap: 'wrap'
           }}>
             <Link
-              href="/app"
+              href="/ai-essay-writer/"
               style={{
                 padding: '1rem 2rem',
                 backgroundColor: '#8b5cf6',

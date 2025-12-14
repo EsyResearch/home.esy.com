@@ -53,7 +53,7 @@ const ContactNav: React.FC<ContactNavProps> = ({ scrolled, currentTheme }) => {
             </Link>
 
             <nav style={{ display: 'flex', gap: '2.5rem' }}>
-              <Link href="/write" style={{ 
+              <Link href="/essays/" style={{ 
                 color: currentTheme.muted, 
                 textDecoration: 'none',
                 fontSize: '0.938rem',
@@ -69,7 +69,7 @@ const ContactNav: React.FC<ContactNavProps> = ({ scrolled, currentTheme }) => {
               }}>
                 Prompts
               </Link>
-              <Link href="/learn" style={{ 
+              <Link href="/school/" style={{ 
                 color: currentTheme.muted, 
                 textDecoration: 'none',
                 fontSize: '0.938rem',

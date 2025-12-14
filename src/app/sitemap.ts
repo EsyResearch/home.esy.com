@@ -17,8 +17,8 @@ function findPageFiles(dir: string, baseDir: string = dir): string[] {
       const stat = fs.statSync(filePath)
       
       if (stat.isDirectory()) {
-        // Skip special Next.js directories and components
-        if (['api', 'components', '_components'].includes(file)) continue
+        // Skip special Next.js directories, components, and archived pages
+        if (['api', 'components', '_components', '_archive'].includes(file)) continue
         
         results.push(...findPageFiles(filePath, baseDir))
       } else if (file.match(/^page\.(js|jsx|ts|tsx)$/)) {

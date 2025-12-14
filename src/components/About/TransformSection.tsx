@@ -242,15 +242,7 @@ const TransformSection: React.FC<TransformSectionProps> = ({ currentTheme }) => 
             color: currentTheme.subtle,
             marginBottom: '1rem'
           }}>
-            Questions? Read our{' '}
-            <a href="/faq/" style={{
-              color: currentTheme.accent,
-              textDecoration: 'none',
-              fontWeight: 500
-            }}>
-              FAQ
-            </a>
-            {' '}or email{' '}
+            Questions? Email{' '}
             <a href="mailto:founders@esy.com" style={{
               color: currentTheme.accent,
               textDecoration: 'none',

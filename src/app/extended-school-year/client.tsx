@@ -498,7 +498,7 @@ const ESYLandingPage = () => {
               justifyContent: 'center',
               alignItems: 'center'
             }}>
-              <a href="/app" style={{
+              <a href="/ai-essay-writer/" style={{
                 padding: '1rem 2rem',
                 backgroundColor: '#8b5cf6',
                 borderRadius: '8px',
@@ -629,7 +629,7 @@ const ESYLandingPage = () => {
         </p>
         
         <a
-          href="/signup"
+          href="/school/"
           style={{
             padding: '1rem 2rem',
             backgroundColor: '#8b5cf6',
