@@ -13,6 +13,8 @@ import {
 } from 'lucide-react';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import { useBlogSearch } from '@/hooks/useBlogSearch';
+import { useScrollHeaderSearch } from '@/hooks/useScrollHeaderSearch';
+import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
 import ContextAwareNavigation from '@/components/Navigation/ContextAwareNavigation';
 import SchoolNewsletter from '@/components/School/SchoolNewsletter';
 import '@/app/globals.css';
@@ -22,8 +24,11 @@ const BlogPageClient = ({ allPosts, featuredPost }) => {
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
   const [hoveredCard, setHoveredCard] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [showHeaderSearch, setShowHeaderSearch] = useState(false);
   const searchBarRef = useRef(null);
+  const { showHeaderSearch } = useHeaderSearch();
+  
+  // Show header search when in-page search scrolls out of view
+  useScrollHeaderSearch(searchBarRef);
 
   // Enhanced blog dark theme - optimized for reading comfort
   const currentTheme = {
@@ -64,19 +69,6 @@ const BlogPageClient = ({ allPosts, featuredPost }) => {
       document.body.removeAttribute('data-page');
       document.documentElement.removeAttribute('data-page');
     };
-  }, []);
-
-  // Handle scroll to show/hide HeaderSearch
-  useEffect(() => {
-    const handleScroll = () => {
-      if (searchBarRef.current) {
-        const searchBarBottom = searchBarRef.current.getBoundingClientRect().bottom;
-        setShowHeaderSearch(searchBarBottom < 0);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Get unique categories from posts

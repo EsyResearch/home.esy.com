@@ -5,7 +5,7 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import GlossaryGrid from '@/components/Glossary/GlossaryGrid';
 import GlossarySidebar from '@/components/Glossary/GlossarySidebar';
 import { Theme, GlossaryTerm, GlossaryCategory, TermOfDay, CategoryType } from '@/types';
-import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
+import { useScrollHeaderSearch } from '@/hooks/useScrollHeaderSearch';
 import { elevatedDarkTheme } from '@/lib/theme';
 
 const GlossaryPage = () => {
@@ -17,17 +17,13 @@ const GlossaryPage = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
   const searchBarRef = useRef<HTMLDivElement>(null);
-  const { setShowHeaderSearch } = useHeaderSearch();
+
+  // Show header search when in-page search scrolls out of view
+  useScrollHeaderSearch(searchBarRef);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
-      
-      // Check if search bar is visible
-      if (searchBarRef.current) {
-        const rect = searchBarRef.current.getBoundingClientRect();
-        setShowHeaderSearch(rect.bottom < 0);
-      }
     };
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -38,7 +34,7 @@ const GlossaryPage = () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
     };
-  }, [setShowHeaderSearch]);
+  }, []);
 
   const currentTheme: Theme = elevatedDarkTheme as Theme;
 

@@ -3,7 +3,7 @@ import React, { useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import { useEssaySearch } from '@/hooks/useEssaySearch';
-import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
+import { useScrollHeaderSearch } from '@/hooks/useScrollHeaderSearch';
 import { elevatedDarkTheme } from '@/lib/theme';
 
 const HeroSection = ({ 
@@ -19,7 +19,6 @@ const HeroSection = ({
   searchPlaceholder = "Search essays..."
 }) => {
   const router = useRouter();
-  const { setShowHeaderSearch } = useHeaderSearch();
   const searchBarRef = useRef(null);
   
   // Responsive breakpoints
@@ -37,24 +36,8 @@ const HeroSection = ({
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
-  // Scroll detection for header search
-  useEffect(() => {
-    const handleScroll = () => {
-      if (searchBarRef.current) {
-        const searchBarRect = searchBarRef.current.getBoundingClientRect();
-        const shouldShowHeaderSearch = searchBarRect.bottom < 0;
-        setShowHeaderSearch(shouldShowHeaderSearch);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check initial state
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      setShowHeaderSearch(false); // Reset when leaving page
-    };
-  }, [setShowHeaderSearch]);
+  // Show header search when in-page search scrolls out of view
+  useScrollHeaderSearch(searchBarRef);
 
   const { searchResults, isLoading, searchTerm, setSearchTerm, showDropdown } = useEssaySearch({
     essays,

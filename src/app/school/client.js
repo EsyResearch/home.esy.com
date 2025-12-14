@@ -8,12 +8,11 @@ import SearchBar from '@/components/SearchBar/SearchBar';
 import { StructuredLearningPaths, EssentialResources } from '@/components/School';
 import SchoolNewsletter from '@/components/School/SchoolNewsletter';
 import { useSchoolSearch } from '@/hooks/useSchoolSearch';
-import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
+import { useScrollHeaderSearch } from '@/hooks/useScrollHeaderSearch';
 import { elevatedDarkTheme } from '@/lib/theme';
 
 const EsySchool = () => {
   const router = useRouter();
-  const { setShowHeaderSearch } = useHeaderSearch();
   const searchBarRef = useRef(null);
   const emailInputRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -21,6 +20,9 @@ const EsySchool = () => {
   const [viewMode, setViewMode] = useState('grid');
   const [scrollProgress, setScrollProgress] = useState(0);
   const [email, setEmail] = useState('');
+
+  // Show header search when in-page search scrolls out of view
+  useScrollHeaderSearch(searchBarRef);
 
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
@@ -54,25 +56,6 @@ const EsySchool = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Scroll detection for header search
-  useEffect(() => {
-    const handleScroll = () => {
-      if (searchBarRef.current) {
-        const searchBarRect = searchBarRef.current.getBoundingClientRect();
-        const shouldShowHeaderSearch = searchBarRect.bottom < 0;
-        setShowHeaderSearch(shouldShowHeaderSearch);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check initial state
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      setShowHeaderSearch(false); // Reset when leaving page
-    };
-  }, [setShowHeaderSearch]);
 
   const styles = {
     container: {

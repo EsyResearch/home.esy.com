@@ -7,12 +7,11 @@ import PromptCard from '@/components/PromptLibrary/PromptCard';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import type { SearchResult } from '@/components/SearchBar/SearchBar';
 import { usePromptSearch } from '@/hooks/usePromptSearch';
-import { useHeaderSearch } from '@/contexts/HeaderSearchContext';
+import { useScrollHeaderSearch } from '@/hooks/useScrollHeaderSearch';
 import { elevatedDarkTheme } from '@/lib/theme';
 
 const PromptLibrary = () => {
   const router = useRouter();
-  const { setShowHeaderSearch } = useHeaderSearch();
   const searchBarRef = useRef<HTMLDivElement>(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [copiedPrompt, setCopiedPrompt] = useState(null);
@@ -20,6 +19,9 @@ const PromptLibrary = () => {
   // Responsive breakpoints
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
+  
+  // Show header search when in-page search scrolls out of view
+  useScrollHeaderSearch(searchBarRef);
   
   useEffect(() => {
     const checkScreenSize = () => {
@@ -31,25 +33,6 @@ const PromptLibrary = () => {
     window.addEventListener('resize', checkScreenSize);
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
-
-  // Scroll detection for header search (only on prompt library index page)
-  useEffect(() => {
-    const handleScroll = () => {
-      if (searchBarRef.current) {
-        const searchBarRect = searchBarRef.current.getBoundingClientRect();
-        const shouldShowHeaderSearch = searchBarRect.bottom < 0;
-        setShowHeaderSearch(shouldShowHeaderSearch);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check initial state
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      setShowHeaderSearch(false); // Reset when leaving page
-    };
-  }, [setShowHeaderSearch]);
 
   // Reset all button styles when selectedCategory changes
   useEffect(() => {

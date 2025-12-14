@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useRef, useEffect, useState, useMemo } from "react";
+import React, { useRef, useState, useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Clock } from "lucide-react";
-import { useHeaderSearch } from "@/contexts/HeaderSearchContext";
+import { useScrollHeaderSearch } from "@/hooks/useScrollHeaderSearch";
 import SearchBar from "@/components/SearchBar/SearchBar";
 import { 
   publishedVisualEssays, 
@@ -349,28 +349,11 @@ interface EssaysGatewayClientProps {
 
 const EssaysGatewayClient: React.FC<EssaysGatewayClientProps> = ({ textEssays }) => {
   const router = useRouter();
-  const { setShowHeaderSearch } = useHeaderSearch();
   const searchBarRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Scroll detection for header search
-  useEffect(() => {
-    const handleScroll = () => {
-      if (searchBarRef.current) {
-        const searchBarRect = searchBarRef.current.getBoundingClientRect();
-        const shouldShowHeaderSearch = searchBarRect.bottom < 0;
-        setShowHeaderSearch(shouldShowHeaderSearch);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Check initial state
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      setShowHeaderSearch(false); // Reset when leaving page
-    };
-  }, [setShowHeaderSearch]);
+  // Show header search when in-page search scrolls out of view
+  useScrollHeaderSearch(searchBarRef);
 
   // Search results with memoization
   const searchResults = useMemo((): SearchResult[] => {
