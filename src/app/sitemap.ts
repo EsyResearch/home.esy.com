@@ -54,7 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const appDir = path.join(process.cwd(), 'src/app')
   const discoveredRoutes = findPageFiles(appDir)
     .map(route => route === '/' ? '' : route)
-    .filter(route => !excludedRoutes.includes(route))
+    .filter(route => !excludedRoutes.some(excluded => route === excluded || route.startsWith(excluded + '/')))
     .sort((a, b) => {
       if (a === '') return -1
       if (b === '') return 1
