@@ -34,8 +34,17 @@ import './the-word-animal.css';
 
 // ===========================================
 // IMAGE SOURCES - Verified Public Domain / CC Licensed
+// 
 // Documentation: ./research/IMAGE-DOCUMENTATION.md
-// All URLs verified with curl -sI for Content-Type: image/*
+// Following: orchestration/agents/research/image-research-licensing-expert.md
+// 
+// All images verified according to Image Research & Licensing Expert standards:
+// - Sourced from Tier 1 authoritative institutions (Wikimedia Commons, Met Museum)
+// - Licensing status confirmed with primary source
+// - URLs verified with curl -sI for Content-Type: image/*
+// - Complete provenance documented in IMAGE-DOCUMENTATION.md
+// - Attribution requirements per license type documented below
+// 
 // ===========================================
 
 const IMAGES = {
@@ -51,29 +60,36 @@ const IMAGES = {
     // Greek Temple - CC BY-SA 4.0
     inscription: 'https://upload.wikimedia.org/wikipedia/commons/f/f3/Temple_of_Hephaestus_in_Athens.jpg',
     inscriptionAlt: 'Temple of Hephaestus in Athens, Greece - ancient Greek architecture',
-    // Reuse Aristotle for mosaic context
-    mosaic: 'https://upload.wikimedia.org/wikipedia/commons/a/ae/Aristotle_Altemps_Inv8575.jpg',
-    mosaicAlt: 'Roman marble bust of Aristotle from Museo Nazionale Romano',
+    // Cave Canem Roman mosaic - Public Domain (ancient artwork, 2nd century BCE)
+    // Source: Wikimedia Commons - https://commons.wikimedia.org/wiki/File:Cave_canem_MAN_Napoli_Inv110666.jpg
+    mosaic: 'https://upload.wikimedia.org/wikipedia/commons/b/b4/Cave_canem_MAN_Napoli_Inv110666.jpg',
+    mosaicAlt: 'Cave Canem (Beware of Dog) Roman mosaic from Pompeii, Museo Archeologico Nazionale di Napoli',
   },
   medieval: {
     // Met Museum illuminated manuscript - CC0
     manuscript: 'https://images.metmuseum.org/CRDImages/rl/original/DT738.jpg',
     manuscriptAlt: 'Medieval illuminated manuscript depicting demons, from The Metropolitan Museum of Art',
-    // Cabinet of Curiosities - Public Domain (1655)
-    scriptorium: 'https://upload.wikimedia.org/wikipedia/commons/f/f5/Musei_Wormiani_Historia.jpg',
-    scriptorimAlt: 'Musei Wormiani Historia - Renaissance cabinet of curiosities (1655)',
-    // Reuse manuscript for lion context
-    lion: 'https://images.metmuseum.org/CRDImages/rl/original/DT738.jpg',
-    lionAlt: 'Medieval illuminated manuscript from The Metropolitan Museum of Art',
+    // Medieval scribe - Public Domain (15th century manuscript)
+    // Source: Wikimedia Commons - https://commons.wikimedia.org/wiki/File:Escribano.jpg
+    scriptorium: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Escribano.jpg',
+    scriptorimAlt: 'Medieval scribe at work in a scriptorium, from 15th century manuscript',
+    // Medieval bestiary lion - Public Domain (16th century manuscript)
+    // Source: Wikimedia Commons - https://commons.wikimedia.org/wiki/File:Histoires_de_Troyes_-_Nemeian_Lion_(Cognac).jpeg
+    lion: 'https://upload.wikimedia.org/wikipedia/commons/1/13/Histoires_de_Troyes_-_Nemeian_Lion_%28Cognac%29.jpeg',
+    lionAlt: 'Nemean Lion from Histoires de Troyes medieval manuscript (16th century)',
   },
   renaissance: {
+    // Vesalius anatomy - Public Domain (De humani corporis fabrica, 1543)
+    // Source: Wikimedia Commons - https://commons.wikimedia.org/wiki/File:Vesalius_Fabrica_p174.jpg
+    anatomy: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Vesalius_Fabrica_p174.jpg',
+    anatomyAlt: 'Anatomical illustration from Vesalius De humani corporis fabrica (1543)',
     // Cabinet of Curiosities - Public Domain (1655)
-    anatomy: 'https://upload.wikimedia.org/wikipedia/commons/f/f5/Musei_Wormiani_Historia.jpg',
-    anatomyAlt: 'Musei Wormiani Historia showing a cabinet of curiosities',
     cabinet: 'https://upload.wikimedia.org/wikipedia/commons/f/f5/Musei_Wormiani_Historia.jpg',
     cabinetAlt: 'Musei Wormiani Historia - 17th century cabinet of curiosities illustration by Ole Worm',
-    naturalist: 'https://upload.wikimedia.org/wikipedia/commons/f/f5/Musei_Wormiani_Historia.jpg',
-    naturalistAlt: 'Ole Worm\'s Museum Wormianum illustration showing natural specimens',
+    // Conrad Gessner portrait - Public Domain (1893 reproduction of 16th century original)
+    // Source: Wikimedia Commons - https://commons.wikimedia.org/wiki/File:Gessner_Conrad_1516-1565.jpg
+    naturalist: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/Gessner_Conrad_1516-1565.jpg',
+    naturalistAlt: 'Portrait of Conrad Gessner (1516-1565), Swiss naturalist and father of modern zoology',
   },
   enlightenment: {
     // Systema Naturae title page - Public Domain (1758)
@@ -82,8 +98,10 @@ const IMAGES = {
     // Linnaeus portrait - Public Domain
     specimens: 'https://upload.wikimedia.org/wikipedia/commons/c/c0/Carolus_Linnaeus.jpg',
     specimensAlt: 'Portrait of Carl Linnaeus (Carolus Linnaeus), father of modern taxonomy',
-    library: 'https://upload.wikimedia.org/wikipedia/commons/a/ae/Linnaeus1758-title-page.jpg',
-    libraryAlt: 'Systema Naturae title page representing Enlightenment scientific classification',
+    // Ferrante Imperato Natural History Cabinet - Public Domain (1599)
+    // Source: Wikimedia Commons - https://commons.wikimedia.org/wiki/File:RitrattoMuseoFerranteImperato.jpg
+    library: 'https://upload.wikimedia.org/wikipedia/commons/f/f3/RitrattoMuseoFerranteImperato.jpg',
+    libraryAlt: 'Natural history cabinet from Ferrante Imperato Dell\'Historia Naturale (1599)',
   },
   darwin: {
     // Darwin finches - Public Domain (John Gould, 1845)
@@ -103,9 +121,10 @@ const IMAGES = {
     // Chimpanzee - CC BY-SA 4.0
     primate: 'https://upload.wikimedia.org/wikipedia/commons/7/74/Pan_troglodytes_-_Serengeti-Park_Hodenhagen_10.jpg',
     primateAlt: 'Portrait of a chimpanzee (Pan troglodytes) showing expressive face',
-    // Wolf for diversity
-    diversity: 'https://upload.wikimedia.org/wikipedia/commons/6/69/Canis_lupus_laying_in_grass.jpg',
-    diversityAlt: 'Eurasian wolf representing animal kingdom diversity',
+    // Blue whale - Public Domain (NOAA, U.S. Government work)
+    // Source: Wikimedia Commons (via NOAA) - https://commons.wikimedia.org/wiki/File:Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg
+    diversity: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg',
+    diversityAlt: 'Blue whale (Balaenoptera musculus) representing animal kingdom diversity',
   },
 };
 
@@ -965,9 +984,141 @@ export default function WordAnimalClient() {
       </section>
       
       {/* ============================================
+          IMAGE CREDITS (per image-research-licensing-expert.md)
+          ============================================ */}
+      <footer className="image-credits-section">
+        <h3>Image Credits & Licensing</h3>
+        <p className="credits-intro">
+          All images sourced from authoritative institutions and verified for licensing status. 
+          Complete documentation available in <Link href="#sources">Sources</Link> section below.
+        </p>
+        
+        <div className="credits-grid">
+          <div className="credit-category">
+            <h4>Hero & Ancient Era</h4>
+            <ul className="credit-list">
+              <li>
+                <strong>Wolf Portrait:</strong> Canis lupus laying in grass by Bernard Landgraf, 
+                <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer"> CC BY-SA 3.0</a>, 
+                via <a href="https://commons.wikimedia.org/wiki/File:Canis_lupus_laying_in_grass.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              </li>
+              <li>
+                <strong>Aristotle Bust:</strong> Roman marble copy after Lysippos, 1st-2nd c. CE, 
+                Public Domain, via <a href="https://commons.wikimedia.org/wiki/File:Aristotle_Altemps_Inv8575.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              </li>
+              <li>
+                <strong>Temple of Hephaestus:</strong> 
+                <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer"> CC BY-SA 4.0</a>, 
+                via <a href="https://commons.wikimedia.org/wiki/File:Temple_of_Hephaestus_in_Athens.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              </li>
+              <li>
+                <strong>Cave Canem Mosaic:</strong> Roman mosaic from Pompeii (2nd c. BCE), Museo Archeologico Nazionale di Napoli, 
+                Public Domain, via <a href="https://commons.wikimedia.org/wiki/File:Cave_canem_MAN_Napoli_Inv110666.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              </li>
+            </ul>
+          </div>
+          
+          <div className="credit-category">
+            <h4>Medieval Era</h4>
+            <ul className="credit-list">
+              <li>
+                <strong>Illuminated Manuscript:</strong> The Right Hand of God Protecting the Faithful against the Demons, 
+                15th century, French. The Metropolitan Museum of Art, Robert Lehman Collection, 1975.1.2491. 
+                <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer"> CC0</a> 
+                (<a href="https://www.metmuseum.org/art/collection/search/459082" target="_blank" rel="noopener noreferrer">Met Open Access</a>)
+              </li>
+              <li>
+                <strong>Medieval Scribe:</strong> Escribano (15th century manuscript), 
+                Public Domain, via <a href="https://commons.wikimedia.org/wiki/File:Escribano.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              </li>
+              <li>
+                <strong>Nemean Lion:</strong> Histoires de Troyes (16th century manuscript), 
+                Public Domain, via <a href="https://commons.wikimedia.org/wiki/File:Histoires_de_Troyes_-_Nemeian_Lion_(Cognac).jpeg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              </li>
+            </ul>
+          </div>
+          
+          <div className="credit-category">
+            <h4>Renaissance Era</h4>
+            <ul className="credit-list">
+              <li>
+                <strong>Vesalius Anatomy:</strong> De humani corporis fabrica (1543), 
+                Public Domain, via <a href="https://commons.wikimedia.org/wiki/File:Vesalius_Fabrica_p174.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              </li>
+              <li>
+                <strong>Cabinet of Curiosities:</strong> Ole Worm, Musei Wormiani Historia (1655), 
+                Public Domain, via <a href="https://commons.wikimedia.org/wiki/File:Musei_Wormiani_Historia.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              </li>
+              <li>
+                <strong>Conrad Gessner Portrait:</strong> Swiss naturalist (1516-1565), 
+                Public Domain, via <a href="https://commons.wikimedia.org/wiki/File:Gessner_Conrad_1516-1565.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              </li>
+            </ul>
+          </div>
+          
+          <div className="credit-category">
+            <h4>Enlightenment & Darwin</h4>
+            <ul className="credit-list">
+              <li>
+                <strong>Linnaeus Portrait:</strong> After Alexander Roslin (c. 1775), 
+                Public Domain, via <a href="https://commons.wikimedia.org/wiki/File:Carolus_Linnaeus.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              </li>
+              <li>
+                <strong>Systema Naturae:</strong> Carl Linnaeus (1758), 
+                Public Domain, via <a href="https://commons.wikimedia.org/wiki/File:Linnaeus1758-title-page.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              </li>
+              <li>
+                <strong>Natural History Cabinet:</strong> Ferrante Imperato, Dell'Historia Naturale (1599), 
+                Public Domain, via <a href="https://commons.wikimedia.org/wiki/File:RitrattoMuseoFerranteImperato.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              </li>
+              <li>
+                <strong>Darwin's Finches:</strong> John Gould (1845), 
+                Public Domain, via <a href="https://commons.wikimedia.org/wiki/File:Darwin%27s_finches.jpeg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              </li>
+              <li>
+                <strong>Tree of Life Sketch:</strong> Charles Darwin (1837), 
+                Public Domain, via <a href="https://commons.wikimedia.org/wiki/File:Darwin_Tree_1837.png" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              </li>
+              <li>
+                <strong>Trilobite Fossil:</strong> Elrathia kingii growth series by Wilson44691, 
+                <a href="https://creativecommons.org/licenses/by/2.5/" target="_blank" rel="noopener noreferrer"> CC BY 2.5</a>, 
+                via <a href="https://commons.wikimedia.org/wiki/File:Elrathia_kingii_growth_series.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              </li>
+            </ul>
+          </div>
+          
+          <div className="credit-category">
+            <h4>Modern Era</h4>
+            <ul className="credit-list">
+              <li>
+                <strong>Chimpanzee Portrait:</strong> Pan troglodytes by Thomas Fuhrmann, 
+                <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer"> CC BY-SA 4.0</a>, 
+                via <a href="https://commons.wikimedia.org/wiki/File:Pan_troglodytes_-_Serengeti-Park_Hodenhagen_10.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              </li>
+              <li>
+                <strong>DNA Structure:</strong> DNA Structure diagram by Zephyris, 
+                <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer"> CC BY-SA 3.0</a>, 
+                via <a href="https://commons.wikimedia.org/wiki/File:DNA_Structure%2BKey%2BLabelled.pn_NoBB.png" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              </li>
+              <li>
+                <strong>Blue Whale:</strong> NOAA Photo Library, 
+                Public Domain (U.S. Government work), via <a href="https://commons.wikimedia.org/wiki/File:Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <p className="credits-note">
+          Complete image documentation including provenance, rights verification, and source URLs 
+          available in <code>research/IMAGE-DOCUMENTATION.md</code>. All images verified according to 
+          Image Research & Licensing Expert standards.
+        </p>
+      </footer>
+      
+      {/* ============================================
           SOURCES (from research/CITATIONS.md)
           ============================================ */}
-      <footer className="sources-section">
+      <footer id="sources" className="sources-section">
         <h3>Sources & Further Reading</h3>
         
         <div className="sources-grid">
@@ -1004,7 +1155,7 @@ export default function WordAnimalClient() {
         
         <p className="sources-note">
           Full citation details available in research/CITATIONS.md. 
-          Images sourced from Unsplash under free license.
+          Image credits and complete licensing documentation available in research/IMAGE-DOCUMENTATION.md.
         </p>
         
         <div className="sources-cta">

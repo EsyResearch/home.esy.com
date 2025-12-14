@@ -41,7 +41,7 @@ const jsonLd = {
         "name": "Esy",
         "url": "https://esy.com"
       },
-      "image": "https://esy.com/og/word-animal.jpg",
+      "image": "https://esy.com/og/the-word-animal.png",
       "articleSection": "History",
       "wordCount": 6000,
       "about": [
@@ -97,10 +97,10 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "https://esy.com/og/word-animal.jpg",
+        url: "https://esy.com/og/the-word-animal.png",
         width: 1200,
         height: 630,
-        alt: "ANIMUS — The etymology of the word Animal"
+        alt: "ANIMUS → ANIMAL: The Word That Named Every Creature That Breathes"
       }
     ]
   },
@@ -108,8 +108,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ANIMUS — The Living Word",
     description: "From breath to beast: 2,500 years of the word 'animal'.",
-    images: ["https://esy.com/og/word-animal.jpg"],
-    creator: "@esywriting"
+    site: "@EsyResearch",
+    images: ["https://esy.com/og/the-word-animal.png"],
   },
   alternates: {
     canonical: "https://esy.com/essays/visual/the-word-animal"

@@ -633,8 +633,7 @@ export default function Navigation ({
                   fontWeight: 400,
                   textDecoration: 'none',
                   letterSpacing: '0.01em',
-                  transition: 'color 0.2s ease',
-                  marginRight: '0.5rem'
+                  transition: 'color 0.2s ease'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = 'rgba(255, 255, 255, 0.85)';
