@@ -154,7 +154,7 @@ const EssayShowcaseGrid: React.FC = () => {
 
       {/* Footer CTA */}
       <footer className="showcase-footer">
-        <Link href="/essays/visual" className="showcase-view-all">
+        <Link href="/essays/visual/" className="showcase-view-all">
           <span>View All Visual Essays</span>
           <ArrowRight size={16} />
         </Link>

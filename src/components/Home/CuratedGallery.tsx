@@ -147,7 +147,7 @@ const CuratedGallery: React.FC = () => {
         </div>
 
         <footer className="gallery-footer">
-          <Link href="/essays/visual" className="see-all-link">
+          <Link href="/essays/visual/" className="see-all-link">
             <span>See all essays</span>
             <ArrowRight aria-hidden="true" />
           </Link>

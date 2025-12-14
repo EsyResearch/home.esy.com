@@ -55,7 +55,7 @@ const Navigation: React.FC<NavigationProps> = ({ scrolled, currentTheme }) => {
             </Link>
 
             <nav style={{ display: 'flex', gap: '2.5rem' }}>
-              <a href="/write" style={{ 
+              <a href="/write/" style={{ 
                 color: currentTheme.muted, 
                 textDecoration: 'none',
                 fontSize: '0.938rem',
@@ -63,7 +63,7 @@ const Navigation: React.FC<NavigationProps> = ({ scrolled, currentTheme }) => {
               }}>
                 Write
               </a>
-              <a href="/prompts" style={{ 
+              <a href="/prompts/" style={{ 
                 color: currentTheme.muted, 
                 textDecoration: 'none',
                 fontSize: '0.938rem',
@@ -71,7 +71,7 @@ const Navigation: React.FC<NavigationProps> = ({ scrolled, currentTheme }) => {
               }}>
                 Prompts
               </a>
-              <a href="/learn" style={{ 
+              <a href="/learn/" style={{ 
                 color: currentTheme.muted, 
                 textDecoration: 'none',
                 fontSize: '0.938rem',
@@ -79,7 +79,7 @@ const Navigation: React.FC<NavigationProps> = ({ scrolled, currentTheme }) => {
               }}>
                 Learn
               </a>
-              <a href="/about" style={{ 
+              <a href="/about/" style={{ 
                 color: 'white', 
                 textDecoration: 'none',
                 fontSize: '0.938rem',

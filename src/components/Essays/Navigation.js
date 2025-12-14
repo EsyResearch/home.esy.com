@@ -36,7 +36,7 @@ const Navigation = ({ scrolled }) => {
 
             {/* Clean Navigation */}
             <nav style={{ display: 'flex', gap: '2rem' }}>
-              <Link href="/essays" style={{ 
+              <Link href="/essays/" style={{ 
                 color: 'white', 
                 textDecoration: 'none',
                 fontSize: '0.875rem',
@@ -46,7 +46,7 @@ const Navigation = ({ scrolled }) => {
               }}>
                 Essays
               </Link>
-              <Link href="/research" style={{ 
+              <Link href="/research/" style={{ 
                 color: 'rgba(255, 255, 255, 0.6)', 
                 textDecoration: 'none',
                 fontSize: '0.875rem',
@@ -54,7 +54,7 @@ const Navigation = ({ scrolled }) => {
               }}>
                 Research
               </Link>
-              <Link href="/library" style={{ 
+              <Link href="/library/" style={{ 
                 color: 'rgba(255, 255, 255, 0.6)', 
                 textDecoration: 'none',
                 fontSize: '0.875rem',

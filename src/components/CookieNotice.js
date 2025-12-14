@@ -488,7 +488,7 @@ const EsyCookieNotice = () => {
                 improved writing assistance, and seamless platform functionality. 
                 Accepting all cookies helps us provide the best possible service.{' '}
                 <a 
-                  href="/privacy" 
+                  href="/privacy/" 
                   style={{ 
                     color: colors.accent, 
                     textDecoration: 'none',

@@ -63,10 +63,10 @@ const Footer: React.FC<FooterProps> = ({ currentTheme }) => {
               Product
             </h4>
             <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
-              <Link href="/features" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Features</Link>
-              <Link href="/templates" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Templates</Link>
-              <Link href="/pricing" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Pricing</Link>
-              <Link href="/roadmap" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Roadmap</Link>
+              <Link href="/features/" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Features</Link>
+              <Link href="/templates/" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Templates</Link>
+              <Link href="/pricing/" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Pricing</Link>
+              <Link href="/roadmap/" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Roadmap</Link>
             </nav>
           </div>
 
@@ -82,10 +82,10 @@ const Footer: React.FC<FooterProps> = ({ currentTheme }) => {
               Resources
             </h4>
             <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
-              <a href="/guide" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Getting Started</a>
-              <a href="/best-practices" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Best Practices</a>
-              <a href="/examples" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Examples</a>
-              <a href="/community" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Community</a>
+              <a href="/guide/" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Getting Started</a>
+              <a href="/best-practices/" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Best Practices</a>
+              <a href="/examples/" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Examples</a>
+              <a href="/community/" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Community</a>
             </nav>
           </div>
 
@@ -101,10 +101,10 @@ const Footer: React.FC<FooterProps> = ({ currentTheme }) => {
               Company
             </h4>
             <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
-              <Link href="/about" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>About</Link>
-              <Link href="/blog" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Blog</Link>
-              <Link href="/contact" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Contact</Link>
-              <Link href="/privacy" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Privacy</Link>
+              <Link href="/about/" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>About</Link>
+              <Link href="/blog/" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Blog</Link>
+              <Link href="/contact/" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Contact</Link>
+              <Link href="/privacy/" style={{ color: currentTheme.muted, textDecoration: 'none', fontSize: '0.938rem' }}>Privacy</Link>
             </nav>
           </div>
         </div>

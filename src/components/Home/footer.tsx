@@ -67,44 +67,44 @@ export default function Footer () {
           <FooterColumn 
             title="Explore"
             links={[
-              { href: "/essays", text: "Essays" },
-              { href: "/templates", text: "Templates" },
-              { href: "/scrollytelling", text: "Scrollytelling" },
-              { href: "/ai-writing-tools", text: "AI Writing Tools" },
-              { href: "/writing-prompts", text: "Writing Prompts" },
+              { href: "/essays/", text: "Essays" },
+              { href: "/templates/", text: "Templates" },
+              { href: "/scrollytelling/", text: "Scrollytelling" },
+              { href: "/ai-writing-tools/", text: "AI Writing Tools" },
+              { href: "/writing-prompts/", text: "Writing Prompts" },
             ]}
           />
           
           <FooterColumn 
             title="Learn"
             links={[
-              { href: "/school", text: "School" },
-              { href: "/glossary", text: "Glossary" },
-              { href: "/how-to-write", text: "How to Write" },
-              { href: "/docs/how-to-write-an-essay", text: "How to Write an Essay" },
+              { href: "/school/", text: "School" },
+              { href: "/glossary/", text: "Glossary" },
+              { href: "/how-to-write/", text: "How to Write" },
+              { href: "/docs/how-to-write-an-essay/", text: "How to Write an Essay" },
             ]}
           />
           
           <FooterColumn 
             title="Resources"
             links={[
-              { href: "/docs", text: "Docs" },
-              { href: "/ai-essay-writer", text: "AI Essay Writer" },
-              { href: "/agentic-workflows", text: "Agentic Workflows" },
-              { href: "/extended-school-year", text: "Extended School Year" },
-              { href: "/prompt-library", text: "Prompt Library" },
+              { href: "/docs/", text: "Docs" },
+              { href: "/ai-essay-writer/", text: "AI Essay Writer" },
+              { href: "/agentic-workflows/", text: "Agentic Workflows" },
+              { href: "/extended-school-year/", text: "Extended School Year" },
+              { href: "/prompt-library/", text: "Prompt Library" },
             ]}
           />
           
           <FooterColumn 
             title="Company"
             links={[
-              { href: "/about", text: "About Us" },
-              { href: "/blog", text: "Blog" },
-              { href: "/contact", text: "Contact" },
-              { href: "/privacy", text: "Privacy" },
-              { href: "/cookies", text: "Cookies" },
-              { href: "/terms", text: "Terms" }
+              { href: "/about/", text: "About Us" },
+              { href: "/blog/", text: "Blog" },
+              { href: "/contact/", text: "Contact" },
+              { href: "/privacy/", text: "Privacy" },
+              { href: "/cookies/", text: "Cookies" },
+              { href: "/terms/", text: "Terms" }
             ]}
           />
         </div>

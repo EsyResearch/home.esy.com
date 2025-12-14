@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     images: ['https://upload.wikimedia.org/wikipedia/commons/4/40/Myanmar%E2%80%99s_Traditional_Food_-_Mohinga.jpg'],
   },
   alternates: {
-    canonical: 'https://esy.com/essays/visual/the-history-of-burmese-cuisine',
+    canonical: 'https://esy.com/essays/visual/the-history-of-burmese-cuisine/',
   },
   robots: {
     index: true,

@@ -80,39 +80,44 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const sitemap: MetadataRoute.Sitemap = []
 
   // Add automatically discovered static routes
+  // Note: Homepage (route === '') gets NO trailing slash; all others get trailing slash
   discoveredRoutes.forEach(route => {
+    const url = route === '' 
+      ? baseUrl  // Homepage: https://esy.com (no trailing slash)
+      : `${baseUrl}${route}/`  // All other routes: https://esy.com/about/
+    
     sitemap.push({
-      url: `${baseUrl}${route}`,
+      url,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: route === '' ? 1 : 0.8,
     })
   })
 
-  // Add essay routes
+  // Add essay routes (all with trailing slashes)
   essays.forEach(essay => {
     sitemap.push({
-      url: `${baseUrl}/essays/${essay}`,
+      url: `${baseUrl}/essays/${essay}/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
     })
   })
 
-  // Add glossary routes
+  // Add glossary routes (all with trailing slashes)
   glossaryTerms.forEach(term => {
     sitemap.push({
-      url: `${baseUrl}/glossary/${term}`,
+      url: `${baseUrl}/glossary/${term}/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6,
     })
   })
 
-  // Add school article routes
+  // Add school article routes (all with trailing slashes)
   schoolArticles.forEach(article => {
     sitemap.push({
-      url: `${baseUrl}/school/articles/${article}`,
+      url: `${baseUrl}/school/articles/${article}/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,

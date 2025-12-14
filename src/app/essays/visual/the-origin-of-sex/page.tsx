@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     images: ['https://esy.com/og/the-origin-of-sex.png'],
   },
   alternates: {
-    canonical: 'https://esy.com/essays/visual/the-origin-of-sex',
+    canonical: 'https://esy.com/essays/visual/the-origin-of-sex/',
   },
 };
 

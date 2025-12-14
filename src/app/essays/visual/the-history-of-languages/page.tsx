@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     images: ["https://esy.com/og/the-history-of-languages.png"],
   },
   alternates: {
-    canonical: "https://esy.com/essays/visual/the-history-of-languages",
+    canonical: "https://esy.com/essays/visual/the-history-of-languages/",
   },
 };
 

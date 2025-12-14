@@ -24,7 +24,7 @@ const FeaturedEssay = ({ featuredEssay }) => {
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}>
           <div>
-            <Link href={`/essays/${featuredEssay.id}`} style={{ textDecoration: 'none' }}>
+            <Link href={`/essays/${featuredEssay.id}/`} style={{ textDecoration: 'none' }}>
               <h2 style={{ 
                 fontSize: '2.25rem',
                 fontWeight: 300,
@@ -62,7 +62,7 @@ const FeaturedEssay = ({ featuredEssay }) => {
             </p>
 
             <div style={{ display: 'flex', gap: '1rem' }}>
-              <Link href={`/essays/${featuredEssay.id}`} style={{ textDecoration: 'none' }}>
+              <Link href={`/essays/${featuredEssay.id}/`} style={{ textDecoration: 'none' }}>
                 <button style={{
                   padding: '0.75rem 1.5rem',
                   background: elevatedDarkTheme.accent,

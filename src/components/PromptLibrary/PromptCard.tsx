@@ -18,7 +18,7 @@ interface PromptCardProps {
 export default function PromptCard({ prompt }: PromptCardProps) {
   return (
     <Link
-      href={`/prompt-library/${prompt.slug}`}
+      href={`/prompt-library/${prompt.slug}/`}
       className="prompt-card"
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';

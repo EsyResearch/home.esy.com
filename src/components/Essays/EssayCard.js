@@ -24,7 +24,7 @@ const EssayCard = ({ essay, index, hoveredCard, setHoveredCard }) => {
     >
       <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '3rem', alignItems: 'start' }}>
         <div>
-          <Link href={`/essays/${essay.id}`} style={{ textDecoration: 'none' }}>
+          <Link href={`/essays/${essay.id}/`} style={{ textDecoration: 'none' }}>
             <h3 style={{ 
               fontSize: '1.5rem',
               fontWeight: 400,

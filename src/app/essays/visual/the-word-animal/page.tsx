@@ -112,7 +112,7 @@ export const metadata: Metadata = {
     images: ["https://esy.com/og/the-word-animal.png"],
   },
   alternates: {
-    canonical: "https://esy.com/essays/visual/the-word-animal"
+    canonical: "https://esy.com/essays/visual/the-word-animal/"
   },
   robots: {
     index: true,

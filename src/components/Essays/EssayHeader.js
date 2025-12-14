@@ -38,7 +38,7 @@ const EssayHeader = ({
       <div className={styles.headerContainer}>
         <div className={styles.headerContent}>
           <div className={styles.leftSection}>
-            <Link href="/essays" className={backLinkClass} aria-label="Back to essays list">
+            <Link href="/essays/" className={backLinkClass} aria-label="Back to essays list">
               <ArrowLeft size={16} aria-hidden="true" />
               <span>Back to Essays</span>
             </Link>

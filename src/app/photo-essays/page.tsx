@@ -171,7 +171,7 @@ export const metadata: Metadata = {
   
   // Canonical URL
   alternates: {
-    canonical: "https://esy.com/photo-essays"
+    canonical: "https://esy.com/photo-essays/"
   },
   
   // Robots directives

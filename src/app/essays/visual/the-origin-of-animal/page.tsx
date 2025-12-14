@@ -125,7 +125,7 @@ export const metadata: Metadata = {
     creator: "@esywriting"
   },
   alternates: {
-    canonical: "https://esy.com/essays/visual/the-origin-of-animal"
+    canonical: "https://esy.com/essays/visual/the-origin-of-animal/"
   },
   robots: {
     index: true,

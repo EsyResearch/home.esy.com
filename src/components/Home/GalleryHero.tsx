@@ -53,7 +53,7 @@ const GalleryHero: React.FC = () => {
           Ideas explored, not just explained.
         </p>
         
-        <Link href="/essays/visual" className="hero-cta">
+        <Link href="/essays/visual/" className="hero-cta">
           <span>Explore Essays</span>
           <ArrowRight aria-hidden="true" />
         </Link>

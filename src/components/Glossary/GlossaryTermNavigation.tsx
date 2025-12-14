@@ -57,7 +57,7 @@ const GlossaryTermNavigation: React.FC<GlossaryTermNavigationProps> = ({
           </Link>
           
           <Link
-            href="/glossary"
+            href="/glossary/"
             style={{
               display: 'flex',
               alignItems: 'center',

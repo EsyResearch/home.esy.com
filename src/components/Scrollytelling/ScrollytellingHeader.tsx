@@ -104,7 +104,7 @@ export default function ScrollytellingHeader() {
       `}</style>
 
       <header className={`st-header ${hasScrolled ? "scrolled" : ""}`}>
-        <Link href="/scrollytelling" className="st-header-logo" aria-label="Back to Stories">
+        <Link href="/scrollytelling/" className="st-header-logo" aria-label="Back to Stories">
           <Logo 
             suffix="" 
             href="" 

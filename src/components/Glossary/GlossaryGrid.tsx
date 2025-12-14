@@ -41,7 +41,7 @@ const GlossaryGrid: React.FC<GlossaryGridProps> = ({
     {terms.map(term => (
       <Link
         key={term.id}
-        href={`/glossary/${term.id}`}
+        href={`/glossary/${term.id}/`}
         style={{
           display: 'block',
           padding: '1.25rem',

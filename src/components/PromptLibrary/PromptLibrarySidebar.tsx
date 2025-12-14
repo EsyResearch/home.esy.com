@@ -54,7 +54,7 @@ export default function PromptLibrarySidebar({
         <ul className="category-list">
           <li className="category-item">
             <Link
-              href="/prompt-library"
+              href="/prompt-library/"
               className={`category-link ${!activeCategoryId && !activeCategorySlug ? 'active' : ''}`}
               onMouseEnter={(e) => {
                 if (!activeCategoryId && !activeCategorySlug) return;
@@ -76,7 +76,7 @@ export default function PromptLibrarySidebar({
           {categories.map(cat => (
             <li key={cat.id} className="category-item">
               <Link
-                href={`/prompt-library/category/${cat.slug}`}
+                href={`/prompt-library/category/${cat.slug}/`}
                 className={`category-link ${cat.id === activeCategoryId || cat.slug === activeCategorySlug ? 'active' : ''}`}
                 onMouseEnter={(e) => {
                   if (cat.id === activeCategoryId || cat.slug === activeCategorySlug) return;

@@ -183,7 +183,7 @@ const ArticleViewClient: React.FC<ArticleViewClientProps> = ({
         left: isMobile ? '1rem' : '2rem',
         zIndex: 50
       }}>
-        <Link href="/research" style={{ 
+        <Link href="/research/" style={{ 
           display: 'flex', 
           alignItems: 'center', 
           gap: '0.5rem',
@@ -583,7 +583,7 @@ const ArticleViewClient: React.FC<ArticleViewClientProps> = ({
             }}>
               More like this
             </h2>
-            <Link href="/research" style={{
+            <Link href="/research/" style={{
               fontSize: '0.875rem',
               color: currentTheme.accent,
               textDecoration: 'none',

@@ -131,7 +131,7 @@ const AuthorBox = ({ author, theme, isDarkMode = true }) => {
             alignItems: 'center'
           }}>
             <Link 
-              href="/school/articles"
+              href="/school/articles/"
               style={{
                 padding: '0.75rem 2rem',
                 background: `linear-gradient(135deg, ${currentTheme.accent} 0%, ${currentTheme.accentLight} 100%)`,
@@ -160,7 +160,7 @@ const AuthorBox = ({ author, theme, isDarkMode = true }) => {
             </Link>
             
             <Link 
-              href="/ai-essay-writer"
+              href="/ai-essay-writer/"
               style={{
                 padding: '0.75rem 2rem',
                 backgroundColor: 'transparent',

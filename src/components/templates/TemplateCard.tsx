@@ -44,7 +44,7 @@ export default function TemplateCard({ template, showCategory = true }: Template
 
   return (
     <Link
-      href={`/templates/${template.slug}`}
+      href={`/templates/${template.slug}/`}
       style={{ textDecoration: 'none' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

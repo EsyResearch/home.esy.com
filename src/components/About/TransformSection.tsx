@@ -243,7 +243,7 @@ const TransformSection: React.FC<TransformSectionProps> = ({ currentTheme }) => 
             marginBottom: '1rem'
           }}>
             Questions? Read our{' '}
-            <a href="/faq" style={{
+            <a href="/faq/" style={{
               color: currentTheme.accent,
               textDecoration: 'none',
               fontWeight: 500

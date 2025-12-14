@@ -134,7 +134,7 @@ const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
           letterSpacing: '0.03em'
         }}>{termOfDay.category}</span>
         <Link
-          href={`/glossary/${termOfDay.term.toLowerCase().replace(/\s+/g, '-')}`}
+          href={`/glossary/${termOfDay.term.toLowerCase().replace(/\s+/g, '-')}/`}
           style={{
             color: currentTheme.accent,
             fontWeight: 500,
@@ -174,7 +174,7 @@ const GlossarySidebar: React.FC<GlossarySidebarProps> = ({
         {recentTerms.map((term, index) => (
           <Link
             key={index}
-            href={`/glossary/${term.term.toLowerCase().replace(/\s+/g, '-')}`}
+            href={`/glossary/${term.term.toLowerCase().replace(/\s+/g, '-')}/`}
             style={{
               display: 'flex',
               alignItems: 'center',

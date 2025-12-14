@@ -527,7 +527,7 @@ export default function Navigation ({
             {isSimplifiedNav ? (
               <>
                 <Link 
-                  href="/essays/visual" 
+                  href="/essays/visual/" 
                   className="nav-link homepage-essays-link"
                   style={{
                     color: 'rgba(255, 255, 255, 0.9)',
@@ -563,28 +563,28 @@ export default function Navigation ({
                 label="Essays"
                 items={[
                   {
-                    href: '/essays/visual',
+                    href: '/essays/visual/',
                     icon: <VisualEssaysIcon size={20} />,
                     title: 'Visual Essays',
                     description: 'Interactive storytelling experiences',
                     accent: 'purple'
                   },
                   {
-                    href: '/essays',
+                    href: '/essays/',
                     icon: <EssayExamplesIcon size={20} />,
                     title: 'Essay Examples',
                     description: 'Academic writing samples',
                     accent: 'blue'
                   },
                   {
-                    href: '/essays/guides',
+                    href: '/essays/guides/',
                     icon: <WritingGuidesIcon size={20} />,
                     title: 'Writing Guides',
                     description: 'Step-by-step tutorials',
                     accent: 'emerald'
                   }
                 ]}
-                footerLink={{ href: '/essays', text: 'View all essays →' }}
+                footerLink={{ href: '/essays/', text: 'View all essays →' }}
                 isLightMode={isLightMode} 
               />
             )}
@@ -595,28 +595,28 @@ export default function Navigation ({
                 label="Prompts"
                 items={[
                   {
-                    href: '/templates/chatgpt-prompts',
+                    href: '/templates/chatgpt-prompts/',
                     icon: <ChatGPTIcon size={20} />,
                     title: 'ChatGPT Prompts',
                     description: 'Optimized for OpenAI models',
                     accent: 'emerald'
                   },
                   {
-                    href: '/templates/claude-prompts',
+                    href: '/templates/claude-prompts/',
                     icon: <ClaudeIcon size={20} />,
                     title: 'Claude Prompts',
                     description: 'Designed for Anthropic Claude',
                     accent: 'amber'
                   },
                   {
-                    href: '/templates/gemini-prompts',
+                    href: '/templates/gemini-prompts/',
                     icon: <GeminiIcon size={20} />,
                     title: 'Gemini Prompts',
                     description: 'Built for Google Gemini',
                     accent: 'blue'
                   }
                 ]}
-                footerLink={{ href: '/templates', text: 'Browse all templates →' }}
+                footerLink={{ href: '/templates/', text: 'Browse all templates →' }}
                 isLightMode={isLightMode} 
               />
             )}
@@ -727,7 +727,7 @@ export default function Navigation ({
             {/* Simplified nav: Simple Essays link | Other pages: Full Essays section */}
             {isSimplifiedNav ? (
               <div className="mobile-nav-section">
-                <Link href="/essays/visual" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link href="/essays/visual/" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
                   <div className="mobile-nav-icon purple"><VisualEssaysIcon size={20} /></div>
                   <div className="mobile-nav-text">
                     <span className="mobile-nav-item-title">Visual Essays</span>
@@ -740,21 +740,21 @@ export default function Navigation ({
                 {/* Essays Section */}
                 <div className="mobile-nav-section">
                   <h3 className="mobile-nav-section-title">Essays</h3>
-                  <Link href="/essays/visual" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link href="/essays/visual/" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
                     <div className="mobile-nav-icon purple"><VisualEssaysIcon size={20} /></div>
                     <div className="mobile-nav-text">
                       <span className="mobile-nav-item-title">Visual Essays</span>
                       <span className="mobile-nav-item-desc">Interactive storytelling</span>
                     </div>
                   </Link>
-                  <Link href="/essays" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link href="/essays/" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
                     <div className="mobile-nav-icon blue"><EssayExamplesIcon size={20} /></div>
                     <div className="mobile-nav-text">
                       <span className="mobile-nav-item-title">Essay Examples</span>
                       <span className="mobile-nav-item-desc">Academic writing samples</span>
                     </div>
                   </Link>
-                  <Link href="/essays/guides" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link href="/essays/guides/" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
                     <div className="mobile-nav-icon emerald"><WritingGuidesIcon size={20} /></div>
                     <div className="mobile-nav-text">
                       <span className="mobile-nav-item-title">Writing Guides</span>
@@ -766,21 +766,21 @@ export default function Navigation ({
                 {/* Prompts Section - Hidden on homepage */}
                 <div className="mobile-nav-section">
                   <h3 className="mobile-nav-section-title">Prompts</h3>
-                  <Link href="/templates/chatgpt-prompts" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link href="/templates/chatgpt-prompts/" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
                     <div className="mobile-nav-icon emerald"><ChatGPTIcon size={20} /></div>
                     <div className="mobile-nav-text">
                       <span className="mobile-nav-item-title">ChatGPT Prompts</span>
                       <span className="mobile-nav-item-desc">Optimized for OpenAI</span>
                     </div>
                   </Link>
-                  <Link href="/templates/claude-prompts" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link href="/templates/claude-prompts/" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
                     <div className="mobile-nav-icon amber"><ClaudeIcon size={20} /></div>
                     <div className="mobile-nav-text">
                       <span className="mobile-nav-item-title">Claude Prompts</span>
                       <span className="mobile-nav-item-desc">Designed for Anthropic</span>
                     </div>
                   </Link>
-                  <Link href="/templates/gemini-prompts" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link href="/templates/gemini-prompts/" className="mobile-nav-item" onClick={() => setIsMobileMenuOpen(false)}>
                     <div className="mobile-nav-icon blue"><GeminiIcon size={20} /></div>
                     <div className="mobile-nav-text">
                       <span className="mobile-nav-item-title">Gemini Prompts</span>
