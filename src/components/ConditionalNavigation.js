@@ -86,7 +86,6 @@ const ConditionalNavigation = () => {
     (isGlossaryPage && (isGlossaryIndex ? showHeaderSearch : true)) ||
     (isSchoolPage && (isSchoolIndex ? showHeaderSearch : isSchoolArticlePage)) ||
     (isTemplatesPage && (isTemplatesIndex ? showHeaderSearch : true)) ||
-    (isScrollytellingIndex && showHeaderSearch) ||
     (isEssaysPage && showHeaderSearch) ||
     (isHomepage && showHeaderSearch);
   

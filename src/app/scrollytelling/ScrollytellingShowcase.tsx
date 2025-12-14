@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Play, Sparkles } from "lucide-react";
 import { publishedVisualEssays, CATEGORY_COLORS, type VisualEssay } from "@/data/visualEssays";
-import { useScrollHeaderSearch } from '@/hooks/useScrollHeaderSearch';
 import './scrollytelling-showcase.css';
 
 /*
@@ -288,16 +287,9 @@ const CTASection: React.FC = () => {
 // ==================== MAIN ====================
 
 const ScrollytellingShowcase: React.FC = () => {
-  const heroRef = useRef<HTMLDivElement>(null);
-  
-  // Show header search when hero scrolls out of view
-  useScrollHeaderSearch(heroRef);
-
   return (
     <div className="scrollytelling-showcase">
-      <div ref={heroRef}>
-        <Hero />
-      </div>
+      <Hero />
       <WhatIsSection />
       <FeaturedSection />
       <TechSection />
