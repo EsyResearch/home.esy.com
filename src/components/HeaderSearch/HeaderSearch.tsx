@@ -47,8 +47,9 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Use the appropriate search hook based on context
+  // Templates use the same search structure as prompts
   const promptSearchHook = usePromptSearch({
-    prompts: searchContext === 'prompt-library' ? (prompts || []) : [],
+    prompts: (searchContext === 'prompt-library' || searchContext === 'templates') ? (prompts || []) : [],
     debounceMs: 200,
     maxResults: 6
   });
@@ -95,6 +96,8 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
     searchHook = essaySearchHook;
   } else if (searchContext === 'blog') {
     searchHook = blogSearchHook;
+  } else if (searchContext === 'templates' || searchContext === 'prompt-library') {
+    searchHook = promptSearchHook;
   } else {
     searchHook = promptSearchHook;
   }
