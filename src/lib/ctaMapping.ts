@@ -39,9 +39,9 @@ export const ctaMapping: CTAMapping = {
   
   // School pages
   '/school': {
-    ctaText: 'Join Esy School',
-    ctaHref: '#newsletter', // Newsletter signup route
-    isNewsletter: true
+    ctaText: 'App',
+    ctaHref: 'https://app.esy.com',
+    isProduct: true
   },
   
   // Essays pages
