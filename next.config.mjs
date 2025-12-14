@@ -28,12 +28,6 @@ const nextConfig = {
         destination: '/essays/:slug',
         permanent: true,
       },
-      // Redirect /scrollytelling/* directly to /essays/*
-      {
-        source: '/scrollytelling/:slug',
-        destination: '/essays/:slug',
-        permanent: true,
-      },
     ];
   },
 };

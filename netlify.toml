@@ -15,13 +15,6 @@
   status = 301
   force = true
 
-# Redirect scrollytelling stories to essays (canonical URLs)
-[[redirects]]
-  from = "/scrollytelling/*"
-  to = "/essays/:splat"
-  status = 301
-  force = true
-
 # Proxy /guide section to a separate Netlify site
 # This allows the guide to be maintained and deployed independently
 # while appearing as part of the main esy.com domain
