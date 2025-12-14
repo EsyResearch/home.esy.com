@@ -17,6 +17,7 @@ Citation Reports serve as:
 
 | Report | Experience | Status | Date |
 |--------|------------|--------|------|
+| [the-word-animal-citation-audit.md](./the-word-animal-citation-audit.md) | The Word Animal | ✅ Fully Approved | Dec 2025 |
 | [the-mirror-citation-audit.md](./the-mirror-citation-audit.md) | The Mirror | ✅ Approved | Dec 2024 |
 | [the-ledger-citation-audit.md](./the-ledger-citation-audit.md) | The Ledger (#34) | ✅ Approved | Dec 2024 |
 | [the-gridiron-citation-audit.md](./the-gridiron-citation-audit.md) | The Gridiron (#33) | 🟡 Approved with Conditions | Dec 2024 |
@@ -74,4 +75,4 @@ The agent will produce:
 
 ---
 
-*Last updated: December 2024*
+*Last updated: December 2025*

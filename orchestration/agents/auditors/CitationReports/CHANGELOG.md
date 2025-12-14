@@ -4,6 +4,41 @@ This changelog tracks all citation-related fixes across all visual essays.
 
 ---
 
+## December 2025
+
+### 2025-12-14
+
+#### the-word-animal
+- **[v1.0]** `INIT`: Initial citation audit completed
+  - Overall Score: 8/10 (Approved with Notes)
+  - Source Tier Distribution: 85% Tier 1-2 (exceeds 80% threshold)
+  - Quote Verification: 17/17 quotes verified (100%)
+  - Research Directory: Complete with 6 documentation files
+
+- **[v1.0 → v1.1]** `LINK-FIX`: Darwin Online links replaced with Gutenberg
+  - Before: darwin-online.org.uk URLs (redirect loop)
+  - After: gutenberg.org/ebooks/1228 and /2300
+  - Reason: Darwin Online experiencing server issues
+
+- **[v1.1]** `LINK-FIX`: Pliny Natural History URL updated
+  - Before: loebclassics.com (403 paywall)
+  - After: perseus.tufts.edu (free access)
+  - Reason: Provide publicly accessible alternative
+
+- **[v1.1]** `SRC-ADD`: Added species count citation
+  - Added: Mora et al. (2011) "How Many Species?" PLOS Biology
+  - Supports: "1.5 million described species, 8.7 million total"
+
+- **[v1.1]** `SRC-ADD`: Added DNA similarity citation
+  - Added: Chimpanzee Sequencing Consortium, Nature 437 (2005)
+  - Supports: "~99% DNA shared with chimpanzees"
+
+- **[v1.1]** `CERT`: Certification status upgraded
+  - Before: 🟢 Approved with Notes (8/10)
+  - After: ✅ Fully Approved (9/10)
+
+---
+
 ## December 2024
 
 ### 2024-12-11
@@ -95,4 +130,4 @@ This changelog tracks all citation-related fixes across all visual essays.
 
 ---
 
-*Last updated: December 11, 2024*
+*Last updated: December 14, 2025*

@@ -911,7 +911,7 @@ export default function WordAnimalClient() {
         <ImageReveal
           src={IMAGES.modern.primate}
           alt={IMAGES.modern.primateAlt}
-          caption="98% of our DNA is shared with chimpanzees—cousins in the mirror"
+          caption="~99% of our DNA is shared with chimpanzees—cousins in the mirror"
           era="modern"
         />
         
@@ -935,7 +935,7 @@ export default function WordAnimalClient() {
         <div className="narrative-block">
           <VoiceUnseen>
             The numbers are staggering. Animalia includes approximately 1.5 million 
-            described species—and perhaps 8 million yet to be cataloged. From 
+            described species—and perhaps 8.7 million total, most yet to be cataloged. From 
             tardigrades measuring 0.1mm to blue whales at 30 meters. All sharing 
             that ancient quality: they breathe, in some form.
           </VoiceUnseen>
@@ -1162,6 +1162,8 @@ export default function WordAnimalClient() {
               <li>Mayr. <em>The Growth of Biological Thought</em> (1982).</li>
               <li>Lovejoy. <em>The Great Chain of Being</em> (1936).</li>
               <li>Stanford Encyclopedia of Philosophy.</li>
+              <li>Mora et al. "How Many Species?" <em>PLOS Biology</em> (2011).</li>
+              <li>Chimpanzee Sequencing Consortium. <em>Nature</em> (2005).</li>
             </ul>
           </div>
         </div>
