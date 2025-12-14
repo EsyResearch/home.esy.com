@@ -78,7 +78,6 @@ export default function Footer () {
             links={[
               { href: "/school/", text: "School" },
               { href: "/agentic-workflows/", text: "Agentic Workflows" },
-              { href: "/docs/how-to-write-an-essay/", text: "How to Write an Essay" },
             ]}
           />
           
