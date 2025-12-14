@@ -295,3 +295,4 @@ If additional depth needed:
 *Synthesis complete. Ready for spec construction with SKILL.md template.*
 
 
+

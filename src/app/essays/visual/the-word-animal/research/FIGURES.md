@@ -271,3 +271,4 @@ Limited verified imagery for ancient figures (Aristotle, Pliny, Isidore). Use:
 - Medieval manuscript illuminations
 
 
+

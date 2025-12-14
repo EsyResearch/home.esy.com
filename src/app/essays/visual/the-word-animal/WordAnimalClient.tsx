@@ -538,8 +538,8 @@ export default function WordAnimalClient() {
           name="Aristotle"
           epithet="The Father of Zoology"
           dates="384–322 BCE"
-          imageSrc={IMAGES.ancient.mosaic}
-          imageAlt="Ancient mosaic representing classical knowledge"
+          imageSrc={IMAGES.ancient.aristotle}
+          imageAlt={IMAGES.ancient.aristotleAlt}
           contributions={[
             "First systematic classification of living things",
             "Wrote De Anima (On the Soul) and Historia Animalium",

@@ -716,8 +716,10 @@
 .figure-image {
   width: 100%;
   height: auto;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center top;
   border-radius: 8px;
+  background: var(--bg-surface);
 }
 
 /* Era treatments for portraits */
@@ -853,19 +855,21 @@
 .image-reveal-inner {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: 8px;
   background: var(--bg-elevated);
 }
 
 .reveal-image {
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
+  background: var(--bg-surface);
   transition: transform var(--duration-breath) var(--ease-out);
 }
 
 .image-reveal.visible .reveal-image {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 .image-vignette {
