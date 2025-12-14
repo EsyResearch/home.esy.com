@@ -54,7 +54,7 @@ export default function Navigation ({
     const normalizedPathForNav = pathname?.endsWith('/') && pathname.length > 1 
       ? pathname.slice(0, -1) 
       : pathname || '';
-    const isSimplifiedNav = normalizedPathForNav === '/' || normalizedPathForNav === '' || normalizedPathForNav === '/essays' || normalizedPathForNav === '/school';
+    const isSimplifiedNav = normalizedPathForNav === '/' || normalizedPathForNav === '' || normalizedPathForNav === '/essays' || normalizedPathForNav === '/school' || normalizedPathForNav === '/glossary';
 
     // Detect theme from various sources with page-specific logic
     useEffect(() => {
