@@ -1485,13 +1485,13 @@ const Sources: React.FC<{ sources: { title: string; url: string }[] }> = ({ sour
 
 ### Output Location
 
-**Default output directory**: `src/app/essays/visual/[story-slug]/`
+**Default output directory**: `src/app/essays/[story-slug]/`
 
-All scrollytelling/visual essay output goes to the Visual Essays section at `/essays/visual/` unless explicitly directed otherwise. The hub page is at `src/app/essays/visual/page.tsx` with data defined in `VisualEssaysClient.tsx`.
+All scrollytelling/visual essay output goes to the Visual Essays section at `/essays/[slug]/` unless explicitly directed otherwise. The hub page is at `src/app/essays/page.js` with data defined in `src/data/visualEssays.ts`.
 
 ### Standard File Structure
 ```
-src/app/essays/visual/[story-slug]/
+src/app/essays/[story-slug]/
 ├── page.tsx                    # Metadata + renders Client
 ├── [StoryName]Client.tsx       # Main client component
 ├── [story-slug].css            # Story-specific styles
@@ -1721,7 +1721,7 @@ When working with this agent, reference the role by stating:
    - Any additional component files
 
 5. **Index Integration (MANDATORY)**
-   - Add entry to `visualEssays` array in `src/app/essays/visual/VisualEssaysClient.tsx`
+   - Add entry to `visualEssays` array in `src/data/visualEssays.ts`
    - New story entry with `isNew: true`
    - **New story MUST be set as `isFeatured: true`** (remove from previous featured story)
    - Previous featured story gets `isFeatured` removed

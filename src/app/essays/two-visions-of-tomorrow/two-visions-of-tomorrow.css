@@ -1,0 +1,1327 @@
+/* ==========================================================================
+   TWO VISIONS OF TOMORROW
+   Photorealistic Visual Essay — 1984 vs Brave New World
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   CSS CUSTOM PROPERTIES — DESIGN RESEARCH DERIVED
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* 1984 Palette (Fear/Surveillance) */
+  --orwell-primary: #374151;
+  --orwell-secondary: #6B7280;
+  --orwell-accent: #DC2626;
+  --orwell-text: #F9FAFB;
+  --orwell-shadow: #111827;
+
+  /* Brave New World Palette (Pleasure/Distraction) */
+  --huxley-primary: #0C4A6E;
+  --huxley-secondary: #0EA5E9;
+  --huxley-accent: #F472B6;
+  --huxley-cream: #FFFBEB;
+  --huxley-gold: #FCD34D;
+
+  /* Synthesis Palette (Merged) */
+  --synthesis-primary: #4C1D95;
+  --synthesis-glow: #A78BFA;
+  --synthesis-alert: #F97316;
+  --synthesis-interface: #10B981;
+
+  /* Typography */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-serif: "Source Serif Pro", Georgia, serif;
+  --font-body: Georgia, "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  /* Sizing */
+  --font-hero-title: 2.25rem;
+  --font-chapter-title: 1.75rem;
+  --font-section-label: 0.75rem;
+  --font-body-size: 1.125rem;
+  --font-quote-size: 1.25rem;
+
+  /* Animation - 1984 Timing */
+  --duration-orwell-fast: 150ms;
+  --duration-orwell-normal: 250ms;
+  --ease-orwell: cubic-bezier(0, 0, 0.2, 1);
+
+  /* Animation - BNW Timing */
+  --duration-huxley-fast: 250ms;
+  --duration-huxley-normal: 400ms;
+  --ease-huxley: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Spacing */
+  --section-padding: 4rem 1.5rem;
+  --content-max-width: 860px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --font-hero-title: 3.5rem;
+    --font-chapter-title: 2.5rem;
+    --font-body-size: 1.25rem;
+    --font-quote-size: 1.5rem;
+    --section-padding: 6rem 2rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   BASE STYLES
+   -------------------------------------------------------------------------- */
+
+.section {
+  min-height: 100dvh;
+  padding: var(--section-padding);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 600ms var(--ease-huxley),
+    transform 600ms var(--ease-huxley);
+  background: var(--orwell-shadow);
+  color: var(--orwell-text);
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-content {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+/* Era-specific background treatments */
+.era-formation {
+  background: linear-gradient(180deg, #1a1612 0%, #0d0d0d 100%);
+}
+
+.era-radicalization {
+  background: linear-gradient(180deg, #0d0d0d 0%, #111827 100%);
+}
+
+.era-prophecies {
+  background: linear-gradient(180deg, #111827 0%, #0a0a0a 100%);
+}
+
+.era-legacy {
+  background: linear-gradient(180deg, #0a0a0a 0%, #0C1929 100%);
+}
+
+.era-synthesis {
+  background: linear-gradient(180deg, #0C1929 0%, #1e1b4b 50%, #0C1929 100%);
+}
+
+/* --------------------------------------------------------------------------
+   SPLIT PROGRESS BAR
+   -------------------------------------------------------------------------- */
+
+.split-progress-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-orwell {
+  height: 100%;
+  background: var(--orwell-secondary);
+  transition: width 100ms linear, background 500ms var(--ease-huxley);
+}
+
+.progress-huxley {
+  height: 100%;
+  background: var(--huxley-secondary);
+  transition: width 100ms linear, background 500ms var(--ease-huxley);
+  margin-left: auto;
+}
+
+.progress-orwell.merging,
+.progress-huxley.merging {
+  background: var(--synthesis-glow);
+}
+
+/* --------------------------------------------------------------------------
+   HERO SECTION
+   -------------------------------------------------------------------------- */
+
+.hero-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.hero-split-background {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+
+.hero-orwell-bg {
+  flex: 1;
+  background: linear-gradient(135deg, var(--orwell-shadow) 0%, var(--orwell-primary) 100%);
+}
+
+.hero-huxley-bg {
+  flex: 1;
+  background: linear-gradient(225deg, var(--huxley-primary) 0%, #0a1628 100%);
+}
+
+.hero-divider-glow {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--synthesis-glow) 20%,
+    var(--synthesis-glow) 80%,
+    transparent 100%
+  );
+  transform: translateX(-50%);
+  animation: divider-pulse 4s ease-in-out infinite;
+}
+
+@keyframes divider-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 700px;
+}
+
+.hero-tagline {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--font-hero-title);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--orwell-text) 0%,
+    var(--huxley-cream) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  color: var(--synthesis-glow);
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+}
+
+.hero-dichotomy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.dichotomy-fear {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--orwell-accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dichotomy-or {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.dichotomy-pleasure {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--huxley-accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hero-question {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--orwell-text);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(180deg, var(--synthesis-glow) 0%, transparent 100%);
+  animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.5; }
+}
+
+/* --------------------------------------------------------------------------
+   CHAPTER HEADERS
+   -------------------------------------------------------------------------- */
+
+.chapter-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.chapter-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--font-section-label);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--synthesis-glow);
+  margin-bottom: 0.5rem;
+}
+
+.chapter-title {
+  font-family: var(--font-display);
+  font-size: var(--font-chapter-title);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.chapter-subtitle {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   PROSE BLOCKS
+   -------------------------------------------------------------------------- */
+
+.prose-block {
+  font-family: var(--font-body);
+  font-size: var(--font-body-size);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.prose-block p {
+  margin-bottom: 1.25rem;
+}
+
+.prose-lede {
+  font-size: 1.25rem;
+  line-height: 1.7;
+}
+
+.prose-heading {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--orwell-text);
+}
+
+.prose-centered {
+  text-align: center;
+}
+
+.prose-emphasis {
+  font-style: italic;
+  color: var(--synthesis-glow);
+}
+
+/* --------------------------------------------------------------------------
+   METAPHOR BOX
+   -------------------------------------------------------------------------- */
+
+.metaphor-box {
+  background: rgba(167, 139, 250, 0.08);
+  border-left: 3px solid var(--synthesis-glow);
+  padding: 1.5rem 1.5rem 1.5rem 2rem;
+  margin: 2rem 0;
+}
+
+.metaphor-box p {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-style: italic;
+  color: var(--synthesis-glow);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.metaphor-synthesis {
+  background: linear-gradient(
+    135deg,
+    rgba(167, 139, 250, 0.1) 0%,
+    rgba(244, 114, 182, 0.08) 100%
+  );
+  border-left-color: var(--synthesis-alert);
+}
+
+.metaphor-statement {
+  text-align: center;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.metaphor-statement p {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--synthesis-glow);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   SPLIT FRAME
+   -------------------------------------------------------------------------- */
+
+.split-frame {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 3rem 0;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .split-frame {
+    flex-direction: row;
+    gap: 2rem;
+  }
+}
+
+.split-orwell,
+.split-huxley {
+  flex: 1;
+  padding: 1.5rem;
+  border-radius: 4px;
+}
+
+.split-orwell {
+  background: rgba(55, 65, 81, 0.4);
+  border: 1px solid var(--orwell-secondary);
+}
+
+.split-huxley {
+  background: rgba(12, 74, 110, 0.3);
+  border: 1px solid var(--huxley-secondary);
+}
+
+.split-divider {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .split-divider {
+    display: block;
+    width: 1px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      var(--synthesis-glow) 20%,
+      var(--synthesis-glow) 80%,
+      transparent 100%
+    );
+    flex-shrink: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   AUTHOR CARD
+   -------------------------------------------------------------------------- */
+
+.author-card {
+  text-align: center;
+}
+
+.author-portrait-frame {
+  width: 120px;
+  height: 150px;
+  margin: 0 auto 1rem;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.author-portrait-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(30%);
+  transition: filter 400ms var(--ease-huxley);
+}
+
+.author-card:hover .author-portrait-image {
+  filter: grayscale(0%);
+}
+
+.author-orwell .author-portrait-frame {
+  border: 2px solid var(--orwell-secondary);
+}
+
+.author-huxley .author-portrait-frame {
+  border: 2px solid var(--huxley-secondary);
+}
+
+.author-name {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.author-years {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.5rem;
+}
+
+.author-epithet {
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.author-orwell .author-epithet {
+  color: var(--orwell-accent);
+}
+
+.author-huxley .author-epithet {
+  color: var(--huxley-accent);
+}
+
+.author-quote {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0;
+  margin: 0;
+}
+
+.author-quote p {
+  margin: 0 0 0.5rem 0;
+}
+
+.author-quote cite {
+  font-size: 0.8125rem;
+  font-style: normal;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   PATH STATEMENT
+   -------------------------------------------------------------------------- */
+
+.path-statement {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.path-orwell {
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid var(--orwell-accent);
+  color: var(--orwell-accent);
+}
+
+.path-huxley {
+  background: rgba(244, 114, 182, 0.1);
+  border: 1px solid var(--huxley-accent);
+  color: var(--huxley-accent);
+}
+
+/* --------------------------------------------------------------------------
+   TIMELINE MARKER
+   -------------------------------------------------------------------------- */
+
+.timeline-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 3rem 0;
+  font-family: var(--font-mono);
+}
+
+.timeline-point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background: rgba(167, 139, 250, 0.1);
+  border-radius: 4px;
+}
+
+.timeline-year {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--synthesis-glow);
+}
+
+.timeline-event {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.timeline-gap {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   COMPARISON PANEL
+   -------------------------------------------------------------------------- */
+
+.comparison-panel {
+  height: 100%;
+}
+
+.panel-title {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.panel-orwell .panel-title {
+  color: var(--orwell-accent);
+}
+
+.panel-huxley .panel-title {
+  color: var(--huxley-accent);
+}
+
+.panel-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.panel-list li {
+  padding: 0.5rem 0;
+  padding-left: 1.25rem;
+  position: relative;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.panel-orwell .panel-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.875rem;
+  width: 6px;
+  height: 6px;
+  background: var(--orwell-accent);
+}
+
+.panel-huxley .panel-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.875rem;
+  width: 6px;
+  height: 6px;
+  background: var(--huxley-accent);
+  border-radius: 50%;
+}
+
+/* --------------------------------------------------------------------------
+   CONTROL DICHOTOMY
+   -------------------------------------------------------------------------- */
+
+.control-dichotomy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+
+@media (min-width: 768px) {
+  .control-dichotomy {
+    flex-direction: row;
+  }
+}
+
+.control-mechanism {
+  flex: 1;
+  text-align: center;
+  padding: 2rem;
+  border-radius: 4px;
+}
+
+.control-fear {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.15) 0%, rgba(17, 24, 39, 0.8) 100%);
+  border: 1px solid var(--orwell-accent);
+}
+
+.control-pleasure {
+  background: linear-gradient(135deg, rgba(244, 114, 182, 0.15) 0%, rgba(12, 74, 110, 0.5) 100%);
+  border: 1px solid var(--huxley-accent);
+}
+
+.mechanism-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.5rem;
+}
+
+.mechanism-word {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.control-fear .mechanism-word {
+  color: var(--orwell-accent);
+}
+
+.control-pleasure .mechanism-word {
+  color: var(--huxley-accent);
+}
+
+.mechanism-description {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   QUOTE MONUMENT
+   -------------------------------------------------------------------------- */
+
+.quote-monument {
+  margin: 3rem 0;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.quote-orwell {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.08) 0%, rgba(17, 24, 39, 0.9) 100%);
+  border-top: 2px solid var(--orwell-accent);
+  border-bottom: 2px solid var(--orwell-accent);
+}
+
+.quote-huxley {
+  background: linear-gradient(135deg, rgba(244, 114, 182, 0.08) 0%, rgba(12, 74, 110, 0.5) 100%);
+  border-top: 2px solid var(--huxley-accent);
+  border-bottom: 2px solid var(--huxley-accent);
+}
+
+.quote-postman {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.1) 0%, rgba(30, 27, 75, 0.8) 100%);
+  border-top: 2px solid var(--synthesis-glow);
+  border-bottom: 2px solid var(--synthesis-glow);
+}
+
+.quote-text {
+  font-family: var(--font-display);
+  font-size: var(--font-quote-size);
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--orwell-text);
+  margin-bottom: 1.5rem;
+}
+
+.quote-footer {
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+}
+
+.quote-speaker {
+  font-weight: 600;
+  font-style: normal;
+}
+
+.quote-source {
+  display: block;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   THE LETTER
+   -------------------------------------------------------------------------- */
+
+.chapter-letter {
+  background: linear-gradient(180deg, #111827 0%, #0a0a0a 50%, #111827 100%);
+}
+
+.the-letter {
+  margin: 3rem 0;
+}
+
+.letter-paper {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  background: linear-gradient(135deg, #f5f5dc 0%, #e8e4d0 100%);
+  border-radius: 2px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+  transform: rotate(-0.3deg);
+  color: #1a1a1a;
+}
+
+.letter-header {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.letter-salutation {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.letter-body {
+  min-height: 180px;
+}
+
+.letter-text {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.9375rem;
+  line-height: 1.9;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.letter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: #333;
+  margin-left: 2px;
+  animation: cursor-blink 0.8s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  50% { opacity: 0; }
+}
+
+.letter-signature {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  text-align: right;
+  margin-top: 2rem;
+  color: #333;
+  transition: opacity 600ms var(--ease-huxley);
+}
+
+.signature-name {
+  font-family: "Brush Script MT", cursive;
+  font-size: 1.5rem;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.letter-epilogue {
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-style: italic;
+  color: var(--orwell-accent);
+  margin-top: 2rem;
+  transition: opacity 600ms var(--ease-huxley);
+}
+
+/* --------------------------------------------------------------------------
+   TRUTH / LOVE PANELS
+   -------------------------------------------------------------------------- */
+
+.truth-panel,
+.love-panel {
+  height: 100%;
+}
+
+.truth-panel h4,
+.love-panel h4 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.truth-orwell h4,
+.love-orwell h4 {
+  color: var(--orwell-accent);
+}
+
+.truth-huxley h4,
+.love-huxley h4 {
+  color: var(--huxley-accent);
+}
+
+.truth-panel p,
+.love-panel p {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.truth-result,
+.love-result {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-style: italic;
+}
+
+.convergence-statement {
+  text-align: center;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  background: rgba(167, 139, 250, 0.1);
+  border-radius: 4px;
+}
+
+.convergence-statement p {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--synthesis-glow);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   SYNTHESIS SECTION
+   -------------------------------------------------------------------------- */
+
+.chapter-synthesis {
+  background: linear-gradient(
+    180deg,
+    #0C1929 0%,
+    var(--synthesis-primary) 30%,
+    var(--synthesis-primary) 70%,
+    #0C1929 100%
+  );
+}
+
+.synthesis-column {
+  height: 100%;
+}
+
+.synthesis-column h4 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.synthesis-orwell h4 {
+  color: var(--orwell-accent);
+}
+
+.synthesis-huxley h4 {
+  color: var(--huxley-accent);
+}
+
+.synthesis-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.synthesis-column li {
+  padding: 0.5rem 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.synthesis-merge {
+  padding: 3rem 2rem;
+  margin: 3rem 0;
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.15) 0%, rgba(244, 114, 182, 0.08) 100%);
+  border-radius: 8px;
+  border: 1px solid var(--synthesis-glow);
+  text-align: center;
+}
+
+.merge-visual {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 2rem;
+}
+
+.merge-orwell,
+.merge-huxley {
+  width: 60px;
+  height: 120px;
+}
+
+.merge-orwell {
+  background: var(--orwell-primary);
+  border-radius: 4px 0 0 4px;
+}
+
+.merge-huxley {
+  background: var(--huxley-primary);
+  border-radius: 0 4px 4px 0;
+}
+
+.merge-text {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.merge-headline {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--synthesis-glow);
+  margin-bottom: 1rem;
+}
+
+.merge-text p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.merge-conclusion {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--synthesis-glow);
+  margin-top: 1.5rem;
+}
+
+.synthesis-conclusion {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.synthesis-conclusion p {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* --------------------------------------------------------------------------
+   EPILOGUE
+   -------------------------------------------------------------------------- */
+
+.epilogue-section {
+  background: linear-gradient(180deg, #0C1929 0%, #050505 100%);
+}
+
+.epilogue-portraits {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin: 3rem 0;
+}
+
+.epilogue-portrait {
+  text-align: center;
+}
+
+.portrait-frame {
+  width: 100px;
+  height: 120px;
+  margin: 0 auto 1rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.portrait-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(50%);
+  transition: filter 400ms var(--ease-huxley);
+}
+
+.epilogue-portrait:hover .portrait-image {
+  filter: grayscale(0%);
+}
+
+.portrait-orwell .portrait-frame {
+  border: 1px solid var(--orwell-secondary);
+}
+
+.portrait-huxley .portrait-frame {
+  border: 1px solid var(--huxley-secondary);
+}
+
+.portrait-name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.portrait-orwell .portrait-name {
+  color: var(--orwell-accent);
+}
+
+.portrait-huxley .portrait-name {
+  color: var(--huxley-accent);
+}
+
+.portrait-years {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.final-questions {
+  max-width: 600px;
+  margin: 3rem auto;
+  text-align: center;
+}
+
+.final-questions p {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-style: italic;
+  line-height: 2;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0;
+}
+
+.final-challenge {
+  font-size: 1.375rem !important;
+  color: var(--synthesis-glow) !important;
+  margin-top: 1.5rem !important;
+}
+
+/* --------------------------------------------------------------------------
+   SOURCES SECTION
+   -------------------------------------------------------------------------- */
+
+.sources-section {
+  padding: 4rem 1.5rem;
+  background: linear-gradient(180deg, #050505 0%, var(--orwell-shadow) 100%);
+}
+
+.sources-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.sources-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--orwell-text);
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--synthesis-glow);
+}
+
+.source-group {
+  margin-bottom: 2rem;
+}
+
+.source-group-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--synthesis-glow);
+  margin-bottom: 0.75rem;
+}
+
+.sources-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sources-list li {
+  margin-bottom: 0.75rem;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.sources-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 4px;
+  height: 4px;
+  background: var(--synthesis-glow);
+  border-radius: 50%;
+}
+
+.sources-list a {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  line-height: 1.5;
+  transition: color 200ms var(--ease-huxley);
+}
+
+.sources-list a:hover {
+  color: var(--synthesis-glow);
+}
+
+.sources-note {
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.4);
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   MOBILE RESPONSIVE
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 767px) {
+  .hero-split-background {
+    flex-direction: column;
+  }
+
+  .hero-divider-glow {
+    left: 0;
+    right: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--synthesis-glow) 20%,
+      var(--synthesis-glow) 80%,
+      transparent 100%
+    );
+    transform: translateY(-50%);
+  }
+
+  .hero-dichotomy {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .dichotomy-fear,
+  .dichotomy-pleasure {
+    font-size: 1.25rem;
+  }
+
+  .letter-paper {
+    padding: 1.5rem;
+    transform: rotate(0);
+  }
+
+  .letter-header {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .epilogue-portraits {
+    gap: 2rem;
+  }
+
+  .portrait-frame {
+    width: 80px;
+    height: 100px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   REDUCED MOTION
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-divider-glow,
+  .scroll-line,
+  .letter-cursor {
+    animation: none;
+  }
+
+  .split-progress-bar * {
+    transition: none;
+  }
+}

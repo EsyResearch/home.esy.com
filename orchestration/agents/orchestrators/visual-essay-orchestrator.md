@@ -160,7 +160,7 @@
 │  ┌─────────────────────────────────────────────────────────────────────┐   │
 │  │  • Publication Approval & Sign-Off                                  │   │
 │  │  • Mobile-Native Experience Verification                            │   │
-│  │  • Publication to /essays/visual/                                   │   │
+│  │  • Publication to /essays/[slug]/                                    │   │
 │  │  • Index Update (isFeatured, isNew)                                 │   │
 │  │  • Post-Publish Monitoring                                          │   │
 │  └─────────────────────────────────────────────────────────────────────┘   │
@@ -244,7 +244,7 @@
 - Visual Essays index update (`VisualEssaysClient.tsx`)
 - Featured/New status management
 - Sitemap and SEO metadata confirmation
-- Deployment to `/essays/visual/`
+- Deployment to `/essays/[slug]/`
 
 **Post-Publication Monitoring**
 - Link health periodic checks
@@ -535,7 +535,7 @@ With research complete (Phase 2) and production complete (Phase 3), the audit ph
 Using @agents/orchestrators/meta-audit-orchestrator.md, conduct comprehensive 
 audit of the visual essay at:
 
-Path: src/app/essays/visual/[story-slug]/
+Path: src/app/essays/[story-slug]/
 
 Audit Domains:
 - Scroll: Scroll-lock, 60fps, mobile performance
@@ -585,7 +585,7 @@ If audit identifies issues:
 Using @agents/immersive-scrolling-auditor.md, audit the scroll experience 
 for the visual essay at:
 
-Path: src/app/essays/visual/[story-slug]/
+Path: src/app/essays/[story-slug]/
 
 Perform full 6-phase audit:
 1. Static Analysis
@@ -708,7 +708,7 @@ Produce certification report with:
 
 4. **Deployment Confirmation**
    - Build succeeds
-   - Page accessible at `/essays/visual/[slug]/`
+   - Page accessible at `/essays/[slug]/`
    - Index page updated
    - Featured essay prominent
 
@@ -998,7 +998,7 @@ orchestration/skills/visual-essay-invocation/specs/[topic-slug].md
 
 ## Project Context
 - **Primary Focus**: Esy.com Visual Essays production pipeline
-- **Content Type**: Immersive scrollytelling experiences at `/essays/visual/`
+- **Content Type**: Immersive scrollytelling experiences at `/essays/[slug]/`
 - **Target Audience**: Visual essay creators, editorial teams, production stakeholders
 - **Standards**: Academic citation rigor with editorial excellence
 - **Goal**: Ensure every visual essay meets Esy quality standards before publication

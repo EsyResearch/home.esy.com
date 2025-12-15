@@ -2,7 +2,19 @@
 
 import React, { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import "./the-ramayana.css";
-import { heroImages, prologueImages, chapter1Images } from "./images";
+import { 
+  heroImages, 
+  prologueImages, 
+  chapter1Images,
+  chapter2Images,
+  chapter3Images,
+  chapter4Images,
+  chapter5Images,
+  chapter6Images,
+  chapter7Images,
+  chapter8Images,
+  epilogueImages,
+} from "./images";
 
 // ============================================================================
 // THE JOURNEY HOME: The Ramayana in Art and Symbol
@@ -693,14 +705,16 @@ const Chapter2: React.FC = () => {
         
         <div className="chapter-grid" style={{ marginTop: "var(--space-xl)" }}>
           <ArchivalArt
-            alt="Forest hermitage at Panchavati"
+            src={chapter2Images[1]?.src}
+            alt={chapter2Images[1]?.alt || "Forest hermitage at Panchavati"}
             caption="Panchavati — the hermitage in the forest where danger will find them"
-            source="Pahari miniature"
-            period="Late 18th century"
-            tradition="Kangra school"
+            source="Prambanan Temple"
+            period="9th century CE"
+            tradition="Javanese sculpture"
           />
           <ArchivalArt
-            alt="The golden deer Maricha"
+            src={chapter2Images[0]?.src}
+            alt={chapter2Images[0]?.alt || "The golden deer Maricha"}
             caption="The golden deer appears — Maricha in disguise, sent by Ravana"
             source="Kangra painting"
             period="c. 1780"
@@ -739,6 +753,7 @@ const Chapter3: React.FC = () => {
     domain: "Fertility, fidelity, the feminine divine, steadfast love",
     quote: "Her body is captive. Her spirit remains free.",
     visualRef: "Sita in the Ashoka grove, Kangra miniature",
+    imageSrc: chapter3Images[1]?.src,
   };
 
   return (
@@ -773,11 +788,12 @@ const Chapter3: React.FC = () => {
           
           <div className="chapter-visual">
             <ArchivalArt
-              alt="Ravana carrying Sita through the sky"
-              caption="Ravana's chariot crosses the sky — Sita looks back toward the forest"
-              source="Prambanan Temple relief"
-              period="9th century CE"
-              tradition="Javanese sculpture"
+              src={chapter3Images[0]?.src}
+              alt={chapter3Images[0]?.alt || "Ravana carrying Sita through the sky"}
+              caption="Ravana's chariot crosses the sky — Sita throws jewels as markers"
+              source="Kangra painting"
+              period="c. 1780"
+              tradition="Pahari school"
               kenBurns
             />
           </div>
@@ -800,6 +816,7 @@ const Chapter4: React.FC = () => {
     domain: "Devotion, strength, celibacy, service, the power of the divine name",
     quote: "When he tears open his chest, Rama and Sita are within—there is no Hanuman separate from his love for them.",
     visualRef: "Chola bronze, Hanuman in anjali mudra",
+    imageSrc: chapter4Images[1]?.src,
   };
 
   return (
@@ -826,16 +843,19 @@ const Chapter4: React.FC = () => {
         
         <div className="art-grid" style={{ marginTop: "var(--space-xl)" }}>
           <ArchivalArt
-            alt="Hanuman's leap across the ocean"
-            caption="The leap — Hanuman spans the ocean, Lanka visible in the distance"
-            source="Multiple traditions"
-            tradition="Universal iconography"
+            src={chapter4Images[2]?.src}
+            alt={chapter4Images[2]?.alt || "Hanuman's leap across the ocean"}
+            caption="Stone witness to eternal devotion — 9th century Prambanan relief"
+            source="Prambanan Temple"
+            period="9th century CE"
+            tradition="Javanese sculpture"
           />
           <ArchivalArt
-            alt="Hanuman finding Sita in the Ashoka grove"
+            src={chapter4Images[0]?.src}
+            alt={chapter4Images[0]?.alt || "Hanuman finding Sita in the Ashoka grove"}
             caption="Hanuman finds Sita — he offers to carry her back; she refuses"
             source="Kangra painting"
-            period="c. 1780"
+            period="Late 18th century"
             tradition="Pahari school"
           />
         </div>
@@ -889,15 +909,18 @@ const Chapter5: React.FC = () => {
         
         <div className="art-grid" style={{ marginTop: "var(--space-xl)" }}>
           <ArchivalArt
-            alt="Stones floating with Rama's name"
-            caption="Stones inscribed with Rama's name float — faith defies nature"
-            source="Popular devotional art"
-            tradition="Universal iconography"
+            src={chapter5Images[0]?.src}
+            alt={chapter5Images[0]?.alt || "Stones floating with Rama's name"}
+            caption="The Setu complete — millions of monkeys built the bridge to Lanka"
+            source="Kangra painting"
+            period="c. 1800"
+            tradition="Pahari school"
           />
           <ArchivalArt
-            alt="The army crossing Ram Setu"
-            caption="The Setu complete — millions of monkeys built the bridge to Lanka"
-            source="Angkor Wat relief"
+            src={chapter5Images[1]?.src}
+            alt={chapter5Images[1]?.alt || "The army crossing Ram Setu"}
+            caption="Stone memory — 12th century Khmer artists carved the eternal war"
+            source="Angkor Wat"
             period="12th century"
             tradition="Khmer sculpture"
           />
@@ -928,6 +951,7 @@ const Chapter6: React.FC = () => {
     domain: "Lanka, scholarship, power, desire that corrupts, the ego unchecked",
     quote: "He is not simple evil—he is brilliant, devout in his way, a master of arts. His flaw is desire unrestrained by dharma.",
     visualRef: "Ravana lifting Kailash, Ellora Cave 16",
+    imageSrc: chapter6Images[3]?.src,
   };
 
   return (
@@ -943,7 +967,8 @@ const Chapter6: React.FC = () => {
         <div className="chapter-grid">
           <div className="chapter-visual">
             <ArchivalArt
-              alt="Battle panorama at Lanka"
+              src={chapter6Images[0]?.src}
+              alt={chapter6Images[0]?.alt || "Battle panorama at Lanka"}
               caption="The war at Lanka — demons and monkeys clash beneath the walls"
               source="Prambanan Temple"
               period="9th century"
@@ -964,6 +989,24 @@ const Chapter6: React.FC = () => {
               <strong> he carries the entire mountain</strong>. Lakshmana lives.
             </p>
           </div>
+        </div>
+        
+        <div className="art-grid" style={{ marginTop: "var(--space-lg)" }}>
+          <ArchivalArt
+            src={chapter6Images[1]?.src}
+            alt={chapter6Images[1]?.alt || "Hanuman carrying the mountain"}
+            caption="Hanuman carries the mountain — he could not identify the herb, so he brought it all"
+            source="Indian devotional art"
+            tradition="Popular iconography"
+          />
+          <ArchivalArt
+            src={chapter6Images[3]?.src}
+            alt={chapter6Images[3]?.alt || "Ravana shaking Mount Kailash"}
+            caption="Ravana's pride — even the cosmic mountain trembles, but cannot be moved"
+            source="Ellora Caves"
+            period="8th century CE"
+            tradition="Rashtrakuta sculpture"
+          />
         </div>
         
         <DivineFigureProfile figure={ravana} />
@@ -1043,17 +1086,11 @@ const Chapter7: React.FC = () => {
         
         <div className="art-grid" style={{ marginTop: "var(--space-xl)" }}>
           <ArchivalArt
-            alt="Sita entering the fire"
+            src={chapter7Images[0]?.src}
+            alt={chapter7Images[0]?.alt || "Sita entering the fire"}
             caption="Sita enters the flames — faith expressed through fire"
-            source="Multiple traditions"
-            tradition="Universal iconography"
-          />
-          <ArchivalArt
-            alt="Agni returning Sita unharmed"
-            caption="Agni rises with Sita — unburned, radiant, proven"
-            source="Rajasthani painting"
-            period="18th century"
-            tradition="Mewar school"
+            source="Indian painting"
+            tradition="Agni Pariksha iconography"
           />
         </div>
       </div>
@@ -1094,18 +1131,18 @@ const Chapter8: React.FC = () => {
         
         <div className="art-grid" style={{ marginTop: "var(--space-xl)" }}>
           <ArchivalArt
-            alt="Ayodhya lit with lamps"
+            src={chapter8Images[0]?.src}
+            alt={chapter8Images[0]?.alt || "Ayodhya lit with lamps"}
             caption="Ayodhya ablaze with light — every lamp welcomes Rama home"
-            source="Rajasthani painting"
-            period="18th century"
-            tradition="Mewar school"
+            source="Diwali celebration"
+            tradition="Living tradition"
           />
           <ArchivalArt
-            alt="Coronation of Rama"
-            caption="Ram Rajya begins — the ideal kingdom, the measure against which all governance is judged"
-            source="Tanjore painting"
-            period="19th century"
-            tradition="Thanjavur school"
+            src={chapter8Images[1]?.src}
+            alt={chapter8Images[1]?.alt || "Diwali celebration"}
+            caption="The festival of lights — celebrating the return to Ayodhya"
+            source="Contemporary photograph"
+            tradition="Living tradition"
           />
         </div>
         
@@ -1219,14 +1256,16 @@ const EpilogueSection: React.FC = () => {
         
         <div className="art-grid" style={{ marginTop: "var(--space-xl)" }}>
           <ArchivalArt
-            alt="Ram Lila performance"
+            src={epilogueImages[0]?.src}
+            alt={epilogueImages[0]?.alt || "Ram Lila performance"}
             caption="Ram Lila — the story performed, the myth made present"
             source="Contemporary photography"
             tradition="Living tradition"
           />
           <ArchivalArt
-            alt="Diwali celebrations"
-            caption="Diwali — the festival of lights, celebrating the return"
+            src={epilogueImages[1]?.src}
+            alt={epilogueImages[1]?.alt || "Ram Lila Ravana actor"}
+            caption="Ravana lives again — each year the story repeats, the lesson renews"
             source="Contemporary photography"
             tradition="Living tradition"
           />

@@ -531,24 +531,22 @@ const HeroScrollLock: React.FC = () => {
 
   // Character evolution stages based on scroll progress
   const getCharacterStage = () => {
-    if (progress < 0.15) return 0; // Water flow
-    if (progress < 0.35) return 1; // Oracle bone emerges
-    if (progress < 0.55) return 2; // Bronze inscription
-    if (progress < 0.75) return 3; // Seal script → Regular
+    if (progress < 0.20) return 0; // Initial state with character
+    if (progress < 0.40) return 1; // Oracle bone style
+    if (progress < 0.60) return 2; // Bronze inscription
+    if (progress < 0.75) return 3; // Regular script
     if (progress < 0.90) return 4; // Two Hans appear
     return 5; // Title card
   };
 
   const stage = getCharacterStage();
   const showTitle = progress > 0.85;
-  const showScrollHint = progress < 0.05;
+  const showScrollHint = progress < 0.08;
 
-  // Character opacity based on stage
-  const getCharacterOpacity = (charStage: number) => {
-    if (stage < charStage) return 0;
-    if (stage === charStage) return Math.min((progress - (charStage * 0.2)) * 5, 1);
-    return 1;
-  };
+  // Calculate opacity for smooth transitions
+  const initialFade = stage === 0 ? 1 : Math.max(0, 1 - (progress - 0.15) * 10);
+  const morphFade = stage >= 1 && stage < 4 ? 1 : 0;
+  const twoHansFade = stage >= 4 ? Math.min((progress - 0.72) * 8, 1) : 0;
 
   return (
     <section
@@ -558,45 +556,52 @@ const HeroScrollLock: React.FC = () => {
     >
       <div className={`hero-pinned ${isPinned ? "is-pinned" : ""} ${isComplete ? "is-complete" : ""}`}>
         {/* Water flow background */}
-        <div 
+        <div
           className="water-flow-bg"
-          style={{ opacity: stage === 0 ? 1 : Math.max(0, 1 - (progress - 0.1) * 3) }}
+          style={{ opacity: stage <= 1 ? 0.8 : Math.max(0, 0.5 - progress * 0.5) }}
         />
 
-        {/* Stage 1-3: Single character morphing */}
-        <div className="character-morph-container">
-          {/* Oracle bone form */}
-          <div 
-            className="morph-character oracle-bone"
-            style={{ 
-              opacity: stage >= 1 && stage < 4 ? getCharacterOpacity(1) : 0,
-              transform: `scale(${stage === 1 ? 1 : 0.8}) translateY(${stage > 1 ? -20 : 0}px)`
-            }}
+        {/* Stage 0: Initial character - visible from start */}
+        <div 
+          className="initial-character-display"
+          style={{ 
+            opacity: initialFade,
+            transform: `scale(${1 + progress * 0.2})`
+          }}
+        >
+          <div className="initial-character">漢</div>
+          <div className="initial-subtitle">hàn</div>
+        </div>
+
+        {/* Stage 1-3: Character morphing through script styles */}
+        <div 
+          className="character-morph-container"
+          style={{ opacity: morphFade }}
+        >
+          <div
+            className={`morph-character ${stage === 1 ? 'oracle-bone' : stage === 2 ? 'bronze' : 'regular'}`}
           >
             漢
           </div>
 
-          {/* Script evolution indicator */}
-          {stage >= 1 && stage < 4 && (
-            <div className="script-stage-label" style={{ opacity: isPinned ? 1 : 0 }}>
-              {stage === 1 && "甲骨文 — Oracle Bone Script"}
-              {stage === 2 && "金文 — Bronze Inscription"}
-              {stage === 3 && "楷書 — Regular Script"}
-            </div>
-          )}
+          <div className="script-stage-label">
+            {stage === 1 && "甲骨文 — Oracle Bone Script"}
+            {stage === 2 && "金文 — Bronze Inscription"}
+            {stage === 3 && "楷書 — Regular Script"}
+          </div>
         </div>
 
         {/* Stage 4: Two Hans appear */}
-        <div 
+        <div
           className="two-hans-hero"
-          style={{ 
-            opacity: stage >= 4 ? 1 : 0,
-            transform: stage >= 4 ? "translateY(0)" : "translateY(40px)"
+          style={{
+            opacity: twoHansFade,
+            transform: `translateY(${stage >= 4 ? 0 : 40}px)`
           }}
         >
-          <span className="hero-han-chinese" style={{ opacity: stage >= 4 ? 1 : 0 }}>漢</span>
-          <span className="hero-han-divider" style={{ opacity: stage >= 4 ? 0.5 : 0 }}>/</span>
-          <span className="hero-han-korean" style={{ opacity: stage >= 4 ? 1 : 0 }}>韓</span>
+          <span className="hero-han-chinese">漢</span>
+          <span className="hero-han-divider">/</span>
+          <span className="hero-han-korean">韓</span>
         </div>
 
         {/* Stage 5: Full title card */}

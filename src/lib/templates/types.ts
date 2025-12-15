@@ -121,6 +121,27 @@ export const SUBCATEGORY_CATEGORY_MAP: Record<string, ModelCategoryInfo> = {
     label: 'Claude Prompts',
     href: '/templates/claude-prompts',
   },
+  // Essay templates
+  'essay-argumentative': {
+    label: 'Argumentative Essay',
+    href: '/templates/essay/argumentative',
+  },
+  'essay-college-application': {
+    label: 'College Application Essay',
+    href: '/templates/essay/college-application',
+  },
+  'essay-research': {
+    label: 'Research Essay',
+    href: '/templates/essay/research',
+  },
+  'essay-mla-format': {
+    label: 'MLA Format Essay',
+    href: '/templates/essay/mla-format',
+  },
+  'essay-expository': {
+    label: 'Expository Essay',
+    href: '/templates/essay/expository',
+  },
 };
 
 /**

@@ -69,7 +69,7 @@ export default function Footer () {
             links={[
               { href: "/essays/", text: "Visual Essays" },
               { href: "/scrollytelling/", text: "Scrollytelling" },
-              { href: "/templates/", text: "Research Templates" },
+              { href: "/templates/essay", text: "Essay Templates" },
             ]}
           />
           
@@ -86,7 +86,6 @@ export default function Footer () {
             links={[
               { href: "/docs/", text: "Docs" },
               { href: "/glossary/", text: "Glossary" },
-              { href: "/prompt-library/", text: "Prompt Library" },
             ]}
           />
           
