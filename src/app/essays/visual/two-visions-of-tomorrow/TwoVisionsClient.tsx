@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import "./two-visions-of-tomorrow.css";
-import ScrollytellingLayout from "@/components/Scrollytelling/ScrollytellingLayout";
 
 // ============================================================================
 // TYPES
@@ -288,12 +287,7 @@ const SourcesSection: React.FC<{ sources: Source[] }> = ({ sources }) => (
 
 export default function TwoVisionsClient() {
   return (
-    <ScrollytellingLayout
-      title="Two Visions of Tomorrow"
-      description="Which dystopia did we get—Orwell's surveillance state or Huxley's pleasure trap?"
-      readTime="18 min"
-      storyId="two-visions-of-tomorrow"
-    >
+    <>
       <SplitProgressBar />
 
       {/* ================================================================== */}
@@ -786,6 +780,7 @@ export default function TwoVisionsClient() {
       {/* SOURCES */}
       {/* ================================================================== */}
       <SourcesSection sources={sources} />
-    </ScrollytellingLayout>
+    </>
   );
 }
+

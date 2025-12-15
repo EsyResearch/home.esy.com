@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { Suspense } from "react";
 import MonsterStoryClient from "./MonsterStoryClient";
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: "The Monster Under My Bed — A Children's Story | Esy",
@@ -26,14 +25,7 @@ export const metadata: Metadata = {
 export default function MonsterStoryPage() {
   return (
     <Suspense fallback={<div className="monster-story-loading" />}>
-      <ScrollytellingLayout
-        title="The Monster Under My Bed"
-        description="A children's story"
-        readTime="5 min"
-        storyId="the-monster-under-my-bed"
-      >
-        <MonsterStoryClient />
-      </ScrollytellingLayout>
+      <MonsterStoryClient />
     </Suspense>
   );
 }

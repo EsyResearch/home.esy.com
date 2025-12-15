@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { Suspense } from "react";
 import StarsStoryClient from "./StarsStoryClient";
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: "The Night the Stars Fell — A Children's Story | Esy",
@@ -30,14 +29,7 @@ export const metadata: Metadata = {
 export default function TheNightTheStarsFellPage() {
   return (
     <Suspense fallback={<div className="stars-story-loading" />}>
-      <ScrollytellingLayout
-        title="The Night the Stars Fell"
-        description="A children's story"
-        readTime="5 min"
-        storyId="the-night-the-stars-fell"
-      >
-        <StarsStoryClient />
-      </ScrollytellingLayout>
+      <StarsStoryClient />
     </Suspense>
   );
 }

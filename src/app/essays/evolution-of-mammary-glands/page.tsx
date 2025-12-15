@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import MammaryGlandsClient from './MammaryGlandsClient';
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'Evolution of Mammary Glands | 310 Million Years of Milk | Esy',
@@ -31,15 +30,6 @@ export const metadata: Metadata = {
 };
 
 export default function EvolutionOfMammaryGlandsPage() {
-  return (
-    <ScrollytellingLayout
-      title="Evolution of Mammary Glands: 310 Million Years of Milk"
-      description="How a simple skin secretion became the defining feature of mammals."
-      readTime="12 min"
-      storyId="evolution-of-mammary-glands"
-    >
-      <MammaryGlandsClient />
-    </ScrollytellingLayout>
-  );
+  return <MammaryGlandsClient />;
 }
 

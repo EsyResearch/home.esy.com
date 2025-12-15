@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import CocoaOdysseyClient from './CocoaOdysseyClient';
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'The Cocoa Odyssey: From Ancient Ritual to Global Chocolate Empire | Esy',
@@ -38,16 +37,7 @@ export const metadata: Metadata = {
 };
 
 export default function CocoaOdysseyPage() {
-  return (
-    <ScrollytellingLayout
-      title="The Cocoa Odyssey: From Ancient Ritual to Global Chocolate Empire"
-      description="From sacred Mesoamerican drink to billion-dollar empires—the untold story of how a bitter bean conquered the world."
-      readTime="18 min"
-      storyId="the-cocoa-odyssey"
-    >
-      <CocoaOdysseyClient />
-    </ScrollytellingLayout>
-  );
+  return <CocoaOdysseyClient />;
 }
 
 

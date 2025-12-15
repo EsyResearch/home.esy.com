@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import MiaMouseClient from "./MiaMouseClient";
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: "Mia Mouse and the Mystery M — A Children's Story | Esy",
@@ -26,14 +25,7 @@ export const metadata: Metadata = {
 export default function MiaMousePage() {
   return (
     <Suspense fallback={<div className="mia-mouse-story-loading" />}>
-      <ScrollytellingLayout
-        title="Mia Mouse and the Mystery M"
-        description="A children's story"
-        readTime="6 min"
-        storyId="mia-mouse-mystery-m"
-      >
-        <MiaMouseClient />
-      </ScrollytellingLayout>
+      <MiaMouseClient />
     </Suspense>
   );
 }

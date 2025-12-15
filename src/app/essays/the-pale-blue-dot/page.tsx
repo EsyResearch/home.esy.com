@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import PaleBlueDotClient from './PaleBlueDotClient';
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'The Pale Blue Dot: A Cosmic Perspective | Esy',
@@ -32,15 +31,6 @@ export const metadata: Metadata = {
 };
 
 export default function PaleBlueDotPage() {
-  return (
-    <ScrollytellingLayout
-      title="The Pale Blue Dot: A Cosmic Perspective"
-      description="Experience Carl Sagan's Pale Blue Dot. Scroll to zoom out 6 billion kilometers."
-      readTime="10 min"
-      storyId="the-pale-blue-dot"
-    >
-      <PaleBlueDotClient />
-    </ScrollytellingLayout>
-  );
+  return <PaleBlueDotClient />;
 }
 

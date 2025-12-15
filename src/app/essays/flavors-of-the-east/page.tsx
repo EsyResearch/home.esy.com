@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { Suspense } from "react";
 import FlavorsOfTheEastClient from "./FlavorsOfTheEastClient";
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: "Flavors of the East: A Culinary Journey Through Asia | Esy",
@@ -32,14 +31,7 @@ export default function FlavorsOfTheEastPage() {
         </div>
       }
     >
-      <ScrollytellingLayout
-        title="Flavors of the East"
-        description="A Culinary Journey Through Asia"
-        readTime="18 min"
-        storyId="flavors-of-the-east"
-      >
-        <FlavorsOfTheEastClient />
-      </ScrollytellingLayout>
+      <FlavorsOfTheEastClient />
     </Suspense>
   );
 }

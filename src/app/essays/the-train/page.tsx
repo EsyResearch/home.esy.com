@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import TrainClient from './TrainClient';
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'The Train | Iron Horse of Industry | Esy',
@@ -31,15 +30,6 @@ export const metadata: Metadata = {
 };
 
 export default function TheTrainPage() {
-  return (
-    <ScrollytellingLayout
-      title="The Train: Iron Horse of Industry"
-      description="From Trevithick's first steam locomotive to 375 mph maglev trains — the complete history of rail."
-      readTime="13 min"
-      storyId="the-train"
-    >
-      <TrainClient />
-    </ScrollytellingLayout>
-  );
+  return <TrainClient />;
 }
 

@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import EternalHoneyClient from "./EternalHoneyClient";
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: "Eternal Honey: Into the Pyramid | Esy",
@@ -43,15 +42,6 @@ export const metadata: Metadata = {
 };
 
 export default function EternalHoneyPage() {
-  return (
-    <ScrollytellingLayout
-      title="Eternal Honey: Into the Pyramid"
-      description="Descend into the Great Pyramid where 3,000-year-old honey was found still edible. A parallax journey through Egyptian tombs and the science of honey's immortality."
-      readTime="12 min"
-      storyId="eternal-honey"
-    >
-      <EternalHoneyClient />
-    </ScrollytellingLayout>
-  );
+  return <EternalHoneyClient />;
 }
 

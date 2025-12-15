@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import GoldenCrunchClient from './GoldenCrunchClient';
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'The Golden Crunch: The Origins, Journey & Global Rise of Fried Chicken | Esy',
@@ -40,15 +39,6 @@ export const metadata: Metadata = {
 };
 
 export default function GoldenCrunchPage() {
-  return (
-    <ScrollytellingLayout
-      title="The Golden Crunch: The Origins, Journey & Global Rise of Fried Chicken"
-      description="An immersive journey into the deep, complex origins of fried chicken—from West African traditions and Scottish frying techniques to its role in American soul food and its transformation into a multi-hundred-billion-dollar global industry."
-      readTime="20 min"
-      storyId="the-golden-crunch"
-    >
-      <GoldenCrunchClient />
-    </ScrollytellingLayout>
-  );
+  return <GoldenCrunchClient />;
 }
 

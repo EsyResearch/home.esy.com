@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import WineHistoryClient from './WineHistoryClient';
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'The Invention of Wine: 8,000 Years in a Glass | Esy',
@@ -32,15 +31,6 @@ export const metadata: Metadata = {
 };
 
 export default function WineHistoryPage() {
-  return (
-    <ScrollytellingLayout
-      title="The Invention of Wine: 8,000 Years in a Glass"
-      description="From Neolithic Georgia to billion-dollar châteaux—the story of humanity's oldest fermented beverage."
-      readTime="11 min"
-      storyId="the-invention-of-wine"
-    >
-      <WineHistoryClient />
-    </ScrollytellingLayout>
-  );
+  return <WineHistoryClient />;
 }
 

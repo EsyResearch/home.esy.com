@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 import EssayWritingClient from "./EssayWritingClient";
 
 export const metadata: Metadata = {
@@ -41,15 +40,6 @@ export const metadata: Metadata = {
 };
 
 export default function HowToWriteAnEssayPage() {
-  return (
-    <ScrollytellingLayout
-      title="How to Write an Essay"
-      description="A visual step-by-step guide"
-      readTime="8 min read"
-      storyId="how-to-write-an-essay"
-    >
-      <EssayWritingClient />
-    </ScrollytellingLayout>
-  );
+  return <EssayWritingClient />;
 }
 

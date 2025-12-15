@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import LanguageDeathClient from './LanguageDeathClient';
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'Language Death: The Silence of Extinction | Esy',
@@ -32,15 +31,6 @@ export const metadata: Metadata = {
 };
 
 export default function LanguageDeathPage() {
-  return (
-    <ScrollytellingLayout
-      title="Language Death: The Silence of Extinction"
-      description="7,168 languages exist today—half will disappear by 2100. Every 14 days, a language dies forever."
-      readTime="9 min"
-      storyId="language-death"
-    >
-      <LanguageDeathClient />
-    </ScrollytellingLayout>
-  );
+  return <LanguageDeathClient />;
 }
 

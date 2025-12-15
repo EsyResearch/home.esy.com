@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import TeaJourneyClient from './TeaJourneyClient';
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'Leaves of Time: The Global Journey of Tea | Esy',
@@ -39,16 +38,7 @@ export const metadata: Metadata = {
 };
 
 export default function TeaJourneyPage() {
-  return (
-    <ScrollytellingLayout
-      title="Leaves of Time: The Global Journey of Tea"
-      description="From wild mountain leaves to world dominance—5,000 years of tea history in one immersive journey."
-      readTime="18 min"
-      storyId="the-tea-journey"
-    >
-      <TeaJourneyClient />
-    </ScrollytellingLayout>
-  );
+  return <TeaJourneyClient />;
 }
 
 

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import CarHistoryClient from './CarHistoryClient';
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: 'The Invention of the Car | A Sketch-Style History | Esy',
@@ -29,26 +28,7 @@ export const metadata: Metadata = {
   },
 };
 
-/**
- * The Automobile - Scrollytelling Experience
- * 
- * Uses ScrollytellingLayout for app-like immersive experience:
- * - Minimal header (logo only)
- * - Theatre Bar footer (back, progress, share)
- * - No traditional site navigation
- * 
- * @see src/components/Scrollytelling/ScrollytellingLayout.tsx
- */
 export default function TheInventionOfTheCarPage() {
-  return (
-    <ScrollytellingLayout
-      title="The Automobile: A Sketch-Style Journey"
-      description="A hand-drawn journey through the invention that changed civilization."
-      readTime="11 min"
-      storyId="the-invention-of-the-car"
-    >
-      <CarHistoryClient />
-    </ScrollytellingLayout>
-  );
+  return <CarHistoryClient />;
 }
 

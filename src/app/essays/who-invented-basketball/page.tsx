@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import BasketballHistoryClient from "./BasketballHistoryClient";
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: "The History of Basketball: From Peach Baskets to Global Phenomenon | Esy Scrollytelling",
@@ -27,15 +26,6 @@ export const metadata: Metadata = {
 };
 
 export default function HistoryOfBasketballPage() {
-  return (
-    <ScrollytellingLayout
-      title="The Basketball Story: From Peach Baskets to Global Phenomenon"
-      description="Dr. James Naismith's 1891 invention becomes billion-dollar arenas and worldwide phenomenon."
-      readTime="10 min"
-      storyId="who-invented-basketball"
-    >
-      <BasketballHistoryClient />
-    </ScrollytellingLayout>
-  );
+  return <BasketballHistoryClient />;
 }
 

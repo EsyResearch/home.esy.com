@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { Suspense } from "react";
 import SammySnailClient from "./SammySnailClient";
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: "Sammy Snail's Super Speed Day — A Children's Adventure | Esy",
@@ -25,14 +24,7 @@ export const metadata: Metadata = {
 export default function SammySnailPage() {
   return (
     <Suspense fallback={<div className="sammy-loading" />}>
-      <ScrollytellingLayout
-        title="Sammy Snail's Super Speed Day"
-        description="A magical speed adventure!"
-        readTime="8 min"
-        storyId="sammy-snail-super-speed"
-      >
-        <SammySnailClient />
-      </ScrollytellingLayout>
+      <SammySnailClient />
     </Suspense>
   );
 }

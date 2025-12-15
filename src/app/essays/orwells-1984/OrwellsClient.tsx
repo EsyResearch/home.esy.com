@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import "./orwells-1984.css";
-import ScrollytellingLayout from "@/components/Scrollytelling/ScrollytellingLayout";
 
 // ============================================================================
 // TYPES
@@ -381,10 +380,6 @@ const Sources: React.FC<{ sources: Source[] }> = ({ sources }) => (
 
 export default function OrwellsClient() {
   return (
-    <ScrollytellingLayout
-      title="The Architecture of Unfreedom"
-      description="How George Orwell Built 1984 from the Horrors He Witnessed"
-    >
       <div className="orwells-essay">
         {/* Progress Bar */}
         <TypewriterProgressBar />
@@ -1051,7 +1046,6 @@ export default function OrwellsClient() {
         {/* ================================================================== */}
         <Sources sources={sources} />
       </div>
-    </ScrollytellingLayout>
   );
 }
 

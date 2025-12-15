@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { Suspense } from "react";
 import AlphabetTrainClient from "./AlphabetTrainClient";
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: "The Alphabet Adventure Train — Learn Your ABCs | Esy",
@@ -26,14 +25,7 @@ export const metadata: Metadata = {
 export default function AlphabetTrainPage() {
   return (
     <Suspense fallback={<div className="alphabet-train-loading" />}>
-      <ScrollytellingLayout
-        title="The Alphabet Adventure Train"
-        description="Learn your ABCs with a magical train ride!"
-        readTime="15 min"
-        storyId="alphabet-adventure-train"
-      >
-        <AlphabetTrainClient />
-      </ScrollytellingLayout>
+      <AlphabetTrainClient />
     </Suspense>
   );
 }

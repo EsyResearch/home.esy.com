@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import SpoonHistoryClient from "./SpoonHistoryClient";
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: "The History of the Spoon: 30,000 Years of Humanity's Essential Tool | Esy Scrollytelling",
@@ -27,15 +26,6 @@ export const metadata: Metadata = {
 };
 
 export default function HistoryOfTheSpoonPage() {
-  return (
-    <ScrollytellingLayout
-      title="The Spoon: 30,000 Years of Humanity's Essential Tool"
-      description="From prehistoric bone carvings to modern stainless steel—humanity's oldest eating utensil."
-      readTime="10 min"
-      storyId="who-invented-the-spoon"
-    >
-      <SpoonHistoryClient />
-    </ScrollytellingLayout>
-  );
+  return <SpoonHistoryClient />;
 }
 

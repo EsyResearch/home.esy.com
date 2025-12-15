@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import GreatFireClient from "./GreatFireClient";
-import { ScrollytellingLayout } from "@/components/Scrollytelling";
 
 export const metadata: Metadata = {
   title: "The Great Fire of London: From Ashes to Empire | Esy",
@@ -32,10 +31,6 @@ export const metadata: Metadata = {
 };
 
 export default function TheGreatFirePage() {
-  return (
-    <ScrollytellingLayout title="The Great Fire of London">
-      <GreatFireClient />
-    </ScrollytellingLayout>
-  );
+  return <GreatFireClient />;
 }
 

@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import { ScrollytellingLayout } from '@/components/Scrollytelling';
 import OriginOfBreadClient from './OriginOfBreadClient';
 
 export const metadata: Metadata = {
@@ -32,14 +31,5 @@ export const metadata: Metadata = {
 };
 
 export default function OriginOfBreadPage() {
-  return (
-    <ScrollytellingLayout
-      title="The Origin of Bread"
-      description="A cinematic history of humanity's first food"
-      readTime="18 min"
-      storyId="the-first-loaf"
-    >
-      <OriginOfBreadClient />
-    </ScrollytellingLayout>
-  );
+  return <OriginOfBreadClient />;
 }
