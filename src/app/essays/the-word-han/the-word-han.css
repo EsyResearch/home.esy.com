@@ -1,0 +1,1140 @@
+/**
+ * The Word "Han" — Visual Essay Styles
+ * Typography-Forward Design Identity
+ * 
+ * Color Palette:
+ * - Ink Night: #0A0A0C (primary background)
+ * - Imperial Red: #B8202D (Han Dynasty accent)
+ * - Royal Blue: #1E3F66 (Korean accent)
+ * - Paper White: #FDFBF7 (text)
+ * - Gold Accent: #C9A83E (seals, markers)
+ * - Bronze: #8B7355 (ancient sections)
+ */
+
+/* ============================================================================
+   CSS CUSTOM PROPERTIES
+   ============================================================================ */
+
+.the-word-han {
+  /* Colors */
+  --color-bg-primary: #0A0A0C;
+  --color-bg-elevated: #1A1A1E;
+  --color-bg-ink-wash: #2A2A32;
+  --color-text: #FDFBF7;
+  --color-text-secondary: rgba(253, 251, 247, 0.7);
+  --color-text-muted: rgba(253, 251, 247, 0.5);
+  
+  /* Accent Colors */
+  --color-imperial-red: #B8202D;
+  --color-royal-blue: #1E3F66;
+  --color-gold: #C9A83E;
+  --color-bronze: #8B7355;
+  --color-jade: #5D9B79;
+  --color-paper: #FDF5E6;
+  
+  /* Typography */
+  --font-serif: "Source Han Serif", "Noto Serif CJK SC", "Songti SC", Georgia, serif;
+  --font-sans: "Source Han Sans", "Noto Sans CJK SC", "PingFang SC", sans-serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  
+  /* Spacing */
+  --section-padding: 6rem 1.5rem;
+  --content-max-width: 720px;
+  
+  /* Animation */
+  --ease-calligraphic: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-normal: 0.35s;
+  --duration-slow: 0.6s;
+  
+  /* Base Styles */
+  background: var(--color-bg-primary);
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ============================================================================
+   INK STROKE PROGRESS BAR
+   ============================================================================ */
+
+.ink-stroke-progress {
+  position: fixed;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 70vh;
+  width: 8px;
+  z-index: 100;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .ink-stroke-progress {
+    left: 0.5rem;
+    width: 6px;
+    height: 60vh;
+  }
+}
+
+.ink-stroke-track {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(139, 115, 85, 0.3) 0%,
+    rgba(253, 251, 247, 0.1) 50%,
+    rgba(253, 251, 247, 0.2) 100%
+  );
+  border-radius: 4px;
+  overflow: visible;
+}
+
+.ink-stroke-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    var(--color-bronze) 0%,
+    var(--color-imperial-red) 40%,
+    var(--color-royal-blue) 70%,
+    var(--color-text) 100%
+  );
+  border-radius: 4px;
+  transition: height 0.1s linear;
+}
+
+.seal-stamp {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: 2px solid var(--color-imperial-red);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.3;
+  transition: all var(--duration-normal) var(--ease-calligraphic);
+}
+
+.seal-stamp.stamped {
+  background: var(--color-imperial-red);
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.seal-stamp .seal-number {
+  font-family: var(--font-display);
+  font-size: 0.625rem;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.ink-dot {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: var(--color-text);
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(253, 251, 247, 0.6);
+  transition: top 0.1s linear;
+}
+
+/* ============================================================================
+   SECTIONS
+   ============================================================================ */
+
+.han-section {
+  padding: var(--section-padding);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all var(--duration-slow) var(--ease-calligraphic);
+}
+
+.han-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Era-based color accents */
+.han-section.era-ancient { --era-accent: var(--color-bronze); }
+.han-section.era-han { --era-accent: var(--color-imperial-red); }
+.han-section.era-transmission { --era-accent: var(--color-jade); }
+.han-section.era-korean { --era-accent: var(--color-royal-blue); }
+.han-section.era-modern { --era-accent: var(--color-gold); }
+.han-section.era-contemporary { --era-accent: var(--color-text); }
+
+/* ============================================================================
+   HERO SECTION
+   ============================================================================ */
+
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(ellipse at center, var(--color-bg-elevated) 0%, var(--color-bg-primary) 70%);
+  padding: 2rem;
+}
+
+/* Override global .hero-content grid styles from globals.css
+   Using .the-word-han scoping for higher specificity */
+.the-word-han .hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* Explicitly unset global grid properties */
+  grid-template-columns: unset;
+  gap: unset;
+}
+
+/* Override global .hero-title styles from globals.css */
+.the-word-han .hero-title {
+  /* Reset global gradient/animation that may interfere */
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  background-clip: border-box;
+  animation: none;
+  /* Use our essay's color */
+  color: var(--color-text);
+}
+
+/* Override global .hero-subtitle styles */
+.the-word-han .hero-subtitle {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  background-clip: border-box;
+}
+
+.hero-characters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.hero-character {
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 400;
+  line-height: 1;
+  opacity: 0;
+  animation: characterFadeIn 0.8s var(--ease-calligraphic) forwards;
+}
+
+.hero-character.char-han-chinese { 
+  color: var(--color-imperial-red); 
+  animation-delay: 0.2s;
+}
+.hero-character.char-han-korean { 
+  color: var(--color-royal-blue); 
+  animation-delay: 0.4s;
+}
+.hero-character.char-han-katakana { 
+  color: var(--color-jade); 
+  animation-delay: 0.6s;
+}
+.hero-character.char-han-hangul { 
+  color: var(--color-gold); 
+  animation-delay: 0.8s;
+}
+
+.hero-divider {
+  font-size: clamp(2rem, 6vw, 4rem);
+  color: var(--color-text-muted);
+  font-weight: 200;
+}
+
+@keyframes characterFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.the-word-han .hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  font-weight: 400;
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  animation: characterFadeIn 0.8s var(--ease-calligraphic) 1s forwards;
+  /* Ensure global gradient styles are overridden */
+  background: none;
+  -webkit-text-fill-color: var(--color-text);
+  background-clip: border-box;
+}
+
+.the-word-han .hero-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--color-text-secondary);
+  font-style: italic;
+  opacity: 0;
+  animation: characterFadeIn 0.8s var(--ease-calligraphic) 1.2s forwards;
+  /* Ensure global styles are overridden */
+  background: none;
+  -webkit-text-fill-color: var(--color-text-secondary);
+  background-clip: border-box;
+}
+
+.hero-scroll-indicator {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: characterFadeIn 0.8s var(--ease-calligraphic) 1.5s forwards;
+}
+
+.scroll-text {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+}
+
+.scroll-arrow {
+  width: 20px;
+  height: 20px;
+  border-right: 2px solid var(--color-text-muted);
+  border-bottom: 2px solid var(--color-text-muted);
+  transform: rotate(45deg);
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: rotate(45deg) translateY(0); }
+  50% { transform: rotate(45deg) translateY(5px); }
+}
+
+/* ============================================================================
+   CHAPTER STRUCTURE
+   ============================================================================ */
+
+.chapter {
+  padding: 8rem 1.5rem;
+}
+
+.chapter-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  max-width: var(--content-max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chapter-number {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--era-accent, var(--color-gold));
+  margin-bottom: 1rem;
+}
+
+.chapter-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.chapter-marker {
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
+
+.chapter-content {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+.chapter-lead {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: var(--color-text);
+}
+
+.chapter-content p {
+  margin-bottom: 1.5rem;
+}
+
+.insight-text {
+  font-size: 1.125rem;
+  font-style: italic;
+  color: var(--color-text-secondary);
+  border-left: 3px solid var(--era-accent, var(--color-gold));
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+}
+
+/* ============================================================================
+   CHARACTER DISPLAY
+   ============================================================================ */
+
+.character-display {
+  text-align: center;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.character-glyph {
+  display: block;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.character-hero .character-glyph {
+  font-size: clamp(6rem, 20vw, 10rem);
+}
+
+.character-section .character-glyph {
+  font-size: clamp(4rem, 12vw, 6rem);
+}
+
+.character-inline .character-glyph {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+}
+
+.character-chinese .character-glyph { color: var(--color-imperial-red); }
+.character-korean .character-glyph { color: var(--color-royal-blue); }
+.character-japanese .character-glyph { color: var(--color-jade); }
+.character-vietnamese .character-glyph { color: var(--color-gold); }
+
+.character-reading {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
+
+.character-meaning {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  max-width: 300px;
+}
+
+/* ============================================================================
+   TWO HANS COMPARISON
+   ============================================================================ */
+
+.two-hans-comparison {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
+  align-items: center;
+  padding: 4rem 2rem;
+  margin: 4rem 0;
+  background: var(--color-bg-elevated);
+  border-radius: 8px;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all var(--duration-slow) var(--ease-calligraphic);
+}
+
+.two-hans-comparison.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (max-width: 768px) {
+  .two-hans-comparison {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 3rem 1.5rem;
+  }
+  
+  .han-divider {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+  
+  .han-divider .divider-line {
+    width: 100%;
+    height: 1px !important;
+  }
+}
+
+.han-chinese-side,
+.han-korean-side {
+  text-align: center;
+}
+
+.han-origin {
+  margin-top: 1.5rem;
+}
+
+.origin-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.origin-text {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.han-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+}
+
+.divider-line {
+  flex: 1;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--color-text-muted), transparent);
+}
+
+.divider-text {
+  font-size: 1.5rem;
+  color: var(--color-text-muted);
+  font-weight: 300;
+}
+
+.han-conclusion {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--color-gold);
+  margin-top: 1rem;
+}
+
+/* ============================================================================
+   QUOTE MONUMENT
+   ============================================================================ */
+
+.quote-monument {
+  margin: 4rem auto;
+  padding: 3rem 2rem;
+  max-width: 600px;
+  text-align: center;
+  position: relative;
+}
+
+.quote-monument::before {
+  content: '"';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 6rem;
+  font-family: var(--font-display);
+  color: var(--color-text-muted);
+  opacity: 0.3;
+  line-height: 1;
+}
+
+.quote-text {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.quote-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.quote-speaker {
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.quote-source {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* Quote variants */
+.quote-chinese .quote-speaker { color: var(--color-imperial-red); }
+.quote-korean .quote-speaker { color: var(--color-royal-blue); }
+.quote-vietnamese .quote-speaker { color: var(--color-gold); }
+
+/* ============================================================================
+   FIGURE CARDS
+   ============================================================================ */
+
+.figures-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.figure-card {
+  background: var(--color-bg-elevated);
+  border-radius: 8px;
+  padding: 2rem;
+  border-left: 4px solid var(--color-text-muted);
+}
+
+.figure-chinese { border-left-color: var(--color-imperial-red); }
+.figure-korean { border-left-color: var(--color-royal-blue); }
+.figure-japanese { border-left-color: var(--color-jade); }
+.figure-vietnamese { border-left-color: var(--color-gold); }
+.figure-western { border-left-color: var(--color-text); }
+
+.figure-header {
+  margin-bottom: 1.5rem;
+}
+
+.figure-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.figure-chinese-name {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+.figure-role {
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.figure-years {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.figure-contributions {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.figure-contributions li {
+  font-size: 0.9375rem;
+  padding-left: 1.5rem;
+  position: relative;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-secondary);
+}
+
+.figure-contributions li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--era-accent, var(--color-gold));
+}
+
+.figure-quote {
+  font-style: italic;
+  font-size: 0.9375rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+  margin: 0;
+}
+
+.figure-quote p {
+  margin-bottom: 0.5rem;
+}
+
+.figure-quote cite {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  font-style: normal;
+}
+
+/* ============================================================================
+   SCRIPT EVOLUTION
+   ============================================================================ */
+
+.script-evolution {
+  margin: 4rem 0;
+  padding: 3rem 2rem;
+  background: var(--color-bg-elevated);
+  border-radius: 8px;
+}
+
+.evolution-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.evolution-stages {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.evolution-stage {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  opacity: 0.3;
+  transition: opacity var(--duration-normal) var(--ease-calligraphic);
+}
+
+.evolution-stage.active {
+  opacity: 1;
+}
+
+.stage-marker {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--color-imperial-red);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-primary);
+  transition: background var(--duration-normal) var(--ease-calligraphic);
+}
+
+.evolution-stage.active .stage-marker {
+  background: var(--color-imperial-red);
+}
+
+.stage-number {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.stage-content {
+  flex: 1;
+}
+
+.stage-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.stage-chinese {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+.stage-period {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.stage-description {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ============================================================================
+   SCRIPT NAMES GRID
+   ============================================================================ */
+
+.script-names-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin: 3rem 0;
+  padding: 2rem;
+  background: var(--color-bg-elevated);
+  border-radius: 8px;
+}
+
+.script-name {
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.script-characters {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-gold);
+}
+
+.script-reading {
+  display: block;
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0.25rem;
+}
+
+.script-origin {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+
+/* ============================================================================
+   CALLOUT BOXES
+   ============================================================================ */
+
+.callout-box {
+  padding: 2rem;
+  background: var(--color-bg-ink-wash);
+  border-left: 4px solid var(--color-gold);
+  margin: 2rem 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.callout-box p {
+  margin: 0;
+  font-size: 1.0625rem;
+}
+
+.callout-korean {
+  border-left-color: var(--color-royal-blue);
+}
+
+.callout-contemporary {
+  border-left-color: var(--color-text);
+}
+
+/* ============================================================================
+   TIMELINE
+   ============================================================================ */
+
+.timeline-section {
+  margin: 4rem 0;
+}
+
+.timeline-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.timeline-events {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  padding-left: 3rem;
+}
+
+.timeline-events::before {
+  content: '';
+  position: absolute;
+  left: 0.75rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-bronze),
+    var(--color-imperial-red),
+    var(--color-jade),
+    var(--color-royal-blue),
+    var(--color-gold),
+    var(--color-text)
+  );
+}
+
+.timeline-event {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  position: relative;
+}
+
+.timeline-event::before {
+  content: '';
+  position: absolute;
+  left: -2.25rem;
+  top: 1.75rem;
+  width: 12px;
+  height: 12px;
+  background: var(--color-bg-primary);
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+
+.timeline-event.era-ancient { color: var(--color-bronze); }
+.timeline-event.era-han { color: var(--color-imperial-red); }
+.timeline-event.era-transmission { color: var(--color-jade); }
+.timeline-event.era-korean { color: var(--color-royal-blue); }
+.timeline-event.era-modern { color: var(--color-gold); }
+.timeline-event.era-contemporary { color: var(--color-text); }
+
+.timeline-year {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: inherit;
+  white-space: nowrap;
+}
+
+.timeline-content {
+  color: var(--color-text);
+}
+
+.timeline-event-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-description {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ============================================================================
+   CLOSING SECTION
+   ============================================================================ */
+
+.closing-reflection {
+  margin: 5rem 0;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, var(--color-bg-elevated) 0%, var(--color-bg-ink-wash) 100%);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.closing-reflection h3 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-gold);
+}
+
+.closing-reflection p {
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+  color: var(--color-text-secondary);
+}
+
+.closing-reflection p:last-child {
+  margin-bottom: 0;
+}
+
+.final-characters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin: 4rem 0;
+  flex-wrap: wrap;
+}
+
+.final-characters .character-display {
+  margin: 0;
+}
+
+.final-note {
+  width: 100%;
+  text-align: center;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--color-gold);
+  margin-top: 1.5rem;
+}
+
+/* ============================================================================
+   SOURCES SECTION
+   ============================================================================ */
+
+.sources-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, var(--color-bg-elevated) 0%, var(--color-bg-primary) 100%);
+  border-top: 1px solid var(--color-bg-ink-wash);
+}
+
+.sources-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.sources-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-gold);
+}
+
+.sources-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.sources-list li {
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.sources-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--color-gold);
+}
+
+.sources-list a {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sources-list a:hover {
+  color: var(--color-gold);
+  text-decoration: underline;
+}
+
+.source-primary::before { color: var(--color-imperial-red) !important; }
+.source-museum::before { color: var(--color-jade) !important; }
+
+.sources-note {
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-bg-ink-wash);
+}
+
+/* ============================================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .the-word-han {
+    font-size: 1rem;
+    --section-padding: 4rem 1rem;
+  }
+  
+  .chapter {
+    padding: 5rem 1rem;
+  }
+  
+  .chapter-header {
+    margin-bottom: 2.5rem;
+  }
+  
+  .quote-monument {
+    padding: 2rem 1rem;
+  }
+  
+  .quote-monument::before {
+    font-size: 4rem;
+  }
+  
+  .figure-card {
+    padding: 1.5rem;
+  }
+  
+  .script-evolution {
+    padding: 2rem 1rem;
+  }
+  
+  .evolution-stage {
+    gap: 1rem;
+  }
+  
+  .timeline-events {
+    padding-left: 2rem;
+  }
+  
+  .timeline-event {
+    grid-template-columns: 60px 1fr;
+    gap: 1rem;
+  }
+  
+  .timeline-event::before {
+    left: -1.5rem;
+  }
+}
+
+/* ============================================================================
+   REDUCED MOTION
+   ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .han-section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  
+  .hero-character,
+  .hero-title,
+  .hero-subtitle,
+  .hero-scroll-indicator {
+    animation: none;
+    opacity: 1;
+  }
+  
+  .scroll-arrow {
+    animation: none;
+  }
+  
+  .two-hans-comparison {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  
+  .ink-stroke-fill,
+  .ink-dot {
+    transition: none;
+  }
+}
