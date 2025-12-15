@@ -653,6 +653,7 @@ Current agents derived from this framework:
 | `sitemap-canonical-expert.md` | **Sitemap & URL Architecture** | Sitemap Specialist & URL Standardization | **Specialist** — Sitemap generation, Canonical enforcement, Trailing slash policy, Crawl optimization; → SEO Specialist, → Software Engineer |
 | `seo-audit-agent.md` | **SEO Quality Assurance** | Page-Level SEO Auditor & Grader | **Auditor** → SEO Specialist, Visual Essay Orchestrator (G3); Uses `seo-element-extraction` skill |
 | `hydration-audit-agent.md` | **React Hydration QA** | SSR/Client Mismatch Detector | **Auditor** → Immersive Experience Eng, Scrollytelling Expert; IntersectionObserver, useState, browser API safety |
+| `design-slop-auditor.md` | **Design Distinctiveness** | AI Slop Detector & Design Research | **Auditor** → Scrollytelling Expert, Visual Essay Orchestrator; Enforces subject-derived aesthetics, rejects generic/convergent patterns |
 | `visual-essay-invocation-agent.md` | **Spec Generation** | Visual Essay Specification Architect | **Pre-processor** → Visual Essay Orchestrator (Phase 1); Uses `visual-essay-invocation` skill → stores to `specs/` |
 | `meta-prompt-enhancer.md` | **Universal Enhancement** | Prompt Architect & Instruction Designer | **Universal Pre-processor** → Any AI System, Any Agent; Uses CRISP-E framework (Context, Role, Intent, Specifics, Parameters, Examples) |
 | `social-media-meta-expert.md` | **Social Sharing Optimization** | Social Meta Specialist (Audit + Implementation) | **Dual-Role Expert** — Audit Mode (QA gate), Implementation Mode (fixes), Advisory Mode (strategy); OG, Twitter Cards, JSON-LD; → Visual Essay Orchestrator (publish gate) |
@@ -687,6 +688,7 @@ This meta-framework should evolve as patterns emerge:
 December 15, 2024
 
 ### Recent Changes
+- Added Design Slop Auditor to registry (AI slop detection, subject-derived design enforcement, Design Research Reports for remediation)
 - Added Hydration Audit Agent to registry (React SSR/client mismatch detection, IntersectionObserver vulnerabilities, useState initialization)
 - Added Sitemap & Canonical Expert to registry (sitemap generation, URL standardization, trailing slash enforcement)
 - Added Social Media Meta Expert to registry (dual-role: audit + implementation)

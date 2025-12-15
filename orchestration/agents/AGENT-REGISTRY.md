@@ -14,7 +14,7 @@ agents/
 ├── META-AGENT-FRAMEWORK.md      # Agent creation template
 │
 ├── orchestrators/               # 🎬 Top-level coordination (5)
-├── auditors/                    # 🔍 Quality verification (9)
+├── auditors/                    # 🔍 Quality verification (10)
 ├── content/                     # 📚 Content creation (4)
 ├── research/                    # 🔬 Source discovery (3)
 ├── regional/                    # 🌏 Regional specialists (2)
@@ -51,6 +51,7 @@ agents/
 | [SEO Audit Agent](./auditors/seo-audit-agent.md) | Search Optimization | — | `auditors/` |
 | [Spec Compliance Auditor](./auditors/spec-compliance-auditor.md) | **Spec vs Output** | — | `auditors/` |
 | [Hydration Audit Agent](./auditors/hydration-audit-agent.md) | **React Hydration** | — | `auditors/` |
+| [Design Slop Auditor](./auditors/design-slop-auditor.md) | **AI Slop Detection** | — | `auditors/` |
 
 **Report Storage:**
 - Citation Reports: `auditors/CitationReports/`
@@ -285,13 +286,13 @@ See [META-AGENT-FRAMEWORK.md](./META-AGENT-FRAMEWORK.md) for the complete agent 
 | Category | Count | Key Responsibility |
 |----------|-------|-------------------|
 | 🎬 Orchestrators | 5 | Multi-agent coordination |
-| 🔍 Auditors | 9 | Quality verification |
+| 🔍 Auditors | 10 | Quality verification |
 | 📚 Content | 4 | Content creation |
 | 🔬 Research | 3 | Source discovery |
 | 🌏 Regional | 2 | Subject expertise |
 | ⚙️ Engineering | 8 | Technical implementation |
 | 🔧 Utilities | 4 | Support functions |
-| **Total** | **35** | |
+| **Total** | **36** | |
 
 ---
 
@@ -315,8 +316,9 @@ See [META-AGENT-FRAMEWORK.md](./META-AGENT-FRAMEWORK.md) for the complete agent 
 *Last Updated: December 15, 2024*
 
 ### Recent Changes
+- Added **Design Slop Auditor** to auditors category — detects AI-generated generic design patterns, enforces subject-derived aesthetics, provides remediation through Design Research Reports
+- Updated category statistics (Auditors: 9 → 10, Total: 35 → 36)
 - Added **Hydration Audit Agent** to auditors category — detects SSR/client hydration mismatches (IntersectionObserver race conditions, useState initialization, browser API access)
-- Updated category statistics (Auditors: 8 → 9, Total: 34 → 35)
 - Added **Frontend Architecture Expert** to engineering category — world-class advisor for library selection and complex front-end experiences
 - Added **Visual Essay Intake Enhancer** to utilities category
 - Updated visual essay pipeline diagram to show intake enhancer as pre-phase

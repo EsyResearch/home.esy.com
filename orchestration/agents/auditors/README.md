@@ -17,6 +17,7 @@ Quality verification and certification agents that ensure content meets Esy stan
 | [SEO Audit Agent](./seo-audit-agent.md) | Search Optimization | — | SEO Grade A+ to F |
 | [Spec Compliance Auditor](./spec-compliance-auditor.md) | **Spec vs Output** | — | Compliance Score (%) |
 | [Hydration Audit Agent](./hydration-audit-agent.md) | **React Hydration** | — | Hydration Compliance Report |
+| [Design Slop Auditor](./design-slop-auditor.md) | **AI Slop Detection** | — | Slop Score (0-100), Design Research Report |
 
 ---
 
@@ -41,6 +42,7 @@ Quality verification and certification agents that ensure content meets Esy stan
 | SEO optimization check | SEO Audit Agent |
 | **Verify output matches spec** | Spec Compliance Auditor |
 | **Check SSR/client hydration** | Hydration Audit Agent |
+| **Detect AI slop & enforce distinctiveness** | Design Slop Auditor |
 | **Comprehensive QA** | Use Meta Audit Orchestrator (orchestrators/) |
 
 ---
@@ -56,7 +58,8 @@ Meta Audit Orchestrator
 │   └── Quotes Audit
 ├── SEO Audit
 ├── Spec Compliance Auditor (verifies output matches spec)
-└── Hydration Audit ← NEW (verifies SSR/client consistency)
+├── Hydration Audit (verifies SSR/client consistency)
+└── Design Slop Auditor ← NEW (enforces distinctive, subject-derived design)
         │
         ▼
    CERTIFICATION
@@ -77,6 +80,18 @@ Using @agents/auditors/spec-compliance-auditor.md, audit spec compliance:
 
 Spec: orchestration/skills/visual-essay-invocation/specs/[slug].md
 Essay: src/app/essays/visual/[slug]/
+```
+
+```
+# Audit for AI slop
+Using @agents/auditors/design-slop-auditor.md, audit the visual essay at:
+src/app/essays/[essay-slug]/
+Check for AI slop patterns and provide severity rating.
+
+# Remediation after slop detection
+Using @agents/auditors/design-slop-auditor.md, the design has been flagged as AI slop.
+Subject: [describe subject]
+Conduct design research and propose a distinctive, subject-derived aesthetic.
 ```
 
 ---
