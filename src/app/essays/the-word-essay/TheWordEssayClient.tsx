@@ -425,9 +425,16 @@ const SourcesSection: React.FC = () => {
 
 export default function TheWordEssayClient() {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
+  // Initialize with 'hero' already visible to prevent flash of unstyled content
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set(['hero']));
   const [heroComplete, setHeroComplete] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
+
+  // Mark as mounted to trigger hero animations after hydration
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Track scroll progress
   useEffect(() => {
@@ -446,7 +453,7 @@ export default function TheWordEssayClient() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Intersection Observer for sections
+  // Intersection Observer for sections (excluding hero which is handled separately)
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -459,7 +466,8 @@ export default function TheWordEssayClient() {
       { threshold: 0.2, rootMargin: '-50px' }
     );
 
-    const sections = document.querySelectorAll('.chapter-section, .hero-section, .closing-section');
+    // Only observe chapter and closing sections, hero is always visible on load
+    const sections = document.querySelectorAll('.chapter-section, .closing-section');
     sections.forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
@@ -474,7 +482,7 @@ export default function TheWordEssayClient() {
       <section 
         ref={heroRef}
         id="hero" 
-        className={`hero-section ${visibleSections.has('hero') ? 'visible' : ''}`}
+        className={`hero-section ${isMounted && visibleSections.has('hero') ? 'visible' : ''}`}
       >
         <div className="hero-background">
           <div className="paper-texture" />

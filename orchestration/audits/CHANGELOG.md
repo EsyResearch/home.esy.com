@@ -6,6 +6,22 @@ This master changelog tracks all audit activity across all visual essays and all
 
 ## December 2024
 
+### 2024-12-15
+
+#### ALL ESSAYS (Batch Hydration Audit)
+| Domain | Version | Action | Score | Details |
+|--------|---------|--------|-------|---------|
+| Hydration | v1.0 | `INIT` | ✅ | 69 essays scanned for SSR/client mismatches |
+
+**Summary**: Full hydration audit completed across all 69 essay client components.
+- **4 Fixed**: TheWordEssayClient, TeaJourneyClient, TeaJourneyIllustratedClient, WhoInventedTheForkClient (all have isMounted + pre-initialized hero pattern)
+- **3 Minor**: BurmeseCuisineClient (empty Set pattern), + Math.random decorative patterns in ~10 essays
+- **62 Safe**: Use CSS animations or hardcoded hero visibility
+
+**Result**: ✅ **PASS** — No critical hero hydration issues remain. All previously corrupted first-load experiences have been fixed.
+
+---
+
 ### 2024-12-11
 
 #### the-history-of-burmese-cuisine
@@ -66,6 +82,7 @@ This master changelog tracks all audit activity across all visual essays and all
 | Experience | Animations, reveals, interactions |
 | Visual | SVG quality, accessibility |
 | SEO | Metadata, schema, discoverability |
+| Hydration | SSR/client mismatches, useState patterns |
 | Meta | Comprehensive/cross-domain certification |
 
 ### Action Codes
@@ -100,4 +117,4 @@ This master changelog tracks all audit activity across all visual essays and all
 
 ---
 
-*Last updated: December 11, 2024*
+*Last updated: December 15, 2024*

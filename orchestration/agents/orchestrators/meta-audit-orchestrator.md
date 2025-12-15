@@ -62,6 +62,7 @@
 | `quotes-audit-agent.md` | Quotes | Quote verification, attribution | Misattributed or fabricated quotes |
 | `seo-audit-agent.md` | SEO | On-page, technical, content, schema | Grade < C or blocking issues |
 | `spec-compliance-auditor.md` | **Spec Compliance** | Output matches invocation spec | Score < 70% or missing elements |
+| `hydration-audit-agent.md` | **Hydration** | SSR/client mismatches, first-load integrity | Any Tier 1 failure (hero corruption) |
 
 ### Audit Dependencies
 
@@ -70,21 +71,21 @@
                          │  Meta Audit Orchestrator │
                          └───────────┬─────────────┘
                                      │
-   ┌──────────────┬──────────────┬───┴───┬──────────────┬──────────────┐
-   │              │              │       │              │              │
-   ▼              ▼              ▼       ▼              ▼              ▼
-┌────────┐  ┌──────────┐  ┌──────────┐ ┌────────┐ ┌─────────┐ ┌────────────┐
-│ SCROLL │  │EXPERIENCE│  │  SPEC    │ │ VISUAL │ │ CONTENT │ │    SEO     │
-│ AUDIT  │  │  AUDIT   │  │COMPLIANCE│ │ AUDIT  │ │ AUDITS  │ │   AUDIT    │
-└────────┘  └────┬─────┘  └──────────┘ └────────┘ └────┬────┘ └────────────┘
-                 │                                      │
-                 │                               ┌──────┴──────┐
-                 │                               │             │
-                 ▼                               ▼             ▼
-       ┌───────────────┐               ┌───────────────┐ ┌───────────┐
-       │ Scroll Audit  │               │ Citation Audit│ │  Quotes   │
-       │  (delegated)  │               └───────────────┘ │   Audit   │
-       └───────────────┘                                 └───────────┘
+   ┌────────────┬────────────┬───────┼───────┬────────────┬────────────┬────────────┐
+   │            │            │       │       │            │            │            │
+   ▼            ▼            ▼       ▼       ▼            ▼            ▼            ▼
+┌────────┐┌──────────┐┌──────────┐┌────────┐┌─────────┐┌────────────┐┌────────────┐
+│ SCROLL ││EXPERIENCE││  SPEC    ││ VISUAL ││ CONTENT ││    SEO     ││ HYDRATION  │
+│ AUDIT  ││  AUDIT   ││COMPLIANCE││ AUDIT  ││ AUDITS  ││   AUDIT    ││   AUDIT    │
+└────────┘└────┬─────┘└──────────┘└────────┘└────┬────┘└────────────┘└────────────┘
+               │                                  │
+               │                           ┌──────┴──────┐
+               │                           │             │
+               ▼                           ▼             ▼
+     ┌───────────────┐           ┌───────────────┐ ┌───────────┐
+     │ Scroll Audit  │           │ Citation Audit│ │  Quotes   │
+     │  (delegated)  │           └───────────────┘ │   Audit   │
+     └───────────────┘                             └───────────┘
 ```
 
 ### Parallelization Strategy
@@ -95,6 +96,7 @@
 - Citation Audit (triggers Quotes Audit internally)
 - SEO Audit
 - **Spec Compliance Audit** (compares spec vs output)
+- **Hydration Audit** (SSR/client mismatch detection)
 
 **Sequential Dependencies:**
 - Experience Audit → Scroll Audit (incorporates scroll findings)
@@ -171,6 +173,7 @@ Launch independent audits simultaneously:
 - [ ] Dispatch Citation Audit (if sources section present)
 - [ ] Dispatch SEO Audit (for all published/pre-publication pages)
 - [ ] **Dispatch Spec Compliance Audit** (compares spec vs output) — REQUIRED
+- [ ] **Dispatch Hydration Audit** (SSR/client first-load integrity) — REQUIRED
 
 ### Phase 3: Sequential Audit Dispatch (Variable)
 Launch dependent audits:
@@ -216,6 +219,7 @@ Produce comprehensive audit report:
 | Quotes | Quotes Audit | N/A | Misattributed/fabricated |
 | SEO | SEO Audit Agent | C (60/100) | Any 🔴 Blocking issue |
 | **Spec Compliance** | Spec Compliance Auditor | 70% | Missing chapters or core elements |
+| **Hydration** | Hydration Audit Agent | Pass/Fail | Hero corruption or Tier 1 failures |
 
 ### Aggregate Certification Thresholds
 
@@ -245,6 +249,7 @@ Produce comprehensive audit report:
 | Mobile failures | Scroll + Experience + SEO | Safari iOS incompatibility, mobile usability |
 | Discoverability issues | SEO + Citations | Missing metadata, poor schema |
 | **Spec deviation** | Spec Compliance + Experience + Scroll | Built essay doesn't match invocation spec |
+| **First-load corruption** | Hydration + Experience + Scroll | IntersectionObserver race conditions, useState mismatches |
 
 ---
 
@@ -276,6 +281,7 @@ Produce comprehensive audit report:
 | Citations | X.X/10 | 🟢/🟡/🔴 | Citation Audit |
 | Quotes | Pass/Fail | 🟢/🔴 | Quotes Audit |
 | SEO | X/100 (Grade) | 🟢/🟡/🔴 | SEO Audit Agent |
+| Hydration | Pass/Fail | 🟢/🔴 | Hydration Audit Agent |
 
 ### Key Findings Summary
 - ✅ [Major success 1]
@@ -495,8 +501,11 @@ Meta Audit Orchestrator
     ├─► Invoke: @agents/auditors/spec-compliance-auditor.md
     │   "Audit spec compliance: Spec [spec-path], Essay [essay-path]."
     │
-    └─► Invoke: @agents/auditors/seo-audit-agent.md
-        "Audit SEO for [URL]. Target keywords: [keywords]."
+    ├─► Invoke: @agents/auditors/seo-audit-agent.md
+    │   "Audit SEO for [URL]. Target keywords: [keywords]."
+    │
+    └─► Invoke: @agents/auditors/hydration-audit-agent.md
+        "Audit hydration for [essay-path]. Check SSR/client consistency."
 ```
 
 **Handoff Protocol**
@@ -803,15 +812,17 @@ orchestration/agents/CitationReports/CHANGELOG.md
 ---
 
 ## Last Updated
-December 11, 2025
+December 15, 2024
 
 ### Recent Changes
+- Added **Hydration Audit Agent** to audit domain registry — detects SSR/client mismatches, IntersectionObserver race conditions
+- Added hydration to parallel audit dispatch (Phase 2) — REQUIRED for all essays
+- Added hydration to certification matrix (Pass/Fail, blocks on Tier 1 failures)
+- Added "First-load corruption" to cross-domain issue patterns
+- Updated orchestration protocol with hydration audit invocation
+- Updated comprehensive audit report template with hydration domain
 - Added **Spec Path as required input** — spec is source of truth
 - Added **Spec Compliance Auditor** to audit domain registry
-- Added spec compliance to parallel audit dispatch (Phase 2)
-- Added spec compliance to certification matrix (70% threshold)
-- Updated orchestration protocol with spec compliance invocation
-- Updated comprehensive audit report template with spec compliance domain
 - See [INVOCATION-EXAMPLES.md](./INVOCATION-EXAMPLES.md) for invocation patterns
 
 ---

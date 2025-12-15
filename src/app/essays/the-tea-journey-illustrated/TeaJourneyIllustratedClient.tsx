@@ -116,12 +116,19 @@ const SteamParticles: React.FC<{ count?: number; className?: string }> = ({ coun
 // ============================================
 const TeaJourneyIllustratedClient: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
+  // Initialize with 'hero' to prevent flash of unstyled content on first load
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set(['hero']));
   const [activeRoute, setActiveRoute] = useState(0);
   const [mapProgress, setMapProgress] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
   
   const mapRef = useRef<HTMLElement>(null);
   const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
+
+  // Mark as mounted after hydration
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Scroll handler
   const handleScroll = useCallback(() => {

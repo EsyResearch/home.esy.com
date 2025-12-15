@@ -42,6 +42,7 @@ agents/
 | [Immersive Scrolling Auditor](#immersive-scrolling-auditor) | Scroll-lock & 60fps certification | `@agents/auditors/immersive-scrolling-auditor.md` |
 | [Immersive Experience Auditor](#immersive-experience-auditor) | Comprehensive experience QA | `@agents/auditors/immersive-experience-auditor.md` |
 | [SEO Audit Agent](#seo-audit-agent) | Page-level SEO auditing | `@agents/auditors/seo-audit-agent.md` |
+| [Hydration Audit Agent](#hydration-audit-agent) | SSR/client hydration compliance | `@agents/auditors/hydration-audit-agent.md` |
 
 **Reports:** `auditors/CitationReports/` · `auditors/VisualAuditReports/`
 
@@ -1599,6 +1600,65 @@ Focus on blocking issues and critical fixes only.
 - Works with `seo-specialist-expert.md` for strategy implementation
 - Integrates with `visual-essay-orchestrator.md` at G3 (Content Complete)
 - Provides data to content writers for optimization
+
+---
+
+### Hydration Audit Agent
+**File:** `auditors/hydration-audit-agent.md`
+
+**Role:** Expert front-end quality assurance specialist with 15+ years of experience in React/Next.js hydration systems, server-side rendering architecture, and client-side state management—specializing in detecting SSR/client mismatches, race condition vulnerabilities, and hydration failures that corrupt user experience on first load.
+
+**🔍 HYDRATION SPECIALIST:** This agent detects hydration issues before they corrupt user experience. If the first load is broken, the experience is broken—users don't refresh.
+
+**Key Capabilities:**
+- **State Initialization Analysis**: useState with SSR-incompatible values, empty Sets for visibility
+- **IntersectionObserver Vulnerabilities**: Above-fold content depending on observer timing
+- **Browser API Safety**: window/document access outside useEffect
+- **CSS Visibility States**: opacity: 0 waiting for JS-controlled classes
+- **Dynamic Content Detection**: Date.now(), Math.random(), localStorage in render
+- **isMounted Pattern Verification**: Hydration-safe class application
+
+**Anti-Patterns Detected:**
+| Pattern | Issue | Impact |
+|---------|-------|--------|
+| `useState(new Set())` for visibility | Empty until observer fires | Hero invisible on load |
+| `window.innerWidth` in render | Crashes on SSR | Build failure |
+| IntersectionObserver on hero | Race condition | Corrupted first load |
+| `Date.now()` in render | SSR/client mismatch | Hydration warning |
+| Missing `isMounted` guard | Inconsistent classes | Flash of wrong state |
+
+**Three-Tier Analysis:**
+- **Tier 1 (Critical)**: useState mismatches, browser API in render, observer-dependent heroes
+- **Tier 2 (Important)**: useEffect dependencies, CSS initial states, ref null checks
+- **Tier 3 (Optimization)**: Suspense boundaries, error boundaries, loading states
+
+**Invocation Examples:**
+```markdown
+# Audit a specific component
+Using @agents/auditors/hydration-audit-agent.md, audit 
+/src/app/essays/the-word-essay/TheWordEssayClient.tsx for hydration issues.
+
+# Check a pattern
+Using @agents/auditors/hydration-audit-agent.md, check if this pattern is hydration-safe:
+const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
+
+# Batch audit all visual essays
+Using @agents/auditors/hydration-audit-agent.md, audit all visual essay client 
+components for hydration issues.
+```
+
+**Output:**
+1. Hydration Audit Report with status (PASS/FAIL/NEEDS ATTENTION)
+2. Critical, Important, and Recommended issues categorized
+3. Code fixes with before/after examples
+4. Verification checklist for confirming fixes
+
+**Collaboration:**
+- Works with `immersive-experience-engineer.md` for animation hydration
+- Works with `scrollytelling-expert.md` for scroll-triggered visibility
+- Integrates with `meta-audit-orchestrator.md` for comprehensive QA
+
+**Reference:** [Hero Hydration Pattern](../../docs/front-end/HERO_HYDRATION_PATTERN.md) — Documented fix for IntersectionObserver hero issue
 
 ---
 

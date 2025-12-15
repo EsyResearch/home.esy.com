@@ -17,10 +17,17 @@ interface Section {
 
 export default function WhoInventedTheForkClient() {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
+  // Initialize with 'hero' to prevent flash of unstyled content on first load
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set(['hero']));
+  const [isMounted, setIsMounted] = useState(false);
   
   // Section refs for intersection observer
   const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
+
+  // Mark as mounted after hydration
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   
   // Calculate which tines should be visible based on progress
   const visibleTines = Math.min(4, Math.floor(scrollProgress * 5));

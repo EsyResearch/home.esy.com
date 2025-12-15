@@ -209,6 +209,7 @@ Some changes require updates to multiple documents:
 | **Citation report** | `auditors/CitationReports/README.md` (if new essay) |
 | **Visual audit report** | `auditors/VisualAuditReports/README.md` (if new essay) |
 | **Social media audit report** | `engineering/SocialMediaAuditReports/README.md` + `[essay]/` |
+| **Hydration audit report** | `audits/hydration/` + `audits/CHANGELOG.md` |
 
 ### Agent Role Patterns
 
@@ -561,9 +562,12 @@ When invoking this agent:
 ---
 
 ## Last Updated
-December 13, 2025
+December 15, 2024
 
 ### Recent Changes
+- Added Hydration Audit Agent to audit domain codes
+- Added hydration audit report routing rule (`audits/hydration/`)
+- Added hydration audits to report storage table
 - Added Social Media Audit Reports directory to report level documentation
 - Added social media audit report routing rule
 - Added Agent Role Patterns section documenting single-role, auditor, dual-role, orchestrator, and pre-processor patterns

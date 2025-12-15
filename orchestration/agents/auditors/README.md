@@ -16,6 +16,7 @@ Quality verification and certification agents that ensure content meets Esy stan
 | [Immersive Experience Auditor](./immersive-experience-auditor.md) | Overall Experience | — | Experience Certification |
 | [SEO Audit Agent](./seo-audit-agent.md) | Search Optimization | — | SEO Grade A+ to F |
 | [Spec Compliance Auditor](./spec-compliance-auditor.md) | **Spec vs Output** | — | Compliance Score (%) |
+| [Hydration Audit Agent](./hydration-audit-agent.md) | **React Hydration** | — | Hydration Compliance Report |
 
 ---
 
@@ -39,6 +40,7 @@ Quality verification and certification agents that ensure content meets Esy stan
 | Scroll-lock & 60fps check | Immersive Scrolling Auditor |
 | SEO optimization check | SEO Audit Agent |
 | **Verify output matches spec** | Spec Compliance Auditor |
+| **Check SSR/client hydration** | Hydration Audit Agent |
 | **Comprehensive QA** | Use Meta Audit Orchestrator (orchestrators/) |
 
 ---
@@ -53,7 +55,8 @@ Meta Audit Orchestrator
 ├── Citation Audit (G5)
 │   └── Quotes Audit
 ├── SEO Audit
-└── Spec Compliance Auditor ← NEW (verifies output matches spec)
+├── Spec Compliance Auditor (verifies output matches spec)
+└── Hydration Audit ← NEW (verifies SSR/client consistency)
         │
         ▼
    CERTIFICATION

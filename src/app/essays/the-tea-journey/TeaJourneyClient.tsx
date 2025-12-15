@@ -127,12 +127,19 @@ const TeaJourneyClient: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mapProgress, setMapProgress] = useState(0);
   const [activeTeaType, setActiveTeaType] = useState<string | null>(null);
-  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
+  // Initialize with 'hero' to prevent flash of unstyled content on first load
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set(['hero']));
   const [ceremonyPosition, setCeremonyPosition] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
   
   const mapSectionRef = useRef<HTMLElement>(null);
   const ceremonySectionRef = useRef<HTMLElement>(null);
   const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
+
+  // Mark as mounted after hydration
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // ============================================
   // SCROLL HANDLERS

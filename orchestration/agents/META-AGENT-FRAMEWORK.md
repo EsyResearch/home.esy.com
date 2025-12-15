@@ -652,6 +652,7 @@ Current agents derived from this framework:
 | `seo-specialist-expert.md` | **Search Optimization** | SEO Strategy & Organic Growth | **Specialist** — Technical SEO, Content Optimization, SERP Features, Link Strategy |
 | `sitemap-canonical-expert.md` | **Sitemap & URL Architecture** | Sitemap Specialist & URL Standardization | **Specialist** — Sitemap generation, Canonical enforcement, Trailing slash policy, Crawl optimization; → SEO Specialist, → Software Engineer |
 | `seo-audit-agent.md` | **SEO Quality Assurance** | Page-Level SEO Auditor & Grader | **Auditor** → SEO Specialist, Visual Essay Orchestrator (G3); Uses `seo-element-extraction` skill |
+| `hydration-audit-agent.md` | **React Hydration QA** | SSR/Client Mismatch Detector | **Auditor** → Immersive Experience Eng, Scrollytelling Expert; IntersectionObserver, useState, browser API safety |
 | `visual-essay-invocation-agent.md` | **Spec Generation** | Visual Essay Specification Architect | **Pre-processor** → Visual Essay Orchestrator (Phase 1); Uses `visual-essay-invocation` skill → stores to `specs/` |
 | `meta-prompt-enhancer.md` | **Universal Enhancement** | Prompt Architect & Instruction Designer | **Universal Pre-processor** → Any AI System, Any Agent; Uses CRISP-E framework (Context, Role, Intent, Specifics, Parameters, Examples) |
 | `social-media-meta-expert.md` | **Social Sharing Optimization** | Social Meta Specialist (Audit + Implementation) | **Dual-Role Expert** — Audit Mode (QA gate), Implementation Mode (fixes), Advisory Mode (strategy); OG, Twitter Cards, JSON-LD; → Visual Essay Orchestrator (publish gate) |
@@ -683,9 +684,10 @@ This meta-framework should evolve as patterns emerge:
 ---
 
 ## Last Updated
-December 14, 2024
+December 15, 2024
 
 ### Recent Changes
+- Added Hydration Audit Agent to registry (React SSR/client mismatch detection, IntersectionObserver vulnerabilities, useState initialization)
 - Added Sitemap & Canonical Expert to registry (sitemap generation, URL standardization, trailing slash enforcement)
 - Added Social Media Meta Expert to registry (dual-role: audit + implementation)
 - Added Meta Prompt Enhancer to registry (universal pre-processor)
