@@ -418,7 +418,7 @@ const TwoHansComparison: React.FC = () => {
         <CharacterDisplay character="韓" reading="han" meaning="Korean Han" variant="korean" size="hero" />
         <div className="han-origin">
           <p className="origin-label">Origin</p>
-          <p className="origin-text">Samhan confederacies → "Great/Leader" → Korean identity</p>
+          <p className="origin-text">Samhan confederacies → &ldquo;Great/Leader&rdquo; → Korean identity</p>
         </div>
       </div>
       <p className="han-conclusion">Same sound. Different word. Different origin.</p>
@@ -726,7 +726,7 @@ const TwoHansScrollLock: React.FC = () => {
               style={{ opacity: stage >= 2 ? 1 : 0 }}
             >
               <span className="origin-pinyin">han</span>
-              <span className="origin-desc">Samhan → "Great/Leader" → Korean</span>
+              <span className="origin-desc">Samhan → &ldquo;Great/Leader&rdquo; → Korean</span>
             </div>
           </div>
         </div>

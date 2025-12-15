@@ -239,7 +239,7 @@ const FigureProfile: React.FC<{
         </ul>
         {quote && (
           <blockquote className="figure-quote">
-            <p>"{quote.text}"</p>
+            <p>&ldquo;{quote.text}&rdquo;</p>
             <cite>— {quote.source}</cite>
           </blockquote>
         )}
@@ -303,7 +303,7 @@ const YezhovErasure: React.FC = () => {
             1940. Yezhov is executed.
           </p>
           <p className="erasure-quote" style={{ opacity: erasureProgress > 0.7 ? 1 : 0 }}>
-            "He had been vaporized, as the phrase was."
+            &ldquo;He had been vaporized, as the phrase was.&rdquo;
           </p>
         </div>
       </div>
@@ -383,9 +383,7 @@ export default function OrwellsClient() {
   return (
     <ScrollytellingLayout
       title="The Architecture of Unfreedom"
-      subtitle="How George Orwell Built 1984 from the Horrors He Witnessed"
-      showHeader={true}
-      showTheatreBar={true}
+      description="How George Orwell Built 1984 from the Horrors He Witnessed"
     >
       <div className="orwells-essay">
         {/* Progress Bar */}
@@ -1056,3 +1054,4 @@ export default function OrwellsClient() {
     </ScrollytellingLayout>
   );
 }
+
