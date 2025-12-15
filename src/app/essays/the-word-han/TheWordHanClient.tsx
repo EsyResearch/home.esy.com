@@ -208,6 +208,75 @@ const scriptStages = [
 ];
 
 // ============================================================================
+// SCROLL-LOCK HOOK
+// ============================================================================
+
+interface ScrollLockState {
+  containerRef: React.RefObject<HTMLDivElement>;
+  progress: number;
+  isPinned: boolean;
+  isComplete: boolean;
+}
+
+/**
+ * Custom scroll-lock hook for pinned scroll sequences
+ * @param sectionHeight - Height multiplier for scroll depth (e.g., 2.5 = 250vh)
+ */
+const useScrollLock = (sectionHeight: number = 2.5): ScrollLockState => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+  const [isPinned, setIsPinned] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
+  const ticking = useRef(false);
+
+  useEffect(() => {
+    const updateScrollState = () => {
+      if (!containerRef.current) return;
+
+      const rect = containerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const sectionTop = rect.top;
+      const sectionTotalHeight = rect.height;
+      const scrollableDistance = sectionTotalHeight - windowHeight;
+      const scrolledIntoSection = -sectionTop;
+
+      if (sectionTop <= 0 && scrolledIntoSection <= scrollableDistance) {
+        // Currently in the scroll-lock zone
+        setIsPinned(true);
+        setIsComplete(false);
+        const newProgress = Math.min(Math.max(scrolledIntoSection / scrollableDistance, 0), 1);
+        setProgress(newProgress);
+      } else if (sectionTop > 0) {
+        // Above the section
+        setIsPinned(false);
+        setIsComplete(false);
+        setProgress(0);
+      } else {
+        // Below the section
+        setIsPinned(false);
+        setIsComplete(true);
+        setProgress(1);
+      }
+
+      ticking.current = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking.current) {
+        requestAnimationFrame(updateScrollState);
+        ticking.current = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    updateScrollState();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [sectionHeight]);
+
+  return { containerRef, progress, isPinned, isComplete };
+};
+
+// ============================================================================
 // COMPONENTS
 // ============================================================================
 
@@ -454,6 +523,230 @@ const ScriptEvolution: React.FC = () => {
 };
 
 /**
+ * Hero Scroll-Lock Component
+ * Character morphing from abstract to final form
+ */
+const HeroScrollLock: React.FC = () => {
+  const { containerRef, progress, isPinned, isComplete } = useScrollLock(3);
+
+  // Character evolution stages based on scroll progress
+  const getCharacterStage = () => {
+    if (progress < 0.15) return 0; // Water flow
+    if (progress < 0.35) return 1; // Oracle bone emerges
+    if (progress < 0.55) return 2; // Bronze inscription
+    if (progress < 0.75) return 3; // Seal script → Regular
+    if (progress < 0.90) return 4; // Two Hans appear
+    return 5; // Title card
+  };
+
+  const stage = getCharacterStage();
+  const showTitle = progress > 0.85;
+  const showScrollHint = progress < 0.05;
+
+  // Character opacity based on stage
+  const getCharacterOpacity = (charStage: number) => {
+    if (stage < charStage) return 0;
+    if (stage === charStage) return Math.min((progress - (charStage * 0.2)) * 5, 1);
+    return 1;
+  };
+
+  return (
+    <section
+      ref={containerRef}
+      className="hero-scroll-lock-container"
+      style={{ height: "300vh" }}
+    >
+      <div className={`hero-pinned ${isPinned ? "is-pinned" : ""} ${isComplete ? "is-complete" : ""}`}>
+        {/* Water flow background */}
+        <div 
+          className="water-flow-bg"
+          style={{ opacity: stage === 0 ? 1 : Math.max(0, 1 - (progress - 0.1) * 3) }}
+        />
+
+        {/* Stage 1-3: Single character morphing */}
+        <div className="character-morph-container">
+          {/* Oracle bone form */}
+          <div 
+            className="morph-character oracle-bone"
+            style={{ 
+              opacity: stage >= 1 && stage < 4 ? getCharacterOpacity(1) : 0,
+              transform: `scale(${stage === 1 ? 1 : 0.8}) translateY(${stage > 1 ? -20 : 0}px)`
+            }}
+          >
+            漢
+          </div>
+
+          {/* Script evolution indicator */}
+          {stage >= 1 && stage < 4 && (
+            <div className="script-stage-label" style={{ opacity: isPinned ? 1 : 0 }}>
+              {stage === 1 && "甲骨文 — Oracle Bone Script"}
+              {stage === 2 && "金文 — Bronze Inscription"}
+              {stage === 3 && "楷書 — Regular Script"}
+            </div>
+          )}
+        </div>
+
+        {/* Stage 4: Two Hans appear */}
+        <div 
+          className="two-hans-hero"
+          style={{ 
+            opacity: stage >= 4 ? 1 : 0,
+            transform: stage >= 4 ? "translateY(0)" : "translateY(40px)"
+          }}
+        >
+          <span className="hero-han-chinese" style={{ opacity: stage >= 4 ? 1 : 0 }}>漢</span>
+          <span className="hero-han-divider" style={{ opacity: stage >= 4 ? 0.5 : 0 }}>/</span>
+          <span className="hero-han-korean" style={{ opacity: stage >= 4 ? 1 : 0 }}>韓</span>
+        </div>
+
+        {/* Stage 5: Full title card */}
+        <div 
+          className="hero-title-card"
+          style={{ 
+            opacity: showTitle ? 1 : 0,
+            transform: showTitle ? "translateY(0)" : "translateY(30px)"
+          }}
+        >
+          <div className="hero-all-characters">
+            <span className="char-han-chinese">漢</span>
+            <span className="char-divider">/</span>
+            <span className="char-han-korean">韓</span>
+            <span className="char-divider">/</span>
+            <span className="char-han-katakana">ハン</span>
+            <span className="char-divider">/</span>
+            <span className="char-han-hangul">한</span>
+          </div>
+          <h1 className="hero-main-title">How One Word Shaped East Asia</h1>
+          <p className="hero-main-subtitle">
+            The 2,200-Year Journey of a River&apos;s Name to Four Civilizations
+          </p>
+        </div>
+
+        {/* Scroll hint */}
+        <div className="hero-scroll-hint" style={{ opacity: showScrollHint ? 1 : 0 }}>
+          <span>Scroll to explore</span>
+          <div className="scroll-arrow-animated" />
+        </div>
+
+        {/* Skip button */}
+        {isPinned && progress > 0.1 && (
+          <button 
+            className="skip-button"
+            onClick={() => {
+              const container = containerRef.current;
+              if (container) {
+                const rect = container.getBoundingClientRect();
+                window.scrollTo({ top: window.scrollY + rect.height - window.innerHeight + 100, behavior: "smooth" });
+              }
+            }}
+          >
+            Skip →
+          </button>
+        )}
+
+        {/* Progress indicator */}
+        <div className="scroll-lock-progress" style={{ opacity: isPinned ? 1 : 0 }}>
+          <div className="progress-fill" style={{ width: `${progress * 100}%` }} />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+/**
+ * Two Hans Scroll-Lock Component
+ * Split-screen reveal comparing 漢 and 韓
+ */
+const TwoHansScrollLock: React.FC = () => {
+  const { containerRef, progress, isPinned, isComplete } = useScrollLock(2);
+
+  // Choreography stages
+  const getStage = () => {
+    if (progress < 0.25) return 1; // Split screen appears
+    if (progress < 0.50) return 2; // Origin text appears
+    if (progress < 0.75) return 3; // Characters move toward center
+    return 4; // Conclusion
+  };
+
+  const stage = getStage();
+
+  return (
+    <div
+      ref={containerRef}
+      className="two-hans-scroll-lock-container"
+      style={{ height: "200vh" }}
+    >
+      <div className={`two-hans-pinned ${isPinned ? "is-pinned" : ""} ${isComplete ? "is-complete" : ""}`}>
+        <div className="two-hans-split">
+          {/* Chinese side */}
+          <div 
+            className="han-side chinese-side"
+            style={{ 
+              opacity: stage >= 1 ? 1 : 0,
+              transform: stage >= 3 ? "translateX(10%)" : "translateX(0)"
+            }}
+          >
+            <div className="han-character-large">漢</div>
+            <div 
+              className="han-origin-text"
+              style={{ opacity: stage >= 2 ? 1 : 0 }}
+            >
+              <span className="origin-pinyin">hàn</span>
+              <span className="origin-desc">Han River → Han Dynasty → Han Chinese</span>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div 
+            className="split-divider"
+            style={{ 
+              opacity: stage >= 1 ? 1 : 0,
+              transform: stage >= 3 ? "scaleY(0.5)" : "scaleY(1)"
+            }}
+          >
+            <span className="divider-symbol">{stage >= 3 ? "≠" : "|"}</span>
+          </div>
+
+          {/* Korean side */}
+          <div 
+            className="han-side korean-side"
+            style={{ 
+              opacity: stage >= 1 ? 1 : 0,
+              transform: stage >= 3 ? "translateX(-10%)" : "translateX(0)"
+            }}
+          >
+            <div className="han-character-large">韓</div>
+            <div 
+              className="han-origin-text"
+              style={{ opacity: stage >= 2 ? 1 : 0 }}
+            >
+              <span className="origin-pinyin">han</span>
+              <span className="origin-desc">Samhan → "Great/Leader" → Korean</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Conclusion text */}
+        <div 
+          className="two-hans-conclusion"
+          style={{ 
+            opacity: stage >= 4 ? 1 : 0,
+            transform: stage >= 4 ? "translateY(0)" : "translateY(20px)"
+          }}
+        >
+          Same sound. Different word. Different origin.
+        </div>
+
+        {/* Progress indicator */}
+        <div className="scroll-lock-progress" style={{ opacity: isPinned ? 1 : 0 }}>
+          <div className="progress-fill" style={{ width: `${progress * 100}%` }} />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/**
  * Timeline Section
  */
 const TimelineSection: React.FC = () => {
@@ -510,28 +803,8 @@ const TheWordHanClient: React.FC = () => {
     <article className="the-word-han">
         <InkStrokeProgress />
 
-        {/* Hero Section */}
-        <Section id="hero" className="hero-section" era="ancient">
-          <div className="hero-content">
-            <div className="hero-characters">
-              <span className="hero-character char-han-chinese">漢</span>
-              <span className="hero-divider">/</span>
-              <span className="hero-character char-han-korean">韓</span>
-              <span className="hero-divider">/</span>
-              <span className="hero-character char-han-katakana">ハン</span>
-              <span className="hero-divider">/</span>
-              <span className="hero-character char-han-hangul">한</span>
-            </div>
-            <h1 className="hero-title">How One Word Shaped East Asia</h1>
-            <p className="hero-subtitle">
-              The 2,200-Year Journey of a River&apos;s Name to Four Civilizations
-            </p>
-            <div className="hero-scroll-indicator">
-              <span className="scroll-text">Scroll to explore</span>
-              <div className="scroll-arrow" />
-            </div>
-          </div>
-        </Section>
+        {/* Hero Scroll-Lock Section */}
+        <HeroScrollLock />
 
         {/* Chapter 1: The River */}
         <Section id="chapter-1" className="chapter chapter-river" era="ancient">
@@ -754,8 +1027,14 @@ const TheWordHanClient: React.FC = () => {
               In the modern era, &ldquo;Han&rdquo; became a tool of nationalism—but with a twist. China
               and Korea would each claim a &ldquo;Han,&rdquo; but they were <em>different words</em>.
             </p>
+          </div>
+        </Section>
 
-            <TwoHansComparison />
+        {/* Two Hans Scroll-Lock Sequence */}
+        <TwoHansScrollLock />
+
+        <Section id="chapter-5-continued" className="chapter chapter-nations-continued" era="modern">
+          <div className="chapter-content">
 
             <p>
               In 1897, King Gojong renamed Korea &ldquo;Daehan Jeguk&rdquo; (大韓帝國, &ldquo;Great Han

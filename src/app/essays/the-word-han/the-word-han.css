@@ -1105,6 +1105,348 @@
 }
 
 /* ============================================================================
+   SCROLL-LOCK COMPONENTS
+   ============================================================================ */
+
+/* Hero Scroll-Lock Container */
+.hero-scroll-lock-container {
+  position: relative;
+  background: var(--color-bg-primary);
+}
+
+.hero-pinned {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(ellipse at center, var(--color-bg-elevated) 0%, var(--color-bg-primary) 70%);
+  overflow: hidden;
+}
+
+.hero-pinned.is-complete {
+  position: relative;
+}
+
+/* Water flow background */
+.water-flow-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 30% 70%, rgba(93, 155, 121, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 30%, rgba(30, 63, 102, 0.1) 0%, transparent 50%);
+  animation: waterFlow 8s ease-in-out infinite;
+  transition: opacity 0.6s ease;
+}
+
+@keyframes waterFlow {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.02); }
+}
+
+/* Character morph container */
+.character-morph-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.morph-character {
+  font-size: clamp(8rem, 25vw, 16rem);
+  font-weight: 400;
+  line-height: 1;
+  transition: all 0.6s var(--ease-calligraphic);
+}
+
+.morph-character.oracle-bone {
+  color: var(--color-bronze);
+  filter: url(#ancient-texture);
+  text-shadow: 0 0 40px rgba(139, 115, 85, 0.3);
+}
+
+.script-stage-label {
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  color: var(--color-text-secondary);
+  transition: opacity 0.4s ease;
+}
+
+/* Two Hans Hero */
+.two-hans-hero {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: all 0.6s var(--ease-calligraphic);
+}
+
+.hero-han-chinese,
+.hero-han-korean {
+  font-size: clamp(6rem, 18vw, 12rem);
+  font-weight: 400;
+  line-height: 1;
+  transition: all 0.5s var(--ease-calligraphic);
+}
+
+.hero-han-chinese { color: var(--color-imperial-red); }
+.hero-han-korean { color: var(--color-royal-blue); }
+.hero-han-divider { 
+  font-size: clamp(3rem, 8vw, 6rem);
+  color: var(--color-text-muted);
+}
+
+/* Hero title card */
+.hero-title-card {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  transition: all 0.8s var(--ease-calligraphic);
+}
+
+.hero-all-characters {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-all-characters .char-han-chinese { 
+  font-size: clamp(3rem, 10vw, 6rem);
+  color: var(--color-imperial-red); 
+}
+.hero-all-characters .char-han-korean { 
+  font-size: clamp(3rem, 10vw, 6rem);
+  color: var(--color-royal-blue); 
+}
+.hero-all-characters .char-han-katakana { 
+  font-size: clamp(3rem, 10vw, 6rem);
+  color: var(--color-jade); 
+}
+.hero-all-characters .char-han-hangul { 
+  font-size: clamp(3rem, 10vw, 6rem);
+  color: var(--color-gold); 
+}
+.hero-all-characters .char-divider {
+  font-size: clamp(2rem, 6vw, 4rem);
+  color: var(--color-text-muted);
+}
+
+.hero-main-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  font-weight: 400;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.hero-main-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--color-text-secondary);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Scroll hint */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+  transition: opacity 0.4s ease;
+}
+
+.scroll-arrow-animated {
+  width: 20px;
+  height: 20px;
+  border-right: 2px solid var(--color-text-muted);
+  border-bottom: 2px solid var(--color-text-muted);
+  transform: rotate(45deg);
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+/* Skip button */
+.skip-button {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.skip-button:hover {
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Scroll-lock progress indicator */
+.scroll-lock-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: opacity 0.3s ease;
+}
+
+.scroll-lock-progress .progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-bronze), var(--color-imperial-red), var(--color-royal-blue));
+  transition: width 0.1s linear;
+}
+
+/* ============================================================================
+   TWO HANS SCROLL-LOCK
+   ============================================================================ */
+
+.two-hans-scroll-lock-container {
+  position: relative;
+  background: var(--color-bg-elevated);
+}
+
+.two-hans-pinned {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.two-hans-pinned.is-complete {
+  position: relative;
+}
+
+.two-hans-split {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  width: 100%;
+  max-width: 1000px;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .two-hans-split {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+.han-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  transition: all 0.6s var(--ease-calligraphic);
+}
+
+.han-character-large {
+  font-size: clamp(6rem, 15vw, 10rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.chinese-side .han-character-large { color: var(--color-imperial-red); }
+.korean-side .han-character-large { color: var(--color-royal-blue); }
+
+.han-origin-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  transition: opacity 0.5s ease;
+}
+
+.origin-pinyin {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
+
+.origin-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  max-width: 200px;
+}
+
+.split-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  transition: all 0.5s var(--ease-calligraphic);
+}
+
+.split-divider::before,
+.split-divider::after {
+  content: '';
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--color-text-muted), transparent);
+}
+
+.divider-symbol {
+  font-size: 2rem;
+  color: var(--color-text-muted);
+  padding: 0 1rem;
+  transition: all 0.3s ease;
+}
+
+.two-hans-conclusion {
+  position: absolute;
+  bottom: 15%;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-style: italic;
+  color: var(--color-gold);
+  text-align: center;
+  transition: all 0.6s var(--ease-calligraphic);
+}
+
+@media (max-width: 768px) {
+  .split-divider {
+    flex-direction: row;
+    height: auto;
+    width: 100%;
+  }
+  
+  .split-divider::before,
+  .split-divider::after {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-text-muted), transparent);
+  }
+}
+
+/* ============================================================================
    REDUCED MOTION
    ============================================================================ */
 
@@ -1123,7 +1465,8 @@
     opacity: 1;
   }
   
-  .scroll-arrow {
+  .scroll-arrow,
+  .scroll-arrow-animated {
     animation: none;
   }
   
@@ -1136,5 +1479,29 @@
   .ink-stroke-fill,
   .ink-dot {
     transition: none;
+  }
+  
+  /* Scroll-lock reduced motion */
+  .water-flow-bg {
+    animation: none;
+  }
+  
+  .morph-character,
+  .two-hans-hero,
+  .hero-title-card,
+  .han-side,
+  .two-hans-conclusion {
+    transition: none;
+  }
+  
+  /* Show final states directly */
+  .hero-pinned .hero-title-card {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .two-hans-pinned .two-hans-conclusion {
+    opacity: 1;
+    transform: none;
   }
 }
