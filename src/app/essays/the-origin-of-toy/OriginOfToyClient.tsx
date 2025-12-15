@@ -203,7 +203,12 @@ const HeroSection: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isPinned, setIsPinned] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
-  const [debugInfo, setDebugInfo] = useState({ sectionHeight: 0, scrollable: 0, scrolled: 0 });
+  const [isMounted, setIsMounted] = useState(false);
+  
+  // Hydration-safe: Set isMounted after initial render
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -218,13 +223,6 @@ const HeroSection: React.FC = () => {
       // Scrollable distance = total height minus one viewport (content stays pinned for that duration)
       const scrollableDistance = sectionTotalHeight - windowHeight;
       const scrolledIntoSection = -sectionTop;
-      
-      // Debug info
-      setDebugInfo({
-        sectionHeight: Math.round(sectionTotalHeight),
-        scrollable: Math.round(scrollableDistance),
-        scrolled: Math.round(scrolledIntoSection),
-      });
       
       // Check if we're in the pinned zone
       if (sectionTop <= 0 && scrolledIntoSection <= scrollableDistance) {
@@ -306,7 +304,7 @@ const HeroSection: React.FC = () => {
   return (
     <section
       ref={heroRef}
-      className={`hero-section scroll-lock-section ${isPinned ? "pinned" : ""} ${isComplete ? "complete" : ""}`}
+      className={`hero-section scroll-lock-section ${isMounted && isPinned ? "pinned" : ""} ${isComplete ? "complete" : ""}`}
       style={{ height: "400vh" }} // CRITICAL: Explicit height for scroll-lock calculation
     >
       {/* Background - visible on load, builds with scroll */}
@@ -374,27 +372,6 @@ const HeroSection: React.FC = () => {
           />
         </div>
       )}
-
-      {/* DEBUG: Remove after fixing */}
-      <div style={{
-        position: "fixed",
-        top: 10,
-        left: 10,
-        background: "rgba(0,0,0,0.9)",
-        color: "#0f0",
-        padding: "10px",
-        fontFamily: "monospace",
-        fontSize: "12px",
-        zIndex: 9999,
-        borderRadius: "4px",
-      }}>
-        <div>Progress: {scrollProgress.toFixed(1)}%</div>
-        <div>Pinned: {isPinned ? "YES" : "NO"}</div>
-        <div>Section H: {debugInfo.sectionHeight}px</div>
-        <div>Scrollable: {debugInfo.scrollable}px</div>
-        <div>Scrolled: {debugInfo.scrolled}px</div>
-        <div>Phase: {scrollProgress < 15 ? "1-WORD" : scrollProgress < 30 ? "2-FLICKER" : scrollProgress < 50 ? "3-FRACTURE" : scrollProgress < 70 ? "4-ANNOTATIONS" : scrollProgress < 85 ? "5-SWIRL" : "6-TITLE"}</div>
-      </div>
 
       <div className="hero-content">
         {/* Phase 1-3: Word transformation (0-50%) */}

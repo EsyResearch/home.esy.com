@@ -703,7 +703,9 @@
   /* CRITICAL: No overflow:hidden - it breaks position: sticky */
 }
 
-.hero-section .hero-content {
+/* CRITICAL: Override global .hero-content styles from globals.css */
+/* Global CSS has grid-template-columns: 1fr 1fr which splits hero on desktop */
+.origin-of-toy .hero-section .hero-content {
   position: sticky;
   top: 0;
   height: 100vh;
@@ -716,6 +718,9 @@
   /* GPU acceleration for smooth scroll-lock */
   transform: translateZ(0);
   backface-visibility: hidden;
+  /* Override global grid from globals.css */
+  grid-template-columns: unset;
+  gap: unset;
 }
 
 /* Pinned state - content is actively in scroll-lock zone */
@@ -770,21 +775,28 @@
 .def-3 { bottom: 35%; left: 20%; font-size: 1rem; }
 .def-4 { bottom: 25%; right: 15%; font-size: 0.95rem; }
 
-.hero-content {
+/* Inner hero content wrapper - scoped to avoid global conflicts */
+.origin-of-toy .hero-content {
   position: relative;
   z-index: 10;
   text-align: center;
   max-width: 800px;
+  /* Ensure no grid inheritance from globals */
+  display: block;
 }
 
-.word-container {
+/* Word container - visible immediately for hydration safety */
+/* Opacity controlled by JS for scroll-driven animation */
+.origin-of-toy .word-container {
   margin-bottom: var(--toy-space-lg);
-  opacity: 0;
-  transform: translateY(30px);
+  /* Start visible to prevent flash on hydration */
+  opacity: 1;
+  transform: translateY(0);
   transition: all var(--toy-duration-reveal) var(--toy-ease-out);
 }
 
-.word-container.visible {
+/* The visible class is now decorative - JS controls actual opacity */
+.origin-of-toy .word-container.visible {
   opacity: 1;
   transform: translateY(0);
 }
