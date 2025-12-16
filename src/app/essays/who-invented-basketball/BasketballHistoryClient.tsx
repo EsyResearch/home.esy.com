@@ -295,7 +295,7 @@ const Sources: React.FC = () => (
           </a>
         </li>
         <li>
-          <a href="https://time.com/5757570/david-sterm-rescued-nba/" target="_blank" rel="noopener noreferrer">
+          <a href="https://time.com/5757570/david-stern-rescued-nba/" target="_blank" rel="noopener noreferrer">
             &ldquo;How David Stern Rescued the NBA&rdquo; — TIME Magazine
           </a>
         </li>

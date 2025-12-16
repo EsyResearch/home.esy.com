@@ -264,6 +264,15 @@ const Sources: React.FC = () => (
           <a href="https://en.wikipedia.org/wiki/Apostle_spoon" target="_blank" rel="noopener noreferrer">
           Wikipedia — Apostle Spoon
           </a>
+          <a href="https://collections.vam.ac.uk/search/?q=spoon&year_made_from=1&year_made_to=1900" target="_blank" rel="noopener noreferrer">
+          V&A Museum — Spoon Collection
+          </a>
+          <a href="https://www.smithsonianmag.com/science-nature/when-the-fork-did-i-start-using-the-fork-7261044/" target="_blank" rel="noopener noreferrer">
+          Smithsonian — Evolution of Eating Utensils
+          </a>
+          <a href="https://www.britishmuseum.org/collection/term/x12999" target="_blank" rel="noopener noreferrer">
+          British Museum — Ancient Cutlery
+          </a>
       </div>
       <p className="sources-note">
         Researched using authoritative sources on culinary and material history.

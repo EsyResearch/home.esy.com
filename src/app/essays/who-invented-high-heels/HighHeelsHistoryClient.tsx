@@ -627,13 +627,13 @@ const Sources: React.FC = () => (
       <h3 className="sources-title">Sources & Further Reading</h3>
       <ul className="sources-list">
         <li>
-          <a href="https://www.batashoemuseum.ca/heights-of-fashion/" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.batashoemuseum.ca/" target="_blank" rel="noopener noreferrer">
             &ldquo;Heights of Fashion: A History of the Elevated Shoe&rdquo; — Bata Shoe Museum
           </a>
         </li>
         <li>
-          <a href="https://www.vam.ac.uk/articles/high-heels" target="_blank" rel="noopener noreferrer">
-            &ldquo;A History of High Heels&rdquo; — Victoria and Albert Museum
+          <a href="https://web.archive.org/web/20230601000000*/https://www.vam.ac.uk/articles/high-heels" target="_blank" rel="noopener noreferrer">
+            &ldquo;A History of High Heels&rdquo; — Victoria and Albert Museum (Archive)
           </a>
         </li>
         <li>

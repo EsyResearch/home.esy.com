@@ -334,8 +334,17 @@ const Sources: React.FC = () => (
         <a href="https://www.britannica.com/topic/soft-drink" target="_blank" rel="noopener noreferrer">
           Britannica — Soft Drinks
         </a>
-        <a href="https://www.smithsonianmag.com/arts-culture/the-history-of-the-soda-fountain-82815/" target="_blank" rel="noopener noreferrer">
-          Smithsonian — Soda Fountains
+        <a href="https://web.archive.org/web/20230101000000*/https://www.smithsonianmag.com/arts-culture/history-soda-fountain-82815/" target="_blank" rel="noopener noreferrer">
+          Smithsonian — Soda Fountains (Archive)
+        </a>
+        <a href="https://www.history.com/news/coca-cola-cocaine-origins" target="_blank" rel="noopener noreferrer">
+          History.com — Coca-Cola's Controversial Origins
+        </a>
+        <a href="https://www.rsc.org/periodic-table/podcast/24/carbonated-water" target="_blank" rel="noopener noreferrer">
+          Royal Society of Chemistry — Carbonation Science
+        </a>
+        <a href="https://www.coca-colacompany.com/about-us/history" target="_blank" rel="noopener noreferrer">
+          Coca-Cola Company Archives — Official History
         </a>
       </div>
       <p className="sources-note">
