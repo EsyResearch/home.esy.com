@@ -657,6 +657,7 @@ Current agents derived from this framework:
 | `visual-essay-invocation-agent.md` | **Spec Generation** | Visual Essay Specification Architect | **Pre-processor** → Visual Essay Orchestrator (Phase 1); Uses `visual-essay-invocation` skill → stores to `specs/` |
 | `meta-prompt-enhancer.md` | **Universal Enhancement** | Prompt Architect & Instruction Designer | **Universal Pre-processor** → Any AI System, Any Agent; Uses CRISP-E framework (Context, Role, Intent, Specifics, Parameters, Examples) |
 | `social-media-meta-expert.md` | **Social Sharing Optimization** | Social Meta Specialist (Audit + Implementation) | **Dual-Role Expert** — Audit Mode (QA gate), Implementation Mode (fixes), Advisory Mode (strategy); OG, Twitter Cards, JSON-LD; → Visual Essay Orchestrator (publish gate) |
+| `design-research-implementation-auditor.md` | **Design Spec Compliance** | Design Implementation Verifier | **Auditor** → Visual Essay Orchestrator (publish gate); Compares `specs/` vs implementation; Typography, Color, Spacing, Interaction fidelity; 100% compliance target |
 
 ---
 
@@ -685,9 +686,10 @@ This meta-framework should evolve as patterns emerge:
 ---
 
 ## Last Updated
-December 15, 2024
+December 16, 2025
 
 ### Recent Changes
+- Added Design Research Implementation Auditor to registry (spec vs implementation verification, 100% compliance auditing)
 - Added Design Slop Auditor to registry (AI slop detection, subject-derived design enforcement, Design Research Reports for remediation)
 - Added Hydration Audit Agent to registry (React SSR/client mismatch detection, IntersectionObserver vulnerabilities, useState initialization)
 - Added Sitemap & Canonical Expert to registry (sitemap generation, URL standardization, trailing slash enforcement)
