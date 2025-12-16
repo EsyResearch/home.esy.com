@@ -102,7 +102,7 @@ export default function Footer () {
         </div>
         
         <div className="footer-bottom">
-          <p style={{ color: elevatedDarkTheme.faint }}>&copy; 2025 Esy, LLC. All rights reserved.</p>
+          <p style={{ color: elevatedDarkTheme.faint }}>&copy; 2024-2026 Esy, LLC. All rights reserved.</p>
           <p style={{ color: elevatedDarkTheme.faint, marginTop: '0.5rem' }}>
             <a href="mailto:research@esy.com" style={{ color: elevatedDarkTheme.faint }}>research@esy.com</a>
           </p>
