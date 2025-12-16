@@ -686,6 +686,8 @@
     linear-gradient(180deg, var(--vellum-warm) 0%, var(--parchment) 100%);
   border: 2px solid var(--ink-ghost);
   position: relative;
+  /* Balance sheet is in sticky element which has z-index: 1 */
+  z-index: auto;
   
   /* Ledger ruling lines */
   background-image: 
@@ -987,15 +989,26 @@
   position: sticky;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10;
-  margin-bottom: var(--space-lg);
+  z-index: 1;
+  margin-bottom: var(--space-xl);
   padding: var(--space-md) 0;
+  /* Create stacking context to isolate balance sheet */
+  isolation: isolate;
+  /* Ensure balance sheet stays behind scroll content */
+  pointer-events: none;
+}
+
+.sticky-element > * {
+  pointer-events: auto;
 }
 
 .scroll-content {
   position: relative;
-  z-index: 20;
+  z-index: 2;
   min-height: 100vh;
+  /* Content scrolls over sticky element - no background needed */
+  /* Create stacking context */
+  isolation: isolate;
 }
 
 @media (max-width: 768px) {
