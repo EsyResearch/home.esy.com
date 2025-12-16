@@ -36,8 +36,8 @@
   --color-text-faint: #9CA3AF;
   --color-text-light: #E8E8EC;
   
-  /* Era Typefaces */
-  --type-blackletter: "UnifrakturMaguntia", "Old English Text MT", "Cloister Black", serif;
+  /* Era Typefaces - Spec: Cloister Black first for Medieval */
+  --type-blackletter: "Cloister Black", "Old English Text MT", "UnifrakturMaguntia", serif;
   --type-renaissance: "EB Garamond", Georgia, serif;
   --type-georgian: "Libre Baskerville", Baskerville, Georgia, serif;
   --type-victorian: "Playfair Display", Bodoni, Didot, serif;
@@ -48,7 +48,7 @@
   --font-display: "Playfair Display", serif;
   --font-ui: Inter, sans-serif;
   
-  /* Type Scale (Mobile-First) */
+  /* Type Scale (Mobile-First) - Spec: hero clamp(3rem,10vw,8rem) */
   --text-xs: 0.8125rem;
   --text-sm: 0.9375rem;
   --text-base: 1.125rem;
@@ -56,7 +56,10 @@
   --text-xl: 2rem;
   --text-2xl: 2.5rem;
   --text-3xl: 3.5rem;
-  --text-hero: clamp(2.5rem, 10vw, 6rem);
+  --text-hero: clamp(3rem, 10vw, 8rem);
+  
+  /* Shadow color token - Spec requirement */
+  --color-shadow: #1A1A1A;
   
   /* Spacing */
   --spacing-xs: 0.5rem;
@@ -67,12 +70,15 @@
   --spacing-2xl: 4rem;
   --spacing-3xl: 6rem;
   
-  /* Animation */
-  --easing-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Animation - Spec values */
+  --easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-dramatic: cubic-bezier(0.16, 1, 0.3, 1);
   --easing-scholarly: cubic-bezier(0.4, 0, 0.2, 1);
   --duration-fast: 200ms;
   --duration-normal: 400ms;
   --duration-slow: 800ms;
+  --duration-lock: 300ms;
+  --duration-unlock: 400ms;
 }
 
 /* ==================== BASE STYLES ==================== */
@@ -105,15 +111,16 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 64px;
+  height: 72px;
   background: linear-gradient(180deg, var(--color-ivory) 0%, var(--color-parchment) 100%);
   border-bottom: 1px solid rgba(26, 26, 26, 0.1);
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-md);
-  padding: 0 var(--spacing-md);
+  gap: var(--spacing-lg);
+  padding: 0 var(--spacing-xl);
+  max-width: 100%;
 }
 
 .progress-word-container {
@@ -167,18 +174,19 @@
 }
 
 .progress-track {
-  width: 200px;
-  height: 4px;
-  background: rgba(26, 26, 26, 0.1);
-  border-radius: 2px;
+  flex: 1;
+  max-width: 300px;
+  height: 2px;
+  background: rgba(26, 26, 26, 0.2);
+  border-radius: 1px;
   position: relative;
   overflow: visible;
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--color-vermillion), var(--color-gold));
-  border-radius: 2px;
+  background: var(--color-vermillion);
+  border-radius: 1px;
   transition: width var(--duration-fast) linear;
 }
 
@@ -452,7 +460,8 @@
 }
 
 .etymology-section[data-era="victorian"] {
-  background: linear-gradient(180deg, var(--color-ivory), #FFF8F0);
+  /* Spec: 50/50 horizontal split pink/black */
+  background: linear-gradient(90deg, var(--color-nursery-pink) 50%, var(--color-shadow) 50%);
 }
 
 .etymology-section[data-era="modern"] {
@@ -1254,6 +1263,184 @@
   color: var(--color-text-faint);
 }
 
+/* ==================== SCROLL-LOCK SECTIONS ==================== */
+
+/* Container for scroll-lock sections */
+.scroll-lock-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Pinned content wrapper */
+.pinned-content {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: inherit;
+}
+
+.pinned-content.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: var(--color-parchment);
+}
+
+/* Hero scroll-lock specific */
+.hero-scroll-lock {
+  background: linear-gradient(180deg, var(--color-ivory) 0%, var(--color-parchment) 100%);
+}
+
+.hero-scroll-lock .pinned-content.is-pinned {
+  background: linear-gradient(180deg, var(--color-ivory) 0%, var(--color-parchment) 100%);
+}
+
+/* Hero morph word - centered large display */
+.hero-morph-word {
+  font-size: var(--text-hero);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+  transition: all var(--duration-slow) var(--easing-dramatic);
+}
+
+.hero-morph-word.era-blackletter {
+  font-family: var(--type-blackletter);
+  color: var(--color-ink-black);
+}
+
+.hero-morph-word.era-renaissance {
+  font-family: var(--type-renaissance);
+  color: var(--color-iron-gall);
+}
+
+.hero-morph-word.era-georgian {
+  font-family: var(--type-georgian);
+  color: var(--color-printing-brown);
+}
+
+.hero-morph-word.era-victorian {
+  font-family: var(--type-victorian);
+  color: var(--color-ink-black);
+}
+
+.hero-morph-word.era-modern {
+  font-family: var(--type-modern);
+  color: var(--color-ink-black);
+  letter-spacing: 0.15em;
+}
+
+/* Phase text reveals */
+.phase-text {
+  position: absolute;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 var(--spacing-md);
+  transition: opacity var(--duration-normal) var(--easing-smooth),
+              visibility 0s linear var(--duration-normal);
+}
+
+.phase-text.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--duration-normal) var(--easing-smooth),
+              visibility 0s linear 0s;
+}
+
+.phase-text.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.phase-question {
+  font-family: var(--type-renaissance);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
+
+.phase-era-label {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-top: var(--spacing-md);
+}
+
+/* Hero title reveal */
+.hero-title-reveal {
+  text-align: center;
+  transition: opacity var(--duration-slow) var(--easing-smooth),
+              transform var(--duration-slow) var(--easing-dramatic);
+}
+
+.hero-title-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-title-reveal.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Skip affordance */
+.skip-affordance {
+  position: absolute;
+  bottom: var(--spacing-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--easing-smooth);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-text-faint);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.skip-affordance.visible {
+  opacity: 1;
+}
+
+.skip-affordance:hover {
+  color: var(--color-vermillion);
+  border-color: var(--color-vermillion);
+}
+
+/* Era stack display (all 5 at end) */
+.era-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.era-stack-word {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--duration-normal) var(--easing-smooth);
+}
+
+.era-stack-word.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ==================== RESPONSIVE ==================== */
 
 @media (max-width: 767px) {
@@ -1264,17 +1451,23 @@
   }
   
   .etymology-essay {
-    font-size: 16px;
+    /* Spec: minimum 18px body text */
+    font-size: 18px;
   }
   
   .typography-progress-bar {
     height: 56px;
-    flex-wrap: wrap;
     gap: var(--spacing-sm);
+    padding: 0 var(--spacing-md);
   }
   
+  /* On mobile: simplified to dot + era name only */
   .progress-track {
-    width: 100px;
+    max-width: 120px;
+  }
+  
+  .progress-track .era-marker-container span:last-child {
+    display: none !important; /* Hide era labels on mobile */
   }
   
   .hero-word-evolution {
@@ -1355,4 +1548,5 @@
     transition: none;
   }
 }
+
 

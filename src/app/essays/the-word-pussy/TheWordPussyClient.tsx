@@ -139,48 +139,152 @@ const useIntersectionReveal = (threshold = 0.1) => {
   return { ref, isVisible };
 };
 
+// Scroll-lock hook per SCROLL_LOCK_PATTERN.md
+interface ScrollLockState {
+  containerRef: React.RefObject<HTMLDivElement>;
+  progress: number;
+  isPinned: boolean;
+}
+
+const useScrollLock = (sectionHeight: number = 3): ScrollLockState => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+  const [isPinned, setIsPinned] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+
+      const rect = containerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const sectionTop = rect.top;
+      const sectionTotalHeight = rect.height;
+
+      const scrollableDistance = sectionTotalHeight - windowHeight;
+      const scrolledIntoSection = -sectionTop;
+
+      if (sectionTop <= 0 && scrolledIntoSection <= scrollableDistance) {
+        setIsPinned(true);
+        const newProgress = Math.min(
+          Math.max(scrolledIntoSection / scrollableDistance, 0),
+          1
+        );
+        setProgress(newProgress);
+      } else {
+        setIsPinned(false);
+        setProgress(sectionTop > 0 ? 0 : 1);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [sectionHeight]);
+
+  return { containerRef, progress, isPinned };
+};
+
 // ==================== COMPONENTS ====================
 
-// Typography Progress Bar - The word morphs through eras
+// Typography Progress Bar - Era Timeline with morphing word
 const TypographyProgressBar: React.FC<{ progress: number }> = ({ progress }) => {
   const eras = [
-    { name: "Medieval", type: "blackletter", range: [0, 20] },
-    { name: "Renaissance", type: "renaissance", range: [20, 40] },
-    { name: "Georgian", type: "georgian", range: [40, 60] },
-    { name: "Victorian", type: "victorian", range: [60, 80] },
-    { name: "Modern", type: "modern", range: [80, 100] }
+    { name: "Medieval", type: "blackletter", position: 0 },
+    { name: "Renaissance", type: "renaissance", position: 25 },
+    { name: "Georgian", type: "georgian", position: 50 },
+    { name: "Victorian", type: "victorian", position: 75 },
+    { name: "Modern", type: "modern", position: 100 }
   ];
   
+  // Get current era based on scroll progress
   const getCurrentEra = () => {
-    for (const era of eras) {
-      if (progress >= era.range[0] && progress < era.range[1]) {
-        return era;
-      }
-    }
-    return eras[eras.length - 1];
+    if (progress < 20) return eras[0];
+    if (progress < 40) return eras[1];
+    if (progress < 60) return eras[2];
+    if (progress < 80) return eras[3];
+    return eras[4];
   };
   
   const currentEra = getCurrentEra();
 
+  // Calculate which era labels to show (fade based on proximity)
+  const getEraOpacity = (eraPosition: number) => {
+    const distance = Math.abs(progress - eraPosition);
+    if (distance < 15) return 1;
+    if (distance < 30) return 0.5;
+    return 0.2;
+  };
+
   return (
-    <div className="typography-progress-bar">
+    <div className="typography-progress-bar" role="progressbar" aria-valuenow={Math.round(progress)} aria-valuemin={0} aria-valuemax={100}>
+      {/* Morphing word at start */}
       <div className="progress-word-container">
         <span className={`progress-word era-${currentEra.type}`}>
-          PUSSY
+          {currentEra.type === "modern" ? "P***Y" : "PUSSY"}
         </span>
       </div>
-      <div className="progress-era-name">{currentEra.name}</div>
-      <div className="progress-track">
+      
+      {/* Timeline track with era markers */}
+      <div className="progress-track" style={{ flex: 1 }}>
         <div className="progress-fill" style={{ width: `${progress}%` }} />
+        
+        {/* Era markers with labels */}
         {eras.map((era, i) => (
-          <span 
-            key={i} 
-            className={`progress-marker ${progress >= era.range[0] ? 'active' : ''}`}
-            style={{ left: `${era.range[0]}%` }}
-          />
+          <div 
+            key={i}
+            className="era-marker-container"
+            style={{ 
+              position: "absolute",
+              left: `${era.position}%`,
+              transform: "translateX(-50%)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              top: "-8px"
+            }}
+          >
+            <span 
+              className={`progress-marker ${progress >= era.position ? 'active' : ''}`}
+              style={{ position: "static", transform: "none" }}
+            />
+            <span 
+              style={{ 
+                fontFamily: "var(--font-ui)",
+                fontSize: "0.625rem",
+                color: "var(--color-text-muted)",
+                marginTop: "12px",
+                opacity: getEraOpacity(era.position),
+                transition: "opacity 0.3s ease-out",
+                whiteSpace: "nowrap",
+                display: progress < 5 || progress > 95 ? "none" : "block"
+              }}
+            >
+              {era.name}
+            </span>
+          </div>
         ))}
+        
+        {/* Moving dot indicator */}
+        <span 
+          className="progress-dot"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: `${progress}%`,
+            transform: "translate(-50%, -50%)",
+            width: "12px",
+            height: "12px",
+            background: "var(--color-vermillion)",
+            borderRadius: "50%",
+            boxShadow: "0 0 8px rgba(196, 30, 58, 0.5)",
+            zIndex: 2,
+            transition: "left 0.1s linear"
+          }}
+        />
       </div>
-      <span className="progress-percentage">{Math.round(progress)}%</span>
+      
+      {/* Current era name on mobile */}
+      <div className="progress-era-name">{currentEra.name}</div>
     </div>
   );
 };
@@ -256,6 +360,306 @@ const TypographySpecimen: React.FC<{
   </div>
 );
 
+// ==================== SCROLL-LOCKED MOMENT COMPONENTS ====================
+
+// The 1583 Moment - Stubbes quote reveal
+const ScrollLock1583: React.FC = () => {
+  const { containerRef, progress, isPinned } = useScrollLock(2.5); // 50vh x 2.5
+  
+  const phase = React.useMemo(() => {
+    if (progress < 0.3) return "book";
+    if (progress < 0.6) return "highlight";
+    return "explain";
+  }, [progress]);
+
+  return (
+    <div 
+      ref={containerRef}
+      className="scroll-lock-container"
+      style={{ height: "250vh", background: "var(--color-aged-paper)" }}
+    >
+      <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`} style={{ background: "var(--color-aged-paper)" }}>
+        <div style={{ maxWidth: "800px", textAlign: "center", padding: "0 var(--spacing-md)" }}>
+          {/* Phase 1: Book appears */}
+          <div style={{ 
+            opacity: phase === "book" ? 1 : 0.3,
+            transition: "opacity 0.5s ease-out"
+          }}>
+            <p style={{ 
+              fontFamily: "var(--font-ui)", 
+              fontSize: "var(--text-sm)",
+              color: "var(--color-text-muted)",
+              textTransform: "uppercase",
+              letterSpacing: "0.15em",
+              marginBottom: "var(--spacing-md)"
+            }}>
+              The Anatomie of Abuses, 1583
+            </p>
+          </div>
+          
+          {/* Phase 2: Quote highlights */}
+          <blockquote style={{
+            fontFamily: "var(--type-renaissance)",
+            fontSize: "clamp(1.5rem, 4vw, 2.5rem)",
+            fontStyle: "italic",
+            color: phase === "highlight" || phase === "explain" ? "var(--color-vermillion)" : "var(--color-text-secondary)",
+            transition: "color 0.5s ease-out",
+            lineHeight: 1.4,
+            margin: "0 0 var(--spacing-lg)"
+          }}>
+            &ldquo;The word pussie is now used of a woman.&rdquo;
+          </blockquote>
+          
+          <p style={{ 
+            fontFamily: "var(--font-ui)", 
+            fontSize: "var(--text-sm)",
+            color: "var(--color-text-muted)"
+          }}>
+            — Philip Stubbes
+          </p>
+          
+          {/* Phase 3: Explanation */}
+          <p style={{
+            marginTop: "var(--spacing-xl)",
+            fontFamily: "var(--font-body)",
+            fontSize: "var(--text-base)",
+            color: "var(--color-text-secondary)",
+            opacity: phase === "explain" ? 1 : 0,
+            transform: phase === "explain" ? "translateY(0)" : "translateY(20px)",
+            transition: "all 0.5s ease-out",
+            maxWidth: "600px",
+            margin: "var(--spacing-xl) auto 0"
+          }}>
+            The first documented use of the word applied to females—not vulgar, but <em>affectionate</em>. 
+            Calling a woman soft and sweet like a cat.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Johnson&apos;s Silence - Dictionary absence reveal
+const ScrollLockJohnson: React.FC = () => {
+  const { containerRef, progress, isPinned } = useScrollLock(2.5);
+  
+  const phase = React.useMemo(() => {
+    if (progress < 0.3) return "page";
+    if (progress < 0.6) return "scan";
+    return "absence";
+  }, [progress]);
+
+  return (
+    <div 
+      ref={containerRef}
+      className="scroll-lock-container"
+      style={{ height: "250vh", background: "var(--color-ivory)" }}
+    >
+      <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`} style={{ background: "var(--color-ivory)" }}>
+        <div style={{ maxWidth: "600px", textAlign: "center", padding: "0 var(--spacing-md)" }}>
+          <p style={{ 
+            fontFamily: "var(--font-ui)", 
+            fontSize: "var(--text-sm)",
+            color: "var(--color-text-muted)",
+            textTransform: "uppercase",
+            letterSpacing: "0.15em",
+            marginBottom: "var(--spacing-lg)",
+            opacity: phase !== "page" ? 0.5 : 1,
+            transition: "opacity 0.3s"
+          }}>
+            A Dictionary of the English Language, 1755
+          </p>
+          
+          {/* Simulated dictionary page */}
+          <div style={{
+            background: "var(--color-ivory)",
+            border: "1px solid rgba(26, 26, 26, 0.2)",
+            padding: "var(--spacing-lg)",
+            fontFamily: "var(--type-georgian)",
+            textAlign: "left",
+            transform: phase === "scan" ? "scale(1.05)" : "scale(1)",
+            transition: "transform 0.5s ease-out"
+          }}>
+            <div style={{ padding: "var(--spacing-sm) 0", borderBottom: "1px solid rgba(26, 26, 26, 0.1)" }}>
+              <span style={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em" }}>PUSS</span>
+              <span style={{ color: "var(--color-text-secondary)", fontStyle: "italic", marginLeft: "1rem" }}>
+                n.s. [A fondling name for a cat.]
+              </span>
+            </div>
+            
+            <div style={{ 
+              padding: "var(--spacing-md)",
+              margin: "var(--spacing-sm) 0",
+              background: phase === "absence" ? "rgba(196, 30, 58, 0.1)" : "transparent",
+              transition: "background 0.5s ease-out"
+            }}>
+              <span style={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em" }}>PUSSY</span>
+              <span style={{ 
+                color: phase === "absence" ? "var(--color-vermillion)" : "var(--color-text-muted)", 
+                fontStyle: "italic", 
+                marginLeft: "1rem",
+                fontWeight: phase === "absence" ? 600 : 400,
+                transition: "all 0.5s ease-out"
+              }}>
+                — NOT INCLUDED —
+              </span>
+            </div>
+            
+            <div style={{ padding: "var(--spacing-sm) 0", borderTop: "1px solid rgba(26, 26, 26, 0.1)" }}>
+              <span style={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em" }}>PUSTULE</span>
+              <span style={{ color: "var(--color-text-secondary)", fontStyle: "italic", marginLeft: "1rem" }}>
+                n.s. [pustule, Fr.] A small swelling...
+              </span>
+            </div>
+          </div>
+          
+          {/* Explanation */}
+          <p style={{
+            marginTop: "var(--spacing-xl)",
+            fontFamily: "var(--font-body)",
+            fontSize: "var(--text-base)",
+            color: "var(--color-text-secondary)",
+            opacity: phase === "absence" ? 1 : 0,
+            transform: phase === "absence" ? "translateY(0)" : "translateY(20px)",
+            transition: "all 0.5s ease-out"
+          }}>
+            Johnson included &ldquo;fart&rdquo; and &ldquo;piss.&rdquo; His silence on &ldquo;pussy&rdquo; speaks volumes 
+            about the word&apos;s status by 1755.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ==================== SCROLL-LOCKED HERO COMPONENT ====================
+
+type HeroPhase = "question1" | "question2" | "blackletter" | "renaissance" | "georgian" | "victorian" | "modern" | "stack" | "title" | "complete";
+
+const HeroScrollLock: React.FC = () => {
+  const { containerRef, progress, isPinned } = useScrollLock(5); // 5 scroll-heights per spec
+  const [showSkip, setShowSkip] = useState(false);
+  
+  // Show skip affordance after 3 seconds of being pinned
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (isPinned && progress > 0.1 && progress < 0.9) {
+      timeout = setTimeout(() => setShowSkip(true), 3000);
+    } else {
+      setShowSkip(false);
+    }
+    return () => clearTimeout(timeout);
+  }, [isPinned, progress]);
+
+  // Phase calculation per spec choreography
+  const phase: HeroPhase = React.useMemo(() => {
+    if (progress < 0.05) return "question1";
+    if (progress < 0.15) return "question2";
+    if (progress < 0.25) return "blackletter";
+    if (progress < 0.40) return "renaissance";
+    if (progress < 0.55) return "georgian";
+    if (progress < 0.70) return "victorian";
+    if (progress < 0.85) return "modern";
+    if (progress < 0.95) return "stack";
+    return "title";
+  }, [progress]);
+
+  // Get current era type for morph word
+  const currentEra = React.useMemo(() => {
+    switch (phase) {
+      case "blackletter": return "blackletter";
+      case "renaissance": return "renaissance";
+      case "georgian": return "georgian";
+      case "victorian": return "victorian";
+      case "modern": 
+      case "stack":
+      case "title":
+        return "modern";
+      default: return "blackletter";
+    }
+  }, [phase]);
+
+  // Era labels for display
+  const eraLabels: Record<string, string> = {
+    blackletter: "c. 1533 — Medieval",
+    renaissance: "The Word Enters English",
+    georgian: "From Affection to Omission",
+    victorian: "The Double Life",
+    modern: "The Taboo Takes Over",
+  };
+
+  const handleSkip = () => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const targetScroll = window.scrollY + rect.height - window.innerHeight + 100;
+      window.scrollTo({ top: targetScroll, behavior: "smooth" });
+    }
+  };
+
+  const isWordPhase = ["blackletter", "renaissance", "georgian", "victorian", "modern"].includes(phase);
+  const showAllEras = phase === "stack" || phase === "title";
+
+  return (
+    <section 
+      ref={containerRef}
+      className="scroll-lock-container hero-scroll-lock"
+      style={{ height: "500vh" }}
+    >
+      <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`}>
+        {/* Question 1: How did a word for cats... */}
+        <p className={`phase-text phase-question ${phase === "question1" ? "visible" : "hidden"}`}>
+          How did a word for cats...
+        </p>
+
+        {/* Question 2: ...become controversial */}
+        <p className={`phase-text phase-question ${phase === "question2" ? "visible" : "hidden"}`}>
+          ...become one of the most controversial words in English?
+        </p>
+
+        {/* The morphing word display */}
+        {isWordPhase && (
+          <div className="hero-morph-container" style={{ textAlign: "center" }}>
+            <span className={`hero-morph-word era-${currentEra}`}>
+              PUSSY
+            </span>
+            <p className="phase-era-label">{eraLabels[currentEra]}</p>
+          </div>
+        )}
+
+        {/* All eras stacked */}
+        {showAllEras && (
+          <div className="era-stack">
+            <span className={`era-stack-word era-blackletter visible`} style={{ fontFamily: "var(--type-blackletter)" }}>PUSSY</span>
+            <span className={`era-stack-word era-renaissance visible`} style={{ fontFamily: "var(--type-renaissance)", transitionDelay: "100ms" }}>PUSSY</span>
+            <span className={`era-stack-word era-georgian visible`} style={{ fontFamily: "var(--type-georgian)", transitionDelay: "200ms" }}>PUSSY</span>
+            <span className={`era-stack-word era-victorian visible`} style={{ fontFamily: "var(--type-victorian)", transitionDelay: "300ms" }}>PUSSY</span>
+            <span className={`era-stack-word era-modern visible`} style={{ fontFamily: "var(--type-modern)", transitionDelay: "400ms" }}>P***Y</span>
+          </div>
+        )}
+
+        {/* Title reveal at end */}
+        {phase === "title" && (
+          <div className="hero-title-reveal visible" style={{ marginTop: "var(--spacing-xl)" }}>
+            <h1 style={{ margin: 0 }}>
+              <span className="hero-title-main">Words Have Histories</span>
+              <span className="hero-title-sub">The Curious Journey of <em>&ldquo;Pussy&rdquo;</em></span>
+            </h1>
+          </div>
+        )}
+
+        {/* Skip affordance */}
+        <button 
+          className={`skip-affordance ${showSkip ? "visible" : ""}`}
+          onClick={handleSkip}
+          aria-label="Skip to content"
+        >
+          Skip to essay →
+        </button>
+      </div>
+    </section>
+  );
+};
+
 // ==================== MAIN COMPONENT ====================
 
 const TheWordPussyClient: React.FC = () => {
@@ -281,73 +685,8 @@ const TheWordPussyClient: React.FC = () => {
       {/* Progress Bar */}
       <TypographyProgressBar progress={scrollProgress} />
 
-      {/* ==================== HERO SECTION ==================== */}
-      <section className="etymology-hero">
-        <div className="hero-background">
-          <div className="hero-paper-texture" />
-        </div>
-        <div className="hero-content">
-          <div className="hero-question">
-            <span>How did a word for cats...</span>
-          </div>
-          
-          <div className="hero-word-evolution">
-            <div className="word-era era-blackletter">
-              <span className="era-word">PUSSY</span>
-              <span className="era-label">Medieval</span>
-            </div>
-            <div className="word-era era-renaissance">
-              <span className="era-word">PUSSY</span>
-              <span className="era-label">1530s</span>
-            </div>
-            <div className="word-era era-georgian">
-              <span className="era-word">PUSSY</span>
-              <span className="era-label">1755</span>
-            </div>
-            <div className="word-era era-victorian">
-              <span className="era-word">PUSSY</span>
-              <span className="era-label">Victorian</span>
-            </div>
-            <div className="word-era era-modern">
-              <span className="era-word">P***Y</span>
-              <span className="era-label">Modern</span>
-            </div>
-          </div>
-          
-          <div className="hero-question-end">
-            <span>...become one of the most controversial words in English?</span>
-          </div>
-          
-          <h1 className="hero-title">
-            <span className="hero-title-main">Words Have Histories</span>
-            <span className="hero-title-sub">The Curious Journey of <em>&ldquo;Pussy&rdquo;</em></span>
-          </h1>
-          
-          <p className="hero-tagline">
-            From Germanic pet-names for cats to modern taboo—a 500-year etymological odyssey through affection, metaphor, and the euphemism treadmill
-          </p>
-          
-          <div className="hero-meta">
-            <div className="meta-item">
-              <span className="meta-value">500</span>
-              <span className="meta-label">Years of Evolution</span>
-            </div>
-            <div className="meta-item">
-              <span className="meta-value">3</span>
-              <span className="meta-label">Meaning Branches</span>
-            </div>
-            <div className="meta-item">
-              <span className="meta-value">5</span>
-              <span className="meta-label">Typeface Eras</span>
-            </div>
-          </div>
-          
-          <div className="hero-scroll-cue">
-            <span>Scroll to explore the etymology</span>
-            <div className="scroll-arrow" />
-          </div>
-        </div>
-      </section>
+      {/* ==================== HERO SECTION (SCROLL-LOCKED) ==================== */}
+      <HeroScrollLock />
 
       {/* ==================== CHAPTER 1: THE MYSTERY ==================== */}
       <Section id="chapter-1" className="chapter">
@@ -450,11 +789,8 @@ const TheWordPussyClient: React.FC = () => {
           </p>
         </div>
 
-        <QuoteMonument
-          quote="The word pussie is now used of a woman."
-          attribution="Philip Stubbes, The Anatomie of Abuses, 1583"
-          era="renaissance"
-        />
+        {/* Scroll-locked 1583 Moment */}
+        <ScrollLock1583 />
 
         <MorphingWord era="renaissance" />
 
@@ -534,25 +870,8 @@ const TheWordPussyClient: React.FC = () => {
 
         <MorphingWord era="georgian" />
 
-        <div className="dictionary-absence">
-          <div className="dictionary-page">
-            <div className="dictionary-entry">
-              <span className="entry-word">PUSS</span>
-              <span className="entry-definition">n.s. [A fondling name for a cat.]</span>
-            </div>
-            <div className="dictionary-entry absent">
-              <span className="entry-word">PUSSY</span>
-              <span className="entry-definition">— NOT INCLUDED —</span>
-            </div>
-            <div className="dictionary-entry">
-              <span className="entry-word">PUSTULE</span>
-              <span className="entry-definition">n.s. [pustule, Fr.] A small swelling...</span>
-            </div>
-          </div>
-          <p className="dictionary-note">
-            Johnson&apos;s 1755 Dictionary: &ldquo;puss&rdquo; appears, but &ldquo;pussy&rdquo; is absent
-          </p>
-        </div>
+        {/* Scroll-locked Johnson&apos;s Silence */}
+        <ScrollLockJohnson />
 
         <div className="content-block">
           <h3>The Dictionary as Gatekeeper</h3>
