@@ -17,6 +17,7 @@ export type EssayCategory =
   | 'Space'
   | 'Nature'
   | 'Education & Writing'
+  | 'Economics'
   | "Children's Fiction";
 
 export type VisualStyle = 'photorealistic' | 'illustrated' | 'mixed';
@@ -44,6 +45,7 @@ export const CATEGORY_COLORS: Record<EssayCategory, string> = {
   'Space': '#8B5CF6',
   'Nature': '#06B6D4',
   'Education & Writing': '#14B8A6',
+  'Economics': '#22C55E',
   "Children's Fiction": '#FFD700',
 };
 
@@ -676,9 +678,45 @@ export const visualEssays: VisualEssay[] = [
     category: "History",
     readTime: "15 min",
     href: "/essays/fentanyl-timeline",
-    isNew: true,
     tags: ["fentanyl", "opioid crisis", "synthetic opioids", "drug history", "public health", "overdose", "timeline", "CDC", "DEA", "pharmaceutical history", "drug policy"],
     visualStyle: "photorealistic",
+  },
+  {
+    id: "how-a-chip-is-manufactured",
+    number: "65",
+    title: "How a Chip Is Manufactured",
+    subtitle: "From Sand to Silicon",
+    description: "A visual guide to the most precise industrial process on Earth. Nine stages of atomic-scale precision transform common sand into devices containing more components than the human brain has neurons.",
+    category: "Technology",
+    readTime: "20 min",
+    href: "/essays/how-a-chip-is-manufactured",
+    tags: ["semiconductor", "chip manufacturing", "silicon wafer", "photolithography", "transistor", "EUV", "TSMC", "cleanroom", "Moore's Law", "integrated circuit", "process essay"],
+    visualStyle: "illustrated",
+  },
+  {
+    id: "build-a-flashlight",
+    number: "66",
+    title: "Build Your Own LED Flashlight",
+    subtitle: "An Interactive Electronics Experience",
+    description: "Choose components, understand the physics, and build a working digital flashlight. Your decisions shape the final artifact—explore Ohm's Law, LED forward voltage, battery chemistry, and the tradeoffs every engineer faces.",
+    category: "Technology",
+    readTime: "15 min",
+    href: "/essays/build-a-flashlight",
+    tags: ["electronics", "LED", "Ohm's Law", "circuit design", "interactive", "STEM", "maker", "flashlight", "resistor", "battery", "process essay", "build"],
+    visualStyle: "illustrated",
+  },
+  {
+    id: "how-money-is-created",
+    number: "67",
+    title: "How Money Is Created",
+    subtitle: "The Mechanics of Credit, Banking, and Monetary Systems",
+    description: "A mechanical, step-by-step explanation of how money is actually created in modern economies. Learn how commercial banks create money through lending, how central banks influence the system, and why 'printing money' is an incomplete explanation.",
+    category: "Economics",
+    readTime: "15 min",
+    href: "/essays/how-money-is-created",
+    isNew: true,
+    tags: ["money creation", "credit creation", "banking system", "central banking", "monetary policy", "quantitative easing", "money supply", "endogenous money", "economics", "process essay"],
+    visualStyle: "illustrated",
   },
   // Children's Fiction (draft - not shown in production)
   {

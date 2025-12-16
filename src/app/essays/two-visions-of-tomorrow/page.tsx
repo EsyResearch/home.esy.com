@@ -38,3 +38,4 @@ export const metadata: Metadata = {
 export default function TwoVisionsOfTomorrowPage() {
   return <TwoVisionsClient />;
 }
+

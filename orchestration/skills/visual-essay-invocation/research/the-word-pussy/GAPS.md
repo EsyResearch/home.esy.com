@@ -155,3 +155,4 @@ Based on these gaps, the visual essay should NOT claim:
 5. ✅ The "coward" meaning is a 20th-century American innovation
 6. ✅ The word demonstrates euphemism treadmill and semantic shift
 7. ✅ Etymology involves both Germanic feline roots and possible Norse "pocket" roots
+

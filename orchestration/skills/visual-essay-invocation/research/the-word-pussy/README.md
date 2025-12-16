@@ -44,3 +44,4 @@ This research package is complete and ready for:
 Using @agents/utilities/visual-essay-invocation-agent.md, build a complete 
 invocation spec for "The Origin of the Word Pussy" using this research package.
 ```
+

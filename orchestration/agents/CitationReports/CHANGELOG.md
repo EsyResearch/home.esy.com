@@ -16,3 +16,4 @@ Master changelog tracking all citation changes across all visual essays.
 
 
 
+

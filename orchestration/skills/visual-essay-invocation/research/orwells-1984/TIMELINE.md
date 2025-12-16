@@ -189,3 +189,4 @@
 - Map Orwell's physical journey (India → Burma → Paris → London → Spain → Jura)
 - Overlay with rise of totalitarianism (Stalin's consolidation, Hitler's rise)
 - Show convergence: his life experiences + historical events = *1984*
+

@@ -152,3 +152,4 @@ Priority 5: Custom SVG diagrams (explanation)
 - No images that require landscape viewing
 - Text overlays must have high contrast
 - Consider vertical aspect ratios for mobile hero
+

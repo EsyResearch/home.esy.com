@@ -267,3 +267,4 @@ This visual essay uses **evolving typefaces** as its primary visual device. The 
 - [ ] Mobile: Typography remains readable at all sizes
 - [ ] Font loading optimized (preload critical fonts)
 - [ ] Fallbacks defined for each typeface
+

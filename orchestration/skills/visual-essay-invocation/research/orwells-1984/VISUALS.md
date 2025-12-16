@@ -278,3 +278,4 @@
 | Spanish Civil War | ✅/⚠️ Mix (Capa requires license) |
 | Modern surveillance | ⏳ Needs sourcing |
 | Manuscript pages | ⏳ Permission required |
+

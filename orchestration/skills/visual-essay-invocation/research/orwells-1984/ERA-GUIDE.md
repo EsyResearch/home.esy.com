@@ -333,3 +333,4 @@ Alternative: A document being fed through a memory hole — as the reader progre
 - **1984 quotes**: Typewriter font (Winston's diary)
 - **Party slogans**: Bold propaganda sans-serif
 - **Chapter headings**: Clean, stark, authoritative
+

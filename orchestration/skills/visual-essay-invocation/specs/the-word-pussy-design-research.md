@@ -345,3 +345,4 @@ Yes—scholarly pace, transformative reveals, deliberate motion.
 ## Summary
 
 This is a **typography-forward visual essay** where **the word itself is the hero image**. The design derives entirely from the materials of writing (ink, paper, type) and the history of typography from Gutenberg to the digital age. No photography of people. No stock imagery. The story is told through letterforms evolving across eras, dictionary pages documenting (or omitting) the word, and the visual representation of semantic branching. This design could only exist for an etymology story.
+

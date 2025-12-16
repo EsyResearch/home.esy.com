@@ -288,3 +288,4 @@ A stylized typewriter mechanism spanning the viewport bottom:
 ---
 
 *This design system is derived from research into George Orwell's life, the historical totalitarianism that inspired 1984, and the physical reality of his final years typing on Jura. Every element—from typewriter keys to erasure animation—emerges from the subject matter itself.*
+

@@ -696,9 +696,11 @@
 
 /* ==================== HERO SECTION ==================== */
 
-/* SCROLL-LOCK HERO: Proper sticky pattern */
+/* SCROLL-LOCK HERO: Proper sticky pattern per scroll-lock-patterns.md */
+/* The hero opens in COMPLETE DARKNESS - per spec requirement */
 .hero-section {
   position: relative;
+  background: #000000; /* Pure black starting background */
   /* HEIGHT SET INLINE via style prop - must be explicit for scroll-lock calculation */
   /* CRITICAL: No overflow:hidden - it breaks position: sticky */
 }
@@ -725,17 +727,19 @@
 
 /* Pinned state - content is actively in scroll-lock zone */
 .hero-section.pinned .hero-content {
-  /* Visual feedback that scroll-lock is active (optional debug) */
+  /* Visual feedback that scroll-lock is active - content remains centered */
 }
 
 .hero-section.complete .hero-content {
   /* When animation completes, keep content visible */
 }
 
+/* Hero background starts at opacity 0 (pure black), controlled by JS */
 .hero-background {
   position: absolute;
   inset: 0;
   z-index: 0;
+  /* Opacity controlled by JavaScript for scroll-driven reveal */
 }
 
 .parchment-texture {
@@ -785,17 +789,18 @@
   display: block;
 }
 
-/* Word container - visible immediately for hydration safety */
+/* Word container - STARTS INVISIBLE per spec "hero opens in complete darkness" */
 /* Opacity controlled by JS for scroll-driven animation */
 .origin-of-toy .word-container {
   margin-bottom: var(--toy-space-lg);
-  /* Start visible to prevent flash on hydration */
-  opacity: 1;
-  transform: translateY(0);
-  transition: all var(--toy-duration-reveal) var(--toy-ease-out);
+  /* Start INVISIBLE - word emerges from darkness at 0-15% scroll */
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--toy-duration-reveal) var(--toy-ease-out),
+              transform var(--toy-duration-slow) var(--toy-ease-out);
 }
 
-/* The visible class is now decorative - JS controls actual opacity */
+/* Word becomes visible when JS sets the visible class */
 .origin-of-toy .word-container.visible {
   opacity: 1;
   transform: translateY(0);
@@ -805,10 +810,12 @@
   position: relative;
   display: inline-flex;
   gap: 0.1em;
+  /* Per spec: "soft white on black, in a friendly rounded typeface" */
   font-family: var(--toy-font-display);
   font-size: clamp(4rem, 15vw, 10rem);
   font-weight: 400;
-  color: var(--toy-text-primary);
+  color: #FFFFFF; /* Pure white for maximum contrast against black */
+  /* Opacity controlled by JavaScript - starts at 0, emerges from darkness */
   transition: all var(--toy-duration-slow) var(--toy-ease-out);
   /* GPU acceleration for scroll-driven animation */
   transform: translateZ(0);
@@ -1004,17 +1011,26 @@
   flex-direction: column;
   align-items: center;
   gap: var(--toy-space-xs);
-  color: var(--toy-text-tertiary);
+  /* Visible against pure black background */
+  color: rgba(255, 255, 255, 0.6);
   font-family: var(--toy-font-sans);
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  z-index: 20; /* Above hero content */
+  /* HYDRATION-SAFE: Render always, opacity controlled by JS */
+  /* Initial opacity/visibility controlled by inline styles for SSR consistency */
+  transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+}
+
+/* Animation only applied when visible (controlled by JS) */
+.scroll-indicator[aria-hidden="false"] {
   animation: pulse-down 2s ease-in-out infinite;
 }
 
 @keyframes pulse-down {
-  0%, 100% { opacity: 0.5; transform: translateX(-50%) translateY(0); }
-  50% { opacity: 1; transform: translateX(-50%) translateY(5px); }
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(5px); }
 }
 
 /* ==================== CHAPTER SECTIONS ==================== */

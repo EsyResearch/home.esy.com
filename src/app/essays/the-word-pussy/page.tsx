@@ -41,3 +41,4 @@ export const metadata = createVisualEssayMetadata({
 export default function TheWordPussyPage() {
   return <TheWordPussyClient />;
 }
+

@@ -305,3 +305,4 @@
 1. **Definition of doublethink** — Psychological mechanism
 2. **Syme on Newspeak** — Language and thought control
 3. **O'Brien on power** — Totalitarianism's nihilistic core
+

@@ -340,3 +340,4 @@ Used throughout to show both visions simultaneously:
 - Author photographs should show their era's aesthetic
 - The Letter is the visual and emotional centerpiece
 - Modern imagery should feel both familiar and unsettling
+

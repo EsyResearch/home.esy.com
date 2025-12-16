@@ -8,6 +8,22 @@ This master changelog tracks all audit activity across all visual essays and all
 
 ### 2024-12-15
 
+#### how-a-chip-is-manufactured
+| Domain | Version | Action | Score | Details |
+|--------|---------|--------|-------|---------|
+| Scroll | v1.0 | `INIT` | 8.5/10 | Smooth reveals, passive listeners |
+| Experience | v1.0 | `INIT` | 8.0/10 | 7 layout patterns, 3 visualizations |
+| Visual | v1.0 | `INIT` | 85/100 | Cleanroom aesthetic, process colors |
+| Citation | v1.0 | `INIT` | 8.5/10 | 6 sources, 67% Tier 1-2 |
+| SEO | v1.0 | `INIT` | 88/100 | Complete metadata |
+| Hydration | v1.0 | `INIT` | ✅ | No SSR/client mismatches |
+| Spec Compliance | v1.0 | `INIT` | 85% | All chapters complete |
+| Meta | v1.0 | `CERT` | 8.2/10 | **Certification: ✅ CERTIFIED** |
+
+**Summary**: New visual essay "How a Chip Is Manufactured" — comprehensive audit completed. 11 chapters (9 stages + context + closing), 7 layout patterns, 3 animated visualizations. Process essay on semiconductor manufacturing for non-specialist audience. Certified for publication.
+
+---
+
 #### ALL ESSAYS (Batch Hydration Audit)
 | Domain | Version | Action | Score | Details |
 |--------|---------|--------|-------|---------|
@@ -111,6 +127,7 @@ This master changelog tracks all audit activity across all visual essays and all
 
 | Essay | Last Audit | Citation | Scroll | Experience | Visual | SEO | Overall |
 |-------|------------|----------|--------|------------|--------|-----|---------|
+| how-a-chip-is-manufactured | 2024-12-15 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ CERTIFIED |
 | the-history-of-burmese-cuisine | 2024-12-11 | ✅ | ✅ | ✅ | ✅ | 🟡 | ✅ CERTIFIED |
 | the-mirror | 2024-12-10 | ✅ | — | — | — | — | ⚠️ Partial |
 | the-thinking-machine | 2024-12-09 | — | 🟡 | — | — | — | ⚠️ Partial |

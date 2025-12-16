@@ -156,3 +156,4 @@ If time permits, these could be further investigated:
 - [ ] Find additional contemporary reviews (Times Literary Supplement, New York Times, etc.)
 - [ ] Clarify NPG licensing for Huxley portraits
 - [ ] Locate any Orwell response to Huxley letter
+

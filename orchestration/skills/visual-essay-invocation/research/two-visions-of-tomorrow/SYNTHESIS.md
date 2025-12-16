@@ -185,3 +185,4 @@ Based on research, the following structure maximizes narrative impact:
 - Visual split-screen concept should run throughout, not just intro
 - Progress bar (divided line) reinforces thesis in interface
 - End on question, not answer — respect reader intelligence
+

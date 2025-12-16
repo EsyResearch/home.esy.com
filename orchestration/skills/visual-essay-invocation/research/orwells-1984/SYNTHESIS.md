@@ -259,3 +259,4 @@ If the Party says 2+2=5, and you believe it, then reality is whatever the Party 
 | Spain as turning point | HIGH | *Homage to Catalonia*, "Why I Write" |
 | Novel's philosophical meaning | HIGH | Text analysis, critical tradition |
 | Contemporary relevance | MEDIUM | Interpretive, avoid overreach |
+

@@ -1,0 +1,875 @@
+/* ==========================================================================
+   HOW A CHIP IS MANUFACTURED
+   Visual Essay — The Cleanroom Aesthetic
+   
+   Design derived from: Yellow lithography light, circuit traces, wafer geometry,
+   the obsessive precision of semiconductor fabrication
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   DESIGN TOKENS — DERIVED FROM THE FAB
+   
+   Colors from actual cleanroom photography:
+   - Yellow/amber safelight (protects photoresist from UV)
+   - Deep blacks (light-controlled environments)
+   - Electric blue (plasma, ionized gases)
+   - Copper (interconnects)
+   - Silicon gray (wafer surfaces)
+   -------------------------------------------------------------------------- */
+
+.fab {
+  /* Cleanroom Blacks */
+  --fab-void: #000000;
+  --fab-deep: #0a0a0a;
+  --fab-surface: #111111;
+  --fab-elevated: #1a1a1a;
+  
+  /* Lithography Yellow — The Safelight */
+  --litho-yellow: #FFB800;
+  --litho-amber: #FF9500;
+  --litho-dim: rgba(255, 184, 0, 0.15);
+  --litho-glow: rgba(255, 184, 0, 0.4);
+  
+  /* Plasma Blue — Etching, Ion Implantation */
+  --plasma-blue: #00D4FF;
+  --plasma-dim: rgba(0, 212, 255, 0.1);
+  --plasma-glow: rgba(0, 212, 255, 0.3);
+  
+  /* Copper — Interconnects */
+  --copper: #E67E22;
+  --copper-bright: #F39C12;
+  --copper-dim: rgba(230, 126, 34, 0.15);
+  
+  /* Silicon — The Substrate */
+  --silicon: #708090;
+  --silicon-light: #B0B8C0;
+  --silicon-dark: #4A5568;
+  
+  /* UV Violet — EUV Light */
+  --uv-violet: #8B5CF6;
+  --uv-dim: rgba(139, 92, 246, 0.1);
+  
+  /* Text */
+  --text-bright: #FFFFFF;
+  --text-primary: #E8E8E8;
+  --text-secondary: #A0A0A0;
+  --text-dim: #666666;
+  
+  /* Typography — Technical Precision */
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', monospace;
+  --font-data: 'Space Mono', monospace;
+  
+  /* Timing — Mechanical Precision */
+  --ease-precise: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-deposit: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-instant: 100ms;
+  --duration-etch: 400ms;
+  --duration-deposit: 800ms;
+  
+  /* Spacing */
+  --section-gap: clamp(4rem, 10vh, 8rem);
+  --content-max: 720px;
+  --wide-max: 1000px;
+}
+
+/* --------------------------------------------------------------------------
+   BASE RESET
+   -------------------------------------------------------------------------- */
+
+.fab {
+  background: var(--fab-void);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  line-height: 1.75;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.fab *, .fab *::before, .fab *::after {
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   CIRCUIT TRACE BACKGROUND — Ambient Pattern
+   -------------------------------------------------------------------------- */
+
+.fab::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(90deg, var(--fab-surface) 1px, transparent 1px),
+    linear-gradient(var(--fab-surface) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --------------------------------------------------------------------------
+   WAFER PROGRESS INDICATOR — Circular die map
+   -------------------------------------------------------------------------- */
+
+.wafer-progress {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--fab-surface);
+  border: 2px solid var(--silicon-dark);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px var(--plasma-dim);
+}
+
+.wafer-progress-ring {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--litho-yellow) calc(var(--progress) * 1%),
+    transparent calc(var(--progress) * 1%)
+  );
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 3px));
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 3px));
+}
+
+.wafer-progress-label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--litho-yellow);
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 768px) {
+  .wafer-progress {
+    bottom: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   HERO — The Void Before Creation
+   -------------------------------------------------------------------------- */
+
+.fab-hero {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+/* Animated concentric wafer rings */
+.fab-hero::before {
+  content: '';
+  position: absolute;
+  width: 150vmax;
+  height: 150vmax;
+  border-radius: 50%;
+  border: 1px solid var(--silicon-dark);
+  opacity: 0.2;
+  animation: wafer-pulse 8s ease-in-out infinite;
+}
+
+.fab-hero::after {
+  content: '';
+  position: absolute;
+  width: 100vmax;
+  height: 100vmax;
+  border-radius: 50%;
+  border: 1px solid var(--silicon-dark);
+  opacity: 0.15;
+  animation: wafer-pulse 8s ease-in-out infinite 2s;
+}
+
+@keyframes wafer-pulse {
+  0%, 100% { transform: scale(0.8); opacity: 0.1; }
+  50% { transform: scale(1); opacity: 0.3; }
+}
+
+.fab-hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 800px;
+}
+
+.fab-hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--litho-yellow);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: etch-in 0.8s var(--ease-deposit) 0.2s forwards;
+}
+
+.fab-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--text-bright);
+  margin: 0 0 1rem;
+  opacity: 0;
+  animation: etch-in 1s var(--ease-deposit) 0.4s forwards;
+}
+
+.fab-hero-title em {
+  font-style: italic;
+  color: var(--litho-yellow);
+}
+
+.fab-hero-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin: 0 0 3rem;
+  opacity: 0;
+  animation: etch-in 0.8s var(--ease-deposit) 0.6s forwards;
+}
+
+.fab-hero-stat {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  opacity: 0;
+  animation: etch-in 0.8s var(--ease-deposit) 0.8s forwards;
+}
+
+.fab-hero-stat-item {
+  text-align: center;
+}
+
+.fab-hero-stat-value {
+  display: block;
+  font-family: var(--font-data);
+  font-size: 1.5rem;
+  color: var(--plasma-blue);
+  letter-spacing: -0.02em;
+}
+
+.fab-hero-stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+@keyframes etch-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.fab-scroll-cue {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0;
+  animation: etch-in 0.6s var(--ease-deposit) 1.2s forwards;
+}
+
+.fab-scroll-cue span {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.fab-scroll-line {
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(180deg, var(--litho-yellow), transparent);
+  animation: scroll-flow 2s ease-in-out infinite;
+}
+
+@keyframes scroll-flow {
+  0% { transform: scaleY(0); transform-origin: top; opacity: 1; }
+  50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  50.1% { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   STAGE SECTIONS — The 9 Steps
+   -------------------------------------------------------------------------- */
+
+.fab-stage {
+  position: relative;
+  padding: var(--section-gap) 1.5rem;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity var(--duration-deposit) var(--ease-deposit),
+              transform var(--duration-deposit) var(--ease-deposit);
+}
+
+.fab-stage.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fab-stage-content {
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+/* Stage Number — Large Background Element */
+.fab-stage-number {
+  position: absolute;
+  top: var(--section-gap);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-data);
+  font-size: clamp(8rem, 30vw, 20rem);
+  font-weight: 700;
+  color: var(--fab-surface);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.fab-stage-header {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 2rem;
+}
+
+.fab-stage-label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--litho-yellow);
+  margin-bottom: 0.75rem;
+}
+
+.fab-stage-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-bright);
+  margin: 0 0 0.5rem;
+}
+
+.fab-stage-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.fab-stage-prose {
+  position: relative;
+  z-index: 1;
+}
+
+.fab-stage-prose p {
+  margin: 0 0 1.25rem;
+  color: var(--text-primary);
+}
+
+.fab-stage-prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   KEY INSIGHT — The Memorable Takeaway
+   -------------------------------------------------------------------------- */
+
+.fab-insight {
+  margin: 2.5rem 0;
+  padding: 1.5rem 2rem;
+  background: var(--litho-dim);
+  border-left: 3px solid var(--litho-yellow);
+  position: relative;
+}
+
+.fab-insight::before {
+  content: 'KEY INSIGHT';
+  position: absolute;
+  top: -0.5rem;
+  left: 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  color: var(--litho-yellow);
+  background: var(--fab-void);
+  padding: 0 0.5rem;
+}
+
+.fab-insight p {
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 3vw, 1.375rem);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--litho-yellow);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   DATA DISPLAY — Technical Specifications
+   -------------------------------------------------------------------------- */
+
+.fab-specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.fab-spec {
+  padding: 1rem;
+  background: var(--fab-elevated);
+  border: 1px solid var(--silicon-dark);
+  text-align: center;
+}
+
+.fab-spec-value {
+  display: block;
+  font-family: var(--font-data);
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  color: var(--plasma-blue);
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+
+.fab-spec-label {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* Color variants for different process types */
+.fab-spec.litho .fab-spec-value { color: var(--litho-yellow); }
+.fab-spec.plasma .fab-spec-value { color: var(--plasma-blue); }
+.fab-spec.copper .fab-spec-value { color: var(--copper-bright); }
+.fab-spec.uv .fab-spec-value { color: var(--uv-violet); }
+
+/* --------------------------------------------------------------------------
+   SCALE VISUALIZATION — Comprehension Aid
+   -------------------------------------------------------------------------- */
+
+.fab-scale {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: var(--fab-surface);
+  border: 1px solid var(--silicon-dark);
+}
+
+.fab-scale-title {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.fab-scale-items {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.fab-scale-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.fab-scale-dot {
+  border-radius: 50%;
+  background: var(--litho-yellow);
+  margin-bottom: 0.75rem;
+  transition: transform var(--duration-etch) var(--ease-precise);
+}
+
+.fab-scale-dot.hair { width: 60px; height: 60px; }
+.fab-scale-dot.virus { width: 24px; height: 24px; }
+.fab-scale-dot.transistor { width: 8px; height: 8px; }
+
+.fab-scale-label {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.fab-scale-value {
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  color: var(--plasma-blue);
+}
+
+/* --------------------------------------------------------------------------
+   LAYER STACK — 3D Chip Visualization
+   -------------------------------------------------------------------------- */
+
+.fab-layers {
+  margin: 3rem auto;
+  max-width: 300px;
+}
+
+.fab-layers-title {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.fab-layers-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  perspective: 500px;
+}
+
+.fab-layer {
+  height: 16px;
+  border-radius: 2px;
+  opacity: 0;
+  transform: translateY(-10px) rotateX(-5deg);
+  transition: all var(--duration-etch) var(--ease-deposit);
+}
+
+.fab-layer.visible {
+  opacity: 1;
+  transform: translateY(0) rotateX(0);
+}
+
+.fab-layer.oxide { background: var(--silicon); }
+.fab-layer.metal { background: var(--copper); }
+.fab-layer.dielectric { background: var(--plasma-blue); opacity: 0.7; }
+.fab-layer.poly { background: var(--uv-violet); }
+.fab-layer.substrate { background: var(--silicon-dark); height: 24px; }
+
+/* --------------------------------------------------------------------------
+   WAFER YIELD MAP — Interactive Die Visualization
+   -------------------------------------------------------------------------- */
+
+.fab-yield {
+  margin: 3rem auto;
+  text-align: center;
+}
+
+.fab-yield-title {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+}
+
+.fab-yield-wafer {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: var(--silicon-dark);
+  border: 2px solid var(--silicon);
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 2px;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.fab-yield-die {
+  aspect-ratio: 1;
+  background: var(--fab-elevated);
+  transition: background var(--duration-instant);
+}
+
+.fab-yield-die.good { background: #22C55E; }
+.fab-yield-die.bad { background: #DC2626; }
+
+.fab-yield-stat {
+  font-family: var(--font-data);
+  font-size: 2rem;
+  color: #22C55E;
+}
+
+/* --------------------------------------------------------------------------
+   PROCESS COMPARISON — Before/After
+   -------------------------------------------------------------------------- */
+
+.fab-compare {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1.5rem;
+  margin: 2.5rem 0;
+  align-items: stretch;
+}
+
+@media (max-width: 640px) {
+  .fab-compare {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.fab-compare-panel {
+  padding: 1.5rem;
+  background: var(--fab-elevated);
+  border: 1px solid var(--silicon-dark);
+}
+
+.fab-compare-panel h4 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--text-bright);
+  margin: 0 0 0.75rem;
+}
+
+.fab-compare-panel p {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.fab-compare-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--litho-yellow);
+}
+
+@media (max-width: 640px) {
+  .fab-compare-arrow {
+    transform: rotate(90deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   CLOSING MONUMENT — The Final Statement
+   -------------------------------------------------------------------------- */
+
+.fab-closing {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--section-gap) 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.fab-closing::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, var(--litho-dim) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.fab-closing-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+}
+
+.fab-closing-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--text-bright);
+  margin: 0 0 2rem;
+}
+
+.fab-closing-quote em {
+  color: var(--litho-yellow);
+  font-style: normal;
+}
+
+.fab-closing-label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* --------------------------------------------------------------------------
+   SOURCES — Credibility Footer
+   -------------------------------------------------------------------------- */
+
+.fab-sources {
+  padding: 4rem 1.5rem;
+  background: var(--fab-deep);
+  border-top: 1px solid var(--silicon-dark);
+}
+
+.fab-sources-content {
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+.fab-sources-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--text-bright);
+  margin: 0 0 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--silicon-dark);
+}
+
+.fab-sources-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+}
+
+.fab-sources-list li {
+  margin-bottom: 0.625rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.fab-sources-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--litho-yellow);
+  font-size: 0.75rem;
+}
+
+.fab-sources-list a {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--duration-instant);
+}
+
+.fab-sources-list a:hover {
+  color: var(--litho-yellow);
+}
+
+.fab-sources-note {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--text-dim);
+  padding-top: 1rem;
+  border-top: 1px solid var(--silicon-dark);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE ADJUSTMENTS
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .fab-stage {
+    padding: 3rem 1rem;
+  }
+  
+  .fab-stage-number {
+    font-size: 8rem;
+    opacity: 0.5;
+  }
+  
+  .fab-hero-stat {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .fab-specs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .fab-scale-items {
+    gap: 1rem;
+  }
+  
+  .fab-scale-dot.hair { width: 40px; height: 40px; }
+  .fab-scale-dot.virus { width: 16px; height: 16px; }
+  .fab-scale-dot.transistor { width: 6px; height: 6px; }
+}
+
+/* --------------------------------------------------------------------------
+   REDUCED MOTION
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .fab-hero::before,
+  .fab-hero::after {
+    animation: none;
+  }
+  
+  .fab-hero-eyebrow,
+  .fab-hero-title,
+  .fab-hero-subtitle,
+  .fab-hero-stat,
+  .fab-scroll-cue {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none;
+  }
+  
+  .fab-scroll-line {
+    animation: none;
+    opacity: 0.5;
+  }
+  
+  .fab-stage {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  
+  .fab-layer {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

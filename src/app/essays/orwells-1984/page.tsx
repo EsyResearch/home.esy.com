@@ -43,3 +43,4 @@ export const metadata: Metadata = {
 export default function OrwellsPage() {
   return <OrwellsClient />;
 }
+

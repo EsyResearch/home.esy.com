@@ -196,8 +196,13 @@ const EssayHeader: React.FC<{ scrolled: boolean }> = ({ scrolled }) => (
 );
 
 // Hero Section with SCROLL-DRIVEN word fragmentation
-// Spec choreography: 0-15% word appears, 15-30% flicker/cracks, 30-50% fracture/TOYE,
-// 50-70% annotations, 70-85% swirl/settle, 85-100% title card + block
+// Spec choreography (scroll-lock-patterns.md compliant):
+// 0-15%: Darkness → word emerges from black
+// 15-30%: Flicker/cracks - word destabilizes  
+// 30-50%: Fracture/TOYE - modern word fragments, medieval emerges
+// 50-70%: Annotations appear around TOYE
+// 70-85%: Annotations swirl and settle
+// 85-100%: Title card + wooden block emerges
 const HeroSection: React.FC = () => {
   const heroRef = useRef<HTMLElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -221,6 +226,7 @@ const HeroSection: React.FC = () => {
       const sectionTotalHeight = rect.height;
       
       // Scrollable distance = total height minus one viewport (content stays pinned for that duration)
+      // Per scroll-lock-patterns.md: 800-1000px scroll depth per sequence
       const scrollableDistance = sectionTotalHeight - windowHeight;
       const scrolledIntoSection = -sectionTop;
       
@@ -253,19 +259,21 @@ const HeroSection: React.FC = () => {
     }
   }, []);
 
-  // Spec-precise phase calculations
-  const phase1 = scrollProgress >= 0 && scrollProgress < 15;   // 0-15%: Word appears
+  // Spec-precise phase calculations (per the-origin-of-toy.md spec)
+  const phase1 = scrollProgress >= 0 && scrollProgress < 15;   // 0-15%: Word appears from darkness
   const phase2 = scrollProgress >= 15 && scrollProgress < 30;  // 15-30%: Flicker/cracks
   const phase3 = scrollProgress >= 30 && scrollProgress < 50;  // 30-50%: Fracture/TOYE
   const phase4 = scrollProgress >= 50 && scrollProgress < 70;  // 50-70%: Annotations
   const phase5 = scrollProgress >= 70 && scrollProgress < 85;  // 70-85%: Swirl/settle
   const phase6 = scrollProgress >= 85;                         // 85-100%: Title card
 
-  // Derived states for animations
-  // Word visible immediately on load for good web UX
-  // Starts at 80% opacity, reaches 100% quickly with scroll
-  const wordVisible = true;
-  const wordOpacity = Math.min(1, 0.8 + scrollProgress * 0.04);
+  // SPEC CRITICAL: Hero opens in COMPLETE DARKNESS
+  // Word appears during phase 1 (0-15%), emerging from black
+  // Per spec: "Darkness. Silence. Then—'Toy.' The word appears, soft white on black"
+  const wordVisible = scrollProgress >= 2; // Word starts appearing at 2%
+  // Word fades in smoothly from 2% to 15%
+  const wordOpacity = wordVisible ? Math.min(1, (scrollProgress - 2) / 13) : 0;
+  
   const flickering = phase2;
   const cracking = scrollProgress >= 20;
   const fracturing = scrollProgress >= 30;
@@ -281,7 +289,7 @@ const HeroSection: React.FC = () => {
   const crackSpread = cracking ? Math.min(1, (scrollProgress - 20) / 10) : 0;
   
   // Modern word fade out (30-50%)
-  const modernOpacity = fracturing ? Math.max(0.15, 1 - (scrollProgress - 30) / 25) : 1;
+  const modernOpacity = fracturing ? Math.max(0.15, 1 - (scrollProgress - 30) / 25) : wordOpacity;
   
   // TOYE fade in (35-50%)
   const toyeOpacity = toyeVisible ? Math.min(1, (scrollProgress - 35) / 15) : 0;
@@ -300,24 +308,28 @@ const HeroSection: React.FC = () => {
   
   // Title card fade (85-100%)
   const titleOpacity = titleVisible ? Math.min(1, (scrollProgress - 85) / 12) : 0;
+  
+  // Background darkness: starts at 0 (pure black), builds with scroll
+  // Per spec: "The hero opens in complete darkness"
+  const backgroundOpacity = Math.min(1, scrollProgress / 30);
 
   return (
     <section
       ref={heroRef}
       className={`hero-section scroll-lock-section ${isMounted && isPinned ? "pinned" : ""} ${isComplete ? "complete" : ""}`}
-      style={{ height: "400vh" }} // CRITICAL: Explicit height for scroll-lock calculation
+      style={{ height: "400vh" }} // CRITICAL: Explicit height for scroll-lock (per scroll-lock-patterns.md: 800-1200px depth)
     >
-      {/* Background - visible on load, builds with scroll */}
+      {/* Background - STARTS IN DARKNESS per spec, builds with scroll */}
       <div 
         className="hero-background"
         style={{ 
-          opacity: Math.min(1, 0.3 + scrollProgress / 20),
+          opacity: backgroundOpacity, // Starts at 0 (pure black), fades in
           willChange: "opacity", // GPU hint
         }}
       >
         <div className="parchment-texture" />
         
-        {/* Floating annotations (50-85%) */}
+        {/* Floating annotations (50-85%) - spec: "amorous dalliance" ... "a trifle" ... */}
         <div 
           className={`floating-definitions ${annotationsSwirling ? "swirling" : ""}`}
           style={{
@@ -353,15 +365,15 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Skip affordance - visible during scroll-lock per spec */}
-      {isPinned && !isComplete && (
+      {/* Skip affordance - REQUIRED per scroll-lock-patterns.md accessibility requirements */}
+      {isMounted && isPinned && !isComplete && (
         <button className="skip-button" onClick={handleSkip} aria-label="Skip animation">
           Skip →
         </button>
       )}
 
-      {/* Progress indicator - visible during scroll-lock */}
-      {isPinned && !isComplete && (
+      {/* Progress indicator - shows completion percentage per scroll-lock-patterns.md */}
+      {isMounted && isPinned && !isComplete && (
         <div className="scroll-lock-progress" aria-hidden="true">
           <div 
             className="progress-fill" 
@@ -375,14 +387,15 @@ const HeroSection: React.FC = () => {
 
       <div className="hero-content">
         {/* Phase 1-3: Word transformation (0-50%) */}
+        {/* Per spec: "The word appears, soft white on black, in a friendly rounded typeface" */}
         <div 
           className={`word-container ${wordVisible ? "visible" : ""}`}
           style={{ 
-            opacity: phase6 ? Math.max(0, 1 - (scrollProgress - 85) / 10) : 1,
+            opacity: phase6 ? Math.max(0, 1 - (scrollProgress - 85) / 10) : (wordVisible ? 1 : 0),
             willChange: "opacity",
           }}
         >
-          {/* Modern "TOY" - visible immediately, flickers at 15-30%, fades at 30-50% */}
+          {/* Modern "TOY" - emerges from darkness at 0-15%, flickers at 15-30%, fragments at 30-50% */}
           <div 
             className={`modern-word ${flickering ? "flickering" : ""} ${cracking ? "cracking" : ""} ${fracturing ? "fragmenting" : ""}`}
             style={{ 
@@ -398,7 +411,7 @@ const HeroSection: React.FC = () => {
             <span style={{ animationDelay: "0.1s" }}>O</span>
             <span style={{ animationDelay: "0.2s" }}>Y</span>
             
-            {/* Hairline cracks overlay (15-30%) */}
+            {/* Hairline cracks overlay (15-30%) - per spec: "Hairline cracks appear in the letterforms" */}
             {cracking && (
               <div 
                 className="crack-overlay"
@@ -408,6 +421,7 @@ const HeroSection: React.FC = () => {
           </div>
           
           {/* Medieval "TOYE" - emerges at 35-50% */}
+          {/* Per spec: "'TOYE' in blackletter, medieval manuscript style" */}
           {toyeVisible && (
             <div 
               className="medieval-word"
@@ -425,7 +439,7 @@ const HeroSection: React.FC = () => {
           )}
         </div>
 
-        {/* Revelation text (30-50%) */}
+        {/* Revelation text (30-50%) - per spec: "Before it meant plaything, 'toy' meant something else entirely" */}
         {fracturing && !phase6 && (
           <p 
             className="hero-revelation"
@@ -436,6 +450,7 @@ const HeroSection: React.FC = () => {
         )}
 
         {/* Phase 6: Title card + wooden block (85-100%) */}
+        {/* Per spec: THE ETYMOLOGY OF PLAY with wooden toy block */}
         {titleVisible && (
           <div 
             className="title-card"
@@ -448,7 +463,7 @@ const HeroSection: React.FC = () => {
             <h1 className="essay-title">{ESSAY_META.title}</h1>
             <p className="essay-subtitle">{ESSAY_META.subtitle}</p>
             
-            {/* Wooden toy block beneath title - spec requirement */}
+            {/* Wooden toy block beneath title - per spec: "A single wooden toy block sits beneath the title" */}
             <div className="hero-block" style={{ opacity: Math.min(1, (scrollProgress - 90) / 8) }}>
               <span className="block-letter">T</span>
             </div>
@@ -459,13 +474,19 @@ const HeroSection: React.FC = () => {
           </div>
         )}
 
-        {/* Initial scroll indicator (0-10%) */}
-        {scrollProgress < 10 && (
-          <div className="scroll-indicator" style={{ opacity: 1 - scrollProgress / 10 }}>
-            <ChevronDown size={24} />
-            <span>Scroll to discover</span>
-          </div>
-        )}
+        {/* Scroll indicator - HYDRATION-SAFE: Always rendered, visibility controlled by opacity */}
+        {/* Per hydration-audit-agent.md: Render on server, control with CSS/opacity to prevent flash */}
+        <div 
+          className="scroll-indicator" 
+          style={{ 
+            opacity: isMounted && scrollProgress < 5 ? (1 - scrollProgress / 5) : 0,
+            visibility: isMounted && scrollProgress < 5 ? 'visible' : 'hidden',
+          }}
+          aria-hidden={!isMounted || scrollProgress >= 5}
+        >
+          <ChevronDown size={24} />
+          <span>Scroll to discover</span>
+        </div>
       </div>
     </section>
   );

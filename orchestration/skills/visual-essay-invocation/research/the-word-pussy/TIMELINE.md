@@ -84,3 +84,4 @@
 4. **1755**: Johnson's omission reflects growing vulgarity
 5. **1960s**: American slang adds "coward" meaning
 6. **1970s+**: Word becomes primarily taboo in public discourse
+
