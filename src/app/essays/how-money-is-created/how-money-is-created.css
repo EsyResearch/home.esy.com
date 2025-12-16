@@ -987,26 +987,21 @@
 
 .sticky-element {
   position: sticky;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 20%;
   z-index: 1;
-  margin-bottom: var(--space-xl);
   padding: var(--space-md) 0;
   /* Create stacking context to isolate balance sheet */
   isolation: isolate;
-  /* Ensure balance sheet stays behind scroll content */
-  pointer-events: none;
-}
-
-.sticky-element > * {
-  pointer-events: auto;
 }
 
 .scroll-content {
   position: relative;
   z-index: 2;
   min-height: 100vh;
-  /* Content scrolls over sticky element - no background needed */
+  /* Solid background to fully cover sticky element when scrolling */
+  background: var(--vellum);
+  /* Add padding top to create visual separation from sticky element */
+  padding-top: var(--space-xl);
   /* Create stacking context */
   isolation: isolate;
 }
