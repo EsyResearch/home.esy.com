@@ -644,6 +644,7 @@
 
 - **Primary Focus**: Esy.com organic search visibility and content discoverability
 - **Content Types**: Visual essays, scrollytelling experiences, educational content
+- **Default Meta Description**: "Visual essays and research-driven storytelling exploring history, language, power, and ideas. Experimentation, Designed."
 - **Target Audience**: Students, educators, researchers, curious learners
 - **SEO Goals**: 
   - Rank for educational and historical topic searches
