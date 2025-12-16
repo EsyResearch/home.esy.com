@@ -33,6 +33,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'How a Chip Is Manufactured: From Sand to Silicon',
     description: 'A visual guide to the most precise industrial process on Earth.',
+    images: ['/og/chip-manufacturing.png'],
   },
 };
 
