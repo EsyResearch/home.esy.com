@@ -568,12 +568,16 @@ const ScrollLockJohnson: React.FC = () => {
 
 // Victorian Split Scroll-Lock - Nursery vs Shadow reveal
 const ScrollLockVictorian: React.FC = () => {
-  const { containerRef, progress, isPinned } = useScrollLock(1.75); // 175vh
+  const { containerRef, progress, isPinned } = useScrollLock(2.5); // 250vh - more viewing time
+
+  // Fade out near end
+  const exitOpacity = progress > 0.9 ? 1 - ((progress - 0.9) / 0.1) : 1;
 
   const phase = React.useMemo(() => {
-    if (progress < 0.33) return "nursery";
-    if (progress < 0.66) return "shadow";
-    return "merge";
+    if (progress < 0.25) return "nursery";
+    if (progress < 0.55) return "shadow";
+    if (progress < 0.85) return "merge";
+    return "complete";
   }, [progress]);
 
   return (
@@ -581,16 +585,21 @@ const ScrollLockVictorian: React.FC = () => {
       ref={containerRef}
       className="scroll-lock-container"
       style={{ 
-        height: "175vh",
+        height: "250vh",
         background: "linear-gradient(90deg, var(--color-nursery-pink) 50%, var(--color-shadow) 50%)"
       }}
     >
-      <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`} style={{ 
-        background: "linear-gradient(90deg, var(--color-nursery-pink) 50%, var(--color-shadow) 50%)",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: 0
-      }}>
+      <div 
+        className={`pinned-content ${isPinned ? "is-pinned" : ""}`} 
+        style={{ 
+          background: "linear-gradient(90deg, var(--color-nursery-pink) 50%, var(--color-shadow) 50%)",
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 0,
+          opacity: exitOpacity,
+          transition: "opacity 0.3s ease-out"
+        }}
+      >
         {/* Left: Nursery Pink Side */}
         <div style={{
           display: "flex",
@@ -703,13 +712,17 @@ const ScrollLockVictorian: React.FC = () => {
 
 // Branching Scroll-Lock - Three meaning branches
 const ScrollLockBranching: React.FC = () => {
-  const { containerRef, progress, isPinned } = useScrollLock(1.75); // 175vh
+  const { containerRef, progress, isPinned } = useScrollLock(3); // 300vh - more time to view each branch
+
+  // Calculate fade-out opacity near end of section
+  const exitOpacity = progress > 0.9 ? 1 - ((progress - 0.9) / 0.1) : 1;
 
   const phase = React.useMemo(() => {
-    if (progress < 0.25) return "root";
-    if (progress < 0.50) return "cat";
-    if (progress < 0.75) return "vulgar";
-    return "coward";
+    if (progress < 0.15) return "root";
+    if (progress < 0.35) return "cat";
+    if (progress < 0.55) return "vulgar";
+    if (progress < 0.85) return "coward";
+    return "complete"; // Hold on complete view
   }, [progress]);
 
   const branches = [
@@ -722,9 +735,16 @@ const ScrollLockBranching: React.FC = () => {
     <div 
       ref={containerRef}
       className="scroll-lock-container"
-      style={{ height: "175vh", background: "var(--color-parchment)" }}
+      style={{ height: "300vh", background: "var(--color-parchment)" }}
     >
-      <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`} style={{ background: "var(--color-parchment)" }}>
+      <div 
+        className={`pinned-content ${isPinned ? "is-pinned" : ""}`} 
+        style={{ 
+          background: "var(--color-parchment)",
+          opacity: exitOpacity,
+          transition: "opacity 0.3s ease-out"
+        }}
+      >
         <div style={{ 
           textAlign: "center", 
           maxWidth: "800px",
@@ -753,68 +773,74 @@ const ScrollLockBranching: React.FC = () => {
             </p>
           </div>
 
-          {/* Branch lines (SVG) */}
+          {/* Branch lines */}
           <div style={{ 
             display: "flex", 
             justifyContent: "center", 
             gap: "var(--spacing-xl)",
             marginTop: "var(--spacing-lg)"
           }}>
-            {branches.map((branch, i) => (
-              <div 
-                key={branch.id}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  opacity: phase === "root" ? 0.3 : (phase === branch.id || phase === "coward") ? 1 : 0.5,
-                  transform: phase === branch.id ? "scale(1.1)" : "scale(1)",
-                  transition: "all 0.5s var(--easing-smooth)",
-                  transitionDelay: `${i * 100}ms`
-                }}
-              >
-                {/* Vertical line */}
-                <div style={{
-                  width: "2px",
-                  height: "60px",
-                  background: branch.color,
-                  opacity: phase === "root" ? 0 : 1,
-                  transform: phase === "root" ? "scaleY(0)" : "scaleY(1)",
-                  transformOrigin: "top",
-                  transition: "all 0.5s var(--easing-smooth)"
-                }} />
-                
-                {/* Branch label */}
-                <div style={{
-                  marginTop: "var(--spacing-md)",
-                  padding: "var(--spacing-sm) var(--spacing-md)",
-                  background: phase === branch.id ? branch.color : "transparent",
-                  border: `2px solid ${branch.color}`,
-                  borderRadius: "4px",
-                  transition: "all 0.3s ease-out"
-                }}>
-                  <span style={{
-                    fontFamily: "var(--font-ui)",
-                    fontSize: "var(--text-sm)",
-                    fontWeight: 600,
-                    color: phase === branch.id ? "white" : branch.color,
-                    letterSpacing: "0.1em"
+            {branches.map((branch, i) => {
+              const isActive = phase === branch.id;
+              const isVisible = phase !== "root";
+              const showAll = phase === "coward" || phase === "complete";
+              
+              return (
+                <div 
+                  key={branch.id}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    opacity: !isVisible ? 0.3 : (isActive || showAll) ? 1 : 0.5,
+                    transform: isActive ? "scale(1.1)" : "scale(1)",
+                    transition: "all 0.5s var(--easing-smooth)",
+                    transitionDelay: `${i * 100}ms`
+                  }}
+                >
+                  {/* Vertical line */}
+                  <div style={{
+                    width: "2px",
+                    height: "60px",
+                    background: branch.color,
+                    opacity: isVisible ? 1 : 0,
+                    transform: isVisible ? "scaleY(1)" : "scaleY(0)",
+                    transformOrigin: "top",
+                    transition: "all 0.5s var(--easing-smooth)"
+                  }} />
+                  
+                  {/* Branch label */}
+                  <div style={{
+                    marginTop: "var(--spacing-md)",
+                    padding: "var(--spacing-sm) var(--spacing-md)",
+                    background: isActive ? branch.color : "transparent",
+                    border: `2px solid ${branch.color}`,
+                    borderRadius: "4px",
+                    transition: "all 0.3s ease-out"
                   }}>
-                    {branch.label}
-                  </span>
+                    <span style={{
+                      fontFamily: "var(--font-ui)",
+                      fontSize: "var(--text-sm)",
+                      fontWeight: 600,
+                      color: isActive ? "white" : branch.color,
+                      letterSpacing: "0.1em"
+                    }}>
+                      {branch.label}
+                    </span>
+                  </div>
+                  
+                  <p style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "var(--text-sm)",
+                    color: "var(--color-text-secondary)",
+                    marginTop: "var(--spacing-sm)",
+                    maxWidth: "120px"
+                  }}>
+                    {branch.desc}
+                  </p>
                 </div>
-                
-                <p style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: "var(--text-sm)",
-                  color: "var(--color-text-secondary)",
-                  marginTop: "var(--spacing-sm)",
-                  maxWidth: "120px"
-                }}>
-                  {branch.desc}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
