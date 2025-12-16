@@ -102,7 +102,7 @@ const keyFigures: Figure[] = [
 
 const timelineEvents: TimelineEvent[] = [
   { year: "Pre-1500", title: "Germanic Roots", description: "Dutch 'poes', Middle Low German 'pūse' — call-words for cats", era: "medieval" },
-  { year: "1533", title: "First English Attestation", description: "'Puss' documented in English writing", era: "renaissance" },
+  { year: "c. 1530s", title: "First English Attestation", description: "'Puss' appears in English (OED: 16th c.)", era: "renaissance" },
   { year: "1583", title: "Stubbes Documents", description: "'The word pussie is now used of a woman'", era: "renaissance" },
   { year: "1664", title: "Cotton's Poem", description: "Double meaning explicitly documented", era: "restoration" },
   { year: "1755", title: "Johnson's Omission", description: "Dictionary excludes the word entirely", era: "georgian" },
@@ -298,7 +298,7 @@ const TheWordPussyClient: React.FC = () => {
             </div>
             <div className="word-era era-renaissance">
               <span className="era-word">PUSSY</span>
-              <span className="era-label">1533</span>
+              <span className="era-label">1530s</span>
             </div>
             <div className="word-era era-georgian">
               <span className="era-word">PUSSY</span>
@@ -435,7 +435,7 @@ const TheWordPussyClient: React.FC = () => {
         <div className="chapter-header">
           <span className="chapter-number">Chapter Three</span>
           <h2 className="chapter-title">First Appearances</h2>
-          <span className="chapter-temporal">1533–1583</span>
+          <span className="chapter-temporal">c. 1530s–1583</span>
         </div>
         
         <TypographySpecimen 
@@ -446,7 +446,7 @@ const TheWordPussyClient: React.FC = () => {
 
         <div className="chapter-intro">
           <p className="lead-paragraph">
-            In 1533, the word &ldquo;puss&rdquo; first appears in English writing as a name for a cat. Within fifty years, the word had already begun branching. In 1583, the Puritan pamphleteer Philip Stubbes wrote a line that would become crucial evidence for etymologists centuries later.
+            By the 1530s, the word &ldquo;puss&rdquo; appears in English writing as a name for a cat (per the OED, first attested in the 16th century). Within fifty years, the word had already begun branching. In 1583, the Puritan pamphleteer Philip Stubbes wrote a line that would become crucial evidence for etymologists centuries later.
           </p>
         </div>
 
@@ -711,7 +711,7 @@ const TheWordPussyClient: React.FC = () => {
             <div className="branch-destinations">
               <div className="destination feline">
                 <span>🐱 Feline</span>
-                <span className="year">1533+</span>
+                <span className="year">1530s+</span>
               </div>
               <div className="destination anatomical">
                 <span>⚠️ Anatomical</span>
@@ -772,13 +772,14 @@ const TheWordPussyClient: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="https://www.oed.com/" target="_blank" rel="noopener noreferrer">
-                  Oxford English Dictionary
+                <a href="https://www.oed.com/dictionary/pussy_n1" target="_blank" rel="noopener noreferrer">
+                  Oxford English Dictionary: &ldquo;Pussy&rdquo;
                 </a>
+                {" "}(subscription required)
               </li>
               <li>
-                <a href="https://www.merriam-webster.com/dictionary/catkin" target="_blank" rel="noopener noreferrer">
-                  Merriam-Webster: Etymology of &ldquo;Catkin&rdquo;
+                <a href="https://www.merriam-webster.com/dictionary/puss" target="_blank" rel="noopener noreferrer">
+                  Merriam-Webster: &ldquo;Puss&rdquo;
                 </a>
               </li>
             </ul>
@@ -794,17 +795,19 @@ const TheWordPussyClient: React.FC = () => {
           <div className="source-category">
             <h3 className="source-category-title">Linguistics & Language Change</h3>
             <ul className="source-list">
+              <li>Pinker, Steven. <em>The Stuff of Thought</em>, 2007 (euphemism treadmill)</li>
               <li>
                 <a href="https://en.wikipedia.org/wiki/Semantic_change" target="_blank" rel="noopener noreferrer">
                   Wikipedia: Semantic Change
                 </a>
+                {" "}(overview with citations)
               </li>
               <li>
-                <a href="https://en.wikipedia.org/wiki/Euphemism" target="_blank" rel="noopener noreferrer">
+                <a href="https://en.wikipedia.org/wiki/Euphemism#Euphemism_treadmill" target="_blank" rel="noopener noreferrer">
                   Wikipedia: Euphemism Treadmill
                 </a>
+                {" "}(overview with citations)
               </li>
-              <li>Pinker, Steven. <em>The Language Instinct</em>, 1994</li>
             </ul>
           </div>
         </div>
