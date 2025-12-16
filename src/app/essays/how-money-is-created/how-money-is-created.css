@@ -976,46 +976,49 @@
 }
 
 /* ===========================================
-   STICKY SCROLL SECTIONS
+   STAGE 2 SCROLL-LOCK SECTION
+   Same pin pattern as hero section
    =========================================== */
 
-.sticky-scroll-section {
+.stage-2-lock {
   position: relative;
-  min-height: 200vh;
-  padding-bottom: var(--space-section);
-}
-
-.sticky-element {
-  position: sticky;
-  top: 20%;
-  z-index: 1;
-  padding: var(--space-md) 0;
-  /* Create stacking context to isolate balance sheet */
-  isolation: isolate;
-}
-
-.scroll-content {
-  position: relative;
-  z-index: 2;
-  min-height: 100vh;
-  /* Solid background to fully cover sticky element when scrolling */
   background: var(--vellum);
-  /* Add padding top to create visual separation from sticky element */
-  padding-top: var(--space-xl);
-  /* Create stacking context */
-  isolation: isolate;
+}
+
+.stage-2-pinned {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: var(--space-lg);
+}
+
+.stage-2-pinned.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background: var(--vellum);
+}
+
+/* Phase-based styling for Stage 2 */
+.stage-2-lock.phase-structure .balance-sheet-container {
+  /* Structure visible but content hidden */
+}
+
+.stage-2-lock.phase-complete .balance-sheet-container,
+.stage-2-lock.phase-done .balance-sheet-container {
+  /* All content visible with connection */
 }
 
 @media (max-width: 768px) {
-  .sticky-scroll-section {
-    min-height: auto;
-  }
-  
-  .sticky-element {
-    position: relative;
-    top: auto;
-    transform: none;
-    margin-bottom: var(--space-md);
+  .stage-2-pinned {
+    padding: var(--space-md);
   }
 }
 

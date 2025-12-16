@@ -459,34 +459,133 @@ const FlowChart: React.FC<FlowChartProps> = ({ nodes, arrows, progress, title })
 };
 
 // ===========================================
-// STAGE 2 COMPONENT (Sticky-Scroll)
+// STAGE 2 COMPONENT (Scroll-Lock Pattern)
+// Per spec: Balance sheet animates based on scroll progress, then releases to text
 // ===========================================
 
 const Stage2Section: React.FC = () => {
-  const [sectionRef, sectionProgress] = useSectionProgress<HTMLElement>({ offset: 0 });
+  const { containerRef, progress, isPinned } = useScrollLock(2);
   const reducedMotion = useReducedMotion();
   
+  // Phase calculations per spec:
+  // 0-25%: Empty balance sheet structure
+  // 25-50%: Loans appear on assets side
+  // 50-75%: Deposits appear on liabilities side
+  // 75-100%: Connection visible, transition to text
+  const phase = useMemo(() => {
+    if (progress < 0.25) return "structure";
+    if (progress < 0.50) return "assets";
+    if (progress < 0.75) return "liabilities";
+    if (progress < 0.95) return "complete";
+    return "done";
+  }, [progress]);
+  
+  // Animate balance sheet based on phase
+  const assetsOpacity = phase === "structure" ? 0 : 1;
+  const liabilitiesOpacity = phase === "structure" || phase === "assets" ? 0 : 1;
+  const connectionOpacity = phase === "complete" || phase === "done" ? 1 : 0;
+  
   return (
-    <section 
-      ref={sectionRef}
-      className="essay-section stage-section sticky-scroll-section" 
-      id="stage-2"
-    >
-      <div className="sticky-element">
-        <BalanceSheet
-          assets={[
-            { label: 'Loans', value: '+$100,000' },
-            { label: 'Reserves', value: '$50,000' },
-          ]}
-          liabilities={[
-            { label: 'Deposits', value: '+$100,000' },
-            { label: 'Capital', value: '$50,000' },
-          ]}
-          progress={reducedMotion ? 1 : sectionProgress}
-          title="Balance Sheet: Loan Creation"
-        />
-      </div>
-      <div className="scroll-content">
+    <>
+      {/* Scroll-lock section for balance sheet animation */}
+      <section 
+        ref={containerRef}
+        className={`scroll-lock-container stage-2-lock phase-${phase}`}
+        id="stage-2"
+        style={{ height: '200vh' }}
+      >
+        <div className={`stage-2-pinned ${isPinned ? 'is-pinned' : ''}`}>
+          <div className="balance-sheet-container">
+            <h3 className="balance-sheet-title">Balance Sheet: Loan Creation</h3>
+            <div className="balance-sheet">
+              <div className="balance-column assets">
+                <div className="column-header">Assets (Debit)</div>
+                <div className="column-content">
+                  <div
+                    className="balance-item"
+                    style={{
+                      opacity: reducedMotion ? 1 : assetsOpacity,
+                      transform: reducedMotion ? 'none' : `translateX(${(1 - assetsOpacity) * -20}px)`,
+                      transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
+                    }}
+                  >
+                    <span className="balance-label">Loans</span>
+                    <span className="balance-value">+$100,000</span>
+                  </div>
+                  <div
+                    className="balance-item"
+                    style={{
+                      opacity: reducedMotion ? 1 : assetsOpacity,
+                      transform: reducedMotion ? 'none' : `translateX(${(1 - assetsOpacity) * -20}px)`,
+                      transition: 'opacity 0.5s ease-out 0.1s, transform 0.5s ease-out 0.1s',
+                    }}
+                  >
+                    <span className="balance-label">Reserves</span>
+                    <span className="balance-value">$50,000</span>
+                  </div>
+                </div>
+              </div>
+              <div className="balance-column liabilities">
+                <div className="column-header">Liabilities (Credit)</div>
+                <div className="column-content">
+                  <div
+                    className="balance-item"
+                    style={{
+                      opacity: reducedMotion ? 1 : liabilitiesOpacity,
+                      transform: reducedMotion ? 'none' : `translateX(${(1 - liabilitiesOpacity) * 20}px)`,
+                      transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
+                    }}
+                  >
+                    <span className="balance-label">Deposits</span>
+                    <span className="balance-value">+$100,000</span>
+                  </div>
+                  <div
+                    className="balance-item"
+                    style={{
+                      opacity: reducedMotion ? 1 : liabilitiesOpacity,
+                      transform: reducedMotion ? 'none' : `translateX(${(1 - liabilitiesOpacity) * 20}px)`,
+                      transition: 'opacity 0.5s ease-out 0.1s, transform 0.5s ease-out 0.1s',
+                    }}
+                  >
+                    <span className="balance-label">Capital</span>
+                    <span className="balance-value">$50,000</span>
+                  </div>
+                </div>
+              </div>
+              {/* Connection arrow showing loans create deposits */}
+              <div 
+                className="balance-connection"
+                style={{
+                  opacity: reducedMotion ? 1 : connectionOpacity,
+                  transition: 'opacity 0.5s ease-out',
+                }}
+              >
+                <div className="connection-label">Loan creates deposit</div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Progress indicator text */}
+          <p className="stage-2-hint" style={{
+            opacity: phase === "structure" ? 1 : 0,
+            transition: 'opacity 0.3s ease-out',
+            position: 'absolute',
+            bottom: '15%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            fontFamily: "'Fira Code', monospace",
+            fontSize: '0.875rem',
+            color: '#8B7D6B',
+            textTransform: 'uppercase' as const,
+            letterSpacing: '2px',
+          }}>
+            Scroll to see how loans create deposits
+          </p>
+        </div>
+      </section>
+      
+      {/* Text content after scroll-lock */}
+      <section className="essay-section stage-section" id="stage-2-content">
         <ContentBlock>
           <SectionTitle>Stage 2: Commercial Banks Create Money Through Lending</SectionTitle>
           <p>
@@ -525,8 +624,8 @@ const Stage2Section: React.FC = () => {
             the deposit on the bank's balance sheet.
           </p>
         </ContentBlock>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
