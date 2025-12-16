@@ -40,7 +40,7 @@ export const metadata = {
     template: '%s | Esy',
     default: 'Esy - Skip Boring Research, Write Smarter Essays',
   },
-  description: "Write your next essay with Esy, an AI Agent that does the boring research and helps you write smarter papers. Perfect grammar, citations, and your unique voice.",
+  description: "Visual essays and research-driven storytelling exploring history, language, power, and ideas. Experimentation, Designed.",
   keywords: 'AI essay writer, research assistant, academic writing, essay generator, AI writing tool, skip research, smart essays, ESL writing help',
   metadataBase: new URL('https://esy.com'),
   alternates: {
@@ -48,7 +48,7 @@ export const metadata = {
   },
   openGraph: {
     title: 'Esy - Skip Boring Research, Write Smarter Essays',
-    description: 'Write your next essay with Esy, an AI Agent that does the boring research and helps you write smarter papers.',
+    description: 'Visual essays and research-driven storytelling exploring history, language, power, and ideas. Experimentation, Designed.',
     url: 'https://esy.com',
     siteName: 'Esy',
     locale: 'en_US',
