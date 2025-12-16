@@ -4,6 +4,7 @@ import Navigation from "@/components/Home/navigation";
 import Footer from "@/components/Home/footer";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import GoogleTagManager, { GoogleTagManagerBody } from "@/components/GoogleTagManager";
+import MicrosoftClarity from "@/components/MicrosoftClarity";
 import EsyCookieNotice from "@/components/CookieNotice";
 import ConditionalNavigation from "@/components/ConditionalNavigation";
 import ConditionalFooter from "@/components/ConditionalFooter";
@@ -68,6 +69,7 @@ export default function RootLayout({ children }) {
       <head>
         <GoogleAnalytics />
         <GoogleTagManager />
+        <MicrosoftClarity />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} ${inter.variable} ${literata.variable} antialiased`}
