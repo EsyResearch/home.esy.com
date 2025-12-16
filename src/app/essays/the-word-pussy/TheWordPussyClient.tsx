@@ -772,7 +772,7 @@ const TheWordPussyClient: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="https://www.oed.com/dictionary/pussy_n1" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.oed.com/search/dictionary/?scope=Entries&q=pussy" target="_blank" rel="noopener noreferrer">
                   Oxford English Dictionary: &ldquo;Pussy&rdquo;
                 </a>
                 {" "}(subscription required)
@@ -826,4 +826,5 @@ const TheWordPussyClient: React.FC = () => {
 };
 
 export default TheWordPussyClient;
+
 

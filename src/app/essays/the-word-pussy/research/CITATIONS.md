@@ -5,7 +5,7 @@
 ### Etymology & Linguistics
 
 1. **Oxford English Dictionary**
-   - URL: https://www.oed.com/
+   - URL: https://www.oed.com/search/dictionary/?scope=Entries&q=pussy
    - Type: Institutional reference
    - Usage: Definitive etymology and dated attestations
    - Tier: 1
