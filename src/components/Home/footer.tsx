@@ -41,7 +41,9 @@ export default function Footer () {
               <Logo suffix={logoSuffix} href="" showText={false} />
             </div>
             <p className="footer-desc" style={{ color: elevatedDarkTheme.muted }}>
-            Visual essays and research-driven storytelling exploring history, language, power, and ideas. Experimentation, Designed.
+              Visual essays and research-driven storytelling exploring history, language, power, and ideas.
+              <br />
+              <strong>Experimentation, Designed.</strong>
             </p>
             <div className="footer-socials">
               <a href="https://research.esy.com" target="_blank" className="social-link" aria-label="Substack">
