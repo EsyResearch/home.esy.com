@@ -114,7 +114,10 @@ const timelineEvents: TimelineEvent[] = [
 
 // ==================== HOOKS ====================
 
-const useIntersectionReveal = (threshold = 0.1) => {
+// Era-aware intersection reveal hook
+type Era = 'medieval' | 'renaissance' | 'georgian' | 'victorian' | 'modern';
+
+const useIntersectionReveal = (threshold = 0.1, era?: Era) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -136,7 +139,36 @@ const useIntersectionReveal = (threshold = 0.1) => {
     return () => observer.disconnect();
   }, [threshold]);
 
-  return { ref, isVisible };
+  // Generate era-specific reveal class
+  const revealClass = era ? `reveal-${era} ${isVisible ? 'visible' : ''}` : '';
+
+  return { ref, isVisible, revealClass };
+};
+
+// Parallax hook for layered depth effects
+const useParallax = (speed: number = 1) => {
+  const ref = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    // Skip if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const handleScroll = () => {
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      const viewportCenter = window.innerHeight / 2;
+      const elementCenter = rect.top + rect.height / 2;
+      const offset = (viewportCenter - elementCenter) * (speed - 1) * 0.5;
+      ref.current.style.transform = `translateY(${offset}px)`;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [speed]);
+
+  return ref;
 };
 
 // Scroll-lock hook per SCROLL_LOCK_PATTERN.md
@@ -296,14 +328,16 @@ const Section: React.FC<{
   className?: string;
   children: React.ReactNode;
 }> = ({ id, era, className = "", children }) => {
-  const { ref, isVisible } = useIntersectionReveal(0.1);
+  // Cast era to Era type for era-specific reveal
+  const eraType = era as Era | undefined;
+  const { ref, isVisible, revealClass } = useIntersectionReveal(0.1, eraType);
   
   return (
     <section 
       ref={ref}
       id={id}
       data-era={era}
-      className={`etymology-section ${className} ${isVisible ? "visible" : ""}`}
+      className={`etymology-section ${className} ${isVisible ? "visible" : ""} ${revealClass}`}
     >
       {children}
     </section>
@@ -532,6 +566,262 @@ const ScrollLockJohnson: React.FC = () => {
   );
 };
 
+// Victorian Split Scroll-Lock - Nursery vs Shadow reveal
+const ScrollLockVictorian: React.FC = () => {
+  const { containerRef, progress, isPinned } = useScrollLock(1.75); // 175vh
+
+  const phase = React.useMemo(() => {
+    if (progress < 0.33) return "nursery";
+    if (progress < 0.66) return "shadow";
+    return "merge";
+  }, [progress]);
+
+  return (
+    <div 
+      ref={containerRef}
+      className="scroll-lock-container"
+      style={{ 
+        height: "175vh",
+        background: "linear-gradient(90deg, var(--color-nursery-pink) 50%, var(--color-shadow) 50%)"
+      }}
+    >
+      <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`} style={{ 
+        background: "linear-gradient(90deg, var(--color-nursery-pink) 50%, var(--color-shadow) 50%)",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 0
+      }}>
+        {/* Left: Nursery Pink Side */}
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "var(--spacing-xl)",
+          opacity: phase === "nursery" || phase === "merge" ? 1 : 0.3,
+          transition: "opacity 0.5s ease-out"
+        }}>
+          <h3 style={{ 
+            fontFamily: "var(--type-victorian)", 
+            fontSize: "clamp(1.5rem, 3vw, 2rem)",
+            color: "var(--color-ink-black)",
+            marginBottom: "var(--spacing-md)"
+          }}>
+            The Nursery
+          </h3>
+          <blockquote style={{
+            fontFamily: "var(--type-victorian)",
+            fontSize: "clamp(1rem, 2vw, 1.25rem)",
+            fontStyle: "italic",
+            color: "var(--color-text-secondary)",
+            textAlign: "center",
+            lineHeight: 1.6,
+            maxWidth: "280px"
+          }}>
+            &ldquo;Pussy cat, pussy cat,<br/>
+            where have you been?<br/>
+            I&apos;ve been to London<br/>
+            to visit the Queen.&rdquo;
+          </blockquote>
+          <p style={{
+            fontFamily: "var(--font-ui)",
+            fontSize: "var(--text-sm)",
+            color: "var(--color-text-muted)",
+            marginTop: "var(--spacing-md)"
+          }}>
+            1805 — Children&apos;s literature
+          </p>
+        </div>
+
+        {/* Right: Shadow Side */}
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "var(--spacing-xl)",
+          opacity: phase === "shadow" || phase === "merge" ? 1 : 0.3,
+          transition: "opacity 0.5s ease-out"
+        }}>
+          <h3 style={{ 
+            fontFamily: "var(--type-victorian)", 
+            fontSize: "clamp(1.5rem, 3vw, 2rem)",
+            color: "var(--color-ivory)",
+            marginBottom: "var(--spacing-md)"
+          }}>
+            The Shadow
+          </h3>
+          <p style={{
+            fontFamily: "var(--type-victorian)",
+            fontSize: "clamp(1rem, 2vw, 1.25rem)",
+            fontStyle: "italic",
+            color: "rgba(255, 255, 240, 0.8)",
+            textAlign: "center",
+            lineHeight: 1.6,
+            maxWidth: "280px"
+          }}>
+            Meanwhile, in the shadows of adult vernacular, the vulgar meaning was thoroughly established...
+          </p>
+          <p style={{
+            fontFamily: "var(--font-ui)",
+            fontSize: "var(--text-sm)",
+            color: "rgba(255, 255, 240, 0.6)",
+            marginTop: "var(--spacing-md)"
+          }}>
+            1800s — Adult slang
+          </p>
+        </div>
+
+        {/* Center merge indicator */}
+        {phase === "merge" && (
+          <div style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            background: "rgba(255, 255, 255, 0.95)",
+            padding: "var(--spacing-md) var(--spacing-lg)",
+            borderRadius: "4px",
+            boxShadow: "0 4px 24px rgba(0,0,0,0.3)",
+            textAlign: "center",
+            opacity: 1,
+            animation: "fadeIn 0.5s ease-out"
+          }}>
+            <span style={{
+              fontFamily: "var(--type-victorian)",
+              fontSize: "var(--text-lg)",
+              color: "var(--color-ink-black)"
+            }}>
+              Same word. Two worlds.
+            </span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+// Branching Scroll-Lock - Three meaning branches
+const ScrollLockBranching: React.FC = () => {
+  const { containerRef, progress, isPinned } = useScrollLock(1.75); // 175vh
+
+  const phase = React.useMemo(() => {
+    if (progress < 0.25) return "root";
+    if (progress < 0.50) return "cat";
+    if (progress < 0.75) return "vulgar";
+    return "coward";
+  }, [progress]);
+
+  const branches = [
+    { id: "cat", label: "CAT", color: "var(--color-gold)", desc: "Soft, affectionate" },
+    { id: "vulgar", label: "ANATOMY", color: "var(--color-vermillion)", desc: "Vulgar slang" },
+    { id: "coward", label: "COWARD", color: "var(--color-text-muted)", desc: "American 1960s+" }
+  ];
+
+  return (
+    <div 
+      ref={containerRef}
+      className="scroll-lock-container"
+      style={{ height: "175vh", background: "var(--color-parchment)" }}
+    >
+      <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`} style={{ background: "var(--color-parchment)" }}>
+        <div style={{ 
+          textAlign: "center", 
+          maxWidth: "800px",
+          padding: "0 var(--spacing-md)"
+        }}>
+          {/* Root word */}
+          <div style={{
+            marginBottom: "var(--spacing-xl)",
+            opacity: 1,
+            transform: "translateY(0)"
+          }}>
+            <span style={{
+              fontFamily: "var(--type-blackletter)",
+              fontSize: "clamp(2rem, 5vw, 3rem)",
+              color: "var(--color-ink-black)"
+            }}>
+              PUSSY
+            </span>
+            <p style={{
+              fontFamily: "var(--font-ui)",
+              fontSize: "var(--text-sm)",
+              color: "var(--color-text-muted)",
+              marginTop: "var(--spacing-sm)"
+            }}>
+              One word. Three meanings.
+            </p>
+          </div>
+
+          {/* Branch lines (SVG) */}
+          <div style={{ 
+            display: "flex", 
+            justifyContent: "center", 
+            gap: "var(--spacing-xl)",
+            marginTop: "var(--spacing-lg)"
+          }}>
+            {branches.map((branch, i) => (
+              <div 
+                key={branch.id}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  opacity: phase === "root" ? 0.3 : (phase === branch.id || phase === "coward") ? 1 : 0.5,
+                  transform: phase === branch.id ? "scale(1.1)" : "scale(1)",
+                  transition: "all 0.5s var(--easing-smooth)",
+                  transitionDelay: `${i * 100}ms`
+                }}
+              >
+                {/* Vertical line */}
+                <div style={{
+                  width: "2px",
+                  height: "60px",
+                  background: branch.color,
+                  opacity: phase === "root" ? 0 : 1,
+                  transform: phase === "root" ? "scaleY(0)" : "scaleY(1)",
+                  transformOrigin: "top",
+                  transition: "all 0.5s var(--easing-smooth)"
+                }} />
+                
+                {/* Branch label */}
+                <div style={{
+                  marginTop: "var(--spacing-md)",
+                  padding: "var(--spacing-sm) var(--spacing-md)",
+                  background: phase === branch.id ? branch.color : "transparent",
+                  border: `2px solid ${branch.color}`,
+                  borderRadius: "4px",
+                  transition: "all 0.3s ease-out"
+                }}>
+                  <span style={{
+                    fontFamily: "var(--font-ui)",
+                    fontSize: "var(--text-sm)",
+                    fontWeight: 600,
+                    color: phase === branch.id ? "white" : branch.color,
+                    letterSpacing: "0.1em"
+                  }}>
+                    {branch.label}
+                  </span>
+                </div>
+                
+                <p style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "var(--text-sm)",
+                  color: "var(--color-text-secondary)",
+                  marginTop: "var(--spacing-sm)",
+                  maxWidth: "120px"
+                }}>
+                  {branch.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // ==================== SCROLL-LOCKED HERO COMPONENT ====================
 
 type HeroPhase = "question1" | "question2" | "blackletter" | "renaissance" | "georgian" | "victorian" | "modern" | "stack" | "title" | "complete";
@@ -702,26 +992,8 @@ const TheWordPussyClient: React.FC = () => {
           </p>
         </div>
 
-        <div className="meaning-branches">
-          <div className="branch branch-feline">
-            <span className="branch-icon">🐱</span>
-            <h3>Feline</h3>
-            <p>&ldquo;Pussycat,&rdquo; &ldquo;pussy willow&rdquo; — soft, affectionate</p>
-            <span className="branch-origin">From Germanic cat-calling words</span>
-          </div>
-          <div className="branch branch-anatomical">
-            <span className="branch-icon">⚠️</span>
-            <h3>Anatomical</h3>
-            <p>Vulgar slang, euphemism, taboo</p>
-            <span className="branch-origin">Possibly Old Norse &ldquo;pūss&rdquo; (pocket)</span>
-          </div>
-          <div className="branch branch-coward">
-            <span className="branch-icon">😰</span>
-            <h3>Cowardice</h3>
-            <p>&ldquo;Don&apos;t be a pussy&rdquo; — American slang</p>
-            <span className="branch-origin">20th century gender-based insult</span>
-          </div>
-        </div>
+        {/* Scroll-locked Branching - Three meaning branches */}
+        <ScrollLockBranching />
 
         <div className="content-block">
           <p>
@@ -910,25 +1182,8 @@ const TheWordPussyClient: React.FC = () => {
           </p>
         </div>
 
-        <div className="victorian-split">
-          <div className="split-nursery">
-            <div className="split-content">
-              <h3>The Nursery</h3>
-              <blockquote>
-                &ldquo;Pussy cat, pussy cat, where have you been?
-                I&apos;ve been to London to visit the Queen.&rdquo;
-              </blockquote>
-              <p>Children&apos;s literature, pure innocence</p>
-            </div>
-          </div>
-          <div className="split-shadow">
-            <div className="split-content">
-              <h3>The Shadow</h3>
-              <p className="shadow-word">████████</p>
-              <p>Adult vernacular, established taboo</p>
-            </div>
-          </div>
-        </div>
+        {/* Scroll-locked Victorian Split - Nursery vs Shadow */}
+        <ScrollLockVictorian />
 
         <MorphingWord era="victorian" />
 

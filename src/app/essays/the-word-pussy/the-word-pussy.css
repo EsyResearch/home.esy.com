@@ -1263,6 +1263,125 @@
   color: var(--color-text-faint);
 }
 
+/* ==================== PARALLAX LAYERS ==================== */
+/* Per spec: 0.2x, 0.5x, 1x, 1.2x depth multipliers */
+
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.parallax-layer {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.parallax-layer-0\.2x {
+  --parallax-speed: 0.2;
+}
+
+.parallax-layer-0\.5x {
+  --parallax-speed: 0.5;
+}
+
+.parallax-layer-1x {
+  --parallax-speed: 1;
+}
+
+.parallax-layer-1\.2x {
+  --parallax-speed: 1.2;
+}
+
+/* Reduced motion: disable parallax */
+@media (prefers-reduced-motion: reduce) {
+  .parallax-layer {
+    transform: none !important;
+  }
+}
+
+/* ==================== ERA-SPECIFIC REVEALS ==================== */
+/* Different reveal animations per typographic era */
+
+/* Medieval: Slow, manuscript-like unfurl */
+.reveal-medieval {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s var(--easing-smooth), 
+              transform 1.2s var(--easing-smooth);
+}
+
+.reveal-medieval.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Renaissance: Elegant slide from left (printing press) */
+.reveal-renaissance {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.8s var(--easing-smooth) 0.1s, 
+              transform 0.8s var(--easing-smooth) 0.1s;
+}
+
+.reveal-renaissance.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Georgian: Refined fade with subtle scale */
+.reveal-georgian {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.9s var(--easing-smooth), 
+              transform 0.9s var(--easing-dramatic);
+}
+
+.reveal-georgian.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Victorian: Dramatic curtain-like reveal (from center) */
+.reveal-victorian {
+  opacity: 0;
+  clip-path: inset(0 50% 0 50%);
+  transition: opacity 0.7s var(--easing-smooth), 
+              clip-path 0.7s var(--easing-dramatic);
+}
+
+.reveal-victorian.visible {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+}
+
+/* Modern: Quick, crisp snap */
+.reveal-modern {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s var(--easing-smooth), 
+              transform 0.4s var(--easing-dramatic);
+}
+
+.reveal-modern.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduced motion: crossfade only */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-medieval,
+  .reveal-renaissance,
+  .reveal-georgian,
+  .reveal-victorian,
+  .reveal-modern {
+    transform: none !important;
+    clip-path: none !important;
+    transition: opacity 0.3s ease-out !important;
+  }
+}
+
 /* ==================== SCROLL-LOCK SECTIONS ==================== */
 
 /* Container for scroll-lock sections */
