@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: "The Gridiron: How American Football Conquered America",
     description:
       "From deadly college brawls to 113 million Super Bowl viewers. The extraordinary story of American football.",
-    url: "https://esy.com/essays/visual/the-gridiron",
+    url: "https://esy.com/essays/the-gridiron",
     type: "article",
   },
   twitter: {

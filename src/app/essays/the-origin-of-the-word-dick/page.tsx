@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: "The Origin of the Word Dick | A Visual Etymology",
     description: "From medieval pet name to modern taboo—600 years of semantic transformation explored through typography and archival research.",
     type: "article",
-    url: "https://esy.com/essays/visual/the-origin-of-the-word-dick",
+    url: "https://esy.com/essays/the-origin-of-the-word-dick",
   },
 };
 

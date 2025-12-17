@@ -24,11 +24,11 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Article",
-      "@id": "https://esy.com/essays/visual/the-word-animal#article",
+      "@id": "https://esy.com/essays/the-word-animal#article",
       "headline": "ANIMUS — The Living Word",
       "alternativeHeadline": "How Seven Letters Named Every Creature That Breathes",
       "description": "From PIE *h₂enh₁- (to breathe) to Kingdom Animalia—trace the 2,500-year journey of the word 'animal' through ancient philosophy, medieval theology, Renaissance naturalism, Linnaean classification, and Darwinian evolution.",
-      "url": "https://esy.com/essays/visual/the-word-animal",
+      "url": "https://esy.com/essays/the-word-animal",
       "datePublished": "2025-12-12",
       "dateModified": "2025-12-12",
       "author": {
@@ -64,8 +64,7 @@ const jsonLd = {
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://esy.com" },
         { "@type": "ListItem", "position": 2, "name": "Essays", "item": "https://esy.com/essays" },
-        { "@type": "ListItem", "position": 3, "name": "Visual Essays", "item": "https://esy.com/essays/visual" },
-        { "@type": "ListItem", "position": 4, "name": "The Word Animal", "item": "https://esy.com/essays/visual/the-word-animal" }
+        { "@type": "ListItem", "position": 3, "name": "The Word Animal", "item": "https://esy.com/essays/the-word-animal" }
       ]
     }
   ]
@@ -91,7 +90,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ANIMUS — The Living Word",
     description: "How seven letters named every creature that breathes. A 2,500-year etymology journey.",
-    url: "https://esy.com/essays/visual/the-word-animal",
+    url: "https://esy.com/essays/the-word-animal",
     siteName: "Esy",
     type: "article",
     locale: "en_US",
@@ -112,7 +111,7 @@ export const metadata: Metadata = {
     images: ["https://esy.com/og/the-word-animal.png"],
   },
   alternates: {
-    canonical: "https://esy.com/essays/visual/the-word-animal/"
+    canonical: "https://esy.com/essays/the-word-animal/"
   },
   robots: {
     index: true,

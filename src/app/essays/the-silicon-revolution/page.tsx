@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: "The Silicon Revolution: How a Tiny Switch Changed Everything",
     description:
       "From Bell Labs to billion-transistor chips—the visual story of the invention that powers everything.",
-    url: "https://esy.com/essays/visual/the-silicon-revolution",
+    url: "https://esy.com/essays/the-silicon-revolution",
     type: "article",
     images: [
       {

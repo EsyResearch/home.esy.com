@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: 'The Word That Divided Everything: An Etymology of Sex',
     description: 'How a Latin word meaning "to divide" became the most charged word in the English language. 2,000 years of transformation.',
     type: 'article',
-    url: 'https://esy.com/essays/visual/the-origin-of-sex',
+    url: 'https://esy.com/essays/the-origin-of-sex',
     siteName: 'Esy',
     locale: 'en_US',
     images: [
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     images: ['https://esy.com/og/the-origin-of-sex.png'],
   },
   alternates: {
-    canonical: 'https://esy.com/essays/visual/the-origin-of-sex/',
+    canonical: 'https://esy.com/essays/the-origin-of-sex/',
   },
 };
 

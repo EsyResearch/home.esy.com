@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: "Gods of Africa — A Journey from Light to Terror",
     description:
       "From radiant creators to nightmare entities—explore African mythology through an immersive visual essay.",
-    url: "https://esy.com/essays/visual/gods-of-africa",
+    url: "https://esy.com/essays/gods-of-africa",
     type: "article",
     images: [
       {

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: 'A Diamond is Forever: The Manufactured Desire That Built an Empire',
     description: 'How De Beers convinced the world that love could be measured in carats—and built that illusion on colonial exploitation, artificial scarcity, and the blood of African miners.',
     type: 'article',
-    url: 'https://esy.com/essays/visual/the-diamond-cartel',
+    url: 'https://esy.com/essays/the-diamond-cartel',
   },
   twitter: {
     card: 'summary_large_image',

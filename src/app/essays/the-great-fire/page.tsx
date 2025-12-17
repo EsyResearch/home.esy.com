@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     description:
       "Experience the catastrophic beauty of 1666—when a spark consumed medieval London and gave birth to the modern city.",
     type: "article",
-    url: "https://esy.com/essays/visual/the-great-fire",
+    url: "https://esy.com/essays/the-great-fire",
     images: [
       {
         url: "/esy-logo.png",

@@ -10,74 +10,81 @@ import AnimalEtymologyClient from "./AnimalEtymologyClient";
  * tracing 2,500 years of the word that defined life itself.
  */
 
-// JSON-LD structured data
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Article",
-      "@id": "https://esy.com/essays/visual/the-origin-of-animal#article",
+      "@id": "https://esy.com/essays/the-origin-of-animal/#article",
       "headline": "ANIMA — The Origin of the Word Animal",
       "alternativeHeadline": "The Breath That Named the Living",
-      "description": "From Latin 'anima' meaning breath and soul, to modern biology's kingdom classifications—trace the 2,500-year journey of the word 'animal' through philosophy, medieval bestiaries, and scientific revolution.",
-      "url": "https://esy.com/essays/visual/the-origin-of-animal",
+      "description":
+        "From Latin 'anima' meaning breath and soul, to modern biology's kingdom classifications—trace the 2,500-year journey of the word 'animal' through philosophy, medieval bestiaries, and scientific revolution.",
+      "url": "https://esy.com/essays/the-origin-of-animal/",
       "datePublished": "2025-12-12",
-      "dateModified": "2025-12-12",
-      "author": {
-        "@type": "Organization",
-        "name": "Esy",
-        "url": "https://esy.com"
-      },
+      "dateModified": "2025-12-17",
+      "author": { "@type": "Organization", "name": "Esy", "url": "https://esy.com" },
       "publisher": {
         "@type": "Organization",
         "name": "Esy",
-        "url": "https://esy.com"
+        "url": "https://esy.com",
+        "logo": { "@type": "ImageObject", "url": "https://esy.com/esy-logo.png" }
       },
-      "image": "https://esy.com/og/animal-etymology.jpg",
-      "articleSection": "History",
+      "image": "https://esy.com/og/the-origin-of-animal.png",
+      "articleSection": "Etymology",
       "wordCount": 5000,
-      "about": [
-        {
-          "@type": "Thing",
-          "name": "Etymology"
-        },
-        {
-          "@type": "Thing",
-          "name": "Animal Kingdom"
-        },
-        {
-          "@type": "Thing",
-          "name": "Latin Language"
-        }
-      ],
       "inLanguage": "en-US"
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://esy.com" },
+        { "@type": "ListItem", "position": 2, "name": "Essays", "item": "https://esy.com/essays/" },
+        { "@type": "ListItem", "position": 3, "name": "The Origin of Animal", "item": "https://esy.com/essays/the-origin-of-animal/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
         {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://esy.com"
+          "@type": "Question",
+          "name": "What is the origin of the word 'animal'?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The word 'animal' comes from Latin 'animalis', meaning 'having breath or soul', derived from 'anima' (breath, soul, spirit)—reflecting ancient belief that breath distinguished the living from the dead."
+          }
         },
         {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Essays",
-          "item": "https://esy.com/essays"
+          "@type": "Question",
+          "name": "What does 'anima' mean in Latin?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "'Anima' in Latin means breath, soul, or life force. Ancient Romans believed anima was what animated living creatures, giving them movement and vitality."
+          }
         },
         {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Visual Essays",
-          "item": "https://esy.com/essays/visual"
+          "@type": "Question",
+          "name": "How did Aristotle classify animals?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Aristotle classified animals based on their souls' capabilities—nutritive (plants), sensitive (animals that perceive), and rational (humans)—establishing foundations for biological taxonomy."
+          }
         },
         {
-          "@type": "ListItem",
-          "position": 4,
-          "name": "The Origin of Animal",
-          "item": "https://esy.com/essays/visual/the-origin-of-animal"
+          "@type": "Question",
+          "name": "What were medieval bestiaries?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Medieval bestiaries were illustrated compendiums of animals, mixing natural observation with moral allegory. Each animal represented virtues or vices, teaching Christian lessons through nature."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How did Linnaeus change animal classification?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Carl Linnaeus created binomial nomenclature (genus + species) and systematic taxonomy, organizing all life into kingdoms, classes, orders—the basis of modern biological classification still used today."
+          }
         }
       ]
     }
@@ -86,7 +93,8 @@ const jsonLd = {
 
 export const metadata: Metadata = {
   title: "ANIMA — The Origin of the Word Animal | Etymology Visual Essay",
-  description: "From Latin 'anima' meaning breath and soul, to modern biology's kingdom classifications—trace the 2,500-year journey of the word 'animal' through philosophy, medieval bestiaries, and scientific revolution.",
+  description:
+    "From Latin 'anima' meaning breath and soul, to modern biology's kingdom classifications—trace the 2,500-year journey of the word 'animal' through philosophy, medieval bestiaries, and scientific revolution.",
   keywords: [
     "animal etymology",
     "origin of the word animal",
@@ -103,14 +111,15 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "ANIMA — The Origin of the Word Animal",
-    description: "The word that named every creature that breathes. A 2,500-year etymology journey.",
-    url: "https://esy.com/essays/visual/the-origin-of-animal",
+    description:
+      "The word that named every creature that breathes. A 2,500-year etymology journey.",
+    url: "https://esy.com/essays/the-origin-of-animal/",
     siteName: "Esy",
     type: "article",
     locale: "en_US",
     images: [
       {
-        url: "https://esy.com/og/animal-etymology.jpg",
+        url: "https://esy.com/og/the-origin-of-animal.png",
         width: 1200,
         height: 630,
         alt: "ANIMA — The etymology of the word Animal"
@@ -120,19 +129,19 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "ANIMA — The Origin of the Word Animal",
-    description: "From breath to beast: the 2,500-year journey of a word.",
-    images: ["https://esy.com/og/animal-etymology.jpg"],
-    creator: "@esywriting"
+    description:
+      "From breath to beast: the 2,500-year journey of a word.",
+    site: "@EsyResearch",
+    images: ["https://esy.com/og/the-origin-of-animal.png"]
   },
   alternates: {
-    canonical: "https://esy.com/essays/visual/the-origin-of-animal/"
+    canonical: "https://esy.com/essays/the-origin-of-animal/"
   },
   robots: {
     index: true,
     follow: true,
     "max-image-preview": "large",
-    "max-snippet": -1,
-    "max-video-preview": -1
+    "max-snippet": -1
   },
   authors: [{ name: "Esy", url: "https://esy.com" }],
   publisher: "Esy",
@@ -150,6 +159,3 @@ export default function AnimalEtymologyPage() {
     </>
   );
 }
-
-
-

@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: "The Word Dick | A Visual Etymology",
     description: "From medieval pet name to modern taboo—800 years of semantic transformation explored through typography and archival research.",
     type: "article",
-    url: "https://esy.com/essays/visual/the-word-dick",
+    url: "https://esy.com/essays/the-word-dick",
   },
   twitter: {
     card: "summary_large_image",

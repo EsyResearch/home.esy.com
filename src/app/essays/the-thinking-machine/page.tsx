@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "The Thinking Machine: A Visual History of Artificial Intelligence",
     description:
       "From Turing's question to ChatGPT's answer—80 years of humanity's quest to build minds from mathematics. An immersive photo-driven visual essay.",
-    url: "https://esy.com/essays/visual/the-thinking-machine",
+    url: "https://esy.com/essays/the-thinking-machine",
     type: "article",
     images: [
       {
