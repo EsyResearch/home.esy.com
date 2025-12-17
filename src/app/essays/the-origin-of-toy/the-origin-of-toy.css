@@ -522,19 +522,42 @@
 .card-deck {
   position: relative;
   width: 100%;
-  max-width: 600px;
-  height: 300px;
+  max-width: 900px;
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.card-deck.stacked .folio-card {
+.card-deck .folio-card {
   position: absolute;
+  /* Cards positioned from center using transform origin */
+  left: 50%;
+  top: 50%;
+  /* Use transform for centering instead of margin - more reliable with additional transforms */
+  /* margin removed - centering now handled entirely by transform in JS */
 }
 
-.card-deck.spread .folio-card {
+/* Category labels for sorting phase */
+.category-labels {
   position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  height: 30px;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.category-label {
+  position: absolute;
+  font-family: var(--toy-font-mono);
+  font-size: 0.65rem;
+  color: var(--toy-accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+  white-space: nowrap;
 }
 
 .folio-card {
@@ -543,7 +566,7 @@
   background: linear-gradient(135deg, #2a2418 0%, #1f1a14 100%);
   border: 2px solid rgba(212, 175, 55, 0.3);
   border-radius: 4px;
-  transition: all var(--toy-duration-slow) var(--toy-ease-out);
+  /* Transition removed - handled by inline styles for scroll-driven animation */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
@@ -575,10 +598,64 @@
   color: var(--toy-text-tertiary);
 }
 
+/* Phase 3 spread text */
+.shuffle-spread-text {
+  text-align: center;
+  padding: var(--toy-space-md);
+  animation: fadeIn var(--toy-duration-slow) var(--toy-ease-out);
+}
+
+.spread-emphasis {
+  font-family: var(--toy-font-serif);
+  font-size: 1.4rem;
+  color: var(--toy-accent-gold);
+  font-weight: 600;
+  margin: 0;
+}
+
+.spread-subtext {
+  font-family: var(--toy-font-serif);
+  font-size: 1.1rem;
+  color: var(--toy-text-tertiary);
+  font-style: italic;
+  margin: 0.5rem 0 0 0;
+}
+
+/* Phase 5 conclusion */
 .shuffle-conclusion {
   text-align: center;
   padding: var(--toy-space-md);
   animation: fadeIn var(--toy-duration-slow) var(--toy-ease-out);
+}
+
+.empty-meaning-space {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--toy-space-md);
+  margin-bottom: var(--toy-space-md);
+  border: 2px dashed rgba(212, 175, 55, 0.3);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  min-width: 200px;
+}
+
+.empty-label {
+  font-family: var(--toy-font-mono);
+  font-size: 0.7rem;
+  color: var(--toy-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+}
+
+.empty-absent {
+  font-family: var(--toy-font-serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--toy-text-tertiary);
+  opacity: 0.5;
+  margin-top: 0.5rem;
 }
 
 .shuffle-conclusion p {
@@ -718,15 +795,15 @@
     padding: var(--toy-space-sm);
   }
 
-  .card-deck.spread .folio-card {
-    transform: none !important;
-    position: relative;
+  /* Mobile: When fanned, reduce the spread for smaller screens */
+  .card-deck.fanned .folio-card {
+    /* Allow smaller spread on mobile via JS - no override needed */
   }
 
-  .card-deck.spread {
-    flex-direction: column;
+  .card-deck.sorted {
+    /* Sorted view on mobile - stack vertically */
     height: auto;
-    gap: var(--toy-space-sm);
+    min-height: 350px;
   }
 
   .final-letters span {
@@ -2413,15 +2490,43 @@
   margin-top: var(--toy-space-md);
 }
 
-.tree-branch {
+/* New grid-based layout for branches */
+.tree-branches-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--toy-space-md);
+  margin-top: var(--toy-space-md);
+  width: 100%;
+}
+
+.branch-row {
+  display: flex;
+  justify-content: center;
+  gap: var(--toy-space-sm);
+  flex-wrap: wrap;
+  width: 100%;
+  position: relative;
+}
+
+/* Connecting lines from TOY to first row */
+.branch-row.row-1::before {
+  content: '';
   position: absolute;
-  top: 50%;
+  top: -20px;
   left: 50%;
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(180deg, var(--toy-accent-gold), transparent);
+  transform: translateX(-50%);
+}
+
+.tree-branch {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  transition: all 0.5s var(--toy-ease-out);
+  transition: opacity 0.5s var(--toy-ease-out), transform 0.5s var(--toy-ease-out);
 }
 
 .branch-line {
@@ -2525,7 +2630,8 @@
     margin: var(--toy-space-sm) 0;
   }
 
-  .tree-branches-container {
+  .tree-branches-container,
+  .tree-branches-grid {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2533,10 +2639,17 @@
     height: auto;
   }
 
+  .branch-row {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--toy-space-xs);
+  }
+
+  .branch-row.row-1::before {
+    display: none;
+  }
+
   .tree-branch {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
     transform: none !important;
   }
 
@@ -2620,3 +2733,4 @@
     opacity: 1 !important;
   }
 }
+

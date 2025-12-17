@@ -1497,6 +1497,8 @@ const WordBranches: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isPinned, setIsPinned] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
+  const [unpinPoint, setUnpinPoint] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -1506,17 +1508,26 @@ const WordBranches: React.FC = () => {
       const rect = container.getBoundingClientRect();
       const containerHeight = container.offsetHeight;
       const viewportHeight = window.innerHeight;
+      const scrollableDistance = containerHeight - viewportHeight;
+      const scrolledIntoSection = -rect.top;
 
-      if (rect.top <= 0 && rect.bottom > viewportHeight) {
+      if (rect.top <= 0 && scrolledIntoSection <= scrollableDistance) {
+        // Currently in scroll-lock zone
         setIsPinned(true);
-        const scrolled = -rect.top;
-        const scrollableDistance = containerHeight - viewportHeight;
-        const progress = Math.min(100, Math.max(0, (scrolled / scrollableDistance) * 100));
+        setIsExiting(false);
+        const progress = Math.min(100, Math.max(0, (scrolledIntoSection / scrollableDistance) * 100));
         setScrollProgress(progress);
-      } else {
+      } else if (rect.top > 0) {
+        // Before scroll-lock zone
         setIsPinned(false);
-        if (rect.top > 0) setScrollProgress(0);
-        if (rect.bottom <= viewportHeight) setScrollProgress(100);
+        setIsExiting(false);
+        setScrollProgress(0);
+      } else {
+        // After scroll-lock zone - smooth exit
+        setIsPinned(false);
+        setIsExiting(true);
+        setScrollProgress(100);
+        setUnpinPoint(scrollableDistance);
       }
     };
 
@@ -1555,8 +1566,17 @@ const WordBranches: React.FC = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="scroll-lock-branches" style={{ height: "450vh" }}>
-      <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`}>
+    <div ref={containerRef} className="scroll-lock-branches" style={{ height: "450vh", position: "relative" }}>
+      <div 
+        className={`pinned-content ${isPinned ? "is-pinned" : ""} ${isExiting ? "is-exiting" : ""}`}
+        style={isExiting ? {
+          position: "absolute",
+          top: `${unpinPoint}px`,
+          left: 0,
+          right: 0,
+          height: "100vh",
+        } : undefined}
+      >
         {isPinned && scrollProgress < 95 && (
           <button className="skip-button" onClick={handleSkip}>Skip →</button>
         )}
@@ -1580,38 +1600,40 @@ const WordBranches: React.FC = () => {
             <span className="trunk-word">TOY</span>
           </div>
 
-          {/* Branches */}
-          <div className="tree-branches-container">
-            {branches.map((branch, index) => {
-              // Calculate when this branch should appear
-              const groupStart = branch.group === 1 ? 25 : branch.group === 2 ? 50 : 70;
-              const indexInGroup = branches.filter(b => b.group === branch.group).indexOf(branch);
-              const branchStart = groupStart + indexInGroup * 5;
-              const branchOpacity = scrollProgress >= branchStart 
-                ? Math.min(1, (scrollProgress - branchStart) / 10) 
-                : 0;
+          {/* Branches - organized as rows by group */}
+          <div className="tree-branches-grid">
+            {[1, 2, 3].map(groupNum => {
+              const groupBranches = branches.filter(b => b.group === groupNum);
+              const groupStart = groupNum === 1 ? 25 : groupNum === 2 ? 50 : 70;
               
-              // Stagger positions
-              const angle = (index / branches.length) * 180 - 90; // Spread from -90 to 90 degrees
-              const distance = 80 + branch.group * 40;
-              const x = Math.cos((angle * Math.PI) / 180) * distance;
-              const y = Math.sin((angle * Math.PI) / 180) * Math.abs(distance * 0.5) + branch.group * 60;
-
               return (
-                <div
-                  key={branch.word}
-                  className={`tree-branch group-${branch.group}`}
-                  style={{
-                    opacity: branchOpacity,
-                    transform: `translate(${x}px, ${y}px) scale(${branchOpacity})`,
-                  }}
-                >
-                  <div className="branch-line" />
-                  <div className="branch-content">
-                    <span className="branch-word">{branch.word}</span>
-                    <span className="branch-meaning">{branch.meaning}</span>
-                    <span className="branch-era">{branch.era}</span>
-                  </div>
+                <div key={groupNum} className={`branch-row row-${groupNum}`}>
+                  {groupBranches.map((branch, indexInGroup) => {
+                    const branchStart = groupStart + indexInGroup * 8;
+                    const branchOpacity = scrollProgress >= branchStart 
+                      ? Math.min(1, (scrollProgress - branchStart) / 12) 
+                      : 0;
+                    const branchScale = 0.8 + (branchOpacity * 0.2);
+                    
+                    return (
+                      <div
+                        key={branch.word}
+                        className={`tree-branch group-${branch.group}`}
+                        style={{
+                          opacity: branchOpacity,
+                          transform: `scale(${branchScale}) translateY(${(1 - branchOpacity) * 20}px)`,
+                          transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
+                        }}
+                      >
+                        <div className="branch-line" />
+                        <div className="branch-content">
+                          <span className="branch-word">{branch.word}</span>
+                          <span className="branch-meaning">{branch.meaning}</span>
+                          <span className="branch-era">{branch.era}</span>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               );
             })}
