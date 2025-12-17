@@ -338,7 +338,7 @@ const Sources: React.FC = () => (
           Smithsonian — Soda Fountains (Archive)
         </a>
         <a href="https://www.history.com/news/coca-cola-cocaine-origins" target="_blank" rel="noopener noreferrer">
-          History.com — Coca-Cola's Controversial Origins
+          History.com — Coca-Cola&apos;s Controversial Origins
         </a>
         <a href="https://www.rsc.org/periodic-table/podcast/24/carbonated-water" target="_blank" rel="noopener noreferrer">
           Royal Society of Chemistry — Carbonation Science
