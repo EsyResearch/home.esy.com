@@ -259,10 +259,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: var(--toy-space-lg);
-  padding: var(--toy-space-xl) var(--toy-space-md);
+  justify-content: flex-start; /* Changed from center - prevents clipping */
+  gap: var(--toy-space-sm);
+  padding: var(--toy-space-md) var(--toy-space-md);
+  padding-top: var(--toy-space-lg);
   background: var(--toy-bg-primary);
+  /* NO overflow-y: auto - breaks fixed positioning feel */
 }
 
 .dictionary-archaeology .pinned-content.is-pinned {
@@ -270,9 +272,14 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 100vh;
-  z-index: 50;
-  background: var(--toy-bg-primary); /* CRITICAL: prevents content bleed-through */
+  height: 100vh; /* Must set height when fixed */
+  z-index: 50; /* Higher to ensure above other content */
+  background: var(--toy-bg-primary); /* Must have background */
+}
+
+/* Exit transition - content scrolls naturally after unpin */
+.dictionary-archaeology .pinned-content.is-exiting {
+  background: var(--toy-bg-primary);
 }
 
 .archaeology-header {
@@ -299,18 +306,19 @@
   position: relative;
   width: 100%;
   max-width: 500px;
-  min-height: 300px;
+  /* Removed fixed min-height - let content determine height */
   display: flex;
   flex-direction: column;
   gap: var(--toy-space-sm);
+  flex-shrink: 0; /* Don't compress cards */
 }
 
 .dict-layer {
-  padding: var(--toy-space-md);
+  padding: var(--toy-space-sm) var(--toy-space-md);
   border-radius: 8px;
   transition: all var(--toy-duration-slow) var(--toy-ease-out);
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(20px);
 }
 
 .dict-layer.visible {
@@ -367,10 +375,10 @@
 
 .layer-word {
   font-family: var(--toy-font-display);
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 600;
   color: var(--toy-text-primary);
-  margin: 0.5rem 0;
+  margin: 0.25rem 0;
 }
 
 .dict-layer.medieval .layer-word {
@@ -387,7 +395,11 @@
 
 .archaeology-footer {
   text-align: center;
-  padding-top: var(--toy-space-md);
+  padding-top: var(--toy-space-sm);
+  position: relative;
+  z-index: 10; /* Above the dictionary layer cards */
+  flex-shrink: 0; /* Don't compress */
+  margin-top: auto; /* Push to bottom */
 }
 
 .archaeology-insight {
@@ -506,9 +518,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 100vh;
-  z-index: 50;
-  background: var(--toy-bg-primary); /* CRITICAL: prevents content bleed-through */
+  z-index: 10;
 }
 
 .shuffle-header {
@@ -699,7 +709,6 @@
   right: 0;
   height: 100vh;
   z-index: 50;
-  background: var(--toy-bg-primary); /* CRITICAL: prevents content bleed-through */
 }
 
 .etymology-header {

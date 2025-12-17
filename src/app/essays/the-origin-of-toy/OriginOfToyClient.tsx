@@ -665,11 +665,13 @@ const ImageGallery: React.FC<{
 );
 
 // Dictionary Archaeology Scroll-Lock Sequence
-// FIXED: Added proper scroll-lock pinning (was missing is-pinned state)
+// FIXED: Added proper scroll-lock pinning + exit transition
 const DictionaryArchaeology: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isPinned, setIsPinned] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
+  const [unpinPoint, setUnpinPoint] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -684,13 +686,23 @@ const DictionaryArchaeology: React.FC = () => {
       const scrollableDistance = containerHeight - viewportHeight;
       const scrolledIntoSection = -rect.top;
 
-      if (rect.top <= 0 && scrolledIntoSection <= scrollableDistance) {
+      if (rect.top <= 0 && scrolledIntoSection < scrollableDistance) {
+        // Currently in the scroll-lock zone
         setIsPinned(true);
+        setIsExiting(false);
         const progress = Math.min(100, Math.max(0, (scrolledIntoSection / scrollableDistance) * 100));
         setScrollProgress(progress);
-      } else {
+      } else if (scrolledIntoSection >= scrollableDistance && rect.top <= 0) {
+        // Exiting - scrolled past the section
         setIsPinned(false);
-        setScrollProgress(rect.top > 0 ? 0 : 100);
+        setIsExiting(true);
+        setUnpinPoint(scrollableDistance);
+        setScrollProgress(100);
+      } else {
+        // Before the section
+        setIsPinned(false);
+        setIsExiting(false);
+        setScrollProgress(0);
       }
     };
 
@@ -713,8 +725,17 @@ const DictionaryArchaeology: React.FC = () => {
   const activeLayer = Math.min(4, Math.floor(scrollProgress / 20));
 
   return (
-    <div ref={containerRef} className="dictionary-archaeology" style={{ height: "450vh" }}>
-      <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`}>
+    <div ref={containerRef} className="dictionary-archaeology" style={{ height: "450vh", position: "relative" }}>
+      <div 
+        className={`pinned-content ${isPinned ? "is-pinned" : ""} ${isExiting ? "is-exiting" : ""}`}
+        style={isExiting ? {
+          position: "absolute",
+          top: `${unpinPoint}px`,
+          left: 0,
+          right: 0,
+          height: "100vh",
+        } : undefined}
+      >
         {/* Skip button */}
         {isPinned && scrollProgress < 95 && (
           <button className="skip-button" onClick={() => setScrollProgress(100)}>Skip →</button>
