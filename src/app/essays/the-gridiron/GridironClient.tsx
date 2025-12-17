@@ -596,7 +596,6 @@ const GridironClient: React.FC = () => {
               <div className="frame-corner top-right" />
               <div className="frame-corner bottom-left" />
               <div className="frame-corner bottom-right" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img 
                 src="/images/walter-camp-portrait.jpg"
                 alt="Walter Camp, portrait by George M. Reevs, 1909. The Father of American Football, shown in formal Victorian attire with his characteristic balding head and small mustache."

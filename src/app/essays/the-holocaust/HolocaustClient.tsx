@@ -283,7 +283,6 @@ const ArchivalPhoto: React.FC<ArchivalPhotoProps> = ({
     >
       <div className="photo-frame">
         {src ? (
-          // eslint-disable-next-line @next/next/no-img-element
           <img 
             src={src} 
             alt={alt}
@@ -336,7 +335,6 @@ const FigureProfile: React.FC<FigureProfileProps> = ({
     >
       <div className="profile-portrait">
         {image?.src ? (
-          // eslint-disable-next-line @next/next/no-img-element
           <img 
             src={image.src} 
             alt={image.alt || figure.name}
@@ -437,7 +435,6 @@ const HeroSection: React.FC = () => {
           }}
         >
           <div className="photograph-frame">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src={heroImages[0].src}
               alt={heroImages[0].alt}
