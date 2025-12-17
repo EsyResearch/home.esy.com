@@ -442,6 +442,13 @@
   transform: translateY(0);
 }
 
+/* Continued sections after scroll-locks - no transform (breaks fixed children) */
+.etymology-section.chapter-continued {
+  opacity: 1;
+  transform: none;
+  padding-top: var(--spacing-xl);
+}
+
 /* Era-specific backgrounds */
 .etymology-section[data-era="medieval"] {
   background: var(--color-parchment);
@@ -1408,6 +1415,7 @@
   top: 0;
   left: 0;
   right: 0;
+  height: 100vh;
   z-index: 10;
   background: var(--color-parchment);
 }

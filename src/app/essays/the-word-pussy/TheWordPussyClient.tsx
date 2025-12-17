@@ -710,26 +710,107 @@ const ScrollLockVictorian: React.FC = () => {
   );
 };
 
-// Branching Scroll-Lock - Three meaning branches
+// Branching Scroll-Lock - Word duplicates and drifts to corners per spec
 const ScrollLockBranching: React.FC = () => {
-  const { containerRef, progress, isPinned } = useScrollLock(3); // 300vh - more time to view each branch
+  const { containerRef, progress, isPinned } = useScrollLock(3); // 300vh
 
-  // Calculate fade-out opacity near end of section
-  const exitOpacity = progress > 0.9 ? 1 - ((progress - 0.9) / 0.1) : 1;
+  // Fade out near end
+  const exitOpacity = progress > 0.92 ? 1 - ((progress - 0.92) / 0.08) : 1;
 
+  // Phase per spec: 0-30% single, 30-60% duplicating, 60-100% spread
   const phase = React.useMemo(() => {
-    if (progress < 0.15) return "root";
-    if (progress < 0.35) return "cat";
-    if (progress < 0.55) return "vulgar";
-    if (progress < 0.85) return "coward";
-    return "complete"; // Hold on complete view
+    if (progress < 0.30) return "single";
+    if (progress < 0.60) return "duplicating";
+    return "spread";
   }, [progress]);
 
-  const branches = [
-    { id: "cat", label: "CAT", color: "var(--color-gold)", desc: "Soft, affectionate" },
-    { id: "vulgar", label: "ANATOMY", color: "var(--color-vermillion)", desc: "Vulgar slang" },
-    { id: "coward", label: "COWARD", color: "var(--color-text-muted)", desc: "American 1960s+" }
-  ];
+  // Calculate drift amount for duplicating phase (0 to 1)
+  const driftAmount = phase === "single" ? 0 : 
+                      phase === "duplicating" ? (progress - 0.30) / 0.30 : 1;
+
+  // Calculate spread positions (corners)
+  // Top center: pussycat (feline)
+  // Bottom left: asterisked (anatomical)
+  // Bottom right: bold (coward)
+  
+  const getWordStyle = (variant: 'feline' | 'anatomical' | 'coward'): React.CSSProperties => {
+    const baseStyle: React.CSSProperties = {
+      position: 'absolute',
+      transition: 'all 0.6s var(--easing-dramatic)',
+      whiteSpace: 'nowrap'
+    };
+
+    if (phase === "single") {
+      // All three stack in center (only one visible)
+      return {
+        ...baseStyle,
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        opacity: variant === 'feline' ? 1 : 0
+      };
+    }
+
+    if (phase === "duplicating") {
+      // Words start appearing and drifting
+      const drift = driftAmount * 100; // 0 to 100px drift
+      
+      switch (variant) {
+        case 'feline':
+          return {
+            ...baseStyle,
+            top: `calc(50% - ${drift * 0.8}px)`,
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            opacity: 1
+          };
+        case 'anatomical':
+          return {
+            ...baseStyle,
+            top: `calc(50% + ${drift * 0.4}px)`,
+            left: `calc(50% - ${drift * 1.2}px)`,
+            transform: 'translate(-50%, -50%)',
+            opacity: driftAmount
+          };
+        case 'coward':
+          return {
+            ...baseStyle,
+            top: `calc(50% + ${drift * 0.4}px)`,
+            left: `calc(50% + ${drift * 1.2}px)`,
+            transform: 'translate(-50%, -50%)',
+            opacity: driftAmount
+          };
+      }
+    }
+
+    // Spread phase - final positions in corners
+    switch (variant) {
+      case 'feline':
+        return {
+          ...baseStyle,
+          top: '20%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          opacity: 1
+        };
+      case 'anatomical':
+        return {
+          ...baseStyle,
+          top: '70%',
+          left: '25%',
+          transform: 'translate(-50%, -50%)',
+          opacity: 1
+        };
+      case 'coward':
+        return {
+          ...baseStyle,
+          top: '70%',
+          left: '75%',
+          transform: 'translate(-50%, -50%)',
+          opacity: 1
+        };
+    }
+  };
 
   return (
     <div 
@@ -745,104 +826,123 @@ const ScrollLockBranching: React.FC = () => {
           transition: "opacity 0.3s ease-out"
         }}
       >
-        <div style={{ 
-          textAlign: "center", 
-          maxWidth: "800px",
-          padding: "0 var(--spacing-md)"
-        }}>
-          {/* Root word */}
-          <div style={{
-            marginBottom: "var(--spacing-xl)",
-            opacity: 1,
-            transform: "translateY(0)"
+        {/* Feline - Top: soft, warm treatment */}
+        <div style={getWordStyle('feline')}>
+          <span style={{
+            fontFamily: "var(--type-renaissance)",
+            fontSize: "clamp(1.5rem, 4vw, 2.5rem)",
+            color: "var(--color-gold)",
+            fontStyle: "italic"
           }}>
-            <span style={{
-              fontFamily: "var(--type-blackletter)",
-              fontSize: "clamp(2rem, 5vw, 3rem)",
-              color: "var(--color-ink-black)"
+            pussycat
+          </span>
+          {phase === "spread" && (
+            <p style={{
+              fontFamily: "var(--font-ui)",
+              fontSize: "var(--text-xs)",
+              color: "var(--color-text-muted)",
+              marginTop: "var(--spacing-xs)",
+              textAlign: "center",
+              opacity: progress > 0.7 ? 1 : 0,
+              transition: "opacity 0.4s ease-out"
             }}>
-              PUSSY
-            </span>
+              feline, soft
+            </p>
+          )}
+        </div>
+
+        {/* Anatomical - Bottom Left: redacted/asterisked */}
+        <div style={getWordStyle('anatomical')}>
+          <span style={{
+            fontFamily: "var(--type-modern)",
+            fontSize: "clamp(1.5rem, 4vw, 2.5rem)",
+            color: "var(--color-vermillion)",
+            letterSpacing: "0.1em"
+          }}>
+            p***y
+          </span>
+          {phase === "spread" && (
+            <p style={{
+              fontFamily: "var(--font-ui)",
+              fontSize: "var(--text-xs)",
+              color: "var(--color-text-muted)",
+              marginTop: "var(--spacing-xs)",
+              textAlign: "center",
+              opacity: progress > 0.75 ? 1 : 0,
+              transition: "opacity 0.4s ease-out"
+            }}>
+              anatomical, taboo
+            </p>
+          )}
+        </div>
+
+        {/* Coward - Bottom Right: bold, harsh */}
+        <div style={getWordStyle('coward')}>
+          <span style={{
+            fontFamily: "var(--type-modern)",
+            fontSize: "clamp(1.5rem, 4vw, 2.5rem)",
+            color: "var(--color-ink-black)",
+            fontWeight: 700,
+            textTransform: "uppercase",
+            letterSpacing: "0.15em"
+          }}>
+            PUSSY
+          </span>
+          {phase === "spread" && (
+            <p style={{
+              fontFamily: "var(--font-ui)",
+              fontSize: "var(--text-xs)",
+              color: "var(--color-text-muted)",
+              marginTop: "var(--spacing-xs)",
+              textAlign: "center",
+              opacity: progress > 0.8 ? 1 : 0,
+              transition: "opacity 0.4s ease-out"
+            }}>
+              coward, insult
+            </p>
+          )}
+        </div>
+
+        {/* Center label - only in single phase */}
+        {phase === "single" && (
+          <div style={{
+            position: "absolute",
+            bottom: "30%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            textAlign: "center"
+          }}>
             <p style={{
               fontFamily: "var(--font-ui)",
               fontSize: "var(--text-sm)",
-              color: "var(--color-text-muted)",
-              marginTop: "var(--spacing-sm)"
+              color: "var(--color-text-muted)"
             }}>
-              One word. Three meanings.
+              One word...
             </p>
           </div>
+        )}
 
-          {/* Branch lines */}
-          <div style={{ 
-            display: "flex", 
-            justifyContent: "center", 
-            gap: "var(--spacing-xl)",
-            marginTop: "var(--spacing-lg)"
+        {/* Diagram complete label */}
+        {phase === "spread" && progress > 0.85 && (
+          <div style={{
+            position: "absolute",
+            top: "45%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            textAlign: "center",
+            opacity: (progress - 0.85) / 0.07,
+            transition: "opacity 0.3s ease-out"
           }}>
-            {branches.map((branch, i) => {
-              const isActive = phase === branch.id;
-              const isVisible = phase !== "root";
-              const showAll = phase === "coward" || phase === "complete";
-              
-              return (
-                <div 
-                  key={branch.id}
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    opacity: !isVisible ? 0.3 : (isActive || showAll) ? 1 : 0.5,
-                    transform: isActive ? "scale(1.1)" : "scale(1)",
-                    transition: "all 0.5s var(--easing-smooth)",
-                    transitionDelay: `${i * 100}ms`
-                  }}
-                >
-                  {/* Vertical line */}
-                  <div style={{
-                    width: "2px",
-                    height: "60px",
-                    background: branch.color,
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? "scaleY(1)" : "scaleY(0)",
-                    transformOrigin: "top",
-                    transition: "all 0.5s var(--easing-smooth)"
-                  }} />
-                  
-                  {/* Branch label */}
-                  <div style={{
-                    marginTop: "var(--spacing-md)",
-                    padding: "var(--spacing-sm) var(--spacing-md)",
-                    background: isActive ? branch.color : "transparent",
-                    border: `2px solid ${branch.color}`,
-                    borderRadius: "4px",
-                    transition: "all 0.3s ease-out"
-                  }}>
-                    <span style={{
-                      fontFamily: "var(--font-ui)",
-                      fontSize: "var(--text-sm)",
-                      fontWeight: 600,
-                      color: isActive ? "white" : branch.color,
-                      letterSpacing: "0.1em"
-                    }}>
-                      {branch.label}
-                    </span>
-                  </div>
-                  
-                  <p style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: "var(--text-sm)",
-                    color: "var(--color-text-secondary)",
-                    marginTop: "var(--spacing-sm)",
-                    maxWidth: "120px"
-                  }}>
-                    {branch.desc}
-                  </p>
-                </div>
-              );
-            })}
+            <p style={{
+              fontFamily: "var(--font-ui)",
+              fontSize: "var(--text-base)",
+              color: "var(--color-ink-black)",
+              fontWeight: 500
+            }}>
+              ...three meanings
+            </p>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
@@ -1017,10 +1117,13 @@ const TheWordPussyClient: React.FC = () => {
             Say the word <strong>&ldquo;pussy&rdquo;</strong> and watch reactions shift. For some, it&apos;s a term of endearment for a cat. For others, it&apos;s one of the most vulgar words in the language. For others still, it&apos;s an insult meaning coward. <em>How did one word come to mean such wildly different things?</em>
           </p>
         </div>
+      </Section>
 
-        {/* Scroll-locked Branching - Three meaning branches */}
-        <ScrollLockBranching />
+      {/* Scroll-locked Branching - OUTSIDE Section to avoid transform breaking fixed positioning */}
+      <ScrollLockBranching />
 
+      {/* Chapter 1 continued */}
+      <Section id="chapter-1-continued" className="chapter-continued">
         <div className="content-block">
           <p>
             The answer lies in etymology—the study of word origins—and in the fascinating mechanisms by which language changes: <strong>metaphor</strong>, <strong>euphemism</strong>, and <strong>taboo</strong>. What we&apos;ll discover is that this word&apos;s journey mirrors the history of English itself, from Germanic roots through Norman influence, Victorian prudery, and American slang innovation.
@@ -1086,10 +1189,13 @@ const TheWordPussyClient: React.FC = () => {
             By the 1530s, the word &ldquo;puss&rdquo; appears in English writing as a name for a cat (per the OED, first attested in the 16th century). Within fifty years, the word had already begun branching. In 1583, the Puritan pamphleteer Philip Stubbes wrote a line that would become crucial evidence for etymologists centuries later.
           </p>
         </div>
+      </Section>
 
-        {/* Scroll-locked 1583 Moment */}
-        <ScrollLock1583 />
+      {/* Scroll-locked 1583 Moment - OUTSIDE Section to avoid transform breaking fixed */}
+      <ScrollLock1583 />
 
+      {/* Chapter 3 continued */}
+      <Section id="chapter-3-continued" era="renaissance" className="chapter-continued">
         <MorphingWord era="renaissance" />
 
         <div className="content-block">
@@ -1167,10 +1273,13 @@ const TheWordPussyClient: React.FC = () => {
         </div>
 
         <MorphingWord era="georgian" />
+      </Section>
 
-        {/* Scroll-locked Johnson&apos;s Silence */}
-        <ScrollLockJohnson />
+      {/* Scroll-locked Johnson's Silence - OUTSIDE Section */}
+      <ScrollLockJohnson />
 
+      {/* Chapter 5 continued */}
+      <Section id="chapter-5-continued" era="georgian" className="chapter-continued">
         <div className="content-block">
           <h3>The Dictionary as Gatekeeper</h3>
           <p>
@@ -1207,10 +1316,13 @@ const TheWordPussyClient: React.FC = () => {
             The Victorian era crystallized the word&apos;s double life. In 1805, the nursery rhyme &ldquo;Pussy Cat, Pussy Cat&rdquo; was published—pure feline innocence, recited by children for generations. Meanwhile, in the shadows of adult vernacular, the vulgar meaning was thoroughly established.
           </p>
         </div>
+      </Section>
 
-        {/* Scroll-locked Victorian Split - Nursery vs Shadow */}
-        <ScrollLockVictorian />
+      {/* Scroll-locked Victorian Split - OUTSIDE Section */}
+      <ScrollLockVictorian />
 
+      {/* Chapter 6 continued */}
+      <Section id="chapter-6-continued" era="victorian" className="chapter-continued">
         <MorphingWord era="victorian" />
 
         <div className="content-block">
