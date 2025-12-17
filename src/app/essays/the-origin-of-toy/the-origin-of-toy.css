@@ -270,7 +270,9 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
+  height: 100vh;
+  z-index: 50;
+  background: var(--toy-bg-primary); /* CRITICAL: prevents content bleed-through */
 }
 
 .archaeology-header {
@@ -386,8 +388,6 @@
 .archaeology-footer {
   text-align: center;
   padding-top: var(--toy-space-md);
-  position: relative;
-  z-index: 10; /* Above dictionary cards which have z-index 1-5 */
 }
 
 .archaeology-insight {
@@ -506,7 +506,9 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
+  height: 100vh;
+  z-index: 50;
+  background: var(--toy-bg-primary); /* CRITICAL: prevents content bleed-through */
 }
 
 .shuffle-header {
@@ -697,6 +699,7 @@
   right: 0;
   height: 100vh;
   z-index: 50;
+  background: var(--toy-bg-primary); /* CRITICAL: prevents content bleed-through */
 }
 
 .etymology-header {
