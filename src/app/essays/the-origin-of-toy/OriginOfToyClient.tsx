@@ -713,7 +713,7 @@ const DictionaryArchaeology: React.FC = () => {
   const activeLayer = Math.min(4, Math.floor(scrollProgress / 20));
 
   return (
-    <div ref={containerRef} className="dictionary-archaeology" style={{ height: "300vh" }}>
+    <div ref={containerRef} className="dictionary-archaeology" style={{ height: "450vh" }}>
       <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`}>
         {/* Skip button */}
         {isPinned && scrollProgress < 95 && (
@@ -834,20 +834,46 @@ const ShakespeareShuffle: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Spec: Shakespeare's 30+ uses, grouped by meaning category for sorting phase
   const shakespeareUses = [
-    { play: "Hamlet", quote: "These are but wild and whirling toys", meaning: "fantasies" },
-    { play: "Much Ado", quote: "This is a very scurvy toy of Fortune's", meaning: "trick" },
-    { play: "Winter's Tale", quote: "A toy in blood", meaning: "fancy, whim" },
-    { play: "Othello", quote: "Trifles light as air", meaning: "related: trifles" },
-    { play: "King Lear", quote: "As flies to wanton boys", meaning: "sport, play" },
+    { play: "Hamlet", quote: "These are but wild and whirling toys", meaning: "fantasies", category: "whim" },
+    { play: "Much Ado", quote: "This is a very scurvy toy of Fortune's", meaning: "trick", category: "trifle" },
+    { play: "Winter's Tale", quote: "A toy in blood", meaning: "fancy, whim", category: "whim" },
+    { play: "Othello", quote: "Trifles light as air", meaning: "related: trifles", category: "trifle" },
+    { play: "King Lear", quote: "As flies to wanton boys", meaning: "sport, play", category: "ornament" },
   ];
 
-  const visibleCards = Math.min(5, Math.floor(scrollProgress / 15) + 1);
-  const isSpread = scrollProgress > 60;
-  const showConclusion = scrollProgress > 85;
+  // Spec phases (EXACT from the-origin-of-toy.md):
+  // 0-25%: First Folio page, one highlighted "toy" 
+  // 25-45%: More cards flip, meanings revealed
+  // 45-65%: Cards spread + TEXT: "Shakespeare never used 'toy' to mean plaything. Not once."
+  // 65-85%: Cards sort by meaning (Fancy/Trifle/Ornament)
+  // 85-100%: Empty space + TEXT: "The meaning we know was not yet born."
+  
+  const phase = scrollProgress < 25 ? 1 : scrollProgress < 45 ? 2 : scrollProgress < 65 ? 3 : scrollProgress < 85 ? 4 : 5;
+  
+  // Calculate visible cards based on phase - all visible once phase 2 starts
+  const visibleCards = phase === 1 ? 1 : 5;
+  
+  // FIX: Fan progress should be calculated independently and persist through phase 4
+  // Phase 2 (25-45%): Cards are appearing, start slight spreading
+  // Phase 3 (45-65%): Full fan animation
+  const fanProgress = scrollProgress < 25 ? 0 : 
+                      scrollProgress < 45 ? (scrollProgress - 25) / 20 * 0.3 : // Slight spread during reveal
+                      scrollProgress < 65 ? 0.3 + ((scrollProgress - 45) / 20) * 0.7 : // Full fan
+                      1; // Maintain fan position in phases 4-5
+  
+  // Sort into groups during phase 4 (65-85%)
+  const sortProgress = phase >= 4 ? Math.min(1, (scrollProgress - 65) / 20) : 0;
+  
+  // Show spread text during phase 3
+  const showSpreadText = scrollProgress >= 50 && scrollProgress < 85;
+  
+  // Show conclusion during phase 5
+  const showConclusion = scrollProgress >= 85;
 
   return (
-    <div ref={containerRef} className="shakespeare-shuffle" style={{ height: "250vh" }}>
+    <div ref={containerRef} className="shakespeare-shuffle" style={{ height: "500vh" }}>
       <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`}>
         {/* Skip button */}
         {isPinned && scrollProgress < 95 && (
@@ -865,23 +891,117 @@ const ShakespeareShuffle: React.FC = () => {
           <span className="shuffle-label">Scroll-Lock: Shakespeare&apos;s Thirty Uses</span>
         </div>
 
-        <div className={`card-deck ${isSpread ? "spread" : "stacked"}`}>
+        <div className={`card-deck ${phase >= 3 ? "fanned" : "stacked"} ${phase >= 4 ? "sorted" : ""}`}>
           {shakespeareUses.map((use, index) => {
             const isVisible = index < visibleCards;
-            const spreadOffset = isSpread ? (index - 2) * 120 : index * 4;
+            const cardCount = shakespeareUses.length;
+            const centerIndex = 2; // Middle card (index 2 of 5)
+            const offsetFromCenter = index - centerIndex; // -2, -1, 0, 1, 2
+            
+            // Base centering offset (card is 200px wide, center it)
+            const centerOffsetX = -100;
+            const centerOffsetY = -75;
+            
+            let translateX = centerOffsetX;
+            let translateY = centerOffsetY;
+            let rotation = 0;
+            let zIndex = cardCount - index;
+            let scale = 1;
+            
+            // FAN_SPREAD: Distance between cards when fanned - increased for visual drama
+            const FAN_SPREAD = 180; // px per card offset (was 140)
+            const FAN_ARC = 25; // Vertical arc height
+            const FAN_ROTATION = 12; // degrees per card offset
+            
+            // Phase 1-2: Neat stack with cascade effect
+            // Phase 3: Full fan out across viewport
+            // Phase 4-5: Sort into meaning categories
+            
+            if (phase <= 2) {
+              // Stacked state with subtle cascade
+              const stackOffset = index * 4; // Horizontal cascade
+              const stackY = index * 3; // Vertical offset
+              const stackRotation = index * 0.5 - 1; // Slight rotation variance
+              
+              // Apply fan progress even during reveal (phase 2) for smooth transition
+              translateX = centerOffsetX + stackOffset + (offsetFromCenter * FAN_SPREAD * fanProgress);
+              translateY = centerOffsetY + stackY + (Math.abs(offsetFromCenter) * FAN_ARC * fanProgress);
+              rotation = stackRotation + (offsetFromCenter * FAN_ROTATION * fanProgress);
+              
+              // Z-index: during stack, top cards are in front
+              // During fan transition, outer cards come forward
+              zIndex = fanProgress < 0.2 
+                ? cardCount - index 
+                : 10 + Math.abs(offsetFromCenter); // Outer cards in front during fan
+            } else if (phase === 3) {
+              // Full fan - cards spread across viewport
+              translateX = centerOffsetX + (offsetFromCenter * FAN_SPREAD);
+              translateY = centerOffsetY + (Math.abs(offsetFromCenter) * FAN_ARC);
+              rotation = offsetFromCenter * FAN_ROTATION;
+              // Z-index: outer cards slightly raised for dramatic effect
+              zIndex = 10 + Math.abs(offsetFromCenter);
+              scale = 1 - (Math.abs(offsetFromCenter) * 0.02); // Subtle depth effect
+            } else {
+              // Phase 4-5: Sort into category columns with smooth choreography
+              const categoryPositions: Record<string, number> = { 
+                whim: -220,    // Left column
+                trifle: 0,     // Center column  
+                ornament: 220  // Right column
+              };
+              const targetX = categoryPositions[use.category] || 0;
+              
+              // Find position within category stack
+              const sameCategory = shakespeareUses.filter(u => u.category === use.category);
+              const categoryIndex = sameCategory.findIndex(u => u.play === use.play);
+              const targetY = categoryIndex * 60; // Vertical stacking within category
+              
+              // Current fan position (what we're animating FROM)
+              const fanX = offsetFromCenter * FAN_SPREAD;
+              const fanY = Math.abs(offsetFromCenter) * FAN_ARC;
+              const fanRotation = offsetFromCenter * FAN_ROTATION;
+              
+              // Apply easing to sortProgress for smoother animation
+              // Use ease-out cubic for more natural deceleration
+              const easedProgress = 1 - Math.pow(1 - sortProgress, 3);
+              
+              // Interpolate from fan position to sorted position
+              translateX = centerOffsetX + fanX + (targetX - fanX) * easedProgress;
+              
+              // Add a subtle "lift" arc during transition - cards rise then settle
+              const liftAmount = Math.sin(sortProgress * Math.PI) * 30;
+              translateY = centerOffsetY + fanY + (targetY - fanY) * easedProgress - liftAmount;
+              
+              // Rotation settles to 0 with easing
+              rotation = fanRotation * (1 - easedProgress);
+              
+              // Z-index strategy during sort:
+              // - Column-based z-index to keep columns visually separated
+              // - Left column in back, center middle, right in front (like a card spread)
+              // - Within column, higher cards (larger categoryIndex) are in front
+              const columnZ = use.category === 'whim' ? 0 : use.category === 'trifle' ? 10 : 20;
+              zIndex = columnZ + categoryIndex + 5;
+              
+              // During transition (not yet settled), boost z-index of cards still moving
+              if (sortProgress < 0.8) {
+                // Cards further from their target get higher z-index to stay visible
+                const distanceFromTarget = Math.abs(fanX - targetX);
+                zIndex += Math.floor(distanceFromTarget / 50);
+              }
+            }
+            
+            // Use longer transition during sorting phase for smoother animation
+            const transitionDuration = phase >= 4 ? '0.7s' : '0.5s';
             
             return (
               <div
                 key={use.play}
                 className={`folio-card ${isVisible ? "revealed" : ""}`}
                 style={{
-                  transform: `
-                    translateX(${spreadOffset}px) 
-                    translateY(${isVisible ? 0 : 50}px)
-                    rotate(${isSpread ? (index - 2) * 5 : index * 0.5}deg)
-                  `,
+                  transform: `translateX(${translateX}px) translateY(${translateY}px) rotate(${rotation}deg) scale(${scale})`,
                   opacity: isVisible ? 1 : 0,
-                  zIndex: shakespeareUses.length - index,
+                  zIndex: zIndex,
+                  transition: `transform ${transitionDuration} cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease`,
+                  willChange: 'transform, opacity',
                 }}
               >
                 <div className="card-play">{use.play}</div>
@@ -891,11 +1011,33 @@ const ShakespeareShuffle: React.FC = () => {
             );
           })}
         </div>
+        
+        {/* Category labels for sorting phase */}
+        {phase >= 4 && (
+          <div className="category-labels" style={{ opacity: sortProgress }}>
+            <span className="category-label" style={{ left: "calc(50% - 200px)" }}>Whim/Fancy</span>
+            <span className="category-label" style={{ left: "50%", transform: "translateX(-50%)" }}>Trifle</span>
+            <span className="category-label" style={{ left: "calc(50% + 150px)" }}>Ornament</span>
+          </div>
+        )}
 
+        {/* Phase 3 text (45-65%): Spec requirement */}
+        {showSpreadText && (
+          <div className="shuffle-spread-text">
+            <p className="spread-emphasis">Shakespeare never used &ldquo;toy&rdquo; to mean plaything.</p>
+            <p className="spread-subtext">Not once.</p>
+          </div>
+        )}
+
+        {/* Phase 5 (85-100%): Empty space + spec conclusion */}
         {showConclusion && (
           <div className="shuffle-conclusion">
-            <p>Shakespeare used &ldquo;toy&rdquo; over 30 times.</p>
-            <p className="conclusion-emphasis">Never once meaning &ldquo;child&apos;s plaything.&rdquo;</p>
+            {/* Empty space representing the absent modern meaning */}
+            <div className="empty-meaning-space">
+              <span className="empty-label">[ modern meaning ]</span>
+              <span className="empty-absent">— absent —</span>
+            </div>
+            <p className="conclusion-emphasis">&ldquo;The meaning we know was not yet born.&rdquo;</p>
           </div>
         )}
       </div>
@@ -964,7 +1106,7 @@ const InventionOfChildhood: React.FC = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="scroll-lock-childhood" style={{ height: "280vh" }}>
+    <div ref={containerRef} className="scroll-lock-childhood" style={{ height: "450vh" }}>
       <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`}>
         {/* Skip button */}
         {isPinned && scrollProgress < 95 && (
@@ -1099,7 +1241,7 @@ const ToymakersBench: React.FC = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="scroll-lock-toymaker" style={{ height: "300vh" }}>
+    <div ref={containerRef} className="scroll-lock-toymaker" style={{ height: "450vh" }}>
       <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`}>
         {isPinned && scrollProgress < 95 && (
           <button className="skip-button" onClick={handleSkip}>Skip →</button>
@@ -1241,7 +1383,7 @@ const DepartmentStoreAscent: React.FC = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="scroll-lock-department" style={{ height: "280vh" }}>
+    <div ref={containerRef} className="scroll-lock-department" style={{ height: "450vh" }}>
       <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`}>
         {isPinned && scrollProgress < 95 && (
           <button className="skip-button" onClick={handleSkip}>Skip →</button>
@@ -1391,7 +1533,7 @@ const WordBranches: React.FC = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="scroll-lock-branches" style={{ height: "260vh" }}>
+    <div ref={containerRef} className="scroll-lock-branches" style={{ height: "450vh" }}>
       <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`}>
         {isPinned && scrollProgress < 95 && (
           <button className="skip-button" onClick={handleSkip}>Skip →</button>
