@@ -39,10 +39,10 @@ const CURATED_ESSAYS: CuratedEssay[] = [
     heroAlt: 'The Word Essay — visual essay about the form itself',
   },
   {
-    id: 'the-rwanda-genocide',
-    // Kigali Genocide Memorial - solemn remembrance
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/d/d7/Kigali_Genocide_Memorial.jpg',
-    heroAlt: 'Kigali Genocide Memorial exterior, Rwanda',
+    id: 'the-origin-of-toy',
+    // Shakespeare folio imagery - etymology essay
+    heroImage: '/og/the-origin-of-toy.png',
+    heroAlt: "The Origin of Toy — from sin to innocence",
   },
   {
     id: 'the-word-han',

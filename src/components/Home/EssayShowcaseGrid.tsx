@@ -74,15 +74,15 @@ const SHOWCASE_ESSAYS: ShowcaseEssay[] = [
     size: 'standard',
   },
   {
-    id: 'the-origin-of-toy',
-    title: 'TOY',
-    subtitle: 'From Sin to Innocence',
-    category: 'Etymology',
-    categoryColor: '#10B981',
-    readTime: '18 min',
-    href: '/essays/the-origin-of-toy',
-    // Shakespeare folio imagery - etymology essay
-    heroImage: '/og/the-origin-of-toy.png',
+    id: 'the-rwanda-genocide',
+    title: 'Kwibuka',
+    subtitle: 'A Hundred Days of Darkness, A Generation of Light',
+    category: 'History',
+    categoryColor: '#F59E0B',
+    readTime: '35 min',
+    href: '/essays/the-rwanda-genocide',
+    // Kigali Genocide Memorial - solemn remembrance
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/d/d7/Kigali_Genocide_Memorial.jpg',
     size: 'standard',
   },
 ];
