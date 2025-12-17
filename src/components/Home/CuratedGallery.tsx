@@ -39,10 +39,10 @@ const CURATED_ESSAYS: CuratedEssay[] = [
     heroAlt: 'The Word Essay — visual essay about the form itself',
   },
   {
-    id: 'the-scramble-for-africa',
-    // Berlin Conference 1884 - historical moment
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/2/26/Afrikakonferenz.jpg',
-    heroAlt: 'Berlin Conference 1884 - European powers dividing Africa',
+    id: 'the-rwanda-genocide',
+    // Kigali Genocide Memorial - solemn remembrance
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/d/d7/Kigali_Genocide_Memorial.jpg',
+    heroAlt: 'Kigali Genocide Memorial exterior, Rwanda',
   },
   {
     id: 'the-holocaust',
