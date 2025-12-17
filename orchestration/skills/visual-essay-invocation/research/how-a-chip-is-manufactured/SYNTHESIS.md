@@ -194,3 +194,4 @@ Semiconductor manufacturing represents the convergence of chemistry, physics, en
 **The closing line captures it**: "The modern world runs on silicon not because it is rare, but because it is extraordinarily difficult to shape with precision."
 
 
+

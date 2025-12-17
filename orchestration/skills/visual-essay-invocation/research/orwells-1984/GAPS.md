@@ -246,3 +246,4 @@ When encountering a gap:
 3. **Use what IS known** to build around gaps
 4. **The emotional truth** can be conveyed even when documentary precision is unavailable
 
+

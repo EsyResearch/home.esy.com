@@ -160,3 +160,4 @@ export function ArtifactCard({ state, onReset, onExport }: ArtifactCardProps) {
 
 export default ArtifactCard;
 
+

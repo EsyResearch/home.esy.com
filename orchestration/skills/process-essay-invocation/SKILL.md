@@ -681,3 +681,4 @@ December 2025
 *This skill defines the specification template for Programmatic Process Essays—Esy's format for stateful, interactive assembly experiences. Unlike standard visual essays (narrative-first with scroll reveals), process essays are assembly-first with persistent reader agency. The 12-section template ensures comprehensive coverage of concept, learning objectives, storyboard, scene templates, state model, simulation logic, visual system, implementation architecture, essay text, working prototype, authoring workflow, and future extensions.*
 
 
+

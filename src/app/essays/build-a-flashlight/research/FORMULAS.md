@@ -352,3 +352,4 @@ function computeMetrics(state) {
 All formulas verified against standard electronics references. Simplified models are appropriate for educational purposes while remaining physically accurate.
 
 
+

@@ -192,3 +192,4 @@ export type BatteryType = keyof typeof BATTERY_SPECS;
 export type ReflectorType = keyof typeof REFLECTOR_SPECS;
 export type SwitchType = keyof typeof SWITCH_SPECS;
 
+

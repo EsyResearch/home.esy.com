@@ -677,3 +677,4 @@ The hero sequence reveals money creation as a system coming to life—not a sing
 *This invocation spec is complete and ready for production. All 8 stages are specified with scroll-lock sequences, visual treatments, and content focus. The spec follows the six-layer architecture and integrates the complete research package. Tone is neutral, mechanical, and educational—treating money as infrastructure, not a political argument.*
 
 
+

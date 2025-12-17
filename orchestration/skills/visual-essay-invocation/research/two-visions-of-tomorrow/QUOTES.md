@@ -267,3 +267,4 @@
 - Contrast Orwell quotes (fear, oppression) with Huxley quotes (pleasure, conditioning)
 - John the Savage's "I want sin" quote is powerful for illustrating resistance to pleasure-dystopia
 
+

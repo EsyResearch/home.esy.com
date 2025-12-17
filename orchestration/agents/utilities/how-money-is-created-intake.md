@@ -146,3 +146,4 @@ initiate production for a visual essay with this intake:
 This is not a political argument. It is a mechanical explanation of a system. The goal is to create a reference piece that people bookmark and share for years—done calmly and mechanically, it becomes one of the highest-leverage process essays Esy can publish.
 
 
+

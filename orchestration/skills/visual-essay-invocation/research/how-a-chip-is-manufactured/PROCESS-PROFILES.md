@@ -384,3 +384,4 @@ Sand → Purification → Crystal Growth → Wafer Slicing → Polishing
 **Total time**: 2-3 months per wafer
 
 
+

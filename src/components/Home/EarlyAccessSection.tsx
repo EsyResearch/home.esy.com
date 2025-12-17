@@ -33,7 +33,7 @@ const EarlyAccessSection: React.FC = () => {
         </p>
         
         <a 
-          href="https://app.esy.com/early-access" 
+          href="https://app.esy.com/signup" 
           className="early-access-cta"
           target="_blank"
           rel="noopener noreferrer"

@@ -186,3 +186,4 @@ Based on research, the following structure maximizes narrative impact:
 - Progress bar (divided line) reinforces thesis in interface
 - End on question, not answer — respect reader intelligence
 
+

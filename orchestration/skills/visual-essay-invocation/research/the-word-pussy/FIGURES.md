@@ -89,3 +89,4 @@
 | Gutenberg | 1455 | Inventor | Print technology | Portrait + Bible |
 | Nicolas Jenson | 1470 | Typographer | Humanist type | Type specimen |
 
+

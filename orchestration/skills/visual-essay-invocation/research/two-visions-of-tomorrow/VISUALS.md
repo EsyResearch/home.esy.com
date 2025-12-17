@@ -236,3 +236,4 @@ The hero and recurring visual motif uses split-screen to show both worlds:
 - Modern imagery should feel uncomfortable — surveillance we accept, pleasure we choose
 - Progress bar should reinforce thesis visually throughout reading
 
+

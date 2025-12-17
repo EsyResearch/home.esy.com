@@ -434,3 +434,4 @@ December 2025
 *This agent specializes in architecting Programmatic Process Essays—Esy's format for stateful, interactive assembly experiences. It transforms intake documents into comprehensive 12-section specifications covering concept, learning objectives, storyboard, scene templates, state model, simulation logic, visual system, implementation architecture, essay text, working prototype, authoring workflow, and extensions. The agent ensures every specification is technically valid, educationally sound, and accessible by default.*
 
 
+

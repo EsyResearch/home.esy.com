@@ -85,3 +85,4 @@
 5. **1960s**: American slang adds "coward" meaning
 6. **1970s+**: Word becomes primarily taboo in public discourse
 
+

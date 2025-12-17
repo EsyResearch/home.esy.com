@@ -260,3 +260,4 @@ If the Party says 2+2=5, and you believe it, then reality is whatever the Party 
 | Novel's philosophical meaning | HIGH | Text analysis, critical tradition |
 | Contemporary relevance | MEDIUM | Interpretive, avoid overreach |
 
+

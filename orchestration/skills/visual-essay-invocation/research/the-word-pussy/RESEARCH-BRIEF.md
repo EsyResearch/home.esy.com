@@ -91,3 +91,4 @@ This essay uses **evolving typefaces** as the primary visual narrative device:
 5. ✅ Typography research supports era-based visual treatment
 6. ✅ No vague claims—everything research-backed
 
+

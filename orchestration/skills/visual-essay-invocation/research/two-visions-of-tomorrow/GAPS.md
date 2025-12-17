@@ -157,3 +157,4 @@ If time permits, these could be further investigated:
 - [ ] Clarify NPG licensing for Huxley portraits
 - [ ] Locate any Orwell response to Huxley letter
 
+

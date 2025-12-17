@@ -268,3 +268,4 @@ This visual essay uses **evolving typefaces** as its primary visual device. The 
 - [ ] Font loading optimized (preload critical fonts)
 - [ ] Fallbacks defined for each typeface
 
+

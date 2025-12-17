@@ -16,12 +16,12 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals"),
   ...storybook.configs["flat/recommended"],
   {
-    // Scrollytelling experience relies on raw <img> tags and custom hook patterns;
-    // relax noisy rules while keeping the rest of the Next core-web-vitals guidance.
+    // Keep core rules active but downgrade to warnings so builds surface issues
+    // without blocking while we migrate to Next <Image> and tighten hook deps.
     rules: {
-      "@next/next/no-img-element": "off",
-      "react-hooks/exhaustive-deps": "off",
-      "import/no-anonymous-default-export": "off"
+      "@next/next/no-img-element": "warn",
+      "react-hooks/exhaustive-deps": "warn",
+      "import/no-anonymous-default-export": "warn"
     }
   }
 ];

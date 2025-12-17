@@ -807,3 +807,4 @@ src/app/essays/how-a-chip-is-manufactured/
 *This specification is production-ready. All content is research-backed via the research package at `research/how-a-chip-is-manufactured/`. No claims should be made outside what the research supports. The essay follows the process-essay format with minimal personality content, emphasizing comprehension over drama.*
 
 
+

@@ -99,3 +99,4 @@
 | Euphemism treadmill concept | Pinker et al. | Modern | ✅ |
 | Johnson's omission | Dictionary | 1755 | ✅ |
 
+

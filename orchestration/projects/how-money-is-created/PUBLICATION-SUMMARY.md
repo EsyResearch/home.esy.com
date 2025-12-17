@@ -168,3 +168,4 @@ To add this essay to the visual essays index, add the following entry to `src/da
 - **Design Research**: `orchestration/projects/how-money-is-created/DESIGN-RESEARCH.md`
 - **Story Architecture**: `orchestration/projects/how-money-is-created/STORY-ARCHITECTURE.md`
 
+

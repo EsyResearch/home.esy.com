@@ -167,3 +167,4 @@ This essay must make readers *feel*:
 3. **Scrollytelling Expert** to implement with Design Research phase
 4. Hero section requires exceptional emotional engagement
 
+
