@@ -33,10 +33,10 @@ interface CuratedEssay {
 
 const CURATED_ESSAYS: CuratedEssay[] = [
   {
-    id: 'the-diamond-cartel',
-    // De Beers diamond sorting - compelling visual
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/7/7e/The_Hope_Diamond_-_SIA.jpg',
-    heroAlt: 'The Hope Diamond - symbol of diamond industry mystique',
+    id: 'the-word-essay',
+    // Essay craft and typography — aligns to the essay about "essay"
+    heroImage: '/og/the-word-essay.png',
+    heroAlt: 'The Word Essay — visual essay about the form itself',
   },
   {
     id: 'the-scramble-for-africa',
