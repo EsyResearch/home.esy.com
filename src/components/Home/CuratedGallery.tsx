@@ -45,10 +45,10 @@ const CURATED_ESSAYS: CuratedEssay[] = [
     heroAlt: 'Kigali Genocide Memorial exterior, Rwanda',
   },
   {
-    id: 'the-holocaust',
-    // Jewish family in Poland before the Holocaust
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/d/da/A_Jewish_family_strolls_along_a_street_in_Kalisz_-_16_mai_1935.jpg',
-    heroAlt: 'A Jewish family in Kalisz, Poland, May 1935',
+    id: 'the-word-han',
+    // Han character — etymology across East Asia
+    heroImage: '/og/the-word-han.png',
+    heroAlt: 'The Word Han — 2,200-year journey across East Asia',
   },
   {
     id: 'how-a-chip-is-manufactured',
