@@ -51,10 +51,10 @@ const CURATED_ESSAYS: CuratedEssay[] = [
     heroAlt: 'A Jewish family in Kalisz, Poland, May 1935',
   },
   {
-    id: 'the-tea-journey-illustrated',
-    // Tea plantation aesthetic
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/0/04/Tea_plantation%2C_Cameron_Highlands.jpg',
-    heroAlt: 'Tea plantation in Cameron Highlands - where the journey begins',
+    id: 'how-a-chip-is-manufactured',
+    // Semiconductor fab - chip manufacturing process
+    heroImage: '/og/chip-manufacturing.png',
+    heroAlt: 'How a Chip is Manufactured — semiconductor wafer fabrication',
   },
   {
     id: 'the-silicon-revolution',
