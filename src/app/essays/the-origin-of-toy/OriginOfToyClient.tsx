@@ -800,11 +800,13 @@ const DictionaryArchaeology: React.FC = () => {
 };
 
 // Shakespeare Shuffle Scroll-Lock Sequence  
-// FIXED: Added proper scroll-lock pinning (was missing is-pinned state)
+// FIXED: Added proper scroll-lock pinning with smooth exit transition
 const ShakespeareShuffle: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isPinned, setIsPinned] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
+  const [unpinPoint, setUnpinPoint] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -820,12 +822,23 @@ const ShakespeareShuffle: React.FC = () => {
       const scrolledIntoSection = -rect.top;
 
       if (rect.top <= 0 && scrolledIntoSection <= scrollableDistance) {
+        // Currently in scroll-lock zone
         setIsPinned(true);
+        setIsExiting(false);
         const progress = Math.min(100, Math.max(0, (scrolledIntoSection / scrollableDistance) * 100));
         setScrollProgress(progress);
-      } else {
+      } else if (rect.top > 0) {
+        // Before scroll-lock zone
         setIsPinned(false);
-        setScrollProgress(rect.top > 0 ? 0 : 100);
+        setIsExiting(false);
+        setScrollProgress(0);
+      } else {
+        // After scroll-lock zone - smooth exit
+        // Content should be positioned at the unpin point and scroll up naturally
+        setIsPinned(false);
+        setIsExiting(true);
+        setScrollProgress(100);
+        setUnpinPoint(scrollableDistance);
       }
     };
 
@@ -873,8 +886,17 @@ const ShakespeareShuffle: React.FC = () => {
   const showConclusion = scrollProgress >= 85;
 
   return (
-    <div ref={containerRef} className="shakespeare-shuffle" style={{ height: "500vh" }}>
-      <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`}>
+    <div ref={containerRef} className="shakespeare-shuffle" style={{ height: "500vh", position: "relative" }}>
+      <div 
+        className={`pinned-content ${isPinned ? "is-pinned" : ""} ${isExiting ? "is-exiting" : ""}`}
+        style={isExiting ? { 
+          position: "absolute",
+          top: `${unpinPoint}px`,
+          left: 0,
+          right: 0,
+          height: "100vh",
+        } : undefined}
+      >
         {/* Skip button */}
         {isPinned && scrollProgress < 95 && (
           <button className="skip-button" onClick={() => setScrollProgress(100)}>Skip →</button>

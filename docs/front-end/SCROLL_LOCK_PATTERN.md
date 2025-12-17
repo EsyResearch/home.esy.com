@@ -244,6 +244,12 @@ visibility: phase === "phase1" ? 'visible' : 'hidden',
 }
 ```
 
+### Content Abruptly Disappears on Exit
+
+**Cause**: When `isPinned` becomes `false`, content switches from `position: fixed` to `position: relative`, jumping to the top of its container (off-screen).
+
+**Fix**: Add an exit state that positions content absolutely at the unpin point. See [Scroll-Lock Exit Transition](./SCROLL_LOCK_EXIT_TRANSITION.md) for the complete solution.
+
 ## Essays Using This Pattern
 
 | Essay | Sections Using Scroll-Lock |
@@ -267,6 +273,7 @@ When implementing a scroll-lock section:
 
 ## Related Documentation
 
+- [Scroll-Lock Exit Transition](./SCROLL_LOCK_EXIT_TRANSITION.md) - **Critical** — Fix for content abruptly disappearing when scroll-lock ends
 - [Sticky Position Fixes](./STICKY_POSITION_FIXES.md) - **Critical** — Fixes for when sticky breaks (overflow, specificity)
 - [Hero Hydration Pattern](./HERO_HYDRATION_PATTERN.md) - Fixing FOUC on first load
 - [Scroll-Lock Patterns Reference](../../orchestration/skills/visual-essay-invocation/references/scroll-lock-patterns.md) - Pattern catalog
