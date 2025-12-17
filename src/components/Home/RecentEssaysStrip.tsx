@@ -35,8 +35,8 @@ const RECENT_ESSAY_IMAGES: RecentEssay[] = [
   },
   {
     id: 'the-history-of-pizza',
-    heroImage: '/og/the-history-of-pizza.png',
-    heroAlt: 'From Hearth to Heritage — The 10,000-year journey of pizza',
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg',
+    heroAlt: 'Pizza Margherita - 10,000 years of culinary history',
   },
   {
     id: 'the-history-of-burmese-cuisine',
