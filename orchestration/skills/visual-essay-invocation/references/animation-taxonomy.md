@@ -4,23 +4,33 @@ This reference documents the complete taxonomy of animation patterns used in Esy
 
 ---
 
+## Status Legend
+
+| Icon | Meaning |
+|------|---------|
+| ✅ | **Implemented** — In production across multiple essays |
+| 🟡 | **Partial** — Implemented in some essays or partially complete |
+| 📋 | **Spec Only** — Defined in design specs, not yet coded |
+
+---
+
 ## Overview
 
 Visual essay animations fall into **seven categories**:
 
-| Category | Purpose | Scroll-Driven? |
-|----------|---------|----------------|
-| **Scroll-Lock Patterns** | Major narrative sequences | Yes (viewport locks) |
-| **Choreography** | Staged animation phases | Yes (percentage-based) |
-| **Typography Morphs** | Word/letterform transformations | Yes or triggered |
-| **Micro-interactions** | Polish and feedback | Mixed |
-| **Transition Treatments** | Era/section boundaries | Yes |
-| **Parallax Depth** | Layered spatial depth | Yes |
-| **Ambient/Atmospheric** | Background motion | Continuous |
+| Category | Purpose | Scroll-Driven? | Status |
+|----------|---------|----------------|--------|
+| **Scroll-Lock Patterns** | Major narrative sequences | Yes (viewport locks) | ✅ |
+| **Choreography** | Staged animation phases | Yes (percentage-based) | ✅ |
+| **Typography Morphs** | Word/letterform transformations | Yes or triggered | 🟡 |
+| **Micro-interactions** | Polish and feedback | Mixed | ✅ |
+| **Transition Treatments** | Era/section boundaries | Yes | 🟡 |
+| **Parallax Depth** | Layered spatial depth | Yes | 📋 |
+| **Ambient/Atmospheric** | Background motion | Continuous | 🟡 |
 
 ---
 
-## 1. Scroll-Lock Patterns
+## 1. Scroll-Lock Patterns ✅
 
 **Definition**: Viewport locks in place; scroll input drives animation progress (0-100%).
 
@@ -41,7 +51,7 @@ Visual essay animations fall into **seven categories**:
 
 ---
 
-## 2. Choreography (Percentage-Based Staging)
+## 2. Choreography (Percentage-Based Staging) ✅
 
 **Definition**: Breaking a scroll-driven sequence into distinct phases with specific visual states at percentage breakpoints.
 
@@ -74,9 +84,11 @@ Visual essay animations fall into **seven categories**:
 
 ---
 
-## 3. Typography Morphs / Typography Evolution
+## 3. Typography Morphs / Typography Evolution 🟡
 
 **Definition**: Word-specific animations where **letterforms transform**—font changes, deconstruction, reconstruction.
+
+**Implementation Status**: Hero morphs work in TOY and Pussy essays. Variable font morphing and script transformations not yet implemented.
 
 ### Sub-Types
 
@@ -117,7 +129,7 @@ element.style.transition = 'opacity 300ms';
 
 ---
 
-## 4. Micro-interactions
+## 4. Micro-interactions ✅
 
 **Definition**: Small, subtle effects that add polish, provide feedback, or enhance immersion.
 
@@ -183,9 +195,11 @@ lastScroll = window.scrollY;
 
 ---
 
-## 5. Transition Treatments
+## 5. Transition Treatments 🟡
 
 **Definition**: Visual changes that mark **era or section boundaries**—the aesthetic shift between historical periods or narrative chapters.
+
+**Implementation Status**: Era-specific CSS styling (colors, filters, fonts) applied in TOY essay. Animated crossfades between eras not consistently implemented.
 
 ### Components
 
@@ -227,9 +241,11 @@ font-family: 'EB Garamond', serif;
 
 ---
 
-## 6. Parallax Depth System
+## 6. Parallax Depth System 📋
 
 **Definition**: Multiple visual layers moving at different scroll speeds, creating perceived depth.
+
+**Implementation Status**: 5-layer system fully specified in design docs. Not yet implemented in any production essay. Candidate for next implementation phase.
 
 ### Standard Layer Structure
 
@@ -286,9 +302,11 @@ window.addEventListener('scroll', () => {
 
 ---
 
-## 7. Ambient / Atmospheric Animations
+## 7. Ambient / Atmospheric Animations 🟡
 
 **Definition**: Continuous background motion that creates atmosphere without demanding attention.
+
+**Implementation Status**: Swirl/orbit effects work in TOY hero. Floating particles and dust motes specified but not implemented.
 
 ### Sub-Types
 
