@@ -7,6 +7,7 @@
 - Technical SEO architecture and site health optimization
 - On-page content optimization and semantic SEO
 - SERP feature capture (featured snippets, PAA, knowledge panels)
+- Structured data and rich results implementation (Article, BreadcrumbList, FAQPage)
 - Core Web Vitals and page experience optimization
 - Keyword research and search intent mapping
 - Link building strategy and authority development
@@ -137,6 +138,7 @@
 
 **Schema Markup & Structured Data**
 - Article schema (NewsArticle, BlogPosting, HowTo)
+- Rich results triad: Article + BreadcrumbList + FAQPage for eligibility
 - Product schema and merchant listings
 - FAQ schema implementation
 - How-To schema with step-by-step
@@ -148,6 +150,20 @@
 - VideoObject schema
 - Speakable schema for voice search
 - Schema validation and testing
+
+### Rich Results Implementation: Article + BreadcrumbList + FAQPage
+- **When to use:** Informational/essay content targeting informational intent.
+- **Inputs required:** Canonical URL (absolute, trailing slash), OG/Twitter image (1200×630 PNG), title, description, publish/modified dates, author/publisher, breadcrumbs (home → section → page), 3–5 FAQs grounded in on-page content.
+- **Implementation steps:**
+  1. Normalize URLs (canonical + OG/Twitter + JSON-LD) to absolute HTTPS; enforce trailing slash consistency.
+  2. Set OG/Twitter: title ≤60 chars, description 150–200 chars, `twitter:site @EsyResearch`, `summary_large_image`, image alt text.
+  3. Add JSON-LD (server-rendered, single block) with:
+     - **Article:** `@id`, `headline`, `alternativeHeadline` (if needed), `description`, `url`, `datePublished`, `dateModified`, `author`, `publisher` (with logo), `image`, `articleSection`, `inLanguage`.
+     - **BreadcrumbList:** ordered `itemListElement` with names/URLs.
+     - **FAQPage:** 3–5 Q&As matching on-page answers; avoid speculative claims.
+  4. Place the `<script type=\"application/ld+json\">` before the main client render to avoid hydration/SSR issues.
+  5. Validate via Rich Results Test / Schema validator; fix any relative URLs or missing fields.
+- **Red flags to avoid:** Relative image URLs, missing canonical, mismatched trailing slash, FAQ questions not answered on-page, duplicate `@id`, multiple competing JSON-LD blocks for the same entity on one page.
 
 **Other SERP Features**
 - Knowledge panel optimization
