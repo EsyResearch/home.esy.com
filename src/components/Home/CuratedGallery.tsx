@@ -47,7 +47,7 @@ const CURATED_ESSAYS: CuratedEssay[] = [
   {
     id: 'the-word-han',
     // Han character — etymology across East Asia
-    heroImage: '/og/the-word-han.png',
+    heroImage: '/og/the-word-han-gold.png',
     heroAlt: 'The Word Han — 2,200-year journey across East Asia',
   },
   {

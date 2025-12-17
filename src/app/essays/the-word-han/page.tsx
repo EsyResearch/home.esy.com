@@ -27,7 +27,7 @@ const jsonLd = {
         "url": "https://esy.com",
         "logo": { "@type": "ImageObject", "url": "https://esy.com/esy-logo.png" }
       },
-      "image": "https://esy.com/og/the-word-han.png",
+      "image": "https://esy.com/og/the-word-han-gold.png",
       "articleSection": "Etymology",
       "inLanguage": "en-US"
     },
@@ -128,7 +128,8 @@ export const metadata = createVisualEssayMetadata({
     "linguistics",
   ],
   imageAlt:
-    "The Word Han — A visual essay exploring how one word shaped four East Asian civilizations over 2,200 years",
+    "The Word Han — Bronze inscription character glowing gold on dark background",
+  ogImage: "https://esy.com/og/the-word-han-gold.png",
 });
 
 export default function TheWordHanPage() {

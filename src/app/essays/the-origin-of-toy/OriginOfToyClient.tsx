@@ -1029,7 +1029,7 @@ const ShakespeareShuffle: React.FC = () => {
                 // Cards further from their target get higher z-index to stay visible
                 const distanceFromTarget = Math.abs(fanX - targetX);
                 zIndex += Math.floor(distanceFromTarget / 50);
-              }
+            }
             }
             
             // Use longer transition during sorting phase for smoother animation
@@ -1631,27 +1631,27 @@ const WordBranches: React.FC = () => {
                 <div key={groupNum} className={`branch-row row-${groupNum}`}>
                   {groupBranches.map((branch, indexInGroup) => {
                     const branchStart = groupStart + indexInGroup * 8;
-                    const branchOpacity = scrollProgress >= branchStart 
+              const branchOpacity = scrollProgress >= branchStart 
                       ? Math.min(1, (scrollProgress - branchStart) / 12) 
-                      : 0;
+                : 0;
                     const branchScale = 0.8 + (branchOpacity * 0.2);
-                    
-                    return (
-                      <div
-                        key={branch.word}
-                        className={`tree-branch group-${branch.group}`}
-                        style={{
-                          opacity: branchOpacity,
+
+              return (
+                <div
+                  key={branch.word}
+                  className={`tree-branch group-${branch.group}`}
+                  style={{
+                    opacity: branchOpacity,
                           transform: `scale(${branchScale}) translateY(${(1 - branchOpacity) * 20}px)`,
                           transition: 'opacity 0.5s ease-out, transform 0.5s ease-out',
-                        }}
-                      >
-                        <div className="branch-line" />
-                        <div className="branch-content">
-                          <span className="branch-word">{branch.word}</span>
-                          <span className="branch-meaning">{branch.meaning}</span>
-                          <span className="branch-era">{branch.era}</span>
-                        </div>
+                  }}
+                >
+                  <div className="branch-line" />
+                  <div className="branch-content">
+                    <span className="branch-word">{branch.word}</span>
+                    <span className="branch-meaning">{branch.meaning}</span>
+                    <span className="branch-era">{branch.era}</span>
+                  </div>
                       </div>
                     );
                   })}
@@ -1702,7 +1702,7 @@ const EtymologyComplete: React.FC = () => {
         setIsPinned(true);
         setIsExiting(false);
         const progress = Math.min(100, Math.max(0, (scrolledIntoSection / scrollableDistance) * 100));
-        setScrollProgress(progress);
+      setScrollProgress(progress);
       } else if (rect.top > 0) {
         setIsPinned(false);
         setIsExiting(false);
@@ -1770,7 +1770,7 @@ const EtymologyComplete: React.FC = () => {
         {isPinned && (
           <div className="scroll-lock-progress">
             <div className="progress-fill" style={{ width: `${scrollProgress}%` }} />
-          </div>
+      </div>
         )}
 
         <div className="etymology-header">
@@ -1781,7 +1781,7 @@ const EtymologyComplete: React.FC = () => {
         <div className="etymology-stage">
           {/* Medieval TOYE - blackletter style */}
           {phase >= 1 && (
-            <div 
+            <div
               className={`era-cluster medieval ${phase === 1 ? 'active' : ''}`}
               style={{
                 opacity: Math.min(1, scrollProgress / 15) * (1 - clusterFadeOut),
@@ -1796,8 +1796,8 @@ const EtymologyComplete: React.FC = () => {
                     animationDelay: `${i * 100}ms`
                   }}>{m}</span>
                 ))}
-              </div>
             </div>
+      </div>
           )}
 
           {/* Renaissance meanings */}
@@ -1883,12 +1883,12 @@ const EtymologyComplete: React.FC = () => {
                 <span className="letter" style={{ animationDelay: '0ms' }}>T</span>
                 <span className="letter" style={{ animationDelay: '100ms' }}>O</span>
                 <span className="letter" style={{ animationDelay: '200ms' }}>Y</span>
-              </span>
+          </span>
               <p className="final-text" style={{ opacity: reassemblyProgress }}>
                 Every time you say &ldquo;toy,&rdquo; seven centuries speak through you.
               </p>
-            </div>
-          )}
+        </div>
+      )}
         </div>
       </div>
     </div>
@@ -2400,7 +2400,7 @@ const OriginOfToyClient: React.FC = () => {
         </ChapterSection>
 
         {/* Scroll-Lock: Etymology Complete - OUTSIDE ChapterSection to avoid transform conflicts */}
-        <EtymologyComplete />
+          <EtymologyComplete />
 
         {/* Revelation / Closing */}
         <section className="revelation-section">
