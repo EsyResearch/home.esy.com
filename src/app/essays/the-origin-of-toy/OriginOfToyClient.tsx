@@ -1717,6 +1717,9 @@ const EtymologyComplete: React.FC = () => {
 
   // Calculate convergence - meanings move toward center as we approach finale
   const convergeFactor = Math.max(0, Math.min(1, (scrollProgress - 75) / 15));
+  
+  // Fade out era clusters when final TOY appears (85-95% scroll)
+  const clusterFadeOut = Math.max(0, Math.min(1, (scrollProgress - 85) / 10));
 
   const handleSkip = useCallback(() => {
     if (containerRef.current) {
@@ -1760,7 +1763,7 @@ const EtymologyComplete: React.FC = () => {
             <div 
               className={`era-cluster medieval ${phase === 1 ? 'active' : ''}`}
               style={{
-                opacity: Math.min(1, scrollProgress / 15),
+                opacity: Math.min(1, scrollProgress / 15) * (1 - clusterFadeOut),
                 transform: `translateY(${convergeFactor * -50}px) scale(${1 - convergeFactor * 0.3})`,
               }}
             >
@@ -1781,7 +1784,7 @@ const EtymologyComplete: React.FC = () => {
             <div 
               className={`era-cluster renaissance ${phase === 2 ? 'active' : ''}`}
               style={{
-                opacity: Math.min(1, (scrollProgress - 20) / 15),
+                opacity: Math.min(1, (scrollProgress - 20) / 15) * (1 - clusterFadeOut),
                 transform: `translateX(${-80 + convergeFactor * 80}px) translateY(${convergeFactor * -30}px) scale(${1 - convergeFactor * 0.3})`,
               }}
             >
@@ -1800,7 +1803,7 @@ const EtymologyComplete: React.FC = () => {
             <div 
               className={`era-cluster enlightenment ${phase === 3 ? 'active' : ''}`}
               style={{
-                opacity: Math.min(1, (scrollProgress - 40) / 15),
+                opacity: Math.min(1, (scrollProgress - 40) / 15) * (1 - clusterFadeOut),
                 transform: `translateX(${80 - convergeFactor * 80}px) translateY(${convergeFactor * -10}px) scale(${1 - convergeFactor * 0.3})`,
               }}
             >
@@ -1819,7 +1822,7 @@ const EtymologyComplete: React.FC = () => {
             <div 
               className={`era-cluster industrial ${phase === 4 ? 'active' : ''}`}
               style={{
-                opacity: Math.min(1, (scrollProgress - 60) / 12),
+                opacity: Math.min(1, (scrollProgress - 60) / 12) * (1 - clusterFadeOut),
                 transform: `translateX(${-60 + convergeFactor * 60}px) translateY(${20 + convergeFactor * -20}px) scale(${1 - convergeFactor * 0.3})`,
               }}
             >
@@ -1838,7 +1841,7 @@ const EtymologyComplete: React.FC = () => {
             <div 
               className={`era-cluster modern ${phase === 5 ? 'active' : ''}`}
               style={{
-                opacity: Math.min(1, (scrollProgress - 75) / 10),
+                opacity: Math.min(1, (scrollProgress - 75) / 10) * (1 - clusterFadeOut),
                 transform: `translateX(${60 - convergeFactor * 60}px) translateY(${40 + convergeFactor * -40}px) scale(${1 - convergeFactor * 0.3})`,
               }}
             >
@@ -1846,13 +1849,13 @@ const EtymologyComplete: React.FC = () => {
             </div>
           )}
 
-          {/* Final TOY reassembly - glowing */}
-          {showFinalWord && (
+          {/* Final TOY reassembly - glowing - only when pinned */}
+          {showFinalWord && isPinned && (
             <div 
               className="final-reassembly"
               style={{ 
                 opacity: reassemblyProgress,
-                transform: `scale(${0.8 + reassemblyProgress * 0.2})`,
+                transform: `translate(-50%, -50%) scale(${0.8 + reassemblyProgress * 0.2})`,
               }}
             >
               <span className="reassembled-word">

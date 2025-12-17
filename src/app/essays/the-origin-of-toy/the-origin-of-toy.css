@@ -671,8 +671,180 @@
   font-weight: 600;
 }
 
-/* ==================== ETYMOLOGY COMPLETE ==================== */
+/* ==================== SCROLL-LOCK: ETYMOLOGY COMPLETE ==================== */
+/* Per spec: "We reverse the hero sequence—reassembling the word with new understanding" */
 
+.scroll-lock-etymology {
+  position: relative;
+}
+
+.scroll-lock-etymology .pinned-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--toy-space-md) var(--toy-space-md);
+  min-height: 100vh;
+  background: var(--toy-bg-primary);
+}
+
+.scroll-lock-etymology .pinned-content.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 50;
+}
+
+.etymology-header {
+  text-align: center;
+  margin-bottom: var(--toy-space-md);
+}
+
+.etymology-stage {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--toy-space-md);
+}
+
+/* Era clusters - meanings grouped by historical period */
+.era-cluster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--toy-space-xs);
+  transition: all 0.6s var(--toy-ease-out);
+}
+
+.era-cluster.active {
+  transform: scale(1.05);
+}
+
+/* Medieval blackletter TOYE */
+.era-word.blackletter {
+  font-family: var(--toy-font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--toy-accent-gold);
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+/* Meaning tags */
+.era-meanings {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--toy-space-xs);
+}
+
+.meaning-tag {
+  font-family: var(--toy-font-serif);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--toy-text-secondary);
+  padding: var(--toy-space-xs) var(--toy-space-sm);
+  background: rgba(247, 243, 235, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 4px;
+  transition: all 0.4s ease-out;
+}
+
+.meaning-tag.coexist {
+  color: var(--toy-accent-gold);
+  border-color: var(--toy-accent-gold);
+  font-style: normal;
+}
+
+/* Era-specific colors */
+.era-cluster.medieval .meaning-tag {
+  border-color: var(--toy-era-medieval);
+}
+
+.era-cluster.renaissance .meaning-tag {
+  border-color: var(--toy-era-renaissance);
+}
+
+.era-cluster.enlightenment .meaning-tag {
+  border-color: var(--toy-era-enlightenment);
+}
+
+.era-cluster.industrial .meaning-tag {
+  border-color: var(--toy-era-victorian);
+}
+
+.era-cluster.modern .meaning-tag {
+  border-color: var(--toy-era-modern);
+}
+
+/* Final reassembly - TOY glowing - CENTERED IN VIEWPORT */
+.final-reassembly {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--toy-space-lg);
+  z-index: 100; /* Above everything for finale */
+  pointer-events: none; /* Don't block interactions */
+}
+
+.reassembled-word {
+  display: flex;
+  gap: var(--toy-space-sm);
+}
+
+.reassembled-word .letter {
+  font-family: var(--toy-font-display);
+  font-size: 5rem;
+  font-weight: 700;
+  color: var(--toy-accent-gold);
+  text-shadow: 
+    0 0 20px rgba(212, 175, 55, 0.5),
+    0 0 40px rgba(212, 175, 55, 0.3),
+    0 0 60px rgba(212, 175, 55, 0.2);
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.reassembled-word .letter:nth-child(1) { animation-delay: 0ms; }
+.reassembled-word .letter:nth-child(2) { animation-delay: 150ms; }
+.reassembled-word .letter:nth-child(3) { animation-delay: 300ms; }
+
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow: 
+      0 0 20px rgba(212, 175, 55, 0.5),
+      0 0 40px rgba(212, 175, 55, 0.3),
+      0 0 60px rgba(212, 175, 55, 0.2);
+  }
+  50% {
+    text-shadow: 
+      0 0 30px rgba(212, 175, 55, 0.7),
+      0 0 60px rgba(212, 175, 55, 0.5),
+      0 0 90px rgba(212, 175, 55, 0.3);
+  }
+}
+
+.final-text {
+  font-family: var(--toy-font-serif);
+  font-size: 1.125rem;
+  font-style: italic;
+  color: var(--toy-accent-gold);
+  text-align: center;
+  max-width: 400px;
+  margin: 0;
+}
+
+/* Legacy - keep for backwards compatibility */
 .etymology-complete {
   min-height: 80vh;
   padding: var(--toy-space-xl) var(--toy-space-md);
@@ -694,6 +866,41 @@
   letter-spacing: 0.1em;
 }
 
+/* Meaning timeline - vertical list of eras */
+.meaning-timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--toy-space-xs);
+  width: 100%;
+  max-width: 280px;
+}
+
+.meaning-item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--toy-space-sm);
+  padding: var(--toy-space-xs) var(--toy-space-sm);
+  border-left: 2px solid rgba(212, 175, 55, 0.3);
+  width: 100%;
+}
+
+.meaning-era {
+  font-family: var(--toy-font-mono);
+  font-size: 0.7rem;
+  color: var(--toy-accent-gold);
+  min-width: 45px;
+  text-align: right;
+}
+
+.meaning-text {
+  font-family: var(--toy-font-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--toy-text-secondary);
+}
+
+/* Legacy classes (for backwards compatibility) */
 .meaning-fragments {
   position: relative;
   width: 100%;

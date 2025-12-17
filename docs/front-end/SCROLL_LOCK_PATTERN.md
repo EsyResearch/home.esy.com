@@ -250,6 +250,46 @@ visibility: phase === "phase1" ? 'visible' : 'hidden',
 
 **Fix**: Add an exit state that positions content absolutely at the unpin point. See [Scroll-Lock Exit Transition](./SCROLL_LOCK_EXIT_TRANSITION.md) for the complete solution.
 
+### Centered Element Not Actually Centered (Inline Transform Override)
+
+**Cause**: CSS sets `transform: translate(-50%, -50%)` for centering, but inline React styles set `transform: scale(...)` which **completely overrides** the CSS transform (CSS transforms don't merge).
+
+**Symptom**: Element positioned at `top: 50%; left: 50%` with its top-left corner at center instead of its center at center.
+
+**Example of the bug**:
+```css
+/* CSS */
+.final-element {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centering offset */
+}
+```
+
+```tsx
+// JSX - OVERWRITES the CSS transform!
+<div 
+  className="final-element"
+  style={{ 
+    transform: `scale(${progress})` // ❌ Loses translate(-50%, -50%)!
+  }}
+/>
+```
+
+**Fix**: Combine ALL transforms in the inline style:
+```tsx
+// ✅ CORRECT - include the centering transform
+<div 
+  className="final-element"
+  style={{ 
+    transform: `translate(-50%, -50%) scale(${progress})`
+  }}
+/>
+```
+
+**Rule**: When using inline `transform` styles on elements that have CSS transforms for positioning, you MUST include the positioning transforms in the inline style.
+
 ## Essays Using This Pattern
 
 | Essay | Sections Using Scroll-Lock |
