@@ -82,7 +82,7 @@ const SHOWCASE_ESSAYS: ShowcaseEssay[] = [
     readTime: '18 min',
     href: '/essays/the-origin-of-toy',
     // Shakespeare folio imagery - etymology essay
-    heroImage: 'https://esy.com/og/the-origin-of-toy.png',
+    heroImage: '/og/the-origin-of-toy.png',
     size: 'standard',
   },
 ];
