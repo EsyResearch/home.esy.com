@@ -665,9 +665,11 @@ const ImageGallery: React.FC<{
 );
 
 // Dictionary Archaeology Scroll-Lock Sequence
+// FIXED: Added proper scroll-lock pinning (was missing is-pinned state)
 const DictionaryArchaeology: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isPinned, setIsPinned] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -678,13 +680,18 @@ const DictionaryArchaeology: React.FC = () => {
       const containerHeight = container.offsetHeight;
       const viewportHeight = window.innerHeight;
 
-      // Improved scroll calculation: More scroll depth for comfortable 5-layer reveal
-      // Spec recommends 800-1000px scroll depth per scroll-lock sequence
-      const scrolled = viewportHeight - rect.top;
-      const totalScroll = containerHeight + viewportHeight * 0.8; // Increased from 0.5 for deeper excavation
-      const progress = Math.min(100, Math.max(0, (scrolled / totalScroll) * 100));
-      
-      setScrollProgress(progress);
+      // Scroll-lock calculation: pin when section reaches top, release when scrolled through
+      const scrollableDistance = containerHeight - viewportHeight;
+      const scrolledIntoSection = -rect.top;
+
+      if (rect.top <= 0 && scrolledIntoSection <= scrollableDistance) {
+        setIsPinned(true);
+        const progress = Math.min(100, Math.max(0, (scrolledIntoSection / scrollableDistance) * 100));
+        setScrollProgress(progress);
+      } else {
+        setIsPinned(false);
+        setScrollProgress(rect.top > 0 ? 0 : 100);
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -706,82 +713,98 @@ const DictionaryArchaeology: React.FC = () => {
   const activeLayer = Math.min(4, Math.floor(scrollProgress / 20));
 
   return (
-    <div ref={containerRef} className="dictionary-archaeology">
-      <div className="archaeology-header">
-        <span className="archaeology-label">Scroll-Lock: Dictionary Archaeology</span>
-        <span className="archaeology-instruction">Scroll to excavate the word&apos;s history</span>
-      </div>
-      
-      {/* Excavation depth indicator - shows how deep we've dug */}
-      <div className="excavation-progress" aria-label={`Excavation depth: ${Math.round(scrollProgress)}%`}>
-        <div className="excavation-track">
-          <div 
-            className="excavation-fill" 
-            style={{ height: `${scrollProgress}%` }}
-          />
-          <div className="excavation-markers">
-            {definitions.map((def, index) => (
-              <div 
-                key={def.era} 
-                className={`excavation-marker ${index <= activeLayer ? "reached" : ""}`}
-                style={{ top: `${index * 20}%` }}
-                title={def.era}
-              />
-            ))}
-          </div>
-        </div>
-        <span className="excavation-label">
-          {activeLayer < 4 ? `${definitions.length - activeLayer - 1} more layers` : "Origin reached"}
-        </span>
-      </div>
-      
-      <div className="dictionary-layers">
-        {definitions.map((def, index) => {
-          const isActive = index <= activeLayer;
-          const isCurrent = index === activeLayer;
-          const layerProgress = Math.max(0, Math.min(100, (scrollProgress - index * 20) * 5));
-          
-          return (
-            <div
-              key={def.era}
-              className={`dict-layer ${def.style} ${isActive ? "visible" : ""} ${isCurrent ? "current" : ""}`}
-              style={{
-                opacity: isActive ? Math.min(1, layerProgress / 100) : 0,
-                transform: `translateY(${isActive ? 0 : 30}px)`,
-                zIndex: definitions.length - index,
-              }}
-            >
-              <div className="layer-era">{def.era}</div>
-              <div className="layer-year">{def.year}</div>
-              <div className="layer-word">toy</div>
-              <div className="layer-def">{def.def}</div>
-            </div>
-          );
-        })}
-      </div>
+    <div ref={containerRef} className="dictionary-archaeology" style={{ height: "300vh" }}>
+      <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`}>
+        {/* Skip button */}
+        {isPinned && scrollProgress < 95 && (
+          <button className="skip-button" onClick={() => setScrollProgress(100)}>Skip →</button>
+        )}
 
-      <div className="archaeology-footer">
-        <p className="archaeology-insight">
-          {activeLayer === 0 && "The familiar definition. But what lies beneath?"}
-          {activeLayer === 1 && "A century ago, still innocent..."}
-          {activeLayer === 2 && "The Victorians hint at something more: 'a trifle.'"}
-          {activeLayer === 3 && "Johnson reveals the secret: 'Amorous dalliance.'"}
-          {activeLayer >= 4 && "The original meaning revealed: before playthings, there was dalliance."}
-        </p>
-        <p className="archaeology-citation">
-          {activeLayer >= 4 && (
-            <span className="citation-text">&ldquo;To find what a word truly means, read its first definitions.&rdquo;</span>
-          )}
-        </p>
+        {/* Progress bar */}
+        {isPinned && (
+          <div className="scroll-lock-progress">
+            <div className="progress-fill" style={{ width: `${scrollProgress}%` }} />
+          </div>
+        )}
+
+        <div className="archaeology-header">
+          <span className="archaeology-label">Scroll-Lock: Dictionary Archaeology</span>
+          <span className="archaeology-instruction">Scroll to excavate the word&apos;s history</span>
+        </div>
+        
+        {/* Excavation depth indicator - shows how deep we've dug */}
+        <div className="excavation-progress" aria-label={`Excavation depth: ${Math.round(scrollProgress)}%`}>
+          <div className="excavation-track">
+            <div 
+              className="excavation-fill" 
+              style={{ height: `${scrollProgress}%` }}
+            />
+            <div className="excavation-markers">
+              {definitions.map((def, index) => (
+                <div 
+                  key={def.era} 
+                  className={`excavation-marker ${index <= activeLayer ? "reached" : ""}`}
+                  style={{ top: `${index * 20}%` }}
+                  title={def.era}
+                />
+              ))}
+            </div>
+          </div>
+          <span className="excavation-label">
+            {activeLayer < 4 ? `${definitions.length - activeLayer - 1} more layers` : "Origin reached"}
+          </span>
+        </div>
+        
+        <div className="dictionary-layers">
+          {definitions.map((def, index) => {
+            const isActive = index <= activeLayer;
+            const isCurrent = index === activeLayer;
+            const layerProgress = Math.max(0, Math.min(100, (scrollProgress - index * 20) * 5));
+            
+            return (
+              <div
+                key={def.era}
+                className={`dict-layer ${def.style} ${isActive ? "visible" : ""} ${isCurrent ? "current" : ""}`}
+                style={{
+                  opacity: isActive ? Math.min(1, layerProgress / 100) : 0,
+                  transform: `translateY(${isActive ? 0 : 30}px)`,
+                  zIndex: definitions.length - index,
+                }}
+              >
+                <div className="layer-era">{def.era}</div>
+                <div className="layer-year">{def.year}</div>
+                <div className="layer-word">toy</div>
+                <div className="layer-def">{def.def}</div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="archaeology-footer">
+          <p className="archaeology-insight">
+            {activeLayer === 0 && "The familiar definition. But what lies beneath?"}
+            {activeLayer === 1 && "A century ago, still innocent..."}
+            {activeLayer === 2 && "The Victorians hint at something more: 'a trifle.'"}
+            {activeLayer === 3 && "Johnson reveals the secret: 'Amorous dalliance.'"}
+            {activeLayer >= 4 && "The original meaning revealed: before playthings, there was dalliance."}
+          </p>
+          <p className="archaeology-citation">
+            {activeLayer >= 4 && (
+              <span className="citation-text">&ldquo;To find what a word truly means, read its first definitions.&rdquo;</span>
+            )}
+          </p>
+        </div>
       </div>
     </div>
   );
 };
 
 // Shakespeare Shuffle Scroll-Lock Sequence  
+// FIXED: Added proper scroll-lock pinning (was missing is-pinned state)
 const ShakespeareShuffle: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isPinned, setIsPinned] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -792,11 +815,18 @@ const ShakespeareShuffle: React.FC = () => {
       const containerHeight = container.offsetHeight;
       const viewportHeight = window.innerHeight;
 
-      const scrolled = viewportHeight - rect.top;
-      const totalScroll = containerHeight + viewportHeight * 0.3;
-      const progress = Math.min(100, Math.max(0, (scrolled / totalScroll) * 100));
-      
-      setScrollProgress(progress);
+      // Scroll-lock calculation: pin when section reaches top, release when scrolled through
+      const scrollableDistance = containerHeight - viewportHeight;
+      const scrolledIntoSection = -rect.top;
+
+      if (rect.top <= 0 && scrolledIntoSection <= scrollableDistance) {
+        setIsPinned(true);
+        const progress = Math.min(100, Math.max(0, (scrolledIntoSection / scrollableDistance) * 100));
+        setScrollProgress(progress);
+      } else {
+        setIsPinned(false);
+        setScrollProgress(rect.top > 0 ? 0 : 100);
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -817,44 +847,58 @@ const ShakespeareShuffle: React.FC = () => {
   const showConclusion = scrollProgress > 85;
 
   return (
-    <div ref={containerRef} className="shakespeare-shuffle">
-      <div className="shuffle-header">
-        <span className="shuffle-label">Scroll-Lock: Shakespeare&apos;s Thirty Uses</span>
-      </div>
+    <div ref={containerRef} className="shakespeare-shuffle" style={{ height: "250vh" }}>
+      <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`}>
+        {/* Skip button */}
+        {isPinned && scrollProgress < 95 && (
+          <button className="skip-button" onClick={() => setScrollProgress(100)}>Skip →</button>
+        )}
 
-      <div className={`card-deck ${isSpread ? "spread" : "stacked"}`}>
-        {shakespeareUses.map((use, index) => {
-          const isVisible = index < visibleCards;
-          const spreadOffset = isSpread ? (index - 2) * 120 : index * 4;
-          
-          return (
-            <div
-              key={use.play}
-              className={`folio-card ${isVisible ? "revealed" : ""}`}
-              style={{
-                transform: `
-                  translateX(${spreadOffset}px) 
-                  translateY(${isVisible ? 0 : 50}px)
-                  rotate(${isSpread ? (index - 2) * 5 : index * 0.5}deg)
-                `,
-                opacity: isVisible ? 1 : 0,
-                zIndex: shakespeareUses.length - index,
-              }}
-            >
-              <div className="card-play">{use.play}</div>
-              <div className="card-quote">&ldquo;{use.quote}&rdquo;</div>
-              <div className="card-meaning">meaning: {use.meaning}</div>
-            </div>
-          );
-        })}
-      </div>
+        {/* Progress bar */}
+        {isPinned && (
+          <div className="scroll-lock-progress">
+            <div className="progress-fill" style={{ width: `${scrollProgress}%` }} />
+          </div>
+        )}
 
-      {showConclusion && (
-        <div className="shuffle-conclusion">
-          <p>Shakespeare used &ldquo;toy&rdquo; over 30 times.</p>
-          <p className="conclusion-emphasis">Never once meaning &ldquo;child&apos;s plaything.&rdquo;</p>
+        <div className="shuffle-header">
+          <span className="shuffle-label">Scroll-Lock: Shakespeare&apos;s Thirty Uses</span>
         </div>
-      )}
+
+        <div className={`card-deck ${isSpread ? "spread" : "stacked"}`}>
+          {shakespeareUses.map((use, index) => {
+            const isVisible = index < visibleCards;
+            const spreadOffset = isSpread ? (index - 2) * 120 : index * 4;
+            
+            return (
+              <div
+                key={use.play}
+                className={`folio-card ${isVisible ? "revealed" : ""}`}
+                style={{
+                  transform: `
+                    translateX(${spreadOffset}px) 
+                    translateY(${isVisible ? 0 : 50}px)
+                    rotate(${isSpread ? (index - 2) * 5 : index * 0.5}deg)
+                  `,
+                  opacity: isVisible ? 1 : 0,
+                  zIndex: shakespeareUses.length - index,
+                }}
+              >
+                <div className="card-play">{use.play}</div>
+                <div className="card-quote">&ldquo;{use.quote}&rdquo;</div>
+                <div className="card-meaning">meaning: {use.meaning}</div>
+              </div>
+            );
+          })}
+        </div>
+
+        {showConclusion && (
+          <div className="shuffle-conclusion">
+            <p>Shakespeare used &ldquo;toy&rdquo; over 30 times.</p>
+            <p className="conclusion-emphasis">Never once meaning &ldquo;child&apos;s plaything.&rdquo;</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
@@ -1604,10 +1648,13 @@ const OriginOfToyClient: React.FC = () => {
               "His Canterbury Tales established many words in English literature",
             ]}
           />
-
-          {/* Scroll-Lock: Dictionary Archaeology */}
-          <DictionaryArchaeology />
         </ChapterSection>
+
+        {/* Scroll-Lock: Dictionary Archaeology (OUTSIDE section to avoid transform conflicts) */}
+        <DictionaryArchaeology />
+
+        {/* Chapter 1 continued after scroll-lock */}
+        <div className="chapter-continued" style={{ transform: "none" }} />
 
         {/* Quote: Peter Damian */}
         <QuoteMonument
@@ -1656,10 +1703,13 @@ const OriginOfToyClient: React.FC = () => {
               That association was still forming, like a photograph developing in chemical baths.
             </p>
           </div>
+        </ChapterSection>
 
-          {/* Scroll-Lock: Shakespeare Shuffle */}
-          <ShakespeareShuffle />
+        {/* Scroll-Lock: Shakespeare Shuffle (OUTSIDE section to avoid transform conflicts) */}
+        <ShakespeareShuffle />
 
+        {/* Chapter 2 continued after scroll-lock */}
+        <section className="chapter-section chapter-continued" style={{ transform: "none" }}>
           <div className="figure-grid">
             <FigureProfile
               name="William Shakespeare"
@@ -1683,7 +1733,7 @@ const OriginOfToyClient: React.FC = () => {
               ]}
             />
           </div>
-        </ChapterSection>
+        </section>
 
         {/* Chapter 3: The Children's Claim */}
         <ChapterSection

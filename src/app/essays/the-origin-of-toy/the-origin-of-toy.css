@@ -247,13 +247,30 @@
 /* ==================== DICTIONARY ARCHAEOLOGY ==================== */
 
 .dictionary-archaeology {
-  min-height: 120vh; /* Increased for comfortable 5-layer excavation (spec: 800-1000px scroll depth) */
-  padding: var(--toy-space-xl) var(--toy-space-md);
+  /* Height set inline via style prop for scroll-lock calculation */
+  position: relative;
+  background: var(--toy-bg-primary);
+}
+
+.dictionary-archaeology .pinned-content {
+  position: relative;
+  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: var(--toy-space-lg);
-  position: relative;
+  padding: var(--toy-space-xl) var(--toy-space-md);
+  background: var(--toy-bg-primary);
+}
+
+.dictionary-archaeology .pinned-content.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
 }
 
 .archaeology-header {
@@ -464,12 +481,30 @@
 /* ==================== SHAKESPEARE SHUFFLE ==================== */
 
 .shakespeare-shuffle {
-  min-height: 70vh;
-  padding: var(--toy-space-xl) var(--toy-space-md);
+  /* Height set inline via style prop for scroll-lock calculation */
+  position: relative;
+  background: var(--toy-bg-primary);
+}
+
+.shakespeare-shuffle .pinned-content {
+  position: relative;
+  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: var(--toy-space-lg);
+  padding: var(--toy-space-xl) var(--toy-space-md);
+  background: var(--toy-bg-primary);
+}
+
+.shakespeare-shuffle .pinned-content.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
 }
 
 .shuffle-header {
