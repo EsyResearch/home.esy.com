@@ -277,6 +277,101 @@ const TreeDiagram: React.FC = () => {
 }
 ```
 
+### 5. Fitting Many Items in Viewport
+
+**Problem:** Multiple stacked cards (e.g., 5 dictionary layers) don't all fit in 100vh, causing cutoff.
+
+**Symptoms:**
+- First or last items cut off at viewport edges
+- Header/footer text hidden
+- Need to scroll within pinned content (breaks the experience)
+
+**Root Causes:**
+1. `justify-content: flex-start` — items overflow bottom
+2. `justify-content: center` — items overflow both edges
+3. Gaps, padding, and font sizes too large for item count
+4. Footer using `margin-top: auto` steals space
+
+**Solution:** Compact everything AND use `justify-content: center`.
+
+```css
+/* ✅ GOOD - Compact layout that fits all items */
+.pinned-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  /* Center when content fits */
+  gap: 6px;                  /* Tight gap */
+  padding: 8px 16px;         /* Minimal padding */
+  height: 100vh;
+  /* NO overflow-y: auto - breaks the fixed feel */
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;  /* Tight gap between cards */
+}
+
+.card {
+  padding: 8px 16px;       /* Compact cards */
+}
+
+.card-title {
+  font-size: 1.4rem;       /* Smaller than usual */
+  margin: 2px 0;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+/* Footer inline with content, not pushed to bottom */
+.footer {
+  padding-top: 8px;
+  /* NO margin-top: auto - let it stay with content */
+}
+```
+
+**Calculation:** For N stacked items to fit in 100vh:
+```
+Available height = 100vh - header - footer - (N-1)*gaps - padding
+Item height = Available height / N
+```
+
+If items don't fit, progressively:
+1. Reduce gaps (from `var(--space-md)` → `6px`)
+2. Reduce card padding
+3. Reduce font sizes
+4. Reduce header/footer size
+5. Consider hiding the excavation progress indicator on mobile
+
+### 6. Footer Text Behind Cards (Z-Index Issue)
+
+**Problem:** Footer text appears behind cards instead of below them.
+
+**Cause:** Cards have inline z-index but footer doesn't.
+
+```tsx
+// Cards have z-index
+<div style={{ zIndex: 5 - index }}>Card {index}</div>
+
+// Footer has no z-index - appears behind cards
+<div className="footer">Text here</div>
+```
+
+**Solution:** Add `position: relative` and `z-index` to footer.
+
+```css
+.footer {
+  position: relative;
+  z-index: 10;  /* Above all cards */
+}
+```
+
+---
+
 ## Checklist
 
 When building scroll-lock content layouts:
@@ -287,7 +382,8 @@ When building scroll-lock content layouts:
 - [ ] Use `margin-top: auto` for bottom-positioned elements
 - [ ] Add `flex-shrink: 0` to elements that shouldn't compress
 - [ ] Test with all phases visible to check for overlap
-- [ ] Add `overflow-y: auto` as safety valve
+- [ ] **NEW:** When many items must fit in viewport, compact EVERYTHING
+- [ ] **NEW:** Footer needs `position: relative; z-index` to stay above cards
 
 ## Essays Using This Pattern
 
