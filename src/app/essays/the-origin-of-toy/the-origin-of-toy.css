@@ -270,7 +270,9 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
+  height: 100vh;
+  z-index: 50;
+  background: var(--toy-bg-primary); /* CRITICAL: prevents content bleed-through */
 }
 
 .archaeology-header {
@@ -504,7 +506,9 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 10;
+  height: 100vh;
+  z-index: 50;
+  background: var(--toy-bg-primary); /* CRITICAL: prevents content bleed-through */
 }
 
 .shuffle-header {
@@ -695,6 +699,7 @@
   right: 0;
   height: 100vh;
   z-index: 50;
+  background: var(--toy-bg-primary); /* CRITICAL: prevents content bleed-through */
 }
 
 .etymology-header {
