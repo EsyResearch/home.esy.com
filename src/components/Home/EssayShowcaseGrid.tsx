@@ -74,15 +74,15 @@ const SHOWCASE_ESSAYS: ShowcaseEssay[] = [
     size: 'standard',
   },
   {
-    id: 'the-word-animal',
-    title: 'ANIMUS',
-    subtitle: 'The Living Word',
-    category: 'History',
-    categoryColor: '#F59E0B',
-    readTime: '24 min',
-    href: '/essays/the-word-animal',
-    // Wolf portrait - actual hero image from essay
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/6/69/Canis_lupus_laying_in_grass.jpg',
+    id: 'the-origin-of-toy',
+    title: 'TOY',
+    subtitle: 'From Sin to Innocence',
+    category: 'Etymology',
+    categoryColor: '#10B981',
+    readTime: '18 min',
+    href: '/essays/the-origin-of-toy',
+    // Shakespeare folio imagery - etymology essay
+    heroImage: 'https://esy.com/og/the-origin-of-toy.png',
     size: 'standard',
   },
 ];
