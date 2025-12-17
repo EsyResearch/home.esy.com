@@ -1650,10 +1650,21 @@ const WordBranches: React.FC = () => {
   );
 };
 
-// Etymology Complete Scroll-Lock (for Ch7)
+// Etymology Complete - Scroll-Lock Sequence (Chapter 7)
+// Per spec: "We reverse the hero sequence—reassembling the word with new understanding"
+// Phases:
+// 0-20%: Medieval "TOYE" - Dalliance, Trifle, Scandal
+// 20-40%: Renaissance meanings gather - ornament, fancy, whim
+// 40-60%: Enlightenment shift - childhood, education, play
+// 60-75%: Industrial transformation - product, industry, desire
+// 75-90%: Modern sprawl - all meanings coexisting
+// 90-100%: TOY reassembles and glows
 const EtymologyComplete: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isPinned, setIsPinned] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
+  const [unpinPoint, setUnpinPoint] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -1663,12 +1674,24 @@ const EtymologyComplete: React.FC = () => {
       const rect = container.getBoundingClientRect();
       const containerHeight = container.offsetHeight;
       const viewportHeight = window.innerHeight;
+      const scrollableDistance = containerHeight - viewportHeight;
+      const scrolledIntoSection = -rect.top;
 
-      const scrolled = viewportHeight - rect.top;
-      const totalScroll = containerHeight + viewportHeight * 0.3;
-      const progress = Math.min(100, Math.max(0, (scrolled / totalScroll) * 100));
-      
-      setScrollProgress(progress);
+      if (rect.top <= 0 && scrolledIntoSection <= scrollableDistance) {
+        setIsPinned(true);
+        setIsExiting(false);
+        const progress = Math.min(100, Math.max(0, (scrolledIntoSection / scrollableDistance) * 100));
+        setScrollProgress(progress);
+      } else if (rect.top > 0) {
+        setIsPinned(false);
+        setIsExiting(false);
+        setScrollProgress(0);
+      } else {
+        setIsPinned(false);
+        setIsExiting(true);
+        setScrollProgress(100);
+        setUnpinPoint(scrollableDistance);
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -1676,60 +1699,174 @@ const EtymologyComplete: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const meanings = [
-    { text: "dalliance", era: "1303" },
-    { text: "trifle", era: "1400s" },
-    { text: "ornament", era: "1500s" },
-    { text: "fancy", era: "1600s" },
-    { text: "bauble", era: "1700s" },
-    { text: "plaything", era: "1800s" },
+  // Era-based meanings per spec
+  const eras = [
+    { name: "Medieval", period: "1300s", meanings: ["dalliance", "trifle", "scandal"], startAt: 0 },
+    { name: "Renaissance", period: "1500s", meanings: ["ornament", "fancy", "whim"], startAt: 20 },
+    { name: "Enlightenment", period: "1700s", meanings: ["childhood", "education", "play"], startAt: 40 },
+    { name: "Industrial", period: "1800s", meanings: ["product", "industry", "desire"], startAt: 60 },
+    { name: "Modern", period: "1900s+", meanings: ["all meanings coexist"], startAt: 75 },
   ];
 
-  const assemblyProgress = scrollProgress / 100;
-  const finalReveal = scrollProgress > 85;
+  // Calculate which phase we're in
+  const phase = scrollProgress < 20 ? 1 : scrollProgress < 40 ? 2 : scrollProgress < 60 ? 3 : scrollProgress < 75 ? 4 : scrollProgress < 90 ? 5 : 6;
+  
+  // Final reassembly phase (90-100%)
+  const reassemblyProgress = Math.max(0, Math.min(1, (scrollProgress - 90) / 10));
+  const showFinalWord = scrollProgress >= 90;
+
+  // Calculate convergence - meanings move toward center as we approach finale
+  const convergeFactor = Math.max(0, Math.min(1, (scrollProgress - 75) / 15));
+
+  const handleSkip = useCallback(() => {
+    if (containerRef.current) {
+      const containerBottom = containerRef.current.offsetTop + containerRef.current.offsetHeight;
+      window.scrollTo({ top: containerBottom - 100, behavior: "smooth" });
+    }
+  }, []);
 
   return (
-    <div ref={containerRef} className="etymology-complete">
-      <div className="complete-header">
-        <span className="complete-label">The Word Reassembles</span>
-      </div>
+    <div ref={containerRef} className="scroll-lock-etymology" style={{ height: "400vh", position: "relative" }}>
+      <div 
+        className={`pinned-content ${isPinned ? "is-pinned" : ""} ${isExiting ? "is-exiting" : ""}`}
+        style={isExiting ? {
+          position: "absolute",
+          top: `${unpinPoint}px`,
+          left: 0,
+          right: 0,
+          height: "100vh",
+        } : undefined}
+      >
+        {/* Skip button */}
+        {isPinned && scrollProgress < 95 && (
+          <button className="skip-button" onClick={handleSkip}>Skip →</button>
+        )}
 
-      <div className="meaning-fragments">
-        {meanings.map((m, index) => {
-          const fragmentProgress = Math.max(0, (scrollProgress - index * 12) / 20);
-          const moveToCenter = Math.min(1, fragmentProgress);
-          const startAngle = (index / meanings.length) * 360;
-          const radius = 150 * (1 - moveToCenter);
-          // Round to avoid hydration mismatch from floating-point precision
-          const x = Math.round(Math.cos((startAngle * Math.PI) / 180) * radius);
-          const y = Math.round(Math.sin((startAngle * Math.PI) / 180) * radius);
-          
-          return (
-            <div
-              key={m.text}
-              className="meaning-fragment"
+        {/* Progress bar */}
+        {isPinned && (
+          <div className="scroll-lock-progress">
+            <div className="progress-fill" style={{ width: `${scrollProgress}%` }} />
+          </div>
+        )}
+
+        <div className="etymology-header">
+          <span className="scroll-lock-label">The Word Reassembles</span>
+        </div>
+
+        {/* Era meanings gathering toward center */}
+        <div className="etymology-stage">
+          {/* Medieval TOYE - blackletter style */}
+          {phase >= 1 && (
+            <div 
+              className={`era-cluster medieval ${phase === 1 ? 'active' : ''}`}
               style={{
-                transform: `translate(${x}px, ${y}px)`,
-                opacity: fragmentProgress > 0 ? Math.min(1, fragmentProgress * 2) : 0.3,
+                opacity: Math.min(1, scrollProgress / 15),
+                transform: `translateY(${convergeFactor * -50}px) scale(${1 - convergeFactor * 0.3})`,
               }}
             >
-              <span className="fragment-text">{m.text}</span>
-              <span className="fragment-era">{m.era}</span>
+              <span className="era-word blackletter">TOYE</span>
+              <div className="era-meanings">
+                {eras[0].meanings.map((m, i) => (
+                  <span key={m} className="meaning-tag" style={{ 
+                    opacity: Math.min(1, (scrollProgress - i * 3) / 10),
+                    animationDelay: `${i * 100}ms`
+                  }}>{m}</span>
+                ))}
+              </div>
             </div>
-          );
-        })}
-      </div>
+          )}
 
-      {finalReveal && (
-        <div className="final-word" style={{ opacity: (scrollProgress - 85) / 15 }}>
-          <span className="final-letters">
-            <span>T</span>
-            <span>O</span>
-            <span>Y</span>
-          </span>
-          <p className="final-meaning">A word that carries seven centuries of meaning.</p>
+          {/* Renaissance meanings */}
+          {phase >= 2 && (
+            <div 
+              className={`era-cluster renaissance ${phase === 2 ? 'active' : ''}`}
+              style={{
+                opacity: Math.min(1, (scrollProgress - 20) / 15),
+                transform: `translateX(${-80 + convergeFactor * 80}px) translateY(${convergeFactor * -30}px) scale(${1 - convergeFactor * 0.3})`,
+              }}
+            >
+              <div className="era-meanings">
+                {eras[1].meanings.map((m, i) => (
+                  <span key={m} className="meaning-tag" style={{ 
+                    opacity: Math.min(1, (scrollProgress - 20 - i * 3) / 10),
+                  }}>{m}</span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Enlightenment meanings */}
+          {phase >= 3 && (
+            <div 
+              className={`era-cluster enlightenment ${phase === 3 ? 'active' : ''}`}
+              style={{
+                opacity: Math.min(1, (scrollProgress - 40) / 15),
+                transform: `translateX(${80 - convergeFactor * 80}px) translateY(${convergeFactor * -10}px) scale(${1 - convergeFactor * 0.3})`,
+              }}
+            >
+              <div className="era-meanings">
+                {eras[2].meanings.map((m, i) => (
+                  <span key={m} className="meaning-tag" style={{ 
+                    opacity: Math.min(1, (scrollProgress - 40 - i * 3) / 10),
+                  }}>{m}</span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Industrial meanings */}
+          {phase >= 4 && (
+            <div 
+              className={`era-cluster industrial ${phase === 4 ? 'active' : ''}`}
+              style={{
+                opacity: Math.min(1, (scrollProgress - 60) / 12),
+                transform: `translateX(${-60 + convergeFactor * 60}px) translateY(${20 + convergeFactor * -20}px) scale(${1 - convergeFactor * 0.3})`,
+              }}
+            >
+              <div className="era-meanings">
+                {eras[3].meanings.map((m, i) => (
+                  <span key={m} className="meaning-tag" style={{ 
+                    opacity: Math.min(1, (scrollProgress - 60 - i * 3) / 10),
+                  }}>{m}</span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Modern - all coexisting */}
+          {phase >= 5 && (
+            <div 
+              className={`era-cluster modern ${phase === 5 ? 'active' : ''}`}
+              style={{
+                opacity: Math.min(1, (scrollProgress - 75) / 10),
+                transform: `translateX(${60 - convergeFactor * 60}px) translateY(${40 + convergeFactor * -40}px) scale(${1 - convergeFactor * 0.3})`,
+              }}
+            >
+              <span className="meaning-tag coexist">all meanings coexist</span>
+            </div>
+          )}
+
+          {/* Final TOY reassembly - glowing */}
+          {showFinalWord && (
+            <div 
+              className="final-reassembly"
+              style={{ 
+                opacity: reassemblyProgress,
+                transform: `scale(${0.8 + reassemblyProgress * 0.2})`,
+              }}
+            >
+              <span className="reassembled-word">
+                <span className="letter" style={{ animationDelay: '0ms' }}>T</span>
+                <span className="letter" style={{ animationDelay: '100ms' }}>O</span>
+                <span className="letter" style={{ animationDelay: '200ms' }}>Y</span>
+              </span>
+              <p className="final-text" style={{ opacity: reassemblyProgress }}>
+                Every time you say &ldquo;toy,&rdquo; seven centuries speak through you.
+              </p>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };
@@ -2236,10 +2373,10 @@ const OriginOfToyClient: React.FC = () => {
               "His work reframed how scholars understand toys and games",
             ]}
           />
-
-          {/* Scroll-Lock: Etymology Complete */}
-          <EtymologyComplete />
         </ChapterSection>
+
+        {/* Scroll-Lock: Etymology Complete - OUTSIDE ChapterSection to avoid transform conflicts */}
+        <EtymologyComplete />
 
         {/* Revelation / Closing */}
         <section className="revelation-section">
