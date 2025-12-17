@@ -243,6 +243,7 @@ Make sure you're not rendering the content both in the pinned and exit states. T
 ## Related Documentation
 
 - [Scroll-Lock Pattern](./SCROLL_LOCK_PATTERN.md) - Core scroll-lock implementation
+- [Scroll-Lock Content Layout](./SCROLL_LOCK_CONTENT_LAYOUT.md) - Fix for overlapping elements inside scroll-lock
 - [Sticky Position Fixes](./STICKY_POSITION_FIXES.md) - When sticky/fixed positioning breaks
 - [Hero Scroll-Lock Pattern](./HERO_SCROLL_LOCK_PATTERN.md) - Specific pattern for hero sections
 
