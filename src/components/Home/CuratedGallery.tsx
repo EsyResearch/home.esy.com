@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Clock, ArrowRight } from 'lucide-react';
 import { 
   publishedVisualEssays, 
@@ -16,56 +17,110 @@ const featuredEssay = publishedVisualEssays.find(e => e.id === FEATURED_ESSAY_ID
 /**
  * CuratedGallery Component
  * 
- * Hand-picked showcase of 6-8 essays that demonstrate range and quality.
+ * Hand-picked showcase of 6 essays with hero images that demonstrate range and quality.
  * Positioned as "body of work" not "startup pitch."
  * 
- * Design: Museum-quality grid with editorial typography
+ * Design: Museum-quality grid with editorial typography and compelling imagery
  * SEO: Semantic HTML, structured data ready, descriptive links
  */
 
-// Hand-picked essays showing range (manually curated for quality)
-const CURATED_ESSAY_IDS = [
-  'the-diamond-cartel',        // Business/manipulation narrative - compelling story
-  'the-scramble-for-africa',   // Historical colonialism - serious topic
-  'the-holocaust',             // Important/heavy - demonstrates gravitas
-  'the-tea-journey-illustrated', // Beautiful/cultural - showcases craft
-  'the-silicon-revolution',    // Technology - demonstrates range
-  'the-ramayana',              // Cultural/mythology - demonstrates diversity
+// Curated essays with hero images - manually selected for visual impact
+interface CuratedEssay {
+  id: string;
+  heroImage: string;
+  heroAlt: string;
+}
+
+const CURATED_ESSAYS: CuratedEssay[] = [
+  {
+    id: 'the-diamond-cartel',
+    // De Beers diamond sorting - compelling visual
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/7/7e/The_Hope_Diamond_-_SIA.jpg',
+    heroAlt: 'The Hope Diamond - symbol of diamond industry mystique',
+  },
+  {
+    id: 'the-scramble-for-africa',
+    // Berlin Conference 1884 - historical moment
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/2/26/Afrikakonferenz.jpg',
+    heroAlt: 'Berlin Conference 1884 - European powers dividing Africa',
+  },
+  {
+    id: 'the-holocaust',
+    // Jewish family in Poland before the Holocaust
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/d/da/A_Jewish_family_strolls_along_a_street_in_Kalisz_-_16_mai_1935.jpg',
+    heroAlt: 'A Jewish family in Kalisz, Poland, May 1935',
+  },
+  {
+    id: 'the-tea-journey-illustrated',
+    // Tea plantation aesthetic
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/0/04/Tea_plantation%2C_Cameron_Highlands.jpg',
+    heroAlt: 'Tea plantation in Cameron Highlands - where the journey begins',
+  },
+  {
+    id: 'the-silicon-revolution',
+    // Silicon wafers - the foundation of computing
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/a/a1/Wafer_2_Zoll_bis_8_Zoll.jpg',
+    heroAlt: 'Silicon wafers of different sizes - foundation of modern computing',
+  },
+  {
+    id: 'the-ramayana',
+    // Vishnu at Badami - ancient Indian sculpture
+    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/c/c6/6th_century_Vishnu_seated_on_Sesha_in_Cave_3%2C_Badami_Hindu_cave_temple_Karnataka.jpg',
+    heroAlt: 'Vishnu seated on Shesha - 6th century Badami Cave sculpture',
+  },
 ];
 
-// Get curated essays from the data
-const getCuratedEssays = (): VisualEssay[] => {
-  return CURATED_ESSAY_IDS
-    .map(id => publishedVisualEssays.find(e => e.id === id))
-    .filter((essay): essay is VisualEssay => essay !== undefined);
+// Get curated essays from the data with hero images
+const getCuratedEssays = (): (VisualEssay & { heroImage: string; heroAlt: string })[] => {
+  return CURATED_ESSAYS
+    .map(curated => {
+      const essay = publishedVisualEssays.find(e => e.id === curated.id);
+      if (!essay) return null;
+      return { ...essay, heroImage: curated.heroImage, heroAlt: curated.heroAlt };
+    })
+    .filter((essay): essay is (VisualEssay & { heroImage: string; heroAlt: string }) => essay !== null);
 };
 
 /**
- * Essay Card Component
+ * Essay Card Component with Image
  */
 interface EssayCardProps {
-  essay: VisualEssay;
+  essay: VisualEssay & { heroImage: string; heroAlt: string };
 }
 
 const EssayCard: React.FC<EssayCardProps> = ({ essay }) => (
-  <Link href={essay.href} className="essay-card">
-    <div className="essay-card-header">
-      <span 
-        className="essay-category"
-        style={{ color: CATEGORY_COLORS[essay.category] }}
-      >
-        {essay.category}
-      </span>
-      {essay.isNew && <span className="essay-new-badge">New</span>}
+  <Link href={essay.href} className="essay-card essay-card-with-image">
+    {/* Hero Image */}
+    <div className="essay-card-image">
+      <Image
+        src={essay.heroImage}
+        alt={essay.heroAlt}
+        fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        style={{ objectFit: 'cover' }}
+      />
+      <div className="essay-card-image-overlay" />
     </div>
     
-    <h3 className="essay-title">{essay.title}</h3>
-    <p className="essay-subtitle">{essay.subtitle}</p>
-    <p className="essay-description">{essay.description}</p>
-    
-    <div className="essay-meta">
-      <Clock aria-hidden="true" />
-      <span>{essay.readTime} read</span>
+    {/* Content */}
+    <div className="essay-card-content">
+      <div className="essay-card-header">
+        <span 
+          className="essay-category"
+          style={{ color: CATEGORY_COLORS[essay.category] }}
+        >
+          {essay.category}
+        </span>
+        {essay.isNew && <span className="essay-new-badge">New</span>}
+      </div>
+      
+      <h3 className="essay-title">{essay.title}</h3>
+      <p className="essay-subtitle">{essay.subtitle}</p>
+      
+      <div className="essay-meta">
+        <Clock aria-hidden="true" />
+        <span>{essay.readTime} read</span>
+      </div>
     </div>
   </Link>
 );
@@ -140,7 +195,7 @@ const CuratedGallery: React.FC = () => {
           </span>
         </header>
 
-        <div className="essay-grid" role="list">
+        <div className="essay-grid essay-grid-with-images" role="list">
           {curatedEssays.map((essay) => (
             <EssayCard key={essay.id} essay={essay} />
           ))}
@@ -158,4 +213,3 @@ const CuratedGallery: React.FC = () => {
 };
 
 export default CuratedGallery;
-

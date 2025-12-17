@@ -4,6 +4,7 @@ import React from 'react';
 import GalleryHero from './GalleryHero';
 import CuratedGallery from './CuratedGallery';
 import EssayShowcaseGrid from './EssayShowcaseGrid';
+import RecentEssaysStrip from './RecentEssaysStrip';
 import EarlyAccessSection from './EarlyAccessSection';
 import QuietToolsSection from './QuietToolsSection';
 import './GalleryHomePage.css';
@@ -56,6 +57,9 @@ const GalleryHomePage: React.FC = () => {
 
         {/* Essay Showcase Grid - Cinematic visual grid */}
         <EssayShowcaseGrid />
+
+        {/* Recent Essays Strip - Horizontal scroll of newest essays */}
+        <RecentEssaysStrip />
 
         {/* Early Access - Non-charity monetization */}
         <EarlyAccessSection />
