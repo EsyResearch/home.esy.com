@@ -34,9 +34,9 @@ const RECENT_ESSAY_IMAGES: RecentEssay[] = [
     heroAlt: 'TOY - The etymology of play, from sin to innocence',
   },
   {
-    id: 'how-money-is-created',
-    heroImage: '/og/how-money-is-created.png',
-    heroAlt: 'How Money Is Created - The mechanics of modern banking',
+    id: 'the-history-of-pizza',
+    heroImage: '/og/the-history-of-pizza.png',
+    heroAlt: 'From Hearth to Heritage — The 10,000-year journey of pizza',
   },
   {
     id: 'the-history-of-burmese-cuisine',
@@ -49,9 +49,9 @@ const RECENT_ESSAY_IMAGES: RecentEssay[] = [
     heroAlt: 'The History of Languages - Humanity\'s greatest invention',
   },
   {
-    id: 'the-history-of-pizza',
-    heroImage: 'https://upload.wikimedia.org/wikipedia/commons/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg',
-    heroAlt: 'Pizza Margherita - 10,000 years of culinary history',
+    id: 'how-money-is-created',
+    heroImage: '/og/how-money-is-created.png',
+    heroAlt: 'How Money Is Created - The mechanics of modern banking',
   },
   {
     id: 'the-invention-of-wine',
