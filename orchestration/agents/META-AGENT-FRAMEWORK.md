@@ -658,6 +658,7 @@ Current agents derived from this framework:
 | `meta-prompt-enhancer.md` | **Universal Enhancement** | Prompt Architect & Instruction Designer | **Universal Pre-processor** → Any AI System, Any Agent; Uses CRISP-E framework (Context, Role, Intent, Specifics, Parameters, Examples) |
 | `social-media-meta-expert.md` | **Social Sharing Optimization** | Social Meta Specialist (Audit + Implementation) | **Dual-Role Expert** — Audit Mode (QA gate), Implementation Mode (fixes), Advisory Mode (strategy); OG, Twitter Cards, JSON-LD; → Visual Essay Orchestrator (publish gate) |
 | `design-research-implementation-auditor.md` | **Design Spec Compliance** | Design Implementation Verifier | **Auditor** → Visual Essay Orchestrator (publish gate); Compares `specs/` vs implementation; Typography, Color, Spacing, Interaction fidelity; 100% compliance target |
+| `animation-pattern-auditor.md` | **Animation Architecture** | Pattern Extraction & Classification | **Auditor** — Analyzes specs/implementations against `scroll-lock-patterns.md` (21 patterns) + `animation-taxonomy.md` (36 categories); Outputs precise pattern inventories with evidence; → Design Research Auditor, Scrollytelling Expert |
 
 ---
 
@@ -689,6 +690,7 @@ This meta-framework should evolve as patterns emerge:
 December 16, 2025
 
 ### Recent Changes
+- Added Animation Pattern Auditor to registry (pattern extraction from specs/implementations against 21 scroll-lock patterns + 36 animation taxonomy categories)
 - Added Design Research Implementation Auditor to registry (spec vs implementation verification, 100% compliance auditing)
 - Added Design Slop Auditor to registry (AI slop detection, subject-derived design enforcement, Design Research Reports for remediation)
 - Added Hydration Audit Agent to registry (React SSR/client mismatch detection, IntersectionObserver vulnerabilities, useState initialization)

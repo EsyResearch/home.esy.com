@@ -122,6 +122,8 @@ orchestration/
         ├── specs/                
         │   └── README.md         • Production specs catalog
         ├── references/           ← Patterns and templates
+        │   ├── scroll-lock-patterns.md   • 21 scroll-lock patterns
+        │   └── animation-taxonomy.md     • 36 animation categories
         └── lenses/               ← Subject-specific guidance
 ```
 
@@ -205,6 +207,8 @@ Some changes require updates to multiple documents:
 | **Pipeline change** | `FRAMEWORK.md` + `visual-essay-orchestrator.md` + affected orchestrators |
 | **New skill** | `skills/README.md` (index) + agent file (if agent uses it) |
 | **New visual essay spec** | `skills/visual-essay-invocation/specs/README.md` |
+| **Animation pattern added** | `skills/visual-essay-invocation/references/scroll-lock-patterns.md` OR `animation-taxonomy.md` |
+| **Animation pattern audit** | Use `animation-pattern-auditor.md` → outputs pattern inventory report |
 | **Audit completed** | `audits/CHANGELOG.md` + `audits/[essay]/AUDIT-HISTORY.md` |
 | **Citation report** | `auditors/CitationReports/README.md` (if new essay) |
 | **Visual audit report** | `auditors/VisualAuditReports/README.md` (if new essay) |
@@ -492,6 +496,7 @@ After any documentation update:
 - **All Agents** — Documents their capabilities and locations
 - **Visual Essay Orchestrator** — Documents pipeline in FRAMEWORK.md
 - **Research Orchestrator** — Documents research pipeline
+- **Animation Pattern Auditor** — Documents animation pattern libraries (scroll-lock-patterns.md, animation-taxonomy.md)
 - **META-AGENT-FRAMEWORK** — Uses its patterns for new agent docs
 - **AGENT-REGISTRY** — Master index this curator helps maintain
 
@@ -562,9 +567,12 @@ When invoking this agent:
 ---
 
 ## Last Updated
-December 15, 2024
+December 16, 2024
 
 ### Recent Changes
+- Added Animation Pattern Auditor to collaboration section
+- Added animation pattern reference documents to hierarchy (scroll-lock-patterns.md with 21 patterns, animation-taxonomy.md with 36 categories)
+- Added routing rules for animation pattern additions and audits
 - Added Hydration Audit Agent to audit domain codes
 - Added hydration audit report routing rule (`audits/hydration/`)
 - Added hydration audits to report storage table

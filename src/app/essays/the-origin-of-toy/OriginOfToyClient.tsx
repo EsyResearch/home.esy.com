@@ -259,65 +259,66 @@ const HeroSection: React.FC = () => {
     }
   }, []);
 
-  // Spec-precise phase calculations (per the-origin-of-toy.md spec)
-  const phase1 = scrollProgress >= 0 && scrollProgress < 15;   // 0-15%: Word appears from darkness
-  const phase2 = scrollProgress >= 15 && scrollProgress < 30;  // 15-30%: Flicker/cracks
-  const phase3 = scrollProgress >= 30 && scrollProgress < 50;  // 30-50%: Fracture/TOYE
-  const phase4 = scrollProgress >= 50 && scrollProgress < 70;  // 50-70%: Annotations
-  const phase5 = scrollProgress >= 70 && scrollProgress < 85;  // 70-85%: Swirl/settle
-  const phase6 = scrollProgress >= 85;                         // 85-100%: Title card
+  // Phase calculations - ADJUSTED for visibility on load
+  // UX FIX: Word is visible on initial load, then animates
+  // Phases shifted to accommodate visible start while preserving animation time
+  const phase1 = scrollProgress >= 0 && scrollProgress < 10;   // 0-10%: Word brightens (already visible)
+  const phase2 = scrollProgress >= 10 && scrollProgress < 25;  // 10-25%: Flicker/cracks
+  const phase3 = scrollProgress >= 25 && scrollProgress < 45;  // 25-45%: Fracture/TOYE
+  const phase4 = scrollProgress >= 45 && scrollProgress < 65;  // 45-65%: Annotations
+  const phase5 = scrollProgress >= 65 && scrollProgress < 82;  // 65-82%: Swirl/settle
+  const phase6 = scrollProgress >= 82;                         // 82-100%: Title card
 
-  // SPEC CRITICAL: Hero opens in COMPLETE DARKNESS
-  // Word appears during phase 1 (0-15%), emerging from black
-  // Per spec: "Darkness. Silence. Then—'Toy.' The word appears, soft white on black"
-  const wordVisible = scrollProgress >= 2; // Word starts appearing at 2%
-  // Word fades in smoothly from 2% to 15%
-  const wordOpacity = wordVisible ? Math.min(1, (scrollProgress - 2) / 13) : 0;
+  // UX FIX: Word VISIBLE on load at 0.5 opacity, brightens to 1.0 during 0-10%
+  // This ensures users see content immediately while preserving the "emergence" feel
+  const wordVisible = true; // Always visible now
+  // Start at 0.5 opacity, brighten to 1.0 over first 10% of scroll
+  const wordOpacity = Math.min(1, 0.5 + (scrollProgress / 10) * 0.5);
   
   const flickering = phase2;
-  const cracking = scrollProgress >= 20;
-  const fracturing = scrollProgress >= 30;
-  const toyeVisible = scrollProgress >= 35;
-  const annotationsVisible = scrollProgress >= 50;
+  const cracking = scrollProgress >= 15;  // Shifted from 20%
+  const fracturing = scrollProgress >= 25; // Shifted from 30%
+  const toyeVisible = scrollProgress >= 30; // Shifted from 35%
+  const annotationsVisible = scrollProgress >= 45; // Shifted from 50%
   const annotationsSwirling = phase5;
-  const titleVisible = scrollProgress >= 85;
+  const titleVisible = scrollProgress >= 82; // Shifted from 85%
 
-  // Calculate flicker intensity (peaks at 22%)
-  const flickerIntensity = phase2 ? Math.sin((scrollProgress - 15) * 0.4) * 0.3 : 0;
+  // Calculate flicker intensity (peaks at 17%)
+  const flickerIntensity = phase2 ? Math.sin((scrollProgress - 10) * 0.4) * 0.3 : 0;
   
-  // Calculate crack spread (0 to 1 from 20-30%)
-  const crackSpread = cracking ? Math.min(1, (scrollProgress - 20) / 10) : 0;
+  // Calculate crack spread (0 to 1 from 15-25%)
+  const crackSpread = cracking ? Math.min(1, (scrollProgress - 15) / 10) : 0;
   
-  // Modern word fade out (30-50%)
-  const modernOpacity = fracturing ? Math.max(0.15, 1 - (scrollProgress - 30) / 25) : wordOpacity;
+  // Modern word fade out (25-45%)
+  const modernOpacity = fracturing ? Math.max(0.15, 1 - (scrollProgress - 25) / 25) : wordOpacity;
   
-  // TOYE fade in (35-50%)
-  const toyeOpacity = toyeVisible ? Math.min(1, (scrollProgress - 35) / 15) : 0;
+  // TOYE fade in (30-45%)
+  const toyeOpacity = toyeVisible ? Math.min(1, (scrollProgress - 30) / 15) : 0;
   
-  // Annotation individual opacities with stagger
+  // Annotation individual opacities with stagger (shifted)
   const annotationOpacities = [
-    annotationsVisible ? Math.min(1, (scrollProgress - 50) / 8) : 0,
-    annotationsVisible ? Math.min(1, (scrollProgress - 53) / 8) : 0,
-    annotationsVisible ? Math.min(1, (scrollProgress - 56) / 8) : 0,
-    annotationsVisible ? Math.min(1, (scrollProgress - 59) / 8) : 0,
+    annotationsVisible ? Math.min(1, (scrollProgress - 45) / 8) : 0,
+    annotationsVisible ? Math.min(1, (scrollProgress - 48) / 8) : 0,
+    annotationsVisible ? Math.min(1, (scrollProgress - 51) / 8) : 0,
+    annotationsVisible ? Math.min(1, (scrollProgress - 54) / 8) : 0,
   ];
   
-  // Swirl rotation (70-85%)
-  const swirlRotation = annotationsSwirling ? (scrollProgress - 70) * 8 : 0;
-  const swirlScale = annotationsSwirling ? 1 + (scrollProgress - 70) * 0.01 : 1;
+  // Swirl rotation (65-82%)
+  const swirlRotation = annotationsSwirling ? (scrollProgress - 65) * 8 : 0;
+  const swirlScale = annotationsSwirling ? 1 + (scrollProgress - 65) * 0.01 : 1;
   
-  // Title card fade (85-100%)
-  const titleOpacity = titleVisible ? Math.min(1, (scrollProgress - 85) / 12) : 0;
+  // Title card fade (82-100%)
+  const titleOpacity = titleVisible ? Math.min(1, (scrollProgress - 82) / 15) : 0;
   
-  // Background darkness: starts at 0 (pure black), builds with scroll
-  // Per spec: "The hero opens in complete darkness"
-  const backgroundOpacity = Math.min(1, scrollProgress / 30);
+  // Background: starts slightly visible (0.15) so word shows, builds with scroll
+  // UX FIX: Not pure black on load - subtle texture visible
+  const backgroundOpacity = Math.min(1, 0.15 + (scrollProgress / 25) * 0.85);
 
   return (
     <section
       ref={heroRef}
       className={`hero-section scroll-lock-section ${isMounted && isPinned ? "pinned" : ""} ${isComplete ? "complete" : ""}`}
-      style={{ height: "400vh" }} // CRITICAL: Explicit height for scroll-lock (per scroll-lock-patterns.md: 800-1200px depth)
+      style={{ height: "600vh" }} // CRITICAL: Explicit height for scroll-lock - extended for better animation pacing
     >
       {/* Background - STARTS IN DARKNESS per spec, builds with scroll */}
       <div 

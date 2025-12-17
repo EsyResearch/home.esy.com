@@ -71,7 +71,9 @@
   background: var(--toy-bg-primary);
   color: var(--toy-text-primary);
   font-family: var(--toy-font-serif);
-  overflow-x: hidden;
+  /* CRITICAL: overflow-x: hidden breaks position: sticky! */
+  /* Use overflow-clip-margin with clip instead to prevent horizontal scroll */
+  overflow-x: clip;
   line-height: 1.7;
 }
 
@@ -785,13 +787,18 @@
 .def-4 { bottom: 25%; right: 15%; font-size: 0.95rem; }
 
 /* Inner hero content wrapper - scoped to avoid global conflicts */
+/* NOTE: position is set via .origin-of-toy .hero-section .hero-content above */
+/* Do NOT override position here - it breaks the sticky scroll-lock pattern */
 .origin-of-toy .hero-content {
-  position: relative;
+  /* position: sticky is inherited from more specific selector above */
   z-index: 10;
   text-align: center;
   max-width: 800px;
   /* Ensure no grid inheritance from globals */
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Word container - STARTS INVISIBLE per spec "hero opens in complete darkness" */

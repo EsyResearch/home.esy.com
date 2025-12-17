@@ -267,6 +267,7 @@ When implementing a scroll-lock section:
 
 ## Related Documentation
 
+- [Sticky Position Fixes](./STICKY_POSITION_FIXES.md) - **Critical** — Fixes for when sticky breaks (overflow, specificity)
 - [Hero Hydration Pattern](./HERO_HYDRATION_PATTERN.md) - Fixing FOUC on first load
 - [Scroll-Lock Patterns Reference](../../orchestration/skills/visual-essay-invocation/references/scroll-lock-patterns.md) - Pattern catalog
 
