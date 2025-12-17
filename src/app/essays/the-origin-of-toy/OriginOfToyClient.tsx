@@ -858,6 +858,567 @@ const ShakespeareShuffle: React.FC = () => {
   );
 };
 
+// ==================== SCROLL-LOCK SEQUENCES ====================
+
+// Scroll-Lock: Invention of Childhood (Ch3) - Transformation Pattern
+// Per spec: Child transforms from adult-miniature to genuine child as philosophy accumulates
+const InventionOfChildhood: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isPinned, setIsPinned] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const rect = container.getBoundingClientRect();
+      const containerHeight = container.offsetHeight;
+      const viewportHeight = window.innerHeight;
+
+      // Check if we're in the pinned zone
+      if (rect.top <= 0 && rect.bottom > viewportHeight) {
+        setIsPinned(true);
+        const scrolled = -rect.top;
+        const scrollableDistance = containerHeight - viewportHeight;
+        const progress = Math.min(100, Math.max(0, (scrolled / scrollableDistance) * 100));
+        setScrollProgress(progress);
+      } else {
+        setIsPinned(false);
+        if (rect.top > 0) setScrollProgress(0);
+        if (rect.bottom <= viewportHeight) setScrollProgress(100);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Phase calculations per spec
+  const phase1 = scrollProgress < 20;  // Small adult figure
+  const phase2 = scrollProgress >= 20 && scrollProgress < 40;  // Locke's words
+  const phase3 = scrollProgress >= 40 && scrollProgress < 60;  // Rousseau, child shrinks
+  const phase4 = scrollProgress >= 60 && scrollProgress < 80;  // Surrounded by toys
+  const phase5 = scrollProgress >= 80;  // Word "TOY" appears
+
+  // Figure scale: starts at 0.7 (adult-like), grows to 1.0 (child proportions)
+  const figureScale = 0.7 + (Math.min(scrollProgress, 60) / 60) * 0.3;
+  // Figure posture: rigid at start, relaxed at end
+  const figureRotation = Math.max(0, 15 - (scrollProgress / 60) * 15);
+  // Toys opacity
+  const toysOpacity = scrollProgress >= 40 ? Math.min(1, (scrollProgress - 40) / 20) : 0;
+  // Final word opacity
+  const wordOpacity = scrollProgress >= 80 ? (scrollProgress - 80) / 20 : 0;
+
+  const handleSkip = useCallback(() => {
+    if (containerRef.current) {
+      const containerBottom = containerRef.current.offsetTop + containerRef.current.offsetHeight;
+      window.scrollTo({ top: containerBottom - 100, behavior: "smooth" });
+    }
+  }, []);
+
+  return (
+    <div ref={containerRef} className="scroll-lock-childhood" style={{ height: "280vh" }}>
+      <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`}>
+        {/* Skip button */}
+        {isPinned && scrollProgress < 95 && (
+          <button className="skip-button" onClick={handleSkip}>Skip →</button>
+        )}
+
+        {/* Progress bar */}
+        {isPinned && (
+          <div className="scroll-lock-progress">
+            <div className="progress-fill" style={{ width: `${scrollProgress}%` }} />
+          </div>
+        )}
+
+        <div className="childhood-header">
+          <span className="scroll-lock-label">Scroll-Lock: The Invention of Childhood</span>
+        </div>
+
+        <div className="childhood-stage">
+          {/* The child figure - transforms from rigid adult-miniature to playful child */}
+          <div 
+            className={`child-figure ${phase1 ? "adult-like" : ""} ${phase4 || phase5 ? "playing" : ""}`}
+            style={{
+              transform: `scale(${figureScale}) rotate(${figureRotation}deg)`,
+            }}
+          >
+            <div className="figure-body">
+              <div className="figure-head" />
+              <div className="figure-torso" />
+              <div className="figure-arms" />
+              <div className="figure-legs" />
+            </div>
+          </div>
+
+          {/* Philosophy text overlays */}
+          {phase2 && (
+            <div className="philosophy-text locke" style={{ opacity: Math.min(1, (scrollProgress - 20) / 10) }}>
+              <span className="philosopher">Locke, 1693</span>
+              <p>&ldquo;Children should have playthings suited to their development.&rdquo;</p>
+            </div>
+          )}
+
+          {phase3 && (
+            <div className="philosophy-text rousseau" style={{ opacity: Math.min(1, (scrollProgress - 40) / 10) }}>
+              <span className="philosopher">Rousseau, 1762</span>
+              <p>&ldquo;Nature provides for the child&apos;s growth in her own fashion.&rdquo;</p>
+            </div>
+          )}
+
+          {/* Toys appearing around the child */}
+          <div className="surrounding-toys" style={{ opacity: toysOpacity }}>
+            <span className="toy-icon toy-1">🎠</span>
+            <span className="toy-icon toy-2">🪀</span>
+            <span className="toy-icon toy-3">🧸</span>
+            <span className="toy-icon toy-4">🎲</span>
+          </div>
+
+          {/* Final word reveal */}
+          {phase5 && (
+            <div className="childhood-reveal" style={{ opacity: wordOpacity }}>
+              <span className="reveal-word">TOY</span>
+              <p className="reveal-caption">When we invented childhood, children claimed the word.</p>
+            </div>
+          )}
+        </div>
+
+        <div className="childhood-insight">
+          {phase1 && <p>Before the 17th century, children were dressed as miniature adults.</p>}
+          {phase2 && <p>Locke argued children needed play for proper development.</p>}
+          {phase3 && <p>Rousseau revolutionized how we see childhood itself.</p>}
+          {phase4 && <p>As childhood became a concept, it required vocabulary.</p>}
+          {phase5 && <p>The word &ldquo;toy&rdquo; found its permanent home.</p>}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Scroll-Lock: Toymaker's Bench (Ch4) - Assembly Pattern
+// Per spec: Wooden horse assembles piece by piece on a craftsman's workbench
+const ToymakersBench: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isPinned, setIsPinned] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const rect = container.getBoundingClientRect();
+      const containerHeight = container.offsetHeight;
+      const viewportHeight = window.innerHeight;
+
+      if (rect.top <= 0 && rect.bottom > viewportHeight) {
+        setIsPinned(true);
+        const scrolled = -rect.top;
+        const scrollableDistance = containerHeight - viewportHeight;
+        const progress = Math.min(100, Math.max(0, (scrolled / scrollableDistance) * 100));
+        setScrollProgress(progress);
+      } else {
+        setIsPinned(false);
+        if (rect.top > 0) setScrollProgress(0);
+        if (rect.bottom <= viewportHeight) setScrollProgress(100);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Phase calculations per spec:
+  // 0-20%: Empty workbench, tools arranged
+  // 20-40%: Body shape emerges
+  // 40-60%: Legs, head attached
+  // 60-80%: Painting phase
+  // 80-100%: Finished pull-along horse
+  const phase = Math.floor(scrollProgress / 20);
+  
+  const bodyOpacity = scrollProgress >= 20 ? Math.min(1, (scrollProgress - 20) / 15) : 0;
+  const legsOpacity = scrollProgress >= 40 ? Math.min(1, (scrollProgress - 40) / 10) : 0;
+  const headOpacity = scrollProgress >= 45 ? Math.min(1, (scrollProgress - 45) / 10) : 0;
+  const paintOpacity = scrollProgress >= 60 ? Math.min(1, (scrollProgress - 60) / 15) : 0;
+  const wheelsOpacity = scrollProgress >= 75 ? Math.min(1, (scrollProgress - 75) / 10) : 0;
+  const stringOpacity = scrollProgress >= 85 ? Math.min(1, (scrollProgress - 85) / 10) : 0;
+
+  const handleSkip = useCallback(() => {
+    if (containerRef.current) {
+      const containerBottom = containerRef.current.offsetTop + containerRef.current.offsetHeight;
+      window.scrollTo({ top: containerBottom - 100, behavior: "smooth" });
+    }
+  }, []);
+
+  return (
+    <div ref={containerRef} className="scroll-lock-toymaker" style={{ height: "300vh" }}>
+      <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`}>
+        {isPinned && scrollProgress < 95 && (
+          <button className="skip-button" onClick={handleSkip}>Skip →</button>
+        )}
+
+        {isPinned && (
+          <div className="scroll-lock-progress">
+            <div className="progress-fill" style={{ width: `${scrollProgress}%` }} />
+          </div>
+        )}
+
+        <div className="toymaker-header">
+          <span className="scroll-lock-label">Scroll-Lock: The Toymaker&apos;s Bench</span>
+          <span className="toymaker-instruction">Scroll to build</span>
+        </div>
+
+        <div className="workbench">
+          {/* Tools and shavings - always visible */}
+          <div className="bench-surface">
+            <div className="wood-shavings" />
+            <div className="tools">
+              <span className="tool chisel">🪚</span>
+              <span className="tool hammer">🔨</span>
+              <span className="tool brush">🖌️</span>
+            </div>
+          </div>
+
+          {/* The toy horse being built */}
+          <div className="toy-horse">
+            {/* Body - raw wood */}
+            <div 
+              className={`horse-body ${paintOpacity > 0 ? "painted" : "raw"}`}
+              style={{ opacity: bodyOpacity }}
+            >
+              <div className="body-shape" />
+            </div>
+
+            {/* Legs */}
+            <div 
+              className={`horse-legs ${paintOpacity > 0 ? "painted" : "raw"}`}
+              style={{ opacity: legsOpacity }}
+            >
+              <div className="leg leg-1" />
+              <div className="leg leg-2" />
+              <div className="leg leg-3" />
+              <div className="leg leg-4" />
+            </div>
+
+            {/* Head and mane */}
+            <div 
+              className={`horse-head ${paintOpacity > 0 ? "painted" : "raw"}`}
+              style={{ opacity: headOpacity }}
+            >
+              <div className="head-shape" />
+              <div className="mane" style={{ opacity: paintOpacity }} />
+              <div className="eye" style={{ opacity: paintOpacity }} />
+            </div>
+
+            {/* Wheels (pull-along toy) */}
+            <div className="horse-wheels" style={{ opacity: wheelsOpacity }}>
+              <div className="wheel wheel-front" />
+              <div className="wheel wheel-back" />
+            </div>
+
+            {/* Pull string */}
+            <div className="pull-string" style={{ opacity: stringOpacity }} />
+          </div>
+        </div>
+
+        <div className="toymaker-caption">
+          {phase === 0 && <p>The toymaker&apos;s bench. Raw materials await transformation.</p>}
+          {phase === 1 && <p>The body takes shape. Rough-cut, unfinished.</p>}
+          {phase === 2 && <p>Legs attached, head carved. The horse emerges.</p>}
+          {phase === 3 && <p>Dappled gray. Red bridle. Black mane. Color brings life.</p>}
+          {phase >= 4 && <p>Wheels, string attached. A toy is born.</p>}
+        </div>
+
+        {scrollProgress >= 90 && (
+          <div className="toymaker-conclusion" style={{ opacity: (scrollProgress - 90) / 10 }}>
+            <p>&ldquo;When your livelihood is &apos;toys,&apos; the word cannot be trivial.&rdquo;</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+// Scroll-Lock: Department Store Ascent (Ch5) - Pan/Reveal Pattern (Vertical)
+// Per spec: Rise through floors of a grand Victorian department store
+const DepartmentStoreAscent: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isPinned, setIsPinned] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const rect = container.getBoundingClientRect();
+      const containerHeight = container.offsetHeight;
+      const viewportHeight = window.innerHeight;
+
+      if (rect.top <= 0 && rect.bottom > viewportHeight) {
+        setIsPinned(true);
+        const scrolled = -rect.top;
+        const scrollableDistance = containerHeight - viewportHeight;
+        const progress = Math.min(100, Math.max(0, (scrolled / scrollableDistance) * 100));
+        setScrollProgress(progress);
+      } else {
+        setIsPinned(false);
+        if (rect.top > 0) setScrollProgress(0);
+        if (rect.bottom <= viewportHeight) setScrollProgress(100);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Per spec:
+  // 0-20%: Ground floor (haberdashery, gloves)
+  // 20-40%: Rising, glimpses of color
+  // 40-60%: TOY DEPARTMENT reveal
+  // 60-80%: Pan across treasures
+  // 80-100%: Child enters, wonder
+  
+  const floorPosition = scrollProgress * 3; // 0-300 representing vertical movement
+  const currentFloor = Math.floor(scrollProgress / 25);
+  const toyDeptRevealed = scrollProgress >= 40;
+  const childEnters = scrollProgress >= 80;
+
+  const handleSkip = useCallback(() => {
+    if (containerRef.current) {
+      const containerBottom = containerRef.current.offsetTop + containerRef.current.offsetHeight;
+      window.scrollTo({ top: containerBottom - 100, behavior: "smooth" });
+    }
+  }, []);
+
+  return (
+    <div ref={containerRef} className="scroll-lock-department" style={{ height: "280vh" }}>
+      <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`}>
+        {isPinned && scrollProgress < 95 && (
+          <button className="skip-button" onClick={handleSkip}>Skip →</button>
+        )}
+
+        {isPinned && (
+          <div className="scroll-lock-progress">
+            <div className="progress-fill" style={{ width: `${scrollProgress}%` }} />
+          </div>
+        )}
+
+        <div className="department-header">
+          <span className="scroll-lock-label">Scroll-Lock: The Department Store Ascent</span>
+        </div>
+
+        <div className="store-viewport">
+          {/* The vertical store structure that moves up as we scroll */}
+          <div 
+            className="store-floors"
+            style={{ transform: `translateY(${-floorPosition}px)` }}
+          >
+            {/* Ground Floor */}
+            <div className={`floor floor-ground ${currentFloor === 0 ? "active" : ""}`}>
+              <div className="floor-label">Ground Floor</div>
+              <div className="floor-contents">
+                <span className="item">🧤 Gloves</span>
+                <span className="item">🎩 Haberdashery</span>
+                <span className="item">👜 Sundries</span>
+              </div>
+              <div className="sign-pointing">↑ Toys</div>
+            </div>
+
+            {/* Second Floor */}
+            <div className={`floor floor-second ${currentFloor === 1 ? "active" : ""}`}>
+              <div className="floor-label">Second Floor</div>
+              <div className="floor-contents">
+                <span className="item">🪑 Furniture</span>
+                <span className="item">🖼️ Décor</span>
+                <span className="glimpse">🎨 Colors ahead...</span>
+              </div>
+            </div>
+
+            {/* TOY DEPARTMENT */}
+            <div className={`floor floor-toys ${currentFloor >= 2 ? "active" : ""} ${toyDeptRevealed ? "revealed" : ""}`}>
+              <div className="floor-label toy-dept-label">✨ TOY DEPARTMENT ✨</div>
+              <div className="floor-contents toy-contents">
+                <div className="toy-shelf shelf-1">
+                  <span className="toy-item">🚂</span>
+                  <span className="toy-item">🎎</span>
+                  <span className="toy-item">🪆</span>
+                </div>
+                <div className="toy-shelf shelf-2">
+                  <span className="toy-item">🧸</span>
+                  <span className="toy-item">🎠</span>
+                  <span className="toy-item">🪁</span>
+                </div>
+                <div className="toy-shelf shelf-3">
+                  <span className="toy-item">🎪</span>
+                  <span className="toy-item">🎭</span>
+                  <span className="toy-item">🎨</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Child entering - appears at 80% */}
+          {childEnters && (
+            <div className="child-wonder" style={{ opacity: (scrollProgress - 80) / 15 }}>
+              <div className="wonder-child">👧</div>
+              <div className="wonder-eyes">✨</div>
+            </div>
+          )}
+        </div>
+
+        <div className="department-caption">
+          {currentFloor === 0 && <p>Ground floor. Ordinary goods. But a sign points upward.</p>}
+          {currentFloor === 1 && <p>Rising. Glimpses of color appear.</p>}
+          {currentFloor >= 2 && !childEnters && <p>TOY DEPARTMENT. Paradise found.</p>}
+          {childEnters && <p>&ldquo;Toy&rdquo; was no longer something you dismissed. It was something you dreamed of.</p>}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Scroll-Lock: Word Branches (Ch6) - Assembly Pattern
+// Per spec: Tree diagram grows, showing how "toy" has branched into compound words
+const WordBranches: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isPinned, setIsPinned] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const rect = container.getBoundingClientRect();
+      const containerHeight = container.offsetHeight;
+      const viewportHeight = window.innerHeight;
+
+      if (rect.top <= 0 && rect.bottom > viewportHeight) {
+        setIsPinned(true);
+        const scrolled = -rect.top;
+        const scrollableDistance = containerHeight - viewportHeight;
+        const progress = Math.min(100, Math.max(0, (scrolled / scrollableDistance) * 100));
+        setScrollProgress(progress);
+      } else {
+        setIsPinned(false);
+        if (rect.top > 0) setScrollProgress(0);
+        if (rect.bottom <= viewportHeight) setScrollProgress(100);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Per spec:
+  // 0-25%: Trunk "TOY" appears
+  // 25-50%: First branches (toy soldier, toy train, toy box)
+  // 50-70%: New branches (toy poodle, executive toy, boy toy)
+  // 70-85%: Modern branches (digital toys, adult toys)
+  // 85-100%: Full tree revealed with conclusion
+
+  const branches = [
+    { word: "toy soldier", meaning: "miniature figure", era: "19th c.", group: 1 },
+    { word: "toy train", meaning: "model locomotive", era: "1850s", group: 1 },
+    { word: "toy box", meaning: "storage for playthings", era: "1800s", group: 1 },
+    { word: "toy poodle", meaning: "small dog breed", era: "20th c.", group: 2 },
+    { word: "executive toy", meaning: "desk distraction", era: "1970s", group: 2 },
+    { word: "boy toy", meaning: "young attractive person", era: "1980s", group: 2 },
+    { word: "digital toys", meaning: "electronic games", era: "1990s", group: 3 },
+    { word: "adult toys", meaning: "intimate devices", era: "modern", group: 3 },
+  ];
+
+  const trunkVisible = scrollProgress >= 5;
+  const trunkOpacity = Math.min(1, scrollProgress / 20);
+  const showConclusion = scrollProgress >= 85;
+
+  const handleSkip = useCallback(() => {
+    if (containerRef.current) {
+      const containerBottom = containerRef.current.offsetTop + containerRef.current.offsetHeight;
+      window.scrollTo({ top: containerBottom - 100, behavior: "smooth" });
+    }
+  }, []);
+
+  return (
+    <div ref={containerRef} className="scroll-lock-branches" style={{ height: "260vh" }}>
+      <div className={`pinned-content ${isPinned ? "is-pinned" : ""}`}>
+        {isPinned && scrollProgress < 95 && (
+          <button className="skip-button" onClick={handleSkip}>Skip →</button>
+        )}
+
+        {isPinned && (
+          <div className="scroll-lock-progress">
+            <div className="progress-fill" style={{ width: `${scrollProgress}%` }} />
+          </div>
+        )}
+
+        <div className="branches-header">
+          <span className="scroll-lock-label">Scroll-Lock: The Word Branches</span>
+        </div>
+
+        <div className="tree-container">
+          {/* Trunk */}
+          <div 
+            className={`tree-trunk ${trunkVisible ? "visible" : ""}`}
+            style={{ opacity: trunkOpacity }}
+          >
+            <span className="trunk-word">TOY</span>
+          </div>
+
+          {/* Branches */}
+          <div className="tree-branches-container">
+            {branches.map((branch, index) => {
+              // Calculate when this branch should appear
+              const groupStart = branch.group === 1 ? 25 : branch.group === 2 ? 50 : 70;
+              const indexInGroup = branches.filter(b => b.group === branch.group).indexOf(branch);
+              const branchStart = groupStart + indexInGroup * 5;
+              const branchOpacity = scrollProgress >= branchStart 
+                ? Math.min(1, (scrollProgress - branchStart) / 10) 
+                : 0;
+              
+              // Stagger positions
+              const angle = (index / branches.length) * 180 - 90; // Spread from -90 to 90 degrees
+              const distance = 80 + branch.group * 40;
+              const x = Math.cos((angle * Math.PI) / 180) * distance;
+              const y = Math.sin((angle * Math.PI) / 180) * Math.abs(distance * 0.5) + branch.group * 60;
+
+              return (
+                <div
+                  key={branch.word}
+                  className={`tree-branch group-${branch.group}`}
+                  style={{
+                    opacity: branchOpacity,
+                    transform: `translate(${x}px, ${y}px) scale(${branchOpacity})`,
+                  }}
+                >
+                  <div className="branch-line" />
+                  <div className="branch-content">
+                    <span className="branch-word">{branch.word}</span>
+                    <span className="branch-meaning">{branch.meaning}</span>
+                    <span className="branch-era">{branch.era}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {showConclusion && (
+          <div className="branches-conclusion" style={{ opacity: (scrollProgress - 85) / 12 }}>
+            <p>&ldquo;A word is never finished. It grows with every mouth that speaks it.&rdquo;</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
 // Etymology Complete Scroll-Lock (for Ch7)
 const EtymologyComplete: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -1188,6 +1749,12 @@ const OriginOfToyClient: React.FC = () => {
           </div>
         </ChapterSection>
 
+        {/* Scroll-Lock: Invention of Childhood (OUTSIDE section to avoid transform conflicts) */}
+        <InventionOfChildhood />
+
+        {/* Chapter 3 continued after scroll-lock */}
+        <div className="chapter-continued" style={{ transform: "none" }} />
+
         {/* Chapter 4: The Toymaker's Art */}
         <ChapterSection
           chapter={4}
@@ -1252,6 +1819,12 @@ const OriginOfToyClient: React.FC = () => {
           />
         </ChapterSection>
 
+        {/* Scroll-Lock: Toymaker's Bench (OUTSIDE section to avoid transform conflicts) */}
+        <ToymakersBench />
+
+        {/* Chapter 4 continued after scroll-lock */}
+        <div className="chapter-continued" style={{ transform: "none" }} />
+
         {/* Chapter 5: Industry and Innocence */}
         <ChapterSection
           chapter={5}
@@ -1312,6 +1885,12 @@ const OriginOfToyClient: React.FC = () => {
           />
         </ChapterSection>
 
+        {/* Scroll-Lock: Department Store Ascent (OUTSIDE section to avoid transform conflicts) */}
+        <DepartmentStoreAscent />
+
+        {/* Chapter 5 continued after scroll-lock */}
+        <div className="chapter-continued" style={{ transform: "none" }} />
+
         {/* Chapter 6: The Living Word */}
         <ChapterSection
           chapter={6}
@@ -1331,18 +1910,13 @@ const OriginOfToyClient: React.FC = () => {
           </div>
 
           <ImageGallery images={chapter6Images.slice(1)} columns={2} />
+        </ChapterSection>
 
-          <div className="etymology-tree">
-            <div className="tree-trunk">TOY</div>
-            <div className="tree-branches">
-              <EtymologyBranch compound="toy soldier" meaning="miniature figure" era="19th c." />
-              <EtymologyBranch compound="toy poodle" meaning="small dog breed" era="20th c." />
-              <EtymologyBranch compound="executive toy" meaning="desk distraction" era="1970s" />
-              <EtymologyBranch compound="boy toy" meaning="young attractive person" era="1980s" />
-              <EtymologyBranch compound="adult toys" meaning="intimate devices" era="modern" />
-            </div>
-          </div>
+        {/* Scroll-Lock: Word Branches (OUTSIDE section to avoid transform conflicts) */}
+        <WordBranches />
 
+        {/* Chapter 6 continued after scroll-lock */}
+        <section className="chapter-continued" style={{ transform: "none" }}>
           <div className="content-block">
             <p>
               Today, &ldquo;toy&rdquo; lives everywhere. It modifies nouns (toy car, toy gun), names entire 
@@ -1375,7 +1949,7 @@ const OriginOfToyClient: React.FC = () => {
               quote="Through the doll, the little girl could be anything she wanted to be."
             />
           </div>
-        </ChapterSection>
+        </section>
 
         {/* Chapter 7: The Meaning of Play */}
         <ChapterSection

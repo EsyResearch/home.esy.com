@@ -33,7 +33,10 @@
   --toy-era-renaissance: #2F4F4F;       /* Dark slate - sophistication */
   --toy-era-enlightenment: #DAA520;     /* Goldenrod - reason */
   --toy-era-victorian: #4A4A4A;         /* Industrial gray */
-  --toy-era-modern: #F7F3EB;            /* Clean contemporary */
+  --toy-era-modern: #FF6B6B;            /* Playful coral - contemporary toys, joy */
+  
+  /* Semantic Colors */
+  --toy-semantic-etymology: #6B8E23;    /* Olive drab - scholarly, linguistic */
   
   /* Typography */
   --toy-font-display: 'Cormorant Garamond', Georgia, serif;
@@ -728,10 +731,12 @@
 /* Pinned state - content is actively in scroll-lock zone */
 .hero-section.pinned .hero-content {
   /* Visual feedback that scroll-lock is active - content remains centered */
+  opacity: 1; /* Explicit: ensure content stays visible during pin */
 }
 
 .hero-section.complete .hero-content {
   /* When animation completes, keep content visible */
+  opacity: 1; /* Explicit: content remains after scroll-lock completes */
 }
 
 /* Hero background starts at opacity 0 (pure black), controlled by JS */
@@ -1678,6 +1683,826 @@
   }
 }
 
+/* ==================== SCROLL-LOCK: INVENTION OF CHILDHOOD ==================== */
+
+.scroll-lock-childhood {
+  position: relative;
+}
+
+.scroll-lock-childhood .pinned-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--toy-space-lg) var(--toy-space-md);
+  min-height: 100vh;
+}
+
+.scroll-lock-childhood .pinned-content.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 50;
+  background: var(--toy-bg-primary);
+}
+
+.childhood-header {
+  text-align: center;
+  margin-bottom: var(--toy-space-lg);
+}
+
+.scroll-lock-label {
+  font-family: var(--toy-font-mono);
+  font-size: 0.75rem;
+  color: var(--toy-accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.childhood-stage {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.child-figure {
+  position: relative;
+  transition: transform 0.5s var(--toy-ease-out);
+}
+
+.child-figure.adult-like .figure-body {
+  /* Rigid adult-like proportions - more formal stance */
+  transform: scaleY(1.1); /* Taller proportions like an adult */
+}
+
+.child-figure.playing .figure-body {
+  animation: gentleBounce 2s ease-in-out infinite;
+}
+
+@keyframes gentleBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.figure-body {
+  position: relative;
+  width: 60px;
+  height: 120px;
+}
+
+.figure-head {
+  width: 40px;
+  height: 40px;
+  background: var(--toy-accent-terracotta);
+  border-radius: 50%;
+  margin: 0 auto 8px;
+}
+
+.figure-torso {
+  width: 50px;
+  height: 45px;
+  background: linear-gradient(180deg, var(--toy-era-enlightenment) 0%, #a08020 100%);
+  border-radius: 8px 8px 4px 4px;
+  margin: 0 auto;
+}
+
+.figure-arms {
+  position: absolute;
+  top: 50px;
+  left: -5px;
+  right: -5px;
+  height: 8px;
+  background: var(--toy-accent-terracotta);
+  border-radius: 4px;
+}
+
+.figure-legs {
+  width: 45px;
+  height: 35px;
+  background: #5a4a3a;
+  border-radius: 0 0 8px 8px;
+  margin: 4px auto 0;
+}
+
+.philosophy-text {
+  position: absolute;
+  max-width: 200px;
+  padding: var(--toy-space-sm);
+  background: rgba(15, 13, 9, 0.9);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 8px;
+  transition: opacity 0.5s ease;
+}
+
+.philosophy-text.locke {
+  top: 10%;
+  right: 5%;
+}
+
+.philosophy-text.rousseau {
+  bottom: 15%;
+  left: 5%;
+}
+
+.philosophy-text .philosopher {
+  display: block;
+  font-family: var(--toy-font-mono);
+  font-size: 0.7rem;
+  color: var(--toy-accent-gold);
+  margin-bottom: 0.5rem;
+}
+
+.philosophy-text p {
+  font-family: var(--toy-font-serif);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--toy-text-secondary);
+  margin: 0;
+}
+
+.surrounding-toys {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.toy-icon {
+  position: absolute;
+  font-size: 2rem;
+  animation: floatToy 3s ease-in-out infinite;
+}
+
+.toy-1 { top: 20%; left: 10%; animation-delay: 0s; }
+.toy-2 { top: 30%; right: 15%; animation-delay: 0.5s; }
+.toy-3 { bottom: 25%; left: 15%; animation-delay: 1s; }
+.toy-4 { bottom: 20%; right: 10%; animation-delay: 1.5s; }
+
+@keyframes floatToy {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.childhood-reveal {
+  position: absolute;
+  top: 0;
+  text-align: center;
+  transition: opacity 0.5s ease;
+}
+
+.reveal-word {
+  display: block;
+  font-family: var(--toy-font-display);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--toy-accent-gold);
+  text-shadow: 0 4px 30px rgba(212, 175, 55, 0.4);
+}
+
+.reveal-caption {
+  font-family: var(--toy-font-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--toy-text-secondary);
+  margin-top: var(--toy-space-sm);
+}
+
+.childhood-insight {
+  text-align: center;
+  margin-top: var(--toy-space-md);
+  min-height: 2em;
+}
+
+.childhood-insight p {
+  font-family: var(--toy-font-serif);
+  font-size: 1rem;
+  color: var(--toy-text-secondary);
+  margin: 0;
+}
+
+/* ==================== SCROLL-LOCK: TOYMAKER'S BENCH ==================== */
+
+.scroll-lock-toymaker {
+  position: relative;
+}
+
+.scroll-lock-toymaker .pinned-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--toy-space-lg) var(--toy-space-md);
+  min-height: 100vh;
+}
+
+.scroll-lock-toymaker .pinned-content.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 50;
+  background: var(--toy-bg-primary);
+}
+
+.toymaker-header {
+  text-align: center;
+  margin-bottom: var(--toy-space-md);
+}
+
+.toymaker-instruction {
+  display: block;
+  font-family: var(--toy-font-serif);
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--toy-text-tertiary);
+  margin-top: 0.5rem;
+}
+
+.workbench {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 350px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.bench-surface {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg, #5a4a35 0%, #3d3225 100%);
+  border-radius: 8px 8px 0 0;
+  border: 3px solid #4a3d2e;
+  border-bottom: none;
+}
+
+.wood-shavings {
+  position: absolute;
+  bottom: 100%;
+  left: 10%;
+  right: 10%;
+  height: 20px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 5px,
+    rgba(193, 127, 89, 0.3) 5px,
+    rgba(193, 127, 89, 0.3) 10px
+  );
+  mask-image: linear-gradient(180deg, transparent 0%, black 100%);
+}
+
+.tools {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.tool {
+  font-size: 1.25rem;
+  opacity: 0.7;
+}
+
+.toy-horse {
+  position: absolute;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 180px;
+}
+
+.horse-body {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.5s ease;
+}
+
+.horse-body .body-shape {
+  width: 100px;
+  height: 60px;
+  background: #b8956d;
+  border-radius: 30px 30px 10px 10px;
+}
+
+.horse-body.painted .body-shape {
+  background: linear-gradient(135deg, #a0a0a0 0%, #808080 50%, #a0a0a0 100%);
+}
+
+.horse-legs {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  transition: opacity 0.5s ease;
+}
+
+.leg {
+  width: 12px;
+  height: 40px;
+  background: #b8956d;
+  border-radius: 0 0 4px 4px;
+}
+
+.horse-legs.painted .leg {
+  background: #707070;
+}
+
+.horse-head {
+  position: absolute;
+  bottom: 100px;
+  left: 5px;
+  transition: opacity 0.5s ease;
+}
+
+.head-shape {
+  width: 50px;
+  height: 45px;
+  background: #b8956d;
+  border-radius: 25px 25px 15px 15px;
+  transform: rotate(-15deg);
+}
+
+.horse-head.painted .head-shape {
+  background: linear-gradient(180deg, #909090 0%, #707070 100%);
+}
+
+.mane {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  width: 20px;
+  height: 30px;
+  background: #333;
+  border-radius: 10px;
+  transition: opacity 0.5s ease;
+}
+
+.eye {
+  position: absolute;
+  top: 15px;
+  left: 12px;
+  width: 8px;
+  height: 8px;
+  background: #333;
+  border-radius: 50%;
+  transition: opacity 0.5s ease;
+}
+
+.horse-wheels {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  display: flex;
+  justify-content: space-between;
+  transition: opacity 0.5s ease;
+}
+
+.wheel {
+  width: 24px;
+  height: 24px;
+  background: #5a4a35;
+  border: 3px solid #4a3d2e;
+  border-radius: 50%;
+}
+
+.pull-string {
+  position: absolute;
+  bottom: 12px;
+  left: -40px;
+  width: 50px;
+  height: 4px;
+  background: linear-gradient(90deg, #c17f59, #a06545);
+  border-radius: 2px;
+  transition: opacity 0.5s ease;
+}
+
+.pull-string::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: -4px;
+  width: 12px;
+  height: 12px;
+  background: #5a4a35;
+  border-radius: 50%;
+}
+
+.toymaker-caption {
+  text-align: center;
+  margin-top: var(--toy-space-md);
+  min-height: 2em;
+}
+
+.toymaker-caption p {
+  font-family: var(--toy-font-serif);
+  font-size: 1rem;
+  color: var(--toy-text-secondary);
+  margin: 0;
+}
+
+.toymaker-conclusion {
+  text-align: center;
+  margin-top: var(--toy-space-md);
+}
+
+.toymaker-conclusion p {
+  font-family: var(--toy-font-serif);
+  font-size: 1.125rem;
+  font-style: italic;
+  color: var(--toy-accent-gold);
+  margin: 0;
+}
+
+/* ==================== SCROLL-LOCK: DEPARTMENT STORE ==================== */
+
+.scroll-lock-department {
+  position: relative;
+}
+
+.scroll-lock-department .pinned-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--toy-space-lg) var(--toy-space-md);
+  min-height: 100vh;
+}
+
+.scroll-lock-department .pinned-content.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 50;
+  background: var(--toy-bg-primary);
+}
+
+.department-header {
+  text-align: center;
+  margin-bottom: var(--toy-space-md);
+}
+
+.store-viewport {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  overflow: hidden;
+  border: 3px solid var(--toy-era-victorian);
+  border-radius: 12px;
+  background: var(--toy-bg-secondary);
+}
+
+.store-floors {
+  position: relative;
+  transition: transform 0.2s ease-out;
+}
+
+.floor {
+  padding: var(--toy-space-lg) var(--toy-space-md);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.floor.active {
+  opacity: 1;
+}
+
+.floor-label {
+  font-family: var(--toy-font-mono);
+  font-size: 0.75rem;
+  color: var(--toy-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--toy-space-sm);
+}
+
+.floor-contents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--toy-space-sm);
+  justify-content: center;
+}
+
+.floor-contents .item {
+  font-size: 1rem;
+  color: var(--toy-text-secondary);
+}
+
+.floor-contents .glimpse {
+  font-style: italic;
+  color: var(--toy-accent-gold);
+}
+
+.sign-pointing {
+  margin-top: var(--toy-space-sm);
+  font-family: var(--toy-font-serif);
+  font-style: italic;
+  color: var(--toy-accent-terracotta);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.floor-toys {
+  background: linear-gradient(180deg, #1a150e 0%, #252018 100%);
+}
+
+.floor-toys.revealed {
+  box-shadow: inset 0 0 60px rgba(212, 175, 55, 0.1);
+}
+
+.toy-dept-label {
+  font-size: 1rem !important;
+  color: var(--toy-accent-gold) !important;
+  font-weight: 600;
+}
+
+.toy-contents {
+  flex-direction: column;
+}
+
+.toy-shelf {
+  display: flex;
+  gap: var(--toy-space-md);
+  padding: var(--toy-space-xs) var(--toy-space-sm);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+  margin-bottom: var(--toy-space-xs);
+}
+
+.toy-item {
+  font-size: 1.5rem;
+}
+
+.child-wonder {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.wonder-child {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.wonder-eyes {
+  font-size: 1.5rem;
+  animation: sparkle 1s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+.department-caption {
+  text-align: center;
+  margin-top: var(--toy-space-md);
+  min-height: 3em;
+}
+
+.department-caption p {
+  font-family: var(--toy-font-serif);
+  font-size: 1rem;
+  color: var(--toy-text-secondary);
+  margin: 0;
+}
+
+/* ==================== SCROLL-LOCK: WORD BRANCHES ==================== */
+
+.scroll-lock-branches {
+  position: relative;
+}
+
+.scroll-lock-branches .pinned-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--toy-space-lg) var(--toy-space-md);
+  min-height: 100vh;
+}
+
+.scroll-lock-branches .pinned-content.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 50;
+  background: var(--toy-bg-primary);
+}
+
+.branches-header {
+  text-align: center;
+  margin-bottom: var(--toy-space-lg);
+}
+
+.tree-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: var(--toy-space-md);
+}
+
+.tree-trunk {
+  font-family: var(--toy-font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--toy-accent-gold);
+  padding: var(--toy-space-sm) var(--toy-space-md);
+  background: var(--toy-bg-elevated);
+  border: 3px solid var(--toy-accent-gold);
+  border-radius: 8px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.6s var(--toy-ease-bounce);
+}
+
+.tree-trunk.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.tree-branches-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  margin-top: var(--toy-space-md);
+}
+
+.tree-branch {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.5s var(--toy-ease-out);
+}
+
+.branch-line {
+  width: 2px;
+  height: 30px;
+  background: linear-gradient(180deg, var(--toy-accent-gold), transparent);
+  margin-bottom: 0.5rem;
+}
+
+.branch-content {
+  padding: var(--toy-space-xs) var(--toy-space-sm);
+  background: var(--toy-bg-secondary);
+  border: 1px solid rgba(247, 243, 235, 0.1);
+  border-radius: 8px;
+  min-width: 100px;
+}
+
+.tree-branch.group-1 .branch-content {
+  border-color: var(--toy-era-victorian);
+}
+
+.tree-branch.group-2 .branch-content {
+  border-color: var(--toy-era-modern);
+}
+
+.tree-branch.group-3 .branch-content {
+  border-color: var(--toy-accent-terracotta);
+}
+
+.branch-word {
+  display: block;
+  font-family: var(--toy-font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--toy-accent-terracotta);
+  margin-bottom: 0.25rem;
+}
+
+.branch-meaning {
+  display: block;
+  font-family: var(--toy-font-serif);
+  font-size: 0.75rem;
+  color: var(--toy-text-secondary);
+}
+
+.branch-era {
+  display: block;
+  font-family: var(--toy-font-mono);
+  font-size: 0.625rem;
+  color: var(--toy-text-tertiary);
+  margin-top: 0.25rem;
+}
+
+.branches-conclusion {
+  text-align: center;
+  margin-top: var(--toy-space-lg);
+}
+
+.branches-conclusion p {
+  font-family: var(--toy-font-serif);
+  font-size: 1.125rem;
+  font-style: italic;
+  color: var(--toy-accent-gold);
+  margin: 0;
+}
+
+/* ==================== CHAPTER CONTINUED ==================== */
+
+.chapter-continued {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--toy-space-md) var(--toy-space-md) var(--toy-space-xl);
+}
+
+/* ==================== MOBILE ADJUSTMENTS FOR NEW SCROLL-LOCKS ==================== */
+
+@media (max-width: 768px) {
+  .scroll-lock-childhood,
+  .scroll-lock-toymaker,
+  .scroll-lock-department,
+  .scroll-lock-branches {
+    /* Reduce heights for mobile */
+    height: auto !important;
+    min-height: 200vh;
+  }
+
+  .childhood-stage,
+  .workbench,
+  .store-viewport,
+  .tree-container {
+    max-width: 100%;
+    height: 300px;
+  }
+
+  .philosophy-text {
+    position: relative;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    margin: var(--toy-space-sm) 0;
+  }
+
+  .tree-branches-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--toy-space-sm);
+    height: auto;
+  }
+
+  .tree-branch {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+  }
+
+  .branch-line {
+    display: none;
+  }
+}
+
 /* ==================== REDUCED MOTION ==================== */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1720,5 +2545,36 @@
   .scroll-indicator {
     animation: none;
     opacity: 0.5;
+  }
+
+  /* New scroll-lock sequences - show content statically */
+  .scroll-lock-childhood .pinned-content,
+  .scroll-lock-toymaker .pinned-content,
+  .scroll-lock-department .pinned-content,
+  .scroll-lock-branches .pinned-content {
+    position: relative !important;
+  }
+
+  .child-figure,
+  .toy-horse,
+  .store-floors,
+  .tree-branch {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .surrounding-toys,
+  .philosophy-text,
+  .childhood-reveal,
+  .horse-body,
+  .horse-legs,
+  .horse-head,
+  .horse-wheels,
+  .pull-string,
+  .child-wonder,
+  .tree-trunk,
+  .branches-conclusion,
+  .toymaker-conclusion {
+    opacity: 1 !important;
   }
 }
