@@ -401,18 +401,25 @@ const PaleBlueDotClient: React.FC = () => {
           <h3 className="sources-title">Sources &amp; Further Reading</h3>
           <div className="sources-grid">
             <a 
-              href="https://www.nasa.gov/image-article/pale-blue-dot/" 
+              href="https://science.nasa.gov/mission/voyager/voyager-1s-pale-blue-dot/" 
               target="_blank" 
               rel="noopener noreferrer"
             >
-              NASA: Pale Blue Dot
+              NASA Science: Voyager 1's Pale Blue Dot
             </a>
             <a 
-              href="https://voyager.jpl.nasa.gov/galleries/images-voyager-took/pale-blue-dot/" 
+              href="https://www.jpl.nasa.gov/images/pia00452-solar-system-portrait-earth-as-pale-blue-dot/" 
               target="_blank" 
               rel="noopener noreferrer"
             >
-              NASA JPL: Voyager Mission
+              NASA JPL: Solar System Portrait
+            </a>
+            <a 
+              href="https://www.nasa.gov/image-article/our-pale-blue-dot/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              NASA: Our Pale Blue Dot
             </a>
             <a 
               href="https://www.planetary.org/worlds/pale-blue-dot" 
@@ -422,13 +429,6 @@ const PaleBlueDotClient: React.FC = () => {
               The Planetary Society
             </a>
             <a 
-              href="https://en.wikipedia.org/wiki/Pale_Blue_Dot" 
-              target="_blank" 
-              rel="noopener noreferrer"
-            >
-              Wikipedia: Pale Blue Dot
-            </a>
-            <a 
               href="https://www.loc.gov/item/cosmos000110/" 
               target="_blank" 
               rel="noopener noreferrer"
@@ -436,11 +436,18 @@ const PaleBlueDotClient: React.FC = () => {
               Library of Congress: Cosmos
             </a>
             <a 
-              href="https://www.smithsonianmag.com/science-nature/why-pale-blue-dot-photograph-is-so-iconic-180974197/" 
+              href="https://en.wikipedia.org/wiki/Pale_Blue_Dot" 
               target="_blank" 
               rel="noopener noreferrer"
             >
-              Smithsonian Magazine
+              Wikipedia: Pale Blue Dot
+            </a>
+            <a 
+              href="https://www.loc.gov/static/programs/national-recording-preservation-board/documents/pale-blue-dot.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              Carl Sagan: Pale Blue Dot (1994)
             </a>
           </div>
         </div>
