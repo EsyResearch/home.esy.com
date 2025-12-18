@@ -15,6 +15,13 @@
   status = 301
   force = true
 
+# Redirect spam traffic from /cities/* to root
+[[redirects]]
+  from = "/cities/*"
+  to = "/"
+  status = 301
+  force = true
+
 # Proxy /guide section to a separate Netlify site
 # This allows the guide to be maintained and deployed independently
 # while appearing as part of the main esy.com domain
