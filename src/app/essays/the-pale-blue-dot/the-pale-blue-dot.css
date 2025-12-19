@@ -163,6 +163,16 @@
 
 .pale-blue-dot .hero-content {
   max-width: 600px;
+  /* Override global .hero-content grid styles from globals.css */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* Explicitly unset global grid properties */
+  grid-template-columns: unset;
+  gap: unset;
+  margin: 0;
+  padding: 0;
 }
 
 .pale-blue-dot .hero-date {
@@ -180,6 +190,12 @@
   line-height: 1.1;
   margin-bottom: 1.5rem;
   font-style: italic;
+  /* Override global .hero-title styles from globals.css */
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  background-clip: border-box;
+  animation: none;
+  color: var(--color-star);
 }
 
 .pale-blue-dot .hero-subtitle {
@@ -580,6 +596,74 @@
   .pale-blue-dot .earth-svg {
     width: 200px;
     height: 200px;
+  }
+}
+
+/* ============================================
+   DESKTOP TYPOGRAPHY ENHANCEMENTS
+   ============================================ */
+@media (min-width: 1024px) {
+  /* Body text - main content readability */
+  .pale-blue-dot .hero-subtitle {
+    font-size: 1.25rem;
+    line-height: 1.9;
+  }
+  
+  .pale-blue-dot .journey-text {
+    font-size: 1.25rem;
+    line-height: 2;
+  }
+  
+  .pale-blue-dot .final-quote-text {
+    font-size: 1.375rem;
+    line-height: 2.1;
+  }
+  
+  .pale-blue-dot .footer-message {
+    font-size: 1.125rem;
+  }
+  
+  /* Labels and captions - improved visibility */
+  .pale-blue-dot .data-label {
+    font-size: 0.9375rem;
+  }
+  
+  .pale-blue-dot .photograph-caption {
+    font-size: 0.875rem;
+  }
+  
+  .pale-blue-dot .journey-label {
+    font-size: 0.75rem;
+  }
+  
+  .pale-blue-dot .photograph-intro {
+    font-size: 0.75rem;
+  }
+  
+  .pale-blue-dot .quote-attribution {
+    font-size: 0.875rem;
+  }
+  
+  .pale-blue-dot .final-attribution {
+    font-size: 0.9375rem;
+  }
+  
+  /* Sources section */
+  .pale-blue-dot .sources-title {
+    font-size: 1.25rem;
+  }
+  
+  .pale-blue-dot .sources-grid a {
+    font-size: 0.875rem;
+  }
+  
+  /* Scale indicator - slightly larger for desktop */
+  .pale-blue-dot .scale-value {
+    font-size: 1.5rem;
+  }
+  
+  .pale-blue-dot .distance-value {
+    font-size: 0.875rem;
   }
 }
 
