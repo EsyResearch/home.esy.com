@@ -6,11 +6,11 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Article",
-      "@id": "https://esy.com/essays/how-to-write-a-hook/#article",
+      "@id": "https://esy.com/essays/foundations/how-to-write-a-hook/#article",
       "headline": "How to Write a Hook — The Cognitive Architecture of Openings",
       "alternativeHeadline": "Understanding hooks as cognitive thresholds, not tips",
       "description": "A visual essay exploring the cognitive science of essay hooks. Discover how hooks function as doorways between the reader's world and the essay's world through Loewenstein's information gap theory, Radvansky's doorway effect, and classical rhetoric.",
-      "url": "https://esy.com/essays/how-to-write-a-hook/",
+      "url": "https://esy.com/essays/foundations/how-to-write-a-hook/",
       "datePublished": "2025-12-19",
       "dateModified": "2025-12-19",
       "author": { "@type": "Organization", "name": "Esy", "url": "https://esy.com" },
@@ -29,7 +29,8 @@ const jsonLd = {
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://esy.com" },
         { "@type": "ListItem", "position": 2, "name": "Essays", "item": "https://esy.com/essays/" },
-        { "@type": "ListItem", "position": 3, "name": "How to Write a Hook", "item": "https://esy.com/essays/how-to-write-a-hook/" }
+        { "@type": "ListItem", "position": 3, "name": "Foundations", "item": "https://esy.com/essays/foundations/" },
+        { "@type": "ListItem", "position": 4, "name": "How to Write a Hook", "item": "https://esy.com/essays/foundations/how-to-write-a-hook/" }
       ]
     },
     {
@@ -89,7 +90,7 @@ const jsonLd = {
 };
 
 export const metadata = createVisualEssayMetadata({
-  slug: 'how-to-write-a-hook',
+  slug: 'foundations/how-to-write-a-hook',
   title: 'How to Write a Hook — The Cognitive Architecture of Openings | Esy Visual Essay',
   description: 'A visual essay exploring the cognitive science of essay hooks. Discover how hooks function as cognitive thresholds through Loewenstein\'s information gap theory, Radvansky\'s doorway effect, and classical rhetoric from Aristotle to Quintilian. Typography-forward design with no photography.',
   ogTitle: 'How to Write a Hook — The Cognitive Architecture of Openings',
