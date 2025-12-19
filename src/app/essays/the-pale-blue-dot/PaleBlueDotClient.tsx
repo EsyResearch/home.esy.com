@@ -443,6 +443,13 @@ const PaleBlueDotClient: React.FC = () => {
               Wikipedia: Pale Blue Dot
             </a>
             <a 
+              href="https://aeon.co/essays/why-pale-blue-dot-generates-feelings-of-cosmic-insignificance" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              Aeon: Why Pale Blue Dot Generates Feelings of Cosmic Insignificance
+            </a>
+            <a 
               href="https://www.loc.gov/static/programs/national-recording-preservation-board/documents/pale-blue-dot.pdf" 
               target="_blank" 
               rel="noopener noreferrer"

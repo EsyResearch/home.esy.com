@@ -54,6 +54,15 @@
 - **Usage**: Context on Carl Sagan's role, cultural impact, NASA resistance narrative
 - **Status**: ✅ Verified working (2024-12-18)
 
+#### Aeon: Why Pale Blue Dot Generates Feelings of Cosmic Insignificance
+- **URL**: https://aeon.co/essays/why-pale-blue-dot-generates-feelings-of-cosmic-insignificance
+- **Tier**: 2 (Academic/Philosophical Publication)
+- **Type**: Philosophical Analysis
+- **Author**: Tim Bayne (Professor of Philosophy, Monash University)
+- **Verification**: Published academic essay analyzing the psychological and philosophical implications of the Pale Blue Dot image
+- **Usage**: Philosophical context, analysis of cosmic insignificance feelings, contrast with Earthrise, Pascal's reflections on space
+- **Status**: ✅ Verified working (2024-12-18)
+
 #### Wikipedia: Pale Blue Dot
 - **URL**: https://en.wikipedia.org/wiki/Pale_Blue_Dot
 - **Tier**: 3 (Crowd-Sourced Encyclopedia)
