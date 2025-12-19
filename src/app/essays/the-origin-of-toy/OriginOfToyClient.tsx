@@ -140,14 +140,43 @@ const ESSAY_META = {
 };
 
 const SOURCES = [
-  { title: "Oxford English Dictionary - 'toy' entry", url: "https://www.oed.com/dictionary/toy_n1" },
+  // Etymology Sources
+  { title: "Oxford English Dictionary - 'toy' entry (subscription required)", url: "https://www.oed.com/search?q=toy" },
   { title: "Middle English Dictionary - University of Michigan", url: "https://quod.lib.umich.edu/m/middle-english-dictionary/" },
+  { title: "Online Etymology Dictionary - 'toy'", url: "https://www.etymonline.com/word/toy" },
+  { title: "Merriam-Webster Dictionary - 'toy' etymology", url: "https://www.merriam-webster.com/dictionary/toy" },
+  
+  // Historical Dictionaries
+  { title: "Samuel Johnson's Dictionary (1755) - Digital Archive", url: "https://johnsonsdictionaryonline.com/" },
+  { title: "A Table Alphabeticall (1604) - First English Dictionary - Internet Archive", url: "https://archive.org/details/tablealphabetic00cawdgoog" },
+  
+  // Shakespeare Sources
+  { title: "Shakespeare's Works - Folger Shakespeare Library", url: "https://shakespeare.folger.edu/" },
+  { title: "Open Source Shakespeare - Search 'toy'", url: "https://www.opensourceshakespeare.org/concordance/" },
+  
+  // Academic Sources - Play Theory
   { title: "Huizinga, Johan. Homo Ludens: A Study of the Play-Element in Culture (1938)", url: "https://www.routledge.com/Homo-Ludens-A-Study-of-the-Play-Element-in-Culture/Huizinga/p/book/9780415175944" },
   { title: "Sutton-Smith, Brian. The Ambiguity of Play (1997)", url: "https://www.hup.harvard.edu/books/9780674017337" },
+  
+  // Academic Sources - Toy History
   { title: "Cross, Gary. Kids' Stuff: Toys and the Changing World of American Childhood", url: "https://www.hup.harvard.edu/books/9780674503489" },
-  { title: "V&A Museum of Childhood - Toy History Collection", url: "https://www.vam.ac.uk/collections/toys" },
+  { title: "Fraser, Antonia. A History of Toys", url: "https://www.goodreads.com/book/show/1002800.A_History_of_Toys" },
+  { title: "King, Constance Eileen. The Collector's History of Dolls", url: "https://www.worldcat.org/title/collectors-history-of-dolls/oclc/1036854894" },
+  
+  // Academic Sources - Childhood History
+  { title: "Ariès, Philippe. Centuries of Childhood: A Social History of Family Life", url: "https://www.penguinrandomhouse.com/books/291/centuries-of-childhood-by-philippe-aries/" },
+  { title: "Locke, John. Some Thoughts Concerning Education (1693) - Project Gutenberg", url: "https://www.gutenberg.org/ebooks/author/472" },
+  { title: "Rousseau, Jean-Jacques. Émile (1762) - Project Gutenberg", url: "https://www.gutenberg.org/ebooks/author/472" },
+  
+  // Museum Collections
+  { title: "V&A Collections - Toys Search", url: "https://collections.vam.ac.uk/search/?q=toys" },
   { title: "The Strong National Museum of Play - History of Toys", url: "https://www.museumofplay.org/" },
-  { title: "Shakespeare's Use of 'Toy' - Folger Shakespeare Library", url: "https://shakespeare.folger.edu/" },
+  { title: "Nuremberg Museums - Toy Museum Information", url: "https://www.nuernberg.de/internet/museen/" },
+  { title: "British Museum - Toys Collection", url: "https://www.britishmuseum.org/collection/search?keyword=toys" },
+  
+  // Historical Sources
+  { title: "Library of Congress - Historical Children's Books Collection", url: "https://www.loc.gov/collections/childrens-books/about-this-collection/" },
+  { title: "National Archives (UK) - Trade and Industry Records", url: "https://www.nationalarchives.gov.uk/" },
 ];
 
 // ==================== COMPONENTS ====================
