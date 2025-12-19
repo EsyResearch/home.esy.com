@@ -322,6 +322,26 @@ const sources = [
   { title: 'Elbow, P. (1981). Writing with Power. Oxford University Press.', url: 'https://en.wikipedia.org/wiki/Peter_Elbow' },
 ];
 
+// Core concepts covered in this essay
+interface Concept {
+  name: string;
+  definition: string;
+  domain: string;
+}
+
+const concepts: Concept[] = [
+  { name: 'Information Gap Theory', definition: 'Curiosity arises when attention focuses on a gap in knowledge, creating cognitive "hunger" that motivates information-seeking.', domain: 'Cognitive Science' },
+  { name: 'Dual-Process Theory', definition: 'System 1 monitors for novelty; System 2 engages deliberate processing when surprised. Hooks trigger this attention surge.', domain: 'Cognitive Science' },
+  { name: 'The Doorway Effect', definition: 'Doorways serve as "event boundaries" in the mind, triggering cognitive resets. Essay hooks function similarly.', domain: 'Cognitive Science' },
+  { name: 'Proem & Exordium', definition: 'Classical terms for openings that "pave the way" and make audiences attentive, receptive, and well-disposed.', domain: 'Classical Rhetoric' },
+  { name: 'Principium vs. Insinuatio', definition: 'Direct openings for receptive audiences; subtle approaches for hostile or indifferent ones.', domain: 'Classical Rhetoric' },
+  { name: 'Visible Artifice', definition: 'When readers can see technique operating as technique, they resist it. Hide the mechanism.', domain: 'Classical Rhetoric' },
+  { name: 'Liminality', definition: 'The transitional state between separation and incorporation. From Latin limen (threshold).', domain: 'Anthropology' },
+  { name: 'Hook as Cognitive Threshold', definition: 'A hook is not a gimmick—it is the cognitive doorway between the reader\'s world and the essay\'s world.', domain: 'Writing Pedagogy' },
+  { name: 'Engfish', definition: 'Lifeless prose that sounds like what essays "should" sound like rather than genuine thought.', domain: 'Writing Pedagogy' },
+  { name: 'The Four-Question Framework', definition: 'Who is the reader? What context do they lack? What expectation must be set? What gap should exist?', domain: 'Practical Application' },
+];
+
 // ==================== COMPONENTS ====================
 
 // Opening Door Progress Bar
@@ -461,6 +481,48 @@ const ChapterSection: React.FC<{
           ))}
         </div>
       )}
+    </section>
+  );
+};
+
+// Concepts Covered Section
+const ConceptsCoveredSection: React.FC = () => {
+  // Group concepts by domain
+  const conceptsByDomain = concepts.reduce((acc, concept) => {
+    if (!acc[concept.domain]) {
+      acc[concept.domain] = [];
+    }
+    acc[concept.domain].push(concept);
+    return acc;
+  }, {} as Record<string, Concept[]>);
+
+  const domainOrder = ['Cognitive Science', 'Classical Rhetoric', 'Anthropology', 'Writing Pedagogy', 'Practical Application'];
+
+  return (
+    <section className="concepts-section">
+      <div className="concepts-content">
+        <h3 className="concepts-title">Concepts Covered</h3>
+        <p className="concepts-intro">
+          Key theories and frameworks explored in this essay, organized by domain.
+        </p>
+        <div className="concepts-grid">
+          {domainOrder.map((domain) => (
+            conceptsByDomain[domain] && (
+              <div key={domain} className="concept-domain">
+                <h4 className="domain-label">{domain}</h4>
+                <ul className="concept-list">
+                  {conceptsByDomain[domain].map((concept, index) => (
+                    <li key={index} className="concept-item">
+                      <span className="concept-name">{concept.name}</span>
+                      <span className="concept-definition">{concept.definition}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )
+          ))}
+        </div>
+      </div>
     </section>
   );
 };
@@ -726,6 +788,9 @@ export default function HowToWriteAHookClient() {
           </div>
         </div>
       </section>
+
+      {/* Concepts Covered */}
+      <ConceptsCoveredSection />
 
       {/* Sources */}
       <SourcesSection />
