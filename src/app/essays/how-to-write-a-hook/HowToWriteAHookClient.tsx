@@ -1,7 +1,62 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import './how-to-write-a-hook.css';
+
+// ==================== SCROLL-LOCK HOOK WITH EXIT (per SCROLL_LOCK_EXIT_TRANSITION.md) ====================
+
+interface ScrollLockState {
+  containerRef: React.RefObject<HTMLDivElement | null>;
+  progress: number;
+  isPinned: boolean;
+  isExiting: boolean;
+  unpinPoint: number;
+}
+
+const useScrollLock = (): ScrollLockState => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+  const [isPinned, setIsPinned] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
+  const [unpinPoint, setUnpinPoint] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const rect = container.getBoundingClientRect();
+      const containerHeight = container.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      const scrollableDistance = containerHeight - viewportHeight;
+      const scrolledIntoSection = -rect.top;
+
+      if (rect.top <= 0 && scrolledIntoSection <= scrollableDistance) {
+        // STATE 1: Currently in scroll-lock zone
+        setIsPinned(true);
+        setIsExiting(false);
+        setProgress(Math.min(1, Math.max(0, scrolledIntoSection / scrollableDistance)));
+      } else if (rect.top > 0) {
+        // STATE 2: Before scroll-lock zone (haven't entered yet)
+        setIsPinned(false);
+        setIsExiting(false);
+        setProgress(0);
+      } else {
+        // STATE 3: After scroll-lock zone - SMOOTH EXIT
+        setIsPinned(false);
+        setIsExiting(true);
+        setProgress(1);
+        setUnpinPoint(scrollableDistance);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return { containerRef, progress, isPinned, isExiting, unpinPoint };
+};
 
 /* ============================================
    HOW TO WRITE A HOOK — THE COGNITIVE ARCHITECTURE OF OPENINGS
@@ -439,35 +494,35 @@ const SourcesSection: React.FC = () => {
 export default function HowToWriteAHookClient() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set(['hero']));
-  const [heroStage, setHeroStage] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
-  const heroRef = useRef<HTMLElement>(null);
+
+  // Use scroll-lock hook for hero section (per SCROLL_LOCK_EXIT_TRANSITION.md)
+  const { containerRef: heroRef, progress: heroProgress, isPinned, isExiting, unpinPoint } = useScrollLock();
+
+  // Phase calculation with useMemo - extended ranges for smoother transitions
+  const heroPhase = useMemo(() => {
+    if (heroProgress < 0.15) return 'begin';
+    if (heroProgress < 0.35) return 'doorway';
+    if (heroProgress < 0.55) return 'title';
+    if (heroProgress < 0.75) return 'promise';
+    return 'insight';
+  }, [heroProgress]);
 
   // Mark as mounted
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  // Track scroll progress
+  // Track overall scroll progress for progress bar
   useEffect(() => {
     const handleScroll = () => {
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       const currentProgress = window.scrollY / scrollHeight;
       setScrollProgress(Math.min(1, Math.max(0, currentProgress)));
-
-      // Hero stages based on scroll within hero
-      if (heroRef.current) {
-        const heroRect = heroRef.current.getBoundingClientRect();
-        const heroProgress = Math.min(1, Math.max(0, -heroRect.top / heroRect.height));
-        if (heroProgress < 0.2) setHeroStage(0);
-        else if (heroProgress < 0.4) setHeroStage(1);
-        else if (heroProgress < 0.6) setHeroStage(2);
-        else if (heroProgress < 0.8) setHeroStage(3);
-        else setHeroStage(4);
-      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -495,58 +550,110 @@ export default function HowToWriteAHookClient() {
       {/* Progress Indicator - Opening Door */}
       <OpeningDoorProgress progress={scrollProgress} chapters={chapters} />
 
-      {/* Hero Section - The Threshold Crossing */}
+      {/* Hero Section - The Threshold Crossing (per SCROLL_LOCK_EXIT_TRANSITION.md) */}
       <section
         ref={heroRef}
         id="hero"
-        className={`hero-section stage-${heroStage} ${isMounted && visibleSections.has('hero') ? 'visible' : ''}`}
+        className={`hero-section phase-${heroPhase} ${isMounted ? 'visible' : ''}`}
+        style={{ height: '400vh', position: 'relative' }}
       >
-        <div className="hero-background">
-          <div className="threshold-glow" />
-          <div className="manuscript-texture" />
-        </div>
-
-        <div className="hero-content">
-          {/* Stage 0: The Approach */}
-          <div className={`hero-stage stage-begin ${heroStage >= 0 ? 'active' : ''}`}>
-            <span className="begin-word">Begin.</span>
+        <div
+          className={`hero-pinned ${isPinned ? 'is-pinned' : ''}`}
+          style={isExiting ? {
+            position: 'absolute',
+            top: `${unpinPoint}px`,
+            left: 0,
+            right: 0,
+            height: '100vh',
+          } : undefined}
+        >
+          <div className="hero-background">
+            <div className="threshold-glow" />
+            <div className="manuscript-texture" />
           </div>
 
-          {/* Stage 1-2: The Doorway Appears */}
-          <div className={`hero-stage stage-doorway ${heroStage >= 1 ? 'active' : ''}`}>
-            <TypographicDoorway
-              text="H"
-              isVisible={heroStage >= 1}
-              variant="hero"
-            />
-          </div>
+          <div className="hero-content">
+            {/* Phase: begin (0-20%) - EXCLUSIVE */}
+            <p
+              className="hero-statement begin-word"
+              style={{
+                opacity: heroPhase === 'begin' ? 1 : 0,
+                visibility: heroPhase === 'begin' ? 'visible' : 'hidden',
+                transition: 'opacity 0.8s ease-out, visibility 0.8s ease-out',
+              }}
+            >
+              Begin.
+            </p>
 
-          {/* Stage 2-3: Crossing & Title */}
-          <div className={`hero-stage stage-title ${heroStage >= 2 ? 'active' : ''}`}>
-            <h1 className="hero-title">
-              <span className="title-main">How to Write a Hook</span>
-              <span className="title-sub">The Cognitive Architecture of Openings</span>
-            </h1>
-          </div>
+            {/* Phase: doorway (20-40%) - doorway frame appears, fades before title */}
+            <div
+              className="hero-stage stage-doorway"
+              style={{
+                opacity: heroPhase === 'doorway' ? 1 : 0,
+                visibility: heroPhase === 'doorway' ? 'visible' : 'hidden',
+                transition: 'opacity 0.8s ease-out, visibility 0.8s ease-out',
+              }}
+            >
+              <TypographicDoorway
+                text="H"
+                isVisible={heroPhase === 'doorway'}
+                variant="hero"
+              />
+            </div>
 
-          {/* Stage 4: The Promise */}
-          <div className={`hero-stage stage-promise ${heroStage >= 3 ? 'active' : ''}`}>
-            <p className="hero-promise">
+            {/* Phase: title (40-60%) - title appears, fades before promise */}
+            <div
+              className="hero-stage stage-title"
+              style={{
+                opacity: heroPhase === 'title' ? 1 : 0,
+                visibility: heroPhase === 'title' ? 'visible' : 'hidden',
+                transition: 'opacity 0.8s ease-out, visibility 0.8s ease-out',
+              }}
+            >
+              <h1 className="hero-title">
+                <span className="title-main">How to Write a Hook</span>
+                <span className="title-sub">The Cognitive Architecture of Openings</span>
+              </h1>
+            </div>
+
+            {/* Phase: promise (60-80%) - fades before insight */}
+            <p
+              className="hero-promise"
+              style={{
+                opacity: heroPhase === 'promise' ? 1 : 0,
+                visibility: heroPhase === 'promise' ? 'visible' : 'hidden',
+                transition: 'opacity 0.8s ease-out, visibility 0.8s ease-out',
+              }}
+            >
               This is not about tips. This is about mechanism.
             </p>
+
+            {/* Phase: insight (80-100%) - final reveal */}
+            <div
+              className="hero-insight"
+              style={{
+                opacity: heroPhase === 'insight' ? 1 : 0,
+                visibility: heroPhase === 'insight' ? 'visible' : 'hidden',
+                transition: 'opacity 0.8s ease-out, visibility 0.8s ease-out',
+              }}
+            >
+              <blockquote>
+                <p>&ldquo;A hook is a threshold between the reader&apos;s world and the essay&apos;s world.&rdquo;</p>
+              </blockquote>
+            </div>
           </div>
 
-          {/* Central insight */}
-          <div className={`hero-insight ${heroStage >= 4 ? 'active' : ''}`}>
-            <blockquote>
-              <p>&ldquo;A hook is a threshold between the reader&apos;s world and the essay&apos;s world.&rdquo;</p>
-            </blockquote>
+          <div
+            className="scroll-indicator"
+            style={{
+              opacity: heroPhase === 'begin' ? 1 : 0,
+              visibility: heroPhase === 'begin' ? 'visible' : 'hidden',
+              transition: 'opacity 0.8s ease-out, visibility 0.8s ease-out',
+            }}
+          >
+            <span>Cross the threshold</span>
+            <div className="scroll-arrow">↓</div>
           </div>
-        </div>
-
-        <div className="scroll-indicator">
-          <span>Cross the threshold</span>
-          <div className="scroll-arrow">↓</div>
         </div>
       </section>
 

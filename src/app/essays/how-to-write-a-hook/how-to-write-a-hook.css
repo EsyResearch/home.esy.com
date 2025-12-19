@@ -60,7 +60,8 @@
   font-family: var(--font-body);
   font-size: 18px;
   line-height: 1.75;
-  overflow-x: hidden;
+  /* CRITICAL: Use clip instead of hidden to preserve position: sticky */
+  overflow-x: clip;
 }
 
 /* ==================== OPENING DOOR PROGRESS BAR ==================== */
@@ -168,17 +169,33 @@
   }
 }
 
-/* ==================== HERO SECTION ==================== */
+/* ==================== HERO SECTION (per SCROLL_LOCK_PATTERN.md) ==================== */
 
 .how-to-write-a-hook .hero-section {
-  min-height: 200vh;
   position: relative;
+  background: var(--manuscript-dark);
+  /* Height set via inline style: 250vh */
+}
+
+/* Pinned content container (per SCROLL_LOCK_PATTERN.md) */
+.how-to-write-a-hook .hero-pinned {
+  position: relative;
+  height: 100vh;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: var(--space-lg);
+  justify-content: center;
   overflow: hidden;
+}
+
+/* When pinned: switch to position: fixed (per SCROLL_LOCK_PATTERN.md) */
+.how-to-write-a-hook .hero-pinned.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background: var(--manuscript-dark);
 }
 
 .how-to-write-a-hook .hero-background {
@@ -212,34 +229,47 @@
 
 /* Override global hero styles */
 .how-to-write-a-hook .hero-content {
-  position: sticky;
-  top: 50%;
-  transform: translateY(-50%);
-  max-width: 1000px;
+  position: relative;
+  /* Fill the viewport so absolute children center properly */
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
   z-index: 2;
-  min-height: 100vh;
-  justify-content: center;
   /* Reset any grid from globals */
   grid-template-columns: unset;
   gap: unset;
+}
+
+/* Hero statement centered in viewport (per SCROLL_LOCK_PATTERN.md) */
+.how-to-write-a-hook .hero-statement {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 10;
+  margin: 0;
 }
 
 /* Hero Stages */
 .hero-stage {
   position: absolute;
   opacity: 0;
+  visibility: hidden;
   transform: translateY(30px);
-  transition: all var(--duration-threshold) var(--easing-threshold);
+  transition: opacity var(--duration-threshold) var(--easing-threshold),
+              visibility var(--duration-threshold) var(--easing-threshold),
+              transform var(--duration-threshold) var(--easing-threshold);
   pointer-events: none;
 }
 
 .hero-stage.active {
   opacity: 1;
+  visibility: visible;
   transform: translateY(0);
   pointer-events: auto;
 }
@@ -313,14 +343,18 @@
   position: absolute;
   bottom: 25vh;
   opacity: 0;
+  visibility: hidden;
   transform: translateY(20px);
-  transition: all var(--duration-threshold) var(--easing-threshold);
+  transition: opacity var(--duration-threshold) var(--easing-threshold),
+              visibility var(--duration-threshold) var(--easing-threshold),
+              transform var(--duration-threshold) var(--easing-threshold);
   max-width: 600px;
   padding: var(--space-md);
 }
 
 .hero-insight.active {
   opacity: 1;
+  visibility: visible;
   transform: translateY(0);
 }
 
@@ -350,8 +384,8 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-xs);
-  opacity: 0;
-  animation: fadeInUp var(--duration-threshold) var(--easing-smooth) 2s forwards;
+  z-index: 50;
+  /* Visibility controlled by phase in JSX */
 }
 
 .how-to-write-a-hook .scroll-indicator span {
@@ -408,9 +442,8 @@
 
 .doorway-lintel {
   width: 120px;
-  height: 8px;
-  background: linear-gradient(90deg, transparent, var(--gold-illumination), transparent);
-  border-radius: 4px 4px 0 0;
+  height: 4px;
+  background: var(--gold-illumination);
 }
 
 .doorway-posts {
@@ -459,7 +492,7 @@
 /* Hero variant */
 .typographic-doorway.hero .doorway-lintel {
   width: 200px;
-  height: 12px;
+  height: 6px;
 }
 
 .typographic-doorway.hero .doorway-post {
@@ -946,7 +979,7 @@
 
   .how-to-write-a-hook .hero-section {
     padding: var(--space-md);
-    min-height: 150vh;
+    height: 350vh;
   }
 
   .chapter-section {
