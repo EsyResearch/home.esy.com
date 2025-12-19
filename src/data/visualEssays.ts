@@ -731,6 +731,19 @@ export const visualEssays: VisualEssay[] = [
     tags: ["printing press", "Gutenberg", "Johannes Gutenberg", "Bi Sheng", "movable type", "Diamond Sutra", "Jikji", "printing history", "Martin Luther", "Reformation", "history of books", "timeline", "visual essay"],
     visualStyle: "photorealistic",
   },
+  {
+    id: "how-to-write-a-hook",
+    number: "69",
+    title: "How to Write a Hook",
+    subtitle: "The Cognitive Architecture of Openings",
+    description: "A visual essay exploring the cognitive science of essay hooks. Discover how hooks function as cognitive thresholds through Loewenstein's information gap theory, Radvansky's doorway effect, and classical rhetoric from Aristotle to Quintilian.",
+    category: "Education & Writing",
+    readTime: "18 min",
+    href: "/essays/how-to-write-a-hook",
+    isNew: true,
+    tags: ["writing", "rhetoric", "cognitive science", "education", "hooks", "essay writing", "Loewenstein", "information gap", "Aristotle", "Quintilian"],
+    visualStyle: "illustrated",
+  },
   // Children's Fiction (draft - not shown in production)
   {
     id: "the-night-the-stars-fell",

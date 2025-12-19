@@ -1,0 +1,1032 @@
+/* ============================================
+   HOW TO WRITE A HOOK — CSS DESIGN SYSTEM
+   ============================================
+   Typography-Forward Visual Essay
+   Central Metaphor: The Doorway/Threshold
+
+   Color Palette: Derived from manuscripts, classical architecture
+   Typography: Trajan (display), Caslon (body), Garamond (quotes)
+   Animation: Threshold crossings — deliberate, ceremonial
+   ============================================ */
+
+/* ==================== CSS VARIABLES ==================== */
+
+.how-to-write-a-hook {
+  /* Primary Palette — Manuscripts and Stone */
+  --threshold-stone: #E8DEC9;
+  --manuscript-dark: #1A1510;
+  --parchment-warm: #F1E9D2;
+  --gold-illumination: #D4AF37;
+  --liminal-twilight: #4A5568;
+  --chalk-pedagogy: #F5F5F0;
+  --portal-shadow: #2D3748;
+  --cognitive-blue: #3182CE;
+
+  /* Text Colors */
+  --text-primary: rgba(26, 21, 16, 0.95);
+  --text-secondary: rgba(26, 21, 16, 0.7);
+  --text-light: rgba(241, 233, 210, 0.95);
+  --text-light-secondary: rgba(241, 233, 210, 0.7);
+
+  /* Typography Stack */
+  --font-display: 'Trajan Pro', 'Cinzel', 'Times New Roman', serif;
+  --font-body: 'Adobe Caslon Pro', 'Libre Caslon Text', 'Georgia', serif;
+  --font-quotes: 'EB Garamond', 'Garamond', 'Palatino', serif;
+  --font-technical: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
+  --font-architectural: 'Bodoni Moda', 'Didot', 'Playfair Display', serif;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+
+  /* Animation — Threshold Crossings */
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 800ms;
+  --duration-threshold: 1200ms;
+  --easing-threshold: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* ==================== BASE STYLES ==================== */
+
+.how-to-write-a-hook.essay-container {
+  min-height: 100vh;
+  background: var(--manuscript-dark);
+  color: var(--text-light);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* ==================== OPENING DOOR PROGRESS BAR ==================== */
+
+.opening-door-progress {
+  position: fixed;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--easing-smooth);
+}
+
+.how-to-write-a-hook:has(.hero-section:not(.visible)) .opening-door-progress,
+.how-to-write-a-hook:has(.chapter-section.visible) .opening-door-progress {
+  opacity: 1;
+}
+
+.door-frame {
+  width: 32px;
+  height: 56px;
+  position: relative;
+  border: 2px solid var(--gold-illumination);
+  border-radius: 2px 2px 0 0;
+  background: var(--portal-shadow);
+  overflow: hidden;
+}
+
+.door-interior {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--threshold-stone) 0%, var(--parchment-warm) 100%);
+}
+
+.door-light {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, var(--gold-illumination) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity var(--duration-slow) var(--easing-smooth);
+}
+
+.door-panel {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: linear-gradient(135deg, #5C4A3A 0%, #3D2E22 100%);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  transform-origin: left center;
+  transition: transform var(--duration-slow) var(--easing-smooth);
+}
+
+.door-knob {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  background: var(--gold-illumination);
+  border-radius: 50%;
+}
+
+.door-threshold {
+  position: absolute;
+  bottom: -2px;
+  left: -2px;
+  right: -2px;
+  height: 4px;
+  background: var(--gold-illumination);
+}
+
+.chapter-dots {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: var(--space-xs) 0;
+}
+
+.chapter-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--portal-shadow);
+  border: 1px solid var(--liminal-twilight);
+  transition: all var(--duration-normal) var(--easing-smooth);
+}
+
+.chapter-dot.active {
+  background: var(--gold-illumination);
+  border-color: var(--gold-illumination);
+  transform: scale(1.3);
+}
+
+@media (max-width: 768px) {
+  .opening-door-progress {
+    display: none;
+  }
+}
+
+/* ==================== HERO SECTION ==================== */
+
+.how-to-write-a-hook .hero-section {
+  min-height: 200vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-lg);
+  overflow: hidden;
+}
+
+.how-to-write-a-hook .hero-background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.threshold-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120vmax;
+  height: 120vmax;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity var(--duration-threshold) var(--easing-smooth);
+}
+
+.hero-section.visible .threshold-glow {
+  opacity: 1;
+}
+
+.manuscript-texture {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.015;
+}
+
+/* Override global hero styles */
+.how-to-write-a-hook .hero-content {
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 2;
+  min-height: 100vh;
+  justify-content: center;
+  /* Reset any grid from globals */
+  grid-template-columns: unset;
+  gap: unset;
+}
+
+/* Hero Stages */
+.hero-stage {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all var(--duration-threshold) var(--easing-threshold);
+  pointer-events: none;
+}
+
+.hero-stage.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Stage 0: Begin */
+.stage-begin {
+  z-index: 10;
+}
+
+.begin-word {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 8vw, 4rem);
+  letter-spacing: 0.3em;
+  color: var(--parchment-warm);
+  text-transform: uppercase;
+}
+
+/* Stage 1-2: Doorway */
+.stage-doorway {
+  z-index: 5;
+}
+
+/* Stage 2-3: Title */
+.stage-title {
+  z-index: 15;
+}
+
+.how-to-write-a-hook .hero-title {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  animation: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.title-main {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 10vw, 5rem);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--parchment-warm);
+  display: block;
+}
+
+.title-sub {
+  font-family: var(--font-quotes);
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold-illumination);
+  letter-spacing: 0.02em;
+}
+
+/* Stage 4: Promise */
+.stage-promise {
+  z-index: 20;
+  margin-top: var(--space-lg);
+}
+
+.hero-promise {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--text-light-secondary);
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+/* Hero Insight */
+.hero-insight {
+  position: absolute;
+  bottom: 25vh;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--duration-threshold) var(--easing-threshold);
+  max-width: 600px;
+  padding: var(--space-md);
+}
+
+.hero-insight.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-insight blockquote {
+  margin: 0;
+  padding: var(--space-md);
+  border-left: 3px solid var(--gold-illumination);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.hero-insight p {
+  font-family: var(--font-quotes);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-style: italic;
+  color: var(--parchment-warm);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Scroll Indicator */
+.how-to-write-a-hook .scroll-indicator {
+  position: absolute;
+  bottom: var(--space-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  opacity: 0;
+  animation: fadeInUp var(--duration-threshold) var(--easing-smooth) 2s forwards;
+}
+
+.how-to-write-a-hook .scroll-indicator span {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-light-secondary);
+}
+
+.how-to-write-a-hook .scroll-arrow {
+  font-size: 1.5rem;
+  color: var(--gold-illumination);
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+/* ==================== TYPOGRAPHIC DOORWAY ==================== */
+
+.typographic-doorway {
+  display: flex;
+  justify-content: center;
+  margin: var(--space-lg) 0;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all var(--duration-threshold) var(--easing-threshold);
+}
+
+.typographic-doorway.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.doorway-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.doorway-lintel {
+  width: 120px;
+  height: 8px;
+  background: linear-gradient(90deg, transparent, var(--gold-illumination), transparent);
+  border-radius: 4px 4px 0 0;
+}
+
+.doorway-posts {
+  display: flex;
+  align-items: stretch;
+}
+
+.doorway-post {
+  width: 4px;
+  min-height: 80px;
+  background: var(--gold-illumination);
+}
+
+.doorway-post.left {
+  border-radius: 0 0 0 2px;
+}
+
+.doorway-post.right {
+  border-radius: 0 0 2px 0;
+}
+
+.doorway-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md) var(--space-lg);
+  min-width: 100px;
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.05) 0%, transparent 100%);
+}
+
+.doorway-text {
+  font-family: var(--font-architectural);
+  font-size: clamp(3rem, 10vw, 5rem);
+  font-weight: 900;
+  color: var(--gold-illumination);
+  text-shadow: 0 2px 20px rgba(212, 175, 55, 0.3);
+}
+
+.doorway-threshold-line {
+  width: 120px;
+  height: 3px;
+  background: var(--gold-illumination);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+/* Hero variant */
+.typographic-doorway.hero .doorway-lintel {
+  width: 200px;
+  height: 12px;
+}
+
+.typographic-doorway.hero .doorway-post {
+  width: 6px;
+  min-height: 150px;
+}
+
+.typographic-doorway.hero .doorway-content {
+  padding: var(--space-lg) var(--space-xl);
+}
+
+.typographic-doorway.hero .doorway-text {
+  font-size: clamp(6rem, 20vw, 12rem);
+}
+
+.typographic-doorway.hero .doorway-threshold-line {
+  width: 200px;
+  height: 4px;
+}
+
+/* ==================== INTRO SECTION ==================== */
+
+.how-to-write-a-hook .intro-section {
+  padding: var(--space-xl) var(--space-lg);
+  max-width: 750px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, var(--manuscript-dark) 0%, var(--portal-shadow) 100%);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all var(--duration-slow) var(--easing-smooth);
+}
+
+.how-to-write-a-hook .intro-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.intro-content {
+  text-align: center;
+}
+
+.intro-lead {
+  font-family: var(--font-quotes);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-style: italic;
+  color: var(--gold-illumination);
+  margin-bottom: var(--space-md);
+}
+
+.intro-content p {
+  margin-bottom: var(--space-sm);
+  color: var(--text-light);
+  font-size: 1.0625rem;
+}
+
+.intro-content em {
+  font-style: italic;
+  color: var(--gold-illumination);
+}
+
+.intro-content strong {
+  font-weight: 600;
+  color: var(--parchment-warm);
+}
+
+/* ==================== CHAPTER SECTIONS ==================== */
+
+.chapters-container {
+  position: relative;
+}
+
+.chapter-section {
+  padding: var(--space-xl) var(--space-lg);
+  max-width: 900px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all var(--duration-threshold) var(--easing-threshold);
+}
+
+.chapter-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* State-Specific Backgrounds */
+.chapter-section.state-foundation {
+  background: linear-gradient(135deg, var(--portal-shadow) 0%, var(--manuscript-dark) 100%);
+}
+
+.chapter-section.state-cognitive {
+  background: linear-gradient(135deg, #1E2433 0%, var(--manuscript-dark) 100%);
+}
+
+.chapter-section.state-liminal {
+  background: linear-gradient(135deg, var(--manuscript-dark) 0%, #2D2520 100%);
+}
+
+.chapter-section.state-application {
+  background: linear-gradient(135deg, var(--portal-shadow) 0%, #1E2530 100%);
+}
+
+.chapter-section.state-failure {
+  background: linear-gradient(135deg, #2A1F1F 0%, var(--manuscript-dark) 100%);
+}
+
+.chapter-section.state-examples {
+  background: linear-gradient(135deg, #1F2A25 0%, var(--manuscript-dark) 100%);
+}
+
+.chapter-section.state-synthesis {
+  background: linear-gradient(135deg, #252A1F 0%, var(--manuscript-dark) 100%);
+}
+
+.chapter-section.state-reflection {
+  background: linear-gradient(135deg, var(--manuscript-dark) 0%, #201F2A 100%);
+}
+
+/* Chapter Header */
+.chapter-header {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.chapter-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.chapter-number {
+  color: var(--gold-illumination);
+  font-weight: 600;
+}
+
+.chapter-marker {
+  color: var(--text-light-secondary);
+}
+
+.chapter-marker::before {
+  content: '|';
+  margin-right: var(--space-sm);
+  opacity: 0.3;
+}
+
+.chapter-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--parchment-warm);
+  margin-bottom: var(--space-xs);
+}
+
+.chapter-metaphor {
+  font-family: var(--font-quotes);
+  font-size: 1.0625rem;
+  font-style: italic;
+  color: var(--gold-illumination);
+  max-width: 550px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ==================== CHAPTER CONTENT ==================== */
+
+.chapter-content {
+  max-width: 680px;
+  margin: 0 auto var(--space-lg);
+}
+
+.content-paragraph {
+  margin-bottom: var(--space-sm);
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all var(--duration-normal) var(--easing-smooth);
+  color: var(--text-light);
+  font-size: 1.0625rem;
+}
+
+.chapter-section.visible .content-paragraph {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==================== FIGURE PROFILES ==================== */
+
+.figures-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: 700px;
+  margin: var(--space-lg) auto 0;
+}
+
+.figure-profile {
+  background: rgba(241, 233, 210, 0.03);
+  border-left: 3px solid var(--gold-illumination);
+  padding: var(--space-md);
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all var(--duration-slow) var(--easing-smooth);
+}
+
+.figure-profile.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.figure-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.figure-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--parchment-warm);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.figure-years {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: var(--text-light-secondary);
+}
+
+.figure-epithet {
+  font-family: var(--font-quotes);
+  font-style: italic;
+  font-size: 0.9375rem;
+  color: var(--gold-illumination);
+  margin-bottom: var(--space-xs);
+}
+
+.figure-contribution {
+  font-size: 0.9375rem;
+  color: var(--text-light);
+  margin-bottom: var(--space-sm);
+  line-height: 1.6;
+}
+
+.figure-quote {
+  margin: 0;
+  padding-left: var(--space-sm);
+  border-left: 2px solid rgba(212, 175, 55, 0.3);
+}
+
+.figure-quote p {
+  font-family: var(--font-quotes);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--parchment-warm);
+  margin: 0 0 var(--space-xs);
+  line-height: 1.6;
+}
+
+.figure-quote cite {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 0.75rem;
+  color: var(--text-light-secondary);
+}
+
+/* ==================== CLOSING SECTION ==================== */
+
+.how-to-write-a-hook .closing-section {
+  padding: var(--space-xl) var(--space-lg);
+  background: linear-gradient(135deg, var(--portal-shadow) 0%, var(--manuscript-dark) 100%);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all var(--duration-slow) var(--easing-smooth);
+}
+
+.how-to-write-a-hook .closing-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.closing-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.closing-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--parchment-warm);
+  margin-bottom: var(--space-lg);
+}
+
+.closing-thresholds {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-lg);
+}
+
+.threshold-count {
+  font-family: var(--font-architectural);
+  font-size: clamp(4rem, 12vw, 6rem);
+  font-weight: 900;
+  color: var(--gold-illumination);
+  line-height: 1;
+}
+
+.threshold-label {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-light-secondary);
+}
+
+.four-questions {
+  background: rgba(212, 175, 55, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  padding: var(--space-md);
+  margin-bottom: var(--space-lg);
+  text-align: left;
+}
+
+.four-questions h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold-illumination);
+  margin-bottom: var(--space-sm);
+  text-align: center;
+}
+
+.four-questions ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: questions;
+}
+
+.four-questions li {
+  counter-increment: questions;
+  padding: var(--space-xs) 0;
+  padding-left: 2rem;
+  position: relative;
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+.four-questions li::before {
+  content: counter(questions) ".";
+  position: absolute;
+  left: 0;
+  color: var(--gold-illumination);
+  font-family: var(--font-architectural);
+  font-weight: 700;
+}
+
+.four-questions strong {
+  color: var(--parchment-warm);
+}
+
+.closing-quote {
+  margin: var(--space-lg) 0;
+  padding: var(--space-md);
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.closing-quote p {
+  font-family: var(--font-quotes);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-style: italic;
+  color: var(--parchment-warm);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.final-message {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.final-message p {
+  font-size: 1.0625rem;
+  color: var(--text-light);
+  margin-bottom: var(--space-sm);
+  line-height: 1.7;
+}
+
+.final-message p:last-child {
+  font-family: var(--font-quotes);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--gold-illumination);
+  margin-bottom: 0;
+}
+
+/* ==================== SOURCES SECTION ==================== */
+
+.how-to-write-a-hook .sources-section {
+  padding: var(--space-lg) var(--space-md);
+  background: var(--manuscript-dark);
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.sources-content {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.sources-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--parchment-warm);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.sources-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-md) 0;
+}
+
+.sources-list li {
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.sources-list li::before {
+  content: '\2192';
+  position: absolute;
+  left: 0;
+  color: var(--gold-illumination);
+}
+
+.sources-list a {
+  font-size: 0.9375rem;
+  color: var(--text-light-secondary);
+  text-decoration: none;
+  transition: color var(--duration-fast);
+  line-height: 1.5;
+}
+
+.sources-list a:hover {
+  color: var(--gold-illumination);
+  text-decoration: underline;
+}
+
+.sources-note {
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: var(--text-light-secondary);
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+  line-height: 1.6;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+  .how-to-write-a-hook.essay-container {
+    font-size: 16px;
+  }
+
+  .how-to-write-a-hook .hero-section {
+    padding: var(--space-md);
+    min-height: 150vh;
+  }
+
+  .chapter-section {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .chapter-meta {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .chapter-marker::before {
+    display: none;
+  }
+
+  .figure-header {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .typographic-doorway.hero .doorway-text {
+    font-size: clamp(4rem, 15vw, 8rem);
+  }
+
+  .four-questions {
+    padding: var(--space-sm);
+  }
+}
+
+/* ==================== REDUCED MOTION ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .how-to-write-a-hook *,
+  .how-to-write-a-hook *::before,
+  .how-to-write-a-hook *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .how-to-write-a-hook .hero-section.visible .hero-content,
+  .how-to-write-a-hook .hero-stage.active,
+  .how-to-write-a-hook .hero-insight.active,
+  .how-to-write-a-hook .intro-section.visible,
+  .how-to-write-a-hook .chapter-section.visible,
+  .how-to-write-a-hook .chapter-section.visible .content-paragraph,
+  .how-to-write-a-hook .typographic-doorway.visible,
+  .how-to-write-a-hook .figure-profile.visible,
+  .how-to-write-a-hook .closing-section.visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ==================== FOCUS STATES ==================== */
+
+.how-to-write-a-hook a:focus-visible {
+  outline: 2px solid var(--gold-illumination);
+  outline-offset: 2px;
+}
+
+/* ==================== PRINT STYLES ==================== */
+
+@media print {
+  .how-to-write-a-hook {
+    background: white;
+    color: black;
+  }
+
+  .opening-door-progress,
+  .scroll-indicator {
+    display: none;
+  }
+
+  .chapter-section,
+  .intro-section,
+  .closing-section {
+    opacity: 1;
+    transform: none;
+    background: white;
+    page-break-inside: avoid;
+  }
+}
