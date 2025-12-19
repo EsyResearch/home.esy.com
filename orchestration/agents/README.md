@@ -13,7 +13,7 @@ agents/
 ├── orchestrators/     # 🎬 Top-level coordination (5 agents)
 ├── auditors/          # 🔍 Quality verification (7 agents)
 ├── content/           # 📚 Content creation (4 agents)
-├── research/          # 🔬 Source discovery (2 agents)
+├── research/          # 🔬 Source discovery (4 agents)
 ├── regional/          # 🌏 Regional specialists (2 agents)
 ├── engineering/       # ⚙️ Technical implementation (7 agents)
 └── utilities/         # 🔧 Support & enhancement (3 agents)
@@ -60,6 +60,7 @@ agents/
 | [Brainstorming Agent](#brainstorming-agent) | Research question formulation | `@agents/research/brainstorming-agent.md` |
 | [Research & Citations](#research--citations-expert) | Authoritative source discovery | `@agents/research/research-citations-expert.md` |
 | [Image Research & Licensing](#image-research--licensing-expert) | Archive image sourcing & rights | `@agents/research/image-research-licensing-expert.md` |
+| [Design Researcher](#design-researcher) | Subject-derived visual identity research | `@agents/research/design-researcher.md` |
 
 ### 🌏 Regional Experts
 | Agent | Best For | Invocation |
@@ -1115,6 +1116,34 @@ interactions with 44px+ tap targets and thumb-zone-aware layouts.
 
 ---
 
+### Design Researcher
+**File:** `research/design-researcher.md`
+
+**Role:** Award-winning design researcher and visual identity specialist specializing in subject-derived design systems.
+
+**Best For:**
+- Deriving visual identity from subject matter research
+- Color palette development from materials
+- Era-appropriate typography research
+- Animation philosophy matching subject nature
+- Gate 4: Design Research certification
+
+**Key Features:**
+- Visual archaeology of subject materials
+- Material-driven color palette derivation
+- Cultural and era-appropriate typography selection
+- Animation philosophy development
+- Complete Design Research Reports
+
+**Invocation:**
+```
+Using @agents/research/design-researcher.md, conduct comprehensive 
+design research for visual essay about [TOPIC]. Produce Design Research 
+Report with subject-derived color palette, typography, and animation philosophy.
+```
+
+---
+
 ### Research & Citations Expert
 **File:** `research/research-citations-expert.md`
 
@@ -1843,10 +1872,12 @@ These checkpoints **must pass** before proceeding. See [Quality Gates System](#q
 │                    BLOCKING QUALITY GATES                       │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│  G2: DESIGN RESEARCH COMPLETE                                   │
+│  G4: DESIGN RESEARCH COMPLETE                                   │
 │     └─ Unique visual identity derived from subject              │
-│     └─ Mobile-first layouts specified                           │
-│     └─ Certified by: Scrollytelling Expert                      │
+│     └─ Color palette from subject materials                    │
+│     └─ Typography justified by era/character                  │
+│     └─ Animation philosophy matches subject nature             │
+│     └─ Certified by: Design Researcher                        │
 │                                                                 │
 │  G3: HISTORIAN EDITOR APPROVAL ⚠️ BLOCKING                      │
 │     └─ All facts verified                                       │

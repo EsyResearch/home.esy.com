@@ -247,3 +247,4 @@ When encountering a gap:
 4. **The emotional truth** can be conveyed even when documentary precision is unavailable
 
 
+

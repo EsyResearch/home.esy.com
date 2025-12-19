@@ -731,3 +731,4 @@ No graphic imagery is included, but themes may be distressing to some readers.
 *This invocation spec provides a comprehensive blueprint for an immersive visual essay comparing Orwell's 1984 and Huxley's Brave New World. The split-screen visual system, the Huxley letter as dramatic centerpiece, and the synthesis smartphone merge create a memorable experience that delivers its thesis through interaction design as much as through content. Ready for production.*
 
 
+

@@ -405,7 +405,7 @@ const PaleBlueDotClient: React.FC = () => {
               target="_blank" 
               rel="noopener noreferrer"
             >
-              NASA Science: Voyager 1's Pale Blue Dot
+              NASA Science: Voyager 1&apos;s Pale Blue Dot
             </a>
             <a 
               href="https://www.jpl.nasa.gov/images/pia00452-solar-system-portrait-earth-as-pale-blue-dot/" 

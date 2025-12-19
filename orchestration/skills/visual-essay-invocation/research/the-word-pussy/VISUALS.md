@@ -154,3 +154,4 @@ Priority 5: Custom SVG diagrams (explanation)
 - Consider vertical aspect ratios for mobile hero
 
 
+

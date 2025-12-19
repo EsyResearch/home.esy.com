@@ -181,6 +181,10 @@ orchestration/skills/visual-essay-invocation/references/animation-taxonomy.md
 2. Include evidence citations
 3. Provide summary statistics
 4. List recommendations
+5. **Save report to**: `orchestration/audits/[essay-slug]/animation-pattern-audit.md`
+   - Extract essay slug from source path
+   - Create directory if it doesn't exist
+   - Use existing directory if it already exists
 
 ## Project Context
 
@@ -216,7 +220,38 @@ Analyze: src/app/essays/[essay-name]/[Component].tsx
 Analyze both spec and implementation, compare for gaps
 ```
 
+**Report Storage**: After analysis, save the report to `orchestration/audits/[essay-slug]/animation-pattern-audit.md`, where `[essay-slug]` is extracted from the source path (e.g., `the-word-essay` from `src/app/essays/the-word-essay/`). Create the directory if it doesn't exist, or use the existing directory if it's already there.
+
 ## Deliverables
+
+### Report Storage Location
+
+**CRITICAL**: All animation pattern audit reports MUST be stored in the `orchestration/audits/` directory structure.
+
+**Directory Structure Rules**:
+1. **Base Directory**: Always use `orchestration/audits/` as the root
+2. **Essay-Specific Directory**: 
+   - Extract the essay slug from the source path (e.g., `the-word-essay` from `src/app/essays/the-word-essay/`)
+   - Create directory: `orchestration/audits/[essay-slug]/`
+   - If the directory already exists, use it (do not create duplicate)
+3. **File Naming**: 
+   - Filename: `animation-pattern-audit.md`
+   - Optional: Use date prefix if multiple audits exist: `YYYY-MM-DD-animation-pattern-audit.md`
+4. **Full Path Example**: 
+   - `orchestration/audits/the-word-essay/animation-pattern-audit.md`
+   - `orchestration/audits/the-origin-of-toy/animation-pattern-audit.md`
+
+**Implementation Steps**:
+1. Determine essay slug from source file path
+2. Check if `orchestration/audits/[essay-slug]/` exists
+3. If not, create the directory
+4. Save report as `animation-pattern-audit.md` in that directory
+5. If a report already exists and you're creating a new one, use date prefix: `YYYY-MM-DD-animation-pattern-audit.md`
+
+**Never store reports in**:
+- ❌ `docs/performance-audits/` (that's for performance/Lighthouse audits only)
+- ❌ `orchestration/agents/auditors/` (that's for agent definitions)
+- ❌ Root of `orchestration/audits/` (always use essay-specific subdirectories)
 
 ### Standard Output: Animation Pattern Report
 

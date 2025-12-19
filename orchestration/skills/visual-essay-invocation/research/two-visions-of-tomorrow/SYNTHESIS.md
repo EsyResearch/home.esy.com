@@ -187,3 +187,4 @@ Based on research, the following structure maximizes narrative impact:
 - End on question, not answer — respect reader intelligence
 
 
+

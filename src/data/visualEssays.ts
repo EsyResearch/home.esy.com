@@ -714,9 +714,21 @@ export const visualEssays: VisualEssay[] = [
     category: "Economics",
     readTime: "15 min",
     href: "/essays/how-money-is-created",
-    isNew: true,
     tags: ["money creation", "credit creation", "banking system", "central banking", "monetary policy", "quantitative easing", "money supply", "endogenous money", "economics", "process essay"],
     visualStyle: "illustrated",
+  },
+  {
+    id: "the-printing-press",
+    number: "68",
+    title: "The Printing Press",
+    subtitle: "A Global Timeline History",
+    description: "The printing press wasn't invented once — it was invented multiple times. A 700-year visual essay from the Diamond Sutra (868 CE) to Luther's viral pamphlets. Discover how Gutenberg synthesized, rather than invented, the technology that changed the world.",
+    category: "History",
+    readTime: "22 min",
+    href: "/essays/the-printing-press",
+    isNew: true,
+    tags: ["printing press", "Gutenberg", "Johannes Gutenberg", "Bi Sheng", "movable type", "Diamond Sutra", "Jikji", "printing history", "Martin Luther", "Reformation", "history of books", "timeline", "visual essay"],
+    visualStyle: "photorealistic",
   },
   // Children's Fiction (draft - not shown in production)
   {

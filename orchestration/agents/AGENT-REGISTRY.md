@@ -16,7 +16,7 @@ agents/
 ├── orchestrators/               # 🎬 Top-level coordination (5)
 ├── auditors/                    # 🔍 Quality verification (10)
 ├── content/                     # 📚 Content creation (4)
-├── research/                    # 🔬 Source discovery (3)
+├── research/                    # 🔬 Source discovery (4)
 ├── regional/                    # 🌏 Regional specialists (2)
 ├── engineering/                 # ⚙️ Technical implementation (8)
 └── utilities/                   # 🔧 Support & enhancement (4)
@@ -75,8 +75,9 @@ agents/
 | [Brainstorming Agent](./research/brainstorming-agent.md) | Research Design | — | `research/` |
 | [Research & Citations](./research/research-citations-expert.md) | Tier 1-2 Sources | — | `research/` |
 | [Image Research & Licensing](./research/image-research-licensing-expert.md) | Public Domain Images | — | `research/` |
+| [Design Researcher](./research/design-researcher.md) | Visual Identity Research | G4 | `research/` |
 
-> **Note**: These agents are orchestrated by the [Research Orchestrator](./orchestrators/research-orchestrator.md) which owns G2 (Research Complete). Research uses SKILL.md as a blueprint to gather exactly what the spec template requires.
+> **Note**: These agents are orchestrated by the [Research Orchestrator](./orchestrators/research-orchestrator.md) which owns G2 (Research Complete). Research uses SKILL.md as a blueprint to gather exactly what the spec template requires. Design Researcher is invoked by Visual Essay Orchestrator for Gate 4 (Design Research).
 
 ### 🌏 Regional Experts
 *Subject matter specialists by region*
@@ -204,7 +205,7 @@ Flow: Intake Enhancer → Orchestrator → Research → Spec → Implementation
 | G1 | Intake Approval | 1→2 | Visual Essay Orchestrator | `orchestrators/` |
 | G2 | **Research Complete** | 2→3 | **Research Orchestrator** | `orchestrators/` |
 | G3 | **Spec Approval** | 3→4 | Visual Essay Orchestrator | `orchestrators/` |
-| G4 | Design Research | 4 | Scrollytelling Expert | `orchestrators/` |
+| G4 | Design Research | 4 | **Design Researcher** | `research/` |
 | G5 | Content Complete | 4→5 | **Historian Editor** | `content/` |
 | G6 | Citation Audit | 5 | **Citation Audit Agent** | `auditors/` |
 | G7 | Scroll Certification | 5 | **Immersive Scrolling Auditor** | `auditors/` |

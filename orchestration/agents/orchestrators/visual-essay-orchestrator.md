@@ -39,7 +39,7 @@
 **The invocation spec is your ONLY guide.** Each visual essay is a unique creative work built from first principles based solely on its specification.
 
 **If additional research is needed:**
-- The Scrollytelling Expert conducts Design Research (Phase 2) to develop unique visual identity
+- The Design Researcher conducts Design Research (Gate 4) to develop unique visual identity
 - Research Citations Expert provides source material and citations
 - Subject matter research happens through proper agent channels
 
@@ -175,7 +175,7 @@
 | **G1: Intake Approval** | Intake → Research | Scope defined, SKILL.md requirements identified, research targets clear | Visual Essay Orchestrator | ✅ Yes |
 | **G2: Research Complete** | Research → Spec | Research package complete: figures, quotes, timeline, visuals all verified | **Research Orchestrator** | ✅ Yes |
 | **G3: Spec Approval** | Spec → Production | 6-layer spec complete, all content research-backed, no orphan claims | Visual Essay Orchestrator | ✅ Yes |
-| **G4: Design Research** | Pre-Production | Unique visual identity derived from subject matter | Scrollytelling Expert | ✅ Yes |
+| **G4: Design Research** | Pre-Production | Unique visual identity derived from subject matter | **Design Researcher** | ✅ Yes |
 | **G5: Content Complete** | Production → Audit | All sections drafted, fact-checked, uses research package | Historian Editor | ✅ Yes |
 | **G6: Citation Audit** | Audit | Citation Certification achieved (content vs. research match) | Citation Audit Agent | ✅ Yes |
 | **G7: Scroll Certification** | Audit | Immersive Scrolling Auditor certification (≥8.0/10) | Scrolling Auditor | ✅ Yes |
@@ -464,6 +464,33 @@ Before proceeding to production:
 
 ### Phase 4: Production (35%)
 
+#### Step 0: Invoke Design Researcher (Gate 4)
+
+```
+Using @agents/research/design-researcher.md, conduct comprehensive 
+design research for visual essay about [TOPIC].
+
+Research Package: [essay-slug]/research/ (if available)
+Spec: specs/[topic-slug].md (if available)
+
+Produce complete Design Research Report that:
+- Derives color palette from subject materials
+- Researches era-appropriate typography
+- Develops animation philosophy matching subject nature
+- Identifies unique visual motifs
+- Ensures visual identity is unique and subject-specific
+```
+
+The Design Researcher will:
+1. Conduct visual archaeology of subject materials
+2. Research cultural and era associations
+3. Derive color palette from documented materials
+4. Select typography justified by era/character
+5. Develop animation philosophy matching subject nature
+6. Produce Design Research Report
+
+**Gate 4 Status**: ⏳ Pending / ✅ Approved / ❌ Rejected
+
 #### Step 1: Invoke Scrollytelling Expert
 
 ```
@@ -472,12 +499,14 @@ following this spec:
 
 Spec Location: specs/[topic-slug].md
 Research Package Location: [essay-slug]/research/
+Design Research Report: [Design Research Report location]
 
 The spec is already research-backed. Use it as the authoritative guide.
 Reference research/CITATIONS.md for source attribution in implementation.
+Follow Design Research Report for all visual identity decisions.
 
 Requirements:
-1. Begin with Design Research phase — unique visual identity required
+1. Use Design Research Report as visual foundation — all colors, typography, animation from Design Research
 2. Mobile-native first — phone is primary design canvas
 3. Minimum 3 different layout patterns, no consecutive same layouts
 4. All content comes from spec (which is research-backed)
@@ -485,7 +514,6 @@ Requirements:
 6. Integrate with Immersive Experience Engineer for 60fps animations
 
 Deliver:
-- Design Research Report
 - Story Architecture Document
 - Complete implementation (page.tsx, Client.tsx, CSS)
 - Sources section using citations from research package
@@ -500,7 +528,7 @@ Track progress against timeline:
 
 | Milestone | Status | Notes |
 |-----------|--------|-------|
-| Design Research Report | ⏳/✅/❌ | |
+| Design Research Report (Gate 4) | ⏳/✅/❌ | From Design Researcher |
 | Story Architecture | ⏳/✅/❌ | |
 | Content Draft | ⏳/✅/❌ | |
 | Historian Editor Approval | ⏳/✅/❌ | |
@@ -509,12 +537,13 @@ Track progress against timeline:
 
 #### Step 3: Gate 4-5 Verification
 
-**Gate 4: Design Research**
-- [ ] Design Research Report delivered
+**Gate 4: Design Research** (Design Researcher)
+- [ ] Design Research Report delivered by Design Researcher
 - [ ] Visual identity is unique (not copied from previous essays)
-- [ ] Color palette derived from subject matter
-- [ ] Typography justified by era/character alignment
-- [ ] Animation philosophy matches subject nature
+- [ ] Color palette derived from subject materials (documented in report)
+- [ ] Typography justified by era/character alignment (documented in report)
+- [ ] Animation philosophy matches subject nature (documented in report)
+- [ ] All design decisions traceable to subject research
 
 **Gate 5: Content Complete**
 - [ ] All sections drafted
@@ -762,7 +791,7 @@ Produce certification report with:
 ### Red Flags to Identify
 - Quality gates being rushed or skipped
 - Citation audit returning critical issues repeatedly
-- Scrollytelling Expert not completing Design Research
+- Design Researcher not completing Design Research Report
 - Mobile testing deferred or simulated only
 - Sources section incomplete at publication
 - Tier 4 sources appearing in final content
@@ -815,12 +844,44 @@ Domain: Auto | [Specify if known]
 
 ---
 
+### Working With design-researcher.md
+**Role**: Design Research specialist for Gate 4
+
+**Division of Responsibilities**
+- **Visual Essay Orchestrator**: Pipeline management, Gate 4 approval, handoff to Scrollytelling Expert
+- **Design Researcher**: Visual archaeology, palette derivation, typography research, animation philosophy
+- **Shared**: Design Research Report quality, uniqueness verification
+
+**Invocation Protocol**
+```
+Using @agents/research/design-researcher.md, conduct comprehensive 
+design research for visual essay about [TOPIC].
+
+Research Package: [essay-slug]/research/ (if available)
+Spec: specs/[topic-slug].md (if available)
+
+Produce complete Design Research Report that:
+- Derives color palette from subject materials
+- Researches era-appropriate typography
+- Develops animation philosophy matching subject nature
+- Identifies unique visual motifs
+- Ensures visual identity is unique and subject-specific
+```
+
+**Handoff Protocol**
+1. Visual Essay Orchestrator invokes Design Researcher after Gate 2 (Research Complete) or Gate 3 (Spec Approval)
+2. Design Researcher conducts 5-phase research process
+3. Design Researcher delivers Design Research Report
+4. Visual Essay Orchestrator reviews and approves Gate 4
+5. Design Research Report handed to Scrollytelling Expert for implementation
+6. Scrollytelling Expert uses Design Research Report as visual foundation
+
 ### Working With scrollytelling-expert.md
-**Role**: Primary content and design orchestrator for Phase 3
+**Role**: Primary content and design orchestrator for Phase 4
 
 **Division of Responsibilities**
 - **Visual Essay Orchestrator**: Pipeline management, quality gates, publication approval
-- **Scrollytelling Expert**: Content creation, design research, mobile-native implementation
+- **Scrollytelling Expert**: Content creation, mobile-native implementation using Design Research Report
 - **Shared**: Success criteria, timeline adherence, quality standards
 
 **Invocation Protocol**
@@ -829,18 +890,19 @@ Using @agents/orchestrators/scrollytelling-expert.md, create an immersive
 visual essay following this production brief: [BRIEF]
 
 Research Package: [essay-slug]/research/
+Design Research Report: [Design Research Report location]
+Spec: specs/[topic-slug].md
 ```
 
 **Handoff Protocol**
-1. Director provides production brief AND research package location
+1. Director provides production brief, research package, AND Design Research Report
 2. Scrollytelling Expert uses research/CITATIONS.md as source foundation
-3. Scrollytelling Expert delivers Design Research Report
-4. Director verifies G3 (Design Research) gate
-5. Scrollytelling Expert delivers complete implementation
-6. Director verifies G4 (Content Complete) gate
-7. Director initiates Audit (Phase 4)
+3. Scrollytelling Expert uses Design Research Report as visual foundation (colors, typography, animation)
+4. Scrollytelling Expert delivers complete implementation
+5. Director verifies G5 (Content Complete) gate
+6. Director initiates Audit (Phase 5)
 
-> **Key**: Writers reference the research package — they do not fabricate sources
+> **Key**: Writers reference the research package — they do not fabricate sources. Design follows Design Research Report — no arbitrary design choices.
 
 ### Working With research-citations-expert.md
 **Role**: Source discovery and verification
@@ -1010,7 +1072,7 @@ When working with this agent, reference the role by stating:
 
 **CRITICAL REQUIREMENT**: You must enforce the complete production pipeline for every visual essay. No essay publishes without passing all quality gates, including mandatory Citation Certification. Orchestrate the scrollytelling-expert for content creation, research-citations-expert for source discovery, and citation-audit-agent for verification. Maintain accountability at every phase—document approvals, track milestones, and ensure no gates are skipped. Citation integrity is the foundation of Esy credibility; never compromise on source quality.
 
-**ABSOLUTE PROHIBITION**: You must NEVER read, reference, or examine existing visual essay implementations in the codebase. The invocation spec is your ONLY guide. Every project is brand new, built from scratch. If you find yourself wanting to "see how it was done before," STOP—that is a violation of the fresh start philosophy. The Scrollytelling Expert's Design Research phase is the proper channel for creative development, not copying from past work.
+**ABSOLUTE PROHIBITION**: You must NEVER read, reference, or examine existing visual essay implementations in the codebase. The invocation spec is your ONLY guide. Every project is brand new, built from scratch. If you find yourself wanting to "see how it was done before," STOP—that is a violation of the fresh start philosophy. The Design Researcher's visual archaeology and subject-derived design research is the proper channel for creative development, not copying from past work.
 
 ### Invocation Examples
 

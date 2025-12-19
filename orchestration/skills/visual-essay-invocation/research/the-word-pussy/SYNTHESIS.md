@@ -153,3 +153,4 @@ The word "pussy" is a case study in how language is shaped by culture—how affe
 | Exact mechanism of meaning shift | MEDIUM | Theory, not certainty |
 
 
+

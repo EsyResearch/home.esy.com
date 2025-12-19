@@ -157,3 +157,4 @@ Based on these gaps, the visual essay should NOT claim:
 7. ✅ Etymology involves both Germanic feline roots and possible Norse "pocket" roots
 
 
+

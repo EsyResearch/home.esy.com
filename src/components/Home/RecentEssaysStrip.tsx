@@ -9,6 +9,7 @@ import {
   CATEGORY_COLORS,
   type VisualEssay 
 } from '@/data/visualEssays';
+import { cdnImageSrc } from '@/lib/imageCdn';
 
 /**
  * RecentEssaysStrip Component
@@ -83,7 +84,7 @@ const RecentCard: React.FC<RecentCardProps> = ({ essay }) => (
     {/* Image */}
     <div className="recent-card-image">
       <Image
-        src={essay.heroImage}
+        src={cdnImageSrc(essay.heroImage)}
         alt={essay.heroAlt}
         fill
         sizes="(max-width: 768px) 280px, 320px"

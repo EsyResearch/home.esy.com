@@ -11,6 +11,7 @@ Research and source discovery agents that ensure content is built on authoritati
 | [Brainstorming Agent](./brainstorming-agent.md) | Research Design | Question formulation, hypothesis generation, scope definition |
 | [Research & Citations](./research-citations-expert.md) | Source Discovery | Tier 1-2 authoritative sources, evaluation, synthesis |
 | [Image Research & Licensing](./image-research-licensing-expert.md) | Visual Assets | Public domain image sourcing & rights verification |
+| [Design Researcher](./design-researcher.md) | Visual Identity | Subject-derived design research, color palette derivation, typography research |
 
 ---
 
@@ -63,15 +64,24 @@ Research Orchestrator (orchestrators/)
 | Source public domain images | Image Research & Licensing |
 | Verify image licensing | Image Research & Licensing |
 | Upgrade weak sources | Research & Citations |
+| **Derive visual identity from subject matter** | Design Researcher (Gate 4) |
 | **Full research pipeline** | Use Research Orchestrator (orchestrators/) |
 
 ---
 
 ## Invocation Pattern
 
+**Research & Citations:**
 ```
 Using @agents/research/research-citations-expert.md, find Tier 1-2 sources 
 for claims about [TOPIC]. Focus on .edu and peer-reviewed journals.
+```
+
+**Design Research:**
+```
+Using @agents/research/design-researcher.md, conduct comprehensive 
+design research for visual essay about [TOPIC]. Produce Design Research 
+Report with subject-derived color palette, typography, and animation philosophy.
 ```
 
 ---
@@ -79,6 +89,7 @@ for claims about [TOPIC]. Focus on .edu and peer-reviewed journals.
 ## See Also
 
 - [Research Orchestrator](../orchestrators/research-orchestrator.md) — Coordinates research pipeline (Phase 2)
+- [Visual Essay Orchestrator](../orchestrators/visual-essay-orchestrator.md) — Invokes Design Researcher for Gate 4
 - [Citation Audit Agent](../auditors/citation-audit-agent.md) — Verifies research quality
 - [Content Creators](../content/README.md) — Consumes research output
 - [Regional Experts](../regional/README.md) — Provides domain expertise

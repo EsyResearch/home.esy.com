@@ -889,3 +889,4 @@ Content is documentary and historical. No gratuitous imagery, but themes are hea
 *This invocation spec provides a comprehensive blueprint for an emotionally devastating, photorealistic visual essay that reveals Nineteen Eighty-Four as synthesized testimony rather than speculative fiction. By tracing every element of Oceania to its origin in Orwell's life and historical observation, the essay transforms readers' understanding of the novel. The Yezhov erasure as interactive demonstration, the typewriter motif reflecting Orwell's race against death, and the Room 101 climax create an experience that is educational, emotional, and unforgettable. Ready for production.*
 
 
+

@@ -9,6 +9,7 @@ import {
   CATEGORY_COLORS,
   type VisualEssay 
 } from '@/data/visualEssays';
+import { cdnImageSrc } from '@/lib/imageCdn';
 
 // Explicitly featured essay on homepage (override auto-derived latest)
 const FEATURED_ESSAY_ID = 'the-manhattan-project';
@@ -93,7 +94,7 @@ const EssayCard: React.FC<EssayCardProps> = ({ essay }) => (
     {/* Hero Image */}
     <div className="essay-card-image">
       <Image
-        src={essay.heroImage}
+        src={cdnImageSrc(essay.heroImage)}
         alt={essay.heroAlt}
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

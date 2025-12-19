@@ -632,6 +632,7 @@ Current agents derived from this framework:
 | `template-integration-engineer.md` | Frontend | Template → Next.js | Standalone |
 | `brainstorming-agent.md` | **Research Design** | Question Formulation & Scope | **Orchestrated by** Research Orchestrator (Phase 1) |
 | `research-citations-expert.md` | Research | Source Discovery & Verification | → All content agents, ← **Research Orchestrator** (Phase 2) |
+| `design-researcher.md` | **Visual Identity Research** | Subject-Derived Design Research | → Scrollytelling Expert, ← **Visual Essay Orchestrator** (Gate 4) |
 | `scrollytelling-expert.md` | Digital Storytelling | **Mobile-Native** Immersive Narratives | **Orchestrator** → Writer, Editor, Research, UI/UX, SW Eng, **Immersive Eng**, SVG Expert, **Visual Auditor**; ← **Visual Essay Orchestrator** |
 | `childrens-books-writer-expert.md` | **Children's Fiction (3-6)** | Picture Book Narratives | ← Children's Fiction Scrollytelling |
 | `childrens-fiction-scrollytelling-agent.md` | **Children's Scrollytelling** | Magical Story Experiences | **Orchestrator** → Children's Writer, UI/UX, SW Eng, Immersive Eng, SVG Expert, **Visual Auditor** |
@@ -690,6 +691,7 @@ This meta-framework should evolve as patterns emerge:
 December 16, 2025
 
 ### Recent Changes
+- Added Design Researcher to registry (visual identity research, subject-derived design systems, Gate 4 owner)
 - Added Animation Pattern Auditor to registry (pattern extraction from specs/implementations against 21 scroll-lock patterns + 36 animation taxonomy categories)
 - Added Design Research Implementation Auditor to registry (spec vs implementation verification, 100% compliance auditing)
 - Added Design Slop Auditor to registry (AI slop detection, subject-derived design enforcement, Design Research Reports for remediation)
