@@ -727,6 +727,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "22 min",
     href: "/essays/the-printing-press",
     isNew: true,
+    draft: true,
     tags: ["printing press", "Gutenberg", "Johannes Gutenberg", "Bi Sheng", "movable type", "Diamond Sutra", "Jikji", "printing history", "Martin Luther", "Reformation", "history of books", "timeline", "visual essay"],
     visualStyle: "photorealistic",
   },

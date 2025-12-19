@@ -152,8 +152,8 @@ export const metadata: Metadata = {
     canonical: "https://esy.com/essays/the-printing-press/",
   },
   robots: {
-    index: true,
-    follow: true,
+    index: false,
+    follow: false,
     "max-image-preview": "large",
     "max-snippet": -1,
   },
