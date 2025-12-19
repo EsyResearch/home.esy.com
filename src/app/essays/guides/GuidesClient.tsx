@@ -39,7 +39,7 @@ const guides: Guide[] = [
     subtitle: "A Visual Step-by-Step Guide",
     description: "Master essay writing from start to finish. Learn brainstorming, outlining, drafting, and revision through an interactive visual experience.",
     readTime: "8 min",
-    href: "/essays/guides/how-to-write-an-essay",
+    href: "/essays/foundations/how-to-write-an-essay",
     icon: "pen",
     difficulty: "Beginner",
     isFeatured: true,

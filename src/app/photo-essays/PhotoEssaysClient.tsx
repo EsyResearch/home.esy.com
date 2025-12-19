@@ -32,7 +32,7 @@ const essayShowcases = [
     alt: essayImages.manhattanProject.alt,
     pullQuote: "I am become Death, the destroyer of worlds.",
     quoteAttribution: "J. Robert Oppenheimer",
-    href: "/essays/the-manhattan-project",
+    href: "/essays/history/the-manhattan-project",
     readTime: "22 min",
     imageAttribution: null, // Public Domain - no attribution required
   },

@@ -28,6 +28,12 @@ const nextConfig = {
         destination: '/essays/:slug',
         permanent: true,
       },
+      // Redirect /essays/the-manhattan-project to /essays/history/the-manhattan-project
+      {
+        source: '/essays/the-manhattan-project',
+        destination: '/essays/history/the-manhattan-project',
+        permanent: true,
+      },
     ];
   },
 };

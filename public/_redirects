@@ -1,0 +1,11 @@
+# Redirect legacy essay paths to new locations
+
+# History essays
+/essays/the-manhattan-project /essays/history/the-manhattan-project 301
+/essays/the-manhattan-project/ /essays/history/the-manhattan-project/ 301
+
+# Foundations essays (writing guides)
+/essays/how-to-write-a-hook /essays/foundations/how-to-write-a-hook 301
+/essays/how-to-write-a-hook/ /essays/foundations/how-to-write-a-hook/ 301
+/essays/guides/how-to-write-an-essay /essays/foundations/how-to-write-an-essay 301
+/essays/guides/how-to-write-an-essay/ /essays/foundations/how-to-write-an-essay/ 301

@@ -44,7 +44,7 @@ const SHOWCASE_ESSAYS: ShowcaseEssay[] = [
     category: 'History',
     categoryColor: '#F59E0B',
     readTime: '22 min',
-    href: '/essays/the-manhattan-project',
+    href: '/essays/history/the-manhattan-project',
     // Trinity test mushroom cloud - actual hero image from essay
     heroImage: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Trinity_Test_Mushroom_Cloud_12s.jpg',
     size: 'featured',

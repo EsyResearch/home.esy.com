@@ -6,12 +6,12 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Article",
-      "@id": "https://esy.com/essays/the-manhattan-project/#article",
+      "@id": "https://esy.com/essays/history/the-manhattan-project/#article",
       "headline": "Now I Am Become Death: The Making of the Atomic Bomb",
       "alternativeHeadline": "The Secret Race to Split the Atom",
       "description":
         "A photo-driven visual essay chronicling humanity's most consequential scientific endeavor—the secret race to split the atom. From Einstein's 1939 letter to the ashes of Hiroshima, experience the Manhattan Project through declassified photographs and the faces of those who changed history.",
-      "url": "https://esy.com/essays/the-manhattan-project/",
+      "url": "https://esy.com/essays/history/the-manhattan-project/",
       "datePublished": "2025-12-17",
       "dateModified": "2025-12-17",
       "author": { "@type": "Organization", "name": "Esy", "url": "https://esy.com" },
@@ -30,7 +30,8 @@ const jsonLd = {
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://esy.com" },
         { "@type": "ListItem", "position": 2, "name": "Essays", "item": "https://esy.com/essays/" },
-        { "@type": "ListItem", "position": 3, "name": "The Manhattan Project", "item": "https://esy.com/essays/the-manhattan-project/" }
+        { "@type": "ListItem", "position": 3, "name": "History", "item": "https://esy.com/essays/history/" },
+        { "@type": "ListItem", "position": 4, "name": "The Manhattan Project", "item": "https://esy.com/essays/history/the-manhattan-project/" }
       ]
     },
     {
@@ -106,7 +107,7 @@ export const metadata: Metadata = {
     description:
       "The secret race to split the atom—told through declassified photographs and the faces of those who changed history forever.",
     type: "article",
-    url: "https://esy.com/essays/the-manhattan-project/",
+    url: "https://esy.com/essays/history/the-manhattan-project/",
     siteName: "Esy",
     locale: "en_US",
     images: [
@@ -127,7 +128,7 @@ export const metadata: Metadata = {
     images: ["https://esy.com/og/the-manhattan-project.png"]
   },
   alternates: {
-    canonical: "https://esy.com/essays/the-manhattan-project/"
+    canonical: "https://esy.com/essays/history/the-manhattan-project/"
   },
   robots: {
     index: true,
