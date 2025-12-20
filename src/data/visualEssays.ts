@@ -677,7 +677,7 @@ export const visualEssays: VisualEssay[] = [
     description: "How did a hospital anesthetic become a leading cause of overdose deaths? A text-forward chronological examination tracing fentanyl's journey from 1960 Belgian laboratory success through illicit manufacturing, pandemic acceleration, and structural entrenchment.",
     category: "History",
     readTime: "15 min",
-    href: "/essays/fentanyl-crisis-timeline",
+    href: "/essays/history/fentanyl-crisis-timeline",
     tags: ["fentanyl", "opioid crisis", "synthetic opioids", "drug history", "public health", "overdose", "timeline", "CDC", "DEA", "pharmaceutical history", "drug policy"],
     visualStyle: "photorealistic",
   },

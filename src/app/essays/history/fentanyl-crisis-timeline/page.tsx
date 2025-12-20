@@ -6,11 +6,11 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Article",
-      "@id": "https://esy.com/essays/fentanyl-crisis-timeline/#article",
+      "@id": "https://esy.com/essays/history/fentanyl-crisis-timeline/#article",
       "headline": "Fentanyl: A Timeline of a Synthetic Drug",
       "alternativeHeadline": "How a Hospital Anesthetic Became a Leading Cause of Overdose Deaths",
       "description": "How did a hospital anesthetic become a leading cause of overdose deaths? A chronological examination of fentanyl's journey from medical innovation to public health crisis.",
-      "url": "https://esy.com/essays/fentanyl-crisis-timeline/",
+      "url": "https://esy.com/essays/history/fentanyl-crisis-timeline/",
       "datePublished": "2025-12-15",
       "dateModified": "2025-12-17",
       "author": { "@type": "Organization", "name": "Esy", "url": "https://esy.com" },
@@ -29,7 +29,8 @@ const jsonLd = {
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://esy.com" },
         { "@type": "ListItem", "position": 2, "name": "Essays", "item": "https://esy.com/essays/" },
-        { "@type": "ListItem", "position": 3, "name": "Fentanyl Crisis Timeline", "item": "https://esy.com/essays/fentanyl-crisis-timeline/" }
+        { "@type": "ListItem", "position": 3, "name": "History", "item": "https://esy.com/essays/history/" },
+        { "@type": "ListItem", "position": 4, "name": "Fentanyl Crisis Timeline", "item": "https://esy.com/essays/history/fentanyl-crisis-timeline/" }
       ]
     },
     {
@@ -106,7 +107,7 @@ export const metadata: Metadata = {
     description:
       "How did a hospital anesthetic become a leading cause of overdose deaths?",
     type: "article",
-    url: "https://esy.com/essays/fentanyl-crisis-timeline/",
+    url: "https://esy.com/essays/history/fentanyl-crisis-timeline/",
     publishedTime: "2025-12-15",
     siteName: "Esy",
     locale: "en_US",
@@ -128,7 +129,7 @@ export const metadata: Metadata = {
     images: ["https://esy.com/og/fentanyl-crisis-timeline.png"]
   },
   alternates: {
-    canonical: "https://esy.com/essays/fentanyl-crisis-timeline/"
+    canonical: "https://esy.com/essays/history/fentanyl-crisis-timeline/"
   },
   robots: {
     index: true,
