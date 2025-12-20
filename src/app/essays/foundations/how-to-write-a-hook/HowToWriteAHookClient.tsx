@@ -485,7 +485,7 @@ const ChapterSection: React.FC<{
   );
 };
 
-// Concepts Covered Section
+// Conceptual Foundations Section
 const ConceptsCoveredSection: React.FC = () => {
   // Group concepts by domain
   const conceptsByDomain = concepts.reduce((acc, concept) => {
@@ -501,7 +501,7 @@ const ConceptsCoveredSection: React.FC = () => {
   return (
     <section className="concepts-section">
       <div className="concepts-content">
-        <h3 className="concepts-title">Concepts Covered</h3>
+        <h3 className="concepts-title">Conceptual Foundations</h3>
         <p className="concepts-intro">
           Key theories and frameworks explored in this essay, organized by domain.
         </p>
@@ -789,7 +789,7 @@ export default function HowToWriteAHookClient() {
         </div>
       </section>
 
-      {/* Concepts Covered */}
+      {/* Conceptual Foundations */}
       <ConceptsCoveredSection />
 
       {/* Sources */}

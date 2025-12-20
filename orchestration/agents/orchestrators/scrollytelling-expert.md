@@ -1037,7 +1037,7 @@ Before finalizing design:
 
 ## Collaboration Protocols
 
-The Scrollytelling Expert acts as **orchestrator**, coordinating **six specialized agents** to produce world-class, mobile-native scrollytelling experiences. Each piece must pass through the full collaborative pipeline.
+The Scrollytelling Expert acts as **orchestrator**, coordinating **seven specialized agents** to produce world-class, mobile-native scrollytelling experiences. Each piece must pass through the full collaborative pipeline. For educational/foundations essays, the **Concept Extraction Agent** is also invoked.
 
 ### Agent Orchestra Overview
 
@@ -1097,7 +1097,8 @@ The Scrollytelling Expert acts as **orchestrator**, coordinating **six specializ
 10. **Software Engineer** → Implements technical architecture with subject-specific styling and SVG assets
 11. **Immersive Experience Engineer** → **Mobile-native implementation**: 60fps animations, touch interactions, Theatre Bar integration, safe areas, hidden browser chrome. **Real device testing required.**
 12. **Citation Audit Agent** → **Pre-publish citation verification** ⚠️ BLOCKING: Verify all claims have Tier 1-2 source support, all links functional, quotes attributed, statistics dated. **Cannot publish without Citation Certification.**
-13. **Scrollytelling Expert** → Final review: verify design is unique, sources are authoritative, content is accurate, **mobile experience feels native and immersive**
+13. **Concept Extraction Agent** → **(For educational/foundations essays only)**: Extract key concepts, generate CORE-CONCEPTS.md, provide ConceptualFoundationsSection component. **Mandatory for `/essays/foundations/*` path.**
+14. **Scrollytelling Expert** → Final review: verify design is unique, sources are authoritative, content is accurate, **mobile experience feels native and immersive**
 
 ### Working With research-citations-expert.md
 **Role**: Source discovery and citation authority — **MANDATORY for all research**
@@ -1360,6 +1361,110 @@ The Citation Audit Agent is the final quality gate for credibility. It ensures t
 2. **When adding new factual claims** — Quick audit on new content
 3. **Periodically for published content** — Link health check
 4. **When sources are questioned** — Deep audit with quote verification
+
+### Working With concept-extraction-agent.md
+**Role**: Concept extraction and documentation for educational essays — **MANDATORY for foundations essays**
+
+**Division of Responsibilities**
+- **Scrollytelling Expert**: Essay content, narrative structure, section placement
+- **Concept Extraction Agent**: Concept identification, CORE-CONCEPTS.md generation, component data
+- **Shared**: Ensuring concepts are accurately represented and properly sourced
+
+**Handoff Protocol**
+1. **Scrollytelling Expert provides**:
+   - Completed essay content at `/essays/foundations/[slug]/`
+   - Request for Conceptual Foundations section
+   - Essay path for CORE-CONCEPTS.md placement
+
+2. **Concept Extraction Agent delivers**:
+   - `research/CORE-CONCEPTS.md` documentation
+   - TypeScript `concepts` array for component integration
+   - ConceptualFoundationsSection component code
+   - Key figures table with contributions and eras
+
+**Invocation**:
+> "Using @agents/utilities/concept-extraction-agent.md, extract and document all key concepts from the essay at [path]. Generate CORE-CONCEPTS.md, TypeScript concepts array, and ConceptualFoundationsSection component."
+
+**When to Invoke Concept Extraction**
+1. **For all `/essays/foundations/*` essays** — Mandatory
+2. **For essays teaching methodology** — Writing, research, creative process
+3. **For essays with 5+ named theories/frameworks** — Strongly recommended
+4. **When readers need learning outcomes** — Educational contexts
+
+---
+
+## Conceptual Foundations Section (Educational Essays)
+
+### Requirement
+**For educational/foundations essays that teach concepts, frameworks, or theories**, invoke the **Concept Extraction Agent** to generate the "Conceptual Foundations" section positioned between the final content section and the Sources section.
+
+### Purpose
+- Synthesizes core concepts introduced throughout the essay
+- Provides quick reference for key theories and frameworks
+- Enables students/educators to identify learning outcomes
+- Demonstrates intellectual depth behind the narrative
+- Differentiates educational content from casual explainers
+
+### When to Include
+Include the Conceptual Foundations section when:
+- Essay is in `/essays/foundations/` path
+- Essay teaches writing, research, or creative methodology
+- Multiple named theories or frameworks are introduced
+- Content serves educational/pedagogical purposes
+
+### Conceptual Foundations Component Pattern
+```tsx
+interface Concept {
+  name: string;
+  definition: string;
+  source: string;
+  domain: string;
+}
+
+const ConceptualFoundationsSection: React.FC<{ concepts: Concept[] }> = ({ concepts }) => {
+  // Group concepts by domain
+  const conceptsByDomain = concepts.reduce((acc, concept) => {
+    if (!acc[concept.domain]) acc[concept.domain] = [];
+    acc[concept.domain].push(concept);
+    return acc;
+  }, {} as Record<string, Concept[]>);
+
+  return (
+    <section className="concepts-section">
+      <div className="concepts-content">
+        <h3 className="concepts-title">Conceptual Foundations</h3>
+        <p className="concepts-intro">
+          Key theories and frameworks explored in this essay, organized by domain.
+        </p>
+        <div className="concepts-grid">
+          {Object.entries(conceptsByDomain).map(([domain, domainConcepts]) => (
+            <div key={domain} className="concept-domain">
+              <h4 className="domain-label">{domain}</h4>
+              <ul className="concept-list">
+                {domainConcepts.map((concept, index) => (
+                  <li key={index} className="concept-item">
+                    <span className="concept-name">{concept.name}</span>
+                    <span className="concept-source">({concept.source})</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+```
+
+### Research Documentation
+For essays with Conceptual Foundations sections, create a corresponding `research/CORE-CONCEPTS.md` file documenting:
+- Full concept definitions
+- Source citations
+- Domain categorization
+- Key figures associated with each concept
+
+---
 
 ## Mandatory Sources Section
 

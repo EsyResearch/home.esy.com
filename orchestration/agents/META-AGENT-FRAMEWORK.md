@@ -660,6 +660,7 @@ Current agents derived from this framework:
 | `social-media-meta-expert.md` | **Social Sharing Optimization** | Social Meta Specialist (Audit + Implementation) | **Dual-Role Expert** — Audit Mode (QA gate), Implementation Mode (fixes), Advisory Mode (strategy); OG, Twitter Cards, JSON-LD; → Visual Essay Orchestrator (publish gate) |
 | `design-research-implementation-auditor.md` | **Design Spec Compliance** | Design Implementation Verifier | **Auditor** → Visual Essay Orchestrator (publish gate); Compares `specs/` vs implementation; Typography, Color, Spacing, Interaction fidelity; 100% compliance target |
 | `animation-pattern-auditor.md` | **Animation Architecture** | Pattern Extraction & Classification | **Auditor** — Analyzes specs/implementations against `scroll-lock-patterns.md` (21 patterns) + `animation-taxonomy.md` (36 categories); Outputs precise pattern inventories with evidence; → Design Research Auditor, Scrollytelling Expert |
+| `concept-extraction-agent.md` | **Educational Content** | Concept Extraction & Documentation | **Utility** ← Scrollytelling Expert (educational essays); Extracts concepts, generates CORE-CONCEPTS.md, produces ConceptualFoundationsSection; → Scrollytelling Expert |
 
 ---
 
