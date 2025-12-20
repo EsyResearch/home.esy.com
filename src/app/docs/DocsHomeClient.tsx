@@ -3,12 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import {
-  BookOpen,
-  Sparkles,
-  PenLine,
+  LayoutTemplate,
   Workflow,
   ArrowRight,
-  FileText,
+  FileCode,
+  ShieldCheck,
 } from "lucide-react";
 import { DocsPageNav } from "@/components/docs";
 
@@ -28,49 +27,38 @@ const theme = {
 const DocsHomeClient = () => {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
-  const guides = [
+  const coreReferences = [
     {
-      id: 'prompt-engineering',
-      title: 'Prompt Engineering Guide',
-      description: 'Learn the CRISPE framework and techniques for crafting effective AI prompts that deliver high-quality results.',
-      href: '/docs/prompt-engineering',
-      icon: <Sparkles className="w-6 h-6" />,
-      category: 'Fundamentals'
+      id: 'templates',
+      title: 'Templates Overview',
+      description: 'Pre-designed research systems with bounded inputs. The primary entry point for producing artifacts.',
+      href: '/templates',
+      icon: <LayoutTemplate className="w-6 h-6" />,
+      category: 'Systems'
     },
     {
-      id: 'chatgpt-prompts',
-      title: '50+ ChatGPT Prompts for Academic Writing',
-      description: 'Battle-tested prompts for essays, research papers, thesis writing, and literature reviews.',
-      href: '/docs/chatgpt-prompts-for-academic-writing',
-      icon: <BookOpen className="w-6 h-6" />,
-      category: 'Prompt Library',
-      isNew: true
-    },
-    {
-      id: 'better-essays',
-      title: 'Write Better Essays with AI',
-      description: 'Understand how to use AI assistance throughout your writing process—from brainstorming to final draft.',
-      href: '/docs/how-to-write-better-essays-with-ai',
-      icon: <PenLine className="w-6 h-6" />,
-      category: 'Techniques'
-    },
-    {
-      id: 'essay-writing',
-      title: 'How to Write an Essay',
-      description: 'Complete guide to essay writing—from understanding assignments to polishing final drafts. Covers all essay types, structure, and essential components.',
-      href: '/docs/how-to-write-an-essay',
-      icon: <FileText className="w-6 h-6" />,
-      category: 'Writing Guides',
-      isNew: true
-    },
-    {
-      id: 'agent-workflows',
-      title: 'Build No-Code Agent Workflows',
-      description: 'Learn to create automated research workflows using Esy&apos;s visual builder—no programming required.',
-      href: '/docs/agent-workflows',
+      id: 'workflow-design',
+      title: 'Workflow Design Guide',
+      description: 'How to modify, extend, and compose workflows. For users ready to move beyond templates.',
+      href: '/docs/workflows',
       icon: <Workflow className="w-6 h-6" />,
-      category: 'Advanced',
-      isNew: true
+      category: 'Design'
+    },
+    {
+      id: 'artifact-specs',
+      title: 'Artifact Specifications',
+      description: 'Structure, metadata, and provenance of Esy outputs. What makes artifacts inspectable and reproducible.',
+      href: '/specs',
+      icon: <FileCode className="w-6 h-6" />,
+      category: 'Reference'
+    },
+    {
+      id: 'quality-assurance',
+      title: 'Quality Assurance & Evals',
+      description: 'How outputs are validated, refined, and evaluated against intent. Esy\'s approach to rigor.',
+      href: '/docs/quality',
+      icon: <ShieldCheck className="w-6 h-6" />,
+      category: 'Validation'
     }
   ];
 
@@ -519,7 +507,7 @@ const DocsHomeClient = () => {
           </div>
         </section>
 
-        {/* Essential Guides */}
+        {/* Canonical References */}
         <section style={{
           paddingTop: 'clamp(4rem, 10vh, 6rem)',
           paddingBottom: 'clamp(4rem, 10vh, 6rem)',
@@ -535,7 +523,7 @@ const DocsHomeClient = () => {
               color: theme.text,
               lineHeight: 1.2
             }}>
-              Essential Guides
+              Canonical References
             </h2>
             <p style={{
               fontSize: '1.125rem',
@@ -543,76 +531,56 @@ const DocsHomeClient = () => {
               maxWidth: '700px',
               lineHeight: 1.6
             }}>
-              In-depth guides covering everything from prompt engineering fundamentals to building 
-              advanced agent workflows.
+              Foundational reference materials you&apos;ll return to as you use Esy.
             </p>
           </div>
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
             gap: '1.5rem'
           }}>
-            {guides.map((guide) => (
+            {coreReferences.map((ref) => (
               <Link
-                key={guide.id}
-                href={guide.href}
+                key={ref.id}
+                href={ref.href}
                 style={{ textDecoration: 'none' }}
-                onMouseEnter={() => setHoveredCard(guide.id)}
+                onMouseEnter={() => setHoveredCard(ref.id)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
                 <div style={{
-                  background: hoveredCard === guide.id
+                  background: hoveredCard === ref.id
                     ? 'linear-gradient(135deg, rgba(39, 39, 42, 0.95) 0%, rgba(31, 31, 35, 0.8) 100%)'
                     : 'linear-gradient(135deg, rgba(31, 31, 35, 0.9) 0%, rgba(39, 39, 42, 0.7) 100%)',
-                  border: `1px solid ${hoveredCard === guide.id ? 'rgba(159, 122, 234, 0.3)' : theme.border}`,
+                  border: `1px solid ${hoveredCard === ref.id ? 'rgba(159, 122, 234, 0.3)' : theme.border}`,
                   borderRadius: '16px',
                   padding: '1.75rem',
                   transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                   cursor: 'pointer',
                   backdropFilter: 'blur(10px)',
-                  boxShadow: hoveredCard === guide.id
+                  boxShadow: hoveredCard === ref.id
                     ? '0 12px 32px rgba(159, 122, 234, 0.2)'
                     : '0 4px 16px rgba(0, 0, 0, 0.15)',
-                  transform: hoveredCard === guide.id ? 'translateY(-4px)' : 'translateY(0)',
+                  transform: hoveredCard === ref.id ? 'translateY(-4px)' : 'translateY(0)',
                   height: '100%',
                   display: 'flex',
                   flexDirection: 'column' as const
                 }}>
-                  {/* Category Badge + New Badge */}
+                  {/* Category Badge */}
                   <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
+                    padding: '0.25rem 0.75rem',
+                    background: `${theme.accent}20`,
+                    color: theme.accent,
+                    borderRadius: '12px',
+                    fontSize: '0.7rem',
+                    fontWeight: 600,
+                    textTransform: 'uppercase' as const,
+                    letterSpacing: '0.05em',
+                    border: `1px solid ${theme.accent}30`,
+                    alignSelf: 'flex-start',
                     marginBottom: '1rem'
                   }}>
-                    <div style={{
-                      padding: '0.25rem 0.75rem',
-                      background: `${theme.accent}20`,
-                      color: theme.accent,
-                      borderRadius: '12px',
-                      fontSize: '0.7rem',
-                      fontWeight: 600,
-                      textTransform: 'uppercase' as const,
-                      letterSpacing: '0.05em',
-                      border: `1px solid ${theme.accent}30`
-                    }}>
-                      {guide.category}
-                    </div>
-                    {guide.isNew && (
-                      <div style={{
-                        padding: '0.25rem 0.625rem',
-                        background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
-                        color: '#ffffff',
-                        borderRadius: '8px',
-                        fontSize: '0.65rem',
-                        fontWeight: 700,
-                        textTransform: 'uppercase' as const,
-                        letterSpacing: '0.05em'
-                      }}>
-                        New
-                      </div>
-                    )}
+                    {ref.category}
                   </div>
 
                   {/* Icon */}
@@ -629,7 +597,7 @@ const DocsHomeClient = () => {
                     marginBottom: '1.25rem',
                     boxShadow: '0 4px 12px rgba(139, 92, 246, 0.15)'
                   }}>
-                    {guide.icon}
+                    {ref.icon}
                   </div>
 
                   {/* Title */}
@@ -642,7 +610,7 @@ const DocsHomeClient = () => {
                     color: theme.text,
                     fontFamily: 'var(--font-literata)'
                   }}>
-                    {guide.title}
+                    {ref.title}
                   </h3>
 
                   {/* Description */}
@@ -653,7 +621,7 @@ const DocsHomeClient = () => {
                     marginBottom: '1.25rem',
                     flexGrow: 1
                   }}>
-                    {guide.description}
+                    {ref.description}
                   </p>
 
                   {/* Arrow */}
@@ -665,11 +633,11 @@ const DocsHomeClient = () => {
                     fontSize: '0.875rem',
                     fontWeight: 500
                   }}>
-                    Read guide
+                    View reference
                     <ArrowRight style={{
                       width: '16px',
                       height: '16px',
-                      transform: hoveredCard === guide.id ? 'translateX(4px)' : 'translateX(0)',
+                      transform: hoveredCard === ref.id ? 'translateX(4px)' : 'translateX(0)',
                       transition: 'transform 0.2s ease'
                     }} />
                   </div>
