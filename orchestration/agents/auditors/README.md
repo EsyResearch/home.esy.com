@@ -18,6 +18,7 @@ Quality verification and certification agents that ensure content meets Esy stan
 | [Spec Compliance Auditor](./spec-compliance-auditor.md) | **Spec vs Output** | — | Compliance Score (%) |
 | [Hydration Audit Agent](./hydration-audit-agent.md) | **React Hydration** | — | Hydration Compliance Report |
 | [Design Slop Auditor](./design-slop-auditor.md) | **AI Slop Detection** | — | Slop Score (0-100), Design Research Report |
+| [Gate Guard Auditor](./gate-guard-auditor.md) | **Pipeline Compliance** | G9 | Gate Verification Report, Publication Approval |
 
 ---
 
@@ -43,6 +44,8 @@ Quality verification and certification agents that ensure content meets Esy stan
 | **Verify output matches spec** | Spec Compliance Auditor |
 | **Check SSR/client hydration** | Hydration Audit Agent |
 | **Detect AI slop & enforce distinctiveness** | Design Slop Auditor |
+| **Verify all gates G1-G9 are complete** | Gate Guard Auditor |
+| **Block implementation until G1-G4 done** | Gate Guard Auditor (Pre-Phase mode) |
 | **Comprehensive QA** | Use Meta Audit Orchestrator (orchestrators/) |
 
 ---
@@ -50,7 +53,16 @@ Quality verification and certification agents that ensure content meets Esy stan
 ## Audit Pipeline
 
 ```
-Meta Audit Orchestrator
+┌─────────────────────────────────────────────────────────────────┐
+│  GATE GUARD (Pre-Phase Mode) — Blocks premature advancement     │
+│  ► Must pass G1-G4 before implementation can start              │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+                    [Implementation Phase]
+                              │
+                              ▼
+Meta Audit Orchestrator (Post-Implementation)
 ├── Scrolling Auditor (G6)
 ├── Experience Auditor
 ├── Visual Auditor
@@ -59,12 +71,24 @@ Meta Audit Orchestrator
 ├── SEO Audit
 ├── Spec Compliance Auditor (verifies output matches spec)
 ├── Hydration Audit (verifies SSR/client consistency)
-└── Design Slop Auditor ← NEW (enforces distinctive, subject-derived design)
+├── Design Slop Auditor (enforces distinctive, subject-derived design)
+└── Gate Guard Auditor (G9) ← Final checkpoint before publication
         │
         ▼
    CERTIFICATION
    ✅ CERTIFIED / ⚠️ CONDITIONAL / ❌ REJECTED
 ```
+
+### Gate Dependency Chain
+
+| To Start... | Must First Complete |
+|-------------|---------------------|
+| G2 (Research) | G1 (Intake) |
+| G3 (Spec) | G1, G2 |
+| G4 (Design Research) | G1, G2, G3 |
+| **G5 (Implementation)** | **G1, G2, G3, G4** ← Critical checkpoint |
+| G6-G8 (Audits) | G5 |
+| G9 (Publication) | G1-G8 |
 
 ---
 
@@ -92,6 +116,24 @@ Check for AI slop patterns and provide severity rating.
 Using @agents/auditors/design-slop-auditor.md, the design has been flagged as AI slop.
 Subject: [describe subject]
 Conduct design research and propose a distinctive, subject-derived aesthetic.
+```
+
+```
+# Gate verification before publication
+Using @agents/auditors/gate-guard-auditor.md, verify pipeline compliance for:
+Essay: [essay-slug]
+Check all 9 gates (G1-G9) have required artifacts.
+```
+
+```
+# PRE-PHASE VERIFICATION (BLOCKING) — Use before starting implementation
+Using @agents/auditors/gate-guard-auditor.md, verify prerequisites
+for starting phase:
+
+Target Phase: G5 (Implementation)
+Essay Slug: [essay-slug]
+
+BLOCK if prerequisite gates G1-G4 are incomplete.
 ```
 
 ---

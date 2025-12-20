@@ -11,7 +11,7 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 ```
 agents/
 ├── orchestrators/     # 🎬 Top-level coordination (5 agents)
-├── auditors/          # 🔍 Quality verification (7 agents)
+├── auditors/          # 🔍 Quality verification (11 agents)
 ├── content/           # 📚 Content creation (4 agents)
 ├── research/          # 🔬 Source discovery (4 agents)
 ├── regional/          # 🌏 Regional specialists (2 agents)
@@ -43,6 +43,8 @@ agents/
 | [Immersive Experience Auditor](#immersive-experience-auditor) | Comprehensive experience QA | `@agents/auditors/immersive-experience-auditor.md` |
 | [SEO Audit Agent](#seo-audit-agent) | Page-level SEO auditing | `@agents/auditors/seo-audit-agent.md` |
 | [Hydration Audit Agent](#hydration-audit-agent) | SSR/client hydration compliance | `@agents/auditors/hydration-audit-agent.md` |
+| [Design Slop Auditor](#design-slop-auditor) | AI slop detection & remediation | `@agents/auditors/design-slop-auditor.md` |
+| [Gate Guard Auditor](#gate-guard-auditor) | Pipeline compliance (G1-G9) | `@agents/auditors/gate-guard-auditor.md` |
 
 **Reports:** `auditors/CitationReports/` · `auditors/VisualAuditReports/`
 
@@ -1688,6 +1690,131 @@ components for hydration issues.
 - Integrates with `meta-audit-orchestrator.md` for comprehensive QA
 
 **Reference:** [Hero Hydration Pattern](../../docs/front-end/HERO_HYDRATION_PATTERN.md) — Documented fix for IntersectionObserver hero issue
+
+---
+
+### Design Slop Auditor
+**File:** `auditors/design-slop-auditor.md`
+
+**Role:** Design quality auditor specializing in detecting AI-generated "slop" — generic, derivative visual treatments that lack subject-derived authenticity. When slop is detected, conducts design research to propose distinctive, subject-specific aesthetics.
+
+**🎨 USE BEFORE FINALIZING DESIGN:** Run early design mockups through this agent to ensure the visual treatment is distinctive and derived from the subject matter, not generic AI patterns.
+
+**Best For:**
+- Detecting generic gradient-heavy designs
+- Identifying derivative visual treatments
+- Auditing for subject-derived authenticity
+- Conducting remediation research when slop detected
+- Proposing distinctive design alternatives
+
+**Detection Criteria:**
+1. Generic gradients (purple/blue tech gradients, gold/amber "premium" gradients)
+2. Floating particle effects without subject justification
+3. Generic iconography (lightbulbs for ideas, gears for process)
+4. Lack of era-specific or subject-derived typography
+5. Color palette not derived from subject matter
+6. Animation patterns copied from other essays
+
+**Invocation Examples:**
+```markdown
+# Audit for AI slop
+Using @agents/auditors/design-slop-auditor.md, audit the visual essay at:
+src/app/essays/[essay-slug]/
+Check for AI slop patterns and provide severity rating.
+
+# Remediation after slop detection
+Using @agents/auditors/design-slop-auditor.md, the design has been flagged as AI slop.
+Subject: [describe subject]
+Conduct design research and propose a distinctive, subject-derived aesthetic.
+```
+
+**Output:**
+1. Slop Score (0-100) — Lower is better
+2. Pattern identification with specific examples
+3. Remediation recommendations
+4. Design Research Report (when remediation requested)
+
+**Collaboration:**
+- Works with `design-researcher.md` for subject research
+- Works with `ui-ux-design-expert.md` for implementation
+- Integrates with `meta-audit-orchestrator.md` for comprehensive QA
+
+---
+
+### Gate Guard Auditor
+**File:** `auditors/gate-guard-auditor.md`
+
+**Role:** Pipeline compliance officer that verifies all 9 gates (G1-G9) have required artifacts before allowing publication. Also operates in Pre-Phase Verification mode to BLOCK premature advancement through the pipeline.
+
+**🚦 CRITICAL GATEKEEPER:** This agent prevents the anti-pattern of building before research/spec/design phases are complete. Use Pre-Phase mode BEFORE starting implementation to verify G1-G4 are complete.
+
+**Two Operating Modes:**
+
+| Mode | When to Use | Purpose |
+|------|-------------|---------|
+| **Pre-Phase Verification** | Before starting G5 (Implementation) | BLOCK if G1-G4 incomplete |
+| **Final Certification** | Before G9 (Publication) | Verify all gates G1-G9 complete |
+
+**Gate Dependency Chain:**
+
+| To Start Phase... | Must First Complete |
+|-------------------|---------------------|
+| G2 (Research) | G1 (Intake Approval) |
+| G3 (Spec) | G1, G2 |
+| G4 (Design Research) | G1, G2, G3 |
+| **G5 (Implementation)** | **G1, G2, G3, G4** ← Critical checkpoint |
+| G6-G8 (Audits) | G5 |
+| G9 (Publication) | G1-G8 |
+
+**Best For:**
+- Blocking implementation before research/spec/design complete
+- Verifying publication readiness
+- Generating gate completion reports
+- Identifying missing artifacts
+- Enforcing pipeline discipline
+
+**Anti-Pattern This Agent Prevents:**
+```
+❌ WRONG: Build → Audit → Retroactively create research/spec
+   Result: Artifacts describe what exists, don't guide what's built
+
+✅ RIGHT: Research → Spec → Design → Build → Audit
+   Result: Each phase informs the next; spec guides implementation
+```
+
+**Invocation Examples:**
+```markdown
+# PRE-PHASE VERIFICATION (BLOCKING) — Use before starting implementation
+Using @agents/auditors/gate-guard-auditor.md, verify prerequisites
+for starting phase:
+
+Target Phase: G5 (Implementation)
+Essay Slug: [essay-slug]
+
+BLOCK if prerequisite gates G1-G4 are incomplete.
+
+# FINAL CERTIFICATION — Use before publication
+Using @agents/auditors/gate-guard-auditor.md, verify pipeline compliance for:
+Essay: [essay-slug]
+Check all 9 gates (G1-G9) have required artifacts.
+
+# QUICK STATUS CHECK
+Using @agents/auditors/gate-guard-auditor.md, what gates are complete for:
+Essay: [essay-slug]
+```
+
+**Output:**
+1. Gate Verification Report with status for each gate
+2. Missing artifact list with file paths
+3. Blocker identification (HARD BLOCK vs WARNING)
+4. PUBLICATION-APPROVAL.md (when all gates pass)
+
+**Collaboration:**
+- Works with all auditors for gate-specific verification
+- Works with `visual-essay-orchestrator.md` for pipeline coordination
+- Integrates with `meta-audit-orchestrator.md` for comprehensive QA
+
+**Reference:** [auditors/README.md](./auditors/README.md) — Full pipeline diagram and gate details
 
 ---
 

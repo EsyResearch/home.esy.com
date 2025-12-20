@@ -14,7 +14,7 @@ agents/
 ├── META-AGENT-FRAMEWORK.md      # Agent creation template
 │
 ├── orchestrators/               # 🎬 Top-level coordination (5)
-├── auditors/                    # 🔍 Quality verification (10)
+├── auditors/                    # 🔍 Quality verification (11)
 ├── content/                     # 📚 Content creation (4)
 ├── research/                    # 🔬 Source discovery (4)
 ├── regional/                    # 🌏 Regional specialists (2)
@@ -52,6 +52,7 @@ agents/
 | [Spec Compliance Auditor](./auditors/spec-compliance-auditor.md) | **Spec vs Output** | — | `auditors/` |
 | [Hydration Audit Agent](./auditors/hydration-audit-agent.md) | **React Hydration** | — | `auditors/` |
 | [Design Slop Auditor](./auditors/design-slop-auditor.md) | **AI Slop Detection** | — | `auditors/` |
+| [Gate Guard Auditor](./auditors/gate-guard-auditor.md) | **Pipeline Compliance** | G9 | `auditors/` |
 
 **Report Storage:**
 - Citation Reports: `auditors/CitationReports/`
@@ -166,6 +167,45 @@ agents/
 
 Flow: Intake Enhancer → Orchestrator → Research → Spec → Implementation
       (structures)      (coordinates)   (fills)    (grounds)  (realizes)
+```
+
+### Gate Dependency Chain (Enforced by Gate Guard Auditor)
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  GATE GUARD: PRE-PHASE VERIFICATION MODE                           │
+│  Blocks premature advancement to prevent "build first, doc later"  │
+└─────────────────────────────────────────────────────────────────────┘
+
+G1 (Intake) ──► G2 (Research) ──► G3 (Spec) ──► G4 (Design Research)
+                                                         │
+                                    ┌────────────────────┘
+                                    │
+                              ═══════════════
+                              ║ GATE GUARD  ║ ← Critical checkpoint
+                              ║ MUST PASS   ║   before ANY code
+                              ║ G1-G4       ║
+                              ═══════════════
+                                    │
+                                    ▼
+                           G5 (Implementation)
+                                    │
+                    ┌───────────────┼───────────────┐
+                    ▼               ▼               ▼
+              G6 (Citation)   G7 (Scroll)    G8 (Mobile)
+                    │               │               │
+                    └───────────────┼───────────────┘
+                                    ▼
+                           ═══════════════
+                           ║ GATE GUARD  ║ ← Final checkpoint
+                           ║ G9 PUBLISH  ║   before publication
+                           ═══════════════
+
+❌ ANTI-PATTERN PREVENTED:
+   Build → Audit → Retroactively create research/spec (spec describes code)
+
+✅ CORRECT FLOW:
+   Research → Spec → Design → Build → Audit (spec guides code)
 ```
 
 ### Audit Pipeline
