@@ -6,11 +6,11 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Article",
-      "@id": "https://esy.com/essays/fentanyl-timeline/#article",
+      "@id": "https://esy.com/essays/fentanyl-crisis-timeline/#article",
       "headline": "Fentanyl: A Timeline of a Synthetic Drug",
       "alternativeHeadline": "How a Hospital Anesthetic Became a Leading Cause of Overdose Deaths",
       "description": "How did a hospital anesthetic become a leading cause of overdose deaths? A chronological examination of fentanyl's journey from medical innovation to public health crisis.",
-      "url": "https://esy.com/essays/fentanyl-timeline/",
+      "url": "https://esy.com/essays/fentanyl-crisis-timeline/",
       "datePublished": "2025-12-15",
       "dateModified": "2025-12-17",
       "author": { "@type": "Organization", "name": "Esy", "url": "https://esy.com" },
@@ -20,7 +20,7 @@ const jsonLd = {
         "url": "https://esy.com",
         "logo": { "@type": "ImageObject", "url": "https://esy.com/esy-logo.png" }
       },
-      "image": "https://esy.com/og/fentanyl-timeline.png",
+      "image": "https://esy.com/og/fentanyl-crisis-timeline.png",
       "articleSection": "Public Health",
       "inLanguage": "en-US"
     },
@@ -29,7 +29,7 @@ const jsonLd = {
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://esy.com" },
         { "@type": "ListItem", "position": 2, "name": "Essays", "item": "https://esy.com/essays/" },
-        { "@type": "ListItem", "position": 3, "name": "Fentanyl Timeline", "item": "https://esy.com/essays/fentanyl-timeline/" }
+        { "@type": "ListItem", "position": 3, "name": "Fentanyl Crisis Timeline", "item": "https://esy.com/essays/fentanyl-crisis-timeline/" }
       ]
     },
     {
@@ -106,13 +106,13 @@ export const metadata: Metadata = {
     description:
       "How did a hospital anesthetic become a leading cause of overdose deaths?",
     type: "article",
-    url: "https://esy.com/essays/fentanyl-timeline/",
+    url: "https://esy.com/essays/fentanyl-crisis-timeline/",
     publishedTime: "2025-12-15",
     siteName: "Esy",
     locale: "en_US",
     images: [
       {
-        url: "https://esy.com/og/fentanyl-timeline.png",
+        url: "https://esy.com/og/fentanyl-crisis-timeline.png",
         width: 1200,
         height: 630,
         alt: "Fentanyl: A Timeline of a Synthetic Drug"
@@ -125,10 +125,10 @@ export const metadata: Metadata = {
     description:
       "How did a hospital anesthetic become a leading cause of overdose deaths?",
     site: "@EsyResearch",
-    images: ["https://esy.com/og/fentanyl-timeline.png"]
+    images: ["https://esy.com/og/fentanyl-crisis-timeline.png"]
   },
   alternates: {
-    canonical: "https://esy.com/essays/fentanyl-timeline/"
+    canonical: "https://esy.com/essays/fentanyl-crisis-timeline/"
   },
   robots: {
     index: true,
@@ -149,4 +149,6 @@ export default function FentanylTimelinePage() {
     </>
   );
 }
+
+
 

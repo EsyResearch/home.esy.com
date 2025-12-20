@@ -34,6 +34,12 @@ const nextConfig = {
         destination: '/essays/history/the-manhattan-project',
         permanent: true,
       },
+      // Redirect /essays/fentanyl-timeline to /essays/fentanyl-crisis-timeline
+      {
+        source: '/essays/fentanyl-timeline',
+        destination: '/essays/fentanyl-crisis-timeline',
+        permanent: true,
+      },
     ];
   },
 };
