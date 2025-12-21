@@ -68,7 +68,7 @@ const SHOWCASE_ESSAYS: ShowcaseEssay[] = [
     category: 'History',
     categoryColor: '#F59E0B',
     readTime: '25 min',
-    href: '/essays/the-word-robot',
+    href: '/essays/etymology/the-word-robot',
     // Actual hero from the essay - dramatic typography
     heroImage: '/images/robot/robot-hero.jpg',
     size: 'standard',

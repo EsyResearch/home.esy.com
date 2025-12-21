@@ -64,7 +64,7 @@ const jsonLd = {
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://esy.com" },
         { "@type": "ListItem", "position": 2, "name": "Etymology", "item": "https://esy.com/essays/etymology/" },
-        { "@type": "ListItem", "position": 3, "name": "The Word Animal", "item": "https://esy.com/essays/the-word-animal" }
+        { "@type": "ListItem", "position": 3, "name": "The Word Animal", "item": "https://esy.com/essays/etymology/the-word-animal" }
       ]
     }
   ]
