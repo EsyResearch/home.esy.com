@@ -32,7 +32,7 @@ const DocsHomeClient = () => {
       id: 'templates',
       title: 'Templates Overview',
       description: 'Pre-designed research systems with bounded inputs. The primary entry point for producing artifacts.',
-      href: '/templates',
+      href: '/docs/templates',
       icon: <LayoutTemplate className="w-6 h-6" />,
       category: 'Systems'
     },
@@ -48,7 +48,7 @@ const DocsHomeClient = () => {
       id: 'artifact-specs',
       title: 'Artifact Specifications',
       description: 'Structure, metadata, and provenance of Esy outputs. What makes artifacts inspectable and reproducible.',
-      href: '/specs',
+      href: '/docs/specs',
       icon: <FileCode className="w-6 h-6" />,
       category: 'Reference'
     },

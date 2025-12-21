@@ -5,7 +5,7 @@ export interface NavItem {
   title: string;
   href: string;
   description?: string;
-  icon?: 'home' | 'sparkles' | 'book' | 'pencil' | 'workflow' | 'prompt' | 'essay';
+  icon?: 'home' | 'sparkles' | 'book' | 'pencil' | 'workflow' | 'prompt' | 'essay' | 'template' | 'spec' | 'quality';
   isNew?: boolean;
   children?: NavItem[];
 }
@@ -28,12 +28,41 @@ export const docsNavigation: NavSection[] = [
     ],
   },
   {
-    title: "Prompt Engineering",
+    title: "Canonical References",
+    items: [
+      {
+        title: "Templates Overview",
+        href: "/docs/templates",
+        description: "Pre-designed research systems",
+        icon: "template",
+      },
+      {
+        title: "Workflow Design Guide",
+        href: "/docs/workflows",
+        description: "Modify, extend, and compose workflows",
+        icon: "workflow",
+      },
+      {
+        title: "Artifact Specifications",
+        href: "/docs/specs",
+        description: "Structure, metadata, and provenance",
+        icon: "spec",
+      },
+      {
+        title: "Quality Assurance & Evals",
+        href: "/docs/quality",
+        description: "Validation, refinement, and evaluation",
+        icon: "quality",
+      },
+    ],
+  },
+  {
+    title: "Prompts & Techniques",
     items: [
       {
         title: "Prompt Engineering Guide",
         href: "/docs/prompt-engineering",
-        description: "Master the art of AI prompting",
+        description: "Techniques for effective AI prompting",
         icon: "sparkles",
       },
       {
@@ -41,13 +70,18 @@ export const docsNavigation: NavSection[] = [
         href: "/docs/chatgpt-prompts-for-academic-writing",
         description: "50+ ready-to-use academic prompts",
         icon: "prompt",
-        isNew: true,
       },
       {
         title: "Write Better Essays with AI",
         href: "/docs/how-to-write-better-essays-with-ai",
-        description: "Improve your essay writing process",
+        description: "AI assistance throughout writing",
         icon: "pencil",
+      },
+      {
+        title: "Agent Workflows",
+        href: "/docs/agent-workflows",
+        description: "Build no-code research automation",
+        icon: "workflow",
       },
     ],
   },
@@ -59,7 +93,6 @@ export const docsNavigation: NavSection[] = [
         href: "/docs/how-to-write-an-essay",
         description: "Complete essay writing guide",
         icon: "book",
-        isNew: true,
       },
       {
         title: "How to Write a Thesis Statement",
@@ -96,18 +129,6 @@ export const docsNavigation: NavSection[] = [
         href: "/docs/how-to-write-an-informative-essay",
         description: "Present factual information",
         icon: "essay",
-      },
-    ],
-  },
-  {
-    title: "Agentic Workflows",
-    items: [
-      {
-        title: "Agent Workflows in Esy",
-        href: "/docs/agent-workflows",
-        description: "Build no-code research automation",
-        icon: "workflow",
-        isNew: true,
       },
     ],
   },

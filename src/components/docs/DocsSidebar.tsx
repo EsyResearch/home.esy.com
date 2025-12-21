@@ -22,6 +22,9 @@ import {
   FileText,
   Search,
   Edit3,
+  LayoutTemplate,
+  FileCode,
+  ShieldCheck,
 } from "lucide-react";
 
 // Elevated Dark Theme
@@ -44,6 +47,9 @@ const iconMap: Record<string, React.ReactNode> = {
   workflow: <Workflow className="w-4 h-4" />,
   prompt: <FileText className="w-4 h-4" />,
   essay: <Edit3 className="w-4 h-4" />,
+  template: <LayoutTemplate className="w-4 h-4" />,
+  spec: <FileCode className="w-4 h-4" />,
+  quality: <ShieldCheck className="w-4 h-4" />,
 };
 
 function NavItemComponent({ item, isActive }: { item: NavItem; isActive: boolean }) {
@@ -336,10 +342,10 @@ export function DocsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
             flexWrap: 'wrap'
           }}>
             {[
-              { label: 'Getting Started', href: '/docs/prompt-engineering' },
-              { label: 'Essay Guide', href: '/docs/how-to-write-an-essay' },
-              { label: 'Prompts', href: '/docs/chatgpt-prompts-for-academic-writing' },
-              { label: 'Workflows', href: '/docs/agent-workflows' }
+              { label: 'Templates', href: '/docs/templates' },
+              { label: 'Workflows', href: '/docs/workflows' },
+              { label: 'Specs', href: '/docs/specs' },
+              { label: 'Quality', href: '/docs/quality' }
             ].map((link) => (
               <Link
                 key={link.label}
