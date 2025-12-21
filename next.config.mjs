@@ -22,7 +22,18 @@ const nextConfig = {
   // Redirect legacy paths to /essays/
   async redirects() {
     return [
-      // Redirect /essays/visual/* to /essays/*
+      // Redirect /essays/visual/etymology to /essays/etymology/
+      {
+        source: '/essays/visual/the-word-dick',
+        destination: '/essays/etymology/the-word-dick',
+        permanent: true,
+      },
+      {
+        source: '/essays/visual/the-origin-of-the-word-dick',
+        destination: '/essays/etymology/the-origin-of-the-word-dick',
+        permanent: true,
+      },
+      // Redirect other /essays/visual/* to /essays/*
       {
         source: '/essays/visual/:slug',
         destination: '/essays/:slug',
