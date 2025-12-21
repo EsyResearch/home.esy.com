@@ -1,0 +1,1679 @@
+/* ==================== WORDS HAVE HISTORIES ==================== */
+/* Visual Essay: The Etymology of "Pussy" */
+/* Design System: Typography-Forward, Era-Evolving */
+
+/* ==================== FONT IMPORTS ==================== */
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&display=swap');
+
+/* ==================== CSS VARIABLES ==================== */
+
+:root {
+  /* Era Backgrounds - From Writing Materials */
+  --color-parchment: #F5E6D3;
+  --color-aged-paper: #F0E4D7;
+  --color-ivory: #FFFFF0;
+  --color-modern-white: #FFFFFF;
+  --color-void-black: #0A0A0A;
+  
+  /* Ink Colors */
+  --color-ink-black: #1A1A1A;
+  --color-printing-brown: #3C2415;
+  --color-iron-gall: #2C1810;
+  
+  /* Accent Colors */
+  --color-vermillion: #C41E3A;
+  --color-gold: #D4AF37;
+  --color-warning-red: #FF0000;
+  --color-nursery-pink: #FFD1DC;
+  --color-parlor-green: #355E3B;
+  --color-plum: #8E4585;
+  
+  /* Text Colors */
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #4A4A4A;
+  --color-text-muted: #6B7280;
+  --color-text-faint: #9CA3AF;
+  --color-text-light: #E8E8EC;
+  
+  /* Era Typefaces - Spec: Cloister Black first for Medieval */
+  --type-blackletter: "Cloister Black", "Old English Text MT", "UnifrakturMaguntia", serif;
+  --type-renaissance: "EB Garamond", Georgia, serif;
+  --type-georgian: "Libre Baskerville", Baskerville, Georgia, serif;
+  --type-victorian: "Playfair Display", Bodoni, Didot, serif;
+  --type-modern: Inter, -apple-system, "Helvetica Neue", sans-serif;
+  
+  /* Body Typography */
+  --font-body: "EB Garamond", Georgia, serif;
+  --font-display: "Playfair Display", serif;
+  --font-ui: Inter, sans-serif;
+  
+  /* Type Scale (Mobile-First) - Spec: hero clamp(3rem,10vw,8rem) */
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1.125rem;
+  --text-lg: 1.5rem;
+  --text-xl: 2rem;
+  --text-2xl: 2.5rem;
+  --text-3xl: 3.5rem;
+  --text-hero: clamp(3rem, 10vw, 8rem);
+  
+  /* Shadow color token - Spec requirement */
+  --color-shadow: #1A1A1A;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+  --spacing-3xl: 6rem;
+  
+  /* Animation - Spec values */
+  --easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-dramatic: cubic-bezier(0.16, 1, 0.3, 1);
+  --easing-scholarly: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 800ms;
+  --duration-lock: 300ms;
+  --duration-unlock: 400ms;
+}
+
+/* ==================== BASE STYLES ==================== */
+
+.etymology-essay {
+  background: var(--color-parchment);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Paper texture overlay */
+.etymology-essay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ==================== TYPOGRAPHY PROGRESS BAR ==================== */
+
+.typography-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background: linear-gradient(180deg, var(--color-ivory) 0%, var(--color-parchment) 100%);
+  border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  padding: 0 var(--spacing-xl);
+  max-width: 100%;
+}
+
+.progress-word-container {
+  display: flex;
+  align-items: center;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.progress-word {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  transition: all var(--duration-slow) var(--easing-smooth);
+}
+
+/* Era-specific progress word styling */
+.progress-word.era-blackletter {
+  font-family: var(--type-blackletter);
+  color: var(--color-ink-black);
+}
+
+.progress-word.era-renaissance {
+  font-family: var(--type-renaissance);
+  color: var(--color-iron-gall);
+}
+
+.progress-word.era-georgian {
+  font-family: var(--type-georgian);
+  color: var(--color-printing-brown);
+}
+
+.progress-word.era-victorian {
+  font-family: var(--type-victorian);
+  color: var(--color-ink-black);
+}
+
+.progress-word.era-modern {
+  font-family: var(--type-modern);
+  color: var(--color-ink-black);
+  letter-spacing: 0.05em;
+}
+
+.progress-era-name {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  min-width: 80px;
+}
+
+.progress-track {
+  flex: 1;
+  max-width: 300px;
+  height: 2px;
+  background: rgba(26, 26, 26, 0.2);
+  border-radius: 1px;
+  position: relative;
+  overflow: visible;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--color-vermillion);
+  border-radius: 1px;
+  transition: width var(--duration-fast) linear;
+}
+
+.progress-marker {
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  background: rgba(26, 26, 26, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all var(--duration-normal) var(--easing-smooth);
+}
+
+.progress-marker.active {
+  background: var(--color-vermillion);
+}
+
+.progress-percentage {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  min-width: 3rem;
+  text-align: right;
+}
+
+/* ==================== HERO SECTION ==================== */
+
+.etymology-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: var(--spacing-3xl) var(--spacing-md);
+  padding-top: calc(64px + var(--spacing-3xl));
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--color-ivory) 0%, var(--color-parchment) 100%);
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-paper-texture {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  background: 
+    radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(196, 30, 58, 0.05) 0%, transparent 40%);
+}
+
+.etymology-hero .hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-question {
+  font-family: var(--type-renaissance);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-style: italic;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Hero Word Evolution Display */
+.hero-word-evolution {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.word-era {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-md);
+  transition: transform var(--duration-normal) var(--easing-smooth);
+}
+
+.word-era:hover {
+  transform: scale(1.05);
+}
+
+.era-word {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: var(--spacing-xs);
+}
+
+.era-label {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Era-specific word styling */
+.word-era.era-blackletter .era-word {
+  font-family: var(--type-blackletter);
+  color: var(--color-ink-black);
+}
+
+.word-era.era-renaissance .era-word {
+  font-family: var(--type-renaissance);
+  color: var(--color-iron-gall);
+}
+
+.word-era.era-georgian .era-word {
+  font-family: var(--type-georgian);
+  color: var(--color-printing-brown);
+}
+
+.word-era.era-victorian .era-word {
+  font-family: var(--type-victorian);
+  color: var(--color-ink-black);
+}
+
+.word-era.era-modern .era-word {
+  font-family: var(--type-modern);
+  color: var(--color-text-muted);
+  letter-spacing: 0.15em;
+}
+
+.hero-question-end {
+  font-family: var(--type-renaissance);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-style: italic;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.etymology-hero .hero-title {
+  margin-bottom: var(--spacing-lg);
+}
+
+.hero-title-main {
+  display: block;
+  font-family: var(--type-victorian);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-ink-black);
+  margin-bottom: var(--spacing-sm);
+}
+
+.hero-title-sub {
+  display: block;
+  font-family: var(--type-renaissance);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+.hero-title-sub em {
+  color: var(--color-vermillion);
+}
+
+.hero-tagline {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  max-width: 700px;
+  margin: 0 auto var(--spacing-xl);
+  line-height: 1.6;
+}
+
+.hero-meta {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-2xl);
+  margin-bottom: var(--spacing-2xl);
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.meta-value {
+  font-family: var(--type-victorian);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-vermillion);
+  line-height: 1;
+}
+
+.meta-label {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.25rem;
+}
+
+.hero-scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-text-faint);
+  font-size: var(--text-sm);
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.scroll-arrow {
+  width: 20px;
+  height: 20px;
+  border-right: 2px solid var(--color-vermillion);
+  border-bottom: 2px solid var(--color-vermillion);
+  transform: rotate(45deg);
+  animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: rotate(45deg) translateY(0); }
+  50% { transform: rotate(45deg) translateY(6px); }
+}
+
+/* ==================== SECTION STYLES ==================== */
+
+.etymology-section {
+  position: relative;
+  padding: var(--spacing-3xl) var(--spacing-md);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all var(--duration-slow) var(--easing-smooth);
+}
+
+.etymology-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Continued sections after scroll-locks - no transform (breaks fixed children) */
+.etymology-section.chapter-continued {
+  opacity: 1;
+  transform: none;
+  padding-top: var(--spacing-xl);
+}
+
+/* Era-specific backgrounds */
+.etymology-section[data-era="medieval"] {
+  background: var(--color-parchment);
+}
+
+.etymology-section[data-era="renaissance"] {
+  background: var(--color-aged-paper);
+}
+
+.etymology-section[data-era="restoration"] {
+  background: linear-gradient(180deg, var(--color-aged-paper), var(--color-ivory));
+}
+
+.etymology-section[data-era="georgian"] {
+  background: var(--color-ivory);
+}
+
+.etymology-section[data-era="victorian"] {
+  /* Spec: 50/50 horizontal split pink/black */
+  background: linear-gradient(90deg, var(--color-nursery-pink) 50%, var(--color-shadow) 50%);
+}
+
+.etymology-section[data-era="modern"] {
+  background: var(--color-modern-white);
+}
+
+/* ==================== CHAPTER STYLES ==================== */
+
+.chapter-header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chapter-number {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  display: block;
+  margin-bottom: var(--spacing-sm);
+}
+
+.chapter-title {
+  font-family: var(--type-victorian);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-ink-black);
+  margin-bottom: var(--spacing-sm);
+}
+
+.chapter-temporal {
+  font-family: var(--type-renaissance);
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.chapter-intro {
+  max-width: 800px;
+  margin: 0 auto var(--spacing-2xl);
+}
+
+.lead-paragraph {
+  font-size: var(--text-lg);
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+.lead-paragraph strong {
+  color: var(--color-vermillion);
+}
+
+/* ==================== MORPHING WORD DISPLAY ==================== */
+
+.morphing-word-container {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-2xl) 0;
+  margin: var(--spacing-xl) 0;
+}
+
+.morphing-word {
+  font-size: clamp(3rem, 12vw, 8rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  transition: all var(--duration-slow) var(--easing-smooth);
+}
+
+.morphing-word.era-blackletter {
+  font-family: var(--type-blackletter);
+  color: var(--color-ink-black);
+}
+
+.morphing-word.era-renaissance {
+  font-family: var(--type-renaissance);
+  color: var(--color-iron-gall);
+}
+
+.morphing-word.era-georgian {
+  font-family: var(--type-georgian);
+  color: var(--color-printing-brown);
+}
+
+.morphing-word.era-victorian {
+  font-family: var(--type-victorian);
+  color: var(--color-ink-black);
+}
+
+.morphing-word.era-modern {
+  font-family: var(--type-modern);
+  color: var(--color-ink-black);
+  letter-spacing: 0.15em;
+}
+
+/* ==================== TYPOGRAPHY SPECIMEN ==================== */
+
+.typography-specimen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-xl) 0;
+  margin: var(--spacing-lg) auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+.specimen-letter {
+  font-size: clamp(6rem, 20vw, 12rem);
+  line-height: 1;
+  margin-bottom: var(--spacing-sm);
+}
+
+.typography-specimen.era-blackletter .specimen-letter {
+  font-family: var(--type-blackletter);
+  color: var(--color-ink-black);
+}
+
+.typography-specimen.era-renaissance .specimen-letter {
+  font-family: var(--type-renaissance);
+  color: var(--color-iron-gall);
+}
+
+.typography-specimen.era-georgian .specimen-letter {
+  font-family: var(--type-georgian);
+  color: var(--color-printing-brown);
+}
+
+.typography-specimen.era-victorian .specimen-letter {
+  font-family: var(--type-victorian);
+  color: var(--color-ink-black);
+}
+
+.typography-specimen.era-modern .specimen-letter {
+  font-family: var(--type-modern);
+  color: var(--color-ink-black);
+}
+
+.specimen-description {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* ==================== MEANING BRANCHES ==================== */
+
+.meaning-branches {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  max-width: 1000px;
+  margin: var(--spacing-2xl) auto;
+  padding: 0 var(--spacing-md);
+}
+
+.branch {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(26, 26, 26, 0.1);
+  border-radius: 8px;
+  padding: var(--spacing-lg);
+  text-align: center;
+  transition: all var(--duration-normal) var(--easing-smooth);
+}
+
+.branch:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.branch-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-sm);
+  display: block;
+}
+
+.branch h3 {
+  font-family: var(--type-victorian);
+  font-size: var(--text-xl);
+  color: var(--color-ink-black);
+  margin-bottom: var(--spacing-sm);
+}
+
+.branch p {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.branch-origin {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* ==================== CONTENT BLOCKS ==================== */
+
+.content-block {
+  max-width: 800px;
+  margin: 0 auto var(--spacing-2xl);
+}
+
+.content-block h3 {
+  font-family: var(--type-victorian);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-ink-black);
+}
+
+.content-block p {
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text-secondary);
+}
+
+.content-block p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==================== QUOTE MONUMENTS ==================== */
+
+.quote-monument {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 100%);
+  border-left: 4px solid var(--color-vermillion);
+  padding: var(--spacing-xl) var(--spacing-lg);
+  margin: var(--spacing-2xl) auto;
+  max-width: 900px;
+  position: relative;
+}
+
+.quote-monument::before {
+  content: '"';
+  position: absolute;
+  top: var(--spacing-sm);
+  left: var(--spacing-md);
+  font-family: var(--type-victorian);
+  font-size: 5rem;
+  color: var(--color-vermillion);
+  opacity: 0.15;
+  line-height: 1;
+}
+
+.quote-monument blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+.quote-monument p {
+  font-family: var(--type-renaissance);
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: var(--color-ink-black);
+  margin-bottom: var(--spacing-md);
+  font-style: italic;
+}
+
+.quote-monument cite {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-style: normal;
+  display: block;
+}
+
+/* ==================== FIGURE CARDS ==================== */
+
+.figures-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  max-width: 1200px;
+  margin: var(--spacing-2xl) auto;
+  padding: 0 var(--spacing-md);
+}
+
+.figure-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(26, 26, 26, 0.1);
+  border-radius: 4px;
+  padding: var(--spacing-lg);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--easing-smooth);
+}
+
+.figure-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.figure-name {
+  font-family: var(--type-victorian);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-ink-black);
+  margin-bottom: 0.25rem;
+}
+
+.figure-role {
+  font-size: var(--text-sm);
+  color: var(--color-vermillion);
+  margin-bottom: var(--spacing-sm);
+}
+
+.figure-years {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-md);
+}
+
+.figure-contributions {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--spacing-md);
+}
+
+.figure-contributions li {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  padding-left: 1rem;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.figure-contributions li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--color-vermillion);
+}
+
+.figure-quote {
+  font-family: var(--type-renaissance);
+  font-style: italic;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  padding: var(--spacing-sm);
+  background: rgba(0, 0, 0, 0.03);
+  border-left: 2px solid var(--color-vermillion);
+  margin-top: var(--spacing-sm);
+}
+
+/* ==================== DICTIONARY ABSENCE ==================== */
+
+.dictionary-absence {
+  max-width: 600px;
+  margin: var(--spacing-2xl) auto;
+  text-align: center;
+}
+
+.dictionary-page {
+  background: var(--color-ivory);
+  border: 1px solid rgba(26, 26, 26, 0.2);
+  padding: var(--spacing-lg);
+  font-family: var(--type-georgian);
+  text-align: left;
+}
+
+.dictionary-entry {
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+}
+
+.dictionary-entry.absent {
+  background: rgba(196, 30, 58, 0.05);
+  padding: var(--spacing-md);
+  margin: var(--spacing-sm) 0;
+}
+
+.entry-word {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  min-width: 100px;
+}
+
+.entry-definition {
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+.dictionary-entry.absent .entry-definition {
+  color: var(--color-vermillion);
+  font-weight: 600;
+}
+
+.dictionary-note {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-top: var(--spacing-md);
+}
+
+/* ==================== VICTORIAN SPLIT ==================== */
+
+.victorian-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin: var(--spacing-2xl) auto;
+  max-width: 1000px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.split-nursery {
+  background: var(--color-nursery-pink);
+  padding: var(--spacing-xl);
+}
+
+.split-shadow {
+  background: var(--color-ink-black);
+  padding: var(--spacing-xl);
+}
+
+.split-content {
+  text-align: center;
+}
+
+.split-nursery h3 {
+  font-family: var(--type-victorian);
+  color: var(--color-parlor-green);
+  margin-bottom: var(--spacing-md);
+}
+
+.split-nursery blockquote {
+  font-family: var(--type-renaissance);
+  font-style: italic;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+.split-nursery p {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.split-shadow h3 {
+  font-family: var(--type-victorian);
+  color: var(--color-plum);
+  margin-bottom: var(--spacing-md);
+}
+
+.shadow-word {
+  font-size: var(--text-2xl);
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-md);
+}
+
+.split-shadow p {
+  font-size: var(--text-sm);
+  color: var(--color-text-faint);
+}
+
+/* ==================== REDACTION DEMO ==================== */
+
+.redaction-demo {
+  max-width: 600px;
+  margin: var(--spacing-2xl) auto;
+  text-align: center;
+}
+
+.redaction-versions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+.redaction-versions > span {
+  font-family: var(--type-modern);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.version-full {
+  color: var(--color-ink-black);
+}
+
+.version-asterisk {
+  color: var(--color-text-muted);
+}
+
+.version-redacted {
+  position: relative;
+  color: transparent;
+}
+
+.redaction-bar {
+  position: absolute;
+  inset: 0;
+  background: var(--color-ink-black);
+  border-radius: 2px;
+}
+
+.version-euphemism {
+  font-style: italic;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.redaction-caption {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* ==================== SEMANTIC BRANCHES VISUAL ==================== */
+
+.semantic-branches-visual {
+  max-width: 800px;
+  margin: var(--spacing-2xl) auto;
+  text-align: center;
+  padding: 0 var(--spacing-md);
+}
+
+.semantic-branches-visual h3 {
+  font-family: var(--type-victorian);
+  font-size: var(--text-xl);
+  margin-bottom: var(--spacing-lg);
+}
+
+.branches-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.branch-root {
+  font-family: var(--type-renaissance);
+  font-size: var(--text-lg);
+  font-style: italic;
+  color: var(--color-text-secondary);
+  padding: var(--spacing-md);
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 8px;
+}
+
+.branch-lines {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  height: 60px;
+}
+
+.branch-line {
+  width: 2px;
+  background: var(--color-vermillion);
+}
+
+.branch-destinations {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  flex-wrap: wrap;
+}
+
+.destination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  min-width: 120px;
+}
+
+.destination span:first-child {
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.destination .year {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-xs);
+}
+
+/* ==================== CONCLUSION ==================== */
+
+.conclusion {
+  text-align: center;
+  padding: var(--spacing-3xl) var(--spacing-md);
+  background: linear-gradient(180deg, var(--color-modern-white) 0%, var(--color-parchment) 100%);
+}
+
+.conclusion-title {
+  font-family: var(--type-victorian);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  color: var(--color-ink-black);
+  margin-bottom: var(--spacing-lg);
+}
+
+.conclusion-text {
+  max-width: 700px;
+  margin: 0 auto var(--spacing-xl);
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+}
+
+.conclusion-question {
+  font-family: var(--type-renaissance);
+  font-size: var(--text-xl);
+  color: var(--color-vermillion);
+  font-style: italic;
+}
+
+/* ==================== TIMELINE ==================== */
+
+.timeline-section {
+  background: var(--color-parchment);
+  padding: var(--spacing-3xl) var(--spacing-md);
+}
+
+.timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, 
+    transparent 0%, 
+    var(--color-vermillion) 10%, 
+    var(--color-vermillion) 90%, 
+    transparent 100%
+  );
+  transform: translateX(-50%);
+}
+
+.timeline-event {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+}
+
+.timeline-year {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-vermillion);
+  width: 100px;
+  text-align: right;
+  padding-right: var(--spacing-md);
+  flex-shrink: 0;
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--color-vermillion);
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-content {
+  flex: 1;
+  padding-left: var(--spacing-md);
+}
+
+.timeline-title {
+  font-family: var(--type-victorian);
+  font-weight: 600;
+  color: var(--color-ink-black);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-description {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* ==================== SOURCES SECTION ==================== */
+
+.sources-section {
+  background: var(--color-ivory);
+  padding: var(--spacing-2xl) var(--spacing-md);
+  border-top: 1px solid rgba(26, 26, 26, 0.1);
+}
+
+.sources-title {
+  font-family: var(--type-victorian);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+  color: var(--color-ink-black);
+}
+
+.sources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto var(--spacing-lg);
+}
+
+.source-category {
+  background: rgba(255, 255, 255, 0.7);
+  padding: var(--spacing-lg);
+  border-radius: 4px;
+  border: 1px solid rgba(26, 26, 26, 0.1);
+}
+
+.source-category-title {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-vermillion);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--spacing-md);
+}
+
+.source-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.source-list li {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.source-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--color-text-faint);
+}
+
+.source-list a {
+  color: var(--color-vermillion);
+  text-decoration: none;
+}
+
+.source-list a:hover {
+  text-decoration: underline;
+}
+
+.sources-note {
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+  font-style: italic;
+}
+
+/* ==================== FOOTER ==================== */
+
+.etymology-footer {
+  padding: var(--spacing-2xl) var(--spacing-md);
+  text-align: center;
+  border-top: 1px solid rgba(26, 26, 26, 0.1);
+  background: var(--color-parchment);
+}
+
+.footer-word {
+  font-family: var(--type-victorian);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-ink-black);
+  margin-bottom: var(--spacing-sm);
+}
+
+.footer-text {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text-faint);
+}
+
+/* ==================== PARALLAX LAYERS ==================== */
+/* Per spec: 0.2x, 0.5x, 1x, 1.2x depth multipliers */
+
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.parallax-layer {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.parallax-layer-0\.2x {
+  --parallax-speed: 0.2;
+}
+
+.parallax-layer-0\.5x {
+  --parallax-speed: 0.5;
+}
+
+.parallax-layer-1x {
+  --parallax-speed: 1;
+}
+
+.parallax-layer-1\.2x {
+  --parallax-speed: 1.2;
+}
+
+/* Reduced motion: disable parallax */
+@media (prefers-reduced-motion: reduce) {
+  .parallax-layer {
+    transform: none !important;
+  }
+}
+
+/* ==================== ERA-SPECIFIC REVEALS ==================== */
+/* Different reveal animations per typographic era */
+
+/* Medieval: Slow, manuscript-like unfurl */
+.reveal-medieval {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s var(--easing-smooth), 
+              transform 1.2s var(--easing-smooth);
+}
+
+.reveal-medieval.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Renaissance: Elegant slide from left (printing press) */
+.reveal-renaissance {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.8s var(--easing-smooth) 0.1s, 
+              transform 0.8s var(--easing-smooth) 0.1s;
+}
+
+.reveal-renaissance.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Georgian: Refined fade with subtle scale */
+.reveal-georgian {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.9s var(--easing-smooth), 
+              transform 0.9s var(--easing-dramatic);
+}
+
+.reveal-georgian.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Victorian: Dramatic curtain-like reveal (from center) */
+.reveal-victorian {
+  opacity: 0;
+  clip-path: inset(0 50% 0 50%);
+  transition: opacity 0.7s var(--easing-smooth), 
+              clip-path 0.7s var(--easing-dramatic);
+}
+
+.reveal-victorian.visible {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+}
+
+/* Modern: Quick, crisp snap */
+.reveal-modern {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s var(--easing-smooth), 
+              transform 0.4s var(--easing-dramatic);
+}
+
+.reveal-modern.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduced motion: crossfade only */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-medieval,
+  .reveal-renaissance,
+  .reveal-georgian,
+  .reveal-victorian,
+  .reveal-modern {
+    transform: none !important;
+    clip-path: none !important;
+    transition: opacity 0.3s ease-out !important;
+  }
+}
+
+/* ==================== SCROLL-LOCK SECTIONS ==================== */
+
+/* Container for scroll-lock sections */
+.scroll-lock-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Pinned content wrapper */
+.pinned-content {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: inherit;
+}
+
+.pinned-content.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 10;
+  background: var(--color-parchment);
+}
+
+/* Hero scroll-lock specific */
+.hero-scroll-lock {
+  background: linear-gradient(180deg, var(--color-ivory) 0%, var(--color-parchment) 100%);
+}
+
+.hero-scroll-lock .pinned-content.is-pinned {
+  background: linear-gradient(180deg, var(--color-ivory) 0%, var(--color-parchment) 100%);
+}
+
+/* Hero morph word - centered large display */
+.hero-morph-word {
+  font-size: var(--text-hero);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+  transition: all var(--duration-slow) var(--easing-dramatic);
+}
+
+.hero-morph-word.era-blackletter {
+  font-family: var(--type-blackletter);
+  color: var(--color-ink-black);
+}
+
+.hero-morph-word.era-renaissance {
+  font-family: var(--type-renaissance);
+  color: var(--color-iron-gall);
+}
+
+.hero-morph-word.era-georgian {
+  font-family: var(--type-georgian);
+  color: var(--color-printing-brown);
+}
+
+.hero-morph-word.era-victorian {
+  font-family: var(--type-victorian);
+  color: var(--color-ink-black);
+}
+
+.hero-morph-word.era-modern {
+  font-family: var(--type-modern);
+  color: var(--color-ink-black);
+  letter-spacing: 0.15em;
+}
+
+/* Phase text reveals */
+.phase-text {
+  position: absolute;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 var(--spacing-md);
+  transition: opacity var(--duration-normal) var(--easing-smooth),
+              visibility 0s linear var(--duration-normal);
+}
+
+.phase-text.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--duration-normal) var(--easing-smooth),
+              visibility 0s linear 0s;
+}
+
+.phase-text.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.phase-question {
+  font-family: var(--type-renaissance);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
+
+.phase-era-label {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-top: var(--spacing-md);
+}
+
+/* Hero title reveal */
+.hero-title-reveal {
+  text-align: center;
+  transition: opacity var(--duration-slow) var(--easing-smooth),
+              transform var(--duration-slow) var(--easing-dramatic);
+}
+
+.hero-title-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-title-reveal.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Skip affordance */
+.skip-affordance {
+  position: absolute;
+  bottom: var(--spacing-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--easing-smooth);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-text-faint);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.skip-affordance.visible {
+  opacity: 1;
+}
+
+.skip-affordance:hover {
+  color: var(--color-vermillion);
+  border-color: var(--color-vermillion);
+}
+
+/* Era stack display (all 5 at end) */
+.era-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.era-stack-word {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--duration-normal) var(--easing-smooth);
+}
+
+.era-stack-word.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 767px) {
+  :root {
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+  }
+  
+  .etymology-essay {
+    /* Spec: minimum 18px body text */
+    font-size: 18px;
+  }
+  
+  .typography-progress-bar {
+    height: 56px;
+    gap: var(--spacing-sm);
+    padding: 0 var(--spacing-md);
+  }
+  
+  /* On mobile: simplified to dot + era name only */
+  .progress-track {
+    max-width: 120px;
+  }
+  
+  .progress-track .era-marker-container span:last-child {
+    display: none !important; /* Hide era labels on mobile */
+  }
+  
+  .hero-word-evolution {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .word-era {
+    padding: var(--spacing-sm);
+  }
+  
+  .meaning-branches {
+    grid-template-columns: 1fr;
+  }
+  
+  .figures-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .victorian-split {
+    grid-template-columns: 1fr;
+  }
+  
+  .quote-monument {
+    padding: var(--spacing-lg) var(--spacing-md);
+    margin-left: var(--spacing-md);
+    margin-right: var(--spacing-md);
+  }
+  
+  .quote-monument p {
+    font-size: var(--text-base);
+  }
+  
+  .timeline::before {
+    left: 20px;
+  }
+  
+  .timeline-year {
+    width: 60px;
+    font-size: var(--text-xs);
+  }
+  
+  .branch-destinations {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .redaction-versions {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+}
+
+/* ==================== REDUCED MOTION ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .etymology-section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  
+  .hero-scroll-cue {
+    animation: none;
+  }
+  
+  .scroll-arrow {
+    animation: none;
+  }
+  
+  .word-era:hover,
+  .branch:hover,
+  .figure-card:hover {
+    transform: none;
+  }
+  
+  .progress-word {
+    transition: none;
+  }
+}
+
+

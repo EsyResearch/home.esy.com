@@ -566,8 +566,54 @@ When invoking this agent:
 
 ---
 
+## Content Path Organization
+
+### Essay Content Paths
+
+Essays are organized by topic category for discoverability and SEO:
+
+| Path | Content Type | Examples |
+|------|--------------|----------|
+| `/essays/` | General essays (default) | Visual essays, interactive pieces |
+| `/essays/history/` | Historical narratives | Manhattan Project, Fentanyl Crisis |
+| `/essays/foundations/` | Writing instruction | How to Write a Hook, How to Write an Essay |
+| `/essays/visual/` | Visual-focused essays | Experimental visual formats |
+| `/essays/etymology/` | Word origin essays | The Word Robot, The Word Essay, Origin of Toy |
+
+### Etymology Path (`/essays/etymology/`)
+
+Word origin and linguistic history essays live under `/essays/etymology/` for:
+- Clear topical organization (within essays umbrella)
+- SEO benefits (dedicated word history section)
+- Consistent URL structure for etymology content
+
+**Essays that belong in `/essays/etymology/`:**
+- `the-word-*` (e.g., the-word-robot, the-word-essay, the-word-pussy)
+- `the-origin-of-*` (e.g., the-origin-of-toy, the-origin-of-sex)
+- `*-etymology` (e.g., pornography-etymology)
+
+**Redirect Pattern:**
+When moving essays to `/essays/etymology/`, create permanent redirects from original paths:
+```typescript
+// In next.config.mjs redirects array:
+{
+  source: '/essays/the-word-robot/',
+  destination: '/essays/etymology/the-word-robot/',
+  permanent: true,
+}
+```
+
+### Glossary Integration
+
+Etymology essays should be linked from their corresponding glossary entries:
+- Glossary entry defines the term pedagogically
+- "Go Deeper" section links to the etymology essay
+- Example: `/glossary/essay/` → links to `/essays/etymology/the-word-essay/`
+
+---
+
 ## Last Updated
-December 16, 2024
+December 2024
 
 ### Recent Changes
 - Added Animation Pattern Auditor to collaboration section

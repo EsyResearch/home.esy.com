@@ -1,0 +1,1264 @@
+/**
+ * ANIMA — THE ORIGIN OF THE WORD ANIMAL
+ * ======================================
+ * Visual Essay Stylesheet
+ * 
+ * Design Philosophy:
+ * - Era-evolving typography that transforms through history
+ * - Natural color palette inspired by the animal kingdom
+ * - Warm terracotta and amber tones for ancient sections
+ * - Vellum and illuminated manuscript aesthetics for medieval
+ * - Sepia and naturalist greens for Renaissance
+ * - Clinical precision for Enlightenment and modern
+ * 
+ * Typography Evolution:
+ * - Ancient: Trajan-inspired capitals, stone inscription feel
+ * - Medieval: Blackletter hints, illuminated capitals
+ * - Renaissance: Humanist serifs, hand-drawn quality
+ * - Enlightenment: Classical didot/bodoni elegance
+ * - Modern: Scientific precision, clean sans-serif
+ */
+
+/* ===========================================
+   CUSTOM FONTS - Era-Specific Typography
+   =========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,300;1,8..60,400&family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap');
+
+/* ===========================================
+   DESIGN TOKENS
+   =========================================== */
+
+.animal-etymology-essay {
+  /* Base Background - Deep forest night */
+  --bg-deep: #080a08;
+  --bg-elevated: #121612;
+  --bg-surface: #1a1f1a;
+  
+  /* Text Colors - Warm ivory spectrum */
+  --text-primary: rgba(252, 248, 240, 0.96);
+  --text-secondary: rgba(252, 248, 240, 0.75);
+  --text-tertiary: rgba(252, 248, 240, 0.50);
+  --text-muted: rgba(252, 248, 240, 0.30);
+  
+  /* Era Colors - Natural Kingdom */
+  --accent-ancient: #d4956a;      /* Terracotta/bronze */
+  --accent-medieval: #c9a227;     /* Illuminated gold */
+  --accent-renaissance: #5f7a4a;  /* Naturalist green */
+  --accent-enlightenment: #8b7355;/* Sepia/parchment */
+  --accent-modern: #6b8e9f;       /* Scientific blue */
+  
+  /* Current accent (changes per section) */
+  --accent: var(--accent-ancient);
+  --accent-glow: rgba(212, 149, 106, 0.15);
+  
+  /* Era-Specific Typography Families */
+  --font-ancient: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
+  --font-medieval: 'EB Garamond', 'Palatino', Georgia, serif;
+  --font-renaissance: 'Cormorant Garamond', 'Garamond', Georgia, serif;
+  --font-enlightenment: 'Playfair Display', 'Didot', Georgia, serif;
+  --font-modern: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Body & Display Fonts */
+  --font-display: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Source Serif 4', 'EB Garamond', Georgia, serif;
+  --font-ui: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'JetBrains Mono', monospace;
+  
+  /* Spacing Scale */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+  --space-2xl: 12rem;
+  
+  /* Timing */
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 800ms;
+  --duration-glacial: 1500ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Layout */
+  --content-width: 720px;
+  --wide-width: 1000px;
+  --full-width: 1400px;
+  
+  /* Image Effects */
+  --grain-opacity: 0.04;
+  --vignette-opacity: 0.45;
+}
+
+/* ===========================================
+   BASE STYLES
+   =========================================== */
+
+.animal-etymology-essay {
+  background: var(--bg-deep);
+  background-image: 
+    radial-gradient(ellipse at 30% 20%, rgba(212, 149, 106, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(107, 142, 159, 0.03) 0%, transparent 50%);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.75;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ===========================================
+   TIMELINE PROGRESS INDICATOR
+   =========================================== */
+
+.timeline-progress {
+  position: fixed;
+  left: clamp(16px, 3vw, 32px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  height: 40vh;
+  max-height: 400px;
+}
+
+.timeline-track {
+  position: relative;
+  width: 2px;
+  height: 100%;
+  background: rgba(252, 248, 240, 0.08);
+  border-radius: 1px;
+}
+
+.timeline-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    var(--accent-ancient) 0%,
+    var(--accent-medieval) 25%,
+    var(--accent-renaissance) 45%,
+    var(--accent-enlightenment) 70%,
+    var(--accent-modern) 100%
+  );
+  border-radius: 1px;
+  transition: height 100ms linear;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.marker-dot {
+  width: 8px;
+  height: 8px;
+  background: rgba(252, 248, 240, 0.1);
+  border: 2px solid rgba(252, 248, 240, 0.15);
+  border-radius: 50%;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.timeline-marker.passed .marker-dot {
+  background: var(--text-primary);
+  border-color: var(--text-primary);
+  box-shadow: 0 0 12px rgba(252, 248, 240, 0.4);
+}
+
+.marker-year {
+  position: absolute;
+  left: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.timeline-marker.passed .marker-year {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 768px) {
+  .timeline-progress {
+    display: none;
+  }
+}
+
+/* ===========================================
+   HERO SECTION
+   =========================================== */
+
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-image {
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.35) saturate(0.75) sepia(0.15);
+  transition: filter var(--duration-slow) var(--ease-out);
+}
+
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 10, 8, 0.4) 0%,
+    rgba(8, 10, 8, 0.2) 40%,
+    rgba(8, 10, 8, 0.6) 75%,
+    rgba(8, 10, 8, 1) 100%
+  );
+}
+
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: var(--space-lg);
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-kicker {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-ancient);
+  margin-bottom: var(--space-md);
+  opacity: 0;
+  animation: fadeInUp var(--duration-glacial) var(--ease-out) 0.3s forwards;
+}
+
+.hero-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 4vw, 2rem);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-md);
+  opacity: 0;
+  animation: fadeInUp var(--duration-glacial) var(--ease-out) 0.5s forwards;
+}
+
+.hero-title-word {
+  font-family: var(--font-ancient);
+  font-size: clamp(2.5rem, 10vw, 6rem);
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  color: var(--text-primary);
+  text-shadow: 
+    0 0 80px rgba(212, 149, 106, 0.4),
+    0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.hero-title-arrow {
+  font-family: var(--font-ui);
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  font-weight: 300;
+  color: var(--accent-ancient);
+  opacity: 0.6;
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-style: italic;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto var(--space-xl);
+  opacity: 0;
+  animation: fadeInUp var(--duration-glacial) var(--ease-out) 0.7s forwards;
+}
+
+.hero-scroll-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  opacity: 0;
+  animation: fadeInUp var(--duration-glacial) var(--ease-out) 1s forwards;
+}
+
+.hero-scroll-prompt span {
+  font-family: var(--font-ui);
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(180deg, var(--text-tertiary) 0%, transparent 100%);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+  50% { opacity: 0.8; transform: scaleY(1); }
+}
+
+/* ===========================================
+   PROLOGUE
+   =========================================== */
+
+.prologue {
+  padding: var(--space-2xl) var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+.prologue-content {
+  max-width: 700px;
+  text-align: center;
+}
+
+.prologue-text {
+  font-family: var(--font-body);
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+.prologue-text.large {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+.prologue-text.emphasis {
+  font-family: var(--font-renaissance);
+  font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+  font-style: italic;
+  color: var(--accent-ancient);
+}
+
+.prologue-text:last-child {
+  margin-bottom: 0;
+}
+
+/* ===========================================
+   ERA-SPECIFIC THEMING
+   =========================================== */
+
+.era-ancient {
+  --accent: var(--accent-ancient);
+  --accent-glow: rgba(212, 149, 106, 0.15);
+  --era-font: var(--font-ancient);
+}
+
+.era-medieval {
+  --accent: var(--accent-medieval);
+  --accent-glow: rgba(201, 162, 39, 0.12);
+  --era-font: var(--font-medieval);
+}
+
+.era-renaissance {
+  --accent: var(--accent-renaissance);
+  --accent-glow: rgba(95, 122, 74, 0.12);
+  --era-font: var(--font-renaissance);
+}
+
+.era-enlightenment {
+  --accent: var(--accent-enlightenment);
+  --accent-glow: rgba(139, 115, 85, 0.12);
+  --era-font: var(--font-enlightenment);
+}
+
+.era-modern {
+  --accent: var(--accent-modern);
+  --accent-glow: rgba(107, 142, 159, 0.12);
+  --era-font: var(--font-modern);
+}
+
+/* ===========================================
+   CHAPTER STRUCTURE
+   =========================================== */
+
+.chapter {
+  position: relative;
+  padding: var(--space-xl) var(--space-md) var(--space-2xl);
+  max-width: var(--full-width);
+  margin: 0 auto;
+}
+
+.chapter-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  padding-top: var(--space-lg);
+}
+
+.chapter-number {
+  display: block;
+  font-family: var(--era-font, var(--font-display));
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 400;
+  color: var(--accent);
+  opacity: 0.25;
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+  letter-spacing: 0.1em;
+}
+
+.chapter-title {
+  font-family: var(--era-font, var(--font-display));
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+  letter-spacing: 0.02em;
+}
+
+.chapter-subtitle {
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Era-specific chapter header typography */
+.era-ancient .chapter-title {
+  font-family: var(--font-ancient);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.era-medieval .chapter-title {
+  font-family: var(--font-medieval);
+  font-style: italic;
+}
+
+.era-renaissance .chapter-title {
+  font-family: var(--font-renaissance);
+  font-weight: 300;
+}
+
+.era-enlightenment .chapter-title {
+  font-family: var(--font-enlightenment);
+  font-weight: 500;
+}
+
+.era-modern .chapter-title {
+  font-family: var(--font-modern);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* ===========================================
+   IMAGE REVEAL COMPONENT
+   =========================================== */
+
+.image-reveal {
+  position: relative;
+  width: 100%;
+  max-width: var(--wide-width);
+  margin: var(--space-lg) auto;
+  opacity: 0;
+  transform: translateY(32px);
+  transition: 
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+.image-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.image-reveal-inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--bg-elevated);
+}
+
+.reveal-image {
+  object-fit: cover;
+  transition: transform var(--duration-glacial) var(--ease-out);
+}
+
+.image-reveal.visible .reveal-image {
+  transform: scale(1.02);
+}
+
+.image-vignette {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, var(--vignette-opacity));
+  pointer-events: none;
+}
+
+.image-grain {
+  position: absolute;
+  inset: 0;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.image-caption {
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  color: var(--text-tertiary);
+  text-align: center;
+  margin-top: var(--space-sm);
+  font-style: italic;
+}
+
+/* Era treatments for image reveal */
+.image-reveal.era-ancient .reveal-image {
+  filter: sepia(0.35) saturate(0.85) brightness(0.88) contrast(1.05);
+}
+
+.image-reveal.era-medieval .reveal-image {
+  filter: sepia(0.4) saturate(0.75) brightness(0.85) contrast(1.1);
+}
+
+.image-reveal.era-renaissance .reveal-image {
+  filter: sepia(0.25) saturate(0.9) brightness(0.9) contrast(1.05);
+}
+
+.image-reveal.era-enlightenment .reveal-image {
+  filter: sepia(0.15) saturate(0.85) brightness(0.92);
+}
+
+.image-reveal.era-modern .reveal-image {
+  filter: saturate(0.95) brightness(0.95);
+}
+
+/* ===========================================
+   NARRATIVE BLOCKS
+   =========================================== */
+
+.narrative-block {
+  max-width: var(--content-width);
+  margin: var(--space-lg) auto;
+  padding: 0 var(--space-md);
+}
+
+/* ===========================================
+   ETYMOLOGY CALLOUT
+   =========================================== */
+
+.etymology-callout {
+  max-width: 600px;
+  margin: var(--space-xl) auto;
+  padding: var(--space-lg);
+  text-align: center;
+  background: linear-gradient(135deg, var(--accent-glow), transparent);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  opacity: 0;
+  transform: translateY(24px) scale(0.98);
+  transition: 
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+.etymology-callout.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.etymology-word {
+  display: block;
+  font-family: var(--era-font, var(--font-display));
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+  text-shadow: 0 0 60px var(--accent-glow);
+}
+
+/* Era-specific word typography */
+.etymology-callout.era-ancient .etymology-word {
+  font-family: var(--font-ancient);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.etymology-callout.era-medieval .etymology-word {
+  font-family: var(--font-medieval);
+  font-style: italic;
+}
+
+.etymology-callout.era-renaissance .etymology-word {
+  font-family: var(--font-renaissance);
+  font-weight: 300;
+}
+
+.etymology-callout.era-enlightenment .etymology-word {
+  font-family: var(--font-enlightenment);
+}
+
+.etymology-callout.era-modern .etymology-word {
+  font-family: var(--font-modern);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.etymology-pronunciation {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--accent);
+  margin-bottom: var(--space-md);
+}
+
+.etymology-details {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+
+.etymology-language,
+.etymology-year {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 4px;
+}
+
+.etymology-meaning {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+  font-style: italic;
+}
+
+.etymology-context {
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+/* ===========================================
+   FIGURE PROFILE
+   =========================================== */
+
+.figure-profile {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-lg);
+  max-width: var(--wide-width);
+  margin: var(--space-xl) auto;
+  padding: var(--space-lg);
+  background: var(--bg-elevated);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: 
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+.figure-profile.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.figure-portrait {
+  position: relative;
+}
+
+.portrait-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  filter: grayscale(0.15);
+}
+
+/* Era treatments for portraits */
+.figure-profile.era-ancient .portrait-image {
+  filter: sepia(0.35) saturate(0.8) brightness(0.9);
+}
+
+.figure-profile.era-medieval .portrait-image {
+  filter: sepia(0.45) saturate(0.65) contrast(1.1);
+}
+
+.figure-profile.era-renaissance .portrait-image {
+  filter: sepia(0.2) saturate(0.85) contrast(1.05);
+}
+
+.figure-profile.era-enlightenment .portrait-image {
+  filter: sepia(0.15) saturate(0.75) brightness(0.95);
+}
+
+.portrait-frame {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.figure-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.figure-name {
+  font-family: var(--era-font, var(--font-display));
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-xs);
+}
+
+.figure-epithet {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  font-style: italic;
+  color: var(--accent);
+  margin: 0 0 var(--space-xs);
+}
+
+.figure-dates {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  margin: 0 0 var(--space-md);
+}
+
+.figure-contributions {
+  margin: 0 0 var(--space-md);
+  padding-left: var(--space-sm);
+  list-style: none;
+}
+
+.figure-contributions li {
+  position: relative;
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xs);
+  padding-left: var(--space-sm);
+}
+
+.figure-contributions li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 4px;
+  height: 4px;
+  background: var(--accent);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.figure-quote {
+  margin: 0;
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(0, 0, 0, 0.2);
+  border-left: 2px solid var(--accent);
+  border-radius: 0 4px 4px 0;
+}
+
+.figure-quote p {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-style: italic;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-xs);
+}
+
+.figure-quote cite {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-style: normal;
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 768px) {
+  .figure-profile {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .figure-portrait {
+    max-width: 180px;
+    margin: 0 auto;
+  }
+  
+  .figure-contributions {
+    text-align: left;
+  }
+}
+
+/* ===========================================
+   WORD EVOLUTION VISUALIZATION
+   =========================================== */
+
+.word-evolution {
+  max-width: var(--wide-width);
+  margin: var(--space-xl) auto;
+  padding: var(--space-lg);
+  background: var(--bg-elevated);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: 
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+.word-evolution.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.evolution-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.evolution-track {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.evolution-stage {
+  position: relative;
+  text-align: center;
+  padding: var(--space-md);
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  min-width: 140px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: 
+    opacity var(--duration-normal) var(--ease-out),
+    transform var(--duration-normal) var(--ease-out);
+}
+
+.word-evolution.visible .evolution-stage {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stage-word {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.stage-meaning {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xs);
+}
+
+.stage-era {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--text-tertiary);
+}
+
+.stage-connector {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .evolution-track {
+    flex-wrap: nowrap;
+    gap: 0;
+  }
+  
+  .evolution-stage {
+    flex: 1;
+    border-radius: 0;
+    background: transparent;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  
+  .evolution-stage:last-child {
+    border-right: none;
+  }
+}
+
+/* ===========================================
+   PULL QUOTE OVERRIDES
+   =========================================== */
+
+.animal-etymology-essay .pull-quote {
+  border-left-color: var(--accent);
+}
+
+.animal-etymology-essay .pull-quote-text {
+  color: var(--text-primary);
+}
+
+/* ===========================================
+   VOICE ETERNAL OVERRIDES
+   =========================================== */
+
+.animal-etymology-essay .voice-eternal {
+  color: var(--accent);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.animal-etymology-essay .voice-eternal p::before,
+.animal-etymology-essay .voice-eternal p::after {
+  color: var(--accent-glow);
+}
+
+/* ===========================================
+   REVEALED BLOCK ANIMATIONS
+   =========================================== */
+
+.revealed-block {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: 
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+.revealed-block.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===========================================
+   CHAPTER HEADER ANIMATION
+   =========================================== */
+
+.chapter-header .chapter-number,
+.chapter-header .chapter-title,
+.chapter-header .chapter-subtitle {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+.chapter-header.visible .chapter-number {
+  opacity: 0.25;
+  transform: translateY(0);
+  transition-delay: 0ms;
+}
+
+.chapter-header.visible .chapter-title {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 150ms;
+}
+
+.chapter-header.visible .chapter-subtitle {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 300ms;
+}
+
+/* ===========================================
+   EPILOGUE
+   =========================================== */
+
+.epilogue {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-md);
+}
+
+.epilogue-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.epilogue-background {
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.2) saturate(0.6) sepia(0.2);
+}
+
+.epilogue-gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(8, 10, 8, 0.7) 60%,
+    rgba(8, 10, 8, 0.95) 100%
+  );
+}
+
+.epilogue-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 750px;
+}
+
+.epilogue-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+  letter-spacing: 0.05em;
+}
+
+.epilogue-text {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+  line-height: 1.8;
+}
+
+.epilogue-closing {
+  font-family: var(--font-renaissance);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-style: italic;
+  color: var(--accent-ancient);
+  margin-top: var(--space-xl);
+  line-height: 1.6;
+}
+
+/* ===========================================
+   SOURCES SECTION
+   =========================================== */
+
+.sources-section {
+  padding: var(--space-2xl) var(--space-md);
+  max-width: var(--wide-width);
+  margin: 0 auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sources-section h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+.sources-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.source-category h4 {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-ancient);
+  margin-bottom: var(--space-sm);
+}
+
+.source-category ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.source-category li {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xs);
+  line-height: 1.5;
+}
+
+.source-category li em {
+  color: var(--text-primary);
+}
+
+.sources-note {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  text-align: center;
+  margin-top: var(--space-lg);
+}
+
+@media (max-width: 768px) {
+  .sources-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===========================================
+   SECTION DIVIDER OVERRIDES
+   =========================================== */
+
+.animal-etymology-essay .section-divider {
+  padding: var(--space-xl) 0;
+}
+
+.animal-etymology-essay .divider-symbol {
+  color: var(--accent);
+  opacity: 0.5;
+}
+
+/* ===========================================
+   REDUCED MOTION
+   =========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .hero-kicker,
+  .hero-title,
+  .hero-subtitle,
+  .hero-scroll-prompt {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .image-reveal,
+  .figure-profile,
+  .etymology-callout,
+  .word-evolution,
+  .revealed-block {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .chapter-header .chapter-number,
+  .chapter-header .chapter-title,
+  .chapter-header .chapter-subtitle {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .chapter-header .chapter-number {
+    opacity: 0.25;
+  }
+}
+
+/* ===========================================
+   RESPONSIVE REFINEMENTS
+   =========================================== */
+
+@media (max-width: 480px) {
+  .chapter {
+    padding: var(--space-lg) var(--space-sm) var(--space-xl);
+  }
+  
+  .chapter-header {
+    margin-bottom: var(--space-lg);
+  }
+  
+  .narrative-block {
+    padding: 0 var(--space-sm);
+  }
+  
+  .figure-profile,
+  .etymology-callout,
+  .word-evolution {
+    padding: var(--space-md);
+  }
+  
+  .hero-title {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  .hero-title-arrow {
+    transform: rotate(90deg);
+  }
+}
+
+
+

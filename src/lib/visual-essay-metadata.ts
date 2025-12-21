@@ -64,39 +64,42 @@ import { Metadata } from 'next';
 export interface VisualEssayMetadataConfig {
   /** URL slug (e.g., 'the-word-robot') - used for canonical URL and default image path */
   slug: string;
-  
+
   /** Full page title including "| Esy" suffix */
   title: string;
-  
+
   /** Full meta description (can be longer, 150-300 chars) */
   description: string;
-  
+
   /** Shorter OG title (under 60 chars), defaults to title before " | " */
   ogTitle?: string;
-  
+
   /** Shorter OG description (150-200 chars), defaults to description */
   ogDescription?: string;
-  
+
   /** Twitter-specific description, defaults to ogDescription */
   twitterDescription?: string;
-  
+
   /** SEO keywords array */
   keywords?: string[];
-  
+
   /** Alt text for OG image, defaults to ogTitle */
   imageAlt?: string;
-  
+
   /** Override default image path (defaults to /og/[slug].png) */
   ogImage?: string;
-  
+
   /** ISO 8601 date string for article:published_time */
   publishedTime?: string;
-  
+
   /** ISO 8601 date string for article:modified_time */
   modifiedTime?: string;
-  
+
   /** Author name or URL for article:author */
   author?: string;
+
+  /** Base path for the essay (defaults to 'essays', use 'essays/etymology' for word origin essays) */
+  basePath?: 'essays' | 'essays/etymology';
 }
 
 /**
@@ -144,12 +147,15 @@ export function createVisualEssayMetadata(config: VisualEssayMetadataConfig): Me
   
   // Default image path follows convention: /og/[slug].png
   const ogImageUrl = config.ogImage || `${SITE_URL}/og/${config.slug}.png`;
-  
+
   // Image alt defaults to ogTitle
   const imageAlt = config.imageAlt || ogTitle;
-  
+
+  // Base path for URL (defaults to 'essays')
+  const basePath = config.basePath || 'essays';
+
   // Canonical URL (with trailing slash to match Next.js trailingSlash: true config)
-  const canonicalUrl = `${SITE_URL}/essays/${config.slug}/`;
+  const canonicalUrl = `${SITE_URL}/${basePath}/${config.slug}/`;
   
   // Build the metadata object
   const metadata: Metadata = {

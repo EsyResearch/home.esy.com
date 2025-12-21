@@ -46,6 +46,67 @@ const nextConfig = {
         destination: '/essays/history/fentanyl-crisis-timeline',
         permanent: true,
       },
+      // Etymology essays redirects - moved from /essays/ to /essays/etymology/
+      {
+        source: '/essays/the-word-essay',
+        destination: '/essays/etymology/the-word-essay',
+        permanent: true,
+      },
+      {
+        source: '/essays/the-word-robot',
+        destination: '/essays/etymology/the-word-robot',
+        permanent: true,
+      },
+      {
+        source: '/essays/the-word-dick',
+        destination: '/essays/etymology/the-word-dick',
+        permanent: true,
+      },
+      {
+        source: '/essays/the-word-pussy',
+        destination: '/essays/etymology/the-word-pussy',
+        permanent: true,
+      },
+      {
+        source: '/essays/the-word-han',
+        destination: '/essays/etymology/the-word-han',
+        permanent: true,
+      },
+      {
+        source: '/essays/the-word-animal',
+        destination: '/essays/etymology/the-word-animal',
+        permanent: true,
+      },
+      {
+        source: '/essays/the-origin-of-animal',
+        destination: '/essays/etymology/the-origin-of-animal',
+        permanent: true,
+      },
+      {
+        source: '/essays/the-origin-of-sex',
+        destination: '/essays/etymology/the-origin-of-sex',
+        permanent: true,
+      },
+      {
+        source: '/essays/the-origin-of-toy',
+        destination: '/essays/etymology/the-origin-of-toy',
+        permanent: true,
+      },
+      {
+        source: '/essays/the-origin-of-the-word-dick',
+        destination: '/essays/etymology/the-origin-of-the-word-dick',
+        permanent: true,
+      },
+      {
+        source: '/essays/the-origin-of-the-word-porn',
+        destination: '/essays/etymology/the-origin-of-the-word-porn',
+        permanent: true,
+      },
+      {
+        source: '/essays/pornography-etymology',
+        destination: '/essays/etymology/pornography-etymology',
+        permanent: true,
+      },
     ];
   },
 };
