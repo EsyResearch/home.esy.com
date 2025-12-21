@@ -87,7 +87,7 @@ export default function TemplatesClient() {
       {/* Hero Section */}
       <section
         style={{
-          paddingTop: 'clamp(6rem, 12vh, 8rem)',
+          paddingTop: 'clamp(8rem, 18vh, 12rem)',
           paddingBottom: 'clamp(3rem, 6vh, 4rem)',
           background: `linear-gradient(180deg, ${elevatedDarkTheme.bg} 0%, ${elevatedDarkTheme.elevated} 100%)`,
           position: 'relative',

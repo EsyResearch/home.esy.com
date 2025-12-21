@@ -52,10 +52,35 @@ export default function Navigation ({
     const [isLightMode, setIsLightMode] = useState(false);
     
     // Pages that use the simplified homepage navigation style (Essays + App only)
-    const normalizedPathForNav = pathname?.endsWith('/') && pathname.length > 1 
-      ? pathname.slice(0, -1) 
+    // This is now the default for most pages - clean, minimal header
+    const normalizedPathForNav = pathname?.endsWith('/') && pathname.length > 1
+      ? pathname.slice(0, -1)
       : pathname || '';
-    const isSimplifiedNav = normalizedPathForNav === '/' || normalizedPathForNav === '' || normalizedPathForNav === '/essays' || normalizedPathForNav === '/school' || normalizedPathForNav === '/glossary' || normalizedPathForNav === '/prompt-library' || normalizedPathForNav === '/templates' || normalizedPathForNav === '/scrollytelling' || normalizedPathForNav === '/about' || normalizedPathForNav === '/privacy' || normalizedPathForNav === '/terms' || normalizedPathForNav === '/agentic-workflows';
+    const isSimplifiedNav =
+      normalizedPathForNav === '/' ||
+      normalizedPathForNav === '' ||
+      normalizedPathForNav === '/essays' ||
+      normalizedPathForNav?.startsWith('/school') ||
+      normalizedPathForNav?.startsWith('/glossary') ||
+      normalizedPathForNav?.startsWith('/prompt-library') ||
+      normalizedPathForNav?.startsWith('/templates') ||
+      normalizedPathForNav?.startsWith('/scrollytelling') ||
+      normalizedPathForNav?.startsWith('/research') ||
+      normalizedPathForNav === '/about' ||
+      normalizedPathForNav === '/privacy' ||
+      normalizedPathForNav === '/terms' ||
+      normalizedPathForNav === '/agentic-workflows' ||
+      normalizedPathForNav === '/ai-writing-tools' ||
+      normalizedPathForNav === '/ai-story-generator' ||
+      normalizedPathForNav === '/ai-essay-writer' ||
+      normalizedPathForNav === '/writing-prompt-generator' ||
+      normalizedPathForNav === '/writing-prompts' ||
+      normalizedPathForNav === '/prompts' ||
+      normalizedPathForNav === '/how-to-write-an-essay' ||
+      normalizedPathForNav === '/how-to-write' ||
+      normalizedPathForNav === '/contact' ||
+      normalizedPathForNav === '/cookies' ||
+      normalizedPathForNav === '/extended-school-year';
 
     // Detect theme from various sources with page-specific logic
     useEffect(() => {
@@ -379,7 +404,8 @@ export default function Navigation ({
         const isHomepage = normalizedPath === '/' || normalizedPath === '';
         const isBlogIndexPage = normalizedPath === '/blog';
         const isScrollytellingPage = normalizedPath?.startsWith('/scrollytelling');
-        const shouldBeTransparent = isHomepage || isBlogIndexPage || isScrollytellingPage;
+        const isTemplatesPage = normalizedPath?.startsWith('/templates');
+        const shouldBeTransparent = isHomepage || isBlogIndexPage || isScrollytellingPage || isTemplatesPage;
         
         if (scrollY === 0) {
           if (shouldBeTransparent) {

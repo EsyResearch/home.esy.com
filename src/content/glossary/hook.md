@@ -40,3 +40,9 @@ A hook is the opening of your essay designed to grab readers' attention and make
 - Ensure it connects to your thesis
 - Be specific rather than general
 - Test it: Would *you* want to keep reading?
+
+## Go Deeper
+
+Ready to master the art of the hook? Our interactive guide breaks down hook-writing with examples, frameworks, and step-by-step techniques.
+
+[How to Write a Hook →](/essays/foundations/how-to-write-a-hook/)

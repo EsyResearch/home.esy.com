@@ -66,7 +66,7 @@ export default function TemplateDetailClient({
           maxWidth: '1200px',
           margin: '0 auto',
           padding: '0 clamp(1.5rem, 5vw, 3rem)',
-          paddingTop: 'clamp(6rem, 10vh, 8rem)',
+          paddingTop: 'clamp(8rem, 18vh, 12rem)',
         }}
       >
         {/* Breadcrumb */}

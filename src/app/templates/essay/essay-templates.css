@@ -59,7 +59,7 @@
 
 /* === HERO SECTION === */
 .essay-hero {
-  padding-top: clamp(6rem, 12vh, 8rem);
+  padding-top: clamp(8rem, 18vh, 12rem);
   padding-bottom: clamp(3rem, 6vh, 4rem);
   background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-elevated) 100%);
   position: relative;
