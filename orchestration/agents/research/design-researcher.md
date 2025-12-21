@@ -635,3 +635,5 @@ December 16, 2025
 *This agent specializes in conducting comprehensive design research that derives unique visual identities from subject matter itself. Through visual archaeology, material-driven palette development, era-appropriate typography research, and animation philosophy matching, the Design Researcher ensures every visual essay has a distinctive, subject-authentic design system. Working with the Visual Essay Orchestrator and Scrollytelling Expert, this agent produces Design Research Reports that serve as the visual foundation for implementation, guaranteeing no two essays share the same visual language.*
 
 
+
+

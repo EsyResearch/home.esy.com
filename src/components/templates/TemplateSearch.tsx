@@ -15,7 +15,7 @@ export default function TemplateSearch({
   value,
   onChange,
   onSearch,
-  placeholder = 'Search prompts and templates...',
+  placeholder = 'Search templates by topic, goal, or output type...',
 }: TemplateSearchProps) {
   const [isFocused, setIsFocused] = useState(false);
 

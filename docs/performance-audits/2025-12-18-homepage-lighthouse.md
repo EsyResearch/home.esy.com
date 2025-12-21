@@ -363,3 +363,5 @@ After implementing the high-priority fixes:
 - If static export is required, manual image optimization is necessary
 - Font optimization via Next.js will still work with static export
 
+
+
