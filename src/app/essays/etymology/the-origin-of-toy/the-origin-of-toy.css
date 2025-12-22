@@ -1110,6 +1110,11 @@
     display: none !important;
   }
 
+  /* Hide header (back to essays + category) on mobile */
+  .origin-of-toy .essay-header {
+    display: none !important;
+  }
+
   /* Hide intermediate animation states, show final word */
   .origin-of-toy .hero-section .modern-word {
     display: none;
