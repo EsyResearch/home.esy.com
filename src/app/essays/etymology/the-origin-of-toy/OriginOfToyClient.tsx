@@ -359,26 +359,29 @@ const HeroSection: React.FC = () => {
   // Phase calculations - ADJUSTED for visibility on load
   // UX FIX: Word is visible on initial load, then animates
   // Phases shifted to accommodate visible start while preserving animation time
-  const phase1 = scrollProgress >= 0 && scrollProgress < 10;   // 0-10%: Word brightens (already visible)
-  const phase2 = scrollProgress >= 10 && scrollProgress < 25;  // 10-25%: Flicker/cracks
-  const phase3 = scrollProgress >= 25 && scrollProgress < 45;  // 25-45%: Fracture/TOYE
-  const phase4 = scrollProgress >= 45 && scrollProgress < 65;  // 45-65%: Annotations
-  const phase5 = scrollProgress >= 65 && scrollProgress < 82;  // 65-82%: Swirl/settle
-  const phase6 = scrollProgress >= 82;                         // 82-100%: Title card
+  //
+  // MOBILE: Skip all phases, show final state immediately
+  // On mobile, we don't animate - just show the title card
+  const phase1 = !isMobile && scrollProgress >= 0 && scrollProgress < 10;   // 0-10%: Word brightens (already visible)
+  const phase2 = !isMobile && scrollProgress >= 10 && scrollProgress < 25;  // 10-25%: Flicker/cracks
+  const phase3 = !isMobile && scrollProgress >= 25 && scrollProgress < 45;  // 25-45%: Fracture/TOYE
+  const phase4 = !isMobile && scrollProgress >= 45 && scrollProgress < 65;  // 45-65%: Annotations
+  const phase5 = !isMobile && scrollProgress >= 65 && scrollProgress < 82;  // 65-82%: Swirl/settle
+  const phase6 = isMobile || scrollProgress >= 82;                          // 82-100%: Title card (ALWAYS on mobile)
 
   // UX FIX: Word VISIBLE on load at 0.5 opacity, brightens to 1.0 during 0-10%
   // This ensures users see content immediately while preserving the "emergence" feel
-  const wordVisible = true; // Always visible now
+  const wordVisible = !isMobile; // Hidden on mobile - show title instead
   // Start at 0.5 opacity, brighten to 1.0 over first 10% of scroll
   const wordOpacity = Math.min(1, 0.5 + (scrollProgress / 10) * 0.5);
-  
+
   const flickering = phase2;
-  const cracking = scrollProgress >= 15;  // Shifted from 20%
-  const fracturing = scrollProgress >= 25; // Shifted from 30%
-  const toyeVisible = scrollProgress >= 30; // Shifted from 35%
-  const annotationsVisible = scrollProgress >= 45; // Shifted from 50%
+  const cracking = !isMobile && scrollProgress >= 15;  // Shifted from 20%
+  const fracturing = !isMobile && scrollProgress >= 25; // Shifted from 30%
+  const toyeVisible = !isMobile && scrollProgress >= 30; // Shifted from 35%
+  const annotationsVisible = !isMobile && scrollProgress >= 45; // Shifted from 50%
   const annotationsSwirling = phase5;
-  const titleVisible = scrollProgress >= 82; // Shifted from 85%
+  const titleVisible = isMobile || scrollProgress >= 82; // ALWAYS visible on mobile
 
   // Calculate flicker intensity (peaks at 17%)
   const flickerIntensity = phase2 ? Math.sin((scrollProgress - 10) * 0.4) * 0.3 : 0;
@@ -404,12 +407,13 @@ const HeroSection: React.FC = () => {
   const swirlRotation = annotationsSwirling ? (scrollProgress - 65) * 8 : 0;
   const swirlScale = annotationsSwirling ? 1 + (scrollProgress - 65) * 0.01 : 1;
   
-  // Title card fade (82-100%)
-  const titleOpacity = titleVisible ? Math.min(1, (scrollProgress - 82) / 15) : 0;
-  
+  // Title card fade (82-100%) - MOBILE: Always fully visible
+  const titleOpacity = isMobile ? 1 : (titleVisible ? Math.min(1, (scrollProgress - 82) / 15) : 0);
+
   // Background: starts slightly visible (0.15) so word shows, builds with scroll
   // UX FIX: Not pure black on load - subtle texture visible
-  const backgroundOpacity = Math.min(1, 0.15 + (scrollProgress / 25) * 0.85);
+  // MOBILE: Always fully visible
+  const backgroundOpacity = isMobile ? 1 : Math.min(1, 0.15 + (scrollProgress / 25) * 0.85);
 
   return (
     <section
