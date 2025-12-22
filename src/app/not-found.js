@@ -1,11 +1,15 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { 
+import {
   BookOpen, ArrowRight, Compass, MapPin,
-  Book, Lightbulb, Archive, Telescope
+  Book, Lightbulb, Archive, FileText
 } from 'lucide-react';
 import Link from 'next/link';
+import { publishedVisualEssays } from '@/data/visualEssays';
+
+// Glossary term count (matches glossary page)
+const GLOSSARY_TERM_COUNT = 30;
 
 const NotFoundPage = () => {
   const [typedText, setTypedText] = useState('');
@@ -114,23 +118,23 @@ const NotFoundPage = () => {
       icon: Book,
       title: 'Essay Collection',
       description: 'Explore published research',
-      stat: '12,847 essays',
+      stat: `${publishedVisualEssays.length} essays`,
       href: '/essays'
     },
     {
-      id: 'research',
-      icon: Telescope,
-      title: 'Research Tools',
-      description: 'Discover methodologies',
-      stat: '342 methods',
-      href: '/research'
+      id: 'templates',
+      icon: FileText,
+      title: 'Essay Templates',
+      description: 'Start with structure',
+      stat: '35 templates',
+      href: '/templates/essay'
     },
     {
       id: 'glossary',
       icon: Archive,
-      title: 'Knowledge Base',
+      title: 'Glossary',
       description: 'Define your terms',
-      stat: '1,856 concepts',
+      stat: `${GLOSSARY_TERM_COUNT} terms`,
       href: '/glossary'
     },
     {
