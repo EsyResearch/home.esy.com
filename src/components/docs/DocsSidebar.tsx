@@ -25,6 +25,8 @@ import {
   LayoutTemplate,
   FileCode,
   ShieldCheck,
+  Layers,
+  UserCog,
 } from "lucide-react";
 
 // Elevated Dark Theme
@@ -50,6 +52,8 @@ const iconMap: Record<string, React.ReactNode> = {
   template: <LayoutTemplate className="w-4 h-4" />,
   spec: <FileCode className="w-4 h-4" />,
   quality: <ShieldCheck className="w-4 h-4" />,
+  layers: <Layers className="w-4 h-4" />,
+  'user-cog': <UserCog className="w-4 h-4" />,
 };
 
 function NavItemComponent({ item, isActive }: { item: NavItem; isActive: boolean }) {
@@ -342,10 +346,10 @@ export function DocsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
             flexWrap: 'wrap'
           }}>
             {[
-              { label: 'Templates', href: '/docs/templates' },
+              { label: 'Core Model', href: '/docs/core-model' },
+              { label: 'Roles', href: '/docs/roles' },
               { label: 'Workflows', href: '/docs/workflows' },
-              { label: 'Specs', href: '/docs/specs' },
-              { label: 'Quality', href: '/docs/quality' }
+              { label: 'Templates', href: '/docs/templates' }
             ].map((link) => (
               <Link
                 key={link.label}

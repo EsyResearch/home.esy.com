@@ -5,7 +5,7 @@ export interface NavItem {
   title: string;
   href: string;
   description?: string;
-  icon?: 'home' | 'sparkles' | 'book' | 'pencil' | 'workflow' | 'prompt' | 'essay' | 'template' | 'spec' | 'quality';
+  icon?: 'home' | 'sparkles' | 'book' | 'pencil' | 'workflow' | 'prompt' | 'essay' | 'template' | 'spec' | 'quality' | 'layers' | 'user-cog';
   isNew?: boolean;
   children?: NavItem[];
 }
@@ -28,6 +28,31 @@ export const docsNavigation: NavSection[] = [
     ],
   },
   {
+    title: "Architecture",
+    items: [
+      {
+        title: "Core Model",
+        href: "/docs/core-model",
+        description: "Execution architecture and philosophy",
+        icon: "layers",
+        isNew: true,
+      },
+      {
+        title: "Roles",
+        href: "/docs/roles",
+        description: "Agent contracts and behavior definitions",
+        icon: "user-cog",
+        isNew: true,
+      },
+      {
+        title: "Workflows",
+        href: "/docs/workflows",
+        description: "Execution pipelines and step design",
+        icon: "workflow",
+      },
+    ],
+  },
+  {
     title: "Canonical References",
     items: [
       {
@@ -35,12 +60,6 @@ export const docsNavigation: NavSection[] = [
         href: "/docs/templates",
         description: "Pre-designed research systems",
         icon: "template",
-      },
-      {
-        title: "Workflow Design Guide",
-        href: "/docs/workflows",
-        description: "Modify, extend, and compose workflows",
-        icon: "workflow",
       },
       {
         title: "Artifact Specifications",

@@ -1,16 +1,14 @@
-"use client";
-
-import { useState, useEffect, useCallback } from "react";
+import { Metadata } from "next";
 import Link from "next/link";
 import {
   Workflow,
   ArrowRight,
   CheckCircle,
-  Play,
-  Pause,
-  RotateCcw,
-  Loader2,
-  Zap,
+  Layers,
+  UserCog,
+  FileText,
+  GitBranch,
+  Shield,
 } from "lucide-react";
 import { DocsPageNav, DocsCallout } from "@/components/docs";
 
@@ -26,304 +24,63 @@ const colors = {
   accent: '#8b5cf6',
   accentHover: '#7c3aed',
   accentLight: '#a78bfa',
-  success: '#22c55e',
 };
 
-const pipelineStages = [
+export const metadata: Metadata = {
+  title: "Workflows | Esy Documentation",
+  description: "Understand Esy workflows: defined execution pipelines that transform user intent into artifacts through sequenced steps and role-bound agents.",
+  openGraph: {
+    title: "Workflows | Esy Documentation",
+    description: "How Esy workflows orchestrate agent execution to produce reliable artifacts.",
+    url: "https://esy.com/docs/workflows",
+  },
+};
+
+const stepAnatomy = [
   {
-    id: 'intent',
-    title: 'Intent',
-    description: 'What you want to create. A research question, thesis, or creative goal that grounds the workflow.',
+    name: 'Input Schema',
+    description: 'What data this step receives. May come from user context, prior step outputs, or system state.',
   },
   {
-    id: 'context',
-    title: 'Context',
-    description: 'Your sources, constraints, and parameters. Ensures outputs are grounded in your materials.',
+    name: 'Role Assignment',
+    description: 'Which role executes this step. The role\'s contract determines agent behavior.',
   },
   {
-    id: 'workflow',
-    title: 'Workflow',
-    description: 'The sequence of steps: research, synthesis, drafting, refinement. Each step has defined inputs and outputs.',
+    name: 'Execution Logic',
+    description: 'What the step does: synthesis, analysis, generation, validation, or transformation.',
   },
   {
-    id: 'artifact',
-    title: 'Artifact',
-    description: 'The output: essay, timeline, brief. Includes provenance—trace every claim to its source.',
+    name: 'Output Schema',
+    description: 'What the step produces. Must satisfy structural requirements for downstream consumption.',
   },
   {
-    id: 'quality',
-    title: 'Quality Assurance',
-    description: 'Validation against original intent. Citation verification, claim traceability, alignment checks.',
+    name: 'Gates',
+    description: 'Optional conditions that must be met before proceeding. Quality checks, validation rules, or user approvals.',
   },
 ];
 
-// Demo workflow data
-const demoWorkflow = {
-  title: 'Infographic Brief',
-  intent: 'Create an infographic about the water cycle',
-  steps: [
-    { name: 'Research', model: 'Research Model', duration: 1200, tokens: 450 },
-    { name: 'Structure', model: 'Analysis Model', duration: 800, tokens: 320 },
-    { name: 'Visual Mapping', model: 'Design Model', duration: 1000, tokens: 280 },
-    { name: 'Copy Generation', model: 'Writing Model', duration: 900, tokens: 400 },
-  ],
-  artifact: `# The Water Cycle Infographic Brief
-
-## Visual Sections
-
-### 1. Evaporation
-- Sun heating ocean/lake surface
-- Water molecules rising as vapor
-- Temperature indicator: 100°C / 212°F
-
-### 2. Condensation
-- Water vapor cooling in atmosphere
-- Cloud formation visualization
-- Altitude: 2,000-6,000 meters
-
-### 3. Precipitation
-- Rain, snow, sleet, hail variants
-- Droplet size comparisons
-- Annual global rainfall: 505,000 km³
-
-### 4. Collection
-- Rivers, lakes, groundwater
-- Aquifer cross-section
-- Ocean as primary reservoir (97%)
-
-## Key Statistics
-- 71% of Earth's surface is water
-- 3% is freshwater (2.5% frozen)
-- Average water molecule age: 3,200 years`
-};
-
-function WorkflowDemo() {
-  const [status, setStatus] = useState<'idle' | 'running' | 'completed'>('idle');
-  const [currentStep, setCurrentStep] = useState(-1);
-  const [completedSteps, setCompletedSteps] = useState<number[]>([]);
-  const [showArtifact, setShowArtifact] = useState(false);
-
-  const runWorkflow = useCallback(async () => {
-    setStatus('running');
-    setCompletedSteps([]);
-    setShowArtifact(false);
-
-    for (let i = 0; i < demoWorkflow.steps.length; i++) {
-      setCurrentStep(i);
-      await new Promise(resolve => setTimeout(resolve, demoWorkflow.steps[i].duration));
-      setCompletedSteps(prev => [...prev, i]);
-    }
-
-    setCurrentStep(-1);
-    setStatus('completed');
-    setShowArtifact(true);
-  }, []);
-
-  const reset = () => {
-    setStatus('idle');
-    setCurrentStep(-1);
-    setCompletedSteps([]);
-    setShowArtifact(false);
-  };
-
-  const totalTokens = demoWorkflow.steps.reduce((sum, s) => sum + s.tokens, 0);
-
-  return (
-    <div style={{
-      background: colors.elevated,
-      borderRadius: '16px',
-      border: `1px solid ${colors.border}`,
-      overflow: 'hidden'
-    }}>
-      {/* Header */}
-      <div style={{
-        padding: '1.25rem 1.5rem',
-        borderBottom: `1px solid ${colors.border}`,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
-        gap: '1rem'
-      }}>
-        <div>
-          <div style={{ fontSize: '0.75rem', color: colors.subtle, marginBottom: '0.25rem' }}>
-            Try it: Infographic Workflow
-          </div>
-          <div style={{ fontSize: '0.9375rem', color: colors.text, fontWeight: 500 }}>
-            {demoWorkflow.intent}
-          </div>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          {status === 'idle' && (
-            <button
-              onClick={runWorkflow}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                padding: '0.5rem 1rem',
-                background: colors.accent,
-                border: 'none',
-                borderRadius: '6px',
-                color: 'white',
-                fontSize: '0.8125rem',
-                fontWeight: 500,
-                cursor: 'pointer'
-              }}
-            >
-              <Play style={{ width: 14, height: 14 }} />
-              Run Demo
-            </button>
-          )}
-          {status === 'running' && (
-            <span style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.5rem 1rem',
-              background: `${colors.accent}20`,
-              borderRadius: '6px',
-              color: colors.accentLight,
-              fontSize: '0.8125rem'
-            }}>
-              <Loader2 style={{ width: 14, height: 14, animation: 'spin 1s linear infinite' }} />
-              Running...
-            </span>
-          )}
-          {status === 'completed' && (
-            <button
-              onClick={reset}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                padding: '0.5rem 1rem',
-                background: colors.surface,
-                border: `1px solid ${colors.border}`,
-                borderRadius: '6px',
-                color: colors.muted,
-                fontSize: '0.8125rem',
-                cursor: 'pointer'
-              }}
-            >
-              <RotateCcw style={{ width: 14, height: 14 }} />
-              Reset
-            </button>
-          )}
-        </div>
-      </div>
-
-      {/* Steps */}
-      <div style={{ padding: '1.25rem 1.5rem' }}>
-        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-          {demoWorkflow.steps.map((step, index) => {
-            const isCompleted = completedSteps.includes(index);
-            const isActive = currentStep === index;
-
-            return (
-              <div
-                key={step.name}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  padding: '0.5rem 0.75rem',
-                  background: isActive ? `${colors.accent}15` : isCompleted ? `${colors.success}10` : colors.surface,
-                  border: `1px solid ${isActive ? colors.accent + '40' : isCompleted ? colors.success + '30' : colors.border}`,
-                  borderRadius: '6px',
-                  transition: 'all 0.3s ease'
-                }}
-              >
-                {isCompleted ? (
-                  <CheckCircle style={{ width: 14, height: 14, color: colors.success }} />
-                ) : isActive ? (
-                  <Loader2 style={{ width: 14, height: 14, color: colors.accent, animation: 'spin 1s linear infinite' }} />
-                ) : (
-                  <div style={{
-                    width: 14,
-                    height: 14,
-                    borderRadius: '50%',
-                    border: `1.5px solid ${colors.subtle}`,
-                  }} />
-                )}
-                <span style={{
-                  fontSize: '0.8125rem',
-                  color: isActive ? colors.text : isCompleted ? colors.muted : colors.subtle
-                }}>
-                  {step.name}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Stats */}
-        {status === 'completed' && (
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1.5rem',
-            marginTop: '1rem',
-            paddingTop: '1rem',
-            borderTop: `1px solid ${colors.border}`,
-            fontSize: '0.75rem',
-            color: colors.subtle
-          }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-              <Zap style={{ width: 12, height: 12, color: colors.accent }} />
-              {totalTokens.toLocaleString()} tokens
-            </span>
-            <span>4 steps completed</span>
-            <span style={{ color: colors.success }}>Demo only — no API cost</span>
-          </div>
-        )}
-      </div>
-
-      {/* Artifact Preview */}
-      {showArtifact && (
-        <div style={{
-          borderTop: `1px solid ${colors.border}`,
-          padding: '1.25rem 1.5rem',
-          background: colors.surface
-        }}>
-          <div style={{
-            fontSize: '0.75rem',
-            color: colors.subtle,
-            marginBottom: '0.75rem',
-            textTransform: 'uppercase',
-            letterSpacing: '0.05em'
-          }}>
-            Generated Artifact
-          </div>
-          <pre style={{
-            fontSize: '0.75rem',
-            color: colors.muted,
-            whiteSpace: 'pre-wrap',
-            lineHeight: 1.6,
-            margin: 0,
-            maxHeight: '200px',
-            overflow: 'auto',
-            fontFamily: 'var(--font-mono, monospace)'
-          }}>
-            {demoWorkflow.artifact}
-          </pre>
-        </div>
-      )}
-
-      <style jsx>{`
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
-    </div>
-  );
-}
+const workflowExamples = [
+  {
+    name: 'Research Essay',
+    steps: ['Source ingestion', 'Claim extraction', 'Synthesis', 'Drafting', 'Citation audit'],
+    description: 'Transforms source materials into a structured essay with verified citations.',
+  },
+  {
+    name: 'Infographic Brief',
+    steps: ['Research', 'Structure analysis', 'Visual mapping', 'Copy generation'],
+    description: 'Produces a design brief with visual hierarchy and concise copy blocks.',
+  },
+  {
+    name: 'Literature Review',
+    steps: ['Source categorization', 'Theme identification', 'Gap analysis', 'Synthesis', 'Writing'],
+    description: 'Analyzes multiple sources to produce a thematic literature review.',
+  },
+];
 
 export default function WorkflowsPage() {
   return (
     <article style={{
-      maxWidth: '720px',
+      maxWidth: '760px',
       margin: '0 auto',
       padding: '0 clamp(1.5rem, 5vw, 2rem)',
       paddingTop: 'clamp(5rem, 12vh, 7rem)',
@@ -343,7 +100,7 @@ export default function WorkflowsPage() {
           }}
         >
           <Workflow style={{ width: 16, height: 16 }} />
-          Core Concept
+          Architecture
         </div>
 
         <h1
@@ -357,7 +114,7 @@ export default function WorkflowsPage() {
             color: colors.text
           }}
         >
-          Workflow Design
+          Workflows
         </h1>
 
         <p style={{
@@ -366,21 +123,42 @@ export default function WorkflowsPage() {
           color: colors.muted,
           maxWidth: '600px'
         }}>
-          How Esy transforms intent into artifacts through structured, inspectable pipelines.
+          Defined execution pipelines that orchestrate how intent becomes artifact—through sequenced steps, role-bound agents, and structured outputs.
         </p>
       </header>
 
-      {/* The Core Idea */}
+      {/* Definition */}
       <section style={{ marginBottom: 'clamp(4rem, 8vh, 5rem)' }}>
+        <h2
+          id="definition"
+          style={{
+            fontFamily: 'var(--font-literata), Georgia, serif',
+            fontSize: 'clamp(1.625rem, 3.5vw, 2rem)',
+            fontWeight: 400,
+            letterSpacing: '-0.015em',
+            marginBottom: '1.25rem',
+            color: colors.text
+          }}
+        >
+          What Is a Workflow?
+        </h2>
+
         <p style={{
           fontSize: '1.0625rem',
           lineHeight: 1.85,
           color: colors.textSecondary,
           marginBottom: '1.5rem'
         }}>
-          Most AI writing tools are black boxes: you prompt, you get output, you hope for the best.
-          Esy works differently. Every artifact is produced through a <em style={{ color: colors.text, fontStyle: 'normal', fontWeight: 500 }}>visible,
-          step-by-step workflow</em> that you can inspect, modify, and trust.
+          A workflow is a defined sequence of steps that transforms user intent and context into a finished artifact. Each step has a specific purpose, receives specific inputs, produces specific outputs, and is executed by an agent bound to a specific <Link href="/docs/roles" style={{ color: colors.accentLight, textDecoration: 'underline', textUnderlineOffset: '3px' }}>role</Link>.
+        </p>
+
+        <p style={{
+          fontSize: '1.0625rem',
+          lineHeight: 1.85,
+          color: colors.textSecondary,
+          marginBottom: '1.5rem'
+        }}>
+          Workflows are not ad-hoc prompt chains. They are authored artifacts—designed, tested, and versioned. A workflow encodes a repeatable process for producing a particular type of output.
         </p>
 
         <p style={{
@@ -388,43 +166,106 @@ export default function WorkflowsPage() {
           lineHeight: 1.85,
           color: colors.textSecondary
         }}>
-          When you can see how an output was created—what sources were used, what reasoning was applied—you
-          can confidently use that output. You can also fix it when something goes wrong.
+          In Esy&apos;s <Link href="/docs/core-model" style={{ color: colors.accentLight, textDecoration: 'underline', textUnderlineOffset: '3px' }}>execution model</Link>, workflows sit between user input (intent + context) and the agents that perform work. The workflow determines <em style={{ color: colors.text, fontStyle: 'normal' }}>what</em> happens and <em style={{ color: colors.text, fontStyle: 'normal' }}>in what order</em>. Roles determine <em style={{ color: colors.text, fontStyle: 'normal' }}>how</em> each step executes.
         </p>
       </section>
 
-      {/* Interactive Demo */}
+      {/* Workflow vs Other Patterns */}
       <section style={{ marginBottom: 'clamp(4rem, 8vh, 5rem)' }}>
         <h2
-          id="demo"
+          id="distinction"
           style={{
             fontFamily: 'var(--font-literata), Georgia, serif',
             fontSize: 'clamp(1.625rem, 3.5vw, 2rem)',
             fontWeight: 400,
             letterSpacing: '-0.015em',
-            marginBottom: '1rem',
+            marginBottom: '1.25rem',
             color: colors.text
           }}
         >
-          See It In Action
+          Workflows vs. Prompt Chains
         </h2>
 
         <p style={{
-          fontSize: '1rem',
-          lineHeight: 1.8,
-          color: colors.muted,
+          fontSize: '1.0625rem',
+          lineHeight: 1.85,
+          color: colors.textSecondary,
           marginBottom: '1.5rem'
         }}>
-          This demo shows a simplified workflow that generates an infographic brief. Watch the steps execute and see the artifact produced.
+          In prompt-chain systems, users link prompts together: the output of one becomes input to another. This is flexible but unpredictable. Each link depends on the user&apos;s prompt-writing skill, and there are no structural guarantees about what flows between steps.
         </p>
 
-        <WorkflowDemo />
+        <p style={{
+          fontSize: '1.0625rem',
+          lineHeight: 1.85,
+          color: colors.textSecondary,
+          marginBottom: '2rem'
+        }}>
+          Esy workflows differ in key ways:
+        </p>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          {[
+            {
+              icon: <FileText style={{ width: 18, height: 18, color: colors.accent }} />,
+              title: 'Schema-Defined Interfaces',
+              description: 'Each step declares what it receives and produces. Inputs and outputs are typed and validated.'
+            },
+            {
+              icon: <UserCog style={{ width: 18, height: 18, color: colors.accent }} />,
+              title: 'Role-Bound Execution',
+              description: 'Each step is executed by an agent with a defined role contract—not freeform prompts.'
+            },
+            {
+              icon: <Shield style={{ width: 18, height: 18, color: colors.accent }} />,
+              title: 'Quality Gates',
+              description: 'Workflows can include validation steps that check outputs before proceeding.'
+            },
+            {
+              icon: <GitBranch style={{ width: 18, height: 18, color: colors.accent }} />,
+              title: 'Versioned Artifacts',
+              description: 'Workflows are saved, versioned, and can be audited. Execution is reproducible.'
+            },
+          ].map((item) => (
+            <div key={item.title} style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '1rem',
+              padding: '1rem 1.25rem',
+              background: colors.elevated,
+              borderRadius: '10px',
+              border: `1px solid ${colors.border}`
+            }}>
+              <div style={{ flexShrink: 0, marginTop: '0.125rem' }}>
+                {item.icon}
+              </div>
+              <div>
+                <span style={{
+                  fontWeight: 600,
+                  color: colors.text,
+                  fontSize: '0.9375rem'
+                }}>
+                  {item.title}
+                </span>
+                <p style={{
+                  color: colors.muted,
+                  fontSize: '0.875rem',
+                  lineHeight: 1.6,
+                  marginTop: '0.25rem',
+                  marginBottom: 0
+                }}>
+                  {item.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
-      {/* The Pipeline */}
+      {/* Step Anatomy */}
       <section style={{ marginBottom: 'clamp(4rem, 8vh, 5rem)' }}>
         <h2
-          id="pipeline"
+          id="step-anatomy"
           style={{
             fontFamily: 'var(--font-literata), Georgia, serif',
             fontSize: 'clamp(1.625rem, 3.5vw, 2rem)',
@@ -434,36 +275,35 @@ export default function WorkflowsPage() {
             color: colors.text
           }}
         >
-          The Pipeline
+          Anatomy of a Step
         </h2>
 
         <p style={{
           fontSize: '1rem',
           lineHeight: 1.8,
           color: colors.muted,
-          marginBottom: '2.5rem'
+          marginBottom: '2rem'
         }}>
-          Every Esy workflow follows five stages:
+          Each step in a workflow includes these components:
         </p>
 
-        {/* Minimal pipeline visualization */}
-        <div style={{ marginBottom: '3rem' }}>
-          {pipelineStages.map((stage, index) => (
-            <div key={stage.id} style={{ marginBottom: index < pipelineStages.length - 1 ? '1.5rem' : 0 }}>
+        <div style={{ marginBottom: '2rem' }}>
+          {stepAnatomy.map((component, index) => (
+            <div key={component.name} style={{ marginBottom: index < stepAnatomy.length - 1 ? '1.25rem' : 0 }}>
               <div style={{
                 display: 'flex',
                 alignItems: 'flex-start',
-                gap: '1.25rem'
+                gap: '1rem'
               }}>
                 {/* Number indicator */}
                 <div style={{
-                  width: '2rem',
-                  height: '2rem',
+                  width: '1.75rem',
+                  height: '1.75rem',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: '0.8125rem',
+                  fontSize: '0.75rem',
                   fontWeight: 600,
                   color: colors.accent,
                   background: `${colors.accent}12`,
@@ -476,104 +316,127 @@ export default function WorkflowsPage() {
                 {/* Content */}
                 <div style={{ flex: 1 }}>
                   <h3 style={{
-                    fontSize: '1.0625rem',
+                    fontSize: '0.9375rem',
                     fontWeight: 600,
                     color: colors.text,
-                    marginBottom: '0.375rem'
+                    marginBottom: '0.25rem'
                   }}>
-                    {stage.title}
+                    {component.name}
                   </h3>
                   <p style={{
-                    fontSize: '0.9375rem',
+                    fontSize: '0.875rem',
                     lineHeight: 1.7,
                     color: colors.muted,
                     margin: 0
                   }}>
-                    {stage.description}
+                    {component.description}
                   </p>
                 </div>
               </div>
 
               {/* Connector line */}
-              {index < pipelineStages.length - 1 && (
+              {index < stepAnatomy.length - 1 && (
                 <div style={{
-                  marginLeft: '0.9375rem',
-                  marginTop: '0.75rem',
+                  marginLeft: '0.8125rem',
+                  marginTop: '0.5rem',
                   marginBottom: '0.25rem',
                   width: '1px',
-                  height: '1.25rem',
-                  background: `linear-gradient(to bottom, ${colors.accent}40, ${colors.accent}10)`
+                  height: '0.75rem',
+                  background: `linear-gradient(to bottom, ${colors.accent}30, ${colors.accent}10)`
                 }} />
               )}
             </div>
           ))}
         </div>
+
+        <DocsCallout type="info" title="Steps Are Not Prompts">
+          A step definition does not include a user-written prompt. The prompt is generated internally by the system, constructed from the step&apos;s inputs, the assigned role&apos;s contract, and relevant context. Users define <em>what</em> a step should accomplish—not <em>how</em> to instruct the agent.
+        </DocsCallout>
       </section>
 
-      {/* Three Principles */}
+      {/* Example Workflows */}
       <section style={{ marginBottom: 'clamp(4rem, 8vh, 5rem)' }}>
         <h2
-          id="principles"
+          id="examples"
           style={{
             fontFamily: 'var(--font-literata), Georgia, serif',
             fontSize: 'clamp(1.625rem, 3.5vw, 2rem)',
             fontWeight: 400,
             letterSpacing: '-0.015em',
-            marginBottom: '2rem',
+            marginBottom: '1rem',
             color: colors.text
           }}
         >
-          Design Principles
+          Example Workflows
         </h2>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          {[
-            {
-              title: 'Traceable',
-              description: 'Every output links back to its source. You can audit why any claim was made.'
-            },
-            {
-              title: 'Composable',
-              description: 'Workflows are built from reusable steps. Mix and match for different outputs.'
-            },
-            {
-              title: 'Inspectable',
-              description: 'See every intermediate step. Nothing is a black box—you control the process.'
-            }
-          ].map((principle) => (
-            <div key={principle.title} style={{
-              display: 'flex',
-              alignItems: 'flex-start',
-              gap: '1rem'
-            }}>
-              <CheckCircle style={{
-                width: 20,
-                height: 20,
-                color: colors.accent,
-                flexShrink: 0,
-                marginTop: '0.125rem'
-              }} />
-              <div>
-                <span style={{
-                  fontWeight: 600,
-                  color: colors.text
-                }}>
-                  {principle.title}
-                </span>
-                <span style={{ color: colors.subtle }}> — </span>
-                <span style={{ color: colors.muted }}>
-                  {principle.description}
-                </span>
+        <p style={{
+          fontSize: '1rem',
+          lineHeight: 1.8,
+          color: colors.muted,
+          marginBottom: '2rem'
+        }}>
+          These are representative workflows available in Esy. Each is a pre-built pipeline that standard users can invoke directly.
+        </p>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          {workflowExamples.map((workflow) => (
+            <div
+              key={workflow.name}
+              style={{
+                padding: '1.5rem',
+                background: colors.elevated,
+                borderRadius: '12px',
+                border: `1px solid ${colors.border}`
+              }}
+            >
+              <h3 style={{
+                fontSize: '1.0625rem',
+                fontWeight: 600,
+                color: colors.text,
+                marginBottom: '0.5rem'
+              }}>
+                {workflow.name}
+              </h3>
+              <p style={{
+                fontSize: '0.875rem',
+                lineHeight: 1.7,
+                color: colors.muted,
+                marginBottom: '1rem'
+              }}>
+                {workflow.description}
+              </p>
+              <div style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '0.5rem'
+              }}>
+                {workflow.steps.map((step, i) => (
+                  <div key={step} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <span style={{
+                      fontSize: '0.75rem',
+                      color: colors.subtle,
+                      padding: '0.25rem 0.625rem',
+                      background: colors.surface,
+                      borderRadius: '4px'
+                    }}>
+                      {step}
+                    </span>
+                    {i < workflow.steps.length - 1 && (
+                      <ArrowRight style={{ width: 12, height: 12, color: colors.subtle }} />
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Beyond Templates */}
+      {/* Pro Users */}
       <section style={{ marginBottom: 'clamp(4rem, 8vh, 5rem)' }}>
         <h2
-          id="beyond-templates"
+          id="custom-workflows"
           style={{
             fontFamily: 'var(--font-literata), Georgia, serif',
             fontSize: 'clamp(1.625rem, 3.5vw, 2rem)',
@@ -583,97 +446,140 @@ export default function WorkflowsPage() {
             color: colors.text
           }}
         >
-          Beyond Templates
+          Designing Custom Workflows
         </h2>
 
         <p style={{
-          fontSize: '1rem',
-          lineHeight: 1.8,
-          color: colors.muted,
+          fontSize: '1.0625rem',
+          lineHeight: 1.85,
+          color: colors.textSecondary,
           marginBottom: '1.5rem'
         }}>
-          <Link href="/docs/templates" style={{ color: colors.accentLight, textDecoration: 'underline', textUnderlineOffset: '3px' }}>Templates</Link> are
-          pre-built workflows for common tasks. But Esy is designed for users who want to go further—modify steps,
-          add custom validation, chain workflows together, or create entirely new pipelines.
+          Pro users can design workflows beyond the pre-built set. This means:
         </p>
 
-        <DocsCallout type="info" title="Getting Started">
-          Most users start with templates and gradually customize them. You don&apos;t need to design
-          workflows from scratch—just understand the structure so you can modify when needed.
+        <ul style={{
+          listStyle: 'none',
+          padding: 0,
+          margin: '0 0 1.5rem 0'
+        }}>
+          {[
+            'Adding or removing steps from a workflow',
+            'Selecting which role executes each step',
+            'Defining input and output schemas for steps',
+            'Configuring quality gates between steps',
+            'Setting constraints on execution (token limits, format requirements)'
+          ].map((item) => (
+            <li key={item} style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '0.75rem',
+              marginBottom: '0.625rem',
+              fontSize: '0.9375rem',
+              color: colors.muted
+            }}>
+              <CheckCircle style={{ width: 14, height: 14, color: colors.accent, flexShrink: 0, marginTop: '0.25rem' }} />
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <p style={{
+          fontSize: '1.0625rem',
+          lineHeight: 1.85,
+          color: colors.textSecondary,
+          marginBottom: '1.5rem'
+        }}>
+          Workflow design is structural work—defining what happens, not writing prompts. Pro users gain power by composing steps and roles in new combinations, not by crafting more sophisticated natural language instructions.
+        </p>
+
+        <DocsCallout type="note" title="Workflow Design vs. Prompt Writing">
+          Even Pro users do not write raw prompts. The distinction matters: workflow design is about architecture—which steps, which roles, what constraints. Prompt generation remains an internal system function.
         </DocsCallout>
       </section>
 
-      {/* CTA */}
+      {/* Relation to Core Model */}
       <section style={{ marginBottom: 'clamp(4rem, 8vh, 5rem)' }}>
-        <div style={{
-          padding: '2.5rem',
-          background: `linear-gradient(135deg, ${colors.accent}08 0%, ${colors.accent}03 100%)`,
-          borderRadius: '16px',
-          border: `1px solid ${colors.accent}15`,
-          textAlign: 'center'
+        <h2
+          id="core-model"
+          style={{
+            fontFamily: 'var(--font-literata), Georgia, serif',
+            fontSize: 'clamp(1.625rem, 3.5vw, 2rem)',
+            fontWeight: 400,
+            letterSpacing: '-0.015em',
+            marginBottom: '1.25rem',
+            color: colors.text
+          }}
+        >
+          Position in the Core Model
+        </h2>
+
+        <p style={{
+          fontSize: '1.0625rem',
+          lineHeight: 1.85,
+          color: colors.textSecondary,
+          marginBottom: '1.5rem'
         }}>
-          <h2
-            style={{
-              fontFamily: 'var(--font-literata), Georgia, serif',
-              fontSize: '1.5rem',
-              fontWeight: 400,
+          In Esy&apos;s execution order:
+        </p>
+
+        <ol style={{
+          listStyle: 'none',
+          padding: 0,
+          margin: '0 0 1.5rem 0'
+        }}>
+          {[
+            { label: 'Intent', desc: 'User declares what they want to produce' },
+            { label: 'Context', desc: 'User provides or system retrieves relevant materials' },
+            { label: 'Workflow', desc: 'System selects or user chooses the execution pipeline', highlight: true },
+            { label: 'Agent Routing', desc: 'Each step routes to a role-bound agent' },
+            { label: 'Execution', desc: 'Agents execute steps, producing outputs' },
+            { label: 'Artifact', desc: 'Final output is synthesized with provenance' },
+          ].map((item, i) => (
+            <li key={item.label} style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '1rem',
               marginBottom: '0.75rem',
-              color: colors.text
-            }}
-          >
-            Ready to build?
-          </h2>
-          <p style={{
-            fontSize: '0.9375rem',
-            color: colors.muted,
-            marginBottom: '1.75rem',
-            maxWidth: '400px',
-            margin: '0 auto 1.75rem'
-          }}>
-            Start with a template and see the pipeline in action.
-          </p>
-          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link
-              href="https://app.esy.com"
-              style={{
-                display: 'inline-flex',
+              fontSize: '0.9375rem',
+              color: item.highlight ? colors.text : colors.muted,
+              fontWeight: item.highlight ? 500 : 400
+            }}>
+              <span style={{
+                width: '1.5rem',
+                height: '1.5rem',
+                borderRadius: '50%',
+                display: 'flex',
                 alignItems: 'center',
-                gap: '0.5rem',
-                padding: '0.75rem 1.5rem',
-                background: colors.accent,
-                borderRadius: '8px',
-                color: 'white',
-                fontSize: '0.9375rem',
-                fontWeight: 500,
-                textDecoration: 'none',
-                transition: 'transform 0.2s, box-shadow 0.2s'
-              }}
-            >
-              Open Esy
-              <ArrowRight style={{ width: 16, height: 16 }} />
-            </Link>
-            <Link
-              href="/docs/templates"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                padding: '0.75rem 1.5rem',
-                background: colors.elevated,
-                border: `1px solid ${colors.border}`,
-                borderRadius: '8px',
-                color: colors.text,
-                fontSize: '0.9375rem',
-                textDecoration: 'none'
-              }}
-            >
-              Browse Templates
-            </Link>
-          </div>
-        </div>
+                justifyContent: 'center',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                color: item.highlight ? colors.text : colors.accent,
+                background: item.highlight ? colors.accent : `${colors.accent}15`,
+                flexShrink: 0
+              }}>
+                {i + 1}
+              </span>
+              <div>
+                <span style={{ fontWeight: 600 }}>{item.label}</span>
+                <span style={{ color: colors.subtle }}> — </span>
+                <span style={{ fontWeight: 400, color: colors.muted }}>{item.desc}</span>
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <p style={{
+          fontSize: '1.0625rem',
+          lineHeight: 1.85,
+          color: colors.textSecondary
+        }}>
+          Workflows are the bridge between what users want and what agents do. They encode the process by which intent becomes artifact.
+        </p>
       </section>
 
-      {/* Related */}
-      <section>
+      {/* Related Concepts */}
+      <section style={{ marginBottom: 'clamp(4rem, 8vh, 5rem)' }}>
         <h2 style={{
           fontFamily: 'var(--font-literata), Georgia, serif',
           fontSize: '1.25rem',
@@ -681,14 +587,13 @@ export default function WorkflowsPage() {
           marginBottom: '1.25rem',
           color: colors.text
         }}>
-          Related
+          Related Concepts
         </h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           {[
-            { href: "/docs/templates", title: "Templates Overview", desc: "Pre-built workflows" },
-            { href: "/docs/specs", title: "Artifact Specifications", desc: "Structure & provenance" },
-            { href: "/docs/quality", title: "Quality Assurance", desc: "How outputs are validated" },
-            { href: "/docs/agent-workflows", title: "Agent Workflows", desc: "Advanced automation" },
+            { href: "/docs/core-model", title: "Core Model", desc: "Execution architecture overview" },
+            { href: "/docs/roles", title: "Roles", desc: "Agent contracts that define behavior" },
+            { href: "/docs/specs", title: "Artifact Specifications", desc: "Output structure and provenance" },
           ].map((item) => (
             <Link
               key={item.href}
@@ -703,8 +608,6 @@ export default function WorkflowsPage() {
                 transition: 'background 0.15s',
                 background: 'transparent'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.background = colors.elevated}
-              onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
             >
               <div>
                 <span style={{ fontSize: '0.9375rem', fontWeight: 500, color: colors.text }}>
