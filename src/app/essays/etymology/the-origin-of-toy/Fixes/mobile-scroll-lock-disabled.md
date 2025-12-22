@@ -16,7 +16,7 @@ This essay uses **multiple independent scroll-lock implementations**:
 
 | Section | Component | Scroll-Lock Pattern | Mobile Behavior |
 |---------|-----------|---------------------|-----------------|
-| Hero | `HeroSection` | Inline `handleScroll` with `isPinned` state | **DISABLED** |
+| Hero | `HeroSection` | CSS `position: sticky` + JS phases | **DISABLED** |
 | Chapter 1 | `DictionaryArchaeology` | Inline scroll handler + `isPinned` | Active |
 | Chapter 2 | `ShakespeareShuffle` | Inline scroll handler + `isPinned` | Active |
 | Chapter 3 | `ChildhoodInvention` | Inline scroll handler + `isPinned` | Active |
@@ -35,63 +35,79 @@ The `useIsMobile()` hook (lines 49-68) provides mobile detection and can be reus
 
 ---
 
-## The Problem
+## Complete Fix Summary
 
-### What Is Scroll-Lock?
+The mobile fix required changes in **three layers**:
 
-The essay's hero section uses a "scroll-lock" pattern for its cinematic intro animation:
+### Layer 1: CSS — Disable Sticky Positioning
 
-1. User scrolls to the hero section
-2. Page scroll is **locked** (`overflow: hidden` on body)
-3. Wheel events are intercepted to drive animation progress (0-100%)
-4. When animation completes, scroll is **released**
+**File:** `the-origin-of-toy.css` (lines 1082-1131)
 
-This creates a theatrical "unfold" experience where the viewport stays fixed while content animates based on scroll input.
+```css
+@media (max-width: 768px) {
+  /* Remove sticky positioning - hero scrolls naturally */
+  .origin-of-toy .hero-section .hero-content {
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+  }
 
-### Why This Breaks on Mobile
+  /* Reduce hero section height - no need for 600vh scroll distance */
+  .origin-of-toy .hero-section {
+    height: auto !important; /* Override inline style */
+    min-height: 100vh;
+  }
 
-| Desktop | Mobile |
-|---------|--------|
-| Scroll = wheel events | Scroll = touch events |
-| `handleWheel` captures input | No wheel events fired |
-| User can progress animation | **User is stuck** |
+  /* Show final state immediately */
+  .origin-of-toy .hero-section .hero-background {
+    opacity: 1 !important;
+  }
 
-On mobile devices:
-- **No wheel events** — Mobile uses `touchstart`, `touchmove`, `touchend`
-- **Body overflow:hidden** — Prevents ALL scrolling, including touch
-- **User cannot progress** — Animation stuck at 0%, user trapped
-- **Frustrating UX** — Users instinctively swipe up/down, nothing happens
+  /* Show title immediately */
+  .origin-of-toy .hero-section .essay-title-card {
+    opacity: 1 !important;
+  }
 
-### Real User Impact
+  /* Hide scroll-lock UI elements */
+  .origin-of-toy .hero-section .skip-button,
+  .origin-of-toy .hero-section .scroll-lock-progress,
+  .origin-of-toy .hero-section .blocks-progress {
+    display: none !important;
+  }
 
+  /* Hide header (back to essays + category) on mobile */
+  .origin-of-toy .essay-header {
+    display: none !important;
+  }
+
+  /* Hide intermediate animation states, show final word */
+  .origin-of-toy .hero-section .modern-word {
+    display: none;
+  }
+
+  .origin-of-toy .hero-section .medieval-word {
+    opacity: 1 !important;
+    position: relative;
+    transform: none;
+  }
+
+  /* Hide floating definitions on mobile */
+  .origin-of-toy .hero-section .floating-definitions {
+    display: none;
+  }
+}
 ```
-Mobile user experience BEFORE fix:
-1. Scroll to hero section
-2. Screen locks (body overflow: hidden)
-3. Swipe up... nothing happens
-4. Swipe down... nothing happens
-5. Confusion → frustration → bounce
-```
+
+**Why CSS matters:**
+The actual viewport pinning was done via `position: sticky` in CSS, not JavaScript. Without this CSS fix, the hero would still pin on mobile regardless of JS changes.
 
 ---
 
-## The Solution
+### Layer 2: JavaScript — Skip Animation Phases
 
-### Approach: Disable Scroll-Lock on Mobile Entirely
+**File:** `OriginOfToyClient.tsx`
 
-Rather than implementing touch event handlers (complex, easy to get wrong), we **skip the scroll-lock pattern on mobile**.
-
-**Rationale:**
-- Mobile users expect native scroll behavior
-- The cinematic "locked viewport" effect is less impactful on small screens anyway
-- Simpler code with fewer edge cases
-- Touch scroll listeners are notoriously finicky across devices
-
-### Implementation
-
-#### 1. Mobile Detection Hook
-
-Added `useIsMobile()` hook with robust detection:
+#### A. Mobile Detection Hook (lines 49-68)
 
 ```tsx
 const useIsMobile = (): boolean => {
@@ -99,9 +115,7 @@ const useIsMobile = (): boolean => {
 
   useEffect(() => {
     const checkMobile = () => {
-      // Primary: viewport width < 768px (standard mobile breakpoint)
       const isNarrowViewport = window.innerWidth < 768;
-      // Secondary: touch capability on devices < 1024px
       const hasTouchCapability = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
       setIsMobile(isNarrowViewport || (hasTouchCapability && window.innerWidth < 1024));
     };
@@ -115,74 +129,106 @@ const useIsMobile = (): boolean => {
 };
 ```
 
-**Detection Logic:**
-- `width < 768px` → Always mobile (phones, small tablets)
-- `width < 1024px` + touch → Mobile (tablets in portrait)
-- `width >= 1024px` → Desktop (even if touch-capable)
-
-#### 2. Skip Scroll-Lock on Mobile
-
-In `useScrollLock`, added early return:
+#### B. HeroSection Uses Mobile Detection (line 291)
 
 ```tsx
-const useScrollLock = (ref, lockHeight, stages) => {
-  const isMobile = useIsMobile();
+const isMobile = useIsMobile();
+```
 
-  useEffect(() => {
-    if (!ref.current) return;
+#### C. Skip Pinning on Mobile (lines 313-327)
 
-    // MOBILE: Skip scroll-lock entirely
-    if (isMobile) {
-      return; // No listeners attached
-    }
+```tsx
+// MOBILE: Skip pinning entirely - page scrolls naturally
+if (isMobile) {
+  setIsPinned(false);
+  // Still track progress for any visual effects
+  // ...
+  return;
+}
+```
 
-    // Desktop: Normal scroll-lock behavior
-    // ... wheel event handlers, overflow:hidden, etc.
-  }, [ref, lockHeight, stages, isMobile]);
+#### D. Skip Animation Phases on Mobile (lines 365-384)
 
-  return state;
-};
+```tsx
+// MOBILE: Skip all phases, show final state immediately
+const phase1 = !isMobile && scrollProgress >= 0 && scrollProgress < 10;
+const phase2 = !isMobile && scrollProgress >= 10 && scrollProgress < 25;
+const phase3 = !isMobile && scrollProgress >= 25 && scrollProgress < 45;
+const phase4 = !isMobile && scrollProgress >= 45 && scrollProgress < 65;
+const phase5 = !isMobile && scrollProgress >= 65 && scrollProgress < 82;
+const phase6 = isMobile || scrollProgress >= 82;  // ALWAYS true on mobile
+
+const wordVisible = !isMobile;  // Hidden on mobile
+const titleVisible = isMobile || scrollProgress >= 82;  // ALWAYS visible on mobile
+```
+
+#### E. Force Full Opacity on Mobile (lines 410-416)
+
+```tsx
+// Title card - MOBILE: Always fully visible
+const titleOpacity = isMobile ? 1 : (titleVisible ? Math.min(1, (scrollProgress - 82) / 15) : 0);
+
+// Background - MOBILE: Always fully visible
+const backgroundOpacity = isMobile ? 1 : Math.min(1, 0.15 + (scrollProgress / 25) * 0.85);
 ```
 
 ---
 
-## What Happens on Mobile Now
+### Layer 3: UI Elements Hidden
 
-### Before (Broken)
-```
-Hero section → locks scroll → user stuck → frustration
-```
-
-### After (Fixed)
-```
-Hero section → scrolls naturally → user continues reading
-```
-
-The hero section still has its visual styling (background, title, etc.), but:
-- No viewport lock
-- No body overflow manipulation
-- Page scrolls normally through the hero
-- Animation progress tracking disabled (state stays at 0)
+On mobile, these elements are hidden:
+- **Essay header** — "Back to Essays" link + "History" category badge
+- **Skip button** — Not needed since there's no animation
+- **Progress bar** — Not needed since there's no scroll-lock
+- **Blocks progress** — Building blocks indicator
+- **Modern word** — "TOY" that transforms
+- **Floating definitions** — Swirling annotations
+- **Medieval word transform** — Shown statically instead
 
 ---
 
-## Trade-offs
+## What Mobile Users See
 
-### What We Lose on Mobile
-- The cinematic "scroll-to-animate" effect
-- Progress-based opacity/position transitions in hero
-- The theatrical "unfold" experience
+| Element | Desktop | Mobile |
+|---------|---------|--------|
+| Header (back link) | Visible, fixed | **Hidden** |
+| Hero height | 600vh (scroll distance) | 100vh (single screen) |
+| Position | `sticky` (pins to viewport) | `relative` (scrolls normally) |
+| Word animation | 6-phase transformation | **Skipped** |
+| Title card | Fades in at 82% | **Immediately visible** |
+| Background | Fades in gradually | **Immediately visible** |
+| Skip button | Visible during animation | **Hidden** |
+| Progress bar | Shows completion % | **Hidden** |
 
-### What We Gain
-- **Working scroll** — Users can navigate the page
-- **Native feel** — Respects mobile scroll conventions
-- **No frustration** — Users don't get stuck
-- **Simpler code** — No touch event edge cases
+---
 
-### Acceptable Because
-- Mobile screens are small; cinematic effects have less impact
-- The essay content itself is the value, not the intro animation
-- Desktop users (larger screens, more leisure browsing) still get full effect
+## How to Revert
+
+### Full Revert (restore mobile animation)
+
+1. **Remove CSS media query** in `the-origin-of-toy.css`:
+   - Delete lines 1082-1131 (the `@media (max-width: 768px)` block for hero)
+
+2. **Remove mobile checks in JS** in `OriginOfToyClient.tsx`:
+   - Line 291: Remove `const isMobile = useIsMobile();`
+   - Lines 313-327: Remove the `if (isMobile)` early return block
+   - Lines 365-384: Remove `!isMobile &&` prefixes from phase calculations
+   - Lines 410-416: Remove `isMobile ? 1 :` ternary prefixes
+
+3. **Keep the `useIsMobile` hook** — other components might use it later
+
+### Partial Revert (show header only)
+
+Remove only this CSS rule:
+```css
+.origin-of-toy .essay-header {
+  display: none !important;
+}
+```
+
+### Partial Revert (allow animation, keep short height)
+
+Keep the CSS height override but remove phase skipping in JS.
 
 ---
 
@@ -190,45 +236,35 @@ The hero section still has its visual styling (background, title, etc.), but:
 
 | File | Change |
 |------|--------|
-| `OriginOfToyClient.tsx` | Added `useIsMobile` hook, mobile detection in `HeroSection` component |
+| `OriginOfToyClient.tsx` | Added `useIsMobile` hook, mobile detection in `HeroSection`, phase skipping, opacity overrides |
+| `the-origin-of-toy.css` | Added mobile media query to disable sticky, hide elements, show final state |
 | `Fixes/mobile-scroll-lock-disabled.md` | This documentation |
 
-**Note:** Only the hero section scroll-lock is disabled on mobile. All other scroll-lock experiences below the fold (DictionaryArchaeology, ShakespeareShuffle, etc.) retain their pinning behavior on all devices.
+---
+
+## Git Commits
+
+```
+4af1568 Disable hero scroll-lock on mobile for the-origin-of-toy essay
+4fb2fb8 Fix: disable hero scroll-lock pinning on mobile (HeroSection component)
+d50ea6e Document multiple scroll-lock patterns in the-origin-of-toy essay
+a849304 Fix: disable hero scroll-lock on mobile via CSS (position:sticky was the issue)
+152cc27 Fix: show title card immediately on mobile (skip animation phases)
+d64af9c Hide essay header on mobile for the-origin-of-toy
+```
 
 ---
 
 ## Testing Checklist
 
-- [ ] **Desktop Chrome** — Scroll-lock works, animation progresses
-- [ ] **Desktop Firefox** — Scroll-lock works
-- [ ] **Desktop Safari** — Scroll-lock works
-- [ ] **Mobile Chrome (Android)** — Page scrolls normally through hero
-- [ ] **Mobile Safari (iOS)** — Page scrolls normally through hero
-- [ ] **iPad (Portrait)** — Page scrolls normally (touch + width < 1024)
-- [ ] **iPad (Landscape)** — Scroll-lock works (width >= 1024)
-- [ ] **Window resize** — Behavior updates when crossing breakpoint
-
----
-
-## Future Considerations
-
-### If Touch Animation Is Needed Later
-
-Could implement touch handlers, but requires:
-1. `touchstart` — Capture initial Y position
-2. `touchmove` — Calculate delta, update progress
-3. `touchend` — Check if should release lock
-4. Careful handling of `preventDefault` to avoid blocking scroll
-5. Testing across iOS Safari, Chrome, Samsung Browser, etc.
-
-**Recommendation:** Keep current approach unless user research shows mobile users want the animation.
-
-### Alternative: Intersection Observer Animation
-
-For mobile, could drive animations via Intersection Observer (element visibility) rather than scroll position:
-- Less theatrical but still visually interesting
-- Works with native scroll
-- No event hijacking needed
+- [ ] **Desktop Chrome** — Full animation works, all phases visible
+- [ ] **Desktop Firefox** — Full animation works
+- [ ] **Desktop Safari** — Full animation works
+- [ ] **Mobile Chrome (Android)** — Title visible immediately, no animation, no header
+- [ ] **Mobile Safari (iOS)** — Title visible immediately, no animation, no header
+- [ ] **iPad (Portrait)** — Static hero (touch + width < 1024)
+- [ ] **iPad (Landscape)** — Full animation (width >= 1024)
+- [ ] **Window resize** — Behavior updates when crossing 768px breakpoint
 
 ---
 
