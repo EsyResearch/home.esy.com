@@ -17,12 +17,55 @@ import {
 } from "./images";
 
 // ==================== SCROLL-LOCK HOOK ====================
+//
+// MOBILE BEHAVIOR (December 2025):
+// Scroll-lock is DISABLED on mobile devices (width < 768px).
+//
+// Why:
+// - Touch scrolling on mobile doesn't work well with scroll hijacking
+// - The wheel event handler intercepts scroll, but mobile uses touch events
+// - Locking body overflow on mobile creates a frustrating UX where users
+//   cannot scroll at all (no wheel events to progress the animation)
+// - Mobile users expect native scroll behavior; hijacking breaks muscle memory
+//
+// On mobile, the hero section simply scrolls normally with the page.
+// The visual animations still occur based on scroll position (via Intersection
+// Observer in the component), but without the viewport lock.
+//
+// See: /Fixes/mobile-scroll-lock-disabled.md for full documentation
+// ============================================================
 
 interface ScrollLockState {
   isLocked: boolean;
   progress: number; // 0-100
   stage: number;    // For multi-stage animations
 }
+
+/**
+ * Hook to detect if the current device is mobile.
+ * Uses both viewport width and touch capability for robust detection.
+ * Re-evaluates on resize to handle orientation changes.
+ */
+const useIsMobile = (): boolean => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      // Check viewport width (768px is standard tablet/mobile breakpoint)
+      const isNarrowViewport = window.innerWidth < 768;
+      // Also check for touch capability as a secondary signal
+      const hasTouchCapability = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      // Consider mobile if narrow viewport (primary) or touch-only device
+      setIsMobile(isNarrowViewport || (hasTouchCapability && window.innerWidth < 1024));
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  return isMobile;
+};
 
 const useScrollLock = (
   ref: React.RefObject<HTMLElement>,
@@ -36,10 +79,20 @@ const useScrollLock = (
   });
   const scrollStartRef = useRef(0);
   const isActiveRef = useRef(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
+
+    // MOBILE: Skip scroll-lock entirely
+    // On mobile, we don't hijack scroll. The hero section scrolls naturally.
+    // Animations are driven by scroll position via CSS/intersection observer
+    // rather than by locking the viewport and intercepting wheel events.
+    if (isMobile) {
+      // Return early - no scroll lock listeners on mobile
+      return;
+    }
 
     const handleScroll = () => {
       const rect = element.getBoundingClientRect();
@@ -76,14 +129,14 @@ const useScrollLock = (
       }
     };
 
-    // Use wheel event for scroll-lock behavior
+    // Use wheel event for scroll-lock behavior (DESKTOP ONLY)
     const handleWheel = (e: WheelEvent) => {
       if (isActiveRef.current && state.progress < 100) {
         e.preventDefault();
         const scrollLockDistance = (lockHeight / 100) * window.innerHeight;
         const newProgress = Math.min(100, Math.max(0, state.progress + (e.deltaY / scrollLockDistance) * 20));
         const newStage = Math.floor((newProgress / 100) * stages);
-        
+
         setState({ isLocked: true, progress: newProgress, stage: newStage });
 
         if (newProgress >= 100) {
@@ -101,7 +154,7 @@ const useScrollLock = (
       window.removeEventListener("wheel", handleWheel);
       document.body.style.overflow = "";
     };
-  }, [ref, lockHeight, stages, state.progress]);
+  }, [ref, lockHeight, stages, state.progress, isMobile]);
 
   return state;
 };
