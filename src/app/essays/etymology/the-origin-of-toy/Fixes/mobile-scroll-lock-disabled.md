@@ -6,7 +6,32 @@ This document records the decision and implementation to **disable scroll-lock b
 
 **Date:** December 2025
 **Essay:** The Etymology of Play (the-origin-of-toy)
-**Component:** `useScrollLock` hook in `OriginOfToyClient.tsx`
+**Component:** `HeroSection` in `OriginOfToyClient.tsx`
+
+---
+
+## Architecture Note: Multiple Scroll-Lock Patterns
+
+This essay uses **multiple independent scroll-lock implementations**:
+
+| Section | Component | Scroll-Lock Pattern | Mobile Behavior |
+|---------|-----------|---------------------|-----------------|
+| Hero | `HeroSection` | Inline `handleScroll` with `isPinned` state | **DISABLED** |
+| Chapter 1 | `DictionaryArchaeology` | Inline scroll handler + `isPinned` | Active |
+| Chapter 2 | `ShakespeareShuffle` | Inline scroll handler + `isPinned` | Active |
+| Chapter 3 | `ChildhoodInvention` | Inline scroll handler + `isPinned` | Active |
+| Chapter 4 | `ToymakerBench` | Inline scroll handler + `isPinned` | Active |
+| Chapter 5 | `DepartmentStore` | Inline scroll handler + `isPinned` | Active |
+| Chapter 6 | `WordBranches` | Inline scroll handler + `isPinned` | Active |
+| Chapter 7 | `EtymologyReveal` | Inline scroll handler + `isPinned` | Active |
+
+**Why multiple patterns?**
+Each scroll-lock section has unique animation choreography (different progress calculations, phase timings, visual effects). Rather than a single generic hook, each component manages its own scroll state for precise control.
+
+**Shared utility:**
+The `useIsMobile()` hook (lines 49-68) provides mobile detection and can be reused by any component that needs to disable pinning on mobile.
+
+**Note:** The `useScrollLock` hook at the top of the file is **not currently used** by any component. It was an earlier abstraction attempt. The actual scroll-lock behavior is implemented inline within each section component.
 
 ---
 
