@@ -140,9 +140,9 @@ const NotFoundPage = () => {
     {
       id: 'write',
       icon: Lightbulb,
-      title: 'Begin Writing',
-      description: 'Start your inquiry',
-      stat: 'AI-assisted',
+      title: 'Research Workflows',
+      description: 'Design intent-driven artifacts',
+      stat: 'app.esy.com',
       href: 'https://app.esy.com'
     }
   ];
