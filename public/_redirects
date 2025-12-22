@@ -1,5 +1,37 @@
 # Redirect legacy essay paths to new locations
 
+# Etymology essays - moved from /essays/ to /essays/etymology/
+/essays/the-word-essay /essays/etymology/the-word-essay 301
+/essays/the-word-essay/ /essays/etymology/the-word-essay/ 301
+/essays/the-word-robot /essays/etymology/the-word-robot 301
+/essays/the-word-robot/ /essays/etymology/the-word-robot/ 301
+/essays/the-word-dick /essays/etymology/the-word-dick 301
+/essays/the-word-dick/ /essays/etymology/the-word-dick/ 301
+/essays/the-word-pussy /essays/etymology/the-word-pussy 301
+/essays/the-word-pussy/ /essays/etymology/the-word-pussy/ 301
+/essays/the-word-han /essays/etymology/the-word-han 301
+/essays/the-word-han/ /essays/etymology/the-word-han/ 301
+/essays/the-word-animal /essays/etymology/the-word-animal 301
+/essays/the-word-animal/ /essays/etymology/the-word-animal/ 301
+/essays/the-origin-of-animal /essays/etymology/the-origin-of-animal 301
+/essays/the-origin-of-animal/ /essays/etymology/the-origin-of-animal/ 301
+/essays/the-origin-of-sex /essays/etymology/the-origin-of-sex 301
+/essays/the-origin-of-sex/ /essays/etymology/the-origin-of-sex/ 301
+/essays/the-origin-of-toy /essays/etymology/the-origin-of-toy 301
+/essays/the-origin-of-toy/ /essays/etymology/the-origin-of-toy/ 301
+/essays/the-origin-of-the-word-dick /essays/etymology/the-origin-of-the-word-dick 301
+/essays/the-origin-of-the-word-dick/ /essays/etymology/the-origin-of-the-word-dick/ 301
+/essays/the-origin-of-the-word-porn /essays/etymology/the-origin-of-the-word-porn 301
+/essays/the-origin-of-the-word-porn/ /essays/etymology/the-origin-of-the-word-porn/ 301
+/essays/pornography-etymology /essays/etymology/pornography-etymology 301
+/essays/pornography-etymology/ /essays/etymology/pornography-etymology/ 301
+
+# Visual essay redirects to etymology
+/essays/visual/the-word-dick /essays/etymology/the-word-dick 301
+/essays/visual/the-word-dick/ /essays/etymology/the-word-dick/ 301
+/essays/visual/the-origin-of-the-word-dick /essays/etymology/the-origin-of-the-word-dick 301
+/essays/visual/the-origin-of-the-word-dick/ /essays/etymology/the-origin-of-the-word-dick/ 301
+
 # History essays
 /essays/the-manhattan-project /essays/history/the-manhattan-project 301
 /essays/the-manhattan-project/ /essays/history/the-manhattan-project/ 301
