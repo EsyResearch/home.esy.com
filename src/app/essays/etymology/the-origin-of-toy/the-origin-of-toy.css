@@ -1069,6 +1069,64 @@
   opacity: 1; /* Explicit: content remains after scroll-lock completes */
 }
 
+/* ==================== MOBILE: DISABLE HERO SCROLL-LOCK ==================== */
+/*
+ * On mobile devices, the hero scroll-lock experience is disabled because:
+ * 1. Touch scrolling doesn't work well with position:sticky scroll hijacking
+ * 2. The 600vh scroll distance is frustrating on small screens
+ * 3. Mobile users expect content to be immediately accessible
+ *
+ * Desktop retains the full cinematic scroll-lock experience.
+ * See: /Fixes/mobile-scroll-lock-disabled.md
+ */
+@media (max-width: 768px) {
+  /* Remove sticky positioning - hero scrolls naturally */
+  .origin-of-toy .hero-section .hero-content {
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  /* Reduce hero section height - no need for 600vh scroll distance */
+  .origin-of-toy .hero-section {
+    height: auto !important; /* Override inline style */
+    min-height: 100vh;
+  }
+
+  /* Show final state immediately - no scroll-driven animation */
+  .origin-of-toy .hero-section .hero-background {
+    opacity: 1 !important;
+  }
+
+  /* Show title immediately */
+  .origin-of-toy .hero-section .essay-title-card {
+    opacity: 1 !important;
+  }
+
+  /* Hide scroll-lock UI elements */
+  .origin-of-toy .hero-section .skip-button,
+  .origin-of-toy .hero-section .scroll-lock-progress,
+  .origin-of-toy .hero-section .blocks-progress {
+    display: none !important;
+  }
+
+  /* Hide intermediate animation states, show final word */
+  .origin-of-toy .hero-section .modern-word {
+    display: none;
+  }
+
+  .origin-of-toy .hero-section .medieval-word {
+    opacity: 1 !important;
+    position: relative;
+    transform: none;
+  }
+
+  /* Hide floating definitions on mobile */
+  .origin-of-toy .hero-section .floating-definitions {
+    display: none;
+  }
+}
+
 /* Hero background starts at opacity 0 (pure black), controlled by JS */
 .hero-background {
   position: absolute;
