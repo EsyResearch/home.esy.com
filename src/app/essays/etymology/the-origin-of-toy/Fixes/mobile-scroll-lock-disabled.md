@@ -165,8 +165,10 @@ The hero section still has its visual styling (background, title, etc.), but:
 
 | File | Change |
 |------|--------|
-| `OriginOfToyClient.tsx` | Added `useIsMobile` hook, early return in `useScrollLock` |
+| `OriginOfToyClient.tsx` | Added `useIsMobile` hook, mobile detection in `HeroSection` component |
 | `Fixes/mobile-scroll-lock-disabled.md` | This documentation |
+
+**Note:** Only the hero section scroll-lock is disabled on mobile. All other scroll-lock experiences below the fold (DictionaryArchaeology, ShakespeareShuffle, etc.) retain their pinning behavior on all devices.
 
 ---
 

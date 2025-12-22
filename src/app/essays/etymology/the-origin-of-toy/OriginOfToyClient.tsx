@@ -288,7 +288,8 @@ const HeroSection: React.FC = () => {
   const [isPinned, setIsPinned] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  
+  const isMobile = useIsMobile();
+
   // Hydration-safe: Set isMounted after initial render
   useEffect(() => {
     setIsMounted(true);
@@ -303,12 +304,29 @@ const HeroSection: React.FC = () => {
       const windowHeight = window.innerHeight;
       const sectionTop = rect.top;
       const sectionTotalHeight = rect.height;
-      
+
       // Scrollable distance = total height minus one viewport (content stays pinned for that duration)
       // Per scroll-lock-patterns.md: 800-1000px scroll depth per sequence
       const scrollableDistance = sectionTotalHeight - windowHeight;
       const scrolledIntoSection = -sectionTop;
-      
+
+      // MOBILE: Skip pinning entirely - page scrolls naturally
+      // On mobile, we still track progress for any CSS animations, but don't pin
+      if (isMobile) {
+        setIsPinned(false);
+        // Calculate progress based on scroll position for any visual effects
+        if (sectionTop <= 0 && scrolledIntoSection <= scrollableDistance) {
+          const progress = Math.min(100, Math.max(0, (scrolledIntoSection / scrollableDistance) * 100));
+          setScrollProgress(progress);
+          if (progress >= 98) setIsComplete(true);
+        } else {
+          setScrollProgress(sectionTop > 0 ? 0 : 100);
+          if (sectionTop <= 0) setIsComplete(true);
+        }
+        return;
+      }
+
+      // DESKTOP: Full scroll-lock pinning behavior
       // Check if we're in the pinned zone
       if (sectionTop <= 0 && scrolledIntoSection <= scrollableDistance) {
         setIsPinned(true);
@@ -327,7 +345,7 @@ const HeroSection: React.FC = () => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isMobile]);
 
   const handleSkip = useCallback(() => {
     setIsComplete(true);
