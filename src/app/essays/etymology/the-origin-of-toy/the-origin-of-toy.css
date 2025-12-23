@@ -1137,15 +1137,10 @@
     display: none !important;
   }
 
-  /* Hide intermediate animation states, show final word */
+  /* Show the TOY word on mobile - static display */
   .origin-of-toy .hero-section .modern-word {
-    display: none;
-  }
-
-  .origin-of-toy .hero-section .medieval-word {
     opacity: 1 !important;
-    position: relative;
-    transform: none;
+    font-size: clamp(4rem, 18vw, 8rem);
   }
 
   /* Hide floating definitions on mobile */
