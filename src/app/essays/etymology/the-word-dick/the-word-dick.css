@@ -656,7 +656,7 @@
 
 .figure-profile {
   display: grid;
-  grid-template-columns: 150px 1fr;
+  grid-template-columns: 200px 1fr;
   gap: var(--space-lg);
   max-width: var(--wide-width);
   margin: var(--space-xl) auto;
@@ -668,17 +668,53 @@
 
 .figure-portrait {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .portrait-placeholder {
   width: 100%;
-  aspect-ratio: 1;
+  aspect-ratio: 4 / 5;
   background: linear-gradient(145deg, var(--bg-elevated) 0%, var(--bg-deep) 100%);
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.portrait-image {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  filter: grayscale(30%) contrast(1.05);
+  transition: filter 0.3s ease;
+}
+
+.portrait-image:hover {
+  filter: grayscale(0%) contrast(1.1);
+}
+
+.portrait-caption {
+  font-size: 0.7rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.portrait-caption a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.portrait-caption a:hover {
+  border-bottom-color: var(--text-secondary);
 }
 
 .portrait-initial {
@@ -781,9 +817,9 @@
     grid-template-columns: 1fr;
     text-align: center;
   }
-  
+
   .figure-portrait {
-    max-width: 120px;
+    max-width: 180px;
     margin: 0 auto;
   }
   

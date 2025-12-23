@@ -199,6 +199,11 @@ interface FigureProfileProps {
   contributions: string[];
   quote?: string;
   quoteSource?: string;
+  imageUrl?: string;
+  imageAlt?: string;
+  imageCredit?: string;
+  imageLicense?: string;
+  imageSourceUrl?: string;
 }
 
 const FigureProfile: React.FC<FigureProfileProps> = ({
@@ -209,37 +214,64 @@ const FigureProfile: React.FC<FigureProfileProps> = ({
   contributions,
   quote,
   quoteSource,
+  imageUrl,
+  imageAlt,
+  imageCredit,
+  imageLicense,
+  imageSourceUrl,
 }) => {
   const [ref, isVisible] = useIntersectionReveal<HTMLElement>();
-  
+
   return (
-    <figure 
-      ref={ref} 
+    <figure
+      ref={ref}
       className="figure-profile"
-      style={{ 
+      style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(28px)',
         transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
       }}
     >
       <div className="figure-portrait">
-        <div className="portrait-placeholder">
-          <span className="portrait-initial">{initial}</span>
-        </div>
+        {imageUrl ? (
+          <>
+            <img
+              src={imageUrl}
+              alt={imageAlt || name}
+              className="portrait-image"
+            />
+            {imageCredit && (
+              <p className="portrait-caption">
+                {imageSourceUrl ? (
+                  <a href={imageSourceUrl} target="_blank" rel="noopener noreferrer">
+                    {imageCredit}
+                  </a>
+                ) : (
+                  imageCredit
+                )}
+                {imageLicense && <> · {imageLicense}</>}
+              </p>
+            )}
+          </>
+        ) : (
+          <div className="portrait-placeholder">
+            <span className="portrait-initial">{initial}</span>
+          </div>
+        )}
         <div className="portrait-frame" />
       </div>
-      
+
       <figcaption className="figure-details">
         <h4 className="figure-name">{name}</h4>
         <p className="figure-epithet">{epithet}</p>
         <p className="figure-dates">{dates}</p>
-        
+
         <ul className="figure-contributions">
           {contributions.map((item, i) => (
             <li key={i}>{item}</li>
           ))}
         </ul>
-        
+
         {quote && (
           <blockquote className="figure-quote">
             <p>"{quote}"</p>
@@ -551,6 +583,11 @@ export default function TheWordDickClient() {
           epithet="England's Most Famous Richard"
           dates="1157–1199"
           initial="R"
+          imageUrl="https://upload.wikimedia.org/wikipedia/commons/6/6b/Church_of_Fontevraud_Abbey_Richard_I_effigy.jpg"
+          imageAlt="Stone effigy of Richard I lying in repose at Fontevraud Abbey"
+          imageCredit="Effigy at Fontevraud Abbey"
+          imageLicense="CC BY-SA 3.0"
+          imageSourceUrl="https://commons.wikimedia.org/wiki/File:Church_of_Fontevraud_Abbey_Richard_I_effigy.jpg"
           contributions={[
             "King whose legendary status elevated the name's prestige",
             "Third Crusade leader, warrior-king of romance and legend",
@@ -657,6 +694,11 @@ export default function TheWordDickClient() {
           epithet="The Vulgar Lexicographer"
           dates="1731–1791"
           initial="G"
+          imageUrl="https://upload.wikimedia.org/wikipedia/commons/d/da/Captain_Francisa_Grose%2C_FSA.jpg"
+          imageAlt="Oval portrait engraving of Francis Grose, a portly man in 18th-century dress"
+          imageCredit="After Nathaniel Dance, c. 1787"
+          imageLicense="Public Domain"
+          imageSourceUrl="https://commons.wikimedia.org/wiki/File:Captain_Francisa_Grose,_FSA.jpg"
           contributions={[
             "English antiquary and lexicographer",
             "Published 'A Classical Dictionary of the Vulgar Tongue' (1785)",
@@ -721,6 +763,11 @@ export default function TheWordDickClient() {
           epithet="Documenter of the Unspeakable"
           dates="1854–1916"
           initial="F"
+          imageUrl="https://upload.wikimedia.org/wikipedia/commons/b/b2/John_S._Farmer_spiritualist_%28cropped%29.png"
+          imageAlt="Black and white portrait photograph of John S. Farmer"
+          imageCredit="Only known photograph"
+          imageLicense="Public Domain"
+          imageSourceUrl="https://commons.wikimedia.org/wiki/File:John_S._Farmer_spiritualist_(cropped).png"
           contributions={[
             "English lexicographer",
             "'Slang and Its Analogues' (1891) first documented the anatomical meaning",
@@ -779,6 +826,11 @@ export default function TheWordDickClient() {
           epithet="The Last Famous Dick"
           dates="1913–1994"
           initial="N"
+          imageUrl="https://upload.wikimedia.org/wikipedia/commons/2/2c/Richard_Nixon_presidential_portrait_%281%29.jpg"
+          imageAlt="Official presidential portrait of Richard Nixon in the Oval Office"
+          imageCredit="White House Photo Office, 1971"
+          imageLicense="Public Domain"
+          imageSourceUrl="https://commons.wikimedia.org/wiki/File:Richard_Nixon_presidential_portrait_(1).jpg"
           contributions={[
             "37th President of the United States",
             "Consistently called 'Dick Nixon' throughout his career",
