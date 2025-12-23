@@ -176,6 +176,7 @@
 | **G2: Research Complete** | Research → Spec | Research package complete: figures, quotes, timeline, visuals all verified | **Research Orchestrator** | ✅ Yes |
 | **G3: Spec Approval** | Spec → Production | 6-layer spec complete, all content research-backed, no orphan claims | Visual Essay Orchestrator | ✅ Yes |
 | **G4: Design Research** | Pre-Production | Unique visual identity derived from subject matter | **Design Researcher** | ✅ Yes |
+| **G4.5: Image Sourcing** | Pre-Production | All images sourced, URLs extracted, licenses verified | **Image Research Expert** | ✅ Yes |
 | **G5: Content Complete** | Production → Audit | All sections drafted, fact-checked, uses research package | Historian Editor | ✅ Yes |
 | **G6: Citation Audit** | Audit | Citation Certification achieved (content vs. research match) | Citation Audit Agent | ✅ Yes |
 | **G7: Scroll Certification** | Audit | Immersive Scrolling Auditor certification (≥8.0/10) | Scrolling Auditor | ✅ Yes |
@@ -491,6 +492,42 @@ The Design Researcher will:
 
 **Gate 4 Status**: ⏳ Pending / ✅ Approved / ❌ Rejected
 
+#### Step 0.5: Invoke Image Research Expert (Gate 4.5)
+
+```
+Using @agents/research/image-research-licensing-expert.md, source all
+images for visual essay about [TOPIC].
+
+Research Package: [essay-slug]/research/
+Spec: specs/[topic-slug].md
+Design Research Report: [location]
+
+Produce VISUALS.md files for each chapter with:
+- Identified archival sources (LOC, Wikimedia, museums)
+- Direct image URLs extracted using @skills/image-url-extraction/
+- License verification for each image
+- Attribution text ready for publication
+- High-resolution downloads or verified external URLs
+```
+
+The Image Research Expert will:
+1. Review research package for visual requirements
+2. Search Tier 1 archives (LOC, Wikimedia Commons, Smithsonian, etc.)
+3. Use `image-url-extraction` skill to get direct URLs
+4. Verify licenses (public domain, CC, etc.)
+5. Create VISUALS.md per chapter with complete documentation
+6. Deliver image package ready for implementation
+
+**Gate 4.5 Checklist**:
+- [ ] VISUALS.md exists for each chapter/module
+- [ ] All image URLs are direct links (not file pages)
+- [ ] All URLs verified with `curl -sI` (Content-Type: image/*)
+- [ ] License status confirmed for each image
+- [ ] Attribution text prepared
+- [ ] No Tier 3/aggregator sources without verification
+
+**Gate 4.5 Status**: ⏳ Pending / ✅ Approved / ❌ Rejected
+
 #### Step 1: Invoke Scrollytelling Expert
 
 ```
@@ -687,14 +724,16 @@ Produce certification report with:
 ### Quality Gate Summary
 | Gate | Status |
 |------|--------|
-| G1: Brief Approval | ✅ |
-| G2: Design Research | ✅ |
-| G3: Content Complete | ✅ |
-| G4: Citation Research | ✅ |
-| G5: Citation Audit | ✅ |
-| G6: Scroll Certification | ✅ |
-| G7: Mobile Verification | ✅ |
-| G8: Publication Approval | ✅ |
+| G1: Intake Approval | ✅ |
+| G2: Research Complete | ✅ |
+| G3: Spec Approval | ✅ |
+| G4: Design Research | ✅ |
+| G4.5: Image Sourcing | ✅ |
+| G5: Content Complete | ✅ |
+| G6: Citation Audit | ✅ |
+| G7: Scroll Certification | ✅ |
+| G8: Mobile Verification | ✅ |
+| G9: Publication Approval | ✅ |
 
 ### Citation Certification
 - **Certification Status**: ✅ Certified
@@ -903,6 +942,34 @@ Spec: specs/[topic-slug].md
 6. Director initiates Audit (Phase 5)
 
 > **Key**: Writers reference the research package — they do not fabricate sources. Design follows Design Research Report — no arbitrary design choices.
+
+### Working With image-research-licensing-expert.md
+**Role**: Image sourcing and rights verification for Gate 4.5
+
+**Division of Responsibilities**
+- **Visual Essay Orchestrator**: Pipeline management, Gate 4.5 approval
+- **Image Research Expert**: Archive search, URL extraction, license verification
+- **Shared**: Visual quality standards, attribution requirements
+
+**Invocation Protocol**
+```
+Using @agents/research/image-research-licensing-expert.md, source all
+images for visual essay about [TOPIC].
+
+Research Package: [essay-slug]/research/
+Use @skills/image-url-extraction/ for direct URL extraction.
+```
+
+**Handoff Protocol**
+1. Visual Essay Orchestrator invokes after Gate 4 (Design Research)
+2. Image Research Expert reviews research package for visual needs
+3. Image Research Expert searches Tier 1 archives
+4. Image Research Expert extracts direct URLs using skill
+5. Image Research Expert delivers VISUALS.md per chapter
+6. Visual Essay Orchestrator verifies and approves Gate 4.5
+7. Images integrated during Content Complete (G5)
+
+---
 
 ### Working With research-citations-expert.md
 **Role**: Source discovery and verification

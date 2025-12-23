@@ -756,6 +756,18 @@ export const visualEssays: VisualEssay[] = [
     tags: ["sugar", "artificial sweeteners", "HFCS", "saccharin", "aspartame", "stevia", "food history", "public health", "obesity", "sweetener timeline"],
     visualStyle: "illustrated",
   },
+  {
+    id: "palestine-israel",
+    number: "71",
+    title: "Eretz / Filastin",
+    subtitle: "A Land of Many Names, A People's Many Griefs",
+    description: "A comprehensive visual essay tracing the history of the land known as Palestine, Israel, Canaan, and many other names—from deep antiquity through the present conflict. Explores archaeology, empires, nationalisms, and the contested claims of two peoples.",
+    category: "History",
+    readTime: "45 min",
+    href: "/essays/history/palestine-israel",
+    tags: ["palestine", "israel", "middle east", "conflict", "history", "nakba", "zionism", "nationalism", "archaeology", "jerusalem"],
+    visualStyle: "photorealistic",
+  },
   // Children's Fiction (draft - not shown in production)
   {
     id: "the-night-the-stars-fell",

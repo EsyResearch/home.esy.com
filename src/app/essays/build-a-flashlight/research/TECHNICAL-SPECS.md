@@ -251,3 +251,4 @@ Nearest standard value: 68Ω
 
 
 
+
