@@ -85,7 +85,7 @@
    ============================================ */
 .honey-story .honey-drip-progress {
   position: fixed;
-  left: 2rem;
+  left: 0;
   top: 0;
   z-index: 100;
   width: 30px;
@@ -111,7 +111,7 @@
   right: 0;
   background: linear-gradient(180deg, var(--honey-light) 0%, var(--honey-gold) 50%, var(--honey-dark) 100%);
   border-radius: 0 0 15px 15px;
-  transition: height 0.1s ease;
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .honey-story .drip-blob {
@@ -210,11 +210,18 @@
   50% { transform: translateY(-15px) rotate(5deg); }
 }
 
+/* Override global .hero-content grid styles from globals.css */
 .honey-story .hero-content {
   position: relative;
   z-index: 10;
   text-align: center;
   max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Explicitly unset global grid properties */
+  grid-template-columns: unset;
+  gap: unset;
 }
 
 .honey-story .hero-jar {
@@ -229,6 +236,7 @@
   height: 100%;
 }
 
+/* Override global .hero-title gradient/animation from globals.css */
 .honey-story .hero-title {
   font-family: var(--font-elegant);
   font-size: clamp(2.5rem, 8vw, 4rem);
@@ -236,6 +244,11 @@
   color: var(--text-dark);
   line-height: 1.1;
   margin-bottom: 0.5rem;
+  /* Reset global gradient/animation */
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  background-clip: border-box;
+  animation: none;
 }
 
 .honey-story .hero-title .gold {
@@ -741,7 +754,7 @@
   }
   
   .honey-story .honey-drip-progress {
-    left: 1rem;
+    left: 0;
     width: 20px;
   }
   
