@@ -774,8 +774,8 @@
   }
 }
 
-/* Click-based navigation hero (replaces scroll-lock) */
-.pi-hero-click-nav {
+/* Static hero - simple title display */
+.pi-hero-static {
   position: relative;
   height: 100vh;
   overflow: hidden;
@@ -792,21 +792,31 @@
   overflow: hidden;
 }
 
-/* Click zone - tap anywhere to advance */
-.pi-hero-click-zone {
+/* Static title stage - always visible */
+.pi-hero-stage-title {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Scroll hint at bottom */
+.pi-hero-scroll-hint {
   position: absolute;
-  inset: 0;
-  z-index: 5;
-  cursor: pointer;
+  bottom: var(--pi-space-2xl);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--pi-space-sm);
+  color: var(--pi-text-muted);
+  font-size: var(--pi-type-caption);
+  animation: pi-pulse 2s ease-in-out infinite;
+  z-index: 15;
 }
 
-.pi-hero-click-zone:focus {
-  outline: none;
-}
-
-.pi-hero-click-zone:focus-visible {
-  outline: 2px solid var(--pi-gold);
-  outline-offset: -2px;
+.pi-hero-scroll-hint svg {
+  width: 24px;
+  height: 24px;
 }
 
 .pi-hero-background {
@@ -1691,6 +1701,17 @@
 
 .pi-source-title {
   color: var(--pi-text-primary);
+}
+
+.pi-source-link {
+  text-decoration: none;
+  border-bottom: 1px solid var(--pi-gold);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.pi-source-link:hover {
+  color: var(--pi-gold);
+  border-color: transparent;
 }
 
 .pi-source-author {

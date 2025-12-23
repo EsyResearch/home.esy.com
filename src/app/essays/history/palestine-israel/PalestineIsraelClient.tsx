@@ -523,158 +523,20 @@ const ChapterImages: React.FC<{ chapterId: string }> = ({ chapterId }) => {
   );
 };
 
-// Hero Section with CLICK/TAP navigation (presentation-style slideshow)
-// Users click/tap to advance through 8 stages
-const TOTAL_STAGES = 8;
-
+// Hero Section - Static title display (no interaction required)
 const HeroSection: React.FC = () => {
-  const heroRef = useRef<HTMLElement>(null);
-  const [currentStage, setCurrentStage] = useState(0);
-  const [isComplete, setIsComplete] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-  const isMobile = useIsMobile();
-
-  // Hydration-safe: Set isMounted after initial render
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  // Navigation handlers
-  const handleComplete = useCallback(() => {
-    setIsComplete(true);
-    if (heroRef.current) {
-      const heroBottom = heroRef.current.offsetTop + heroRef.current.offsetHeight;
-      window.scrollTo({ top: heroBottom, behavior: "smooth" });
-    }
-  }, []);
-
-  const goToNextStage = useCallback(() => {
-    if (currentStage < TOTAL_STAGES - 1) {
-      setCurrentStage(prev => prev + 1);
-    } else {
-      // On final stage, complete and scroll to content
-      handleComplete();
-    }
-  }, [currentStage, handleComplete]);
-
-  const goToPrevStage = useCallback(() => {
-    if (currentStage > 0) {
-      setCurrentStage(prev => prev - 1);
-    }
-  }, [currentStage]);
-
-  const goToStage = useCallback((stage: number) => {
-    if (stage >= 0 && stage < TOTAL_STAGES) {
-      setCurrentStage(stage);
-    }
-  }, []);
-
-  const handleSkip = useCallback(() => {
-    handleComplete();
-  }, [handleComplete]);
-
-  // Keyboard navigation
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    switch (e.key) {
-      case 'ArrowRight':
-      case ' ':
-        e.preventDefault();
-        goToNextStage();
-        break;
-      case 'ArrowLeft':
-        e.preventDefault();
-        goToPrevStage();
-        break;
-      case 'Escape':
-        e.preventDefault();
-        handleComplete();
-        break;
-    }
-  }, [goToNextStage, goToPrevStage, handleComplete]);
-
-  // Background zoom tied to stage progression
-  const zoomLevel = 1 + (currentStage / TOTAL_STAGES) * 0.2;
-
   return (
-    <section
-      ref={heroRef}
-      className={`pi-hero-section pi-hero-click-nav ${isComplete ? "is-complete" : ""}`}
-      aria-label="Introduction to the essay"
-      aria-roledescription="slideshow"
-    >
-      {/* Click zone - tap anywhere to advance */}
-      <div
-        className="pi-hero-click-zone"
-        onClick={goToNextStage}
-        onKeyDown={handleKeyDown}
-        tabIndex={0}
-        role="button"
-        aria-label={currentStage === TOTAL_STAGES - 1 ? "Click to begin reading" : "Click to advance"}
-      />
-
+    <section className="pi-hero-section pi-hero-static" aria-label="Essay title">
       <div className="pi-hero-pinned-content">
         <div className="pi-hero-background">
-          <div className="pi-hero-image-wrapper" style={{ transform: `scale(${zoomLevel}) translateZ(0)`, willChange: "transform" }}>
+          <div className="pi-hero-image-wrapper" style={{ transform: "scale(1.2) translateZ(0)" }}>
             <div className="pi-hero-placeholder"><div className="pi-land-gradient" /></div>
           </div>
           <div className="pi-hero-gradient" />
         </div>
 
-        {/* Stage 0: Aerial view, coordinates */}
-        <div className={`pi-hero-stage pi-hero-stage-1 ${currentStage === 0 ? 'active' : ''}`}>
-          <p className="pi-hero-coords">31.5°N, 34.8°E</p>
-          <p className="pi-hero-tagline">60 miles wide. 4,000 years contested.</p>
-        </div>
-
-        {/* Stage 1: Camera descends */}
-        <div className={`pi-hero-stage pi-hero-stage-2 ${currentStage === 1 ? 'active' : ''}`}>
-          <p className="pi-hero-narration">Beneath every village, another village.<br />Beneath every name, another name.</p>
-        </div>
-
-        {/* Stage 2: Names cascade */}
-        <div className={`pi-hero-stage pi-hero-stage-3 ${currentStage === 2 ? 'active' : ''}`}>
-          <div className="pi-names-cascade pi-names-cascade-animated">
-            <span className="pi-name pi-name-ancient">Canaan</span>
-            <span className="pi-name pi-name-ancient">Peleset</span>
-            <span className="pi-name pi-name-biblical">Israel</span>
-            <span className="pi-name pi-name-biblical">Judah</span>
-            <span className="pi-name pi-name-roman">Palaestina</span>
-            <span className="pi-name pi-name-islamic">Jund Filastin</span>
-            <span className="pi-name pi-name-crusader">Terra Sancta</span>
-            <span className="pi-name pi-name-modern">Palestine</span>
-            <span className="pi-name pi-name-modern">Eretz Israel</span>
-          </div>
-        </div>
-
-        {/* Stage 3: Jerusalem focus */}
-        <div className={`pi-hero-stage pi-hero-stage-4 ${currentStage === 3 ? 'active' : ''}`}>
-          <p className="pi-hero-jerusalem">Jerusalem</p>
-          <p className="pi-hero-narration">One city, sacred to three faiths.<br />Claimed by all, owned by none.</p>
-        </div>
-
-        {/* Stage 4: Sacred sites */}
-        <div className={`pi-hero-stage pi-hero-stage-5 ${currentStage === 4 ? 'active' : ''}`}>
-          <p className="pi-hero-narration pi-hero-sacred">
-            Where the God of Abraham is worshipped<br />in Hebrew, Arabic, and Greek—<br />and where his followers have killed each other for centuries.
-          </p>
-        </div>
-
-        {/* Stage 5: Modern division */}
-        <div className={`pi-hero-stage pi-hero-stage-6 ${currentStage === 5 ? 'active' : ''}`}>
-          <p className="pi-hero-narration">Today, two peoples claim this land.<br />Neither is going away.</p>
-        </div>
-
-        {/* Stage 6: Population numbers */}
-        <div className={`pi-hero-stage pi-hero-stage-7 ${currentStage === 6 ? 'active' : ''}`}>
-          <div className="pi-hero-numbers">
-            <div className="pi-number-block"><span className="pi-number">7</span><span className="pi-number-label">million Jews</span></div>
-            <div className="pi-number-block"><span className="pi-number">7</span><span className="pi-number-label">million Palestinians</span></div>
-          </div>
-          <p className="pi-hero-narration">One land.</p>
-        </div>
-
-        {/* Stage 7: Final title */}
-        <div className={`pi-hero-stage pi-hero-stage-8 ${currentStage === 7 ? 'active' : ''}`}>
+        {/* Title display - always visible */}
+        <div className="pi-hero-stage pi-hero-stage-title active">
           <h1 className="pi-hero-title">
             <span className="pi-title-hebrew">ארץ</span>
             <span className="pi-title-divider">/</span>
@@ -684,60 +546,13 @@ const HeroSection: React.FC = () => {
           <p className="pi-hero-subtitle-small">From Deep Antiquity to Today</p>
         </div>
 
-        {/* Navigation: Stage indicator dots */}
-        <nav className="pi-hero-stage-nav" aria-label="Hero stages">
-          {Array.from({ length: TOTAL_STAGES }).map((_, index) => (
-            <button
-              key={index}
-              className={`pi-hero-dot ${index === currentStage ? 'active' : ''} ${index < currentStage ? 'completed' : ''}`}
-              onClick={(e) => { e.stopPropagation(); goToStage(index); }}
-              aria-label={`Go to stage ${index + 1} of ${TOTAL_STAGES}`}
-              aria-current={index === currentStage ? 'step' : undefined}
-            />
-          ))}
-        </nav>
-
-        {/* Navigation: Arrow buttons (desktop only) */}
-        {isMounted && !isMobile && currentStage > 0 && (
-          <button
-            className="pi-hero-nav-arrow pi-hero-nav-prev"
-            onClick={(e) => { e.stopPropagation(); goToPrevStage(); }}
-            aria-label="Previous stage"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-        )}
-        {isMounted && !isMobile && (
-          <button
-            className="pi-hero-nav-arrow pi-hero-nav-next"
-            onClick={(e) => { e.stopPropagation(); goToNextStage(); }}
-            aria-label={currentStage === TOTAL_STAGES - 1 ? "Begin reading" : "Next stage"}
-          >
-            {currentStage === TOTAL_STAGES - 1 ? (
-              <span className="pi-hero-begin-text">Begin</span>
-            ) : (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M9 5l7 7-7 7" />
-              </svg>
-            )}
-          </button>
-        )}
-
-        {/* Skip button - always visible */}
-        {isMounted && !isComplete && (
-          <button className="pi-hero-skip" onClick={(e) => { e.stopPropagation(); handleSkip(); }} aria-label="Skip introduction">
-            Skip intro
-          </button>
-        )}
-
-        {/* Tap prompt (mobile) / Click prompt (desktop) on first stage only */}
-        {currentStage === 0 && (
-          <div className="pi-hero-tap-prompt">
-            <span>{isMobile ? 'Tap to begin' : 'Click to begin'}</span>
-          </div>
-        )}
+        {/* Scroll hint */}
+        <div className="pi-hero-scroll-hint">
+          <span>Scroll to begin</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
       </div>
     </section>
   );
@@ -1169,20 +984,20 @@ const sidebars: SidebarContent[] = [
 // ============================================================================
 
 const sources: Source[] = [
-  { title: "A History of Modern Palestine", author: "Ilan Pappé", type: "academic", tradition: "Israeli" },
-  { title: "The Question of Palestine", author: "Edward Said", type: "academic", tradition: "Palestinian" },
-  { title: "1948: A History of the First Arab-Israeli War", author: "Benny Morris", type: "academic", tradition: "Israeli" },
-  { title: "The Ethnic Cleansing of Palestine", author: "Ilan Pappé", type: "academic", tradition: "Israeli" },
-  { title: "Palestine: A Four Thousand Year History", author: "Nur Masalha", type: "academic", tradition: "Palestinian" },
-  { title: "The Bible Unearthed", author: "Israel Finkelstein & Neil Silberman", type: "academic", tradition: "Israeli" },
-  { title: "The Birth of the Palestinian Refugee Problem Revisited", author: "Benny Morris", type: "academic", tradition: "Israeli" },
-  { title: "Palestinian Identity", author: "Rashid Khalidi", type: "academic", tradition: "Palestinian" },
-  { title: "Iron Cage: The Story of the Palestinian Struggle for Statehood", author: "Rashid Khalidi", type: "academic", tradition: "Palestinian" },
-  { title: "UN Information System on the Question of Palestine", type: "institutional", tradition: "International" },
-  { title: "B'Tselem Human Rights Reports", type: "institutional", tradition: "Israeli" },
-  { title: "Institute for Palestine Studies", type: "institutional", tradition: "Palestinian" },
-  { title: "Amnesty International Reports", type: "institutional", tradition: "International" },
-  { title: "UN OCHA Reports on Gaza", type: "institutional", tradition: "International" },
+  { title: "A History of Modern Palestine", author: "Ilan Pappé", type: "academic", tradition: "Israeli", url: "https://www.cambridge.org/core/books/history-of-modern-palestine/340212C82BBF67C63552F6B822E10B0C" },
+  { title: "The Question of Palestine", author: "Edward Said", type: "academic", tradition: "Palestinian", url: "https://www.penguinrandomhouse.com/books/159795/the-question-of-palestine-by-edward-w-said/" },
+  { title: "1948: A History of the First Arab-Israeli War", author: "Benny Morris", type: "academic", tradition: "Israeli", url: "https://yalebooks.yale.edu/book/9780300151121/1948/" },
+  { title: "The Ethnic Cleansing of Palestine", author: "Ilan Pappé", type: "academic", tradition: "Israeli", url: "https://oneworld-publications.com/work/the-ethnic-cleansing-of-palestine/" },
+  { title: "Palestine: A Four Thousand Year History", author: "Nur Masalha", type: "academic", tradition: "Palestinian", url: "https://www.goodreads.com/book/show/36645450-palestine" },
+  { title: "The Bible Unearthed", author: "Israel Finkelstein & Neil Silberman", type: "academic", tradition: "Israeli", url: "https://www.simonandschuster.com/books/The-Bible-Unearthed/Israel-Finkelstein/9780684869131" },
+  { title: "The Birth of the Palestinian Refugee Problem Revisited", author: "Benny Morris", type: "academic", tradition: "Israeli", url: "https://www.cambridge.org/core/books/birth-of-the-palestinian-refugee-problem-revisited/8AE72A6813CEA7DDDE8F9386313F0D97" },
+  { title: "Palestinian Identity", author: "Rashid Khalidi", type: "academic", tradition: "Palestinian", url: "https://cup.columbia.edu/book/palestinian-identity/9780231150750" },
+  { title: "The Iron Cage", author: "Rashid Khalidi", type: "academic", tradition: "Palestinian", url: "https://www.beacon.org/The-Iron-Cage-P669.aspx" },
+  { title: "UN Information System on the Question of Palestine", type: "institutional", tradition: "International", url: "https://www.un.org/unispal/" },
+  { title: "B'Tselem Human Rights Reports", type: "institutional", tradition: "Israeli", url: "https://www.btselem.org/" },
+  { title: "Institute for Palestine Studies", type: "institutional", tradition: "Palestinian", url: "https://www.palestine-studies.org/" },
+  { title: "Amnesty International Reports", type: "institutional", tradition: "International", url: "https://www.amnesty.org/en/location/middle-east-and-north-africa/middle-east/israel-and-the-occupied-palestinian-territory/report-israel-and-the-occupied-palestinian-territory/" },
+  { title: "UN OCHA Reports on Gaza", type: "institutional", tradition: "International", url: "https://www.ochaopt.org/" },
 ];
 
 // ============================================================================
@@ -1246,7 +1061,11 @@ const PalestineIsraelClient: React.FC = () => {
           <ul className="pi-sources-list">
             {sources.map((source, index) => (
               <li key={index}>
-                <span className="pi-source-title">{source.title}</span>
+                {source.url ? (
+                  <a href={source.url} target="_blank" rel="noopener noreferrer" className="pi-source-title pi-source-link">{source.title}</a>
+                ) : (
+                  <span className="pi-source-title">{source.title}</span>
+                )}
                 {source.author && <span className="pi-source-author"> — {source.author}</span>}
                 <span className="pi-source-type">{source.type}</span>
                 <span className="pi-source-tradition">{source.tradition}</span>
