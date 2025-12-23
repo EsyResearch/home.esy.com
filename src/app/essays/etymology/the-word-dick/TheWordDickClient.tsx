@@ -452,6 +452,9 @@ const SSAChart: React.FC = () => {
         <div className="ssa-milestone-year">2014</div>
         <div className="ssa-milestone-text">Fewer than 5 babies named Dick in the United States</div>
       </div>
+      <p className="ssa-chart-source">
+        Source: <a href="https://www.ssa.gov/oact/babynames/" target="_blank" rel="noopener noreferrer">U.S. Social Security Administration</a>
+      </p>
     </div>
   );
 };
