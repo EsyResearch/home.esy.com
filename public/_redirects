@@ -1,5 +1,63 @@
 # Redirect legacy essay paths to new locations
 
+# Scrollytelling redirects - moved from /scrollytelling/ to /essays/
+/scrollytelling/honey-never-spoils /essays/honey-never-spoils 301
+/scrollytelling/honey-never-spoils/ /essays/honey-never-spoils/ 301
+/scrollytelling/mammary-gland-evolution /essays/mammary-gland-evolution 301
+/scrollytelling/mammary-gland-evolution/ /essays/mammary-gland-evolution/ 301
+/scrollytelling/evolution-of-mammary-glands /essays/evolution-of-mammary-glands 301
+/scrollytelling/evolution-of-mammary-glands/ /essays/evolution-of-mammary-glands/ 301
+/scrollytelling/eternal-honey /essays/eternal-honey 301
+/scrollytelling/eternal-honey/ /essays/eternal-honey/ 301
+/scrollytelling/the-dna-helix /essays/the-dna-helix 301
+/scrollytelling/the-dna-helix/ /essays/the-dna-helix/ 301
+/scrollytelling/the-skyscraper /essays/the-skyscraper 301
+/scrollytelling/the-skyscraper/ /essays/the-skyscraper/ 301
+/scrollytelling/the-firearm /essays/the-firearm 301
+/scrollytelling/the-firearm/ /essays/the-firearm/ 301
+/scrollytelling/the-train /essays/the-train 301
+/scrollytelling/the-train/ /essays/the-train/ 301
+/scrollytelling/the-invention-of-the-car /essays/the-invention-of-the-car 301
+/scrollytelling/the-invention-of-the-car/ /essays/the-invention-of-the-car/ 301
+/scrollytelling/the-invention-of-wine /essays/the-invention-of-wine 301
+/scrollytelling/the-invention-of-wine/ /essays/the-invention-of-wine/ 301
+/scrollytelling/the-pale-blue-dot /essays/the-pale-blue-dot 301
+/scrollytelling/the-pale-blue-dot/ /essays/the-pale-blue-dot/ 301
+/scrollytelling/the-deep-ocean /essays/the-deep-ocean 301
+/scrollytelling/the-deep-ocean/ /essays/the-deep-ocean/ 301
+/scrollytelling/language-death /essays/language-death 301
+/scrollytelling/language-death/ /essays/language-death/ 301
+/scrollytelling/who-invented-the-mirror /essays/who-invented-the-mirror 301
+/scrollytelling/who-invented-the-mirror/ /essays/who-invented-the-mirror/ 301
+/scrollytelling/who-invented-soda /essays/who-invented-soda 301
+/scrollytelling/who-invented-soda/ /essays/who-invented-soda/ 301
+/scrollytelling/who-invented-the-sneaker /essays/who-invented-the-sneaker 301
+/scrollytelling/who-invented-the-sneaker/ /essays/who-invented-the-sneaker/ 301
+/scrollytelling/who-invented-high-heels /essays/who-invented-high-heels 301
+/scrollytelling/who-invented-high-heels/ /essays/who-invented-high-heels/ 301
+/scrollytelling/who-invented-the-bicycle /essays/who-invented-the-bicycle 301
+/scrollytelling/who-invented-the-bicycle/ /essays/who-invented-the-bicycle/ 301
+/scrollytelling/who-invented-the-spoon /essays/who-invented-the-spoon 301
+/scrollytelling/who-invented-the-spoon/ /essays/who-invented-the-spoon/ 301
+/scrollytelling/who-invented-basketball /essays/who-invented-basketball 301
+/scrollytelling/who-invented-basketball/ /essays/who-invented-basketball/ 301
+/scrollytelling/who-invented-the-fork /essays/who-invented-the-fork 301
+/scrollytelling/who-invented-the-fork/ /essays/who-invented-the-fork/ 301
+/scrollytelling/how-to-write-an-essay /essays/foundations/how-to-write-an-essay 301
+/scrollytelling/how-to-write-an-essay/ /essays/foundations/how-to-write-an-essay/ 301
+/scrollytelling/the-night-the-stars-fell /essays/the-night-the-stars-fell 301
+/scrollytelling/the-night-the-stars-fell/ /essays/the-night-the-stars-fell/ 301
+/scrollytelling/the-monster-under-my-bed /essays/the-monster-under-my-bed 301
+/scrollytelling/the-monster-under-my-bed/ /essays/the-monster-under-my-bed/ 301
+/scrollytelling/mia-mouse-mystery-m /essays/mia-mouse-mystery-m 301
+/scrollytelling/mia-mouse-mystery-m/ /essays/mia-mouse-mystery-m/ 301
+/scrollytelling/alphabet-adventure-train /essays/alphabet-adventure-train 301
+/scrollytelling/alphabet-adventure-train/ /essays/alphabet-adventure-train/ 301
+/scrollytelling/sammy-snail-super-speed /essays/sammy-snail-super-speed 301
+/scrollytelling/sammy-snail-super-speed/ /essays/sammy-snail-super-speed/ 301
+/scrollytelling/flavors-of-the-east /essays/flavors-of-the-east 301
+/scrollytelling/flavors-of-the-east/ /essays/flavors-of-the-east/ 301
+
 # Etymology essays - moved from /essays/ to /essays/etymology/
 /essays/the-word-essay /essays/etymology/the-word-essay 301
 /essays/the-word-essay/ /essays/etymology/the-word-essay/ 301
