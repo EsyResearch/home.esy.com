@@ -774,12 +774,14 @@
   }
 }
 
-.pi-hero-scroll-lock {
+/* Click-based navigation hero (replaces scroll-lock) */
+.pi-hero-click-nav {
   position: relative;
-  /* Height set via inline style (500vh) for scroll-based progress */
+  height: 100vh;
+  overflow: hidden;
 }
 
-/* Pinned content wrapper - holds all hero content */
+/* Hero content wrapper */
 .pi-hero-pinned-content {
   position: relative;
   width: 100%;
@@ -790,33 +792,21 @@
   overflow: hidden;
 }
 
-/* When pinned, fix the content in place */
-.pi-hero-pinned-content.pinned {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-}
-
-/* When complete, position at bottom of section */
-.pi-hero-scroll-lock.is-complete .pi-hero-pinned-content {
+/* Click zone - tap anywhere to advance */
+.pi-hero-click-zone {
   position: absolute;
-  bottom: 0;
-  top: auto;
+  inset: 0;
+  z-index: 5;
+  cursor: pointer;
 }
 
-/* Mobile: no pinning, just flow normally */
-@media (max-width: 767px) {
-  .pi-hero-scroll-lock {
-    height: auto !important;
-    min-height: 100vh;
-  }
+.pi-hero-click-zone:focus {
+  outline: none;
+}
 
-  .pi-hero-pinned-content {
-    position: relative !important;
-    min-height: 100vh;
-  }
+.pi-hero-click-zone:focus-visible {
+  outline: 2px solid var(--pi-gold);
+  outline-offset: -2px;
 }
 
 .pi-hero-background {
@@ -866,7 +856,15 @@
   text-align: center;
   padding: var(--pi-space-xl);
   pointer-events: none;
-  transition: opacity 0.1s linear;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s var(--pi-ease-archaeological),
+              transform 0.4s var(--pi-ease-archaeological);
+}
+
+.pi-hero-stage.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .pi-hero-coords {

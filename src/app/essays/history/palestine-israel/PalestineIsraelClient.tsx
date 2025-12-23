@@ -523,12 +523,13 @@ const ChapterImages: React.FC<{ chapterId: string }> = ({ chapterId }) => {
   );
 };
 
-// Hero Section with SCROLL-DRIVEN animation (matches the-origin-of-toy pattern)
-// Uses scroll position instead of wheel event interception
+// Hero Section with CLICK/TAP navigation (presentation-style slideshow)
+// Users click/tap to advance through 8 stages
+const TOTAL_STAGES = 8;
+
 const HeroSection: React.FC = () => {
   const heroRef = useRef<HTMLElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [isPinned, setIsPinned] = useState(false);
+  const [currentStage, setCurrentStage] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const isMobile = useIsMobile();
@@ -538,85 +539,80 @@ const HeroSection: React.FC = () => {
     setIsMounted(true);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const hero = heroRef.current;
-      if (!hero) return;
+  // Navigation handlers
+  const goToNextStage = useCallback(() => {
+    if (currentStage < TOTAL_STAGES - 1) {
+      setCurrentStage(prev => prev + 1);
+    } else {
+      // On final stage, complete and scroll to content
+      handleComplete();
+    }
+  }, [currentStage]);
 
-      const rect = hero.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const sectionTop = rect.top;
-      const sectionTotalHeight = rect.height;
+  const goToPrevStage = useCallback(() => {
+    if (currentStage > 0) {
+      setCurrentStage(prev => prev - 1);
+    }
+  }, [currentStage]);
 
-      // Scrollable distance = total height minus one viewport
-      const scrollableDistance = sectionTotalHeight - windowHeight;
-      const scrolledIntoSection = -sectionTop;
-
-      // MOBILE: Skip pinning entirely - page scrolls naturally
-      if (isMobile) {
-        setIsPinned(false);
-        if (sectionTop <= 0 && scrolledIntoSection <= scrollableDistance) {
-          const progress = Math.min(100, Math.max(0, (scrolledIntoSection / scrollableDistance) * 100));
-          setScrollProgress(progress);
-          if (progress >= 98) setIsComplete(true);
-        } else {
-          setScrollProgress(sectionTop > 0 ? 0 : 100);
-          if (sectionTop <= 0) setIsComplete(true);
-        }
-        return;
-      }
-
-      // DESKTOP: Full scroll-lock pinning behavior
-      if (sectionTop <= 0 && scrolledIntoSection <= scrollableDistance) {
-        setIsPinned(true);
-        const progress = Math.min(100, Math.max(0, (scrolledIntoSection / scrollableDistance) * 100));
-        setScrollProgress(progress);
-        if (progress >= 98) setIsComplete(true);
-      } else {
-        setIsPinned(false);
-        setScrollProgress(sectionTop > 0 ? 0 : 100);
-        if (sectionTop <= 0) setIsComplete(true);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isMobile]);
-
-  const handleSkip = useCallback(() => {
-    setIsComplete(true);
-    setScrollProgress(100);
-    if (heroRef.current) {
-      const heroBottom = heroRef.current.offsetTop + heroRef.current.offsetHeight;
-      window.scrollTo({ top: heroBottom - 100, behavior: "smooth" });
+  const goToStage = useCallback((stage: number) => {
+    if (stage >= 0 && stage < TOTAL_STAGES) {
+      setCurrentStage(stage);
     }
   }, []);
 
-  // Use scrollProgress for all calculations
-  const progress = scrollProgress;
+  const handleComplete = useCallback(() => {
+    setIsComplete(true);
+    if (heroRef.current) {
+      const heroBottom = heroRef.current.offsetTop + heroRef.current.offsetHeight;
+      window.scrollTo({ top: heroBottom, behavior: "smooth" });
+    }
+  }, []);
 
-  const getStageOpacity = (stageStart: number, peakStart: number, peakEnd: number, stageEnd: number) => {
-    if (progress < stageStart) return 0;
-    if (progress < peakStart) return (progress - stageStart) / (peakStart - stageStart);
-    if (progress < peakEnd) return 1;
-    if (progress < stageEnd) return 1 - (progress - peakEnd) / (stageEnd - peakEnd);
-    return 0;
-  };
+  const handleSkip = useCallback(() => {
+    handleComplete();
+  }, [handleComplete]);
 
-  const zoomLevel = 1 + (progress / 100) * 0.2;
+  // Keyboard navigation
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    switch (e.key) {
+      case 'ArrowRight':
+      case ' ':
+        e.preventDefault();
+        goToNextStage();
+        break;
+      case 'ArrowLeft':
+        e.preventDefault();
+        goToPrevStage();
+        break;
+      case 'Escape':
+        e.preventDefault();
+        handleComplete();
+        break;
+    }
+  }, [goToNextStage, goToPrevStage, handleComplete]);
 
-  // MOBILE: Show final title state immediately
-  const titleVisible = isMobile || progress >= 82;
-  const titleOpacity = isMobile ? 1 : (titleVisible ? Math.min(1, (progress - 82) / 15) : 0);
+  // Background zoom tied to stage progression
+  const zoomLevel = 1 + (currentStage / TOTAL_STAGES) * 0.2;
 
   return (
     <section
       ref={heroRef}
-      className={`pi-hero-section pi-hero-scroll-lock ${isMounted && isPinned ? "is-pinned" : ""} ${isComplete ? "is-complete" : ""}`}
-      style={{ height: "500vh" }} // CRITICAL: Explicit height for scroll-based progress
+      className={`pi-hero-section pi-hero-click-nav ${isComplete ? "is-complete" : ""}`}
+      aria-label="Introduction to the essay"
+      aria-roledescription="slideshow"
     >
-      <div className={`pi-hero-pinned-content ${isMounted && isPinned ? "pinned" : ""}`}>
+      {/* Click zone - tap anywhere to advance */}
+      <div
+        className="pi-hero-click-zone"
+        onClick={goToNextStage}
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
+        role="button"
+        aria-label={currentStage === TOTAL_STAGES - 1 ? "Click to begin reading" : "Click to advance"}
+      />
+
+      <div className="pi-hero-pinned-content">
         <div className="pi-hero-background">
           <div className="pi-hero-image-wrapper" style={{ transform: `scale(${zoomLevel}) translateZ(0)`, willChange: "transform" }}>
             <div className="pi-hero-placeholder"><div className="pi-land-gradient" /></div>
@@ -624,75 +620,61 @@ const HeroSection: React.FC = () => {
           <div className="pi-hero-gradient" />
         </div>
 
-        {/* Stage 1: 0-10% — Aerial view, coordinates (spec: 0-10%) */}
-        {!isMobile && (
-          <div className="pi-hero-stage pi-hero-stage-1" style={{ opacity: progress < 10 ? 1 : Math.max(0, 1 - (progress - 10) / 3) }}>
-            <p className="pi-hero-coords">31.5°N, 34.8°E</p>
-            <p className="pi-hero-tagline">60 miles wide. 4,000 years contested.</p>
-          </div>
-        )}
+        {/* Stage 0: Aerial view, coordinates */}
+        <div className={`pi-hero-stage pi-hero-stage-1 ${currentStage === 0 ? 'active' : ''}`}>
+          <p className="pi-hero-coords">31.5°N, 34.8°E</p>
+          <p className="pi-hero-tagline">60 miles wide. 4,000 years contested.</p>
+        </div>
 
-        {/* Stage 2: 10-20% — Camera descends (spec: 10-20%) */}
-        {!isMobile && (
-          <div className="pi-hero-stage pi-hero-stage-2" style={{ opacity: getStageOpacity(8, 10, 18, 22) }}>
-            <p className="pi-hero-narration">Beneath every village, another village.<br />Beneath every name, another name.</p>
-          </div>
-        )}
+        {/* Stage 1: Camera descends */}
+        <div className={`pi-hero-stage pi-hero-stage-2 ${currentStage === 1 ? 'active' : ''}`}>
+          <p className="pi-hero-narration">Beneath every village, another village.<br />Beneath every name, another name.</p>
+        </div>
 
-        {/* Stage 3: 20-35% — Names cascade (spec: 20-35%) */}
-        {!isMobile && (
-          <div className="pi-hero-stage pi-hero-stage-3" style={{ opacity: getStageOpacity(18, 20, 33, 38) }}>
-            <div className="pi-names-cascade">
-              <span className="pi-name pi-name-ancient" style={{ opacity: progress > 20 ? 1 : 0 }}>Canaan</span>
-              <span className="pi-name pi-name-ancient" style={{ opacity: progress > 22 ? 0.8 : 0 }}>Peleset</span>
-              <span className="pi-name pi-name-biblical" style={{ opacity: progress > 24 ? 1 : 0 }}>Israel</span>
-              <span className="pi-name pi-name-biblical" style={{ opacity: progress > 26 ? 0.9 : 0 }}>Judah</span>
-              <span className="pi-name pi-name-roman" style={{ opacity: progress > 28 ? 1 : 0 }}>Palaestina</span>
-              <span className="pi-name pi-name-islamic" style={{ opacity: progress > 30 ? 0.9 : 0 }}>Jund Filastin</span>
-              <span className="pi-name pi-name-crusader" style={{ opacity: progress > 31 ? 0.8 : 0 }}>Terra Sancta</span>
-              <span className="pi-name pi-name-modern" style={{ opacity: progress > 33 ? 1 : 0 }}>Palestine</span>
-              <span className="pi-name pi-name-modern" style={{ opacity: progress > 34 ? 1 : 0 }}>Eretz Israel</span>
-            </div>
+        {/* Stage 2: Names cascade */}
+        <div className={`pi-hero-stage pi-hero-stage-3 ${currentStage === 2 ? 'active' : ''}`}>
+          <div className="pi-names-cascade pi-names-cascade-animated">
+            <span className="pi-name pi-name-ancient">Canaan</span>
+            <span className="pi-name pi-name-ancient">Peleset</span>
+            <span className="pi-name pi-name-biblical">Israel</span>
+            <span className="pi-name pi-name-biblical">Judah</span>
+            <span className="pi-name pi-name-roman">Palaestina</span>
+            <span className="pi-name pi-name-islamic">Jund Filastin</span>
+            <span className="pi-name pi-name-crusader">Terra Sancta</span>
+            <span className="pi-name pi-name-modern">Palestine</span>
+            <span className="pi-name pi-name-modern">Eretz Israel</span>
           </div>
-        )}
+        </div>
 
-        {/* Stage 4: 35-50% — Jerusalem focus (spec: 35-50%) */}
-        {!isMobile && (
-          <div className="pi-hero-stage pi-hero-stage-4" style={{ opacity: getStageOpacity(33, 35, 48, 53) }}>
-            <p className="pi-hero-jerusalem">Jerusalem</p>
-            <p className="pi-hero-narration">One city, sacred to three faiths.<br />Claimed by all, owned by none.</p>
+        {/* Stage 3: Jerusalem focus */}
+        <div className={`pi-hero-stage pi-hero-stage-4 ${currentStage === 3 ? 'active' : ''}`}>
+          <p className="pi-hero-jerusalem">Jerusalem</p>
+          <p className="pi-hero-narration">One city, sacred to three faiths.<br />Claimed by all, owned by none.</p>
+        </div>
+
+        {/* Stage 4: Sacred sites */}
+        <div className={`pi-hero-stage pi-hero-stage-5 ${currentStage === 4 ? 'active' : ''}`}>
+          <p className="pi-hero-narration pi-hero-sacred">
+            Where the God of Abraham is worshipped<br />in Hebrew, Arabic, and Greek—<br />and where his followers have killed each other for centuries.
+          </p>
+        </div>
+
+        {/* Stage 5: Modern division */}
+        <div className={`pi-hero-stage pi-hero-stage-6 ${currentStage === 5 ? 'active' : ''}`}>
+          <p className="pi-hero-narration">Today, two peoples claim this land.<br />Neither is going away.</p>
+        </div>
+
+        {/* Stage 6: Population numbers */}
+        <div className={`pi-hero-stage pi-hero-stage-7 ${currentStage === 6 ? 'active' : ''}`}>
+          <div className="pi-hero-numbers">
+            <div className="pi-number-block"><span className="pi-number">7</span><span className="pi-number-label">million Jews</span></div>
+            <div className="pi-number-block"><span className="pi-number">7</span><span className="pi-number-label">million Palestinians</span></div>
           </div>
-        )}
+          <p className="pi-hero-narration">One land.</p>
+        </div>
 
-        {/* Stage 5: 50-65% — Sacred sites (spec: 50-65%) */}
-        {!isMobile && (
-          <div className="pi-hero-stage pi-hero-stage-5" style={{ opacity: getStageOpacity(48, 50, 63, 68) }}>
-            <p className="pi-hero-narration pi-hero-sacred">
-              Where the God of Abraham is worshipped<br />in Hebrew, Arabic, and Greek—<br />and where his followers have killed each other for centuries.
-            </p>
-          </div>
-        )}
-
-        {/* Stage 6: 65-80% — Modern division (spec: 65-80%) */}
-        {!isMobile && (
-          <div className="pi-hero-stage pi-hero-stage-6" style={{ opacity: getStageOpacity(63, 65, 78, 83) }}>
-            <p className="pi-hero-narration">Today, two peoples claim this land.<br />Neither is going away.</p>
-          </div>
-        )}
-
-        {/* Stage 7: 80-90% — Population numbers (spec: 80-90%) */}
-        {!isMobile && (
-          <div className="pi-hero-stage pi-hero-stage-7" style={{ opacity: getStageOpacity(78, 80, 88, 92) }}>
-            <div className="pi-hero-numbers">
-              <div className="pi-number-block"><span className="pi-number">7</span><span className="pi-number-label">million Jews</span></div>
-              <div className="pi-number-block"><span className="pi-number">7</span><span className="pi-number-label">million Palestinians</span></div>
-            </div>
-            <p className="pi-hero-narration">One land.</p>
-          </div>
-        )}
-
-        {/* Stage 8: 90-100% — Final title (ALWAYS visible on mobile) */}
-        <div className="pi-hero-stage pi-hero-stage-8" style={{ opacity: titleOpacity }}>
+        {/* Stage 7: Final title */}
+        <div className={`pi-hero-stage pi-hero-stage-8 ${currentStage === 7 ? 'active' : ''}`}>
           <h1 className="pi-hero-title">
             <span className="pi-title-hebrew">ארץ</span>
             <span className="pi-title-divider">/</span>
@@ -702,14 +684,58 @@ const HeroSection: React.FC = () => {
           <p className="pi-hero-subtitle-small">From Deep Antiquity to Today</p>
         </div>
 
-        <div className="pi-hero-progress"><div className="pi-hero-progress-fill" style={{ height: `${progress}%` }} /></div>
-        {isMounted && isPinned && !isComplete && (
-          <button className="pi-hero-skip" onClick={handleSkip} aria-label="Skip introduction">Skip intro</button>
+        {/* Navigation: Stage indicator dots */}
+        <nav className="pi-hero-stage-nav" aria-label="Hero stages">
+          {Array.from({ length: TOTAL_STAGES }).map((_, index) => (
+            <button
+              key={index}
+              className={`pi-hero-dot ${index === currentStage ? 'active' : ''} ${index < currentStage ? 'completed' : ''}`}
+              onClick={(e) => { e.stopPropagation(); goToStage(index); }}
+              aria-label={`Go to stage ${index + 1} of ${TOTAL_STAGES}`}
+              aria-current={index === currentStage ? 'step' : undefined}
+            />
+          ))}
+        </nav>
+
+        {/* Navigation: Arrow buttons (desktop only) */}
+        {isMounted && !isMobile && currentStage > 0 && (
+          <button
+            className="pi-hero-nav-arrow pi-hero-nav-prev"
+            onClick={(e) => { e.stopPropagation(); goToPrevStage(); }}
+            aria-label="Previous stage"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
         )}
-        {!isMobile && progress < 5 && (
-          <div className="pi-hero-scroll-prompt">
-            <span>Scroll to begin</span>
-            <div className="pi-scroll-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg></div>
+        {isMounted && !isMobile && (
+          <button
+            className="pi-hero-nav-arrow pi-hero-nav-next"
+            onClick={(e) => { e.stopPropagation(); goToNextStage(); }}
+            aria-label={currentStage === TOTAL_STAGES - 1 ? "Begin reading" : "Next stage"}
+          >
+            {currentStage === TOTAL_STAGES - 1 ? (
+              <span className="pi-hero-begin-text">Begin</span>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M9 5l7 7-7 7" />
+              </svg>
+            )}
+          </button>
+        )}
+
+        {/* Skip button - always visible */}
+        {isMounted && !isComplete && (
+          <button className="pi-hero-skip" onClick={(e) => { e.stopPropagation(); handleSkip(); }} aria-label="Skip introduction">
+            Skip intro
+          </button>
+        )}
+
+        {/* Tap prompt (mobile) / Click prompt (desktop) on first stage only */}
+        {currentStage === 0 && (
+          <div className="pi-hero-tap-prompt">
+            <span>{isMobile ? 'Tap to begin' : 'Click to begin'}</span>
           </div>
         )}
       </div>
