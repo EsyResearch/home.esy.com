@@ -835,9 +835,9 @@ const chapters: ChapterContent[] = [
         <p>The Jewish population revolted repeatedly. The Great Revolt (66-73 CE) ended with Jerusalem&apos;s destruction and the Temple&apos;s burning, depicted on the Arch of Titus in Rome.</p>
         <p>The Bar Kokhba Revolt (132-135 CE) was crushed even more brutally. After this, Emperor Hadrian renamed Jerusalem &ldquo;Aelia Capitolina&rdquo; and the province &ldquo;Syria Palaestina&rdquo;—after the Philistines, Israel&apos;s ancient enemies. The renaming was deliberate humiliation.</p>
         <QuoteMonument
-          quote="Jerusalem was so thoroughly razed to the ground by those that demolished it to its foundations, that nothing was left that could ever persuade visitors that it had once been a place of habitation."
+          quote="All the rest of the wall encompassing the city was so completely levelled to the ground as to leave future visitors to the spot no ground for believing that it had ever been inhabited."
           attribution="Josephus"
-          context="On the 70 CE destruction"
+          context="The Jewish War, Book VII (75 CE)"
         />
         <p>The Jewish population diminished but did not disappear. Communities remained, especially in Galilee. The Mishnah and Palestinian Talmud were compiled here. But Jews were now a minority in a land renamed to erase them.</p>
         <p>Christianity changed everything. After Constantine&apos;s conversion (312 CE), Palestine became the Holy Land—a Christian pilgrimage destination. Churches rose over sites of Jesus&apos;s life.</p>
@@ -864,9 +864,9 @@ const chapters: ChapterContent[] = [
         <p>Jerusalem was sacred to Muslims as well—the site of Muhammad&apos;s Night Journey. The Dome of the Rock (691 CE) and Al-Aqsa Mosque were built on the Temple Mount / Haram al-Sharif. The layering of holiness on holiness would become one of history&apos;s most explosive inheritances.</p>
         <p>The Crusades (1099-1291) brought European Christian rule for two centuries—brutal conquest followed by complex coexistence. The 1099 massacre saw Jews and Muslims slaughtered in the city. Saladin&apos;s reconquest (1187) was notably less violent—ransomed rather than massacred.</p>
         <QuoteMonument
-          quote="The massacre was terrible; the weights of the feet of our horses were buried to their knees in the blood of the slain."
+          quote="In the Temple and porch of Solomon, men rode in blood up to their knees and bridle reins."
           attribution="Raymond of Aguilers"
-          context="Crusader chronicler on the 1099 massacre"
+          context="Crusader chronicler on the 1099 massacre (imagery drawn from Revelation 14:20)"
         />
         <div className="pi-emphasis-block">
           <p><strong>Critical finding:</strong> The Arab conquest was not &ldquo;replacement.&rdquo; Modern Palestinians&apos; ancestors are largely the same population as Byzantine Palestine—transformed by Arabization and Islamization.</p>
@@ -953,7 +953,7 @@ const chapters: ChapterContent[] = [
         <p>Jewish immigration transformed demographics. From 11% Jewish in 1922 to 32% in 1947. Arab resistance grew—riots in 1920, 1921, 1929 (including the Hebron massacre of 67 Jews), and the full-scale Arab Revolt (1936-1939).</p>
         <p>Britain&apos;s 1939 White Paper severely limited Jewish immigration just as European Jews desperately needed refuge—a decision that would cost hundreds of thousands of lives during the Holocaust.</p>
         <QuoteMonument
-          quote="We will fight the White Paper as if there were no war, and fight the war as if there were no White Paper."
+          quote="We will fight the war as if there were no White Paper, and we will fight the White Paper as if there were no war."
           attribution="David Ben-Gurion, 1939"
         />
         <p>After WWII, with Holocaust survivors demanding entry, Jewish underground groups attacked British forces. The King David Hotel bombing (1946) killed 91. Britain, exhausted, handed the problem to the UN.</p>
@@ -981,9 +981,9 @@ const chapters: ChapterContent[] = [
         <h4>The Nakba: Scale and Mechanisms</h4>
         <p>700,000-750,000 Palestinians were displaced. 400-500 villages depopulated. ~80% of the Arab population in Israeli-controlled territory fled or was expelled.</p>
         <QuoteMonument
-          quote="We did not take any action to preserve the honor and lives of the Arabs. We threw thousands of women and children into the roads of the Judean desert in the midst of a cruel summer."
-          attribution="Yitzhak Rabin, 1948"
-          context="On the Lydda expulsion"
+          quote="'Driving out' is a term with a harsh ring. Psychologically, this was one of the most difficult actions we undertook. The population of Lod did not leave willingly."
+          attribution="Yitzhak Rabin"
+          context="From his memoirs, passage censored in 1979 and later restored"
         />
         <p>Historian Benny Morris&apos;s research shows: ~55% fled due to Jewish military operations, ~25% from fear and panic, ~15% from explicit expulsion orders. The claim that Arab leaders ordered the flight has been largely debunked.</p>
         <p>By 1949: Israel controlled 78% of Mandate Palestine. Jordan held the West Bank and East Jerusalem. Egypt held Gaza. No peace treaties were signed—only armistices.</p>
