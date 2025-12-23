@@ -27,6 +27,7 @@ import {
   ShieldCheck,
   Layers,
   UserCog,
+  Lock,
 } from "lucide-react";
 
 // Elevated Dark Theme
@@ -54,6 +55,7 @@ const iconMap: Record<string, React.ReactNode> = {
   quality: <ShieldCheck className="w-4 h-4" />,
   layers: <Layers className="w-4 h-4" />,
   'user-cog': <UserCog className="w-4 h-4" />,
+  lock: <Lock className="w-4 h-4" />,
 };
 
 function NavItemComponent({ item, isActive }: { item: NavItem; isActive: boolean }) {

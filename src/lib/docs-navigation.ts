@@ -5,7 +5,7 @@ export interface NavItem {
   title: string;
   href: string;
   description?: string;
-  icon?: 'home' | 'sparkles' | 'book' | 'pencil' | 'workflow' | 'prompt' | 'essay' | 'template' | 'spec' | 'quality' | 'layers' | 'user-cog';
+  icon?: 'home' | 'sparkles' | 'book' | 'pencil' | 'workflow' | 'prompt' | 'essay' | 'template' | 'spec' | 'quality' | 'layers' | 'user-cog' | 'lock';
   isNew?: boolean;
   children?: NavItem[];
 }
@@ -49,6 +49,18 @@ export const docsNavigation: NavSection[] = [
         href: "/docs/workflows",
         description: "Execution pipelines and step design",
         icon: "workflow",
+      },
+    ],
+  },
+  {
+    title: "Visual Essays",
+    items: [
+      {
+        title: "Designing Visual Essays",
+        href: "/docs/designing-visual-essays",
+        description: "Design doctrine for cinematic, scroll-driven experiences",
+        icon: "layers",
+        isNew: true,
       },
     ],
   },
