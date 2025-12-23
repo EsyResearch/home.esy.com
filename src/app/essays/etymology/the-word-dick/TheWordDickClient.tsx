@@ -867,8 +867,10 @@ export default function TheWordDickClient() {
         </div>
         
         <PullQuote attribution="Steven Pinker, The Stuff of Thought" year="2007">
-          Words are not just labels for concepts; they are tiny vehicles of meaning 
-          that carry cultural freight from one mind to another.
+          When a language isn't up to the conceptual demands of its speakers,
+          they don't scratch their heads dumbfounded; they simply change the language.
+          They stretch it with metaphors and metonyms, borrow words and phrases
+          from other languages, or coin new slang and jargon.
         </PullQuote>
       </section>
       

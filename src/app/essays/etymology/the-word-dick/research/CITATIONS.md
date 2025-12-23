@@ -1,8 +1,9 @@
 # Citation Log: The Word That Changed Its Stripes (v2)
 
-> Visual Essay: Etymology of "Dick"  
-> Research Depth: Deep  
+> Visual Essay: Etymology of "Dick"
+> Research Depth: Deep
 > Date: December 12, 2025
+> **Last Audit: December 23, 2025** (per research-citations-expert.md standards)
 
 ## Citation Standards
 
@@ -158,11 +159,53 @@
 
 ---
 
+---
+
+## Citation Audit (December 23, 2025)
+
+### Audit Findings
+
+| Source | Status | Notes |
+|--------|--------|-------|
+| Etymonline | ✅ Verified | URL accessible, content confirmed |
+| Merriam-Webster | ✅ Verified | URL accessible, content confirmed |
+| Wikipedia (nickname) | ✅ Verified | Tier 3, used for SSA data citation |
+| Wikipedia (slang) | ✅ Verified | Tier 3, cross-referenced |
+| Stack Exchange | ✅ Verified | Tier 3, community analysis |
+| Grammarphobia | ✅ Verified | Tier 2, expert blog |
+| MEL Magazine | ✅ Verified | Tier 2, cultural journalism |
+| OED | ⏳ Pending | Subscription required; used via secondary citations |
+| Farmer's Dictionary | ✅ Verified | Via citations in Etymonline/OED |
+| SSA Baby Names | ⚠️ Indirect | Cited via Wikipedia; direct SSA access blocked |
+
+### Issues Identified
+
+#### ✅ Steven Pinker Quote (Essay line 869-874) — RESOLVED
+**Original Quote**: "Words are not just labels for concepts; they are tiny vehicles of meaning that carry cultural freight from one mind to another."
+**Status**: ❌ **FABRICATED** — No trace found online; phrases "tiny vehicles of meaning" and "cultural freight" return zero results.
+
+**Resolution**: Replaced with verified quote from *The Stuff of Thought* (2007):
+> "When a language isn't up to the conceptual demands of its speakers, they don't scratch their heads dumbfounded; they simply change the language. They stretch it with metaphors and metonyms, borrow words and phrases from other languages, or coin new slang and jargon."
+
+**Verification**: Quote confirmed via [Goodreads](https://www.goodreads.com/work/quotes/2839893), [ResearchGate review](https://www.researchgate.net/publication/269836617), and multiple academic sources.
+
+#### SSA Data Verification
+SSA website returned 403 (access blocked). The claims:
+- "Fell out of top 1000 names by 1969"
+- "Fewer than 5 babies named Dick in 2014"
+
+Are widely cited via Wikipedia but not directly verified against SSA database.
+**Recommendation**: Note as "per SSA data via secondary sources" in essay.
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
 |---------|------|---------|
 | v1.0 | December 12, 2025 | Initial research package |
+| v1.1 | December 23, 2025 | Added citation audit per research-citations-expert.md; flagged unverified Pinker quote |
+| v1.2 | December 23, 2025 | Replaced fabricated Pinker quote with verified quote from *The Stuff of Thought* |
 
 
 
