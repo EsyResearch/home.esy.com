@@ -540,6 +540,14 @@ const HeroSection: React.FC = () => {
   }, []);
 
   // Navigation handlers
+  const handleComplete = useCallback(() => {
+    setIsComplete(true);
+    if (heroRef.current) {
+      const heroBottom = heroRef.current.offsetTop + heroRef.current.offsetHeight;
+      window.scrollTo({ top: heroBottom, behavior: "smooth" });
+    }
+  }, []);
+
   const goToNextStage = useCallback(() => {
     if (currentStage < TOTAL_STAGES - 1) {
       setCurrentStage(prev => prev + 1);
@@ -547,7 +555,7 @@ const HeroSection: React.FC = () => {
       // On final stage, complete and scroll to content
       handleComplete();
     }
-  }, [currentStage]);
+  }, [currentStage, handleComplete]);
 
   const goToPrevStage = useCallback(() => {
     if (currentStage > 0) {
@@ -558,14 +566,6 @@ const HeroSection: React.FC = () => {
   const goToStage = useCallback((stage: number) => {
     if (stage >= 0 && stage < TOTAL_STAGES) {
       setCurrentStage(stage);
-    }
-  }, []);
-
-  const handleComplete = useCallback(() => {
-    setIsComplete(true);
-    if (heroRef.current) {
-      const heroBottom = heroRef.current.offsetTop + heroRef.current.offsetHeight;
-      window.scrollTo({ top: heroBottom, behavior: "smooth" });
     }
   }, []);
 

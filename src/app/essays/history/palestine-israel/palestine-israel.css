@@ -988,49 +988,107 @@
   margin-top: var(--pi-space-sm);
 }
 
-.pi-hero-progress {
+/* ==================== CLICK NAVIGATION UI ==================== */
+
+/* Stage indicator dots */
+.pi-hero-stage-nav {
   position: absolute;
-  right: var(--pi-space-lg);
+  bottom: calc(var(--pi-space-xl) + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--pi-space-sm);
+  z-index: 20;
+}
+
+.pi-hero-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid var(--pi-text-muted);
+  cursor: pointer;
+  transition: all var(--pi-duration-fast) var(--pi-ease-reveal);
+  padding: 0;
+}
+
+.pi-hero-dot:hover {
+  border-color: var(--pi-gold);
+  transform: scale(1.3);
+}
+
+.pi-hero-dot:focus-visible {
+  outline: 2px solid var(--pi-gold);
+  outline-offset: 2px;
+}
+
+.pi-hero-dot.active {
+  background: var(--pi-gold);
+  border-color: var(--pi-gold);
+  transform: scale(1.2);
+}
+
+.pi-hero-dot.completed {
+  border-color: var(--pi-gold);
+  opacity: 0.5;
+}
+
+/* Arrow navigation buttons */
+.pi-hero-nav-arrow {
+  position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 4px;
-  height: 200px;
-  background-color: var(--pi-bg-tertiary);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.pi-hero-progress-fill {
-  width: 100%;
-  background-color: var(--pi-gold);
-  transition: height 0.1s linear;
-}
-
-.pi-hero-skip {
-  position: absolute;
-  bottom: var(--pi-space-xl);
-  right: var(--pi-space-xl);
-  background-color: transparent;
-  color: var(--pi-text-muted);
-  border: var(--pi-border-subtle);
-  padding: var(--pi-space-sm) var(--pi-space-md);
-  min-height: 44px; /* Touch target minimum */
-  min-width: 44px;
-  font-size: var(--pi-type-caption);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(245, 240, 230, 0.15);
+  color: var(--pi-text-secondary);
   cursor: pointer;
-  transition: color var(--pi-duration-fast), border-color var(--pi-duration-fast);
-  z-index: 10;
-  pointer-events: auto;
+  transition: all var(--pi-duration-fast) var(--pi-ease-reveal);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.pi-hero-skip:hover {
+.pi-hero-nav-arrow:hover {
+  background: rgba(255, 255, 255, 0.15);
   color: var(--pi-text-primary);
-  border-color: var(--pi-text-secondary);
+  border-color: var(--pi-gold);
 }
 
-.pi-hero-scroll-prompt {
+.pi-hero-nav-arrow:focus-visible {
+  outline: 2px solid var(--pi-gold);
+  outline-offset: 2px;
+}
+
+.pi-hero-nav-arrow svg {
+  width: 24px;
+  height: 24px;
+}
+
+.pi-hero-nav-prev {
+  left: var(--pi-space-lg);
+}
+
+.pi-hero-nav-next {
+  right: var(--pi-space-lg);
+}
+
+.pi-hero-begin-text {
+  font-family: 'Source Serif Pro', Georgia, serif;
+  font-size: var(--pi-type-caption);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* Tap/Click prompt */
+.pi-hero-tap-prompt {
   position: absolute;
-  bottom: var(--pi-space-2xl);
+  bottom: calc(var(--pi-space-2xl) + 40px);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -1040,17 +1098,145 @@
   color: var(--pi-text-muted);
   font-size: var(--pi-type-caption);
   animation: pi-pulse 2s ease-in-out infinite;
-}
-
-.pi-scroll-arrow svg {
-  width: 24px;
-  height: 24px;
+  z-index: 15;
 }
 
 @keyframes pi-pulse {
   0%, 100% { opacity: 0.5; }
   50% { opacity: 1; }
 }
+
+/* Enhanced skip button - always visible */
+.pi-hero-skip {
+  position: absolute;
+  bottom: var(--pi-space-xl);
+  right: var(--pi-space-xl);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--pi-text-secondary);
+  border: 1px solid rgba(245, 240, 230, 0.2);
+  padding: var(--pi-space-sm) var(--pi-space-lg);
+  min-height: 48px;
+  min-width: 48px;
+  font-size: var(--pi-type-caption);
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all var(--pi-duration-fast) var(--pi-ease-reveal);
+  z-index: 30;
+  pointer-events: auto;
+}
+
+.pi-hero-skip:hover {
+  background: rgba(0, 0, 0, 0.8);
+  color: var(--pi-text-primary);
+  border-color: var(--pi-gold);
+}
+
+.pi-hero-skip:focus-visible {
+  outline: 2px solid var(--pi-gold);
+  outline-offset: 2px;
+}
+
+/* Names cascade animation when stage is active */
+.pi-names-cascade-animated .pi-name {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.pi-hero-stage.active .pi-names-cascade-animated .pi-name {
+  animation: pi-name-appear 0.4s var(--pi-ease-archaeological) forwards;
+}
+
+.pi-hero-stage.active .pi-names-cascade-animated .pi-name:nth-child(1) { animation-delay: 0s; }
+.pi-hero-stage.active .pi-names-cascade-animated .pi-name:nth-child(2) { animation-delay: 0.08s; }
+.pi-hero-stage.active .pi-names-cascade-animated .pi-name:nth-child(3) { animation-delay: 0.16s; }
+.pi-hero-stage.active .pi-names-cascade-animated .pi-name:nth-child(4) { animation-delay: 0.24s; }
+.pi-hero-stage.active .pi-names-cascade-animated .pi-name:nth-child(5) { animation-delay: 0.32s; }
+.pi-hero-stage.active .pi-names-cascade-animated .pi-name:nth-child(6) { animation-delay: 0.40s; }
+.pi-hero-stage.active .pi-names-cascade-animated .pi-name:nth-child(7) { animation-delay: 0.48s; }
+.pi-hero-stage.active .pi-names-cascade-animated .pi-name:nth-child(8) { animation-delay: 0.56s; }
+.pi-hero-stage.active .pi-names-cascade-animated .pi-name:nth-child(9) { animation-delay: 0.64s; }
+
+@keyframes pi-name-appear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  /* Hide arrow buttons on mobile - tap to advance */
+  .pi-hero-nav-arrow {
+    display: none;
+  }
+
+  /* Larger dots for touch */
+  .pi-hero-dot {
+    width: 12px;
+    height: 12px;
+    /* Add extra padding for touch target */
+    position: relative;
+  }
+
+  .pi-hero-dot::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+  }
+
+  /* Skip button adjustments */
+  .pi-hero-skip {
+    bottom: calc(var(--pi-space-lg) + 50px);
+    right: var(--pi-space-md);
+    padding: var(--pi-space-xs) var(--pi-space-md);
+  }
+
+  /* Stage nav positioning */
+  .pi-hero-stage-nav {
+    bottom: var(--pi-space-lg);
+  }
+
+  /* Tap prompt positioning */
+  .pi-hero-tap-prompt {
+    bottom: calc(var(--pi-space-lg) + 30px);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .pi-hero-stage {
+    transition: opacity 0.01ms;
+    transform: none !important;
+  }
+
+  .pi-hero-stage.active {
+    transform: none;
+  }
+
+  .pi-hero-dot,
+  .pi-hero-nav-arrow,
+  .pi-hero-skip {
+    transition: none;
+  }
+
+  .pi-hero-tap-prompt {
+    animation: none;
+  }
+
+  .pi-names-cascade-animated .pi-name {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+}
+
+/* Old scroll-based styles removed - now using click-based navigation */
 
 /* ==================== STRATIGRAPHY PROGRESS BAR ==================== */
 
