@@ -983,7 +983,8 @@ const sidebars: SidebarContent[] = [
 // SOURCES DATA
 // ============================================================================
 
-const sources: Source[] = [
+// Academic Books & Journals
+const academicSources: Source[] = [
   { title: "A History of Modern Palestine", author: "Ilan Pappé", type: "academic", tradition: "Israeli", url: "https://www.cambridge.org/core/books/history-of-modern-palestine/340212C82BBF67C63552F6B822E10B0C" },
   { title: "The Question of Palestine", author: "Edward Said", type: "academic", tradition: "Palestinian", url: "https://www.penguinrandomhouse.com/books/159795/the-question-of-palestine-by-edward-w-said/" },
   { title: "1948: A History of the First Arab-Israeli War", author: "Benny Morris", type: "academic", tradition: "Israeli", url: "https://yalebooks.yale.edu/book/9780300151121/1948/" },
@@ -993,6 +994,25 @@ const sources: Source[] = [
   { title: "The Birth of the Palestinian Refugee Problem Revisited", author: "Benny Morris", type: "academic", tradition: "Israeli", url: "https://www.cambridge.org/core/books/birth-of-the-palestinian-refugee-problem-revisited/8AE72A6813CEA7DDDE8F9386313F0D97" },
   { title: "Palestinian Identity", author: "Rashid Khalidi", type: "academic", tradition: "Palestinian", url: "https://cup.columbia.edu/book/palestinian-identity/9780231150750" },
   { title: "The Iron Cage", author: "Rashid Khalidi", type: "academic", tradition: "Palestinian", url: "https://www.beacon.org/The-Iron-Cage-P669.aspx" },
+];
+
+// University Research Guides (.edu) - Tier 1
+const eduSources: Source[] = [
+  { title: "Israel & Palestine: Historical Primary Sources", author: "UC Berkeley Library", type: "academic", tradition: "International", url: "https://guides.lib.berkeley.edu/c.php?g=810896&p=7333572" },
+  { title: "Palestinian Studies: Archives & Primary Sources", author: "Brown University Library", type: "academic", tradition: "International", url: "https://libguides.brown.edu/Palestine/primary" },
+  { title: "Middle East Primary Sources Guide", author: "Princeton University Library", type: "academic", tradition: "International", url: "https://libguides.princeton.edu/c.php?g=84230&p=543629" },
+  { title: "Readings and Digital Resources on Palestine", author: "Harvard Center for Middle Eastern Studies", type: "academic", tradition: "International", url: "https://cmes.fas.harvard.edu/news/readings-and-digital-resources-palestine" },
+];
+
+// Primary Archives (.gov) - Tier 1
+const govSources: Source[] = [
+  { title: "Mandate for Palestine (1922)", author: "Library of Congress", type: "archive", tradition: "International", url: "https://www.loc.gov/item/2021666887/" },
+  { title: "American Colony in Jerusalem Collection", author: "Library of Congress", type: "archive", tradition: "International", url: "https://www.loc.gov/collections/american-colony-in-jerusalem/about-this-collection/" },
+  { title: "U.S. Recognition of Israel: Primary Documents", author: "National Archives", type: "archive", tradition: "International", url: "https://www.archives.gov/education/lessons/us-israel" },
+];
+
+// Institutional Reports & Human Rights Organizations
+const institutionalSources: Source[] = [
   { title: "UN Information System on the Question of Palestine", type: "institutional", tradition: "International", url: "https://www.un.org/unispal/" },
   { title: "B'Tselem Human Rights Reports", type: "institutional", tradition: "Israeli", url: "https://www.btselem.org/" },
   { title: "Institute for Palestine Studies", type: "institutional", tradition: "Palestinian", url: "https://www.palestine-studies.org/" },
@@ -1058,9 +1078,61 @@ const PalestineIsraelClient: React.FC = () => {
           <p className="pi-sources-methodology">
             This essay draws on sources from multiple scholarly traditions. Each source is labeled by its institutional origin for transparency. Contested claims are sourced from multiple traditions.
           </p>
+
+          {/* Primary Archives (.gov) */}
+          <h4 className="pi-sources-category">Primary Archives <span className="pi-source-domain">.gov</span></h4>
           <ul className="pi-sources-list">
-            {sources.map((source, index) => (
-              <li key={index}>
+            {govSources.map((source, index) => (
+              <li key={`gov-${index}`}>
+                {source.url ? (
+                  <a href={source.url} target="_blank" rel="noopener noreferrer" className="pi-source-title pi-source-link">{source.title}</a>
+                ) : (
+                  <span className="pi-source-title">{source.title}</span>
+                )}
+                {source.author && <span className="pi-source-author"> — {source.author}</span>}
+                <span className="pi-source-type">{source.type}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* University Research Guides (.edu) */}
+          <h4 className="pi-sources-category">University Research Guides <span className="pi-source-domain">.edu</span></h4>
+          <ul className="pi-sources-list">
+            {eduSources.map((source, index) => (
+              <li key={`edu-${index}`}>
+                {source.url ? (
+                  <a href={source.url} target="_blank" rel="noopener noreferrer" className="pi-source-title pi-source-link">{source.title}</a>
+                ) : (
+                  <span className="pi-source-title">{source.title}</span>
+                )}
+                {source.author && <span className="pi-source-author"> — {source.author}</span>}
+                <span className="pi-source-type">{source.type}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Academic Books & Journals */}
+          <h4 className="pi-sources-category">Academic Books & Journals</h4>
+          <ul className="pi-sources-list">
+            {academicSources.map((source, index) => (
+              <li key={`academic-${index}`}>
+                {source.url ? (
+                  <a href={source.url} target="_blank" rel="noopener noreferrer" className="pi-source-title pi-source-link">{source.title}</a>
+                ) : (
+                  <span className="pi-source-title">{source.title}</span>
+                )}
+                {source.author && <span className="pi-source-author"> — {source.author}</span>}
+                <span className="pi-source-type">{source.type}</span>
+                <span className="pi-source-tradition">{source.tradition}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Institutional Reports */}
+          <h4 className="pi-sources-category">Institutional Reports & Human Rights Organizations</h4>
+          <ul className="pi-sources-list">
+            {institutionalSources.map((source, index) => (
+              <li key={`inst-${index}`}>
                 {source.url ? (
                   <a href={source.url} target="_blank" rel="noopener noreferrer" className="pi-source-title pi-source-link">{source.title}</a>
                 ) : (

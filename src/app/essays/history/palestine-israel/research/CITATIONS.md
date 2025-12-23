@@ -123,15 +123,30 @@ Add URLs to all sources. The research package has verified URLs for these source
 
 ---
 
-## 🟡 Remaining Issue
+### Issue 5: Sources Section URLs - FIXED & VERIFIED ✅
 
-### Issue 5: Sources Section Lacks URLs
+**Original**: All 14 sources lacked clickable URLs.
 
-All 14 sources in the essay lack URLs, making verification impossible for readers.
+**Fixed**: Added verified URLs to all 14 sources:
 
-**Recommendation**: Add URLs from the research package to each source.
+| # | Source | URL Status | Verified |
+|---|--------|------------|----------|
+| 1 | A History of Modern Palestine (Pappé) | Cambridge UP | ✅ |
+| 2 | The Question of Palestine (Said) | Penguin Random House | ✅ |
+| 3 | 1948 (Morris) | Yale Books | ✅ |
+| 4 | The Ethnic Cleansing of Palestine (Pappé) | Oneworld | ✅ |
+| 5 | Palestine: A Four Thousand Year History (Masalha) | Goodreads | ✅ |
+| 6 | The Bible Unearthed (Finkelstein) | Simon & Schuster | ✅ |
+| 7 | Birth of Palestinian Refugee Problem (Morris) | Cambridge UP | ✅ |
+| 8 | Palestinian Identity (Khalidi) | Columbia UP | ✅ |
+| 9 | The Iron Cage (Khalidi) | Beacon Press | ✅ |
+| 10 | UN Information System Palestine | UN.org | ✅ |
+| 11 | B'Tselem | btselem.org | ✅ |
+| 12 | Institute for Palestine Studies | palestine-studies.org | ✅ |
+| 13 | Amnesty International | amnesty.org | ✅ |
+| 14 | UN OCHA Gaza | ochaopt.org | ✅ |
 
-**[ ] Pending - Lower priority**
+All URLs verified via WebFetch on December 23, 2024.
 
 ---
 
@@ -185,7 +200,7 @@ All images include:
 - [x] Multi-tradition sourcing for contested claims
 - [x] Images properly licensed
 - [x] All quotes verified ✅ (4 quotes fixed on Dec 23, 2024)
-- [ ] Sources section has URLs (enhancement, not blocking)
+- [x] Sources section has URLs ✅ (14 sources linked)
 
 ### Current Status: ✅ PASS
 
@@ -216,6 +231,42 @@ All images include:
 |---------|------|---------|
 | v1.0 | 2024-12-23 | Initial audit - identified 4 quote issues |
 | v1.1 | 2024-12-23 | Fixed all 4 quote issues: Rabin, Raymond of Aguilers, Ben-Gurion, Josephus |
+| v1.2 | 2024-12-23 | Added URLs to all 14 sources, clickable links with styling |
+| v1.3 | 2024-12-23 | Verified all 14 source URLs via WebFetch - all confirmed accurate |
+| v2.0 | 2024-12-23 | Added Tier 1 .edu and .gov sources with explicit sections |
+
+---
+
+## Tier 1 Source Additions (v2.0)
+
+### Primary Archives (.gov) - Added
+
+| # | Source | Institution | URL | Verified |
+|---|--------|-------------|-----|----------|
+| 1 | Mandate for Palestine (1922) | Library of Congress | loc.gov/item/2021666887/ | ✅ |
+| 2 | American Colony in Jerusalem Collection | Library of Congress | loc.gov/collections/american-colony-in-jerusalem/ | ✅ |
+| 3 | U.S. Recognition of Israel: Primary Documents | National Archives | archives.gov/education/lessons/us-israel | ✅ |
+
+### University Research Guides (.edu) - Added
+
+| # | Source | Institution | URL | Verified |
+|---|--------|-------------|-----|----------|
+| 1 | Israel & Palestine: Historical Primary Sources | UC Berkeley Library | guides.lib.berkeley.edu | ✅ |
+| 2 | Palestinian Studies: Archives & Primary Sources | Brown University Library | libguides.brown.edu/Palestine/primary | ✅ |
+| 3 | Middle East Primary Sources Guide | Princeton University Library | libguides.princeton.edu | ✅ |
+| 4 | Readings and Digital Resources on Palestine | Harvard CMES | cmes.fas.harvard.edu | ✅ |
+
+All .edu and .gov URLs verified via WebFetch on December 23, 2024.
+
+### Sources Section Structure
+
+The Sources section now displays four explicit categories:
+1. **Primary Archives (.gov)** - Library of Congress, National Archives
+2. **University Research Guides (.edu)** - Berkeley, Brown, Princeton, Harvard
+3. **Academic Books & Journals** - Published scholarly works
+4. **Institutional Reports** - UN, B'Tselem, IPS, Amnesty International
+
+Total sources: 21 (up from 14)
 
 ---
 
