@@ -35,6 +35,7 @@ export interface VisualEssay {
   draft?: boolean;
   tags?: string[];
   visualStyle?: VisualStyle;  // 'photorealistic' for photo essays, 'illustrated' for SVG-based
+  heroImage?: string;  // URL or path to hero/thumbnail image for cards
 }
 
 export const CATEGORY_COLORS: Record<EssayCategory, string> = {
@@ -381,6 +382,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/the-manhattan-project",
     tags: ["Manhattan Project", "atomic bomb", "nuclear weapons", "Oppenheimer", "Trinity test", "Hiroshima", "Nagasaki", "Los Alamos", "World War II", "nuclear history", "Enrico Fermi", "Einstein", "history of science", "military history"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Trinity_Test_Fireball_16ms.jpg",
   },
   {
     id: "the-thinking-machine",
@@ -393,6 +395,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/the-thinking-machine",
     tags: ["artificial intelligence", "AI history", "Alan Turing", "machine learning", "neural networks", "deep learning", "Geoffrey Hinton", "ChatGPT", "OpenAI", "Dartmouth conference", "AI winter", "computer science history", "Turing test", "technology history"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg",
   },
   {
     id: "the-ramayana",
@@ -405,6 +408,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/the-ramayana",
     tags: ["Ramayana", "Hindu mythology", "Indian epic", "Rama", "Sita", "Hanuman", "Ravana", "dharma", "Indian art", "Pahari miniatures", "Chola bronze", "Angkor Wat", "mythology", "Diwali", "Ram Lila", "Sanskrit epic", "Valmiki", "Southeast Asian art"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Rama_and_Hanuman.jpg",
   },
   {
     id: "the-holocaust",
@@ -417,6 +421,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/the-holocaust",
     tags: ["Holocaust", "Shoah", "Nazi Germany", "World War II", "genocide", "Anne Frank", "Elie Wiesel", "Auschwitz", "concentration camps", "Jewish history", "remembrance", "never forget", "antisemitism", "visual essay"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/1/10/Auschwitz_I_entrance_snow.jpg",
   },
   {
     id: "the-diamond-cartel",
@@ -452,6 +457,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/the-rwanda-genocide",
     tags: ["Rwanda genocide", "Tutsi", "Hutu", "1994", "Paul Kagame", "Kigali", "genocide", "reconciliation", "Gacaca", "African history", "colonialism", "UN failure", "RPF", "East Africa", "never again", "Kwibuka", "photorealistic"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/d/d7/Kigali_Genocide_Memorial.jpg",
   },
   {
     id: "thai-cuisine",
@@ -464,6 +470,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/thai-cuisine",
     tags: ["Thai cuisine", "Thai food", "Southeast Asian cuisine", "pad thai", "tom yum", "som tam", "green curry", "Isan food", "street food", "royal Thai cuisine", "floating markets", "food history", "culinary anthropology", "five flavors", "photorealistic"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/3/39/Pad_Thai.jpg",
   },
   {
     id: "burmese-cuisine",
@@ -476,6 +483,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/the-history-of-burmese-cuisine",
     tags: ["Burmese cuisine", "Myanmar food", "mohinga", "laphet thoke", "ngapi", "fermented fish paste", "tea leaf salad", "si pyan", "Burmese curry", "Southeast Asian food history", "Mandalay cuisine", "Yangon street food", "Shan noodles", "food history", "culinary anthropology", "photorealistic"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Mohinga.jpg",
   },
   {
     id: "the-silicon-revolution",
@@ -488,6 +496,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/the-silicon-revolution",
     tags: ["semiconductor", "transistor", "silicon", "Moore's Law", "Intel", "TSMC", "chip manufacturing", "integrated circuit", "Bell Labs", "Gordon Moore", "Morris Chang", "CHIPS Act", "technology history", "microprocessor", "EUV lithography", "geopolitics"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Replica-of-first-transistor.jpg",
   },
   {
     id: "the-origin-of-toy",
@@ -524,6 +533,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/the-history-of-languages",
     tags: ["language history", "linguistics", "writing systems", "cuneiform", "hieroglyphics", "Proto-Indo-European", "endangered languages", "Rosetta Stone", "language families", "human evolution", "communication"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/6/64/Ancientlibraryalex.jpg",
   },
   {
     id: "who-invented-the-fork-comprehensive",
@@ -766,6 +776,19 @@ export const visualEssays: VisualEssay[] = [
     readTime: "45 min",
     href: "/essays/history/palestine-israel",
     tags: ["palestine", "israel", "middle east", "conflict", "history", "nakba", "zionism", "nationalism", "archaeology", "jerusalem"],
+    visualStyle: "photorealistic",
+  },
+  {
+    id: "the-word-etymology",
+    number: "72",
+    title: "Etymology",
+    subtitle: "The Word That Dug Up Words",
+    description: "A biography of the word that studies biographies of words. Trace 2,500 years from Plato's Cratylus through Roman translation, Isidore's medieval encyclopedia, English arrival, the scientific revolution of Grimm and Jones, and the digital age of Etymonline.",
+    category: "History",
+    readTime: "18 min",
+    href: "/essays/etymology/the-word-etymology",
+    isNew: true,
+    tags: ["etymology", "word origin", "Plato", "Cratylus", "Isidore of Seville", "Samuel Johnson", "OED", "Grimm's Law", "linguistic history", "visual essay", "typography"],
     visualStyle: "photorealistic",
   },
   // Children's Fiction (draft - not shown in production)
