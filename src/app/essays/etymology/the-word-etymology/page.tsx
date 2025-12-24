@@ -21,12 +21,15 @@ export const metadata: Metadata = {
     description:
       'A visual essay tracing 2,500 years of the word "etymology" — from Plato to the digital age.',
     type: 'article',
+    url: 'https://esy.com/essays/etymology/the-word-etymology/',
+    siteName: 'Esy',
+    locale: 'en_US',
     images: [
       {
-        url: '/essays/etymology/the-word-etymology/og-image.jpg',
+        url: 'https://esy.com/og/the-word-etymology.png',
         width: 1200,
         height: 630,
-        alt: 'Etymology: The Word That Dug Up Words',
+        alt: 'Etymology: The Word That Dug Up Words — Visual Essay',
       },
     ],
   },
@@ -35,6 +38,11 @@ export const metadata: Metadata = {
     title: 'Etymology: The Word That Dug Up Words',
     description:
       'A visual essay tracing 2,500 years of the word "etymology" — from Plato to the digital age.',
+    images: ['https://esy.com/og/the-word-etymology.png'],
+    site: '@EsyResearch',
+  },
+  alternates: {
+    canonical: 'https://esy.com/essays/etymology/the-word-etymology/',
   },
 };
 
