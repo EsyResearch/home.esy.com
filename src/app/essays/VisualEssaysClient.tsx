@@ -1,410 +1,318 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import React from "react";
 import Link from "next/link";
-import { useSearchParams, useRouter } from "next/navigation";
-import { ArrowRight, Clock, Search, Grid, List, ChevronDown, X, SlidersHorizontal, Sparkles } from "lucide-react";
-import { 
-  publishedVisualEssays, 
-  featuredEssay, 
-  nonFeaturedEssays, 
+import Image from "next/image";
+import { ArrowRight, Clock, Sparkles } from "lucide-react";
+import {
+  publishedVisualEssays,
+  featuredEssay as latestEssay,
+  nonFeaturedEssays,
   totalReadTime,
   CATEGORY_COLORS,
   type EssayCategory,
-  type VisualEssay 
+  type VisualEssay
 } from "@/data/visualEssays";
 import './visual-essays.css';
 
+// Manual featured essay override (for hero with clean photographic image)
+// Set to null to use the latest essay automatically
+const FEATURED_ESSAY_ID = "the-history-of-languages";
+
+const featuredEssay = FEATURED_ESSAY_ID
+  ? publishedVisualEssays.find(e => e.id === FEATURED_ESSAY_ID) || latestEssay
+  : latestEssay;
+
 /*
  * Visual Essays Discovery Platform
- * 
+ *
  * Design Philosophy:
  * - Premium editorial aesthetic
- * - Discovery-first: Search, Filter, Sort
- * - Scalable for 1000+ essays
- * - Mobile-first with grid/list toggle
- * - URL-addressable filtered views
- * 
+ * - Category-based discovery via carousels
+ * - Featured hero showcases latest essay
+ * - "More to Explore" for thin categories
+ *
  * Data Source: @/data/visualEssays.ts (single source of truth)
  * - Essays sorted by newest first (highest number)
  * - Featured essay: Always the latest (auto-determined)
  * - Stats calculated dynamically
- * 
+ *
  * Architecture:
  * - Layer 1: Editorial Hero (featured essay - always latest)
- * - Layer 2: Discovery Bar (search + filters, sticky)
- * - Layer 3: Content Grid/List (with Load More pagination)
+ * - Layer 2: Latest Essays (newest 6, excluding featured)
+ * - Layer 3: Category Carousels (History, Culture, Technology)
+ * - Layer 4: More to Explore (Science, Space, Nature, Economics, Education)
  */
 
 // ==================== CATEGORY CONFIG ====================
 
-const ALL_CATEGORIES: EssayCategory[] = ['Science', 'History', 'Technology', 'Culture', 'Space', 'Nature'];
+// Main carousel categories (strong content depth)
+const CAROUSEL_CATEGORIES: EssayCategory[] = ['History', 'Culture', 'Technology'];
+
+// Thin categories for "More to Explore" section
+const MORE_CATEGORIES: EssayCategory[] = ['Science', 'Space', 'Nature', 'Economics', 'Education & Writing'];
 
 // ==================== HELPERS ====================
 
-const ESSAYS_PER_PAGE = 12;
+/**
+ * Get the hero image for an essay with fallback chain:
+ * 1. heroImage (if defined in data)
+ * 2. OG image at /og/[slug].png
+ * 3. null (will show category gradient)
+ */
+const getEssayImage = (essay: VisualEssay): string | null => {
+  if (essay.heroImage) return essay.heroImage;
+  const slug = essay.href.split('/').pop();
+  if (slug) return `/og/${slug}.png`;
+  return null;
+};
+
+/**
+ * Category gradient fallback colors for essays without images
+ */
+const CATEGORY_GRADIENTS: Record<EssayCategory, string> = {
+  'Science': 'linear-gradient(135deg, #064e3b 0%, #10B981 100%)',
+  'History': 'linear-gradient(135deg, #78350f 0%, #F59E0B 100%)',
+  'Technology': 'linear-gradient(135deg, #1e3a8a 0%, #3B82F6 100%)',
+  'Culture': 'linear-gradient(135deg, #831843 0%, #EC4899 100%)',
+  'Space': 'linear-gradient(135deg, #4c1d95 0%, #8B5CF6 100%)',
+  'Nature': 'linear-gradient(135deg, #164e63 0%, #06B6D4 100%)',
+  'Education & Writing': 'linear-gradient(135deg, #134e4a 0%, #14B8A6 100%)',
+  'Economics': 'linear-gradient(135deg, #14532d 0%, #22C55E 100%)',
+  "Children's Fiction": 'linear-gradient(135deg, #713f12 0%, #FFD700 100%)',
+};
+
+/**
+ * Get essays by category
+ */
+const getEssaysByCategory = (category: EssayCategory): VisualEssay[] => {
+  return nonFeaturedEssays.filter(e => e.category === category);
+};
+
+/**
+ * Get essays from multiple categories (for "More to Explore")
+ */
+const getEssaysFromCategories = (categories: EssayCategory[]): VisualEssay[] => {
+  return nonFeaturedEssays.filter(e => categories.includes(e.category));
+};
 
 // ==================== COMPONENTS ====================
 
-// Discovery Bar Component
-interface DiscoveryBarProps {
-  searchQuery: string;
-  setSearchQuery: (q: string) => void;
-  selectedCategory: EssayCategory | 'all';
-  setSelectedCategory: (c: EssayCategory | 'all') => void;
-  viewMode: 'grid' | 'list';
-  setViewMode: (m: 'grid' | 'list') => void;
-  resultCount: number;
-  isSticky: boolean;
-}
-
-const DiscoveryBar: React.FC<DiscoveryBarProps> = ({
-  searchQuery,
-  setSearchQuery,
-  selectedCategory,
-  setSelectedCategory,
-  viewMode,
-  setViewMode,
-  resultCount,
-  isSticky,
-}) => {
-  const [showMobileFilters, setShowMobileFilters] = useState(false);
-  const [categoryOpen, setCategoryOpen] = useState(false);
-
-  const hasActiveFilters = selectedCategory !== 'all' || searchQuery.length > 0;
-
-  const clearFilters = () => {
-    setSearchQuery('');
-    setSelectedCategory('all');
-  };
-
-  return (
-    <>
-      <div className={`discovery-bar ${isSticky ? 'sticky' : ''}`}>
-        <div className="discovery-bar-inner">
-          {/* Search */}
-          <div className="discovery-search">
-            <Search size={18} className="discovery-search-icon" />
-            <input
-              type="text"
-              placeholder="Search visual essays..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="discovery-search-input"
-            />
-            {searchQuery && (
-              <button 
-                className="discovery-search-clear"
-                onClick={() => setSearchQuery('')}
-                aria-label="Clear search"
-              >
-                <X size={14} />
-              </button>
-            )}
-          </div>
-
-          {/* Desktop Filters */}
-          <div className="discovery-filters desktop-only">
-            {/* Category Dropdown */}
-            <div className="discovery-dropdown">
-              <button 
-                className={`discovery-dropdown-trigger ${selectedCategory !== 'all' ? 'active' : ''}`}
-                onClick={() => setCategoryOpen(!categoryOpen)}
-              >
-                <span>{selectedCategory === 'all' ? 'All Categories' : selectedCategory}</span>
-                <ChevronDown size={14} />
-              </button>
-              {categoryOpen && (
-                <div className="discovery-dropdown-menu">
-                  <button 
-                    className={selectedCategory === 'all' ? 'active' : ''}
-                    onClick={() => { setSelectedCategory('all'); setCategoryOpen(false); }}
-                  >
-                    All Categories
-                  </button>
-                  {ALL_CATEGORIES.map(cat => (
-                    <button 
-                      key={cat}
-                      className={selectedCategory === cat ? 'active' : ''}
-                      onClick={() => { setSelectedCategory(cat); setCategoryOpen(false); }}
-                    >
-                      <span 
-                        className="category-dot" 
-                        style={{ backgroundColor: CATEGORY_COLORS[cat] }}
-                      />
-                      {cat}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Clear Filters */}
-            {hasActiveFilters && (
-              <button className="discovery-clear" onClick={clearFilters}>
-                Clear filters
-              </button>
-            )}
-          </div>
-
-          {/* View Toggle */}
-          <div className="discovery-view-toggle">
-            <button 
-              className={viewMode === 'grid' ? 'active' : ''}
-              onClick={() => setViewMode('grid')}
-              aria-label="Grid view"
-            >
-              <Grid size={16} />
-            </button>
-            <button 
-              className={viewMode === 'list' ? 'active' : ''}
-              onClick={() => setViewMode('list')}
-              aria-label="List view"
-            >
-              <List size={16} />
-            </button>
-          </div>
-
-          {/* Mobile Filter Button */}
-          <button 
-            className="discovery-mobile-filter-btn mobile-only"
-            onClick={() => setShowMobileFilters(true)}
-          >
-            <SlidersHorizontal size={18} />
-            {hasActiveFilters && <span className="filter-badge" />}
-          </button>
-        </div>
-
-        {/* Results Count */}
-        <div className="discovery-results">
-          <span>{resultCount} {resultCount === 1 ? 'essay' : 'essays'}</span>
-          {hasActiveFilters && (
-            <button className="discovery-clear-mobile" onClick={clearFilters}>
-              Clear all
-            </button>
-          )}
-        </div>
-      </div>
-
-      {/* Mobile Filter Sheet */}
-      {showMobileFilters && (
-        <div className="mobile-filter-overlay" onClick={() => setShowMobileFilters(false)}>
-          <div className="mobile-filter-sheet" onClick={e => e.stopPropagation()}>
-            <div className="mobile-filter-header">
-              <h3>Filters</h3>
-              <button onClick={() => setShowMobileFilters(false)}>
-                <X size={20} />
-              </button>
-            </div>
-
-            <div className="mobile-filter-section">
-              <h4>Category</h4>
-              <div className="mobile-filter-options">
-                <button 
-                  className={selectedCategory === 'all' ? 'active' : ''}
-                  onClick={() => setSelectedCategory('all')}
-                >
-                  All
-                </button>
-                {ALL_CATEGORIES.map(cat => (
-                  <button 
-                    key={cat}
-                    className={selectedCategory === cat ? 'active' : ''}
-                    onClick={() => setSelectedCategory(cat)}
-                  >
-                    <span 
-                      className="category-dot" 
-                      style={{ backgroundColor: CATEGORY_COLORS[cat] }}
-                    />
-                    {cat}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="mobile-filter-actions">
-              <button className="mobile-filter-clear" onClick={clearFilters}>
-                Clear All
-              </button>
-              <button className="mobile-filter-apply" onClick={() => setShowMobileFilters(false)}>
-                Show {resultCount} Essays
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
-  );
-};
-
-// Editorial Hero - Featured essay is always the latest (auto-determined)
+// Editorial Hero - Full-bleed featured essay (always the latest)
 const EditorialHero: React.FC = () => {
+  const featuredImageUrl = featuredEssay ? getEssayImage(featuredEssay) : null;
+
+  if (!featuredEssay) return null;
+
   return (
-    <section className="editorial-hero">
-      <div className="hero-left">
-        <span className="hero-label">Visual Essays</span>
-        <h1 className="hero-title">
-          <span className="hero-title-line">Essays</span>
-          <span className="hero-title-line">That</span>
-          <span className="hero-title-line hero-title-italic">Unfold</span>
-        </h1>
-        <p className="hero-description">
-          Interactive essays that combine research, design, and storytelling. 
-          Ideas explored, not just explained.
-        </p>
-      </div>
-      
-      <div className="hero-right">
-        {featuredEssay && (
-          <Link href={featuredEssay.href} className="hero-featured">
-            <div className="hero-featured-badges">
-              <span className="hero-featured-category" style={{ color: CATEGORY_COLORS[featuredEssay.category] }}>
-                {featuredEssay.category}
-              </span>
-            </div>
-            <h2 className="hero-featured-title">{featuredEssay.title}</h2>
-            <p className="hero-featured-subtitle">{featuredEssay.subtitle}</p>
-            <div className="hero-featured-meta">
-              <Clock size={14} />
-              <span>{featuredEssay.readTime} read</span>
-              {featuredEssay.isNew && <span className="new-badge">New</span>}
-            </div>
-            <span className="hero-featured-cta">
-              Read Essay <ArrowRight size={14} />
-            </span>
-          </Link>
+    <section className="editorial-hero-fullbleed">
+      {/* Full-bleed Background Image */}
+      <div className="hero-fullbleed-bg">
+        {featuredImageUrl && (
+          <Image
+            src={featuredImageUrl}
+            alt={featuredEssay.title}
+            fill
+            sizes="100vw"
+            style={{ objectFit: 'cover' }}
+            priority
+            unoptimized
+          />
         )}
-        
-        <div className="hero-stats">
-          <div className="hero-stat">
-            <div className="hero-stat-value">{publishedVisualEssays.length}</div>
-            <div className="hero-stat-label">Essays</div>
-          </div>
-          <div className="hero-stat">
-            <div className="hero-stat-value">{totalReadTime}</div>
-            <div className="hero-stat-label">Minutes</div>
-          </div>
-          <div className="hero-stat">
-            <div className="hero-stat-value">
-              <Sparkles size={20} />
-            </div>
-            <div className="hero-stat-label">Interactive</div>
-          </div>
+        <div className="hero-fullbleed-overlay" />
+      </div>
+
+      {/* Content - Bottom Left Safe Zone */}
+      <Link href={featuredEssay.href} className="hero-fullbleed-content">
+        {/* "Featured" label removed - hero treatment already signals prominence */}
+        {/* <span className="hero-fullbleed-label">Featured</span> */}
+
+        <h1 className="hero-fullbleed-title">{featuredEssay.title}</h1>
+        <p className="hero-fullbleed-subtitle">{featuredEssay.subtitle}</p>
+
+        <div className="hero-fullbleed-meta">
+          <span
+            className="hero-fullbleed-category"
+            style={{ color: CATEGORY_COLORS[featuredEssay.category] }}
+          >
+            {featuredEssay.category}
+          </span>
+          <span className="hero-fullbleed-divider">·</span>
+          <Clock size={14} />
+          <span>{featuredEssay.readTime}</span>
+          {featuredEssay.isNew && <span className="hero-fullbleed-new">New</span>}
+        </div>
+
+        <span className="hero-fullbleed-cta">
+          Read This Essay <ArrowRight size={16} />
+        </span>
+      </Link>
+
+      {/* Stats Bar - Integrated Footer */}
+      <div className="hero-fullbleed-stats">
+        <div className="hero-fullbleed-stat">
+          <span className="hero-fullbleed-stat-value">{publishedVisualEssays.length}</span>
+          <span className="hero-fullbleed-stat-label">Essays</span>
+        </div>
+        <span className="hero-fullbleed-stat-divider">·</span>
+        <div className="hero-fullbleed-stat">
+          <span className="hero-fullbleed-stat-value">{totalReadTime}</span>
+          <span className="hero-fullbleed-stat-label">Minutes</span>
+        </div>
+        <span className="hero-fullbleed-stat-divider">·</span>
+        <div className="hero-fullbleed-stat">
+          <Sparkles size={14} />
+          <span className="hero-fullbleed-stat-label">All Interactive</span>
         </div>
       </div>
     </section>
   );
 };
 
-// Essay Card (Grid View)
-const EssayCard: React.FC<{ essay: VisualEssay }> = ({ essay }) => (
-  <Link href={essay.href} className="essay-card">
-    <div className="essay-card-header">
-      <span 
-        className="essay-card-category"
-        style={{ color: CATEGORY_COLORS[essay.category] }}
-      >
-        {essay.category}
-      </span>
-      {essay.isNew && <span className="essay-card-new">New</span>}
-    </div>
-    <h3 className="essay-card-title">{essay.title}</h3>
-    <p className="essay-card-subtitle">{essay.subtitle}</p>
-    <p className="essay-card-description">{essay.description}</p>
-    <div className="essay-card-meta">
-      <Clock size={12} />
-      <span>{essay.readTime}</span>
-    </div>
-  </Link>
-);
+// Number of cards to show per section before "See All"
+const CARDS_PER_SECTION = 4;
 
-// Essay Row (List View)
-const EssayRow: React.FC<{ essay: VisualEssay }> = ({ essay }) => (
-  <Link href={essay.href} className="essay-row">
-    <span className="essay-number">{essay.number}</span>
-    
-    <div className="essay-main">
-      <div className="essay-info">
-        <div className="essay-row-badges">
-          <span 
-            className="essay-category"
+// Section Component - Vertical grid with optional "See All"
+interface SectionProps {
+  title: string;
+  subtitle?: string;
+  essays: VisualEssay[];
+  accentColor?: string;
+  showAll?: boolean;
+}
+
+const Section: React.FC<SectionProps> = ({ title, subtitle, essays, accentColor, showAll = false }) => {
+  if (essays.length === 0) return null;
+
+  const displayEssays = showAll ? essays : essays.slice(0, CARDS_PER_SECTION);
+  const hasMore = !showAll && essays.length > CARDS_PER_SECTION;
+
+  return (
+    <section className="essays-section-block">
+      <div className="section-header">
+        <div className="section-title-group">
+          <h2 className="section-title" style={accentColor ? { color: accentColor } : undefined}>
+            {title}
+          </h2>
+          {subtitle && <span className="section-subtitle">{subtitle}</span>}
+        </div>
+        {hasMore && (
+          <span className="section-see-all">
+            +{essays.length - CARDS_PER_SECTION} more
+          </span>
+        )}
+      </div>
+
+      <div className="section-grid">
+        {displayEssays.map((essay, index) => (
+          <EssayCard key={essay.id} essay={essay} priority={index < 4} />
+        ))}
+      </div>
+    </section>
+  );
+};
+
+// Latest Essays Section (newest 6)
+const LatestSection: React.FC = () => {
+  const latestEssays = nonFeaturedEssays.slice(0, 6);
+
+  return (
+    <Section
+      title="Latest"
+      subtitle="Newest additions"
+      essays={latestEssays}
+      showAll={true}
+    />
+  );
+};
+
+// Category Section
+interface CategorySectionProps {
+  category: EssayCategory;
+}
+
+const CategorySection: React.FC<CategorySectionProps> = ({ category }) => {
+  const essays = getEssaysByCategory(category);
+
+  return (
+    <Section
+      title={category}
+      subtitle={`${essays.length} essays`}
+      essays={essays}
+      accentColor={CATEGORY_COLORS[category]}
+    />
+  );
+};
+
+// More to Explore Section (thin categories combined)
+const MoreToExplore: React.FC = () => {
+  const moreEssays = getEssaysFromCategories(MORE_CATEGORIES);
+
+  if (moreEssays.length === 0) return null;
+
+  return (
+    <Section
+      title="More to Explore"
+      subtitle="Science, Space, Nature & More"
+      essays={moreEssays}
+      showAll={true}
+    />
+  );
+};
+
+// Essay Card (Grid View) - With Hero Image
+const EssayCard: React.FC<{ essay: VisualEssay; priority?: boolean }> = ({ essay, priority = false }) => {
+  const imageUrl = getEssayImage(essay);
+
+  return (
+    <Link href={essay.href} className="essay-card essay-card-visual">
+      {/* Hero Image */}
+      <div
+        className="essay-card-image"
+        style={!imageUrl ? { background: CATEGORY_GRADIENTS[essay.category] } : undefined}
+      >
+        {imageUrl && (
+          <Image
+            src={imageUrl}
+            alt={essay.title}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            style={{ objectFit: 'cover' }}
+            priority={priority}
+            unoptimized
+          />
+        )}
+        <div className="essay-card-image-overlay" />
+      </div>
+
+      {/* Content */}
+      <div className="essay-card-content">
+        <div className="essay-card-header">
+          <span
+            className="essay-card-category"
             style={{ color: CATEGORY_COLORS[essay.category] }}
           >
             {essay.category}
           </span>
-          {essay.isNew && <span className="essay-row-new">New</span>}
+          {essay.isNew && <span className="essay-card-new">New</span>}
         </div>
-        <h3 className="essay-title">{essay.title}</h3>
-        <p className="essay-subtitle">{essay.subtitle}</p>
-        <p className="essay-description">{essay.description}</p>
+        <h3 className="essay-card-title">{essay.title}</h3>
+        <p className="essay-card-subtitle">{essay.subtitle}</p>
+        <div className="essay-card-meta">
+          <Clock size={12} />
+          <span>{essay.readTime}</span>
+          <ArrowRight size={12} className="essay-card-arrow" />
+        </div>
       </div>
-
-      <div className="essay-meta">
-        <Clock size={14} />
-        <span>{essay.readTime}</span>
-      </div>
-    </div>
-
-    <div className="essay-arrow">
-      <ArrowRight size={18} />
-    </div>
-  </Link>
-);
-
-// Essays Section with Grid/List toggle and Load More
-interface EssaysSectionProps {
-  essays: VisualEssay[];
-  viewMode: 'grid' | 'list';
-  visibleCount: number;
-  onLoadMore: () => void;
-  hasMore: boolean;
-}
-
-const EssaysSection: React.FC<EssaysSectionProps> = ({ 
-  essays, 
-  viewMode, 
-  visibleCount,
-  onLoadMore,
-  hasMore,
-}) => {
-  const visibleEssays = essays.slice(0, visibleCount);
-
-  return (
-    <section className="essays-section">
-      {viewMode === 'grid' ? (
-        <div className="essays-grid">
-          {visibleEssays.map(essay => (
-            <EssayCard key={essay.id} essay={essay} />
-          ))}
-        </div>
-      ) : (
-        <div className="essays-list">
-          {visibleEssays.map(essay => (
-            <EssayRow key={essay.id} essay={essay} />
-          ))}
-        </div>
-      )}
-
-      {hasMore && (
-        <div className="load-more-container">
-          <button className="load-more-btn" onClick={onLoadMore}>
-            Load More Essays
-            <span className="load-more-count">
-              ({essays.length - visibleCount} remaining)
-            </span>
-          </button>
-        </div>
-      )}
-    </section>
+    </Link>
   );
 };
-
 
 // Coming Soon
 const ComingSoon: React.FC = () => (
   <section className="coming-soon">
     <p className="coming-soon-text">
-      More visual essays in development. Each piece takes weeks of research 
+      More visual essays in development. Each piece takes weeks of research
       and design to create an unforgettable experience.
     </p>
   </section>
@@ -416,108 +324,21 @@ interface VisualEssaysClientProps {
   basePath?: string;
 }
 
-const VisualEssaysClient: React.FC<VisualEssaysClientProps> = ({ basePath = '/essays/visual' }) => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const discoveryBarRef = useRef<HTMLDivElement>(null);
-
-  // State from URL params
-  const [searchQuery, setSearchQuery] = useState(searchParams.get('q') || '');
-  const [selectedCategory, setSelectedCategory] = useState<EssayCategory | 'all'>(
-    (searchParams.get('category') as EssayCategory) || 'all'
-  );
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>(
-    (searchParams.get('view') as 'grid' | 'list') || 'grid'
-  );
-  const [visibleCount, setVisibleCount] = useState(ESSAYS_PER_PAGE);
-  const [isSticky, setIsSticky] = useState(false);
-
-  // Update URL when filters change
-  useEffect(() => {
-    const params = new URLSearchParams();
-    if (searchQuery) params.set('q', searchQuery);
-    if (selectedCategory !== 'all') params.set('category', selectedCategory);
-    if (viewMode !== 'grid') params.set('view', viewMode);
-
-    const queryString = params.toString();
-    const newUrl = queryString ? `?${queryString}` : basePath;
-    
-    router.replace(newUrl, { scroll: false });
-  }, [searchQuery, selectedCategory, viewMode, router, basePath]);
-
-  // Sticky detection - account for fixed navigation header (80px)
-  useEffect(() => {
-    const HEADER_HEIGHT = 80;
-    const handleScroll = () => {
-      if (discoveryBarRef.current) {
-        const rect = discoveryBarRef.current.getBoundingClientRect();
-        setIsSticky(rect.top <= HEADER_HEIGHT);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Filter essays - uses nonFeaturedEssays (already sorted newest first, excludes featured)
-  const filteredEssays = useMemo(() => {
-    return nonFeaturedEssays.filter(essay => {
-      // Search
-      if (searchQuery) {
-        const query = searchQuery.toLowerCase();
-        const matchesSearch = 
-          essay.title.toLowerCase().includes(query) ||
-          essay.subtitle.toLowerCase().includes(query) ||
-          essay.description.toLowerCase().includes(query) ||
-          essay.category.toLowerCase().includes(query) ||
-          (essay.tags?.some(tag => tag.toLowerCase().includes(query)));
-        if (!matchesSearch) return false;
-      }
-
-      // Category
-      if (selectedCategory !== 'all' && essay.category !== selectedCategory) {
-        return false;
-      }
-
-      return true;
-    });
-  }, [searchQuery, selectedCategory]);
-
-  // Reset visible count when filters change
-  useEffect(() => {
-    setVisibleCount(ESSAYS_PER_PAGE);
-  }, [searchQuery, selectedCategory]);
-
-  const handleLoadMore = useCallback(() => {
-    setVisibleCount(prev => prev + ESSAYS_PER_PAGE);
-  }, []);
-
-  const hasMore = visibleCount < filteredEssays.length;
-
+const VisualEssaysClient: React.FC<VisualEssaysClientProps> = () => {
   return (
     <div className="visual-essays-index">
       <EditorialHero />
-      
-      <div ref={discoveryBarRef}>
-        <DiscoveryBar
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-          viewMode={viewMode}
-          setViewMode={setViewMode}
-          resultCount={filteredEssays.length}
-          isSticky={isSticky}
-        />
-      </div>
 
-      <EssaysSection
-        essays={filteredEssays}
-        viewMode={viewMode}
-        visibleCount={visibleCount}
-        onLoadMore={handleLoadMore}
-        hasMore={hasMore}
-      />
+      {/* Latest Essays */}
+      <LatestSection />
+
+      {/* Category Sections */}
+      {CAROUSEL_CATEGORIES.map(category => (
+        <CategorySection key={category} category={category} />
+      ))}
+
+      {/* More to Explore - thin categories */}
+      <MoreToExplore />
 
       <ComingSoon />
     </div>

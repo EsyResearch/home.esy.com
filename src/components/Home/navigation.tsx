@@ -566,11 +566,11 @@ export default function Navigation ({
             {/* Homepage/Visual Essays: Direct Essays link | Other pages: Essays Dropdown */}
             {isSimplifiedNav ? (
               <>
-                <Link 
-                  href="/essays/" 
-                  className="nav-link homepage-essays-link"
+                <Link
+                  href="/essays/"
+                  className={`nav-link homepage-essays-link${normalizedPathForNav?.startsWith('/essays') ? ' active' : ''}`}
                   style={{
-                    color: 'rgba(255, 255, 255, 0.9)',
+                    color: normalizedPathForNav?.startsWith('/essays') ? '#ffffff' : 'rgba(255, 255, 255, 0.9)',
                     fontWeight: 500,
                     opacity: 1,
                     textDecoration: 'none',
@@ -578,10 +578,10 @@ export default function Navigation ({
                     letterSpacing: '0.01em'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = 'rgba(255, 255, 255, 1)';
+                    e.currentTarget.style.color = '#ffffff';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.color = 'rgba(255, 255, 255, 0.9)';
+                    e.currentTarget.style.color = normalizedPathForNav?.startsWith('/essays') ? '#ffffff' : 'rgba(255, 255, 255, 0.9)';
                   }}
                 >
                   Essays
