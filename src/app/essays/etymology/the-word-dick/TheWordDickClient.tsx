@@ -968,34 +968,33 @@ export default function TheWordDickClient() {
           ============================================ */}
       <footer className="sources-section">
         <h3>Sources & Further Reading</h3>
-        
+
         <div className="sources-grid">
           <div className="source-category">
             <h4>Etymology & Dictionaries</h4>
             <ul>
-              <li><em>Online Etymology Dictionary</em> (etymonline.com)</li>
-              <li><em>Oxford English Dictionary</em></li>
-              <li><em>Merriam-Webster Dictionary</em></li>
-              <li>Farmer, John S. <em>Slang and Its Analogues</em> (1891)</li>
-              <li>Grose, Francis. <em>A Classical Dictionary of the Vulgar Tongue</em> (1785)</li>
+              <li><a href="https://www.etymonline.com/word/dick" target="_blank" rel="noopener noreferrer">Online Etymology Dictionary</a></li>
+              <li><a href="https://www.merriam-webster.com/dictionary/dick" target="_blank" rel="noopener noreferrer">Merriam-Webster Dictionary</a></li>
+              <li><a href="https://archive.org/details/slangitsanalogue01farmuoft" target="_blank" rel="noopener noreferrer">Farmer, John S. <em>Slang and Its Analogues</em> (1891)</a></li>
+              <li><a href="https://archive.org/details/classicaldiction00grosuoft" target="_blank" rel="noopener noreferrer">Grose, Francis. <em>A Classical Dictionary of the Vulgar Tongue</em> (1785)</a></li>
             </ul>
           </div>
-          
+
           <div className="source-category">
             <h4>Linguistics & Language</h4>
             <ul>
-              <li>Partridge, Eric. <em>A Dictionary of Slang and Unconventional English</em></li>
-              <li>Pinker, Steven. <em>The Stuff of Thought</em> (2007)</li>
-              <li>McWhorter, John. <em>Words on the Move</em> (2016)</li>
+              <li><a href="https://grammarphobia.com/blog/2011/01/dick.html" target="_blank" rel="noopener noreferrer">Grammarphobia: Etymology of Dick</a></li>
+              <li><a href="https://melmagazine.com/en-us/story/all-the-ways-dick-became-a-word" target="_blank" rel="noopener noreferrer">MEL Magazine: All the Ways Dick Became a Word</a></li>
+              <li><a href="https://english.stackexchange.com/questions/344805/evolution-of-the-word-dick" target="_blank" rel="noopener noreferrer">English Stack Exchange: Evolution of "Dick"</a></li>
             </ul>
           </div>
-          
+
           <div className="source-category">
             <h4>Data Sources</h4>
             <ul>
-              <li>Social Security Administration Baby Names Database</li>
-              <li>Wikipedia: Dick (nickname), Dick (slang)</li>
-              <li>Grammarphobia.com etymology archives</li>
+              <li><a href="https://www.ssa.gov/oact/babynames/" target="_blank" rel="noopener noreferrer">U.S. Social Security Administration Baby Names</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Dick_(nickname)" target="_blank" rel="noopener noreferrer">Wikipedia: Dick (nickname)</a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Dick_(slang)" target="_blank" rel="noopener noreferrer">Wikipedia: Dick (slang)</a></li>
             </ul>
           </div>
         </div>
