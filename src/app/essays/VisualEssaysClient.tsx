@@ -165,6 +165,11 @@ const EditorialHero: React.FC = () => {
           <span className="hero-fullbleed-stat-label">All Interactive</span>
         </div>
       </div>
+
+      {/* Framing Line - Sets context */}
+      <p className="hero-framing-line">
+        A collection of inspectable research artifacts produced using Esy workflows.
+      </p>
     </section>
   );
 };
@@ -294,6 +299,7 @@ const EssayCard: React.FC<{ essay: VisualEssay; priority?: boolean }> = ({ essay
           >
             {essay.category}
           </span>
+          <span className="essay-card-artifact-badge">Artifact</span>
           {essay.isNew && <span className="essay-card-new">New</span>}
         </div>
         <h3 className="essay-card-title">{essay.title}</h3>
@@ -307,6 +313,32 @@ const EssayCard: React.FC<{ essay: VisualEssay; priority?: boolean }> = ({ essay
     </Link>
   );
 };
+
+// Artifact CTA Section - Conversion belongs here
+const ArtifactCTA: React.FC = () => (
+  <section className="artifact-cta-section">
+    <h2 className="artifact-cta-title">Want to create artifacts like these?</h2>
+    <p className="artifact-cta-subtitle">
+      Explore the workflows, inspect the methodology, or start your own.
+    </p>
+    <div className="artifact-cta-links">
+      <Link href="/docs/designing-visual-essays" className="artifact-cta-link">
+        What's an artifact?
+      </Link>
+      <Link href="/docs/workflows" className="artifact-cta-link">
+        View the workflow system
+      </Link>
+      <a
+        href="https://app.esy.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="artifact-cta-link artifact-cta-link-primary"
+      >
+        Create your own
+      </a>
+    </div>
+  </section>
+);
 
 // Coming Soon
 const ComingSoon: React.FC = () => (
@@ -339,6 +371,9 @@ const VisualEssaysClient: React.FC<VisualEssaysClientProps> = () => {
 
       {/* More to Explore - thin categories */}
       <MoreToExplore />
+
+      {/* Artifact CTA - Conversion section */}
+      <ArtifactCTA />
 
       <ComingSoon />
     </div>
