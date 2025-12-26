@@ -34,17 +34,36 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
 }) => {
   const router = useRouter();
   const pathname = usePathname();
-  
+
+  // Responsive breakpoints - must be before shouldAlwaysExpand calculation
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   // Get context configuration
   const contextConfig = getSearchContextConfig(searchContext);
-  const shouldAlwaysExpand = alwaysExpanded || contextConfig.shouldAlwaysExpand;
-  
-  const [isExpanded, setIsExpanded] = useState(shouldAlwaysExpand);
+  // On mobile, never force expand - use icon-only mode for clean header
+  const shouldAlwaysExpand = !isMobile && (alwaysExpanded || contextConfig.shouldAlwaysExpand);
+
+  const [isExpanded, setIsExpanded] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const searchRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Sync isExpanded with shouldAlwaysExpand when it changes
+  useEffect(() => {
+    setIsExpanded(shouldAlwaysExpand);
+  }, [shouldAlwaysExpand]);
 
   // Use the appropriate search hook based on context
   // Templates use the same search structure as prompts
@@ -179,57 +198,47 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
 
   // Removed auto-focus - users can click when they want to search
 
-  // Responsive breakpoints
-  const [isMobile, setIsMobile] = useState(false);
-  
   // Theme selection
   const currentTheme = isLightMode ? lightTheme : elevatedDarkTheme;
-  
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   const styles = {
     container: {
-      position: 'absolute' as const,
-      left: '50%',
-      transform: 'translateX(-50%)',
+      position: isMobile ? 'static' as const : 'absolute' as const,
+      left: isMobile ? undefined : '50%',
+      transform: isMobile ? 'none' : 'translateX(-50%)',
       display: 'flex',
       alignItems: 'center',
       zIndex: 100,
+      flex: isMobile ? 1 : undefined,
+      maxWidth: isMobile ? '180px' : undefined,
+      margin: isMobile ? '0 0.5rem' : undefined,
       ...(isExpanded || shouldAlwaysExpand ? {
-        width: isMobile ? 'calc(100vw - 4rem)' : '500px',
-        maxWidth: '90vw'
+        width: isMobile ? '100%' : '500px',
+        maxWidth: isMobile ? '180px' : '90vw'
       } : {})
     },
     searchWrapper: {
       position: 'relative' as const,
       display: 'flex',
       alignItems: 'center',
-      backgroundColor: (isExpanded || shouldAlwaysExpand) 
+      backgroundColor: (isExpanded || shouldAlwaysExpand)
         ? (isLightMode ? 'rgba(255, 255, 255, 0.95)' : 'rgba(31, 31, 35, 0.95)')
         : (isLightMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(31, 31, 35, 0.7)'),
-      border: `1px solid ${(isExpanded || shouldAlwaysExpand) 
+      border: `1px solid ${(isExpanded || shouldAlwaysExpand)
         ? (isLightMode ? currentTheme.accentBorder : currentTheme.accentBorder)
         : currentTheme.borderSubtle}`,
-      borderRadius: '8px',
+      borderRadius: isMobile ? '6px' : '8px',
       transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       backdropFilter: 'blur(20px)',
       WebkitBackdropFilter: 'blur(20px)',
       boxShadow: (isExpanded || shouldAlwaysExpand)
-        ? (isLightMode 
+        ? (isLightMode
           ? `${currentTheme.shadows?.glow || '0 4px 16px rgba(124, 58, 237, 0.15)'}, ${currentTheme.shadows?.md || '0 4px 12px rgba(0, 0, 0, 0.08)'}`
           : `${currentTheme.shadows?.glow || '0 4px 16px rgba(159, 122, 234, 0.2)'}, ${currentTheme.shadows?.md || '0 4px 12px rgba(0, 0, 0, 0.3)'}`)
         : currentTheme.shadows?.sm || (isLightMode ? '0 2px 4px rgba(0, 0, 0, 0.06)' : '0 2px 4px rgba(0, 0, 0, 0.2)'),
       width: (isExpanded || shouldAlwaysExpand) ? '100%' : 'auto',
-      minWidth: (isExpanded || shouldAlwaysExpand) ? 'auto' : '48px',
-      height: '48px'
+      minWidth: (isExpanded || shouldAlwaysExpand) ? 'auto' : (isMobile ? '36px' : '48px'),
+      height: isMobile ? '36px' : '48px'
     },
     searchIcon: {
       padding: '0 14px',
@@ -249,7 +258,7 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
       fontSize: '1rem',
       fontWeight: '300' as const,
       outline: 'none',
-      minWidth: isExpanded ? '300px' : '0',
+      minWidth: isExpanded ? (isMobile ? '150px' : '300px') : '0',
       width: isExpanded ? 'auto' : '0',
       opacity: isExpanded ? 1 : 0,
       transition: 'all 0.3s ease'

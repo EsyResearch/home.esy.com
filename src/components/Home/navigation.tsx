@@ -564,39 +564,44 @@ export default function Navigation ({
           {/* Navigation */}
           <div className="nav-links">
             {/* Homepage/Visual Essays: Direct Essays link | Other pages: Essays Dropdown */}
+            {/* On mobile + essays page: hide Essays link for ultra-minimal header (Logo | App) */}
             {isSimplifiedNav ? (
               <>
-                <Link
-                  href="/essays/"
-                  className={`nav-link homepage-essays-link${normalizedPathForNav?.startsWith('/essays') ? ' active' : ''}`}
-                  style={{
-                    color: normalizedPathForNav?.startsWith('/essays') ? '#ffffff' : 'rgba(255, 255, 255, 0.9)',
-                    fontWeight: 500,
-                    opacity: 1,
-                    textDecoration: 'none',
-                    position: 'relative',
-                    letterSpacing: '0.01em'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = '#ffffff';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = normalizedPathForNav?.startsWith('/essays') ? '#ffffff' : 'rgba(255, 255, 255, 0.9)';
-                  }}
-                >
-                  Essays
-                </Link>
-                {/* Subtle vertical divider */}
-                <span 
-                  className="homepage-nav-divider"
-                  aria-hidden="true"
-                  style={{
-                    width: '1px',
-                    height: '14px',
-                    background: 'rgba(255, 255, 255, 0.2)',
-                    flexShrink: 0
-                  }}
-                />
+                {!(isMobile && normalizedPathForNav === '/essays') && (
+                  <>
+                    <Link
+                      href="/essays/"
+                      className={`nav-link homepage-essays-link${normalizedPathForNav?.startsWith('/essays') ? ' active' : ''}`}
+                      style={{
+                        color: normalizedPathForNav?.startsWith('/essays') ? '#ffffff' : 'rgba(255, 255, 255, 0.9)',
+                        fontWeight: 500,
+                        opacity: 1,
+                        textDecoration: 'none',
+                        position: 'relative',
+                        letterSpacing: '0.01em'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = '#ffffff';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = normalizedPathForNav?.startsWith('/essays') ? '#ffffff' : 'rgba(255, 255, 255, 0.9)';
+                      }}
+                    >
+                      Essays
+                    </Link>
+                    {/* Subtle vertical divider */}
+                    <span
+                      className="homepage-nav-divider"
+                      aria-hidden="true"
+                      style={{
+                        width: '1px',
+                        height: '14px',
+                        background: 'rgba(255, 255, 255, 0.2)',
+                        flexShrink: 0
+                      }}
+                    />
+                  </>
+                )}
               </>
             ) : (
               <NavDropdown 

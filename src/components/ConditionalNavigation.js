@@ -86,7 +86,7 @@ const ConditionalNavigation = () => {
     (isGlossaryPage && (isGlossaryIndex ? showHeaderSearch : true)) ||
     (isSchoolPage && (isSchoolIndex ? showHeaderSearch : isSchoolArticlePage)) ||
     (isTemplatesPage && (isTemplatesIndex ? showHeaderSearch : true)) ||
-    isEssaysPage ||  // Always show search on essays page
+    (isEssaysPage && showHeaderSearch) ||  // Essays: show after scroll (desktop only via HeaderSearch)
     (isHomepage && showHeaderSearch);
   
   // Determine search context using centralized system
