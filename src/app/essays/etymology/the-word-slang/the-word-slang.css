@@ -1,0 +1,955 @@
+/* ============================================
+   THE WORD "SLANG" — Visual Etymology Essay
+   ============================================
+   Era-based design system with six distinct periods:
+   - Era 1: Criminal Underground (1720s-1780s)
+   - Era 2: Lexicographic Dawn (1785-1860)
+   - Era 3: Victorian Gatekeeping (1860-1911)
+   - Era 4: American Expansion (1919-1950s)
+   - Era 5: Academic Legitimation (1960s-1990s)
+   - Era 6: Digital Present (1999-present)
+   ============================================ */
+
+/* ============================================
+   CSS Custom Properties — Design System
+   ============================================ */
+:root {
+  /* Core Colors */
+  --slang-ink: #1a1a1a;
+  --slang-paper: #ffffff;
+  --slang-vellum: #f5f0e6;
+  --slang-cream: #faf8f0;
+
+  /* Era 1: Criminal Underground */
+  --slang-candlelight: #c9a227;
+  --slang-shadow: #2a2218;
+  --slang-smoke: #4a4236;
+
+  /* Era 2: Lexicographic Dawn */
+  --slang-sealing-wax: #8b2332;
+  --slang-parchment: #f8f4eb;
+
+  /* Era 3: Victorian */
+  --slang-victorian-black: #000000;
+  --slang-victorian-gray: #333333;
+
+  /* Era 4: American */
+  --slang-newsprint: #faf8f0;
+  --slang-printer-red: #cc3333;
+
+  /* Era 5: Academic */
+  --slang-teal: #2d6a6a;
+  --slang-neutral: #6b7280;
+
+  /* Era 6: Digital */
+  --slang-interface-blue: #2563eb;
+  --slang-upvote-green: #22c55e;
+  --slang-downvote-red: #ef4444;
+
+  /* Typography Scale */
+  --slang-text-xs: 0.75rem;
+  --slang-text-sm: 0.875rem;
+  --slang-text-base: 1rem;
+  --slang-text-lg: 1.125rem;
+  --slang-text-xl: 1.25rem;
+  --slang-text-2xl: 1.5rem;
+  --slang-text-3xl: 1.875rem;
+  --slang-text-4xl: 2.25rem;
+  --slang-text-5xl: 3rem;
+  --slang-text-6xl: 3.75rem;
+  --slang-text-7xl: 4.5rem;
+
+  /* Spacing */
+  --slang-space-xs: 0.25rem;
+  --slang-space-sm: 0.5rem;
+  --slang-space-md: 1rem;
+  --slang-space-lg: 1.5rem;
+  --slang-space-xl: 2rem;
+  --slang-space-2xl: 3rem;
+  --slang-space-3xl: 4rem;
+  --slang-space-4xl: 6rem;
+
+  /* Transitions */
+  --slang-transition-fast: 0.15s ease;
+  --slang-transition-base: 0.3s ease;
+  --slang-transition-slow: 0.6s ease;
+  --slang-transition-era: 1s ease;
+
+  /* Layout */
+  --slang-max-width: 900px;
+  --slang-content-width: 680px;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+.slang-essay {
+  font-family: 'Charter', 'Georgia', serif;
+  font-size: var(--slang-text-lg);
+  line-height: 1.7;
+  color: var(--slang-ink);
+  background-color: var(--slang-paper);
+  transition: background-color var(--slang-transition-era),
+              color var(--slang-transition-era);
+}
+
+/* ============================================
+   Progress Bar
+   ============================================ */
+.slang-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.slang-progress-fill {
+  height: 100%;
+  background: var(--slang-ink);
+  transition: width 0.1s linear, background-color var(--slang-transition-era);
+}
+
+/* Era-specific progress bar colors */
+.era-1 .slang-progress-fill { background: var(--slang-candlelight); }
+.era-2 .slang-progress-fill { background: var(--slang-sealing-wax); }
+.era-3 .slang-progress-fill { background: var(--slang-victorian-black); }
+.era-4 .slang-progress-fill { background: var(--slang-printer-red); }
+.era-5 .slang-progress-fill { background: var(--slang-teal); }
+.era-6 .slang-progress-fill { background: var(--slang-interface-blue); }
+
+/* ============================================
+   Navigation
+   ============================================ */
+.slang-nav {
+  position: fixed;
+  top: var(--slang-space-lg);
+  left: var(--slang-space-lg);
+  right: var(--slang-space-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.slang-nav-back {
+  pointer-events: auto;
+  font-size: var(--slang-text-sm);
+  color: var(--slang-ink);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity var(--slang-transition-fast);
+}
+
+.slang-nav-back:hover {
+  opacity: 1;
+}
+
+.slang-nav-sections {
+  display: none;
+  gap: var(--slang-space-md);
+  pointer-events: auto;
+}
+
+@media (min-width: 1024px) {
+  .slang-nav-sections {
+    display: flex;
+  }
+}
+
+.slang-nav-link {
+  font-size: var(--slang-text-xs);
+  color: var(--slang-ink);
+  text-decoration: none;
+  opacity: 0.5;
+  transition: opacity var(--slang-transition-fast);
+}
+
+.slang-nav-link:hover,
+.slang-nav-link.active {
+  opacity: 1;
+}
+
+/* ============================================
+   Section Base
+   ============================================ */
+.slang-section {
+  min-height: 100vh;
+  padding: var(--slang-space-4xl) var(--slang-space-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slang-section-content {
+  max-width: var(--slang-max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.slang-section-title {
+  font-size: var(--slang-text-3xl);
+  font-weight: 400;
+  margin-bottom: var(--slang-space-xl);
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 768px) {
+  .slang-section-title {
+    font-size: var(--slang-text-4xl);
+  }
+}
+
+.slang-era-marker {
+  font-size: var(--slang-text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  margin-bottom: var(--slang-space-md);
+}
+
+/* ============================================
+   Title Section
+   ============================================ */
+.slang-title-section {
+  background: var(--slang-vellum);
+  text-align: center;
+  position: relative;
+}
+
+.slang-title-container {
+  max-width: var(--slang-max-width);
+  margin: 0 auto;
+}
+
+.slang-title-etymology {
+  font-size: var(--slang-text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  opacity: 0.6;
+  margin-bottom: var(--slang-space-lg);
+}
+
+.slang-main-title {
+  font-family: 'Caslon', 'Georgia', serif;
+  font-size: var(--slang-text-6xl);
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  margin: 0 0 var(--slang-space-md);
+  line-height: 1.1;
+}
+
+@media (min-width: 768px) {
+  .slang-main-title {
+    font-size: var(--slang-text-7xl);
+    letter-spacing: 0.2em;
+  }
+}
+
+.slang-subtitle {
+  font-size: var(--slang-text-xl);
+  font-style: italic;
+  opacity: 0.8;
+  margin-bottom: var(--slang-space-xl);
+}
+
+.slang-title-meta {
+  font-size: var(--slang-text-sm);
+  opacity: 0.6;
+  display: flex;
+  justify-content: center;
+  gap: var(--slang-space-md);
+  flex-wrap: wrap;
+}
+
+.slang-separator {
+  opacity: 0.4;
+}
+
+.slang-scroll-indicator {
+  position: absolute;
+  bottom: var(--slang-space-2xl);
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  opacity: 0.5;
+  animation: slang-fade-pulse 2s ease-in-out infinite;
+}
+
+.slang-scroll-indicator span {
+  font-size: var(--slang-text-sm);
+  display: block;
+  margin-bottom: var(--slang-space-sm);
+}
+
+.slang-scroll-arrow {
+  font-size: var(--slang-text-xl);
+  animation: slang-bounce 1.5s ease-in-out infinite;
+}
+
+@keyframes slang-fade-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes slang-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+/* ============================================
+   Era 1: Criminal Underground (1720s-1780s)
+   ============================================ */
+/* Era 1 sections - applied directly to section elements */
+.slang-underground,
+.slang-attestation-section {
+  background: var(--slang-vellum);
+  color: var(--slang-shadow);
+}
+
+.slang-underground .slang-section-title,
+.slang-attestation-section .slang-section-title {
+  font-family: 'UnifrakturMaguntia', 'Old English Text MT', serif;
+  font-weight: 400;
+}
+
+.slang-lede {
+  font-size: var(--slang-text-xl);
+  font-style: italic;
+  margin-bottom: var(--slang-space-xl);
+  line-height: 1.8;
+}
+
+/* First Attestation Quote */
+.slang-scroll-lock-container {
+  margin: var(--slang-space-2xl) 0;
+}
+
+.slang-attestation-quote {
+  background: rgba(0, 0, 0, 0.03);
+  border-left: 4px solid var(--slang-candlelight);
+  padding: var(--slang-space-xl);
+  margin: 0;
+  font-size: var(--slang-text-xl);
+  line-height: 1.8;
+}
+
+.slang-attestation-quote mark {
+  background: rgba(201, 162, 39, 0.3);
+  padding: 0.1em 0.3em;
+}
+
+.slang-attestation-quote cite {
+  display: block;
+  margin-top: var(--slang-space-lg);
+  font-size: var(--slang-text-base);
+  font-style: normal;
+  opacity: 0.7;
+}
+
+/* ============================================
+   Era 2: Lexicographic Dawn (1785-1860)
+   ============================================ */
+.slang-lexicographic,
+.slang-mystery {
+  background: var(--slang-parchment);
+}
+
+.slang-lexicographic .slang-section-title,
+.slang-mystery .slang-section-title {
+  font-family: 'Didot', 'Bodoni MT', 'Georgia', serif;
+}
+
+.slang-two-column {
+  display: grid;
+  gap: var(--slang-space-2xl);
+  margin: var(--slang-space-2xl) 0;
+}
+
+@media (min-width: 768px) {
+  .slang-two-column {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.slang-column-text,
+.slang-column-figure {
+  width: 100%;
+}
+
+/* Etymology Box */
+.slang-etymology-box {
+  background: var(--slang-paper);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: var(--slang-space-xl);
+  margin: var(--slang-space-2xl) 0;
+  text-align: center;
+}
+
+.slang-dictionary-entry {
+  display: flex;
+  flex-direction: column;
+  gap: var(--slang-space-sm);
+}
+
+.slang-entry-word {
+  font-size: var(--slang-text-4xl);
+  font-weight: 700;
+  font-family: 'Charter', 'Georgia', serif;
+}
+
+.slang-entry-pronunciation {
+  font-size: var(--slang-text-lg);
+  opacity: 0.6;
+}
+
+.slang-entry-origin {
+  font-size: var(--slang-text-base);
+  margin-top: var(--slang-space-md);
+}
+
+/* Inline Quotes */
+.slang-inline-quote {
+  margin: var(--slang-space-lg) 0;
+  padding-left: var(--slang-space-lg);
+  border-left: 2px solid var(--slang-sealing-wax);
+  font-style: italic;
+}
+
+.slang-inline-quote cite {
+  display: block;
+  font-size: var(--slang-text-sm);
+  font-style: normal;
+  opacity: 0.7;
+  margin-top: var(--slang-space-sm);
+}
+
+/* ============================================
+   Era 3: Victorian Gatekeeping (1860-1911)
+   ============================================ */
+.slang-victorian {
+  background: var(--slang-paper);
+  color: var(--slang-victorian-black);
+}
+
+.slang-victorian .slang-section-title {
+  font-family: 'Clarendon', 'Rockwell', 'Georgia', serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.slang-featured-quote {
+  margin: var(--slang-space-2xl) 0;
+  padding: var(--slang-space-xl);
+  background: rgba(0, 0, 0, 0.02);
+  border-top: 3px solid var(--slang-ink);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.slang-featured-quote p {
+  font-size: var(--slang-text-xl);
+  line-height: 1.7;
+  margin: 0 0 var(--slang-space-lg);
+}
+
+.slang-featured-quote cite {
+  font-size: var(--slang-text-sm);
+  display: block;
+  opacity: 0.7;
+}
+
+/* ============================================
+   Era 4: American Expansion (1919-1950s)
+   ============================================ */
+.slang-american {
+  background: var(--slang-newsprint);
+}
+
+.slang-american .slang-section-title {
+  font-family: 'American Typewriter', 'Courier New', monospace;
+  font-weight: 400;
+}
+
+.slang-american .slang-era-marker {
+  color: var(--slang-printer-red);
+  opacity: 1;
+}
+
+.slang-mencken-section {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .slang-mencken-section {
+    flex-direction: row;
+    gap: var(--slang-space-2xl);
+  }
+
+  .slang-mencken-section .slang-column-figure {
+    flex: 0 0 280px;
+  }
+
+  .slang-mencken-section .slang-column-text {
+    flex: 1;
+  }
+}
+
+.slang-mencken-quote {
+  border-top-color: var(--slang-printer-red);
+}
+
+/* ============================================
+   Era 5: Academic Legitimation (1960s-1990s)
+   ============================================ */
+.slang-academic {
+  background: var(--slang-paper);
+}
+
+.slang-academic .slang-section-title {
+  font-family: 'Gill Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+
+.slang-eble-quote {
+  border-top-color: var(--slang-teal);
+}
+
+/* ============================================
+   Era 6: Digital Present (1999-present)
+   ============================================ */
+.slang-digital {
+  background: linear-gradient(to bottom, var(--slang-paper), #f8fafc);
+}
+
+.slang-digital .slang-section-title {
+  font-family: 'Inter', 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 500;
+}
+
+.slang-digital-mockup {
+  background: var(--slang-paper);
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: var(--slang-space-lg);
+  margin: var(--slang-space-2xl) 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.slang-search-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--slang-space-sm);
+  padding: var(--slang-space-md);
+  background: #f3f4f6;
+  border-radius: 8px;
+  margin-bottom: var(--slang-space-lg);
+}
+
+.slang-search-icon {
+  font-size: var(--slang-text-lg);
+}
+
+.slang-search-text {
+  color: #9ca3af;
+  font-family: system-ui, sans-serif;
+}
+
+.slang-definition-card {
+  padding: var(--slang-space-md);
+}
+
+.slang-def-word {
+  font-family: system-ui, sans-serif;
+  font-size: var(--slang-text-2xl);
+  font-weight: 700;
+  margin-bottom: var(--slang-space-sm);
+}
+
+.slang-def-votes {
+  display: flex;
+  gap: var(--slang-space-md);
+  font-size: var(--slang-text-sm);
+  font-family: system-ui, sans-serif;
+  margin-bottom: var(--slang-space-md);
+}
+
+.slang-upvote {
+  color: var(--slang-upvote-green);
+}
+
+.slang-downvote {
+  color: var(--slang-downvote-red);
+}
+
+.slang-def-text {
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+  margin-bottom: var(--slang-space-md);
+}
+
+.slang-def-example {
+  font-style: italic;
+  color: #6b7280;
+  font-family: system-ui, sans-serif;
+  font-size: var(--slang-text-sm);
+}
+
+/* ============================================
+   Narrative Typography
+   ============================================ */
+.slang-narrative {
+  max-width: var(--slang-content-width);
+}
+
+.slang-narrative p {
+  margin-bottom: var(--slang-space-lg);
+}
+
+.slang-narrative p:last-child {
+  margin-bottom: 0;
+}
+
+.slang-narrative em {
+  font-style: italic;
+}
+
+.slang-emphasis {
+  font-size: var(--slang-text-xl);
+  font-style: italic;
+  margin-top: var(--slang-space-xl);
+  padding-top: var(--slang-space-xl);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   Figures
+   ============================================ */
+.slang-figure {
+  margin: var(--slang-space-2xl) 0;
+}
+
+.slang-figure-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.slang-figure-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.slang-image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--slang-space-lg);
+  color: #6b7280;
+  font-style: italic;
+  font-size: var(--slang-text-sm);
+}
+
+.slang-figure figcaption {
+  margin-top: var(--slang-space-md);
+  font-size: var(--slang-text-sm);
+  color: var(--slang-neutral);
+  line-height: 1.5;
+}
+
+.slang-grose-portrait .slang-figure-image,
+.slang-mencken-portrait .slang-figure-image {
+  aspect-ratio: 3 / 4;
+  max-width: 280px;
+}
+
+.slang-hogarth .slang-figure-image {
+  aspect-ratio: 4 / 5;
+}
+
+/* ============================================
+   Conclusion
+   ============================================ */
+.slang-conclusion {
+  background: var(--slang-vellum);
+  text-align: center;
+}
+
+.slang-conclusion-text {
+  max-width: var(--slang-content-width);
+  margin: 0 auto;
+}
+
+.slang-conclusion-text p {
+  font-size: var(--slang-text-xl);
+  line-height: 1.8;
+  margin-bottom: var(--slang-space-xl);
+}
+
+.slang-conclusion-text p:last-child {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* ============================================
+   Timeline
+   ============================================ */
+.slang-timeline-section {
+  background: var(--slang-paper);
+}
+
+.slang-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--slang-space-lg);
+}
+
+.slang-timeline-entry {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: var(--slang-space-lg);
+  padding-bottom: var(--slang-space-lg);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+@media (min-width: 768px) {
+  .slang-timeline-entry {
+    grid-template-columns: 100px 1fr;
+  }
+}
+
+.slang-timeline-year {
+  font-family: 'SF Mono', 'Monaco', monospace;
+  font-size: var(--slang-text-sm);
+  font-weight: 600;
+  color: var(--slang-teal);
+}
+
+.slang-timeline-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--slang-space-xs);
+}
+
+.slang-timeline-event {
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.slang-timeline-significance {
+  font-size: var(--slang-text-sm);
+  color: var(--slang-neutral);
+  font-style: italic;
+}
+
+/* ============================================
+   Sources
+   ============================================ */
+.slang-sources-section {
+  background: #fafafa;
+  min-height: auto;
+  padding-bottom: var(--slang-space-3xl);
+}
+
+.slang-sources-grid {
+  display: grid;
+  gap: var(--slang-space-2xl);
+}
+
+@media (min-width: 768px) {
+  .slang-sources-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.slang-source-category h3 {
+  font-size: var(--slang-text-lg);
+  font-weight: 600;
+  margin-bottom: var(--slang-space-md);
+  padding-bottom: var(--slang-space-sm);
+  border-bottom: 2px solid var(--slang-ink);
+}
+
+.slang-source-category ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.slang-source-category li {
+  font-size: var(--slang-text-sm);
+  line-height: 1.6;
+  margin-bottom: var(--slang-space-sm);
+  padding-left: var(--slang-space-md);
+  position: relative;
+}
+
+.slang-source-category li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--slang-neutral);
+}
+
+.slang-source-category a {
+  color: var(--slang-interface-blue);
+  text-decoration: none;
+}
+
+.slang-source-category a:hover {
+  text-decoration: underline;
+}
+
+.slang-sources-note {
+  margin-top: var(--slang-space-2xl);
+  padding: var(--slang-space-lg);
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 4px;
+  font-size: var(--slang-text-sm);
+  line-height: 1.7;
+}
+
+.slang-sources-note p {
+  margin: 0;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+.slang-footer {
+  padding: var(--slang-space-3xl) var(--slang-space-lg);
+  background: var(--slang-ink);
+  color: var(--slang-paper);
+}
+
+.slang-footer-content {
+  max-width: var(--slang-max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--slang-space-lg);
+}
+
+@media (min-width: 768px) {
+  .slang-footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.slang-footer-nav {
+  display: flex;
+  gap: var(--slang-space-xl);
+}
+
+.slang-footer-link {
+  color: var(--slang-paper);
+  text-decoration: none;
+  opacity: 0.7;
+  font-size: var(--slang-text-sm);
+  transition: opacity var(--slang-transition-fast);
+}
+
+.slang-footer-link:hover {
+  opacity: 1;
+}
+
+.slang-footer-meta {
+  font-size: var(--slang-text-sm);
+  opacity: 0.5;
+}
+
+.slang-footer-meta p {
+  margin: 0;
+}
+
+/* ============================================
+   Responsive Adjustments
+   ============================================ */
+@media (max-width: 640px) {
+  .slang-section {
+    padding: var(--slang-space-2xl) var(--slang-space-md);
+  }
+
+  .slang-main-title {
+    font-size: var(--slang-text-4xl);
+    letter-spacing: 0.1em;
+  }
+
+  .slang-section-title {
+    font-size: var(--slang-text-2xl);
+  }
+
+  .slang-featured-quote p {
+    font-size: var(--slang-text-lg);
+  }
+
+  .slang-attestation-quote {
+    font-size: var(--slang-text-lg);
+    padding: var(--slang-space-lg);
+  }
+
+  .slang-timeline-entry {
+    grid-template-columns: 70px 1fr;
+    gap: var(--slang-space-md);
+  }
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+@media print {
+  .slang-progress-bar,
+  .slang-nav,
+  .slang-scroll-indicator {
+    display: none;
+  }
+
+  .slang-section {
+    min-height: auto;
+    page-break-inside: avoid;
+  }
+
+  .slang-essay {
+    background: white;
+    color: black;
+  }
+}
+
+/* ============================================
+   Accessibility
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .slang-progress-fill,
+  .slang-scroll-arrow,
+  .slang-scroll-indicator {
+    animation: none;
+    transition: none;
+  }
+
+  .slang-essay {
+    transition: none;
+  }
+}
+
+/* Focus styles */
+.slang-nav-link:focus,
+.slang-nav-back:focus,
+.slang-footer-link:focus,
+.slang-source-category a:focus {
+  outline: 2px solid var(--slang-interface-blue);
+  outline-offset: 2px;
+}

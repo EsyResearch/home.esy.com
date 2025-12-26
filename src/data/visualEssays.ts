@@ -172,6 +172,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "10 min",
     href: "/essays/the-pale-blue-dot",
     tags: ["astronomy", "philosophy"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/0/00/Pale_Blue_Dot.png",
   },
   {
     id: "the-deep-ocean",
@@ -183,6 +184,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "12 min",
     href: "/essays/the-deep-ocean",
     tags: ["nature", "exploration"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Ctenophora_-_Bolinopsis_mikado.jpg",
   },
   {
     id: "language-death",
@@ -326,6 +328,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "18 min",
     href: "/essays/the-cocoa-odyssey",
     tags: ["cocoa", "chocolate", "history", "Mesoamerica", "Maya", "Aztec", "trade", "industry", "food"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/2/2d/Cocoa_Pods.jpg",
   },
   {
     id: "the-golden-crunch",
@@ -337,6 +340,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "20 min",
     href: "/essays/the-golden-crunch",
     tags: ["fried chicken", "soul food", "African American history", "food history", "KFC", "fast food", "culinary anthropology", "global cuisine"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/2/2c/Crispy_Fried_Chicken_Legs.jpg",
   },
   {
     id: "the-first-loaf",
@@ -348,6 +352,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "18 min",
     href: "/essays/the-first-loaf",
     tags: ["bread", "food history", "fermentation", "ancient grains", "einkorn", "emmer", "neolithic", "agriculture", "civilization", "baking", "sourdough", "culinary anthropology"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/3/33/Fresh_made_bread_05.jpg",
   },
   {
     id: "the-gridiron",
@@ -370,6 +375,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "16 min",
     href: "/essays/the-great-fire",
     tags: ["Great Fire of London", "1666", "Samuel Pepys", "Christopher Wren", "St Pauls Cathedral", "London history", "fire history", "Pudding Lane", "Thomas Farriner", "urban planning", "fire safety", "British history"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/8/86/Great_Fire_London.jpg",
   },
   {
     id: "the-manhattan-project",
@@ -433,6 +439,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "30 min",
     href: "/essays/the-diamond-cartel",
     tags: ["De Beers", "diamond history", "blood diamonds", "diamond engagement rings", "a diamond is forever", "Cecil Rhodes", "diamond monopoly", "N.W. Ayer", "Frances Gerety", "conflict diamonds", "lab diamonds", "diamond industry", "manufactured desire", "marketing history", "African exploitation", "Oppenheimer"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Brillanten.jpg",
   },
   {
     id: "the-distance-between",
@@ -558,6 +565,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/gods-of-africa",
     tags: ["African mythology", "gods", "Olodumare", "Nyame", "Anansi", "Eshu", "Yoruba", "Akan", "Egyptian", "Apophis", "Anubis", "mythology", "religion", "creator gods", "trickster gods", "terror"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/1/1c/Dogon_sculpture_Louvre_70-1999-9-2.jpg",
   },
   {
     id: "the-word-robot",
@@ -570,6 +578,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/etymology/the-word-robot",
     tags: ["robot etymology", "robot history", "Karel Čapek", "R.U.R.", "robota", "Isaac Asimov", "Three Laws of Robotics", "Terminator", "Roomba", "AI robots", "word origin", "automation history", "visual essay", "typography"],
     visualStyle: "photorealistic",
+    heroImage: "/images/robot/robot-hero.jpg",
   },
   {
     id: "the-word-animal",
@@ -606,6 +615,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/the-history-of-pizza",
     tags: ["pizza history", "Margherita pizza", "Raffaele Esposito", "Naples", "Neapolitan pizza", "Lombardi", "pizza etymology", "UNESCO", "food history", "Italian cuisine", "culinary history", "street food", "Italian immigration", "pizza franchise"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg",
   },
   {
     id: "the-scramble-for-africa",
@@ -618,6 +628,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/the-scramble-for-africa",
     tags: ["Scramble for Africa", "colonialism", "Berlin Conference", "African history", "European imperialism", "Battle of Adwa", "Congo Free State", "Leopold II", "Menelik II", "Bismarck", "colonial borders", "partition of Africa", "Herero genocide", "African resistance", "decolonization"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/3/36/Punch_Rhodes_Colossus.png",
   },
   {
     id: "two-visions-of-tomorrow",
@@ -630,6 +641,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/two-visions-of-tomorrow",
     tags: ["1984", "Brave New World", "George Orwell", "Aldous Huxley", "dystopia", "surveillance", "totalitarianism", "Neil Postman", "Amusing Ourselves to Death", "literary analysis", "comparative literature"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/7/7e/George_Orwell_press_photo.jpg",
   },
   {
     id: "the-word-pussy",
@@ -678,6 +690,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/orwells-1984",
     tags: ["1984", "George Orwell", "Nineteen Eighty-Four", "Big Brother", "totalitarianism", "surveillance", "Spanish Civil War", "Stalin", "Hitler", "Nazi Germany", "Ministry of Truth", "Room 101", "doublethink", "thoughtcrime", "Two Minutes Hate", "proles", "literary biography", "visual essay"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/7/7e/George_Orwell_press_photo.jpg",
   },
   {
     id: "fentanyl-crisis-timeline",
@@ -777,6 +790,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/history/palestine-israel",
     tags: ["palestine", "israel", "middle east", "conflict", "history", "nakba", "zionism", "nationalism", "archaeology", "jerusalem"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Jerusalem_Dome_of_the_rock_BW_14.JPG",
   },
   {
     id: "the-word-etymology",
@@ -790,6 +804,7 @@ export const visualEssays: VisualEssay[] = [
     isNew: true,
     tags: ["etymology", "word origin", "Plato", "Cratylus", "Isidore of Seville", "Samuel Johnson", "OED", "Grimm's Law", "linguistic history", "visual essay", "typography"],
     visualStyle: "photorealistic",
+    heroImage: "/og/the-word-etymology.png",
   },
   // Children's Fiction (draft - not shown in production)
   {
