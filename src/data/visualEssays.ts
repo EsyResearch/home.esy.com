@@ -501,7 +501,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/thai-cuisine",
     tags: ["Thai cuisine", "Thai food", "Southeast Asian cuisine", "pad thai", "tom yum", "som tam", "green curry", "Isan food", "street food", "royal Thai cuisine", "floating markets", "food history", "culinary anthropology", "five flavors", "photorealistic"],
     visualStyle: "photorealistic",
-    heroImage: "https://upload.wikimedia.org/wikipedia/commons/3/39/Pad_Thai.jpg",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/5/52/Thai_food.jpg",
   },
   {
     id: "burmese-cuisine",
@@ -514,7 +514,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/the-history-of-burmese-cuisine",
     tags: ["Burmese cuisine", "Myanmar food", "mohinga", "laphet thoke", "ngapi", "fermented fish paste", "tea leaf salad", "si pyan", "Burmese curry", "Southeast Asian food history", "Mandalay cuisine", "Yangon street food", "Shan noodles", "food history", "culinary anthropology", "photorealistic"],
     visualStyle: "photorealistic",
-    heroImage: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Mohinga.jpg",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/5/55/Mohinga.jpg",
   },
   {
     id: "the-silicon-revolution",
@@ -592,7 +592,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/gods-of-africa",
     tags: ["African mythology", "gods", "Olodumare", "Nyame", "Anansi", "Eshu", "Yoruba", "Akan", "Egyptian", "Apophis", "Anubis", "mythology", "religion", "creator gods", "trickster gods", "terror"],
     visualStyle: "photorealistic",
-    heroImage: "https://upload.wikimedia.org/wikipedia/commons/1/1c/Dogon_sculpture_Louvre_70-1999-9-2.jpg",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Dogon_sculpture_Louvre_70-1999-9-2.jpg",
   },
   {
     id: "the-word-robot",
