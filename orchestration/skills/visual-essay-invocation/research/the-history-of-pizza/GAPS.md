@@ -263,3 +263,4 @@ High-resolution imagery of the original manuscript is not widely available.
 
 
 
+
