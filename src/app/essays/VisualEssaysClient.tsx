@@ -42,6 +42,8 @@ const featuredEssay = FEATURED_ESSAY_ID
  * - Layer 2: Latest Essays (newest 6, excluding featured)
  * - Layer 3: Category Carousels (History, Culture, Technology)
  * - Layer 4: More to Explore (Science, Space, Nature, Economics, Education)
+ *
+ * Last updated: Dec 2025 - Added The Weight of a Word essay
  */
 
 // ==================== CATEGORY CONFIG ====================
@@ -102,8 +104,12 @@ const buildDeduplicatedSections = () => {
     shownIds.add(featuredEssay.id);
   }
 
+  // Use full published list, not nonFeaturedEssays (which uses slice(1))
+  // This ensures manually-featured essays don't cause newest essay to be lost
+  const allEssays = publishedVisualEssays;
+
   // 2. Latest section (newest 6, excluding featured)
-  const latestEssays = nonFeaturedEssays
+  const latestEssays = allEssays
     .filter(e => !shownIds.has(e.id))
     .slice(0, 6);
   latestEssays.forEach(e => shownIds.add(e.id));
@@ -111,13 +117,13 @@ const buildDeduplicatedSections = () => {
   // 3. Category sections - exclude already shown essays
   const categorySections: Record<EssayCategory, VisualEssay[]> = {} as Record<EssayCategory, VisualEssay[]>;
   for (const category of CAROUSEL_CATEGORIES) {
-    categorySections[category] = nonFeaturedEssays
+    categorySections[category] = allEssays
       .filter(e => e.category === category && !shownIds.has(e.id));
     categorySections[category].forEach(e => shownIds.add(e.id));
   }
 
   // 4. More to Explore - exclude already shown essays
-  const moreEssays = nonFeaturedEssays
+  const moreEssays = allEssays
     .filter(e => MORE_CATEGORIES.includes(e.category) && !shownIds.has(e.id));
 
   return { latestEssays, categorySections, moreEssays };
