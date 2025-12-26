@@ -696,6 +696,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/etymology/the-word-han",
     tags: ["Han etymology", "Han Dynasty", "Han Chinese", "Hangul", "Hanguk", "Hanja", "Kanji", "King Sejong", "Liu Bang", "East Asian history", "Chinese characters", "typography", "etymology", "linguistics"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/9/99/Hanzi.svg",
   },
   {
     id: "the-word-essay",

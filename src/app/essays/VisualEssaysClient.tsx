@@ -83,32 +83,67 @@ const CATEGORY_GRADIENTS: Record<EssayCategory, string> = {
 };
 
 /**
- * Get essays by category
+ * Deduplication System
+ *
+ * Prevents the same essay from appearing in multiple sections.
+ * Essays are shown in priority order:
+ * 1. Hero (featured essay)
+ * 2. Latest section
+ * 3. Category sections (History, Culture, Technology)
+ * 4. More to Explore section
+ *
+ * Once an essay is shown, it won't appear in subsequent sections.
  */
-const getEssaysByCategory = (category: EssayCategory): VisualEssay[] => {
-  return nonFeaturedEssays.filter(e => e.category === category);
+const buildDeduplicatedSections = () => {
+  const shownIds = new Set<string>();
+
+  // 1. Featured essay is always shown in hero
+  if (featuredEssay) {
+    shownIds.add(featuredEssay.id);
+  }
+
+  // 2. Latest section (newest 6, excluding featured)
+  const latestEssays = nonFeaturedEssays
+    .filter(e => !shownIds.has(e.id))
+    .slice(0, 6);
+  latestEssays.forEach(e => shownIds.add(e.id));
+
+  // 3. Category sections - exclude already shown essays
+  const categorySections: Record<EssayCategory, VisualEssay[]> = {} as Record<EssayCategory, VisualEssay[]>;
+  for (const category of CAROUSEL_CATEGORIES) {
+    categorySections[category] = nonFeaturedEssays
+      .filter(e => e.category === category && !shownIds.has(e.id));
+    categorySections[category].forEach(e => shownIds.add(e.id));
+  }
+
+  // 4. More to Explore - exclude already shown essays
+  const moreEssays = nonFeaturedEssays
+    .filter(e => MORE_CATEGORIES.includes(e.category) && !shownIds.has(e.id));
+
+  return { latestEssays, categorySections, moreEssays };
 };
 
-/**
- * Get essays from multiple categories (for "More to Explore")
- */
-const getEssaysFromCategories = (categories: EssayCategory[]): VisualEssay[] => {
-  return nonFeaturedEssays.filter(e => categories.includes(e.category));
-};
+// Build deduplicated sections once
+const { latestEssays: LATEST_ESSAYS, categorySections: CATEGORY_SECTIONS, moreEssays: MORE_ESSAYS } = buildDeduplicatedSections();
 
 // ==================== COMPONENTS ====================
 
 // Editorial Hero - Full-bleed featured essay (always the latest)
 const EditorialHero: React.FC = () => {
   const featuredImageUrl = featuredEssay ? getEssayImage(featuredEssay) : null;
+  const [imageError, setImageError] = React.useState(false);
+  const showGradient = !featuredImageUrl || imageError;
 
   if (!featuredEssay) return null;
 
   return (
     <section className="editorial-hero-fullbleed">
       {/* Full-bleed Background Image */}
-      <div className="hero-fullbleed-bg">
-        {featuredImageUrl && (
+      <div
+        className="hero-fullbleed-bg"
+        style={showGradient ? { background: CATEGORY_GRADIENTS[featuredEssay.category] } : undefined}
+      >
+        {featuredImageUrl && !imageError && (
           <Image
             src={featuredImageUrl}
             alt={featuredEssay.title}
@@ -117,6 +152,7 @@ const EditorialHero: React.FC = () => {
             style={{ objectFit: 'cover' }}
             priority
             unoptimized
+            onError={() => setImageError(true)}
           />
         )}
         <div className="hero-fullbleed-overlay" />
@@ -217,27 +253,25 @@ const Section: React.FC<SectionProps> = ({ title, subtitle, essays, accentColor,
   );
 };
 
-// Latest Essays Section (newest 6)
+// Latest Essays Section (newest 6, deduplicated)
 const LatestSection: React.FC = () => {
-  const latestEssays = nonFeaturedEssays.slice(0, 6);
-
   return (
     <Section
       title="Latest"
       subtitle="Newest additions"
-      essays={latestEssays}
+      essays={LATEST_ESSAYS}
       showAll={true}
     />
   );
 };
 
-// Category Section
+// Category Section (deduplicated - excludes essays shown in Latest)
 interface CategorySectionProps {
   category: EssayCategory;
 }
 
 const CategorySection: React.FC<CategorySectionProps> = ({ category }) => {
-  const essays = getEssaysByCategory(category);
+  const essays = CATEGORY_SECTIONS[category] || [];
 
   return (
     <Section
@@ -249,17 +283,15 @@ const CategorySection: React.FC<CategorySectionProps> = ({ category }) => {
   );
 };
 
-// More to Explore Section (thin categories combined)
+// More to Explore Section (deduplicated - excludes essays shown in Latest and Category sections)
 const MoreToExplore: React.FC = () => {
-  const moreEssays = getEssaysFromCategories(MORE_CATEGORIES);
-
-  if (moreEssays.length === 0) return null;
+  if (MORE_ESSAYS.length === 0) return null;
 
   return (
     <Section
       title="More to Explore"
       subtitle="Science, Space, Nature & More"
-      essays={moreEssays}
+      essays={MORE_ESSAYS}
       showAll={true}
     />
   );
@@ -268,15 +300,17 @@ const MoreToExplore: React.FC = () => {
 // Essay Card (Grid View) - With Hero Image
 const EssayCard: React.FC<{ essay: VisualEssay; priority?: boolean }> = ({ essay, priority = false }) => {
   const imageUrl = getEssayImage(essay);
+  const [imageError, setImageError] = React.useState(false);
+  const showGradient = !imageUrl || imageError;
 
   return (
     <Link href={essay.href} className="essay-card essay-card-visual">
       {/* Hero Image */}
       <div
         className="essay-card-image"
-        style={!imageUrl ? { background: CATEGORY_GRADIENTS[essay.category] } : undefined}
+        style={showGradient ? { background: CATEGORY_GRADIENTS[essay.category] } : undefined}
       >
-        {imageUrl && (
+        {imageUrl && !imageError && (
           <Image
             src={imageUrl}
             alt={essay.title}
@@ -285,6 +319,7 @@ const EssayCard: React.FC<{ essay: VisualEssay; priority?: boolean }> = ({ essay
             style={{ objectFit: 'cover' }}
             priority={priority}
             unoptimized
+            onError={() => setImageError(true)}
           />
         )}
         <div className="essay-card-image-overlay" />
