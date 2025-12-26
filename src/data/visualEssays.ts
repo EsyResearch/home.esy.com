@@ -182,7 +182,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "10 min",
     href: "/essays/the-pale-blue-dot",
     tags: ["astronomy", "philosophy"],
-    heroImage: "https://upload.wikimedia.org/wikipedia/commons/0/00/Pale_Blue_Dot.png",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/7/73/Pale_Blue_Dot.png",
   },
   {
     id: "the-deep-ocean",
@@ -194,7 +194,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "12 min",
     href: "/essays/the-deep-ocean",
     tags: ["nature", "exploration"],
-    heroImage: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Ctenophora_-_Bolinopsis_mikado.jpg",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/1/13/Mariana_trench_location.jpg",
   },
   {
     id: "language-death",
@@ -527,7 +527,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/the-silicon-revolution",
     tags: ["semiconductor", "transistor", "silicon", "Moore's Law", "Intel", "TSMC", "chip manufacturing", "integrated circuit", "Bell Labs", "Gordon Moore", "Morris Chang", "CHIPS Act", "technology history", "microprocessor", "EUV lithography", "geopolitics"],
     visualStyle: "photorealistic",
-    heroImage: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Replica-of-first-transistor.jpg",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/b/bf/Replica-of-first-transistor.jpg",
   },
   {
     id: "the-origin-of-toy",
