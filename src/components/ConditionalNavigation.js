@@ -77,16 +77,16 @@ const ConditionalNavigation = () => {
   // - On glossary index only after scrolling past main search
   // - Always on school article pages (/school/articles/*)
   // - On school index only after scrolling past main search
-  // - On essays index only after scrolling past main search
+  // - Always on essays index (visible on page load)
   // - On templates index only after scrolling past main search
   // - On scrollytelling index only after scrolling past discovery bar
   // - NO search on about, privacy, terms, agentic-workflows (informational pages)
-  const shouldShowHeaderSearch = 
+  const shouldShowHeaderSearch =
     (isPromptLibraryPage && (isPromptLibraryIndex ? showHeaderSearch : true)) ||
     (isGlossaryPage && (isGlossaryIndex ? showHeaderSearch : true)) ||
     (isSchoolPage && (isSchoolIndex ? showHeaderSearch : isSchoolArticlePage)) ||
     (isTemplatesPage && (isTemplatesIndex ? showHeaderSearch : true)) ||
-    (isEssaysPage && showHeaderSearch) ||
+    isEssaysPage ||  // Always show search on essays page
     (isHomepage && showHeaderSearch);
   
   // Determine search context using centralized system
