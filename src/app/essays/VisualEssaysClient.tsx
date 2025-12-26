@@ -217,7 +217,7 @@ const EditorialHero: React.FC = () => {
 };
 
 // Number of cards to show per section before "See All"
-const CARDS_PER_SECTION = 4;
+const CARDS_PER_SECTION = 6;
 
 // Section Component - Vertical grid with optional "See All"
 interface SectionProps {

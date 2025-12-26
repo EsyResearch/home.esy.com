@@ -53,18 +53,6 @@ export const CATEGORY_COLORS: Record<EssayCategory, string> = {
 // All visual essays - ordered by number ascending (will be reversed for display)
 export const visualEssays: VisualEssay[] = [
   {
-    id: "evolution-of-mammary-glands",
-    number: "02",
-    title: "Evolution of Mammary Glands",
-    subtitle: "310 Million Years of Milk",
-    description: "How a simple skin secretion became the defining feature of mammals. SVG cross-sections, evolutionary trees, and milk composition comparisons.",
-    category: "Science",
-    readTime: "12 min",
-    href: "/essays/evolution-of-mammary-glands",
-    tags: ["biology", "evolution"],
-    heroImage: "https://upload.wikimedia.org/wikipedia/commons/f/f2/Platypus.jpg",
-  },
-  {
     id: "eternal-honey",
     number: "03",
     title: "Eternal Honey",
