@@ -20,23 +20,23 @@ interface Source {
 const IMAGES = {
   orwell: {
     bbc1943: "https://upload.wikimedia.org/wikipedia/commons/7/7a/George-orwell-BBC.jpg",
-    spanishWar1937: "https://upload.wikimedia.org/wikipedia/commons/3/3a/George_Orwell_and_Eileen_O%E2%80%99Shaughnessy_with_members_of_the_ILP_unit_on_the_Aragon_Front_outside_Huesca%2C_13th_March_1937.jpg",
-    passport: "https://upload.wikimedia.org/wikipedia/commons/8/82/George_Orwell_press_photo.jpg",
+    spanishWar1937: "https://upload.wikimedia.org/wikipedia/commons/2/2e/George_Orwell.jpg", // Fallback portrait - original ILP group photo not available
+    passport: "https://upload.wikimedia.org/wikipedia/commons/7/7e/George_Orwell_press_photo.jpg",
   },
   stalin: {
-    portrait: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Stalin_1945.jpg",
+    portrait: "https://upload.wikimedia.org/wikipedia/commons/c/c4/Stalin_1945.jpg",
   },
   yezhov: {
-    before: "https://upload.wikimedia.org/wikipedia/commons/b/b1/Voroshilov%2C_Molotov%2C_Stalin%2C_with_Nikolai_Yezhov.jpg",
-    after: "https://upload.wikimedia.org/wikipedia/commons/c/c8/The_Commissar_Vanishes_2.jpg",
+    before: "https://upload.wikimedia.org/wikipedia/commons/0/09/Nikolai_Yezhov_with_Stalin_and_Molotov_along_the_Volga%E2%80%93Don_Canal%2C_orignal.jpg",
+    after: "https://upload.wikimedia.org/wikipedia/commons/b/be/Stalin_and_Molotov_along_the_Volga%E2%80%93Don_Canal%2C_Nikolai_Yezhov_removed.jpg",
   },
   hitler: {
-    rally: "https://upload.wikimedia.org/wikipedia/commons/0/06/Bundesarchiv_Bild_183-1987-0410-501%2C_Berlin%2C_Olympiade%2C_Adolf_Hitler%2C_Olympiastadion.jpg",
+    rally: "https://upload.wikimedia.org/wikipedia/commons/9/94/Bundesarchiv_Bild_183-2006-0329-502%2C_N%C3%BCrnberg%2C_Reichsparteitag%2C_Adolf_Hitler_vor_Lichtdom.jpg",
   },
   books: {
-    first1984: "https://upload.wikimedia.org/wikipedia/commons/c/c3/1984first.jpg",
+    first1984: "https://upload.wikimedia.org/wikipedia/commons/5/51/1984_first_edition_cover.jpg",
   },
-  senateHouse: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Senate_House_UoL.jpg",
+  senateHouse: "https://upload.wikimedia.org/wikipedia/commons/9/98/Senate_House_UoL.jpg",
 } as const;
 
 // ============================================================================
@@ -106,16 +106,29 @@ const sources: Source[] = [
  */
 const TypewriterProgressBar: React.FC = () => {
   const [progress, setProgress] = useState(0);
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const updateProgress = () => {
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       const currentProgress = Math.min((window.scrollY / scrollHeight) * 100, 100);
       setProgress(currentProgress);
     };
 
+    const handleScroll = () => {
+      // Throttle updates to animation frame rate
+      if (rafRef.current) return;
+      rafRef.current = requestAnimationFrame(() => {
+        updateProgress();
+        rafRef.current = null;
+      });
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
   // Determine which keys are "struck" based on progress
@@ -254,28 +267,44 @@ const FigureProfile: React.FC<{
 const YezhovErasure: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [erasureProgress, setErasureProgress] = useState(0);
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const updateProgress = () => {
       if (!containerRef.current) return;
-      
+
       const rect = containerRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      
-      // Calculate progress based on element position
       const elementTop = rect.top;
       const elementHeight = rect.height;
-      
-      // Start fading when element enters viewport, complete when centered
-      if (elementTop < windowHeight && elementTop > -elementHeight) {
-        const progress = Math.max(0, Math.min(1, (windowHeight - elementTop) / (windowHeight + elementHeight)));
+
+      // Erasure should complete while image is still clearly visible
+      // Start: when element enters viewport (top at 85% of screen)
+      // End: when element is centered (top at 25% of screen)
+      const triggerStart = windowHeight * 0.85;
+      const triggerEnd = windowHeight * 0.25;
+
+      if (elementTop < triggerStart && elementTop > -elementHeight) {
+        const progress = Math.max(0, Math.min(1, (triggerStart - elementTop) / (triggerStart - triggerEnd)));
         setErasureProgress(progress);
       }
     };
 
+    const handleScroll = () => {
+      // Throttle updates to animation frame rate
+      if (rafRef.current) return;
+      rafRef.current = requestAnimationFrame(() => {
+        updateProgress();
+        rafRef.current = null;
+      });
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Initial check
-    return () => window.removeEventListener("scroll", handleScroll);
+    updateProgress(); // Initial check
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
   return (
@@ -285,7 +314,7 @@ const YezhovErasure: React.FC = () => {
           {/* Before image - fades out */}
           <img 
             src={IMAGES.yezhov.before} 
-            alt="Stalin with Yezhov at the Moscow-Volga Canal, 1937"
+            alt="Stalin with Yezhov at the Volga-Don Canal, 1937"
             className="erasure-before"
             style={{ opacity: 1 - erasureProgress }}
           />
