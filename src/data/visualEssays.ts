@@ -62,6 +62,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "14 min",
     href: "/essays/mammary-gland-evolution",
     tags: ["biology", "anatomy", "evolution"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Breast_anatomy_normal_scheme.png",
   },
   {
     id: "evolution-of-mammary-glands",
@@ -73,6 +74,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "12 min",
     href: "/essays/evolution-of-mammary-glands",
     tags: ["biology", "evolution"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/f/f2/Platypus.jpg",
   },
   {
     id: "eternal-honey",
@@ -84,6 +86,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "12 min",
     href: "/essays/eternal-honey",
     tags: ["archaeology", "ancient", "food"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/a/af/All_Gizah_Pyramids.jpg",
   },
   {
     id: "honey-never-spoils",
@@ -95,6 +98,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "11 min",
     href: "/essays/honey-never-spoils",
     tags: ["food", "chemistry"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/f/f7/Honey_comb.jpg",
   },
   {
     id: "the-dna-helix",
@@ -106,6 +110,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "13 min",
     href: "/essays/the-dna-helix",
     tags: ["biology", "genetics"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/4/4c/DNA_Structure%2BKey%2BLabelled.pn_NoBB.png",
   },
   {
     id: "the-skyscraper",
@@ -117,6 +122,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "14 min",
     href: "/essays/the-skyscraper",
     tags: ["architecture", "engineering"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg",
   },
   {
     id: "the-firearm",
@@ -128,6 +134,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "13 min",
     href: "/essays/the-firearm",
     tags: ["military", "invention"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Colt_Paterson_1836.jpg",
   },
   {
     id: "the-train",
@@ -139,6 +146,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "13 min",
     href: "/essays/the-train",
     tags: ["transportation", "invention"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/3/3a/Locomotion_No._1_%28replica%29.jpg",
   },
   {
     id: "the-invention-of-the-car",
@@ -150,6 +158,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "11 min",
     href: "/essays/the-invention-of-the-car",
     tags: ["transportation", "invention"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/7/71/1885Benz.jpg",
   },
   {
     id: "the-invention-of-wine",
@@ -161,6 +170,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "11 min",
     href: "/essays/the-invention-of-wine",
     tags: ["food", "ancient"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/5/5d/Wine_grapes.jpg",
   },
   {
     id: "the-pale-blue-dot",
@@ -196,6 +206,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "9 min",
     href: "/essays/language-death",
     tags: ["linguistics", "anthropology"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/2/23/Rosetta_Stone.JPG",
   },
   {
     id: "who-invented-the-mirror",
@@ -207,6 +218,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "10 min",
     href: "/essays/who-invented-the-mirror",
     tags: ["invention", "material"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/e/e2/Speculum_metal_mirror.png",
   },
   {
     id: "who-invented-soda",
@@ -218,6 +230,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "10 min",
     href: "/essays/who-invented-soda",
     tags: ["food", "invention"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/0/05/Soft_drink_shelf_2.jpg",
   },
   {
     id: "who-invented-the-sneaker",
@@ -229,6 +242,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "12 min",
     href: "/essays/who-invented-the-sneaker",
     tags: ["fashion", "sports"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Sneakers.jpg",
   },
   {
     id: "who-invented-high-heels",
@@ -240,6 +254,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "14 min",
     href: "/essays/who-invented-high-heels",
     tags: ["fashion"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/4/45/Red_High_Heel_Pumps.jpg",
   },
   {
     id: "who-invented-the-bicycle",
@@ -251,6 +266,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "10 min",
     href: "/essays/who-invented-the-bicycle",
     tags: ["transportation", "invention"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/4/42/Draisine1817.jpg",
   },
   {
     id: "who-invented-the-spoon",
@@ -262,6 +278,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "10 min",
     href: "/essays/who-invented-the-spoon",
     tags: ["material", "ancient"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/b/b9/Silver_spoon.jpg",
   },
   {
     id: "who-invented-basketball",
@@ -273,6 +290,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "10 min",
     href: "/essays/who-invented-basketball",
     tags: ["sports"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png",
   },
   {
     id: "who-invented-the-fork",
@@ -284,6 +302,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "12 min",
     href: "/essays/who-invented-the-fork",
     tags: ["material", "ancient"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/4/42/Kitchen_utensils.jpg",
   },
   {
     id: "flavors-of-the-east",
@@ -295,6 +314,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "18 min",
     href: "/essays/flavors-of-the-east",
     tags: ["food", "cuisine", "Asia", "China", "Thailand", "Myanmar", "history", "culture"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Hainanese_chicken_rice.jpg",
   },
   {
     id: "the-tea-journey",
@@ -306,6 +326,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "18 min",
     href: "/essays/the-tea-journey",
     tags: ["tea", "history", "China", "Japan", "India", "trade", "ceremony", "empire", "culture"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Tea_leaves_steeping_in_a_zhong_%C4%8Daj_05.jpg",
   },
   {
     id: "the-tea-journey-illustrated",
@@ -317,6 +338,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "20 min",
     href: "/essays/the-tea-journey-illustrated",
     tags: ["tea", "history", "illustrated", "SVG", "animation", "China", "Japan", "India", "trade", "ceremony", "premium"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/a/a7/Tea_ceremony_performing_2.jpg",
   },
   {
     id: "the-cocoa-odyssey",
@@ -364,6 +386,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "16 min",
     href: "/essays/the-gridiron",
     tags: ["american football", "NFL", "Super Bowl", "Walter Camp", "sports history", "college football", "forward pass", "gridiron", "stadium", "touchdowns"],
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/2/23/Wilson_American_football.jpg",
   },
   {
     id: "the-great-fire",
@@ -452,6 +475,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/the-fork",
     tags: ["fork history", "eating utensils", "Byzantine Empire", "Catherine de Medici", "Thomas Coryat", "dining etiquette", "cultural history", "material culture", "Theophanu", "Peter Damian", "table manners", "civilization", "photorealistic"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Assorted_forks.jpg",
   },
   {
     id: "the-rwanda-genocide",
@@ -516,6 +540,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/etymology/the-origin-of-toy",
     tags: ["toy etymology", "word history", "etymology", "language history", "medieval English", "Shakespeare", "childhood history", "toymaking", "Nuremberg", "dictionary history", "linguistic evolution", "Johan Huizinga", "play theory"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/a/a0/Teddy_bear.jpg",
   },
   {
     id: "the-origin-of-sex",
@@ -528,6 +553,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/etymology/the-origin-of-sex",
     tags: ["sex etymology", "word history", "etymology", "language history", "Latin", "linguistics", "gender", "biology", "cultural history", "taboo words"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/2/21/Venus_de_Milo_Louvre_Ma399_n4.jpg",
   },
   {
     id: "the-history-of-languages",
@@ -553,6 +579,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/who-invented-the-fork",
     tags: ["fork history", "who invented the fork", "salad fork", "table etiquette", "Byzantine Empire", "Catherine de Medici", "Thomas Coryat", "Peter Damian", "dining utensils", "culinary history", "material culture"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Fork.agr.jpg",
   },
   {
     id: "gods-of-africa",
@@ -591,6 +618,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/etymology/the-word-animal",
     tags: ["animal etymology", "anima meaning", "Latin animalis", "Aristotle", "Linnaeus", "Darwin", "word history", "etymology", "natural history", "taxonomy", "visual essay", "orchestrator"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/1/14/Animal_diversity.png",
   },
   {
     id: "the-origin-of-animal",
@@ -603,6 +631,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/etymology/the-origin-of-animal",
     tags: ["animal etymology", "origin of the word animal", "anima meaning", "Latin", "Aristotle", "Linnaeus", "taxonomy", "word history", "etymology", "medieval bestiary", "biological classification", "visual essay", "typography"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/1/14/Animal_diversity.png",
   },
   {
     id: "the-history-of-pizza",
@@ -654,6 +683,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/etymology/the-word-pussy",
     tags: ["pussy etymology", "word origin", "etymology", "linguistic history", "semantic evolution", "taboo words", "euphemism treadmill", "typography history", "visual essay"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Cat_poster_1.jpg",
   },
   {
     id: "the-word-han",
@@ -678,6 +708,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/etymology/the-word-essay",
     tags: ["essay etymology", "Montaigne", "Francis Bacon", "Virginia Woolf", "James Baldwin", "Joan Didion", "typography", "literary history", "Garamond", "essay form", "word origin"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Montaigne_Essais_Manuscript.jpg",
   },
   {
     id: "orwells-1984",
@@ -703,6 +734,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/history/fentanyl-crisis-timeline",
     tags: ["fentanyl", "opioid crisis", "synthetic opioids", "drug history", "public health", "overdose", "timeline", "CDC", "DEA", "pharmaceutical history", "drug policy"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/e/e8/Fentanyl.svg",
   },
   {
     id: "how-a-chip-is-manufactured",
@@ -715,6 +747,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/how-a-chip-is-manufactured",
     tags: ["semiconductor", "chip manufacturing", "silicon wafer", "photolithography", "transistor", "EUV", "TSMC", "cleanroom", "Moore's Law", "integrated circuit", "process essay"],
     visualStyle: "illustrated",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/a/a1/Wafer_2_Zoll_bis_8_Zoll.jpg",
   },
   {
     id: "build-a-flashlight",
@@ -727,6 +760,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/build-a-flashlight",
     tags: ["electronics", "LED", "Ohm's Law", "circuit design", "interactive", "STEM", "maker", "flashlight", "resistor", "battery", "process essay", "build"],
     visualStyle: "illustrated",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/c/c8/5mm_Red_LED.jpg",
   },
   {
     id: "how-money-is-created",
@@ -739,6 +773,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/how-money-is-created",
     tags: ["money creation", "credit creation", "banking system", "central banking", "monetary policy", "quantitative easing", "money supply", "endogenous money", "economics", "process essay"],
     visualStyle: "illustrated",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/a/af/Gold_bullion_bars.jpg",
   },
   {
     id: "the-printing-press",
@@ -753,6 +788,7 @@ export const visualEssays: VisualEssay[] = [
     draft: true,
     tags: ["printing press", "Gutenberg", "Johannes Gutenberg", "Bi Sheng", "movable type", "Diamond Sutra", "Jikji", "printing history", "Martin Luther", "Reformation", "history of books", "timeline", "visual essay"],
     visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Printing3_Walk_of_Ideas_Berlin.JPG",
   },
   {
     id: "how-to-write-a-hook",
@@ -765,6 +801,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/how-to-write-a-hook",
     tags: ["writing", "rhetoric", "cognitive science", "education", "hooks", "essay writing", "Loewenstein", "information gap", "Aristotle", "Quintilian"],
     visualStyle: "illustrated",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Aristotle_Altemps_Inv8575.jpg",
   },
   {
     id: "sweetness-engineered",
@@ -790,7 +827,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/history/palestine-israel",
     tags: ["palestine", "israel", "middle east", "conflict", "history", "nakba", "zionism", "nationalism", "archaeology", "jerusalem"],
     visualStyle: "photorealistic",
-    heroImage: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Jerusalem_Dome_of_the_rock_BW_14.JPG",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/c/c2/Jerusalem_Dome_of_the_rock_BW_14.JPG",
   },
   {
     id: "the-word-etymology",
@@ -801,10 +838,23 @@ export const visualEssays: VisualEssay[] = [
     category: "History",
     readTime: "18 min",
     href: "/essays/etymology/the-word-etymology",
-    isNew: true,
     tags: ["etymology", "word origin", "Plato", "Cratylus", "Isidore of Seville", "Samuel Johnson", "OED", "Grimm's Law", "linguistic history", "visual essay", "typography"],
     visualStyle: "photorealistic",
     heroImage: "/og/the-word-etymology.png",
+  },
+  {
+    id: "the-word-nigger",
+    number: "73",
+    title: "The Weight of a Word",
+    subtitle: "A History of the N-Word in America",
+    description: "From Latin 'niger' to America's most charged word—trace 400 years of etymology, history, and applied use. A documentary visual essay featuring archival photography, resistance voices, and museum-grade typography exploring how language became infrastructure for dehumanization—and how people fought back.",
+    category: "History",
+    readTime: "30 min",
+    href: "/essays/etymology/the-word-nigger",
+    isNew: true,
+    tags: ["N-word history", "etymology", "racial language", "Frederick Douglass", "James Baldwin", "Ida B. Wells", "W.E.B. Du Bois", "Jim Crow", "Civil Rights", "American history", "linguistics", "visual essay"],
+    visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/c/c5/Frederick_Douglass_%28circa_1879%29.jpg",
   },
   // Children's Fiction (draft - not shown in production)
   {
