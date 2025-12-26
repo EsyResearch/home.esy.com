@@ -677,7 +677,7 @@ const ClosingSection: React.FC<{ isVisible: boolean }> = ({ isVisible }) => {
 
 export default function TheWordNiggerClient() {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set(['hero']));
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(() => new Set(['hero']));
   
   // Scroll-lock for etymology section
   const { containerRef: etymologyRef, progress: etymologyProgress, isPinned: etymologyPinned } = useScrollLock();
