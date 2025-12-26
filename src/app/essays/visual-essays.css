@@ -1439,6 +1439,39 @@
 }
 
 /* ============================================
+   SHOW MORE BUTTON
+   ============================================ */
+.show-more-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--space-unit) * 1);
+  width: 100%;
+  max-width: 320px;
+  margin: calc(var(--space-unit) * 4) auto 0;
+  padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 4);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.show-more-button:hover {
+  background: var(--color-surface);
+  border-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+.show-more-button:active {
+  transform: scale(0.98);
+}
+
+/* ============================================
    REDUCED MOTION
    ============================================ */
 @media (prefers-reduced-motion: reduce) {

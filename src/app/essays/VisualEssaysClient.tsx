@@ -291,15 +291,42 @@ const CategorySection: React.FC<CategorySectionProps> = ({ category }) => {
 
 // More to Explore Section (deduplicated - excludes essays shown in Latest and Category sections)
 const MoreToExplore: React.FC = () => {
+  const [expanded, setExpanded] = React.useState(false);
+
   if (MORE_ESSAYS.length === 0) return null;
 
+  const displayEssays = expanded ? MORE_ESSAYS : MORE_ESSAYS.slice(0, CARDS_PER_SECTION);
+  const hasMore = MORE_ESSAYS.length > CARDS_PER_SECTION;
+
   return (
-    <Section
-      title="More to Explore"
-      subtitle="Science, Space, Nature & More"
-      essays={MORE_ESSAYS}
-      showAll={true}
-    />
+    <section className="essays-section-block">
+      <div className="section-header">
+        <div className="section-title-group">
+          <h2 className="section-title">More to Explore</h2>
+          <span className="section-subtitle">Science, Space, Nature & More</span>
+        </div>
+        {!expanded && hasMore && (
+          <span className="section-see-all">
+            +{MORE_ESSAYS.length - CARDS_PER_SECTION} more
+          </span>
+        )}
+      </div>
+
+      <div className="section-grid">
+        {displayEssays.map((essay, index) => (
+          <EssayCard key={essay.id} essay={essay} priority={index < 4} />
+        ))}
+      </div>
+
+      {hasMore && !expanded && (
+        <button
+          className="show-more-button"
+          onClick={() => setExpanded(true)}
+        >
+          Show {MORE_ESSAYS.length - CARDS_PER_SECTION} More Essays
+        </button>
+      )}
+    </section>
   );
 };
 
