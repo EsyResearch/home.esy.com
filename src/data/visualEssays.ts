@@ -761,7 +761,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/build-a-flashlight",
     tags: ["electronics", "LED", "Ohm's Law", "circuit design", "interactive", "STEM", "maker", "flashlight", "resistor", "battery", "process essay", "build"],
     visualStyle: "illustrated",
-    heroImage: "https://upload.wikimedia.org/wikipedia/commons/c/c8/5mm_Red_LED.jpg",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/e/e8/LEDs.jpg",
   },
   {
     id: "how-money-is-created",
