@@ -417,6 +417,7 @@
   background: radial-gradient(ellipse, rgba(112, 66, 20, 0.15) 0%, transparent 70%);
 }
 
+/* Override global .hero-content grid styles from globals.css */
 .the-word-nigger .hero-content {
   position: relative;
   z-index: 2;
@@ -425,6 +426,9 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  /* Explicitly unset global grid properties */
+  grid-template-columns: unset;
+  gap: unset;
 }
 
 /* Etymology Reveal */
@@ -488,10 +492,16 @@
 
 /* Arrows controlled by scroll progress inline styles */
 
-/* Hero Title */
+/* Override global .hero-title styles from globals.css */
 .the-word-nigger .hero-title {
   margin-bottom: var(--space-md);
   line-height: 1.1;
+  /* Reset global gradient/animation that may interfere */
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  background-clip: border-box;
+  -webkit-background-clip: border-box;
+  animation: none;
 }
 
 .hero-line-1,
