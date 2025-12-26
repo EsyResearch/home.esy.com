@@ -323,7 +323,7 @@ const ArtifactCTA: React.FC = () => (
     </p>
     <div className="artifact-cta-links">
       <Link href="/docs/designing-visual-essays" className="artifact-cta-link">
-        What's an artifact?
+        What&apos;s an artifact?
       </Link>
       <Link href="/docs/workflows" className="artifact-cta-link">
         View the workflow system
