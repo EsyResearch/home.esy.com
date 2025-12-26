@@ -53,18 +53,6 @@ export const CATEGORY_COLORS: Record<EssayCategory, string> = {
 // All visual essays - ordered by number ascending (will be reversed for display)
 export const visualEssays: VisualEssay[] = [
   {
-    id: "mammary-gland-evolution",
-    number: "01",
-    title: "Mammary Gland Evolution",
-    subtitle: "Anatomical Journey",
-    description: "Detailed anatomical SVGs showing human breast cross-sections, alveoli, and comparative animal mammary systems—platypus to whale to human.",
-    category: "Science",
-    readTime: "14 min",
-    href: "/essays/mammary-gland-evolution",
-    tags: ["biology", "anatomy", "evolution"],
-    heroImage: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Breast_anatomy_normal_scheme.png",
-  },
-  {
     id: "evolution-of-mammary-glands",
     number: "02",
     title: "Evolution of Mammary Glands",
