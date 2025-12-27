@@ -54,9 +54,11 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
   const shouldAlwaysExpand = !isMobile && (alwaysExpanded || contextConfig.shouldAlwaysExpand);
 
   const [isExpanded, setIsExpanded] = useState(false);
+  const [showMobileModal, setShowMobileModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const searchRef = useRef<HTMLInputElement>(null);
+  const mobileSearchRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -64,6 +66,32 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
   useEffect(() => {
     setIsExpanded(shouldAlwaysExpand);
   }, [shouldAlwaysExpand]);
+
+  // Lock body scroll when mobile modal is open
+  useEffect(() => {
+    if (showMobileModal) {
+      document.body.style.overflow = 'hidden';
+      // Focus search input after animation
+      setTimeout(() => mobileSearchRef.current?.focus(), 100);
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [showMobileModal]);
+
+  // Close mobile modal on Escape
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && showMobileModal) {
+        setShowMobileModal(false);
+        setSearchTerm('');
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [showMobileModal]);
 
   // Use the appropriate search hook based on context
   // Templates use the same search structure as prompts
@@ -237,11 +265,11 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
           : `${currentTheme.shadows?.glow || '0 4px 16px rgba(159, 122, 234, 0.2)'}, ${currentTheme.shadows?.md || '0 4px 12px rgba(0, 0, 0, 0.3)'}`)
         : currentTheme.shadows?.sm || (isLightMode ? '0 2px 4px rgba(0, 0, 0, 0.06)' : '0 2px 4px rgba(0, 0, 0, 0.2)'),
       width: (isExpanded || shouldAlwaysExpand) ? '100%' : 'auto',
-      minWidth: (isExpanded || shouldAlwaysExpand) ? 'auto' : (isMobile ? '36px' : '48px'),
-      height: isMobile ? '36px' : '48px'
+      minWidth: (isExpanded || shouldAlwaysExpand) ? 'auto' : (isMobile ? '32px' : '48px'),
+      height: isMobile ? '32px' : '48px'
     },
     searchIcon: {
-      padding: '0 14px',
+      padding: isMobile ? '0 8px' : '0 14px',
       display: 'flex',
       alignItems: 'center',
       cursor: shouldAlwaysExpand ? 'default' : 'pointer',
@@ -340,6 +368,98 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
       textAlign: 'center' as const,
       color: currentTheme.textSubtle,
       fontSize: '0.8rem'
+    },
+    // Mobile modal styles
+    mobileOverlay: {
+      position: 'fixed' as const,
+      inset: 0,
+      backgroundColor: 'rgba(0, 0, 0, 0.85)',
+      backdropFilter: 'blur(20px)',
+      WebkitBackdropFilter: 'blur(20px)',
+      zIndex: 9999,
+      display: 'flex',
+      flexDirection: 'column' as const,
+      opacity: showMobileModal ? 1 : 0,
+      visibility: (showMobileModal ? 'visible' : 'hidden') as React.CSSProperties['visibility'],
+      transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+    },
+    mobileHeader: {
+      display: 'flex',
+      alignItems: 'center',
+      padding: '1rem',
+      gap: '0.75rem',
+      borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+    },
+    mobileSearchInput: {
+      flex: 1,
+      background: 'rgba(255, 255, 255, 0.1)',
+      border: '1px solid rgba(255, 255, 255, 0.2)',
+      borderRadius: '12px',
+      padding: '0.875rem 1rem',
+      fontSize: '1rem',
+      color: '#ffffff',
+      outline: 'none',
+      transition: 'all 0.2s ease'
+    },
+    mobileCloseButton: {
+      background: 'rgba(255, 255, 255, 0.1)',
+      border: 'none',
+      borderRadius: '50%',
+      width: '44px',
+      height: '44px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      cursor: 'pointer',
+      color: '#ffffff',
+      transition: 'all 0.2s ease'
+    },
+    mobileResults: {
+      flex: 1,
+      overflowY: 'auto' as const,
+      padding: '0.5rem 0'
+    },
+    mobileResultItem: {
+      padding: '1rem 1.25rem',
+      borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
+      cursor: 'pointer',
+      transition: 'all 0.2s ease'
+    },
+    mobileResultTitle: {
+      fontSize: '1rem',
+      fontWeight: 500,
+      color: '#ffffff',
+      marginBottom: '0.25rem'
+    },
+    mobileResultDescription: {
+      fontSize: '0.875rem',
+      color: 'rgba(255, 255, 255, 0.6)',
+      lineHeight: 1.4
+    },
+    mobileResultMeta: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.5rem',
+      marginTop: '0.5rem'
+    },
+    mobileResultCategory: {
+      fontSize: '0.75rem',
+      color: currentTheme.accent,
+      backgroundColor: 'rgba(159, 122, 234, 0.2)',
+      padding: '0.125rem 0.5rem',
+      borderRadius: '6px',
+      fontWeight: 500
+    },
+    mobileEmpty: {
+      padding: '3rem 1.5rem',
+      textAlign: 'center' as const,
+      color: 'rgba(255, 255, 255, 0.5)'
+    },
+    mobileHint: {
+      padding: '2rem 1.5rem',
+      textAlign: 'center' as const,
+      color: 'rgba(255, 255, 255, 0.4)',
+      fontSize: '0.875rem'
     }
   };
 
@@ -350,36 +470,47 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
         }
-        
+
         .search-input::placeholder {
           color: ${isLightMode ? 'rgba(30, 41, 59, 0.5)' : 'rgba(255, 255, 255, 0.5)'};
         }
-        
+
         .search-input:-ms-input-placeholder {
           color: ${isLightMode ? 'rgba(30, 41, 59, 0.5)' : 'rgba(255, 255, 255, 0.5)'};
         }
-        
+
         .search-input::-ms-input-placeholder {
           color: ${isLightMode ? 'rgba(30, 41, 59, 0.5)' : 'rgba(255, 255, 255, 0.5)'};
+        }
+
+        .mobile-search-input::placeholder {
+          color: rgba(255, 255, 255, 0.5);
+        }
+
+        .mobile-search-input:focus {
+          border-color: rgba(159, 122, 234, 0.6);
+          background: rgba(255, 255, 255, 0.15);
         }
       `}</style>
       <div ref={containerRef} style={styles.container} className={className}>
         <div style={styles.searchWrapper}>
           {!shouldAlwaysExpand && (
-            <div 
+            <div
               style={styles.searchIcon}
               onClick={() => {
-                if (!isExpanded) {
+                if (isMobile) {
+                  setShowMobileModal(true);
+                } else if (!isExpanded) {
                   setIsExpanded(true);
                   setTimeout(() => searchRef.current?.focus(), 100);
                 }
               }}
             >
-              <svg 
-                width="20" 
-                height="20" 
-                viewBox="0 0 24 24" 
-                fill="none" 
+              <svg
+                width={isMobile ? "16" : "20"}
+                height={isMobile ? "16" : "20"}
+                viewBox="0 0 24 24"
+                fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
               >
@@ -493,6 +624,116 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
           </div>
         )}
       </div>
+
+      {/* Mobile Search Modal */}
+      {isMobile && (
+        <div
+          style={styles.mobileOverlay}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowMobileModal(false);
+              setSearchTerm('');
+            }
+          }}
+        >
+          {/* Header with search input */}
+          <div style={styles.mobileHeader}>
+            <input
+              ref={mobileSearchRef}
+              type="text"
+              placeholder={contextConfig.placeholder}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && searchTerm.trim()) {
+                  const searchUrl = getContextSearchUrl(searchContext, searchTerm);
+                  router.push(searchUrl);
+                  setShowMobileModal(false);
+                  setSearchTerm('');
+                }
+              }}
+              style={styles.mobileSearchInput}
+              className="mobile-search-input"
+            />
+            <button
+              style={styles.mobileCloseButton}
+              onClick={() => {
+                setShowMobileModal(false);
+                setSearchTerm('');
+              }}
+              aria-label="Close search"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Results */}
+          <div style={styles.mobileResults}>
+            {isLoading ? (
+              <div style={styles.mobileHint}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px'
+                }}>
+                  <div style={{
+                    width: '16px',
+                    height: '16px',
+                    border: '2px solid rgba(255, 255, 255, 0.2)',
+                    borderTop: '2px solid #ffffff',
+                    borderRadius: '50%',
+                    animation: 'spin 1s linear infinite'
+                  }} />
+                  Searching...
+                </div>
+              </div>
+            ) : searchResults.length > 0 ? (
+              searchResults.map((result, index) => (
+                <div
+                  key={result.id}
+                  style={{
+                    ...styles.mobileResultItem,
+                    backgroundColor: hoveredIndex === index ? 'rgba(255, 255, 255, 0.05)' : 'transparent'
+                  }}
+                  onClick={() => {
+                    handleResultSelect(result);
+                    setShowMobileModal(false);
+                  }}
+                >
+                  <div style={styles.mobileResultTitle}>{result.title}</div>
+                  {result.description && (
+                    <div style={styles.mobileResultDescription}>{result.description}</div>
+                  )}
+                  <div style={styles.mobileResultMeta}>
+                    {result.category && (
+                      <span style={{
+                        ...styles.mobileResultCategory,
+                        ...(result.metadata?.categoryColor ? {
+                          color: result.metadata.categoryColor,
+                          backgroundColor: `${result.metadata.categoryColor}20`
+                        } : {})
+                      }}>
+                        {result.category}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ))
+            ) : searchTerm ? (
+              <div style={styles.mobileEmpty}>
+                No results found for &ldquo;{searchTerm}&rdquo;
+              </div>
+            ) : (
+              <div style={styles.mobileHint}>
+                {contextConfig.placeholder.replace('...', '')}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </>
   );
 };

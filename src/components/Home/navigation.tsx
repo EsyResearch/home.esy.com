@@ -542,12 +542,13 @@ export default function Navigation ({
               textShadow: isLightMode ? 'none' : '0 1px 3px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2)'
             }}
           >
-            <Logo 
+            <Logo
               key={`logo-${isLightMode ? 'light' : 'dark'}`} // Force re-render on theme change
               suffix="" // Disabled suffix in header - passing empty string
-              href="" 
-              showText={false} 
-              theme={isLightMode ? 'light' : 'dark'} 
+              href=""
+              showText={false}
+              theme={isLightMode ? 'light' : 'dark'}
+              size={isMobile ? 32 : 60}
             />
           </Link>
           
