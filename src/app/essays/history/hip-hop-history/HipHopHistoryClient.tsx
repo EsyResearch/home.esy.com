@@ -24,7 +24,21 @@ interface Figure {
   description: string;
   quote?: string;
   isFeatured?: boolean;
+  imageUrl?: string;
+  imageAttribution?: string;
 }
+
+// ==================== VERIFIED CC-LICENSED IMAGES ====================
+// All images verified from Wikimedia Commons with proper licensing
+
+const IMAGES = {
+  heroBackground: "https://upload.wikimedia.org/wikipedia/commons/f/f4/1520Sedgwick_Avenue.jpg",
+  djKoolHerc: "https://upload.wikimedia.org/wikipedia/commons/9/91/Herc_on_the_Wheels_of_Steel.JPG",
+  djKoolHercAlt: "https://upload.wikimedia.org/wikipedia/commons/d/df/Dj_Kool_Herc.jpg",
+  afrikaBambaataa: "https://upload.wikimedia.org/wikipedia/commons/6/66/Afrika_Bambaatta_National_Portrait_Gallery_1983.jpg",
+  bBoyBreaking: "https://upload.wikimedia.org/wikipedia/commons/f/fc/B-boy_breakdancing.jpg",
+  nycGraffitiTrain: "https://upload.wikimedia.org/wikipedia/commons/3/30/Graffiti_and_train_in_tunnel_-_New_York_City_2013.png",
+} as const;
 
 interface Chapter {
   id: string;
@@ -36,6 +50,11 @@ interface Chapter {
   narrative: string[];
   figures: Figure[];
   contentWarning?: string;
+  chapterImage?: {
+    url: string;
+    alt: string;
+    attribution: string;
+  };
 }
 
 // ==================== CUSTOM HOOKS ====================
@@ -224,27 +243,42 @@ const FigureProfile: React.FC<{ figure: Figure; era: string }> = ({ figure, era 
 
   return (
     <article
-      className={`figure-profile ${figure.isFeatured ? "featured" : ""}`}
+      className={`figure-profile ${figure.isFeatured ? "featured" : ""} ${figure.imageUrl ? "has-image" : ""}`}
       style={{ "--figure-accent": accentColors[era] } as React.CSSProperties}
     >
-      <h3 className="figure-name">{figure.name}</h3>
-      <p className="figure-epithet">{figure.epithet}</p>
-      {(figure.born || figure.died) && (
-        <p className="figure-meta">
-          {figure.born && `Born ${figure.born}`}
-          {figure.born && figure.died && " | "}
-          {figure.died && `Died ${figure.died}`}
-        </p>
+      {figure.imageUrl && (
+        <div className="figure-image-container">
+          <img
+            src={figure.imageUrl}
+            alt={`${figure.name} - ${figure.epithet}`}
+            className="figure-image"
+            loading="lazy"
+          />
+          {figure.imageAttribution && (
+            <p className="figure-image-attribution">{figure.imageAttribution}</p>
+          )}
+        </div>
       )}
-      <div className="figure-domains">
-        {figure.domains.map((domain) => (
-          <span key={domain} className="figure-domain">
-            {domain}
-          </span>
-        ))}
+      <div className="figure-text">
+        <h3 className="figure-name">{figure.name}</h3>
+        <p className="figure-epithet">{figure.epithet}</p>
+        {(figure.born || figure.died) && (
+          <p className="figure-meta">
+            {figure.born && `Born ${figure.born}`}
+            {figure.born && figure.died && " | "}
+            {figure.died && `Died ${figure.died}`}
+          </p>
+        )}
+        <div className="figure-domains">
+          {figure.domains.map((domain) => (
+            <span key={domain} className="figure-domain">
+              {domain}
+            </span>
+          ))}
+        </div>
+        <p className="figure-description">{figure.description}</p>
+        {figure.quote && <p className="figure-quote">&ldquo;{figure.quote}&rdquo;</p>}
       </div>
-      <p className="figure-description">{figure.description}</p>
-      {figure.quote && <p className="figure-quote">&ldquo;{figure.quote}&rdquo;</p>}
     </article>
   );
 };
@@ -287,6 +321,20 @@ const ChapterSection: React.FC<{ chapter: Chapter }> = ({ chapter }) => {
             <div className="content-warning-label">Content Note</div>
             {chapter.contentWarning}
           </div>
+        )}
+
+        {chapter.chapterImage && (
+          <figure className="chapter-image-container">
+            <img
+              src={chapter.chapterImage.url}
+              alt={chapter.chapterImage.alt}
+              className="chapter-image"
+              loading="lazy"
+            />
+            <figcaption className="chapter-image-attribution">
+              {chapter.chapterImage.attribution}
+            </figcaption>
+          </figure>
         )}
 
         <div className="narrative-block has-dropcap">
@@ -425,6 +473,8 @@ const chapters: Chapter[] = [
         description: "Clive Campbell emigrated from Jamaica at age 12, bringing sound system culture to the Bronx. Pioneered the 'merry-go-round' technique of isolating and extending breaks. Named the dancers 'b-boys' and 'b-girls.' Built the massive 'Herculords' sound system inspired by Jamaican traditions.",
         quote: "I came from a musical background. My father was a musician. In Jamaica, I was inspired by the sound systems.",
         isFeatured: true,
+        imageUrl: IMAGES.djKoolHerc,
+        imageAttribution: "Photo: Jorge 'Fabel' Pabon, CC BY-SA 2.0, via Wikimedia Commons",
       },
       {
         name: "Cindy Campbell",
@@ -485,6 +535,8 @@ const chapters: Chapter[] = [
         description: "Kevin Donovan was a former warlord of the Black Spades gang who founded the Universal Zulu Nation in 1973. Defined the 'four elements' of Hip-Hop; added knowledge as fifth. Released 'Planet Rock' (1982), fusing Hip-Hop with electronic sound. Note: Faced sexual abuse allegations in 2010s.",
         quote: "Knowledge, wisdom, understanding, and overstanding—these are the foundations.",
         isFeatured: true,
+        imageUrl: IMAGES.afrikaBambaataa,
+        imageAttribution: "National Portrait Gallery, Smithsonian Institution, 1983, CC BY-SA 4.0",
       },
     ],
   },
@@ -545,6 +597,11 @@ const chapters: Chapter[] = [
       text: "When you have nothing, you have movement.",
       source: "Crazy Legs",
     },
+    chapterImage: {
+      url: IMAGES.bBoyBreaking,
+      alt: "B-boy performing breakdance freeze move",
+      attribution: "CC BY 2.0, via Wikimedia Commons",
+    },
     narrative: [
       "The b-boys and b-girls didn't need equipment. They needed only bodies, a cardboard sheet, and a break. During Herc's extended instrumental sections, dancers would take the floor—and what they did there became an art form.",
       "Breaking drew from multiple sources: James Brown's footwork, martial arts from kung fu films, gymnastics, Afro-Puerto Rican dance traditions. The style crystallized in the South Bronx and spread to Harlem, Brooklyn, and beyond.",
@@ -592,6 +649,11 @@ const chapters: Chapter[] = [
     epigraph: {
       text: "When you're invisible, you make yourself seen.",
       source: "Lee Quiñones",
+    },
+    chapterImage: {
+      url: IMAGES.nycGraffitiTrain,
+      alt: "Graffiti-covered train in New York City tunnel, 2013",
+      attribution: "CC BY-SA 3.0, via Wikimedia Commons",
     },
     narrative: [
       "Before Hip-Hop had a name, writers were already bombing the city. In 1971, a Greek-American messenger named TAKI 183 tagged his name across New York—and a New York Times feature made him famous. Suddenly, tagging was everywhere.",
@@ -1031,7 +1093,12 @@ const sources = [
 const Hero: React.FC = () => {
   return (
     <section className="hero-section">
-      <div className="hero-background" />
+      <div
+        className="hero-background hero-background--with-image"
+        style={{
+          backgroundImage: `url(${IMAGES.heroBackground})`,
+        }}
+      />
       <div className="hero-content">
         <span className="hero-overline">A Visual Essay</span>
         <h1 className="hero-title">Hip-Hop</h1>
@@ -1041,6 +1108,9 @@ const Hero: React.FC = () => {
         <span className="scroll-text">Scroll to Begin</span>
         <div className="scroll-line" />
       </div>
+      <p className="hero-attribution">
+        1520 Sedgwick Avenue, Bronx, NY — The birthplace of Hip-Hop | CC BY-SA 3.0
+      </p>
     </section>
   );
 };

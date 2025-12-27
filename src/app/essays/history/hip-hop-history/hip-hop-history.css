@@ -253,6 +253,14 @@
   transition: background 0.3s ease;
 }
 
+/* Hero background with actual image */
+.hip-hop-history .hero-background--with-image {
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  filter: brightness(0.35) saturate(0.7);
+}
+
 .hip-hop-history .hero-background::before {
   content: '';
   position: absolute;
@@ -418,6 +426,25 @@
   50% { opacity: 1; transform: scaleY(1.2); }
 }
 
+/* Hero attribution */
+.hero-attribution {
+  position: absolute;
+  bottom: 1rem;
+  left: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--text-faint);
+  opacity: 0.6;
+  z-index: 10;
+  max-width: 60%;
+}
+
+@media (min-width: 768px) {
+  .hero-attribution {
+    font-size: 0.6875rem;
+  }
+}
+
 /* Skip button */
 .hero-skip-button {
   position: absolute;
@@ -492,6 +519,39 @@
   max-width: var(--content-max-width);
   margin: 0 auto;
   width: 100%;
+}
+
+/* Chapter images */
+.chapter-image-container {
+  margin: 0 0 2.5rem;
+  padding: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--duration-phrase) var(--ease-break);
+  transition-delay: 0.2s;
+}
+
+.chapter-section.visible .chapter-image-container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.chapter-image {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 4px;
+  filter: saturate(0.85) contrast(1.05);
+}
+
+.chapter-image-attribution {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--text-faint);
+  margin-top: 0.75rem;
+  opacity: 0.7;
+  text-align: center;
 }
 
 /* ==================== CHAPTER HEADER ==================== */
@@ -575,6 +635,50 @@
 .figure-profile.featured {
   border-color: var(--figure-accent, var(--accent-gold));
   border-width: 1px 1px 1px 3px;
+}
+
+/* Figure profile with image */
+.figure-profile.has-image {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .figure-profile.has-image {
+    grid-template-columns: 200px 1fr;
+  }
+}
+
+.figure-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.figure-image {
+  width: 100%;
+  height: auto;
+  max-height: 280px;
+  object-fit: cover;
+  filter: grayscale(0.15) contrast(1.05);
+  transition: filter 0.3s ease;
+}
+
+.figure-profile:hover .figure-image {
+  filter: grayscale(0) contrast(1.1);
+}
+
+.figure-image-attribution {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  color: var(--text-faint);
+  margin-top: 0.5rem;
+  opacity: 0.7;
+}
+
+.figure-text {
+  display: flex;
+  flex-direction: column;
 }
 
 .figure-name {

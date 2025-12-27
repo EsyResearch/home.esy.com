@@ -279,4 +279,50 @@ curl -sI "IMAGE_URL" | grep -i content-type
 
 ---
 
+## Verified Available Images (2025-12-27)
+
+### ✅ CONFIRMED & VERIFIED — Ready to Implement
+
+| Subject | File | Direct URL | License | Verified |
+|---------|------|------------|---------|----------|
+| **DJ Kool Herc** | Herc on the Wheels of Steel.JPG | `https://upload.wikimedia.org/wikipedia/commons/9/91/Herc_on_the_Wheels_of_Steel.JPG` | CC BY-SA 2.0 | ✅ |
+| **DJ Kool Herc** (alt) | Dj_Kool_Herc.jpg | `https://upload.wikimedia.org/wikipedia/commons/d/df/Dj_Kool_Herc.jpg` | CC BY-SA 2.0 | ✅ |
+| **1520 Sedgwick Avenue** | 1520Sedgwick_Avenue.jpg | `https://upload.wikimedia.org/wikipedia/commons/f/f4/1520Sedgwick_Avenue.jpg` | CC BY-SA 3.0 | ✅ |
+| **Afrika Bambaataa** | Afrika_Bambaatta_National_Portrait_Gallery_1983.jpg | `https://upload.wikimedia.org/wikipedia/commons/6/66/Afrika_Bambaatta_National_Portrait_Gallery_1983.jpg` | CC BY-SA 4.0 | ✅ |
+| **B-Boy Breaking** | B-boy_breakdancing.jpg | `https://upload.wikimedia.org/wikipedia/commons/f/fc/B-boy_breakdancing.jpg` | CC BY 2.0 | ✅ |
+| **NYC Graffiti Train** | Graffiti_and_train_in_tunnel_-_New_York_City_2013.png | `https://upload.wikimedia.org/wikipedia/commons/3/30/Graffiti_and_train_in_tunnel_-_New_York_City_2013.png` | CC BY-SA 3.0 | ✅ |
+
+### Recommended Usage
+
+| Image | Best Use | Chapter |
+|-------|----------|---------|
+| DJ Kool Herc (Wheels of Steel) | Chapter 3: 1520 Sedgwick, Chapter 4: DJ as Architect | Ch3, Ch4 |
+| 1520 Sedgwick Avenue | Hero section, Chapter 3 | Hero, Ch3 |
+| Afrika Bambaataa | Chapter 4: DJ as Architect, Chapter 8: Elements | Ch4, Ch8 |
+| B-Boy Breaking | Chapter 6: Breaking | Ch6 |
+| NYC Graffiti Train | Chapter 7: Graffiti | Ch7 |
+
+### Attribution Requirements
+
+All images are CC-licensed and require attribution:
+
+```html
+<!-- DJ Kool Herc -->
+Photo: Jorge "Fabel" Pabon, CC BY-SA 2.0, via Wikimedia Commons
+
+<!-- 1520 Sedgwick Avenue -->
+Photo: CC BY-SA 3.0, via Wikimedia Commons
+
+<!-- Afrika Bambaataa -->
+National Portrait Gallery, Smithsonian Institution, CC BY-SA 4.0
+
+<!-- B-Boy Breaking -->
+Photo: CC BY 2.0, via Wikimedia Commons
+
+<!-- NYC Graffiti Train -->
+Photo: CC BY-SA 3.0, via Wikimedia Commons
+```
+
+---
+
 *This report reflects the reality of $0 budget image sourcing for Hip-Hop history. The available free imagery is limited but workable with creative visual strategies.*
