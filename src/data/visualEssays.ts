@@ -633,7 +633,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/the-scramble-for-africa",
     tags: ["Scramble for Africa", "colonialism", "Berlin Conference", "African history", "European imperialism", "Battle of Adwa", "Congo Free State", "Leopold II", "Menelik II", "Bismarck", "colonial borders", "partition of Africa", "Herero genocide", "African resistance", "decolonization"],
     visualStyle: "photorealistic",
-    heroImage: "https://upload.wikimedia.org/wikipedia/commons/3/36/Punch_Rhodes_Colossus.png",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Kongokonferenz.jpg",
   },
   {
     id: "two-visions-of-tomorrow",
@@ -845,7 +845,7 @@ export const visualEssays: VisualEssay[] = [
     isNew: true,
     tags: ["Hip-Hop", "Hip-Hop history", "DJ Kool Herc", "Grandmaster Flash", "Tupac", "Notorious B.I.G.", "Bronx", "rap music", "breaking", "graffiti", "golden age", "music history", "cultural history", "visual essay"],
     visualStyle: "photorealistic",
-    heroImage: "https://upload.wikimedia.org/wikipedia/commons/a/a0/Herc_on_the_Wheels_of_Steel.JPG",
+    heroImage: "/og/hip-hop-history.png",
   },
   // Children's Fiction (draft - not shown in production)
   {
