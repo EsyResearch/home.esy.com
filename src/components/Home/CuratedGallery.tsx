@@ -11,9 +11,11 @@ import {
 } from '@/data/visualEssays';
 import { cdnImageSrc } from '@/lib/imageCdn';
 
-// Explicitly featured essay on homepage (override auto-derived latest)
-const FEATURED_ESSAY_ID = 'the-manhattan-project';
-const featuredEssay = publishedVisualEssays.find(e => e.id === FEATURED_ESSAY_ID);
+// Two featured essays on homepage
+const FEATURED_ESSAY_IDS = ['the-manhattan-project', 'the-history-of-languages'];
+const featuredEssays = FEATURED_ESSAY_IDS
+  .map(id => publishedVisualEssays.find(e => e.id === id))
+  .filter((e): e is VisualEssay => e !== null);
 
 /**
  * CuratedGallery Component
@@ -127,50 +129,50 @@ const EssayCard: React.FC<EssayCardProps> = ({ essay }) => (
 );
 
 /**
- * Featured Essay Section
+ * Featured Essay Card Component
+ */
+interface FeaturedCardProps {
+  essay: VisualEssay;
+  variant?: 'dark' | 'light';
+}
+
+const FeaturedCard: React.FC<FeaturedCardProps> = ({ essay, variant = 'dark' }) => (
+  <Link href={essay.href} className={`featured-essay-card featured-essay-card--${variant}`}>
+    <span
+      className="featured-category"
+      style={{ color: CATEGORY_COLORS[essay.category] }}
+    >
+      {essay.category}
+    </span>
+
+    <h3 className="featured-title">{essay.title}</h3>
+    <p className="featured-subtitle">{essay.subtitle}</p>
+
+    <div className="featured-meta">
+      <Clock aria-hidden="true" />
+      <span>{essay.readTime} read</span>
+      {essay.isNew && <span className="new-badge">New</span>}
+    </div>
+
+    <span className="featured-cta">
+      Read Essay
+      <ArrowRight aria-hidden="true" />
+    </span>
+  </Link>
+);
+
+/**
+ * Featured Essays Section - Two featured essays side by side with contrast
  */
 const FeaturedEssaySection: React.FC = () => {
-  if (!featuredEssay) return null;
+  if (featuredEssays.length === 0) return null;
 
   return (
-    <section className="featured-section" aria-labelledby="featured-heading">
-      <div className="featured-container">
-        {/* Left Side - Editorial Label */}
-        <div className="featured-label-side">
-          <span className="featured-label">Visual Essays</span>
-          <h2 id="featured-heading" className="featured-heading">
-            Essays That{' '}
-            <span className="featured-heading-italic">Unfold</span>
-          </h2>
-          <p className="featured-description">
-            Interactive essays combining research, design, and storytelling. 
-            Ideas explored, not just explained.
-          </p>
-        </div>
-
-        {/* Right Side - Featured Essay Card */}
-        <Link href={featuredEssay.href} className="featured-essay-card">
-          <span 
-            className="featured-category"
-            style={{ color: CATEGORY_COLORS[featuredEssay.category] }}
-          >
-            {featuredEssay.category}
-          </span>
-          
-          <h3 className="featured-title">{featuredEssay.title}</h3>
-          <p className="featured-subtitle">{featuredEssay.subtitle}</p>
-          
-          <div className="featured-meta">
-            <Clock aria-hidden="true" />
-            <span>{featuredEssay.readTime} read</span>
-            {featuredEssay.isNew && <span className="new-badge">New</span>}
-          </div>
-          
-          <span className="featured-cta">
-            Read Essay
-            <ArrowRight aria-hidden="true" />
-          </span>
-        </Link>
+    <section className="featured-section">
+      <div className="featured-container featured-container-duo">
+        {featuredEssays.map((essay, index) => (
+          <FeaturedCard key={essay.id} essay={essay} variant={index === 0 ? 'dark' : 'light'} />
+        ))}
       </div>
     </section>
   );

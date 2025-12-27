@@ -387,6 +387,31 @@
   }
 }
 
+/* Two featured essays side by side */
+.featured-container-duo {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .featured-container-duo {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.featured-container-duo .featured-essay-card {
+  border-bottom: 1px solid var(--color-border);
+}
+
+@media (min-width: 768px) {
+  .featured-container-duo .featured-essay-card:first-child {
+    border-right: 1px solid var(--color-border);
+    border-bottom: none;
+  }
+  .featured-container-duo .featured-essay-card:last-child {
+    border-bottom: none;
+  }
+}
+
 /* Featured Label Side */
 .featured-label-side {
   padding: var(--space-3xl) var(--space-lg);
@@ -523,6 +548,24 @@
     top: var(--space-2xl);
     right: var(--space-2xl);
   }
+}
+
+/* Dark variant (default) */
+.featured-essay-card--dark {
+  background: var(--color-card);
+}
+
+.featured-essay-card--dark:hover {
+  background: var(--color-elevated);
+}
+
+/* Light variant - subtle contrast */
+.featured-essay-card--light {
+  background: #2d2d32;
+}
+
+.featured-essay-card--light:hover {
+  background: var(--color-elevated);
 }
 
 .featured-category {
