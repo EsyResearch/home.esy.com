@@ -548,7 +548,7 @@ export default function Navigation ({
               href=""
               showText={false}
               theme={isLightMode ? 'light' : 'dark'}
-              size={isMobile ? 32 : 60}
+              size={isMobile ? 36 : 60}
             />
           </Link>
           
