@@ -833,6 +833,20 @@ export const visualEssays: VisualEssay[] = [
     visualStyle: "photorealistic",
     heroImage: "https://upload.wikimedia.org/wikipedia/commons/c/c5/Frederick_Douglass_%28circa_1879%29.jpg",
   },
+  {
+    id: "hip-hop-history",
+    number: "74",
+    title: "Hip-Hop: From the Bronx to the World",
+    subtitle: "A Visual History of Hip-Hop Culture",
+    description: "From DJ Kool Herc's 1973 block party to the world's most consumed music genre—trace 50 years of Hip-Hop through five eras: Birth, Wild Style, Golden Age, Bicoastal, and Digital. Featuring 40+ figure profiles, scroll-lock sequences, and era-based visual treatments.",
+    category: "History",
+    readTime: "35 min",
+    href: "/essays/history/hip-hop-history",
+    isNew: true,
+    tags: ["Hip-Hop", "Hip-Hop history", "DJ Kool Herc", "Grandmaster Flash", "Tupac", "Notorious B.I.G.", "Bronx", "rap music", "breaking", "graffiti", "golden age", "music history", "cultural history", "visual essay"],
+    visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/a/a0/Herc_on_the_Wheels_of_Steel.JPG",
+  },
   // Children's Fiction (draft - not shown in production)
   {
     id: "the-night-the-stars-fell",

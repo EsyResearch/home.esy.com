@@ -228,20 +228,18 @@
   }
 }
 
-/* ==================== SCROLL-LOCK HERO SYSTEM ==================== */
+/* ==================== SCROLL-LOCK HERO SYSTEM (Manhattan Project Pattern) ==================== */
 
-.hero-scroll-lock-container {
+.hero-section {
   position: relative;
-  height: calc(100vh + 1800px); /* Viewport + scroll depth */
+  background: var(--bg-primary);
 }
 
-.hero-section.hero-pinned {
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 100%;
+.hero-pinned {
+  position: relative;
   height: 100vh;
   height: 100dvh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -250,9 +248,13 @@
   overflow: hidden;
 }
 
-.hero-scroll-lock-container.is-complete .hero-section.hero-pinned {
-  position: relative;
-  height: 100vh;
+.hero-pinned.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background: var(--bg-primary);
 }
 
 /* Hero background with film grain texture */
@@ -286,21 +288,28 @@
   mix-blend-mode: overlay;
 }
 
-/* Hero content */
+/* Hero content container */
 .hip-hop-history .hero-content {
   position: relative;
   z-index: 10;
-  max-width: 900px;
-  padding: 0 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  transition: opacity var(--duration-verse) var(--ease-break),
-              transform var(--duration-verse) var(--ease-break);
+  width: 100%;
+  height: 100%;
 }
 
+/* Hero statement text (phase reveals) */
+.hero-statement {
+  font-family: var(--font-quote);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Hero title card */
 .hero-overline {
+  display: block;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.25em;
@@ -342,22 +351,7 @@
   }
 }
 
-/* Phase text reveals */
-.hero-phase-text {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  transform: translateY(-50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 2rem;
-  text-align: center;
-  z-index: 5;
-  pointer-events: none;
-}
-
+/* Legacy phase-text class (can be removed if not used elsewhere) */
 .phase-text {
   position: absolute;
   left: 0;
@@ -884,11 +878,15 @@
 /* ==================== ACCESSIBILITY ==================== */
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-scroll-lock-container {
+  .hero-section {
     height: 100vh;
   }
 
-  .hero-section.hero-pinned {
+  .hero-pinned {
+    position: relative;
+  }
+
+  .hero-pinned.is-pinned {
     position: relative;
   }
 
@@ -904,7 +902,8 @@
     animation: none;
   }
 
-  .phase-text,
+  .hero-statement,
+  .hero-title-card,
   .hip-hop-history .hero-content {
     transition-duration: 0.01ms;
   }

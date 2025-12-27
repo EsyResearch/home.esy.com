@@ -94,50 +94,52 @@ const useGlobalScrollProgress = () => {
   return progress;
 };
 
-// ==================== SCROLL-LOCK HERO HOOK ====================
+// ==================== SCROLL-LOCK HOOK (Manhattan Project Pattern) ====================
 
-const useScrollLockHero = (scrollDepth: number = 1800) => {
+interface ScrollLockState {
+  containerRef: React.RefObject<HTMLDivElement>;
+  progress: number;
+  isPinned: boolean;
+}
+
+const useScrollLock = (): ScrollLockState => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [heroProgress, setHeroProgress] = useState(0);
-  const [isLocked, setIsLocked] = useState(false);
-  const [isComplete, setIsComplete] = useState(false);
-  const containerStartRef = useRef<number | null>(null);
-  const ticking = useRef(false);
+  const [progress, setProgress] = useState(0);
+  const [isPinned, setIsPinned] = useState(false);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    if (containerStartRef.current === null) {
-      containerStartRef.current = container.getBoundingClientRect().top + window.scrollY;
-    }
-
-    const updateProgress = () => {
-      const containerStart = containerStartRef.current ?? 0;
-      const scrollY = window.scrollY;
-      const scrolledPast = scrollY - containerStart;
-      const progress = Math.min(Math.max(scrolledPast / scrollDepth, 0), 1);
-      const locked = scrolledPast >= 0 && scrolledPast < scrollDepth;
-
-      setHeroProgress(progress);
-      setIsLocked(locked);
-      setIsComplete(progress >= 1);
-      ticking.current = false;
-    };
-
     const handleScroll = () => {
-      if (!ticking.current) {
-        requestAnimationFrame(updateProgress);
-        ticking.current = true;
+      if (!containerRef.current) return;
+
+      const rect = containerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const sectionTop = rect.top;
+      const sectionTotalHeight = rect.height;
+
+      // Calculate progress through the scroll-lock section
+      const scrollableDistance = sectionTotalHeight - windowHeight;
+      const scrolledIntoSection = -sectionTop;
+
+      if (sectionTop <= 0 && scrolledIntoSection <= scrollableDistance) {
+        setIsPinned(true);
+        const newProgress = Math.min(
+          Math.max(scrolledIntoSection / scrollableDistance, 0),
+          1
+        );
+        setProgress(newProgress);
+      } else {
+        // Unpin when above or below the scroll-lock zone
+        setIsPinned(false);
+        setProgress(sectionTop > 0 ? 0 : 1);
       }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    updateProgress();
+    handleScroll(); // Initial calculation
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [scrollDepth]);
+  }, []);
 
-  return { containerRef, heroProgress, isLocked, isComplete };
+  return { containerRef, progress, isPinned };
 };
 
 // ==================== MIXTAPE PROGRESS BAR ====================
@@ -1023,30 +1025,42 @@ const sources = [
 // ==================== SCROLL-LOCK HERO SECTION ====================
 
 const ScrollLockHero: React.FC = () => {
-  const { containerRef, heroProgress, isLocked, isComplete } = useScrollLockHero(1800);
+  const { containerRef, progress, isPinned } = useScrollLock();
 
-  const phases = [
-    { start: 0, end: 0.15, text: "August 1973. The South Bronx." },
-    { start: 0.15, end: 0.30, text: "A city in flames. A generation abandoned." },
-    { start: 0.30, end: 0.50, text: "But in the rubble, something grows..." },
-    { start: 0.50, end: 0.70, text: "Speakers on the sidewalk. Bodies in motion." },
-    { start: 0.70, end: 0.85, text: "The break drops. And everything changes." },
+  // Phase calculation using useMemo (Manhattan Project pattern)
+  // Each phase gets ~15-20% of scroll progress for comfortable reading time
+  const phase = useMemo(() => {
+    if (progress < 0.15) return "statement1";
+    if (progress < 0.30) return "statement2";
+    if (progress < 0.50) return "statement3";
+    if (progress < 0.70) return "statement4";
+    if (progress < 0.85) return "statement5";
+    if (progress < 0.95) return "title";
+    return "complete";
+  }, [progress]);
+
+  const statements = [
+    { id: "statement1", text: "August 1973. The South Bronx." },
+    { id: "statement2", text: "A city in flames. A generation abandoned." },
+    { id: "statement3", text: "But in the rubble, something grows..." },
+    { id: "statement4", text: "Speakers on the sidewalk. Bodies in motion." },
+    { id: "statement5", text: "The break drops. And everything changes." },
   ];
 
-  const lightIntensity = heroProgress < 0.50
-    ? Math.min(heroProgress / 0.30, 1)
-    : Math.max(1 - (heroProgress - 0.50) / 0.30, 0.3);
+  // Light and grain effects based on progress
+  const lightIntensity = progress < 0.50
+    ? Math.min(progress / 0.30, 1)
+    : Math.max(1 - (progress - 0.50) / 0.30, 0.3);
 
-  const grainIntensity = Math.min(heroProgress * 1.5, 1);
-
-  const showTitleCard = heroProgress >= 0.85;
+  const grainIntensity = Math.min(progress * 1.5, 1);
 
   return (
-    <div
+    <section
       ref={containerRef}
-      className={`hero-scroll-lock-container ${isLocked ? "is-locked" : ""} ${isComplete ? "is-complete" : ""}`}
+      className={`hero-section phase-${phase}`}
+      style={{ height: '250vh' }}
     >
-      <section className="hero-section hero-pinned">
+      <div className={`hero-pinned ${isPinned ? 'is-pinned' : ''}`}>
         <div
           className="hero-background"
           style={{
@@ -1055,52 +1069,80 @@ const ScrollLockHero: React.FC = () => {
           } as React.CSSProperties}
         />
 
-        <div className="hero-phase-text">
-          {phases.map((phase, index) => {
-            const isActive = heroProgress >= phase.start && heroProgress < phase.end;
-            const isPast = heroProgress >= phase.end;
-            return (
-              <p
-                key={index}
-                className={`phase-text ${isActive ? "active" : ""} ${isPast ? "past" : ""}`}
-              >
-                {phase.text}
-              </p>
-            );
-          })}
+        <div className="hero-content">
+          {/* Statement reveals with visibility control */}
+          {statements.map((statement) => (
+            <p
+              key={statement.id}
+              className="hero-statement"
+              style={{
+                opacity: phase === statement.id ? 1 : 0,
+                visibility: phase === statement.id ? 'visible' : 'hidden',
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '100%',
+                maxWidth: '800px',
+                textAlign: 'center',
+                padding: '0 2rem',
+                transition: 'opacity 0.5s ease-out',
+                pointerEvents: 'none',
+                zIndex: 10,
+              }}
+            >
+              {statement.text}
+            </p>
+          ))}
+
+          {/* Title card */}
+          <div
+            className="hero-title-card"
+            style={{
+              opacity: phase === "title" || phase === "complete" ? 1 : 0,
+              visibility: phase === "title" || phase === "complete" ? 'visible' : 'hidden',
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '100%',
+              maxWidth: '900px',
+              textAlign: 'center',
+              padding: '0 2rem',
+              transition: 'opacity 0.6s ease-out',
+              pointerEvents: 'none',
+              zIndex: 11,
+            }}
+          >
+            <span className="hero-overline">A Visual Essay</span>
+            <h1 className="hero-title">Hip-Hop</h1>
+            <p className="hero-subtitle">From the Bronx to the World</p>
+          </div>
         </div>
 
-        <div
-          className="hero-content"
-          style={{
-            opacity: showTitleCard ? 1 : 0,
-            transform: `translateY(${showTitleCard ? 0 : 30}px)`,
-          }}
-        >
-          <span className="hero-overline">A Visual Essay</span>
-          <h1 className="hero-title">Hip-Hop</h1>
-          <p className="hero-subtitle">From the Bronx to the World</p>
-        </div>
-
+        {/* Scroll indicator */}
         <div
           className="hero-scroll-indicator"
           style={{
-            opacity: heroProgress < 0.05 || isComplete ? 1 : 0,
+            opacity: progress < 0.05 || phase === "complete" ? 1 : 0,
+            transition: 'opacity 0.5s ease',
           }}
         >
           <span className="scroll-text">
-            {isComplete ? "Continue Scrolling" : "Scroll to Begin"}
+            {phase === "complete" ? "Continue Scrolling" : "Scroll to Begin"}
           </span>
           <div className="scroll-line" />
         </div>
 
-        {isLocked && heroProgress > 0.1 && heroProgress < 0.85 && (
+        {/* Skip button */}
+        {isPinned && progress > 0.1 && progress < 0.85 && (
           <button
             className="hero-skip-button"
             onClick={() => {
               const container = containerRef.current;
               if (container) {
-                const targetScroll = container.offsetTop + 2800;
+                const rect = container.getBoundingClientRect();
+                const targetScroll = window.scrollY + rect.height - window.innerHeight + 100;
                 window.scrollTo({ top: targetScroll, behavior: "smooth" });
               }
             }}
@@ -1108,8 +1150,8 @@ const ScrollLockHero: React.FC = () => {
             Skip Intro
           </button>
         )}
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 
