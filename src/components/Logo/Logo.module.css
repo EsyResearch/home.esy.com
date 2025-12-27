@@ -19,6 +19,7 @@
   overflow: hidden;
 }
 
+/* Logo shimmer animation - disabled for now
 .logoIcon::before {
   content: '';
   position: absolute;
@@ -35,6 +36,7 @@
   0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
   100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
 }
+*/
 
 .logoSubtitle {
   font-size: 0.875rem;
