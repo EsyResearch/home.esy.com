@@ -296,6 +296,7 @@ visibility: phase === "phase1" ? 'visible' : 'hidden',
 |-------|---------------------------|
 | `how-money-is-created` | Hero (text reveals), Stage 2 (balance sheet animation) |
 | `the-manhattan-project` | Hero (Trinity sequence), Document reveals, Trinity chapter |
+| `hip-hop-history` | Hero (5-phase narrative reveals → title card) |
 
 ## Checklist
 

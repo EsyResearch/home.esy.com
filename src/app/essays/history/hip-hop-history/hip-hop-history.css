@@ -228,14 +228,10 @@
   }
 }
 
-/* ==================== SCROLL-LOCK HERO SYSTEM (Manhattan Project Pattern) ==================== */
+/* ==================== HERO SECTION ==================== */
+/* TODO: Re-enable scroll-lock when ready (see pattern: docs/front-end/SCROLL_LOCK_PATTERN.md) */
 
 .hero-section {
-  position: relative;
-  background: var(--bg-primary);
-}
-
-.hero-pinned {
   position: relative;
   height: 100vh;
   height: 100dvh;
@@ -246,14 +242,6 @@
   align-items: center;
   text-align: center;
   overflow: hidden;
-}
-
-.hero-pinned.is-pinned {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
   background: var(--bg-primary);
 }
 
@@ -288,28 +276,21 @@
   mix-blend-mode: overlay;
 }
 
-/* Hero content container */
+/* Hero content */
 .hip-hop-history .hero-content {
   position: relative;
   z-index: 10;
-  width: 100%;
-  height: 100%;
+  max-width: 900px;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: opacity var(--duration-verse) var(--ease-break),
+              transform var(--duration-verse) var(--ease-break);
 }
 
-/* Hero statement text (phase reveals) */
-.hero-statement {
-  font-family: var(--font-quote);
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  font-style: italic;
-  font-weight: 400;
-  line-height: 1.4;
-  color: var(--text-primary);
-  margin: 0;
-}
-
-/* Hero title card */
 .hero-overline {
-  display: block;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.25em;
@@ -351,7 +332,22 @@
   }
 }
 
-/* Legacy phase-text class (can be removed if not used elsewhere) */
+/* Phase text reveals */
+.hero-phase-text {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+  text-align: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
 .phase-text {
   position: absolute;
   left: 0;
@@ -878,18 +874,6 @@
 /* ==================== ACCESSIBILITY ==================== */
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-section {
-    height: 100vh;
-  }
-
-  .hero-pinned {
-    position: relative;
-  }
-
-  .hero-pinned.is-pinned {
-    position: relative;
-  }
-
   *,
   *::before,
   *::after {
@@ -902,8 +886,6 @@
     animation: none;
   }
 
-  .hero-statement,
-  .hero-title-card,
   .hip-hop-history .hero-content {
     transition-duration: 0.01ms;
   }
