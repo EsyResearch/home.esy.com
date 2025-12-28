@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import "./jazz-history.css";
 
 // ============================================================================
@@ -85,6 +85,269 @@ const IMAGES = {
   bessieSmith: "https://tile.loc.gov/storage-services/service/pnp/van/5a52000/5a52800/5a52888r.jpg",
 } as const;
 
+// ==================== SCROLL-LOCK HOOK ====================
+// Pattern: docs/front-end/SCROLL_LOCK_PATTERN.md
+// Mobile behavior: Scroll-lock is disabled on mobile (touch devices)
+
+interface ScrollLockState {
+  containerRef: React.RefObject<HTMLDivElement>;
+  progress: number;   // 0 to 1
+  isPinned: boolean;  // true when viewport is locked
+}
+
+const useIsMobile = (): boolean => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const isNarrowViewport = window.innerWidth < 768;
+      const hasTouchCapability = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      setIsMobile(isNarrowViewport || (hasTouchCapability && window.innerWidth < 1024));
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  return isMobile;
+};
+
+const useScrollLock = (sectionHeight: number = 2.5): ScrollLockState => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+  const [isPinned, setIsPinned] = useState(false);
+  const isMobile = useIsMobile();
+
+  useEffect(() => {
+    // Skip scroll-lock on mobile
+    if (isMobile) return;
+
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+
+      const rect = containerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const sectionTop = rect.top;
+      const sectionTotalHeight = rect.height;
+
+      const scrollableDistance = sectionTotalHeight - windowHeight;
+      const scrolledIntoSection = -sectionTop;
+
+      if (sectionTop <= 0 && scrolledIntoSection <= scrollableDistance) {
+        setIsPinned(true);
+        const newProgress = Math.min(
+          Math.max(scrolledIntoSection / scrollableDistance, 0),
+          1
+        );
+        setProgress(newProgress);
+      } else {
+        setIsPinned(false);
+        setProgress(sectionTop > 0 ? 0 : 1);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [sectionHeight, isMobile]);
+
+  return { containerRef, progress, isPinned };
+};
+
+// ==================== SCROLL-LOCK HERO COMPONENT ====================
+// Pattern: Viewport pins while scroll drives reveal sequence
+// Phases: 5 sequential reveals with fading text and final title display
+
+const ScrollLockHero: React.FC = () => {
+  const isMobile = useIsMobile();
+  const { containerRef, progress, isPinned } = useScrollLock(3); // 3x viewport height
+  const [showSkip, setShowSkip] = useState(false);
+
+  // Show skip button after 2 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSkip(true), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Handle skip action
+  const handleSkip = () => {
+    const container = containerRef.current;
+    if (container) {
+      const containerRect = container.getBoundingClientRect();
+      const scrollTarget = window.scrollY + containerRect.bottom - window.innerHeight;
+      window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
+    }
+  };
+
+  // Calculate phase-based animations from continuous progress
+  const phases = useMemo(() => {
+    return {
+      // Phase 1 (0-0.2): "There is only one photograph"
+      phase1Opacity: progress < 0.15
+        ? Math.min(progress / 0.1, 1)
+        : progress < 0.25
+          ? 1 - ((progress - 0.15) / 0.1)
+          : 0,
+      // Phase 2 (0.2-0.4): "Buddy Bolden. Around 1905."
+      phase2Opacity: progress > 0.18 && progress < 0.45
+        ? progress < 0.28
+          ? (progress - 0.18) / 0.1
+          : progress > 0.35
+            ? 1 - ((progress - 0.35) / 0.1)
+            : 1
+        : 0,
+      // Phase 3 (0.4-0.6): "No one recorded it."
+      phase3Opacity: progress > 0.38 && progress < 0.65
+        ? progress < 0.48
+          ? (progress - 0.38) / 0.1
+          : progress > 0.55
+            ? 1 - ((progress - 0.55) / 0.1)
+            : 1
+        : 0,
+      // Phase 4 (0.6-0.85): Title "JAZZ" appears
+      phase4Opacity: progress > 0.58
+        ? Math.min((progress - 0.58) / 0.12, 1)
+        : 0,
+      // Phase 5 (0.75-1.0): Subtitle and description
+      phase5Opacity: progress > 0.72
+        ? Math.min((progress - 0.72) / 0.15, 1)
+        : 0,
+      // Background darkens as we approach the reveal
+      bgDarken: Math.min(progress * 0.3, 0.3),
+    };
+  }, [progress]);
+
+  // Mobile fallback: simple static hero
+  if (isMobile) {
+    return (
+      <header className="jazz-hero jazz-hero--mobile">
+        <div className="hero-content">
+          <p className="hero-prelude">&ldquo;There is only one photograph...&rdquo;</p>
+          <h1 className="hero-title">Jazz</h1>
+          <p className="hero-subtitle">The Sound of Freedom in Real Time</p>
+          <p className="hero-description">
+            How African diasporic traditions, European instruments, and the unique
+            conditions of New Orleans produced America&apos;s most influential art form
+          </p>
+        </div>
+        <div className="hero-scroll-indicator">
+          <span>Scroll to explore</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M12 5v14M5 12l7 7 7-7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+      </header>
+    );
+  }
+
+  return (
+    <header
+      ref={containerRef as React.RefObject<HTMLElement>}
+      className="jazz-hero jazz-hero--scroll-lock"
+      style={{ height: '300vh' }}
+    >
+      <div
+        className={`hero-pinned-content ${isPinned ? 'is-pinned' : ''}`}
+        style={{
+          position: isPinned ? 'fixed' : 'absolute',
+          top: isPinned ? 0 : progress >= 1 ? 'auto' : 0,
+          bottom: progress >= 1 && !isPinned ? 0 : 'auto',
+          left: 0,
+          right: 0,
+          height: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          background: `radial-gradient(ellipse at center bottom,
+            rgba(26, 26, 31, ${0.7 + phases.bgDarken}) 0%,
+            rgba(10, 10, 15, ${0.9 + phases.bgDarken * 0.3}) 70%)`,
+        }}
+      >
+        {/* Phase 1: The mystery */}
+        <p
+          className="hero-phase-text hero-phase-1"
+          style={{
+            opacity: phases.phase1Opacity,
+            transform: `translateY(${(1 - phases.phase1Opacity) * 20}px)`,
+          }}
+        >
+          There is only one photograph.
+        </p>
+
+        {/* Phase 2: The subject */}
+        <p
+          className="hero-phase-text hero-phase-2"
+          style={{
+            opacity: phases.phase2Opacity,
+            transform: `translateY(${(1 - phases.phase2Opacity) * 20}px)`,
+          }}
+        >
+          Buddy Bolden. Around 1905.
+        </p>
+
+        {/* Phase 3: The absence */}
+        <p
+          className="hero-phase-text hero-phase-3"
+          style={{
+            opacity: phases.phase3Opacity,
+            transform: `translateY(${(1 - phases.phase3Opacity) * 20}px)`,
+          }}
+        >
+          No one recorded his music.
+        </p>
+
+        {/* Phase 4-5: The title reveal */}
+        <div
+          className="hero-title-container"
+          style={{
+            opacity: phases.phase4Opacity,
+            transform: `scale(${0.9 + phases.phase4Opacity * 0.1})`,
+          }}
+        >
+          <h1 className="hero-title">Jazz</h1>
+          <p
+            className="hero-subtitle"
+            style={{ opacity: phases.phase5Opacity }}
+          >
+            The Sound of Freedom in Real Time
+          </p>
+          <p
+            className="hero-description"
+            style={{ opacity: phases.phase5Opacity * 0.9 }}
+          >
+            How African diasporic traditions, European instruments, and the unique
+            conditions of New Orleans produced America&apos;s most influential art form
+          </p>
+        </div>
+
+        {/* Scroll indicator - only visible at start */}
+        <div
+          className="hero-scroll-indicator"
+          style={{ opacity: Math.max(0, 1 - progress * 5) }}
+        >
+          <span>Scroll to begin</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M12 5v14M5 12l7 7 7-7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+
+        {/* Skip button - appears after 2 seconds */}
+        {isPinned && showSkip && progress < 0.95 && (
+          <button
+            className="hero-skip-button"
+            onClick={handleSkip}
+            aria-label="Skip introduction animation"
+          >
+            Skip
+          </button>
+        )}
+      </div>
+    </header>
+  );
+};
+
 // ==================== CUSTOM HOOKS ====================
 
 const useIntersectionReveal = (threshold = 0.15) => {
@@ -145,16 +408,20 @@ const useGlobalScrollProgress = () => {
 
 const chapterMarkers = [
   { id: "prologue", position: 0.02, label: "Prologue" },
-  { id: "ch1", position: 0.10, label: "1. The Only Photograph" },
-  { id: "ch2", position: 0.18, label: "2. The Wrong First" },
-  { id: "ch3", position: 0.26, label: "3. The Train North" },
-  { id: "ch4", position: 0.34, label: "4. The Double Life" },
-  { id: "ch5", position: 0.42, label: "5. The Laboratory" },
-  { id: "ch6", position: 0.50, label: "6. The Blue Note" },
-  { id: "ch7", position: 0.58, label: "7. The Freedom Principle" },
-  { id: "ch8", position: 0.66, label: "8. The Paradox" },
-  { id: "ch9", position: 0.74, label: "9. The Women They Erased" },
-  { id: "ch10", position: 0.82, label: "10. The Living Music" },
+  { id: "ch1", position: 0.08, label: "1. The Only Photograph" },
+  { id: "ch2", position: 0.14, label: "2. The Wrong First" },
+  { id: "ch3", position: 0.20, label: "3. The Train North" },
+  { id: "ch4", position: 0.26, label: "4. The Double Life" },
+  { id: "ch5", position: 0.32, label: "5. The Laboratory" },
+  { id: "ch6", position: 0.38, label: "6. The Blue Note" },
+  { id: "ch7", position: 0.44, label: "7. The Freedom Principle" },
+  { id: "ch8", position: 0.50, label: "8. The Paradox" },
+  { id: "ch9", position: 0.56, label: "9. The Women They Erased" },
+  { id: "ch10", position: 0.62, label: "10. The Electric Turn" },
+  { id: "ch11", position: 0.68, label: "11. Jazz Goes Global" },
+  { id: "ch12", position: 0.74, label: "12. The Living Music" },
+  { id: "timeline", position: 0.82, label: "Timeline" },
+  { id: "glossary", position: 0.88, label: "Glossary" },
   { id: "epilogue", position: 0.95, label: "Epilogue" },
 ];
 
@@ -792,10 +1059,109 @@ const chapters: Chapter[] = [
     ],
   },
 
-  // CHAPTER 10: THE LIVING MUSIC
+  // CHAPTER 10: THE ELECTRIC TURN
   {
     id: "ch10",
     number: "Chapter X",
+    title: "The Electric Turn",
+    subtitle: "Fusion and the Rock Revolution",
+    era: "contemporary",
+    temporalMarker: "1968-1985",
+    epigraph: {
+      text: "It was with Sly Stone and James Brown in mind that I went into the studio in June 1972.",
+      source: "Miles Davis, Autobiography",
+    },
+    narrative: [
+      "August 1969. Three days after Woodstock, Miles Davis entered Columbia's Studio B. With thirteen musicians—two electric pianos, two drummers, electric bass, guitar—he recorded what would become 'Bitches Brew.'",
+      "The album went gold. Then platinum. It was the first jazz album to sell a million copies in the United States. Davis played the Fillmore East, opening for rock bands. He played the Isle of Wight Festival to 600,000 people.",
+      "Jazz purists called it betrayal. Stanley Crouch named Davis 'the most brilliant sellout in the history of jazz.' But the musicians who had played with Davis—Herbie Hancock, Chick Corea, Wayne Shorter, Joe Zawinul—heard possibility.",
+      "Weather Report. Return to Forever. Mahavishnu Orchestra. Head Hunters. These weren't jazz albums with electric instruments. They were new music, born from jazz's improvisational DNA but living in a different body. Hancock's 'Head Hunters' became the first jazz album certified platinum.",
+      "The technology changed everything. Teo Macero's tape splicing on 'Bitches Brew' predated sampling. The Fender Rhodes gave pianists new timbres. The Minimoog let Jan Hammer bend notes like a horn player. Jaco Pastorius reimagined the electric bass as a lead instrument.",
+    ],
+    figures: [
+      {
+        name: "Herbie Hancock",
+        epithet: "The Shape-Shifter",
+        born: "April 12, 1940, Chicago",
+        domains: ["Piano", "Synthesizer", "Funk-Jazz"],
+        description: "'Head Hunters' (1973): first jazz album certified platinum. From Blue Note to funk to electronica—constantly reinventing while maintaining jazz foundation. 14 Grammy Awards including Album of the Year for 'River: The Joni Letters.'",
+        isFeatured: true,
+      },
+      {
+        name: "Wayne Shorter",
+        epithet: "The Conceptualist",
+        born: "August 25, 1933, Newark, New Jersey",
+        died: "March 2, 2023, Los Angeles",
+        domains: ["Saxophone", "Composition", "Weather Report"],
+        description: "Co-founded Weather Report with Joe Zawinul (1970-1986). 'Heavy Weather' (1977) went multi-platinum. Composed for film and opera. One of the most influential composer-instrumentalists since Ellington.",
+        isFeatured: true,
+      },
+      {
+        name: "Jaco Pastorius",
+        epithet: "The Revolutionary Bassist",
+        born: "December 1, 1951, Norristown, Pennsylvania",
+        died: "September 21, 1987, Fort Lauderdale, Florida",
+        domains: ["Electric Bass", "Composition", "Weather Report"],
+        description: "Redefined electric bass as a lead instrument. Fretless technique, use of harmonics. 'Portrait of Tracy' (1976). With Weather Report 1976-1981. Bass Player magazine: #2 greatest bassist of all time.",
+        isFeatured: true,
+      },
+    ],
+  },
+
+  // CHAPTER 11: JAZZ GOES GLOBAL
+  {
+    id: "ch11",
+    number: "Chapter XI",
+    title: "Jazz Goes Global",
+    subtitle: "How America's Music Became the World's",
+    era: "contemporary",
+    temporalMarker: "1918-Present",
+    epigraph: {
+      text: "Jazz came from New Orleans. It belongs to the world.",
+      source: "Global Jazz Observation",
+    },
+    narrative: [
+      "Paris, 1918. The 369th Infantry Regiment—the Harlem Hellfighters—brought jazz to France during World War I. It never left.",
+      "Django Reinhardt invented gypsy jazz in the 1930s—a fusion of American swing and Romani musical traditions, played on all-string instruments. His recordings with the Quintette du Hot Club de France remain unique in jazz history. Sidney Bechet became 'le dieu' to French existentialists.",
+      "Copenhagen welcomed American musicians fleeing segregation. Dexter Gordon, Ben Webster, Kenny Drew made it their home in the 1960s. Jazzhus Montmartre became Europe's jazz mecca. Tokyo developed jazz kissa—dedicated listening cafes with high-end audio systems. By the 1970s, 250 operated in Tokyo alone.",
+      "In South Africa, jazz became resistance music. Abdullah Ibrahim's 'Mannenberg' (1974) was the unofficial anthem of the anti-apartheid movement, the soundtrack to the 1976 Soweto uprising. Hugh Masekela and Miriam Makeba took South African jazz to the world.",
+      "Havana gave jazz the clave. Chano Pozo joined Dizzy Gillespie's orchestra in 1947. 'Manteca'—the first jazz standard built on Afro-Cuban rhythm—opened jazz to entirely new polyrhythmic possibilities. Irakere continued the fusion in the 1970s.",
+    ],
+    figures: [
+      {
+        name: "Django Reinhardt",
+        epithet: "The Genius",
+        born: "January 23, 1910, Liberchies, Belgium",
+        died: "May 16, 1953, Samois-sur-Seine, France",
+        domains: ["Guitar", "Composition", "Gypsy Jazz"],
+        description: "Pioneered jazz manouche with only two functioning fingers on his left hand (after fire injury). 'Nuages' (1940) became anthem of French Resistance. First European to influence American jazz. Over 130 recordings with Quintette du Hot Club de France.",
+        isFeatured: true,
+      },
+      {
+        name: "Abdullah Ibrahim",
+        epithet: "South Africa's Mozart",
+        born: "October 9, 1934, Cape Town, South Africa",
+        domains: ["Piano", "Composition", "Cape Jazz"],
+        description: "Co-founded Jazz Epistles (1959)—first bebop group in South Africa. 'Mannenberg' became the anti-apartheid anthem. Lived in exile 1962-1990. Nelson Mandela called him 'South Africa's Mozart.'",
+        quote: "Music has always been a form of protest.",
+        isFeatured: true,
+      },
+      {
+        name: "Chano Pozo",
+        epithet: "The Catalyst",
+        born: "January 7, 1915, Havana, Cuba",
+        died: "December 3, 1948, New York City",
+        domains: ["Congas", "Dancer", "Afro-Cuban Jazz"],
+        description: "Carnegie Hall debut with Dizzy Gillespie, September 29, 1947. Co-wrote 'Manteca'—first jazz standard based on clave. Murdered at 33, having transformed jazz's rhythmic vocabulary forever.",
+        isFeatured: true,
+      },
+    ],
+  },
+
+  // CHAPTER 12: THE LIVING MUSIC
+  {
+    id: "ch12",
+    number: "Chapter XII",
     title: "The Living Music",
     subtitle: "Can Jazz Survive Success?",
     era: "contemporary",
@@ -848,6 +1214,149 @@ const chapters: Chapter[] = [
   },
 ];
 
+// ==================== TIMELINE DATA ====================
+
+const timelineEvents = [
+  { year: "1817", event: "Congo Square gatherings restricted to Sundays", era: "origins" },
+  { year: "1867", event: "'Slave Songs of the United States' published — first collection of spirituals", era: "origins" },
+  { year: "1871", event: "Fisk Jubilee Singers depart Nashville on concert tour", era: "origins" },
+  { year: "c.1895", event: "Buddy Bolden organizes first jazz band in New Orleans", era: "origins" },
+  { year: "1899", event: "Scott Joplin's 'Maple Leaf Rag' published", era: "origins" },
+  { year: "1917", event: "ODJB makes first jazz recording (Feb 26) — Black musicians excluded", era: "origins" },
+  { year: "1918", event: "Harlem Hellfighters bring jazz to France", era: "migration" },
+  { year: "1922", event: "Louis Armstrong joins King Oliver in Chicago (July 8)", era: "migration" },
+  { year: "1923", event: "King Oliver's Creole Jazz Band: first recordings by Black jazz band", era: "migration" },
+  { year: "1925", event: "Louis Armstrong Hot Five recordings begin", era: "migration" },
+  { year: "1927", event: "Duke Ellington becomes Cotton Club house band", era: "swing" },
+  { year: "1928", event: "Armstrong's 'West End Blues' revolutionizes jazz", era: "swing" },
+  { year: "1934", event: "Django Reinhardt forms Quintette du Hot Club de France", era: "swing" },
+  { year: "1935", event: "Benny Goodman hires Teddy Wilson — integrated band", era: "swing" },
+  { year: "1938", event: "Benny Goodman Carnegie Hall concert (Jan 16)", era: "swing" },
+  { year: "1939", event: "Billie Holiday records 'Strange Fruit' (April 20)", era: "swing" },
+  { year: "1940", event: "Minton's Playhouse becomes bebop laboratory", era: "bebop" },
+  { year: "1942", event: "Charlie Parker's harmonic breakthrough at Monroe's", era: "bebop" },
+  { year: "1945", event: "Parker-Gillespie: 'Ko-Ko' — bebop on record", era: "bebop" },
+  { year: "1947", event: "Chano Pozo joins Dizzy Gillespie — 'Manteca' recorded", era: "bebop" },
+  { year: "1949", event: "Miles Davis 'Birth of the Cool' sessions begin", era: "bluenote" },
+  { year: "1955", event: "Willis Conover begins 'Music USA' on Voice of America", era: "paradox" },
+  { year: "1956", event: "Dizzy Gillespie: first Jazz Ambassador tour", era: "paradox" },
+  { year: "1959", event: "Ornette Coleman: 'The Shape of Jazz to Come'", era: "free" },
+  { year: "1959", event: "Miles Davis: 'Kind of Blue' — best-selling jazz album ever", era: "bluenote" },
+  { year: "1959", event: "Jazz Epistles form in South Africa — first African bebop group", era: "contemporary" },
+  { year: "1960", event: "Ornette Coleman: 'Free Jazz' album names the movement", era: "free" },
+  { year: "1965", event: "AACM founded in Chicago", era: "free" },
+  { year: "1965", event: "John Coltrane: 'A Love Supreme'", era: "bluenote" },
+  { year: "1969", event: "Miles Davis: 'Bitches Brew' recorded", era: "contemporary" },
+  { year: "1970", event: "Weather Report founded", era: "contemporary" },
+  { year: "1973", event: "Herbie Hancock: 'Head Hunters' — first platinum jazz album", era: "contemporary" },
+  { year: "1974", event: "Abdullah Ibrahim: 'Mannenberg' — anti-apartheid anthem", era: "contemporary" },
+  { year: "1987", event: "Jazz at Lincoln Center founded", era: "contemporary" },
+  { year: "1997", event: "Wynton Marsalis: 'Blood on the Fields' — first jazz Pulitzer", era: "contemporary" },
+  { year: "2011", event: "Esperanza Spalding: first jazz artist to win Best New Artist Grammy", era: "contemporary" },
+  { year: "2015", event: "Kamasi Washington: 'The Epic' proves market for ambitious jazz", era: "contemporary" },
+];
+
+// ==================== GLOSSARY DATA ====================
+
+const glossaryTerms = [
+  { term: "Bebop", definition: "Revolutionary jazz style developed in the 1940s featuring complex harmonies, virtuosic improvisation, and faster tempos. Pioneered by Charlie Parker, Dizzy Gillespie, and Thelonious Monk.", era: "bebop" },
+  { term: "Blue Note", definition: "A note played at a slightly lower pitch than standard, typically the 3rd, 5th, or 7th scale degrees. Derived from African tonal traditions and central to blues and jazz expression.", era: "origins" },
+  { term: "Call-and-Response", definition: "African-derived musical structure where one voice or instrument 'calls' and another 'responds.' Fundamental to spirituals, blues, gospel, and jazz.", era: "origins" },
+  { term: "Changes", definition: "The chord progression of a jazz tune. 'Running the changes' means improvising through the harmonic structure.", era: "bebop" },
+  { term: "Clave", definition: "A rhythmic pattern (typically 3-2 or 2-3) fundamental to Afro-Cuban music. Introduced to jazz through Chano Pozo and Dizzy Gillespie's 'Manteca' (1947).", era: "contemporary" },
+  { term: "Comping", definition: "Accompanying a soloist with chords, typically on piano or guitar. From 'accompanying' — providing harmonic and rhythmic support.", era: "swing" },
+  { term: "Cool Jazz", definition: "Style emphasizing lighter tone, relaxed tempos, and arranged passages. Miles Davis's 'Birth of the Cool' sessions (1949-50) defined the sound.", era: "bluenote" },
+  { term: "Cutting Contest", definition: "Informal competition where musicians take turns soloing, attempting to outplay each other. Central to jazz's development at venues like Minton's Playhouse.", era: "bebop" },
+  { term: "Free Jazz", definition: "Style abandoning preset chord changes and fixed rhythms. Named after Ornette Coleman's 1960 album. Also called avant-garde jazz.", era: "free" },
+  { term: "Fusion", definition: "Jazz combined with rock, funk, or electronic music. Miles Davis's 'Bitches Brew' (1970) and Weather Report exemplify the style.", era: "contemporary" },
+  { term: "Gig", definition: "A performance engagement. From African American slang, widely adopted in popular music.", era: "swing" },
+  { term: "Hard Bop", definition: "Style incorporating blues, gospel, and R&B influences into bebop. Art Blakey's Jazz Messengers and Horace Silver defined the sound (mid-1950s).", era: "bluenote" },
+  { term: "Head", definition: "The composed melody of a jazz tune, typically played at beginning and end with improvisation in between.", era: "bebop" },
+  { term: "Hot", definition: "Early jazz term for exciting, emotionally intense playing. 'Hot jazz' contrasted with sweeter, more commercial dance music.", era: "origins" },
+  { term: "Improvisation", definition: "Spontaneous musical creation within a harmonic and rhythmic framework. Jazz's defining characteristic — 'composition in real time.'", era: "origins" },
+  { term: "Jazz Funeral", definition: "New Orleans tradition combining dirges on the way to burial with celebratory music ('second line') returning. Symbolizes mourning followed by celebration of life.", era: "origins" },
+  { term: "Jazz Kissa", definition: "Japanese listening cafes dedicated to jazz, featuring high-end audio systems and extensive record collections. Peak: 250+ in Tokyo alone by the 1970s.", era: "contemporary" },
+  { term: "Lick", definition: "A short, often-used melodic phrase. Building blocks of jazz vocabulary passed between musicians.", era: "bebop" },
+  { term: "Modal Jazz", definition: "Style based on scales (modes) rather than chord progressions. Miles Davis's 'Kind of Blue' (1959) and John Coltrane's work defined the approach.", era: "bluenote" },
+  { term: "Ring Shout", definition: "African-derived religious ritual with counterclockwise movement, call-and-response singing, and handclapping. Oldest African American performance tradition surviving in North America.", era: "origins" },
+  { term: "Riff", definition: "A repeated melodic phrase, often used as background or foundation for improvisation. Central to big band arranging.", era: "swing" },
+  { term: "Scat Singing", definition: "Wordless vocal improvisation using syllables. Louis Armstrong famously employed it; Ella Fitzgerald perfected it.", era: "swing" },
+  { term: "Second Line", definition: "Followers who join New Orleans parade processions, dancing behind the main band. The term now describes the dancing style itself.", era: "origins" },
+  { term: "Spiritual", definition: "African American religious folk songs developed during slavery. Fisk Jubilee Singers popularized them internationally from 1871.", era: "origins" },
+  { term: "Standard", definition: "A widely-known jazz composition that has become part of the common repertoire. 'Body and Soul,' 'All the Things You Are,' etc.", era: "swing" },
+  { term: "Stride Piano", definition: "Left-hand technique alternating bass notes and chords while right hand plays melody. Developed in Harlem; Fats Waller and James P. Johnson exemplified it.", era: "origins" },
+  { term: "Swing", definition: "Both an era (1935-1946) and a rhythmic feel. Swing rhythm involves subtle timing variations that create forward momentum and groove.", era: "swing" },
+  { term: "Trading Fours", definition: "Improvisers alternating four-bar phrases, often with the drummer. A form of musical conversation.", era: "bebop" },
+  { term: "Vamp", definition: "A repeated chord pattern or riff, often used as introduction or for extended sections.", era: "swing" },
+  { term: "Voicing", definition: "The specific arrangement of notes in a chord, determining its color and character. Jazz pianists are known for distinctive voicings.", era: "bebop" },
+];
+
+// ==================== TIMELINE COMPONENT ====================
+
+const TimelineSection: React.FC = () => {
+  const { ref, isVisible } = useIntersectionReveal(0.1);
+
+  return (
+    <section
+      ref={ref as React.RefObject<HTMLElement>}
+      className={`timeline-section ${isVisible ? "visible" : ""}`}
+    >
+      <div className="timeline-content">
+        <header className="section-header">
+          <h2 className="section-title">Timeline</h2>
+          <p className="section-subtitle">Key Moments in Jazz History</p>
+        </header>
+
+        <div className="timeline-container">
+          {timelineEvents.map((event, idx) => (
+            <div
+              key={idx}
+              className="timeline-event"
+              data-era={event.era}
+            >
+              <span className="timeline-year">{event.year}</span>
+              <span className="timeline-description">{event.event}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// ==================== GLOSSARY COMPONENT ====================
+
+const GlossarySection: React.FC = () => {
+  const { ref, isVisible } = useIntersectionReveal(0.1);
+
+  return (
+    <section
+      ref={ref as React.RefObject<HTMLElement>}
+      className={`glossary-section ${isVisible ? "visible" : ""}`}
+    >
+      <div className="glossary-content">
+        <header className="section-header">
+          <h2 className="section-title">Glossary</h2>
+          <p className="section-subtitle">The Language of Jazz</p>
+        </header>
+
+        <div className="glossary-grid">
+          {glossaryTerms.map((item, idx) => (
+            <div
+              key={idx}
+              className="glossary-term"
+              data-era={item.era}
+            >
+              <dt className="glossary-term-name">{item.term}</dt>
+              <dd className="glossary-term-definition">{item.definition}</dd>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // ==================== SOURCES COMPONENT ====================
 
 const SourcesSection: React.FC = () => {
@@ -893,27 +1402,19 @@ export default function JazzHistoryClient() {
     <main className="jazz-essay">
       <MusicalStaffProgress progress={progress} />
 
-      {/* Hero Section */}
-      <header className="jazz-hero">
-        <div className="hero-content">
-          <h1 className="hero-title">Jazz</h1>
-          <p className="hero-subtitle">The Sound of Freedom in Real Time</p>
-          <p className="hero-description">
-            How African diasporic traditions, European instruments, and the unique conditions of New Orleans produced America&apos;s most influential art form
-          </p>
-        </div>
-        <div className="hero-scroll-indicator">
-          <span>Scroll to explore</span>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M12 5v14M5 12l7 7 7-7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </div>
-      </header>
+      {/* Hero Section - Scroll-Lock Reveal Sequence */}
+      <ScrollLockHero />
 
       {/* Chapters */}
       {chapters.map((chapter) => (
         <ChapterSection key={chapter.id} chapter={chapter} />
       ))}
+
+      {/* Timeline */}
+      <TimelineSection />
+
+      {/* Glossary */}
+      <GlossarySection />
 
       {/* Sources */}
       <SourcesSection />

@@ -229,6 +229,102 @@
   50% { opacity: 1; transform: translateY(4px); }
 }
 
+/* ==================== SCROLL-LOCK HERO ==================== */
+/* Desktop: Viewport pins while scroll drives reveal sequence */
+
+.jazz-hero--scroll-lock {
+  position: relative;
+  min-height: auto;
+  padding: 0;
+}
+
+.hero-pinned-content {
+  text-align: center;
+  padding: 2rem;
+  transition: background 0.3s ease;
+}
+
+.hero-pinned-content.is-pinned {
+  z-index: 50;
+}
+
+/* Phase text styling */
+.hero-phase-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-style: italic;
+  color: var(--jazz-cream);
+  margin: 0;
+  position: absolute;
+  max-width: 600px;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.15s ease-out;
+}
+
+.hero-phase-1 {
+  color: var(--jazz-silver);
+}
+
+.hero-phase-2 {
+  color: var(--jazz-cream);
+}
+
+.hero-phase-3 {
+  color: var(--jazz-brass);
+  font-weight: 500;
+}
+
+/* Title container */
+.hero-title-container {
+  text-align: center;
+  will-change: transform, opacity;
+}
+
+.hero-title-container .hero-title {
+  text-shadow:
+    0 0 60px rgba(201, 162, 39, 0.4),
+    0 0 120px rgba(201, 162, 39, 0.2);
+}
+
+.hero-title-container .hero-subtitle {
+  will-change: opacity;
+}
+
+.hero-title-container .hero-description {
+  will-change: opacity;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* Prelude for mobile */
+.hero-prelude {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-style: italic;
+  color: var(--jazz-silver);
+  margin: 0 0 2rem;
+  letter-spacing: 0.02em;
+}
+
+/* Mobile fallback */
+.jazz-hero--mobile {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  background: radial-gradient(ellipse at center bottom, var(--jazz-smoke) 0%, var(--jazz-night) 70%);
+}
+
+.jazz-hero--mobile .hero-content {
+  max-width: var(--content-width);
+}
+
 /* ==================== CHAPTER SECTIONS ==================== */
 
 .chapter-section {
@@ -529,6 +625,177 @@
   background: linear-gradient(180deg, var(--jazz-night) 0%, rgba(30, 58, 95, 0.08) 100%);
 }
 
+/* ==================== TIMELINE SECTION ==================== */
+
+.timeline-section {
+  padding: 6rem 1.5rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--duration-slow) var(--ease-standard),
+              transform var(--duration-slow) var(--ease-standard);
+}
+
+.timeline-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-content {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--jazz-cream);
+  margin: 0 0 0.5rem;
+}
+
+.section-subtitle {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--jazz-brass);
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+.timeline-container {
+  position: relative;
+  padding-left: 2rem;
+  border-left: 2px solid var(--jazz-brass);
+}
+
+.timeline-event {
+  position: relative;
+  padding: 1rem 0 1rem 1.5rem;
+  border-bottom: 1px solid rgba(201, 162, 39, 0.1);
+}
+
+.timeline-event::before {
+  content: '';
+  position: absolute;
+  left: -2.35rem;
+  top: 1.25rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--jazz-smoke);
+  border: 2px solid var(--jazz-brass);
+  transition: background-color var(--duration-quick) var(--ease-standard);
+}
+
+.timeline-event:hover::before {
+  background-color: var(--jazz-brass);
+}
+
+.timeline-year {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--jazz-brass);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-description {
+  font-size: 1rem;
+  color: var(--jazz-cream);
+  line-height: 1.5;
+}
+
+/* Era-specific timeline markers */
+.timeline-event[data-era="origins"]::before { border-color: var(--era-origins); }
+.timeline-event[data-era="migration"]::before { border-color: var(--era-migration); }
+.timeline-event[data-era="swing"]::before { border-color: var(--era-swing); }
+.timeline-event[data-era="bebop"]::before { border-color: var(--era-bebop); }
+.timeline-event[data-era="bluenote"]::before { border-color: var(--era-bluenote); }
+.timeline-event[data-era="free"]::before { border-color: var(--era-free); }
+.timeline-event[data-era="paradox"]::before { border-color: var(--era-paradox); }
+.timeline-event[data-era="contemporary"]::before { border-color: var(--era-contemporary); }
+
+/* ==================== GLOSSARY SECTION ==================== */
+
+.glossary-section {
+  padding: 6rem 1.5rem;
+  background: linear-gradient(180deg, var(--jazz-night) 0%, rgba(26, 58, 92, 0.05) 100%);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--duration-slow) var(--ease-standard),
+              transform var(--duration-slow) var(--ease-standard);
+}
+
+.glossary-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.glossary-content {
+  max-width: var(--wide-width);
+  margin: 0 auto;
+}
+
+.glossary-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .glossary-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .glossary-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.glossary-term {
+  background-color: var(--jazz-smoke);
+  border-radius: 4px;
+  padding: 1.25rem;
+  border-left: 3px solid var(--jazz-brass);
+  transition: transform var(--duration-quick) var(--ease-standard),
+              box-shadow var(--duration-quick) var(--ease-standard);
+}
+
+.glossary-term:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.glossary-term-name {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--jazz-brass);
+  margin: 0 0 0.5rem;
+}
+
+.glossary-term-definition {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--jazz-cream);
+  margin: 0;
+}
+
+/* Era-specific glossary accents */
+.glossary-term[data-era="origins"] { border-left-color: var(--era-origins); }
+.glossary-term[data-era="swing"] { border-left-color: var(--era-swing); }
+.glossary-term[data-era="bebop"] { border-left-color: var(--era-bebop); }
+.glossary-term[data-era="bluenote"] { border-left-color: var(--era-bluenote); }
+.glossary-term[data-era="free"] { border-left-color: var(--era-free); }
+.glossary-term[data-era="contemporary"] { border-left-color: var(--era-contemporary); }
+
 /* ==================== SOURCES SECTION ==================== */
 
 .sources-section {
@@ -666,5 +933,63 @@
     opacity: 1;
     transform: none;
     page-break-inside: avoid;
+  }
+}
+
+/* ==================== SKIP BUTTON ==================== */
+
+.hero-skip-button {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 30;
+  transition: all 0.2s ease;
+  animation: skip-fade-in 0.5s ease forwards;
+}
+
+@keyframes skip-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-skip-button:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent-gold);
+}
+
+.hero-skip-button:focus {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
+}
+
+/* ==================== SAFE AREA INSETS ==================== */
+
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .staff-progress-mobile {
+    height: calc(4px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .hero-scroll-indicator {
+    bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .hero-skip-button {
+    bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .jazz-footer {
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
   }
 }
