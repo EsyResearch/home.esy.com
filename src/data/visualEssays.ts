@@ -859,7 +859,7 @@ export const visualEssays: VisualEssay[] = [
     isNew: true,
     tags: ["blues history", "delta blues", "chicago blues", "african american music", "muddy waters", "bessie smith", "robert johnson", "charley patton", "ma rainey", "great migration", "race records", "music history", "visual essay"],
     visualStyle: "photorealistic",
-    heroImage: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Bessie_Smith_%281936%29_by_Carl_Van_Vechten.jpg",
+    heroImage: "/og/the-blues-history.png",
   },
   {
     id: "rock-and-roll",
