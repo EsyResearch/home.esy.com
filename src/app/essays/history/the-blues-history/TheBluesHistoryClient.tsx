@@ -308,14 +308,24 @@ export function TheBluesHistoryClient() {
     <article className="blues-essay">
       {/* Hero Section */}
       <header className="blues-hero">
-        <p className="blues-hero__context">
-          Somewhere in the American South. Sometime after 1865.
-        </p>
-        <h1 className="blues-hero__title">The Blues</h1>
-        <p className="blues-hero__subtitle">America&apos;s Haunted Foundation</p>
-        <p className="blues-hero__context">
-          A Documentary Visual History
-        </p>
+        <div className="blues-hero__image-container">
+          <img
+            src="https://tile.loc.gov/storage-services/service/pnp/fsa/8c10000/8c10900/8c10917v.jpg"
+            alt="Jitterbugging in a juke joint on Saturday evening, outside Clarksdale, Mississippi Delta, November 1939. Photo by Marion Post Wolcott for the Farm Security Administration."
+            className="blues-hero__image"
+          />
+          <div className="blues-hero__overlay" />
+        </div>
+        <div className="blues-hero__content">
+          <p className="blues-hero__context">
+            Somewhere in the American South. Sometime after 1865.
+          </p>
+          <h1 className="blues-hero__title">The Blues</h1>
+          <p className="blues-hero__subtitle">America&apos;s Haunted Foundation</p>
+          <p className="blues-hero__context">
+            A Documentary Visual History
+          </p>
+        </div>
       </header>
 
       {/* Prologue */}

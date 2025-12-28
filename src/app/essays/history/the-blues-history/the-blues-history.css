@@ -152,12 +152,38 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: var(--spacing-xl) var(--spacing-md);
+  overflow: hidden;
+}
+
+.blues-hero__image-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.blues-hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: grayscale(0.4) contrast(1.1) sepia(0.3);
+}
+
+.blues-hero__overlay {
+  position: absolute;
+  inset: 0;
   background: linear-gradient(
     to bottom,
-    var(--blues-ink-black) 0%,
-    var(--blues-weathered-wood) 100%
+    rgba(10, 10, 10, 0.5) 0%,
+    rgba(10, 10, 10, 0.7) 40%,
+    rgba(10, 10, 10, 0.85) 100%
   );
+}
+
+.blues-hero__content {
+  position: relative;
+  z-index: 1;
+  padding: var(--spacing-xl) var(--spacing-md);
 }
 
 .blues-hero__title {
@@ -175,6 +201,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 .blues-hero__subtitle {
@@ -190,6 +217,11 @@
   font-size: 0.875rem;
   margin-top: var(--spacing-lg);
   opacity: var(--text-tertiary);
+}
+
+.blues-hero__context:first-child {
+  margin-top: 0;
+  margin-bottom: var(--spacing-md);
 }
 
 /* --- Chapter Sections --- */
