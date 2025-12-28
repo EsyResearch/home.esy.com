@@ -50,19 +50,19 @@ interface Chapter {
 const IMAGES = {
   // Hero / Key visuals
   sisterRosettaTharpe: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Sister_Rosetta_Tharpe_%281938_publicity_photo_with_guitar%29.jpg",
-  louisJordan: "https://www.loc.gov/item/2023867914/",
+  louisJordan: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Louis_Jordan%2C_New_York%2C_N.Y.%2C_ca._July_1946_%28William_P._Gottlieb_04681%29.jpg",
   fatsDomino1956: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Fats_Domino_1956.png",
   boDiddley1957: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Bo_Diddley_%281957_publicity_portrait%29.jpg",
   littleRichard: "https://upload.wikimedia.org/wikipedia/commons/8/8e/Little_Richard_in_2007_%28cropped%29_%282%29.jpg",
   bigMamaThornton: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Big_Mama_Thornton_1984.jpg",
   janisJoplin1970: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Janis_Joplin_1970.JPG",
-  joanJett: "https://nara.getarchive.net/topics/joan+jett",
+  joanJett: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Joan_Jett_2013.jpg",
   cavernClub: "https://upload.wikimedia.org/wikipedia/commons/f/f5/CavernClub.JPG",
-  sunStudio: "https://commons.wikimedia.org/wiki/Category:Sun_Studio",
-  chessRecords: "https://commons.wikimedia.org/wiki/Category:Chess_Records",
+  sunStudio: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Memphis_-_Sun_Studio_01.jpg",
+  chessRecords: "https://upload.wikimedia.org/wikipedia/commons/8/89/Chess_Records_Office.jpg",
   // Technology
   fenderTelecaster: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Muddy_Waters_1958_Fender_Telecaster_Guitar_%28details%29_-_Rock_%26_Roll_Hall_of_Fame_and_Museum%2C_Cleveland_%28by_Adam_Jones%29.jpg/1280px-Muddy_Waters_1958_Fender_Telecaster_Guitar_%28details%29_-_Rock_%26_Roll_Hall_of_Fame_and_Museum%2C_Cleveland_%28by_Adam_Jones%29.jpg",
-  regencyTR1: "https://commons.wikimedia.org/wiki/File:Regency_TR-1_Transistor_Radio.jpg",
+  regencyTR1: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Regency_TR-1_Transistor_Radio.jpg",
 } as const;
 
 // ==================== CUSTOM HOOKS ====================
