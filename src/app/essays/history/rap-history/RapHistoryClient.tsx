@@ -304,8 +304,8 @@ const CHAPTERS: Chapter[] = [
       }
     ],
     chapterImage: {
-      url: "https://upload.wikimedia.org/wikipedia/commons/6/6c/1520_Sedwick_Ave.%2C_Bronx%2C_New_York1.JPG",
-      alt: "1520 Sedgwick Avenue, birthplace of hip-hop, Bronx, New York",
+      url: "https://upload.wikimedia.org/wikipedia/commons/9/91/Herc_on_the_Wheels_of_Steel.JPG",
+      alt: "DJ Kool Herc spinning records in the Bronx, the founder of hip-hop at the turntables",
       attribution: "Photo by Bigtimepeace, Wikimedia Commons, Public Domain"
     }
   },

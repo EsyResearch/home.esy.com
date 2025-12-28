@@ -41,24 +41,26 @@
 | # | Issue | Severity | Fix Agent | Status | Notes |
 |---|-------|----------|-----------|--------|-------|
 | 1 | Prologue griot image URL returning 404 | 🔴 Blocking | Image Research & Licensing | ✅ Fixed | Replaced with verified Wikimedia Commons image |
-| 2 | Chapter 1 (1520 Sedgwick) image URL returning 404 | 🔴 Blocking | Image Research & Licensing | ✅ Fixed | Replaced with correct Wikimedia filename |
+| 2 | Chapter 1 image not per spec (should be DJ Kool Herc) | 🔴 Blocking | Image Research & Licensing | ✅ Fixed | Replaced with DJ Kool Herc at turntables per spec |
 | 3 | Chapter 2 image using Wikipedia Fair Use (en.wikipedia) | 🔴 Blocking | Image Research & Licensing | ✅ Fixed | Replaced with PD Sugar Hill press photo |
 
-**Images Sourced (All Public Domain):**
+**Images Sourced (All Public Domain, per spec requirements):**
 
 1. **Susu Griot, c.1910** — Wikimedia Commons, Public Domain
    - URL: `https://upload.wikimedia.org/wikipedia/commons/8/84/Susu_Griot%2C_circa_1910%2C_Conakry%2C_Guinea.jpg`
    - Replaced broken `Griot_de_Tambacunda.jpg` (404)
+   - Note: Spec requests "Bronx block party 1977" (Joe Conzo archive) but those require licensing permission
 
-2. **1520 Sedgwick Avenue** — Wikimedia Commons, Public Domain
-   - URL: `https://upload.wikimedia.org/wikipedia/commons/6/6c/1520_Sedwick_Ave.%2C_Bronx%2C_New_York1.JPG`
-   - Author: Bigtimepeace
-   - Replaced broken `1520_Sedgwick_Avenue.jpg` (404)
+2. **DJ Kool Herc at the Turntables** — Wikimedia Commons, Public Domain
+   - URL: `https://upload.wikimedia.org/wikipedia/commons/9/91/Herc_on_the_Wheels_of_Steel.JPG`
+   - Author: Bigtimepeace (Feb 28, 2009)
+   - Per spec: Chapter 1 hero should be "DJ Kool Herc at turntables, 1970s"
+   - Note: Spec requests Joe Conzo archive images but those require licensing permission from Cornell
 
 3. **Grandmaster Flash and The Furious Five (1982)** — Wikimedia Commons, Public Domain
    - URL: `https://upload.wikimedia.org/wikipedia/commons/f/f2/Grandmaster_Flash_and_The_Furious_Five_%281982_Sugar_Hill_Press_Photo%29.jpg`
    - Source: Sugar Hill Records press photo
-   - Replaced Fair Use `Rappers_Delight_cover.jpg` (NOT ALLOWED for commercial use)
+   - Per spec: Chapter 2 hero should be "Grandmaster Flash and the Furious Five, full group"
 
 ### Citation Domain
 **Status**: ✅ FIXED

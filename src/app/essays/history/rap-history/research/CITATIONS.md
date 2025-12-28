@@ -14,7 +14,7 @@ December 28, 2024
 | Image | Source | License | Attribution | URL |
 |-------|--------|---------|-------------|-----|
 | Susu Griot, c.1910 | Wikimedia Commons | Public Domain | Unknown photographer, c. 1910 | https://upload.wikimedia.org/wikipedia/commons/8/84/Susu_Griot%2C_circa_1910%2C_Conakry%2C_Guinea.jpg |
-| 1520 Sedgwick Avenue | Wikimedia Commons | Public Domain | Bigtimepeace | https://upload.wikimedia.org/wikipedia/commons/6/6c/1520_Sedwick_Ave.%2C_Bronx%2C_New_York1.JPG |
+| DJ Kool Herc at the Turntables | Wikimedia Commons | Public Domain | Bigtimepeace (Feb 28, 2009) | https://upload.wikimedia.org/wikipedia/commons/9/91/Herc_on_the_Wheels_of_Steel.JPG |
 | Grandmaster Flash & Furious Five (1982) | Wikimedia Commons | Public Domain | Sugar Hill Records (press photo) | https://upload.wikimedia.org/wikipedia/commons/f/f2/Grandmaster_Flash_and_The_Furious_Five_%281982_Sugar_Hill_Press_Photo%29.jpg |
 
 ### License Distribution
