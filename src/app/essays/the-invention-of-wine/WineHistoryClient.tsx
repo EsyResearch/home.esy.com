@@ -58,39 +58,35 @@ const eras = [
     text: 'For centuries, monasteries preserve viticulture. Cistercian monks classify Burgundy terroir. Dom Pérignon advances sparkling wine. The great wine regions emerge.',
     location: 'Medieval Europe'
   },
+  {
+    year: '1863',
+    title: 'The Phylloxera Crisis',
+    text: 'A microscopic aphid from America devastates European vineyards. Within decades, 70% of vines are dead. The solution comes from the very continent that caused the plague.',
+    location: 'Europe'
+  },
+  {
+    year: 'Today',
+    title: 'A Global Industry',
+    text: 'From Napa to New Zealand, wine is now a $300+ billion global industry. Climate change reshapes regions. Natural wines rise. The ancient craft continues to evolve.',
+    location: 'Worldwide'
+  },
 ];
 
 const WineHistoryClient: React.FC = () => {
   const [bottleRotation, setBottleRotation] = useState(0);
   const [wineLevel, setWineLevel] = useState(0);
-  const [timelineProgress, setTimelineProgress] = useState(0);
   const [visibleData, setVisibleData] = useState<number[]>([]);
-  
-  const timelineRef = useRef<HTMLDivElement>(null);
+
   const dataRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Update bottle animation and timeline based on scroll
+  // Update bottle animation based on scroll
   const updateFromScroll = useCallback(() => {
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollProgress = Math.min(window.scrollY / scrollHeight, 1);
-    
+
     // Bottle tilts and wine level increases
     setBottleRotation(scrollProgress * 45); // 0 to 45 degrees
     setWineLevel(scrollProgress * 100);
-    
-    // Timeline horizontal scroll (for the parallax section)
-    if (timelineRef.current) {
-      const rect = timelineRef.current.getBoundingClientRect();
-      const sectionHeight = timelineRef.current.offsetHeight;
-      const viewportHeight = window.innerHeight;
-      
-      if (rect.top < viewportHeight && rect.bottom > 0) {
-        const sectionProgress = Math.max(0, Math.min(1, 
-          (viewportHeight - rect.top) / (sectionHeight)
-        ));
-        setTimelineProgress(sectionProgress);
-      }
-    }
   }, []);
 
   useEffect(() => {
@@ -257,14 +253,16 @@ const WineHistoryClient: React.FC = () => {
             <h2>The Magic of Fermentation</h2>
             <p>
               Yeast consumes sugar. Alcohol and CO₂ are born. This transformation—
-              invisible to the ancient eye—seemed nothing short of divine. 
-              The bubbling, the changing flavors, the warming effect: 
+              invisible to the ancient eye—seemed nothing short of divine.
+              The bubbling, the changing flavors, the warming effect:
               early humans attributed it to the gods.
             </p>
             <p>
-              The process remains essentially unchanged after 8,000 years. 
-              Wild yeasts still cling to grape skins. Fermentation still produces 
-              roughly 12-14% alcohol. Nature perfected the formula long ago.
+              It wasn&apos;t until the 1860s that Louis Pasteur proved fermentation was caused
+              by living microorganisms—yeast—not spontaneous magic. Yet the process
+              remains essentially unchanged after 8,000 years. Wild yeasts still cling
+              to grape skins. Fermentation still produces roughly 12-14% alcohol.
+              Nature perfected the formula long before we understood it.
             </p>
             <div className="ferment-stats">
               <div className="ferment-stat">
@@ -284,26 +282,19 @@ const WineHistoryClient: React.FC = () => {
         </div>
       </section>
 
-      {/* === HORIZONTAL PARALLAX TIMELINE === */}
-      <section className="parallax-timeline" ref={timelineRef}>
-        <div className="timeline-sticky">
-          <div 
-            className="timeline-track"
-            style={{ transform: `translateX(-${timelineProgress * (eras.length - 1) * 100}vw)` }}
-          >
-            {eras.map((era, index) => (
-              <div key={index} className={`timeline-era era-${index + 1}`}>
-                <div className="era-bg" />
-                <div className="era-year">{era.year}</div>
-                <div className="era-content">
-                  <h2 className="era-title">{era.title}</h2>
-                  <p className="era-text">{era.text}</p>
-                  <div className="era-location">{era.location}</div>
-                </div>
-              </div>
-            ))}
+      {/* === VERTICAL TIMELINE === */}
+      <section className="vertical-timeline">
+        {eras.map((era, index) => (
+          <div key={index} className={`timeline-era era-${index + 1}`}>
+            <div className="era-bg" />
+            <div className="era-year">{era.year}</div>
+            <div className="era-content">
+              <h2 className="era-title">{era.title}</h2>
+              <p className="era-text">{era.text}</p>
+              <div className="era-location">{era.location}</div>
+            </div>
           </div>
-        </div>
+        ))}
       </section>
 
       {/* === SPLIT SCREEN CONTRAST === */}
@@ -332,12 +323,151 @@ const WineHistoryClient: React.FC = () => {
         </div>
       </section>
 
+      {/* === TERROIR SECTION === */}
+      <section className="terroir-section">
+        <div className="terroir-content">
+          <h2>The Mystery of <em>Terroir</em></h2>
+          <p className="terroir-intro">
+            Why does a Burgundy taste different from a Bordeaux, even when made
+            from the same grape? The French call it <em>terroir</em>—the complete
+            natural environment in which wine is produced.
+          </p>
+          <div className="terroir-grid">
+            <div className="terroir-factor">
+              <div className="terroir-icon">
+                <svg viewBox="0 0 60 60">
+                  <path d="M10 50 L30 10 L50 50 Z" fill="none" stroke="currentColor" strokeWidth="2"/>
+                  <line x1="10" y1="50" x2="50" y2="50" stroke="currentColor" strokeWidth="2"/>
+                  <circle cx="20" cy="45" r="3" fill="var(--wine-aged)"/>
+                  <circle cx="35" cy="42" r="2" fill="var(--wine-aged)"/>
+                  <circle cx="42" cy="46" r="4" fill="var(--wine-aged)"/>
+                </svg>
+              </div>
+              <h3>Soil</h3>
+              <p>Limestone, clay, gravel, slate—each mineral composition
+              stresses vines differently, forcing roots deeper and concentrating flavors.</p>
+            </div>
+            <div className="terroir-factor">
+              <div className="terroir-icon">
+                <svg viewBox="0 0 60 60">
+                  <circle cx="30" cy="20" r="12" fill="none" stroke="currentColor" strokeWidth="2"/>
+                  <line x1="30" y1="32" x2="30" y2="55" stroke="currentColor" strokeWidth="2"/>
+                  <line x1="20" y1="45" x2="30" y2="55" stroke="currentColor" strokeWidth="2"/>
+                  <line x1="40" y1="45" x2="30" y2="55" stroke="currentColor" strokeWidth="2"/>
+                </svg>
+              </div>
+              <h3>Climate</h3>
+              <p>Temperature swings between day and night, rainfall patterns,
+              and hours of sunlight determine sugar development and acidity balance.</p>
+            </div>
+            <div className="terroir-factor">
+              <div className="terroir-icon">
+                <svg viewBox="0 0 60 60">
+                  <path d="M10 45 Q20 30 30 35 Q40 40 50 25" fill="none" stroke="currentColor" strokeWidth="2"/>
+                  <circle cx="30" cy="35" r="3" fill="var(--wine-young)"/>
+                  <path d="M28 32 L28 20 M32 32 L32 22" stroke="var(--cork)" strokeWidth="1.5"/>
+                </svg>
+              </div>
+              <h3>Topography</h3>
+              <p>Slope angle, altitude, and drainage affect sun exposure and
+              water retention—why the same hillside produces wines of different character.</p>
+            </div>
+            <div className="terroir-factor">
+              <div className="terroir-icon">
+                <svg viewBox="0 0 60 60">
+                  <ellipse cx="30" cy="35" rx="15" ry="8" fill="none" stroke="currentColor" strokeWidth="2"/>
+                  <ellipse cx="25" cy="32" rx="2" ry="1" fill="currentColor" opacity="0.5"/>
+                  <ellipse cx="35" cy="36" rx="3" ry="1.5" fill="currentColor" opacity="0.5"/>
+                  <ellipse cx="30" cy="38" rx="2" ry="1" fill="currentColor" opacity="0.5"/>
+                </svg>
+              </div>
+              <h3>Microbes</h3>
+              <p>Local yeasts and bacteria populations contribute unique fermentation
+              characteristics—the invisible signature of place.</p>
+            </div>
+          </div>
+          <p className="terroir-conclusion">
+            No two vineyards produce identical wines. Terroir is why wine lovers speak
+            of specific hills, specific rows, specific patches of earth with reverence.
+          </p>
+        </div>
+      </section>
+
+      {/* === PHYLLOXERA CRISIS === */}
+      <section className="phylloxera-section">
+        <div className="phylloxera-bg" />
+        <div className="phylloxera-content">
+          <div className="phylloxera-header">
+            <span className="crisis-label">1863–1890</span>
+            <h2>The Aphid Apocalypse</h2>
+          </div>
+          <div className="phylloxera-story">
+            <p>
+              In 1863, vines in southern France began dying mysteriously.
+              Leaves yellowed, roots rotted, entire vineyards collapsed within seasons.
+              By the time botanist Jules-Émile Planchon identified the culprit in 1868,
+              it was already too late.
+            </p>
+            <div className="aphid-visual">
+              <svg className="aphid-svg" viewBox="0 0 100 80">
+                <ellipse cx="50" cy="40" rx="25" ry="20" fill="var(--wine-aged)" opacity="0.8"/>
+                <ellipse cx="50" cy="40" rx="20" ry="15" fill="var(--cellar)"/>
+                <circle cx="40" cy="35" r="3" fill="var(--champagne)" opacity="0.6"/>
+                <circle cx="60" cy="35" r="3" fill="var(--champagne)" opacity="0.6"/>
+                <ellipse cx="50" cy="45" rx="5" ry="3" fill="var(--wine-young)" opacity="0.5"/>
+                <line x1="30" y1="50" x2="20" y2="60" stroke="var(--wine-aged)" strokeWidth="2"/>
+                <line x1="70" y1="50" x2="80" y2="60" stroke="var(--wine-aged)" strokeWidth="2"/>
+                <line x1="35" y1="55" x2="25" y2="70" stroke="var(--wine-aged)" strokeWidth="2"/>
+                <line x1="65" y1="55" x2="75" y2="70" stroke="var(--wine-aged)" strokeWidth="2"/>
+              </svg>
+              <p className="aphid-caption">
+                <em>Phylloxera vastatrix</em> — less than 1mm long,
+                yet capable of destroying civilizations of vines
+              </p>
+            </div>
+            <p>
+              The pest was <em>Daktulosphaira vitifoliae</em>, an aphid native to
+              North America, accidentally imported on botanical specimens.
+              American vines had evolved resistance over millennia; European
+              <em>Vitis vinifera</em> had none.
+            </p>
+          </div>
+          <div className="devastation-stats">
+            <div className="devastation-stat">
+              <div className="devastation-number">70%</div>
+              <div className="devastation-label">of European vineyards destroyed</div>
+            </div>
+            <div className="devastation-stat">
+              <div className="devastation-number">2.5M</div>
+              <div className="devastation-label">hectares lost in France alone</div>
+            </div>
+            <div className="devastation-stat">
+              <div className="devastation-number">30</div>
+              <div className="devastation-label">years to full recovery</div>
+            </div>
+          </div>
+          <div className="phylloxera-solution">
+            <h3>The Paradox of Salvation</h3>
+            <p>
+              The solution came from the same continent that brought the plague.
+              American grape species, having co-evolved with phylloxera, were resistant.
+              By grafting precious European vines onto American rootstock,
+              the wine industry was saved—forever transformed.
+            </p>
+            <p className="grafting-note">
+              Today, nearly every European vine grows on American roots.
+              The wine in your glass is a testament to this transatlantic collaboration.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* === QUOTE TAKEOVER === */}
       <section className="quote-takeover">
         <div className="quote-inner">
           <blockquote>
-            &ldquo;Wine is one of the most civilized things in the world 
-            and one of the most natural things that has been brought 
+            &ldquo;Wine is one of the most civilized things in the world
+            and one of the most natural things that has been brought
             to the greatest perfection.&rdquo;
           </blockquote>
           <cite>— Ernest Hemingway, Death in the Afternoon</cite>
@@ -354,11 +484,11 @@ const WineHistoryClient: React.FC = () => {
             <div className="data-number">260B</div>
             <div className="data-desc">liters of wine produced annually worldwide</div>
           </div>
-          <div 
+          <div
             ref={el => { dataRefs.current[1] = el; }}
             className={`data-item ${visibleData.includes(1) ? 'visible' : ''}`}
           >
-            <div className="data-number">$340B</div>
+            <div className="data-number">$300B+</div>
             <div className="data-desc">global wine market value</div>
           </div>
           <div 
@@ -386,11 +516,11 @@ const WineHistoryClient: React.FC = () => {
             <a href="https://www.pnas.org/doi/10.1073/pnas.1714728114" target="_blank" rel="noopener noreferrer">
               PNAS: Early Neolithic Wine of Georgia
             </a>
-            <a href="https://www.nationalgeographic.com/culture/article/ancient-wine" target="_blank" rel="noopener noreferrer">
-              National Geographic: Ancient Wine
+            <a href="https://www.nationalgeographic.com/history/article/oldest-winemaking-grapes-georgia-archaeology" target="_blank" rel="noopener noreferrer">
+              National Geographic: Oldest Evidence of Winemaking
             </a>
-            <a href="https://www.smithsonianmag.com/history/ancient-wine-180950859/" target="_blank" rel="noopener noreferrer">
-              Smithsonian: History of Wine
+            <a href="https://www.smithsonianmag.com/smart-news/oldest-evidence-wine-making-found-georgia-180967199/" target="_blank" rel="noopener noreferrer">
+              Smithsonian: Oldest Evidence of Wine Making
             </a>
             <a href="https://www.oiv.int/what-we-do/statistics" target="_blank" rel="noopener noreferrer">
               OIV: International Wine Statistics
@@ -398,7 +528,7 @@ const WineHistoryClient: React.FC = () => {
             <a href="https://www.britannica.com/topic/wine" target="_blank" rel="noopener noreferrer">
               Britannica: Wine
             </a>
-            <a href="https://www.penn.museum/sites/biomoleculararchaeology/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.penn.museum/research/project.php?pid=30" target="_blank" rel="noopener noreferrer">
               Penn Museum: Biomolecular Archaeology
             </a>
           </div>
