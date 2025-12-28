@@ -658,6 +658,15 @@
   transform: scale(1.02);
 }
 
+/* Position specific chapter images to keep subjects in frame */
+#prologue .rap-chapter__image img {
+  object-position: center 20%; /* Keep the griot woman in frame */
+}
+
+#bronx-crucible .rap-chapter__image img {
+  object-position: center 30%; /* Keep DJ Kool Herc in frame */
+}
+
 .rap-chapter__image-caption {
   position: absolute;
   bottom: 0;

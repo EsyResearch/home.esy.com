@@ -875,6 +875,20 @@ export const visualEssays: VisualEssay[] = [
     visualStyle: "photorealistic",
     heroImage: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Sister_Rosetta_Tharpe_%281938_publicity_photo_with_guitar%29.jpg",
   },
+  {
+    id: "rap-history",
+    number: "77",
+    title: "RAP: The World's Loudest Archive",
+    subtitle: "A Visual History of Hip-Hop's Most Powerful Art Form",
+    description: "From the Bronx block parties of 1973 to global streaming dominance—trace the complete history of rap music through 17 chapters covering origins, the golden age, gangsta rap, regional revolutions, trap architecture, drill, and rap's absorption as the world's default pop language. Featuring 275+ artists and 12 era-shifting design skins.",
+    category: "History",
+    readTime: "40 min",
+    href: "/essays/history/rap-history",
+    isNew: true,
+    tags: ["rap history", "hip-hop history", "DJ Kool Herc", "Grandmaster Flash", "Run-DMC", "Public Enemy", "N.W.A", "Tupac", "Notorious B.I.G.", "Jay-Z", "Kendrick Lamar", "trap music", "drill", "golden age hip-hop", "gangsta rap", "music history", "visual essay"],
+    visualStyle: "photorealistic",
+    heroImage: "/og/rap-history.png",
+  },
   // Children's Fiction (draft - not shown in production)
   {
     id: "the-night-the-stars-fell",
