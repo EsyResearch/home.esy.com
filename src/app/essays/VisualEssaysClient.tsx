@@ -17,7 +17,7 @@ import './visual-essays.css';
 
 // Manual featured essay override (for hero with clean photographic image)
 // Set to null to use the latest essay automatically
-const FEATURED_ESSAY_ID = "the-blues-history";
+const FEATURED_ESSAY_ID = "the-history-of-languages";
 
 const featuredEssay = FEATURED_ESSAY_ID
   ? publishedVisualEssays.find(e => e.id === FEATURED_ESSAY_ID) || latestEssay
