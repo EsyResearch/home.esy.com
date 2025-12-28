@@ -85,6 +85,7 @@ agents/
 | Agent | Best For | Invocation |
 |-------|----------|------------|
 | [Visual Essay Intake Enhancer](#visual-essay-intake-enhancer) | Enhance rough visual essay requests | `@agents/utilities/visual-essay-intake-enhancer.md` |
+| [Visual Essay Refurbish Agent](#visual-essay-refurbish-agent) | Modernize legacy essays, extract intent, propose expansions | `@agents/utilities/visual-essay-refurbish-agent.md` |
 | [Scrollytelling Invocation Enhancer](#scrollytelling-invocation-enhancer) | Enhance scrollytelling requests | `@agents/utilities/scrollytelling-invocation-enhancer.md` |
 | [Visual Essay Invocation](#visual-essay-invocation-agent) | Generate visual essay specs | `@agents/utilities/visual-essay-invocation-agent.md` |
 | [README Curator](#readme-curator) | Documentation routing & maintenance | `@agents/utilities/readme-curator.md` |
@@ -262,6 +263,62 @@ Using @agents/utilities/visual-essay-intake-enhancer.md:
 | Undefined audience | Clear: curious generalists |
 | No tone guidance | Directive: educator mode, avoid purple prose |
 | Vague scope | Prioritized: 5 ranked scope items |
+
+---
+
+### Visual Essay Refurbish Agent
+**File:** `utilities/visual-essay-refurbish-agent.md`
+
+**Role:** Expert editorial archaeologist that evaluates existing visual essays lacking research packages or design specs, extracts their intent, reconstructs citation foundations, and produces comprehensive refurbish intake documents with expansion proposals.
+
+**🔧 USE FOR LEGACY ESSAYS:** When an essay exists but lacks proper `research/` directory, `CITATIONS.md`, or design documentation.
+
+**Best For:**
+- Bringing legacy essays into pipeline compliance
+- Extracting intent from existing implementations
+- Reconstructing research packages from inline citations
+- Proposing content expansions based on research gaps
+- Deciding whether to preserve, extend, or redesign visuals
+
+**Refurbish Modes:**
+| Mode | Focus | When to Use |
+|------|-------|-------------|
+| **Gap-fill** | Reconstruct missing research/citations | Essay is complete but lacks documentation |
+| **Expansion** | Add new content based on research | Essay is solid but could go deeper |
+| **Modernization** | Quality compliance + design update | Essay needs both docs and design work |
+
+**What It Does:**
+1. **Extracts** all content (narrative, quotes, statistics, citations)
+2. **Documents** existing design (colors, typography, animations)
+3. **Infers** original intent (thesis, audience, narrative mode)
+4. **Identifies** gaps (missing research, unsupported claims)
+5. **Proposes** expansions (new figures, events, visualizations)
+6. **Assesses** design (preserve, extend, or redesign?)
+7. **Outputs** complete refurbish intake for Visual Essay Orchestrator
+
+**Invocation Examples:**
+```
+# Standard refurbish (missing research package)
+Using @agents/utilities/visual-essay-refurbish-agent.md, evaluate and
+prepare a refurbish intake for the visual essay at:
+src/app/essays/the-invention-of-wine/
+
+# Expansion-focused refurbish
+Using @agents/utilities/visual-essay-refurbish-agent.md, evaluate the
+visual essay at src/app/essays/[slug]/ with focus on EXPANSION.
+Identify additional figures, events, and data visualizations to add.
+
+# Quality compliance refurbish
+Using @agents/utilities/visual-essay-refurbish-agent.md, evaluate the
+visual essay at [path] for QUALITY COMPLIANCE. Bring into pipeline standards.
+```
+
+**Design Decision Matrix:**
+| Assessment | Recommendation | Action |
+|------------|----------------|--------|
+| Design serves content well | **PRESERVE** | Document in DESIGN-RESEARCH.md |
+| Core design sound, needs additions | **EXTEND** | Add elements for new sections |
+| Design fails quality standards | **REDESIGN** | Invoke Design Researcher |
 
 ---
 

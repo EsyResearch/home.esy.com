@@ -19,7 +19,7 @@ agents/
 ├── research/                    # 🔬 Source discovery (4)
 ├── regional/                    # 🌏 Regional specialists (2)
 ├── engineering/                 # ⚙️ Technical implementation (8)
-└── utilities/                   # 🔧 Support & enhancement (4)
+└── utilities/                   # 🔧 Support & enhancement (5)
 ```
 
 ---
@@ -108,6 +108,7 @@ agents/
 | Agent | Purpose | Path |
 |-------|---------|------|
 | [Visual Essay Intake Enhancer](./utilities/visual-essay-intake-enhancer.md) | Rough Request → Structured Intake | `utilities/` |
+| [Visual Essay Refurbish Agent](./utilities/visual-essay-refurbish-agent.md) | Legacy Essay → Pipeline Compliance | `utilities/` |
 | [Scrollytelling Invocation Enhancer](./utilities/scrollytelling-invocation-enhancer.md) | Request → Structured Brief | `utilities/` |
 | [Visual Essay Invocation Agent](./utilities/visual-essay-invocation-agent.md) | Generate Visual Essay Specs | `utilities/` |
 | [README Curator](./utilities/readme-curator.md) | Documentation Routing | `utilities/` |
@@ -300,6 +301,11 @@ scroll performance for [ESSAY] to achieve 60fps on mobile.
 Using @agents/utilities/visual-essay-intake-enhancer.md, enhance this request:
 "[ROUGH VISUAL ESSAY IDEA]"
 
+# Legacy essay refurbish
+Using @agents/utilities/visual-essay-refurbish-agent.md, evaluate and
+prepare a refurbish intake for the visual essay at:
+src/app/essays/[essay-slug]/
+
 # Scrollytelling request enhancement
 Using @agents/utilities/scrollytelling-invocation-enhancer.md, enhance this request:
 "[ROUGH SCROLLYTELLING IDEA]"
@@ -332,8 +338,8 @@ See [META-AGENT-FRAMEWORK.md](./META-AGENT-FRAMEWORK.md) for the complete agent 
 | 🔬 Research | 3 | Source discovery |
 | 🌏 Regional | 2 | Subject expertise |
 | ⚙️ Engineering | 8 | Technical implementation |
-| 🔧 Utilities | 4 | Support functions |
-| **Total** | **36** | |
+| 🔧 Utilities | 5 | Support functions |
+| **Total** | **37** | |
 
 ---
 
@@ -354,9 +360,10 @@ See [META-AGENT-FRAMEWORK.md](./META-AGENT-FRAMEWORK.md) for the complete agent 
 
 ---
 
-*Last Updated: December 15, 2024*
+*Last Updated: December 28, 2024*
 
 ### Recent Changes
+- Added **Visual Essay Refurbish Agent** to utilities category — evaluates legacy essays without research packages, extracts design/content intent, proposes expansions, formalizes intake documents for orchestrator processing
 - Added **Design Slop Auditor** to auditors category — detects AI-generated generic design patterns, enforces subject-derived aesthetics, provides remediation through Design Research Reports
 - Updated category statistics (Auditors: 9 → 10, Total: 35 → 36)
 - Added **Hydration Audit Agent** to auditors category — detects SSR/client hydration mismatches (IntersectionObserver race conditions, useState initialization, browser API access)

@@ -637,6 +637,7 @@ Current agents derived from this framework:
 | `childrens-books-writer-expert.md` | **Children's Fiction (3-6)** | Picture Book Narratives | ← Children's Fiction Scrollytelling |
 | `childrens-fiction-scrollytelling-agent.md` | **Children's Scrollytelling** | Magical Story Experiences | **Orchestrator** → Children's Writer, UI/UX, SW Eng, Immersive Eng, SVG Expert, **Visual Auditor** |
 | `visual-essay-intake-enhancer.md` | **Intake Enhancement** | Rough Request → Structured Intake | **Pre-processor** → Visual Essay Orchestrator (Phase 1) |
+| `visual-essay-refurbish-agent.md` | **Legacy Modernization** | Legacy Essay → Pipeline Compliance | **Pre-processor** → Visual Essay Orchestrator (REFURBISH mode); Evaluates essays missing research/, extracts intent, proposes expansions, formalizes intake |
 | `scrollytelling-invocation-enhancer.md` | **Invocation Enhancement** | Brief Builder & Optimizer | **Pre-processor** → Scrollytelling Expert, Children's Fiction |
 | `scrollytelling-audit-agent.md` | **Quality Assurance** | Experience Auditor | **Orchestrator** → Scrollytelling Expert, Immersive Eng, Children's Fiction |
 | `citation-audit-agent.md` | **Citation Integrity** | Source & Citation Verifier | **Post-processor** → Scrollytelling Expert, Research Citations, Historian Editor, Quotes Audit; ← **Visual Essay Orchestrator** |
@@ -690,9 +691,10 @@ This meta-framework should evolve as patterns emerge:
 ---
 
 ## Last Updated
-December 16, 2025
+December 28, 2024
 
 ### Recent Changes
+- Added Visual Essay Refurbish Agent to registry (legacy essay modernization, pipeline compliance, intent extraction, expansion proposals)
 - Added Design Researcher to registry (visual identity research, subject-derived design systems, Gate 4 owner)
 - Added Animation Pattern Auditor to registry (pattern extraction from specs/implementations against 21 scroll-lock patterns + 36 animation taxonomy categories)
 - Added Design Research Implementation Auditor to registry (spec vs implementation verification, 100% compliance auditing)
