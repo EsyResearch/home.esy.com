@@ -1,0 +1,1001 @@
+/* ============================================================================
+   RAP: THE WORLD'S LOUDEST ARCHIVE
+   ============================================================================
+   Visual Treatment: Era-morphing photorealistic with 12 design skins
+   Arc Type: Origins -> Explosion -> Regional -> Global -> Now
+   Progress Bar: Vinyl record with spinning animation
+   ============================================================================ */
+
+/* ==================== CSS CUSTOM PROPERTIES ==================== */
+
+:root {
+  /* Universal Layout Tokens */
+  --rap-max-width: 1400px;
+  --rap-content-width: 800px;
+  --rap-gutter: clamp(1rem, 5vw, 3rem);
+  --rap-section-spacing: clamp(4rem, 10vh, 8rem);
+
+  /* Universal Animation Tokens */
+  --rap-duration-fast: 150ms;
+  --rap-duration-base: 300ms;
+  --rap-duration-slow: 500ms;
+  --rap-duration-hero: 800ms;
+  --rap-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --rap-easing-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --rap-easing-drop: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* Default (Neutral) Palette */
+  --rap-bg: #0a0a0a;
+  --rap-surface: #141414;
+  --rap-text: #f5f5f5;
+  --rap-text-muted: #a0a0a0;
+  --rap-accent: #ff4d00;
+  --rap-accent-secondary: #ffd700;
+
+  /* Grain Overlay */
+  --rap-grain-opacity: 0.08;
+}
+
+/* ==================== SKIN 1: NEON PLAYGROUND ==================== */
+/* Era: Early party rap (1973-1983) */
+
+.skin-neon-playground {
+  --rap-bg: #0d001a;
+  --rap-surface: #1a0033;
+  --rap-text: #ffffff;
+  --rap-text-muted: #cc99ff;
+  --rap-accent: #ff00ff;
+  --rap-accent-secondary: #00ffff;
+  --rap-accent-tertiary: #ffff00;
+  --rap-grain-opacity: 0.12;
+  --rap-neon-glow: 0 0 20px rgba(255, 0, 255, 0.5), 0 0 40px rgba(255, 0, 255, 0.3);
+}
+
+.skin-neon-playground .chapter-header {
+  text-shadow: var(--rap-neon-glow);
+  animation: neon-flicker 3s infinite alternate;
+}
+
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: var(--rap-neon-glow);
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
+
+/* ==================== SKIN 2: TV GLOSS ==================== */
+/* Era: Pop-rap crossover (1989-1992, 2000-2005) */
+
+.skin-tv-gloss {
+  --rap-bg: #f0f0f0;
+  --rap-surface: #ffffff;
+  --rap-text: #1a1a1a;
+  --rap-text-muted: #666666;
+  --rap-accent: #ff3366;
+  --rap-accent-secondary: #3366ff;
+  --rap-grain-opacity: 0.03;
+}
+
+.skin-tv-gloss .figure-card {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+}
+
+.skin-tv-gloss .chapter-image {
+  filter: saturate(1.2) contrast(1.1);
+}
+
+/* ==================== SKIN 3: NEWSPRINT URGENCY ==================== */
+/* Era: Conscious/political rap (1987-1992) */
+
+.skin-newsprint-urgency {
+  --rap-bg: #f5f0e6;
+  --rap-surface: #ebe6d6;
+  --rap-text: #1a1a1a;
+  --rap-text-muted: #4a4a4a;
+  --rap-accent: #cc0000;
+  --rap-accent-secondary: #000000;
+  --rap-grain-opacity: 0.15;
+}
+
+.skin-newsprint-urgency {
+  font-family: "Times New Roman", Georgia, serif;
+}
+
+.skin-newsprint-urgency .chapter-header {
+  font-family: "Impact", "Arial Black", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.skin-newsprint-urgency .figure-card {
+  border: 1px solid #1a1a1a;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+}
+
+/* ==================== SKIN 4: BOOMBOX BRUTALISM ==================== */
+/* Era: Golden Age lyrical craft (1985-1992) */
+
+.skin-boombox-brutalism {
+  --rap-bg: #1a1a1a;
+  --rap-surface: #2d2d2d;
+  --rap-text: #ffffff;
+  --rap-text-muted: #999999;
+  --rap-accent: #ff6600;
+  --rap-accent-secondary: #ffcc00;
+  --rap-grain-opacity: 0.1;
+}
+
+.skin-boombox-brutalism .chapter-header {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.skin-boombox-brutalism .quote-block {
+  border-left: 8px solid var(--rap-accent);
+  background: var(--rap-surface);
+  padding: 2rem;
+  font-weight: 700;
+}
+
+/* ==================== SKIN 5: CASEFILE NOIR ==================== */
+/* Era: Gangsta/hardcore (1988-1996) */
+
+.skin-casefile-noir {
+  --rap-bg: #0a0a0a;
+  --rap-surface: #141414;
+  --rap-text: #e0e0e0;
+  --rap-text-muted: #666666;
+  --rap-accent: #cc0000;
+  --rap-accent-secondary: #ffcc00;
+  --rap-grain-opacity: 0.2;
+}
+
+.skin-casefile-noir .chapter-image {
+  filter: grayscale(0.7) contrast(1.3);
+}
+
+.skin-casefile-noir .chapter-header {
+  font-family: "Courier New", monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.skin-casefile-noir::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.4) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ==================== SKIN 6: CHROME HEAT ==================== */
+/* Era: Southern rap/bass/regional (1995-2005) */
+
+.skin-chrome-heat {
+  --rap-bg: #0f0f1a;
+  --rap-surface: #1a1a2e;
+  --rap-text: #ffffff;
+  --rap-text-muted: #9999cc;
+  --rap-accent: #ff3399;
+  --rap-accent-secondary: #00ccff;
+  --rap-grain-opacity: 0.06;
+}
+
+.skin-chrome-heat .chapter-header {
+  background: linear-gradient(135deg, #ff3399, #00ccff, #ff3399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.skin-chrome-heat .figure-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ==================== SKIN 7: MIXTAPE XEROX ==================== */
+/* Era: Mixtape economy/street (2000-2010) */
+
+.skin-mixtape-xerox {
+  --rap-bg: #e8e8e8;
+  --rap-surface: #d0d0d0;
+  --rap-text: #1a1a1a;
+  --rap-text-muted: #555555;
+  --rap-accent: #000000;
+  --rap-accent-secondary: #ff0000;
+  --rap-grain-opacity: 0.25;
+}
+
+.skin-mixtape-xerox .chapter-image {
+  filter: grayscale(1) contrast(1.5);
+  mix-blend-mode: multiply;
+}
+
+.skin-mixtape-xerox .chapter-header {
+  font-family: "Arial Black", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.skin-mixtape-xerox .figure-card {
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 1px,
+    rgba(0, 0, 0, 0.05) 1px,
+    rgba(0, 0, 0, 0.05) 2px
+  );
+  border: 2px solid #1a1a1a;
+}
+
+/* ==================== SKIN 8: LUXURY MINIMAL ==================== */
+/* Era: Art-rap/reinvention (2010-2015) */
+
+.skin-luxury-minimal {
+  --rap-bg: #fafafa;
+  --rap-surface: #ffffff;
+  --rap-text: #1a1a1a;
+  --rap-text-muted: #888888;
+  --rap-accent: #000000;
+  --rap-accent-secondary: #c9a227;
+  --rap-grain-opacity: 0.02;
+}
+
+.skin-luxury-minimal .chapter-header {
+  font-family: "Didot", "Bodoni MT", Georgia, serif;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.skin-luxury-minimal .figure-card {
+  border: none;
+  box-shadow: none;
+}
+
+.skin-luxury-minimal .quote-block {
+  border: none;
+  font-style: italic;
+  font-size: 1.5rem;
+  line-height: 1.6;
+}
+
+/* ==================== SKIN 9: TRAP ARCHITECTURE ==================== */
+/* Era: 808 modernity/producer-led (2012-2020) */
+
+.skin-trap-architecture {
+  --rap-bg: #0a0a0a;
+  --rap-surface: #141414;
+  --rap-text: #ffffff;
+  --rap-text-muted: #666666;
+  --rap-accent: #ff0055;
+  --rap-accent-secondary: #00ff88;
+  --rap-grain-opacity: 0.08;
+}
+
+.skin-trap-architecture .chapter-header {
+  font-family: "SF Pro Display", -apple-system, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.skin-trap-architecture .figure-card {
+  background: linear-gradient(135deg, rgba(255, 0, 85, 0.1), transparent);
+  border: 1px solid rgba(255, 0, 85, 0.3);
+}
+
+/* ==================== SKIN 10: CCTV FROST ==================== */
+/* Era: Drill/cold minimalism (2012-present) */
+
+.skin-cctv-frost {
+  --rap-bg: #0c0c0c;
+  --rap-surface: #161616;
+  --rap-text: #c0c0c0;
+  --rap-text-muted: #555555;
+  --rap-accent: #3366ff;
+  --rap-accent-secondary: #ff3333;
+  --rap-grain-opacity: 0.15;
+}
+
+.skin-cctv-frost .chapter-image {
+  filter: grayscale(0.5) contrast(1.2) brightness(0.9);
+}
+
+.skin-cctv-frost .chapter-header {
+  font-family: "SF Mono", "Courier New", monospace;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.skin-cctv-frost::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.1) 2px,
+      rgba(0, 0, 0, 0.1) 4px
+    );
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.3;
+}
+
+/* ==================== SKIN 11: ALGORITHM GLITCH ==================== */
+/* Era: Internet/SoundCloud (2014-present) */
+
+.skin-algorithm-glitch {
+  --rap-bg: #0f0f0f;
+  --rap-surface: #1a1a1a;
+  --rap-text: #ffffff;
+  --rap-text-muted: #888888;
+  --rap-accent: #ff6600;
+  --rap-accent-secondary: #6600ff;
+  --rap-grain-opacity: 0.1;
+}
+
+.skin-algorithm-glitch .chapter-header {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  animation: glitch-text 2s infinite;
+}
+
+@keyframes glitch-text {
+  0%, 100% { transform: translate(0); }
+  2% { transform: translate(-2px, 1px); }
+  4% { transform: translate(2px, -1px); }
+  6% { transform: translate(0); }
+}
+
+.skin-algorithm-glitch .figure-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.skin-algorithm-glitch .figure-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: scan-line 3s infinite;
+}
+
+@keyframes scan-line {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* ==================== SKIN 12: GLOBAL PATCHWORK ==================== */
+/* Era: World rap networks (2000-present) */
+
+.skin-global-patchwork {
+  --rap-bg: #1a1a2e;
+  --rap-surface: #232342;
+  --rap-text: #ffffff;
+  --rap-text-muted: #aaaacc;
+  --rap-accent: #ff9933;
+  --rap-accent-secondary: #33ccff;
+  --rap-grain-opacity: 0.08;
+}
+
+.skin-global-patchwork .chapter-header {
+  font-family: "Inter", -apple-system, sans-serif;
+  font-weight: 700;
+}
+
+/* Regional accent colors */
+.skin-global-patchwork.region-uk { --rap-accent: #c8102e; }
+.skin-global-patchwork.region-france { --rap-accent: #0055a4; }
+.skin-global-patchwork.region-germany { --rap-accent: #ffcc00; }
+.skin-global-patchwork.region-africa { --rap-accent: #009639; }
+.skin-global-patchwork.region-caribbean { --rap-accent: #ff6b35; }
+.skin-global-patchwork.region-latam { --rap-accent: #7b2d8e; }
+.skin-global-patchwork.region-asia { --rap-accent: #e60012; }
+
+/* ==================== BASE LAYOUT ==================== */
+
+.rap-essay {
+  background: var(--rap-bg);
+  color: var(--rap-text);
+  min-height: 100vh;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.7;
+  transition: background-color var(--rap-duration-slow) var(--rap-easing-standard),
+              color var(--rap-duration-slow) var(--rap-easing-standard);
+}
+
+.rap-essay * {
+  box-sizing: border-box;
+}
+
+/* Grain overlay */
+.rap-essay::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: var(--rap-grain-opacity);
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* ==================== HERO SECTION (SCROLL-LOCK) ==================== */
+
+.rap-hero {
+  position: relative;
+  height: 300vh; /* Scroll-lock height multiplier */
+  width: 100%;
+}
+
+.rap-hero__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: var(--rap-bg);
+}
+
+.rap-hero__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.rap-hero__background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.4;
+  filter: grayscale(0.3);
+}
+
+.rap-hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: var(--rap-gutter);
+  max-width: var(--rap-max-width);
+}
+
+.rap-hero__title {
+  font-size: clamp(3rem, 12vw, 10rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.rap-hero__subtitle {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: var(--rap-text-muted);
+  margin-top: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.rap-hero__scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--rap-text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  animation: bounce-subtle 2s infinite;
+}
+
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ==================== PROGRESS BAR (VINYL RECORD) ==================== */
+
+.rap-progress {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  z-index: 50;
+  opacity: 0;
+  transition: opacity var(--rap-duration-base) var(--rap-easing-standard);
+}
+
+.rap-progress.visible {
+  opacity: 1;
+}
+
+.rap-progress__vinyl {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center,
+      var(--rap-accent) 0%,
+      var(--rap-accent) 15%,
+      #1a1a1a 15%,
+      #1a1a1a 20%,
+      #0a0a0a 20%
+    );
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  animation: spin-vinyl 3s linear infinite;
+  animation-play-state: paused;
+}
+
+.rap-progress.playing .rap-progress__vinyl {
+  animation-play-state: running;
+}
+
+@keyframes spin-vinyl {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.rap-progress__fill {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--rap-accent) calc(var(--progress, 0) * 360deg),
+    transparent calc(var(--progress, 0) * 360deg)
+  );
+  opacity: 0.3;
+}
+
+/* ==================== CHAPTER LAYOUT ==================== */
+
+.rap-chapter {
+  position: relative;
+  padding: var(--rap-section-spacing) var(--rap-gutter);
+  max-width: var(--rap-max-width);
+  margin: 0 auto;
+}
+
+.rap-chapter__header {
+  margin-bottom: 3rem;
+}
+
+.rap-chapter__number {
+  font-size: 0.875rem;
+  color: var(--rap-accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.rap-chapter__title {
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.rap-chapter__subtitle {
+  font-size: 1.25rem;
+  color: var(--rap-text-muted);
+  margin-top: 0.75rem;
+}
+
+.rap-chapter__temporal {
+  font-size: 0.875rem;
+  color: var(--rap-accent);
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+/* ==================== CHAPTER IMAGE (HERO) ==================== */
+
+.rap-chapter__image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 3rem;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.rap-chapter__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--rap-duration-slow) var(--rap-easing-standard);
+}
+
+.rap-chapter__image:hover img {
+  transform: scale(1.02);
+}
+
+.rap-chapter__image-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ==================== EPIGRAPH ==================== */
+
+.rap-epigraph {
+  margin: 3rem 0;
+  padding-left: 2rem;
+  border-left: 3px solid var(--rap-accent);
+}
+
+.rap-epigraph__text {
+  font-size: 1.5rem;
+  font-style: italic;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.rap-epigraph__source {
+  font-size: 0.875rem;
+  color: var(--rap-text-muted);
+  margin-top: 1rem;
+}
+
+/* ==================== NARRATIVE BLOCKS ==================== */
+
+.rap-narrative {
+  max-width: var(--rap-content-width);
+  margin: 0 auto;
+}
+
+.rap-narrative p {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.rap-narrative p:first-of-type::first-letter {
+  font-size: 4rem;
+  font-weight: 700;
+  float: left;
+  line-height: 1;
+  margin-right: 0.5rem;
+  color: var(--rap-accent);
+}
+
+/* ==================== FIGURE CARDS ==================== */
+
+.rap-figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 4rem 0;
+}
+
+.rap-figure-card {
+  background: var(--rap-surface);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform var(--rap-duration-base) var(--rap-easing-standard),
+              box-shadow var(--rap-duration-base) var(--rap-easing-standard);
+}
+
+.rap-figure-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.rap-figure-card__image {
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.rap-figure-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.2);
+  transition: filter var(--rap-duration-base) var(--rap-easing-standard);
+}
+
+.rap-figure-card:hover .rap-figure-card__image img {
+  filter: grayscale(0);
+}
+
+.rap-figure-card__content {
+  padding: 1.5rem;
+}
+
+.rap-figure-card__name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+}
+
+.rap-figure-card__epithet {
+  font-size: 0.875rem;
+  color: var(--rap-accent);
+  margin-bottom: 0.75rem;
+}
+
+.rap-figure-card__dates {
+  font-size: 0.75rem;
+  color: var(--rap-text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.rap-figure-card__description {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--rap-text-muted);
+}
+
+.rap-figure-card__quote {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-style: italic;
+  font-size: 0.875rem;
+}
+
+/* ==================== QUOTE BLOCKS ==================== */
+
+.rap-quote {
+  margin: 4rem 0;
+  padding: 2rem;
+  background: var(--rap-surface);
+  border-left: 4px solid var(--rap-accent);
+  max-width: var(--rap-content-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rap-quote__text {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin: 0 0 1rem;
+}
+
+.rap-quote__attribution {
+  font-size: 0.875rem;
+  color: var(--rap-text-muted);
+}
+
+.rap-quote__attribution strong {
+  color: var(--rap-text);
+}
+
+/* ==================== TIMELINE ==================== */
+
+.rap-timeline {
+  position: relative;
+  margin: 4rem 0;
+  padding-left: 3rem;
+}
+
+.rap-timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--rap-accent);
+}
+
+.rap-timeline__event {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rap-timeline__event::before {
+  content: "";
+  position: absolute;
+  left: -3rem;
+  top: 0.5rem;
+  width: 12px;
+  height: 12px;
+  background: var(--rap-accent);
+  border-radius: 50%;
+  transform: translateX(calc(-50% + 1px));
+}
+
+.rap-timeline__date {
+  font-size: 0.875rem;
+  color: var(--rap-accent);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.rap-timeline__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.rap-timeline__description {
+  font-size: 0.875rem;
+  color: var(--rap-text-muted);
+  line-height: 1.6;
+}
+
+/* ==================== CONTENT WARNINGS ==================== */
+
+.rap-content-warning {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  max-width: var(--rap-content-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rap-content-warning__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 700;
+  color: #ff4444;
+  margin-bottom: 0.5rem;
+}
+
+.rap-content-warning__text {
+  font-size: 0.875rem;
+  color: var(--rap-text-muted);
+  line-height: 1.6;
+}
+
+/* ==================== SKIP BUTTON ==================== */
+
+.rap-skip {
+  position: fixed;
+  bottom: 2rem;
+  right: 6rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--rap-surface);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: var(--rap-text);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--rap-duration-base) var(--rap-easing-standard),
+              background var(--rap-duration-base) var(--rap-easing-standard);
+  z-index: 50;
+}
+
+.rap-skip.visible {
+  opacity: 0.8;
+}
+
+.rap-skip:hover {
+  opacity: 1;
+  background: var(--rap-accent);
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+  .rap-hero__title {
+    font-size: clamp(2.5rem, 15vw, 5rem);
+  }
+
+  .rap-figures {
+    grid-template-columns: 1fr;
+  }
+
+  .rap-progress {
+    bottom: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+  }
+
+  .rap-skip {
+    right: 4rem;
+    bottom: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .rap-chapter__image {
+    aspect-ratio: 4 / 3;
+    margin-left: calc(-1 * var(--rap-gutter));
+    margin-right: calc(-1 * var(--rap-gutter));
+    width: calc(100% + 2 * var(--rap-gutter));
+    border-radius: 0;
+  }
+}
+
+/* ==================== REDUCED MOTION ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .rap-essay,
+  .rap-essay * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .rap-hero {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .rap-hero__sticky {
+    position: relative;
+  }
+}
+
+/* ==================== PRINT ==================== */
+
+@media print {
+  .rap-progress,
+  .rap-skip,
+  .rap-hero__scroll-indicator {
+    display: none;
+  }
+
+  .rap-essay {
+    background: white;
+    color: black;
+  }
+
+  .rap-essay::after {
+    display: none;
+  }
+}
