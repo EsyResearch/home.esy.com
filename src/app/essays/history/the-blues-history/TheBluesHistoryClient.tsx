@@ -591,11 +591,11 @@ export function TheBluesHistoryClient() {
       >
         <p>
           Before records, blues lived in specific places. Understanding those spaces
-          reveals the culture's social function.
+          reveals the culture&apos;s social function.
         </p>
         <p>
           <strong>The Juke Joint:</strong> Informal drinking and dancing establishments
-          in rural Black communities. The name may derive from Gullah "joog" (rowdy).
+          in rural Black communities. The name may derive from Gullah &ldquo;joog&rdquo; (rowdy).
           These were spaces of release from week-long labor, of community gathering,
           of courtship and conflict.
         </p>
@@ -606,7 +606,7 @@ export function TheBluesHistoryClient() {
         </p>
         <p>
           <strong>Vaudeville and TOBA:</strong> The Theater Owners Booking Association
-          ("Tough On Black Artists") provided a circuit of Black theaters. The pay was
+          (&ldquo;Tough On Black Artists&rdquo;) provided a circuit of Black theaters. The pay was
           exploitative, but it built audiences and careers.
         </p>
       </Chapter>
@@ -619,7 +619,7 @@ export function TheBluesHistoryClient() {
         era="classic"
       >
         <p>
-          On August 10, 1920, Mamie Smith recorded "Crazy Blues" for Okeh Records.
+          On August 10, 1920, Mamie Smith recorded &ldquo;Crazy Blues&rdquo; for Okeh Records.
           It sold 75,000 copies in its first month, over 1 million in its first year.
           The race records industry was born.
         </p>
@@ -658,8 +658,8 @@ export function TheBluesHistoryClient() {
         <p>
           <strong>The Classic Blues Era (1920-1930):</strong> First blues recordings
           were by women (Mamie Smith). Women sold the most records (Bessie Smith, Ma Rainey).
-          Women were the highest-paid artists. Men entered recording later, as "country"
-          or "down-home" blues.
+          Women were the highest-paid artists. Men entered recording later, as &ldquo;country&rdquo;
+          or &ldquo;down-home&rdquo; blues.
         </p>
         <FigureCard figure={figures.maRainey} />
         <FigureCard figure={figures.bessieSmith} />
@@ -693,7 +693,7 @@ export function TheBluesHistoryClient() {
         </p>
         <FigureCard figure={figures.robertJohnson} />
         <p>
-          The "haunted, primitive" artist image was constructed by white promoters
+          The &ldquo;haunted, primitive&rdquo; artist image was constructed by white promoters
           and archivists. Johnson was actually an ambitious young professional who
           studied other musicians carefully.
         </p>
@@ -715,7 +715,7 @@ export function TheBluesHistoryClient() {
           with them.
         </p>
         <p>
-          <strong>The Chicago Defender's Role:</strong> This African American newspaper
+          <strong>The Chicago Defender&apos;s Role:</strong> This African American newspaper
           actively promoted migration. Distributed via Pullman porters throughout the
           South, it publicized economic opportunities and documented Southern violence.
         </p>
@@ -753,7 +753,7 @@ export function TheBluesHistoryClient() {
         <p>
           <strong>Chess Records:</strong> Founded by Leonard and Phil Chess (Polish
           Jewish immigrants) in 1950, Chess Records became the epicenter of Chicago
-          blues. At 2120 S. Michigan Avenue, they recorded Muddy Waters, Howlin' Wolf,
+          blues. At 2120 S. Michigan Avenue, they recorded Muddy Waters, Howlin&apos; Wolf,
           Little Walter, and Willie Dixon.
         </p>
         <FigureCard figure={figures.howlinWolf} />
@@ -778,14 +778,14 @@ export function TheBluesHistoryClient() {
       >
         <p>
           By the late 1950s, the blues had become the foundation for virtually all
-          American popular music—but the name "blues" was being eclipsed.
+          American popular music—but the name &ldquo;blues&rdquo; was being eclipsed.
         </p>
         <p>
-          <strong>Rhythm and Blues (R&B):</strong> The term replaced "race music" in 1949.
+          <strong>Rhythm and Blues (R&amp;B):</strong> The term replaced &ldquo;race music&rdquo; in 1949.
         </p>
         <p>
-          <strong>Rock and Roll:</strong> "What they call Rock and Roll I've been
-          playing in New Orleans for years," said Fats Domino. Early rock hits were
+          <strong>Rock and Roll:</strong> &ldquo;What they call Rock and Roll I&apos;ve been
+          playing in New Orleans for years,&rdquo; said Fats Domino. Early rock hits were
           R&B songs rebranded.
         </p>
         <p>
@@ -803,7 +803,7 @@ export function TheBluesHistoryClient() {
         era="revival"
       >
         <p>
-          The blues didn't ask permission to travel. It went where records went,
+          The blues didn&apos;t ask permission to travel. It went where records went,
           where migrants went, where radio signals reached.
         </p>
         <p>
@@ -814,7 +814,7 @@ export function TheBluesHistoryClient() {
         </p>
         <p>
           <strong>The Irony:</strong> The Rolling Stones, named after a Muddy Waters song,
-          recorded at Chess Records in 1964. This was less "discovery" than return to sender.
+          recorded at Chess Records in 1964. This was less &ldquo;discovery&rdquo; than return to sender.
         </p>
         <Quote
           text="The most important blues musician who ever lived."
@@ -839,7 +839,7 @@ export function TheBluesHistoryClient() {
         era="revival"
       >
         <p>
-          The blues is not a museum piece. It is not "roots music" in the sense
+          The blues is not a museum piece. It is not &ldquo;roots music&rdquo; in the sense
           of something that stopped growing.
         </p>
         <p>

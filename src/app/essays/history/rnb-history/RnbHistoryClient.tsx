@@ -846,7 +846,7 @@ export default function RnbHistoryClient() {
                 created wealth (mostly for others) and art (mostly from Black creators).
               </p>
               <p>
-                R&B didn't die—it did something more profound. It taught pop how to feel.
+                R&amp;B didn&apos;t die—it did something more profound. It taught pop how to feel.
                 The melismatic vocals, the groove-based rhythm, the emotional directness,
                 the technological innovation—all of this is now standard in popular music.
                 R&B won so completely that it became invisible, absorbed into the mainstream.
