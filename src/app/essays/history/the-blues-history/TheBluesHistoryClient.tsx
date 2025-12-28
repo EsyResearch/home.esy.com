@@ -288,6 +288,86 @@ function Quote({
   );
 }
 
+// Chapter data for progress bar
+const CHAPTERS = [
+  { id: 'prologue', label: 'Prologue', short: 'PRO' },
+  { id: 'ch1', label: 'Before the Blues', short: '01' },
+  { id: 'ch2', label: 'After Emancipation', short: '02' },
+  { id: 'ch3', label: 'Regions & Styles', short: '03' },
+  { id: 'ch4', label: 'Instruments', short: '04' },
+  { id: 'ch5', label: 'Juke Joints', short: '05' },
+  { id: 'ch6', label: 'Race Records', short: '06' },
+  { id: 'ch7', label: 'Blues Queens', short: '07' },
+  { id: 'ch8', label: 'Myth & Legend', short: '08' },
+  { id: 'ch9', label: 'Great Migration', short: '09' },
+  { id: 'ch10', label: 'Chicago Electric', short: '10' },
+  { id: 'ch11', label: 'Crossovers', short: '11' },
+  { id: 'ch12', label: 'Global Blues', short: '12' },
+  { id: 'epilogue', label: 'Epilogue', short: 'END' },
+];
+
+// 78 RPM Record Progress Bar Component
+function RecordProgressBar({ progress }: { progress: number }) {
+  // Calculate needle angle (starts at -135deg, ends at -45deg as progress goes 0-1)
+  const needleAngle = -135 + (progress * 90);
+
+  return (
+    <>
+      {/* Desktop: Vertical record with needle */}
+      <div
+        className="blues-progress blues-progress--desktop"
+        role="progressbar"
+        aria-valuenow={Math.round(progress * 100)}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label="Reading progress"
+      >
+        <div className="blues-progress__record">
+          <div className="blues-progress__grooves" />
+          <div className="blues-progress__label">
+            <span className="blues-progress__label-text">BLUES</span>
+          </div>
+          <div
+            className="blues-progress__needle"
+            style={{ transform: `rotate(${needleAngle}deg)` }}
+          />
+        </div>
+        <div className="blues-progress__tracks">
+          {CHAPTERS.map((chapter, index) => {
+            const chapterProgress = index / (CHAPTERS.length - 1);
+            const isActive = progress >= chapterProgress - 0.02;
+            const isCurrent = progress >= chapterProgress - 0.02 && progress < (index + 1) / (CHAPTERS.length - 1);
+            return (
+              <div
+                key={chapter.id}
+                className={`blues-progress__track ${isActive ? 'blues-progress__track--active' : ''} ${isCurrent ? 'blues-progress__track--current' : ''}`}
+                title={chapter.label}
+              >
+                <span className="blues-progress__track-num">{chapter.short}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Mobile: Horizontal bar */}
+      <div
+        className="blues-progress blues-progress--mobile"
+        role="progressbar"
+        aria-valuenow={Math.round(progress * 100)}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label="Reading progress"
+      >
+        <div
+          className="blues-progress__fill"
+          style={{ width: `${progress * 100}%` }}
+        />
+      </div>
+    </>
+  );
+}
+
 // Main Client Component
 export function TheBluesHistoryClient() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -306,6 +386,9 @@ export function TheBluesHistoryClient() {
 
   return (
     <article className="blues-essay">
+      {/* Progress Bar */}
+      <RecordProgressBar progress={scrollProgress} />
+
       {/* Hero Section */}
       <header className="blues-hero">
         <div className="blues-hero__image-container">
@@ -595,7 +678,7 @@ export function TheBluesHistoryClient() {
         era="depression"
       >
         <p>
-          The crossroads legend is the blues' most famous story—and it's wrong.
+          The crossroads legend is the blues&apos; most famous story—and it&apos;s wrong.
         </p>
         <p>
           <strong>The Robert Johnson Crossroads Myth:</strong> According to legend,
@@ -778,9 +861,42 @@ export function TheBluesHistoryClient() {
           shows crossing the South, became the foundation of global popular music.
         </p>
         <p className="blues-center">
-          <strong>The note still bends. The blues isn't old—it's persistent.</strong>
+          <strong>The note still bends. The blues isn&apos;t old—it&apos;s persistent.</strong>
         </p>
       </Chapter>
+
+      {/* Methodology Note */}
+      <section className="blues-methodology">
+        <h2 className="blues-methodology__title">A Note on Sources</h2>
+        <p>
+          This essay acknowledges the following limitations in the historical record:
+        </p>
+        <ul className="blues-methodology__list">
+          <li>
+            <strong>Pre-recording era gaps:</strong> Documentation is sparse before 1920;
+            oral histories were often collected decades after events occurred.
+          </li>
+          <li>
+            <strong>Power dynamics in documentation:</strong> Most early documentation was
+            by white collectors with varying ethical practices.
+          </li>
+          <li>
+            <strong>Birth dates:</strong> Many early artists have disputed or estimated
+            birth years, indicated by &ldquo;c.&rdquo; (circa) where appropriate.
+          </li>
+          <li>
+            <strong>Economic records:</strong> Financial exploitation is documented through
+            patterns and specific examples; exact figures are often estimated.
+          </li>
+          <li>
+            <strong>Attribution of &ldquo;firsts&rdquo;:</strong> Multiple competing claims exist
+            for various firsts; this essay uses qualified language.
+          </li>
+          <li>
+            <strong>The crossroads legend:</strong> Explicitly documented as folklore, not history.
+          </li>
+        </ul>
+      </section>
 
       {/* Sources Section */}
       <footer className="blues-sources">
