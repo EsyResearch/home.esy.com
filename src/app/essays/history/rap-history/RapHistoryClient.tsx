@@ -495,7 +495,12 @@ const CHAPTERS: Chapter[] = [
         description: "Run-DMC becomes first hip-hop act to sign a major endorsement deal with a sneaker company.",
         source: "Sports business records"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/7/77/Run-DMC_Beastie_Boys_1987_press_photo.jpg",
+      alt: "Run-DMC and Beastie Boys, 1987 press photo showing the new school hip-hop aesthetic",
+      attribution: "Press photo, Wikimedia Commons, Public Domain"
+    }
   },
 
   // CHAPTER 4: GOLDEN AGE LYRICISM
@@ -594,7 +599,12 @@ const CHAPTERS: Chapter[] = [
         description: "A Tribe Called Quest perfects jazz-rap fusion.",
         source: "Jive Records"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/a/af/Eric_B_%26_Rakim_press_photo_1987.jpg",
+      alt: "Eric B. & Rakim, 1987 press photo representing the Golden Age of hip-hop lyricism",
+      attribution: "Press photo, Wikimedia Commons, Public Domain"
+    }
   },
 
   // CHAPTER 5: PUBLIC ENEMY AND POLITICAL RAP
@@ -666,7 +676,12 @@ const CHAPTERS: Chapter[] = [
         description: "Spike Lee's film gives Public Enemy's anthem a permanent place in American culture.",
         source: "Universal Pictures"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/d/d8/Chuck_D_Public_Enemy_Way_Out_West_2013.jpg",
+      alt: "Chuck D of Public Enemy performing, the voice of political hip-hop",
+      attribution: "Photo by Kim Metso, Wikimedia Commons, CC BY-SA 3.0"
+    }
   },
 
   // CHAPTER 6: N.W.A AND THE WEST COAST
@@ -755,7 +770,12 @@ const CHAPTERS: Chapter[] = [
         description: "Dr. Dre's solo debut creates G-funk and launches Death Row Records.",
         source: "Death Row/Interscope"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Ice_Cube_2012.jpg",
+      alt: "Ice Cube, N.W.A's primary lyricist who helped define gangsta rap",
+      attribution: "Photo by Kris Krüg, Wikimedia Commons, CC BY-SA 2.0"
+    }
   },
 
   // CHAPTER 7: EAST VS. WEST
@@ -851,7 +871,12 @@ const CHAPTERS: Chapter[] = [
         description: "The Notorious B.I.G. is killed in Los Angeles.",
         source: "News reports"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/d/d4/2pac_edit_cropped_further.jpg",
+      alt: "Tupac Shakur, whose death alongside Biggie ended the East-West rivalry in tragedy",
+      attribution: "Wikimedia Commons, Public Domain"
+    }
   },
 
   // CHAPTER 8: THE SOUTH RISES
@@ -956,7 +981,12 @@ const CHAPTERS: Chapter[] = [
         description: "OutKast's double album wins Album of the Year at the Grammys; 'Hey Ya!' dominates pop radio.",
         source: "Recording Academy"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/b/b4/Andre_Benjamin.jpg",
+      alt: "Andre 3000 of OutKast, whose 'The South got something to say' declaration changed hip-hop geography",
+      attribution: "Wikimedia Commons, CC BY 2.0"
+    }
   },
 
   // Continuing with remaining chapters...
@@ -1035,7 +1065,12 @@ const CHAPTERS: Chapter[] = [
         description: "50 Cent's equity stake in Vitamin Water yields $100M+ when Coca-Cola acquires Glacéau.",
         source: "Business records"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Jay-Z_%40_Shawn_%27Jay-Z%27_Carter_Foundation_Carnival_%28crop_2%29.jpg",
+      alt: "Jay-Z, who transformed hip-hop artists into business moguls",
+      attribution: "Photo by Joella Marano, Wikimedia Commons, CC BY-SA 2.0"
+    }
   },
 
   // CHAPTER 10: TRAP TAKES OVER
@@ -1123,7 +1158,12 @@ const CHAPTERS: Chapter[] = [
         description: "Nielsen reports hip-hop/R&B is the most consumed genre in America for the first time.",
         source: "Nielsen Music"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/b/be/Roland_TR-808_drum_machine.jpg",
+      alt: "The Roland TR-808 drum machine, whose bass kick became the sonic foundation of trap music",
+      attribution: "Wikimedia Commons, CC BY-SA 3.0"
+    }
   },
 
   // CHAPTER 11: DRILL
@@ -1192,7 +1232,12 @@ const CHAPTERS: Chapter[] = [
         description: "Pop Smoke murdered in home invasion at 20; posthumous album 'Shoot for the Stars' tops charts.",
         source: "News reports"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/6/64/Chief_Keef_2019_performance.jpg",
+      alt: "Chief Keef performing, the artist who brought Chicago drill to worldwide attention",
+      attribution: "Wikimedia Commons, CC BY-SA 4.0"
+    }
   },
 
   // CHAPTER 12: INTERNET RAP
@@ -1271,7 +1316,12 @@ const CHAPTERS: Chapter[] = [
         description: "TikTok becomes primary discovery platform for new hip-hop; Lil Nas X's 'Old Town Road' had already proved the model.",
         source: "Industry analysis"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Tyler%2C_The_Creator_%288048745695%29_%28cropped%29.jpg",
+      alt: "Tyler, the Creator, who built a following through free internet content before label involvement",
+      attribution: "Photo by Jason Persse, Wikimedia Commons, CC BY-SA 2.0"
+    }
   },
 
   // CHAPTER 13: GLOBAL RAP
@@ -1347,7 +1397,12 @@ const CHAPTERS: Chapter[] = [
         description: "A Spanish-language rapper becomes the most-streamed artist globally.",
         source: "Spotify data"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/8/85/Skepta_2_F.I.B._2016.jpg",
+      alt: "Skepta performing, representing UK grime's global breakthrough",
+      attribution: "Photo by Raph_PH, Wikimedia Commons, CC BY 2.0"
+    }
   },
 
   // CHAPTER 14: KENDRICK AND THE NEW CANON
@@ -1409,7 +1464,12 @@ const CHAPTERS: Chapter[] = [
         description: "Kendrick Lamar wins Pulitzer Prize for Music for 'DAMN.'—the first non-classical/jazz winner.",
         source: "Pulitzer Prize Board"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/c/cc/KendrickSZASPurs230725-144_%28cropped%29.jpg",
+      alt: "Kendrick Lamar, the first rapper to win the Pulitzer Prize for Music",
+      attribution: "Wikimedia Commons, CC BY-SA 2.0"
+    }
   },
 
   // CHAPTER 15: WOMEN IN RAP
@@ -1506,7 +1566,12 @@ const CHAPTERS: Chapter[] = [
         description: "Cardi B becomes first solo female rapper at #1 since Lauryn Hill in 1998.",
         source: "Billboard"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/9/96/Queen_Latifah_by_Gage_Skidmore.jpg",
+      alt: "Queen Latifah, pioneering feminist voice in hip-hop whose 'U.N.I.T.Y.' called out misogyny in the culture",
+      attribution: "Photo by Gage Skidmore, Wikimedia Commons, CC BY-SA 3.0"
+    }
   },
 
   // EPILOGUE
@@ -1528,7 +1593,12 @@ const CHAPTERS: Chapter[] = [
       "The last bar is always a door. The beat goes on."
     ],
     figures: [],
-    timeline: []
+    timeline: [],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Future_-_Openair_Frauenfeld_2019_05.jpg",
+      alt: "Future performing, representing hip-hop's continued evolution and global dominance",
+      attribution: "Photo by Openair Frauenfeld, Wikimedia Commons, CC BY-SA 2.0"
+    }
   }
 ];
 
