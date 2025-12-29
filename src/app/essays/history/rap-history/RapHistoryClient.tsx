@@ -1698,18 +1698,18 @@ const GlossarySection: React.FC = () => {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
 
   const categories = [
-    { id: "origins", label: "Origins (1973-1979)", icon: "🎤" },
-    { id: "golden-age", label: "Golden Age (1986-1996)", icon: "👑" },
-    { id: "recording", label: "Recording Industry", icon: "🎙️" },
-    { id: "gangsta", label: "Gangsta Era", icon: "🔥" },
-    { id: "southern", label: "Southern Hip-Hop", icon: "🌡️" },
-    { id: "trap", label: "Trap Era", icon: "🔊" },
-    { id: "drill", label: "Drill", icon: "🎯" },
-    { id: "internet", label: "Internet Era", icon: "📱" },
-    { id: "modern", label: "Modern Rap", icon: "🌐" },
-    { id: "commercial", label: "Industry & Business", icon: "💼" },
-    { id: "mixtape", label: "Mixtape Era", icon: "📼" },
-    { id: "global", label: "Global Hip-Hop", icon: "🌍" },
+    { id: "origins", label: "Origins (1973-1979)" },
+    { id: "golden-age", label: "Golden Age (1986-1996)" },
+    { id: "recording", label: "Recording Industry" },
+    { id: "gangsta", label: "Gangsta Era" },
+    { id: "southern", label: "Southern Hip-Hop" },
+    { id: "trap", label: "Trap Era" },
+    { id: "drill", label: "Drill" },
+    { id: "internet", label: "Internet Era" },
+    { id: "modern", label: "Modern Rap" },
+    { id: "commercial", label: "Industry & Business" },
+    { id: "mixtape", label: "Mixtape Era" },
+    { id: "global", label: "Global Hip-Hop" },
   ];
 
   return (
@@ -1730,7 +1730,6 @@ const GlossarySection: React.FC = () => {
                 className={`rap-glossary__category-header ${isExpanded ? 'expanded' : ''}`}
                 onClick={() => setExpandedCategory(isExpanded ? null : category.id)}
               >
-                <span className="rap-glossary__category-icon">{category.icon}</span>
                 <span className="rap-glossary__category-label">{category.label}</span>
                 <span className="rap-glossary__category-count">{terms.length}</span>
                 <svg

@@ -1008,7 +1008,6 @@
 
 .rap-glossary__category {
   background: var(--rap-bg);
-  border-radius: 8px;
   overflow: hidden;
 }
 
@@ -1033,10 +1032,6 @@
 
 .rap-glossary__category-header.expanded {
   background: rgba(255, 255, 255, 0.08);
-}
-
-.rap-glossary__category-icon {
-  font-size: 1.5rem;
 }
 
 .rap-glossary__category-label {
@@ -1070,7 +1065,6 @@
 .rap-glossary__term {
   padding: 1rem;
   background: rgba(255, 255, 255, 0.03);
-  border-radius: 6px;
   border-left: 3px solid var(--rap-accent);
 }
 
