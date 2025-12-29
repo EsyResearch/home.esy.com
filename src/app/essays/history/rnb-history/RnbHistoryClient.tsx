@@ -8,8 +8,8 @@ import "./rnb-history.css";
 // ============================================================================
 // Visual Treatment: Photography-driven with era-specific color grading
 // Arc Type: Transformation (Classification -> Cities -> Technology -> Global)
-// Progress Bar: "The Vinyl Groove" — needle moving across record
-// CRITICAL: NO scroll-locking in hero section (ambient parallax only)
+// Progress Bar: "Radio Dial" — tuning through eras (R&B was radio-driven)
+// Design System: Subject-derived from record labels, 45 RPM singles, VU meters
 // ============================================================================
 
 // ==================== TYPE DEFINITIONS ====================
@@ -119,63 +119,69 @@ const useGlobalScrollProgress = () => {
   return progress;
 };
 
-// ==================== VINYL GROOVE PROGRESS BAR ====================
+// ==================== RADIO DIAL PROGRESS BAR ====================
+// R&B was radio-driven culture — tuning through eras
 
-const trackMarkers = [
-  { id: "prologue", position: 0.02, label: "Prologue" },
-  { id: "ch1", position: 0.10, label: "1. The Classification" },
-  { id: "ch2", position: 0.18, label: "2. New Orleans" },
-  { id: "ch3", position: 0.26, label: "3. Memphis" },
-  { id: "ch4", position: 0.34, label: "4. Detroit" },
-  { id: "ch5", position: 0.42, label: "5. Philadelphia" },
-  { id: "ch6", position: 0.50, label: "6. Session Musicians" },
-  { id: "ch7", position: 0.58, label: "7. Technology" },
-  { id: "ch8", position: 0.66, label: "8. Women" },
-  { id: "ch9", position: 0.74, label: "9. The Symbiosis" },
-  { id: "ch10", position: 0.82, label: "10. Crossover" },
-  { id: "ch11", position: 0.90, label: "11. Real R&B Myth" },
-  { id: "epilogue", position: 0.98, label: "Epilogue" },
+const frequencyMarkers = [
+  { id: "prologue", position: 0.02, label: "88.1 Prologue" },
+  { id: "ch1", position: 0.10, label: "90.3 Classification" },
+  { id: "ch2", position: 0.18, label: "92.5 New Orleans" },
+  { id: "ch3", position: 0.26, label: "94.7 Memphis" },
+  { id: "ch4", position: 0.34, label: "96.9 Detroit" },
+  { id: "ch5", position: 0.42, label: "99.1 Philadelphia" },
+  { id: "ch6", position: 0.50, label: "101.3 Session" },
+  { id: "ch7", position: 0.58, label: "103.5 Technology" },
+  { id: "ch8", position: 0.66, label: "105.7 Women" },
+  { id: "ch9", position: 0.74, label: "107.9 Symbiosis" },
+  { id: "ch10", position: 0.82, label: "110.1 Crossover" },
+  { id: "ch11", position: 0.90, label: "112.3 Real R&B" },
+  { id: "epilogue", position: 0.98, label: "114.5 Epilogue" },
 ];
 
-const VinylProgress: React.FC<{ progress: number }> = ({ progress }) => {
+const RadioDialProgress: React.FC<{ progress: number }> = ({ progress }) => {
   return (
     <>
-      {/* Desktop vertical progress */}
+      {/* Desktop: Vertical radio dial */}
       <div
-        className="vinyl-progress"
+        className="radio-dial-progress"
         role="progressbar"
         aria-valuenow={Math.round(progress * 100)}
         aria-valuemin={0}
         aria-valuemax={100}
         aria-label="Reading progress"
       >
-        <div className="vinyl-shell">
+        <div className="radio-dial-shell">
           <div
-            className="vinyl-fill"
-            style={{ height: `${progress * 90}%` }}
+            className="radio-dial-spectrum"
+            style={{ height: `${progress * 92}%` }}
           />
-          <div className="vinyl-tracks">
-            {trackMarkers.map((marker) => (
+          <div className="radio-dial-frequencies">
+            {frequencyMarkers.map((marker) => (
               <div
                 key={marker.id}
-                className={`vinyl-track ${progress >= marker.position ? "passed" : ""}`}
-                data-track={marker.label}
+                className={`radio-dial-freq ${progress >= marker.position ? "tuned" : ""}`}
+                data-freq={marker.label}
               />
             ))}
           </div>
           <div
-            className="vinyl-needle"
-            style={{ top: `${5 + progress * 90}%` }}
+            className="radio-dial-needle"
+            style={{ top: `${4 + progress * 92}%` }}
           />
         </div>
       </div>
 
-      {/* Mobile horizontal progress */}
-      <div className="vinyl-progress-mobile">
+      {/* Mobile: VU meter horizontal bar */}
+      <div className="vu-meter-progress">
         <div
-          className="vinyl-fill"
+          className="vu-meter-fill"
           style={{ width: `${progress * 100}%` }}
         />
+        <div className="vu-meter-ticks">
+          {[...Array(10)].map((_, i) => (
+            <div key={i} className="vu-meter-tick" />
+          ))}
+        </div>
       </div>
     </>
   );
@@ -183,55 +189,43 @@ const VinylProgress: React.FC<{ progress: number }> = ({ progress }) => {
 
 // ==================== FIGURE PROFILE COMPONENT ====================
 
-const FigureProfile: React.FC<{ figure: Figure; era: string }> = ({ figure, era }) => {
-  const accentColors: Record<string, string> = {
-    "race-records": "var(--era-race-records)",
-    "early-rb": "var(--era-early-rb)",
-    "soul": "var(--era-soul)",
-    "philly": "var(--era-philly)",
-    "quiet-storm": "var(--era-quiet-storm)",
-    "new-jack": "var(--era-new-jack)",
-    "pop-rb": "var(--era-pop-rb)",
-    "alternative": "var(--era-alternative)",
-  };
-
+const FigureProfile: React.FC<{ figure: Figure }> = ({ figure }) => {
   return (
     <article
-      className={`figure-profile ${figure.isFeatured ? "featured" : ""} ${figure.imageUrl ? "has-image" : ""}`}
-      style={{ "--figure-accent": accentColors[era] } as React.CSSProperties}
+      className={`hb-figure ${figure.isFeatured ? "featured" : ""} ${figure.imageUrl ? "has-image" : ""}`}
     >
       {figure.imageUrl && (
-        <div className="figure-image-container">
+        <div className="hb-figure-image-container">
           <img
             src={figure.imageUrl}
             alt={`${figure.name} - ${figure.epithet}`}
-            className="figure-image"
+            className="hb-figure-image"
             loading="lazy"
           />
           {figure.imageAttribution && (
-            <p className="figure-image-attribution">{figure.imageAttribution}</p>
+            <p className="hb-figure-image-attribution">{figure.imageAttribution}</p>
           )}
         </div>
       )}
-      <div className="figure-text">
-        <h3 className="figure-name">{figure.name}</h3>
-        <p className="figure-epithet">{figure.epithet}</p>
+      <div className="hb-figure-text">
+        <h3 className="hb-figure-name">{figure.name}</h3>
+        <p className="hb-figure-epithet">{figure.epithet}</p>
         {(figure.born || figure.died) && (
-          <p className="figure-meta">
+          <p className="hb-figure-meta">
             {figure.born && `Born ${figure.born}`}
             {figure.born && figure.died && " | "}
             {figure.died && `Died ${figure.died}`}
           </p>
         )}
-        <div className="figure-domains">
+        <div className="hb-figure-domains">
           {figure.domains.map((domain) => (
-            <span key={domain} className="figure-domain">
+            <span key={domain} className="hb-figure-domain">
               {domain}
             </span>
           ))}
         </div>
-        <p className="figure-description">{figure.description}</p>
-        {figure.quote && <p className="figure-quote">&ldquo;{figure.quote}&rdquo;</p>}
+        <p className="hb-figure-description">{figure.description}</p>
+        {figure.quote && <p className="hb-figure-quote">&ldquo;{figure.quote}&rdquo;</p>}
       </div>
     </article>
   );
@@ -242,31 +236,19 @@ const FigureProfile: React.FC<{ figure: Figure; era: string }> = ({ figure, era 
 const ChapterSection: React.FC<{ chapter: Chapter }> = ({ chapter }) => {
   const { ref, isVisible } = useIntersectionReveal(0.1);
 
-  const accentColors: Record<string, string> = {
-    "race-records": "var(--era-race-records)",
-    "early-rb": "var(--era-early-rb)",
-    "soul": "var(--era-soul)",
-    "philly": "var(--era-philly)",
-    "quiet-storm": "var(--era-quiet-storm)",
-    "new-jack": "var(--era-new-jack)",
-    "pop-rb": "var(--era-pop-rb)",
-    "alternative": "var(--era-alternative)",
-  };
-
   return (
     <section
       ref={ref as React.RefObject<HTMLElement>}
-      className={`chapter-section ${isVisible ? "visible" : ""}`}
+      className={`hb-chapter ${isVisible ? "visible" : ""}`}
       data-era={chapter.era}
-      style={{ "--chapter-accent": accentColors[chapter.era] } as React.CSSProperties}
     >
-      <div className="chapter-content">
-        <header className="chapter-header">
-          <span className="chapter-number">{chapter.number}</span>
-          <h2 className="chapter-title">{chapter.title}</h2>
-          {chapter.subtitle && <p className="chapter-subtitle">{chapter.subtitle}</p>}
+      <div className="hb-chapter-content">
+        <header className="hb-chapter-header">
+          <span className="hb-chapter-number">{chapter.number}</span>
+          <h2 className="hb-chapter-title">{chapter.title}</h2>
+          {chapter.subtitle && <p className="hb-chapter-subtitle">{chapter.subtitle}</p>}
           {chapter.epigraph && (
-            <div className="chapter-epigraph">
+            <div className="hb-epigraph">
               &ldquo;{chapter.epigraph.text}&rdquo;
               <cite>— {chapter.epigraph.source}</cite>
             </div>
@@ -274,38 +256,42 @@ const ChapterSection: React.FC<{ chapter: Chapter }> = ({ chapter }) => {
         </header>
 
         {chapter.contentWarning && (
-          <div className="content-warning">
-            <div className="content-warning-label">Content Note</div>
+          <div className="hb-content-warning">
+            <div className="hb-content-warning-label">Content Note</div>
             {chapter.contentWarning}
           </div>
         )}
 
         {chapter.chapterImage && (
-          <figure className="chapter-image-container">
+          <figure className="hb-chapter-image-container">
             <img
               src={chapter.chapterImage.url}
               alt={chapter.chapterImage.alt}
-              className="chapter-image"
+              className="hb-chapter-image"
               loading="lazy"
             />
-            <figcaption className="chapter-image-attribution">
+            <figcaption className="hb-chapter-image-attribution">
               {chapter.chapterImage.attribution}
             </figcaption>
           </figure>
         )}
 
-        <div className="narrative-block has-dropcap">
+        <div className="hb-narrative has-dropcap">
           {chapter.narrative.map((paragraph, idx) => (
             <p key={idx}>{paragraph}</p>
           ))}
         </div>
 
         {chapter.figures.map((figure) => (
-          <FigureProfile key={figure.name} figure={figure} era={chapter.era} />
+          <FigureProfile key={figure.name} figure={figure} />
         ))}
       </div>
 
-      <div className="transition-divider" data-era={chapter.era} />
+      <div className="hb-divider">
+        <div className="hb-divider-line" />
+        <div className="hb-divider-45" />
+        <div className="hb-divider-line" />
+      </div>
     </section>
   );
 };
@@ -796,36 +782,37 @@ export default function RnbHistoryClient() {
   const progress = useGlobalScrollProgress();
 
   return (
-    <article className="rnb-history">
-      <a href="#main-content" className="skip-link">
+    <article className="heartbeat">
+      <a href="#main-content" className="hb-skip-link">
         Skip to main content
       </a>
 
-      <VinylProgress progress={progress} />
+      <RadioDialProgress progress={progress} />
 
-      {/* HERO SECTION — NO SCROLL-LOCKING (ambient parallax only) */}
-      <header className="hero-section" id="main-content">
-        <div className="hero-background">
+      {/* HERO SECTION */}
+      <header className="hb-hero" id="main-content">
+        <div className="hb-hero-background">
           <div
-            className="hero-background-image"
+            className="hb-hero-image"
             style={{
               backgroundImage: `url(${IMAGES.apolloTheater})`,
             }}
           />
-          <div className="hero-gradient" />
+          <div className="hb-hero-warmth" />
+          <div className="hb-hero-gradient" />
         </div>
 
-        <div className="hero-content">
-          <p className="hero-pre-title">A Visual History</p>
-          <h1 className="hero-title">
-            <span className="highlight">R&B</span>
+        <div className="hb-hero-content">
+          <p className="hb-hero-pretitle">A Visual History</p>
+          <h1 className="hb-hero-title">
+            <span className="hb-highlight">R&B</span>
           </h1>
-          <p className="hero-subtitle">The Heartbeat That Taught Pop to Feel</p>
+          <p className="hb-hero-subtitle">The Heartbeat That Taught Pop to Feel</p>
         </div>
 
-        <div className="hero-scroll-indicator">
-          <span className="hero-scroll-text">Scroll to begin</span>
-          <div className="hero-scroll-arrow" />
+        <div className="hb-hero-scroll">
+          <span className="hb-hero-scroll-text">Scroll to begin</span>
+          <div className="hb-hero-scroll-vu" />
         </div>
       </header>
 
@@ -836,10 +823,10 @@ export default function RnbHistoryClient() {
         ))}
 
         {/* EPILOGUE */}
-        <section className="epilogue-section">
-          <div className="epilogue-content">
-            <h2 className="epilogue-title">The Feeling Itself</h2>
-            <div className="epilogue-text">
+        <section className="hb-epilogue">
+          <div className="hb-epilogue-content">
+            <h2 className="hb-epilogue-title">The Feeling Itself</h2>
+            <div className="hb-epilogue-text">
               <p>
                 In 1949, Jerry Wexler gave a name to music that already existed. That name
                 created a category, and that category created an industry, and that industry
@@ -858,15 +845,15 @@ export default function RnbHistoryClient() {
                 still hits.
               </p>
             </div>
-            <p className="epilogue-closing">The heartbeat continues.</p>
+            <p className="hb-epilogue-closing">The heartbeat continues.</p>
           </div>
         </section>
 
         {/* SOURCES */}
-        <section className="sources-section">
-          <div className="sources-content">
-            <h2 className="sources-title">Sources & Further Reading</h2>
-            <div className="sources-list">
+        <section className="hb-sources">
+          <div className="hb-sources-content">
+            <h2 className="hb-sources-title">Sources & Further Reading</h2>
+            <div className="hb-sources-list">
               <p>
                 <strong>Primary Sources:</strong> Jerry Wexler autobiography; Ruth Brown interviews
                 (NPR Forebears); Aretha Franklin (Academy of Achievement interview, 1991);
