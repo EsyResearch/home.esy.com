@@ -873,7 +873,7 @@ export const visualEssays: VisualEssay[] = [
     isNew: true,
     tags: ["rock and roll", "rock history", "Sister Rosetta Tharpe", "Chuck Berry", "Little Richard", "Elvis Presley", "British Invasion", "Beatles", "music history", "race and music", "appropriation", "electric guitar", "Sun Records", "Chess Records", "visual essay"],
     visualStyle: "photorealistic",
-    heroImage: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Sister_Rosetta_Tharpe_%281938_publicity_photo_with_guitar%29.jpg",
+    heroImage: "/og/rock-and-roll.png",
   },
   {
     id: "rap-history",
