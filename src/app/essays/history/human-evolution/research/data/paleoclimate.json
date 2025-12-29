@@ -1,0 +1,250 @@
+{
+  "metadata": {
+    "title": "Paleoclimate Data",
+    "compiled": "2025-12",
+    "notes": "Primary proxy: LR04 benthic delta-18O stack. MIS = Marine Isotope Stage.",
+    "dataSource": "Lisiecki & Raymo 2005"
+  },
+  "majorEvents": [
+    {
+      "id": "pliocene-climate",
+      "name": "Mid-Pliocene Warm Period",
+      "dateRange": { "start": 3.3, "end": 3.0, "unit": "Ma" },
+      "type": "warm",
+      "characteristics": [
+        "Global temperatures 2-3C warmer than present",
+        "Sea levels 10-25m higher",
+        "Reduced polar ice"
+      ],
+      "significance": "Last time CO2 levels similar to today",
+      "hominins": ["Australopithecus afarensis", "Kenyanthropus platyops"],
+      "citation": "Haywood et al. 2016"
+    },
+    {
+      "id": "plio-pleistocene-transition",
+      "name": "Plio-Pleistocene Transition",
+      "dateRange": { "start": 2.8, "end": 2.4, "unit": "Ma" },
+      "type": "cooling",
+      "characteristics": [
+        "Onset of major Northern Hemisphere glaciation",
+        "African aridification pulse",
+        "Habitat fragmentation"
+      ],
+      "significance": "Coincides with origin of Homo genus; possible driver",
+      "hominins": ["Early Homo", "Paranthropus"],
+      "citation": "deMenocal 2004"
+    },
+    {
+      "id": "mid-pleistocene-transition",
+      "name": "Mid-Pleistocene Transition",
+      "dateRange": { "start": 1.25, "end": 0.7, "unit": "Ma" },
+      "type": "regime-change",
+      "characteristics": [
+        "Shift from 41 kyr to 100 kyr glacial cycles",
+        "Increased amplitude of climate swings",
+        "More extreme glacials"
+      ],
+      "significance": "Major evolutionary pressure; H. heidelbergensis evolution",
+      "hominins": ["Homo erectus", "Homo heidelbergensis"],
+      "citation": "Clark et al. 2006"
+    },
+    {
+      "id": "mis-6",
+      "name": "Marine Isotope Stage 6 (Penultimate Glacial)",
+      "dateRange": { "start": 0.191, "end": 0.130, "unit": "Ma" },
+      "type": "glacial",
+      "characteristics": [
+        "Extensive ice sheets",
+        "Sea level ~120m lower",
+        "Arid conditions in tropics"
+      ],
+      "significance": "Period of early H. sapiens evolution in Africa",
+      "hominins": ["Early Homo sapiens", "Neanderthals", "Homo naledi"],
+      "citation": "Lisiecki & Raymo 2005"
+    },
+    {
+      "id": "mis-5e",
+      "name": "Marine Isotope Stage 5e (Last Interglacial)",
+      "dateRange": { "start": 0.130, "end": 0.115, "unit": "Ma" },
+      "type": "interglacial",
+      "characteristics": [
+        "Warmer than present by ~1-2C",
+        "Sea level 6-9m higher",
+        "Green Sahara conditions"
+      ],
+      "significance": "Early H. sapiens dispersals (Skhul/Qafzeh)",
+      "hominins": ["Homo sapiens", "Neanderthals"],
+      "citation": "Lisiecki & Raymo 2005"
+    },
+    {
+      "id": "mis-4",
+      "name": "Marine Isotope Stage 4",
+      "dateRange": { "start": 0.071, "end": 0.057, "unit": "Ma" },
+      "type": "glacial",
+      "characteristics": [
+        "Cold and dry",
+        "African population bottleneck",
+        "Symbolic innovations (Still Bay, Howiesons Poort)"
+      ],
+      "significance": "Period of behavioral innovations in MSA",
+      "hominins": ["Homo sapiens"],
+      "citation": "Marean 2015"
+    },
+    {
+      "id": "toba",
+      "name": "Toba Volcanic Event",
+      "dateRange": { "start": 0.074, "end": 0.074, "unit": "Ma" },
+      "type": "catastrophic",
+      "characteristics": [
+        "VEI 8 supervolcanic eruption",
+        "Possible volcanic winter",
+        "Debated population bottleneck"
+      ],
+      "significance": "Largest eruption in 2 million years; impact debated",
+      "hominins": ["Homo sapiens", "Neanderthals", "Denisovans"],
+      "citation": "Ambrose 1998 (bottleneck hypothesis debated)"
+    },
+    {
+      "id": "lgm",
+      "name": "Last Glacial Maximum (LGM)",
+      "dateRange": { "start": 0.026, "end": 0.019, "unit": "Ma" },
+      "type": "glacial-peak",
+      "characteristics": [
+        "Maximum ice extent",
+        "Sea level ~130m lower",
+        "Beringia exposed",
+        "European refugia (Iberia, Italy, Balkans)"
+      ],
+      "significance": "Human populations contract to refugia; Beringia crossing",
+      "hominins": ["Homo sapiens"],
+      "citation": "Clark et al. 2009"
+    },
+    {
+      "id": "mwp-1a",
+      "name": "Meltwater Pulse 1A",
+      "dateRange": { "start": 0.0146, "end": 0.0142, "unit": "Ma" },
+      "type": "deglaciation",
+      "characteristics": [
+        "Rapid sea level rise (~20m in 400-500 years)",
+        "Coastal flooding",
+        "End of Beringia land bridge"
+      ],
+      "significance": "Separates Americas from Asia; coastal sites submerged",
+      "hominins": ["Homo sapiens"],
+      "citation": "Deschamps et al. 2012"
+    },
+    {
+      "id": "younger-dryas",
+      "name": "Younger Dryas",
+      "dateRange": { "start": 0.0129, "end": 0.0117, "unit": "Ma" },
+      "type": "cold-snap",
+      "characteristics": [
+        "Abrupt return to near-glacial conditions",
+        "1300-year cold period",
+        "Ended abruptly (within decades)"
+      ],
+      "significance": "May have pressured adoption of agriculture",
+      "hominins": ["Homo sapiens"],
+      "citation": "Alley 2000"
+    },
+    {
+      "id": "african-humid-period",
+      "name": "African Humid Period (Green Sahara)",
+      "dateRange": { "start": 0.011, "end": 0.005, "unit": "Ma" },
+      "type": "wet-period",
+      "characteristics": [
+        "Sahara covered with lakes and vegetation",
+        "Human occupation across Sahara",
+        "Mega-lakes (Chad, etc.)"
+      ],
+      "significance": "Enabled human movement across Sahara; ended by 4 ka",
+      "hominins": ["Homo sapiens"],
+      "citation": "deMenocal et al. 2000"
+    },
+    {
+      "id": "holocene-thermal-maximum",
+      "name": "Holocene Thermal Maximum",
+      "dateRange": { "start": 0.009, "end": 0.005, "unit": "Ma" },
+      "type": "warm",
+      "characteristics": [
+        "Warmest Holocene period",
+        "Agricultural expansion",
+        "Neolithic societies flourish"
+      ],
+      "significance": "Rise of complex societies",
+      "hominins": ["Homo sapiens"],
+      "citation": "Marcott et al. 2013"
+    }
+  ],
+  "marineIsotopeStages": [
+    { "mis": 1, "type": "interglacial", "start": 0.0117, "end": 0, "unit": "Ma" },
+    { "mis": 2, "type": "glacial", "start": 0.029, "end": 0.0117, "unit": "Ma" },
+    { "mis": 3, "type": "interstadial", "start": 0.057, "end": 0.029, "unit": "Ma" },
+    { "mis": 4, "type": "glacial", "start": 0.071, "end": 0.057, "unit": "Ma" },
+    { "mis": "5a-d", "type": "variable", "start": 0.115, "end": 0.071, "unit": "Ma" },
+    { "mis": "5e", "type": "interglacial", "start": 0.130, "end": 0.115, "unit": "Ma" },
+    { "mis": 6, "type": "glacial", "start": 0.191, "end": 0.130, "unit": "Ma" },
+    { "mis": 7, "type": "interglacial", "start": 0.243, "end": 0.191, "unit": "Ma" },
+    { "mis": 8, "type": "glacial", "start": 0.300, "end": 0.243, "unit": "Ma" },
+    { "mis": 9, "type": "interglacial", "start": 0.337, "end": 0.300, "unit": "Ma" },
+    { "mis": 10, "type": "glacial", "start": 0.374, "end": 0.337, "unit": "Ma" },
+    { "mis": 11, "type": "interglacial", "start": 0.424, "end": 0.374, "unit": "Ma" }
+  ],
+  "lr04BenthicStack": {
+    "description": "Global benthic oxygen isotope stack (proxy for global ice volume/temperature)",
+    "dataPoints": "See Lisiecki & Raymo 2005 for full dataset",
+    "interpretation": {
+      "highDelta18O": "More ice (glacial conditions)",
+      "lowDelta18O": "Less ice (interglacial conditions)"
+    },
+    "selectedValues": [
+      { "age": 0, "delta18O": 3.23, "condition": "present interglacial" },
+      { "age": 21, "delta18O": 5.08, "condition": "LGM peak" },
+      { "age": 55, "delta18O": 4.09, "condition": "MIS 3 interstadial" },
+      { "age": 130, "delta18O": 3.13, "condition": "MIS 5e interglacial" },
+      { "age": 180, "delta18O": 4.94, "condition": "MIS 6 glacial" },
+      { "age": 320, "delta18O": 4.82, "condition": "MIS 9/10 boundary" },
+      { "age": 430, "delta18O": 3.20, "condition": "MIS 11 interglacial" }
+    ],
+    "citation": "Lisiecki & Raymo 2005, Paleoceanography"
+  },
+  "africanClimate": {
+    "description": "African climate variability affecting hominin evolution",
+    "majorAridPulses": [
+      { "age": 2.8, "unit": "Ma", "notes": "Plio-Pleistocene transition" },
+      { "age": 1.8, "unit": "Ma", "notes": "Early Pleistocene" },
+      { "age": 1.0, "unit": "Ma", "notes": "Mid-Pleistocene" },
+      { "age": 0.4, "unit": "Ma", "notes": "Late Middle Pleistocene" }
+    ],
+    "variabilitySelection": {
+      "description": "Hypothesis that climate variability (not just trends) drove human evolution",
+      "proponents": "Potts 1996",
+      "mechanism": "Selection for behavioral flexibility and adaptability"
+    },
+    "citation": "Trauth et al. 2010; Potts 1996"
+  },
+  "glacialCycles": {
+    "milankovitch": {
+      "description": "Orbital forcing of climate",
+      "cycles": [
+        { "name": "Eccentricity", "period": "~100 kyr", "effect": "Dominant cycle since MPT" },
+        { "name": "Obliquity", "period": "~41 kyr", "effect": "Dominant before MPT" },
+        { "name": "Precession", "period": "~23 kyr", "effect": "Affects monsoon intensity" }
+      ]
+    },
+    "impactOnHominins": {
+      "glacials": "Population contractions, refugia, isolation",
+      "interglacials": "Dispersal opportunities, range expansion",
+      "transitions": "Rapid climate change, selection pressure"
+    }
+  },
+  "visualizationNotes": {
+    "recommendedApproach": [
+      "Use LR04 curve as backbone timeline",
+      "Mark hominin first/last appearances against climate backdrop",
+      "Highlight glacial-interglacial cycles",
+      "Show correlation without implying causation"
+    ],
+    "caveat": "Climate-evolution correlations do NOT prove causation. Avoid deterministic narratives."
+  }
+}

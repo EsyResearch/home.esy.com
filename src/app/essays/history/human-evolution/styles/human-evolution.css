@@ -1,0 +1,718 @@
+/* Human Evolution Visual Essay Styles
+   Novel design based on independent design research - not derived from existing essays
+   Follows museum exhibition and data visualization best practices */
+
+/* ========================================
+   CSS Custom Properties (Design Tokens)
+   ======================================== */
+
+.human-evolution {
+  /* Earth Tone Palette */
+  --color-bone: #E1D6C1;
+  --color-sediment: #BFAF8A;
+  --color-stone: #8C7B5B;
+  --color-earth: #5B4B3A;
+  --color-depth: #3A2A1D;
+
+  /* Accent Colors */
+  --color-accent: #2563EB;
+  --color-accent-hover: #1D4ED8;
+  --color-success: #059669;
+  --color-warning: #D97706;
+
+  /* Timeline Era Colors (Colorblind-Safe Okabe-Ito inspired) */
+  --era-earliest: #0077BB;
+  --era-australopith: #33BBEE;
+  --era-paranthropus: #009988;
+  --era-early-homo: #EE7733;
+  --era-erectus: #CC3311;
+  --era-archaic: #882255;
+  --era-sapiens: #AA4499;
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Source Serif Pro', Georgia, serif;
+  --font-ui: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  /* Layout */
+  --content-width: 65ch;
+  --wide-width: 90ch;
+  --max-width: 1200px;
+
+  /* Animation */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   Base Layout
+   ======================================== */
+
+.human-evolution {
+  font-family: var(--font-body);
+  color: var(--color-depth);
+  background: var(--color-bone);
+  line-height: 1.7;
+  font-size: 1.0625rem;
+}
+
+.human-evolution__container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.human-evolution__content {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.human-evolution__wide {
+  max-width: var(--wide-width);
+  margin: 0 auto;
+}
+
+/* ========================================
+   Typography
+   ======================================== */
+
+.human-evolution h1,
+.human-evolution h2,
+.human-evolution h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-depth);
+}
+
+.human-evolution h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: var(--space-lg);
+}
+
+.human-evolution h2 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  margin-top: var(--space-3xl);
+  margin-bottom: var(--space-lg);
+}
+
+.human-evolution h3 {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-md);
+}
+
+.human-evolution p {
+  margin-bottom: var(--space-lg);
+}
+
+.human-evolution__lead {
+  font-size: 1.25rem;
+  color: var(--color-stone);
+  margin-bottom: var(--space-2xl);
+}
+
+/* ========================================
+   Hero Section
+   ======================================== */
+
+.human-evolution__hero {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-3xl) var(--space-lg);
+  background: linear-gradient(
+    180deg,
+    var(--color-bone) 0%,
+    var(--color-sediment) 100%
+  );
+  position: relative;
+}
+
+.human-evolution__hero-title {
+  font-size: clamp(3rem, 8vw, 5rem);
+  margin-bottom: var(--space-md);
+}
+
+.human-evolution__hero-subtitle {
+  font-family: var(--font-ui);
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  color: var(--color-stone);
+  font-weight: 400;
+  margin-bottom: var(--space-2xl);
+}
+
+.human-evolution__hero-hook {
+  max-width: 50ch;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--color-earth);
+  margin-bottom: var(--space-2xl);
+}
+
+/* ========================================
+   Chapter Navigation (Sticky)
+   ======================================== */
+
+.human-evolution__nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bone);
+  border-bottom: 1px solid var(--color-sediment);
+  padding: var(--space-sm) 0;
+  transition: box-shadow var(--transition-base);
+}
+
+.human-evolution__nav--scrolled {
+  box-shadow: var(--shadow-md);
+}
+
+.human-evolution__nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.human-evolution__nav-title {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-earth);
+}
+
+.human-evolution__nav-progress {
+  flex: 1;
+  max-width: 200px;
+  height: 4px;
+  background: var(--color-sediment);
+  border-radius: 2px;
+  margin: 0 var(--space-lg);
+  overflow: hidden;
+}
+
+.human-evolution__nav-progress-bar {
+  height: 100%;
+  background: var(--color-accent);
+  transition: width var(--transition-base);
+}
+
+.human-evolution__nav-chapters {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .human-evolution__nav-chapters {
+    display: flex;
+    gap: var(--space-xs);
+  }
+}
+
+.human-evolution__nav-chapter {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  padding: var(--space-xs) var(--space-sm);
+  color: var(--color-stone);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.human-evolution__nav-chapter:hover,
+.human-evolution__nav-chapter:focus {
+  background: var(--color-sediment);
+  color: var(--color-depth);
+}
+
+.human-evolution__nav-chapter--active {
+  background: var(--color-accent);
+  color: white;
+}
+
+/* ========================================
+   Chapter Sections
+   ======================================== */
+
+.human-evolution__chapter {
+  padding: var(--space-3xl) 0;
+  border-bottom: 1px solid var(--color-sediment);
+}
+
+.human-evolution__chapter:last-child {
+  border-bottom: none;
+}
+
+.human-evolution__chapter-header {
+  margin-bottom: var(--space-2xl);
+}
+
+.human-evolution__chapter-number {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-stone);
+  margin-bottom: var(--space-sm);
+}
+
+.human-evolution__chapter-hook {
+  font-size: 1.375rem;
+  font-style: italic;
+  color: var(--color-earth);
+  border-left: 4px solid var(--color-accent);
+  padding-left: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+/* ========================================
+   Evidence Cards
+   ======================================== */
+
+.human-evolution__evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-2xl) 0;
+}
+
+.human-evolution__evidence-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.human-evolution__evidence-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.human-evolution__evidence-card-image {
+  aspect-ratio: 4/3;
+  background: var(--color-sediment);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.human-evolution__evidence-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.human-evolution__evidence-card-body {
+  padding: var(--space-lg);
+}
+
+.human-evolution__evidence-card-type {
+  font-family: var(--font-ui);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-stone);
+  margin-bottom: var(--space-xs);
+}
+
+.human-evolution__evidence-card-title {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.human-evolution__evidence-card-date {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+}
+
+.human-evolution__evidence-card-description {
+  font-size: 0.9375rem;
+  color: var(--color-earth);
+  line-height: 1.5;
+}
+
+/* ========================================
+   Quote Cards
+   ======================================== */
+
+.human-evolution__quote {
+  background: white;
+  border-radius: 8px;
+  padding: var(--space-xl);
+  margin: var(--space-2xl) 0;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.human-evolution__quote::before {
+  content: '"';
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: var(--color-sediment);
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-lg);
+  line-height: 1;
+}
+
+.human-evolution__quote-text {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--color-depth);
+  padding-left: var(--space-2xl);
+  margin-bottom: var(--space-lg);
+}
+
+.human-evolution__quote-attribution {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  color: var(--color-stone);
+  padding-left: var(--space-2xl);
+}
+
+.human-evolution__quote-attribution strong {
+  color: var(--color-earth);
+}
+
+/* ========================================
+   Misconception Checkpoints
+   ======================================== */
+
+.human-evolution__misconception {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border-radius: 8px;
+  padding: var(--space-xl);
+  margin: var(--space-2xl) 0;
+  border-left: 4px solid var(--color-warning);
+}
+
+.human-evolution__misconception-header {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-warning);
+  margin-bottom: var(--space-md);
+  font-weight: 600;
+}
+
+.human-evolution__misconception-myth {
+  font-size: 1.125rem;
+  color: var(--color-depth);
+  margin-bottom: var(--space-md);
+}
+
+.human-evolution__misconception-myth::before {
+  content: 'MYTH: ';
+  font-weight: 700;
+  color: #B45309;
+}
+
+.human-evolution__misconception-reality {
+  font-size: 1.125rem;
+  color: var(--color-depth);
+}
+
+.human-evolution__misconception-reality::before {
+  content: 'REALITY: ';
+  font-weight: 700;
+  color: var(--color-success);
+}
+
+/* ========================================
+   Glossary Terms (Toggletips)
+   ======================================== */
+
+.human-evolution__term {
+  border-bottom: 1px dotted var(--color-accent);
+  cursor: help;
+  position: relative;
+  display: inline;
+}
+
+.human-evolution__term-button {
+  background: none;
+  border: none;
+  border-bottom: 1px dotted var(--color-accent);
+  color: inherit;
+  font: inherit;
+  cursor: help;
+  padding: 0;
+}
+
+.human-evolution__term-button:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.human-evolution__term-popup {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-depth);
+  color: white;
+  padding: var(--space-md);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  max-width: 300px;
+  width: max-content;
+  z-index: 1000;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: var(--space-xs);
+}
+
+.human-evolution__term-popup::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--color-depth);
+}
+
+/* ========================================
+   Species Timeline
+   ======================================== */
+
+.human-evolution__timeline {
+  margin: var(--space-3xl) 0;
+  padding: var(--space-xl);
+  background: white;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  overflow-x: auto;
+}
+
+.human-evolution__timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-sediment);
+}
+
+.human-evolution__timeline-title {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.human-evolution__timeline-legend {
+  display: flex;
+  gap: var(--space-md);
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+}
+
+.human-evolution__timeline-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.human-evolution__timeline-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.human-evolution__timeline-species {
+  display: flex;
+  align-items: center;
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid #F3F4F6;
+}
+
+.human-evolution__timeline-species:last-child {
+  border-bottom: none;
+}
+
+.human-evolution__timeline-species-name {
+  width: 200px;
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+.human-evolution__timeline-species-bar {
+  height: 20px;
+  border-radius: 3px;
+  position: relative;
+}
+
+/* ========================================
+   Deep Time Clock
+   ======================================== */
+
+.human-evolution__clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-2xl);
+  background: white;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  margin: var(--space-2xl) 0;
+}
+
+.human-evolution__clock-face {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-bone) 0%, var(--color-sediment) 100%);
+  border: 4px solid var(--color-stone);
+  position: relative;
+  margin-bottom: var(--space-xl);
+}
+
+.human-evolution__clock-labels {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+  max-width: 400px;
+}
+
+.human-evolution__clock-label {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--color-sediment);
+  border-radius: 4px;
+}
+
+/* ========================================
+   Citations
+   ======================================== */
+
+.human-evolution__citation {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  vertical-align: super;
+  color: var(--color-accent);
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+.human-evolution__citation:hover,
+.human-evolution__citation:focus {
+  text-decoration: underline;
+}
+
+.human-evolution__references {
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-2xl);
+  border-top: 1px solid var(--color-sediment);
+}
+
+.human-evolution__references-list {
+  font-size: 0.875rem;
+  color: var(--color-earth);
+}
+
+.human-evolution__references-list li {
+  margin-bottom: var(--space-sm);
+  padding-left: var(--space-lg);
+  text-indent: -var(--space-lg);
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+
+.human-evolution__footer {
+  padding: var(--space-3xl) 0;
+  background: var(--color-depth);
+  color: var(--color-bone);
+  margin-top: var(--space-3xl);
+}
+
+.human-evolution__footer-content {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ========================================
+   Accessibility: Reduced Motion
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .human-evolution *,
+  .human-evolution *::before,
+  .human-evolution *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========================================
+   Focus States (Accessibility)
+   ======================================== */
+
+.human-evolution *:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.human-evolution button:focus-visible,
+.human-evolution a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ========================================
+   Print Styles
+   ======================================== */
+
+@media print {
+  .human-evolution__nav {
+    display: none;
+  }
+
+  .human-evolution {
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  .human-evolution__evidence-card,
+  .human-evolution__quote,
+  .human-evolution__misconception {
+    break-inside: avoid;
+  }
+}

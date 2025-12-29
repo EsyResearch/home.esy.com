@@ -1,0 +1,276 @@
+{
+  "metadata": {
+    "title": "Genetics and Admixture Data",
+    "compiled": "2025-12",
+    "notes": "All percentages include uncertainty ranges. Genetic data evolving rapidly; values may be updated."
+  },
+  "divergenceTimes": [
+    {
+      "id": "human-chimp",
+      "lineage1": "Homo",
+      "lineage2": "Pan (Chimpanzees)",
+      "dateEstimate": { "value": 6.5, "range": [6, 7], "unit": "Ma" },
+      "method": "Molecular clock + fossil calibration",
+      "confidence": "moderate",
+      "citation": "Patterson et al. 2006; Langergraber et al. 2012"
+    },
+    {
+      "id": "human-gorilla",
+      "lineage1": "Homo + Pan",
+      "lineage2": "Gorilla",
+      "dateEstimate": { "value": 9, "range": [8, 10], "unit": "Ma" },
+      "method": "Molecular clock",
+      "confidence": "moderate",
+      "citation": "Scally et al. 2012"
+    },
+    {
+      "id": "neanderthal-sapiens",
+      "lineage1": "Homo sapiens",
+      "lineage2": "Neanderthals",
+      "dateEstimate": { "value": 0.55, "range": [0.5, 0.6], "unit": "Ma" },
+      "method": "Ancient DNA comparison",
+      "confidence": "high",
+      "citation": "Prufer et al. 2014"
+    },
+    {
+      "id": "denisovan-neanderthal",
+      "lineage1": "Denisovans",
+      "lineage2": "Neanderthals",
+      "dateEstimate": { "value": 0.4, "range": [0.35, 0.45], "unit": "Ma" },
+      "method": "Ancient DNA comparison",
+      "confidence": "high",
+      "citation": "Meyer et al. 2012"
+    }
+  ],
+  "admixture": [
+    {
+      "id": "neanderthal-eurasian",
+      "donorPopulation": "Neanderthals",
+      "recipientPopulation": "Non-African modern humans",
+      "percentage": { "value": 2.0, "range": [1.5, 2.2], "unit": "%" },
+      "timingEstimate": { "value": 47, "range": [43.5, 50.5], "unit": "ka" },
+      "notes": "Single main admixture pulse in Near East",
+      "confidence": "very high",
+      "citation": "Green et al. 2010; Sankararaman et al. 2012"
+    },
+    {
+      "id": "neanderthal-african",
+      "donorPopulation": "Neanderthals",
+      "recipientPopulation": "African populations",
+      "percentage": { "value": 0.5, "range": [0.3, 1.0], "unit": "%" },
+      "timingEstimate": null,
+      "notes": "Recently discovered via improved methods; likely via back-migration",
+      "confidence": "moderate",
+      "citation": "Chen et al. 2020"
+    },
+    {
+      "id": "denisovan-melanesian",
+      "donorPopulation": "Denisovans",
+      "recipientPopulation": "Melanesians (Papua New Guinea, Australia)",
+      "percentage": { "value": 4.0, "range": [1.9, 6.0], "unit": "%" },
+      "timingEstimate": { "value": 45, "range": [40, 50], "unit": "ka" },
+      "notes": "Highest Denisovan ancestry globally",
+      "confidence": "high",
+      "citation": "Reich et al. 2010"
+    },
+    {
+      "id": "denisovan-east-asian",
+      "donorPopulation": "Denisovans",
+      "recipientPopulation": "East Asians",
+      "percentage": { "value": 0.2, "range": [0.1, 0.4], "unit": "%" },
+      "timingEstimate": null,
+      "notes": "Lower than Melanesians; possibly different Denisovan population",
+      "confidence": "moderate",
+      "citation": "Browning et al. 2018"
+    },
+    {
+      "id": "denisovan-tibetan",
+      "donorPopulation": "Denisovans (possibly Tibetan Plateau population)",
+      "recipientPopulation": "Tibetans",
+      "percentage": { "value": 0.5, "range": [0.3, 1.0], "unit": "%" },
+      "timingEstimate": null,
+      "notes": "EPAS1 gene for high-altitude adaptation; distinct from Melanesian admixture",
+      "confidence": "high",
+      "citation": "Huerta-Sanchez et al. 2014"
+    },
+    {
+      "id": "neanderthal-denisovan",
+      "donorPopulation": "Neanderthals",
+      "recipientPopulation": "Denisovans",
+      "percentage": { "value": 0.5, "range": [0.4, 0.6], "unit": "%" },
+      "timingEstimate": null,
+      "notes": "Gene flow between archaic groups",
+      "confidence": "high",
+      "citation": "Prufer et al. 2014"
+    },
+    {
+      "id": "ghost-archaic-african",
+      "donorPopulation": "Unknown archaic hominin ('ghost population')",
+      "recipientPopulation": "West African populations",
+      "percentage": { "value": 2.0, "range": [2, 19], "unit": "%" },
+      "timingEstimate": { "value": 43, "range": [20, 100], "unit": "ka" },
+      "notes": "Inferred from modern genomes; no fossil DNA available",
+      "confidence": "moderate",
+      "citation": "Durvasula & Sankararaman 2020"
+    }
+  ],
+  "adaptiveIntrogression": [
+    {
+      "id": "epas1",
+      "gene": "EPAS1",
+      "function": "Hypoxia response (high-altitude adaptation)",
+      "source": "Denisovans",
+      "presentIn": "Tibetans",
+      "frequency": { "value": 78, "unit": "%" },
+      "phenotype": "Lower hemoglobin at high altitude; reduced risk of altitude sickness",
+      "confidence": "very high",
+      "citation": "Huerta-Sanchez et al. 2014, Nature"
+    },
+    {
+      "id": "hla-neanderthal",
+      "gene": "HLA class I genes (HLA-A, HLA-B, HLA-C)",
+      "function": "Immune system (pathogen recognition)",
+      "source": "Neanderthals and Denisovans",
+      "presentIn": "Europeans and Asians",
+      "frequency": { "value": 50, "range": [50, 70], "unit": "%" },
+      "phenotype": "Enhanced pathogen defense; possibly increased autoimmune risk",
+      "confidence": "high",
+      "citation": "Abi-Rached et al. 2011, Science"
+    },
+    {
+      "id": "bric5-keratin",
+      "gene": "Keratin gene variants",
+      "function": "Skin and hair structure",
+      "source": "Neanderthals",
+      "presentIn": "Europeans and Asians",
+      "frequency": { "value": 66, "unit": "%" },
+      "phenotype": "Adaptations to cold climate",
+      "confidence": "moderate",
+      "citation": "Sankararaman et al. 2014"
+    },
+    {
+      "id": "toll-like-receptors",
+      "gene": "TLR1, TLR6, TLR10",
+      "function": "Innate immunity",
+      "source": "Neanderthals",
+      "presentIn": "Europeans",
+      "frequency": { "value": 50, "unit": "%" },
+      "phenotype": "Pathogen recognition; linked to allergy susceptibility",
+      "confidence": "high",
+      "citation": "Dannemann et al. 2016"
+    }
+  ],
+  "deserts": {
+    "description": "Genomic regions with significantly reduced archaic ancestry ('deserts of introgression')",
+    "examples": [
+      {
+        "region": "FOXP2 region",
+        "function": "Speech and language",
+        "notes": "Strong selection against archaic variants; possibly critical for human speech"
+      },
+      {
+        "region": "X chromosome",
+        "function": "Various",
+        "notes": "Reduced Neanderthal ancestry; possibly due to hybrid male sterility"
+      },
+      {
+        "region": "Male fertility genes",
+        "function": "Spermatogenesis",
+        "notes": "Selection against archaic variants affecting fertility"
+      }
+    ],
+    "significance": "Suggests functional incompatibilities between human and archaic genomes",
+    "citation": "Sankararaman et al. 2014; Vernot & Akey 2014"
+  },
+  "ancientGenomes": [
+    {
+      "id": "altai-neanderthal",
+      "specimen": "Altai Neanderthal",
+      "location": "Denisova Cave, Russia",
+      "age": { "value": 122, "unit": "ka" },
+      "coverage": "52x",
+      "significance": "Highest-quality archaic genome",
+      "citation": "Prufer et al. 2014"
+    },
+    {
+      "id": "vindija-neanderthal",
+      "specimen": "Vindija 33.19",
+      "location": "Vindija Cave, Croatia",
+      "age": { "value": 52, "unit": "ka" },
+      "coverage": "30x",
+      "significance": "Represents population that interbred with modern humans",
+      "citation": "Prufer et al. 2017"
+    },
+    {
+      "id": "denisova-3",
+      "specimen": "Denisova 3",
+      "location": "Denisova Cave, Russia",
+      "age": { "value": 80, "range": [50, 100], "unit": "ka" },
+      "coverage": "30x",
+      "significance": "First Denisovan genome; defined new hominin group",
+      "citation": "Meyer et al. 2012"
+    },
+    {
+      "id": "denisova-11",
+      "specimen": "Denisova 11 (Denny)",
+      "location": "Denisova Cave, Russia",
+      "age": { "value": 90, "unit": "ka" },
+      "coverage": "2.6x",
+      "significance": "First-generation Neanderthal-Denisovan hybrid",
+      "citation": "Slon et al. 2018"
+    },
+    {
+      "id": "ust-ishim",
+      "specimen": "Ust'-Ishim man",
+      "location": "Western Siberia",
+      "age": { "value": 45, "unit": "ka" },
+      "coverage": "42x",
+      "significance": "Oldest modern human genome; dates Neanderthal admixture",
+      "citation": "Fu et al. 2014"
+    },
+    {
+      "id": "kostenki-14",
+      "specimen": "Kostenki 14",
+      "location": "Russia",
+      "age": { "value": 37, "unit": "ka" },
+      "coverage": "2.8x",
+      "significance": "Shows early European ancestry established",
+      "citation": "Seguin-Orlando et al. 2014"
+    }
+  ],
+  "populationHistory": {
+    "outOfAfrica": {
+      "timing": { "value": 60, "range": [50, 70], "unit": "ka" },
+      "bottleneck": true,
+      "effectivePopulationSize": { "value": 1000, "range": [1000, 10000] },
+      "notes": "Major migration that gave rise to all non-African populations",
+      "citation": "Li & Durbin 2011"
+    },
+    "europeanNeolithic": {
+      "description": "Major population turnover with Near Eastern farmer migration",
+      "timing": { "value": 8, "range": [7, 9], "unit": "ka" },
+      "admixtureProportion": { "value": 70, "range": [60, 80], "unit": "%" },
+      "citation": "Haak et al. 2015"
+    },
+    "steppeAncestry": {
+      "description": "Yamnaya-related migration into Europe",
+      "timing": { "value": 5, "range": [4.5, 5.5], "unit": "ka" },
+      "admixtureProportion": { "value": 50, "range": [30, 70], "unit": "%" },
+      "citation": "Haak et al. 2015"
+    }
+  },
+  "geneticDiversity": {
+    "humanVsChimp": {
+      "description": "Humans have lower genetic diversity than chimpanzees",
+      "humanHeterozygosity": 0.001,
+      "chimpHeterozygosity": 0.002,
+      "notes": "Reflects population bottleneck in human history",
+      "citation": "Kaessmann et al. 1999"
+    },
+    "africaVsRestOfWorld": {
+      "description": "Sub-Saharan Africa has highest human genetic diversity",
+      "notes": "Consistent with African origin; serial founder effects outside Africa",
+      "citation": "Tishkoff et al. 2009"
+    }
+  }
+}

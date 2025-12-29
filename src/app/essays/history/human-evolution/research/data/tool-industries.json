@@ -1,0 +1,348 @@
+{
+  "metadata": {
+    "title": "Stone Tool Industries",
+    "compiled": "2025-12",
+    "notes": "Chronological sequence of major lithic technologies. Dates represent earliest secure evidence."
+  },
+  "industries": [
+    {
+      "id": "lomekwian",
+      "name": "Lomekwian",
+      "dateFirst": 3.3,
+      "dateLast": 2.9,
+      "dateUnit": "Ma",
+      "typeSite": "Lomekwi 3, Kenya",
+      "typeArtifacts": ["Large cores", "Anvils", "Flakes"],
+      "techniques": ["Passive hammer", "Bipolar percussion"],
+      "possibleMakers": ["Kenyanthropus platyops", "Australopithecus afarensis"],
+      "characteristics": [
+        "Largest known stone artifacts",
+        "Simple flaking with minimal preparation",
+        "Weights up to 15 kg"
+      ],
+      "geographicRange": "Kenya (single site confirmed)",
+      "significance": "Oldest known stone tools; pushes toolmaking back 700,000 years before Oldowan",
+      "confidence": "high",
+      "citation": "Harmand et al. 2015, Nature"
+    },
+    {
+      "id": "oldowan",
+      "name": "Oldowan",
+      "dateFirst": 2.9,
+      "dateLast": 1.7,
+      "dateUnit": "Ma",
+      "typeSite": "Olduvai Gorge, Tanzania (also Gona, Ethiopia)",
+      "typeArtifacts": ["Choppers", "Simple flakes", "Hammerstones"],
+      "techniques": ["Hard hammer percussion", "Unifacial flaking"],
+      "possibleMakers": ["Homo habilis", "Australopithecus garhi", "Paranthropus"],
+      "characteristics": [
+        "Simple core-and-flake technology",
+        "Opportunistic raw material use",
+        "Sharp edges for cutting meat/processing plants"
+      ],
+      "geographicRange": "East Africa → North Africa → Southwest Asia",
+      "significance": "First systematic tool tradition; associated with meat processing",
+      "confidence": "high",
+      "citation": "Leakey 1971; Semaw et al. 1997"
+    },
+    {
+      "id": "developed-oldowan",
+      "name": "Developed Oldowan",
+      "dateFirst": 1.9,
+      "dateLast": 1.5,
+      "dateUnit": "Ma",
+      "typeSite": "Olduvai Bed II",
+      "typeArtifacts": ["Proto-bifaces", "Crude handaxes", "Spheroids"],
+      "techniques": ["Bifacial flaking (crude)"],
+      "possibleMakers": ["Homo habilis", "Early Homo erectus"],
+      "characteristics": [
+        "Transitional between Oldowan and Acheulean",
+        "More standardized forms",
+        "Larger tools"
+      ],
+      "geographicRange": "East Africa",
+      "significance": "Shows cognitive advance toward symmetry",
+      "confidence": "moderate",
+      "citation": "Leakey 1971"
+    },
+    {
+      "id": "acheulean",
+      "name": "Acheulean",
+      "dateFirst": 1.76,
+      "dateLast": 0.13,
+      "dateUnit": "Ma",
+      "typeSite": "Saint-Acheul, France (named); Kokiselei, Kenya (oldest)",
+      "typeArtifacts": ["Handaxes (bifaces)", "Cleavers", "Picks"],
+      "techniques": ["Bifacial flaking", "Soft hammer percussion", "Platform preparation"],
+      "possibleMakers": ["Homo ergaster", "Homo erectus", "Homo heidelbergensis"],
+      "characteristics": [
+        "Symmetrical teardrop/oval handaxes",
+        "Deliberate shaping on both faces",
+        "Remarkably stable for 1.5+ million years"
+      ],
+      "geographicRange": "Africa → Europe → South Asia (NOT East Asia - 'Movius Line')",
+      "significance": "Longest-lasting tool tradition; suggests cultural transmission",
+      "confidence": "very high",
+      "citation": "Lepre et al. 2011, Nature"
+    },
+    {
+      "id": "clactonian",
+      "name": "Clactonian",
+      "dateFirst": 0.45,
+      "dateLast": 0.3,
+      "dateUnit": "Ma",
+      "typeSite": "Clacton-on-Sea, England",
+      "typeArtifacts": ["Large flakes", "Notched flakes", "Wooden spear"],
+      "techniques": ["Hard hammer on anvil"],
+      "possibleMakers": ["Homo heidelbergensis"],
+      "characteristics": [
+        "No handaxes (cultural choice or functional)",
+        "Associated with wooden artifacts"
+      ],
+      "geographicRange": "Northwest Europe",
+      "significance": "Demonstrates technological diversity in Middle Pleistocene",
+      "confidence": "moderate",
+      "citation": "McNabb 2007"
+    },
+    {
+      "id": "levallois",
+      "name": "Levallois (technique)",
+      "dateFirst": 0.4,
+      "dateLast": 0.03,
+      "dateUnit": "Ma",
+      "typeSite": "Levallois-Perret, France",
+      "typeArtifacts": ["Prepared cores", "Levallois points", "Levallois flakes"],
+      "techniques": ["Core preparation", "Predetermined flake shape", "Centripetal flaking"],
+      "possibleMakers": ["Homo heidelbergensis", "Neanderthals", "Homo sapiens"],
+      "characteristics": [
+        "Tortoise-shell shaped cores",
+        "Efficient raw material use",
+        "Standardized end products"
+      ],
+      "geographicRange": "Africa, Europe, Western Asia",
+      "significance": "Major cognitive advance; planning ahead for tool shape",
+      "confidence": "very high",
+      "citation": "Boeda 1995"
+    },
+    {
+      "id": "mousterian",
+      "name": "Mousterian",
+      "dateFirst": 0.3,
+      "dateLast": 0.03,
+      "dateUnit": "Ma",
+      "typeSite": "Le Moustier, France",
+      "typeArtifacts": ["Side-scrapers", "Points", "Levallois products"],
+      "techniques": ["Levallois", "Discoid cores", "Hafting"],
+      "possibleMakers": ["Neanderthals", "Early Homo sapiens (Levant)"],
+      "characteristics": [
+        "Diverse regional variants",
+        "Evidence of hafting (glues)",
+        "Functional specialization"
+      ],
+      "geographicRange": "Europe, Near East, North Africa",
+      "significance": "Neanderthal signature industry",
+      "confidence": "very high",
+      "citation": "Bordes 1961"
+    },
+    {
+      "id": "msa",
+      "name": "Middle Stone Age (MSA)",
+      "dateFirst": 0.3,
+      "dateLast": 0.03,
+      "dateUnit": "Ma",
+      "typeSite": "Multiple (Blombos, Pinnacle Point, etc.)",
+      "typeArtifacts": ["Points", "Blades", "Backed pieces"],
+      "techniques": ["Levallois", "Blade production", "Heat treatment", "Pressure flaking"],
+      "possibleMakers": ["Homo sapiens"],
+      "characteristics": [
+        "Regional traditions (Still Bay, Howiesons Poort)",
+        "Innovation and experimentation",
+        "Associated with symbolic behavior"
+      ],
+      "geographicRange": "Africa (pan-continental)",
+      "significance": "African equivalent of Middle Paleolithic; H. sapiens innovation",
+      "confidence": "high",
+      "citation": "McBrearty & Brooks 2000"
+    },
+    {
+      "id": "still-bay",
+      "name": "Still Bay",
+      "dateFirst": 0.077,
+      "dateLast": 0.071,
+      "dateUnit": "Ma",
+      "typeSite": "Blombos Cave, South Africa",
+      "typeArtifacts": ["Bifacial foliate points", "Bone tools"],
+      "techniques": ["Pressure flaking", "Bifacial reduction"],
+      "possibleMakers": ["Homo sapiens"],
+      "characteristics": [
+        "Finely made bifacial points",
+        "Short-lived but widespread",
+        "Associated with symbolism (ochre engravings)"
+      ],
+      "geographicRange": "Southern Africa",
+      "significance": "Evidence of complex cognition and symbolic capacity",
+      "confidence": "high",
+      "citation": "Henshilwood et al. 2001"
+    },
+    {
+      "id": "howiesons-poort",
+      "name": "Howiesons Poort",
+      "dateFirst": 0.065,
+      "dateLast": 0.059,
+      "dateUnit": "Ma",
+      "typeSite": "Howiesons Poort, South Africa",
+      "typeArtifacts": ["Backed segments", "Crescents", "Microliths"],
+      "techniques": ["Backing", "Microlithic production"],
+      "possibleMakers": ["Homo sapiens"],
+      "characteristics": [
+        "Geometric microliths (first known)",
+        "Hafted composite tools",
+        "Use of non-local raw materials"
+      ],
+      "geographicRange": "Southern and East Africa",
+      "significance": "First microlithic tradition; long-distance exchange",
+      "confidence": "high",
+      "citation": "Wurz 2002"
+    },
+    {
+      "id": "chatelperronian",
+      "name": "Chatelperronian",
+      "dateFirst": 0.045,
+      "dateLast": 0.04,
+      "dateUnit": "Ma",
+      "typeSite": "Grotte des Fees, Chatelperron, France",
+      "typeArtifacts": ["Chatelperron knives", "Personal ornaments"],
+      "techniques": ["Blade production", "Backing"],
+      "possibleMakers": ["Neanderthals (debated)"],
+      "characteristics": [
+        "Transitional industry",
+        "Possible Neanderthal adoption of modern behaviors",
+        "Attribution debated"
+      ],
+      "geographicRange": "France, Northern Spain",
+      "significance": "Evidence of Neanderthal-sapiens interaction",
+      "confidence": "moderate",
+      "citation": "Hublin et al. 2012"
+    },
+    {
+      "id": "aurignacian",
+      "name": "Aurignacian",
+      "dateFirst": 0.043,
+      "dateLast": 0.028,
+      "dateUnit": "Ma",
+      "typeSite": "Aurignac, France",
+      "typeArtifacts": ["Blades", "Bone points", "Figurines", "Personal ornaments"],
+      "techniques": ["Prismatic blade cores", "Bone/antler working"],
+      "possibleMakers": ["Homo sapiens"],
+      "characteristics": [
+        "First Upper Paleolithic",
+        "Explosion of art and symbolism",
+        "Musical instruments (flutes)"
+      ],
+      "geographicRange": "Europe, Near East",
+      "significance": "Marks H. sapiens dominance in Europe; 'creative explosion'",
+      "confidence": "very high",
+      "citation": "Mellars 2006"
+    },
+    {
+      "id": "gravettian",
+      "name": "Gravettian",
+      "dateFirst": 0.033,
+      "dateLast": 0.021,
+      "dateUnit": "Ma",
+      "typeSite": "La Gravette, France",
+      "typeArtifacts": ["Gravette points", "Venus figurines", "Backed bladelets"],
+      "techniques": ["Backing", "Pressure flaking"],
+      "possibleMakers": ["Homo sapiens"],
+      "characteristics": [
+        "Pan-European tradition",
+        "Venus figurines widespread",
+        "Mammoth-bone dwellings"
+      ],
+      "geographicRange": "Europe (from Atlantic to Don River)",
+      "significance": "First pan-European culture; population expansion",
+      "confidence": "very high",
+      "citation": "Noonan et al. 2006"
+    },
+    {
+      "id": "solutrean",
+      "name": "Solutrean",
+      "dateFirst": 0.022,
+      "dateLast": 0.017,
+      "dateUnit": "Ma",
+      "typeSite": "Solutre, France",
+      "typeArtifacts": ["Laurel-leaf points", "Willow-leaf points", "Shouldered points"],
+      "techniques": ["Pressure flaking (pinnacle)", "Bifacial thinning"],
+      "possibleMakers": ["Homo sapiens"],
+      "characteristics": [
+        "Finest pressure flaking in prehistory",
+        "Last Glacial Maximum adaptation",
+        "Iberian refugium"
+      ],
+      "geographicRange": "France, Iberia",
+      "significance": "Peak of lithic craftsmanship",
+      "confidence": "high",
+      "citation": "Smith 1966"
+    },
+    {
+      "id": "magdalenian",
+      "name": "Magdalenian",
+      "dateFirst": 0.017,
+      "dateLast": 0.012,
+      "dateUnit": "Ma",
+      "typeSite": "La Madeleine, France",
+      "typeArtifacts": ["Bladelets", "Bone harpoons", "Spearthrowers", "Cave art"],
+      "techniques": ["Microlith production", "Bone/antler carving"],
+      "possibleMakers": ["Homo sapiens"],
+      "characteristics": [
+        "Late Glacial recolonization",
+        "Peak of cave art (Lascaux, Altamira)",
+        "Sophisticated hunting (reindeer, salmon)"
+      ],
+      "geographicRange": "Western and Central Europe",
+      "significance": "Final Paleolithic florescence; post-LGM expansion",
+      "confidence": "very high",
+      "citation": "Straus 1995"
+    },
+    {
+      "id": "epipaleolithic",
+      "name": "Epipaleolithic/Mesolithic",
+      "dateFirst": 0.020,
+      "dateLast": 0.008,
+      "dateUnit": "Ma",
+      "typeSite": "Multiple (Star Carr, Mount Sandel, Natufian sites)",
+      "typeArtifacts": ["Microliths", "Geometric forms", "Ground stone"],
+      "techniques": ["Microlithic production", "Composite tools"],
+      "possibleMakers": ["Homo sapiens"],
+      "characteristics": [
+        "Post-glacial adaptations",
+        "Increased sedentism in some regions",
+        "Precursor to agriculture (Natufian)"
+      ],
+      "geographicRange": "Global (various regional names)",
+      "significance": "Bridge to Neolithic; broad-spectrum revolution",
+      "confidence": "high",
+      "citation": "Bar-Yosef 1998"
+    },
+    {
+      "id": "neolithic",
+      "name": "Neolithic",
+      "dateFirst": 0.012,
+      "dateLast": 0.004,
+      "dateUnit": "Ma",
+      "typeSite": "Multiple (Jericho, Catalhoyuk, etc.)",
+      "typeArtifacts": ["Ground/polished axes", "Sickle blades", "Pottery"],
+      "techniques": ["Grinding", "Polishing", "Pottery"],
+      "possibleMakers": ["Homo sapiens"],
+      "characteristics": [
+        "Agricultural revolution",
+        "Sedentary villages",
+        "Domestication of plants and animals"
+      ],
+      "geographicRange": "Global (multiple independent origins)",
+      "significance": "Transition to food production; foundation of complex societies",
+      "confidence": "very high",
+      "citation": "Childe 1936"
+    }
+  ]
+}
