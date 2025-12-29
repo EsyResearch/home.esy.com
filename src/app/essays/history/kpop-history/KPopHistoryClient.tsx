@@ -1,33 +1,36 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import "./kpop-history.css";
 
 // ============================================================================
 // K-POP HISTORY: THE FACTORY, THE FEVER, THE FUTURE
 // ============================================================================
-// Visual Treatment: Era-morphing with 12 chronological design skins
-// Arc Type: Pre-K-Pop -> Factory -> Fever -> Future
-// Progress Bar: Lightstick glow animation
-// Cultural Lens: Centers Korean innovation, acknowledges industry paradoxes
-// Sources: Academic books, Billboard, industry archives, Wikimedia Commons
+// ORIGINAL DESIGN - No patterns borrowed from existing essays
+//
+// Visual Philosophy:
+// - Photocard collecting → Figure cards with holographic shimmer on hover
+// - Album packaging → Chapters unfold like luxury K-pop albums
+// - Lightstick oceans → Era-specific fandom color gradients
+// - Music show aesthetics → LED-inspired backgrounds per era
+// - Comeback concepts → Each era has completely distinct visual identity
 // ============================================================================
 
 // ==================== TYPE DEFINITIONS ====================
 
-type DesignSkin =
+type EraStyle =
   | "pre-kpop"
-  | "first-gen"
-  | "idol-emergence"
-  | "hallyu-dawn"
-  | "golden-era"
+  | "seo-taiji"
+  | "idol-factory"
+  | "hallyu"
+  | "golden"
   | "viral"
-  | "social"
-  | "girl-power"
+  | "bts"
+  | "blackpink"
   | "pandemic"
   | "metaverse"
-  | "4th-gen"
-  | "transition";
+  | "newjeans"
+  | "reckoning";
 
 interface Figure {
   name: string;
@@ -53,7 +56,7 @@ interface Chapter {
   number: string;
   title: string;
   subtitle?: string;
-  skin: DesignSkin;
+  era: EraStyle;
   temporalMarker?: string;
   epigraph?: { text: string; source: string };
   narrative: string[];
@@ -68,23 +71,23 @@ interface Chapter {
 
 // ==================== READING PROGRESS HOOK ====================
 
-const useReadingProgress = () => {
+function useReadingProgress() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight - windowHeight;
-      const scrollTop = window.scrollY;
-      setProgress(Math.min(scrollTop / documentHeight, 1));
+    const updateProgress = () => {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = window.scrollY;
+      setProgress(scrollHeight > 0 ? Math.min(scrolled / scrollHeight, 1) : 0);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    updateProgress();
+    return () => window.removeEventListener("scroll", updateProgress);
   }, []);
 
   return progress;
-};
+}
 
 // ==================== CHAPTER DATA ====================
 
@@ -95,7 +98,7 @@ const CHAPTERS: Chapter[] = [
     number: "00",
     title: "The Sound Before the Storm",
     subtitle: "Korean music before K-pop existed",
-    skin: "pre-kpop",
+    era: "pre-kpop",
     temporalMarker: "1926-1991",
     epigraph: {
       text: "The combination of han and heung is what defines ppong, and this definitive combination, which characterizes trot, is also at the heart of K-pop.",
@@ -179,7 +182,7 @@ const CHAPTERS: Chapter[] = [
     number: "01",
     title: "April 11, 1992",
     subtitle: "The day K-pop was born",
-    skin: "first-gen",
+    era: "seo-taiji",
     temporalMarker: "1992",
     epigraph: {
       text: "We weren't trying to be revolutionary. We just made the music we wanted to hear.",
@@ -235,7 +238,7 @@ const CHAPTERS: Chapter[] = [
     number: "02",
     title: "The Blueprint",
     subtitle: "SM Entertainment and Culture Technology",
-    skin: "idol-emergence",
+    era: "idol-factory",
     temporalMarker: "1989-2000",
     epigraph: {
       text: "I returned to Korea with a vision of what the Korean music industry could be.",
@@ -297,7 +300,7 @@ const CHAPTERS: Chapter[] = [
     number: "03",
     title: "The Idol Machine",
     subtitle: "H.O.T. and the first generation",
-    skin: "idol-emergence",
+    era: "idol-factory",
     temporalMarker: "1996-2003",
     epigraph: {
       text: "H.O.T. wasn't just a group—they were a movement. They changed how young Koreans saw themselves.",
@@ -380,7 +383,7 @@ const CHAPTERS: Chapter[] = [
     number: "04",
     title: "The Big Three Emerge",
     subtitle: "SM, YG, JYP establish dominance",
-    skin: "hallyu-dawn",
+    era: "hallyu",
     temporalMarker: "1996-2003",
     epigraph: {
       text: "He was desperate and like a tiger who was about to starve to death.",
@@ -442,7 +445,7 @@ const CHAPTERS: Chapter[] = [
     number: "05",
     title: "The Japan Strategy",
     subtitle: "BoA opens the door to Asia",
-    skin: "hallyu-dawn",
+    era: "hallyu",
     temporalMarker: "2001-2007",
     epigraph: {
       text: "SM invested everything in my success. I couldn't fail.",
@@ -493,7 +496,7 @@ const CHAPTERS: Chapter[] = [
     number: "06",
     title: "The Golden Age",
     subtitle: "TVXQ to Girls' Generation",
-    skin: "golden-era",
+    era: "golden",
     temporalMarker: "2007-2012",
     epigraph: {
       text: "[We wanted] something with which Big Bang fans could identify themselves.",
@@ -570,7 +573,7 @@ const CHAPTERS: Chapter[] = [
     number: "07",
     title: "Gangnam Style",
     subtitle: "The accident that changed everything",
-    skin: "viral",
+    era: "viral",
     temporalMarker: "2012",
     epigraph: {
       text: "He paved the way for K-pop in the US, which allowed [BTS] to follow that path more comfortably.",
@@ -627,7 +630,7 @@ const CHAPTERS: Chapter[] = [
     number: "08",
     title: "BTS: The Outsiders",
     subtitle: "How seven outsiders conquered the world",
-    skin: "social",
+    era: "bts",
     temporalMarker: "2013-2020",
     epigraph: {
       text: "We didn't localize. We brought Korean content to the world as it was, and the world responded.",
@@ -689,7 +692,7 @@ const CHAPTERS: Chapter[] = [
     number: "09",
     title: "The Fandom Industrial Complex",
     subtitle: "When fans became co-producers",
-    skin: "social",
+    era: "bts",
     temporalMarker: "2006-2020",
     epigraph: {
       text: "ARMY is not just our fans. They are our friends, our family.",
@@ -747,7 +750,7 @@ const CHAPTERS: Chapter[] = [
     number: "10",
     title: "BLACKPINK",
     subtitle: "The girl crush revolution",
-    skin: "girl-power",
+    era: "blackpink",
     temporalMarker: "2016-2023",
     epigraph: {
       text: "We are BLACKPINK. The revolution.",
@@ -814,7 +817,7 @@ const CHAPTERS: Chapter[] = [
     number: "11",
     title: "Platform Wars",
     subtitle: "From Cyworld to Weverse",
-    skin: "social",
+    era: "bts",
     temporalMarker: "1999-2024",
     epigraph: {
       text: "Rather than resisting new technology, K-Pop agencies integrated it into artist development and fan engagement strategies.",
@@ -870,7 +873,7 @@ const CHAPTERS: Chapter[] = [
     number: "12",
     title: "When the Stage Went Virtual",
     subtitle: "COVID-19 and the reinvention of concerts",
-    skin: "pandemic",
+    era: "pandemic",
     temporalMarker: "2020-2022",
     epigraph: {
       text: "COVID-19 accelerated changes that were coming anyway. The virtual concert isn't a replacement—it's an expansion.",
@@ -896,7 +899,7 @@ const CHAPTERS: Chapter[] = [
         nameKorean: "에스파",
         epithet: "The Metaverse Group",
         role: "Girl Group (2020-present)",
-        contributions: "Debuted with virtual AI members (æ-aespa). First group built for metaverse integration.",
+        contributions: "Debuted with virtual AI members (ae-aespa). First group built for metaverse integration.",
         quote: "We exist in both worlds—real and virtual.",
         quoteSource: "Promotional materials"
       }
@@ -935,7 +938,7 @@ const CHAPTERS: Chapter[] = [
     number: "13",
     title: "The Reckoning",
     subtitle: "Contracts, mental health, and industry reform",
-    skin: "transition",
+    era: "reckoning",
     temporalMarker: "2009-2025",
     epigraph: {
       text: "The system produces technically excellent performers but at documented human cost.",
@@ -1002,7 +1005,7 @@ const CHAPTERS: Chapter[] = [
     number: "14",
     title: "NewJeans and the 4th Generation",
     subtitle: "Y2K nostalgia meets platform natives",
-    skin: "4th-gen",
+    era: "newjeans",
     temporalMarker: "2022-2025",
     epigraph: {
       text: "NewJeans represented something different: less manufactured artifice, more organic cool. And then the company conflict reminded everyone that even 'organic' is manufactured.",
@@ -1063,7 +1066,7 @@ const CHAPTERS: Chapter[] = [
     number: "15",
     title: "What Comes After the Wave?",
     subtitle: "The future of K-pop",
-    skin: "transition",
+    era: "reckoning",
     temporalMarker: "2025 and Beyond",
     epigraph: {
       text: "K-Pop represents one of the most successful cultural export phenomena in modern history, transforming from a localized Korean music industry into a $10+ billion global entertainment force over approximately 30 years.",
@@ -1080,197 +1083,222 @@ const CHAPTERS: Chapter[] = [
   }
 ];
 
+// ==================== PART DIVIDER COMPONENT ====================
+
+interface PartDividerProps {
+  number: string;
+  title: string;
+  subtitle: string;
+}
+
+function PartDivider({ number, title, subtitle }: PartDividerProps) {
+  return (
+    <div className="kh-part-divider">
+      <span className="kh-part-number">{number}</span>
+      <h2 className="kh-part-title">{title}</h2>
+      <p className="kh-part-subtitle">{subtitle}</p>
+    </div>
+  );
+}
+
+// ==================== FIGURE CARD COMPONENT ====================
+
+function FigureCard({ figure }: { figure: Figure }) {
+  return (
+    <div className="kh-figure-card">
+      <h3 className="kh-figure-name">
+        {figure.name}
+        {figure.nameKorean && (
+          <span className="kh-figure-korean">{figure.nameKorean}</span>
+        )}
+      </h3>
+      <p className="kh-figure-epithet">{figure.epithet}</p>
+      <p className="kh-figure-meta">
+        {figure.role}
+        {figure.born && ` · b. ${figure.born}`}
+        {figure.died && ` · d. ${figure.died}`}
+      </p>
+      <p className="kh-figure-contributions">{figure.contributions}</p>
+      {figure.quote && (
+        <div className="kh-figure-quote">
+          <p>&ldquo;{figure.quote}&rdquo;</p>
+          {figure.quoteSource && (
+            <p className="kh-figure-quote-source">— {figure.quoteSource}</p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ==================== TIMELINE COMPONENT ====================
+
+function Timeline({ events }: { events: TimelineEvent[] }) {
+  return (
+    <div className="kh-timeline">
+      {events.map((event, index) => (
+        <div key={index} className="kh-timeline-event">
+          <span className="kh-timeline-date">{event.date}</span>
+          <h4 className="kh-timeline-title">{event.title}</h4>
+          <p className="kh-timeline-description">{event.description}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ==================== CHAPTER COMPONENT ====================
+
+interface ChapterProps {
+  chapter: Chapter;
+  showPartDivider?: { number: string; title: string; subtitle: string };
+}
+
+const Chapter = React.forwardRef<HTMLElement, ChapterProps>(
+  ({ chapter, showPartDivider }, ref) => {
+    return (
+      <section ref={ref} id={chapter.id} className={`kh-section era-${chapter.era}`}>
+        {showPartDivider && (
+          <PartDivider
+            number={showPartDivider.number}
+            title={showPartDivider.title}
+            subtitle={showPartDivider.subtitle}
+          />
+        )}
+
+        {chapter.temporalMarker && (
+          <span className="kh-temporal-marker">{chapter.temporalMarker}</span>
+        )}
+
+        <span className="kh-chapter-number">Chapter {chapter.number}</span>
+        <h2 className="kh-chapter-title">{chapter.title}</h2>
+        {chapter.subtitle && (
+          <p className="kh-chapter-subtitle">{chapter.subtitle}</p>
+        )}
+
+        {chapter.epigraph && (
+          <blockquote className="kh-epigraph">
+            <p className="kh-epigraph-text">&ldquo;{chapter.epigraph.text}&rdquo;</p>
+            <cite className="kh-epigraph-source">— {chapter.epigraph.source}</cite>
+          </blockquote>
+        )}
+
+        {chapter.chapterImage && (
+          <div className="kh-image-container">
+            <img
+              src={chapter.chapterImage.url}
+              alt={chapter.chapterImage.alt}
+              className="kh-chapter-image"
+              loading="lazy"
+            />
+            <p className="kh-image-attribution">{chapter.chapterImage.attribution}</p>
+          </div>
+        )}
+
+        <div className="kh-content">
+          {chapter.narrative.map((paragraph, index) => (
+            <p key={index} className="kh-paragraph">{paragraph}</p>
+          ))}
+        </div>
+
+        {chapter.figures.length > 0 && (
+          <div className="kh-figures-grid">
+            {chapter.figures.map((figure, index) => (
+              <FigureCard key={index} figure={figure} />
+            ))}
+          </div>
+        )}
+
+        {chapter.timeline && chapter.timeline.length > 0 && (
+          <Timeline events={chapter.timeline} />
+        )}
+      </section>
+    );
+  }
+);
+
+Chapter.displayName = "Chapter";
+
 // ==================== MAIN COMPONENT ====================
 
 export default function KPopHistoryClient() {
-  const readingProgress = useReadingProgress();
-  const [currentSkin, setCurrentSkin] = useState<DesignSkin>("pre-kpop");
-  const chapterRefs = useRef<(HTMLElement | null)[]>([]);
+  const progress = useReadingProgress();
+  const [currentEra, setCurrentEra] = useState<EraStyle>("pre-kpop");
+  const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
-  // Update skin based on scroll position
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 3;
+  // Track which era is currently in view
+  const updateCurrentEra = useCallback(() => {
+    const viewportMiddle = window.scrollY + window.innerHeight * 0.4;
 
-      for (let i = chapterRefs.current.length - 1; i >= 0; i--) {
-        const chapter = chapterRefs.current[i];
-        if (chapter && chapter.offsetTop <= scrollPosition) {
-          setCurrentSkin(CHAPTERS[i].skin);
-          break;
-        }
+    for (let i = sectionRefs.current.length - 1; i >= 0; i--) {
+      const section = sectionRefs.current[i];
+      if (section && section.offsetTop <= viewportMiddle) {
+        setCurrentEra(CHAPTERS[i].era);
+        break;
       }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    }
   }, []);
 
+  useEffect(() => {
+    window.addEventListener("scroll", updateCurrentEra, { passive: true });
+    updateCurrentEra();
+    return () => window.removeEventListener("scroll", updateCurrentEra);
+  }, [updateCurrentEra]);
+
+  // Part divider configuration
+  const partDividers: Record<string, { number: string; title: string; subtitle: string }> = {
+    "birth-of-kpop": {
+      number: "Part I",
+      title: "THE FACTORY",
+      subtitle: "The industrial system that manufactured a cultural revolution (1992-2012)"
+    },
+    "gangnam-style": {
+      number: "Part II",
+      title: "THE FEVER",
+      subtitle: "When the factory met the internet, and the world caught fire (2012-2020)"
+    },
+    "pandemic-pivot": {
+      number: "Part III",
+      title: "THE FUTURE",
+      subtitle: "The industry faces its contradictions (2020-2025)"
+    }
+  };
+
   return (
-    <article className={`kpop-essay skin-${currentSkin}`}>
-      {/* Progress Bar */}
-      <div className="kpop-progress">
+    <article className={`kh-essay era-${currentEra}`}>
+      {/* Reading Progress */}
+      <div className="kh-progress">
         <div
-          className="kpop-progress-bar"
-          style={{ width: `${readingProgress * 100}%` }}
+          className="kh-progress-fill"
+          style={{ width: `${progress * 100}%` }}
         />
       </div>
 
-      {/* Hero Section */}
-      <header className="kpop-hero">
-        <span className="chapter-number">A Visual History</span>
-        <h1 className="kpop-hero-title">
-          K-POP HISTORY
-        </h1>
-        <p className="kpop-hero-subtitle">
-          The Factory, The Fever, The Future
-        </p>
-        <p style={{ fontSize: "0.875rem", color: "var(--kpop-text-muted)", marginTop: "2rem" }}>
-          From 1926 to 2025 • 380+ Figures • 180+ Milestones
+      {/* Hero */}
+      <header className="kh-hero">
+        <span className="kh-hero-label">A Visual History</span>
+        <h1 className="kh-hero-title">K-POP HISTORY</h1>
+        <p className="kh-hero-subtitle">The Factory, The Fever, The Future</p>
+        <p className="kh-hero-meta">
+          From 1926 to 2025 · 380+ Figures · 180+ Milestones
         </p>
       </header>
 
       {/* Chapters */}
       {CHAPTERS.map((chapter, index) => (
-        <section
+        <Chapter
           key={chapter.id}
-          ref={(el) => { chapterRefs.current[index] = el; }}
-          className={`kpop-chapter skin-${chapter.skin}`}
-          id={chapter.id}
-        >
-          {/* Part Title Cards */}
-          {chapter.id === "birth-of-kpop" && (
-            <div className="part-title-section">
-              <span className="part-number">Part I</span>
-              <h2 className="part-title">THE FACTORY</h2>
-              <p className="part-subtitle">
-                The industrial system that manufactured a cultural revolution (1992-2012)
-              </p>
-            </div>
-          )}
-
-          {chapter.id === "gangnam-style" && (
-            <div className="part-title-section">
-              <span className="part-number">Part II</span>
-              <h2 className="part-title">THE FEVER</h2>
-              <p className="part-subtitle">
-                When the factory met the internet, and the world caught fire (2012-2020)
-              </p>
-            </div>
-          )}
-
-          {chapter.id === "pandemic-pivot" && (
-            <div className="part-title-section">
-              <span className="part-number">Part III</span>
-              <h2 className="part-title">THE FUTURE</h2>
-              <p className="part-subtitle">
-                The industry faces its contradictions (2020-2025)
-              </p>
-            </div>
-          )}
-
-          {/* Chapter Header */}
-          {chapter.temporalMarker && (
-            <span className="temporal-marker">{chapter.temporalMarker}</span>
-          )}
-          <span className="chapter-number">Chapter {chapter.number}</span>
-          <h2 className="chapter-header">{chapter.title}</h2>
-          {chapter.subtitle && (
-            <p className="chapter-subtitle">{chapter.subtitle}</p>
-          )}
-
-          {/* Epigraph */}
-          {chapter.epigraph && (
-            <blockquote className="epigraph">
-              <p className="epigraph-text">"{chapter.epigraph.text}"</p>
-              <cite className="epigraph-source">— {chapter.epigraph.source}</cite>
-            </blockquote>
-          )}
-
-          {/* Chapter Image */}
-          {chapter.chapterImage && (
-            <div className="chapter-image-container">
-              <img
-                src={chapter.chapterImage.url}
-                alt={chapter.chapterImage.alt}
-                className="chapter-image"
-                loading="lazy"
-              />
-              <p className="chapter-image-attribution">
-                {chapter.chapterImage.attribution}
-              </p>
-            </div>
-          )}
-
-          {/* Narrative */}
-          <div className="chapter-content">
-            {chapter.narrative.map((paragraph, pIndex) => (
-              <p key={pIndex} className="narrative-paragraph">
-                {paragraph}
-              </p>
-            ))}
-          </div>
-
-          {/* Figures */}
-          {chapter.figures.length > 0 && (
-            <div className="figures-grid">
-              {chapter.figures.map((figure, fIndex) => (
-                <div key={fIndex} className="figure-card">
-                  <h3 className="figure-name">
-                    {figure.name}
-                    {figure.nameKorean && (
-                      <span className="figure-name-korean">({figure.nameKorean})</span>
-                    )}
-                  </h3>
-                  <p className="figure-epithet">{figure.epithet}</p>
-                  <p className="figure-role">
-                    {figure.role}
-                    {figure.born && ` • b. ${figure.born}`}
-                    {figure.died && ` • d. ${figure.died}`}
-                  </p>
-                  <p className="figure-contributions">{figure.contributions}</p>
-                  {figure.quote && (
-                    <div className="figure-quote">
-                      <p>"{figure.quote}"</p>
-                      {figure.quoteSource && (
-                        <p className="figure-quote-source">— {figure.quoteSource}</p>
-                      )}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Timeline */}
-          {chapter.timeline && chapter.timeline.length > 0 && (
-            <div className="timeline">
-              {chapter.timeline.map((event, tIndex) => (
-                <div key={tIndex} className="timeline-event">
-                  <span className="timeline-date">{event.date}</span>
-                  <h4 className="timeline-title">{event.title}</h4>
-                  <p className="timeline-description">{event.description}</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </section>
+          ref={(el) => { sectionRefs.current[index] = el; }}
+          chapter={chapter}
+          showPartDivider={partDividers[chapter.id]}
+        />
       ))}
 
       {/* Footer */}
-      <footer style={{
-        padding: "4rem var(--kpop-gutter)",
-        textAlign: "center",
-        borderTop: "1px solid var(--kpop-surface)"
-      }}>
-        <p style={{ color: "var(--kpop-text-muted)", fontSize: "0.875rem" }}>
-          Research and writing: Esy Visual Essay Team
-        </p>
-        <p style={{ color: "var(--kpop-text-muted)", fontSize: "0.75rem", marginTop: "0.5rem" }}>
-          Sources: Academic publications, Billboard, industry archives, Wikimedia Commons
-        </p>
-        <p style={{ color: "var(--kpop-text-muted)", fontSize: "0.75rem", marginTop: "1rem" }}>
-          © 2024 Esy. All rights reserved.
-        </p>
+      <footer className="kh-footer">
+        <p>Research and writing: Esy Visual Essay Team</p>
+        <p>Sources: Academic publications, Billboard, industry archives, Wikimedia Commons</p>
+        <p>© 2024 Esy. All rights reserved.</p>
       </footer>
     </article>
   );
