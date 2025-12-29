@@ -5,7 +5,7 @@ import "./styles/human-evolution.css";
 import { chapters, type Chapter } from "./data/chapters";
 import { species } from "./data/species";
 import { glossary, getTermByName } from "./data/glossary";
-import { specimenImages, toolImages, siteImages } from "./data/images";
+import { specimenImages, toolImages, siteImages, methodImages } from "./data/images";
 
 /* ========================================
    Type Definitions
@@ -976,24 +976,36 @@ function ChapterHowWeKnow() {
             title="Radiometric Dating"
             description="Measures the decay of radioactive isotopes in volcanic rocks surrounding fossils. Potassium-argon and argon-argon dating work for rocks millions of years old."
             significance="Provides absolute ages with known error ranges"
+            imageUrl={methodImages.radiometricDating.src}
+            imageAlt={methodImages.radiometricDating.alt}
+            imageCaption={methodImages.radiometricDating.caption}
           />
           <EvidenceCard
             type="method"
             title="Ancient DNA"
             description="Genetic material extracted from bones up to several hundred thousand years old. Has revealed interbreeding between human species."
             significance="Revolutionized our understanding since 2010"
+            imageUrl={methodImages.ancientDNA.src}
+            imageAlt={methodImages.ancientDNA.alt}
+            imageCaption={methodImages.ancientDNA.caption}
           />
           <EvidenceCard
             type="method"
             title="Stratigraphy"
             description="The study of rock layers and their sequence. Fossils in lower layers are generally older than those above."
             significance="Establishes relative chronology"
+            imageUrl={methodImages.stratigraphy.src}
+            imageAlt={methodImages.stratigraphy.alt}
+            imageCaption={methodImages.stratigraphy.caption}
           />
           <EvidenceCard
             type="method"
             title="Comparative Anatomy"
             description="Comparing skeletal features with living apes and other fossils to understand evolutionary relationships and locomotion."
             significance="Reveals how our bodies changed over time"
+            imageUrl={methodImages.comparativeAnatomy.src}
+            imageAlt={methodImages.comparativeAnatomy.alt}
+            imageCaption={methodImages.comparativeAnatomy.caption}
           />
         </div>
 
@@ -1092,6 +1104,9 @@ function ChapterAfricanOrigins() {
             date="~7-6 Ma"
             description="The oldest candidate hominin, found in Chad. Its forward-positioned foramen magnum suggests possible bipedalism."
             significance="May represent the earliest known hominin"
+            imageUrl={specimenImages.toumai.src}
+            imageAlt={specimenImages.toumai.alt}
+            imageCaption={specimenImages.toumai.caption}
           />
           <EvidenceCard
             type="specimen"
@@ -1100,6 +1115,9 @@ function ChapterAfricanOrigins() {
             date="4.4 Ma"
             description="A 45% complete skeleton from Ethiopia showing a mosaic of ape-like and hominin features. Had a grasping big toe but walked bipedally."
             significance="Demonstrates woodland bipedalism"
+            imageUrl={specimenImages.ardi.src}
+            imageAlt={specimenImages.ardi.alt}
+            imageCaption={specimenImages.ardi.caption}
           />
           <EvidenceCard
             type="specimen"
@@ -1401,6 +1419,9 @@ function ChapterHomoSapiens() {
             date="~233 ka"
             description="Two partial skulls from Ethiopia. Omo I shows more modern features; Omo II is more archaic. Found in the same deposits, they illustrate the variation among early H. sapiens."
             significance="Among the oldest in East Africa"
+            imageUrl={specimenImages.omoKibish.src}
+            imageAlt={specimenImages.omoKibish.alt}
+            imageCaption={specimenImages.omoKibish.caption}
           />
           <EvidenceCard
             type="specimen"
@@ -1408,6 +1429,9 @@ function ChapterHomoSapiens() {
             date="160 ka"
             description="Three skulls from the Middle Awash, Ethiopia. Nearly complete, they show clear H. sapiens anatomy and evidence of mortuary practices—skulls were defleshed and polished."
             significance="Evidence of early ritual behavior"
+            imageUrl={specimenImages.herto.src}
+            imageAlt={specimenImages.herto.alt}
+            imageCaption={specimenImages.herto.caption}
           />
         </div>
 
@@ -1454,6 +1478,9 @@ function ChapterMigrations() {
             date="~120-90 ka"
             description="Caves in Israel with early modern human remains, representing an earlier migration out of Africa that may not have contributed significantly to later populations."
             significance="Evidence of early failed dispersal"
+            imageUrl={siteImages.skhulCave.src}
+            imageAlt={siteImages.skhulCave.alt}
+            imageCaption={siteImages.skhulCave.caption}
           />
           <EvidenceCard
             type="site"
@@ -1461,6 +1488,9 @@ function ChapterMigrations() {
             date="~45 ka"
             description="Deep skull fragments represent some of the earliest modern humans in Southeast Asia, showing rapid dispersal along the southern route."
             significance="Early Southeast Asian presence"
+            imageUrl={siteImages.niahCave.src}
+            imageAlt={siteImages.niahCave.alt}
+            imageCaption={siteImages.niahCave.caption}
           />
           <EvidenceCard
             type="site"
@@ -1468,6 +1498,9 @@ function ChapterMigrations() {
             date="~42-45 ka"
             description="Skeletal remains and cremation from Australia, indicating humans crossed the Wallace Line (requiring sea voyages) very early."
             significance="Earliest evidence in Australia"
+            imageUrl={siteImages.lakeMungo.src}
+            imageAlt={siteImages.lakeMungo.alt}
+            imageCaption={siteImages.lakeMungo.caption}
           />
         </div>
 
@@ -1613,12 +1646,18 @@ function ChapterPresentFuture() {
             title="EPAS1 Gene"
             description="Tibetans carry a variant of this gene that helps with high-altitude adaptation. Analysis revealed it came from Denisovans—an example of adaptive introgression."
             significance="Archaic genes still helping us today"
+            imageUrl={methodImages.dnaStructure.src}
+            imageAlt={methodImages.dnaStructure.alt}
+            imageCaption="DNA: the molecular archive preserving archaic contributions"
           />
           <EvidenceCard
             type="method"
             title="HLA Genes"
             description="Genes critical to immune function. Studies show that some Neanderthal and Denisovan variants were beneficial and were rapidly selected for in modern human populations."
             significance="Ancient immune adaptations"
+            imageUrl={methodImages.ancientDNA.src}
+            imageAlt={methodImages.ancientDNA.alt}
+            imageCaption="Ancient DNA analysis reveals beneficial archaic gene variants"
           />
         </div>
 

@@ -8,7 +8,7 @@ export interface ImageData {
   src: string;
   alt: string;
   caption?: string;
-  license: 'CC0' | 'CC BY' | 'CC BY-SA' | 'Public Domain' | 'CC BY-SA FR';
+  license: 'CC0' | 'CC BY' | 'CC BY-SA' | 'CC BY-SA 3.0' | 'CC BY-SA 4.0' | 'CC BY 2.0' | 'CC BY 3.0' | 'Public Domain' | 'CC BY-SA FR';
   attribution: string;
   source: string;
 }
@@ -93,6 +93,46 @@ export const specimenImages: Record<string, ImageData> = {
     license: "CC BY-SA",
     attribution: "Philipp Gunz, MPI EVA, CC BY-SA 2.0, via Wikimedia Commons",
     source: "Max Planck Institute for Evolutionary Anthropology"
+  },
+  toumai: {
+    id: "toumai",
+    title: "Sahelanthropus tchadensis skull",
+    src: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Sahelanthropus_tchadensis_-_TM_266-01-060-1.jpg",
+    alt: "Sahelanthropus tchadensis (Toumaï) skull, approximately 7 million years old",
+    caption: "Toumaï: possibly the oldest known hominin, discovered in Chad in 2001",
+    license: "CC BY-SA 4.0",
+    attribution: "Didier Descouens, CC BY-SA 4.0, via Wikimedia Commons",
+    source: "Muséum national d'histoire naturelle, Paris"
+  },
+  ardi: {
+    id: "ardi",
+    title: "Ardipithecus ramidus reconstruction",
+    src: "https://upload.wikimedia.org/wikipedia/commons/e/e2/Ardipithecus_ramidus.jpg",
+    alt: "Ardipithecus ramidus (Ardi) skeletal reconstruction, 4.4 million years old",
+    caption: "Ardi: 45% complete skeleton showing mix of bipedal and arboreal adaptations",
+    license: "CC BY-SA 3.0",
+    attribution: "Tobias Fluegel, CC BY-SA 3.0, via Wikimedia Commons",
+    source: "Middle Awash, Ethiopia"
+  },
+  omoKibish: {
+    id: "omo-kibish",
+    title: "Omo Kibish skull",
+    src: "https://upload.wikimedia.org/wikipedia/commons/0/01/Omo_Kibish_-_MCN_4152_%28cropped%29.jpg",
+    alt: "Omo I skull from Omo Kibish, Ethiopia, approximately 233,000 years old",
+    caption: "Omo I: among the earliest anatomically modern Homo sapiens fossils",
+    license: "CC BY-SA 4.0",
+    attribution: "CC BY-SA 4.0, via Wikimedia Commons",
+    source: "Omo Kibish Formation, Ethiopia"
+  },
+  herto: {
+    id: "herto",
+    title: "Herto skull (Homo sapiens idaltu)",
+    src: "https://upload.wikimedia.org/wikipedia/commons/d/df/Teschio_di_Homo_sapiens_idaltu%2C_del_pleistocene%2C_200-160_mila_anni_fa.jpg",
+    alt: "Homo sapiens idaltu skull from Herto, Ethiopia, 160,000 years old",
+    caption: "Herto: early Homo sapiens with archaic features, showing mortuary practices",
+    license: "CC BY 3.0",
+    attribution: "Sailko, CC BY 3.0, via Wikimedia Commons",
+    source: "Middle Awash, Ethiopia"
   }
 };
 
@@ -189,17 +229,111 @@ export const siteImages: Record<string, ImageData> = {
     license: "CC BY-SA",
     attribution: "Vincent Mourre / Inrap, CC BY-SA 3.0",
     source: "Blombos Cave, South Africa"
+  },
+  skhulCave: {
+    id: "skhul-cave",
+    title: "Skhul Cave",
+    src: "https://upload.wikimedia.org/wikipedia/commons/5/58/Skhul_Cave.JPG",
+    alt: "Entrance to Skhul Cave on Mount Carmel, Israel",
+    caption: "Skhul Cave: site of early Homo sapiens outside Africa, ~120,000 years ago",
+    license: "CC BY-SA 3.0",
+    attribution: "Hanay, CC BY-SA 3.0, via Wikimedia Commons",
+    source: "Mount Carmel, Israel"
+  },
+  qafzehCave: {
+    id: "qafzeh-cave",
+    title: "Qafzeh Cave entrance",
+    src: "https://upload.wikimedia.org/wikipedia/commons/1/10/Eingang_der_Qafzeh-H%C3%B6hle.jpg",
+    alt: "Entrance to Qafzeh Cave near Nazareth, Israel",
+    caption: "Qafzeh Cave: early modern humans with intentional burials, ~92,000 years ago",
+    license: "CC BY-SA 4.0",
+    attribution: "Hanay, CC BY-SA 4.0, via Wikimedia Commons",
+    source: "Lower Galilee, Israel"
+  },
+  niahCave: {
+    id: "niah-cave",
+    title: "Niah Great Cave",
+    src: "https://upload.wikimedia.org/wikipedia/commons/f/fd/Niah_Great_Cave%2C_Sarawak%2C_Malaysia.jpg",
+    alt: "Niah Great Cave in Sarawak, Malaysia, site of the Deep Skull",
+    caption: "Niah Cave: oldest modern human remains in Southeast Asia, ~40,000 years ago",
+    license: "CC BY 2.0",
+    attribution: "Geoarts, CC BY 2.0, via Wikimedia Commons",
+    source: "Sarawak, Malaysia"
+  },
+  lakeMungo: {
+    id: "lake-mungo",
+    title: "Lake Mungo lunette",
+    src: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Lake_Mungo_lunette.jpg",
+    alt: "Lake Mungo lunette landscape in New South Wales, Australia",
+    caption: "Lake Mungo: oldest human remains in Australia, ~42,000 years ago",
+    license: "CC BY-SA 4.0",
+    attribution: "Noodle snacks, CC BY-SA 4.0, via Wikimedia Commons",
+    source: "Willandra Lakes, Australia"
+  }
+};
+
+export const methodImages: Record<string, ImageData> = {
+  radiometricDating: {
+    id: "radiometric-dating",
+    title: "Uranium decay chain diagram",
+    src: "https://upload.wikimedia.org/wikipedia/commons/6/65/Decay_chain%284n%2B2%2C_Uranium_series%29.svg",
+    alt: "Uranium-238 decay chain showing radioactive decay series",
+    caption: "Radiometric dating: measuring radioactive decay to determine absolute ages",
+    license: "CC BY 3.0",
+    attribution: "BatesIsBack, CC BY 3.0, via Wikimedia Commons",
+    source: "Wikimedia Commons"
+  },
+  ancientDNA: {
+    id: "ancient-dna",
+    title: "Ancient DNA extraction",
+    src: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Neanderthal_DNA_extraction.jpg",
+    alt: "Laboratory setup for ancient DNA extraction from fossil specimens",
+    caption: "Ancient DNA: extracting and sequencing genetic material from fossils",
+    license: "Public Domain",
+    attribution: "Max Planck Institute for Evolutionary Anthropology, Public Domain",
+    source: "MPI-EVA Leipzig"
+  },
+  stratigraphy: {
+    id: "stratigraphy",
+    title: "Grand Canyon stratigraphy",
+    src: "https://upload.wikimedia.org/wikipedia/commons/1/14/Stratigraphy_of_the_Grand_Canyon.png",
+    alt: "Stratigraphic layers of the Grand Canyon showing geological time",
+    caption: "Stratigraphy: reading Earth's history through rock layers",
+    license: "Public Domain",
+    attribution: "US National Park Service, Public Domain",
+    source: "Grand Canyon National Park"
+  },
+  comparativeAnatomy: {
+    id: "comparative-anatomy",
+    title: "Primate skull comparison",
+    src: "https://upload.wikimedia.org/wikipedia/commons/a/ae/The_Skulls_of_the_gorilla%2Cchimpanzee_and_humans_-_Kaiwei_Zhang.jpg",
+    alt: "Comparison of gorilla, chimpanzee, and human skulls",
+    caption: "Comparative anatomy: analyzing structural similarities and differences across species",
+    license: "CC BY-SA 3.0",
+    attribution: "Kaiwei Zhang, CC BY-SA 3.0, via Wikimedia Commons",
+    source: "Comparative skeletal collection"
+  },
+  dnaStructure: {
+    id: "dna-structure",
+    title: "DNA double helix",
+    src: "https://upload.wikimedia.org/wikipedia/commons/e/e7/DNA_simple.svg",
+    alt: "Simplified diagram of DNA double helix structure",
+    caption: "DNA: the molecular basis of genetic inheritance and evolutionary evidence",
+    license: "Public Domain",
+    attribution: "Madprime, Public Domain",
+    source: "Wikimedia Commons"
   }
 };
 
 // Helper to get image by ID
 export const getImageById = (id: string): ImageData | undefined => {
-  return specimenImages[id] || toolImages[id] || siteImages[id];
+  return specimenImages[id] || toolImages[id] || siteImages[id] || methodImages[id];
 };
 
 // All images combined for easy iteration
 export const allImages: ImageData[] = [
   ...Object.values(specimenImages),
   ...Object.values(toolImages),
-  ...Object.values(siteImages)
+  ...Object.values(siteImages),
+  ...Object.values(methodImages)
 ];
