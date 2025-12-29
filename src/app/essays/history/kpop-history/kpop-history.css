@@ -1,0 +1,870 @@
+/* ============================================================================
+   K-POP HISTORY: THE FACTORY, THE FEVER, THE FUTURE
+   ============================================================================
+   Visual Treatment: Era-morphing with 12 chronological skins + concept overlays
+   Arc Type: Pre-K-Pop -> Factory -> Fever -> Future
+   Progress Bar: Lightstick glow animation
+   Cultural Lens: Centers Korean innovation, acknowledges industry paradoxes
+   ============================================================================ */
+
+/* ==================== CSS CUSTOM PROPERTIES ==================== */
+
+:root {
+  /* Universal Layout Tokens */
+  --kpop-max-width: 1400px;
+  --kpop-content-width: 800px;
+  --kpop-gutter: clamp(1rem, 5vw, 3rem);
+  --kpop-section-spacing: clamp(4rem, 10vh, 8rem);
+
+  /* Universal Animation Tokens */
+  --kpop-duration-fast: 150ms;
+  --kpop-duration-base: 300ms;
+  --kpop-duration-slow: 500ms;
+  --kpop-duration-hero: 800ms;
+  --kpop-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --kpop-easing-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --kpop-easing-elegant: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* Default (Neutral) Palette */
+  --kpop-bg: #0a0a0a;
+  --kpop-surface: #141414;
+  --kpop-text: #f5f5f5;
+  --kpop-text-muted: #a0a0a0;
+  --kpop-accent: #8b5cf6;
+  --kpop-accent-secondary: #ff1493;
+
+  /* Grain Overlay */
+  --kpop-grain-opacity: 0.05;
+}
+
+/* ==================== SKIN 1: PRE-KPOP ROOTS ==================== */
+/* Era: Historical Korean music (1926-1991) */
+
+.skin-pre-kpop {
+  --kpop-bg: #f5f0e6;
+  --kpop-surface: #ebe6d6;
+  --kpop-text: #2d2d2d;
+  --kpop-text-muted: #5a5a5a;
+  --kpop-accent: #8b7355;
+  --kpop-accent-secondary: #c9a959;
+  --kpop-grain-opacity: 0.15;
+}
+
+.skin-pre-kpop {
+  font-family: "Noto Serif KR", Georgia, serif;
+}
+
+.skin-pre-kpop .chapter-header {
+  font-family: "Noto Serif KR", Georgia, serif;
+  font-weight: 700;
+}
+
+.skin-pre-kpop .chapter-image {
+  filter: sepia(0.6) contrast(1.1);
+  border: 1px solid #8b7355;
+}
+
+.skin-pre-kpop .figure-card {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 115, 85, 0.1) 0%,
+    rgba(201, 169, 89, 0.05) 100%
+  );
+  border: 1px solid rgba(139, 115, 85, 0.3);
+}
+
+/* ==================== SKIN 2: FIRST GENERATION MTV ==================== */
+/* Era: Seo Taiji revolution (1992-1996) */
+
+.skin-first-gen {
+  --kpop-bg: #1a1a2e;
+  --kpop-surface: #16213e;
+  --kpop-text: #ffffff;
+  --kpop-text-muted: #cc99ff;
+  --kpop-accent: #e94560;
+  --kpop-accent-secondary: #0f3460;
+  --kpop-grain-opacity: 0.12;
+}
+
+.skin-first-gen {
+  font-family: "Roboto", "Arial", sans-serif;
+}
+
+.skin-first-gen .chapter-header {
+  font-family: "Impact", "Arial Black", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.skin-first-gen .chapter-image {
+  filter: contrast(1.2) saturate(1.3);
+  box-shadow: 0 0 30px rgba(233, 69, 96, 0.3);
+}
+
+/* VHS scanline effect */
+.skin-first-gen::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.3;
+}
+
+/* ==================== SKIN 3: IDOL EMERGENCE ==================== */
+/* Era: H.O.T., S.E.S., candy pop (1996-2003) */
+
+.skin-idol-emergence {
+  --kpop-bg: #fff5f5;
+  --kpop-surface: #ffffff;
+  --kpop-text: #333333;
+  --kpop-text-muted: #666666;
+  --kpop-accent: #ff6b9d;
+  --kpop-accent-secondary: #ffd93d;
+  --kpop-grain-opacity: 0.03;
+}
+
+.skin-idol-emergence {
+  font-family: "Nunito", "Comic Sans MS", sans-serif;
+}
+
+.skin-idol-emergence .chapter-header {
+  font-weight: 800;
+  background: linear-gradient(135deg, #ff6b9d, #ffd93d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.skin-idol-emergence .figure-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(255, 107, 157, 0.2);
+  background: linear-gradient(135deg, #fff5f5, #fffaf0);
+}
+
+/* ==================== SKIN 4: HALLYU DAWN ==================== */
+/* Era: TVXQ, Japan expansion (2003-2007) */
+
+.skin-hallyu-dawn {
+  --kpop-bg: #0d1b2a;
+  --kpop-surface: #1b263b;
+  --kpop-text: #ffffff;
+  --kpop-text-muted: #adb5bd;
+  --kpop-accent: #e63946;
+  --kpop-accent-secondary: #c9b037;
+  --kpop-grain-opacity: 0.06;
+}
+
+.skin-hallyu-dawn {
+  font-family: "Noto Sans KR", "Arial", sans-serif;
+}
+
+.skin-hallyu-dawn .chapter-header {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.skin-hallyu-dawn .figure-card {
+  background: linear-gradient(
+    135deg,
+    rgba(230, 57, 70, 0.1) 0%,
+    rgba(201, 176, 55, 0.05) 100%
+  );
+  border: 1px solid rgba(230, 57, 70, 0.3);
+}
+
+/* ==================== SKIN 5: GOLDEN ERA ==================== */
+/* Era: Peak glamour (2007-2012) */
+
+.skin-golden-era {
+  --kpop-bg: #000000;
+  --kpop-surface: #1a1a1a;
+  --kpop-text: #ffffff;
+  --kpop-text-muted: #999999;
+  --kpop-accent: #ffd700;
+  --kpop-accent-secondary: #00d4ff;
+  --kpop-grain-opacity: 0.04;
+}
+
+.skin-golden-era {
+  font-family: "Montserrat", sans-serif;
+}
+
+.skin-golden-era .chapter-header {
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffd700, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+}
+
+.skin-golden-era .figure-card {
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+}
+
+/* ==================== SKIN 6: VIRAL BREAKTHROUGH ==================== */
+/* Era: Gangnam Style (2012-2015) */
+
+.skin-viral {
+  --kpop-bg: #ffffff;
+  --kpop-surface: #f5f5f5;
+  --kpop-text: #030303;
+  --kpop-text-muted: #606060;
+  --kpop-accent: #ff0000;
+  --kpop-accent-secondary: #00ff00;
+  --kpop-grain-opacity: 0.02;
+}
+
+.skin-viral {
+  font-family: "Roboto", sans-serif;
+}
+
+.skin-viral .chapter-header {
+  font-weight: 700;
+  color: #ff0000;
+}
+
+.skin-viral .figure-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* YouTube-style view counter */
+.skin-viral .view-counter {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  color: #030303;
+  font-weight: 500;
+}
+
+/* ==================== SKIN 7: SOCIAL MEDIA REVOLUTION ==================== */
+/* Era: BTS rise (2015-2018) */
+
+.skin-social {
+  --kpop-bg: #15202b;
+  --kpop-surface: #192734;
+  --kpop-text: #ffffff;
+  --kpop-text-muted: #8899a6;
+  --kpop-accent: #1da1f2;
+  --kpop-accent-secondary: #8b5cf6;
+  --kpop-grain-opacity: 0.03;
+}
+
+.skin-social {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.skin-social .chapter-header {
+  font-weight: 800;
+}
+
+.skin-social .figure-card {
+  background: #192734;
+  border: 1px solid #38444d;
+  border-radius: 16px;
+}
+
+/* Purple ARMY accent */
+.skin-social .quote-block {
+  border-left: 4px solid #8b5cf6;
+  background: rgba(139, 92, 246, 0.1);
+}
+
+/* ==================== SKIN 8: GIRL POWER SURGE ==================== */
+/* Era: BLACKPINK, TWICE (2016-2020) */
+
+.skin-girl-power {
+  --kpop-bg: #000000;
+  --kpop-surface: #1a1a1a;
+  --kpop-text: #ffffff;
+  --kpop-text-muted: #b0b0b0;
+  --kpop-accent: #ff1493;
+  --kpop-accent-secondary: #ffd700;
+  --kpop-grain-opacity: 0.04;
+}
+
+.skin-girl-power {
+  font-family: "Bebas Neue", "Impact", sans-serif;
+}
+
+.skin-girl-power .chapter-header {
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.skin-girl-power .figure-card {
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  border: 1px solid rgba(255, 20, 147, 0.4);
+}
+
+/* ==================== SKIN 9: PANDEMIC PIVOT ==================== */
+/* Era: Virtual concerts (2020-2022) */
+
+.skin-pandemic {
+  --kpop-bg: #1e1e1e;
+  --kpop-surface: #252525;
+  --kpop-text: #ffffff;
+  --kpop-text-muted: #a0a0a0;
+  --kpop-accent: #5865f2;
+  --kpop-accent-secondary: #3ba55c;
+  --kpop-grain-opacity: 0.05;
+}
+
+.skin-pandemic {
+  font-family: "Inter", -apple-system, sans-serif;
+}
+
+.skin-pandemic .chapter-header {
+  font-weight: 700;
+}
+
+.skin-pandemic .figure-card {
+  background: #252525;
+  border: 1px solid #3a3a3a;
+  border-radius: 8px;
+}
+
+/* ==================== SKIN 10: METAVERSE INTEGRATION ==================== */
+/* Era: aespa, virtual idols (2020-2023) */
+
+.skin-metaverse {
+  --kpop-bg: linear-gradient(135deg, #1a1a2e, #4a0080);
+  --kpop-surface: rgba(26, 26, 46, 0.9);
+  --kpop-text: #ffffff;
+  --kpop-text-muted: #b0b0ff;
+  --kpop-accent: #00ffff;
+  --kpop-accent-secondary: #ff00ff;
+  --kpop-grain-opacity: 0.08;
+}
+
+.skin-metaverse {
+  font-family: "Orbitron", "Courier New", monospace;
+}
+
+.skin-metaverse .chapter-header {
+  font-weight: 700;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  animation: cyber-glow 2s infinite alternate;
+}
+
+@keyframes cyber-glow {
+  from {
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  }
+  to {
+    text-shadow: 0 0 40px rgba(255, 0, 255, 0.5);
+  }
+}
+
+.skin-metaverse .figure-card {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+  border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+/* ==================== SKIN 11: 4TH GEN DOMINANCE ==================== */
+/* Era: NewJeans, Y2K revival (2022-2024) */
+
+.skin-4th-gen {
+  --kpop-bg: #f5f5dc;
+  --kpop-surface: #fffef0;
+  --kpop-text: #333333;
+  --kpop-text-muted: #666666;
+  --kpop-accent: #1560bd;
+  --kpop-accent-secondary: #6b8e23;
+  --kpop-grain-opacity: 0.1;
+}
+
+.skin-4th-gen {
+  font-family: "Pretendard", -apple-system, sans-serif;
+}
+
+.skin-4th-gen .chapter-header {
+  font-weight: 600;
+}
+
+.skin-4th-gen .chapter-image {
+  filter: saturate(0.9) contrast(1.05);
+  border-radius: 4px;
+}
+
+.skin-4th-gen .figure-card {
+  background: #fffef0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* ==================== SKIN 12: INDUSTRY TRANSITION ==================== */
+/* Era: Conflicts and reform (2024-2025) */
+
+.skin-transition {
+  --kpop-bg: #2c2c2c;
+  --kpop-surface: #3a3a3a;
+  --kpop-text: #ffffff;
+  --kpop-text-muted: #a0a0a0;
+  --kpop-accent: #dc3545;
+  --kpop-accent-secondary: #ffc107;
+  --kpop-grain-opacity: 0.08;
+}
+
+.skin-transition {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.skin-transition .chapter-header {
+  font-weight: 700;
+  font-family: Georgia, serif;
+}
+
+.skin-transition .figure-card {
+  background: #3a3a3a;
+  border: 1px solid #4a4a4a;
+}
+
+/* Newsprint texture */
+.skin-transition .quote-block {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.02) 2px,
+    rgba(255, 255, 255, 0.02) 4px
+  );
+  border-left: 4px solid #dc3545;
+}
+
+/* ==================== GLOBAL COMPONENT STYLES ==================== */
+
+.kpop-essay {
+  background: var(--kpop-bg);
+  color: var(--kpop-text);
+  min-height: 100vh;
+  transition: background var(--kpop-duration-slow) var(--kpop-easing-standard),
+    color var(--kpop-duration-slow) var(--kpop-easing-standard);
+}
+
+.kpop-essay * {
+  box-sizing: border-box;
+}
+
+/* Grain overlay */
+.kpop-essay::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: var(--kpop-grain-opacity);
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* ==================== HERO SECTION ==================== */
+
+.kpop-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: var(--kpop-gutter);
+  position: relative;
+  overflow: hidden;
+}
+
+.kpop-hero-title {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.kpop-hero-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: var(--kpop-text-muted);
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+/* ==================== CHAPTER STYLES ==================== */
+
+.kpop-chapter {
+  padding: var(--kpop-section-spacing) var(--kpop-gutter);
+  max-width: var(--kpop-max-width);
+  margin: 0 auto;
+}
+
+.chapter-header {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.chapter-number {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--kpop-accent);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.chapter-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--kpop-text-muted);
+  margin-bottom: 2rem;
+}
+
+.temporal-marker {
+  display: inline-block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.25rem 0.75rem;
+  background: var(--kpop-accent);
+  color: white;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+
+/* ==================== CONTENT STYLES ==================== */
+
+.chapter-content {
+  max-width: var(--kpop-content-width);
+}
+
+.narrative-paragraph {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: var(--kpop-text);
+}
+
+.narrative-paragraph:first-of-type::first-letter {
+  font-size: 3.5rem;
+  font-weight: 700;
+  float: left;
+  line-height: 1;
+  margin-right: 0.5rem;
+  margin-top: 0.1rem;
+  color: var(--kpop-accent);
+}
+
+/* ==================== EPIGRAPH ==================== */
+
+.epigraph {
+  border-left: 3px solid var(--kpop-accent);
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+  background: var(--kpop-surface);
+  border-radius: 0 8px 8px 0;
+}
+
+.epigraph-text {
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.epigraph-source {
+  font-size: 0.875rem;
+  color: var(--kpop-text-muted);
+}
+
+/* ==================== FIGURE CARDS ==================== */
+
+.figures-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+
+.figure-card {
+  padding: 1.5rem;
+  background: var(--kpop-surface);
+  border-radius: 8px;
+  transition: transform var(--kpop-duration-base) var(--kpop-easing-standard),
+    box-shadow var(--kpop-duration-base) var(--kpop-easing-standard);
+}
+
+.figure-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.figure-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.figure-name-korean {
+  font-size: 1rem;
+  color: var(--kpop-text-muted);
+  margin-left: 0.5rem;
+}
+
+.figure-epithet {
+  font-size: 0.875rem;
+  color: var(--kpop-accent);
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.figure-role {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--kpop-text-muted);
+  margin-bottom: 1rem;
+}
+
+.figure-contributions {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.figure-quote {
+  font-style: italic;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+.figure-quote-source {
+  font-size: 0.75rem;
+  color: var(--kpop-text-muted);
+  margin-top: 0.5rem;
+  text-align: right;
+}
+
+/* ==================== TIMELINE ==================== */
+
+.timeline {
+  margin: 3rem 0;
+  padding-left: 2rem;
+  border-left: 2px solid var(--kpop-accent);
+}
+
+.timeline-event {
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.timeline-event::before {
+  content: "";
+  position: absolute;
+  left: -2.5rem;
+  top: 0.25rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--kpop-accent);
+  border: 2px solid var(--kpop-bg);
+}
+
+.timeline-date {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--kpop-accent);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-description {
+  font-size: 0.9375rem;
+  color: var(--kpop-text-muted);
+  line-height: 1.6;
+}
+
+/* ==================== CHAPTER IMAGE ==================== */
+
+.chapter-image-container {
+  margin: 2rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.chapter-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: filter var(--kpop-duration-slow) var(--kpop-easing-standard);
+}
+
+.chapter-image-attribution {
+  font-size: 0.75rem;
+  color: var(--kpop-text-muted);
+  text-align: right;
+  padding: 0.5rem;
+  background: var(--kpop-surface);
+}
+
+/* ==================== QUOTE BLOCK ==================== */
+
+.quote-block {
+  margin: 2rem 0;
+  padding: 2rem;
+  border-left: 4px solid var(--kpop-accent);
+  background: var(--kpop-surface);
+  border-radius: 0 8px 8px 0;
+}
+
+.quote-text {
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.quote-source {
+  font-size: 0.875rem;
+  color: var(--kpop-text-muted);
+}
+
+/* ==================== PROGRESS BAR ==================== */
+
+.kpop-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--kpop-surface);
+  z-index: 9999;
+}
+
+.kpop-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--kpop-accent), var(--kpop-accent-secondary));
+  transition: width 100ms linear;
+  box-shadow: 0 0 10px var(--kpop-accent);
+}
+
+/* ==================== PART TITLE ==================== */
+
+.part-title-section {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: var(--kpop-gutter);
+  background: var(--kpop-surface);
+}
+
+.part-number {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--kpop-accent);
+  margin-bottom: 1rem;
+}
+
+.part-title {
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.part-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--kpop-text-muted);
+  max-width: 600px;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+  .figures-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .narrative-paragraph {
+    font-size: 1rem;
+  }
+
+  .timeline {
+    padding-left: 1.5rem;
+  }
+
+  .timeline-event::before {
+    left: -2rem;
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* ==================== REDUCED MOTION ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==================== DARK MODE OVERRIDES ==================== */
+
+@media (prefers-color-scheme: dark) {
+  .skin-pre-kpop {
+    --kpop-bg: #1a1814;
+    --kpop-surface: #252218;
+    --kpop-text: #e8e4dc;
+    --kpop-text-muted: #a09890;
+  }
+
+  .skin-idol-emergence {
+    --kpop-bg: #1a1a1a;
+    --kpop-surface: #252525;
+    --kpop-text: #ffffff;
+    --kpop-text-muted: #b0b0b0;
+  }
+
+  .skin-viral {
+    --kpop-bg: #0f0f0f;
+    --kpop-surface: #1a1a1a;
+    --kpop-text: #ffffff;
+    --kpop-text-muted: #a0a0a0;
+  }
+
+  .skin-4th-gen {
+    --kpop-bg: #1a1a1a;
+    --kpop-surface: #252525;
+    --kpop-text: #f5f5dc;
+    --kpop-text-muted: #a0a090;
+  }
+}
