@@ -1657,38 +1657,38 @@ const glossaryTerms = [
 
 const sourcesByCategory = {
   academicBooks: [
-    { title: "Can't Stop Won't Stop: A History of the Hip-Hop Generation", author: "Jeff Chang", year: "2005", publisher: "St. Martin's Press" },
-    { title: "Black Noise: Rap Music and Black Culture in Contemporary America", author: "Tricia Rose", year: "1994", publisher: "Wesleyan University Press" },
-    { title: "The Big Payback: The History of the Business of Hip-Hop", author: "Dan Charnas", year: "2010", publisher: "NAL" },
-    { title: "Book of Rhymes: The Poetics of Hip Hop", author: "Adam Bradley", year: "2009", publisher: "Basic Civitas Books" },
-    { title: "Groove Music: The Art and Culture of the Hip-Hop DJ", author: "Mark Katz", year: "2012", publisher: "Oxford University Press" },
-    { title: "Third Coast: OutKast, Timbaland, and How Hip-Hop Became a Southern Thing", author: "Roni Sarig", year: "2007", publisher: "Da Capo Press" },
-    { title: "Check the Technique: Liner Notes for Hip-Hop Junkies", author: "Brian Coleman", year: "2007", publisher: "Villard Books" },
-    { title: "Hip Hop America", author: "Nelson George", year: "1998", publisher: "Viking" },
-    { title: "Yes Yes Y'all: The Experience Music Project Oral History", author: "Jim Fricke & Charlie Ahearn", year: "2002", publisher: "Da Capo Press" },
-    { title: "The Anthology of Rap", author: "Adam Bradley & Andrew DuBois", year: "2010", publisher: "Yale University Press" },
+    { title: "Can't Stop Won't Stop: A History of the Hip-Hop Generation", author: "Jeff Chang", year: "2005", publisher: "St. Martin's Press", url: "https://books.google.com/books/about/Can_t_Stop_Won_t_Stop.html?id=4aofRcBRvMgC" },
+    { title: "Black Noise: Rap Music and Black Culture in Contemporary America", author: "Tricia Rose", year: "1994", publisher: "Wesleyan University Press", url: "https://www.weslpress.org/9780819562753/black-noise/" },
+    { title: "The Big Payback: The History of the Business of Hip-Hop", author: "Dan Charnas", year: "2010", publisher: "NAL", url: "https://books.google.com/books/about/The_Big_Payback.html?id=idYFcmXcRm4C" },
+    { title: "Book of Rhymes: The Poetics of Hip Hop", author: "Adam Bradley", year: "2009", publisher: "Basic Civitas Books", url: "https://books.google.com/books/about/Book_of_Rhymes.html?id=mQoJAQAAMAAJ" },
+    { title: "Groove Music: The Art and Culture of the Hip-Hop DJ", author: "Mark Katz", year: "2012", publisher: "Oxford University Press", url: "https://global.oup.com/academic/product/groove-music-9780195331127" },
+    { title: "Third Coast: OutKast, Timbaland, and How Hip-Hop Became a Southern Thing", author: "Roni Sarig", year: "2007", publisher: "Da Capo Press", url: "https://books.google.com/books/about/Third_Coast.html?id=-f0AAwAAQBAJ" },
+    { title: "Check the Technique: Liner Notes for Hip-Hop Junkies", author: "Brian Coleman", year: "2007", publisher: "Villard Books", url: "https://books.google.com/books/about/Check_the_Technique.html?id=QuOBbFeg0JIC" },
+    { title: "Hip Hop America", author: "Nelson George", year: "1998", publisher: "Viking", url: "https://books.google.com/books/about/Hip_Hop_America.html?id=-T3aAAAAMAAJ" },
+    { title: "Yes Yes Y'all: The Experience Music Project Oral History", author: "Jim Fricke & Charlie Ahearn", year: "2002", publisher: "Da Capo Press", url: "https://books.google.com/books/about/Yes_Yes_Y_all.html?id=fPxDAQAAIAAJ" },
+    { title: "The Anthology of Rap", author: "Adam Bradley & Andrew DuBois", year: "2010", publisher: "Yale University Press", url: "https://yalebooks.yale.edu/book/9780300141917/anthology-rap" },
   ],
   archives: [
     { name: "Cornell University Hip-Hop Collection", description: "250,000+ items; largest academic hip-hop archive", url: "https://rmc.library.cornell.edu/hiphop/" },
     { name: "Smithsonian NMAAHC", description: "Musical Crossroads exhibit; CC0 licensing on many images", url: "https://nmaahc.si.edu/" },
     { name: "Rock and Roll Hall of Fame Library and Archives", description: "Inductee archives; photograph collection", url: "https://library.rockhall.com/" },
-    { name: "Joe Conzo Jr. Archive", description: "Essential South Bronx origins photography", url: "" },
-    { name: "Janette Beckman Archive", description: "Iconic 1980s hip-hop portraiture", url: "https://janettebeckman.com" },
+    { name: "Joe Conzo Jr. Archive", description: "Essential South Bronx origins photography", url: "https://joeconzo.com/" },
+    { name: "Janette Beckman Archive", description: "Iconic 1980s hip-hop portraiture", url: "https://janettebeckman.com/" },
   ],
   documentaries: [
-    { title: "Wild Style", year: "1983", director: "Charlie Ahearn", note: "First hip-hop film; essential primary source" },
-    { title: "Style Wars", year: "1983", director: "Tony Silver & Henry Chalfant", note: "Essential graffiti/b-boy documentary" },
-    { title: "Hip-Hop Evolution", year: "2016-2020", director: "Darby Wheeler", note: "4-season Netflix series; extensive pioneer interviews" },
-    { title: "The Defiant Ones", year: "2017", director: "Allen Hughes", note: "Dr. Dre and Jimmy Iovine dual biography" },
-    { title: "Beats, Rhymes & Life", year: "2011", director: "Michael Rapaport", note: "A Tribe Called Quest documentary" },
+    { title: "Wild Style", year: "1983", director: "Charlie Ahearn", note: "First hip-hop film; essential primary source", url: "https://www.imdb.com/title/tt0084904/" },
+    { title: "Style Wars", year: "1983", director: "Tony Silver & Henry Chalfant", note: "Essential graffiti/b-boy documentary", url: "https://www.imdb.com/title/tt0177262/" },
+    { title: "Hip-Hop Evolution", year: "2016-2020", director: "Darby Wheeler", note: "4-season Netflix series; extensive pioneer interviews", url: "https://www.imdb.com/title/tt6093786/" },
+    { title: "The Defiant Ones", year: "2017", director: "Allen Hughes", note: "Dr. Dre and Jimmy Iovine dual biography", url: "https://www.imdb.com/title/tt6958602/" },
+    { title: "Beats, Rhymes & Life", year: "2011", director: "Michael Rapaport", note: "A Tribe Called Quest documentary", url: "https://www.imdb.com/title/tt1613023/" },
   ],
   tradePublications: [
-    { name: "Billboard Magazine", note: "Essential for chart verification; Hot Rap Songs (1989-present)" },
-    { name: "The Source Magazine", note: "First hip-hop magazine; 5-mic rating system; 1988-2000s essential" },
-    { name: "XXL Magazine", note: "Freshmen Class lists; 2000s-present" },
-    { name: "Vibe Magazine", note: "Essential 90s documentation; extensive photography" },
-    { name: "Rolling Stone", note: "Mainstream coverage; extensive interview archive" },
-    { name: "Complex", note: "Digital-native; fashion/culture crossover" },
+    { name: "Billboard Hot Rap Songs", note: "Essential for chart verification; Hot Rap Songs (1989-present)", url: "https://www.billboard.com/charts/hot-rap-songs/" },
+    { name: "The Source Magazine", note: "First hip-hop magazine; 5-mic rating system; 1988-2000s essential", url: "https://thesource.com/" },
+    { name: "XXL Magazine", note: "Freshmen Class lists; 2000s-present", url: "https://www.xxlmag.com/" },
+    { name: "Vibe Magazine", note: "Essential 90s documentation; extensive photography", url: "https://www.vibe.com/" },
+    { name: "Rolling Stone Hip-Hop", note: "Mainstream coverage; extensive interview archive", url: "https://www.rollingstone.com/t/hip-hop/" },
+    { name: "Complex Music", note: "Digital-native; fashion/culture crossover", url: "https://www.complex.com/music" },
   ],
 };
 
@@ -1777,7 +1777,11 @@ const SourcesSection: React.FC = () => {
           <ul className="rap-sources__list">
             {sourcesByCategory.academicBooks.map((book, idx) => (
               <li key={idx} className="rap-sources__item">
-                {book.author}. <em>{book.title}</em>. {book.publisher}, {book.year}.
+                {book.author}.{" "}
+                <a href={book.url} target="_blank" rel="noopener noreferrer">
+                  <em>{book.title}</em>
+                </a>
+                . {book.publisher}, {book.year}.
               </li>
             ))}
           </ul>
@@ -1788,7 +1792,10 @@ const SourcesSection: React.FC = () => {
           <ul className="rap-sources__list">
             {sourcesByCategory.archives.map((archive, idx) => (
               <li key={idx} className="rap-sources__item">
-                <strong>{archive.name}</strong> — {archive.description}
+                <a href={archive.url} target="_blank" rel="noopener noreferrer">
+                  <strong>{archive.name}</strong>
+                </a>{" "}
+                — {archive.description}
               </li>
             ))}
           </ul>
@@ -1799,7 +1806,10 @@ const SourcesSection: React.FC = () => {
           <ul className="rap-sources__list">
             {sourcesByCategory.documentaries.map((doc, idx) => (
               <li key={idx} className="rap-sources__item">
-                <em>{doc.title}</em> ({doc.year}, dir. {doc.director}). {doc.note}
+                <a href={doc.url} target="_blank" rel="noopener noreferrer">
+                  <em>{doc.title}</em>
+                </a>{" "}
+                ({doc.year}, dir. {doc.director}). {doc.note}
               </li>
             ))}
           </ul>
@@ -1810,7 +1820,10 @@ const SourcesSection: React.FC = () => {
           <ul className="rap-sources__list">
             {sourcesByCategory.tradePublications.map((pub, idx) => (
               <li key={idx} className="rap-sources__item">
-                <strong>{pub.name}</strong> — {pub.note}
+                <a href={pub.url} target="_blank" rel="noopener noreferrer">
+                  <strong>{pub.name}</strong>
+                </a>{" "}
+                — {pub.note}
               </li>
             ))}
           </ul>
