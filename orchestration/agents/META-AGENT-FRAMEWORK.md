@@ -663,6 +663,7 @@ Current agents derived from this framework:
 | `animation-pattern-auditor.md` | **Animation Architecture** | Pattern Extraction & Classification | **Auditor** — Analyzes specs/implementations against `scroll-lock-patterns.md` (21 patterns) + `animation-taxonomy.md` (36 categories); Outputs precise pattern inventories with evidence; → Design Research Auditor, Scrollytelling Expert |
 | `concept-extraction-agent.md` | **Educational Content** | Concept Extraction & Documentation | **Utility** ← Scrollytelling Expert (educational essays); Extracts concepts, generates CORE-CONCEPTS.md, produces ConceptualFoundationsSection; → Scrollytelling Expert |
 | `gate-guard-auditor.md` | **Pipeline Compliance** | Gate Verification & Publication Readiness | **Final Checkpoint Auditor** — Verifies all 9 gates (G1-G9) have artifacts; Blocks publication for missing gates; → Visual Essay Orchestrator (pre-G9) |
+| `redesign-visual-essay-agent.md` | **Visual Design Transformation** | Subject-Derived Design System Creator | **Specialist** — Transforms derivative/generic designs into subject-derived visual systems; Cultural artifact → digital metaphor translation; Era-specific skins; Zero cross-pollination between essays; ← Visual Essay Orchestrator, → Design Slop Auditor |
 
 ---
 
@@ -691,9 +692,10 @@ This meta-framework should evolve as patterns emerge:
 ---
 
 ## Last Updated
-December 28, 2024
+December 29, 2024
 
 ### Recent Changes
+- Added ReDesign Visual Essay Agent to registry (subject-derived design transformation, cultural artifact translation, era-specific skins, zero cross-pollination)
 - Added Visual Essay Refurbish Agent to registry (legacy essay modernization, pipeline compliance, intent extraction, expansion proposals)
 - Added Design Researcher to registry (visual identity research, subject-derived design systems, Gate 4 owner)
 - Added Animation Pattern Auditor to registry (pattern extraction from specs/implementations against 21 scroll-lock patterns + 36 animation taxonomy categories)
