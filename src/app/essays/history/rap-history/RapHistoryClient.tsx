@@ -1536,6 +1536,291 @@ const CHAPTERS: Chapter[] = [
   }
 ];
 
+// ==================== GLOSSARY DATA ====================
+
+const glossaryTerms = [
+  // Foundational Terms
+  { term: "Hip-Hop", definition: "The broader culture encompassing four elements: DJing, MCing (rapping), graffiti art, and breaking (breakdancing). Originated in the South Bronx in the early 1970s.", era: "origins" },
+  { term: "Rap", definition: "The vocal art form of rhythmic speech over beats. As KRS-One stated: 'Rap is something you do. Hip-hop is something you live.'", era: "origins" },
+  { term: "MC", definition: "Master of Ceremonies or Mic Controller. The person who raps; originally the host who kept the crowd engaged while the DJ played.", era: "origins" },
+  { term: "DJ", definition: "Disc Jockey. In hip-hop, the artist who manipulates records on turntables to create beats and sounds.", era: "origins" },
+  { term: "B-Boy/B-Girl", definition: "Break-boy or break-girl. Dancers who perform during the 'break' section of songs; practitioners of breaking.", era: "origins" },
+  { term: "Breaking", definition: "The original hip-hop dance form, featuring athletic floor work, freezes, and power moves. Often incorrectly called 'breakdancing.'", era: "origins" },
+
+  // DJ Techniques
+  { term: "Breakbeat", definition: "The percussion-heavy section of a funk or soul record that DJs isolate and extend. DJ Kool Herc invented the technique of looping breaks in 1973.", era: "origins" },
+  { term: "Merry-Go-Round", definition: "DJ Kool Herc's technique of using two copies of the same record to extend the break indefinitely by switching between turntables.", era: "origins" },
+  { term: "Scratching", definition: "Moving a vinyl record back and forth under the needle to create rhythmic sounds. Invented by Grand Wizard Theodore in 1977.", era: "origins" },
+  { term: "Quick Mix Theory", definition: "Grandmaster Flash's systematic approach to DJing, including punch phrasing, cutting, and using headphones to cue records precisely.", era: "origins" },
+  { term: "Beat Juggling", definition: "Advanced DJ technique of manipulating two copies of a record to create new rhythms and patterns.", era: "golden-age" },
+  { term: "Turntablism", definition: "The art of using turntables as musical instruments rather than just playback devices.", era: "golden-age" },
+
+  // Lyrical Terms
+  { term: "Flow", definition: "The rhythmic pattern and delivery style of a rapper. How words ride the beat.", era: "golden-age" },
+  { term: "Bars", definition: "Lines of rap lyrics. A standard verse is typically 16 bars. 'Spitting bars' means rapping.", era: "golden-age" },
+  { term: "Verse", definition: "A section of a rap song where the MC delivers their lyrics, typically 16 bars.", era: "recording" },
+  { term: "Hook", definition: "The catchy, repeated section of a song; the chorus.", era: "recording" },
+  { term: "Freestyle", definition: "Improvised rapping, either completely off the top of the head or using pre-written material in a spontaneous context.", era: "golden-age" },
+  { term: "Ghostwriter", definition: "A writer who creates lyrics for another artist without public credit.", era: "commercial" },
+  { term: "Multisyllabic Rhyming", definition: "Rhyming multiple syllables within words rather than just end sounds. Pioneered by Rakim and Big Daddy Kane.", era: "golden-age" },
+  { term: "Internal Rhyme", definition: "Rhymes placed within the middle of lines rather than only at the end. Rakim revolutionized this technique.", era: "golden-age" },
+  { term: "Punchline", definition: "A clever line designed for impact, often the culmination of a setup. Central to battle rap.", era: "golden-age" },
+  { term: "Wordplay", definition: "Clever manipulation of language including double meanings, homophones, and metaphors.", era: "golden-age" },
+
+  // Production Terms
+  { term: "Beat", definition: "The instrumental track that an MC raps over. Created by a producer.", era: "recording" },
+  { term: "Sample", definition: "A portion of a previously recorded song used in a new composition. Central to hip-hop production.", era: "golden-age" },
+  { term: "Chopping", definition: "Cutting a sample into smaller pieces and rearranging them to create new patterns.", era: "golden-age" },
+  { term: "Loop", definition: "A repeating section of music, often a sampled break or drum pattern.", era: "origins" },
+  { term: "808", definition: "The Roland TR-808 drum machine. Its booming bass drum and crisp hi-hats define trap and modern hip-hop.", era: "trap" },
+  { term: "MPC", definition: "Music Production Center. Akai's sampling workstation that became the standard hip-hop production tool.", era: "golden-age" },
+  { term: "SP-1200", definition: "E-mu's sampler/sequencer known for its gritty sound. Defined the boom-bap era.", era: "golden-age" },
+  { term: "Boom-Bap", definition: "The hard-hitting, sample-based production style of Golden Age New York hip-hop. Named for the kick-snare pattern.", era: "golden-age" },
+  { term: "G-Funk", definition: "The melodic, synthesizer-heavy West Coast production style pioneered by Dr. Dre on 'The Chronic' (1992).", era: "gangsta" },
+  { term: "Chopped and Screwed", definition: "Houston production technique invented by DJ Screw: slowing tracks to 60-70 BPM and 'chopping' in stuttered effects.", era: "southern" },
+  { term: "Trap Beat", definition: "Production style featuring 808 bass, rapid hi-hats, dark melodies, and heavy use of synthesizers. Originated in Atlanta.", era: "trap" },
+
+  // Subgenres and Styles
+  { term: "Conscious Rap", definition: "Hip-hop focused on social issues, politics, and Black empowerment. Exemplified by Public Enemy, KRS-One.", era: "golden-age" },
+  { term: "Gangsta Rap", definition: "Subgenre depicting street life, violence, and conflict with authorities. Pioneered by Ice-T and N.W.A.", era: "gangsta" },
+  { term: "Mafioso Rap", definition: "Subgenre using organized crime imagery and storytelling. Pioneered by Kool G Rap.", era: "gangsta" },
+  { term: "Horrorcore", definition: "Subgenre featuring horror movie imagery, violence, and dark themes.", era: "gangsta" },
+  { term: "Crunk", definition: "High-energy Southern style emphasizing call-and-response and aggressive delivery. Popularized by Lil Jon.", era: "southern" },
+  { term: "Snap Music", definition: "Minimalist Atlanta style featuring finger snaps as percussion. 'Lean wit It, Rock wit It' era.", era: "southern" },
+  { term: "Trap", definition: "Atlanta-originated style named for drug houses. Characterized by 808s, hi-hat rolls, and dark melodies.", era: "trap" },
+  { term: "Drill", definition: "Chicago-originated style featuring dark, minimal production and lyrics about street violence. Later spread to UK and Brooklyn.", era: "drill" },
+  { term: "Mumble Rap", definition: "Derogatory term for melodic trap where lyrics are secondary to flow and vibe. Contested terminology.", era: "modern" },
+  { term: "Emo Rap", definition: "Fusion of hip-hop with emo and punk aesthetics, featuring vulnerable lyrics about depression and heartbreak.", era: "internet" },
+  { term: "Cloud Rap", definition: "Atmospheric, hazy production style pioneered by Lil B, Clams Casino, and A$AP Rocky.", era: "internet" },
+
+  // Industry Terms
+  { term: "A&R", definition: "Artists and Repertoire. Label executives who discover talent and oversee recording.", era: "recording" },
+  { term: "360 Deal", definition: "Record contract where labels take percentage of all revenue streams, not just records.", era: "commercial" },
+  { term: "Masters", definition: "The original recordings. Owning your masters means controlling your music's future.", era: "commercial" },
+  { term: "Publishing", definition: "Rights to the underlying composition. Separate from master recording ownership.", era: "commercial" },
+  { term: "Mixtape", definition: "Originally: DJ-compiled collections. Later: free promotional albums by artists. Circumvented label control.", era: "mixtape" },
+  { term: "Street Single", definition: "A track released independently to build buzz before official label release.", era: "mixtape" },
+  { term: "Feature", definition: "A guest appearance by another artist on a track.", era: "commercial" },
+
+  // Cultural Terms
+  { term: "Cipher", definition: "A circle of MCs freestyling in turn. A foundational hip-hop practice.", era: "origins" },
+  { term: "Battle Rap", definition: "Competitive rapping where MCs trade insults and demonstrate lyrical superiority.", era: "origins" },
+  { term: "Diss Track", definition: "A song attacking another artist. Part of hip-hop's competitive tradition.", era: "golden-age" },
+  { term: "Beef", definition: "A public feud between artists, often played out through diss tracks.", era: "gangsta" },
+  { term: "Keeping It Real", definition: "Maintaining authenticity to one's background and experiences.", era: "gangsta" },
+  { term: "Street Credibility", definition: "Authenticity derived from actual experience in the environments rappers describe.", era: "gangsta" },
+  { term: "The Culture", definition: "Hip-hop as a way of life, not just music. Encompasses fashion, language, values.", era: "origins" },
+  { term: "Four Elements", definition: "The foundational pillars of hip-hop: DJing, MCing, breaking, and graffiti.", era: "origins" },
+  { term: "Fifth Element", definition: "Knowledge/consciousness, sometimes cited as the philosophical fifth pillar of hip-hop.", era: "golden-age" },
+
+  // Slang Terms
+  { term: "Dope", definition: "Excellent, impressive. Originally referred to drugs but became general praise.", era: "golden-age" },
+  { term: "Wack", definition: "Weak, unimpressive, lacking skill or authenticity.", era: "golden-age" },
+  { term: "Fresh", definition: "New, innovative, stylish. One of hip-hop's earliest superlatives.", era: "origins" },
+  { term: "Ill", definition: "Exceptionally skilled or impressive. 'Illmatic' = masterful.", era: "golden-age" },
+  { term: "Def", definition: "Excellent, cool. Origin of 'Def Jam' label name.", era: "recording" },
+  { term: "Fly", definition: "Stylish, attractive, impressive in appearance or presentation.", era: "origins" },
+  { term: "Word", definition: "Affirmation meaning 'truth' or 'I agree.' Also: 'word is bond.'", era: "golden-age" },
+  { term: "Props", definition: "Respect, recognition. Short for 'proper respect.'", era: "golden-age" },
+  { term: "Frontin'", definition: "Faking, pretending to be something you're not.", era: "golden-age" },
+  { term: "Biting", definition: "Copying another artist's style or lyrics without credit.", era: "golden-age" },
+  { term: "Drip", definition: "Style, fashionable appearance. Modern term for being well-dressed.", era: "trap" },
+  { term: "Cap/No Cap", definition: "Lie/truth. 'No cap' means 'I'm not lying.'", era: "trap" },
+
+  // Regional Terms
+  { term: "Dirty South", definition: "The Southern hip-hop movement, particularly Atlanta, Houston, Memphis, New Orleans.", era: "southern" },
+  { term: "Third Coast", definition: "The South as hip-hop's third major region after East and West coasts.", era: "southern" },
+  { term: "Hyphy", definition: "Bay Area movement emphasizing energetic, uninhibited behavior and 'going dumb.'", era: "southern" },
+  { term: "Bounce", definition: "New Orleans style featuring call-and-response and the 'Triggerman' beat.", era: "southern" },
+  { term: "Screw Tape", definition: "A mixtape in DJ Screw's chopped and screwed style.", era: "southern" },
+  { term: "Grime", definition: "UK genre blending hip-hop, UK garage, and dancehall. Faster BPM than American hip-hop.", era: "global" },
+  { term: "UK Drill", definition: "British adaptation of Chicago drill, featuring sliding 808s and distinct slang.", era: "drill" },
+
+  // Modern/Digital Terms
+  { term: "SoundCloud Rap", definition: "Lo-fi, internet-native hip-hop that emerged on SoundCloud circa 2015.", era: "internet" },
+  { term: "Plugg", definition: "Production style featuring atmospheric, video-game-influenced beats.", era: "internet" },
+  { term: "Type Beat", definition: "Instrumentals created in the style of a specific artist, sold online to rappers.", era: "internet" },
+  { term: "Viral", definition: "Rapid spread through social media. TikTok now drives much chart success.", era: "internet" },
+  { term: "Drop", definition: "To release music. 'Dropping an album' or 'the beat drops.'", era: "modern" },
+  { term: "Streaming", definition: "Digital music consumption via platforms like Spotify, Apple Music. Replaced physical sales.", era: "modern" },
+
+  // Recording Terms
+  { term: "Adlibs", definition: "Vocal additions like 'yeah,' 'uh,' or signature phrases layered behind main vocals.", era: "recording" },
+  { term: "Hook", definition: "The catchy, repeated chorus of a song.", era: "recording" },
+  { term: "Bridge", definition: "A transitional section connecting verse and chorus.", era: "recording" },
+  { term: "Outro", definition: "The closing section of a track.", era: "recording" },
+  { term: "Producer Tag", definition: "Audio signature identifying a producer ('Metro Boomin want some more!').", era: "trap" },
+  { term: "Auto-Tune", definition: "Pitch correction software used as an artistic effect. Popularized by T-Pain, now ubiquitous.", era: "modern" },
+];
+
+// ==================== SOURCES DATA ====================
+
+const sourcesByCategory = {
+  academicBooks: [
+    { title: "Can't Stop Won't Stop: A History of the Hip-Hop Generation", author: "Jeff Chang", year: "2005", publisher: "St. Martin's Press" },
+    { title: "Black Noise: Rap Music and Black Culture in Contemporary America", author: "Tricia Rose", year: "1994", publisher: "Wesleyan University Press" },
+    { title: "The Big Payback: The History of the Business of Hip-Hop", author: "Dan Charnas", year: "2010", publisher: "NAL" },
+    { title: "Book of Rhymes: The Poetics of Hip Hop", author: "Adam Bradley", year: "2009", publisher: "Basic Civitas Books" },
+    { title: "Groove Music: The Art and Culture of the Hip-Hop DJ", author: "Mark Katz", year: "2012", publisher: "Oxford University Press" },
+    { title: "Third Coast: OutKast, Timbaland, and How Hip-Hop Became a Southern Thing", author: "Roni Sarig", year: "2007", publisher: "Da Capo Press" },
+    { title: "Check the Technique: Liner Notes for Hip-Hop Junkies", author: "Brian Coleman", year: "2007", publisher: "Villard Books" },
+    { title: "Hip Hop America", author: "Nelson George", year: "1998", publisher: "Viking" },
+    { title: "Yes Yes Y'all: The Experience Music Project Oral History", author: "Jim Fricke & Charlie Ahearn", year: "2002", publisher: "Da Capo Press" },
+    { title: "The Anthology of Rap", author: "Adam Bradley & Andrew DuBois", year: "2010", publisher: "Yale University Press" },
+  ],
+  archives: [
+    { name: "Cornell University Hip-Hop Collection", description: "250,000+ items; largest academic hip-hop archive", url: "https://rmc.library.cornell.edu/hiphop/" },
+    { name: "Smithsonian NMAAHC", description: "Musical Crossroads exhibit; CC0 licensing on many images", url: "https://nmaahc.si.edu/" },
+    { name: "Rock and Roll Hall of Fame Library and Archives", description: "Inductee archives; photograph collection", url: "https://library.rockhall.com/" },
+    { name: "Joe Conzo Jr. Archive", description: "Essential South Bronx origins photography", url: "" },
+    { name: "Janette Beckman Archive", description: "Iconic 1980s hip-hop portraiture", url: "https://janettebeckman.com" },
+  ],
+  documentaries: [
+    { title: "Wild Style", year: "1983", director: "Charlie Ahearn", note: "First hip-hop film; essential primary source" },
+    { title: "Style Wars", year: "1983", director: "Tony Silver & Henry Chalfant", note: "Essential graffiti/b-boy documentary" },
+    { title: "Hip-Hop Evolution", year: "2016-2020", director: "Darby Wheeler", note: "4-season Netflix series; extensive pioneer interviews" },
+    { title: "The Defiant Ones", year: "2017", director: "Allen Hughes", note: "Dr. Dre and Jimmy Iovine dual biography" },
+    { title: "Beats, Rhymes & Life", year: "2011", director: "Michael Rapaport", note: "A Tribe Called Quest documentary" },
+  ],
+  tradePublications: [
+    { name: "Billboard Magazine", note: "Essential for chart verification; Hot Rap Songs (1989-present)" },
+    { name: "The Source Magazine", note: "First hip-hop magazine; 5-mic rating system; 1988-2000s essential" },
+    { name: "XXL Magazine", note: "Freshmen Class lists; 2000s-present" },
+    { name: "Vibe Magazine", note: "Essential 90s documentation; extensive photography" },
+    { name: "Rolling Stone", note: "Mainstream coverage; extensive interview archive" },
+    { name: "Complex", note: "Digital-native; fashion/culture crossover" },
+  ],
+};
+
+// ==================== GLOSSARY COMPONENT ====================
+
+const GlossarySection: React.FC = () => {
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+
+  const categories = [
+    { id: "origins", label: "Origins (1973-1979)", icon: "🎤" },
+    { id: "golden-age", label: "Golden Age (1986-1996)", icon: "👑" },
+    { id: "recording", label: "Recording Industry", icon: "🎙️" },
+    { id: "gangsta", label: "Gangsta Era", icon: "🔥" },
+    { id: "southern", label: "Southern Hip-Hop", icon: "🌡️" },
+    { id: "trap", label: "Trap Era", icon: "🔊" },
+    { id: "drill", label: "Drill", icon: "🎯" },
+    { id: "internet", label: "Internet Era", icon: "📱" },
+    { id: "modern", label: "Modern Rap", icon: "🌐" },
+    { id: "commercial", label: "Industry & Business", icon: "💼" },
+    { id: "mixtape", label: "Mixtape Era", icon: "📼" },
+    { id: "global", label: "Global Hip-Hop", icon: "🌍" },
+  ];
+
+  return (
+    <section className="rap-glossary">
+      <header className="rap-glossary__header">
+        <h2 className="section-title">Glossary</h2>
+        <p className="section-subtitle">The Language of Hip-Hop — 90+ Terms</p>
+      </header>
+
+      <div className="rap-glossary__categories">
+        {categories.map((category) => {
+          const terms = glossaryTerms.filter((t) => t.era === category.id);
+          const isExpanded = expandedCategory === category.id;
+
+          return (
+            <div key={category.id} className="rap-glossary__category">
+              <button
+                className={`rap-glossary__category-header ${isExpanded ? 'expanded' : ''}`}
+                onClick={() => setExpandedCategory(isExpanded ? null : category.id)}
+              >
+                <span className="rap-glossary__category-icon">{category.icon}</span>
+                <span className="rap-glossary__category-label">{category.label}</span>
+                <span className="rap-glossary__category-count">{terms.length}</span>
+                <svg
+                  className="rap-glossary__category-arrow"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path d="M6 9l6 6 6-6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+
+              {isExpanded && (
+                <div className="rap-glossary__terms">
+                  {terms.map((item, idx) => (
+                    <div key={idx} className="rap-glossary__term">
+                      <dt className="rap-glossary__term-name">{item.term}</dt>
+                      <dd className="rap-glossary__term-definition">{item.definition}</dd>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+};
+
+// ==================== SOURCES COMPONENT ====================
+
+const SourcesSection: React.FC = () => {
+  return (
+    <section className="rap-sources">
+      <header className="rap-sources__header">
+        <h2 className="section-title">Sources &amp; Further Reading</h2>
+      </header>
+
+      <div className="rap-sources__content">
+        <div className="rap-sources__category">
+          <h3>Academic Sources</h3>
+          <ul className="rap-sources__list">
+            {sourcesByCategory.academicBooks.map((book, idx) => (
+              <li key={idx} className="rap-sources__item">
+                {book.author}. <em>{book.title}</em>. {book.publisher}, {book.year}.
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="rap-sources__category">
+          <h3>Archives &amp; Collections</h3>
+          <ul className="rap-sources__list">
+            {sourcesByCategory.archives.map((archive, idx) => (
+              <li key={idx} className="rap-sources__item">
+                <strong>{archive.name}</strong> — {archive.description}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="rap-sources__category">
+          <h3>Essential Documentaries</h3>
+          <ul className="rap-sources__list">
+            {sourcesByCategory.documentaries.map((doc, idx) => (
+              <li key={idx} className="rap-sources__item">
+                <em>{doc.title}</em> ({doc.year}, dir. {doc.director}). {doc.note}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="rap-sources__category">
+          <h3>Trade Publications</h3>
+          <ul className="rap-sources__list">
+            {sourcesByCategory.tradePublications.map((pub, idx) => (
+              <li key={idx} className="rap-sources__item">
+                <strong>{pub.name}</strong> — {pub.note}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // ==================== COMPONENTS ====================
 
 const ProgressBar: React.FC<{ progress: number; isPlaying: boolean }> = ({ progress, isPlaying }) => {
@@ -1735,6 +2020,9 @@ const RapHistoryClient: React.FC = () => {
       {CHAPTERS.map((chapter) => (
         <ChapterComponent key={chapter.id} chapter={chapter} />
       ))}
+
+      <GlossarySection />
+      <SourcesSection />
 
       <ProgressBar progress={readingProgress} isPlaying={isScrolling} />
     </main>
