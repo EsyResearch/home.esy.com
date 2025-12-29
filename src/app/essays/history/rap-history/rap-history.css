@@ -604,7 +604,8 @@
 }
 
 .rap-chapter__header {
-  margin-bottom: 3rem;
+  max-width: var(--rap-content-width);
+  margin: 0 auto 3rem;
 }
 
 .rap-chapter__number {
@@ -681,7 +682,8 @@
 /* ==================== EPIGRAPH ==================== */
 
 .rap-epigraph {
-  margin: 3rem 0;
+  max-width: var(--rap-content-width);
+  margin: 3rem auto;
   padding-left: 2rem;
   border-left: 3px solid var(--rap-accent);
 }
@@ -724,10 +726,11 @@
 /* ==================== FIGURE CARDS ==================== */
 
 .rap-figures {
+  max-width: var(--rap-content-width);
+  margin: 4rem auto;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
-  margin: 4rem 0;
 }
 
 .rap-figure-card {
