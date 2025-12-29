@@ -882,34 +882,6 @@
   line-height: 1.6;
 }
 
-/* ==================== CONTENT WARNINGS ==================== */
-
-.rap-content-warning {
-  background: rgba(255, 0, 0, 0.1);
-  border: 1px solid rgba(255, 0, 0, 0.3);
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin: 2rem 0;
-  max-width: var(--rap-content-width);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.rap-content-warning__header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-weight: 700;
-  color: #ff4444;
-  margin-bottom: 0.5rem;
-}
-
-.rap-content-warning__text {
-  font-size: 0.875rem;
-  color: var(--rap-text-muted);
-  line-height: 1.6;
-}
-
 /* ==================== SKIP BUTTON ==================== */
 
 .rap-skip {

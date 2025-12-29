@@ -62,7 +62,6 @@ interface Chapter {
   narrative: string[];
   figures: Figure[];
   timeline?: TimelineEvent[];
-  contentWarning?: string;
   chapterImage?: {
     url: string;
     alt: string;
@@ -678,7 +677,6 @@ const CHAPTERS: Chapter[] = [
     subtitle: "Gangsta rap and the West Coast explosion",
     skin: "casefile-noir",
     temporalMarker: "1986-1992",
-    contentWarning: "This section discusses police violence, gang activity, and explicit content. Some quotes contain strong language.",
     epigraph: {
       text: "I'm not trying to glorify anything. I'm reporting from the streets. If you don't like what I'm saying, change the streets.",
       source: "Ice-T, 1992"
@@ -768,7 +766,6 @@ const CHAPTERS: Chapter[] = [
     subtitle: "The rivalry that almost destroyed hip-hop",
     skin: "casefile-noir",
     temporalMarker: "1994-1997",
-    contentWarning: "This section discusses real violence and the deaths of Tupac Shakur and The Notorious B.I.G.",
     epigraph: {
       text: "I wanted to be the narrator of my generation's story. Everything happening in the hood—I wanted to document it.",
       source: "Nas, Hip-Hop Evolution (2016)"
@@ -1137,7 +1134,6 @@ const CHAPTERS: Chapter[] = [
     subtitle: "Cold sound, hot consequences",
     skin: "cctv-frost",
     temporalMarker: "2011-present",
-    contentWarning: "This section discusses gang violence and its relationship to drill music.",
     epigraph: {
       text: "The streets is talking.",
       source: "Chief Keef"
@@ -1941,18 +1937,6 @@ const ChapterComponent: React.FC<{ chapter: Chapter }> = ({ chapter }) => {
           <p className="rap-chapter__temporal">{chapter.temporalMarker}</p>
         )}
       </header>
-
-      {chapter.contentWarning && (
-        <div className="rap-content-warning">
-          <p className="rap-content-warning__header">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M12 9v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            Content Note
-          </p>
-          <p className="rap-content-warning__text">{chapter.contentWarning}</p>
-        </div>
-      )}
 
       {chapter.chapterImage && (
         <figure className="rap-chapter__image chapter-image">
