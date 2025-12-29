@@ -170,9 +170,9 @@ const CHAPTERS: Chapter[] = [
       }
     ],
     chapterImage: {
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/1988_Summer_Olympics_opening_ceremony.JPEG/1280px-1988_Summer_Olympics_opening_ceremony.JPEG",
-      alt: "1988 Seoul Olympics opening ceremony, Korea's cultural debut on the world stage",
-      attribution: "Wikimedia Commons, Public Domain"
+      url: "https://upload.wikimedia.org/wikipedia/commons/c/c6/Kim_Sisters_with_Dean_Martin.jpg",
+      alt: "The Kim Sisters with Dean Martin. They appeared 22 times on The Ed Sullivan Show, becoming the first Korean act to achieve US success.",
+      attribution: "Public Domain, via Wikimedia Commons"
     }
   },
 
@@ -229,7 +229,12 @@ const CHAPTERS: Chapter[] = [
         description: "His departure triggers the end of pre-release censorship in Korean music.",
         source: "Korean cultural policy records"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/8/81/Seo_Taiji_on_October_20%2C_2014_%282%29.jpg",
+      alt: "Seo Taiji at his 2014 comeback. In 1992, his group Seo Taiji and Boys revolutionized Korean music with 'Nan Arayo.'",
+      attribution: "Wikimedia Commons, CC BY 3.0"
+    }
   },
 
   // CHAPTER 2: THE BLUEPRINT
@@ -291,7 +296,12 @@ const CHAPTERS: Chapter[] = [
         description: "SM's investment before BoA's debut sets the template for trainee economics.",
         source: "Industry reports"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/3/34/Lee_Soo-man_in_2024.jpg",
+      alt: "Lee Soo-man, founder of SM Entertainment, architect of 'Culture Technology' and the trainee system that defines K-pop.",
+      attribution: "Wikimedia Commons, CC BY-SA 4.0"
+    }
   },
 
   // CHAPTER 3: THE IDOL MACHINE
@@ -371,9 +381,9 @@ const CHAPTERS: Chapter[] = [
       }
     ],
     chapterImage: {
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/2016_MBC_Korean_Music_Wave_DMC_Festival_03.jpg/1280px-2016_MBC_Korean_Music_Wave_DMC_Festival_03.jpg",
-      alt: "K-pop concert crowd with lightsticks, showing the scale of Korean pop fandom",
-      attribution: "Wikimedia Commons, CC BY 4.0"
+      url: "https://upload.wikimedia.org/wikipedia/commons/3/30/161129_Tony_An_MMA.jpg",
+      alt: "Tony An at the 2016 Melon Music Awards. As a founding member of H.O.T., he helped create the idol template that defined K-pop.",
+      attribution: "Melon Music Awards, CC BY 4.0, via Wikimedia Commons"
     }
   },
 
@@ -436,7 +446,12 @@ const CHAPTERS: Chapter[] = [
         description: "Economic collapse accelerates industry consolidation. Big Three survive; smaller agencies fail.",
         source: "Financial records"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Rain_Korean_Singer.JPG",
+      alt: "Rain performing in 2007. JYP Entertainment's first global star, he proved the Big Three's trainee system could produce world-class solo artists.",
+      attribution: "Sry85, CC BY-SA 3.0, via Wikimedia Commons"
+    }
   },
 
   // CHAPTER 5: THE JAPAN STRATEGY
@@ -487,7 +502,12 @@ const CHAPTERS: Chapter[] = [
         description: "First Korean artist to perform at MSG. K-pop reaches America.",
         source: "Concert records"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/b/bd/TVXQ_in_Paris_France_cropped.JPG",
+      alt: "TVXQ performing in Paris, France. After BoA opened Japan, TVXQ proved K-pop could conquer the world.",
+      attribution: "Thibault Music, CC BY-SA 3.0, via Wikimedia Commons"
+    }
   },
 
   // CHAPTER 6: THE GOLDEN AGE
@@ -564,7 +584,12 @@ const CHAPTERS: Chapter[] = [
         description: "Cultural phenomenon. Synchronized leg dance becomes iconic.",
         source: "SM Entertainment"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/1/15/220728_GG_poleposition_266_%2853595169645%29.jpg",
+      alt: "Girls' Generation in concert, 2022. Their 2009 hit 'Gee' defined the golden age of K-pop.",
+      attribution: "Dispatch Korea, CC BY 2.0, via Wikimedia Commons"
+    }
   },
 
   // CHAPTER 7: GANGNAM STYLE
@@ -618,9 +643,9 @@ const CHAPTERS: Chapter[] = [
       }
     ],
     chapterImage: {
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Gangnam_Style_PSY_14logo_%28cropped%29.jpg/1280px-Gangnam_Style_PSY_14logo_%28cropped%29.jpg",
+      url: "https://upload.wikimedia.org/wikipedia/commons/c/ce/FMFA_2013_%288565145586%29.jpg",
       alt: "PSY performing Gangnam Style, the viral K-pop breakthrough",
-      attribution: "Wikimedia Commons, CC BY-SA 3.0"
+      attribution: "Wikimedia Commons, CC BY 2.0"
     }
   },
 
@@ -683,7 +708,12 @@ const CHAPTERS: Chapter[] = [
         description: "First all-Korean act to debut at #1 on Hot 100.",
         source: "Billboard"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/d/dc/BTS_at_American_Music_Awards_November_21%2C_2021.jpg",
+      alt: "BTS at the American Music Awards, November 2021. The seven members who became K-pop's biggest global success.",
+      attribution: "Wikimedia Commons, CC BY 3.0"
+    }
   },
 
   // CHAPTER 9: THE FANDOM INDUSTRIAL COMPLEX
@@ -741,7 +771,12 @@ const CHAPTERS: Chapter[] = [
         description: "Fans claim tickets to Tulsa rally they never intended to use. Political power demonstrated.",
         source: "News reports"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/5/5b/ARMY_%28BTS_fans%29_during_Love_Yourself_concert_tour_in_Hamilton%2C_Canada%2C_23_September_2018.jpg",
+      alt: "ARMY fan ocean with purple lightsticks during BTS Love Yourself concert. K-pop fandoms operate with organizational sophistication that rivals corporations.",
+      attribution: "Wikimedia Commons, CC BY-SA 4.0"
+    }
   },
 
   // CHAPTER 10: BLACKPINK
@@ -805,9 +840,9 @@ const CHAPTERS: Chapter[] = [
       }
     ],
     chapterImage: {
-      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/BLACKPINK_Born_Pink_World_Tour_countries_visited_map.svg/1280px-BLACKPINK_Born_Pink_World_Tour_countries_visited_map.svg.png",
-      alt: "Map showing countries visited during BLACKPINK's Born Pink World Tour",
-      attribution: "Wikimedia Commons, CC BY-SA 4.0"
+      url: "https://upload.wikimedia.org/wikipedia/commons/3/38/Blackpink_Coachella_2023_02.jpg",
+      alt: "BLACKPINK performing at Coachella 2023, the first K-pop girl group to headline the festival.",
+      attribution: "@aanglerrr (aang), CC BY 4.0, via Wikimedia Commons"
     }
   },
 
@@ -864,7 +899,12 @@ const CHAPTERS: Chapter[] = [
         description: "HYBE's platform unifies fan experience under artist control.",
         source: "HYBE"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/a/a7/Aespa_%28%EC%97%90%EC%8A%A4%ED%8C%8C%29_231124_Love_Your_W.png",
+      alt: "aespa, representing K-pop's embrace of digital platforms and metaverse integration",
+      attribution: "Wikimedia Commons, CC BY 4.0"
+    }
   },
 
   // CHAPTER 12: PANDEMIC PIVOT
@@ -929,7 +969,12 @@ const CHAPTERS: Chapter[] = [
         description: "First group with virtual AI members. Metaverse integration from day one.",
         source: "SM Entertainment"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/a/af/NCT_127_at_SBS_Power_FM_on_March_19%2C_2020_01.png",
+      alt: "NCT 127 performing on SBS Power FM, March 19, 2020—just as the pandemic began reshaping K-pop's live performance model.",
+      attribution: "SBS, via Wikimedia Commons"
+    }
   },
 
   // CHAPTER 13: THE RECKONING
@@ -996,7 +1041,12 @@ const CHAPTERS: Chapter[] = [
         description: "HYBE-ADOR conflict reveals ongoing tensions in multi-label structures.",
         source: "News reports"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/0/02/Shinee_at_the_SHINee_World_Concert_III_in_Taiwan.jpg",
+      alt: "SHINee performing at World Concert in Taiwan - the group's Jonghyun became a symbol of industry mental health concerns",
+      attribution: "Wikimedia Commons, CC BY-SA 3.0"
+    }
   },
 
   // CHAPTER 14: NEWJEANS AND THE 4TH GENERATION
@@ -1057,7 +1107,12 @@ const CHAPTERS: Chapter[] = [
         description: "K-pop album sales drop 19.5%—first decline in 9 years.",
         source: "Industry data"
       }
-    ]
+    ],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/a/a2/NewJeans_X_OLENS_1_%28cropped%29.jpg",
+      alt: "NewJeans - leaders of the 4th generation with their Y2K aesthetic",
+      attribution: "Wikimedia Commons, CC BY 2.0"
+    }
   },
 
   // EPILOGUE
@@ -1079,7 +1134,12 @@ const CHAPTERS: Chapter[] = [
       "What K-pop has already achieved is remarkable regardless of what comes next. From the ashes of Japanese occupation and American military bases, from dictatorship and economic crisis, Korea built a cultural export machine that conquered the world. The factory continues. The fever persists. The future remains unwritten."
     ],
     figures: [],
-    timeline: []
+    timeline: [],
+    chapterImage: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/b/bd/Stray_Kids_at_the_Music_Core_Mini_Fan_Meeting%2C_November_11%2C_2023.png",
+      alt: "Stray Kids at Music Core fan meeting 2023, representing the global future of K-pop",
+      attribution: "Wikimedia Commons, CC BY 4.0"
+    }
   }
 ];
 
