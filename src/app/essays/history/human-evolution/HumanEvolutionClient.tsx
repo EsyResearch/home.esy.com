@@ -5,6 +5,7 @@ import "./styles/human-evolution.css";
 import { chapters, type Chapter } from "./data/chapters";
 import { species } from "./data/species";
 import { glossary, getTermByName } from "./data/glossary";
+import { specimenImages, toolImages, siteImages } from "./data/images";
 
 /* ========================================
    Type Definitions
@@ -1107,6 +1108,9 @@ function ChapterAfricanOrigins() {
             date="3.2 Ma"
             description="The famous partial skeleton from Hadar, Ethiopia. About 40% complete, representing a young adult female."
             significance="Best-known early hominin"
+            imageUrl={specimenImages.lucy.src}
+            imageAlt={specimenImages.lucy.alt}
+            imageCaption={specimenImages.lucy.caption}
           />
         </div>
 
@@ -1155,6 +1159,9 @@ function ChapterWalkingUpright() {
           date="3.66 Ma"
           description="A trackway of footprints made by at least two individuals walking through fresh volcanic ash. The prints show a human-like gait with a heel strike and toe push-off."
           significance="Oldest direct evidence of bipedal locomotion"
+          imageUrl={specimenImages.laetoli.src}
+          imageAlt={specimenImages.laetoli.alt}
+          imageCaption={specimenImages.laetoli.caption}
         />
 
         <p>
@@ -1208,6 +1215,9 @@ function ChapterGenusHomo() {
             date="2.6 Ma"
             description="Simple choppers and flakes made by striking one rock against another. Used for processing meat and plant foods."
             significance="Earliest systematic tool tradition"
+            imageUrl={toolImages.oldowanChopper.src}
+            imageAlt={toolImages.oldowanChopper.alt}
+            imageCaption={toolImages.oldowanChopper.caption}
           />
           <EvidenceCard
             type="artifact"
@@ -1215,6 +1225,9 @@ function ChapterGenusHomo() {
             date="1.76 Ma"
             description="Teardrop-shaped bifacial tools requiring sophisticated planning and skill. Remarkably consistent across continents and millennia."
             significance="Shows advanced cognitive planning"
+            imageUrl={toolImages.acheuleanHandaxe.src}
+            imageAlt={toolImages.acheuleanHandaxe.alt}
+            imageCaption={toolImages.acheuleanHandaxe.caption}
           />
           <EvidenceCard
             type="specimen"
@@ -1223,6 +1236,9 @@ function ChapterGenusHomo() {
             date="1.6 Ma"
             description="A nearly complete Homo ergaster skeleton of an adolescent boy. Shows modern human body proportions with a tall, lean build."
             significance="First evidence of modern body plan"
+            imageUrl={specimenImages.turkanaBoy.src}
+            imageAlt={specimenImages.turkanaBoy.alt}
+            imageCaption={specimenImages.turkanaBoy.caption}
           />
         </div>
 
@@ -1271,6 +1287,9 @@ function ChapterOtherHumans() {
             date="400-40 ka"
             description="Our closest extinct relatives, living in Europe and western Asia. They had larger brains than us, made sophisticated tools, buried their dead, and created art."
             significance="1-2% of non-African DNA is Neanderthal"
+            imageUrl={specimenImages.neanderthalSkull.src}
+            imageAlt={specimenImages.neanderthalSkull.alt}
+            imageCaption={specimenImages.neanderthalSkull.caption}
           />
           <EvidenceCard
             type="specimen"
@@ -1278,6 +1297,9 @@ function ChapterOtherHumans() {
             date="~300-30 ka"
             description="Known primarily from DNA extracted from bone fragments found in Siberia. They ranged across Asia and interbred with both Neanderthals and modern humans."
             significance="Up to 6% of Melanesian DNA is Denisovan"
+            imageUrl={specimenImages.denisovaCave.src}
+            imageAlt={specimenImages.denisovaCave.alt}
+            imageCaption={specimenImages.denisovaCave.caption}
           />
           <EvidenceCard
             type="specimen"
@@ -1286,6 +1308,9 @@ function ChapterOtherHumans() {
             date="190-50 ka"
             description="A small-bodied, small-brained human species from the island of Flores, Indonesia. Adults stood only about 1 meter tall."
             significance="Survived until ~50,000 years ago"
+            imageUrl={specimenImages.floresiensisSkull.src}
+            imageAlt={specimenImages.floresiensisSkull.alt}
+            imageCaption={specimenImages.floresiensisSkull.caption}
           />
           <EvidenceCard
             type="specimen"
@@ -1293,6 +1318,9 @@ function ChapterOtherHumans() {
             date="335-236 ka"
             description="Discovered in South Africa's Rising Star Cave system. Combined primitive body features with human-like hands and feet. May have deliberately disposed of their dead."
             significance="Contemporary with early H. sapiens"
+            imageUrl={specimenImages.nalediSkull.src}
+            imageAlt={specimenImages.nalediSkull.alt}
+            imageCaption={specimenImages.nalediSkull.caption}
           />
         </div>
 
@@ -1347,6 +1375,9 @@ function ChapterHomoSapiens() {
           date="315 ka"
           description="A cave site in Morocco where at least five individuals were found, along with stone tools and animal bones. The skulls show modern human faces but more elongated braincases."
           significance="Oldest known Homo sapiens fossils"
+          imageUrl={specimenImages.jebelIrhoud.src}
+          imageAlt={specimenImages.jebelIrhoud.alt}
+          imageCaption={specimenImages.jebelIrhoud.caption}
         />
 
         <p>
@@ -1495,6 +1526,9 @@ function ChapterCultureCognition() {
             date="77 ka"
             description="Ochre blocks with geometric patterns from South Africa—crosshatched designs that represent some of the earliest known abstract art."
             significance="Earliest known deliberate abstract marking"
+            imageUrl={toolImages.blombosOchre.src}
+            imageAlt={toolImages.blombosOchre.alt}
+            imageCaption={toolImages.blombosOchre.caption}
           />
           <EvidenceCard
             type="artifact"
@@ -1502,6 +1536,9 @@ function ChapterCultureCognition() {
             date="82 ka"
             description="Perforated shells from Grotte des Pigeons, Morocco, that were strung as beads. Microscopic analysis confirms they were worn, not just collected."
             significance="Evidence of personal ornamentation"
+            imageUrl={toolImages.blombosBeads.src}
+            imageAlt={toolImages.blombosBeads.alt}
+            imageCaption={toolImages.blombosBeads.caption}
           />
           <EvidenceCard
             type="artifact"
@@ -1509,6 +1546,9 @@ function ChapterCultureCognition() {
             date="~400 ka"
             description="A sophisticated method of preparing stone cores to produce flakes of predetermined shape. Required mental planning and teaching."
             significance="Evidence of advanced cognition"
+            imageUrl={toolImages.levalloisCore.src}
+            imageAlt={toolImages.levalloisCore.alt}
+            imageCaption={toolImages.levalloisCore.caption}
           />
         </div>
 
