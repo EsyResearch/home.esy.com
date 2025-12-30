@@ -14,7 +14,7 @@ agents/
 ├── META-AGENT-FRAMEWORK.md      # Agent creation template
 │
 ├── orchestrators/               # 🎬 Top-level coordination (5)
-├── auditors/                    # 🔍 Quality verification (11)
+├── auditors/                    # 🔍 Quality verification (12)
 ├── content/                     # 📚 Content creation (4)
 ├── research/                    # 🔬 Source discovery (4)
 ├── regional/                    # 🌏 Regional specialists (2)
@@ -53,6 +53,7 @@ agents/
 | [Hydration Audit Agent](./auditors/hydration-audit-agent.md) | **React Hydration** | — | `auditors/` |
 | [Design Slop Auditor](./auditors/design-slop-auditor.md) | **AI Slop Detection** | — | `auditors/` |
 | [Gate Guard Auditor](./auditors/gate-guard-auditor.md) | **Pipeline Compliance** | G9 | `auditors/` |
+| [Content Audit Agent](./auditors/content-audit-agent.md) | **Content Quality** | — | `auditors/` |
 
 **Report Storage:**
 - Citation Reports: `auditors/CitationReports/`

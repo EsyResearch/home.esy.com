@@ -19,6 +19,7 @@ Quality verification and certification agents that ensure content meets Esy stan
 | [Hydration Audit Agent](./hydration-audit-agent.md) | **React Hydration** | — | Hydration Compliance Report |
 | [Design Slop Auditor](./design-slop-auditor.md) | **AI Slop Detection** | — | Slop Score (0-100), Design Research Report |
 | [Gate Guard Auditor](./gate-guard-auditor.md) | **Pipeline Compliance** | G9 | Gate Verification Report, Publication Approval |
+| [Content Audit Agent](./content-audit-agent.md) | **Content Quality** | — | Content Compliance Score (%), Word Count Analysis, Tone Assessment |
 
 ---
 
@@ -46,6 +47,8 @@ Quality verification and certification agents that ensure content meets Esy stan
 | **Detect AI slop & enforce distinctiveness** | Design Slop Auditor |
 | **Verify all gates G1-G9 are complete** | Gate Guard Auditor |
 | **Block implementation until G1-G4 done** | Gate Guard Auditor (Pre-Phase mode) |
+| **Audit content word count, depth, tone** | Content Audit Agent |
+| **Evaluate genocide/atrocity content sensitivity** | Content Audit Agent (with genocide protocol) |
 | **Comprehensive QA** | Use Meta Audit Orchestrator (orchestrators/) |
 
 ---
@@ -72,6 +75,7 @@ Meta Audit Orchestrator (Post-Implementation)
 ├── Spec Compliance Auditor (verifies output matches spec)
 ├── Hydration Audit (verifies SSR/client consistency)
 ├── Design Slop Auditor (enforces distinctive, subject-derived design)
+├── Content Audit Agent (verifies word count, depth, tone, sensitivity)
 └── Gate Guard Auditor (G9) ← Final checkpoint before publication
         │
         ▼
@@ -134,6 +138,27 @@ Target Phase: G5 (Implementation)
 Essay Slug: [essay-slug]
 
 BLOCK if prerequisite gates G1-G4 are incomplete.
+```
+
+```
+# Content audit for word count, depth, and tone
+Using @agents/auditors/content-audit-agent.md, audit content compliance for:
+
+Spec: src/app/essays/history/[slug]/INVOCATION-SPEC.md
+Essay: src/app/essays/history/[slug]/
+
+Produce full content audit report.
+```
+
+```
+# Content audit for sensitive/genocide content
+Using @agents/auditors/content-audit-agent.md, audit content for:
+
+Spec: src/app/essays/history/the-khmer-rouge-genocide/INVOCATION-SPEC.md
+Essay: src/app/essays/history/the-khmer-rouge-genocide/
+Sensitivity Level: Genocide/Atrocity
+
+Apply genocide content protocol. Verify tone appropriateness.
 ```
 
 ---

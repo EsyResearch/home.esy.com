@@ -616,6 +616,7 @@ Etymology essays should be linked from their corresponding glossary entries:
 December 2024
 
 ### Recent Changes
+- Added Content Audit Agent to auditors category (content-audit-agent.md) — comprehensive content quality, word count, tone, and spec compliance auditor with genocide/atrocity sensitivity protocols
 - Added Animation Pattern Auditor to collaboration section
 - Added animation pattern reference documents to hierarchy (scroll-lock-patterns.md with 21 patterns, animation-taxonomy.md with 36 categories)
 - Added routing rules for animation pattern additions and audits
