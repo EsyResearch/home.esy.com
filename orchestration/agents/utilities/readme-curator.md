@@ -212,6 +212,7 @@ Some changes require updates to multiple documents:
 | **Audit completed** | `audits/CHANGELOG.md` + `audits/[essay]/AUDIT-HISTORY.md` |
 | **Citation report** | `auditors/CitationReports/README.md` (if new essay) |
 | **Visual audit report** | `auditors/VisualAuditReports/README.md` (if new essay) |
+| **Image citation pattern** | `docs/artifact-patterns-guide/` + `agents/research/image-research-licensing-expert.md` |
 | **Social media audit report** | `engineering/SocialMediaAuditReports/README.md` + `[essay]/` |
 | **Hydration audit report** | `audits/hydration/` + `audits/CHANGELOG.md` |
 
@@ -612,10 +613,69 @@ Etymology essays should be linked from their corresponding glossary entries:
 
 ---
 
+## Artifact Patterns & Implementation Guides
+
+### docs/artifact-patterns-guide/
+
+Implementation patterns that bridge orchestration agents with codebase execution live in `docs/artifact-patterns-guide/`. These are **code-level patterns** (TypeScript, CSS, JSX) that implement what agents produce.
+
+| Document | Purpose | Related Agent |
+|----------|---------|---------------|
+| `ARTIFACT_CITATION_PATTERNS_GUIDE.md` | Image attribution patterns (inline + credits section) | `image-research-licensing-expert.md` |
+
+### Agent → Implementation Handoff Pattern
+
+Some agents produce research/documentation that must be implemented in code. This follows a two-document pattern:
+
+```
+┌─────────────────────────────┐     ┌─────────────────────────────┐
+│   ORCHESTRATION AGENT       │     │   IMPLEMENTATION GUIDE      │
+│   (research/sourcing)       │────▶│   (code patterns)           │
+│                             │     │                             │
+│ • Finds and verifies        │     │ • TypeScript interfaces     │
+│ • Documents provenance      │     │ • CSS styling patterns      │
+│ • Delivers handoff package  │     │ • JSX component structure   │
+└─────────────────────────────┘     └─────────────────────────────┘
+         orchestration/                        docs/
+```
+
+**Example: Image Research → Citation Implementation**
+
+1. **Agent** (`image-research-licensing-expert.md`):
+   - Sources images from Wikimedia Commons
+   - Verifies licenses via API
+   - Documents photographer, license, URLs
+   - Produces handoff deliverables
+
+2. **Guide** (`ARTIFACT_CITATION_PATTERNS_GUIDE.md`):
+   - Inline attribution format: `"Photographer, License"`
+   - IMAGES constant pattern in TypeScript
+   - Image Credits section JSX structure
+   - CSS styling for `.image-credits-*` classes
+
+3. **Reference Implementation** (canonical example):
+   - `src/app/essays/history/rnb-history/RnbHistoryClient.tsx`
+   - `src/app/essays/history/rnb-history/rnb-history.css`
+
+### Routing: Agent vs Guide
+
+| Content Type | Location | Reason |
+|--------------|----------|--------|
+| Research methodology | `orchestration/agents/` | Agent expertise |
+| License verification commands | `orchestration/agents/` | Research workflow |
+| TypeScript interfaces | `docs/artifact-patterns-guide/` | Code pattern |
+| CSS class definitions | `docs/artifact-patterns-guide/` | Code pattern |
+| JSX component structure | `docs/artifact-patterns-guide/` | Code pattern |
+| Handoff checklist | Both (agent produces, guide consumes) | Bridge |
+
+---
+
 ## Last Updated
 December 2024
 
 ### Recent Changes
+- Added Artifact Patterns & Implementation Guides section documenting `docs/artifact-patterns-guide/` and agent→implementation handoff pattern
+- Added `ARTIFACT_CITATION_PATTERNS_GUIDE.md` routing for image citation patterns
 - Added Content Audit Agent to auditors category (content-audit-agent.md) — comprehensive content quality, word count, tone, and spec compliance auditor with genocide/atrocity sensitivity protocols
 - Added Animation Pattern Auditor to collaboration section
 - Added animation pattern reference documents to hierarchy (scroll-lock-patterns.md with 21 patterns, animation-taxonomy.md with 36 categories)

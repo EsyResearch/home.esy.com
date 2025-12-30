@@ -597,10 +597,78 @@ Date: [Verification date]
 
 ---
 
+## Implementation Handoff
+
+After sourcing and verifying images, implementation follows the patterns documented in:
+
+**Reference**: `docs/artifact-patterns-guide/ARTIFACT_CITATION_PATTERNS_GUIDE.md`
+
+### Handoff Deliverables
+
+When handing off to implementation, provide:
+
+| Deliverable | Format | Example |
+|-------------|--------|---------|
+| **Image URL** | Direct Wikimedia Commons URL | `https://upload.wikimedia.org/wikipedia/commons/a/b1/File.jpg` |
+| **Inline Attribution** | `"Photographer, License"` | `"Bryan Ledgard, CC BY 2.0"` |
+| **Commons File Page** | Link for Image Credits section | `https://commons.wikimedia.org/wiki/File:Example.jpg` |
+| **Subject Name** | For credits list | `"Aretha Franklin"` |
+
+### Implementation Patterns (Summary)
+
+The patterns guide covers:
+
+1. **Inline Attribution Format**
+   ```
+   "Photographer/Source, License"
+   ```
+   - Always include photographer name
+   - Use standard license abbreviations (CC BY 2.0, Public Domain, CC0)
+   - No "Wikimedia Commons" in inline text
+
+2. **IMAGES Constant Pattern**
+   ```typescript
+   const IMAGES = {
+     arethaFranklin: "https://upload.wikimedia.org/wikipedia/commons/...",
+   } as const;
+   ```
+
+3. **Figure Interface**
+   ```typescript
+   {
+     imageUrl: IMAGES.arethaFranklin,
+     imageAttribution: "Atlantic Records, CC0",
+   }
+   ```
+
+4. **Image Credits Section**
+   - Appears after Sources section
+   - Each entry links to Commons file page
+   - Format: `Subject Name — Photographer, License`
+
+### Verification Before Handoff
+
+Before handing off sourced images, confirm:
+
+- [ ] Image URL returns HTTP 200 (not 404)
+- [ ] URL is from `/wikipedia/commons/` (not `/wikipedia/en/` fair use)
+- [ ] License verified via Wikimedia API
+- [ ] Photographer name extracted from API metadata
+- [ ] All four handoff deliverables prepared
+
+### Reference Implementation
+
+The R&B History essay serves as the canonical implementation:
+- `src/app/essays/history/rnb-history/RnbHistoryClient.tsx`
+- `src/app/essays/history/rnb-history/rnb-history.css`
+
+---
+
 ## Last Updated
 December 2024
 
 ### Recent Changes
+- Added "Implementation Handoff" section with patterns guide reference
 - Added "CRITICAL: Wikipedia vs Wikimedia Commons" section explaining fair use trap
 - Added detection commands for identifying non-free Wikipedia images
 - Added Jerry Wexler / Aretha Franklin examples showing fair use vs free images
