@@ -7,6 +7,16 @@ import './the-scramble-for-africa.css';
 // TYPES
 // ============================================================================
 
+type PartitionEra =
+  | 'exploration'
+  | 'berlin'
+  | 'congo'
+  | 'resistance'
+  | 'conquest'
+  | 'systems'
+  | 'cartography'
+  | 'legacy';
+
 interface FigureProfile {
   name: string;
   epithet: string;
@@ -21,6 +31,22 @@ interface Source {
   url: string;
   type: string;
 }
+
+// ============================================================================
+// ERA MAPPING - Colonial period visual treatments
+// ============================================================================
+
+const chapterEras: Record<string, PartitionEra> = {
+  hero: 'exploration',
+  'chapter-1': 'exploration',
+  'chapter-2': 'berlin',
+  'chapter-3': 'congo',
+  'chapter-4': 'resistance',
+  'chapter-5': 'conquest',
+  'chapter-6': 'systems',
+  'chapter-7': 'cartography',
+  'chapter-8': 'legacy',
+};
 
 // ============================================================================
 // DATA
@@ -131,7 +157,7 @@ const sources: Source[] = [
 // COMPONENTS
 // ============================================================================
 
-// Progress Bar - Africa silhouette filling with colonial colors
+// Progress Bar - River filling with colonial colors
 const ProgressBar: React.FC = () => {
   const [progress, setProgress] = useState(0);
 
@@ -148,16 +174,16 @@ const ProgressBar: React.FC = () => {
   }, []);
 
   return (
-    <div className="progress-container" aria-hidden="true">
-      <div className="progress-track">
-        <div className="progress-fill" style={{ height: `${progress}%` }} />
+    <div className="partition-progress" aria-hidden="true">
+      <div className="partition-progress-track">
+        <div className="partition-progress-fill" style={{ height: `${progress}%` }} />
       </div>
-      <div className="progress-markers">
-        <span className="progress-year" style={{ top: '5%' }}>1870</span>
-        <span className="progress-year" style={{ top: '25%' }}>1885</span>
-        <span className="progress-year" style={{ top: '50%' }}>1896</span>
-        <span className="progress-year" style={{ top: '75%' }}>1905</span>
-        <span className="progress-year" style={{ top: '95%' }}>1914</span>
+      <div className="partition-progress-markers">
+        <span className="partition-progress-year" style={{ top: '5%' }}>1870</span>
+        <span className="partition-progress-year" style={{ top: '25%' }}>1885</span>
+        <span className="partition-progress-year" style={{ top: '50%' }}>1896</span>
+        <span className="partition-progress-year" style={{ top: '75%' }}>1905</span>
+        <span className="partition-progress-year" style={{ top: '95%' }}>1914</span>
       </div>
     </div>
   );
@@ -168,7 +194,8 @@ const Section: React.FC<{
   children: React.ReactNode;
   className?: string;
   id?: string;
-}> = ({ children, className = '', id }) => {
+  era?: PartitionEra;
+}> = ({ children, className = '', id, era }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -184,11 +211,13 @@ const Section: React.FC<{
     return () => observer.disconnect();
   }, []);
 
+  const eraClass = era ? `partition-era-${era}` : '';
+
   return (
     <section
       ref={sectionRef}
       id={id}
-      className={`section ${className} ${isVisible ? 'visible' : ''}`}
+      className={`partition-section ${className} ${eraClass} ${isVisible ? 'visible' : ''}`}
     >
       {children}
     </section>
@@ -199,34 +228,38 @@ const Section: React.FC<{
 const QuoteMonument: React.FC<{
   quote: string;
   attribution: string;
-  className?: string;
-}> = ({ quote, attribution, className = '' }) => (
-  <Section className={`quote-monument ${className}`}>
-    <blockquote>
-      <p>&ldquo;{quote}&rdquo;</p>
-      <cite>— {attribution}</cite>
-    </blockquote>
-  </Section>
-);
+  variant?: 'resistance' | 'atrocity';
+}> = ({ quote, attribution, variant }) => {
+  const variantClass = variant ? `partition-quote-${variant}` : '';
+
+  return (
+    <Section className={`partition-quote-monument ${variantClass}`}>
+      <blockquote>
+        <p>&ldquo;{quote}&rdquo;</p>
+        <cite>— {attribution}</cite>
+      </blockquote>
+    </Section>
+  );
+};
 
 // Figure Profile component
 const FigureCard: React.FC<{ figure: FigureProfile }> = ({ figure }) => (
-  <div className="figure-card">
-    <div className="figure-icon" aria-hidden="true">
+  <div className="partition-figure-card">
+    <div className="partition-figure-icon" aria-hidden="true">
       <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="40" cy="30" r="18" fill="currentColor" opacity="0.3" />
         <path d="M15 70 Q40 55 65 70" stroke="currentColor" strokeWidth="3" fill="none" opacity="0.3" />
       </svg>
     </div>
-    <h4 className="figure-name">{figure.name}</h4>
-    <p className="figure-epithet">{figure.epithet}</p>
-    <ul className="figure-contributions">
+    <h4 className="partition-figure-name">{figure.name}</h4>
+    <p className="partition-figure-epithet">{figure.epithet}</p>
+    <ul className="partition-figure-list">
       {figure.contributions.map((c, i) => (
         <li key={i}>{c}</li>
       ))}
     </ul>
     {figure.quote && (
-      <blockquote className="figure-quote">
+      <blockquote className="partition-figure-quote">
         <p>&ldquo;{figure.quote}&rdquo;</p>
         {figure.quoteAttribution && <cite>— {figure.quoteAttribution}</cite>}
       </blockquote>
@@ -240,9 +273,9 @@ const TimelineEvent: React.FC<{
   title: string;
   description: string;
 }> = ({ year, title, description }) => (
-  <div className="timeline-event">
-    <span className="timeline-year">{year}</span>
-    <div className="timeline-content">
+  <div className="partition-timeline-event">
+    <span className="partition-timeline-year">{year}</span>
+    <div className="partition-timeline-body">
       <h4>{title}</h4>
       <p>{description}</p>
     </div>
@@ -255,9 +288,9 @@ const Statistic: React.FC<{
   label: string;
   emphasis?: boolean;
 }> = ({ value, label, emphasis = false }) => (
-  <div className={`statistic ${emphasis ? 'emphasis' : ''}`}>
-    <span className="stat-value">{value}</span>
-    <span className="stat-label">{label}</span>
+  <div className={`partition-stat ${emphasis ? 'emphasis' : ''}`}>
+    <span className="partition-stat-value">{value}</span>
+    <span className="partition-stat-label">{label}</span>
   </div>
 );
 
@@ -269,19 +302,19 @@ const ContentWarning: React.FC<{
   if (!visible) return null;
 
   return (
-    <div className="content-warning">
-      <div className="warning-content">
+    <div className="partition-warning">
+      <div className="partition-warning-inner">
         <h3>Content Warning</h3>
         <p>
-          The following section contains descriptions and references to colonial violence, 
-          including forced labor, mutilation, and mass death. This historical documentation 
+          The following section contains descriptions and references to colonial violence,
+          including forced labor, mutilation, and mass death. This historical documentation
           is presented to accurately convey the reality of the Congo Free State under Leopold II.
         </p>
-        <div className="warning-actions">
-          <button onClick={onProceed} className="warning-proceed">
+        <div className="partition-warning-actions">
+          <button onClick={onProceed} className="partition-warning-proceed">
             Continue Reading
           </button>
-          <a href="#chapter-4" className="warning-skip">
+          <a href="#chapter-4" className="partition-warning-skip">
             Skip to African Resistance
           </a>
         </div>
@@ -304,84 +337,81 @@ const ScrambleForAfricaClient: React.FC = () => {
   };
 
   return (
-    <div className="scramble-essay">
+    <div className="partition-essay partition-era-exploration">
       <ProgressBar />
 
       {/* ================================================================== */}
       {/* HERO SECTION */}
       {/* ================================================================== */}
-      <section className="hero">
-        <div className="hero-background" aria-hidden="true">
-          <div className="africa-silhouette">
+      <section className="partition-hero partition-era-exploration">
+        <div className="partition-hero-bg" aria-hidden="true">
+          <div className="partition-africa-outline">
             <svg viewBox="0 0 400 450" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
-                className="africa-outline"
+                className="partition-africa-path"
                 d="M200 20 L230 40 L260 35 L290 50 L320 45 L350 70 L370 100 L380 140 L375 180 L370 220 L365 260 L350 300 L330 340 L300 370 L270 390 L240 400 L210 410 L180 415 L150 405 L120 390 L100 360 L80 320 L70 280 L60 240 L55 200 L60 160 L70 120 L90 80 L120 50 L150 35 L180 25 Z"
-                stroke="var(--color-text-secondary)"
-                strokeWidth="2"
-                fill="none"
               />
             </svg>
           </div>
-          <div className="hero-grain" />
+          <div className="partition-hero-grain" />
         </div>
 
-        <div className="hero-content">
-          <span className="hero-date">1870 – 1914</span>
-          <h1 className="hero-title">
-            <span className="title-line">The</span>
-            <span className="title-line title-main">Scramble</span>
+        <div className="partition-hero-content">
+          <span className="partition-hero-date">1870 – 1914</span>
+          <h1 className="partition-hero-title">
+            <span className="partition-title-line">The</span>
+            <span className="partition-title-line partition-title-main">Scramble</span>
           </h1>
-          <p className="hero-subtitle">
+          <p className="partition-hero-subtitle">
             How Europe Carved Up a Continent in a Generation
           </p>
-          <div className="hero-stats">
+          <div className="partition-hero-stats">
             <Statistic value="10%" label="European control, 1870" />
             <Statistic value="90%" label="European control, 1914" emphasis />
           </div>
         </div>
 
-        <div className="scroll-indicator" aria-hidden="true">
+        <div className="partition-scroll-cue" aria-hidden="true">
           <span>Scroll to explore</span>
-          <div className="scroll-arrow" />
+          <div className="partition-scroll-line" />
         </div>
       </section>
 
       {/* ================================================================== */}
       {/* CHAPTER 1: THE STAGE IS SET */}
       {/* ================================================================== */}
-      <Section id="chapter-1" className="chapter chapter-stage">
-        <div className="chapter-header">
-          <span className="chapter-number">Chapter 1</span>
-          <span className="chapter-era">1870–1880</span>
+      <Section id="chapter-1" className="partition-chapter" era={chapterEras['chapter-1']}>
+        <div className="partition-chapter-header">
+          <span className="partition-chapter-number">Chapter 1</span>
+          <span className="partition-chapter-era">1870–1880</span>
         </div>
-        <h2 className="chapter-title">The Stage Is Set</h2>
-        <p className="chapter-metaphor">
+        <h2 className="partition-chapter-title">The Stage Is Set</h2>
+        <p className="partition-chapter-metaphor">
           The feast before the feeding frenzy—Africa as imagined prize.
         </p>
 
-        <div className="chapter-content">
-          <div className="content-block">
+        <div className="partition-chapter-content">
+          <div className="partition-content-block">
             <p>
-              In 1870, Africa remained one of Earth&apos;s last frontiers for European empires. 
-              Colonial presence hugged the coasts—French in Algeria and Senegal, British in 
-              the Cape and Gold Coast, Portuguese clinging to Angola and Mozambique&apos;s shores. 
+              In 1870, Africa remained one of Earth&apos;s last frontiers for European empires.
+              Colonial presence hugged the coasts—French in Algeria and Senegal, British in
+              the Cape and Gold Coast, Portuguese clinging to Angola and Mozambique&apos;s shores.
               The interior was a mystery European cartographers filled with speculation.
             </p>
             <p>
-              Then came the explorers. Henry Morton Stanley&apos;s famous 1871 encounter with 
-              David Livingstone captured imaginations. His 1877 mapping of the Congo River 
-              opened new possibilities. King Leopold II of Belgium, watching hungrily, saw 
+              Then came the explorers. Henry Morton Stanley&apos;s famous 1871 encounter with
+              David Livingstone captured imaginations. His 1877 mapping of the Congo River
+              opened new possibilities. King Leopold II of Belgium, watching hungrily, saw
               opportunity where others saw wilderness.
             </p>
             <p>
-              The technology was finally arriving: <strong>quinine</strong> made malaria survivable, 
-              <strong>steamships</strong> could navigate great rivers, and the <strong>telegram</strong> connected 
+              The technology was finally arriving: <strong>quinine</strong> made malaria survivable,
+              <strong>steamships</strong> could navigate great rivers, and the <strong>telegram</strong> connected
               expeditions to capitals. What had been impossible became merely difficult.
             </p>
           </div>
 
-          <div className="figures-grid">
+          <div className="partition-figures-grid">
             <FigureCard figure={figures.leopold} />
           </div>
         </div>
@@ -390,56 +420,56 @@ const ScrambleForAfricaClient: React.FC = () => {
       {/* ================================================================== */}
       {/* CHAPTER 2: THE RULES OF THE GAME */}
       {/* ================================================================== */}
-      <Section id="chapter-2" className="chapter chapter-berlin">
-        <div className="chapter-header">
-          <span className="chapter-number">Chapter 2</span>
-          <span className="chapter-era">1884–1885</span>
+      <Section id="chapter-2" className="partition-chapter" era={chapterEras['chapter-2']}>
+        <div className="partition-chapter-header">
+          <span className="partition-chapter-number">Chapter 2</span>
+          <span className="partition-chapter-era">1884–1885</span>
         </div>
-        <h2 className="chapter-title">The Rules of the Game</h2>
-        <p className="chapter-metaphor">
+        <h2 className="partition-chapter-title">The Rules of the Game</h2>
+        <p className="partition-chapter-metaphor">
           Fourteen nations carve a continent around a table where no Africans sat.
         </p>
 
-        <div className="chapter-content split-layout">
-          <div className="content-block">
+        <div className="partition-chapter-content partition-split">
+          <div className="partition-content-block">
             <p>
-              On November 15, 1884, representatives of fourteen European nations gathered 
-              in Berlin at Chancellor Otto von Bismarck&apos;s invitation. For three months they 
-              debated, negotiated, and established rules for what was already underway: 
+              On November 15, 1884, representatives of fourteen European nations gathered
+              in Berlin at Chancellor Otto von Bismarck&apos;s invitation. For three months they
+              debated, negotiated, and established rules for what was already underway:
               <strong>the division of Africa</strong>.
             </p>
             <p>
-              The General Act of Berlin codified the <em>&ldquo;effective occupation&rdquo;</em> principle—European 
-              powers could claim African territory only by demonstrating actual control. This 
-              accelerated the scramble; claiming on paper was no longer enough. 
+              The General Act of Berlin codified the <em>&ldquo;effective occupation&rdquo;</em> principle—European
+              powers could claim African territory only by demonstrating actual control. This
+              accelerated the scramble; claiming on paper was no longer enough.
               <strong>The race was on.</strong>
             </p>
             <p>
-              Not a single African was invited. The men in Berlin drew lines on maps with 
-              rulers, cutting through kingdoms and cultures they neither knew nor cared to 
-              understand. The Yoruba were divided. The Somali were split among four powers. 
-              Ethnic groups who had coexisted for centuries found themselves in different 
+              Not a single African was invited. The men in Berlin drew lines on maps with
+              rulers, cutting through kingdoms and cultures they neither knew nor cared to
+              understand. The Yoruba were divided. The Somali were split among four powers.
+              Ethnic groups who had coexisted for centuries found themselves in different
               colonial administrations.
             </p>
           </div>
 
-          <div className="berlin-visual">
-            <div className="conference-illustration" aria-hidden="true">
-              <div className="conference-table" />
-              <div className="conference-figures">
+          <div className="partition-berlin-visual">
+            <div className="partition-conference" aria-hidden="true">
+              <div className="partition-conference-table" />
+              <div className="partition-delegates">
                 {[1, 2, 3, 4, 5, 6, 7].map((i) => (
-                  <div key={i} className="delegate-figure" />
+                  <div key={i} className="partition-delegate" />
                 ))}
               </div>
-              <div className="map-on-table" />
+              <div className="partition-map-table" />
             </div>
-            <p className="visual-caption">
+            <p className="partition-visual-caption">
               Berlin Conference, 1884–1885: European delegates divide Africa
             </p>
           </div>
         </div>
 
-        <div className="figures-grid">
+        <div className="partition-figures-grid">
           <FigureCard figure={figures.bismarck} />
         </div>
       </Section>
@@ -448,19 +478,18 @@ const ScrambleForAfricaClient: React.FC = () => {
       <QuoteMonument
         quote="My map of Africa lies in Europe. Here is Russia and here is France, and we are in the middle. That is my map of Africa."
         attribution="Otto von Bismarck (attributed)"
-        className="bismarck-quote"
       />
 
       {/* ================================================================== */}
       {/* CHAPTER 3: THE KING'S PRIVATE HELL */}
       {/* ================================================================== */}
-      <Section id="chapter-3" className="chapter chapter-congo">
-        <div className="chapter-header">
-          <span className="chapter-number">Chapter 3</span>
-          <span className="chapter-era">1885–1908</span>
+      <Section id="chapter-3" className="partition-chapter" era={chapterEras['chapter-3']}>
+        <div className="partition-chapter-header">
+          <span className="partition-chapter-number">Chapter 3</span>
+          <span className="partition-chapter-era">1885–1908</span>
         </div>
-        <h2 className="chapter-title">The King&apos;s Private Hell</h2>
-        <p className="chapter-metaphor">
+        <h2 className="partition-chapter-title">The King&apos;s Private Hell</h2>
+        <p className="partition-chapter-metaphor">
           One man&apos;s personal property—larger than Western Europe—and the millions who died to make him rich.
         </p>
 
@@ -469,52 +498,52 @@ const ScrambleForAfricaClient: React.FC = () => {
         )}
 
         {warningDismissed && (
-          <div className="chapter-content">
-            <div className="content-block">
+          <div className="partition-chapter-content">
+            <div className="partition-content-block">
               <p>
-                The Congo Free State was not a Belgian colony. It was <strong>Leopold&apos;s 
-                personal property</strong>, recognized by the Berlin Conference as his to exploit. 
-                And exploit he did, creating what Adam Hochschild called &ldquo;one of the great 
+                The Congo Free State was not a Belgian colony. It was <strong>Leopold&apos;s
+                personal property</strong>, recognized by the Berlin Conference as his to exploit.
+                And exploit he did, creating what Adam Hochschild called &ldquo;one of the great
                 crimes of the modern era.&rdquo;
               </p>
               <p>
-                The rubber quota system was enforced through terror. Villages that failed to 
-                meet quotas faced punishment. Force Publique soldiers were required to account 
-                for every bullet fired—and they did so by <em>bringing back severed hands</em>. 
-                Photographs of Congolese with amputated limbs circulated in reform campaigns, 
+                The rubber quota system was enforced through terror. Villages that failed to
+                meet quotas faced punishment. Force Publique soldiers were required to account
+                for every bullet fired—and they did so by <em>bringing back severed hands</em>.
+                Photographs of Congolese with amputated limbs circulated in reform campaigns,
                 shocking the world.
               </p>
               <p>
-                The death toll is contested but catastrophic. Hochschild&apos;s estimate of 
-                <strong>10 million—half the population</strong>—is widely cited. Entire regions were 
-                depopulated. People fled into forests or perished from overwork, starvation, 
+                The death toll is contested but catastrophic. Hochschild&apos;s estimate of
+                <strong>10 million—half the population</strong>—is widely cited. Entire regions were
+                depopulated. People fled into forests or perished from overwork, starvation,
                 and colonial violence.
               </p>
             </div>
 
-            <div className="data-block">
+            <div className="partition-data-block">
               <h3>The Toll</h3>
-              <div className="stats-row">
+              <div className="partition-stats-row">
                 <Statistic value="~10M" label="Estimated deaths" emphasis />
                 <Statistic value="50%" label="Population loss" />
                 <Statistic value="23 yrs" label="Leopold&apos;s rule" />
               </div>
             </div>
 
-            <div className="content-block">
+            <div className="partition-content-block">
               <p>
-                Yet the Congo also produced history&apos;s first international human rights campaign. 
-                E.D. Morel, analyzing shipping records, noticed ships arrived with guns and left 
-                with only rubber and ivory—no trade goods. He exposed the system in <em>Red Rubber</em>. 
+                Yet the Congo also produced history&apos;s first international human rights campaign.
+                E.D. Morel, analyzing shipping records, noticed ships arrived with guns and left
+                with only rubber and ivory—no trade goods. He exposed the system in <em>Red Rubber</em>.
                 Roger Casement&apos;s 1904 British consular report provided official documentation.
               </p>
               <p>
-                Together they built the Congo Reform Association, and in 1908, international 
+                Together they built the Congo Reform Association, and in 1908, international
                 pressure forced Leopold to surrender his prize to the Belgian state.
               </p>
             </div>
 
-            <div className="figures-grid two-column">
+            <div className="partition-figures-grid two-col">
               <FigureCard figure={figures.morel} />
             </div>
           </div>
@@ -524,25 +553,25 @@ const ScrambleForAfricaClient: React.FC = () => {
       {/* ================================================================== */}
       {/* CHAPTER 4: THOSE WHO FOUGHT BACK */}
       {/* ================================================================== */}
-      <Section id="chapter-4" className="chapter chapter-resistance">
-        <div className="chapter-header">
-          <span className="chapter-number">Chapter 4</span>
-          <span className="chapter-era">1879–1898</span>
+      <Section id="chapter-4" className="partition-chapter" era={chapterEras['chapter-4']}>
+        <div className="partition-chapter-header">
+          <span className="partition-chapter-number">Chapter 4</span>
+          <span className="partition-chapter-era">1879–1898</span>
         </div>
-        <h2 className="chapter-title">Those Who Fought Back</h2>
-        <p className="chapter-metaphor">
+        <h2 className="partition-chapter-title">Those Who Fought Back</h2>
+        <p className="partition-chapter-metaphor">
           Resistance was the rule, not the exception—from Zulu spears to Ethiopian artillery.
         </p>
 
-        <div className="chapter-content">
-          <div className="content-block">
+        <div className="partition-chapter-content">
+          <div className="partition-content-block">
             <p>
-              The narrative of passive African submission is a colonial myth. 
+              The narrative of passive African submission is a colonial myth.
               <strong>Resistance was widespread</strong>, varied, and sometimes successful.
             </p>
           </div>
 
-          <div className="resistance-timeline">
+          <div className="partition-timeline">
             <TimelineEvent
               year="1879"
               title="Battle of Isandlwana"
@@ -560,27 +589,27 @@ const ScrambleForAfricaClient: React.FC = () => {
             />
           </div>
 
-          <div className="adwa-highlight">
-            <div className="highlight-content">
+          <div className="partition-highlight">
+            <div className="partition-highlight-content">
               <h3>The Victory at Adwa</h3>
               <p>
-                Emperor Menelik II had modernized his army, purchasing European weapons 
-                while exploiting European rivalries. When Italy claimed Ethiopia as a 
+                Emperor Menelik II had modernized his army, purchasing European weapons
+                while exploiting European rivalries. When Italy claimed Ethiopia as a
                 protectorate based on a disputed treaty, Menelik prepared for war.
               </p>
               <p>
-                On <strong>March 1, 1896</strong>, 100,000 Ethiopian soldiers faced 17,000 Italians. 
-                The result was devastating for Italy: 6,000 dead, 1,500 wounded, 3,000 captured. 
+                On <strong>March 1, 1896</strong>, 100,000 Ethiopian soldiers faced 17,000 Italians.
+                The result was devastating for Italy: 6,000 dead, 1,500 wounded, 3,000 captured.
                 Ethiopia remained <em>the only African nation to repel European colonization</em>.
               </p>
-              <div className="stats-row">
+              <div className="partition-stats-row">
                 <Statistic value="100,000" label="Ethiopian forces" emphasis />
                 <Statistic value="6,000" label="Italian dead" />
               </div>
             </div>
           </div>
 
-          <div className="figures-grid two-column">
+          <div className="partition-figures-grid two-col">
             <FigureCard figure={figures.menelik} />
             <FigureCard figure={figures.taytu} />
           </div>
@@ -591,70 +620,70 @@ const ScrambleForAfricaClient: React.FC = () => {
       <QuoteMonument
         quote="I have no intention of being an indifferent spectator if the distant powers have the idea of dividing up Africa."
         attribution="Emperor Menelik II, 1891"
-        className="menelik-quote resistance-quote"
+        variant="resistance"
       />
 
       {/* ================================================================== */}
       {/* CHAPTER 5: THE TOOLS OF CONQUEST */}
       {/* ================================================================== */}
-      <Section id="chapter-5" className="chapter chapter-technology">
-        <div className="chapter-header">
-          <span className="chapter-number">Chapter 5</span>
-          <span className="chapter-era">1880–1900</span>
+      <Section id="chapter-5" className="partition-chapter" era={chapterEras['chapter-5']}>
+        <div className="partition-chapter-header">
+          <span className="partition-chapter-number">Chapter 5</span>
+          <span className="partition-chapter-era">1880–1900</span>
         </div>
-        <h2 className="chapter-title">The Tools of Conquest</h2>
-        <p className="chapter-metaphor">
+        <h2 className="partition-chapter-title">The Tools of Conquest</h2>
+        <p className="partition-chapter-metaphor">
           Not superior civilization but superior firepower—quinine, steamships, and the Maxim gun.
         </p>
 
-        <div className="chapter-content">
-          <div className="content-block">
+        <div className="partition-chapter-content">
+          <div className="partition-content-block">
             <p>
-              European conquest of Africa was not inevitable. For centuries, Africa had 
-              repelled European penetration—disease killed colonizers faster than they could 
+              European conquest of Africa was not inevitable. For centuries, Africa had
+              repelled European penetration—disease killed colonizers faster than they could
               establish footholds. <strong>What changed was technology.</strong>
             </p>
           </div>
 
-          <div className="technology-grid">
-            <div className="tech-card">
-              <div className="tech-icon" aria-hidden="true">💊</div>
+          <div className="partition-tech-grid">
+            <div className="partition-tech-card">
+              <div className="partition-tech-icon" aria-hidden="true">💊</div>
               <h4>Quinine</h4>
               <p>Made malaria survivable for Europeans. What had been &ldquo;the white man&apos;s grave&rdquo; became accessible.</p>
             </div>
-            <div className="tech-card">
-              <div className="tech-icon" aria-hidden="true">🚢</div>
+            <div className="partition-tech-card">
+              <div className="partition-tech-icon" aria-hidden="true">🚢</div>
               <h4>Steamships</h4>
               <p>Enabled river navigation—the Congo, the Niger, the Nile—carrying troops where foot travel was impossible.</p>
             </div>
-            <div className="tech-card">
-              <div className="tech-icon" aria-hidden="true">⚙️</div>
+            <div className="partition-tech-card">
+              <div className="partition-tech-icon" aria-hidden="true">⚙️</div>
               <h4>Maxim Gun</h4>
               <p>The first portable machine gun. The decisive technology that turned battles into massacres.</p>
             </div>
           </div>
 
-          <div className="omdurman-data">
+          <div className="partition-data-panel">
             <h3>Battle of Omdurman, 1898</h3>
             <p>
-              British forces under General Kitchener faced the Mahdist army of Sudan. 
+              British forces under General Kitchener faced the Mahdist army of Sudan.
               The result was slaughter.
             </p>
-            <div className="comparison-stats">
-              <div className="stat-block mahdist">
-                <span className="stat-label">Mahdist Casualties</span>
-                <span className="stat-value">11,000</span>
-                <span className="stat-note">killed in hours</span>
+            <div className="partition-comparison">
+              <div className="partition-comparison-block casualties">
+                <span className="partition-stat-label">Mahdist Casualties</span>
+                <span className="partition-stat-value">11,000</span>
+                <span className="partition-comparison-note">killed in hours</span>
               </div>
-              <div className="stat-divider">vs</div>
-              <div className="stat-block british">
-                <span className="stat-label">British Casualties</span>
-                <span className="stat-value">47</span>
-                <span className="stat-note">total dead</span>
+              <div className="partition-comparison-vs">vs</div>
+              <div className="partition-comparison-block">
+                <span className="partition-stat-label">British Casualties</span>
+                <span className="partition-stat-value">47</span>
+                <span className="partition-comparison-note">total dead</span>
               </div>
             </div>
-            <p className="data-conclusion">
-              This asymmetry was not about courage or civilization. 
+            <p className="partition-data-conclusion">
+              This asymmetry was not about courage or civilization.
               <strong>It was about bullets per minute.</strong>
             </p>
           </div>
@@ -664,52 +693,52 @@ const ScrambleForAfricaClient: React.FC = () => {
       {/* ================================================================== */}
       {/* CHAPTER 6: THE COLONIAL MACHINE */}
       {/* ================================================================== */}
-      <Section id="chapter-6" className="chapter chapter-systems">
-        <div className="chapter-header">
-          <span className="chapter-number">Chapter 6</span>
-          <span className="chapter-era">1890–1914</span>
+      <Section id="chapter-6" className="partition-chapter" era={chapterEras['chapter-6']}>
+        <div className="partition-chapter-header">
+          <span className="partition-chapter-number">Chapter 6</span>
+          <span className="partition-chapter-era">1890–1914</span>
         </div>
-        <h2 className="chapter-title">The Colonial Machine</h2>
-        <p className="chapter-metaphor">
+        <h2 className="partition-chapter-title">The Colonial Machine</h2>
+        <p className="partition-chapter-metaphor">
           Different labels, same extraction—how European powers built systems to drain a continent.
         </p>
 
-        <div className="chapter-content">
-          <div className="content-block">
+        <div className="partition-chapter-content">
+          <div className="partition-content-block">
             <p>
-              Once territory was claimed, Europeans built systems to exploit it. The methods 
-              varied—British &ldquo;indirect rule,&rdquo; French &ldquo;assimilation,&rdquo; Belgian extraction terror, 
-              German militarized administration—but <strong>the logic was shared</strong>: 
+              Once territory was claimed, Europeans built systems to exploit it. The methods
+              varied—British &ldquo;indirect rule,&rdquo; French &ldquo;assimilation,&rdquo; Belgian extraction terror,
+              German militarized administration—but <strong>the logic was shared</strong>:
               Africa existed to enrich Europe.
             </p>
           </div>
 
-          <div className="systems-comparison">
-            <div className="system-panel british-panel">
+          <div className="partition-systems-grid">
+            <div className="partition-system-panel british">
               <h4>British Empire</h4>
-              <p className="system-label">Indirect Rule</p>
+              <p className="partition-system-label">Indirect Rule</p>
               <p>Used African chiefs as intermediaries under British supervision. Cheaper and created illusion of African participation.</p>
             </div>
-            <div className="system-panel french-panel">
+            <div className="partition-system-panel french">
               <h4>French Empire</h4>
-              <p className="system-label">Assimilation</p>
+              <p className="partition-system-label">Assimilation</p>
               <p>Goal to create &ldquo;Black Frenchmen.&rdquo; More centralized, cultural replacement, French law and education.</p>
             </div>
-            <div className="system-panel belgian-panel">
+            <div className="partition-system-panel belgian">
               <h4>Belgian Congo</h4>
-              <p className="system-label">Extraction Terror</p>
+              <p className="partition-system-label">Extraction Terror</p>
               <p>Leopold&apos;s personal rule, pure exploitation, worst abuses. Rubber quotas enforced through mutilation.</p>
             </div>
-            <div className="system-panel german-panel">
+            <div className="partition-system-panel german">
               <h4>German Empire</h4>
-              <p className="system-label">Militarized Control</p>
+              <p className="partition-system-label">Militarized Control</p>
               <p>Settler emphasis, brutal suppression. Herero and Nama genocide—the 20th century&apos;s first.</p>
             </div>
           </div>
 
-          <div className="content-block">
+          <div className="partition-content-block">
             <p>
-              In German Southwest Africa (Namibia), colonization took its most extreme form. 
+              In German Southwest Africa (Namibia), colonization took its most extreme form.
               General Lothar von Trotha&apos;s <em>Vernichtungsbefehl</em>—extermination order—was explicit:
             </p>
           </div>
@@ -720,13 +749,13 @@ const ScrambleForAfricaClient: React.FC = () => {
       <QuoteMonument
         quote="Within the German borders, every Herero, with or without a gun, with or without cattle, will be shot. I will no longer accept women and children."
         attribution="Lothar von Trotha, Vernichtungsbefehl, October 2, 1904"
-        className="trotha-quote atrocity-quote"
+        variant="atrocity"
       />
 
-      <Section className="genocide-data">
-        <div className="genocide-stats">
+      <Section className="partition-genocide-section" era="systems">
+        <div className="partition-genocide-inner">
           <h3>The First Genocide of the 20th Century</h3>
-          <div className="stats-row">
+          <div className="partition-stats-row">
             <Statistic value="65,000" label="Herero killed" emphasis />
             <Statistic value="80%" label="of Herero population" />
             <Statistic value="10,000" label="Nama killed" />
@@ -738,46 +767,44 @@ const ScrambleForAfricaClient: React.FC = () => {
       {/* ================================================================== */}
       {/* CHAPTER 7: LINES ON MAPS, LIVES DIVIDED */}
       {/* ================================================================== */}
-      <Section id="chapter-7" className="chapter chapter-borders">
-        <div className="chapter-header">
-          <span className="chapter-number">Chapter 7</span>
-          <span className="chapter-era">1885–1914</span>
+      <Section id="chapter-7" className="partition-chapter" era={chapterEras['chapter-7']}>
+        <div className="partition-chapter-header">
+          <span className="partition-chapter-number">Chapter 7</span>
+          <span className="partition-chapter-era">1885–1914</span>
         </div>
-        <h2 className="chapter-title">Lines on Maps, Lives Divided</h2>
-        <p className="chapter-metaphor">
+        <h2 className="partition-chapter-title">Lines on Maps, Lives Divided</h2>
+        <p className="partition-chapter-metaphor">
           Borders drawn with rulers in Europe sliced through peoples who had lived together for millennia.
         </p>
 
-        <div className="chapter-content">
-          <div className="content-block">
+        <div className="partition-chapter-content">
+          <div className="partition-content-block">
             <p>
-              The lines drawn in Berlin and negotiated in subsequent treaties had one thing 
+              The lines drawn in Berlin and negotiated in subsequent treaties had one thing
               in common: <strong>they ignored Africa</strong>.
             </p>
             <p>
-              An estimated <strong>177 ethnic groups were divided by colonial borders</strong>. The Maasai 
-              found themselves split between British Kenya and German Tanganyika. The Ewe 
-              were divided among British, French, and German territories. Kingdoms that had 
+              An estimated <strong>177 ethnic groups were divided by colonial borders</strong>. The Maasai
+              found themselves split between British Kenya and German Tanganyika. The Ewe
+              were divided among British, French, and German territories. Kingdoms that had
               existed for centuries were partitioned or absorbed into unrelated administrative units.
             </p>
           </div>
 
-          <div className="border-impact">
-            <div className="impact-stat">
-              <span className="big-number">177</span>
-              <span className="impact-label">Ethnic groups divided by colonial borders</span>
-            </div>
+          <div className="partition-impact-stat">
+            <span className="partition-big-number">177</span>
+            <span className="partition-impact-label">Ethnic groups divided by colonial borders</span>
           </div>
 
-          <div className="content-block">
+          <div className="partition-content-block">
             <p>
-              The scramble also created flash points that nearly ignited European war. 
-              At <strong>Fashoda in 1898</strong>, French and British forces met in Sudan—two empires 
+              The scramble also created flash points that nearly ignited European war.
+              At <strong>Fashoda in 1898</strong>, French and British forces met in Sudan—two empires
               converging on the same point. War seemed imminent before France backed down.
             </p>
             <p>
-              By <strong>1914</strong>, only Ethiopia and Liberia remained independent. The rest of Africa 
-              was colored on European maps, governed from European capitals, and bled for 
+              By <strong>1914</strong>, only Ethiopia and Liberia remained independent. The rest of Africa
+              was colored on European maps, governed from European capitals, and bled for
               European profit.
             </p>
           </div>
@@ -787,41 +814,41 @@ const ScrambleForAfricaClient: React.FC = () => {
       {/* ================================================================== */}
       {/* CHAPTER 8: THE BORDERS THAT REMAIN */}
       {/* ================================================================== */}
-      <Section id="chapter-8" className="chapter chapter-legacy">
-        <div className="chapter-header">
-          <span className="chapter-number">Chapter 8</span>
-          <span className="chapter-era">1914–Present</span>
+      <Section id="chapter-8" className="partition-chapter" era={chapterEras['chapter-8']}>
+        <div className="partition-chapter-header">
+          <span className="partition-chapter-number">Chapter 8</span>
+          <span className="partition-chapter-era">1914–Present</span>
         </div>
-        <h2 className="chapter-title">The Borders That Remain</h2>
-        <p className="chapter-metaphor">
+        <h2 className="partition-chapter-title">The Borders That Remain</h2>
+        <p className="partition-chapter-metaphor">
           Independence changed the flags but kept the lines—the scramble&apos;s longest legacy.
         </p>
 
-        <div className="chapter-content">
-          <div className="content-block">
+        <div className="partition-chapter-content">
+          <div className="partition-content-block">
             <p>
-              When African nations gained independence in the mid-20th century, they 
-              <strong>inherited colonial borders</strong>. The Organization of African Unity, founded 
-              in 1963, explicitly maintained these boundaries to prevent endless territorial 
+              When African nations gained independence in the mid-20th century, they
+              <strong>inherited colonial borders</strong>. The Organization of African Unity, founded
+              in 1963, explicitly maintained these boundaries to prevent endless territorial
               disputes. The lines drawn in Berlin would remain.
             </p>
             <p>
-              Those lines continue to shape African politics. Ethnic groups divided in 1885 
-              remain divided today. Landlocked nations created by colonial negotiation remain 
-              dependent on neighbors for port access. Resource-rich regions claimed by distant 
+              Those lines continue to shape African politics. Ethnic groups divided in 1885
+              remain divided today. Landlocked nations created by colonial negotiation remain
+              dependent on neighbors for port access. Resource-rich regions claimed by distant
               capitals remain sites of extraction and conflict.
             </p>
             <p>
-              The scramble&apos;s economic patterns also persist. Many African nations still export 
-              raw materials to former colonial powers and import manufactured goods. The 
-              infrastructure built for extraction—railroads from mine to port—still constrains 
+              The scramble&apos;s economic patterns also persist. Many African nations still export
+              raw materials to former colonial powers and import manufactured goods. The
+              infrastructure built for extraction—railroads from mine to port—still constrains
               development.
             </p>
           </div>
 
-          <div className="legacy-comparison">
-            <div className="comparison-panel then">
-              <span className="comparison-year">1914</span>
+          <div className="partition-legacy-compare">
+            <div className="partition-compare-panel">
+              <span className="partition-compare-year">1914</span>
               <p>Colonial Africa: Territories named by European powers</p>
               <ul>
                 <li>French West Africa</li>
@@ -830,9 +857,9 @@ const ScrambleForAfricaClient: React.FC = () => {
                 <li>British Nigeria</li>
               </ul>
             </div>
-            <div className="comparison-arrow" aria-hidden="true">→</div>
-            <div className="comparison-panel now">
-              <span className="comparison-year">Today</span>
+            <div className="partition-legacy-arrow" aria-hidden="true">→</div>
+            <div className="partition-compare-panel">
+              <span className="partition-compare-year">Today</span>
               <p>Independent nations: African names, <em>same borders</em></p>
               <ul>
                 <li>Mali, Senegal, Niger...</li>
@@ -843,14 +870,14 @@ const ScrambleForAfricaClient: React.FC = () => {
             </div>
           </div>
 
-          <div className="content-block closing">
+          <div className="partition-content-block partition-closing">
             <p>
-              This is not destiny. African nations have built, grown, and transformed in the 
-              century since colonial rule ended. But understanding <em>why the map looks the way 
-              it does</em>—and why certain conflicts recur—requires understanding the forty years 
+              This is not destiny. African nations have built, grown, and transformed in the
+              century since colonial rule ended. But understanding <em>why the map looks the way
+              it does</em>—and why certain conflicts recur—requires understanding the forty years
               when Europe carved up a continent.
             </p>
-            <p className="closing-line">
+            <p className="partition-closing-line">
               <strong>The scramble ended. Its consequences did not.</strong>
             </p>
           </div>
@@ -860,22 +887,22 @@ const ScrambleForAfricaClient: React.FC = () => {
       {/* ================================================================== */}
       {/* SOURCES SECTION */}
       {/* ================================================================== */}
-      <section className="sources-section">
-        <div className="sources-content">
-          <h3 className="sources-title">Sources & Further Reading</h3>
-          <ul className="sources-list">
+      <section className="partition-sources">
+        <div className="partition-sources-inner">
+          <h3 className="partition-sources-title">Sources & Further Reading</h3>
+          <ul className="partition-sources-list">
             {sources.map((source, index) => (
               <li key={index}>
                 <a href={source.url} target="_blank" rel="noopener noreferrer">
                   {source.title}
                 </a>
-                <span className="source-type">{source.type}</span>
+                <span className="partition-source-type">{source.type}</span>
               </li>
             ))}
           </ul>
-          <p className="sources-note">
-            This narrative was fact-checked against peer-reviewed academic sources and 
-            authoritative historical records. Primary documents from the Berlin Conference, 
+          <p className="partition-sources-note">
+            This narrative was fact-checked against peer-reviewed academic sources and
+            authoritative historical records. Primary documents from the Berlin Conference,
             Casement Report, and contemporary reform publications were consulted.
           </p>
         </div>
@@ -884,12 +911,12 @@ const ScrambleForAfricaClient: React.FC = () => {
       {/* ================================================================== */}
       {/* FOOTER */}
       {/* ================================================================== */}
-      <footer className="essay-footer">
-        <div className="footer-content">
-          <p className="footer-attribution">
+      <footer className="partition-footer">
+        <div className="partition-footer-inner">
+          <p className="partition-footer-attr">
             A visual essay by <strong>Esy</strong>
           </p>
-          <p className="footer-date">December 2025</p>
+          <p className="partition-footer-date">December 2025</p>
         </div>
       </footer>
     </div>
