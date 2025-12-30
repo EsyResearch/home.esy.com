@@ -902,6 +902,20 @@ export const visualEssays: VisualEssay[] = [
     visualStyle: "photorealistic",
     heroImage: "/og/kpop-history.png",
   },
+  {
+    id: "rnb-history",
+    number: "79",
+    title: "R&B: The Heartbeat That Taught Pop to Feel",
+    subtitle: "A Visual History of Rhythm & Blues",
+    description: "From its 1949 naming to contemporary alternative R&B—an immersive visual journey through Motown, Stax, Philadelphia International, and the evolution of Black popular music across Soul, Funk, Quiet Storm, New Jack Swing, and beyond.",
+    category: "History",
+    readTime: "30 min",
+    href: "/essays/history/rnb-history",
+    isNew: true,
+    tags: ["R&B", "rhythm and blues", "soul music", "Motown", "Stax", "Atlantic Records", "Aretha Franklin", "Stevie Wonder", "Marvin Gaye", "funk", "new jack swing", "music history", "visual essay"],
+    visualStyle: "photorealistic",
+    heroImage: "/og/rnb-history.png",
+  },
   // Children's Fiction (draft - not shown in production)
   {
     id: "the-night-the-stars-fell",
