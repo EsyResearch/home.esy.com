@@ -971,21 +971,146 @@ export default function RnbHistoryClient() {
         <section className="output-section">
           <div className="output-content">
             <h2 className="output-label">Output / Sources & Further Reading</h2>
-            <div className="output-list">
-              <p>
-                <strong>Primary Sources:</strong> Jerry Wexler autobiography; Ruth Brown interviews
-                (NPR Forebears); Aretha Franklin (Academy of Achievement interview, 1991);
-                Big Mama Thornton (Jet magazine); Billboard magazine archives.
-              </p>
-              <p>
-                <strong>Academic Sources:</strong> Nelson George, <em>The Death of Rhythm and Blues</em>;
-                Portia K. Maultsby, academic papers on African American music; Charlie Gillett,
-                <em>Making Tracks: Atlantic Records</em>; Rob Bowman, <em>Soulsville U.S.A.: The Story of Stax Records</em>.
-              </p>
-              <p>
-                <strong>Documentaries:</strong> <em>Standing in the Shadows of Motown</em> (2002);
-                <em>Muscle Shoals</em> (2013); <em>20 Feet from Stardom</em> (2013).
-              </p>
+
+            <div className="sources-grid">
+              {/* Books */}
+              <div className="source-category">
+                <h3 className="source-category-label">
+                  <span className="source-jack" />
+                  Books
+                </h3>
+                <ul className="source-list">
+                  <li>
+                    <a href="https://www.amazon.com/Rhythm-Blues-Life-American-Music/dp/0679401024" target="_blank" rel="noopener noreferrer">
+                      <em>Rhythm and the Blues: A Life in American Music</em>
+                    </a>
+                    <span className="source-author">Jerry Wexler with David Ritz (1993)</span>
+                  </li>
+                  <li>
+                    <a href="https://www.amazon.com/Death-Rhythm-Blues-Nelson-George/dp/0142004081" target="_blank" rel="noopener noreferrer">
+                      <em>The Death of Rhythm and Blues</em>
+                    </a>
+                    <span className="source-author">Nelson George (1988)</span>
+                  </li>
+                  <li>
+                    <a href="https://www.amazon.com/Soulsville-U-S-Story-Stax-Records/dp/0825672848" target="_blank" rel="noopener noreferrer">
+                      <em>Soulsville U.S.A.: The Story of Stax Records</em>
+                    </a>
+                    <span className="source-author">Rob Bowman (1997)</span>
+                  </li>
+                  <li>
+                    <a href="https://www.amazon.com/Making-Tracks-Atlantic-Records-Multi-Billion-Dollar/dp/0285621674" target="_blank" rel="noopener noreferrer">
+                      <em>Making Tracks: Atlantic Records</em>
+                    </a>
+                    <span className="source-author">Charlie Gillett (1974)</span>
+                  </li>
+                  <li>
+                    <a href="https://www.amazon.com/Be-Loved-Memories-Motown-Autobiography/dp/044651523X" target="_blank" rel="noopener noreferrer">
+                      <em>To Be Loved: The Music, the Magic, the Memories of Motown</em>
+                    </a>
+                    <span className="source-author">Berry Gordy (1994)</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Documentaries */}
+              <div className="source-category">
+                <h3 className="source-category-label">
+                  <span className="source-jack" />
+                  Documentaries
+                </h3>
+                <ul className="source-list">
+                  <li>
+                    <a href="https://www.imdb.com/title/tt0314725/" target="_blank" rel="noopener noreferrer">
+                      <em>Standing in the Shadows of Motown</em>
+                    </a>
+                    <span className="source-author">Dir. Paul Justman (2002)</span>
+                  </li>
+                  <li>
+                    <a href="https://www.imdb.com/title/tt2492916/" target="_blank" rel="noopener noreferrer">
+                      <em>Muscle Shoals</em>
+                    </a>
+                    <span className="source-author">Dir. Greg Camalier (2013)</span>
+                  </li>
+                  <li>
+                    <a href="https://www.imdb.com/title/tt2396566/" target="_blank" rel="noopener noreferrer">
+                      <em>20 Feet from Stardom</em>
+                    </a>
+                    <span className="source-author">Dir. Morgan Neville (2013)</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Archives & Institutions */}
+              <div className="source-category">
+                <h3 className="source-category-label">
+                  <span className="source-jack" />
+                  Archives & Institutions
+                </h3>
+                <ul className="source-list">
+                  <li>
+                    <a href="https://rockhall.com/" target="_blank" rel="noopener noreferrer">
+                      Rock & Roll Hall of Fame
+                    </a>
+                    <span className="source-author">Artist biographies and induction speeches</span>
+                  </li>
+                  <li>
+                    <a href="https://www.billboard.com/charts/" target="_blank" rel="noopener noreferrer">
+                      Billboard Magazine Archives
+                    </a>
+                    <span className="source-author">Chart history and industry reporting</span>
+                  </li>
+                  <li>
+                    <a href="https://www.royalstudios.com/history" target="_blank" rel="noopener noreferrer">
+                      Royal Studios
+                    </a>
+                    <span className="source-author">Memphis studio history</span>
+                  </li>
+                  <li>
+                    <a href="https://staxmuseum.com/" target="_blank" rel="noopener noreferrer">
+                      Stax Museum of American Soul Music
+                    </a>
+                    <span className="source-author">Memphis, Tennessee</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Interviews & Articles */}
+              <div className="source-category">
+                <h3 className="source-category-label">
+                  <span className="source-jack" />
+                  Interviews & Articles
+                </h3>
+                <ul className="source-list">
+                  <li>
+                    <a href="https://www.grammy.com/news/gamble-and-huff-interview-50-years-philly-soul-creating-black-music-month-Philadelphia-International-Records" target="_blank" rel="noopener noreferrer">
+                      Gamble and Huff: 50 Years of Philly Soul
+                    </a>
+                    <span className="source-author">Grammy.com (2021)</span>
+                  </li>
+                  <li>
+                    <a href="https://www.okayplayer.com/originals/teddy-riley-interview-new-jack-swing-apollo-harlem.html" target="_blank" rel="noopener noreferrer">
+                      Teddy Riley on the History of New Jack Swing
+                    </a>
+                    <span className="source-author">Okayplayer</span>
+                  </li>
+                  <li>
+                    <a href="https://www.billboard.com/music/rb-hip-hop/missy-elliott-interview-7431180/" target="_blank" rel="noopener noreferrer">
+                      Missy Elliott: People Don&apos;t Know All the Songs I&apos;ve Produced
+                    </a>
+                    <span className="source-author">Billboard (2016)</span>
+                  </li>
+                  <li>
+                    <a href="https://collider.com/mary-j-blige-interview-my-life-documentary-amazon/" target="_blank" rel="noopener noreferrer">
+                      Mary J. Blige on Her &quot;My Life&quot; Documentary
+                    </a>
+                    <span className="source-author">Collider (2021)</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="source-credits">
               <p>
                 <strong>Image Credits:</strong> All images sourced from Wikimedia Commons under
                 CC-BY-SA or Public Domain licenses. Full attribution provided in image captions.
