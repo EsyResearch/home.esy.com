@@ -425,7 +425,7 @@ const chapters: Chapter[] = [
         quote: "That's Atlantic Records—the house that Ruth Brown built.",
         isFeatured: true,
         imageUrl: IMAGES.ruthBrown,
-        imageAttribution: "Wikimedia Commons, CC BY-SA",
+        imageAttribution: "caviera, CC BY 2.0",
       },
     ],
   },
@@ -457,7 +457,7 @@ const chapters: Chapter[] = [
         description: "Opened J&M Recording Studio at age 18 in 1945. Recorded virtually every New Orleans R&B hit through the 1970s. Inducted into the Rock and Roll Hall of Fame in 2012 for his foundational contributions.",
         isFeatured: true,
         imageUrl: IMAGES.cosimoMatassa,
-        imageAttribution: "Infrogmation of New Orleans, Wikimedia Commons, CC BY 2.0",
+        imageAttribution: "WhyArts, CC BY-SA 4.0",
       },
       {
         name: "Fats Domino",
@@ -468,7 +468,7 @@ const chapters: Chapter[] = [
         description: "'The Fat Man' (1949) was a million-seller crossover hit. Sold 65+ million records—more than any 1950s artist except Elvis. His rolling triplet piano style became the New Orleans signature sound.",
         isFeatured: true,
         imageUrl: IMAGES.fatsDomino,
-        imageAttribution: "Roland Godefroy, Wikimedia Commons, CC BY-SA 3.0",
+        imageAttribution: "Roland Godefroy, CC BY-SA 3.0",
       },
     ],
   },
@@ -506,7 +506,7 @@ const chapters: Chapter[] = [
         quote: "These arms of mine, they are lonely...",
         isFeatured: true,
         imageUrl: IMAGES.otisRedding,
-        imageAttribution: "Wikimedia Commons, 1967",
+        imageAttribution: "Stax Records, Public Domain",
       },
       {
         name: "Booker T. Jones",
@@ -517,7 +517,7 @@ const chapters: Chapter[] = [
         quote: "We were a family. Black and white didn't matter in that studio.",
         isFeatured: true,
         imageUrl: IMAGES.bookerTJones,
-        imageAttribution: "Wikimedia Commons, 2009",
+        imageAttribution: "Bryan Ledgard, CC BY 2.0",
       },
       {
         name: "Al Green",
@@ -527,7 +527,7 @@ const chapters: Chapter[] = [
         description: "'Let's Stay Together' (1971), 'Love and Happiness' (1972). Left secular music for ministry in 1979, returning partially. His falsetto and intimate delivery at Royal Studios created smooth Southern soul.",
         isFeatured: true,
         imageUrl: IMAGES.alGreen,
-        imageAttribution: "Wikimedia Commons, 1973",
+        imageAttribution: "Mike Douglas Show, Public Domain",
       },
     ],
   },
@@ -563,7 +563,7 @@ const chapters: Chapter[] = [
         description: "Founded Motown Records with an $800 family loan in 1959. Created the 'assembly line' approach to hit-making. Sold Motown to MCA for $61 million in 1988. Built the most successful Black-owned business in America.",
         isFeatured: true,
         imageUrl: IMAGES.berryGordy,
-        imageAttribution: "Wikimedia Commons, 2010",
+        imageAttribution: "Angela George, CC BY-SA 3.0",
       },
       {
         name: "The Funk Brothers",
@@ -573,7 +573,7 @@ const chapters: Chapter[] = [
         quote: "We played on everything. We were Motown.",
         isFeatured: true,
         imageUrl: IMAGES.funkBrothers,
-        imageAttribution: "Wikimedia Commons, 2013",
+        imageAttribution: "Jeff Albert, CC BY-SA 2.0",
       },
       {
         name: "Smokey Robinson",
@@ -614,7 +614,7 @@ const chapters: Chapter[] = [
         quote: "We wanted to bring Black music to the world without losing its soul.",
         isFeatured: true,
         imageUrl: IMAGES.gambleAndHuff,
-        imageAttribution: "Wikimedia Commons, 2019",
+        imageAttribution: "John Mathew Smith, CC BY-SA 2.0",
       },
       {
         name: "Thom Bell",
@@ -692,7 +692,7 @@ const chapters: Chapter[] = [
         quote: "I wanted to use technology to expand what the human spirit could express.",
         isFeatured: true,
         imageUrl: IMAGES.stevieWonder,
-        imageAttribution: "Wikimedia Commons, 1973",
+        imageAttribution: "Antonio Cruz/ABr, CC BY 3.0 BR",
       },
       {
         name: "Marvin Gaye",
@@ -703,7 +703,7 @@ const chapters: Chapter[] = [
         description: "'Sexual Healing' (1982) was the first US hit to feature the TR-808. Made drum machines sensual rather than mechanical. Proved technology could serve intimacy.",
         isFeatured: true,
         imageUrl: IMAGES.marvinGaye,
-        imageAttribution: "Motown Records, 1973",
+        imageAttribution: "Jim Britt, Public Domain",
       },
     ],
   },
@@ -732,7 +732,7 @@ const chapters: Chapter[] = [
         quote: "It was the need of a nation, the need of the average man and woman in the street.",
         isFeatured: true,
         imageUrl: IMAGES.arethaFranklin,
-        imageAttribution: "Wikimedia Commons, 1968",
+        imageAttribution: "Atlantic Records, CC0",
       },
       {
         name: "Sylvia Robinson",
@@ -752,7 +752,7 @@ const chapters: Chapter[] = [
         quote: "I knew I would have to produce. I didn't want to just be an artist and let someone else have all that control.",
         isFeatured: true,
         imageUrl: IMAGES.missyElliott,
-        imageAttribution: "Wikimedia Commons, CC BY-SA 4.0",
+        imageAttribution: "Atlantic Records, CC BY-SA 4.0",
       },
     ],
   },
@@ -785,7 +785,7 @@ const chapters: Chapter[] = [
         quote: "I started speaking about what I was dealing with through my music, and 4 million women responded and said, 'Us too, Mary.'",
         isFeatured: true,
         imageUrl: IMAGES.maryJBlige,
-        imageAttribution: "Wikimedia Commons, 2009",
+        imageAttribution: "U.S. Navy/Donna Lou Morgan, Public Domain",
       },
       {
         name: "Teddy Riley",
@@ -795,7 +795,7 @@ const chapters: Chapter[] = [
         description: "Created the New Jack Swing sound that fused R&B with hip-hop rhythms. Produced Keith Sweat, Bobby Brown, Michael Jackson's 'Dangerous.' Built the bridge between genres.",
         isFeatured: true,
         imageUrl: IMAGES.teddyRiley,
-        imageAttribution: "Wikimedia Commons, CC BY 2.0",
+        imageAttribution: "Christopher Diont'e, CC BY-SA 4.0",
       },
       {
         name: "Timbaland",
@@ -805,7 +805,7 @@ const chapters: Chapter[] = [
         description: "Produced Aaliyah, Missy Elliott, Justin Timberlake. Pioneered sample-heavy, rhythmically complex production that pushed R&B into the future. 'You will play her songs for 20 years... She is the Aretha Franklin of hip-hop.' (on Missy Elliott)",
         isFeatured: true,
         imageUrl: IMAGES.timbaland,
-        imageAttribution: "Wikimedia Commons, CC BY 2.0",
+        imageAttribution: "Collision Conf, CC BY 2.0",
       },
     ],
   },
@@ -835,7 +835,7 @@ const chapters: Chapter[] = [
         quote: "That song sold over 2 million records. I got one check for $500 and never saw another.",
         isFeatured: true,
         imageUrl: IMAGES.bigMamaThornton,
-        imageAttribution: "Reitz, Wikimedia Commons, 1982",
+        imageAttribution: "Reitz, CC BY-SA 3.0",
       },
       {
         name: "Tina Turner",
@@ -847,7 +847,7 @@ const chapters: Chapter[] = [
         quote: "I had to go out in the world and become strong, to discover my mission in life.",
         isFeatured: true,
         imageUrl: IMAGES.tinaTurner,
-        imageAttribution: "Wikimedia Commons, 1985",
+        imageAttribution: "Philip Spittle, CC BY 2.0",
       },
     ],
   },
@@ -878,7 +878,7 @@ const chapters: Chapter[] = [
         description: "'Ctrl' (2017) sold 3.5+ million copies, bringing alternative R&B to the mainstream. First female artist at TDE (Top Dawg Entertainment). Refuses genre categorization as limiting.",
         isFeatured: true,
         imageUrl: IMAGES.sza,
-        imageAttribution: "Wikimedia Commons, 2023, CC BY-SA 2.0",
+        imageAttribution: "Raph_PH, CC BY 4.0",
       },
       {
         name: "Frank Ocean",
@@ -888,7 +888,7 @@ const chapters: Chapter[] = [
         description: "'channel ORANGE' (2012) and 'Blonde' (2016) redefined what R&B could be. His introspective, experimental approach helped establish 'alternative R&B' as a recognized movement.",
         isFeatured: true,
         imageUrl: IMAGES.frankOcean,
-        imageAttribution: "Wikimedia Commons, 2022, CC BY-SA 4.0",
+        imageAttribution: "Andras Ladocsi, CC BY-SA 4.0",
       },
     ],
   },
@@ -1121,11 +1121,112 @@ export default function RnbHistoryClient() {
               </div>
             </div>
 
-            <div className="source-credits">
-              <p>
-                <strong>Image Credits:</strong> All images sourced from Wikimedia Commons under
-                CC-BY-SA or Public Domain licenses. Full attribution provided in image captions.
+            <div className="image-credits-section">
+              <h3 className="image-credits-title">
+                <span className="source-jack" />
+                Image Credits
+              </h3>
+              <p className="image-credits-intro">
+                All images sourced from Wikimedia Commons. Click subject names to view original files.
               </p>
+              <ul className="image-credits-list">
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Ruth_Brown_cropped.jpg" target="_blank" rel="noopener noreferrer">Ruth Brown</a>
+                  <span>— caviera, CC BY 2.0</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Cosimo_Matassa.jpg" target="_blank" rel="noopener noreferrer">Cosimo Matassa</a>
+                  <span>— WhyArts, CC BY-SA 4.0</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Fats_Domino018.JPG" target="_blank" rel="noopener noreferrer">Fats Domino</a>
+                  <span>— Roland Godefroy, CC BY-SA 3.0</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Stax_Museum_Memphis_TN_01.jpg" target="_blank" rel="noopener noreferrer">Stax Museum</a>
+                  <span>— Thomas R Machnitzki, CC BY-SA 3.0</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Otis_Redding_1967.JPG" target="_blank" rel="noopener noreferrer">Otis Redding</a>
+                  <span>— Stax Records, Public Domain</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Booker_T._Jones_2009.jpg" target="_blank" rel="noopener noreferrer">Booker T. Jones</a>
+                  <span>— Bryan Ledgard, CC BY 2.0</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Al_Green_1973.jpg" target="_blank" rel="noopener noreferrer">Al Green</a>
+                  <span>— Mike Douglas Show, Public Domain</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Hitsville_USA.jpg" target="_blank" rel="noopener noreferrer">Hitsville U.S.A.</a>
+                  <span>— Blob4000, Public Domain</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:BerryGordyDec10.jpg" target="_blank" rel="noopener noreferrer">Berry Gordy</a>
+                  <span>— Angela George, CC BY-SA 3.0</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:The_Funk_Brothers.jpg" target="_blank" rel="noopener noreferrer">The Funk Brothers</a>
+                  <span>— Jeff Albert, CC BY-SA 2.0</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Smokey_Robinson_special_1970.JPG" target="_blank" rel="noopener noreferrer">Smokey Robinson</a>
+                  <span>— NBC Television, Public Domain</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Kenny_Gamble_Leon_Huff.jpg" target="_blank" rel="noopener noreferrer">Gamble &amp; Huff</a>
+                  <span>— John Mathew Smith, CC BY-SA 2.0</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Roland_TR-808_drum_machine.jpg" target="_blank" rel="noopener noreferrer">Roland TR-808</a>
+                  <span>— Eriq, CC BY-SA 3.0</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Stevie_Wonder.jpg" target="_blank" rel="noopener noreferrer">Stevie Wonder</a>
+                  <span>— Antonio Cruz/ABr, CC BY 3.0 BR</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Marvin_Gaye_(1973_publicity_photo).jpg" target="_blank" rel="noopener noreferrer">Marvin Gaye</a>
+                  <span>— Jim Britt, Public Domain</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Aretha_franklin_1960s_cropped_retouched.jpg" target="_blank" rel="noopener noreferrer">Aretha Franklin</a>
+                  <span>— Atlantic Records, CC0</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Missy_Elliot.jpg" target="_blank" rel="noopener noreferrer">Missy Elliott</a>
+                  <span>— Atlantic Records, CC BY-SA 4.0</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Mary_J._Blige_in_2009.JPG" target="_blank" rel="noopener noreferrer">Mary J. Blige</a>
+                  <span>— U.S. Navy/Donna Lou Morgan, Public Domain</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Teddy_Riley_at_the_90%27s_Block_Party_Tour.jpg" target="_blank" rel="noopener noreferrer">Teddy Riley</a>
+                  <span>— Christopher Diont&apos;e, CC BY-SA 4.0</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Timbaland_(47903248821)_(cropped).jpg" target="_blank" rel="noopener noreferrer">Timbaland</a>
+                  <span>— Collision Conf, CC BY 2.0</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Blues_is_a_woman_Reitz_(Big_Mama_Thornton).jpg" target="_blank" rel="noopener noreferrer">Big Mama Thornton</a>
+                  <span>— Reitz, CC BY-SA 3.0</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Tina_Turner_50th_Anniversary_Tour.jpg" target="_blank" rel="noopener noreferrer">Tina Turner</a>
+                  <span>— Philip Spittle, CC BY 2.0</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:KendrickSZASPurs230725-19_-_54683179509_(cropped)_(cropped).jpg" target="_blank" rel="noopener noreferrer">SZA</a>
+                  <span>— Raph_PH, CC BY 4.0</span>
+                </li>
+                <li>
+                  <a href="https://commons.wikimedia.org/wiki/File:Frank_Ocean_2022_Blonded.jpg" target="_blank" rel="noopener noreferrer">Frank Ocean</a>
+                  <span>— Andras Ladocsi, CC BY-SA 4.0</span>
+                </li>
+              </ul>
             </div>
           </div>
         </section>
