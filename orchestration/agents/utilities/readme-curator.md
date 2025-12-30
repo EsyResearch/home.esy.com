@@ -389,7 +389,7 @@ Each document should link to its related documents:
 ```markdown
 ## See Also
 - [Citation Audit Agent](../agents/auditors/citation-audit-agent.md)
-- [Meta Audit Orchestrator](../agents/orchestrators/meta-audit-orchestrator.md)
+- [Audit Orchestrator](../agents/orchestrators/audit-orchestrator.md)
 ```
 
 ### Link Validation Checklist
@@ -497,6 +497,7 @@ After any documentation update:
 - **All Agents** — Documents their capabilities and locations
 - **Visual Essay Orchestrator** — Documents pipeline in FRAMEWORK.md
 - **Research Orchestrator** — Documents research pipeline
+- **Bibliography Orchestrator** — Documents bibliography patterns in `docs/artifact-patterns-guide/`
 - **Animation Pattern Auditor** — Documents animation pattern libraries (scroll-lock-patterns.md, animation-taxonomy.md)
 - **META-AGENT-FRAMEWORK** — Uses its patterns for new agent docs
 - **AGENT-REGISTRY** — Master index this curator helps maintain
@@ -622,6 +623,7 @@ Implementation patterns that bridge orchestration agents with codebase execution
 | Document | Purpose | Related Agent |
 |----------|---------|---------------|
 | `ARTIFACT_CITATION_PATTERNS_GUIDE.md` | Image attribution patterns (inline + credits section) | `image-research-licensing-expert.md` |
+| `BIBLIOGRAPHY_STRUCTURE_GUIDE.md` | Bibliography section structure, source categories, all media types | `bibliography-orchestrator.md` |
 
 ### Agent → Implementation Handoff Pattern
 
@@ -674,6 +676,8 @@ Some agents produce research/documentation that must be implemented in code. Thi
 December 2024
 
 ### Recent Changes
+- Added `BIBLIOGRAPHY_STRUCTURE_GUIDE.md` to artifact patterns (Bibliography section structure, source categories, data sources, audio/video credits)
+- Added Bibliography Orchestrator to orchestrators (coordinates Citation Audit, Quotes Audit, Image Research agents; dual-mode: implementation + audit)
 - Added Artifact Patterns & Implementation Guides section documenting `docs/artifact-patterns-guide/` and agent→implementation handoff pattern
 - Added `ARTIFACT_CITATION_PATTERNS_GUIDE.md` routing for image citation patterns
 - Added Content Audit Agent to auditors category (content-audit-agent.md) — comprehensive content quality, word count, tone, and spec compliance auditor with genocide/atrocity sensitivity protocols
