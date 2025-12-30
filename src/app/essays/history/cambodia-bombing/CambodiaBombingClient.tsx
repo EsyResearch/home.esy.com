@@ -55,7 +55,6 @@ interface Chapter {
   scrollLockType?: 'ball-game' | 'anything-flies' | 'furnace' | 'unfinished';
   hasOperationMenu?: boolean;
   comparisonSlider?: ComparisonSlider;
-  contentWarning?: 'kent-state' | 'genocide' | 'uxo';
 }
 
 interface GlossaryTerm {
@@ -415,7 +414,6 @@ const CHAPTERS: Chapter[] = [
     ],
     hasScrollLock: true,
     scrollLockType: 'anything-flies',
-    contentWarning: 'kent-state',
   },
   {
     id: 'the-furnace',
@@ -585,7 +583,6 @@ const CHAPTERS: Chapter[] = [
       { value: '220,000', label: 'Khmer Rouge (1973)', source: 'CIA estimates' },
       { value: '60%', label: 'Refugees citing bombing', source: 'GAO Report' },
     ],
-    contentWarning: 'genocide',
   },
   {
     id: 'reckoning',
@@ -691,7 +688,6 @@ const CHAPTERS: Chapter[] = [
     ],
     hasScrollLock: true,
     scrollLockType: 'unfinished',
-    contentWarning: 'uxo',
   },
 ];
 
@@ -808,72 +804,8 @@ function useScrollProgress() {
 }
 
 // ============================================================================
-// CONTENT WARNINGS
-// ============================================================================
-
-interface ContentWarningConfig {
-  id: string;
-  title: string;
-  description: string;
-}
-
-const CONTENT_WARNINGS: Record<string, ContentWarningConfig> = {
-  header: {
-    id: 'header',
-    title: 'Content Warning',
-    description: 'This essay contains historical imagery and descriptions of war, bombing casualties, and references to genocide. Reader discretion is advised.',
-  },
-  'kent-state': {
-    id: 'kent-state',
-    title: 'Content Warning',
-    description: 'This section contains references to the Kent State shooting where four students were killed.',
-  },
-  genocide: {
-    id: 'genocide',
-    title: 'Content Warning',
-    description: 'This section discusses the Khmer Rouge genocide and contains references to mass atrocities.',
-  },
-  uxo: {
-    id: 'uxo',
-    title: 'Content Warning',
-    description: 'This section contains references to ongoing casualties from unexploded ordnance, including injuries and amputations.',
-  },
-};
-
-// ============================================================================
 // COMPONENTS
 // ============================================================================
-
-function ContentWarning({
-  warning,
-  onContinue,
-  onSkip,
-  skipLabel = 'Skip to next chapter'
-}: {
-  warning: ContentWarningConfig;
-  onContinue: () => void;
-  onSkip?: () => void;
-  skipLabel?: string;
-}) {
-  return (
-    <div className="content-warning">
-      <div className="content-warning__box">
-        <h3 className="content-warning__title">{warning.title}</h3>
-        <p className="content-warning__description">{warning.description}</p>
-        <div className="content-warning__actions">
-          <button className="content-warning__btn content-warning__btn--continue" onClick={onContinue}>
-            Continue
-          </button>
-          {onSkip && (
-            <button className="content-warning__btn content-warning__btn--skip" onClick={onSkip}>
-              {skipLabel}
-            </button>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function ProgressBar({ progress, visible }: { progress: number; visible: boolean }) {
   const status = getClassificationStatus(progress);
@@ -1398,33 +1330,14 @@ function TonnageComparisonSlider({ slider }: { slider: ComparisonSlider }) {
   );
 }
 
-function ChapterSection({ chapter, nextChapterId }: { chapter: Chapter; nextChapterId?: string }) {
+function ChapterSection({ chapter }: { chapter: Chapter }) {
   const [showScrollLock, setShowScrollLock] = useState(true);
-  const [showWarning, setShowWarning] = useState(!!chapter.contentWarning);
-
-  const handleSkipChapter = () => {
-    setShowWarning(false);
-    if (nextChapterId) {
-      const nextChapter = document.getElementById(nextChapterId);
-      if (nextChapter) {
-        nextChapter.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
 
   return (
     <section
       id={chapter.id}
       className={`chapter chapter--era-${chapter.era}`}
     >
-      {chapter.contentWarning && showWarning && (
-        <ContentWarning
-          warning={CONTENT_WARNINGS[chapter.contentWarning]}
-          onContinue={() => setShowWarning(false)}
-          onSkip={nextChapterId ? handleSkipChapter : undefined}
-        />
-      )}
-
       {chapter.hasScrollLock && showScrollLock && (
         <ScrollLockSequence
           type={chapter.scrollLockType || 'ball-game'}
@@ -1582,30 +1495,17 @@ function Footer() {
 
 export function CambodiaBombingClient() {
   const { progress, showProgressBar } = useScrollProgress();
-  const [showHeaderWarning, setShowHeaderWarning] = useState(true);
 
   return (
     <article className="cambodia-bombing">
       <a href="#before-storm" className="skip-link">Skip to content</a>
 
-      {showHeaderWarning && (
-        <ContentWarning
-          warning={CONTENT_WARNINGS.header}
-          onContinue={() => setShowHeaderWarning(false)}
-          skipLabel="I understand"
-        />
-      )}
-
       <ProgressBar progress={progress} visible={showProgressBar} />
 
       <Hero />
 
-      {CHAPTERS.map((chapter, index) => (
-        <ChapterSection
-          key={chapter.id}
-          chapter={chapter}
-          nextChapterId={CHAPTERS[index + 1]?.id}
-        />
+      {CHAPTERS.map((chapter) => (
+        <ChapterSection key={chapter.id} chapter={chapter} />
       ))}
 
       <div className="cambodia-bombing__container">
