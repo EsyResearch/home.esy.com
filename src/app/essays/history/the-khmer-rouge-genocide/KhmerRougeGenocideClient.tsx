@@ -65,10 +65,11 @@ const CHAPTERS: Chapter[] = [
     era: 'dk',
     metaphor: 'The day a city emptied itself at gunpoint',
     content: [
-      'On April 17, 1975, Khmer Rouge forces entered Phnom Penh. Within hours, they ordered the complete evacuation of the capital—approximately 2 million people forced onto roads with no warning, no preparation, and no return date.',
-      'Hospitals were emptied; patients on IV drips pushed their own gurneys. This was the first act of Year Zero: the city was a disease to be cured by erasure.',
-      'The evacuation killed unknown thousands through heat, exhaustion, and execution. Families were separated. The urban population—educated, connected to the old regime simply by living in cities—was marked as corrupted.',
-      'What followed would be three years, eight months, and twenty days of systematic destruction. Approximately 1.7 to 2 million people—between 25% and 33% of Cambodia\'s population—would die from execution, starvation, disease, and overwork.'
+      'On April 17, 1975, Khmer Rouge forces entered Phnom Penh. The city\'s residents initially greeted them with relief—the five-year civil war was finally over. But within hours, soldiers began ordering the complete evacuation of the capital. Approximately 2 million people were forced onto roads leading out of the city with no warning, no preparation, and no return date. Loudspeakers announced that the Americans were about to bomb; residents were told they would return in three days. They never did.',
+      'The evacuation was total and merciless. Hospitals were emptied at gunpoint. Patients on IV drips pushed their own gurneys down the streets. Women in labor walked alongside the elderly and infirm. Those who could not walk were left behind—or shot. Calmette Hospital, the largest in the city, was cleared of 2,000 patients. The Khmer Rouge offered no medical transport, no ambulances, no mercy. This was the first act of Year Zero: the city was a disease to be cured by erasure.',
+      'The evacuation killed unknown thousands—estimates range from 10,000 to 20,000—through heat exhaustion, dehydration, and summary execution. April is the hottest month in Cambodia; temperatures exceeded 100°F. Families were separated in the chaos, never to reunite. The urban population—anyone educated, anyone who spoke French, anyone who wore glasses, anyone connected to the old regime simply by virtue of living in cities—was marked as ideologically corrupted. They became "New People" (ប្រជាជនថ្មី), a category that meant forced labor and probable death.',
+      'The roads out of Phnom Penh became rivers of humanity flowing toward the countryside. Similar evacuations occurred simultaneously in every other city and town across Cambodia. Battambang, Siem Reap, Kampong Cham—all emptied. The Khmer Rouge believed that cities were parasites on the pure agrarian ideal, that urban dwellers were beyond redemption, that only by returning to the rice paddies could Cambodia achieve revolutionary purity.',
+      'What followed would be three years, eight months, and twenty days of systematic destruction. Between April 17, 1975, and January 7, 1979, approximately 1.7 to 2 million people died—between 21% and 24% of Cambodia\'s total population by conservative estimates, or as high as 33% by others. They died from execution, starvation, disease, and overwork. The Khmer Rouge called their revolution "Year Zero"—a complete reset of Cambodian history, society, and identity. Everything before was to be erased; everyone connected to the past was suspect.'
     ],
     figures: [
       {
@@ -82,9 +83,17 @@ const CHAPTERS: Chapter[] = [
         ],
         quote: 'Yes, I had my part also in the mistake.',
         quoteSource: 'New York Review of Books, 1985',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Angkor_Wat_at_sunrise_3.jpg',
-        imageAlt: 'Norodom Sihanouk',
-        imageAttribution: 'Christophe95, CC BY-SA 4.0'
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/1972_Norodom_Sihanouk.jpg',
+        imageAlt: 'Norodom Sihanouk in 1972',
+        imageAttribution: 'Romanian National Archives, Public Domain'
+      }
+    ],
+    images: [
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/3/31/Fall_of_Phnom_Penh.jpg',
+        alt: 'Khmer Rouge forces entering Phnom Penh, April 17, 1975',
+        caption: 'Khmer Rouge forces entering Phnom Penh on April 17, 1975—the beginning of Year Zero',
+        attribution: 'Roland Neveu, CC BY-SA 3.0'
       }
     ],
     statistics: [
@@ -101,9 +110,11 @@ const CHAPTERS: Chapter[] = [
     era: 'pre-war',
     metaphor: 'The nation before its erasure',
     content: [
-      'Cambodia\'s identity was forged by empire (Angkor), colonialism (French Indochina, 1863-1953), and independence under Sihanouk. The Tonle Sap\'s unique reversing flow made Cambodia an agricultural heartland.',
-      'Sihanouk\'s "Buddhist socialism" attempted neutrality as the Vietnam War engulfed neighbors. Cambodia was a kingdom of rice paddies, ancient temples, and a people who had survived centuries of regional conflict.',
-      'This chapter establishes what was lost: a functioning society, a culture, a people\'s way of life. The Khmer Rouge would attempt to restart history at Year Zero—but history is not so easily erased.'
+      'Cambodia\'s identity begins at Angkor. Between the 9th and 15th centuries, the Khmer Empire ruled over much of mainland Southeast Asia from its capital in what is now northwestern Cambodia. At its zenith under Jayavarman VII (r. 1181–1218), the empire stretched from modern-day Vietnam to Myanmar. Angkor Wat, built in the early 12th century, remains the largest religious monument in the world—a testament to Khmer engineering, artistry, and ambition. When the Khmer Rouge placed Angkor Wat on their flag, they were claiming this legacy. When they emptied the cities, they believed they were restoring Cambodia to its agrarian glory.',
+      'The French arrived in 1863, establishing Cambodia as a protectorate within French Indochina. Colonial rule lasted ninety years. The French built roads, schools, and administrative systems—and extracted rubber, rice, and labor. A generation of Cambodian elites was educated in French; many studied in Paris. Among them were future Khmer Rouge leaders: Pol Pot, Khieu Samphan, Ieng Sary. They absorbed Marxist theory in Left Bank cafés, then returned home to implement it with lethal conviction.',
+      'Independence came in 1953, wrested from France by Norodom Sihanouk through a combination of royal charisma and political maneuvering. Sihanouk abdicated the throne to become head of state, pursuing what he called "Buddhist socialism"—a mix of royal authority, state-led development, and studied neutrality. As the Vietnam War engulfed neighboring countries, Sihanouk walked a tightrope. He allowed North Vietnamese forces to use Cambodian territory for supply routes while publicly maintaining neutrality. It was an impossible balance.',
+      'The Tonlé Sap—the Great Lake—embodied Cambodia\'s unique geography. Each monsoon season, the Mekong River reverses the Tonlé Sap\'s flow, expanding the lake fivefold and depositing nutrient-rich sediment across the floodplains. This annual cycle made Cambodia one of the most productive rice-growing regions on Earth. The Khmer Rouge believed this abundance could be multiplied through revolutionary discipline. Instead, their policies destroyed it.',
+      'By 1970, Cambodia had universities, hospitals, a functioning civil service, a thriving capital, Buddhist monasteries with centuries of tradition, and a population that had known relative peace since independence. All of this would be systematically destroyed. Understanding what existed before Year Zero is essential to understanding what was lost—not just lives, but a society, a culture, a way of being in the world that the Khmer Rouge attempted to erase completely.'
     ],
     images: [
       {
@@ -122,10 +133,11 @@ const CHAPTERS: Chapter[] = [
     era: 'civil-war',
     metaphor: 'Bombs as seeds of revolution',
     content: [
-      'The United States dropped 2.7 million tons of ordnance on Cambodia between 1965 and 1973—more than the Allies dropped on Germany in World War II. This included secret bombing campaigns (Operation Menu, 1969-1970) and overt campaigns (Operation Freedom Deal, 1970-1973).',
-      'The bombs killed tens of thousands of civilians and displaced hundreds of thousands more. Scholars debate the causal relationship between the bombing and Khmer Rouge recruitment, but the destabilization is undeniable.',
-      'Ben Kiernan and Taylor Owen argue the bombing was a primary factor in Khmer Rouge growth. Craig Etcheson sees it as contributing but not determinative. Henry Kissinger maintained it was defensive necessity against North Vietnamese occupation.',
-      'This chapter presents all perspectives without single-cause determinism. The bombing did not "cause" the genocide—but it helped create the conditions from which the Khmer Rouge emerged.'
+      'Between 1965 and 1973, the United States dropped 2.7 million tons of ordnance on Cambodia—more than the Allies dropped on Germany and Japan combined in World War II. The bombing came in two phases: the secret Operation Menu (1969–1970), authorized by President Nixon and National Security Advisor Henry Kissinger without Congressional knowledge, and the overt Operation Freedom Deal (1970–1973). Over 230,516 sorties struck 113,716 sites across the country. Entire villages were obliterated. The craters still scar the Cambodian landscape.',
+      'The official justification was to destroy North Vietnamese Army bases and supply lines running through Cambodian territory—the "Ho Chi Minh Trail" network. Sihanouk had tolerated these incursions; Nixon chose to bomb them. The campaign was kept secret from Congress and the American public until 1973. When revealed, it contributed to the constitutional crisis that would end Nixon\'s presidency.',
+      'What were the effects on Cambodia? The bombing killed an estimated 50,000 to 150,000 civilians—scholarly estimates vary widely because many areas were never surveyed. Hundreds of thousands of rural Cambodians fled to Phnom Penh and provincial capitals. The bombing destabilized Sihanouk\'s neutral government and contributed to the conditions that enabled Lon Nol\'s 1970 coup.',
+      'Scholars fiercely debate the relationship between the bombing and Khmer Rouge growth. Ben Kiernan and Taylor Owen, analyzing declassified Air Force data, argue the bombing was "ichthyologically significant"—it drove traumatized, dispossessed peasants into the arms of the insurgents. Craig Etcheson acknowledges this but emphasizes that internal factors—Communist ideology, Khmer Rouge organization, Vietnamese support—were primary. Defenders of the policy, including Peter Rodman and Kissinger himself, argue the bombing targeted legitimate military objectives and that North Vietnamese occupation was the true destabilizer.',
+      'This essay does not resolve that debate. What is certain: the bombs fell on neutral Cambodia; they killed Cambodian civilians; they displaced Cambodian families; they destabilized Cambodian society. Whether the bombing "caused" the Khmer Rouge is a question of causation. That it contributed to the conditions from which genocide emerged is beyond serious dispute.'
     ],
     statistics: [
       { label: 'Ordnance dropped', value: '2.7 million tons', source: 'Owen & Kiernan, 2006' },
@@ -152,16 +164,10 @@ const CHAPTERS: Chapter[] = [
     ],
     images: [
       {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/1/1f/Boeing_B-52D-70-BW_%28SN_56-0678%29_in_flight_061127-F-1234S-017.jpg',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/2/27/An_air-to-air_left_underside_view_of_the_92nd_Bombardment_Wing%27s_new_camouflaged_B-52G_Stratofortress_aircraft_DF-ST-85-12450.jpg',
         alt: 'B-52 Stratofortress bomber in flight',
         caption: 'B-52 Stratofortress bombers dropped 2.7 million tons of ordnance on Cambodia between 1965-1973',
         attribution: 'USAF, Public Domain'
-      },
-      {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Map_of_bombing_of_Cambodia_during_the_Vietnam_War.svg',
-        alt: 'Map showing US bombing sites across Cambodia',
-        caption: 'Map of 230,516 US bombing sorties over Cambodia, concentrated along the Vietnamese border',
-        attribution: 'Wikimedia Commons, CC BY-SA 3.0'
       }
     ]
   },
@@ -173,9 +179,11 @@ const CHAPTERS: Chapter[] = [
     era: 'civil-war',
     metaphor: 'The furnace that forged the revolution',
     content: [
-      'In March 1970, while Sihanouk was abroad, General Lon Nol deposed him in a coup backed by the United States. Sihanouk, from Beijing, called on Cambodians to join the Khmer Rouge resistance.',
-      'The civil war that followed killed an estimated 500,000 people and displaced millions. By 1975, Phnom Penh was swollen with refugees—2 million people in a city built for 600,000.',
-      'The Khmer Rouge controlled most of the countryside. On April 17, they entered the capital.'
+      'On March 18, 1970, while Norodom Sihanouk was in Moscow, General Lon Nol and the National Assembly voted to depose him. The coup had American backing—the CIA had cultivated relationships with Lon Nol for years. Within days, Sihanouk was in Beijing, where he made a fateful announcement: he called on all Cambodians to join the resistance against the "traitors." That resistance was the Khmer Rouge.',
+      'It was a devil\'s bargain. Sihanouk had spent years suppressing the Cambodian left; now he lent them his name and royal legitimacy. Thousands of peasants who revered the king joined the insurgency because Sihanouk asked them to. The Khmer Rouge, previously a marginal force, suddenly had mass appeal. They would reward Sihanouk\'s alliance by holding him under house arrest after taking power.',
+      'The civil war that followed was catastrophic. Lon Nol\'s Khmer Republic, despite massive American military aid, proved incapable of holding territory. The army was corrupt, demoralized, and led by a man who had suffered a debilitating stroke in 1971 but refused to step aside. Meanwhile, the Khmer Rouge—disciplined, ideologically motivated, supported by North Vietnam—steadily conquered the countryside.',
+      'An estimated 500,000 Cambodians died in the civil war itself—before the genocide began. Hundreds of thousands more fled to Phnom Penh and other cities. By April 1975, the capital held approximately 2 million people—a city built for 600,000 now swollen with refugees, cut off from the countryside, surviving on American airlifts of rice.',
+      'The end came quickly. In early April, Lon Nol fled to Hawaii with American assistance. On April 17, 1975, Khmer Rouge forces entered Phnom Penh. Exhausted residents greeted them with white flags, hoping for peace. What they received was Year Zero.'
     ],
     figures: [
       {
@@ -188,22 +196,9 @@ const CHAPTERS: Chapter[] = [
           'Fled to Hawaii before Phnom Penh fell (April 1975)'
         ],
         fate: 'Died in exile, 1985',
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/LonNol.jpg',
         imageAlt: 'Lon Nol',
         imageAttribution: 'Public Domain'
-      }
-    ],
-    images: [
-      {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Cambodian_Civil_War_-_1970.jpg',
-        alt: 'Cambodian Civil War scene 1970',
-        caption: 'The civil war killed an estimated 500,000 people and displaced millions before the Khmer Rouge victory',
-        attribution: 'Public Domain'
-      },
-      {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/Phnom_Penh_1975.jpg',
-        alt: 'Phnom Penh swollen with refugees in 1975',
-        caption: 'By 1975, Phnom Penh held 2 million people—a city built for 600,000',
-        attribution: 'Public Domain'
       }
     ]
   },
@@ -215,10 +210,11 @@ const CHAPTERS: Chapter[] = [
     era: 'dk',
     metaphor: 'History restarted at gunpoint',
     content: [
-      'The Khmer Rouge declared "Year Zero"—a complete reset of Cambodian society. Their policies were radical and absolute:',
-      'Abolition of money, markets, and private property. Forced collectivization and communal dining. Targeting of intellectuals, religious practitioners, and urban residents. A zone system of administrative control divided the country into regions, each with its own leadership.',
-      'The party called itself "Angkar" (អង្គការ—"The Organization"). Its directives were absolute. Possession of glasses, speaking French, or having soft hands could mean death as evidence of intellectual status.',
-      'The slogan spread: "To keep you is no benefit, to destroy you is no loss."'
+      'The Khmer Rouge renamed Cambodia "Democratic Kampuchea" and declared 1975 to be Year Zero—a complete erasure of Cambodian history, society, and identity. Everything that came before was corrupt; everyone connected to the past was suspect. This was not reform. This was civilizational reset at gunpoint.',
+      'The policies were radical beyond anything seen since Mao\'s Cultural Revolution—and in some ways more extreme. All money was abolished overnight; the Khmer Rouge burned currency and blew up the National Bank. Markets ceased to exist. Private property was eliminated. Religion was banned; Buddhist monks were defrocked, forced to marry, or killed. Pagodas became storage facilities or execution sites. The 2,000-year tradition of Cambodian Buddhism was to be erased.',
+      'The population was divided into categories that determined survival. "Base People" (មូលដ្ឋាន)—poor peasants who had lived in Khmer Rouge zones during the civil war—were considered ideologically pure. "New People" (ប្រជាជនថ្មី)—urban evacuees, former government employees, teachers, doctors, merchants, anyone educated—were corrupted beyond redemption. This distinction was often a death sentence.',
+      'The entire country was reorganized into agricultural cooperatives. Families were separated. Collective dining replaced family meals—a deliberate policy to destroy the family unit as a site of loyalty outside Angkar. Children were encouraged to report their parents. Marriage required party approval. Personal relationships were suspect.',
+      'The party called itself "Angkar Padevat" (អង្គការបដិវត្តន៍)—"The Revolutionary Organization"—but typically just "Angkar." Its identity was kept secret; Pol Pot\'s leadership was not publicly acknowledged until 1977. Angkar saw everything, knew everything, controlled everything. Its slogans became mantras of terror: "Angkar has the eyes of a pineapple." And most chillingly: "To keep you is no benefit, to destroy you is no loss."'
     ],
     figures: [
       {
@@ -233,6 +229,7 @@ const CHAPTERS: Chapter[] = [
         quote: 'I came to carry out the struggle, not to kill people.',
         quoteSource: 'Nate Thayer interview, 1997',
         fate: 'Died under house arrest (1998) before facing tribunal',
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/38/PolPot.jpg',
         imageAlt: 'Pol Pot',
         imageAttribution: 'Public Domain'
       }
@@ -254,11 +251,11 @@ const CHAPTERS: Chapter[] = [
     era: 'dk',
     metaphor: 'The regime that governed through hunger',
     content: [
-      'The death toll breakdown tells the story of systematic destruction:',
-      'Execution: approximately 500,000 to 1 million. Starvation: approximately 500,000 to 1 million. Disease and overwork: approximately 500,000.',
-      'The Khmer Rouge exported rice while its people starved. Agricultural quotas were impossible to meet; failure to meet them was evidence of sabotage, punishable by death.',
-      'Medicine was banned as bourgeois; traditional remedies were mandated. Malaria, dysentery, and cholera swept through cooperatives.',
-      'This was not famine. This was policy-driven starvation—governance through hunger.'
+      'The death toll of Democratic Kampuchea breaks down into three categories, each representing systematic policy failure and deliberate violence. Execution: approximately 500,000 to 1 million—shot, bludgeoned, or beheaded at killing sites across the country. Starvation: approximately 500,000 to 1 million—worked to death on inadequate rations while the regime exported rice. Disease and overwork: approximately 500,000—malaria, dysentery, and cholera in a country where medicine was banned as bourgeois.',
+      'The Khmer Rouge believed Cambodia could be transformed into an agrarian utopia through revolutionary will. They set impossible agricultural quotas—three tons of rice per hectare when traditional farming yielded one. When cooperatives failed to meet these quotas, the failure was interpreted as sabotage, evidence of "hidden enemies" within. The punishment was death. So cadres lied about production, reported false numbers, and watched their people starve.',
+      'Meanwhile, the regime exported rice to China in exchange for military equipment. Ships left Cambodian ports loaded with grain while children in the cooperatives ate tree bark, insects, and rice husks. Ration systems allocated thin rice gruel twice daily—roughly 250 grams of rice per person. Workers labored 12-16 hours daily in the fields. The human body cannot survive on such inadequate nutrition while performing heavy agricultural labor.',
+      'Western medicine was banned as a symbol of foreign corruption. The regime promoted "traditional remedies"—herbal treatments that were useless against malaria, dysentery, and the epidemics sweeping through malnourished populations. Hospitals were closed or converted to other uses. Trained doctors were killed as intellectuals. When people fell ill, they were often seen as shirking their revolutionary duties.',
+      'This was not famine caused by natural disaster or war. This was policy-driven starvation—an economic system that prioritized revolutionary ideology over human survival. The Khmer Rouge governed through hunger, using food as a weapon of control. Those who resisted, those who were suspected of resistance, those who simply couldn\'t work hard enough—they starved first.'
     ],
     figures: [
       {
@@ -271,7 +268,7 @@ const CHAPTERS: Chapter[] = [
           'Convicted of genocide (ethnic Vietnamese) and crimes against humanity (2018)'
         ],
         fate: 'Life sentence; still serving',
-        imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Case_002_Initial_Hearing_Khieu_Samphan.jpg',
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Case_002_Initial_Hearing_Khieu_Samphan_%282%29.jpg',
         imageAlt: 'Khieu Samphan at ECCC tribunal',
         imageAttribution: 'ECCC, CC BY 2.0'
       }
@@ -290,10 +287,11 @@ const CHAPTERS: Chapter[] = [
     era: 'dk',
     metaphor: 'A school turned slaughterhouse',
     content: [
-      'S-21, codenamed for "Security Office 21," was a former high school converted into the regime\'s primary interrogation and extermination center. Between 14,000 and 17,000 people were detained here. Approximately 12 are known to have survived.',
-      'The facility was run by Duch (Kaing Guek Eav), a former mathematics teacher. Prisoners were photographed on intake, tortured into confessions of imaginary crimes, and transported to Choeung Ek—the "Killing Fields"—for execution.',
-      'S-21 was part of a network of 189-196 interrogation centers across the country. Its meticulous documentation—photographs, confessions, execution records—would later provide crucial evidence for the ECCC.',
-      'The bureaucracy of terror left its own record of atrocity.'
+      'Tuol Sleng was once Chao Ponhea Yat High School, a secondary school in a quiet Phnom Penh neighborhood. Under the Khmer Rouge, it became S-21—Security Prison 21—the regime\'s primary interrogation and extermination center. Between 14,000 and 17,000 people passed through its gates between 1976 and 1979. Approximately 12 are known to have survived. The survival rate was less than 0.1%.',
+      'The facility was run by Duch (Kaing Guek Eav), a former mathematics teacher who brought bureaucratic precision to mass murder. Every prisoner was photographed upon intake—men, women, children, the elderly—creating an archive of approximately 6,000 photographs that now form the core of the Tuol Sleng Genocide Museum. These images show faces frozen in terror, confusion, defiance. Each represents a human being who entered S-21 and did not leave.',
+      'The purpose of S-21 was to extract confessions. Under torture—waterboarding, electric shock, pulling out fingernails, hanging from gallows with arms twisted behind the back—prisoners "confessed" to elaborate conspiracies involving the CIA, the KGB, the Vietnamese. The confessions were absurd, logically impossible, internally contradictory. They were also meticulously documented. Duch reviewed each confession personally, annotating them with corrections and demands for more detail.',
+      'Once they had confessed, prisoners were transported to Choeung Ek—the "Killing Fields"—a former Chinese cemetery 15 kilometers south of Phnom Penh. There, they were killed by blows to the head with farming implements—hoes, wooden clubs, palm fronds sharpened to a point. Bullets were too expensive. The bodies were dumped into mass graves. Over 8,000 bodies have been exhumed from Choeung Ek alone; many more remain.',
+      'S-21 was not unique—it was the most documented of 189-196 interrogation centers operating across Democratic Kampuchea. Similar facilities existed in every zone. But S-21\'s meticulous records—intake photographs, torture notes, execution logs, confessions—would later provide crucial evidence for the ECCC. The bureaucracy of terror kept its own record of atrocity. The filing cabinets testified when the perpetrators would not.'
     ],
     figures: [
       {
@@ -320,7 +318,7 @@ const CHAPTERS: Chapter[] = [
         attribution: 'Adam Jones, CC BY-SA 2.0'
       },
       {
-        url: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Buddhist_Stupa_at_Choeung_Ek_killing_fields,_Cambodia.JPG',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/7/78/Buddhist_Stupa_at_Choeung_Ek_killing_fields%2C_Cambodia.JPG',
         alt: 'Choeung Ek Memorial Stupa',
         caption: 'The memorial stupa at Choeung Ek, containing remains of victims',
         attribution: 'Timgray200, CC BY-SA 3.0'
@@ -340,10 +338,11 @@ const CHAPTERS: Chapter[] = [
     era: 'justice',
     metaphor: 'The word that names the crime',
     content: [
-      'The 1948 UN Genocide Convention defines genocide as acts committed "with intent to destroy, in whole or in part, a national, ethnical, racial or religious group." This specific intent—dolus specialis—distinguishes genocide from other mass atrocities.',
-      'The ECCC convicted Nuon Chea of genocide against ethnic Vietnamese AND Cham Muslims. Khieu Samphan was convicted of genocide against ethnic Vietnamese.',
-      'The Khmer Rouge committed both genocide (against specific protected groups: Vietnamese, Cham) and crimes against humanity (against the broader Cambodian population).',
-      'The legal category matters because it shapes how we understand, remember, and respond to mass atrocity. The distinction is not about which victims matter more—all victims matter. It is about how law names and addresses different forms of systematic violence.'
+      'The word "genocide" was invented in 1944 by Raphael Lemkin, a Polish-Jewish lawyer who had lost 49 family members in the Holocaust. He combined the Greek "genos" (race, tribe) with the Latin "cide" (killing) to name a crime that had no name. The 1948 UN Convention on the Prevention and Punishment of the Crime of Genocide—drafted in response to the Holocaust—defines genocide as acts "committed with intent to destroy, in whole or in part, a national, ethnical, racial or religious group."',
+      'This definition is precise and demanding. The key requirement is specific intent—what lawyers call "dolus specialis"—to destroy a protected group as such. Mass killing alone is not genocide; it must target a group because of its national, ethnic, racial, or religious identity. This distinction matters legally, even when it feels morally inadequate.',
+      'Did the Khmer Rouge commit genocide? The ECCC\'s answer was both yes and no. In Case 002/02, the tribunal convicted Nuon Chea of genocide against two groups: ethnic Vietnamese and Cham Muslims. Khieu Samphan was convicted of genocide against ethnic Vietnamese. The evidence was overwhelming: systematic identification and extermination of Vietnamese residents; forced assimilation, dispersal, and mass killing of Cham communities; explicit party directives calling for the elimination of these groups.',
+      'But the vast majority of Khmer Rouge victims were ethnic Khmer—killed not as Khmer but as "enemies" of the revolution. Urban dwellers, intellectuals, former government officials, suspected dissidents—these were targeted not as a protected group but as political enemies. Under international law, this is "crimes against humanity," not genocide. The distinction may seem semantic; legally, it is crucial.',
+      'The ECCC\'s verdicts thus established that the Khmer Rouge committed both genocide (against specific ethnic and religious minorities) and crimes against humanity (against the broader Cambodian population). Understanding this distinction is essential: it does not diminish the suffering of any victim. It names, precisely, the different forms of systematic violence the regime employed.'
     ],
     figures: [
       {
@@ -357,19 +356,14 @@ const CHAPTERS: Chapter[] = [
         quote: 'I accept moral responsibility for the suffering of the Cambodian people.',
         quoteSource: 'ECCC proceedings',
         fate: 'Life sentence; died 2019',
-        imageAlt: 'Nuon Chea at ECCC tribunal',
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Nuon_Chea_on_31_October_2013.jpg',
+        imageAlt: 'Nuon Chea at ECCC tribunal, October 2013',
         imageAttribution: 'ECCC, CC BY 2.0'
       }
     ],
     images: [
       {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/6/6e/Genocide_Convention-en.jpg',
-        alt: 'UN Genocide Convention document',
-        caption: 'The 1948 UN Genocide Convention defines genocide as acts committed with intent to destroy protected groups',
-        attribution: 'United Nations, Public Domain'
-      },
-      {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/8/8e/ECCC_Courtroom.jpg',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/7/71/29_August_2011_Courtroom_%281%29.jpg',
         alt: 'ECCC courtroom during proceedings',
         caption: 'The Extraordinary Chambers in the Courts of Cambodia delivered genocide convictions in Cases 002/01 and 002/02',
         attribution: 'ECCC, CC BY 2.0'
@@ -384,10 +378,11 @@ const CHAPTERS: Chapter[] = [
     era: 'dk',
     metaphor: 'The silence that shielded slaughter',
     content: [
-      'What did the world know? What did the world do?',
-      'Refugees reported atrocities from 1975 onward. Some Western journalists (Elizabeth Becker, 1978) visited and reported. Cambodia\'s UN seat remained contested; the Khmer Rouge kept it until 1982.',
-      'Cold War calculations prioritized anti-Vietnamese alliance over human rights concerns. The international community failed Cambodia.',
-      'This chapter addresses the misconception that "the world didn\'t know"—evidence existed; the world chose not to act.'
+      'A common defense of international inaction is that "the world didn\'t know." This is false. Evidence of mass atrocities emerged almost immediately. Refugees fleeing to Thailand in 1975 described the evacuations, the executions, the starvation. By 1976, detailed accounts had reached Western governments and media. The question was never knowledge—it was action.',
+      'Some journalists managed to pierce Democratic Kampuchea\'s isolation. In December 1978, Elizabeth Becker and Richard Dudman became two of the only Western journalists to visit during the regime. Becker\'s colleague Malcolm Caldwell—a Marxist academic sympathetic to the Khmer Rouge—was murdered during that visit, likely by regime elements. Becker\'s subsequent book, "When the War Was Over," remains essential reading. Her audio recordings of interviews with Pol Pot were later used as evidence at the ECCC.',
+      'Why did the world not act? Cold War calculations trumped humanitarian concerns. After Vietnam\'s 1978 invasion of Cambodia, the United States, China, and their allies faced a choice: condemn the Khmer Rouge genocide or oppose Vietnamese expansion. They chose the latter. The Khmer Rouge retained Cambodia\'s UN seat until 1982—three years after their overthrow. The coalition government that replaced them at the UN included Khmer Rouge representatives until 1993.',
+      'The United States continued to provide indirect support to Khmer Rouge remnants fighting the Vietnamese-backed government. China was their primary patron. Thailand allowed them sanctuary along the border. The same international community that would eventually fund the ECCC had earlier funded, armed, and diplomatically recognized the perpetrators.',
+      'This is not ancient history. It is a reminder that genocide prevention requires political will, not just information. The evidence was available. The photographs existed. The refugees testified. The international community—democratic and authoritarian alike—chose geopolitical expedience over human lives.'
     ],
     figures: [
       {
@@ -411,9 +406,11 @@ const CHAPTERS: Chapter[] = [
     era: 'post-1979',
     metaphor: 'When liberation brings new suffering',
     content: [
-      'On January 7, 1979, Vietnamese forces captured Phnom Penh. The Khmer Rouge fled to the countryside, where they continued armed resistance for nearly two more decades.',
-      'What followed was not peace: Vietnamese occupation (1979-1989), refugee crisis (300,000+ in Thai border camps), landmine contamination (one of the world\'s most mined countries), and continued international recognition of the Khmer Rouge at the UN.',
-      'The Paris Peace Accords (1991) and UNTAC mission (1992-1993) eventually brought elections—but many perpetrators never faced justice.'
+      'On December 25, 1978—Christmas Day—Vietnam launched a full-scale invasion of Democratic Kampuchea. By January 7, 1979, Vietnamese forces had captured Phnom Penh. The Khmer Rouge regime collapsed in two weeks; its leaders fled westward toward the Thai border. For the surviving population, liberation had arrived—but at what cost, and from whom?',
+      'The Vietnamese discovery of S-21 and the killing fields provided the first systematic documentation of Khmer Rouge atrocities. Journalists accompanying Vietnamese forces photographed Tuol Sleng\'s torture chambers, its walls still covered in blood. The People\'s Republic of Kampuchea, established under Vietnamese occupation, preserved these sites as memorials. But the new government was itself a Vietnamese creation, led by former Khmer Rouge cadres who had defected—including Hun Sen.',
+      'What followed was not peace. Vietnamese occupation lasted a decade (1979–1989), resisted by a coalition that included Khmer Rouge remnants, royalists, and non-communist nationalists—all supported by China, the United States, and Thailand. Over 300,000 Cambodians fled to refugee camps along the Thai border, where they lived in squalid conditions controlled by various factions. The Khmer Rouge established camps there too, rebuilding their forces.',
+      'Cambodia became one of the most landmine-contaminated countries on Earth. Millions of mines were laid during the civil war, the DK period, the Vietnamese occupation, and the subsequent resistance. They continue to kill and maim Cambodians today—a legacy of violence that outlasts the perpetrators.',
+      'The Paris Peace Accords of 1991 finally ended the conflict, bringing UN peacekeepers (UNTAC) and elections in 1993. But the accords granted amnesty to all factions, including Khmer Rouge leaders. Pol Pot, Nuon Chea, Khieu Samphan, and Ieng Sary remained free. It would take another decade—and the deaths of several key perpetrators—before any faced justice.'
     ],
     figures: [
       {
@@ -433,20 +430,6 @@ const CHAPTERS: Chapter[] = [
         imageAttribution: 'Government of Cambodia, CC BY 2.0'
       }
     ],
-    images: [
-      {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Vietnamese_troops_in_Phnom_Penh_1979.jpg',
-        alt: 'Vietnamese forces entering Phnom Penh, January 1979',
-        caption: 'Vietnamese forces captured Phnom Penh on January 7, 1979, ending nearly four years of Khmer Rouge rule',
-        attribution: 'Public Domain'
-      },
-      {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/d/d6/Cambodian_refugees_1979.jpg',
-        alt: 'Cambodian refugees at Thai border camp',
-        caption: 'Over 300,000 Cambodians fled to refugee camps along the Thai border after 1979',
-        attribution: 'UNHCR, CC BY 2.0'
-      }
-    ]
   },
   {
     id: 'justice-memory',
@@ -456,10 +439,11 @@ const CHAPTERS: Chapter[] = [
     era: 'justice',
     metaphor: 'The trial that tried to heal a nation',
     content: [
-      'The Extraordinary Chambers in the Courts of Cambodia (ECCC) was a hybrid tribunal—Cambodian and international judges—established to try senior Khmer Rouge leaders.',
-      'Only 3 convictions after 16 years and $337 million: Duch (Case 001), Nuon Chea and Khieu Samphan (Case 002). Many perpetrators died before trial—Pol Pot (1998), Ieng Sary (2013), Nuon Chea (2019).',
-      'The tribunal entered residual functions in 2022. Whether it achieved justice remains debated. What is certain: it created a historical record.',
-      'The Documentation Center of Cambodia (DC-Cam) trained over 5,000 teachers and reached 7 million young Cambodians with genocide education. Memory survives through education.'
+      'The path to justice took decades. Pol Pot died under house arrest in 1998, never facing trial. Ta Mok, "the Butcher," died in custody in 2006. Ieng Sary died during trial in 2013. Ieng Thirith, his wife and former Social Affairs Minister, was declared unfit to stand trial due to dementia. Death and infirmity claimed most perpetrators before any court could.',
+      'The Extraordinary Chambers in the Courts of Cambodia (ECCC) was a hybrid tribunal—Cambodian and international judges, Cambodian and international prosecutors, Cambodian and international law. It was established in 2006 after years of negotiation between the Cambodian government and the United Nations. The government insisted on limiting the tribunal\'s scope to "senior leaders and those most responsible"—a restriction that excluded thousands of lower-level perpetrators, including village-level cadres who carried out executions.',
+      'Case 001 tried Duch, the former commander of S-21. He was convicted in 2010 and sentenced to 35 years, later increased to life imprisonment on appeal. Duch was the only defendant to fully acknowledge his crimes and express remorse. He died in 2020.',
+      'Case 002 tried the surviving senior leaders: Nuon Chea and Khieu Samphan. The case was so complex it was split into two trials. Case 002/01 (2014) convicted them of crimes against humanity for the forced evacuation and specific execution sites. Case 002/02 (2018) convicted them of genocide against ethnic Vietnamese and Cham Muslims, additional crimes against humanity, and grave breaches of the Geneva Conventions. Both received life sentences. Nuon Chea died in 2019.',
+      'Three convictions after 16 years and $337 million. Critics ask: Was this justice? Supporters respond: It created an irrefutable historical record. The ECCC entered residual functions in 2022. Meanwhile, the Documentation Center of Cambodia (DC-Cam) has trained over 5,000 teachers and reached 7 million young Cambodians with genocide education. If law failed to deliver justice, perhaps education can deliver memory.'
     ],
     statistics: [
       { label: 'ECCC convictions', value: '3', source: 'ECCC, UN News' },
@@ -470,16 +454,10 @@ const CHAPTERS: Chapter[] = [
     ],
     images: [
       {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/5/5a/ECCC_Case_002_Trial_Chamber.jpg',
-        alt: 'ECCC Trial Chamber during Case 002 proceedings',
-        caption: 'The ECCC Trial Chamber during Case 002—only 3 convictions after 16 years and $337 million',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/7/71/29_August_2011_Courtroom_%281%29.jpg',
+        alt: 'ECCC Trial Chamber during proceedings',
+        caption: 'The ECCC Trial Chamber—only 3 convictions after 16 years and $337 million',
         attribution: 'ECCC, CC BY 2.0'
-      },
-      {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/b/b7/DC-Cam_archives.jpg',
-        alt: 'Documentation Center of Cambodia archives',
-        caption: 'DC-Cam\'s archive holds over 1.7 million document pages documenting the Khmer Rouge period',
-        attribution: 'DC-Cam, Fair Use'
       }
     ]
   },
@@ -491,10 +469,11 @@ const CHAPTERS: Chapter[] = [
     era: 'justice',
     metaphor: 'The genocide that isn\'t taught',
     content: [
-      'In Western schools, genocide education is Holocaust-centric. Cambodia—where a quarter of the population died—receives minimal coverage. Why?',
-      'Geographic and cultural distance from Western centers. Cold War complicity (US bombing, Khmer Rouge UN seat). Lack of translated survivor testimony until recently. Assumption that "Asian" histories are separate.',
-      'Cambodia has built its own education: DC-Cam\'s teacher training, mandatory curriculum since 2009, memorial sites across the country. But global awareness lags.',
-      'This chapter does not claim equivalence between genocides; it asks why some are remembered while others are forgotten.'
+      'In Western secondary schools, genocide education overwhelmingly focuses on the Holocaust—as it should. But Cambodia, where one-quarter of the population died in less than four years, receives minimal coverage. Most Western students graduate without learning that it happened. Why?',
+      'Several factors explain the gap. Geographic and cultural distance: Cambodia is far from Europe and North America, and Southeast Asian history rarely enters Western curricula. Cold War complicity: the United States bombed Cambodia and later supported Khmer Rouge remnants—an inconvenient history for American classrooms. Timing: the genocide occurred as the Vietnam War ended, and Americans preferred to forget Indochina entirely. Language: survivor testimony was not widely translated into English until the 2000s.',
+      'There is also an implicit hierarchy of suffering. Holocaust education serves multiple purposes in Western curricula: it teaches universal lessons about prejudice and genocide while specifically commemorating Jewish victims. Cambodia fits less neatly into these frameworks. The victims were mostly ethnic Khmer killed by ethnic Khmer—complicating the narrative of ethnic persecution. The perpetrators were Communists—but so were their Vietnamese liberators, confusing Cold War moral frameworks.',
+      'Cambodia, however, has built its own education. In 2009, the Cambodian government mandated genocide education in grades 9-12. DC-Cam produced textbooks, trained over 5,000 teachers, and developed curriculum materials used by millions of students. Memorial sites—Tuol Sleng, Choeung Ek, 81 smaller memorials across the country—serve as both archives and classrooms. The generation born after 1979 is learning what their parents often could not speak about.',
+      'This chapter does not claim equivalence between genocides—each has its own history, its own victims, its own meaning. It asks instead why global memory is selective. Why do some atrocities become universal lessons while others remain regional tragedies? The answer lies not in the nature of the crimes but in the politics of memory.'
     ]
   },
   {
@@ -505,10 +484,11 @@ const CHAPTERS: Chapter[] = [
     era: 'justice',
     metaphor: 'Memory as resistance to erasure',
     content: [
-      'Year Zero attempted to erase history. It failed.',
-      'Today, 81 genocide memorials dot Cambodia. The stupa at Choeung Ek contains the remains of victims—a memorial and a warning. Tuol Sleng receives thousands of visitors annually.',
-      'Cambodian artists, writers, and filmmakers continue to process inherited trauma. The generation born after 1979 now outnumbers survivors.',
-      'Memory depends on education, documentation, and the courage to remember what power would have erased.'
+      'The Khmer Rouge called their revolution "Year Zero"—a complete erasure of everything that came before. They attempted to destroy Cambodian history, culture, religion, family, and identity itself. They failed. Cambodians survived. Cambodia survived. And memory, despite everything, survived.',
+      'Today, 81 genocide memorials stand across Cambodia—from the towering stupa at Choeung Ek, which contains the remains of over 8,000 victims visible through glass panels, to small village memorials marking local execution sites. Tuol Sleng Genocide Museum receives approximately 300,000 visitors annually, including tens of thousands of Cambodian students. The faces photographed at intake—frozen forever in their final days—now bear witness for eternity.',
+      'Cambodian artists, writers, and filmmakers continue to process the trauma. Rithy Panh, a survivor who lost most of his family, has made it his life\'s work to document the genocide—his film "The Missing Picture" was nominated for an Academy Award. The painter Vann Nath, one of the few S-21 survivors, spent his remaining years painting his memories before his death in 2011. Loung Ung\'s memoir "First They Killed My Father" became a major film. Each work is an act of remembrance.',
+      'The generation born after 1979 now vastly outnumbers survivors. For them, the genocide is inherited memory—stories from parents and grandparents, lessons in schools, visits to memorial sites. Whether this inheritance becomes living memory or recedes into history depends on the choices Cambodia and the world make now. DC-Cam\'s slogan captures the challenge: "Searching for the Truth."',
+      'Year Zero attempted to restart history. But history cannot be restarted. It can only be remembered, documented, taught, and passed on. Memory is the resistance that outlasts power. The Khmer Rouge are gone. The dead remain. And we are here to remember them.'
     ],
     figures: [
       {
@@ -526,22 +506,10 @@ const CHAPTERS: Chapter[] = [
     ],
     images: [
       {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Choeung_Ek_Memorial_Stupa_2018.jpg',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/7/78/Buddhist_Stupa_at_Choeung_Ek_killing_fields%2C_Cambodia.JPG',
         alt: 'Choeung Ek Memorial Stupa',
         caption: 'The memorial stupa at Choeung Ek contains the remains of victims—a memorial and a warning',
-        attribution: 'Adam Jones, CC BY-SA 2.0'
-      },
-      {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/1/13/Facade_of_Tuol_Sleng_Genocide_Museum_-_Phnom_Penh_-_Cambodia_%2848322340337%29.jpg',
-        alt: 'Visitors at Tuol Sleng Genocide Museum',
-        caption: 'Tuol Sleng receives thousands of visitors annually—memory as resistance to erasure',
-        attribution: 'Adam Jones, CC BY-SA 2.0'
-      },
-      {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Cambodian_Traditional_Dance.jpg',
-        alt: 'Traditional Cambodian dance performance',
-        caption: 'Traditional arts survive—Year Zero failed to erase Cambodian culture',
-        attribution: 'CC BY-SA 3.0'
+        attribution: 'Timgray200, CC BY-SA 3.0'
       }
     ]
   }
@@ -671,7 +639,7 @@ function Hero({ onBegin }: { onBegin: () => void }) {
     <header className="hero">
       <div className="hero__background">
         <img
-          src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Buddhist_Stupa_at_Choeung_Ek_killing_fields,_Cambodia.JPG?width=1920"
+          src="https://upload.wikimedia.org/wikipedia/commons/7/78/Buddhist_Stupa_at_Choeung_Ek_killing_fields%2C_Cambodia.JPG"
           alt="Choeung Ek Memorial Stupa"
           className="hero__image"
         />
