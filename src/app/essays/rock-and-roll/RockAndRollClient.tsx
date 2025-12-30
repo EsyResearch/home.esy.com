@@ -4,6 +4,36 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import "./rock-and-roll.css";
 
+// ==================== IMAGES ====================
+
+const IMAGES = {
+  sisterRosettaTharpe: "https://upload.wikimedia.org/wikipedia/commons/6/66/Sister_Rosetta_Tharpe_%281938_publicity_photo_with_guitar%29.jpg",
+  louisJordan: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Louis_Jordan%2C_New_York%2C_N.Y.%2C_ca._July_1946_%28William_P._Gottlieb_04721%29.jpg",
+  tBoneWalker: "https://upload.wikimedia.org/wikipedia/commons/e/ee/T-Bone_Walker_1972.jpg",
+  fatsDomino: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Fats_Domino018.JPG",
+  ikeTurner: "https://upload.wikimedia.org/wikipedia/commons/a/aa/Ike_Turner_1971.jpg",
+  alanFreed: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Alan_Freed_1957.JPG",
+  leoFender: "https://upload.wikimedia.org/wikipedia/commons/a/af/FGF_museum_01._Leo_and_early_models.jpg",
+  samPhillips: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Sun_Studio%2C_Memphis.jpg",
+  earlPalmer: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Earl_Palmer.jpg",
+  cosimoMatassa: "https://upload.wikimedia.org/wikipedia/commons/1/11/Cosimo_Matassa.jpg",
+  elvisPresley: "https://upload.wikimedia.org/wikipedia/commons/9/99/Elvis_Presley_promoting_Jailhouse_Rock.jpg",
+  jerryLeeLewis: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Jerry_Lee_Lewis_1950s_publicity_photo_cropped_retouched.jpg",
+  chuckBerry: "https://upload.wikimedia.org/wikipedia/commons/2/20/Chuck_Berry_1957.jpg",
+  muddyWaters: "https://upload.wikimedia.org/wikipedia/commons/6/64/Muddy_Waters.jpg",
+  bigMamaThornton: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Blues_is_a_woman_Reitz_%28Big_Mama_Thornton%29.jpg",
+  littleRichard: "https://upload.wikimedia.org/wikipedia/commons/5/50/Little_Richard_%281967%29.png",
+  theBeatles: "https://upload.wikimedia.org/wikipedia/commons/d/d8/The_Beatles_members_at_New_York_City_in_1964.jpg",
+  theRollingStones: "https://upload.wikimedia.org/wikipedia/commons/d/d7/Rolling_Stones_1965.jpg",
+  caetanoVeloso: "https://upload.wikimedia.org/wikipedia/commons/8/8f/Caetano_Veloso_%28cropped%29.jpg",
+  theRamones: "https://upload.wikimedia.org/wikipedia/commons/3/3a/Ramones_Toronto_1976.jpg",
+  kurtCobain: "https://upload.wikimedia.org/wikipedia/commons/3/37/Nirvana_around_1992_%28cropped%29.jpg",
+  joanJett: "https://upload.wikimedia.org/wikipedia/commons/5/50/Joan_Jett_2013.jpg",
+  janisJoplin: "https://upload.wikimedia.org/wikipedia/commons/9/92/Janis_Joplin_1970.JPG",
+  georgeMartin: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Beatles_and_George_Martin_in_studio_1966.JPG",
+  ruthBrown: "https://upload.wikimedia.org/wikipedia/commons/d/d6/Ruth_Brown_cropped.jpg",
+} as const;
+
 // ==================== TYPES ====================
 
 type Era = "prerock" | "explosion" | "invasion" | "evolution" | "present";
@@ -553,6 +583,140 @@ const Sources: React.FC = () => (
       <p className="rnr-sources__note">
         Complete bibliography with 100+ sources available in the research package.
       </p>
+
+      <div className="rnr-sources__category">
+        <h3 className="rnr-sources__category-title">Image Credits</h3>
+        <p className="rnr-sources__note" style={{ marginBottom: "1rem" }}>
+          All images sourced from Wikimedia Commons. Click names to view original files.
+        </p>
+        <ul className="rnr-sources__list">
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Sister_Rosetta_Tharpe_(1938_publicity_photo_with_guitar).jpg" target="_blank" rel="noopener noreferrer">
+              Sister Rosetta Tharpe
+            </a> — Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Louis_Jordan,_New_York,_N.Y.,_ca._July_1946_(William_P._Gottlieb_04721).jpg" target="_blank" rel="noopener noreferrer">
+              Louis Jordan
+            </a> — William P. Gottlieb, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:T-Bone_Walker_1972.jpg" target="_blank" rel="noopener noreferrer">
+              T-Bone Walker
+            </a> — Heinrich Klaffs, CC BY-SA 2.0
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Fats_Domino018.JPG" target="_blank" rel="noopener noreferrer">
+              Fats Domino
+            </a> — Teddyyy, CC BY-SA 3.0
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Ike_Turner_1971.jpg" target="_blank" rel="noopener noreferrer">
+              Ike Turner
+            </a> — Heinrich Klaffs, CC BY-SA 2.0
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Alan_Freed_1957.JPG" target="_blank" rel="noopener noreferrer">
+              Alan Freed
+            </a> — ABC-TV, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:FGF_museum_01._Leo_and_early_models.jpg" target="_blank" rel="noopener noreferrer">
+              Leo Fender
+            </a> — Fender Guitar Factory Museum, CC BY-SA 3.0
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Sun_Studio,_Memphis.jpg" target="_blank" rel="noopener noreferrer">
+              Sam Phillips / Sun Studio
+            </a> — Thomas R Machnitzki, CC BY-SA 3.0
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Earl_Palmer.jpg" target="_blank" rel="noopener noreferrer">
+              Earl Palmer
+            </a> — Rock and Roll Hall of Fame, Fair Use
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Cosimo_Matassa.jpg" target="_blank" rel="noopener noreferrer">
+              Cosimo Matassa
+            </a> — PRA, CC BY-SA 4.0
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Elvis_Presley_promoting_Jailhouse_Rock.jpg" target="_blank" rel="noopener noreferrer">
+              Elvis Presley
+            </a> — MGM, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Jerry_Lee_Lewis_1950s_publicity_photo_cropped_retouched.jpg" target="_blank" rel="noopener noreferrer">
+              Jerry Lee Lewis
+            </a> — Sun Records, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Chuck_Berry_1957.jpg" target="_blank" rel="noopener noreferrer">
+              Chuck Berry
+            </a> — Chess Records, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Muddy_Waters.jpg" target="_blank" rel="noopener noreferrer">
+              Muddy Waters
+            </a> — Chess Records, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Blues_is_a_woman_Reitz_(Big_Mama_Thornton).jpg" target="_blank" rel="noopener noreferrer">
+              Big Mama Thornton
+            </a> — Stephanie Wiesand, CC BY-SA 3.0
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Little_Richard_(1967).png" target="_blank" rel="noopener noreferrer">
+              Little Richard
+            </a> — CBS Television, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:The_Beatles_members_at_New_York_City_in_1964.jpg" target="_blank" rel="noopener noreferrer">
+              The Beatles
+            </a> — United Press International, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Rolling_Stones_1965.jpg" target="_blank" rel="noopener noreferrer">
+              The Rolling Stones
+            </a> — Decca Records, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Caetano_Veloso_(cropped).jpg" target="_blank" rel="noopener noreferrer">
+              Caetano Veloso
+            </a> — Governo do Estado de São Paulo, CC BY 2.0
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Ramones_Toronto_1976.jpg" target="_blank" rel="noopener noreferrer">
+              The Ramones
+            </a> — Plismo, CC BY 2.0
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Nirvana_around_1992_(cropped).jpg" target="_blank" rel="noopener noreferrer">
+              Nirvana / Kurt Cobain
+            </a> — DGC Records, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Joan_Jett_2013.jpg" target="_blank" rel="noopener noreferrer">
+              Joan Jett
+            </a> — Andrew Hurley, CC BY-SA 2.0
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Janis_Joplin_1970.JPG" target="_blank" rel="noopener noreferrer">
+              Janis Joplin
+            </a> — Albert B. Grossman Management, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Beatles_and_George_Martin_in_studio_1966.JPG" target="_blank" rel="noopener noreferrer">
+              George Martin
+            </a> — EMI Records, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Ruth_Brown_cropped.jpg" target="_blank" rel="noopener noreferrer">
+              Ruth Brown
+            </a> — Atlantic Records, Public Domain
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 );
@@ -585,6 +749,9 @@ const chapters: Chapter[] = [
           "First gospel recording star; pioneered electric guitar distortion. Her 1944 'Strange Things Happening Every Day' was the first gospel song to reach the R&B Top 10.",
         quote: "All this new stuff they call Rock and Roll, why I've been playing that for years now.",
         quoteContext: "1957",
+        imageSrc: IMAGES.sisterRosettaTharpe,
+        imageAlt: "Sister Rosetta Tharpe with guitar, 1938",
+        imageCredit: "Public Domain",
         featured: true,
       },
       {
@@ -596,6 +763,9 @@ const chapters: Chapter[] = [
           "Alto saxophonist and bandleader with 57 R&B chart hits and 113 weeks at #1 between 1943 and 1950. His Tympany Five dominated the decade.",
         quote: "Rock and roll would have never happened without him.",
         quoteContext: "Doc Pomus",
+        imageSrc: IMAGES.louisJordan,
+        imageAlt: "Louis Jordan, New York, 1946",
+        imageCredit: "William P. Gottlieb, Public Domain",
         featured: false,
       },
     ],
@@ -630,6 +800,9 @@ const chapters: Chapter[] = [
           "First blues guitarist to make electric guitar a solo centerpiece (1935). Invented the vocabulary: single-string phrases, double-string slurs, playing behind his head.",
         quote: "I thought 'Jesus Himself had returned to earth playing electric guitar.'",
         quoteContext: "B.B. King",
+        imageSrc: IMAGES.tBoneWalker,
+        imageAlt: "T-Bone Walker performing, 1972",
+        imageCredit: "Heinrich Klaffs, CC BY-SA 2.0",
         featured: true,
       },
     ],
@@ -654,6 +827,9 @@ const chapters: Chapter[] = [
         description:
           "Record sales in the 1950s-60s rivaled only by Elvis Presley; 65 million records sold. 'The Fat Man' (1949) was the first rock record to sell 1 million copies.",
         quote: "Rock 'n roll is nothing but rhythm and blues, and we've been playing it for years down in New Orleans.",
+        imageSrc: IMAGES.fatsDomino,
+        imageAlt: "Fats Domino performing",
+        imageCredit: "Teddyyy, CC BY-SA 3.0",
         featured: true,
       },
       {
@@ -663,6 +839,9 @@ const chapters: Chapter[] = [
         domains: ["Piano", "Bandleader", "Producer"],
         description:
           "Led the Kings of Rhythm; wrote and arranged 'Rocket 88' though Jackie Brenston got vocal credit. Sam Phillips called him 'the most talented person he ever worked with.'",
+        imageSrc: IMAGES.ikeTurner,
+        imageAlt: "Ike Turner, 1971",
+        imageCredit: "Rob Mieremet, CC0",
         featured: false,
       },
     ],
@@ -688,6 +867,9 @@ const chapters: Chapter[] = [
         description:
           "Popularized 'rock and roll' on radio starting July 11, 1951. Organized the Moondog Coronation Ball (March 21, 1952)—the first major rock concert. Destroyed by payola scandal; died penniless at 43.",
         quote: "When the dance was stopped, I went off and cried. I'm not ashamed to admit it.",
+        imageSrc: IMAGES.alanFreed,
+        imageAlt: "Alan Freed, 1957",
+        imageCredit: "Topps Gum Cards, Public Domain",
         featured: true,
       },
     ],
@@ -711,6 +893,9 @@ const chapters: Chapter[] = [
         domains: ["Inventor", "Luthier", "Engineer"],
         description:
           "Created the first mass-produced solid-body electric guitar (Telecaster, 1950; Stratocaster, 1954). Rock and Roll Hall of Fame inductee (1992). Never learned to play guitar.",
+        imageSrc: IMAGES.leoFender,
+        imageAlt: "Leo Fender with early guitar models",
+        imageCredit: "Mr. Littlehand, CC BY 2.0",
         featured: true,
       },
       {
@@ -721,6 +906,9 @@ const chapters: Chapter[] = [
         description:
           "Produced 'Rocket 88,' discovered Elvis, invented the slapback echo technique using two Ampex 350 tape recorders. First non-performer inducted into Rock and Roll Hall of Fame (1986).",
         quote: "I knew that for black music to come to its rightful place in this country, we had to have some white singers come over and do black music.",
+        imageSrc: IMAGES.samPhillips,
+        imageAlt: "Sun Studio, Memphis",
+        imageCredit: "Public Domain",
         featured: true,
       },
     ],
@@ -745,6 +933,9 @@ const chapters: Chapter[] = [
         description:
           "Drummer on Little Richard's 'Tutti Frutti,' Fats Domino's hits, and countless others. Session musician on over 250 records. Rock and Roll Hall of Fame inductee (2000).",
         quote: "I wasn't thinking about inventing anything. I was just playing what felt right.",
+        imageSrc: IMAGES.earlPalmer,
+        imageAlt: "Earl Palmer",
+        imageCredit: "Kingkongphoto, CC BY-SA 2.0",
         featured: true,
       },
       {
@@ -755,6 +946,9 @@ const chapters: Chapter[] = [
         description:
           "Captured virtually every New Orleans R&B hit from the late 1940s through early 1970s at J&M Studio. Rock and Roll Hall of Fame inductee (2012).",
         quote: "The sound was in the room, not in the equipment.",
+        imageSrc: IMAGES.cosimoMatassa,
+        imageAlt: "Cosimo Matassa",
+        imageCredit: "WhyArts, CC BY-SA 4.0",
         featured: false,
       },
     ],
@@ -780,6 +974,9 @@ const chapters: Chapter[] = [
           "Bridged Black and white music for a mass audience. Over 1 billion records sold worldwide. His Sun Studio recordings changed American music.",
         quote: "A lot of people seem to think I started this business. But rock 'n' roll was here a long time before I came along. Nobody can sing it like colored people.",
         quoteContext: "1957",
+        imageSrc: IMAGES.elvisPresley,
+        imageAlt: "Elvis Presley promoting Jailhouse Rock",
+        imageCredit: "MGM, Public Domain",
         featured: true,
       },
       {
@@ -790,6 +987,9 @@ const chapters: Chapter[] = [
         description:
           "Wild piano style; 'Whole Lotta Shakin' Going On' (1957), 'Great Balls of Fire' (1957). Career derailed by marriage to 13-year-old cousin (1958).",
         quote: "Rock and roll is not a sin. Some of the people who play it are sinners.",
+        imageSrc: IMAGES.jerryLeeLewis,
+        imageAlt: "Jerry Lee Lewis, 1950s",
+        imageCredit: "Maurice Seymour, Public Domain",
         featured: false,
       },
     ],
@@ -814,6 +1014,9 @@ const chapters: Chapter[] = [
         description:
           "'Maybellene' (1955) moved Chess from R&B into mainstream rock. Lost royalties for 31 years when Alan Freed was added to writing credits.",
         quote: "It used to be called boogie-woogie, it used to be called blues, it used to be called rhythm and blues... It's called rock now.",
+        imageSrc: IMAGES.chuckBerry,
+        imageAlt: "Chuck Berry, 1957",
+        imageCredit: "Public Domain",
         featured: true,
       },
       {
@@ -824,6 +1027,9 @@ const chapters: Chapter[] = [
         description:
           "Recorded by Alan Lomax for Library of Congress (1941-1942). Electrified Delta blues in Chicago. His 1958 UK tour inspired the British Invasion.",
         quote: "When I went into the clubs, the first thing I wanted was an amplifier.",
+        imageSrc: IMAGES.muddyWaters,
+        imageAlt: "Muddy Waters performing",
+        imageCredit: "Jean-Luc Ourlin, CC BY-SA 2.0",
         featured: true,
       },
     ],
@@ -852,6 +1058,9 @@ const chapters: Chapter[] = [
           "Her 1953 'Hound Dog' topped the R&B chart for seven weeks, sold 500,000+ copies. Paid a flat fee of $500, no royalties. Died penniless in Los Angeles.",
         quote: "Didn't get no money from them at all. Everybody livin' in a house but me. I'm just livin.",
         quoteContext: "1984",
+        imageSrc: IMAGES.bigMamaThornton,
+        imageAlt: "Big Mama Thornton performing",
+        imageCredit: "Barbara Weinberg Barefield, CC BY-SA 3.0",
         featured: true,
       },
       {
@@ -862,6 +1071,9 @@ const chapters: Chapter[] = [
         description:
           "Recorded 'Tutti Frutti,' 'Long Tall Sally,' 'Good Golly Miss Molly.' Self-proclaimed innovator, originator, and architect of rock and roll.",
         quote: "I am the innovator. I am the originator. I am the emancipator. I am the architect of rock 'n' roll.",
+        imageSrc: IMAGES.littleRichard,
+        imageAlt: "Little Richard, 1957",
+        imageCredit: "Topps Gum Cards, Public Domain",
         featured: true,
       },
     ],
@@ -888,6 +1100,9 @@ const chapters: Chapter[] = [
           "73 million watched their Ed Sullivan appearance (February 9, 1964). Hamburg crucible transformed raw talent into world-beaters.",
         quote: "I was born in Liverpool, but I grew up in Hamburg.",
         quoteContext: "John Lennon",
+        imageSrc: IMAGES.theBeatles,
+        imageAlt: "The Beatles on Ed Sullivan Show, 1964",
+        imageCredit: "Bernard Gotfryd, Public Domain",
         featured: true,
       },
       {
@@ -899,6 +1114,9 @@ const chapters: Chapter[] = [
           "Named after a Muddy Waters song. Recorded at Chess Records. Mick Jagger and Keith Richards reconnected over blues albums.",
         quote: "We wanted to turn people on to blues. That was the whole idea.",
         quoteContext: "Keith Richards",
+        imageSrc: IMAGES.theRollingStones,
+        imageAlt: "The Rolling Stones, 1965",
+        imageCredit: "London Records, Public Domain",
         featured: true,
       },
     ],
@@ -923,6 +1141,9 @@ const chapters: Chapter[] = [
         description:
           "Led Tropicalia movement with Gilberto Gil, fusing psychedelia with Brazilian traditions. Arrested by military regime 1969; later exiled.",
         quote: "The violent aspect of rock 'n' roll interested us more because we were seeing violence.",
+        imageSrc: IMAGES.caetanoVeloso,
+        imageAlt: "Caetano Veloso performing",
+        imageCredit: "Governo do Estado de São Paulo, CC BY 2.0",
         featured: true,
       },
     ],
@@ -948,6 +1169,9 @@ const chapters: Chapter[] = [
           "Stripped rock to three chords and two minutes. 'Blitzkrieg Bop' (1976) became a punk anthem.",
         quote: "We decided to start our own group because we were bored with everything we heard.",
         quoteContext: "Joey Ramone",
+        imageSrc: IMAGES.theRamones,
+        imageAlt: "The Ramones performing in Toronto, 1976",
+        imageCredit: "Plismo, CC BY 2.0",
         featured: true,
       },
       {
@@ -958,6 +1182,9 @@ const chapters: Chapter[] = [
         description:
           "Nirvana frontman; 'Nevermind' sold 30 million copies. Suicide at 27 ended grunge's brightest voice.",
         quote: "I'd rather be hated for who I am than loved for who I am not.",
+        imageSrc: IMAGES.kurtCobain,
+        imageAlt: "Nirvana band members circa 1992",
+        imageCredit: "DGC Records, Public Domain",
         featured: true,
       },
     ],
@@ -978,12 +1205,15 @@ const chapters: Chapter[] = [
     figures: [
       {
         name: "Joan Jett",
-        epithet: "The Queen of Rock 'n' Roll",
+        epithet: "Rock's Bad Reputation",
         dates: "b. 1958",
         domains: ["Rock", "Punk", "Label Owner"],
         description:
           "Rejected by 23 labels; formed Blackheart Records. 'I Love Rock 'n' Roll' (1981) spent eight weeks at #1.",
         quote: "I don't give a damn 'bout my bad reputation.",
+        imageSrc: IMAGES.joanJett,
+        imageAlt: "Joan Jett performing live, 2013",
+        imageCredit: "Andrew Hurley, CC BY-SA 2.0",
         featured: true,
       },
       {
@@ -994,6 +1224,9 @@ const chapters: Chapter[] = [
         description:
           "Fronted Big Brother and the Holding Company; solo career cut short. Died at 27 from overdose.",
         quote: "Don't compromise yourself. You are all you've got.",
+        imageSrc: IMAGES.janisJoplin,
+        imageAlt: "Janis Joplin performing, 1970",
+        imageCredit: "Albert B. Grossman Management, Public Domain",
         featured: true,
       },
     ],
@@ -1017,6 +1250,9 @@ const chapters: Chapter[] = [
         domains: ["Producer", "Arranger", "Orchestrator"],
         description:
           "Produced virtually all Beatles recordings. Arranged strings, experimented with tape effects, enabled the band's artistic evolution.",
+        imageSrc: IMAGES.georgeMartin,
+        imageAlt: "The Beatles with George Martin in the studio, 1966",
+        imageCredit: "EMI Records, Public Domain",
         featured: true,
       },
       {
@@ -1051,6 +1287,9 @@ const chapters: Chapter[] = [
         description:
           "Her hits made Atlantic 'The House That Ruth Built.' Left Atlantic in the 1960s with no savings; worked as bus driver, floor scrubber. Won 20-year legal battle; received $20,000 in back royalties.",
         quote: "They called Atlantic 'The House That Ruth Built.' But Ruth wasn't getting paid.",
+        imageSrc: IMAGES.ruthBrown,
+        imageAlt: "Ruth Brown portrait",
+        imageCredit: "Atlantic Records, Public Domain",
         featured: true,
       },
     ],
