@@ -1768,12 +1768,45 @@
 }
 
 .pi-sources-note {
-  margin-top: var(--pi-space-xl);
-  padding-top: var(--pi-space-lg);
-  border-top: var(--pi-border-subtle);
+  margin-top: var(--pi-space-sm);
+  margin-bottom: var(--pi-space-md);
   color: var(--pi-text-muted);
   font-size: var(--pi-type-caption);
   font-style: italic;
+}
+
+/* Image Credits */
+.pi-image-credits {
+  display: grid;
+  gap: var(--pi-space-sm);
+}
+
+.pi-image-credit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--pi-space-xs);
+  padding-bottom: var(--pi-space-xs);
+  border-bottom: var(--pi-border-subtle);
+  font-size: var(--pi-type-caption);
+}
+
+.pi-image-subject {
+  color: var(--pi-text-primary);
+  font-weight: 500;
+}
+
+.pi-image-attribution {
+  color: var(--pi-text-secondary);
+}
+
+.pi-image-license {
+  font-size: var(--pi-type-micro);
+  padding: 2px 6px;
+  border-radius: 3px;
+  background-color: var(--pi-bg-tertiary);
+  color: var(--pi-text-muted);
+  margin-left: auto;
 }
 
 /* ==================== ESSAY FOOTER ==================== */

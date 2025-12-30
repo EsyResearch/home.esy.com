@@ -1144,6 +1144,21 @@ const PalestineIsraelClient: React.FC = () => {
               </li>
             ))}
           </ul>
+
+          {/* Image Credits */}
+          <h4 className="pi-sources-category">Image Credits</h4>
+          <p className="pi-sources-note">All images sourced from Wikimedia Commons with proper licensing. No fair use images.</p>
+          <ul className="pi-sources-list pi-image-credits">
+            {Object.entries(chapterImages).flatMap(([, images]) =>
+              images.map((img, idx) => (
+                <li key={`img-${img.alt}-${idx}`} className="pi-image-credit">
+                  <span className="pi-image-subject">{img.alt}</span>
+                  {img.attribution && <span className="pi-image-attribution"> — {img.attribution}</span>}
+                  <span className="pi-image-license">{img.license}</span>
+                </li>
+              ))
+            )}
+          </ul>
         </div>
       </section>
 
