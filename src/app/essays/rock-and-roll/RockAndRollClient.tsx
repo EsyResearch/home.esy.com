@@ -452,31 +452,78 @@ const Sources: React.FC = () => (
       <h2 className="rnr-sources__title">Sources & Further Reading</h2>
 
       <div className="rnr-sources__category">
-        <h3 className="rnr-sources__category-title">Books</h3>
+        <h3 className="rnr-sources__category-title">Primary Archives (.gov)</h3>
         <ul className="rnr-sources__list">
           <li>
-            <a href="#">
-              Peter Guralnick, <em>Last Train to Memphis</em> (1994)
+            <a href="https://www.loc.gov/programs/national-recording-preservation-board/recording-registry/" target="_blank" rel="noopener noreferrer">
+              Library of Congress — National Recording Registry
             </a>
           </li>
           <li>
-            <a href="#">
-              Greil Marcus, <em>Mystery Train</em> (1975)
+            <a href="https://www.loc.gov/collections/alan-lomax-manuscripts/" target="_blank" rel="noopener noreferrer">
+              Library of Congress — Alan Lomax Collection
             </a>
           </li>
           <li>
-            <a href="#">
-              Nick Tosches, <em>Unsung Heroes of Rock &apos;n&apos; Roll</em> (1984)
+            <a href="https://www.neh.gov/" target="_blank" rel="noopener noreferrer">
+              National Endowment for the Humanities — Sun Records
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div className="rnr-sources__category">
+        <h3 className="rnr-sources__category-title">Institutional Archives</h3>
+        <ul className="rnr-sources__list">
+          <li>
+            <a href="https://www.rockhall.com/library-archives" target="_blank" rel="noopener noreferrer">
+              Rock and Roll Hall of Fame — Library and Archives
             </a>
           </li>
           <li>
-            <a href="#">
-              Robert Palmer, <em>Deep Blues</em> (1981)
+            <a href="https://www.si.edu/search?edan_q=sister%20rosetta%20tharpe" target="_blank" rel="noopener noreferrer">
+              Smithsonian Institution — Sister Rosetta Tharpe Collections
             </a>
           </li>
           <li>
-            <a href="#">
-              Jack Hamilton, <em>Just Around Midnight</em> (2016)
+            <a href="https://blues.org/halloffame/" target="_blank" rel="noopener noreferrer">
+              Blues Foundation Hall of Fame
+            </a>
+          </li>
+          <li>
+            <a href="https://case.edu/ech/articles/f/freed-alan" target="_blank" rel="noopener noreferrer">
+              Case Western Reserve — Encyclopedia of Cleveland History (Alan Freed)
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div className="rnr-sources__category">
+        <h3 className="rnr-sources__category-title">Academic Books</h3>
+        <ul className="rnr-sources__list">
+          <li>
+            <a href="https://www.hup.harvard.edu/books/9780674984318" target="_blank" rel="noopener noreferrer">
+              Jack Hamilton, <em>Just Around Midnight</em> (Harvard, 2016)
+            </a>
+          </li>
+          <li>
+            <a href="https://www.dukeupress.edu/right-to-rock" target="_blank" rel="noopener noreferrer">
+              Maureen Mahon, <em>Right to Rock</em> (Duke, 2004)
+            </a>
+          </li>
+          <li>
+            <a href="https://www.ucpress.edu/book/9780520212473/just-my-soul-responding" target="_blank" rel="noopener noreferrer">
+              Brian Ward, <em>Just My Soul Responding</em> (UC Press, 1998)
+            </a>
+          </li>
+          <li>
+            <a href="https://books.google.com/books?id=0GqTDwAAQBAJ" target="_blank" rel="noopener noreferrer">
+              Peter Guralnick, <em>Last Train to Memphis</em> (Little Brown, 1994)
+            </a>
+          </li>
+          <li>
+            <a href="https://books.google.com/books?id=DkFYAAAAYAAJ" target="_blank" rel="noopener noreferrer">
+              Robert Palmer, <em>Deep Blues</em> (Viking, 1981)
             </a>
           </li>
         </ul>
@@ -486,17 +533,17 @@ const Sources: React.FC = () => (
         <h3 className="rnr-sources__category-title">Documentaries</h3>
         <ul className="rnr-sources__list">
           <li>
-            <a href="#">
+            <a href="https://www.imdb.com/title/tt0112077/" target="_blank" rel="noopener noreferrer">
               <em>The History of Rock &apos;n&apos; Roll</em> (1995)
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="https://www.imdb.com/title/tt2103197/" target="_blank" rel="noopener noreferrer">
               <em>Sister Rosetta Tharpe: The Godmother of Rock & Roll</em> (2011)
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="https://www.imdb.com/title/tt0314725/" target="_blank" rel="noopener noreferrer">
               <em>Standing in the Shadows of Motown</em> (2002)
             </a>
           </li>
@@ -504,7 +551,7 @@ const Sources: React.FC = () => (
       </div>
 
       <p className="rnr-sources__note">
-        Complete bibliography available in the research package.
+        Complete bibliography with 100+ sources available in the research package.
       </p>
     </div>
   </section>
