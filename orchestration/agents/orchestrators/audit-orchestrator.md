@@ -63,40 +63,40 @@
 | `seo-audit-agent.md` | SEO | On-page, technical, content, schema | Grade < C or blocking issues |
 | `spec-compliance-auditor.md` | **Spec Compliance** | Output matches invocation spec | Score < 70% or missing elements |
 | `hydration-audit-agent.md` | **Hydration** | SSR/client mismatches, first-load integrity | Any Tier 1 failure (hero corruption) |
+| `content-audit-agent.md` | **Content Quality** | Word count, depth, tone, spec content compliance | Score < 70% or tone violations |
 
 ### Audit Dependencies
 
 ```
-                         ┌─────────────────────────┐
-                         │  Meta Audit Orchestrator │
-                         └───────────┬─────────────┘
-                                     │
-   ┌────────────┬────────────┬───────┼───────┬────────────┬────────────┬────────────┐
-   │            │            │       │       │            │            │            │
-   ▼            ▼            ▼       ▼       ▼            ▼            ▼            ▼
-┌────────┐┌──────────┐┌──────────┐┌────────┐┌─────────┐┌────────────┐┌────────────┐
-│ SCROLL ││EXPERIENCE││  SPEC    ││ VISUAL ││ CONTENT ││    SEO     ││ HYDRATION  │
-│ AUDIT  ││  AUDIT   ││COMPLIANCE││ AUDIT  ││ AUDITS  ││   AUDIT    ││   AUDIT    │
-└────────┘└────┬─────┘└──────────┘└────────┘└────┬────┘└────────────┘└────────────┘
-               │                                  │
-               │                           ┌──────┴──────┐
-               │                           │             │
-               ▼                           ▼             ▼
-     ┌───────────────┐           ┌───────────────┐ ┌───────────┐
-     │ Scroll Audit  │           │ Citation Audit│ │  Quotes   │
-     │  (delegated)  │           └───────────────┘ │   Audit   │
-     └───────────────┘                             └───────────┘
+                           ┌─────────────────────────┐
+                           │  Meta Audit Orchestrator │
+                           └───────────┬─────────────┘
+                                       │
+  ┌────────┬────────┬────────┬────────┬┴───────┬────────┬────────┬────────┐
+  │        │        │        │        │        │        │        │        │
+  ▼        ▼        ▼        ▼        ▼        ▼        ▼        ▼        ▼
+┌──────┐┌──────┐┌──────┐┌──────┐┌──────┐┌──────┐┌──────┐┌──────┐
+│SCROLL││EXPRCE││ SPEC ││VISUAL││CITATN││ SEO  ││HYDRAT││CONTNT│
+│AUDIT ││AUDIT ││CMPLNC││AUDIT ││AUDIT ││AUDIT ││AUDIT ││AUDIT │
+└──────┘└──┬───┘└──────┘└──────┘└──┬───┘└──────┘└──────┘└──────┘
+           │                       │
+           ▼                       ▼
+  ┌─────────────────┐    ┌─────────────────┐
+  │  Scroll Audit   │    │   Quotes Audit  │
+  │   (delegated)   │    │   (delegated)   │
+  └─────────────────┘    └─────────────────┘
 ```
 
 ### Parallelization Strategy
 
 **Can Run in Parallel:**
 - Scroll Audit
-- Visual Audit  
+- Visual Audit
 - Citation Audit (triggers Quotes Audit internally)
 - SEO Audit
 - **Spec Compliance Audit** (compares spec vs output)
 - **Hydration Audit** (SSR/client mismatch detection)
+- **Content Audit** (word count, depth, tone, sensitivity)
 
 **Sequential Dependencies:**
 - Experience Audit → Scroll Audit (incorporates scroll findings)
@@ -174,6 +174,7 @@ Launch independent audits simultaneously:
 - [ ] Dispatch SEO Audit (for all published/pre-publication pages)
 - [ ] **Dispatch Spec Compliance Audit** (compares spec vs output) — REQUIRED
 - [ ] **Dispatch Hydration Audit** (SSR/client first-load integrity) — REQUIRED
+- [ ] **Dispatch Content Audit** (word count, depth, tone compliance) — REQUIRED for narrative essays
 
 ### Phase 3: Sequential Audit Dispatch (Variable)
 Launch dependent audits:
@@ -220,6 +221,7 @@ Produce comprehensive audit report:
 | SEO | SEO Audit Agent | C (60/100) | Any 🔴 Blocking issue |
 | **Spec Compliance** | Spec Compliance Auditor | 70% | Missing chapters or core elements |
 | **Hydration** | Hydration Audit Agent | Pass/Fail | Hero corruption or Tier 1 failures |
+| **Content** | Content Audit Agent | 70% | Word count <50% of spec, tone violations for sensitive content |
 
 ### Aggregate Certification Thresholds
 
@@ -250,6 +252,8 @@ Produce comprehensive audit report:
 | Discoverability issues | SEO + Citations | Missing metadata, poor schema |
 | **Spec deviation** | Spec Compliance + Experience + Scroll | Built essay doesn't match invocation spec |
 | **First-load corruption** | Hydration + Experience + Scroll | IntersectionObserver race conditions, useState mismatches |
+| **Content deficiency** | Content + Spec Compliance + Citations | Thin content, missing depth, unsubstantiated claims |
+| **Tone violations** | Content + Citations + Experience | Inappropriate tone for sensitive subjects (genocide, trauma) |
 
 ---
 
@@ -282,6 +286,7 @@ Produce comprehensive audit report:
 | Quotes | Pass/Fail | 🟢/🔴 | Quotes Audit |
 | SEO | X/100 (Grade) | 🟢/🟡/🔴 | SEO Audit Agent |
 | Hydration | Pass/Fail | 🟢/🔴 | Hydration Audit Agent |
+| Content | X% | 🟢/🟡/🔴 | Content Audit Agent |
 
 ### Key Findings Summary
 - ✅ [Major success 1]
@@ -504,8 +509,11 @@ Meta Audit Orchestrator
     ├─► Invoke: @agents/auditors/seo-audit-agent.md
     │   "Audit SEO for [URL]. Target keywords: [keywords]."
     │
-    └─► Invoke: @agents/auditors/hydration-audit-agent.md
-        "Audit hydration for [essay-path]. Check SSR/client consistency."
+    ├─► Invoke: @agents/auditors/hydration-audit-agent.md
+    │   "Audit hydration for [essay-path]. Check SSR/client consistency."
+    │
+    └─► Invoke: @agents/auditors/content-audit-agent.md
+        "Audit content for Spec [spec-path], Essay [essay-path]. Check word count, depth, tone."
 ```
 
 **Handoff Protocol**
@@ -812,9 +820,13 @@ orchestration/agents/CitationReports/CHANGELOG.md
 ---
 
 ## Last Updated
-December 15, 2024
+December 30, 2024
 
 ### Recent Changes
+- Added **Content Audit Agent** to audit domain registry — word count, content depth, tone compliance, genocide/atrocity sensitivity
+- Added content to certification matrix (70% min, blocks on tone violations for sensitive content)
+- Added content audit to parallel dispatch (REQUIRED for narrative essays)
+- Added cross-domain patterns: "Content deficiency", "Tone violations"
 - Added **Hydration Audit Agent** to audit domain registry — detects SSR/client mismatches, IntersectionObserver race conditions
 - Added hydration to parallel audit dispatch (Phase 2) — REQUIRED for all essays
 - Added hydration to certification matrix (Pass/Fail, blocks on Tier 1 failures)
