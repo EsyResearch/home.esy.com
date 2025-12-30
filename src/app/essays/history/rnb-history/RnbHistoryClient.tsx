@@ -6,10 +6,14 @@ import "./rnb-history.css";
 // ============================================================================
 // R&B: THE HEARTBEAT THAT TAUGHT POP TO FEEL
 // ============================================================================
-// Visual Treatment: Photography-driven with era-specific color grading
-// Arc Type: Transformation (Classification -> Cities -> Technology -> Global)
-// Progress Bar: "Radio Dial" — tuning through eras (R&B was radio-driven)
-// Design System: Subject-derived from record labels, 45 RPM singles, VU meters
+// Visual Treatment: MIXING CONSOLE metaphor
+// - R&B was DEFINED by studio production (Motown, Stax, PIR, Sigma Sound)
+// - The console is WHERE R&B was created
+// - No other essay uses this metaphor
+//
+// Progress Bar: FADER — realistic channel fader with dB scale and LED meter
+// Section Transitions: CROSSFADE — audio mixing metaphor
+// Figure Cards: PATCH CONNECTIONS — studio patch bay styling
 // ============================================================================
 
 // ==================== TYPE DEFINITIONS ====================
@@ -119,178 +123,230 @@ const useGlobalScrollProgress = () => {
   return progress;
 };
 
-// ==================== RADIO DIAL PROGRESS BAR ====================
-// R&B was radio-driven culture — tuning through eras
+// ==================== FADER PROGRESS (Novel Progress Bar) ====================
+// Realistic mixing console fader with channel display, track, cap, and LED meter
 
-const frequencyMarkers = [
-  { id: "prologue", position: 0.02, label: "88.1 Prologue" },
-  { id: "ch1", position: 0.10, label: "90.3 Classification" },
-  { id: "ch2", position: 0.18, label: "92.5 New Orleans" },
-  { id: "ch3", position: 0.26, label: "94.7 Memphis" },
-  { id: "ch4", position: 0.34, label: "96.9 Detroit" },
-  { id: "ch5", position: 0.42, label: "99.1 Philadelphia" },
-  { id: "ch6", position: 0.50, label: "101.3 Session" },
-  { id: "ch7", position: 0.58, label: "103.5 Technology" },
-  { id: "ch8", position: 0.66, label: "105.7 Women" },
-  { id: "ch9", position: 0.74, label: "107.9 Symbiosis" },
-  { id: "ch10", position: 0.82, label: "110.1 Crossover" },
-  { id: "ch11", position: 0.90, label: "112.3 Real R&B" },
-  { id: "epilogue", position: 0.98, label: "114.5 Epilogue" },
+const channelLabels = [
+  { id: "prologue", position: 0.02, label: "PRO" },
+  { id: "ch1", position: 0.10, label: "CH1" },
+  { id: "ch2", position: 0.18, label: "CH2" },
+  { id: "ch3", position: 0.26, label: "CH3" },
+  { id: "ch4", position: 0.34, label: "CH4" },
+  { id: "ch5", position: 0.42, label: "CH5" },
+  { id: "ch6", position: 0.50, label: "CH6" },
+  { id: "ch7", position: 0.58, label: "CH7" },
+  { id: "ch8", position: 0.66, label: "CH8" },
+  { id: "ch9", position: 0.74, label: "CH9" },
+  { id: "ch10", position: 0.82, label: "C10" },
+  { id: "ch11", position: 0.90, label: "C11" },
+  { id: "epilogue", position: 0.98, label: "MST" },
 ];
 
-const RadioDialProgress: React.FC<{ progress: number }> = ({ progress }) => {
-  return (
-    <>
-      {/* Desktop: Vertical radio dial */}
-      <div
-        className="radio-dial-progress"
-        role="progressbar"
-        aria-valuenow={Math.round(progress * 100)}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-label="Reading progress"
-      >
-        <div className="radio-dial-shell">
-          <div
-            className="radio-dial-spectrum"
-            style={{ height: `${progress * 92}%` }}
-          />
-          <div className="radio-dial-frequencies">
-            {frequencyMarkers.map((marker) => (
-              <div
-                key={marker.id}
-                className={`radio-dial-freq ${progress >= marker.position ? "tuned" : ""}`}
-                data-freq={marker.label}
-              />
-            ))}
-          </div>
-          <div
-            className="radio-dial-needle"
-            style={{ top: `${4 + progress * 92}%` }}
-          />
-        </div>
-      </div>
+const getCurrentChannel = (progress: number): string => {
+  for (let i = channelLabels.length - 1; i >= 0; i--) {
+    if (progress >= channelLabels[i].position) {
+      return channelLabels[i].label;
+    }
+  }
+  return "PRO";
+};
 
-      {/* Mobile: VU meter horizontal bar */}
-      <div className="vu-meter-progress">
-        <div
-          className="vu-meter-fill"
-          style={{ width: `${progress * 100}%` }}
-        />
-        <div className="vu-meter-ticks">
-          {[...Array(10)].map((_, i) => (
-            <div key={i} className="vu-meter-tick" />
-          ))}
+const FaderProgress: React.FC<{ progress: number }> = ({ progress }) => {
+  const segmentCount = 12;
+  const litSegments = Math.floor(progress * segmentCount);
+  const currentChannel = getCurrentChannel(progress);
+
+  // Calculate fader cap position (top to bottom)
+  const trackHeight = 100; // percentage
+  const capPosition = progress * (trackHeight - 10); // leave room for cap
+
+  return (
+    <div
+      className="fader-progress"
+      role="progressbar"
+      aria-valuenow={Math.round(progress * 100)}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-label="Reading progress"
+    >
+      {/* Channel display */}
+      <div className="fader-channel">{currentChannel}</div>
+
+      {/* Fader track container */}
+      <div className="fader-track-container">
+        {/* dB scale */}
+        <div className="fader-scale">
+          <span className="fader-db">+10</span>
+          <span className="fader-db">0</span>
+          <span className="fader-db">-10</span>
+          <span className="fader-db">-20</span>
+          <span className="fader-db">-∞</span>
+        </div>
+
+        {/* The track groove */}
+        <div className="fader-track">
+          {/* The fader cap */}
+          <div
+            className="fader-cap"
+            style={{ top: `${capPosition}%` }}
+          />
+        </div>
+
+        {/* LED meter */}
+        <div className="fader-meter">
+          {[...Array(segmentCount)].map((_, i) => {
+            let colorClass = "";
+            if (i < litSegments) {
+              if (i >= segmentCount - 2) {
+                colorClass = "lit-red";
+              } else if (i >= segmentCount - 4) {
+                colorClass = "lit-yellow";
+              } else {
+                colorClass = "lit-green";
+              }
+            }
+            return (
+              <div
+                key={i}
+                className={`fader-meter-segment ${colorClass}`}
+              />
+            );
+          })}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
-// ==================== FIGURE PROFILE COMPONENT ====================
+// ==================== METER BRIDGE (Sticky Header) ====================
 
-const FigureProfile: React.FC<{ figure: Figure }> = ({ figure }) => {
+const MeterBridge: React.FC<{ progress: number; currentChapter: string }> = ({
+  progress,
+  currentChapter,
+}) => {
+  const vuBars = 8;
+  const activeBars = Math.ceil(progress * vuBars);
+
+  return (
+    <div className="meter-bridge">
+      <div className="meter-bridge-vu">
+        {[...Array(vuBars)].map((_, i) => (
+          <div
+            key={i}
+            className={`meter-bridge-vu-bar ${i < activeBars ? "active" : ""}`}
+          />
+        ))}
+      </div>
+      <div className="meter-bridge-label">
+        <span className="current">{currentChapter}</span>
+      </div>
+    </div>
+  );
+};
+
+// ==================== PATCH CONNECTION (Figure Component) ====================
+
+const PatchConnection: React.FC<{ figure: Figure }> = ({ figure }) => {
   return (
     <article
-      className={`hb-figure ${figure.isFeatured ? "featured" : ""} ${figure.imageUrl ? "has-image" : ""}`}
+      className={`patch-connection ${figure.isFeatured ? "featured" : ""} ${figure.imageUrl ? "has-image" : ""}`}
     >
       {figure.imageUrl && (
-        <div className="hb-figure-image-container">
+        <div className="patch-image-container">
           <img
             src={figure.imageUrl}
             alt={`${figure.name} - ${figure.epithet}`}
-            className="hb-figure-image"
+            className="patch-image"
             loading="lazy"
           />
           {figure.imageAttribution && (
-            <p className="hb-figure-image-attribution">{figure.imageAttribution}</p>
+            <p className="patch-image-credit">{figure.imageAttribution}</p>
           )}
         </div>
       )}
-      <div className="hb-figure-text">
-        <h3 className="hb-figure-name">{figure.name}</h3>
-        <p className="hb-figure-epithet">{figure.epithet}</p>
+      <div className="patch-info">
+        <h3 className="patch-name">{figure.name}</h3>
+        <p className="patch-epithet">{figure.epithet}</p>
         {(figure.born || figure.died) && (
-          <p className="hb-figure-meta">
+          <p className="patch-meta">
             {figure.born && `Born ${figure.born}`}
             {figure.born && figure.died && " | "}
             {figure.died && `Died ${figure.died}`}
           </p>
         )}
-        <div className="hb-figure-domains">
+        <div className="patch-domains">
           {figure.domains.map((domain) => (
-            <span key={domain} className="hb-figure-domain">
+            <span key={domain} className="patch-domain">
               {domain}
             </span>
           ))}
         </div>
-        <p className="hb-figure-description">{figure.description}</p>
-        {figure.quote && <p className="hb-figure-quote">&ldquo;{figure.quote}&rdquo;</p>}
+        <p className="patch-description">{figure.description}</p>
+        {figure.quote && <p className="patch-quote-inline">&ldquo;{figure.quote}&rdquo;</p>}
       </div>
     </article>
   );
 };
 
-// ==================== CHAPTER COMPONENT ====================
+// ==================== CHANNEL STRIP (Chapter Component) ====================
 
-const ChapterSection: React.FC<{ chapter: Chapter }> = ({ chapter }) => {
+const ChannelStrip: React.FC<{ chapter: Chapter }> = ({ chapter }) => {
   const { ref, isVisible } = useIntersectionReveal(0.1);
 
   return (
     <section
       ref={ref as React.RefObject<HTMLElement>}
-      className={`hb-chapter ${isVisible ? "visible" : ""}`}
+      className={`channel-strip ${isVisible ? "visible" : ""}`}
       data-era={chapter.era}
     >
-      <div className="hb-chapter-content">
-        <header className="hb-chapter-header">
-          <span className="hb-chapter-number">{chapter.number}</span>
-          <h2 className="hb-chapter-title">{chapter.title}</h2>
-          {chapter.subtitle && <p className="hb-chapter-subtitle">{chapter.subtitle}</p>}
+      <div className="channel-strip-content">
+        <header className="channel-header">
+          <span className="channel-number">{chapter.number}</span>
+          <h2 className="channel-title">{chapter.title}</h2>
+          {chapter.subtitle && <p className="channel-subtitle">{chapter.subtitle}</p>}
           {chapter.epigraph && (
-            <div className="hb-epigraph">
-              &ldquo;{chapter.epigraph.text}&rdquo;
-              <cite>— {chapter.epigraph.source}</cite>
-            </div>
+            <blockquote className="patch-quote">
+              <p className="patch-quote-text">&ldquo;{chapter.epigraph.text}&rdquo;</p>
+              <cite className="patch-quote-source">— {chapter.epigraph.source}</cite>
+            </blockquote>
           )}
         </header>
 
         {chapter.contentWarning && (
-          <div className="hb-content-warning">
-            <div className="hb-content-warning-label">Content Note</div>
-            {chapter.contentWarning}
+          <div className="console-warning">
+            <div className="console-warning-led" />
+            <div className="console-warning-text">{chapter.contentWarning}</div>
           </div>
         )}
 
         {chapter.chapterImage && (
-          <figure className="hb-chapter-image-container">
+          <figure className="channel-image">
             <img
               src={chapter.chapterImage.url}
               alt={chapter.chapterImage.alt}
-              className="hb-chapter-image"
               loading="lazy"
             />
-            <figcaption className="hb-chapter-image-attribution">
+            <figcaption className="channel-image-caption">
               {chapter.chapterImage.attribution}
             </figcaption>
           </figure>
         )}
 
-        <div className="hb-narrative has-dropcap">
+        <div className="signal-flow has-dropcap">
           {chapter.narrative.map((paragraph, idx) => (
             <p key={idx}>{paragraph}</p>
           ))}
         </div>
 
         {chapter.figures.map((figure) => (
-          <FigureProfile key={figure.name} figure={figure} />
+          <PatchConnection key={figure.name} figure={figure} />
         ))}
       </div>
 
-      <div className="hb-divider">
-        <div className="hb-divider-line" />
-        <div className="hb-divider-45" />
-        <div className="hb-divider-line" />
+      <div className="channel-insert">
+        <div className="channel-insert-line" />
+        <div className="channel-insert-jack" />
+        <div className="channel-insert-line" />
       </div>
     </section>
   );
@@ -780,53 +836,64 @@ const chapters: Chapter[] = [
 
 export default function RnbHistoryClient() {
   const progress = useGlobalScrollProgress();
+  const currentChannel = getCurrentChannel(progress);
+
+  // Get current chapter title for meter bridge
+  const getCurrentChapterTitle = () => {
+    for (let i = chapters.length - 1; i >= 0; i--) {
+      const chapterProgress = channelLabels.find(c => c.id === chapters[i].id);
+      if (chapterProgress && progress >= chapterProgress.position) {
+        return chapters[i].title;
+      }
+    }
+    return "R&B History";
+  };
 
   return (
-    <article className="heartbeat">
-      <a href="#main-content" className="hb-skip-link">
+    <article className="console">
+      <a href="#main-content" className="console-skip-link">
         Skip to main content
       </a>
 
-      <RadioDialProgress progress={progress} />
+      <FaderProgress progress={progress} />
+      <MeterBridge progress={progress} currentChapter={getCurrentChapterTitle()} />
 
-      {/* HERO SECTION */}
-      <header className="hb-hero" id="main-content">
-        <div className="hb-hero-background">
-          <div
-            className="hb-hero-image"
-            style={{
-              backgroundImage: `url(${IMAGES.apolloTheater})`,
-            }}
-          />
-          <div className="hb-hero-warmth" />
-          <div className="hb-hero-gradient" />
-        </div>
+      {/* CONSOLE HERO */}
+      <header className="console-hero" id="main-content">
+        <div
+          className="console-hero-bg"
+          style={{
+            backgroundImage: `url(${IMAGES.apolloTheater})`,
+          }}
+        />
+        <div className="console-hero-overlay" />
 
-        <div className="hb-hero-content">
-          <p className="hb-hero-pretitle">A Visual History</p>
-          <h1 className="hb-hero-title">
-            <span className="hb-highlight">R&B</span>
+        <div className="console-hero-content">
+          <div className="console-hero-status">Recording</div>
+          <h1 className="console-hero-title">
+            <span className="accent">R&B</span>
           </h1>
-          <p className="hb-hero-subtitle">The Heartbeat That Taught Pop to Feel</p>
-        </div>
+          <p className="console-hero-subtitle">The Heartbeat That Taught Pop to Feel</p>
 
-        <div className="hb-hero-scroll">
-          <span className="hb-hero-scroll-text">Scroll to begin</span>
-          <div className="hb-hero-scroll-vu" />
+          <div className="console-hero-transport">
+            <span className="console-hero-transport-label">Scroll to begin</span>
+            <div className="console-hero-transport-btn" />
+          </div>
         </div>
       </header>
 
-      {/* CHAPTERS */}
+      {/* CHANNEL STRIPS (Chapters) */}
       <main>
         {chapters.map((chapter) => (
-          <ChapterSection key={chapter.id} chapter={chapter} />
+          <ChannelStrip key={chapter.id} chapter={chapter} />
         ))}
 
-        {/* EPILOGUE */}
-        <section className="hb-epilogue">
-          <div className="hb-epilogue-content">
-            <h2 className="hb-epilogue-title">The Feeling Itself</h2>
-            <div className="hb-epilogue-text">
+        {/* MASTER SECTION (Epilogue) */}
+        <section className="master-section">
+          <div className="master-section-content">
+            <div className="master-label">MASTER</div>
+            <h2 className="master-title">The Feeling Itself</h2>
+            <div className="master-text">
               <p>
                 In 1949, Jerry Wexler gave a name to music that already existed. That name
                 created a category, and that category created an industry, and that industry
@@ -845,15 +912,15 @@ export default function RnbHistoryClient() {
                 still hits.
               </p>
             </div>
-            <p className="hb-epilogue-closing">The heartbeat continues.</p>
+            <p className="master-closing">The heartbeat continues.</p>
           </div>
         </section>
 
-        {/* SOURCES */}
-        <section className="hb-sources">
-          <div className="hb-sources-content">
-            <h2 className="hb-sources-title">Sources & Further Reading</h2>
-            <div className="hb-sources-list">
+        {/* OUTPUT SECTION (Sources) */}
+        <section className="output-section">
+          <div className="output-content">
+            <h2 className="output-label">Output / Sources & Further Reading</h2>
+            <div className="output-list">
               <p>
                 <strong>Primary Sources:</strong> Jerry Wexler autobiography; Ruth Brown interviews
                 (NPR Forebears); Aretha Franklin (Academy of Achievement interview, 1991);
