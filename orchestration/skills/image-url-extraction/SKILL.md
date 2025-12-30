@@ -140,9 +140,32 @@ src: "{verified_url}",
 
 ---
 
+## CRITICAL: Wikipedia Fair Use Detection
+
+**Before extracting ANY Wikipedia image, verify it's not "fair use" (copyrighted).**
+
+### The Problem
+Wikipedia hosts two types of images:
+- **Wikimedia Commons** (`commons.wikimedia.org`) → FREE, reusable ✅
+- **Wikipedia Local** (`en.wikipedia.org/wiki/File:`) → Often FAIR USE, NOT reusable ❌
+
+### Detection Command
+```bash
+# Check if image is fair use (any output = DO NOT USE)
+curl -sL -A "Mozilla/5.0" "{wikipedia_file_url}" | grep -iE "non-free|fair use|NOT under a free license"
+```
+
+### Quick Check
+If URL starts with `en.wikipedia.org/wiki/File:` (not `commons.wikimedia.org`), **assume fair use** until proven otherwise.
+
+### Why This Matters
+Using a Wikipedia fair use image outside Wikipedia = **copyright infringement**. These images are copyrighted by photographers/estates and only allowed on Wikipedia under specific legal exceptions.
+
+---
+
 ## Quick Reference Commands
 
-### Wikimedia Commons
+### Wikimedia Commons (FREE images only)
 ```bash
 curl -s "{file_page_url}" | grep -oE 'https://upload\.wikimedia\.org/wikipedia/commons/[a-f0-9]/[a-f0-9]{2}/[^"]+\.(jpg|jpeg|png|gif)' | grep -v thumb | head -1
 ```
@@ -198,6 +221,7 @@ When the image research agent needs to extract a URL, it should:
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 1.1 | December 2024 | Added Wikipedia fair use detection section |
 | 1.0 | December 2024 | Initial skill definition |
 
 ---

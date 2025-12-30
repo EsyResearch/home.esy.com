@@ -83,6 +83,60 @@
 - Adaptation and modification rights
 - License compatibility for combined works
 
+### CRITICAL: Wikipedia vs Wikimedia Commons
+
+**This distinction is essential and commonly misunderstood.**
+
+| Source | URL Pattern | License Status | Can We Use? |
+|--------|-------------|----------------|-------------|
+| **Wikimedia Commons** | `commons.wikimedia.org/wiki/File:...` | CC or Public Domain | ✅ YES |
+| **Wikipedia Local Uploads** | `en.wikipedia.org/wiki/File:...` | Often **Fair Use** (copyrighted) | ❌ NO |
+
+**Why Wikipedia Images May Not Be Free:**
+Wikipedia allows "fair use" uploads for educational/encyclopedic purposes ONLY on that specific article. These images are:
+- Copyrighted by photographers/estates
+- NOT on Wikimedia Commons (which requires free licenses)
+- Legally usable ONLY within Wikipedia's specific fair use context
+- **Copyright infringement if used elsewhere**
+
+**How to Detect Fair Use (Non-Reusable) Images:**
+
+```bash
+# Check if image is fair use (returns matches = DO NOT USE)
+curl -sL -A "Mozilla/5.0" "https://en.wikipedia.org/wiki/File:{filename}" | grep -iE "non-free|fair use|NOT under a free license|licensetpl_nonfree"
+```
+
+**Red Flags in Wikipedia File Pages:**
+- Category includes "All non-free media" or "Non-free biographical images"
+- License box shows "Fair use" with red warning
+- Text states "This photograph is copyrighted and is NOT under a free license"
+- Image icon shows "NotCommons-emblem-copyrighted.svg"
+- Any mention of "Any other uses of this image... may be copyright infringement"
+
+**Safe Practice:**
+1. ALWAYS check if image exists on **Wikimedia Commons** first
+2. If only on Wikipedia (not Commons), assume it's fair use
+3. Verify by checking the file page for non-free indicators
+4. When in doubt, find an alternative image
+
+**Example - Jerry Wexler (Fair Use, NOT Usable):**
+```
+URL: https://en.wikipedia.org/wiki/File:Jerry_Wexler.png
+Categories: "All non-free media", "Non-free biographical images"
+License: "Fair use of copyrighted material"
+Status: ❌ CANNOT USE - copyrighted, Wikipedia fair use only
+```
+
+**Example - Aretha Franklin (Free, Usable):**
+```
+URL: https://commons.wikimedia.org/wiki/File:Aretha_Franklin_1968.jpg
+Source: Wikimedia Commons
+License: Public Domain
+Status: ✅ CAN USE - properly attributed
+```
+
+---
+
 ### Authoritative Image Sources
 
 **Tier 1: Primary Archives (GOLD STANDARD)**
@@ -317,6 +371,8 @@ curl -s "https://collectionapi.metmuseum.org/public/collection/v1/objects/{id}" 
 - ❌ **NEVER use images from Pinterest, social media, or unverified sources**
 - ❌ **NEVER modify CC-ND licensed images**
 - ❌ **NEVER use CC-NC images for commercial purposes without verification**
+- ❌ **NEVER use Wikipedia "fair use" images outside Wikipedia** — these are copyrighted, not free
+- ❌ **NEVER assume a Wikipedia image is free** — check if it's on Commons or a local fair use upload
 
 ---
 
@@ -543,6 +599,12 @@ Date: [Verification date]
 
 ## Last Updated
 December 2024
+
+### Recent Changes
+- Added "CRITICAL: Wikipedia vs Wikimedia Commons" section explaining fair use trap
+- Added detection commands for identifying non-free Wikipedia images
+- Added Jerry Wexler / Aretha Franklin examples showing fair use vs free images
+- Added red lines about Wikipedia fair use images
 
 ---
 
