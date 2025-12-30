@@ -538,28 +538,6 @@
   margin: 0 auto;
 }
 
-/* Channel indicator strip on left */
-.channel-strip::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: var(--cs-era-accent);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.channel-strip.visible::before {
-  opacity: 1;
-}
-
-@media (min-width: 768px) {
-  .channel-strip::before {
-    left: var(--cs-fader-width);
-  }
-}
 
 /* ==================== CHANNEL HEADER ==================== */
 
