@@ -1,57 +1,92 @@
 # Bibliography Structure Guide
 
-This document establishes the standard structure for the **Bibliography** section across all Esy visual essays and artifacts. The Bibliography serves as the comprehensive attribution container for all sources, media credits, and references.
+This document establishes the standard structure for the **Sources & Further Reading** section across all Esy visual essays and artifacts. This section serves as the comprehensive attribution container for all sources, media credits, and references.
 
 ---
 
 ## Table of Contents
 
-1. [Overview](#overview)
-2. [Bibliography Structure](#bibliography-structure)
-3. [Source Categories](#source-categories)
-4. [Inline Attribution Patterns](#inline-attribution-patterns)
-5. [Bibliography Section Patterns](#bibliography-section-patterns)
-6. [Media-Specific Credits](#media-specific-credits)
-7. [Implementation Reference](#implementation-reference)
-8. [Audit Compliance](#audit-compliance)
+1. [Configuration](#configuration)
+2. [Overview](#overview)
+3. [Section Structure](#section-structure)
+4. [Source Categories](#source-categories)
+5. [Inline Attribution Patterns](#inline-attribution-patterns)
+6. [Section Implementation Patterns](#section-implementation-patterns)
+7. [Media-Specific Credits](#media-specific-credits)
+8. [Implementation Reference](#implementation-reference)
+9. [Audit Compliance](#audit-compliance)
+
+---
+
+## Configuration
+
+> **IMPORTANT**: This section defines configurable standards. Update here to change project-wide behavior.
+
+### Section Title Standard
+
+```yaml
+# CURRENT STANDARD - Update this to change all essays
+SECTION_TITLE: "Sources & Further Reading"
+SECTION_TITLE_SHORT: "Sources"  # Acceptable abbreviation
+
+# Previously considered alternatives (for reference):
+# - "Bibliography" (too academic/formal)
+# - "Sources" (doesn't signal further reading purpose)
+# - "References" (doesn't include media credits)
+```
+
+**Rationale**: "Sources & Further Reading" fits the scholarly-accessible tone of Esy visual essays. It signals to readers that these aren't just citations but also recommended exploration paths.
+
+### Audit Enforcement
+
+The Bibliography Orchestrator agent MUST verify that essays use the configured `SECTION_TITLE`. If an essay uses a different title (e.g., "Bibliography", "References", "Sources"), it should be flagged for standardization.
+
+**To change the standard in the future:**
+1. Update `SECTION_TITLE` in this Configuration section
+2. Update the Bibliography Orchestrator's title check
+3. Run audit across all essays to identify non-compliant titles
+4. Update essays to use new standard
 
 ---
 
 ## Overview
 
-The **Bibliography** is the parent container for all attribution and citation content at the end of each essay. It replaces the informal "Sources" heading with a more comprehensive, academically-aligned structure.
+The **Sources & Further Reading** section is the parent container for all attribution and citation content at the end of each essay.
 
 ### Design Principles
 
-1. **All citations require BOTH inline AND Bibliography entries** — No exceptions
+1. **All citations require BOTH inline AND section entries** — No exceptions
 2. **Evolving categories** — Source categories expand as content types evolve
 3. **Media-agnostic** — Same patterns apply to images, audio, video, data
 4. **Audit-friendly** — Structure enables automated and manual audits
 5. **Legal compliance** — Satisfies CC license requirements and academic standards
+6. **Accessible tone** — Title invites exploration, not just documentation
 
-### Why "Bibliography"?
+### Why "Sources & Further Reading"?
 
-| Term | Use Case | Limitation |
-|------|----------|------------|
-| Sources | Informal, web-native | Doesn't imply comprehensiveness |
-| References | Academic | Doesn't include media credits |
-| Citations | Narrow | Implies text only |
-| **Bibliography** | Comprehensive | Encompasses all source types |
+| Term | Tone | Limitation | Decision |
+|------|------|------------|----------|
+| Sources | Neutral | Doesn't signal exploration | ❌ |
+| References | Academic | Doesn't include media credits | ❌ |
+| Citations | Narrow | Implies text only | ❌ |
+| Bibliography | Formal | Can feel stuffy for general readers | ❌ |
+| **Sources & Further Reading** | Inviting | Slightly longer | ✅ CHOSEN |
 
 ---
 
-## Bibliography Structure
+## Section Structure
 
 ```
-Bibliography
-├── Works Cited
-│   ├── Books & Academic Works
-│   ├── Archives & Primary Documents
-│   ├── Articles & Interviews
+Sources & Further Reading
+├── [Category-specific subsections]
+│   ├── Primary Archives (.gov)
+│   ├── University Research Guides (.edu)
+│   ├── Academic Books & Journals
+│   ├── Institutional Reports
 │   ├── Documentaries & Film
 │   └── Data Sources
 ├── Image Credits
-├── Audio/Video Credits
+├── Audio/Video Credits (if applicable)
 └── Acknowledgments (optional)
 ```
 
@@ -59,7 +94,7 @@ Bibliography
 
 | Section | Required | Contents |
 |---------|----------|----------|
-| **Works Cited** | Yes | All textual sources cited in the essay |
+| **Source Categories** | Yes | All textual sources cited, organized by type |
 | **Image Credits** | If images used | All images with photographer, license, source link |
 | **Audio/Video Credits** | If A/V used | All audio/video with creator, license, source link |
 | **Acknowledgments** | Optional | Subject experts, consultants, institutions |
@@ -210,19 +245,18 @@ Data from the [Organization] shows [finding].
 
 ---
 
-## Bibliography Section Patterns
+## Section Implementation Patterns
 
-### Works Cited Format
+### Main Section Format
 
 ```tsx
-<section className="bibliography-section">
-  <h2 className="bibliography-title">Bibliography</h2>
+<section className="sources-section">
+  <h2 className="sources-title">Sources & Further Reading</h2>
+  {/* NOTE: Title must match SECTION_TITLE in Configuration */}
 
-  <div className="works-cited">
-    <h3 className="bibliography-subtitle">Works Cited</h3>
-
+  <div className="sources-content">
     <div className="source-category">
-      <h4 className="source-category-title">Books & Academic Works</h4>
+      <h3 className="source-category-title">Academic Books & Journals</h3>
       <ul className="source-list">
         <li>
           <a href="[URL]" target="_blank" rel="noopener noreferrer">
@@ -440,9 +474,25 @@ interface DataSource {
 
 ## Audit Compliance
 
-### Bibliography Completeness Checklist
+### Section Title Verification (CRITICAL)
 
-**Works Cited**
+**The section title MUST match the configured standard:**
+
+```yaml
+REQUIRED_TITLE: "Sources & Further Reading"
+ACCEPTABLE_VARIANTS: ["Sources & Further Reading"]
+NON_COMPLIANT_TITLES: ["Bibliography", "References", "Sources", "Works Cited"]
+```
+
+If an essay uses a non-compliant title, the audit MUST flag it for standardization.
+
+### Completeness Checklist
+
+**Section Title**
+- [ ] Uses "Sources & Further Reading" as main heading
+- [ ] Does NOT use "Bibliography", "References", or standalone "Sources"
+
+**Source Categories**
 - [ ] All factual claims trace to cited sources
 - [ ] All quotes have source attribution
 - [ ] Sources organized by category
@@ -468,7 +518,7 @@ interface DataSource {
 
 ### Audit Integration
 
-The [Bibliography Orchestrator](../../orchestration/agents/orchestrators/bibliography-orchestrator.md) coordinates audits across all Bibliography sections:
+The [Bibliography Orchestrator](../../orchestration/agents/orchestrators/bibliography-orchestrator.md) coordinates audits across all sections:
 
 1. **Citation Audit Agent** → Works Cited verification
 2. **Quotes Audit Agent** → Quote authenticity (orchestrated by Citation Audit)
@@ -498,6 +548,9 @@ Pattern reference for new essays following this structure.
 | 2024-12-30 | Added Data Sources category |
 | 2024-12-30 | Added Audio/Video credit patterns |
 | 2024-12-30 | Established Bibliography as parent container |
+| 2025-12-30 | **BREAKING**: Changed standard title from "Bibliography" to "Sources & Further Reading" |
+| 2025-12-30 | Added Configuration section with SECTION_TITLE standard |
+| 2025-12-30 | Added Section Title Verification to Audit Compliance |
 
 ---
 
