@@ -23,19 +23,22 @@ export const metadata: Metadata = {
     title: 'Year Zero, Visualized: Cambodia\'s Civil War and the Khmer Rouge Genocide',
     description: 'An immersive visual essay exploring the Khmer Rouge genocide that killed 1.7-2 million people in just 3 years, 8 months, and 20 days.',
     type: 'article',
+    url: 'https://esy.com/essays/history/the-khmer-rouge-genocide',
+    siteName: 'Esy',
     images: [
       {
-        url: '/og/khmer-rouge-genocide.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Choeung Ek Memorial Stupa - Year Zero, Visualized'
+        url: 'https://esy.com/og/angkor-wat-at-sunrise.jpg',
+        width: 4032,
+        height: 3024,
+        alt: 'Angkor Wat at sunrise over the reflecting pools - Year Zero, Visualized'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Year Zero, Visualized: Cambodia\'s Khmer Rouge Genocide',
-    description: 'An immersive visual essay on the Khmer Rouge genocide (1975-1979).'
+    description: 'An immersive visual essay on the Khmer Rouge genocide (1975-1979).',
+    images: ['https://esy.com/og/angkor-wat-at-sunrise.jpg']
   }
 };
 
