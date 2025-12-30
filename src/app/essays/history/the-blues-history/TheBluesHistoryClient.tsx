@@ -12,6 +12,7 @@ interface FigureProfile {
   quote?: { text: string; attribution?: string };
   imageUrl?: string;
   imageAlt?: string;
+  imageAttribution?: string;
 }
 
 interface TimelineEvent {
@@ -37,6 +38,7 @@ const figures: Record<string, FigureProfile> = {
     },
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/W._C._Handy_%281941_Van_Vechten_portrait%29.jpg/800px-W._C._Handy_%281941_Van_Vechten_portrait%29.jpg',
     imageAlt: 'W.C. Handy portrait by Carl Van Vechten, 1941',
+    imageAttribution: 'Carl Van Vechten, 1941. Library of Congress. Public domain.',
   },
   charleyPatton: {
     name: 'Charley Patton',
@@ -54,6 +56,7 @@ const figures: Record<string, FigureProfile> = {
     },
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Charley_Patton_%281929_photo_portrait%29.jpg/800px-Charley_Patton_%281929_photo_portrait%29.jpg',
     imageAlt: 'Charley Patton portrait, c. 1929, Paramount Records publicity',
+    imageAttribution: 'Paramount Records, c. 1929. Only known photograph of Patton. Public domain.',
   },
   bessieSmith: {
     name: 'Bessie Smith',
@@ -71,6 +74,7 @@ const figures: Record<string, FigureProfile> = {
     },
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Bessie_Smith_%281936%29_by_Carl_Van_Vechten.jpg/800px-Bessie_Smith_%281936%29_by_Carl_Van_Vechten.jpg',
     imageAlt: 'Bessie Smith portrait by Carl Van Vechten, 1936',
+    imageAttribution: 'Carl Van Vechten, 1936. Library of Congress. Public domain.',
   },
   maRainey: {
     name: 'Ma Rainey',
@@ -87,6 +91,7 @@ const figures: Record<string, FigureProfile> = {
     },
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Ma_Rainey%2C_1923.jpg/800px-Ma_Rainey%2C_1923.jpg',
     imageAlt: 'Ma Rainey theatrical portrait, c. 1923',
+    imageAttribution: 'Studio portrait, c. 1923. Public domain.',
   },
   muddyWaters: {
     name: 'Muddy Waters',
@@ -104,6 +109,7 @@ const figures: Record<string, FigureProfile> = {
     },
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Muddy_Waters_%28cropped%29.jpg/800px-Muddy_Waters_%28cropped%29.jpg',
     imageAlt: 'Muddy Waters performing, 1978, photo by Jean-Luc Ourlin',
+    imageAttribution: 'Jean-Luc Ourlin, 1978. CC BY-SA 2.0.',
   },
   howlinWolf: {
     name: "Howlin' Wolf",
@@ -121,6 +127,7 @@ const figures: Record<string, FigureProfile> = {
     },
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Howlin_Wolf_1972.jpg',
     imageAlt: "Howlin' Wolf, 1972",
+    imageAttribution: 'Photographer unknown, 1972. Wikimedia Commons. Public domain.',
   },
   robertJohnson: {
     name: 'Robert Johnson',
@@ -153,6 +160,7 @@ const figures: Record<string, FigureProfile> = {
     },
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/25/B.B._King_Presidential_Medal_of_Freedom.jpg',
     imageAlt: 'B.B. King receiving Presidential Medal of Freedom from George W. Bush, 2006',
+    imageAttribution: 'White House photo, 2006. Public domain.',
   },
   willieDixon: {
     name: 'Willie Dixon',
@@ -170,6 +178,7 @@ const figures: Record<string, FigureProfile> = {
     },
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Willie_Dixon.jpg',
     imageAlt: 'Willie Dixon at Monterey Jazz Festival, 1981, photo by Brianmcmillen',
+    imageAttribution: 'Brian McMillen, 1981. CC BY-SA 3.0.',
   },
 };
 
@@ -226,12 +235,19 @@ function FigureCard({ figure }: { figure: FigureProfile }) {
   return (
     <div className="blues-figure">
       {figure.imageUrl && (
-        <img
-          src={figure.imageUrl}
-          alt={figure.imageAlt || figure.name}
-          className="blues-figure__image"
-          loading="lazy"
-        />
+        <figure className="blues-figure__image-wrapper">
+          <img
+            src={figure.imageUrl}
+            alt={figure.imageAlt || figure.name}
+            className="blues-figure__image"
+            loading="lazy"
+          />
+          {figure.imageAttribution && (
+            <figcaption className="blues-figure__attribution">
+              {figure.imageAttribution}
+            </figcaption>
+          )}
+        </figure>
       )}
       <h3 className="blues-figure__name">{figure.name}</h3>
       {figure.title && <div className="blues-figure__title">{figure.title}</div>}
@@ -398,6 +414,9 @@ export function TheBluesHistoryClient() {
             className="blues-hero__image"
           />
           <div className="blues-hero__overlay" />
+          <figcaption className="blues-hero__attribution">
+            Marion Post Wolcott, 1939. Library of Congress, FSA Collection. Public domain.
+          </figcaption>
         </div>
         <div className="blues-hero__content">
           <p className="blues-hero__context">
@@ -537,9 +556,18 @@ export function TheBluesHistoryClient() {
 
         <h3>Texas Blues</h3>
         <p>
-          Cleaner, more melodic guitar work. Jazz influence; sophisticated single-note runs.
-          More varied chord changes. Key Figures: Blind Lemon Jefferson, Lead Belly,
-          Lightnin&apos; Hopkins.
+          Texas blues developed its own distinctive character, shaped by the state&apos;s
+          vast geography and diverse musical influences. Unlike the claustrophobic intensity
+          of Delta blues, Texas blues featured cleaner, more melodic guitar work with
+          sophisticated single-note runs influenced by jazz. The chord progressions
+          were more varied, and the rhythms often incorporated elements of country and
+          western swing.
+        </p>
+        <p>
+          Blind Lemon Jefferson, recording from 1926 to 1929, became the first major
+          male blues star and sold millions of records. Lead Belly (Huddie Ledbetter)
+          brought Texas blues to broader audiences after his discovery by the Lomaxes.
+          Lightnin&apos; Hopkins later carried the tradition into the electric era.
         </p>
 
         <h3>Piedmont Blues</h3>
@@ -945,6 +973,45 @@ export function TheBluesHistoryClient() {
           <li className="blues-sources__item">
             <span className="blues-sources__tier blues-sources__tier--2">T2</span>
             Cohn, Lawrence. <em>Nothing But the Blues: The Music and the Musicians</em>. Abbeville Press, 1993.
+          </li>
+        </ul>
+
+        <h3 className="blues-sources__subtitle">Image Credits</h3>
+        <ul className="blues-sources__list blues-sources__list--images">
+          <li className="blues-sources__item">
+            <strong>Hero:</strong> &ldquo;Jitterbugging in Negro juke joint, Saturday evening, outside Clarksdale, Mississippi.&rdquo;
+            Marion Post Wolcott, November 1939. Library of Congress, Farm Security Administration Collection (LC-USF34-052594-D). Public domain.
+          </li>
+          <li className="blues-sources__item">
+            <strong>W.C. Handy:</strong> Portrait by Carl Van Vechten, 1941.
+            Library of Congress, Van Vechten Collection. Public domain.
+          </li>
+          <li className="blues-sources__item">
+            <strong>Charley Patton:</strong> Paramount Records publicity photograph, c. 1929.
+            Only known surviving photograph of Patton. Public domain.
+          </li>
+          <li className="blues-sources__item">
+            <strong>Bessie Smith:</strong> Portrait by Carl Van Vechten, 1936.
+            Library of Congress, Van Vechten Collection. Public domain.
+          </li>
+          <li className="blues-sources__item">
+            <strong>Ma Rainey:</strong> Studio portrait, c. 1923. Public domain.
+          </li>
+          <li className="blues-sources__item">
+            <strong>Muddy Waters:</strong> Jean-Luc Ourlin, Ontario Place, Toronto, June 1978.
+            Wikimedia Commons. CC BY-SA 2.0.
+          </li>
+          <li className="blues-sources__item">
+            <strong>Howlin&apos; Wolf:</strong> Photograph, 1972.
+            Wikimedia Commons. Public domain.
+          </li>
+          <li className="blues-sources__item">
+            <strong>B.B. King:</strong> Presidential Medal of Freedom ceremony, White House, December 15, 2006.
+            U.S. Government photograph. Public domain.
+          </li>
+          <li className="blues-sources__item">
+            <strong>Willie Dixon:</strong> Brian McMillen, Monterey Jazz Festival, 1981.
+            Wikimedia Commons. CC BY-SA 3.0.
           </li>
         </ul>
       </footer>

@@ -223,6 +223,20 @@
   margin-bottom: var(--spacing-md);
 }
 
+.blues-hero__attribution {
+  position: absolute;
+  bottom: var(--spacing-sm);
+  right: var(--spacing-sm);
+  font-family: var(--font-archive);
+  font-size: 0.625rem;
+  color: var(--blues-parchment);
+  opacity: 0.4;
+  max-width: 300px;
+  text-align: right;
+  line-height: 1.4;
+  z-index: 1;
+}
+
 /* --- Chapter Sections --- */
 .blues-chapter {
   position: relative;
@@ -314,14 +328,28 @@
   line-height: 1.6;
 }
 
+.blues-figure__image-wrapper {
+  float: left;
+  margin-right: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+
 .blues-figure__image {
   width: 150px;
   height: auto;
   border-radius: 2px;
-  margin-bottom: var(--spacing-sm);
   filter: sepia(0.2) contrast(1.1);
-  float: left;
-  margin-right: var(--spacing-md);
+  display: block;
+}
+
+.blues-figure__attribution {
+  font-family: var(--font-archive);
+  font-size: 0.625rem;
+  color: var(--blues-parchment);
+  opacity: var(--text-tertiary);
+  margin-top: var(--spacing-xs);
+  max-width: 150px;
+  line-height: 1.4;
 }
 
 /* --- Image Treatments by Era --- */
@@ -607,6 +635,23 @@
 
 .blues-sources__tier--2 {
   background: var(--blues-midnight);
+  color: var(--blues-parchment);
+}
+
+.blues-sources__subtitle {
+  font-family: var(--font-headline);
+  font-size: 1.125rem;
+  margin: var(--spacing-lg) auto var(--spacing-md);
+  max-width: 800px;
+  color: var(--era-classic-gold);
+}
+
+.blues-sources__list--images .blues-sources__item {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.blues-sources__list--images .blues-sources__item strong {
   color: var(--blues-parchment);
 }
 
@@ -896,11 +941,20 @@
     padding: var(--spacing-sm);
   }
 
-  .blues-figure__image {
+  .blues-figure__image-wrapper {
     float: none;
-    display: block;
     margin: 0 auto var(--spacing-sm) auto;
+  }
+
+  .blues-figure__image {
     width: 120px;
+    margin: 0 auto;
+  }
+
+  .blues-figure__attribution {
+    max-width: 120px;
+    text-align: center;
+    margin: var(--spacing-xs) auto 0;
   }
 
   .blues-timeline {
