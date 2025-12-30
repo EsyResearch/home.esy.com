@@ -78,6 +78,10 @@ const IMAGES = {
   tinaTurner: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tina_Turner_1985.jpg",
   sza: "https://upload.wikimedia.org/wikipedia/commons/f/f4/KendrickSZASPurs230725-19_-_54683179509_%28cropped%29_%28cropped%29.jpg",
   frankOcean: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Frank_Ocean_2022_Blonded.jpg",
+  // Additional verified images
+  bigMamaThornton: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Blues_is_a_woman_Reitz_%28Big_Mama_Thornton%29.jpg",
+  gambleAndHuff: "https://upload.wikimedia.org/wikipedia/commons/0/02/Kenny_Gamble_Leon_Huff.jpg",
+  funkBrothers: "https://upload.wikimedia.org/wikipedia/commons/4/43/The_Funk_Brothers.jpg",
 } as const;
 
 // ==================== CUSTOM HOOKS ====================
@@ -562,6 +566,8 @@ const chapters: Chapter[] = [
         description: "Motown's house band—James Jamerson (bass), Benny Benjamin (drums), Earl Van Dyke (keys), and others. Played on more #1 hits than any group in history. Not credited until 1971. Documented in 'Standing in the Shadows of Motown' (2002).",
         quote: "We played on everything. We were Motown.",
         isFeatured: true,
+        imageUrl: IMAGES.funkBrothers,
+        imageAttribution: "Wikimedia Commons, 2013",
       },
       {
         name: "Smokey Robinson",
@@ -600,6 +606,8 @@ const chapters: Chapter[] = [
         description: "Kenneth Gamble and Leon Huff founded Philadelphia International Records in 1971. Wrote and produced 'If You Don't Know Me by Now,' 'Love Train,' 'For the Love of Money.' Their orchestral approach defined 1970s R&B sophistication.",
         quote: "We wanted to bring Black music to the world without losing its soul.",
         isFeatured: true,
+        imageUrl: IMAGES.gambleAndHuff,
+        imageAttribution: "Wikimedia Commons, 2019",
       },
       {
         name: "Thom Bell",
@@ -816,6 +824,8 @@ const chapters: Chapter[] = [
         description: "Recorded the original 'Hound Dog' (1952), #1 R&B for 7 weeks. Received only $500 while Elvis Presley's cover became one of the best-selling singles ever. Her exploitation became emblematic of the industry's treatment of Black artists.",
         quote: "That song sold over 2 million records. I got one check for $500 and never saw another.",
         isFeatured: true,
+        imageUrl: IMAGES.bigMamaThornton,
+        imageAttribution: "Reitz, Wikimedia Commons, 1982",
       },
       {
         name: "Tina Turner",
