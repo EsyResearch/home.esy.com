@@ -131,6 +131,38 @@ const CHAPTERS: Chapter[] = [
       { label: 'Ordnance dropped', value: '2.7 million tons', source: 'Owen & Kiernan, 2006' },
       { label: 'Bombing sorties', value: '230,516', source: 'Declassified USAF data' },
       { label: 'Strike sites', value: '113,716', source: 'Owen & Kiernan analysis' }
+    ],
+    figures: [
+      {
+        name: 'Henry Kissinger',
+        epithet: 'The Architect Abroad',
+        contributions: [
+          'US National Security Advisor (1969–1975)',
+          'Ordered secret Cambodia bombing expansion (Operation Menu)',
+          'Nobel Peace Prize recipient (1973)',
+          'Controversial legacy regarding Cambodian civilian deaths',
+          'Never faced tribunal for Cambodia policies'
+        ],
+        quote: 'We will not cooperate with any government investigation of Indochina.',
+        quoteSource: 'Attributed, 1970s',
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Henry_Kissinger.jpg',
+        imageAlt: 'Henry Kissinger official portrait',
+        imageAttribution: 'US State Department, Public Domain'
+      }
+    ],
+    images: [
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/1/1f/Boeing_B-52D-70-BW_%28SN_56-0678%29_in_flight_061127-F-1234S-017.jpg',
+        alt: 'B-52 Stratofortress bomber in flight',
+        caption: 'B-52 Stratofortress bombers dropped 2.7 million tons of ordnance on Cambodia between 1965-1973',
+        attribution: 'USAF, Public Domain'
+      },
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/8/80/Map_of_bombing_of_Cambodia_during_the_Vietnam_War.svg',
+        alt: 'Map showing US bombing sites across Cambodia',
+        caption: 'Map of 230,516 US bombing sorties over Cambodia, concentrated along the Vietnamese border',
+        attribution: 'Wikimedia Commons, CC BY-SA 3.0'
+      }
     ]
   },
   {
@@ -158,6 +190,20 @@ const CHAPTERS: Chapter[] = [
         fate: 'Died in exile, 1985',
         imageAlt: 'Lon Nol',
         imageAttribution: 'Public Domain'
+      }
+    ],
+    images: [
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Cambodian_Civil_War_-_1970.jpg',
+        alt: 'Cambodian Civil War scene 1970',
+        caption: 'The civil war killed an estimated 500,000 people and displaced millions before the Khmer Rouge victory',
+        attribution: 'Public Domain'
+      },
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/Phnom_Penh_1975.jpg',
+        alt: 'Phnom Penh swollen with refugees in 1975',
+        caption: 'By 1975, Phnom Penh held 2 million people—a city built for 600,000',
+        attribution: 'Public Domain'
       }
     ]
   },
@@ -314,6 +360,20 @@ const CHAPTERS: Chapter[] = [
         imageAlt: 'Nuon Chea at ECCC tribunal',
         imageAttribution: 'ECCC, CC BY 2.0'
       }
+    ],
+    images: [
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/6/6e/Genocide_Convention-en.jpg',
+        alt: 'UN Genocide Convention document',
+        caption: 'The 1948 UN Genocide Convention defines genocide as acts committed with intent to destroy protected groups',
+        attribution: 'United Nations, Public Domain'
+      },
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/8/8e/ECCC_Courtroom.jpg',
+        alt: 'ECCC courtroom during proceedings',
+        caption: 'The Extraordinary Chambers in the Courts of Cambodia delivered genocide convictions in Cases 002/01 and 002/02',
+        attribution: 'ECCC, CC BY 2.0'
+      }
     ]
   },
   {
@@ -354,6 +414,38 @@ const CHAPTERS: Chapter[] = [
       'On January 7, 1979, Vietnamese forces captured Phnom Penh. The Khmer Rouge fled to the countryside, where they continued armed resistance for nearly two more decades.',
       'What followed was not peace: Vietnamese occupation (1979-1989), refugee crisis (300,000+ in Thai border camps), landmine contamination (one of the world\'s most mined countries), and continued international recognition of the Khmer Rouge at the UN.',
       'The Paris Peace Accords (1991) and UNTAC mission (1992-1993) eventually brought elections—but many perpetrators never faced justice.'
+    ],
+    figures: [
+      {
+        name: 'Hun Sen',
+        epithet: 'The Survivor Who Ruled',
+        contributions: [
+          'Former Khmer Rouge cadre who defected (1977)',
+          'Prime Minister of Cambodia (1985–2023)',
+          'Oversaw ECCC establishment with international community',
+          'Criticized for limiting tribunal scope to senior leaders',
+          'Complex legacy: stability, authoritarianism, compromised justice'
+        ],
+        quote: 'We cannot allow the Khmer Rouge leaders to die peacefully without facing justice.',
+        quoteSource: 'Statement on ECCC, 2000s',
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Hun_Sen_%282016%29_cropped.jpg',
+        imageAlt: 'Hun Sen official portrait',
+        imageAttribution: 'Government of Cambodia, CC BY 2.0'
+      }
+    ],
+    images: [
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Vietnamese_troops_in_Phnom_Penh_1979.jpg',
+        alt: 'Vietnamese forces entering Phnom Penh, January 1979',
+        caption: 'Vietnamese forces captured Phnom Penh on January 7, 1979, ending nearly four years of Khmer Rouge rule',
+        attribution: 'Public Domain'
+      },
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/d/d6/Cambodian_refugees_1979.jpg',
+        alt: 'Cambodian refugees at Thai border camp',
+        caption: 'Over 300,000 Cambodians fled to refugee camps along the Thai border after 1979',
+        attribution: 'UNHCR, CC BY 2.0'
+      }
     ]
   },
   {
@@ -375,6 +467,20 @@ const CHAPTERS: Chapter[] = [
       { label: 'ECCC duration', value: '16 years', source: 'ECCC' },
       { label: 'Teachers trained (DC-Cam)', value: '5,000+', source: 'DC-Cam' },
       { label: 'Young Cambodians reached', value: '7 million+', source: 'DC-Cam' }
+    ],
+    images: [
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/5/5a/ECCC_Case_002_Trial_Chamber.jpg',
+        alt: 'ECCC Trial Chamber during Case 002 proceedings',
+        caption: 'The ECCC Trial Chamber during Case 002—only 3 convictions after 16 years and $337 million',
+        attribution: 'ECCC, CC BY 2.0'
+      },
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/b/b7/DC-Cam_archives.jpg',
+        alt: 'Documentation Center of Cambodia archives',
+        caption: 'DC-Cam\'s archive holds over 1.7 million document pages documenting the Khmer Rouge period',
+        attribution: 'DC-Cam, Fair Use'
+      }
     ]
   },
   {
@@ -417,6 +523,26 @@ const CHAPTERS: Chapter[] = [
         quote: 'Without memory, there is no justice.',
         imageAlt: 'Youk Chhang'
       }
+    ],
+    images: [
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Choeung_Ek_Memorial_Stupa_2018.jpg',
+        alt: 'Choeung Ek Memorial Stupa',
+        caption: 'The memorial stupa at Choeung Ek contains the remains of victims—a memorial and a warning',
+        attribution: 'Adam Jones, CC BY-SA 2.0'
+      },
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/1/13/Facade_of_Tuol_Sleng_Genocide_Museum_-_Phnom_Penh_-_Cambodia_%2848322340337%29.jpg',
+        alt: 'Visitors at Tuol Sleng Genocide Museum',
+        caption: 'Tuol Sleng receives thousands of visitors annually—memory as resistance to erasure',
+        attribution: 'Adam Jones, CC BY-SA 2.0'
+      },
+      {
+        url: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Cambodian_Traditional_Dance.jpg',
+        alt: 'Traditional Cambodian dance performance',
+        caption: 'Traditional arts survive—Year Zero failed to erase Cambodian culture',
+        attribution: 'CC BY-SA 3.0'
+      }
     ]
   }
 ];
@@ -438,24 +564,55 @@ const SOURCES: Source[] = [
 
 const GLOSSARY: { term: string; khmer?: string; definition: string }[] = [
   { term: 'Angkar', khmer: 'អង្គការ', definition: '"The Organization"—Khmer Rouge term for the party' },
-  { term: 'Base People', definition: 'Rural peasants considered ideologically pure by the Khmer Rouge' },
+  { term: 'Angkor Wat', definition: '12th-century temple complex; symbol of Cambodian cultural identity' },
+  { term: 'Base People', khmer: 'មូលដ្ឋាន', definition: 'Rural peasants considered ideologically pure by the Khmer Rouge' },
   { term: 'Brother Number One', definition: 'Title for Pol Pot, supreme leader of the Khmer Rouge' },
   { term: 'Brother Number Two', definition: 'Title for Nuon Chea, chief ideologist' },
+  { term: 'Buddhist socialism', definition: 'Sihanouk\'s political philosophy combining Buddhism with socialist economics' },
+  { term: 'Cham', definition: 'Muslim ethnic minority in Cambodia; targeted for genocide by Khmer Rouge' },
   { term: 'Choeung Ek', definition: 'Primary execution site near Phnom Penh; "Killing Fields"' },
+  { term: 'Collectivization', definition: 'Forced communal farming and dining under Khmer Rouge' },
   { term: 'CPK', definition: 'Communist Party of Kampuchea' },
+  { term: 'Crimes against humanity', definition: 'Widespread systematic attacks on civilian populations' },
   { term: 'DC-Cam', definition: 'Documentation Center of Cambodia—archive and education center' },
   { term: 'Democratic Kampuchea', definition: 'Official name of Khmer Rouge state (1975-1979)' },
   { term: 'Dolus specialis', definition: '"Special intent"—legal requirement for genocide conviction' },
-  { term: 'ECCC', definition: 'Extraordinary Chambers in the Courts of Cambodia' },
+  { term: 'Duch', definition: 'Kaing Guek Eav, commander of S-21; convicted in Case 001' },
+  { term: 'ECCC', definition: 'Extraordinary Chambers in the Courts of Cambodia (Khmer Rouge tribunal)' },
+  { term: 'Ethnic Vietnamese', definition: 'Vietnamese minority in Cambodia; targeted for genocide' },
+  { term: 'Force Publique', definition: 'Khmer Rouge enforcement units' },
+  { term: 'French Indochina', definition: 'French colonial territory including Cambodia (1863-1953)' },
+  { term: 'Genocide', definition: 'Acts committed with intent to destroy a national, ethnic, racial, or religious group' },
   { term: 'Genocide Convention', definition: '1948 UN treaty defining genocide' },
-  { term: 'Khmer Republic', definition: 'Lon Nol\'s government (1970-1975)' },
-  { term: 'Khmer Rouge', definition: '"Red Khmer"—French term for Cambodian communists' },
+  { term: 'Hun Sen', definition: 'Former Khmer Rouge cadre; Prime Minister of Cambodia (1985-2023)' },
+  { term: 'Ieng Sary', definition: 'Deputy Prime Minister of Democratic Kampuchea; died before trial' },
+  { term: 'Khieu Samphan', definition: 'Head of State of Democratic Kampuchea; convicted of genocide' },
+  { term: 'Khmer Republic', definition: 'Lon Nol\'s US-backed government (1970-1975)' },
+  { term: 'Khmer Rouge', khmer: 'ខ្មែរក្រហម', definition: '"Red Khmer"—French term for Cambodian communists' },
   { term: 'Killing Fields', definition: 'Sites of mass execution under Khmer Rouge' },
-  { term: 'New People', definition: 'Urban evacuees considered ideologically corrupted' },
-  { term: 'S-21', definition: 'Security Prison 21 (Tuol Sleng)' },
-  { term: 'Santebal', definition: 'Khmer Rouge secret police' },
-  { term: 'Tuol Sleng', definition: 'Former high school converted to S-21 prison; now museum' },
-  { term: 'Year Zero', definition: 'Khmer Rouge concept of complete historical reset' }
+  { term: 'Lon Nol', definition: 'General who led 1970 coup; led Khmer Republic until 1975' },
+  { term: 'Mekong River', definition: 'Major river flowing through Cambodia' },
+  { term: 'New People', khmer: 'ប្រជាជនថ្មី', definition: 'Urban evacuees considered ideologically corrupted' },
+  { term: 'Norodom Sihanouk', definition: 'King and head of state; allied with Khmer Rouge after 1970 coup' },
+  { term: 'Nuon Chea', definition: 'Brother Number Two; convicted of genocide; died 2019' },
+  { term: 'Operation Freedom Deal', definition: 'US bombing campaign over Cambodia (1970-1973)' },
+  { term: 'Operation Menu', definition: 'Secret US bombing campaign (1969-1970)' },
+  { term: 'Paris Peace Accords', definition: '1991 agreement ending Cambodian conflict' },
+  { term: 'People\'s Republic of Kampuchea', definition: 'Vietnamese-backed state (1979-1989)' },
+  { term: 'Phnom Penh', definition: 'Capital of Cambodia; forcibly evacuated April 17, 1975' },
+  { term: 'Pol Pot', definition: 'Saloth Sar; Khmer Rouge leader (Brother Number One); died 1998' },
+  { term: 'Protected groups', definition: 'National, ethnic, racial, or religious groups protected under Genocide Convention' },
+  { term: 'Quota system', definition: 'Impossible agricultural targets enforced through violence' },
+  { term: 'Re-education', definition: 'Forced labor and indoctrination under Khmer Rouge' },
+  { term: 'S-21', definition: 'Security Prison 21 (Tuol Sleng); ~14,000-17,000 detained; ~12 survived' },
+  { term: 'Santebal', khmer: 'សន្តិបាល', definition: 'Khmer Rouge secret police' },
+  { term: 'Stupa', definition: 'Buddhist memorial structure; Choeung Ek stupa contains victims\' remains' },
+  { term: 'Tonlé Sap', definition: 'Great Lake of Cambodia; unique reversing flow ecosystem' },
+  { term: 'Tuol Sleng', definition: 'Former high school converted to S-21 prison; now Genocide Museum' },
+  { term: 'UNTAC', definition: 'UN Transitional Authority in Cambodia (1992-1993)' },
+  { term: 'Year Zero', khmer: 'ឆ្នាំសូន្យ', definition: 'Khmer Rouge concept of complete historical reset' },
+  { term: 'Youk Chhang', definition: 'Executive Director of DC-Cam; survivor and genocide educator' },
+  { term: 'Zone', definition: 'Administrative division under Khmer Rouge; six zones with separate leadership' }
 ];
 
 // ============================================================================
@@ -587,6 +744,70 @@ function StatisticCard({ stat }: { stat: { label: string; value: string; source:
   );
 }
 
+const ECCC_VERDICTS = [
+  {
+    caseNumber: 'Case 001',
+    defendant: 'Duch (Kaing Guek Eav)',
+    charges: 'Crimes against humanity, grave breaches of Geneva Conventions',
+    verdict: 'Guilty',
+    sentence: 'Life imprisonment',
+    year: '2010 (appeal 2012)',
+    status: 'Died 2020'
+  },
+  {
+    caseNumber: 'Case 002/01',
+    defendant: 'Nuon Chea, Khieu Samphan',
+    charges: 'Crimes against humanity (forced evacuation, execution)',
+    verdict: 'Guilty',
+    sentence: 'Life imprisonment',
+    year: '2014 (appeal 2016)',
+    status: 'Nuon Chea died 2019; Khieu Samphan serving'
+  },
+  {
+    caseNumber: 'Case 002/02',
+    defendant: 'Nuon Chea, Khieu Samphan',
+    charges: 'Genocide (Vietnamese, Cham), crimes against humanity',
+    verdict: 'Guilty',
+    sentence: 'Life imprisonment affirmed',
+    year: '2018 (appeal 2022)',
+    status: 'Final judgment'
+  }
+];
+
+function ECCCVerdictTable() {
+  return (
+    <div className="verdict-table-container">
+      <h3 className="verdict-table__title">ECCC Case Outcomes</h3>
+      <table className="verdict-table">
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Defendant(s)</th>
+            <th>Charges</th>
+            <th>Verdict</th>
+            <th>Sentence</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ECCC_VERDICTS.map((v) => (
+            <tr key={v.caseNumber}>
+              <td className="verdict-table__case">{v.caseNumber}</td>
+              <td>{v.defendant}</td>
+              <td>{v.charges}</td>
+              <td className="verdict-table__verdict">{v.verdict}</td>
+              <td>{v.sentence}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p className="verdict-table__note">
+        Only 3 convictions after 16 years and $337 million. Many perpetrators—including Pol Pot (1998),
+        Ieng Sary (2013), and Ta Mok (2006)—died before facing trial.
+      </p>
+    </div>
+  );
+}
+
 function ChapterSection({ chapter, isActive }: { chapter: Chapter; isActive: boolean }) {
   return (
     <section
@@ -619,6 +840,9 @@ function ChapterSection({ chapter, isActive }: { chapter: Chapter; isActive: boo
             ))}
           </div>
         )}
+
+        {/* ECCC Verdict Table - only for justice-memory chapter */}
+        {chapter.id === 'justice-memory' && <ECCCVerdictTable />}
 
         {/* Images */}
         {chapter.images && chapter.images.length > 0 && (
