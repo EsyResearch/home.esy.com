@@ -928,7 +928,7 @@ export const visualEssays: VisualEssay[] = [
     isNew: true,
     tags: ["Cambodia bombing", "Operation Menu", "Operation Freedom Deal", "secret bombing", "Nixon", "Kissinger", "Vietnam War", "UXO", "unexploded ordnance", "War Powers Resolution", "declassified", "visual essay"],
     visualStyle: "photorealistic",
-    heroImage: "https://upload.wikimedia.org/wikipedia/commons/e/e9/B-52D_dropping_bombs_over_Vietnam.jpg",
+    heroImage: "/og/B-52D-dropping-bombs-over-vietnam.jpg",
   },
   {
     id: "the-khmer-rouge-genocide",
