@@ -178,9 +178,10 @@
 | **G4: Design Research** | Pre-Production | Unique visual identity derived from subject matter | **Design Researcher** | ✅ Yes |
 | **G4.5: Image Sourcing** | Pre-Production | All images sourced, URLs extracted, licenses verified | **Image Research Expert** | ✅ Yes |
 | **G5: Content Complete** | Production → Audit | All sections drafted, fact-checked, uses research package | Historian Editor | ✅ Yes |
+| **G5.5: Bibliography Implementation** | Post-Production | Bibliography section complete (Works Cited, Image Credits, A/V, Data Sources) | **Bibliography Orchestrator** | ✅ Yes |
 | **G6: Citation Audit** | Audit | Citation Certification achieved (content vs. research match) | Citation Audit Agent | ✅ Yes |
 | **G7: Scroll Certification** | Audit | Immersive Scrolling Auditor certification (≥8.0/10) | Scrolling Auditor | ✅ Yes |
-| **G8: Mobile Verification** | Pre-Publish | Real device testing (Safari iOS, Chrome Android) | Visual Essay Orchestrator | ✅ Yes |
+| **G8: Publication Certification** | Pre-Publish | Pre-publication certification (GO/CONDITIONAL) from all domain audits | **Publish Artifact Orchestrator** | ✅ Yes |
 | **G9: Publication Approval** | Publish | Director sign-off on complete package | Visual Essay Orchestrator | ✅ Yes |
 
 > **Key Change**: Research (G2) now happens BEFORE Spec construction (G3). SKILL.md serves as the research blueprint—research gathers exactly what the spec template requires. The Invocation Agent then builds the spec using verified research, ensuring no orphan claims.
@@ -589,16 +590,43 @@ Track progress against timeline:
 - [ ] Implementation functional
 - [ ] Mobile testing performed
 
+#### Step 4: Invoke Bibliography Orchestrator (Gate 5.5)
+
+```
+Using @agents/orchestrators/bibliography-orchestrator.md, implement
+the Bibliography section for:
+
+Essay: src/app/essays/[story-slug]/
+Research Package: [essay-slug]/research/
+
+Apply standard Bibliography structure:
+- Works Cited (categorized by source type)
+- Image Credits (inline + section, per ARTIFACT_CITATION_PATTERNS_GUIDE.md)
+- A/V Credits (if applicable)
+- Data Sources (if applicable)
+
+Reference docs/artifact-patterns-guide/ for implementation patterns.
+```
+
+**Gate 5.5: Bibliography Implementation**
+- [ ] Bibliography section exists with correct structure
+- [ ] Works Cited categorized appropriately
+- [ ] Image Credits complete (inline + section entries)
+- [ ] A/V Credits complete (if audio/video present)
+- [ ] Data Sources complete (if data cited)
+- [ ] All inline attributions have Bibliography counterparts
+- [ ] CSS styling follows pattern documentation
+
 ---
 
 ### Phase 5: Audit (10%)
 
 With research complete (Phase 2) and production complete (Phase 3), the audit phase verifies everything aligns.
 
-#### Step 1: Invoke Meta Audit Orchestrator
+#### Step 1: Invoke Audit Orchestrator
 
 ```
-Using @agents/orchestrators/meta-audit-orchestrator.md, conduct comprehensive 
+Using @agents/orchestrators/audit-orchestrator.md, conduct comprehensive
 audit of the visual essay at:
 
 Path: src/app/essays/[story-slug]/
@@ -613,7 +641,7 @@ Audit Domains:
 Produce unified certification report.
 ```
 
-The Meta Audit Orchestrator coordinates:
+The Audit Orchestrator coordinates:
 - **Scrolling Auditor** — Scroll-lock and performance (G6)
 - **Citation Audit Agent** — Verify content uses research package sources (G5)
 - **Visual Auditor** — SVG and animation quality
@@ -680,12 +708,55 @@ Produce certification report with:
 
 **Gate 6 Status**: ⏳ Pending / ✅ Certified / ❌ Rejected
 
-#### Pre-Publication Checklist
+#### Step 3: Invoke Publish Artifact Orchestrator (Gate 8)
+
+```
+Using @agents/orchestrators/publish-artifact-orchestrator.md, certify
+for publication:
+
+Artifact: src/app/essays/visual/[slug]/
+Spec: orchestration/skills/visual-essay-invocation/specs/[slug].md
+
+Run all domain audits:
+- Bibliography Orchestrator (audit mode)
+- Social Media Meta Expert (audit mode)
+- SEO Audit Agent (final check)
+- Gate Guard Auditor (G1-G7 verification)
+
+Coordinate QA Remediation if issues found.
+Produce publication certification report.
+```
+
+The Publish Artifact Orchestrator will:
+1. Run Bibliography audit (verify structure & citations)
+2. Run Social Media meta audit (OG, Twitter Cards)
+3. Run SEO final check
+4. Verify all gates G1-G7 have artifacts
+5. Invoke QA Remediation Orchestrator if fixable issues exist
+6. Re-audit after fixes
+7. Issue GO / NO-GO / CONDITIONAL certification
+
+#### Step 4: Review Publication Certification
+
+| Domain | Status | Notes |
+|--------|--------|-------|
+| Bibliography | ⏳/✅/❌ | |
+| Social Meta | ⏳/✅/❌ | |
+| SEO | ⏳/✅/❌ | |
+| Gate Compliance | ⏳/✅/❌ | |
+| Remediation | ⏳/✅/N/A | |
+
+**Certification Status**: ✅ GO / ⚠️ CONDITIONAL / ❌ NO-GO
+
+**Gate 8 Status**: ⏳ Pending / ✅ Certified / ❌ Rejected
+
+#### Pre-Publication Checklist (Verified by Publish Artifact Orchestrator)
 
 **Content Quality**
-- [ ] All quality gates (G1-G6) passed
+- [ ] All quality gates (G1-G7) passed
 - [ ] Citation Certification achieved
 - [ ] Scroll Certification achieved
+- [ ] Bibliography complete and compliant
 - [ ] No critical issues outstanding
 - [ ] Design research uniqueness confirmed
 
@@ -697,11 +768,17 @@ Produce certification report with:
 - [ ] Cross-browser compatibility verified
 
 **Source Quality**
-- [ ] Sources section complete
+- [ ] Bibliography section complete
 - [ ] All links functional (browser-verified)
 - [ ] 80%+ Tier 1-2 sources
 - [ ] No Tier 4 sources present
 - [ ] Quotes properly attributed
+- [ ] Image Credits complete
+
+**Social & SEO**
+- [ ] OG meta tags valid
+- [ ] Twitter Card configured
+- [ ] SEO grade ≥ C
 
 **Index Integration**
 - [ ] Entry prepared for `visualEssays` array
@@ -710,9 +787,9 @@ Produce certification report with:
 - [ ] New essay `isFeatured: true` set
 - [ ] Thumbnail/preview content ready
 
-**Gate 6 & 7 Status**: ⏳ Pending / ✅ Approved / ❌ Rejected
+**Gate 8 Status**: ⏳ Pending / ✅ Approved / ❌ Rejected
 
-#### Director Sign-Off
+#### Director Sign-Off (Gate 9)
 
 ```markdown
 ## Publication Approval
@@ -730,12 +807,20 @@ Produce certification report with:
 | G4: Design Research | ✅ |
 | G4.5: Image Sourcing | ✅ |
 | G5: Content Complete | ✅ |
+| G5.5: Bibliography Implementation | ✅ |
 | G6: Citation Audit | ✅ |
 | G7: Scroll Certification | ✅ |
-| G8: Mobile Verification | ✅ |
+| G8: Publication Certification | ✅ |
 | G9: Publication Approval | ✅ |
 
-### Citation Certification
+### Publication Certification (G8)
+- **Certification Status**: ✅ GO
+- **Bibliography**: Complete and compliant
+- **Social Meta**: Valid
+- **SEO Grade**: [Grade]
+- **Remediation**: N/A (or completed)
+
+### Citation Certification (G6)
 - **Certification Status**: ✅ Certified
 - **Source Tier Distribution**: X% Tier 1, Y% Tier 2, Z% Tier 3
 - **Link Health**: 100% functional
@@ -1015,6 +1100,65 @@ visual essay at [PATH]. Produce full Citation Audit Report.
 5. Fixes implemented and re-audited if needed
 6. Director accepts Certification when achieved
 
+### Working With bibliography-orchestrator.md
+**Role**: Bibliography implementation and audit coordinator for Gate 5.5
+
+**Division of Responsibilities**
+- **Visual Essay Orchestrator**: Gate 5.5 approval, handoff timing
+- **Bibliography Orchestrator**: Structure implementation, pattern application, audit coordination
+- **Shared**: Citation quality standards, Bibliography completeness
+
+**Invocation Protocol (Implementation)**
+```
+Using @agents/orchestrators/bibliography-orchestrator.md, implement
+the Bibliography section for [essay-path].
+
+Research Package: [path]/research/
+Apply standard structure: Works Cited, Image Credits, A/V Credits, Data Sources.
+Reference docs/artifact-patterns-guide/ for patterns.
+```
+
+**Handoff Protocol**
+1. Visual Essay Orchestrator invokes after Gate 5 (Content Complete)
+2. Bibliography Orchestrator implements Bibliography structure
+3. Bibliography Orchestrator applies inline + section patterns
+4. Bibliography Orchestrator verifies completeness
+5. Visual Essay Orchestrator reviews and approves Gate 5.5
+6. Proceed to Citation Audit (G6)
+
+### Working With publish-artifact-orchestrator.md
+**Role**: Pre-publication certification for Gate 8
+
+**Division of Responsibilities**
+- **Visual Essay Orchestrator**: Pipeline authority, G9 final approval
+- **Publish Artifact Orchestrator**: G8 ownership, multi-domain audit coordination, remediation oversight
+- **Shared**: Publication standards, GO/NO-GO decision criteria
+
+**Invocation Protocol**
+```
+Using @agents/orchestrators/publish-artifact-orchestrator.md, certify
+for publication:
+
+Artifact: src/app/essays/visual/[slug]/
+Spec: specs/[slug].md
+
+Run all domain audits and produce publication certification report.
+```
+
+**Handoff Protocol**
+1. Visual Essay Orchestrator completes G1-G7
+2. Visual Essay Orchestrator invokes Publish Artifact Orchestrator for G8
+3. Publish Artifact Orchestrator runs domain audits (Bibliography, Social, SEO, Gates)
+4. Publish Artifact Orchestrator coordinates remediation via QA Remediation Orchestrator
+5. Publish Artifact Orchestrator issues GO / NO-GO / CONDITIONAL certification
+6. Visual Essay Orchestrator receives certification
+7. Visual Essay Orchestrator grants G9 based on certification status
+
+**Certification Integration**
+- GO → Proceed to G9 Publication Approval
+- CONDITIONAL → Document conditions, proceed with caution
+- NO-GO → Return for remediation, block G9
+
 ### Working With immersive-scrolling-auditor.md
 **Role**: Scroll functionality certification for Gate 6
 
@@ -1185,10 +1329,19 @@ publication approval review for the visual essay at [PATH].
 - **Source Quality**: Average Tier 1-2 percentage across essays
 
 ## Last Updated
-December 2024
+December 30, 2024
+
+### Recent Changes
+- Added **G5.5: Bibliography Implementation** gate — Bibliography Orchestrator implements Bibliography section after Content Complete
+- Changed **G8: Mobile Verification** to **G8: Publication Certification** — now owned by Publish Artifact Orchestrator
+- Added collaboration protocols for Bibliography Orchestrator (G5.5 implementation)
+- Added collaboration protocols for Publish Artifact Orchestrator (G8 certification)
+- Updated Director Sign-Off template with new gates
+- Updated Quality Gate Summary to include G5.5 and revised G8
+- Publication Certification (G8) now coordinates: Bibliography audit, Social Meta audit, SEO audit, Gate compliance, QA Remediation
 
 ---
 
-*This agent specializes in directing the end-to-end production pipeline for Esy.com visual essays, from initial brief through publication and monitoring. The Director orchestrates the scrollytelling-expert for content creation, research-citations-expert for source discovery, and citation-audit-agent for verification—ensuring every visual essay meets rigorous quality gates before publication. No essay ships without Citation Certification. The agent maintains accountability at every phase, enforces quality standards, and protects Esy's credibility through mandatory citation integrity. Ideal for managing visual essay production at scale with consistent quality and editorial excellence.*
+*This agent specializes in directing the end-to-end production pipeline for Esy.com visual essays, from initial brief through publication and monitoring. The Director orchestrates the scrollytelling-expert for content creation, research-citations-expert for source discovery, bibliography-orchestrator for citation structure, and publish-artifact-orchestrator for pre-publication certification—ensuring every visual essay meets rigorous quality gates before publication. No essay ships without Citation Certification (G6) AND Publication Certification (G8). The agent maintains accountability at every phase, enforces quality standards, and protects Esy's credibility through mandatory citation integrity. Ideal for managing visual essay production at scale with consistent quality and editorial excellence.*
 
 

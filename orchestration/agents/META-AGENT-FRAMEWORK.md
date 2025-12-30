@@ -618,7 +618,7 @@ Current agents derived from this framework:
 
 | Agent | Domain | Primary Role | Collaboration |
 |-------|--------|--------------|---------------|
-| `visual-essay-orchestrator.md` | **Editorial Direction** | **Pipeline Executive** | **TOP-LEVEL ORCHESTRATOR** → Research Orchestrator (Phase 2), Scrollytelling Expert (Phase 3), Meta Audit Orchestrator (Phase 4) |
+| `visual-essay-orchestrator.md` | **Editorial Direction** | **Pipeline Executive** | **TOP-LEVEL ORCHESTRATOR** → Research Orchestrator (Phase 2), Scrollytelling Expert (Phase 3), Audit Orchestrator (Phase 4) |
 | `research-orchestrator.md` | **Research Pipeline** | **Research Director** | **ORCHESTRATOR** → Brainstorming Agent, Research Citations Expert, Citation Audit (validation), Routes to Regional Experts, Historians |
 | `historian-writer-expert.md` | History | Narrative Writer | → Editor, ← Research |
 | `historian-editor-expert.md` | History | Fact-Checker/Editor | ← Writer, ← Research |
@@ -649,14 +649,14 @@ Current agents derived from this framework:
 | `immersive-experience-auditor.md` | **Experience QA** | Comprehensive Experience Certifier | **Orchestrator** → Scrolling Auditor, → Visual Essay Orchestrator |
 | `readme-curator.md` | **Documentation** | Documentation Routing & Maintenance | **Utility** — Maintains orchestration README hierarchy |
 | `image-research-licensing-expert.md` | **Visual Research** | Archive Image Sourcing & Rights | **Specialist** — Uses `image-url-extraction` skill |
-| `meta-audit-orchestrator.md` | **Quality Orchestration** | Multi-Domain Audit Coordinator | **TOP-LEVEL ORCHESTRATOR** → Scrolling Auditor, Experience Auditor, Visual Auditor, Citation Audit, Quotes Audit |
-| `qa-remediation-orchestrator.md` | **Quality Remediation** | Iterative Fix Loop Coordinator | **ORCHESTRATOR** → Auditors (input), Engineers (fixes), Re-audit (verify); ← Meta Audit Orchestrator |
+| `audit-orchestrator.md` | **Quality Orchestration** | Multi-Domain Audit Coordinator | **TOP-LEVEL ORCHESTRATOR** → Scrolling Auditor, Experience Auditor, Visual Auditor, Citation Audit, Quotes Audit |
+| `qa-remediation-orchestrator.md` | **Quality Remediation** | Iterative Fix Loop Coordinator | **ORCHESTRATOR** → Auditors (input), Engineers (fixes), Re-audit (verify); ← Audit Orchestrator |
 | `seo-specialist-expert.md` | **Search Optimization** | SEO Strategy & Organic Growth | **Specialist** — Technical SEO, Content Optimization, SERP Features, Link Strategy |
 | `sitemap-canonical-expert.md` | **Sitemap & URL Architecture** | Sitemap Specialist & URL Standardization | **Specialist** — Sitemap generation, Canonical enforcement, Trailing slash policy, Crawl optimization; → SEO Specialist, → Software Engineer |
 | `seo-audit-agent.md` | **SEO Quality Assurance** | Page-Level SEO Auditor & Grader | **Auditor** → SEO Specialist, Visual Essay Orchestrator (G3); Uses `seo-element-extraction` skill |
 | `hydration-audit-agent.md` | **React Hydration QA** | SSR/Client Mismatch Detector | **Auditor** → Immersive Experience Eng, Scrollytelling Expert; IntersectionObserver, useState, browser API safety |
 | `design-slop-auditor.md` | **Design Distinctiveness** | AI Slop Detector & Design Research | **Auditor** → Scrollytelling Expert, Visual Essay Orchestrator; Enforces subject-derived aesthetics, rejects generic/convergent patterns |
-| `content-audit-agent.md` | **Content Quality** | Word Count, Depth, Tone Auditor | **Auditor** → QA Remediation Orchestrator, Meta Audit Orchestrator; Genocide/atrocity sensitivity protocols; Spec content compliance verification |
+| `content-audit-agent.md` | **Content Quality** | Word Count, Depth, Tone Auditor | **Auditor** → QA Remediation Orchestrator, Audit Orchestrator; Genocide/atrocity sensitivity protocols; Spec content compliance verification |
 | `visual-essay-invocation-agent.md` | **Spec Generation** | Visual Essay Specification Architect | **Pre-processor** → Visual Essay Orchestrator (Phase 1); Uses `visual-essay-invocation` skill → stores to `specs/` |
 | `meta-prompt-enhancer.md` | **Universal Enhancement** | Prompt Architect & Instruction Designer | **Universal Pre-processor** → Any AI System, Any Agent; Uses CRISP-E framework (Context, Role, Intent, Specifics, Parameters, Examples) |
 | `social-media-meta-expert.md` | **Social Sharing Optimization** | Social Meta Specialist (Audit + Implementation) | **Dual-Role Expert** — Audit Mode (QA gate), Implementation Mode (fixes), Advisory Mode (strategy); OG, Twitter Cards, JSON-LD; → Visual Essay Orchestrator (publish gate) |
@@ -665,6 +665,8 @@ Current agents derived from this framework:
 | `concept-extraction-agent.md` | **Educational Content** | Concept Extraction & Documentation | **Utility** ← Scrollytelling Expert (educational essays); Extracts concepts, generates CORE-CONCEPTS.md, produces ConceptualFoundationsSection; → Scrollytelling Expert |
 | `gate-guard-auditor.md` | **Pipeline Compliance** | Gate Verification & Publication Readiness | **Final Checkpoint Auditor** — Verifies all 9 gates (G1-G9) have artifacts; Blocks publication for missing gates; → Visual Essay Orchestrator (pre-G9) |
 | `redesign-visual-essay-agent.md` | **Visual Design Transformation** | Subject-Derived Design System Creator | **Specialist** — Transforms derivative/generic designs into subject-derived visual systems; Cultural artifact → digital metaphor translation; Era-specific skins; Zero cross-pollination between essays; ← Visual Essay Orchestrator, → Design Slop Auditor |
+| `bibliography-orchestrator.md` | **Bibliography Management** | Bibliography Implementation & Audit Coordinator | **ORCHESTRATOR** → Citation Audit Agent, Quotes Audit Agent (via Citation), Image Research Licensing Expert; References `docs/artifact-patterns-guide/`; Dual-mode: Implementation + Audit; G5.5 owner |
+| `publish-artifact-orchestrator.md` | **Publication Certification** | Pre-Publication Final Gatekeeper | **ORCHESTRATOR** → Bibliography Orchestrator (audit), Audit Orchestrator, Social Media Meta Expert, SEO Audit, Gate Guard Auditor, QA Remediation Orchestrator; G8 owner; GO/NO-GO/CONDITIONAL certification |
 
 ---
 
@@ -696,6 +698,8 @@ This meta-framework should evolve as patterns emerge:
 December 30, 2024
 
 ### Recent Changes
+- Added Publish Artifact Orchestrator to registry (pre-publication certification, G8 owner, coordinates Bibliography Orchestrator + Audit Orchestrator + Social Meta + SEO + Gate Guard + QA Remediation; GO/NO-GO/CONDITIONAL certification)
+- Added Bibliography Orchestrator to registry (bibliography implementation & audit coordination, dual-mode operation, G5.5 owner, coordinates Citation Audit + Quotes Audit + Image Research agents, references `docs/artifact-patterns-guide/`)
 - Added Content Audit Agent to registry (word count, content depth, tone compliance, genocide/atrocity sensitivity protocols, spec content requirement verification)
 - Added ReDesign Visual Essay Agent to registry (subject-derived design transformation, cultural artifact translation, era-specific skins, zero cross-pollination)
 - Added Visual Essay Refurbish Agent to registry (legacy essay modernization, pipeline compliance, intent extraction, expansion proposals)

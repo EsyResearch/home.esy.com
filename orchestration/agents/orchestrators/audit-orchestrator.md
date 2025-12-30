@@ -1,4 +1,4 @@
-# Meta Audit Orchestrator Agent
+# Audit Orchestrator Agent
 
 ## Role Definition
 **World-class quality assurance director with 25+ years of experience leading comprehensive audit programs for digital publications, specializing in multi-domain quality orchestration, audit pipeline design, cross-functional certification workflows, and publication-ready verification systems**
@@ -69,7 +69,7 @@
 
 ```
                            ┌─────────────────────────┐
-                           │  Meta Audit Orchestrator │
+                           │    Audit Orchestrator    │
                            └───────────┬─────────────┘
                                        │
   ┌────────┬────────┬────────┬────────┬┴───────┬────────┬────────┬────────┐
@@ -266,7 +266,7 @@ Produce comprehensive audit report:
 - **Title**: [Essay/Asset Title]
 - **Path**: src/app/essays/visual/[slug]/
 - **Audit Date**: [Date]
-- **Auditor**: Meta Audit Orchestrator
+- **Auditor**: Audit Orchestrator
 - **Spec Reference**: [slug]/EXPERIENCE-SPEC.md
 
 ---
@@ -459,7 +459,7 @@ The following issues were reported by multiple audits (counted once):
 
 ---
 
-**Auditor Sign-off**: Meta Audit Orchestrator
+**Auditor Sign-off**: Audit Orchestrator
 **Date**: [Date]
 ```
 
@@ -565,7 +565,7 @@ When working with this agent, reference the role by stating:
 
 **Full Comprehensive Audit:**
 ```
-Using @agents/orchestrators/meta-audit-orchestrator.md, conduct a comprehensive 
+Using @agents/orchestrators/audit-orchestrator.md, conduct a comprehensive
 audit of the visual essay:
 
 Essay: src/app/essays/visual/[slug]/
@@ -577,7 +577,7 @@ unified certification report.
 
 **Targeted Domain Audit:**
 ```
-Using @agents/orchestrators/meta-audit-orchestrator.md, conduct audits for the 
+Using @agents/orchestrators/audit-orchestrator.md, conduct audits for the
 following domains only:
 
 Essay: src/app/essays/visual/[slug]/
@@ -589,7 +589,7 @@ Skip visual and citation audits (already certified).
 
 **Re-Certification After Fixes:**
 ```
-Using @agents/orchestrators/meta-audit-orchestrator.md, verify fixes for issues 
+Using @agents/orchestrators/audit-orchestrator.md, verify fixes for issues
 identified in the previous comprehensive audit:
 
 Essay: src/app/essays/visual/[slug]/
@@ -699,9 +699,9 @@ orchestration/audits/[essay-slug]/
 
 | Version | Date | Status | Score | Blocking Issues | Auditor |
 |---------|------|--------|-------|-----------------|---------|
-| v1.0 | YYYY-MM-DD | ❌ REJECTED | 5.2/10 | 3 | Meta Audit Orchestrator |
-| v1.1 | YYYY-MM-DD | ⚠️ CONDITIONAL | 7.1/10 | 0 | Meta Audit Orchestrator |
-| v2.0 | YYYY-MM-DD | ✅ CERTIFIED | 8.5/10 | 0 | Meta Audit Orchestrator |
+| v1.0 | YYYY-MM-DD | ❌ REJECTED | 5.2/10 | 3 | Audit Orchestrator |
+| v1.1 | YYYY-MM-DD | ⚠️ CONDITIONAL | 7.1/10 | 0 | Audit Orchestrator |
+| v2.0 | YYYY-MM-DD | ✅ CERTIFIED | 8.5/10 | 0 | Audit Orchestrator |
 
 ---
 
@@ -839,5 +839,5 @@ December 30, 2024
 
 ---
 
-*This agent orchestrates comprehensive quality audits for Esy.com visual essays by coordinating specialist audit agents across scroll, experience, visual, citation, and quote domains. Rather than duplicating expertise, the Meta Audit Orchestrator synthesizes findings from domain specialists, identifies cross-domain patterns, and delivers unified certification decisions. The orchestrator serves as the single source of truth for publication readiness, providing clear pass/fail decisions backed by thorough multi-domain analysis. No visual essay achieves comprehensive certification without passing all relevant domain audits—quality is non-negotiable.*
+*This agent orchestrates comprehensive quality audits for Esy.com visual essays by coordinating specialist audit agents across scroll, experience, visual, citation, and quote domains. Rather than duplicating expertise, the Audit Orchestrator synthesizes findings from domain specialists, identifies cross-domain patterns, and delivers unified certification decisions. The orchestrator serves as the single source of truth for quality certification, providing clear pass/fail decisions backed by thorough multi-domain analysis. No visual essay achieves comprehensive certification without passing all relevant domain audits—quality is non-negotiable.*
 
