@@ -1756,6 +1756,25 @@ const sourcesByCategory = {
     { name: "Rolling Stone Hip-Hop", note: "Mainstream coverage; extensive interview archive", url: "https://www.rollingstone.com/t/hip-hop/" },
     { name: "Complex Music", note: "Digital-native; fashion/culture crossover", url: "https://www.complex.com/music" },
   ],
+  imageCredits: [
+    { subject: "Susu Griot, c. 1910", source: "Wikimedia Commons", license: "Public Domain", photographer: "Unknown" },
+    { subject: "DJ Kool Herc at the Turntables", source: "Wikimedia Commons", license: "Public Domain", photographer: "Bigtimepeace" },
+    { subject: "Grandmaster Flash & Furious Five (1982)", source: "Wikimedia Commons", license: "Public Domain", photographer: "Sugar Hill Records press photo" },
+    { subject: "Run-DMC and Beastie Boys (1987)", source: "Wikimedia Commons", license: "Public Domain", photographer: "Press photo" },
+    { subject: "Eric B. & Rakim (1987)", source: "Wikimedia Commons", license: "Public Domain", photographer: "Press photo" },
+    { subject: "Chuck D of Public Enemy", source: "Wikimedia Commons", license: "CC BY-SA 3.0", photographer: "Kim Metso" },
+    { subject: "Ice Cube (2012)", source: "Wikimedia Commons", license: "CC BY-SA 2.0", photographer: "Kris Krüg" },
+    { subject: "Tupac Shakur", source: "Wikimedia Commons", license: "Public Domain", photographer: "Unknown" },
+    { subject: "Andre 3000 of OutKast", source: "Wikimedia Commons", license: "CC BY 2.0", photographer: "Unknown" },
+    { subject: "Jay-Z", source: "Wikimedia Commons", license: "CC BY-SA 2.0", photographer: "Joella Marano" },
+    { subject: "Roland TR-808 drum machine", source: "Wikimedia Commons", license: "CC BY-SA 3.0", photographer: "Unknown" },
+    { subject: "Chief Keef (2019)", source: "Wikimedia Commons", license: "CC BY-SA 4.0", photographer: "Unknown" },
+    { subject: "Tyler, the Creator", source: "Wikimedia Commons", license: "CC BY-SA 2.0", photographer: "Jason Persse" },
+    { subject: "Skepta", source: "Wikimedia Commons", license: "CC BY 2.0", photographer: "Raph_PH" },
+    { subject: "Kendrick Lamar", source: "Wikimedia Commons", license: "CC BY-SA 2.0", photographer: "Unknown" },
+    { subject: "Queen Latifah", source: "Wikimedia Commons", license: "CC BY-SA 3.0", photographer: "Gage Skidmore" },
+    { subject: "Future", source: "Wikimedia Commons", license: "CC BY-SA 2.0", photographer: "Openair Frauenfeld" },
+  ],
 };
 
 // ==================== GLOSSARY COMPONENT ====================
@@ -1890,6 +1909,17 @@ const SourcesSection: React.FC = () => {
                   <strong>{pub.name}</strong>
                 </a>{" "}
                 — {pub.note}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="rap-sources__category">
+          <h3>Image Credits</h3>
+          <ul className="rap-sources__list rap-sources__list--images">
+            {sourcesByCategory.imageCredits.map((img, idx) => (
+              <li key={idx} className="rap-sources__item">
+                <strong>{img.subject}</strong>: {img.photographer !== "Unknown" ? `${img.photographer}, ` : ""}{img.source}. {img.license}.
               </li>
             ))}
           </ul>
