@@ -82,9 +82,9 @@ const CHAPTERS: Chapter[] = [
         ],
         quote: 'Yes, I had my part also in the mistake.',
         quoteSource: 'New York Review of Books, 1985',
-        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Angkor_sunrise.JPG',
+        imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Angkor_Wat_at_sunrise_3.jpg',
         imageAlt: 'Norodom Sihanouk',
-        imageAttribution: 'Public Domain'
+        imageAttribution: 'Christophe95, CC BY-SA 4.0'
       }
     ],
     statistics: [
@@ -107,10 +107,10 @@ const CHAPTERS: Chapter[] = [
     ],
     images: [
       {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Angkor_sunrise.JPG',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Angkor_Wat_at_sunrise_3.jpg',
         alt: 'Angkor Wat at sunrise',
         caption: 'Angkor Wat, the 12th-century temple complex that symbolizes Cambodian identity',
-        attribution: 'Bjorn Christian Torrissen, CC BY-SA 3.0'
+        attribution: 'Christophe95, CC BY-SA 4.0'
       }
     ]
   },
@@ -193,7 +193,7 @@ const CHAPTERS: Chapter[] = [
     ],
     images: [
       {
-        url: 'https://upload.wikimedia.org/wikipedia/commons/1/18/Flag_of_Democratic_Kampuchea.svg',
+        url: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_Democratic_Kampuchea.svg',
         alt: 'Flag of Democratic Kampuchea',
         caption: 'The flag of Democratic Kampuchea (1975-1979), featuring Angkor Wat in yellow on red',
         attribution: 'Public Domain'
