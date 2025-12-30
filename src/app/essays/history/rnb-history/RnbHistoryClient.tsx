@@ -52,12 +52,12 @@ interface Chapter {
 
 const IMAGES = {
   // Locations
-  hitsvilleUsa: "https://upload.wikimedia.org/wikipedia/commons/4/48/Hitsville_U.S.A.jpg",
-  staxMuseum: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Stax_Museum_2011.jpg",
+  hitsvilleUsa: "https://upload.wikimedia.org/wikipedia/commons/3/3d/Hitsville_USA.jpg",
+  staxMuseum: "https://upload.wikimedia.org/wikipedia/commons/a/a3/Stax_Museum_Memphis_TN_01.jpg",
   apolloTheater: "https://upload.wikimedia.org/wikipedia/commons/1/1c/Apollo_Theater%2C_Harlem_%2846992038484%29.jpg",
   sunStudio: "https://upload.wikimedia.org/wikipedia/commons/b/bf/Sun_Studio.jpg",
   // Equipment
-  tr808: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Roland_TR-808_%28large%29.jpg",
+  tr808: "https://upload.wikimedia.org/wikipedia/commons/b/be/Roland_TR-808_drum_machine.jpg",
   yamahaDx7: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Yamaha_DX7.jpg",
   mpc3000: "https://upload.wikimedia.org/wikipedia/commons/0/03/AKAI_MPC_3000.jpg",
   // Artists - All verified CC-licensed from Wikimedia Commons
@@ -68,14 +68,14 @@ const IMAGES = {
   alGreen: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Al_Green_1973.jpg",
   berryGordy: "https://upload.wikimedia.org/wikipedia/commons/d/d1/BerryGordyDec10.jpg",
   smokeyRobinson: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Smokey_Robinson_special_1970.JPG",
-  stevieWonder: "https://upload.wikimedia.org/wikipedia/commons/5/55/Stevie_Wonder_1973.JPG",
+  stevieWonder: "https://upload.wikimedia.org/wikipedia/commons/8/81/Stevie_Wonder.jpg",
   marvinGaye: "https://upload.wikimedia.org/wikipedia/commons/0/03/Marvin_Gaye_%281973_publicity_photo%29.jpg",
-  arethaFranklin: "https://upload.wikimedia.org/wikipedia/commons/9/94/Aretha_Franklin_1968.jpg",
+  arethaFranklin: "https://upload.wikimedia.org/wikipedia/commons/9/99/Aretha_franklin_1960s_cropped_retouched.jpg",
   missyElliott: "https://upload.wikimedia.org/wikipedia/commons/7/77/Missy_Elliot.jpg",
   maryJBlige: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Mary_J._Blige_in_2009.JPG",
   teddyRiley: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Teddy_Riley_at_the_90%27s_Block_Party_Tour.jpg",
   timbaland: "https://upload.wikimedia.org/wikipedia/commons/0/05/Timbaland_%2847903248821%29_%28cropped%29.jpg",
-  tinaTurner: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Tina_Turner_1985.jpg",
+  tinaTurner: "https://upload.wikimedia.org/wikipedia/commons/9/96/Tina_Turner_50th_Anniversary_Tour.jpg",
   sza: "https://upload.wikimedia.org/wikipedia/commons/f/f4/KendrickSZASPurs230725-19_-_54683179509_%28cropped%29_%28cropped%29.jpg",
   frankOcean: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Frank_Ocean_2022_Blonded.jpg",
   // Additional verified images
