@@ -55,6 +55,7 @@ interface Chapter {
   scrollLockType?: 'ball-game' | 'anything-flies' | 'furnace' | 'unfinished';
   hasOperationMenu?: boolean;
   comparisonSlider?: ComparisonSlider;
+  contentWarning?: 'kent-state' | 'genocide' | 'uxo';
 }
 
 interface GlossaryTerm {
@@ -365,6 +366,7 @@ const CHAPTERS: Chapter[] = [
     ],
     hasScrollLock: true,
     scrollLockType: 'anything-flies',
+    contentWarning: 'kent-state',
   },
   {
     id: 'the-furnace',
@@ -488,6 +490,7 @@ const CHAPTERS: Chapter[] = [
       { value: '220,000', label: 'Khmer Rouge (1973)', source: 'CIA estimates' },
       { value: '60%', label: 'Refugees citing bombing', source: 'GAO Report' },
     ],
+    contentWarning: 'genocide',
   },
   {
     id: 'reckoning',
@@ -583,26 +586,39 @@ const CHAPTERS: Chapter[] = [
     ],
     hasScrollLock: true,
     scrollLockType: 'unfinished',
+    contentWarning: 'uxo',
   },
 ];
 
 const GLOSSARY: GlossaryTerm[] = [
+  { term: 'AFHRA', definition: 'Air Force Historical Research Agency—repository of USAF records' },
+  { term: 'APOPO', definition: 'Belgian NGO using trained rats (HeroRATs) for mine detection' },
   { term: 'Arc Light', definition: 'Code name for B-52 bombing missions in Southeast Asia' },
   { term: 'Base Area', definition: 'Designated target zones along Cambodia-Vietnam border' },
   { term: 'B-52 Stratofortress', definition: 'Heavy bomber used for carpet bombing operations' },
+  { term: 'BLU-26', definition: 'Cluster bomblet submunition; millions dropped on Cambodia' },
+  { term: 'Cambodia Incursion', definition: 'U.S. ground invasion of Cambodia (April-June 1970)' },
   { term: 'Carpet Bombing', definition: 'Area bombardment without specific point targets' },
   { term: 'Case-Church Amendment', definition: '1973 law ending U.S. combat operations in Southeast Asia' },
   { term: 'CGEO', definition: 'Yale\'s Cambodian Genocide Geographic Database' },
   { term: 'Cluster Munitions', definition: 'Bombs releasing multiple submunitions over a wide area' },
   { term: 'CMAC', definition: 'Cambodian Mine Action Centre—national clearance organization' },
-  { term: 'Cooper-Church Amendment', definition: '1970 law restricting operations in Cambodia' },
+  { term: 'Cooper-Church Amendment', definition: '1970 law restricting ground operations in Cambodia' },
   { term: 'COSVN', definition: 'Central Office for South Vietnam—Vietnamese communist command structure' },
+  { term: 'Daniel Boone Operations', definition: 'Covert cross-border reconnaissance (later Salem House)' },
+  { term: 'Democratic Kampuchea', definition: 'Official name of Cambodia under Khmer Rouge (1975-1979)' },
   { term: 'Dual Reporting System', definition: 'Method used to falsify official bombing records' },
   { term: 'ERW', definition: 'Explosive Remnants of War' },
   { term: 'Fishhook', definition: 'Border region containing Base Areas 352 and 353' },
+  { term: 'FOIA', definition: 'Freedom of Information Act—law enabling document declassification' },
   { term: 'FRUS', definition: 'Foreign Relations of the United States—official document series' },
+  { term: 'GAO', definition: 'Government Accountability Office (formerly General Accounting Office)' },
   { term: 'HALO Trust', definition: 'British humanitarian demining organization' },
+  { term: 'HeroRAT', definition: 'African Giant Pouched Rat trained to detect explosives' },
+  { term: 'Khmer Republic', definition: 'U.S.-backed Cambodian government (1970-1975) under Lon Nol' },
   { term: 'Khmer Rouge', definition: 'Cambodian communist movement (1968-1999)' },
+  { term: 'Kent State', definition: 'University where four students were killed protesting Cambodia invasion (May 4, 1970)' },
+  { term: 'Lon Nol', definition: 'Cambodian general who seized power in March 1970 coup' },
   { term: 'MACV', definition: 'Military Assistance Command, Vietnam' },
   { term: 'MAG', definition: 'Mines Advisory Group—international clearance organization' },
   { term: 'Menu Operations', definition: 'Secret bombing phases: Breakfast, Lunch, Snack, Dinner, Supper, Dessert' },
@@ -612,31 +628,52 @@ const GLOSSARY: GlossaryTerm[] = [
   { term: 'Operation Freedom Deal', definition: 'Expanded bombing campaign (May 1970 - August 1973)' },
   { term: 'Operation Menu', definition: 'Secret bombing campaign (March 1969 - May 1970)' },
   { term: 'Parrot\'s Beak', definition: 'Border region projecting toward Saigon' },
+  { term: 'PAVN', definition: 'People\'s Army of Vietnam (North Vietnamese Army)' },
+  { term: 'Phnom Penh', definition: 'Capital of Cambodia; fell to Khmer Rouge April 17, 1975' },
+  { term: 'Pol Pot', definition: 'Khmer Rouge leader (born Saloth Sar); oversaw 1975-1979 genocide' },
+  { term: 'Sanctuary', definition: 'Vietnamese communist base areas inside Cambodian territory' },
   { term: 'SDG 18', definition: 'Cambodia\'s unique Sustainable Development Goal for mine action' },
   { term: 'SEADAB', definition: 'Southeast Asia Database—USAF bombing records' },
   { term: 'Sihanouk Trail', definition: 'Supply route through Cambodia to Vietnamese communist forces' },
   { term: 'Sortie', definition: 'Single aircraft mission' },
   { term: 'Telcon', definition: 'Telephone conversation transcript' },
+  { term: 'Tonnage', definition: 'Bomb weight measurement; Cambodia received ~500,000 tons' },
   { term: 'UXO', definition: 'Unexploded Ordnance' },
   { term: 'War Powers Resolution', definition: '1973 law restricting presidential war authority' },
+  { term: 'WSAG', definition: 'Washington Special Actions Group—NSC crisis management body' },
 ];
 
 const SOURCES: Source[] = [
+  // Primary Sources
   { type: 'primary', citation: 'Foreign Relations of the United States, 1969-1976, Volume VI: Vietnam, January 1969 – July 1970', url: 'https://history.state.gov/historicaldocuments/frus1969-76v06' },
   { type: 'primary', citation: 'National Security Archive, Kissinger Telcons Collection', url: 'https://nsarchive.gwu.edu/' },
-  { type: 'primary', citation: 'Nixon Presidential Library, NSC Files' },
+  { type: 'primary', citation: 'Nixon Presidential Library, NSC Files', url: 'https://www.nixonlibrary.gov/' },
   { type: 'primary', citation: 'Congressional Record, 93rd Congress' },
   { type: 'primary', citation: 'Senate Armed Services Committee, "Bombing in Cambodia" Hearings (1973)' },
+  { type: 'primary', citation: 'USAF Historical Research Agency Records', url: 'https://www.afhra.af.mil/' },
+  { type: 'primary', citation: 'CIA FOIA Electronic Reading Room', url: 'https://www.cia.gov/readingroom/' },
+  // Academic Sources
   { type: 'academic', citation: 'Kiernan, Ben. "The American Bombardment of Kampuchea, 1969-1973." Vietnam Generation (1989)' },
-  { type: 'academic', citation: 'Owen, Taylor and Ben Kiernan. "Bombs Over Cambodia." The Walrus (2006)' },
+  { type: 'academic', citation: 'Owen, Taylor and Ben Kiernan. "Bombs Over Cambodia." The Walrus (2006)', url: 'https://thewalrus.ca/bombs-over-cambodia/' },
   { type: 'academic', citation: 'Kiernan, Ben and Taylor Owen. "Making More Enemies than We Kill?" The Asia-Pacific Journal (2015)' },
   { type: 'academic', citation: 'High, Holly, et al. "Electronic Records of the Air War Over Southeast Asia." Journal of Vietnamese Studies (2013)' },
   { type: 'academic', citation: 'Shawcross, William. Sideshow: Kissinger, Nixon, and the Destruction of Cambodia. Simon & Schuster (1979, 2002)' },
   { type: 'academic', citation: 'Kiernan, Ben. How Pol Pot Came to Power. Yale University Press (1985, 2004)' },
+  { type: 'academic', citation: 'Kiernan, Ben. The Pol Pot Regime: Race, Power, and Genocide in Cambodia. Yale University Press (1996, 2008)' },
+  { type: 'academic', citation: 'Chandler, David P. The Tragedy of Cambodian History. Yale University Press (1991)' },
+  { type: 'academic', citation: 'Clymer, Kenton. The United States and Cambodia, 1969-2000. Routledge (2004)' },
+  // Data Sources
   { type: 'data', citation: 'Yale Genocide Studies Program, CGEO Database', url: 'https://gsp.yale.edu/' },
   { type: 'data', citation: 'CMAC Annual Reports', url: 'https://cmac.gov.kh/' },
   { type: 'data', citation: 'Mine Action Review, Cambodia Country Profile', url: 'https://www.mineactionreview.org/country/cambodia' },
-  { type: 'contemporary', citation: 'HALO Trust Cambodia Operations', url: 'https://www.halotrust.org/where-we-work/south-and-southeast-asia/cambodia/' },
+  { type: 'data', citation: 'HALO Trust Cambodia Statistics', url: 'https://www.halotrust.org/where-we-work/south-and-southeast-asia/cambodia/' },
+  { type: 'data', citation: 'MAG International Reports', url: 'https://www.maginternational.org/' },
+  // Contemporary Sources
+  { type: 'contemporary', citation: 'HISTORY.com: Operation Menu', url: 'https://www.history.com/' },
+  { type: 'contemporary', citation: 'National Security Archive: Kissinger Declassified', url: 'https://nsarchive.gwu.edu/project/kissinger-telcons' },
+  { type: 'contemporary', citation: 'Khmer Times: Mine Action Coverage', url: 'https://www.khmertimeskh.com/' },
+  { type: 'contemporary', citation: 'Radio Free Asia: Cambodia', url: 'https://www.rfa.org/english/news/cambodia' },
+  { type: 'contemporary', citation: 'Open Development Cambodia', url: 'https://opendevelopmentcambodia.net/' },
 ];
 
 // ============================================================================
@@ -666,8 +703,72 @@ function useScrollProgress() {
 }
 
 // ============================================================================
+// CONTENT WARNINGS
+// ============================================================================
+
+interface ContentWarningConfig {
+  id: string;
+  title: string;
+  description: string;
+}
+
+const CONTENT_WARNINGS: Record<string, ContentWarningConfig> = {
+  header: {
+    id: 'header',
+    title: 'Content Warning',
+    description: 'This essay contains historical imagery and descriptions of war, bombing casualties, and references to genocide. Reader discretion is advised.',
+  },
+  'kent-state': {
+    id: 'kent-state',
+    title: 'Content Warning',
+    description: 'This section contains references to the Kent State shooting where four students were killed.',
+  },
+  genocide: {
+    id: 'genocide',
+    title: 'Content Warning',
+    description: 'This section discusses the Khmer Rouge genocide and contains references to mass atrocities.',
+  },
+  uxo: {
+    id: 'uxo',
+    title: 'Content Warning',
+    description: 'This section contains references to ongoing casualties from unexploded ordnance, including injuries and amputations.',
+  },
+};
+
+// ============================================================================
 // COMPONENTS
 // ============================================================================
+
+function ContentWarning({
+  warning,
+  onContinue,
+  onSkip,
+  skipLabel = 'Skip to next chapter'
+}: {
+  warning: ContentWarningConfig;
+  onContinue: () => void;
+  onSkip?: () => void;
+  skipLabel?: string;
+}) {
+  return (
+    <div className="content-warning">
+      <div className="content-warning__box">
+        <h3 className="content-warning__title">{warning.title}</h3>
+        <p className="content-warning__description">{warning.description}</p>
+        <div className="content-warning__actions">
+          <button className="content-warning__btn content-warning__btn--continue" onClick={onContinue}>
+            Continue
+          </button>
+          {onSkip && (
+            <button className="content-warning__btn content-warning__btn--skip" onClick={onSkip}>
+              {skipLabel}
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function ProgressBar({ progress, visible }: { progress: number; visible: boolean }) {
   const status = getClassificationStatus(progress);
@@ -1192,14 +1293,33 @@ function TonnageComparisonSlider({ slider }: { slider: ComparisonSlider }) {
   );
 }
 
-function ChapterSection({ chapter }: { chapter: Chapter }) {
+function ChapterSection({ chapter, nextChapterId }: { chapter: Chapter; nextChapterId?: string }) {
   const [showScrollLock, setShowScrollLock] = useState(true);
+  const [showWarning, setShowWarning] = useState(!!chapter.contentWarning);
+
+  const handleSkipChapter = () => {
+    setShowWarning(false);
+    if (nextChapterId) {
+      const nextChapter = document.getElementById(nextChapterId);
+      if (nextChapter) {
+        nextChapter.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <section
       id={chapter.id}
       className={`chapter chapter--era-${chapter.era}`}
     >
+      {chapter.contentWarning && showWarning && (
+        <ContentWarning
+          warning={CONTENT_WARNINGS[chapter.contentWarning]}
+          onContinue={() => setShowWarning(false)}
+          onSkip={nextChapterId ? handleSkipChapter : undefined}
+        />
+      )}
+
       {chapter.hasScrollLock && showScrollLock && (
         <ScrollLockSequence
           type={chapter.scrollLockType || 'ball-game'}
@@ -1357,17 +1477,30 @@ function Footer() {
 
 export function CambodiaBombingClient() {
   const { progress, showProgressBar } = useScrollProgress();
+  const [showHeaderWarning, setShowHeaderWarning] = useState(true);
 
   return (
     <article className="cambodia-bombing">
       <a href="#before-storm" className="skip-link">Skip to content</a>
 
+      {showHeaderWarning && (
+        <ContentWarning
+          warning={CONTENT_WARNINGS.header}
+          onContinue={() => setShowHeaderWarning(false)}
+          skipLabel="I understand"
+        />
+      )}
+
       <ProgressBar progress={progress} visible={showProgressBar} />
 
       <Hero />
 
-      {CHAPTERS.map((chapter) => (
-        <ChapterSection key={chapter.id} chapter={chapter} />
+      {CHAPTERS.map((chapter, index) => (
+        <ChapterSection
+          key={chapter.id}
+          chapter={chapter}
+          nextChapterId={CHAPTERS[index + 1]?.id}
+        />
       ))}
 
       <div className="cambodia-bombing__container">
