@@ -27,19 +27,22 @@ export const metadata: Metadata = {
     title: 'Cambodia Bombed (1965–1973): The Air War You Weren\'t Meant to See',
     description: 'Approximately 500,000 tons of bombs. A neutral nation. A campaign hidden from Congress. An essay that traces secrecy to revelation.',
     type: 'article',
+    url: 'https://esy.com/essays/history/cambodia-bombing',
+    siteName: 'Esy',
     images: [
       {
-        url: '/og/cambodia-bombing.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Cambodia Bombing 1965-1973 - Visual Essay'
+        url: 'https://esy.com/og/B-52D-dropping-bombs-over-vietnam.jpg',
+        width: 1798,
+        height: 1605,
+        alt: 'B-52D Stratofortress dropping bombs over Vietnam — Cambodia Bombed visual essay'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Cambodia Bombed (1965–1973): The Secret Air War',
-    description: '500,000 tons of bombs dropped on a neutral nation. The story of secrecy, revelation, and ongoing consequences.'
+    description: '500,000 tons of bombs dropped on a neutral nation. The story of secrecy, revelation, and ongoing consequences.',
+    images: ['https://esy.com/og/B-52D-dropping-bombs-over-vietnam.jpg']
   }
 };
 
