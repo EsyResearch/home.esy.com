@@ -82,6 +82,7 @@ const IMAGES = {
   bigMamaThornton: "https://upload.wikimedia.org/wikipedia/commons/c/c1/Blues_is_a_woman_Reitz_%28Big_Mama_Thornton%29.jpg",
   gambleAndHuff: "https://upload.wikimedia.org/wikipedia/commons/0/02/Kenny_Gamble_Leon_Huff.jpg",
   funkBrothers: "https://upload.wikimedia.org/wikipedia/commons/4/43/The_Funk_Brothers.jpg",
+  cosimoMatassa: "https://upload.wikimedia.org/wikipedia/commons/1/11/Cosimo_Matassa.jpg",
 } as const;
 
 // ==================== CUSTOM HOOKS ====================
@@ -455,6 +456,8 @@ const chapters: Chapter[] = [
         domains: ["Engineer", "Studio Owner", "Pioneer"],
         description: "Opened J&M Recording Studio at age 18 in 1945. Recorded virtually every New Orleans R&B hit through the 1970s. Inducted into the Rock and Roll Hall of Fame in 2012 for his foundational contributions.",
         isFeatured: true,
+        imageUrl: IMAGES.cosimoMatassa,
+        imageAttribution: "Infrogmation of New Orleans, Wikimedia Commons, CC BY 2.0",
       },
       {
         name: "Fats Domino",
