@@ -32,6 +32,28 @@ const IMAGES = {
   janisJoplin: "https://upload.wikimedia.org/wikipedia/commons/9/92/Janis_Joplin_1970.JPG",
   georgeMartin: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Beatles_and_George_Martin_in_studio_1966.JPG",
   ruthBrown: "https://upload.wikimedia.org/wikipedia/commons/d/d6/Ruth_Brown_cropped.jpg",
+  tinaTurnerRevue: "https://upload.wikimedia.org/wikipedia/commons/7/7f/Ike_%26_Tina_Turner_%281966%29.png",
+  tinaTurnerSolo: "https://upload.wikimedia.org/wikipedia/commons/6/64/Tina_Turner_%281985%29.jpg",
+  // Expanded Chapter 12 figures
+  maRainey: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Ma_Rainey_%281917_publicity_photo%29.jpg",
+  bessieSmith: "https://upload.wikimedia.org/wikipedia/commons/1/17/Bessie_Smith_%281936%29_by_Carl_Van_Vechten.jpg",
+  lavernBaker: "https://upload.wikimedia.org/wikipedia/commons/4/49/LaVern_Baker_1956.jpg",
+  ettaJames: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Etta_James.jpg",
+  wandaJackson: "https://upload.wikimedia.org/wikipedia/commons/8/80/Wanda_Jackson.png",
+  arethaFranklin: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Aretha_Franklin_1968.jpg",
+  graceSlick: "https://upload.wikimedia.org/wikipedia/commons/7/73/Grace_Slick_1967.png",
+  ronnieSpector: "https://upload.wikimedia.org/wikipedia/commons/5/59/Ronnie_Spector_1971.jpg",
+  heart: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Ann_and_Nancy_Wilson_of_Heart.jpg",
+  pattiSmith: "https://upload.wikimedia.org/wikipedia/commons/d/d6/Patti_Smith_performing_in_Finland%2C_2007.jpg",
+  debbyHarry: "https://upload.wikimedia.org/wikipedia/commons/2/21/Debbie_Harry_1977.jpg",
+  stevieNicks: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Stevie_Nicks_-_1977.jpg",
+  suziQuatro: "https://upload.wikimedia.org/wikipedia/commons/8/87/Suzi_Quatro_-_Pair_of_45%27s_%28remastered%29_%28cropped%29.png",
+  patBenatar: "https://upload.wikimedia.org/wikipedia/commons/3/35/Pat_Benatar_1980.jpg",
+  goGos: "https://upload.wikimedia.org/wikipedia/commons/4/43/The_Go-Gos_1981.jpg",
+  chrissieHynde: "https://upload.wikimedia.org/wikipedia/commons/4/43/Chrissie_hynde_1702710099.jpg",
+  kathleenHanna: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Kathleen_Hanna_2.jpg",
+  courtneyLove: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Courtney_Love_1995.jpg",
+  pjHarvey: "https://upload.wikimedia.org/wikipedia/commons/2/2a/PJ_Harvey_2017.jpg",
 } as const;
 
 // ==================== TYPES ====================
@@ -715,6 +737,106 @@ const Sources: React.FC = () => (
               Ruth Brown
             </a> — Atlantic Records, Public Domain
           </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Ike_%26_Tina_Turner_(1966).png" target="_blank" rel="noopener noreferrer">
+              Tina Turner (Ike & Tina era)
+            </a> — CBS Television, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Tina_Turner_(1985).jpg" target="_blank" rel="noopener noreferrer">
+              Tina Turner (solo era)
+            </a> — Nationaal Archief, CC0
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Ma_Rainey_(1917_publicity_photo).jpg" target="_blank" rel="noopener noreferrer">
+              Ma Rainey
+            </a> — Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Bessie_Smith_(1936)_by_Carl_Van_Vechten.jpg" target="_blank" rel="noopener noreferrer">
+              Bessie Smith
+            </a> — Carl Van Vechten, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:LaVern_Baker_1956.jpg" target="_blank" rel="noopener noreferrer">
+              LaVern Baker
+            </a> — Atlantic Records, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Etta_James.jpg" target="_blank" rel="noopener noreferrer">
+              Etta James
+            </a> — Chess Records, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Wanda_Jackson.png" target="_blank" rel="noopener noreferrer">
+              Wanda Jackson
+            </a> — Capitol Records, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Aretha_Franklin_1968.jpg" target="_blank" rel="noopener noreferrer">
+              Aretha Franklin
+            </a> — Atlantic Records, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Grace_Slick_1967.png" target="_blank" rel="noopener noreferrer">
+              Grace Slick
+            </a> — RCA Records, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Ronnie_Spector_1971.jpg" target="_blank" rel="noopener noreferrer">
+              Ronnie Spector
+            </a> — Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Ann_and_Nancy_Wilson_of_Heart.jpg" target="_blank" rel="noopener noreferrer">
+              Heart (Ann & Nancy Wilson)
+            </a> — Capitol Records, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Patti_Smith_performing_in_Finland,_2007.jpg" target="_blank" rel="noopener noreferrer">
+              Patti Smith
+            </a> — Beni Muck, CC BY-SA 2.0
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Debbie_Harry_1977.jpg" target="_blank" rel="noopener noreferrer">
+              Debbie Harry
+            </a> — Chris Stein, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Stevie_Nicks_-_1977.jpg" target="_blank" rel="noopener noreferrer">
+              Stevie Nicks
+            </a> — Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Pat_Benatar_1980.jpg" target="_blank" rel="noopener noreferrer">
+              Pat Benatar
+            </a> — Chrysalis Records, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:The_Go-Gos_1981.jpg" target="_blank" rel="noopener noreferrer">
+              The Go-Go's
+            </a> — IRS Records, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Chrissie_hynde_1702710099.jpg" target="_blank" rel="noopener noreferrer">
+              Chrissie Hynde
+            </a> — Sire Records, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Kathleen_Hanna_2.jpg" target="_blank" rel="noopener noreferrer">
+              Kathleen Hanna
+            </a> — Colin Mutchler, CC BY-SA 2.0
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:Courtney_Love_1995.jpg" target="_blank" rel="noopener noreferrer">
+              Courtney Love
+            </a> — DGC Records, Public Domain
+          </li>
+          <li>
+            <a href="https://commons.wikimedia.org/wiki/File:PJ_Harvey_2017.jpg" target="_blank" rel="noopener noreferrer">
+              PJ Harvey
+            </a> — Kris Krug, CC BY-SA 2.0
+          </li>
         </ul>
       </div>
     </div>
@@ -777,11 +899,38 @@ const chapters: Chapter[] = [
     subtitle: "The Pre-Rock Streams (1920s–1949)",
     era: "prerock",
     narrative: [
+      "Before rock and roll had a name, Black women were creating its vocabulary. Ma Rainey—the 'Mother of the Blues'—began recording in 1923, her raw power and stage presence inventing the template for everything that followed. Her protégé Bessie Smith became the highest-paid Black entertainer of the 1920s, selling millions of records with a vocal intensity that would echo through every rock singer who ever screamed into a microphone.",
       "In Texas lumber camps of the 1870s, African American pianists developed a driving style—eight-to-the-bar left-hand patterns beneath improvised right-hand melodies. The music migrated to Chicago, where Pinetop Smith's 'Pinetop's Boogie Woogie' (December 29, 1928) became the first hit with 'boogie' in the title.",
       "On December 23, 1938, boogie-woogie reached Carnegie Hall. The 'Spirituals to Swing' concert featured Meade 'Lux' Lewis, Albert Ammons, and Pete Johnson. Classical America heard the rolling thunder.",
       "Meanwhile, T-Bone Walker picked up the electric guitar in 1935 and invented its vocabulary—single-string phrases, double-string slurs, showmanship like playing behind his head. When Muddy Waters moved from Mississippi to Chicago in 1943, he faced a problem: acoustic Delta blues couldn't compete with Chicago's noisy clubs. The Delta blues became electrified, loud enough to shake walls.",
     ],
     figures: [
+      {
+        name: "Ma Rainey",
+        epithet: "Mother of the Blues",
+        dates: "1886–1939",
+        domains: ["Blues", "Vaudeville", "Pioneer"],
+        description:
+          "The first great professional blues vocalist. Began recording in 1923 for Paramount Records; over 100 recordings. Mentored Bessie Smith. Her raw power, gold teeth, and elaborate stage presence created the template for rock stardom itself.",
+        quote: "They hear it come out, but they don't know how it got there.",
+        imageSrc: IMAGES.maRainey,
+        imageAlt: "Ma Rainey, 1917",
+        imageCredit: "Public Domain",
+        featured: true,
+      },
+      {
+        name: "Bessie Smith",
+        epithet: "Empress of the Blues",
+        dates: "1894–1937",
+        domains: ["Blues", "Jazz", "Icon"],
+        description:
+          "The highest-paid Black entertainer of the 1920s. Columbia Records' best-selling artist. Her vocal power—singing to thousands without a microphone—created the emotional intensity that defines rock singing. Every screamer traces back to Bessie.",
+        quote: "I ain't good-lookin', but I'm somebody's angel child.",
+        imageSrc: IMAGES.bessieSmith,
+        imageAlt: "Bessie Smith, 1936",
+        imageCredit: "Carl Van Vechten, Public Domain",
+        featured: true,
+      },
       {
         name: "Pinetop Smith",
         epithet: "First Boogie-Woogie Recording Star",
@@ -843,6 +992,19 @@ const chapters: Chapter[] = [
         imageAlt: "Ike Turner, 1971",
         imageCredit: "Rob Mieremet, CC0",
         featured: false,
+      },
+      {
+        name: "Tina Turner",
+        epithet: "The Voice of the Revue",
+        dates: "1939–2023",
+        domains: ["Vocalist", "Dancer", "Performer"],
+        description:
+          "As Anna Mae Bullock, she joined Ike Turner's Kings of Rhythm in 1957. The Ike & Tina Turner Revue became one of the most electrifying live acts of the 1960s. 'River Deep – Mountain High' (1966) was a masterpiece. Behind the stage, she endured years of abuse.",
+        quote: "I didn't have anybody, really, no foundation in life, so I had to make my own way.",
+        imageSrc: IMAGES.tinaTurnerRevue,
+        imageAlt: "Ike & Tina Turner, 1966",
+        imageCredit: "CBS Television, Public Domain",
+        featured: true,
       },
     ],
   },
@@ -992,6 +1154,19 @@ const chapters: Chapter[] = [
         imageCredit: "Maurice Seymour, Public Domain",
         featured: false,
       },
+      {
+        name: "Wanda Jackson",
+        epithet: "The Queen of Rockabilly",
+        dates: "b. 1937",
+        domains: ["Rockabilly", "Country", "Pioneer"],
+        description:
+          "Toured with Elvis in 1955–56; he encouraged her to sing rockabilly. Her growling vocals on 'Fujiyama Mama' and 'Let's Have a Party' were harder than any man's. The only woman in 1950s rockabilly's front ranks.",
+        quote: "Elvis told me, 'You need to stop singing country and sing rock and roll.' So I did.",
+        imageSrc: IMAGES.wandaJackson,
+        imageAlt: "Wanda Jackson",
+        imageCredit: "Capitol Records, Public Domain",
+        featured: true,
+      },
     ],
   },
   {
@@ -1030,6 +1205,19 @@ const chapters: Chapter[] = [
         imageSrc: IMAGES.muddyWaters,
         imageAlt: "Muddy Waters performing",
         imageCredit: "Jean-Luc Ourlin, CC BY-SA 2.0",
+        featured: true,
+      },
+      {
+        name: "Etta James",
+        epithet: "The Matriarch of R&B",
+        dates: "1938–2012",
+        domains: ["R&B", "Blues", "Rock"],
+        description:
+          "Signed to Chess subsidiary at 17. 'At Last' became timeless. Bridged R&B, blues, and rock with raw emotional power across six decades. Battled addiction, came back stronger. Six Grammys, Rock Hall 1993.",
+        quote: "I'm a woman. I'm Black. I'm from the ghetto. I just wanted to sing.",
+        imageSrc: IMAGES.ettaJames,
+        imageAlt: "Etta James performing",
+        imageCredit: "Chess Records, Public Domain",
         featured: true,
       },
     ],
@@ -1076,6 +1264,19 @@ const chapters: Chapter[] = [
         imageCredit: "Topps Gum Cards, Public Domain",
         featured: true,
       },
+      {
+        name: "LaVern Baker",
+        epithet: "Rock's First Lady",
+        dates: "1929–1997",
+        domains: ["R&B", "Rock", "Activist"],
+        description:
+          "Atlantic Records star whose 'Tweedle Dee' (1954) was covered note-for-note by Georgia Gibbs. Baker petitioned Congress for copyright protection—the first artist to publicly fight back against cover theft. Rock Hall 1991.",
+        quote: "I was making hits while they were making copies.",
+        imageSrc: IMAGES.lavernBaker,
+        imageAlt: "LaVern Baker, 1956",
+        imageCredit: "Atlantic Records, Public Domain",
+        featured: true,
+      },
     ],
   },
   {
@@ -1119,6 +1320,19 @@ const chapters: Chapter[] = [
         imageCredit: "London Records, Public Domain",
         featured: true,
       },
+      {
+        name: "Ronnie Spector",
+        epithet: "The Voice of the Wall of Sound",
+        dates: "1943–2022",
+        domains: ["Pop", "Rock", "Girl Groups"],
+        description:
+          "Lead singer of The Ronettes. 'Be My Baby' (1963) defined Phil Spector's Wall of Sound—its opening drum beat became the most imitated in rock history. Brian Wilson pulled his car over when he first heard it. The Beatles, the Stones, Springsteen—all cite her as foundational.",
+        quote: "I used to tell myself, 'Ronnie, someday you're gonna be free, and you're gonna make music again.'",
+        imageSrc: IMAGES.ronnieSpector,
+        imageAlt: "Ronnie Spector, 1971",
+        imageCredit: "Apple Records, Public Domain",
+        featured: true,
+      },
     ],
   },
   {
@@ -1155,11 +1369,51 @@ const chapters: Chapter[] = [
     subtitle: "Genre Evolution (1968–1995)",
     era: "evolution",
     narrative: [
-      "Rock didn't stay unified. From the late 1960s, it splintered into genres—each with its own rules, heroes, and audiences.",
-      "Black Sabbath emerged from Birmingham, England in 1968. Their doom-laden sound—slow, heavy, dark—became heavy metal. CBGB at 315 Bowery, New York, became ground zero for punk. The Ramones stripped rock to three chords and aggression. Across the Atlantic, the Sex Pistols and The Clash made punk political.",
-      "On August 1, 1981, MTV launched with 'Video Killed the Radio Star.' The channel transformed rock into a visual medium. In 1991, Nirvana's 'Nevermind' broke grunge into the mainstream. Kurt Cobain became rock's last great martyr.",
+      "Rock didn't stay unified. From the late 1960s, it splintered into genres—each with its own rules, heroes, and audiences. And in every genre, women were there from the beginning.",
+      "Aretha Franklin commanded soul-rock crossover with Muscle Shoals sessions. Janis Joplin brought blues intensity to rock's biggest stages. Grace Slick fronted Jefferson Airplane through psychedelia's peak. Black Sabbath emerged from Birmingham in 1968, creating heavy metal. Heart proved women could match that heaviness—Ann Wilson's vocals soaring over Nancy's hard rock guitar.",
+      "CBGB at 315 Bowery became ground zero for punk. The Ramones stripped rock to three chords. But alongside them: Patti Smith merged poetry and punk with 'Horses' (1975). Debbie Harry made Blondie a new wave powerhouse. Suzi Quatro pioneered leather-clad female rock stardom, directly inspiring Joan Jett.",
+      "On August 1, 1981, MTV launched. Pat Benatar brought rock credibility to the video age. The Go-Go's became the first all-female band writing and playing their own #1 album. Stevie Nicks became rock royalty with Fleetwood Mac. In 1991, Nirvana's 'Nevermind' broke grunge mainstream—but so did Hole, with Courtney Love's raw confessional power. Riot grrrl exploded: Kathleen Hanna and Bikini Kill named the industry's sexism explicitly. PJ Harvey proved women could dominate art rock.",
     ],
     figures: [
+      {
+        name: "Aretha Franklin",
+        epithet: "Queen of Soul",
+        dates: "1942–2018",
+        domains: ["Soul", "R&B", "Gospel"],
+        description:
+          "The voice that demanded R-E-S-P-E-C-T. 18 Grammys, first woman inducted into Rock Hall (1987). Her Muscle Shoals sessions bridged soul and rock, her power transcending every genre boundary.",
+        quote: "Being the Queen is not all about singing. It has much to do with your service to people.",
+        imageSrc: IMAGES.arethaFranklin,
+        imageAlt: "Aretha Franklin, 1968",
+        imageCredit: "Atlantic Records, Public Domain",
+        featured: true,
+      },
+      {
+        name: "Janis Joplin",
+        epithet: "Rock's First Female Superstar",
+        dates: "1943–1970",
+        domains: ["Blues Rock", "Psychedelic", "Vocalist"],
+        description:
+          "Fronted Big Brother and the Holding Company. Her raw, soulful wail broke every barrier—except the one that killed her. Dead at 27 from overdose, she remains rock's most visceral female voice.",
+        quote: "Don't compromise yourself. You are all you've got.",
+        imageSrc: IMAGES.janisJoplin,
+        imageAlt: "Janis Joplin performing, 1970",
+        imageCredit: "Albert B. Grossman Management, Public Domain",
+        featured: true,
+      },
+      {
+        name: "Grace Slick",
+        epithet: "Psychedelic Voice",
+        dates: "b. 1939",
+        domains: ["Psychedelic", "Rock", "Counterculture"],
+        description:
+          "Fronted Jefferson Airplane; wrote and sang 'White Rabbit' and 'Somebody to Love' (1967). The voice of San Francisco psychedelia. Unapologetically rebellious through the 1960s and beyond.",
+        quote: "Through the looking glass and down the rabbit hole.",
+        imageSrc: IMAGES.graceSlick,
+        imageAlt: "Grace Slick, 1967",
+        imageCredit: "RCA Records, Public Domain",
+        featured: true,
+      },
       {
         name: "The Ramones",
         epithet: "Punk Originators",
@@ -1175,6 +1429,110 @@ const chapters: Chapter[] = [
         featured: true,
       },
       {
+        name: "Ann & Nancy Wilson",
+        epithet: "Heart",
+        dates: "b. 1950 / b. 1954",
+        domains: ["Hard Rock", "Arena Rock", "Pioneers"],
+        description:
+          "Proved women could play hard rock at the highest level. 'Barracuda,' 'Crazy on You,' 35 million albums sold. Sisters who led a band in a man's world and never backed down.",
+        quote: "We had to be twice as good to be taken half as seriously.",
+        imageSrc: IMAGES.heart,
+        imageAlt: "Ann and Nancy Wilson of Heart",
+        imageCredit: "Capitol Records, Public Domain",
+        featured: true,
+      },
+      {
+        name: "Patti Smith",
+        epithet: "Punk Poet Laureate",
+        dates: "b. 1946",
+        domains: ["Punk", "Poetry", "Art Rock"],
+        description:
+          "Merged poetry and punk with 'Horses' (1975), one of rock's most influential debuts. 'Because the Night' (1978) co-written with Springsteen. Godmother of punk, still performing.",
+        quote: "Jesus died for somebody's sins but not mine.",
+        imageSrc: IMAGES.pattiSmith,
+        imageAlt: "Patti Smith performing, 2007",
+        imageCredit: "Beni Muck, CC BY-SA 2.0",
+        featured: true,
+      },
+      {
+        name: "Debbie Harry",
+        epithet: "Blondie",
+        dates: "b. 1945",
+        domains: ["New Wave", "Punk", "Disco"],
+        description:
+          "Fronted Blondie; crossed genres from punk to disco to rap. 'Heart of Glass,' 'Call Me,' 'Rapture'—the last being the first rap song to hit #1. Made new wave glamorous and dangerous.",
+        quote: "I wasn't a sex symbol, I was a sex object. But I used it.",
+        imageSrc: IMAGES.debbyHarry,
+        imageAlt: "Debbie Harry, 1977",
+        imageCredit: "Chrysalis Records, Public Domain",
+        featured: true,
+      },
+      {
+        name: "Joan Jett",
+        epithet: "Rock's Bad Reputation",
+        dates: "b. 1958",
+        domains: ["Rock", "Punk", "Label Owner"],
+        description:
+          "Rejected by 23 labels; formed Blackheart Records. 'I Love Rock 'n' Roll' (1981) spent eight weeks at #1. Proved women could build their own empires.",
+        quote: "I don't give a damn 'bout my bad reputation.",
+        imageSrc: IMAGES.joanJett,
+        imageAlt: "Joan Jett performing live, 2013",
+        imageCredit: "Andrew Hurley, CC BY-SA 2.0",
+        featured: true,
+      },
+      {
+        name: "Stevie Nicks",
+        epithet: "Rock Royalty",
+        dates: "b. 1948",
+        domains: ["Rock", "Solo", "Fleetwood Mac"],
+        description:
+          "Joined Fleetwood Mac in 1975; 'Rumours' sold 40 million copies. Solo career with 'Edge of Seventeen.' First woman inducted into Rock Hall twice (with Fleetwood Mac and solo).",
+        quote: "I'm not just a rock star. I'm a survivor.",
+        imageSrc: IMAGES.stevieNicks,
+        imageAlt: "Stevie Nicks, 1977",
+        imageCredit: "Warner Bros., Public Domain",
+        featured: true,
+      },
+      {
+        name: "Pat Benatar",
+        epithet: "Rock's Voice on MTV",
+        dates: "b. 1953",
+        domains: ["Rock", "Pop", "MTV Era"],
+        description:
+          "Four consecutive Grammy Awards for Best Female Rock Vocal. 'Hit Me with Your Best Shot,' 'Love Is a Battlefield.' Brought rock credibility to the video age.",
+        quote: "We are young, heartache to heartache we stand.",
+        imageSrc: IMAGES.patBenatar,
+        imageAlt: "Pat Benatar, 1980",
+        imageCredit: "Chrysalis Records, Public Domain",
+        featured: true,
+      },
+      {
+        name: "The Go-Go's",
+        epithet: "All-Female #1",
+        dates: "Formed 1978",
+        domains: ["New Wave", "Pop", "Punk"],
+        description:
+          "First all-female band to write their own songs, play their own instruments, and have a #1 album ('Beauty and the Beat,' 1981). 'We Got the Beat,' 'Our Lips Are Sealed.' Rock Hall 2021.",
+        quote: "We didn't set out to make history. We just wanted to make music.",
+        imageSrc: IMAGES.goGos,
+        imageAlt: "The Go-Go's, 1981",
+        imageCredit: "IRS Records, Public Domain",
+        featured: true,
+      },
+      {
+        name: "Chrissie Hynde",
+        epithet: "The Pretender",
+        dates: "b. 1951",
+        domains: ["Rock", "New Wave", "Songwriter"],
+        description:
+          "Founded The Pretenders; 'Brass in Pocket' (1979). Uncompromising leadership, distinctive voice. One of rock's great frontpeople, period.",
+        quote: "I wasn't going to be a woman in rock. I was going to be a musician.",
+        imageSrc: IMAGES.chrissieHynde,
+        imageAlt: "Chrissie Hynde",
+        imageCredit: "Sire Records, Public Domain",
+        featured: true,
+      },
+      {
         name: "Kurt Cobain",
         epithet: "Grunge Martyr",
         dates: "1967–1994",
@@ -1187,46 +1545,112 @@ const chapters: Chapter[] = [
         imageCredit: "DGC Records, Public Domain",
         featured: true,
       },
+      {
+        name: "Kathleen Hanna",
+        epithet: "Riot Grrrl",
+        dates: "b. 1968",
+        domains: ["Punk", "Feminism", "DIY"],
+        description:
+          "Led Bikini Kill; named the industry's sexism explicitly. 'Girls to the front!' Riot grrrl gave women a voice and a movement. Later formed Le Tigre and The Julie Ruin.",
+        quote: "Punk rock should mean freedom.",
+        imageSrc: IMAGES.kathleenHanna,
+        imageAlt: "Kathleen Hanna performing",
+        imageCredit: "Colin Mutchler, CC BY-SA 2.0",
+        featured: true,
+      },
+      {
+        name: "Courtney Love",
+        epithet: "Hole",
+        dates: "b. 1964",
+        domains: ["Grunge", "Alternative", "Confrontational"],
+        description:
+          "Fronted Hole; 'Live Through This' (1994) was raw confessional rock released the same week as Nirvana's end. Controversial, confrontational, unapologetically herself.",
+        quote: "I'm not a woman. I'm a force of nature.",
+        imageSrc: IMAGES.courtneyLove,
+        imageAlt: "Courtney Love, 1995",
+        imageCredit: "DGC Records, Public Domain",
+        featured: true,
+      },
+      {
+        name: "PJ Harvey",
+        epithet: "Art Rock Auteur",
+        dates: "b. 1969",
+        domains: ["Art Rock", "Alternative", "Songwriter"],
+        description:
+          "Only artist to win the Mercury Prize twice. From 'Rid of Me' (1993) to 'Let England Shake' (2011), an uncompromising artistic vision across 30 years. Proved women could dominate art rock on their own terms.",
+        quote: "I don't think about gender. I think about making the best possible work.",
+        imageSrc: IMAGES.pjHarvey,
+        imageAlt: "PJ Harvey, 2017",
+        imageCredit: "Kris Krug, CC BY-SA 2.0",
+        featured: true,
+      },
     ],
   },
   {
     id: "chapter-12",
     number: "Chapter 12",
-    title: "The Silenced Half",
-    subtitle: "Women in Rock (1920s–Present)",
-    era: "evolution",
-    contentWarning:
-      "This chapter discusses sexism, erasure, and ongoing discrimination against women in the music industry.",
+    title: "The Full Chorus",
+    subtitle: "Recognition at Last (1987–Present)",
+    era: "present",
     narrative: [
-      "Women have been in rock since before it had a name. Ma Rainey was recording blues in the 1920s. Sister Rosetta Tharpe invented electric guitar distortion. Big Mama Thornton's 'Hound Dog' was stolen and made famous by a man.",
-      "Yet rock's history has systematically erased, diminished, and sexualized women's contributions. Wanda Jackson was the 'Queen of Rockabilly'—raw, powerful, overlooked. Janis Joplin became rock's first female superstar, dead at 27. Joan Jett, rejected by 23 labels, formed her own (Blackheart Records) and had hit after hit.",
-      "In the early 1990s, Bikini Kill, Sleater-Kinney, and others created riot grrrl—feminist punk that explicitly named the industry's sexism. Today, women still face barriers in rock—fewer festival slots, less critical attention, ongoing sexualization. But the history cannot be rewritten without them.",
+      "For decades, rock history was told with half the band missing. The women who invented the sound, who taught the moves, who wrote the songs—they were there all along. Now we hear them.",
+      "In 1987, Aretha Franklin became the first woman inducted into the Rock and Roll Hall of Fame. It took 45 more years to induct Sister Rosetta Tharpe—the woman who invented the rock guitar style in the 1940s. Ruth Brown fought for 20 years to get royalties from Atlantic, the label she built. Tina Turner left an abusive marriage with 36 cents, then became the highest-grossing solo touring artist of her era.",
+      "The reckoning continues. The Go-Go's entered the Rock Hall in 2021. Stevie Nicks became the first woman inducted twice. Young artists now cite Big Mama Thornton and Sister Rosetta Tharpe by name. Documentaries like 'Twenty Feet from Stardom' and 'The Go-Go's' tell the complete story.",
+      "The women profiled throughout this essay—in every chapter, in every era—are no longer footnotes. From Ma Rainey to PJ Harvey, they were the foundation. We finally know.",
     ],
     figures: [
       {
-        name: "Joan Jett",
-        epithet: "Rock's Bad Reputation",
-        dates: "b. 1958",
-        domains: ["Rock", "Punk", "Label Owner"],
+        name: "Tina Turner",
+        epithet: "The Queen of Rock 'n' Roll",
+        dates: "1939–2023",
+        domains: ["Rock", "R&B", "Triumph"],
         description:
-          "Rejected by 23 labels; formed Blackheart Records. 'I Love Rock 'n' Roll' (1981) spent eight weeks at #1.",
-        quote: "I don't give a damn 'bout my bad reputation.",
-        imageSrc: IMAGES.joanJett,
-        imageAlt: "Joan Jett performing live, 2013",
-        imageCredit: "Andrew Hurley, CC BY-SA 2.0",
+          "Left an abusive marriage in 1976 with 36 cents and a Mobil gas card. Eight years later, 'Private Dancer' sold 20 million copies. At 44, she became the oldest solo female artist to top the charts. She didn't just survive—she became the undisputed Queen of Rock 'n' Roll.",
+        quote: "I will never give up, and I will never give in.",
+        imageSrc: IMAGES.tinaTurnerSolo,
+        imageAlt: "Tina Turner performing, 1985",
+        imageCredit: "Nationaal Archief, CC0",
         featured: true,
       },
       {
-        name: "Janis Joplin",
-        epithet: "Rock's First Female Superstar",
-        dates: "1943–1970",
-        domains: ["Blues Rock", "Psychedelic", "Vocalist"],
+        name: "Ruth Brown",
+        epithet: "Miss Rhythm—Justice at Last",
+        dates: "1928–2006",
+        domains: ["R&B", "Activist", "Pioneer"],
         description:
-          "Fronted Big Brother and the Holding Company; solo career cut short. Died at 27 from overdose.",
-        quote: "Don't compromise yourself. You are all you've got.",
-        imageSrc: IMAGES.janisJoplin,
-        imageAlt: "Janis Joplin performing, 1970",
-        imageCredit: "Albert B. Grossman Management, Public Domain",
+          "Her hits made Atlantic 'The House That Ruth Built.' Left the label in the 1960s with no savings; worked as a bus driver, floor scrubber. Fought for 20 years; won $20,000 in back royalties and established the Rhythm and Blues Foundation. Rock Hall 1993. Tony Award 1989.",
+        quote: "They called Atlantic 'The House That Ruth Built.' But Ruth wasn't getting paid. Until she fought back.",
+        imageSrc: IMAGES.ruthBrown,
+        imageAlt: "Ruth Brown portrait",
+        imageCredit: "Atlantic Records, Public Domain",
+        featured: true,
+      },
+      {
+        name: "Sister Rosetta Tharpe",
+        epithet: "The Godmother—Recognized",
+        dates: "1915–1973",
+        domains: ["Gospel", "Electric Guitar", "Pioneer"],
+        description:
+          "Invented the rock guitar style in the 1940s—a decade before Chuck Berry or Elvis. Influenced every guitarist who followed. Died in 1973, largely forgotten by rock historians. Inducted into Rock and Roll Hall of Fame in 2018—45 years later. Her legacy is finally secure.",
+        quote: "All this new stuff they call Rock and Roll, why I've been playing that for years now.",
+        quoteContext: "1957",
+        imageSrc: IMAGES.sisterRosettaTharpe,
+        imageAlt: "Sister Rosetta Tharpe with guitar, 1938",
+        imageCredit: "Public Domain",
+        featured: true,
+      },
+      {
+        name: "Big Mama Thornton",
+        epithet: "Hound Dog Original—Remembered",
+        dates: "1926–1984",
+        domains: ["Blues", "Pioneer", "Legacy"],
+        description:
+          "Her 1953 'Hound Dog' topped the R&B chart for seven weeks. Paid $500, no royalties. Elvis's version made him the King. She died in a Los Angeles boarding house with $10,000. Today, she's finally credited as the original—every article about 'Hound Dog' names her first.",
+        quote: "Didn't get no money from them at all. Everybody livin' in a house but me.",
+        quoteContext: "1984",
+        imageSrc: IMAGES.bigMamaThornton,
+        imageAlt: "Big Mama Thornton performing",
+        imageCredit: "Barbara Weinberg Barefield, CC BY-SA 3.0",
         featured: true,
       },
     ],
@@ -1270,29 +1694,16 @@ const chapters: Chapter[] = [
   {
     id: "chapter-14",
     number: "Chapter 14",
-    title: "The Unfinished Reckoning",
-    subtitle: "Race, Legacy, and Debts Unpaid (1986–Present)",
+    title: "The Living Sound",
+    subtitle: "Rock's Ongoing Evolution (1986–Present)",
     era: "present",
     narrative: [
-      "Rock and roll has begun to reckon with its history—but the reckoning is incomplete. The Rock and Roll Hall of Fame opened in Cleveland in 1995. The first induction ceremony (1986) saw 60% of inductees being African American. But the institution has faced criticism for how it weighs commercial success versus creative innovation.",
-      "Ruth Brown's 20-year legal battle resulted in $20,000 in back royalties from Atlantic—and the creation of the Rhythm and Blues Foundation to help aging artists. Chuck Berry regained 'Maybellene' writing credit in 1986, 31 years after release. Sister Rosetta Tharpe was inducted into the Rock and Roll Hall of Fame in 2017, 44 years after her death.",
-      "Today, hip-hop has surpassed rock as America's most consumed music genre (2017). Some see this as a return: Black musical innovation reclaiming the mainstream. The question persists: Can a music born from Black innovation, taken by white appropriation, and spread globally ever settle its debts?",
+      "Rock and roll was never meant to stay still. From the moment it had a name, it began to travel, to mutate, to merge with every local tradition it touched. Every decade declares rock dead; every decade it returns transformed.",
+      "In Brazil, Tropicalia's children still fuse rock with samba. In Mali and Niger, Tinariwen and Bombino play 'desert blues'—the music completing a circle back to its African roots. K-rock and J-rock thrive in Asia. Måneskin won Eurovision 2021 with raw Italian rock. In every city in the world, somewhere right now, a teenager is picking up a guitar for the first time.",
+      "The story is no longer written by critics in a few cities. Hip-hop sampled rock and took it somewhere new. Olivia Rodrigo cites Paramore who cite Blondie who cite the Ronettes. Brittany Howard, Fantastic Negrito, Yola, and Black Pumas carry the tradition forward, explicitly naming their lineage. The history is being told correctly now—not just who made the music, but who made the music possible.",
+      "Rock and roll began as a convergence—gospel, blues, country, rhythm and blues, all flowing together into something the world had never heard. It was made by Black hands and white hands, by women and men, by the poor who had nothing but a guitar and a voice. From Memphis to Liverpool to Tokyo to Lagos to São Paulo and back. Seventy years later, the noise continues. The noise that remade the world.",
     ],
-    figures: [
-      {
-        name: "Ruth Brown",
-        epithet: "Miss Rhythm",
-        dates: "1928–2006",
-        domains: ["R&B", "Singer", "Activist"],
-        description:
-          "Her hits made Atlantic 'The House That Ruth Built.' Left Atlantic in the 1960s with no savings; worked as bus driver, floor scrubber. Won 20-year legal battle; received $20,000 in back royalties.",
-        quote: "They called Atlantic 'The House That Ruth Built.' But Ruth wasn't getting paid.",
-        imageSrc: IMAGES.ruthBrown,
-        imageAlt: "Ruth Brown portrait",
-        imageCredit: "Atlantic Records, Public Domain",
-        featured: true,
-      },
-    ],
+    figures: [],
   },
 ];
 
