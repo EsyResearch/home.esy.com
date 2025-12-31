@@ -659,6 +659,8 @@ Current agents derived from this framework:
 | `content-audit-agent.md` | **Content Quality** | Word Count, Depth, Tone Auditor | **Auditor** → QA Remediation Orchestrator, Audit Orchestrator; Genocide/atrocity sensitivity protocols; Spec content compliance verification |
 | `content-research-reconciliation-agent.md` | **Research-Spec Verification** | Research→Spec Gap Detector | **Auditor** (G2.5) → Visual Essay Orchestrator; Ensures research findings are properly elevated into specifications; Human-in-the-loop remediation; Blocks spec approval for critical gaps |
 | `content-research-integration-agent.md` | **Spec-Artifact Verification** | Spec→Artifact Gap Detector | **Auditor** (G5.1) → Bibliography Orchestrator, Image Research Expert; Ensures spec content is faithfully implemented; Human-in-the-loop remediation; Blocks bibliography phase for critical gaps |
+| `design-research-reconciliation-agent.md` | **Design Authenticity Verification** | Design Research→CSS Gap Detector | **Auditor** (G4.1) → Visual Essay Orchestrator; Three-phase audit: Thematic Authenticity, Novelty/Duplication, CSS Implementation; Verifies colors trace to physical artifacts; Detects cross-essay collisions; Blocks image sourcing for critical gaps |
+| `design-research-integration-agent.md` | **CSS-TSX Binding Verification** | CSS Selector→TSX className Binding | **Auditor** (G5.2) → Visual Essay Orchestrator; Verifies CSS selectors bind to TSX classNames; Detects convention mismatches (hyphen vs underscore); ≥95% binding required; Catches Nakba-style failures |
 | `visual-essay-invocation-agent.md` | **Spec Generation** | Visual Essay Specification Architect | **Pre-processor** → Visual Essay Orchestrator (Phase 1); Uses `visual-essay-invocation` skill → stores to `specs/` |
 | `meta-prompt-enhancer.md` | **Universal Enhancement** | Prompt Architect & Instruction Designer | **Universal Pre-processor** → Any AI System, Any Agent; Uses CRISP-E framework (Context, Role, Intent, Specifics, Parameters, Examples) |
 | `social-media-meta-expert.md` | **Social Sharing Optimization** | Social Meta Specialist (Audit + Implementation) | **Dual-Role Expert** — Audit Mode (QA gate), Implementation Mode (fixes), Advisory Mode (strategy); OG, Twitter Cards, JSON-LD; → Visual Essay Orchestrator (publish gate) |
@@ -697,9 +699,11 @@ This meta-framework should evolve as patterns emerge:
 ---
 
 ## Last Updated
-December 30, 2024
+December 31, 2024
 
 ### Recent Changes
+- Added Design Research Reconciliation Agent to registry (G4.1 gate owner; Three-phase audit: Thematic Authenticity, Novelty/Duplication, CSS Implementation; Verifies design derives from subject artifacts; Detects cross-essay color/typography/pattern collisions; Blocks image sourcing for critical gaps)
+- Added Design Research Integration Agent to registry (G5.2 gate owner; CSS-to-TSX binding verification; Detects convention mismatches like hyphen vs underscore; ≥95% binding required to pass; Catches Nakba-style failures where CSS wasn't applied due to naming mismatch)
 - Added Content Research Reconciliation Agent to registry (G2.5 gate owner; Research→Spec gap detection; human-in-the-loop remediation; blocks spec approval for critical omissions like Tina Turner gap)
 - Added Content Research Integration Agent to registry (G5.1 gate owner; Spec→Artifact gap detection; human-in-the-loop remediation; blocks bibliography phase for critical omissions)
 - Added Publish Artifact Orchestrator to registry (pre-publication certification, G8 owner, coordinates Bibliography Orchestrator + Audit Orchestrator + Social Meta + SEO + Gate Guard + QA Remediation; GO/NO-GO/CONDITIONAL certification)

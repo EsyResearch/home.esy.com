@@ -176,8 +176,10 @@
 | **G2: Research Complete** | Research → Spec | Research package complete: figures, quotes, timeline, visuals all verified | **Research Orchestrator** | ✅ Yes |
 | **G3: Spec Approval** | Spec → Production | 6-layer spec complete, all content research-backed, no orphan claims | Visual Essay Orchestrator | ✅ Yes |
 | **G4: Design Research** | Pre-Production | Unique visual identity derived from subject matter | **Design Researcher** | ✅ Yes |
+| **G4.1: Design Research Reconciliation** | Pre-Production | Design authenticity verified, no cross-essay collisions, CSS implements design research | **Design Research Reconciliation Agent** | ✅ Yes |
 | **G4.5: Image Sourcing** | Pre-Production | All images sourced, URLs extracted, licenses verified | **Image Research Expert** | ✅ Yes |
 | **G5: Content Complete** | Production → Audit | All sections drafted, fact-checked, uses research package | Historian Editor | ✅ Yes |
+| **G5.2: Design Research Integration** | Post-Content | CSS selectors bind to TSX classNames (≥95%), no convention mismatches | **Design Research Integration Agent** | ✅ Yes |
 | **G5.5: Bibliography Implementation** | Post-Production | Bibliography section complete (Works Cited, Image Credits, A/V, Data Sources) | **Bibliography Orchestrator** | ✅ Yes |
 | **G6: Citation Audit** | Audit | Citation Certification achieved (content vs. research match) | Citation Audit Agent | ✅ Yes |
 | **G7: Scroll Certification** | Audit | Immersive Scrolling Auditor certification (≥8.0/10) | Scrolling Auditor | ✅ Yes |
@@ -269,6 +271,18 @@
           └────────────────┬────────────────┘
                            │
           ┌────────────────▼────────────────┐
+          │            G4.1                 │
+          │  DESIGN RESEARCH RECONCILIATION │
+          │  ───────────────────────────    │
+          │  • Thematic authenticity audit  │
+          │  • Cross-essay collision check  │
+          │  • CSS implements design research│
+          │  ─────────────────────────────  │
+          │  Owner: Design Research         │
+          │         Reconciliation Agent    │
+          └────────────────┬────────────────┘
+                           │
+          ┌────────────────▼────────────────┐
           │            G4.5                 │
           │       IMAGE SOURCING            │
           │  ───────────────────────────    │
@@ -284,6 +298,18 @@
           │  • All narrative written        │
           │  • All visuals created          │
           │  • Component implemented        │
+          └────────────────┬────────────────┘
+                           │
+          ┌────────────────▼────────────────┐
+          │            G5.2                 │
+          │  DESIGN RESEARCH INTEGRATION    │
+          │  ───────────────────────────    │
+          │  • CSS→TSX binding verified     │
+          │  • ≥95% selectors bound         │
+          │  • No convention mismatches     │
+          │  ─────────────────────────────  │
+          │  Owner: Design Research         │
+          │         Integration Agent       │
           └────────────────┬────────────────┘
                            │
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
@@ -442,8 +468,10 @@
 | G2 | Research Complete | Research Orchestrator |
 | G3 | Spec Approval | Visual Essay Orchestrator |
 | G4 | Design Research | Design Researcher |
+| G4.1 | Design Research Reconciliation | Design Research Reconciliation Agent |
 | G4.5 | Image Sourcing | Image Research Licensing Expert |
 | G5 | Content Complete | Scrollytelling Expert |
+| G5.2 | Design Research Integration | Design Research Integration Agent |
 | G5.5 | Bibliography Implementation | Bibliography Orchestrator |
 | G6 | Citation Audit | Citation Audit Agent |
 | G7 | Scroll Certification | Immersive Scrolling Auditor |
@@ -1069,8 +1097,10 @@ The Publish Artifact Orchestrator will:
 | G2: Research Complete | ✅ |
 | G3: Spec Approval | ✅ |
 | G4: Design Research | ✅ |
+| G4.1: Design Research Reconciliation | ✅ |
 | G4.5: Image Sourcing | ✅ |
 | G5: Content Complete | ✅ |
+| G5.2: Design Research Integration | ✅ |
 | G5.5: Bibliography Implementation | ✅ |
 | G6: Citation Audit | ✅ |
 | G7: Scroll Certification | ✅ |
@@ -1263,6 +1293,79 @@ Produce complete Design Research Report that:
 4. Visual Essay Orchestrator reviews and approves Gate 4
 5. Design Research Report handed to Scrollytelling Expert for implementation
 6. Scrollytelling Expert uses Design Research Report as visual foundation
+
+### Working With design-research-reconciliation-agent.md
+**Role**: Design authenticity and novelty verification for Gate 4.1
+
+**Division of Responsibilities**
+- **Visual Essay Orchestrator**: Pipeline management, Gate 4.1 approval
+- **Design Research Reconciliation Agent**: Three-phase audit (thematic authenticity, novelty, CSS implementation)
+- **Shared**: Design quality standards, cross-essay uniqueness enforcement
+
+**Invocation Protocol**
+```
+Using @agents/auditors/design-research-reconciliation-agent.md, verify
+design authenticity for visual essay about [TOPIC].
+
+Design Research: src/app/essays/[slug]/DESIGN-RESEARCH.md
+CSS: src/app/essays/[slug]/[slug].css
+Compare Against: src/app/essays/**/DESIGN-RESEARCH.md
+
+Run all three phases:
+- Phase 1: Thematic Authenticity (colors trace to artifacts)
+- Phase 2: Novelty/Duplication (no cross-essay collisions)
+- Phase 3: CSS Implementation (CSS matches design research)
+```
+
+**Handoff Protocol**
+1. Visual Essay Orchestrator invokes after Gate 4 (Design Research complete)
+2. Reconciliation Agent audits DESIGN-RESEARCH.md for thematic authenticity
+3. Reconciliation Agent checks for cross-essay color/typography collisions
+4. Reconciliation Agent verifies CSS implements design research tokens
+5. Reconciliation Agent delivers Reconciliation Report
+6. Visual Essay Orchestrator reviews and approves Gate 4.1
+7. Proceed to Image Sourcing (G4.5)
+
+**Blocking Conditions**
+- Design not derived from subject matter (Phase 1 fail)
+- Color/typography collision with another essay (Phase 2 fail)
+- CSS doesn't implement design research tokens (Phase 3 fail)
+
+### Working With design-research-integration-agent.md
+**Role**: CSS-to-TSX binding verification for Gate 5.2
+
+**Division of Responsibilities**
+- **Visual Essay Orchestrator**: Pipeline management, Gate 5.2 approval
+- **Design Research Integration Agent**: CSS selector extraction, TSX className extraction, binding verification
+- **Shared**: Naming convention standards, binding percentage thresholds
+
+**Invocation Protocol**
+```
+Using @agents/auditors/design-research-integration-agent.md, verify
+CSS-to-TSX binding for visual essay at:
+
+CSS: src/app/essays/[slug]/[slug].css
+TSX: src/app/essays/[slug]/page.tsx
+     src/app/essays/[slug]/[Slug]Client.tsx
+
+Verify all CSS selectors bind to TSX classNames.
+Report binding percentage and convention consistency.
+```
+
+**Handoff Protocol**
+1. Visual Essay Orchestrator invokes after Gate 5 (Content Complete)
+2. Integration Agent extracts all CSS selectors
+3. Integration Agent extracts all TSX classNames
+4. Integration Agent cross-references for binding status
+5. Integration Agent delivers Integration Report
+6. Visual Essay Orchestrator reviews binding percentage
+7. If <95% binding: remediation required before Gate 5.2 approval
+8. If ≥95% binding: proceed to Bibliography (G5.5)
+
+**Blocking Conditions**
+- Binding percentage <95% (CSS not being applied)
+- Convention mismatch (hyphen vs underscore across files)
+- Critical orphan selectors (major design components unbound)
 
 ### Working With scrollytelling-expert.md
 **Role**: Primary content and design orchestrator for Phase 4
@@ -1593,9 +1696,17 @@ publication approval review for the visual essay at [PATH].
 - **Source Quality**: Average Tier 1-2 percentage across essays
 
 ## Last Updated
-December 30, 2024
+December 31, 2024
 
 ### Recent Changes
+- Added **G4.1: Design Research Reconciliation** gate — Design Research Reconciliation Agent verifies thematic authenticity, cross-essay novelty, and CSS implementation fidelity
+- Added **G5.2: Design Research Integration** gate — Design Research Integration Agent verifies CSS selectors bind to TSX classNames (≥95% required)
+- Added collaboration protocols for Design Research Reconciliation Agent (G4.1 verification)
+- Added collaboration protocols for Design Research Integration Agent (G5.2 verification)
+- Updated Complete Pipeline Diagram with G4.1 and G5.2 gates
+- Updated Gate Ownership Summary with new gate owners
+- Updated Director Sign-Off template with G4.1 and G5.2
+- **Why these gates**: The Nakba essay failure showed CSS was written but never applied due to naming convention mismatch (hyphens vs underscores). G4.1 catches derivative designs early. G5.2 catches CSS-TSX binding failures before citation audit.
 - Added **G5.5: Bibliography Implementation** gate — Bibliography Orchestrator implements Bibliography section after Content Complete
 - Changed **G8: Mobile Verification** to **G8: Publication Certification** — now owned by Publish Artifact Orchestrator
 - Added collaboration protocols for Bibliography Orchestrator (G5.5 implementation)
