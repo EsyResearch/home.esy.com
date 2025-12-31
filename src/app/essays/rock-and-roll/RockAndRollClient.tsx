@@ -46,7 +46,7 @@ const IMAGES = {
   heart: "https://upload.wikimedia.org/wikipedia/commons/2/21/Nancy_and_Ann_Wilson.jpg",
   pattiSmith: "https://upload.wikimedia.org/wikipedia/commons/8/80/Patti_Smith_performing_in_Finland%2C_2007.jpg",
   debbyHarry: "https://upload.wikimedia.org/wikipedia/commons/3/32/Debbie_Harry_in_1977.jpg",
-  stevieNicks: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Stevie_Nicks_-_1977.jpg",
+  stevieNicks: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Stevie_Nicks_2.jpg",
   suziQuatro: "https://upload.wikimedia.org/wikipedia/commons/8/87/Suzi_Quatro_-_Pair_of_45%27s_%28remastered%29_%28cropped%29.png",
   patBenatar: "https://upload.wikimedia.org/wikipedia/commons/0/0a/PAT_BENATAR_2007-09-07_%28cropped%29.jpg",
   goGos: "https://upload.wikimedia.org/wikipedia/commons/a/a1/The_Go_Gos_in_2012.jpg",
