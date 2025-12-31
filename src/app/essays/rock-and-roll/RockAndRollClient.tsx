@@ -14,7 +14,7 @@ const IMAGES = {
   ikeTurner: "https://upload.wikimedia.org/wikipedia/commons/a/aa/Ike_Turner_1971.jpg",
   alanFreed: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Alan_Freed_1957.JPG",
   leoFender: "https://upload.wikimedia.org/wikipedia/commons/a/af/FGF_museum_01._Leo_and_early_models.jpg",
-  samPhillips: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Sun_Studio%2C_Memphis.jpg",
+  samPhillips: "https://upload.wikimedia.org/wikipedia/commons/1/18/Sun_Studio%2C_Memphis.jpg",
   earlPalmer: "https://upload.wikimedia.org/wikipedia/commons/e/e9/Earl_Palmer.jpg",
   cosimoMatassa: "https://upload.wikimedia.org/wikipedia/commons/1/11/Cosimo_Matassa.jpg",
   elvisPresley: "https://upload.wikimedia.org/wikipedia/commons/9/99/Elvis_Presley_promoting_Jailhouse_Rock.jpg",
@@ -32,28 +32,28 @@ const IMAGES = {
   janisJoplin: "https://upload.wikimedia.org/wikipedia/commons/9/92/Janis_Joplin_1970.JPG",
   georgeMartin: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Beatles_and_George_Martin_in_studio_1966.JPG",
   ruthBrown: "https://upload.wikimedia.org/wikipedia/commons/d/d6/Ruth_Brown_cropped.jpg",
-  tinaTurnerRevue: "https://upload.wikimedia.org/wikipedia/commons/7/7f/Ike_%26_Tina_Turner_%281966%29.png",
-  tinaTurnerSolo: "https://upload.wikimedia.org/wikipedia/commons/6/64/Tina_Turner_%281985%29.jpg",
+  tinaTurnerRevue: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Ike_%26_Tina_Turner%2C_Bestanddeelnr_924-2170_-_Restoration.jpg",
+  tinaTurnerSolo: "https://upload.wikimedia.org/wikipedia/commons/8/86/Tina_Turner_1985.jpg",
   // Expanded Chapter 12 figures
   maRainey: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Ma_Rainey_%281917_publicity_photo%29.jpg",
-  bessieSmith: "https://upload.wikimedia.org/wikipedia/commons/1/17/Bessie_Smith_%281936%29_by_Carl_Van_Vechten.jpg",
-  lavernBaker: "https://upload.wikimedia.org/wikipedia/commons/4/49/LaVern_Baker_1956.jpg",
-  ettaJames: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Etta_James.jpg",
-  wandaJackson: "https://upload.wikimedia.org/wikipedia/commons/8/80/Wanda_Jackson.png",
+  bessieSmith: "https://upload.wikimedia.org/wikipedia/commons/d/d0/Bessie_Smith_%281936%29_by_Carl_Van_Vechten.jpg",
+  lavernBaker: "https://upload.wikimedia.org/wikipedia/commons/0/01/LaVern_Baker_1956.jpg",
+  ettaJames: "https://upload.wikimedia.org/wikipedia/commons/9/93/Etta_James.jpg",
+  wandaJackson: "https://upload.wikimedia.org/wikipedia/commons/8/8d/Wanda_Jackson-1958.jpg",
   arethaFranklin: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Aretha_Franklin_1968.jpg",
   graceSlick: "https://upload.wikimedia.org/wikipedia/commons/7/73/Grace_Slick_1967.png",
-  ronnieSpector: "https://upload.wikimedia.org/wikipedia/commons/5/59/Ronnie_Spector_1971.jpg",
+  ronnieSpector: "https://upload.wikimedia.org/wikipedia/commons/e/eb/Ronnie_Spector_1966.jpg",
   heart: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Ann_and_Nancy_Wilson_of_Heart.jpg",
-  pattiSmith: "https://upload.wikimedia.org/wikipedia/commons/d/d6/Patti_Smith_performing_in_Finland%2C_2007.jpg",
-  debbyHarry: "https://upload.wikimedia.org/wikipedia/commons/2/21/Debbie_Harry_1977.jpg",
+  pattiSmith: "https://upload.wikimedia.org/wikipedia/commons/8/80/Patti_Smith_performing_in_Finland%2C_2007.jpg",
+  debbyHarry: "https://upload.wikimedia.org/wikipedia/commons/3/32/Debbie_Harry_in_1977.jpg",
   stevieNicks: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Stevie_Nicks_-_1977.jpg",
   suziQuatro: "https://upload.wikimedia.org/wikipedia/commons/8/87/Suzi_Quatro_-_Pair_of_45%27s_%28remastered%29_%28cropped%29.png",
-  patBenatar: "https://upload.wikimedia.org/wikipedia/commons/3/35/Pat_Benatar_1980.jpg",
+  patBenatar: "https://upload.wikimedia.org/wikipedia/commons/0/0a/PAT_BENATAR_2007-09-07_%28cropped%29.jpg",
   goGos: "https://upload.wikimedia.org/wikipedia/commons/4/43/The_Go-Gos_1981.jpg",
-  chrissieHynde: "https://upload.wikimedia.org/wikipedia/commons/4/43/Chrissie_hynde_1702710099.jpg",
-  kathleenHanna: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Kathleen_Hanna_2.jpg",
+  chrissieHynde: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Chrissie_Hynde_%282021%29_%28cropped%29.jpg",
+  kathleenHanna: "https://upload.wikimedia.org/wikipedia/commons/0/02/Kathleen_Hanna_2013.jpg",
   courtneyLove: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Courtney_Love_1995.jpg",
-  pjHarvey: "https://upload.wikimedia.org/wikipedia/commons/2/2a/PJ_Harvey_2017.jpg",
+  pjHarvey: "https://upload.wikimedia.org/wikipedia/commons/4/49/PJ_Harvey_in_2011.jpg",
 } as const;
 
 // ==================== TYPES ====================
@@ -738,14 +738,14 @@ const Sources: React.FC = () => (
             </a> — Atlantic Records, Public Domain
           </li>
           <li>
-            <a href="https://commons.wikimedia.org/wiki/File:Ike_%26_Tina_Turner_(1966).png" target="_blank" rel="noopener noreferrer">
+            <a href="https://commons.wikimedia.org/wiki/File:Ike_%26_Tina_Turner,_Bestanddeelnr_924-2170_-_Restoration.jpg" target="_blank" rel="noopener noreferrer">
               Tina Turner (Ike & Tina era)
-            </a> — CBS Television, Public Domain
+            </a> — Nationaal Archief, CC0
           </li>
           <li>
-            <a href="https://commons.wikimedia.org/wiki/File:Tina_Turner_(1985).jpg" target="_blank" rel="noopener noreferrer">
+            <a href="https://commons.wikimedia.org/wiki/File:Tina_Turner_1985.jpg" target="_blank" rel="noopener noreferrer">
               Tina Turner (solo era)
-            </a> — Nationaal Archief, CC0
+            </a> — Iris Schneider / Los Angeles Times, CC BY 4.0
           </li>
           <li>
             <a href="https://commons.wikimedia.org/wiki/File:Ma_Rainey_(1917_publicity_photo).jpg" target="_blank" rel="noopener noreferrer">
@@ -768,9 +768,9 @@ const Sources: React.FC = () => (
             </a> — Chess Records, Public Domain
           </li>
           <li>
-            <a href="https://commons.wikimedia.org/wiki/File:Wanda_Jackson.png" target="_blank" rel="noopener noreferrer">
+            <a href="https://commons.wikimedia.org/wiki/File:Wanda_Jackson-1958.jpg" target="_blank" rel="noopener noreferrer">
               Wanda Jackson
-            </a> — Capitol Records, Public Domain
+            </a> — Public Domain
           </li>
           <li>
             <a href="https://commons.wikimedia.org/wiki/File:Aretha_Franklin_1968.jpg" target="_blank" rel="noopener noreferrer">
@@ -1002,8 +1002,8 @@ const chapters: Chapter[] = [
           "As Anna Mae Bullock, she joined Ike Turner's Kings of Rhythm in 1957. The Ike & Tina Turner Revue became one of the most electrifying live acts of the 1960s. 'River Deep – Mountain High' (1966) was a masterpiece. Behind the stage, she endured years of abuse.",
         quote: "I didn't have anybody, really, no foundation in life, so I had to make my own way.",
         imageSrc: IMAGES.tinaTurnerRevue,
-        imageAlt: "Ike & Tina Turner, 1966",
-        imageCredit: "CBS Television, Public Domain",
+        imageAlt: "Ike & Tina Turner performing",
+        imageCredit: "Nationaal Archief, CC0",
         featured: true,
       },
     ],
@@ -1163,8 +1163,8 @@ const chapters: Chapter[] = [
           "Toured with Elvis in 1955–56; he encouraged her to sing rockabilly. Her growling vocals on 'Fujiyama Mama' and 'Let's Have a Party' were harder than any man's. The only woman in 1950s rockabilly's front ranks.",
         quote: "Elvis told me, 'You need to stop singing country and sing rock and roll.' So I did.",
         imageSrc: IMAGES.wandaJackson,
-        imageAlt: "Wanda Jackson",
-        imageCredit: "Capitol Records, Public Domain",
+        imageAlt: "Wanda Jackson, 1958",
+        imageCredit: "Public Domain",
         featured: true,
       },
     ],
@@ -1608,8 +1608,8 @@ const chapters: Chapter[] = [
           "Left an abusive marriage in 1976 with 36 cents and a Mobil gas card. Eight years later, 'Private Dancer' sold 20 million copies. At 44, she became the oldest solo female artist to top the charts. She didn't just survive—she became the undisputed Queen of Rock 'n' Roll.",
         quote: "I will never give up, and I will never give in.",
         imageSrc: IMAGES.tinaTurnerSolo,
-        imageAlt: "Tina Turner performing, 1985",
-        imageCredit: "Nationaal Archief, CC0",
+        imageAlt: "Tina Turner, 1985",
+        imageCredit: "Iris Schneider / Los Angeles Times, CC BY 4.0",
         featured: true,
       },
       {
