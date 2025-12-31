@@ -657,6 +657,8 @@ Current agents derived from this framework:
 | `hydration-audit-agent.md` | **React Hydration QA** | SSR/Client Mismatch Detector | **Auditor** → Immersive Experience Eng, Scrollytelling Expert; IntersectionObserver, useState, browser API safety |
 | `design-slop-auditor.md` | **Design Distinctiveness** | AI Slop Detector & Design Research | **Auditor** → Scrollytelling Expert, Visual Essay Orchestrator; Enforces subject-derived aesthetics, rejects generic/convergent patterns |
 | `content-audit-agent.md` | **Content Quality** | Word Count, Depth, Tone Auditor | **Auditor** → QA Remediation Orchestrator, Audit Orchestrator; Genocide/atrocity sensitivity protocols; Spec content compliance verification |
+| `content-research-reconciliation-agent.md` | **Research-Spec Verification** | Research→Spec Gap Detector | **Auditor** (G2.5) → Visual Essay Orchestrator; Ensures research findings are properly elevated into specifications; Human-in-the-loop remediation; Blocks spec approval for critical gaps |
+| `content-research-integration-agent.md` | **Spec-Artifact Verification** | Spec→Artifact Gap Detector | **Auditor** (G5.1) → Bibliography Orchestrator, Image Research Expert; Ensures spec content is faithfully implemented; Human-in-the-loop remediation; Blocks bibliography phase for critical gaps |
 | `visual-essay-invocation-agent.md` | **Spec Generation** | Visual Essay Specification Architect | **Pre-processor** → Visual Essay Orchestrator (Phase 1); Uses `visual-essay-invocation` skill → stores to `specs/` |
 | `meta-prompt-enhancer.md` | **Universal Enhancement** | Prompt Architect & Instruction Designer | **Universal Pre-processor** → Any AI System, Any Agent; Uses CRISP-E framework (Context, Role, Intent, Specifics, Parameters, Examples) |
 | `social-media-meta-expert.md` | **Social Sharing Optimization** | Social Meta Specialist (Audit + Implementation) | **Dual-Role Expert** — Audit Mode (QA gate), Implementation Mode (fixes), Advisory Mode (strategy); OG, Twitter Cards, JSON-LD; → Visual Essay Orchestrator (publish gate) |
@@ -698,6 +700,8 @@ This meta-framework should evolve as patterns emerge:
 December 30, 2024
 
 ### Recent Changes
+- Added Content Research Reconciliation Agent to registry (G2.5 gate owner; Research→Spec gap detection; human-in-the-loop remediation; blocks spec approval for critical omissions like Tina Turner gap)
+- Added Content Research Integration Agent to registry (G5.1 gate owner; Spec→Artifact gap detection; human-in-the-loop remediation; blocks bibliography phase for critical omissions)
 - Added Publish Artifact Orchestrator to registry (pre-publication certification, G8 owner, coordinates Bibliography Orchestrator + Audit Orchestrator + Social Meta + SEO + Gate Guard + QA Remediation; GO/NO-GO/CONDITIONAL certification)
 - Added Bibliography Orchestrator to registry (bibliography implementation & audit coordination, dual-mode operation, G5.5 owner, coordinates Citation Audit + Quotes Audit + Image Research agents, references `docs/artifact-patterns-guide/`)
 - Added Content Audit Agent to registry (word count, content depth, tone compliance, genocide/atrocity sensitivity protocols, spec content requirement verification)

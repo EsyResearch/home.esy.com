@@ -20,6 +20,8 @@ Quality verification and certification agents that ensure content meets Esy stan
 | [Design Slop Auditor](./design-slop-auditor.md) | **AI Slop Detection** | — | Slop Score (0-100), Design Research Report |
 | [Gate Guard Auditor](./gate-guard-auditor.md) | **Pipeline Compliance** | G9 | Gate Verification Report, Publication Approval |
 | [Content Audit Agent](./content-audit-agent.md) | **Content Quality** | — | Content Compliance Score (%), Word Count Analysis, Tone Assessment |
+| [Content Research Reconciliation Agent](./content-research-reconciliation-agent.md) | **Research→Spec Verification** | G2.5 | Gap Report, Remediation Options |
+| [Content Research Integration Agent](./content-research-integration-agent.md) | **Spec→Artifact Verification** | G5.1 | Integration Report, Implementation Hints |
 
 ---
 
@@ -49,6 +51,8 @@ Quality verification and certification agents that ensure content meets Esy stan
 | **Block implementation until G1-G4 done** | Gate Guard Auditor (Pre-Phase mode) |
 | **Audit content word count, depth, tone** | Content Audit Agent |
 | **Evaluate genocide/atrocity content sensitivity** | Content Audit Agent (with genocide protocol) |
+| **Verify research elevated into spec** | Content Research Reconciliation Agent (G2.5) |
+| **Verify spec implemented in artifact** | Content Research Integration Agent (G5.1) |
 | **Comprehensive QA** | Use Meta Audit Orchestrator (orchestrators/) |
 
 ---
@@ -57,15 +61,52 @@ Quality verification and certification agents that ensure content meets Esy stan
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
+│  G1: Intake                                                      │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  G2: Research                                                    │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  G2.5: CONTENT RESEARCH RECONCILIATION (NEW)                     │
+│  ► Ensures research findings are elevated into spec              │
+│  ► Blocks spec approval for critical omissions                   │
+│  ► Human-in-the-loop remediation decisions                       │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  G3: Spec Approval                                               │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  G4: Design Research                                             │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
 │  GATE GUARD (Pre-Phase Mode) — Blocks premature advancement     │
 │  ► Must pass G1-G4 before implementation can start              │
 └─────────────────────────────────────────────────────────────────┘
                               │
                               ▼
-                    [Implementation Phase]
+                    [G5: Implementation Phase]
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  G5.1: CONTENT RESEARCH INTEGRATION (NEW)                        │
+│  ► Ensures spec content is implemented in artifact               │
+│  ► Blocks bibliography phase for critical omissions              │
+│  ► Human-in-the-loop remediation decisions                       │
+└─────────────────────────────────────────────────────────────────┘
                               │
                               ▼
 Meta Audit Orchestrator (Post-Implementation)
+├── Bibliography Orchestrator (G5.5)
 ├── Scrolling Auditor (G6)
 ├── Experience Auditor
 ├── Visual Auditor
@@ -88,10 +129,13 @@ Meta Audit Orchestrator (Post-Implementation)
 | To Start... | Must First Complete |
 |-------------|---------------------|
 | G2 (Research) | G1 (Intake) |
-| G3 (Spec) | G1, G2 |
-| G4 (Design Research) | G1, G2, G3 |
-| **G5 (Implementation)** | **G1, G2, G3, G4** ← Critical checkpoint |
-| G6-G8 (Audits) | G5 |
+| **G2.5 (Research Reconciliation)** | **G2** |
+| G3 (Spec) | G1, G2, **G2.5** |
+| G4 (Design Research) | G1, G2, G2.5, G3 |
+| **G5 (Implementation)** | **G1, G2, G2.5, G3, G4** ← Critical checkpoint |
+| **G5.1 (Integration Check)** | **G5** |
+| G5.5 (Bibliography) | G5, **G5.1** |
+| G6-G8 (Audits) | G5.5 |
 | G9 (Publication) | G1-G8 |
 
 ---
@@ -159,6 +203,28 @@ Essay: src/app/essays/history/the-khmer-rouge-genocide/
 Sensitivity Level: Genocide/Atrocity
 
 Apply genocide content protocol. Verify tone appropriateness.
+```
+
+```
+# Research-to-Spec reconciliation (G2.5)
+Using @agents/auditors/content-research-reconciliation-agent.md, reconcile:
+
+Research: src/app/essays/rock-and-roll/research/
+Spec: src/app/essays/rock-and-roll/SPEC.md
+
+Identify all gaps where research significance exceeds spec representation.
+Present remediation options for human decision.
+```
+
+```
+# Spec-to-Artifact integration check (G5.1)
+Using @agents/auditors/content-research-integration-agent.md, verify integration:
+
+Spec: src/app/essays/rock-and-roll/SPEC.md
+Artifact: src/app/essays/rock-and-roll/RockAndRollClient.tsx
+
+Identify all gaps where spec content is missing from implementation.
+Present remediation options for human decision.
 ```
 
 ---
