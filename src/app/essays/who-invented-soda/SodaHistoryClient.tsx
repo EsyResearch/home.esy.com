@@ -242,6 +242,7 @@ const PourTimeline: React.FC = () => {
       setStreamHeight(progress * 100);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Calculate initial state
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
