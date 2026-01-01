@@ -91,6 +91,9 @@ const IMAGES = {
   robertWoodruff: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Robert_Winship_Woodruff%2C_President_of_the_Coca-Cola_Company_%28cropped%29.jpg",
   charlesAlderton: "https://upload.wikimedia.org/wikipedia/commons/8/88/Charles_Alderton.jpg",
   donaldKendall: "https://upload.wikimedia.org/wikipedia/commons/7/72/Donald_Mcintosh_Kendall_%28cropped%29.jpg",
+
+  // Root Glass Company
+  rootGlassCompanyTeam: "https://discoverindianahistory.org/files/fullsize/b72d7acef212620ba9cb71cfe7332fb0.jpg",
 } as const;
 
 // ==================== ERA DEFINITIONS ====================
@@ -868,6 +871,7 @@ const Bibliography: React.FC = () => (
         <li>Coca-Cola 5 cents chromolithograph — Library of Congress</li>
         <li>1915 contour bottle prototype — Gavinmacqueen, CC BY-SA 3.0</li>
         <li>Coca-Cola bottle patent — Alexander Samuelson (1915), USPTO</li>
+        <li>Root Glass Company team (c. 1900s) — Vigo County Historical Museum, CC BY-NC-SA 4.0 via Discover Indiana</li>
         <li>Vintage vending machine — Myotus, CC BY-SA 4.0</li>
         <li>WWII &quot;Kia Ora&quot; advertisement — Dean Cornwell (1943-45), Archives New Zealand</li>
         <li>Coca-Cola Bottling Plant, Worcester — B. Michael Zuckerman, CC BY-SA 4.0</li>
@@ -1236,6 +1240,20 @@ export default function SodaHistoryClient() {
             design on a cocoa pod (he misheard &quot;coca&quot;). The &quot;Georgia Green&quot;
             color became a trademark.
           </p>
+
+          <figure className="chapter-figure chapter-figure-wide">
+            <img
+              src={IMAGES.rootGlassCompanyTeam}
+              alt="Workers outside the Root Glass Company, circa 1900s. Earl R. Dean stands 4th from right, Alexander Samuelson on far left."
+              className="chapter-image"
+              loading="lazy"
+            />
+            <figcaption>
+              The Root Glass Company team. Earl R. Dean, designer of the contour bottle,
+              stands 4th from right. Plant Supervisor Alexander Samuelson is on the far left.
+              Vigo County Historical Museum, c. 1900s. CC BY-NC-SA 4.0.
+            </figcaption>
+          </figure>
 
           <div className="drawer-stats">
             <LedgerCounter value="2300" label="Dollars Candler paid for Coca-Cola" unit="$" />
