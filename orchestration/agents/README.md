@@ -11,7 +11,7 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 ```
 agents/
 ├── orchestrators/     # 🎬 Top-level coordination (5 agents)
-├── auditors/          # 🔍 Quality verification (13 agents)
+├── auditors/          # 🔍 Quality verification (16 agents)
 ├── content/           # 📚 Content creation (4 agents)
 ├── research/          # 🔬 Source discovery (4 agents)
 ├── regional/          # 🌏 Regional specialists (2 agents)
@@ -47,6 +47,8 @@ agents/
 | [Gate Guard Auditor](#gate-guard-auditor) | Pipeline compliance (G1-G9) | `@agents/auditors/gate-guard-auditor.md` |
 | [Content Research Reconciliation](#content-research-reconciliation-agent) | **Research→Spec gap detection (G2.5)** | `@agents/auditors/content-research-reconciliation-agent.md` |
 | [Content Research Integration](#content-research-integration-agent) | **Spec→Artifact gap detection (G5.1)** | `@agents/auditors/content-research-integration-agent.md` |
+| [Design Research Reconciliation](#design-research-reconciliation-agent) | **Design authenticity + novelty (G4.1)** | `@agents/auditors/design-research-reconciliation-agent.md` |
+| [Design Research Integration](#design-research-integration-agent) | **CSS→TSX binding verification (G5.2)** | `@agents/auditors/design-research-integration-agent.md` |
 
 **Reports:** `auditors/CitationReports/` · `auditors/VisualAuditReports/`
 

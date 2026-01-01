@@ -14,7 +14,7 @@ agents/
 ├── META-AGENT-FRAMEWORK.md      # Agent creation template
 │
 ├── orchestrators/               # 🎬 Top-level coordination (5)
-├── auditors/                    # 🔍 Quality verification (12)
+├── auditors/                    # 🔍 Quality verification (16)
 ├── content/                     # 📚 Content creation (4)
 ├── research/                    # 🔬 Source discovery (4)
 ├── regional/                    # 🌏 Regional specialists (2)
@@ -54,6 +54,10 @@ agents/
 | [Design Slop Auditor](./auditors/design-slop-auditor.md) | **AI Slop Detection** | — | `auditors/` |
 | [Gate Guard Auditor](./auditors/gate-guard-auditor.md) | **Pipeline Compliance** | G9 | `auditors/` |
 | [Content Audit Agent](./auditors/content-audit-agent.md) | **Content Quality** | — | `auditors/` |
+| [Content Research Reconciliation Agent](./auditors/content-research-reconciliation-agent.md) | **Research→Spec Verification** | G2.5 | `auditors/` |
+| [Content Research Integration Agent](./auditors/content-research-integration-agent.md) | **Spec→Artifact Verification** | G5.1 | `auditors/` |
+| [Design Research Reconciliation Agent](./auditors/design-research-reconciliation-agent.md) | **Design Authenticity** | G4.1 | `auditors/` |
+| [Design Research Integration Agent](./auditors/design-research-integration-agent.md) | **CSS→TSX Binding** | G5.2 | `auditors/` |
 
 **Report Storage:**
 - Citation Reports: `auditors/CitationReports/`
@@ -248,7 +252,9 @@ G1 (Intake) ──► G2 (Research) ──► G3 (Spec) ──► G4 (Design Res
 | G2 | **Research Complete** | 2→3 | **Research Orchestrator** | `orchestrators/` |
 | G3 | **Spec Approval** | 3→4 | Visual Essay Orchestrator | `orchestrators/` |
 | G4 | Design Research | 4 | **Design Researcher** | `research/` |
+| G4.1 | Design Research Reconciliation | 4 | **Design Research Reconciliation Agent** | `auditors/` |
 | G5 | Content Complete | 4→5 | **Historian Editor** | `content/` |
+| G5.2 | Design Research Integration | 5 | **Design Research Integration Agent** | `auditors/` |
 | G6 | Citation Audit | 5 | **Citation Audit Agent** | `auditors/` |
 | G7 | Scroll Certification | 5 | **Immersive Scrolling Auditor** | `auditors/` |
 | G8 | Mobile Verification | 5→6 | Visual Essay Orchestrator | `orchestrators/` |
@@ -334,13 +340,13 @@ See [META-AGENT-FRAMEWORK.md](./META-AGENT-FRAMEWORK.md) for the complete agent 
 | Category | Count | Key Responsibility |
 |----------|-------|-------------------|
 | 🎬 Orchestrators | 5 | Multi-agent coordination |
-| 🔍 Auditors | 10 | Quality verification |
+| 🔍 Auditors | 16 | Quality verification |
 | 📚 Content | 4 | Content creation |
-| 🔬 Research | 3 | Source discovery |
+| 🔬 Research | 4 | Source discovery |
 | 🌏 Regional | 2 | Subject expertise |
 | ⚙️ Engineering | 8 | Technical implementation |
 | 🔧 Utilities | 5 | Support functions |
-| **Total** | **37** | |
+| **Total** | **44** | |
 
 ---
 
@@ -361,9 +367,13 @@ See [META-AGENT-FRAMEWORK.md](./META-AGENT-FRAMEWORK.md) for the complete agent 
 
 ---
 
-*Last Updated: December 28, 2024*
+*Last Updated: December 31, 2024*
 
 ### Recent Changes
+- Added **Design Research Reconciliation Agent** (G4.1) to auditors category — three-phase audit verifying thematic authenticity, cross-essay novelty, and CSS implementation fidelity
+- Added **Design Research Integration Agent** (G5.2) to auditors category — CSS-to-TSX binding verification requiring ≥95% selector binding; catches convention mismatches
+- Updated Quality Gate Ownership table with G4.1 and G5.2 gates
+- Updated category statistics (Auditors: 12 → 16, Total: 37 → 44)
 - Added **Visual Essay Refurbish Agent** to utilities category — evaluates legacy essays without research packages, extracts design/content intent, proposes expansions, formalizes intake documents for orchestrator processing
 - Added **Design Slop Auditor** to auditors category — detects AI-generated generic design patterns, enforces subject-derived aesthetics, provides remediation through Design Research Reports
 - Updated category statistics (Auditors: 9 → 10, Total: 35 → 36)

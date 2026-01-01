@@ -22,6 +22,8 @@ Quality verification and certification agents that ensure content meets Esy stan
 | [Content Audit Agent](./content-audit-agent.md) | **Content Quality** | — | Content Compliance Score (%), Word Count Analysis, Tone Assessment |
 | [Content Research Reconciliation Agent](./content-research-reconciliation-agent.md) | **Research→Spec Verification** | G2.5 | Gap Report, Remediation Options |
 | [Content Research Integration Agent](./content-research-integration-agent.md) | **Spec→Artifact Verification** | G5.1 | Integration Report, Implementation Hints |
+| [Design Research Reconciliation Agent](./design-research-reconciliation-agent.md) | **Design Authenticity Verification** | G4.1 | Reconciliation Report, Collision Detection |
+| [Design Research Integration Agent](./design-research-integration-agent.md) | **CSS→TSX Binding Verification** | G5.2 | Binding Report, Convention Analysis |
 
 ---
 
@@ -53,6 +55,8 @@ Quality verification and certification agents that ensure content meets Esy stan
 | **Evaluate genocide/atrocity content sensitivity** | Content Audit Agent (with genocide protocol) |
 | **Verify research elevated into spec** | Content Research Reconciliation Agent (G2.5) |
 | **Verify spec implemented in artifact** | Content Research Integration Agent (G5.1) |
+| **Verify design is authentic & novel** | Design Research Reconciliation Agent (G4.1) |
+| **Verify CSS binds to TSX classNames** | Design Research Integration Agent (G5.2) |
 | **Comprehensive QA** | Use Meta Audit Orchestrator (orchestrators/) |
 
 ---
@@ -89,8 +93,17 @@ Quality verification and certification agents that ensure content meets Esy stan
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
+│  G4.1: DESIGN RESEARCH RECONCILIATION (NEW)                      │
+│  ► Phase 1: Thematic authenticity (colors trace to artifacts)   │
+│  ► Phase 2: Novelty/duplication (no cross-essay collisions)     │
+│  ► Phase 3: CSS implementation (CSS implements design research)  │
+│  ► Human-in-the-loop remediation decisions                       │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
 │  GATE GUARD (Pre-Phase Mode) — Blocks premature advancement     │
-│  ► Must pass G1-G4 before implementation can start              │
+│  ► Must pass G1-G4.1 before implementation can start            │
 └─────────────────────────────────────────────────────────────────┘
                               │
                               ▼
@@ -98,10 +111,19 @@ Quality verification and certification agents that ensure content meets Esy stan
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│  G5.1: CONTENT RESEARCH INTEGRATION (NEW)                        │
+│  G5.1: CONTENT RESEARCH INTEGRATION                              │
 │  ► Ensures spec content is implemented in artifact               │
 │  ► Blocks bibliography phase for critical omissions              │
 │  ► Human-in-the-loop remediation decisions                       │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  G5.2: DESIGN RESEARCH INTEGRATION (NEW)                         │
+│  ► Verifies CSS selectors bind to TSX classNames                 │
+│  ► Requires ≥95% binding percentage                              │
+│  ► Detects convention mismatches (hyphen vs underscore)          │
+│  ► Catches Nakba-style failures where CSS isn't applied          │
 └─────────────────────────────────────────────────────────────────┘
                               │
                               ▼
@@ -132,9 +154,11 @@ Meta Audit Orchestrator (Post-Implementation)
 | **G2.5 (Research Reconciliation)** | **G2** |
 | G3 (Spec) | G1, G2, **G2.5** |
 | G4 (Design Research) | G1, G2, G2.5, G3 |
-| **G5 (Implementation)** | **G1, G2, G2.5, G3, G4** ← Critical checkpoint |
-| **G5.1 (Integration Check)** | **G5** |
-| G5.5 (Bibliography) | G5, **G5.1** |
+| **G4.1 (Design Reconciliation)** | **G4** ← Design authenticity + novelty |
+| **G5 (Implementation)** | **G1, G2, G2.5, G3, G4, G4.1** ← Critical checkpoint |
+| **G5.1 (Content Integration)** | **G5** |
+| **G5.2 (Design Integration)** | **G5** ← CSS→TSX binding verification |
+| G5.5 (Bibliography) | G5, **G5.1, G5.2** |
 | G6-G8 (Audits) | G5.5 |
 | G9 (Publication) | G1-G8 |
 
@@ -225,6 +249,32 @@ Artifact: src/app/essays/rock-and-roll/RockAndRollClient.tsx
 
 Identify all gaps where spec content is missing from implementation.
 Present remediation options for human decision.
+```
+
+```
+# Design authenticity and novelty verification (G4.1)
+Using @agents/auditors/design-research-reconciliation-agent.md, verify:
+
+Design Research: src/app/essays/history/the-nakba-visualized/DESIGN-RESEARCH.md
+CSS: src/app/essays/history/the-nakba-visualized/the-nakba-visualized.css
+Compare Against: src/app/essays/**/DESIGN-RESEARCH.md
+
+Run all three phases:
+- Phase 1: Thematic Authenticity (colors trace to artifacts)
+- Phase 2: Novelty/Duplication (no cross-essay collisions)
+- Phase 3: CSS Implementation (CSS matches design research)
+```
+
+```
+# CSS-to-TSX binding verification (G5.2)
+Using @agents/auditors/design-research-integration-agent.md, verify:
+
+CSS: src/app/essays/history/the-nakba-visualized/the-nakba-visualized.css
+TSX: src/app/essays/history/the-nakba-visualized/page.tsx
+
+Verify all CSS selectors bind to TSX classNames.
+Report binding percentage and convention consistency.
+Flag if <95% binding or convention mismatch detected.
 ```
 
 ---
