@@ -45,6 +45,7 @@ const PromptIntelligenceEngine: React.FC = () => {
 
   // Intersection observer for animations
   useEffect(() => {
+    const currentRef = containerRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -54,13 +55,13 @@ const PromptIntelligenceEngine: React.FC = () => {
       { threshold: 0.1 }
     );
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);

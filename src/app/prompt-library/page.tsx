@@ -65,15 +65,7 @@ const PromptLibrary = () => {
     { id: 'ebooks', name: 'Book & Publication', count: 9 }
   ];
 
-  // Helper function to generate slug from title
-  const generateSlug = (title: string): string => {
-    return title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, '');
-  };
-
-  const prompts = [
+  const prompts = useMemo(() => [
     // Creative Writing (12 prompts)
     {
       id: 1,
@@ -2968,7 +2960,7 @@ Develop integrated strategy that uses publishing as business development tool wh
 Create publishing approach that maximizes content reach while maintaining quality and reader satisfaction across all formats and platforms.`,
       isPro: true
     }
-  ];
+  ], []);
 
   // Update the counts to match actual number of prompts
   promptCategories[0].count = prompts.length; // All prompts
@@ -3001,9 +2993,9 @@ Create publishing approach that maximizes content reach while maintaining qualit
                            prompt.prompt.toLowerCase().includes(searchTerm.toLowerCase());
       return matchesCategory && matchesSearch;
     });
-  }, [searchTerm, selectedCategory]);
+  }, [searchTerm, selectedCategory, prompts]);
 
-  const handleCopyPrompt = async (promptText, promptId) => {
+  const handleCopyPrompt = async (promptText: string, promptId: number) => {
     try {
       await navigator.clipboard.writeText(promptText);
       setCopiedPrompt(promptId);
@@ -3013,31 +3005,13 @@ Create publishing approach that maximizes content reach while maintaining qualit
     }
   };
 
-  const openPromptView = (prompt) => {
-    setSelectedPrompt(prompt);
-    setCurrentView('prompt');
-    // Initialize variables
-    const variables = {};
-    prompt.variables?.forEach(variable => {
-      variables[variable] = '';
-    });
-    setPromptVariables(variables);
-  };
-
-  const openCategoryView = (categoryId) => {
-    setSelectedCategory(categoryId);
-    setCurrentView('category');
-    setSelectedPrompt(null);
-    setPromptVariables({});
-  };
-
   const closePromptView = () => {
     setCurrentView('library');
     setSelectedPrompt(null);
     setPromptVariables({});
   };
 
-  const updateVariable = (variable, value) => {
+  const updateVariable = (variable: string, value: string) => {
     setPromptVariables(prev => ({
       ...prev,
       [variable]: value
@@ -3882,10 +3856,10 @@ Create publishing approach that maximizes content reach while maintaining qualit
               <div style={styles.variablesSection}>
                 <h3 style={styles.variablesSectionTitle}>Customize Variables</h3>
                 {selectedPrompt.variables?.length > 0 ? (
-                  selectedPrompt.variables.map(variable => (
+                  selectedPrompt.variables.map((variable: string) => (
                     <div key={variable}>
                       <label style={styles.variableLabel}>
-                        {variable.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}
+                        {variable.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, (l: string) => l.toUpperCase())}
                       </label>
                       <input
                         type="text"
