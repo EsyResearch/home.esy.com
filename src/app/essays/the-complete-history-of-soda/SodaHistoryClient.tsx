@@ -185,8 +185,10 @@ const FIGURES: Figure[] = [
     name: 'Earl R. Dean',
     role: 'Contour Bottle Designer',
     years: '1890-1972',
-    contribution: 'Designed the iconic Coca-Cola contour bottle (1915) that became recognizable even in the dark.'
-    // No public domain image available
+    contribution: 'Designed the iconic Coca-Cola contour bottle (1915) that became recognizable even in the dark.',
+    image: IMAGES.rootGlassCompanyTeam,
+    imageAlt: 'Root Glass Company team, Earl Dean stands 4th from right',
+    attribution: 'Vigo County Historical Museum, CC BY-NC-SA 4.0'
   },
   {
     name: 'Roberto Goizueta',
