@@ -871,6 +871,7 @@ export const visualEssays: VisualEssay[] = [
     readTime: "35 min",
     href: "/essays/rock-and-roll",
     isNew: true,
+    draft: true,
     tags: ["rock and roll", "rock history", "Sister Rosetta Tharpe", "Chuck Berry", "Little Richard", "Elvis Presley", "British Invasion", "Beatles", "music history", "race and music", "appropriation", "electric guitar", "Sun Records", "Chess Records", "visual essay"],
     visualStyle: "photorealistic",
     heroImage: "/og/rock-and-roll.png",
@@ -943,6 +944,20 @@ export const visualEssays: VisualEssay[] = [
     tags: ["Khmer Rouge", "Cambodia genocide", "Pol Pot", "Year Zero", "Tuol Sleng", "Killing Fields", "visual essay"],
     visualStyle: "photorealistic",
     heroImage: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Angkor_Wat_at_sunrise_3.jpg",
+  },
+  {
+    id: "the-complete-history-of-soda",
+    number: "82",
+    title: "The Complete History of Soda",
+    subtitle: "From Scientific Discovery to Global Phenomenon",
+    description: "How Joseph Priestley's 1767 brewery experiment became 1.9 billion daily servings. A 260-year visual journey through pharmacist inventors, marketing pioneers, the Cola Wars, and the 79-day mistake that almost destroyed Coca-Cola.",
+    category: "History",
+    readTime: "28 min",
+    href: "/essays/the-complete-history-of-soda",
+    isNew: true,
+    tags: ["soda history", "Coca-Cola", "Pepsi", "Cola Wars", "Joseph Priestley", "carbonation", "soft drinks", "Asa Candler", "Robert Woodruff", "New Coke", "food history", "visual essay"],
+    visualStyle: "photorealistic",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/0/05/Soft_drink_shelf_2.jpg",
   },
   // Children's Fiction (draft - not shown in production)
   {
