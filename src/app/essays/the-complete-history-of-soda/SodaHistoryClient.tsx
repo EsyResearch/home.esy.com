@@ -86,6 +86,11 @@ const IMAGES = {
 
   // Era 7: Global Dominance
   deliveryTruckTaiwan: "https://upload.wikimedia.org/wikipedia/commons/9/94/Tainan_Taiwan_Coca-Cola-Truck-01.jpg",
+
+  // Additional Figure Portraits
+  robertWoodruff: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Robert_Winship_Woodruff%2C_President_of_the_Coca-Cola_Company_%28cropped%29.jpg",
+  charlesAlderton: "https://upload.wikimedia.org/wikipedia/commons/8/88/Charles_Alderton.jpg",
+  donaldKendall: "https://upload.wikimedia.org/wikipedia/commons/7/72/Donald_Mcintosh_Kendall_%28cropped%29.jpg",
 } as const;
 
 // ==================== ERA DEFINITIONS ====================
@@ -150,8 +155,10 @@ const FIGURES: Figure[] = [
     name: 'Robert W. Woodruff',
     role: 'Global Expansion Architect',
     years: '1889-1985',
-    contribution: 'Led Coca-Cola\'s WWII expansion: 64 bottling plants, 5 billion bottles to troops.'
-    // No public domain image available
+    contribution: 'Led Coca-Cola\'s WWII expansion: 64 bottling plants, 5 billion bottles to troops.',
+    image: IMAGES.robertWoodruff,
+    imageAlt: 'Robert Winship Woodruff, President of Coca-Cola, 1944',
+    attribution: 'Joseph Janney Steinmetz, State Archives of Florida'
   },
   {
     name: 'Charles Hires',
@@ -166,8 +173,10 @@ const FIGURES: Figure[] = [
     name: 'Charles Alderton',
     role: 'Dr Pepper Inventor',
     years: '1857-1941',
-    contribution: 'Waco, Texas pharmacist who created Dr Pepper in 1885—America\'s oldest major soft drink brand.'
-    // No public domain image available
+    contribution: 'Waco, Texas pharmacist who created Dr Pepper in 1885—America\'s oldest major soft drink brand.',
+    image: IMAGES.charlesAlderton,
+    imageAlt: 'Photograph of Charles Alderton',
+    attribution: 'Public Domain via Wikimedia Commons'
   },
   {
     name: 'Earl R. Dean',
@@ -187,8 +196,10 @@ const FIGURES: Figure[] = [
     name: 'Donald Kendall',
     role: 'Pepsi Cold War Strategist',
     years: '1921-2020',
-    contribution: 'Got Pepsi into Khrushchev\'s hand (1959). Later traded cola for Soviet submarines.'
-    // No public domain image available - but Kitchen Debate photo available
+    contribution: 'Got Pepsi into Khrushchev\'s hand (1959). Later traded cola for Soviet submarines.',
+    image: IMAGES.donaldKendall,
+    imageAlt: 'Donald McIntosh Kendall, PepsiCo CEO',
+    attribution: 'Public Domain via Wikimedia Commons'
   },
 ];
 
@@ -864,6 +875,9 @@ const Bibliography: React.FC = () => (
         <li>New Coke can — Public Domain via Wikimedia Commons</li>
         <li>Pepsi Challenge materials — TeemPlayer, CC BY-SA 3.0</li>
         <li>Coca-Cola delivery truck, Taiwan — Uwe Aranas, CC BY-SA 3.0</li>
+        <li>Robert W. Woodruff portrait (1944) — Joseph Janney Steinmetz, State Archives of Florida</li>
+        <li>Charles Alderton photograph — Public Domain via Wikimedia Commons</li>
+        <li>Donald Kendall portrait — Public Domain via Wikimedia Commons</li>
       </ul>
     </div>
   </section>
