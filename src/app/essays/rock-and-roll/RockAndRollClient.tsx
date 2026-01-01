@@ -814,7 +814,7 @@ const Sources: React.FC = () => (
           </li>
           <li>
             <a href="https://commons.wikimedia.org/wiki/File:The_Go-Gos_1981.jpg" target="_blank" rel="noopener noreferrer">
-              The Go-Go's
+              The Go-Go&apos;s
             </a> — IRS Records, Public Domain
           </li>
           <li>

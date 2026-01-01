@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useMemo } from 'react';
+import Link from 'next/link';
 import './who-invented-soda.css';
 
 /*
@@ -325,7 +326,7 @@ const RelatedEssay: React.FC = () => (
   <section className="related-essay-section">
     <div className="related-essay-content">
       <span className="related-label">Continue Reading</span>
-      <a href="/essays/the-complete-history-of-soda/" className="related-essay-card">
+      <Link href="/essays/the-complete-history-of-soda/" className="related-essay-card">
         <div className="related-essay-info">
           <h3 className="related-essay-title">The Complete History of Soda</h3>
           <p className="related-essay-description">
@@ -334,7 +335,7 @@ const RelatedEssay: React.FC = () => (
           </p>
           <span className="related-essay-cta">Read the deep dive →</span>
         </div>
-      </a>
+      </Link>
     </div>
   </section>
 );
