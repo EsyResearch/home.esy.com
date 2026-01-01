@@ -326,7 +326,7 @@ const RelatedEssay: React.FC = () => (
   <section className="related-essay-section">
     <div className="related-essay-content">
       <span className="related-label">Continue Reading</span>
-      <Link href="/essays/the-complete-history-of-soda/" className="related-essay-card">
+      <Link href="/essays/history/the-complete-history-of-soda/" className="related-essay-card">
         <div className="related-essay-info">
           <h3 className="related-essay-title">The Complete History of Soda</h3>
           <p className="related-essay-description">

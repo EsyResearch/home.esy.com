@@ -6,11 +6,11 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Article",
-      "@id": "https://esy.com/essays/the-complete-history-of-soda/#article",
+      "@id": "https://esy.com/essays/history/the-complete-history-of-soda/#article",
       "headline": "The Complete History of Soda: From Scientific Discovery to Global Cultural Phenomenon",
       "alternativeHeadline": "How a Brewery Accident Became a $400 Billion Industry",
       "description": "Trace 260 years of carbonated history from Joseph Priestley's 1767 brewery experiment to 1.9 billion daily servings. The complete story of Coca-Cola, Pepsi, the Cola Wars, and how bubbles conquered the world.",
-      "url": "https://esy.com/essays/the-complete-history-of-soda/",
+      "url": "https://esy.com/essays/history/the-complete-history-of-soda/",
       "datePublished": "2026-01-01",
       "dateModified": "2026-01-01",
       "author": { "@type": "Organization", "name": "Esy", "url": "https://esy.com" },
@@ -35,7 +35,7 @@ const jsonLd = {
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://esy.com" },
         { "@type": "ListItem", "position": 2, "name": "Essays", "item": "https://esy.com/essays/" },
-        { "@type": "ListItem", "position": 3, "name": "The Complete History of Soda", "item": "https://esy.com/essays/the-complete-history-of-soda/" }
+        { "@type": "ListItem", "position": 3, "name": "The Complete History of Soda", "item": "https://esy.com/essays/history/the-complete-history-of-soda/" }
       ]
     },
     {
@@ -129,7 +129,7 @@ export const metadata: Metadata = {
     title: 'The Complete History of Soda: From Scientific Discovery to Global Phenomenon',
     description: 'How a brewery accident became a $400 billion industry. 260 years of carbonated history from Joseph Priestley to 1.9 billion daily servings.',
     type: 'article',
-    url: 'https://esy.com/essays/the-complete-history-of-soda/',
+    url: 'https://esy.com/essays/history/the-complete-history-of-soda/',
     siteName: 'Esy',
     locale: 'en_US',
     images: [
@@ -149,7 +149,7 @@ export const metadata: Metadata = {
     images: ['https://esy.com/og/the-complete-history-of-soda.png']
   },
   alternates: {
-    canonical: 'https://esy.com/essays/the-complete-history-of-soda/'
+    canonical: 'https://esy.com/essays/history/the-complete-history-of-soda/'
   },
   robots: {
     index: true,

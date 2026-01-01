@@ -953,7 +953,7 @@ export const visualEssays: VisualEssay[] = [
     description: "How Joseph Priestley's 1767 brewery experiment became 1.9 billion daily servings. A 260-year visual journey through pharmacist inventors, marketing pioneers, the Cola Wars, and the 79-day mistake that almost destroyed Coca-Cola.",
     category: "History",
     readTime: "28 min",
-    href: "/essays/the-complete-history-of-soda",
+    href: "/essays/history/the-complete-history-of-soda",
     isNew: true,
     tags: ["soda history", "Coca-Cola", "Pepsi", "Cola Wars", "Joseph Priestley", "carbonation", "soft drinks", "Asa Candler", "Robert Woodruff", "New Coke", "food history", "visual essay"],
     visualStyle: "photorealistic",
