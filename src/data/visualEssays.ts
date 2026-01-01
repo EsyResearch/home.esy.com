@@ -957,7 +957,7 @@ export const visualEssays: VisualEssay[] = [
     isNew: true,
     tags: ["soda history", "Coca-Cola", "Pepsi", "Cola Wars", "Joseph Priestley", "carbonation", "soft drinks", "Asa Candler", "Robert Woodruff", "New Coke", "food history", "visual essay"],
     visualStyle: "photorealistic",
-    heroImage: "https://upload.wikimedia.org/wikipedia/commons/0/05/Soft_drink_shelf_2.jpg",
+    heroImage: "/og/the-complete-history-of-soda.png",
   },
   // Children's Fiction (draft - not shown in production)
   {
