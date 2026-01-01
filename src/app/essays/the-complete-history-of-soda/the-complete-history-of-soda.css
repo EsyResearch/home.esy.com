@@ -1705,6 +1705,41 @@
   break-inside: avoid;
 }
 
+/* Pharmacy Culture Grid (Ad + Soda Jerk) */
+.pharmacy-culture-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.pharmacy-culture-grid .chapter-figure {
+  margin: 0;
+}
+
+.pharmacy-culture-grid .chapter-image {
+  aspect-ratio: 4/5;
+  object-fit: cover;
+}
+
+/* Five Cent Showcase (LOC ad + Vending Machine) */
+.five-cent-showcase {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin: 2rem 0;
+  align-items: end;
+}
+
+.five-cent-showcase .chapter-figure {
+  margin: 0;
+}
+
+.five-cent-showcase .chapter-image {
+  width: 100%;
+  height: auto;
+}
+
 /* Mobile responsive images */
 @media (max-width: 768px) {
   .chapter-figure.chapter-figure-right {
@@ -1746,6 +1781,11 @@
 
   .image-credits-list {
     column-count: 1;
+  }
+
+  .pharmacy-culture-grid,
+  .five-cent-showcase {
+    grid-template-columns: 1fr;
   }
 }
 

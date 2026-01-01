@@ -844,25 +844,25 @@ const Bibliography: React.FC = () => (
       <ul className="image-credits-list">
         <li>Joseph Priestley portrait — Ellen Sharples, Public Domain via Wikimedia Commons</li>
         <li>Pneumatic trough apparatus — Public Domain via Wikimedia Commons</li>
-        <li>Torbern Bergman portrait — Public Domain via Wikimedia Commons</li>
+        <li>Torbern Bergman portrait — Public Domain via Smithsonian</li>
         <li>Johann Jacob Schweppe portrait (1783) — Public Domain via Wikimedia Commons</li>
-        <li>Benjamin Silliman portrait — Public Domain via Wikimedia Commons</li>
+        <li>Benjamin Silliman portrait — William G. Jackman, Public Domain</li>
         <li>John Stith Pemberton photograph — Public Domain via Wikimedia Commons</li>
-        <li>Asa G. Candler photograph — Harris &amp; Ewing, Library of Congress</li>
+        <li>Asa G. Candler photograph — Harris &amp; Ewing (1923), Library of Congress</li>
         <li>Caleb Bradham photograph (c. 1900) — Public Domain via Wikimedia Commons</li>
-        <li>Charles Elmer Hires portrait (1902) — Moses King, Public Domain</li>
+        <li>Charles Elmer Hires portrait — Moses King (1902), Public Domain</li>
         <li>Soda fountain at Weed&apos;s Pharmacy (c. 1910) — MOHAI, Public Domain</li>
-        <li>Soda jerk photograph — NYWTS, Public Domain via Wikimedia Commons</li>
-        <li>Coca-Cola 5 cents advertisement (1890s) — Public Domain via Wikimedia Commons</li>
-        <li>Coca-Cola 5 cents sign — Library of Congress</li>
-        <li>1915 contour bottle prototype — Public Domain via Wikimedia Commons</li>
-        <li>Coca-Cola bottle patent drawing — USPTO, Public Domain</li>
-        <li>Vintage vending machine — Public Domain via Wikimedia Commons</li>
-        <li>WWII Coca-Cola &quot;Kia Ora&quot; advertisement — Dean Cornwell, Archives New Zealand</li>
-        <li>Coca-Cola Bottling Plant, Worcester — Public Domain via Wikimedia Commons</li>
-        <li>Kitchen Debate photograph — Thomas J. O&apos;Halloran, Library of Congress</li>
-        <li>New Coke can — Fair use via Wikimedia Commons</li>
-        <li>Pepsi Challenge materials — Fair use via Wikimedia Commons</li>
+        <li>Soda jerk photograph — Alan Fisher (1936), Library of Congress</li>
+        <li>Coca-Cola 1890s advertisement — Public Domain via Wikimedia Commons</li>
+        <li>Coca-Cola 5 cents chromolithograph — Library of Congress</li>
+        <li>1915 contour bottle prototype — Gavinmacqueen, CC BY-SA 3.0</li>
+        <li>Coca-Cola bottle patent — Alexander Samuelson (1915), USPTO</li>
+        <li>Vintage vending machine — Myotus, CC BY-SA 4.0</li>
+        <li>WWII &quot;Kia Ora&quot; advertisement — Dean Cornwell (1943-45), Archives New Zealand</li>
+        <li>Coca-Cola Bottling Plant, Worcester — B. Michael Zuckerman, CC BY-SA 4.0</li>
+        <li>Kitchen Debate photograph — Thomas J. O&apos;Halloran (1959), Library of Congress</li>
+        <li>New Coke can — Public Domain via Wikimedia Commons</li>
+        <li>Pepsi Challenge materials — TeemPlayer, CC BY-SA 3.0</li>
         <li>Coca-Cola delivery truck, Taiwan — Uwe Aranas, CC BY-SA 3.0</li>
       </ul>
     </div>
@@ -975,10 +975,21 @@ export default function SodaHistoryClient() {
             <cite>— Joseph Priestley, on artificial carbonation</cite>
           </blockquote>
 
+          <figure className="chapter-figure chapter-figure-right">
+            <img
+              src={IMAGES.torbernBergman}
+              alt="Portrait of Torbern Bergman, Swedish chemist"
+              className="chapter-image"
+              loading="lazy"
+            />
+            <figcaption>Torbern Bergman (1735-1784), who refined Priestley&apos;s process</figcaption>
+          </figure>
+
           <p>
             But Priestley was a scientist, not an entrepreneur. He shared his method
-            freely and never commercialized it. It would take 16 years for someone
-            else to see the business potential.
+            freely and never commercialized it. Swedish chemist Torbern Bergman
+            improved the process in 1771, but it would take 16 years for someone
+            to see the business potential.
           </p>
         </div>
       </ArchiveDrawer>
@@ -1114,18 +1125,30 @@ export default function SodaHistoryClient() {
             amounts of cocaine (from coca leaf) until 1903.
           </p>
 
-          <figure className="chapter-figure chapter-figure-inline">
-            <img
-              src={IMAGES.cocaCola1890sAd}
-              alt="Coca-Cola 5 cents advertisement from 1890s featuring Hilda Clark"
-              className="chapter-image"
-              loading="lazy"
-            />
-            <figcaption>
-              &quot;Drink Coca-Cola 5¢&quot; — 1890s advertisement featuring actress Hilda Clark,
-              one of the first celebrity endorsements in American advertising.
-            </figcaption>
-          </figure>
+          <div className="pharmacy-culture-grid">
+            <figure className="chapter-figure">
+              <img
+                src={IMAGES.cocaCola1890sAd}
+                alt="Coca-Cola 5 cents advertisement from 1890s featuring Hilda Clark"
+                className="chapter-image"
+                loading="lazy"
+              />
+              <figcaption>
+                &quot;Drink Coca-Cola 5¢&quot; — 1890s ad featuring actress Hilda Clark
+              </figcaption>
+            </figure>
+            <figure className="chapter-figure">
+              <img
+                src={IMAGES.sodaJerk}
+                alt="Soda jerk passing ice cream soda between fountains, 1936"
+                className="chapter-image"
+                loading="lazy"
+              />
+              <figcaption>
+                A soda jerk at work (1936) — Alan Fisher, Library of Congress
+              </figcaption>
+            </figure>
+          </div>
 
           <p>
             Frank Robinson, Pemberton&apos;s partner, suggested the name Coca-Cola,
@@ -1206,18 +1229,30 @@ export default function SodaHistoryClient() {
             <LedgerCounter value="70" label="Years at the same price" unit="+" />
           </div>
 
-          <figure className="chapter-figure chapter-figure-inline">
-            <img
-              src={IMAGES.vintageVendingMachine}
-              alt="Vintage Coca-Cola vending machine"
-              className="chapter-image"
-              loading="lazy"
-            />
-            <figcaption>
-              By 1950, Coca-Cola owned 85% of America&apos;s 460,000 vending machines —
-              all built for nickels only.
-            </figcaption>
-          </figure>
+          <div className="five-cent-showcase">
+            <figure className="chapter-figure">
+              <img
+                src={IMAGES.cocaCola5CentsLOC}
+                alt="Drink Coca-Cola 5 cents chromolithograph from Library of Congress"
+                className="chapter-image"
+                loading="lazy"
+              />
+              <figcaption>
+                &quot;Drink Coca-Cola 5¢&quot; — chromolithograph, Library of Congress
+              </figcaption>
+            </figure>
+            <figure className="chapter-figure">
+              <img
+                src={IMAGES.vintageVendingMachine}
+                alt="Vintage Coca-Cola vending machine"
+                className="chapter-image"
+                loading="lazy"
+              />
+              <figcaption>
+                Vintage vending machine — built for nickels only
+              </figcaption>
+            </figure>
+          </div>
 
           <p>
             The five-cent price held for over 70 years through three wars, the
