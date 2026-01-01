@@ -168,6 +168,7 @@ This agent acts as the **final gatekeeper** before any artifact (visual essay, e
 | **Social** | `social-media-meta-expert.md` | OG tags, Twitter cards, sharing | Missing required meta |
 | **SEO** | `seo-audit-agent.md` | Search optimization | Grade < C |
 | **Gates** | `gate-guard-auditor.md` | Pipeline compliance (G1-G8) | Missing gate artifacts |
+| **Index** | *Self (inline check)* | Essay registered in `visualEssays.ts` | Missing entry = NO-GO |
 
 ### Remediation Coordinator
 
@@ -211,6 +212,7 @@ Publish Artifact Orchestrator
 - Confirming spec compliance across all artifact components
 - Verifying citation and bibliography completeness
 - Checking social sharing metadata validity
+- **Verifying essay is registered in `src/data/visualEssays.ts`**
 - Assessing SEO readiness for discoverability
 
 **Risk Assessment**
@@ -501,7 +503,21 @@ Publish Artifact Orchestrator
 - [ ] Build succeeds
 - [ ] No console errors
 - [ ] Routing configured
-- [ ] Index entry prepared
+- [ ] **Essay added to `src/data/visualEssays.ts`** (CRITICAL)
+
+### Index Registration (MANDATORY)
+Every published essay MUST be added to `src/data/visualEssays.ts`:
+- [ ] Entry added with correct `id` (slug)
+- [ ] `number` assigned (next highest for ordering)
+- [ ] `title` and `subtitle` match page metadata
+- [ ] `description` is compelling (150-200 chars)
+- [ ] `category` matches content type
+- [ ] `readTime` calculated accurately
+- [ ] `href` points to correct route
+- [ ] `heroImage` URL is valid and accessible
+- [ ] `tags` array populated for discoverability
+- [ ] `isNew: true` set for featuring
+- [ ] `draft: false` or omitted for publication
 
 ---
 
@@ -541,6 +557,7 @@ Publish Artifact Orchestrator
 - [ ] All pipeline gates (G1-G8) have artifacts
 - [ ] No Tier 1 failures in any domain audit
 - [ ] Build succeeds without errors
+- [ ] **Essay registered in `src/data/visualEssays.ts` with valid entry**
 
 **Tier 2: CRITICAL (Should Fix, May Block)**
 - [ ] Citation audit achieves certification
@@ -564,6 +581,36 @@ Publish Artifact Orchestrator
 | Social Meta | All required present | OG present, Twitter optional |
 | SEO | Grade C (60/100) | Grade D with plan |
 | Gates | All G1-G8 pass | G1-G7 pass, G8 documented |
+| Index (`visualEssays.ts`) | Entry present with all fields | NOT ALLOWED - must have entry |
+
+### Index Entry Structure Reference
+
+When certifying GO, verify the essay has an entry in `src/data/visualEssays.ts`:
+
+```typescript
+{
+  id: "essay-slug",                    // Must match route slug
+  number: "XX",                        // Next highest number for ordering
+  title: "Essay Title",                // Matches page metadata
+  subtitle: "Essay Subtitle",          // Matches page metadata
+  description: "Compelling 150-200 char description for cards",
+  category: "History",                 // Valid: Science, History, Technology, Culture, Space, Nature, Education & Writing, Economics, Children's Fiction
+  readTime: "X min",                   // Accurate estimate
+  href: "/essays/essay-slug",          // Or /essays/category/essay-slug
+  heroImage: "https://...",            // Valid, accessible image URL
+  tags: ["tag1", "tag2"],              // For search/discoverability
+  isNew: true,                         // Set true for featuring
+  // draft: false                      // Omit or false for publication
+}
+```
+
+**Validation Checks:**
+- [ ] `id` matches the URL slug exactly
+- [ ] `number` is unique and highest (determines "Latest" featuring)
+- [ ] `href` route exists and is accessible
+- [ ] `heroImage` URL returns 200 status
+- [ ] `category` is a valid `EssayCategory` type
+- [ ] Entry appears in the array (not commented out)
 
 ### Red Flags to Identify
 
@@ -574,6 +621,7 @@ Publish Artifact Orchestrator
 - Unresolved blocking issues after max iterations
 - Social meta missing entirely
 - Bibliography structure incomplete
+- Essay not registered in `src/data/visualEssays.ts`
 
 ### Red Lines (Never Cross)
 
@@ -584,6 +632,7 @@ Publish Artifact Orchestrator
 - ❌ **NEVER approve content with broken source links**
 - ❌ **NEVER skip social meta validation for public content**
 - ❌ **NEVER issue CONDITIONAL without documenting conditions**
+- ❌ **NEVER certify GO without essay entry in `src/data/visualEssays.ts`**
 
 ---
 
