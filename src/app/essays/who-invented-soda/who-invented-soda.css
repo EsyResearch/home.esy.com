@@ -656,6 +656,87 @@
 }
 
 /* ============================================
+   RELATED ESSAY
+   ============================================ */
+.soda-container .related-essay-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(to bottom, var(--color-cola), var(--color-cola-deep));
+  border-top: 1px solid var(--color-caramel);
+}
+
+.soda-container .related-essay-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.soda-container .related-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-fizz-dim);
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+.soda-container .related-essay-card {
+  display: block;
+  padding: 1.5rem;
+  background: var(--color-cola-deep);
+  border: 1px solid var(--color-caramel);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.soda-container .related-essay-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--color-cherry), var(--color-pepsi));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.soda-container .related-essay-card:hover {
+  border-color: var(--color-cherry);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.soda-container .related-essay-card:hover::before {
+  opacity: 1;
+}
+
+.soda-container .related-essay-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-fizz);
+  margin-bottom: 0.75rem;
+}
+
+.soda-container .related-essay-description {
+  font-size: 0.9rem;
+  color: var(--color-fizz-dim);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.soda-container .related-essay-cta {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-cherry);
+  font-weight: 500;
+}
+
+/* ============================================
    SOURCES
    ============================================ */
 .soda-container .sources-section {

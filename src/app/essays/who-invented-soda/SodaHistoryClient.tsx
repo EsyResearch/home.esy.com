@@ -320,6 +320,25 @@ const ColaWars: React.FC = () => (
   </section>
 );
 
+// ==================== RELATED ESSAY ====================
+const RelatedEssay: React.FC = () => (
+  <section className="related-essay-section">
+    <div className="related-essay-content">
+      <span className="related-label">Continue Reading</span>
+      <a href="/essays/the-complete-history-of-soda/" className="related-essay-card">
+        <div className="related-essay-info">
+          <h3 className="related-essay-title">The Complete History of Soda</h3>
+          <p className="related-essay-description">
+            From Joseph Priestley&apos;s 1767 brewery experiment to 1.9 billion daily servings —
+            the full 260-year story with 28 verified sources and 11 documented figures.
+          </p>
+          <span className="related-essay-cta">Read the deep dive →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+);
+
 // ==================== SOURCES ====================
 const Sources: React.FC = () => (
   <section className="sources-section">
@@ -417,6 +436,7 @@ const SodaHistoryClient: React.FC = () => {
       <BubbleDataSection />
       <PourTimeline />
       <ColaWars />
+      <RelatedEssay />
       <Sources />
       <Footer />
     </div>
