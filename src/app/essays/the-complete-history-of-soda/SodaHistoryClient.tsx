@@ -857,34 +857,112 @@ const Bibliography: React.FC = () => (
 
     <div className="image-credits">
       <h3>Image Credits</h3>
-      <ul className="image-credits-list">
-        <li>Joseph Priestley portrait — Ellen Sharples, Public Domain via Wikimedia Commons</li>
-        <li>Pneumatic trough apparatus — Public Domain via Wikimedia Commons</li>
-        <li>Torbern Bergman portrait — Public Domain via Smithsonian</li>
-        <li>Johann Jacob Schweppe portrait (1783) — Public Domain via Wikimedia Commons</li>
-        <li>Benjamin Silliman portrait — William G. Jackman, Public Domain</li>
-        <li>John Stith Pemberton photograph — Public Domain via Wikimedia Commons</li>
-        <li>Asa G. Candler photograph — Harris &amp; Ewing (1923), Library of Congress</li>
-        <li>Caleb Bradham photograph (c. 1900) — Public Domain via Wikimedia Commons</li>
-        <li>Charles Elmer Hires portrait — Moses King (1902), Public Domain</li>
-        <li>Soda fountain at Weed&apos;s Pharmacy (c. 1910) — MOHAI, Public Domain</li>
-        <li>Soda jerk photograph — Alan Fisher (1936), Library of Congress</li>
-        <li>Coca-Cola 1890s advertisement — Public Domain via Wikimedia Commons</li>
-        <li>Coca-Cola 5 cents chromolithograph — Library of Congress</li>
-        <li>1915 contour bottle prototype — Gavinmacqueen, CC BY-SA 3.0</li>
-        <li>Coca-Cola bottle patent — Alexander Samuelson (1915), USPTO</li>
-        <li>Root Glass Company team (c. 1900s) — Vigo County Historical Museum, CC BY-NC-SA 4.0 via Discover Indiana</li>
-        <li>Vintage vending machine — Myotus, CC BY-SA 4.0</li>
-        <li>WWII &quot;Kia Ora&quot; advertisement — Dean Cornwell (1943-45), Archives New Zealand</li>
-        <li>Coca-Cola Bottling Plant, Worcester — B. Michael Zuckerman, CC BY-SA 4.0</li>
-        <li>Kitchen Debate photograph — Thomas J. O&apos;Halloran (1959), Library of Congress</li>
-        <li>New Coke can — Public Domain via Wikimedia Commons</li>
-        <li>Pepsi Challenge materials — TeemPlayer, CC BY-SA 3.0</li>
-        <li>Coca-Cola delivery truck, Taiwan — Uwe Aranas, CC BY-SA 3.0</li>
-        <li>Robert W. Woodruff portrait (1944) — Joseph Janney Steinmetz, State Archives of Florida</li>
-        <li>Charles Alderton photograph — Public Domain via Wikimedia Commons</li>
-        <li>Donald Kendall portrait — Public Domain via Wikimedia Commons</li>
-      </ul>
+      <div className="image-credits-ledger">
+        <div className="credit-entry">
+          <span className="credit-subject">Joseph Priestley portrait</span>
+          <span className="credit-attribution">Ellen Sharples, Public Domain via Wikimedia Commons</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Pneumatic trough apparatus</span>
+          <span className="credit-attribution">Public Domain via Wikimedia Commons</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Torbern Bergman portrait</span>
+          <span className="credit-attribution">Public Domain via Smithsonian</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Johann Jacob Schweppe portrait (1783)</span>
+          <span className="credit-attribution">Public Domain via Wikimedia Commons</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Benjamin Silliman portrait</span>
+          <span className="credit-attribution">William G. Jackman, Public Domain</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">John Stith Pemberton photograph</span>
+          <span className="credit-attribution">Public Domain via Wikimedia Commons</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Asa G. Candler photograph</span>
+          <span className="credit-attribution">Harris &amp; Ewing (1923), Library of Congress</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Caleb Bradham photograph (c. 1900)</span>
+          <span className="credit-attribution">Public Domain via Wikimedia Commons</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Charles Elmer Hires portrait</span>
+          <span className="credit-attribution">Moses King (1902), Public Domain</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Soda fountain at Weed&apos;s Pharmacy (c. 1910)</span>
+          <span className="credit-attribution">MOHAI, Public Domain</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Soda jerk photograph</span>
+          <span className="credit-attribution">Alan Fisher (1936), Library of Congress</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Coca-Cola 1890s advertisement</span>
+          <span className="credit-attribution">Public Domain via Wikimedia Commons</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Coca-Cola 5 cents chromolithograph</span>
+          <span className="credit-attribution">Library of Congress</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">1915 contour bottle prototype</span>
+          <span className="credit-attribution">Gavinmacqueen, CC BY-SA 3.0</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Coca-Cola bottle patent</span>
+          <span className="credit-attribution">Alexander Samuelson (1915), USPTO</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Root Glass Company team (c. 1900s)</span>
+          <span className="credit-attribution">Vigo County Historical Museum, CC BY-NC-SA 4.0</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Vintage vending machine</span>
+          <span className="credit-attribution">Myotus, CC BY-SA 4.0</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">WWII &quot;Kia Ora&quot; advertisement</span>
+          <span className="credit-attribution">Dean Cornwell (1943-45), Archives New Zealand</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Coca-Cola Bottling Plant, Worcester</span>
+          <span className="credit-attribution">B. Michael Zuckerman, CC BY-SA 4.0</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Kitchen Debate photograph</span>
+          <span className="credit-attribution">Thomas J. O&apos;Halloran (1959), Library of Congress</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">New Coke can</span>
+          <span className="credit-attribution">Public Domain via Wikimedia Commons</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Pepsi Challenge materials</span>
+          <span className="credit-attribution">TeemPlayer, CC BY-SA 3.0</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Coca-Cola delivery truck, Taiwan</span>
+          <span className="credit-attribution">Uwe Aranas, CC BY-SA 3.0</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Robert W. Woodruff portrait (1944)</span>
+          <span className="credit-attribution">Joseph Janney Steinmetz, State Archives of Florida</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Charles Alderton photograph</span>
+          <span className="credit-attribution">Public Domain via Wikimedia Commons</span>
+        </div>
+        <div className="credit-entry">
+          <span className="credit-subject">Donald Kendall portrait</span>
+          <span className="credit-attribution">Public Domain via Wikimedia Commons</span>
+        </div>
+      </div>
     </div>
   </section>
 );
