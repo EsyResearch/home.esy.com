@@ -32,28 +32,33 @@ The Esy orchestration framework is a multi-agent system designed to produce high
 | **Single Source of Truth** | Every essay has a `research/` directory with canonical citations |
 | **Orchestrator Pattern** | Complex tasks are coordinated by orchestrator agents |
 
-### Four Pillars of Orchestration
+### Six Pillars of Orchestration
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                    VISUAL ESSAY ORCHESTRATOR (Top Level)                     │
-│                         Coordinates entire pipeline                          │
-└─────────────────────────────────────┬───────────────────────────────────────┘
-                                      │
-      ┌───────────────────────────────┼───────────────────────────────┐
-      │                    │                    │                      │
-      ▼                    ▼                    ▼                      ▼
-┌───────────────┐  ┌───────────────┐  ┌───────────────┐  ┌───────────────┐
-│   RESEARCH    │  │  INVOCATION   │  │ SCROLLYTELLING│  │  META AUDIT   │
-│ ORCHESTRATOR  │  │    AGENT      │  │    EXPERT     │  │ ORCHESTRATOR  │
-│               │  │               │  │               │  │               │
-│  Phase 2:     │  │  Phase 3:     │  │  Phase 4:     │  │  Phase 5:     │
-│  Research     │  │  Spec Build   │  │  Production   │  │  Audit        │
-│               │  │  (from res.)  │  │               │  │               │
-│  Uses SKILL.md│  │  Uses res. +  │  │  Implements   │  │  Verifies     │
-│  as blueprint │  │  SKILL.md     │  │  the spec     │  │  everything   │
-└───────────────┘  └───────────────┘  └───────────────┘  └───────────────┘
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                         VISUAL ESSAY ORCHESTRATOR (Top Level)                            │
+│                              Coordinates entire pipeline                                 │
+│                                   Owns G1, G3, G9                                        │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+                                          │
+  ┌───────────────┬───────────────┬───────┴───────┬───────────────┬───────────────┐
+  │               │               │               │               │               │
+  ▼               ▼               ▼               ▼               ▼               ▼
+┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐
+│  RESEARCH   │ │ INVOCATION  │ │SCROLLYTELL- │ │BIBLIOGRAPHY │ │   AUDIT     │ │  PUBLISH    │
+│ORCHESTRATOR │ │   AGENT     │ │ ING EXPERT  │ │ORCHESTRATOR │ │ORCHESTRATOR │ │  ARTIFACT   │
+│             │ │             │ │             │ │             │ │             │ │ORCHESTRATOR │
+│  Phase 2    │ │  Phase 3    │ │  Phase 4    │ │  Phase 4    │ │  Phase 5    │ │  Phase 6    │
+│  Research   │ │  Spec Build │ │  Production │ │  Bibliog.   │ │  Audit      │ │  Publish    │
+│             │ │             │ │             │ │             │ │             │ │             │
+│  Owns G2    │ │ Builds spec │ │ G4→G4.1→G4.5│ │  Owns G5.5  │ │  G6, G7     │ │  Owns G8    │
+│             │ │ from res.   │ │ →G5→G5.2    │ │             │ │             │ │             │
+└─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘
 ```
+
+**Supporting Orchestrators:**
+- **QA Remediation Orchestrator** — Auto-fix coordination for audit failures
+- **SEO Orchestrator** — SEO pipeline management
 
 ---
 
@@ -64,6 +69,7 @@ The Esy orchestration framework is a multi-agent system designed to produce high
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
 │                              VISUAL ESSAY ORCHESTRATOR                                   │
+│                                  (13 Gates Pipeline)                                     │
 └─────────────────────────────────────────────────────────────────────────────────────────┘
                                           │
   ┌─────────────┬─────────────┬───────────┼───────────┬─────────────┬─────────────┐
@@ -74,16 +80,14 @@ The Esy orchestration framework is a multi-agent system designed to produce high
 │         │ │         │ │         │ │         │ │         │ │         │
 │ INTAKE  │►│RESEARCH │►│  SPEC   │►│PRODUCT- │►│  AUDIT  │►│ PUBLISH │
 │         │ │         │ │ BUILD   │ │  ION    │ │         │ │         │
-│         │ │(uses    │ │(from    │ │(imple-  │ │         │ │         │
-│   G1    │ │SKILL.md)│ │research)│ │ments)   │ │ G6, G7  │ │ G8, G9  │
-└─────────┘ └────┬────┘ └────┬────┘ └────┬────┘ └─────────┘ └─────────┘
-     │           │  G2       │  G3       │ G4, G5
-     │           │           │           │
-     ▼           ▼           ▼           │
-  SKILL.md ──► research/ ──► spec ──────►│
-  (research    package      (built       │
-   blueprint)  (fills in    from         │
-               template)    research)    │
+│   G1    │ │   G2    │ │   G3    │ │G4→G4.1  │ │ G6, G7  │ │ G8, G9  │
+│         │ │         │ │         │ │→G4.5→G5 │ │         │ │         │
+│         │ │         │ │         │ │→G5.2    │ │         │ │         │
+│         │ │         │ │         │ │→G5.5    │ │         │ │         │
+└─────────┘ └─────────┘ └─────────┘ └─────────┘ └─────────┘ └─────────┘
+
+Gate Flow:
+G1 ─► G2 ─► G3 ─► G4 ─► G4.1 ─► G4.5 ─► G5 ─► G5.2 ─► G5.5 ─► G6 ─► G7 ─► G8 ─► G9
 ```
 
 ### Phase Descriptions
@@ -93,9 +97,9 @@ The Esy orchestration framework is a multi-agent system designed to produce high
 | 1 | Intake | Visual Essay Orchestrator | G1 | Scope + SKILL.md research requirements |
 | 2 | Research | Research Orchestrator | G2 | `research/` package (maps to SKILL.md) |
 | 3 | Spec Construction | Visual Essay Invocation Agent | G3 | 6-layer spec (built from research) |
-| 4 | Production | Scrollytelling Expert | G4, G5 | Content & design implementation |
-| 5 | Audit | Meta Audit Orchestrator | G6, G7 | Certification |
-| 6 | Publish | Visual Essay Orchestrator | G8, G9 | Deployed essay |
+| 4 | Production | Scrollytelling Expert | G4, G4.1, G4.5, G5, G5.2, G5.5 | Content, design, bibliography implementation |
+| 5 | Audit | Audit Orchestrator | G6, G7 | Citation & scroll certification |
+| 6 | Publish | Publish Artifact Orchestrator + Visual Essay Orchestrator | G8, G9 | Publication certification + deployed essay |
 
 ### Critical Flow: SKILL.md → Research → Spec → Production
 
@@ -189,12 +193,15 @@ The Research Orchestrator coordinates the complete research pipeline, ensuring t
 
 ### Child Agents
 
-| Agent | Location | Role in Research |
+| Agent | Location | Role in Pipeline |
 |-------|----------|------------------|
 | Brainstorming Agent | `research/brainstorming-agent.md` | Question formulation, angles, hypotheses |
 | Research & Citations Expert | `research/research-citations-expert.md` | Source discovery, evaluation, synthesis |
-| Citation Audit Agent | `auditors/citation-audit-agent.md` | Link verification, quote validation |
-| Image Research Expert | `research/image-research-licensing-expert.md` | Visual asset sourcing |
+| Design Researcher | `research/design-researcher.md` | G4: Visual identity from subject matter |
+| Image Research Expert | `research/image-research-licensing-expert.md` | G4.5: Visual asset sourcing, licensing |
+| Citation Audit Agent | `auditors/citation-audit-agent.md` | G6: Link verification, quote validation |
+| Design Research Reconciliation Agent | `auditors/design-research-reconciliation-agent.md` | G4.1: Thematic authenticity, cross-essay novelty |
+| Design Research Integration Agent | `auditors/design-research-integration-agent.md` | G5.2: CSS↔TSX binding verification |
 | Regional Experts | `regional/*.md` | Domain-specific knowledge |
 | Historian Writer/Editor | `content/historian-*.md` | Historical methodology |
 
@@ -331,12 +338,16 @@ Research depth adapts to content type and complexity. Three modes are available:
 | **G1** | Intake Approval | 1→2 | Visual Essay Orchestrator | Research | Scope defined, SKILL.md requirements identified |
 | **G2** | Research Complete | 2→3 | Research Orchestrator | Spec | Research package complete, maps to SKILL.md |
 | **G3** | Spec Approval | 3→4 | Visual Essay Orchestrator | Production | 6-layer spec built from research, no orphan claims |
-| **G4** | Design Research | 4 | Scrollytelling Expert | Content | Visual identity from subject matter |
-| **G5** | Content Complete | 4→5 | Historian Editor | Audit | All sections drafted, fact-checked |
-| **G6** | Citation Audit | 5 | Citation Audit Agent | Scroll | Citation certification achieved |
-| **G7** | Scroll Certification | 5 | Immersive Scrolling Auditor | Mobile | 60fps, scroll-lock verified |
-| **G8** | Mobile Verification | 5→6 | Visual Essay Orchestrator | Publish | Real device tested |
-| **G9** | Publication Approval | 6 | Visual Essay Orchestrator | Deploy | Director sign-off |
+| **G4** | Design Research | 4 | Design Researcher | G4.1 | Visual identity derived from subject matter |
+| **G4.1** | Design Research Reconciliation | 4 | Design Research Reconciliation Agent | G4.5 | Thematic authenticity verified, no cross-essay collisions, CSS implements design research |
+| **G4.5** | Image Sourcing | 4 | Image Research Licensing Expert | G5 | All images sourced, URLs extracted, licenses verified |
+| **G5** | Content Complete | 4→5 | Scrollytelling Expert | G5.2 | All sections drafted, fact-checked, uses research package |
+| **G5.2** | Design Research Integration | 4 | Design Research Integration Agent | G5.5 | CSS selectors bind to TSX classNames (≥95%), no convention mismatches |
+| **G5.5** | Bibliography Implementation | 4 | Bibliography Orchestrator | G6 | Bibliography section complete (Works Cited, Image Credits, A/V, Data Sources) |
+| **G6** | Citation Audit | 5 | Citation Audit Agent | G7 | Citation certification achieved |
+| **G7** | Scroll Certification | 5 | Immersive Scrolling Auditor | G8 | 60fps, scroll-lock verified, score ≥8.0/10 |
+| **G8** | Publication Certification | 6 | Publish Artifact Orchestrator | G9 | Pre-publication certification (GO/CONDITIONAL) from all domain audits |
+| **G9** | Publication Approval | 6 | Visual Essay Orchestrator | Deploy | Director sign-off, visualEssays.ts updated |
 
 ### G2 Requirements (Research Complete)
 
@@ -374,15 +385,20 @@ The Visual Essay Orchestrator must verify spec is research-backed:
 orchestration/agents/
 ├── orchestrators/           # 🎬 Top-level coordination
 │   ├── visual-essay-orchestrator.md
-│   ├── research-orchestrator.md      ← NEW
-│   ├── meta-audit-orchestrator.md
+│   ├── research-orchestrator.md
+│   ├── audit-orchestrator.md         # Comprehensive quality audits
+│   ├── bibliography-orchestrator.md  # G5.5 Bibliography implementation
+│   ├── publish-artifact-orchestrator.md  # G8 Publication certification
+│   ├── qa-remediation-orchestrator.md    # Auto-fix coordination
+│   ├── seo-orchestrator.md           # SEO pipeline management
 │   ├── scrollytelling-expert.md
 │   └── childrens-fiction-scrollytelling-agent.md
 │
 ├── research/                # 🔬 Research specialists
-│   ├── brainstorming-agent.md        ← NEW
+│   ├── brainstorming-agent.md
 │   ├── research-citations-expert.md
-│   └── image-research-licensing-expert.md
+│   ├── image-research-licensing-expert.md
+│   └── design-researcher.md          # G4 Design research
 │
 ├── auditors/                # 🔍 Quality verification
 │   ├── citation-audit-agent.md
@@ -391,7 +407,12 @@ orchestration/agents/
 │   ├── scrollytelling-audit-agent.md
 │   ├── immersive-scrolling-auditor.md
 │   ├── immersive-experience-auditor.md
-│   └── seo-audit-agent.md
+│   ├── seo-audit-agent.md
+│   ├── spec-compliance-auditor.md    # Spec vs output verification
+│   ├── hydration-audit-agent.md      # SSR/client mismatch detection
+│   ├── content-audit-agent.md        # Word count, depth, tone
+│   ├── design-research-reconciliation-agent.md  # G4.1 Design authenticity
+│   └── design-research-integration-agent.md     # G5.2 CSS↔TSX binding
 │
 ├── content/                 # 📚 Content creation
 │   ├── historian-writer-expert.md
@@ -408,7 +429,7 @@ orchestration/agents/
 │   ├── software-engineering-expert.md
 │   ├── immersive-experience-engineer.md
 │   ├── svg-illustration-animation-expert.md
-│   └── ... (7 agents)
+│   └── ... (additional agents)
 │
 └── utilities/               # 🔧 Support functions
     ├── scrollytelling-invocation-enhancer.md
@@ -591,6 +612,7 @@ Minimum sources: [number]
 
 | Version | Date | Changes |
 |---------|------|---------|
+| v1.2 | January 1, 2025 | **13-gate pipeline update**: Added G4.1 (Design Research Reconciliation), G4.5 (Image Sourcing), G5.2 (Design Research Integration), G5.5 (Bibliography Implementation). Changed G8 from "Mobile Verification" to "Publication Certification" (owned by Publish Artifact Orchestrator). Added new orchestrators: audit-orchestrator, bibliography-orchestrator, publish-artifact-orchestrator, qa-remediation-orchestrator, seo-orchestrator. Added new auditors: spec-compliance-auditor, hydration-audit-agent, content-audit-agent, design-research-reconciliation-agent, design-research-integration-agent. Updated Four Pillars → Six Pillars diagram. Updated Agent Ecosystem directory structure. |
 | v1.1 | December 11, 2024 | Research → Spec flow: SKILL.md now serves as research blueprint. Spec construction happens AFTER research, using verified data. Added Phase 3 (Spec Construction), renumbered to 6 phases. Added G3 (Spec Approval), G9 (Publication). Research package now includes SKILL.md-aligned files (FIGURES.md, QUOTES.md, TIMELINE.md, VISUALS.md, ERA-GUIDE.md). |
 | v1.0 | December 11, 2024 | Initial framework documentation |
 
