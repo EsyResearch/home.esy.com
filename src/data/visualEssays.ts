@@ -981,6 +981,7 @@ export const visualEssays: VisualEssay[] = [
     category: "Education & Writing",
     readTime: "22 min",
     href: "/essays/etymology/the-word-war",
+    heroImage: "/og/the-word-war.png",
     isNew: true,
     tags: ["war etymology", "werra", "frankish", "norman conquest", "middle english", "etymology", "word origin", "guerre", "guerra", "cross-linguistic", "PIE", "visual essay", "military interface", "targeting"],
     visualStyle: "illustrated",
