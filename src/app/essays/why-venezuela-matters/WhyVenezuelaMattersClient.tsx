@@ -4,19 +4,19 @@ import { useState, useEffect } from 'react';
 import './why-venezuela-matters.css';
 
 // Types
-type VerificationStatus = 'confirmed' | 'reported' | 'unknown' | 'developing';
-
 interface FactItem {
   text: string;
   source?: string;
 }
 
-// Badge Component
-function Badge({ status, children }: { status: VerificationStatus; children: React.ReactNode }) {
-  return <span className={`badge badge-${status}`}>{children}</span>;
+// Timeline Event interface
+interface TimelineEvent {
+  time?: string;
+  text: string;
+  source?: string;
 }
 
-// Fact Box Component
+// Fact Box Component - Timeline-based design
 function FactBox({
   title,
   timestamp,
@@ -30,32 +30,75 @@ function FactBox({
   reported: FactItem[];
   unknown: FactItem[];
 }) {
+  // Parse confirmed items to extract time if present at the start
+  const timelineEvents: TimelineEvent[] = confirmed.map((item) => {
+    // Check for time patterns like "~2:00 AM VET:", "3:29 AM ET:", "Evening:"
+    const timeMatch = item.text.match(/^([^:]+(?:AM|PM|Evening)[^:]*?):\s*(.+)$/i);
+    if (timeMatch) {
+      return { time: timeMatch[1], text: timeMatch[2] };
+    }
+    return { text: item.text };
+  });
+
   return (
     <div className="fact-box">
       <div className="fact-box-header">
         <h3 className="fact-box-title">{title}</h3>
         <span className="fact-box-timestamp">As of {timestamp}</span>
       </div>
-      <div className="fact-box-columns">
-        <div className="fact-box-column confirmed">
-          <h4>Confirmed</h4>
-          <ul>
-            {confirmed.map((item, i) => (
-              <li key={i}>{item.text}</li>
-            ))}
-          </ul>
+
+      {/* Timeline of confirmed events */}
+      <div className="fact-timeline">
+        <div className="fact-timeline-label">
+          <svg viewBox="0 0 20 20" fill="currentColor" className="fact-timeline-icon">
+            <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
+          </svg>
+          Confirmed Sequence
         </div>
-        <div className="fact-box-column reported">
-          <h4>Reported</h4>
-          <ul>
+        <div className="fact-timeline-track">
+          {timelineEvents.map((event, i) => (
+            <div key={i} className="fact-timeline-event">
+              <div className="fact-timeline-marker">
+                <svg viewBox="0 0 20 20" fill="currentColor" className="fact-timeline-check">
+                  <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
+                </svg>
+                {i < timelineEvents.length - 1 && <div className="fact-timeline-line" />}
+              </div>
+              <div className="fact-timeline-content">
+                {event.time && <span className="fact-timeline-time">{event.time}</span>}
+                <span className="fact-timeline-text">{event.text}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom row: Reported and Unknown side by side */}
+      <div className="fact-box-footer">
+        {/* Reported section */}
+        <div className="fact-caveats">
+          <div className="fact-caveats-label">
+            <svg viewBox="0 0 20 20" fill="currentColor" className="fact-caveats-icon">
+              <path fillRule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+            </svg>
+            Reported (Unverified)
+          </div>
+          <ul className="fact-caveats-list">
             {reported.map((item, i) => (
               <li key={i}>{item.text}</li>
             ))}
           </ul>
         </div>
-        <div className="fact-box-column unknown">
-          <h4>Unknown</h4>
-          <ul>
+
+        {/* Unknown section */}
+        <div className="fact-questions">
+          <div className="fact-questions-label">
+            <svg viewBox="0 0 20 20" fill="currentColor" className="fact-questions-icon">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM8.94 6.94a.75.75 0 11-1.061-1.061 3 3 0 112.871 5.026v.345a.75.75 0 01-1.5 0v-.5c0-.72.57-1.172 1.081-1.287A1.5 1.5 0 108.94 6.94zM10 15a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+            </svg>
+            Open Questions
+          </div>
+          <ul className="fact-questions-list">
             {unknown.map((item, i) => (
               <li key={i}>{item.text}</li>
             ))}
@@ -75,11 +118,11 @@ function HemisphereMap() {
   return (
     <div className="visual-module">
       <div className="visual-module-label">Module A: Geographic Context</div>
-      <div style={{ background: '#1a365d', borderRadius: '8px', padding: '1rem' }}>
+      <div style={{ background: '#1a365d', padding: '1rem' }}>
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/d/da/Orinoco_Oil_Belt.png"
           alt="Orinoco Oil Belt geological map showing Venezuela's heavy crude deposits"
-          style={{ width: '100%', height: 'auto', borderRadius: '4px' }}
+          style={{ width: '100%', height: 'auto' }}
         />
       </div>
       <p className="visual-module-caption">
@@ -532,7 +575,6 @@ function VisualModulePlaceholder({
         style={{
           background: 'linear-gradient(135deg, #1a365d 0%, #1a202c 100%)',
           height: '300px',
-          borderRadius: '4px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -628,8 +670,6 @@ function Hero() {
 
 // Main Component
 export default function WhyVenezuelaMattersClient() {
-  const lastUpdated = 'January 3, 2026, 11:00 PM ET';
-
   return (
     <article className="venezuela-essay">
       <ProgressBar />
@@ -637,21 +677,6 @@ export default function WhyVenezuelaMattersClient() {
 
       {/* Main Content */}
       <main className="venezuela-essay__container">
-        {/* Truth Discipline */}
-        <div className="truth-discipline" style={{ marginTop: '3rem' }}>
-          <div className="truth-discipline__header">
-            <svg className="truth-discipline__icon" viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" fill="none" stroke="currentColor" strokeWidth="2"/>
-            </svg>
-            <span className="truth-discipline__title">Truth Discipline</span>
-          </div>
-          <p style={{ margin: 0 }}>
-            This essay explains the systems behind the headlines.
-            Where facts are still developing, we label them explicitly: <Badge status="confirmed">Confirmed</Badge>{' '}
-            <Badge status="reported">Reported</Badge> <Badge status="unknown">Unknown</Badge>.
-            Last updated: {lastUpdated}
-          </p>
-        </div>
         {/* Executive Summary */}
         <section>
           <p>
@@ -842,27 +867,67 @@ export default function WhyVenezuelaMattersClient() {
             U.S. sanctions against Venezuela have evolved across three administrations, each
             tightening the economic pressure:
           </p>
-          <ul>
-            <li>
-              <strong>2017-2018</strong>: Initial targeted sanctions on individuals
-            </li>
-            <li>
-              <strong>2019-2020</strong>: Maximum pressure campaign — sanctions on PDVSA, oil
-              sector designations
-            </li>
-            <li>
-              <strong>2020</strong>: DOJ indicts Maduro on narco-terrorism charges (unsealed
-              indictment)
-            </li>
-            <li>
-              <strong>2023</strong>: Limited sanctions relief — Chevron receives license to resume
-              operations
-            </li>
-            <li>
-              <strong>2025</strong>: Maximum pressure reinstated — export blockade, additional
-              designations
-            </li>
-          </ul>
+          
+          <div className="sanctions-timeline">
+            <div className="sanctions-timeline__event">
+              <div className="sanctions-timeline__marker">
+                <span className="sanctions-timeline__year">2017–18</span>
+                <div className="sanctions-timeline__dot" />
+              </div>
+              <div className="sanctions-timeline__content">
+                <span className="sanctions-timeline__label">Targeted</span>
+                <p>Initial targeted sanctions on individuals</p>
+              </div>
+            </div>
+            
+            <div className="sanctions-timeline__event sanctions-timeline__event--escalation">
+              <div className="sanctions-timeline__marker">
+                <span className="sanctions-timeline__year">2019–20</span>
+                <div className="sanctions-timeline__dot" />
+              </div>
+              <div className="sanctions-timeline__content">
+                <span className="sanctions-timeline__label">Maximum Pressure</span>
+                <p>Sanctions on PDVSA, oil sector designations</p>
+              </div>
+            </div>
+            
+            <div className="sanctions-timeline__event sanctions-timeline__event--legal">
+              <div className="sanctions-timeline__marker">
+                <span className="sanctions-timeline__year">2020</span>
+                <div className="sanctions-timeline__dot" />
+              </div>
+              <div className="sanctions-timeline__content">
+                <span className="sanctions-timeline__label">Indictment</span>
+                <p>DOJ indicts Maduro on narco-terrorism charges</p>
+              </div>
+            </div>
+            
+            <div className="sanctions-timeline__event sanctions-timeline__event--relief">
+              <div className="sanctions-timeline__marker">
+                <span className="sanctions-timeline__year">2023</span>
+                <div className="sanctions-timeline__dot" />
+              </div>
+              <div className="sanctions-timeline__content">
+                <span className="sanctions-timeline__label">Limited Relief</span>
+                <p>Chevron receives license to resume operations</p>
+              </div>
+            </div>
+            
+            <div className="sanctions-timeline__event sanctions-timeline__event--escalation">
+              <div className="sanctions-timeline__marker">
+                <span className="sanctions-timeline__year">2025</span>
+                <div className="sanctions-timeline__dot" />
+              </div>
+              <div className="sanctions-timeline__content">
+                <span className="sanctions-timeline__label">Blockade</span>
+                <p>Maximum pressure reinstated — export blockade, additional designations</p>
+              </div>
+            </div>
+          </div>
+          <p className="sanctions-timeline-caption">
+            Color indicates policy direction: escalation, legal action, relief
+          </p>
+          
           <p>
             By December 2025, the situation had become acute. OFAC designated additional companies
             and tankers. A de facto blockade prevented vessels from entering or leaving Venezuelan
@@ -1242,222 +1307,193 @@ export default function WhyVenezuelaMattersClient() {
         </section>
 
         {/* Glossary */}
-        <h2>Key Terms</h2>
-        <section className="glossary-section">
-          <div className="glossary-grid">
-            <div>
-              <p className="glossary-term">API gravity</p>
-              <p className="glossary-definition">
-                Measure of oil density; higher = lighter crude
-              </p>
+        <section className="glossary">
+          <div className="glossary-header">
+            <span className="glossary-eyebrow">Reference</span>
+            <h2 className="glossary-title">Glossary</h2>
+          </div>
+          
+          <div className="glossary-columns">
+            <div className="glossary-category">
+              <h3 className="glossary-category-title">Oil &amp; Energy</h3>
+              <dl className="glossary-list">
+                <div className="glossary-entry">
+                  <dt>API gravity</dt>
+                  <dd>Measure of oil density; higher numbers indicate lighter crude that flows more easily</dd>
+                </div>
+                <div className="glossary-entry">
+                  <dt>Heavy crude</dt>
+                  <dd>Oil with low API gravity (&lt;22°), thick consistency, requires specialized refining equipment</dd>
+                </div>
+                <div className="glossary-entry">
+                  <dt>Sour crude</dt>
+                  <dd>Oil with high sulfur content (&gt;0.5%), requires desulfurization before processing</dd>
+                </div>
+                <div className="glossary-entry">
+                  <dt>Coker</dt>
+                  <dd>Refinery unit that thermally cracks heavy residual oil into lighter, more valuable products</dd>
+                </div>
+                <div className="glossary-entry">
+                  <dt>PDVSA</dt>
+                  <dd>Petróleos de Venezuela, S.A. — Venezuela&apos;s state-owned oil and natural gas company</dd>
+                </div>
+                <div className="glossary-entry">
+                  <dt>Orinoco Belt</dt>
+                  <dd>600km region in eastern Venezuela containing the world&apos;s largest heavy oil deposits</dd>
+                </div>
+              </dl>
             </div>
-            <div>
-              <p className="glossary-term">Heavy crude</p>
-              <p className="glossary-definition">
-                Oil with low API gravity, thick, requires complex refining
-              </p>
-            </div>
-            <div>
-              <p className="glossary-term">Sour crude</p>
-              <p className="glossary-definition">
-                Oil with high sulfur content, requires desulfurization
-              </p>
-            </div>
-            <div>
-              <p className="glossary-term">Coker</p>
-              <p className="glossary-definition">
-                Refinery unit that processes heavy residual oil
-              </p>
-            </div>
-            <div>
-              <p className="glossary-term">PDVSA</p>
-              <p className="glossary-definition">
-                Petroleos de Venezuela, state oil company
-              </p>
-            </div>
-            <div>
-              <p className="glossary-term">Orinoco Belt</p>
-              <p className="glossary-definition">
-                Region containing Venezuela&apos;s largest heavy oil deposits
-              </p>
-            </div>
-            <div>
-              <p className="glossary-term">Monroe Doctrine</p>
-              <p className="glossary-definition">
-                1823 U.S. policy asserting hemispheric influence
-              </p>
-            </div>
-            <div>
-              <p className="glossary-term">War Powers Resolution</p>
-              <p className="glossary-definition">
-                1973 law limiting presidential military authority
-              </p>
-            </div>
-            <div>
-              <p className="glossary-term">Ker-Frisbie doctrine</p>
-              <p className="glossary-definition">
-                Allows prosecution regardless of how defendant was captured
-              </p>
-            </div>
-            <div>
-              <p className="glossary-term">Narco-terrorism</p>
-              <p className="glossary-definition">
-                Terrorism funded by drug trafficking
-              </p>
+            
+            <div className="glossary-category">
+              <h3 className="glossary-category-title">Legal &amp; Political</h3>
+              <dl className="glossary-list">
+                <div className="glossary-entry">
+                  <dt>Monroe Doctrine</dt>
+                  <dd>1823 U.S. foreign policy opposing European colonialism in the Western Hemisphere</dd>
+                </div>
+                <div className="glossary-entry">
+                  <dt>War Powers Resolution</dt>
+                  <dd>1973 federal law requiring presidential notification to Congress within 48 hours of military action</dd>
+                </div>
+                <div className="glossary-entry">
+                  <dt>Ker-Frisbie doctrine</dt>
+                  <dd>Legal principle allowing prosecution regardless of how a defendant was brought before the court</dd>
+                </div>
+                <div className="glossary-entry">
+                  <dt>Narco-terrorism</dt>
+                  <dd>Terrorism funded through drug trafficking; carries enhanced federal penalties</dd>
+                </div>
+              </dl>
             </div>
           </div>
         </section>
 
-        {/* Sources */}
-        <h2>Sources</h2>
-        <section className="sources-section">
-          <div className="sources-category">
-            <h3 className="sources-category-title">Operation Absolute Resolve</h3>
-            <ul className="sources-list">
-              <li>
-                <a
-                  href="https://www.reuters.com/world/americas/trump-says-us-has-captured-venezuela-president-maduro-2026-01-03/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Reuters: Trump says Venezuela&apos;s Maduro captured after strikes
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.reuters.com/world/americas/world-reacts-us-strikes-venezuela-2026-01-03/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Reuters: World reacts to US strikes on Venezuela
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.pbs.org/newshour/world/how-u-s-forces-captured-venezuelan-leader-nicolas-maduro-in-caracas"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  PBS NewsHour: How U.S. forces captured Venezuelan leader
-                </a>
-              </li>
-            </ul>
+        {/* Sources & Further Reading */}
+        <section className="sources">
+          <div className="sources-header">
+            <span className="sources-eyebrow">Bibliography</span>
+            <h2 className="sources-title">Sources &amp; Further Reading</h2>
           </div>
 
-          <div className="sources-category">
-            <h3 className="sources-category-title">Legal Analysis</h3>
-            <ul className="sources-list">
-              <li>
-                <a
-                  href="https://news.un.org/en/story/2026/01/1166698"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  UN News: Guterres on &quot;dangerous precedent&quot;
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.justsecurity.org/127962/maduro-capture-operation-and-presidents-duty-to-faithfully-execute-un-charter/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Just Security: Maduro Capture and UN Charter
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.congress.gov/bill/119th-congress/senate-joint-resolution/90/text"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Congress.gov: S.J.Res.90 War Powers Resolution
-                </a>
-              </li>
-            </ul>
+          <div className="sources-content">
+            {/* Works Cited */}
+            <div className="sources-block">
+              <h3 className="sources-block-title">
+                Works Cited
+              </h3>
+              
+              <div className="sources-categories">
+                <div className="sources-category">
+                  <h4 className="sources-category-label">Operation Absolute Resolve</h4>
+                  <ul className="sources-list">
+                    <li>
+                      <a href="https://www.reuters.com/world/americas/trump-says-us-has-captured-venezuela-president-maduro-2026-01-03/" target="_blank" rel="noopener noreferrer">
+                        <span className="sources-publisher">Reuters</span>
+                        <span className="sources-title-text">Trump says Venezuela&apos;s Maduro captured after strikes</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://www.reuters.com/world/americas/world-reacts-us-strikes-venezuela-2026-01-03/" target="_blank" rel="noopener noreferrer">
+                        <span className="sources-publisher">Reuters</span>
+                        <span className="sources-title-text">World reacts to US strikes on Venezuela</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://www.pbs.org/newshour/world/how-u-s-forces-captured-venezuelan-leader-nicolas-maduro-in-caracas" target="_blank" rel="noopener noreferrer">
+                        <span className="sources-publisher">PBS NewsHour</span>
+                        <span className="sources-title-text">How U.S. forces captured Venezuelan leader</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="sources-category">
+                  <h4 className="sources-category-label">Legal Analysis</h4>
+                  <ul className="sources-list">
+                    <li>
+                      <a href="https://news.un.org/en/story/2026/01/1166698" target="_blank" rel="noopener noreferrer">
+                        <span className="sources-publisher">UN News</span>
+                        <span className="sources-title-text">Guterres on &quot;dangerous precedent&quot;</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://www.justsecurity.org/127962/maduro-capture-operation-and-presidents-duty-to-faithfully-execute-un-charter/" target="_blank" rel="noopener noreferrer">
+                        <span className="sources-publisher">Just Security</span>
+                        <span className="sources-title-text">Maduro Capture and UN Charter</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://www.congress.gov/bill/119th-congress/senate-joint-resolution/90/text" target="_blank" rel="noopener noreferrer">
+                        <span className="sources-publisher">Congress.gov</span>
+                        <span className="sources-title-text">S.J.Res.90 War Powers Resolution</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="sources-category">
+                  <h4 className="sources-category-label">Energy &amp; Oil</h4>
+                  <ul className="sources-list">
+                    <li>
+                      <a href="https://www.eia.gov/international/analysis/country/VEN" target="_blank" rel="noopener noreferrer">
+                        <span className="sources-publisher">U.S. EIA</span>
+                        <span className="sources-title-text">Venezuela Country Analysis</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://pubs.usgs.gov/publication/fs20093028" target="_blank" rel="noopener noreferrer">
+                        <span className="sources-publisher">USGS</span>
+                        <span className="sources-title-text">Orinoco Oil Belt Resources Estimate</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://www.spglobal.com/energy/en/news-research/latest-news/refined-products/052925-usgc-likely-to-source-more-heavy-crude-from-canada-as-venezuela-mexico-supplies-decline" target="_blank" rel="noopener noreferrer">
+                        <span className="sources-publisher">S&amp;P Global</span>
+                        <span className="sources-title-text">Gulf Coast heavy crude sourcing</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="sources-category">
+                  <h4 className="sources-category-label">Disinformation</h4>
+                  <ul className="sources-list">
+                    <li>
+                      <a href="https://spotlight.ebu.ch/p/maduro-capture-fake-image-fact-check" target="_blank" rel="noopener noreferrer">
+                        <span className="sources-publisher">EBU / WIRED</span>
+                        <span className="sources-title-text">AI-generated capture images fact-check</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Image Credits */}
+            <div className="sources-block sources-block--secondary">
+              <h3 className="sources-block-title sources-block-title--small">
+                Image Credits
+              </h3>
+              
+              <div className="sources-images-grid">
+                <div className="sources-image-credit">
+                  <span className="sources-image-title">Orinoco Oil Belt geological map</span>
+                  <span className="sources-image-meta">U.S. Geological Survey, Public Domain</span>
+                  <a href="https://commons.wikimedia.org/wiki/File:Orinoco_Oil_Belt.png" target="_blank" rel="noopener noreferrer" className="sources-image-link">
+                    Wikimedia Commons →
+                  </a>
+                </div>
+              </div>
+              <p className="sources-image-note">All diagrams and charts are original creations for this essay.</p>
+            </div>
           </div>
 
-          <div className="sources-category">
-            <h3 className="sources-category-title">Energy and Oil</h3>
-            <ul className="sources-list">
-              <li>
-                <a
-                  href="https://www.eia.gov/international/analysis/country/VEN"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  U.S. Energy Information Administration: Venezuela
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://pubs.usgs.gov/publication/fs20093028"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  USGS: Orinoco Oil Belt Resources Estimate
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.spglobal.com/energy/en/news-research/latest-news/refined-products/052925-usgc-likely-to-source-more-heavy-crude-from-canada-as-venezuela-mexico-supplies-decline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  S&P Global: Gulf Coast heavy crude sourcing
-                </a>
-              </li>
-            </ul>
+          <div className="sources-footer">
+            <p>All sources verified as of January 3, 2026. Full citation list available in research package.</p>
           </div>
-
-          <div className="sources-category">
-            <h3 className="sources-category-title">Disinformation</h3>
-            <ul className="sources-list">
-              <li>
-                <a
-                  href="https://spotlight.ebu.ch/p/maduro-capture-fake-image-fact-check"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  EBU/WIRED: AI-generated capture images fact-check
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <p style={{ marginTop: '2rem', fontSize: '0.875rem', color: '#718096' }}>
-            Full citation list available in research package. All sources verified as of January 3,
-            2026.
-          </p>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer
-        style={{
-          maxWidth: '720px',
-          margin: '0 auto',
-          padding: '2rem 1.5rem 4rem',
-          borderTop: '1px solid #e2e8f0',
-          fontSize: '0.875rem',
-          color: '#718096',
-        }}
-      >
-        <p>
-          <strong>Last updated:</strong> {lastUpdated}
-        </p>
-        <p>
-          This essay will be updated as facts develop. Verification badges indicate the status of
-          each claim at the time of last update.
-        </p>
-        <p style={{ marginTop: '1rem' }}>
-          <Badge status="confirmed">Confirmed</Badge> = Verified by multiple Tier 1-2 sources
-          <br />
-          <Badge status="reported">Reported</Badge> = Single-source, requires corroboration
-          <br />
-          <Badge status="unknown">Unknown</Badge> = Facts still developing
-        </p>
-      </footer>
     </article>
   );
 }
