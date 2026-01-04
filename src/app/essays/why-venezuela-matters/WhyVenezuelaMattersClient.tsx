@@ -889,34 +889,6 @@ export default function WhyVenezuelaMattersClient() {
           </p>
         </section>
 
-        {/* Opening Scene */}
-        <h2>Opening Scene: A Small Moment Inside a Large Machine</h2>
-        <section>
-          <p>It&apos;s 3:47 AM in Houston.</p>
-          <p>
-            A night-shift analyst at a commodity trading firm watches her screen — vessel tracking
-            software showing dozens of tanker icons clustered off the Venezuelan coast. None of
-            them are moving. They haven&apos;t moved in weeks.
-          </p>
-          <p>
-            The December blockade froze them in place. Twenty-five million barrels of crude and
-            fuel oil sit in storage, approaching capacity limits<span className="source-note">Reuters</span>. PDVSA, Venezuela&apos;s state oil
-            company, is running out of places to put the oil it produces but cannot sell.
-          </p>
-          <p>
-            She zooms out. The Gulf Coast refineries appear — complex facilities built decades ago
-            to process exactly the kind of heavy crude those frozen tankers carry. Cokers,
-            hydrocrackers, desulfurization units: billions of dollars in specialized equipment
-            designed for oil with a specific chemistry. Oil that American shale cannot provide.
-          </p>
-          <p>Her phone buzzes. News alerts flood in. Explosions in Caracas. Strikes. Capture.</p>
-          <p>
-            She looks back at the frozen tankers. Wonders if they&apos;ll move now. Wonders what
-            &quot;running the country&quot; means for the refineries waiting on the other end of that supply
-            chain.
-          </p>
-        </section>
-
         {/* Venezuela in One Paragraph */}
         <h2>Venezuela in One Paragraph</h2>
         <section>
