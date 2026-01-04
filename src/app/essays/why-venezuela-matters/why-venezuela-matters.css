@@ -1026,8 +1026,9 @@
 .mission-timeline {
   background: var(--crude-surface);
   border: 1px solid var(--crude-border);
+  border-top: none;
   padding: 0 var(--space-2xl) var(--space-2xl);
-  margin: var(--space-2xl) 0;
+  margin: var(--space-lg) 0 var(--space-2xl);
   /* Break out of the narrow container */
   width: calc(100vw - var(--space-2xl) * 2);
   max-width: 1000px;
