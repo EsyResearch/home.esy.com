@@ -2059,6 +2059,153 @@
 }
 
 /* --------------------------------------------------------------------------
+   Stakeholder Cards
+   -------------------------------------------------------------------------- */
+
+.stakeholders-section {
+  margin: var(--space-xl) 0;
+}
+
+.stakeholder-bloc {
+  margin-bottom: var(--space-xl);
+}
+
+.bloc-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-headline);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--crude-border);
+}
+
+.bloc-indicator {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+
+.bloc-title--condemn {
+  color: #ef4444;
+}
+
+.bloc-title--condemn .bloc-indicator {
+  background: #ef4444;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+}
+
+.bloc-title--cautious {
+  color: #f59e0b;
+}
+
+.bloc-title--cautious .bloc-indicator {
+  background: #f59e0b;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+}
+
+.bloc-title--support {
+  color: #22c55e;
+}
+
+.bloc-title--support .bloc-indicator {
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+}
+
+.stakeholder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-md);
+}
+
+.stakeholder-card {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: rgba(26, 32, 44, 0.6);
+  border-left: 3px solid transparent;
+  transition: all var(--duration-normal) var(--ease-viscous);
+}
+
+.stakeholder-card:hover {
+  background: rgba(26, 32, 44, 0.9);
+  transform: translateX(4px);
+}
+
+.stakeholder-card--condemn {
+  border-left-color: #ef4444;
+}
+
+.stakeholder-card--condemn:hover {
+  box-shadow: inset 0 0 20px rgba(239, 68, 68, 0.1);
+}
+
+.stakeholder-card--cautious {
+  border-left-color: #f59e0b;
+}
+
+.stakeholder-card--cautious:hover {
+  box-shadow: inset 0 0 20px rgba(245, 158, 11, 0.1);
+}
+
+.stakeholder-card--support {
+  border-left-color: #22c55e;
+}
+
+.stakeholder-card--support:hover {
+  box-shadow: inset 0 0 20px rgba(34, 197, 94, 0.1);
+}
+
+.stakeholder-flag {
+  font-size: 2.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.stakeholder-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.stakeholder-name {
+  font-family: var(--font-headline);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--document-cream);
+}
+
+.stakeholder-quote {
+  font-family: var(--font-headline);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: rgba(245, 242, 235, 0.85);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.stakeholder-context {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--uncertain-gray);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 600px) {
+  .stakeholder-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stakeholder-flag {
+    font-size: 2rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
    Related Essays
    -------------------------------------------------------------------------- */
 

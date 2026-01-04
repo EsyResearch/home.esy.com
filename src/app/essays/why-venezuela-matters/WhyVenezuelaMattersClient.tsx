@@ -1218,43 +1218,88 @@ export default function WhyVenezuelaMattersClient() {
 
         {/* Stakeholders */}
         <h2>Stakeholders: Venezuela, the Region, the Great Powers, the Markets</h2>
-        <section>
-          <h3>The Condemnation Bloc</h3>
-          <p>
-            <strong>China</strong>: &quot;Firmly opposes such hegemonic behavior by the U.S.&quot; China
-            received approximately 80% of Venezuela&apos;s oil exports pre-blockade.
-          </p>
-          <p>
-            <strong>Russia</strong>: Called the pretexts &quot;unfounded.&quot; Russia has military sales
-            agreements and strategic investments in Venezuela.
-          </p>
-          <p>
-            <strong>Cuba</strong>: Denounced the action as &quot;state terrorism.&quot;
-          </p>
-          <p>
-            <strong>Colombia</strong>: President Gustavo Petro ordered military deployment to the
-            Venezuelan border, describing Washington&apos;s actions as an &quot;assault on the sovereignty&quot;
-            of Latin America.
-          </p>
-          <p>
-            <strong>Brazil</strong>: President Lula said the U.S. actions crossed &quot;an unacceptable
-            line.&quot;
-          </p>
-          <p>
-            <strong>France</strong>: &quot;The military operation that led to the capture of Nicolas
-            Maduro violates the principle of not resorting to force, that underpins international
-            law.&quot;
-          </p>
+        <section className="stakeholders-section">
+          <div className="stakeholder-bloc">
+            <h3 className="bloc-title bloc-title--condemn">
+              <span className="bloc-indicator"></span>
+              The Condemnation Bloc
+            </h3>
+            <div className="stakeholder-grid">
+              <div className="stakeholder-card stakeholder-card--condemn">
+                <div className="stakeholder-flag">🇨🇳</div>
+                <div className="stakeholder-info">
+                  <span className="stakeholder-name">China</span>
+                  <p className="stakeholder-quote">&quot;Firmly opposes such hegemonic behavior by the U.S.&quot;</p>
+                  <span className="stakeholder-context">Received ~80% of Venezuela&apos;s oil exports pre-blockade</span>
+                </div>
+              </div>
+              <div className="stakeholder-card stakeholder-card--condemn">
+                <div className="stakeholder-flag">🇷🇺</div>
+                <div className="stakeholder-info">
+                  <span className="stakeholder-name">Russia</span>
+                  <p className="stakeholder-quote">&quot;Unfounded pretexts&quot;</p>
+                  <span className="stakeholder-context">Military sales agreements &amp; strategic investments</span>
+                </div>
+              </div>
+              <div className="stakeholder-card stakeholder-card--condemn">
+                <div className="stakeholder-flag">🇨🇺</div>
+                <div className="stakeholder-info">
+                  <span className="stakeholder-name">Cuba</span>
+                  <p className="stakeholder-quote">&quot;State terrorism&quot;</p>
+                  <span className="stakeholder-context">Long-standing Maduro ally</span>
+                </div>
+              </div>
+              <div className="stakeholder-card stakeholder-card--condemn">
+                <div className="stakeholder-flag">🇨🇴</div>
+                <div className="stakeholder-info">
+                  <span className="stakeholder-name">Colombia</span>
+                  <p className="stakeholder-quote">&quot;Assault on the sovereignty of Latin America&quot;</p>
+                  <span className="stakeholder-context">Pres. Petro ordered military deployment to border</span>
+                </div>
+              </div>
+              <div className="stakeholder-card stakeholder-card--condemn">
+                <div className="stakeholder-flag">🇧🇷</div>
+                <div className="stakeholder-info">
+                  <span className="stakeholder-name">Brazil</span>
+                  <p className="stakeholder-quote">&quot;Crossed an unacceptable line&quot;</p>
+                  <span className="stakeholder-context">President Lula</span>
+                </div>
+              </div>
+              <div className="stakeholder-card stakeholder-card--condemn">
+                <div className="stakeholder-flag">🇫🇷</div>
+                <div className="stakeholder-info">
+                  <span className="stakeholder-name">France</span>
+                  <p className="stakeholder-quote">&quot;Violates the principle of not resorting to force&quot;</p>
+                  <span className="stakeholder-context">Cites international law</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-          <h3>The Cautious Bloc</h3>
-          <p>
-            <strong>Germany</strong>: Leader Friedrich Merz said the legal assessment is &quot;complex&quot;
-            and Germany will &quot;take our time&quot; to evaluate it.
-          </p>
-          <p>
-            <strong>UN Security Council</strong>: Set to convene January 5 at the request of
-            Colombia, Russia, and China.
-          </p>
+          <div className="stakeholder-bloc">
+            <h3 className="bloc-title bloc-title--cautious">
+              <span className="bloc-indicator"></span>
+              The Cautious Bloc
+            </h3>
+            <div className="stakeholder-grid">
+              <div className="stakeholder-card stakeholder-card--cautious">
+                <div className="stakeholder-flag">🇩🇪</div>
+                <div className="stakeholder-info">
+                  <span className="stakeholder-name">Germany</span>
+                  <p className="stakeholder-quote">&quot;The legal assessment is complex&quot;</p>
+                  <span className="stakeholder-context">Leader Merz: &quot;will take our time&quot;</span>
+                </div>
+              </div>
+              <div className="stakeholder-card stakeholder-card--cautious">
+                <div className="stakeholder-flag">🇺🇳</div>
+                <div className="stakeholder-info">
+                  <span className="stakeholder-name">UN Security Council</span>
+                  <p className="stakeholder-quote">Emergency session convening January 5</p>
+                  <span className="stakeholder-context">Requested by Colombia, Russia, China</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <MarketsChart />
         </section>
