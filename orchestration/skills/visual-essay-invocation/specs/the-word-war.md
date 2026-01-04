@@ -16,9 +16,9 @@ source_count: 38
 
 # The Word War — Six-Layer Invocation Spec
 
-> **Status**: [SPEC-APPROVED] — Ready for Production (G4+)
+> **Status**: [PUBLISHED] — All gates approved
 > **Research**: Complete (38 sources across 7 language families)
-> **Ready for**: Scrollytelling Expert implementation after G3 approval
+> **Implementation**: Complete — src/app/essays/etymology/the-word-war/
 
 ---
 
@@ -32,13 +32,13 @@ source_count: 38
 | G4 | Design Research | ✅ APPROVED | 2026-01-03 |
 | G4.1 | Design Research Reconciliation | ✅ APPROVED | 2026-01-03 |
 | G4.5 | Image Sourcing | ✅ APPROVED | 2026-01-03 |
-| G5 | Content Complete | PENDING | — |
-| G5.2 | Design Research Integration | PENDING | — |
-| G5.5 | Bibliography Implementation | PENDING | — |
-| G6 | Citation Audit | PENDING | — |
-| G7 | Scroll Certification | PENDING | — |
-| G8 | Publication Certification | PENDING | — |
-| G9 | Publication Approval | PENDING | — |
+| G5 | Content Complete | ✅ APPROVED | 2026-01-04 |
+| G5.2 | Design Research Integration | ✅ APPROVED | 2026-01-04 |
+| G5.5 | Bibliography Implementation | ✅ APPROVED | 2026-01-04 |
+| G6 | Citation Audit | ✅ APPROVED | 2026-01-04 |
+| G7 | Scroll Certification | ✅ APPROVED | 2026-01-04 |
+| G8 | Publication Certification | ✅ APPROVED | 2026-01-04 |
+| G9 | Publication Approval | ✅ APPROVED | 2026-01-04 |
 
 ---
 

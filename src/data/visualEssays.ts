@@ -972,6 +972,19 @@ export const visualEssays: VisualEssay[] = [
     visualStyle: "illustrated",
     heroImage: "https://upload.wikimedia.org/wikipedia/commons/d/da/Orinoco_Oil_Belt.png",
   },
+  {
+    id: "the-word-war",
+    number: "84",
+    title: "WAR",
+    subtitle: "The Conquered Word",
+    description: "How a Frankish term for confusion became English's name for organized violence. Trace the 900-year journey from *werra* through the Norman Conquest to modern 'war on poverty'—across 15 languages and 7 language families. A palimpsest-inspired etymology essay with scroll-driven word transformation.",
+    category: "Education & Writing",
+    readTime: "22 min",
+    href: "/essays/etymology/the-word-war",
+    isNew: true,
+    tags: ["war etymology", "werra", "frankish", "norman conquest", "middle english", "etymology", "word origin", "guerre", "guerra", "cross-linguistic", "PIE", "visual essay", "palimpsest", "scrollytelling"],
+    visualStyle: "illustrated",
+  },
   // Children's Fiction (draft - not shown in production)
   {
     id: "the-night-the-stars-fell",
