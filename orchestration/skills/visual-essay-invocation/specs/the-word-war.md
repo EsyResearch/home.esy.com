@@ -29,7 +29,7 @@ source_count: 38
 | G1 | Intake Approval | ✅ APPROVED | 2026-01-03 |
 | G2 | Research Complete | ✅ APPROVED | 2026-01-03 |
 | G3 | Spec Approval | ✅ APPROVED | 2026-01-03 |
-| G4 | Design Research | PENDING | — |
+| G4 | Design Research | ✅ APPROVED | 2026-01-03 |
 | G4.1 | Design Research Reconciliation | PENDING | — |
 | G4.5 | Image Sourcing | PENDING | — |
 | G5 | Content Complete | PENDING | — |
