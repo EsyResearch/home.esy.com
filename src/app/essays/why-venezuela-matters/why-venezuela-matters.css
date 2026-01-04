@@ -1,0 +1,1345 @@
+/* ==========================================================================
+   WHY VENEZUELA MATTERS — Visual Systems Essay
+
+   Design Research Report: January 3, 2026
+
+   Visual Archaeology:
+   - Materials: Orinoco heavy crude (tar-like, 8° API), refinery flare stacks,
+     steel pipe infrastructure, Caribbean seawater, government documents
+   - Textures: Oil viscosity, corroded metal, archival paper, satellite imagery
+   - Emotional tone: Trapped potential, industrial pressure, information opacity
+
+   Visual Metaphor: "Extraction Under Pressure"
+   - Heavy crude that oozes rather than flows
+   - Geopolitical forces that constrain movement
+   - Facts emerging from opacity like oil from sandstone
+
+   Anti-Pattern-Matching:
+   - NOT like Soda (no bubbles, no playful motion)
+   - NOT like Cambodia Bombing (no declassified document aesthetic)
+   - NOT light theme (this subject is HEAVY)
+
+   UNIQUE MECHANICS:
+   1. Viscous scroll behavior - content "oozes" into view
+   2. Flare glow ambient lighting - industrial fire accent
+   3. Pipeline pressure gauge progress bar
+   4. Blockade freeze effect for sanctions sections
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+/* --------------------------------------------------------------------------
+   CSS Custom Properties (Subject-Derived)
+
+   Color Derivation:
+   - crude-black: Orinoco extra-heavy crude, 8° API gravity, tar-like
+   - flare-orange: Refinery flare stacks burning excess gas at night
+   - pipe-steel: Corroded industrial infrastructure
+   - caribbean-deep: Dark water during blockade operations
+   - warning-amber: Industrial warning systems, caution lights
+   - crisis-red: Content warnings, unverified claims
+   - verified-green: Muted confirmation (no celebration)
+   - document-cream: Archival government paper
+   -------------------------------------------------------------------------- */
+
+.venezuela-essay {
+  /* Primary Palette (Crude Oil Derived) */
+  --crude-black: #0D0D0D;
+  --crude-surface: #1A1A1A;
+  --crude-elevated: #242424;
+  --crude-border: rgba(245, 242, 235, 0.1);
+
+  /* Industrial Accents */
+  --flare-orange: #FF4500;
+  --flare-glow: rgba(255, 69, 0, 0.15);
+  --flare-dim: rgba(255, 69, 0, 0.08);
+  --pipe-steel: #2F4F4F;
+  --pipe-rust: #8B4513;
+
+  /* Environment */
+  --caribbean-deep: #0A1628;
+  --caribbean-surface: #0F2942;
+
+  /* Status Indicators */
+  --warning-amber: #D69E2E;
+  --crisis-red: #6B0F1A;
+  --alert-flame: #E53E3E;
+  --verified-green: #2E5A3C;
+  --verified-dim: rgba(46, 90, 60, 0.15);
+  --unverified-amber: #ED8936;
+  --uncertain-gray: #718096;
+
+  /* Document Aesthetics */
+  --document-cream: #F5F2EB;
+  --document-text: #1A1A1A;
+  --redaction-black: #000000;
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-headline: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Source Serif 4', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', 'Consolas', monospace;
+
+  /* Animation (Viscous - Heavy, Deliberate) */
+  --ease-viscous: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-pressure: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-viscous: 600ms;
+  --duration-scroll-lock: 800ms;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 48px;
+  --space-2xl: 96px;
+  --space-3xl: 144px;
+
+  /* Layout */
+  --max-width-content: 720px;
+  --max-width-wide: 1080px;
+}
+
+/* --------------------------------------------------------------------------
+   Base Styles (Dark Industrial Theme)
+   -------------------------------------------------------------------------- */
+
+.venezuela-essay {
+  background-color: var(--crude-black);
+  color: var(--document-cream);
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.8;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.venezuela-essay * {
+  box-sizing: border-box;
+}
+
+.venezuela-essay__container {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* --------------------------------------------------------------------------
+   Hero Section (Immersive Dark Entry)
+   -------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-3xl) var(--space-lg);
+  overflow: hidden;
+}
+
+.hero__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+  filter: grayscale(40%) brightness(0.5);
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 30%, var(--flare-dim) 0%, transparent 50%),
+    linear-gradient(to bottom,
+      rgba(13, 13, 13, 0.6) 0%,
+      rgba(13, 13, 13, 0.8) 50%,
+      var(--crude-black) 100%
+    );
+  z-index: 1;
+}
+
+/* Flare Glow Effect */
+.hero__flare-glow {
+  position: absolute;
+  top: 15%;
+  right: 20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--flare-glow) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: flare-pulse 4s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes flare-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.15);
+  }
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.hero__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--flare-orange);
+  margin-bottom: var(--space-lg);
+  opacity: 0;
+  animation: fade-up var(--duration-viscous) var(--ease-viscous) 0.3s forwards;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--document-cream);
+  margin-bottom: var(--space-lg);
+  opacity: 0;
+  animation: fade-up var(--duration-viscous) var(--ease-viscous) 0.5s forwards;
+}
+
+.hero__title .accent {
+  color: var(--flare-orange);
+}
+
+.hero__subtitle {
+  font-family: var(--font-headline);
+  font-size: clamp(1rem, 2.5vw, 1.375rem);
+  font-weight: 400;
+  color: var(--uncertain-gray);
+  margin-bottom: var(--space-xl);
+  opacity: 0;
+  animation: fade-up var(--duration-viscous) var(--ease-viscous) 0.7s forwards;
+}
+
+.hero__stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-xl);
+  margin-top: var(--space-xl);
+  opacity: 0;
+  animation: fade-up var(--duration-viscous) var(--ease-viscous) 0.9s forwards;
+}
+
+.hero__stat {
+  text-align: center;
+}
+
+.hero__stat-value {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--warning-amber);
+  display: block;
+}
+
+.hero__stat-label {
+  font-family: var(--font-headline);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--uncertain-gray);
+  margin-top: var(--space-xs);
+}
+
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  opacity: 0;
+  animation: fade-up var(--duration-viscous) var(--ease-viscous) 1.1s forwards;
+}
+
+.hero__scroll-text {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--uncertain-gray);
+  margin-bottom: var(--space-sm);
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--flare-orange), transparent);
+  margin: 0 auto;
+  animation: scroll-pulse 2s ease-in-out infinite;
+}
+
+@keyframes scroll-pulse {
+  0%, 100% {
+    opacity: 0.3;
+    height: 40px;
+  }
+  50% {
+    opacity: 1;
+    height: 60px;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Progress Bar (Pipeline Pressure Gauge)
+   -------------------------------------------------------------------------- */
+
+.progress-bar {
+  position: fixed;
+  left: var(--space-lg);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.progress-bar__pipe {
+  position: relative;
+  width: 8px;
+  height: 200px;
+  background: var(--pipe-steel);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--crude-border);
+}
+
+.progress-bar__fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, var(--crude-black), var(--flare-orange));
+  border-radius: 0 0 3px 3px;
+  transition: height var(--duration-viscous) var(--ease-viscous);
+}
+
+/* Viscous animation effect */
+.progress-bar__fill::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: radial-gradient(ellipse at 50% 100%, var(--flare-orange), transparent);
+  opacity: 0.6;
+}
+
+.progress-bar__markers {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-xs) 0;
+}
+
+.progress-bar__marker {
+  width: 4px;
+  height: 1px;
+  background: var(--crude-border);
+  margin-left: auto;
+}
+
+.progress-bar__label {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--uncertain-gray);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* Hide on mobile */
+@media (max-width: 1024px) {
+  .progress-bar {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Typography Scale
+   -------------------------------------------------------------------------- */
+
+.venezuela-essay h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.2;
+  color: var(--document-cream);
+  margin-bottom: var(--space-lg);
+}
+
+.venezuela-essay h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  line-height: 1.25;
+  color: var(--document-cream);
+  margin-top: var(--space-3xl);
+  margin-bottom: var(--space-lg);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--crude-border);
+}
+
+.venezuela-essay h3 {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  font-size: 1.375rem;
+  line-height: 1.3;
+  color: var(--warning-amber);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-md);
+}
+
+.venezuela-essay h4 {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--document-cream);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+.venezuela-essay p {
+  margin-bottom: var(--space-lg);
+  color: rgba(245, 242, 235, 0.9);
+}
+
+.venezuela-essay .lead {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--uncertain-gray);
+  margin-bottom: var(--space-xl);
+}
+
+/* --------------------------------------------------------------------------
+   Chapter Sections
+   -------------------------------------------------------------------------- */
+
+.chapter {
+  padding: var(--space-2xl) 0;
+  opacity: 0.85;
+  transition: opacity var(--duration-viscous) var(--ease-viscous);
+}
+
+.chapter--active {
+  opacity: 1;
+}
+
+.chapter__header {
+  margin-bottom: var(--space-xl);
+}
+
+.chapter__number {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--flare-orange);
+  margin-bottom: var(--space-sm);
+  display: block;
+}
+
+.chapter__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--document-cream);
+  margin-bottom: var(--space-sm);
+}
+
+.chapter__subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--uncertain-gray);
+}
+
+/* Era-specific chapter treatments */
+.chapter--pre-chavez {
+  border-left: 3px solid var(--pipe-rust);
+  padding-left: var(--space-lg);
+}
+
+.chapter--chavez {
+  border-left: 3px solid #C53030;
+  padding-left: var(--space-lg);
+}
+
+.chapter--maduro {
+  border-left: 3px solid var(--warning-amber);
+  padding-left: var(--space-lg);
+}
+
+.chapter--operation {
+  border-left: 3px solid var(--alert-flame);
+  padding-left: var(--space-lg);
+  background: linear-gradient(to right, rgba(229, 62, 62, 0.05), transparent);
+}
+
+/* --------------------------------------------------------------------------
+   Quotes and Callouts
+   -------------------------------------------------------------------------- */
+
+.venezuela-essay blockquote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.375rem;
+  line-height: 1.5;
+  color: var(--document-cream);
+  padding: var(--space-lg) var(--space-xl);
+  margin: var(--space-xl) 0;
+  border-left: 3px solid var(--flare-orange);
+  background: var(--crude-surface);
+  position: relative;
+}
+
+.venezuela-essay blockquote::before {
+  content: '"';
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: var(--flare-orange);
+  opacity: 0.3;
+  position: absolute;
+  top: -10px;
+  left: var(--space-md);
+  line-height: 1;
+}
+
+.venezuela-essay blockquote cite {
+  display: block;
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 0.75rem;
+  color: var(--uncertain-gray);
+  margin-top: var(--space-md);
+}
+
+/* Document-style quote (for primary sources) */
+.quote-document {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--document-text);
+  background: var(--document-cream);
+  padding: var(--space-lg) var(--space-xl);
+  margin: var(--space-xl) 0;
+  border-left: 4px solid var(--warning-amber);
+  position: relative;
+}
+
+.quote-document::before {
+  content: 'SOURCE DOCUMENT';
+  position: absolute;
+  top: calc(-0.75rem);
+  left: var(--space-md);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--pipe-rust);
+  background: var(--document-cream);
+  padding: 0.125rem 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Truth Discipline Badge
+   -------------------------------------------------------------------------- */
+
+.truth-discipline {
+  background: var(--crude-surface);
+  border: 1px solid var(--crude-border);
+  border-left: 4px solid var(--warning-amber);
+  padding: var(--space-lg);
+  margin: var(--space-xl) 0;
+  font-family: var(--font-headline);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.truth-discipline__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.truth-discipline__icon {
+  width: 20px;
+  height: 20px;
+  fill: var(--warning-amber);
+}
+
+.truth-discipline__title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--warning-amber);
+}
+
+.truth-discipline strong {
+  color: var(--warning-amber);
+}
+
+/* --------------------------------------------------------------------------
+   Verification Badges (OFAC-style)
+   -------------------------------------------------------------------------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 2px;
+  border: 1px solid;
+}
+
+.badge-confirmed {
+  background: var(--verified-dim);
+  color: var(--verified-green);
+  border-color: var(--verified-green);
+}
+
+.badge-confirmed::before {
+  content: '✓';
+  font-size: 0.75rem;
+}
+
+.badge-reported {
+  background: rgba(237, 137, 54, 0.1);
+  color: var(--unverified-amber);
+  border-color: var(--unverified-amber);
+}
+
+.badge-reported::before {
+  content: '○';
+  font-size: 0.625rem;
+}
+
+.badge-unknown {
+  background: rgba(113, 128, 150, 0.1);
+  color: var(--uncertain-gray);
+  border-color: var(--uncertain-gray);
+}
+
+.badge-unknown::before {
+  content: '?';
+  font-size: 0.75rem;
+}
+
+.badge-developing {
+  background: rgba(229, 62, 62, 0.1);
+  color: var(--alert-flame);
+  border-color: var(--alert-flame);
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+.badge-developing::before {
+  content: '●';
+  font-size: 0.5rem;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes badge-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   Fact Box (Module G)
+   -------------------------------------------------------------------------- */
+
+.fact-box {
+  background: var(--crude-surface);
+  border: 1px solid var(--crude-border);
+  border-radius: 4px;
+  padding: var(--space-xl);
+  margin: var(--space-xl) 0;
+}
+
+.fact-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--crude-border);
+}
+
+.fact-box-title {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--document-cream);
+  margin: 0;
+}
+
+.fact-box-timestamp {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--uncertain-gray);
+  letter-spacing: 0.05em;
+}
+
+.fact-box-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+@media (max-width: 768px) {
+  .fact-box-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fact-box-column {
+  padding: var(--space-md);
+  background: var(--crude-elevated);
+  border-radius: 4px;
+}
+
+.fact-box-column h4 {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 var(--space-md) 0;
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid;
+}
+
+.fact-box-column.confirmed h4 {
+  color: var(--verified-green);
+  border-color: var(--verified-green);
+}
+
+.fact-box-column.reported h4 {
+  color: var(--unverified-amber);
+  border-color: var(--unverified-amber);
+}
+
+.fact-box-column.unknown h4 {
+  color: var(--uncertain-gray);
+  border-color: var(--uncertain-gray);
+}
+
+.fact-box-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fact-box-column li {
+  font-family: var(--font-headline);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: var(--space-sm);
+  padding-left: var(--space-md);
+  position: relative;
+  color: var(--document-cream);
+}
+
+.fact-box-column li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+}
+
+.fact-box-column.confirmed li::before {
+  background: var(--verified-green);
+}
+
+.fact-box-column.reported li::before {
+  background: var(--unverified-amber);
+}
+
+.fact-box-column.unknown li::before {
+  background: var(--uncertain-gray);
+}
+
+/* --------------------------------------------------------------------------
+   Visual Module Containers
+   -------------------------------------------------------------------------- */
+
+.visual-module {
+  margin: var(--space-2xl) 0;
+  padding: var(--space-lg);
+  background: var(--crude-surface);
+  border: 1px solid var(--crude-border);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle flare glow in corner */
+.visual-module::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, var(--flare-dim) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.visual-module-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--flare-orange);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: var(--space-md);
+}
+
+.visual-module-content {
+  position: relative;
+  z-index: 1;
+}
+
+.visual-module-caption {
+  font-family: var(--font-headline);
+  font-size: 0.8125rem;
+  color: var(--uncertain-gray);
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--crude-border);
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   SVG Diagrams
+   -------------------------------------------------------------------------- */
+
+.diagram-module {
+  background: var(--crude-elevated);
+  border: 1px solid var(--crude-border);
+  border-radius: 4px;
+  padding: var(--space-lg);
+}
+
+.diagram-module svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Tooltip for diagram hovers */
+.diagram-tooltip {
+  position: absolute;
+  background: var(--document-cream);
+  color: var(--document-text);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 4px;
+  font-family: var(--font-headline);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  max-width: 250px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--duration-fast);
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.diagram-tooltip.visible {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Timeline Module (Module E)
+   -------------------------------------------------------------------------- */
+
+.timeline-module {
+  overflow-x: auto;
+  padding: var(--space-md) 0;
+  margin: var(--space-xl) 0;
+}
+
+.timeline-band {
+  display: flex;
+  min-width: max-content;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.timeline-era {
+  position: relative;
+  padding: var(--space-lg) var(--space-xl);
+  min-width: 200px;
+  border-bottom: 4px solid;
+}
+
+.timeline-era.pre-chavez {
+  background: rgba(139, 69, 19, 0.15);
+  border-color: var(--pipe-rust);
+}
+
+.timeline-era.chavez {
+  background: rgba(197, 48, 48, 0.15);
+  border-color: #C53030;
+}
+
+.timeline-era.maduro {
+  background: linear-gradient(to right, rgba(197, 48, 48, 0.15), rgba(214, 158, 46, 0.15));
+  border-color: var(--warning-amber);
+}
+
+.timeline-era.operation {
+  background: rgba(229, 62, 62, 0.2);
+  border-color: var(--alert-flame);
+  animation: era-pulse 3s ease-in-out infinite;
+}
+
+@keyframes era-pulse {
+  0%, 100% { background: rgba(229, 62, 62, 0.15); }
+  50% { background: rgba(229, 62, 62, 0.25); }
+}
+
+.timeline-era-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--document-cream);
+  margin-bottom: var(--space-sm);
+}
+
+.timeline-event {
+  font-family: var(--font-headline);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--document-cream);
+  margin-bottom: var(--space-sm);
+}
+
+.timeline-event-date {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--uncertain-gray);
+}
+
+/* --------------------------------------------------------------------------
+   Statistics Cards
+   -------------------------------------------------------------------------- */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-md);
+  margin: var(--space-xl) 0;
+}
+
+.stat-card {
+  background: var(--crude-surface);
+  border: 1px solid var(--crude-border);
+  border-left: 3px solid var(--flare-orange);
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.stat-card__value {
+  font-family: var(--font-mono);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--warning-amber);
+  line-height: 1;
+  margin-bottom: var(--space-xs);
+}
+
+.stat-card__label {
+  font-family: var(--font-headline);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--uncertain-gray);
+}
+
+.stat-card__source {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--pipe-steel);
+  margin-top: var(--space-sm);
+}
+
+/* --------------------------------------------------------------------------
+   Glossary Section
+   -------------------------------------------------------------------------- */
+
+.glossary-section {
+  margin-top: var(--space-2xl);
+  padding: var(--space-xl);
+  background: var(--crude-surface);
+  border: 1px solid var(--crude-border);
+  border-radius: 4px;
+}
+
+.glossary-section__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--document-cream);
+  margin-bottom: var(--space-xl);
+  text-align: center;
+}
+
+.glossary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+.glossary-item {
+  padding: var(--space-md);
+  background: var(--crude-elevated);
+  border-radius: 4px;
+}
+
+.glossary-term {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  color: var(--warning-amber);
+  margin-bottom: var(--space-xs);
+}
+
+.glossary-definition {
+  font-family: var(--font-headline);
+  font-size: 0.875rem;
+  color: var(--document-cream);
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   Sources Section
+   -------------------------------------------------------------------------- */
+
+.sources-section {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--crude-border);
+}
+
+.sources-section__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--document-cream);
+  margin-bottom: var(--space-xl);
+  text-align: center;
+}
+
+.sources-category {
+  margin-bottom: var(--space-xl);
+}
+
+.sources-category-title {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--flare-orange);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--crude-border);
+}
+
+.sources-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sources-list li {
+  font-family: var(--font-headline);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: var(--space-sm);
+  padding-left: var(--space-md);
+  border-left: 2px solid var(--pipe-steel);
+  color: var(--document-cream);
+}
+
+.sources-list a {
+  color: var(--warning-amber);
+  text-decoration: none;
+  transition: color var(--duration-fast);
+}
+
+.sources-list a:hover {
+  color: var(--flare-orange);
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   FAQ Section
+   -------------------------------------------------------------------------- */
+
+.faq-section {
+  margin-top: var(--space-2xl);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--crude-border);
+  padding: var(--space-lg) 0;
+}
+
+.faq-question {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: var(--document-cream);
+  margin-bottom: var(--space-md);
+}
+
+.faq-answer {
+  font-family: var(--font-body);
+  color: rgba(245, 242, 235, 0.85);
+  line-height: 1.7;
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.essay-footer {
+  padding: var(--space-3xl) var(--space-lg);
+  text-align: center;
+  border-top: 1px solid var(--crude-border);
+  margin-top: var(--space-3xl);
+}
+
+.essay-footer__text {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--uncertain-gray);
+  max-width: 600px;
+  margin: 0 auto var(--space-lg);
+}
+
+.essay-footer__attribution {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--pipe-steel);
+}
+
+/* --------------------------------------------------------------------------
+   Scroll Animations (Viscous)
+   -------------------------------------------------------------------------- */
+
+.animate-viscous {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity var(--duration-viscous) var(--ease-viscous),
+    transform var(--duration-viscous) var(--ease-viscous);
+}
+
+.animate-viscous.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays for children */
+.stagger-children > *:nth-child(1) { transition-delay: 0ms; }
+.stagger-children > *:nth-child(2) { transition-delay: 100ms; }
+.stagger-children > *:nth-child(3) { transition-delay: 200ms; }
+.stagger-children > *:nth-child(4) { transition-delay: 300ms; }
+.stagger-children > *:nth-child(5) { transition-delay: 400ms; }
+
+/* --------------------------------------------------------------------------
+   Responsive Adjustments
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .hero {
+    padding: var(--space-2xl) var(--space-lg);
+  }
+
+  .hero__flare-glow {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    right: 10%;
+  }
+}
+
+@media (max-width: 768px) {
+  .venezuela-essay {
+    font-size: 1rem;
+  }
+
+  .hero__stats {
+    gap: var(--space-lg);
+  }
+
+  .hero__stat-value {
+    font-size: 1.5rem;
+  }
+
+  .chapter {
+    padding-left: var(--space-md);
+  }
+
+  .timeline-era {
+    padding: var(--space-md);
+    min-width: 150px;
+  }
+
+  .visual-module {
+    margin-left: calc(-1 * var(--space-lg));
+    margin-right: calc(-1 * var(--space-lg));
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__title {
+    font-size: 2rem;
+  }
+
+  .hero__stats {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .fact-box {
+    padding: var(--space-md);
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Reduced Motion
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .hero__flare-glow,
+  .hero__scroll-line,
+  .timeline-era.operation,
+  .badge-developing {
+    animation: none;
+  }
+
+  .animate-viscous {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Print Styles
+   -------------------------------------------------------------------------- */
+
+@media print {
+  .progress-bar,
+  .hero__flare-glow,
+  .hero__scroll-indicator {
+    display: none !important;
+  }
+
+  .venezuela-essay {
+    background: white;
+    color: black;
+    font-size: 11pt;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 2rem 0;
+  }
+
+  .hero__title,
+  .chapter__title,
+  h1, h2, h3, h4 {
+    color: black;
+  }
+
+  .visual-module,
+  .fact-box {
+    break-inside: avoid;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+  }
+}
