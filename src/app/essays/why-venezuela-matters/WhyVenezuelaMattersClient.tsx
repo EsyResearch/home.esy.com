@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useMemo } from 'react';
+import Link from 'next/link';
 import './why-venezuela-matters.css';
 
 // =============================================================================
@@ -1510,6 +1511,28 @@ export default function WhyVenezuelaMattersClient() {
                 </div>
               </dl>
             </div>
+          </div>
+        </section>
+
+        {/* Related Essays */}
+        <section className="related-essays">
+          <h2>Related Visual Essays</h2>
+          <div className="related-essays-grid">
+            <Link href="/essays/history/cambodia-bombing" className="related-essay-card">
+              <span className="related-essay-category">History</span>
+              <span className="related-essay-title">The Cambodia Bombing</span>
+              <span className="related-essay-description">U.S. foreign intervention and its consequences</span>
+            </Link>
+            <Link href="/essays/history/palestine-israel" className="related-essay-card">
+              <span className="related-essay-category">Geopolitics</span>
+              <span className="related-essay-title">Palestine-Israel</span>
+              <span className="related-essay-description">Territorial conflict and international law</span>
+            </Link>
+            <Link href="/essays/how-money-is-created" className="related-essay-card">
+              <span className="related-essay-category">Systems</span>
+              <span className="related-essay-title">How Money Is Created</span>
+              <span className="related-essay-description">Understanding economic power structures</span>
+            </Link>
           </div>
         </section>
 

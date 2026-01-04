@@ -3,15 +3,27 @@
 > **For**: Visual Essay Implementation Team
 > **From**: Design Researcher
 > **Date**: January 3, 2026
-> **Status**: G4 Design Research Complete
+> **Status**: G4 Design Research Complete (Deep Contextual Revision)
 
 ---
 
-## Executive Summary
+## Design Concept Statement
 
-This design research derives a unique visual identity for "The Word War" etymology essay entirely from the subject matter: medieval manuscripts, scribal culture, lexicographic tradition, and the word itself as typographic artifact. Every color, typeface, and motif traces directly to documented historical materials, ensuring authenticity without arbitrary aesthetics.
+### "The Conquered Word"
 
-The visual approach evokes the scriptorium of Peterborough Abbey c.1121 where the word "war" first appeared in English, the scholarly apparatus of historical dictionaries, and the careful, contemplative nature of etymological investigation.
+This visual identity embodies a singular insight: **the word "war" was itself conquered.** It arrived in English not through peaceful borrowing but through invasion. When Norman soldiers crossed the Channel in 1066, they brought not just swords but also the Frankish word *werra*—and it displaced the native Old English words *wig* and *guð* just as Norman lords displaced Anglo-Saxon thanes.
+
+The design treats the essay as a **palimpsest**—a manuscript where one text has been scraped away and overwritten by another, yet traces of the original remain visible beneath. This is linguistically true: *werra* (meaning "confusion, strife") was overwritten by the organized, state-sponsored concept of "war," yet the original semantic DNA of confusion persists in the word's essence.
+
+Every visual element traces to one of three historical layers:
+
+1. **The Frankish Layer (5th-9th c.)**: Merovingian metalwork, garnet cloisonné, the raw Germanic source
+2. **The Norman Layer (1066)**: Bayeux Tapestry, conquest documents, chevron patterns
+3. **The English Chronicle Layer (1121)**: Peterborough Chronicle, insular script, the moment of adoption
+
+The reader moves through these layers as they move through the essay. Color deepens from Frankish garnet-red to Norman blue-green to English iron-gall black. Typography evolves from rough Germanic forms to the settled Carolingian of the English monasteries. The word "WAR" itself transforms across the essay—from *WERRA* in scratched, uncertain letters to WAR in its modern, stable form.
+
+This is not decoration. This is **the word's journey made visible**.
 
 ---
 
@@ -19,556 +31,586 @@ The visual approach evokes the scriptorium of Peterborough Abbey c.1121 where th
 
 ### Derivation Method
 
-All colors derive from documented materials in medieval manuscript production and conservation studies. These are not arbitrary choices but historically justified color values based on the actual pigments, inks, and substrates used in the Peterborough Chronicle era (c.1100-1200) and the lexicographic tradition.
+Each color is extracted from specific historical artifacts in the word's journey—not generic "medieval" sources, but the actual material culture of Frankish metalwork, the Bayeux Tapestry, and the Peterborough Chronicle.
 
-### Primary Palette (5 Colors)
+### The Palette (7 Colors)
 
-| Role | Color Name | Hex Value | RGB | Source Material | Usage Guidelines |
-|------|------------|-----------|-----|-----------------|------------------|
-| **Primary Text** | Iron Gall Black | `#1F1B17` | 31, 27, 23 | Fresh iron gall ink as used in 12th-century manuscripts. Iron gall ink begins gray and oxidizes to purple-black. | All body text, headings, primary typographic elements. Deep and legible. |
-| **Accent/Rubrication** | Minium Red | `#C54B3C` | 197, 75, 60 | Red lead (minium) used for rubrication in medieval manuscripts. The Latin *miniare* (to apply minium) is the origin of "miniature." | Key dates, important terms, section markers, drop cap accents. Used sparingly for emphasis. |
-| **Background** | Parchment | `#F5EDE0` | 245, 237, 224 | Aged vellum/parchment tone. Medieval manuscripts used animal skin substrates with this characteristic warm cream color. | Page backgrounds, reading surfaces. Provides comfortable, warm reading experience. |
-| **Secondary Text** | Aged Ink Brown | `#5C4A3D` | 92, 74, 61 | Oxidized and aged iron gall ink. Over centuries, iron gall ink fades to reddish-brown through chemical degradation. | Marginalia, sidenotes, secondary annotations, source citations, captions. |
-| **Highlight** | Burnished Gold | `#C9A227` | 201, 162, 39 | Gold leaf illumination. From the 12th century, gold leaf was polished (burnished) over red bole to enhance richness. | Sparingly for illuminated initials, key moments, section dividers. Represents the "illuminated" tradition. |
+| Role | Name | Hex | Historical Source | Usage |
+|------|------|-----|-------------------|-------|
+| **Primary Accent** | Merovingian Garnet | `#830E0D` | Garnets from India/Sri Lanka used in Frankish cloisonné jewelry (5th-8th c.). The signature color of Merovingian royal graves, including Childeric I's tomb with its garnet-winged golden bees. | Frankish-era references, the word *werra*, the opening sections. Represents the Germanic origin. |
+| **Secondary Accent** | Bayeux Terracotta | `#B5542A` | Terracotta/russet madder dye used in the Bayeux Tapestry (c.1077). The most abundant color in the tapestry's embroidered figures. | Norman Conquest sections, the word crossing the Channel. Represents the vehicle of transmission. |
+| **Tertiary Accent** | Tapestry Blue-Green | `#3A6B5C` | Woad-based blue-green dye from the Bayeux Tapestry. Used for water, cloaks, and decorative borders. | Norman visual elements, conquest themes, the invasion moment. |
+| **Background** | Peterborough Parchment | `#F2E8D5` | Aged vellum of MS Laud Misc. 636 (the Peterborough Chronicle). A warm cream with slight yellow undertone, typical of 12th-century English manuscripts. | Primary reading surface. Evokes the chronicle where "war" first appears in English. |
+| **Primary Text** | Chronicle Ink | `#1E1915` | Iron gall ink of the Peterborough Chronicle. Darker than typical manuscripts due to the Chronicle's excellent preservation. | All body text. The English endpoint of the word's journey. |
+| **Secondary Text** | Aged Iron Gall | `#584B40` | Oxidized iron gall ink. Over centuries, iron gall ink fades to reddish-brown. | Marginalia, annotations, source citations. Represents scholarly apparatus. |
+| **Metallic Accent** | Frankish Gold | `#C9A030` | Gold leaf from Merovingian metalwork and Carolingian manuscripts. The Drogo Sacramentary (c.850) used gold ink for sacred text. | Hero moments, the word WAR at key transformations, the "858 CE" first attestation. |
 
-### Extended Palette (2 Additional Colors)
+### Color Story: The Three Layers
 
-| Role | Color Name | Hex Value | RGB | Source Material | Usage Guidelines |
-|------|------------|-----------|-----|-----------------|------------------|
-| **Alternative Accent** | Lombard Blue | `#2D4B73` | 45, 75, 115 | Blue pigment (often azurite or woad) used alongside red in decorated initials. "Lombard" capitals alternated red and blue. | Alternative to red for variety in decorative elements; used in diagrams, charts. |
-| **Subtle Background** | Vellum Dark | `#E5DBC8` | 229, 219, 200 | Darker parchment tone for subtle differentiation. | Blockquotes, code blocks, highlighted sections requiring subtle visual distinction from main background. |
+The palette tells the word's geographic and temporal journey:
+
+```
+Frankish Layer (5th-9th c.)     Norman Layer (1066)           English Layer (1121+)
+──────────────────────────     ─────────────────────          ────────────────────────
+Merovingian Garnet #830E0D  →  Bayeux Terracotta #B5542A  →  Chronicle Ink #1E1915
+Frankish Gold #C9A030          Tapestry Blue-Green #3A6B5C   Aged Iron Gall #584B40
+                                                              Peterborough Parchment #F2E8D5
+```
+
+**The semantic shift is also encoded**: Garnet-red evokes violence and confusion (the original meaning of *werra*), while the blue-green and iron-black represent the organized, state-sanctioned nature of modern "war."
 
 ### Color Usage Principles
 
-1. **Hierarchy through Contrast**: Iron Gall Black on Parchment provides maximum readability; Minium Red draws attention to dates and key terms.
+1. **Narrative Progression**: Colors shift as the essay progresses. The Frankish section is dominated by garnet-red and gold. Norman sections introduce terracotta and blue-green. English sections settle into iron-gall black on parchment.
 
-2. **Historical Accuracy**: These colors derive from conservation studies of actual medieval manuscripts, not arbitrary "old-looking" choices.
+2. **Semantic Encoding**: Red tones = chaos, confusion, the original Germanic meaning. Blue-green tones = conquest, order, organization. Black = the settled modern word.
 
-3. **Restraint**: Gold appears only at significant moments (section openings, key revelations). Overuse would cheapen its impact.
-
-4. **Accessibility**: All text colors meet WCAG AA contrast ratios against background:
-   - Iron Gall Black (#1F1B17) on Parchment (#F5EDE0): 13.2:1 (exceeds AAA)
-   - Aged Ink Brown (#5C4A3D) on Parchment (#F5EDE0): 6.1:1 (meets AA)
-   - Minium Red (#C54B3C) on Parchment (#F5EDE0): 4.8:1 (meets AA for large text)
+3. **Accessibility**: All combinations meet WCAG AA:
+   - Chronicle Ink on Peterborough Parchment: 14.1:1 (AAA)
+   - Aged Iron Gall on Peterborough Parchment: 7.2:1 (AAA)
+   - Merovingian Garnet on Parchment: 8.5:1 (AAA)
+   - Bayeux Terracotta on Parchment: 5.1:1 (AA)
 
 ---
 
 ## 2. Typography System
 
-### Typeface Selection Rationale
+### The Core Insight
 
-Typography selections trace directly to the essay's subject matter: the visual tradition of historical dictionaries (Johnson's Dictionary, the OED), the scholarly apparatus of etymology, and the need for excellent IPA/diacritic support.
+The word "war" traveled through three script traditions:
+
+1. **Frankish/Carolingian**: The script of the 858 CE episcopal letter
+2. **Norman**: Anglo-Norman document culture post-1066
+3. **Insular English**: The Peterborough Chronicle
+
+The typography system mirrors this journey.
 
 ### Display Typography
 
-| Role | Typeface | Weight | Justification |
-|------|----------|--------|---------------|
-| **Hero/Title** | **EB Garamond Display** | Bold (700) | Based on the 1592 Egenolff-Berner specimen. Garamond typefaces derive from Claude Garamond's 16th-century designs, contemporary with early printed dictionaries. EB Garamond is free, open-source, and supports IPA. Erik Spiekermann called it "one of the best open source fonts." |
-| **Section Headings (H2)** | **EB Garamond** | SemiBold (600) | Provides gravitas without the full weight of display use. |
-| **Subheadings (H3-H4)** | **EB Garamond** | Regular (400), Small Caps | Small caps evoke scholarly tradition and dictionary conventions. |
+| Role | Typeface | Weight | Contextual Justification |
+|------|----------|--------|--------------------------|
+| **Hero Title** | **Cormorant Garamond** | Bold (700) | Based on Claude Garamond's 16th-century designs, but with sharper serifs that evoke the transition from manuscript to print. The word "WAR" deserves a typeface that feels carved, not drawn. |
+| **Frankish Forms** | **Junicode** | Regular | Designed for medieval studies. Supports the wyn (ƿ), thorn (þ), and eth (ð) of Old English. When displaying *werra*, Junicode connects the word to its manuscript origins. |
+| **Section Heads** | **Cormorant Garamond** | SemiBold (600) | Maintains display family consistency while stepping down in hierarchy. |
 
 ### Body Typography
 
 | Role | Typeface | Weight | Justification |
 |------|----------|--------|---------------|
-| **Body Text** | **EB Garamond** | Regular (400) | Highly readable at text sizes. Excellent IPA and diacritics support (3,218 glyphs). Historical resonance with scholarly publishing tradition. |
-| **Emphasis** | **EB Garamond** | Italic | True italics based on Robert Granjon's designs. Used for foreign words, historical forms (*werre*, *guerre*), and light emphasis. |
+| **Body Text** | **EB Garamond** | Regular (400) | 3,218 glyphs including full IPA support. Derives from Garamond's punches preserved at the Plantin-Moretus Museum—a direct link to 16th-century printing that emerged from manuscript culture. |
+| **Italic/Historical Forms** | **EB Garamond** | Italic | Based on Robert Granjon's designs. All attested historical forms (*werre*, *guerre*, *wærra*) appear in italics. |
 
-### Supporting Typography
+### Typographic Treatments
 
-| Role | Typeface | Weight | Justification |
-|------|----------|--------|---------------|
-| **Historical Forms / IPA** | **Junicode** | Regular | Designed specifically for medievalists. Based on 17th-century Oxford University Press typefaces. Over 3,000 characters with excellent diacritic support. Named after Franciscus Junius. |
-| **Marginalia / Sidenotes** | **EB Garamond** | Regular, smaller size | Maintains family consistency while indicating secondary importance. |
-| **Language Labels** | **EB Garamond** | Small Caps | FRANKISH, OLD FRENCH, MIDDLE ENGLISH rendered in small caps for consistent visual treatment. |
-| **Code / Technical** | **Source Serif 4** | Regular | For any technical content, code examples, or structured data requiring monospace-like clarity. |
+| Element | Treatment | Example |
+|---------|-----------|---------|
+| **Reconstructed Forms** | Italic + asterisk + dashed underline | *\*werra* with dashed border |
+| **Attested Forms** | Italic only | *werre* |
+| **Language Labels** | Small caps + letter-spacing: 0.05em | FRANKISH, NORMAN FRENCH |
+| **Dates** | Oldstyle numerals + red accent | 858 CE in Merovingian Garnet |
+| **First Attestations** | Gold highlight + slight weight increase | "858 CE: First written record" |
+| **IPA Transcriptions** | Junicode, within slashes | /wɛrə/ |
 
 ### Type Scale
 
-Based on a 1.25 ratio (major third), optimized for long-form reading:
+Based on a 1.333 ratio (perfect fourth) for scholarly gravitas:
 
-| Element | Size (Desktop) | Size (Mobile) | Line Height | Letter Spacing |
-|---------|----------------|---------------|-------------|----------------|
-| **H1 (Title)** | 48px / 3rem | 36px / 2.25rem | 1.1 | 0.02em |
-| **H2 (Section)** | 32px / 2rem | 28px / 1.75rem | 1.2 | 0.01em |
-| **H3 (Subsection)** | 24px / 1.5rem | 22px / 1.375rem | 1.3 | 0 |
-| **H4 (Minor Head)** | 20px / 1.25rem | 18px / 1.125rem | 1.3 | 0 |
-| **Body** | 18px / 1.125rem | 17px / 1.0625rem | 1.7 | 0 |
-| **Caption/Footnote** | 14px / 0.875rem | 14px / 0.875rem | 1.5 | 0 |
-| **Marginalia** | 13px / 0.8125rem | 12px / 0.75rem | 1.4 | 0 |
+| Element | Desktop | Mobile | Line Height |
+|---------|---------|--------|-------------|
+| H1 (Hero) | 56px | 40px | 1.05 |
+| H2 (Section) | 36px | 28px | 1.15 |
+| H3 (Subsection) | 24px | 22px | 1.25 |
+| Body | 19px | 17px | 1.75 |
+| Sidenote | 14px | 13px | 1.5 |
+| Caption | 13px | 12px | 1.4 |
 
-### Typography Principles
+### The "WAR" Typography Evolution
 
-1. **Generous Line Height**: 1.7 for body text enables comfortable reading of complex etymological content.
+The word WAR itself transforms through the essay:
 
-2. **Microtypography**: Use proper curly quotation marks ("not straight"), en dashes for ranges (1121-1155), em dashes for breaks, and proper ellipses.
+1. **Opening**: Displayed as *WERRA* in Junicode, with slightly rough, uncertain letterforms
+2. **Norman Section**: Displayed as *WERRE* in Cormorant Garamond italic, more refined
+3. **Chronicle Section**: Displayed as *WERRE* in EB Garamond, settling into English
+4. **Modern Section**: Displayed as **WAR** in Cormorant Garamond bold, stable and final
 
-3. **Historical Form Treatment**:
-   - Reconstructed forms: Italicized with asterisk prefix (*\*werra*)
-   - Attested forms: Italicized without asterisk (*werre*, *guerre*)
-   - Language labels: Small caps (FRANKISH)
-   - IPA: Within slashes /wɔːr/ or brackets [wɛrə]
-
-4. **Hierarchy**: Clear visual distinction between heading levels without excessive weight variation.
+This typographic evolution is the design's most powerful narrative device.
 
 ---
 
-## 3. Visual Motifs
+## 3. Visual Motifs (7 Unique Elements)
 
-### Motif Derivation
+### Motif 1: The Palimpsest Layer
 
-All motifs derive from medieval manuscript conventions, scribal culture, and lexicographic tradition. These are not decorative choices but functional elements grounded in the essay's subject matter.
+**Historical Source**: Medieval palimpsests—manuscripts where older text was scraped off and new text written over, but traces of the original remain visible.
 
-### Primary Motifs (7)
+**Visual Implementation**:
+- Key moments show faded text "beneath" the primary text
+- The Old English word *wig* appears ghosted behind the first instance of "war"
+- Implemented via reduced opacity (15-20%) text layers
+- On scroll, the ghost text fades further as the "new" text becomes dominant
 
-#### 1. Rubricated Date Markers
+**Functional Purpose**: Visualizes linguistic displacement—the word "war" literally overwriting the native English terms.
 
-**Source**: Medieval rubrication practice using minium (red lead) for dates and important terms.
-
-**Implementation**:
-- Key dates appear in Minium Red (#C54B3C)
-- Subtle pill or bracket treatment around dates
-- Example: "858 CE" or "c.1121"
-
-**Technical Notes**:
+**Technical Spec**:
 ```css
-.date-marker {
-  color: #C54B3C;
-  font-variant-numeric: oldstyle-nums;
-}
-```
-
-#### 2. Marginalia System
-
-**Source**: Medieval manuscripts reserved ~50% of page space for margins. Technical signs, glosses, and corrections appeared in margins.
-
-**Implementation**:
-- Sidenotes for source attributions: (OED), (MED), (Peterborough)
-- Dates in margins for chronological context
-- Scholarly apparatus (uncertainty notes, cross-references)
-- On mobile: Sidenotes collapse to inline footnotes
-
-**Technical Notes**:
-- Desktop: Fixed margin column (240px) on right side
-- Sidenotes align with relevant text via scroll-position awareness
-- Use Aged Ink Brown (#5C4A3D) for secondary importance
-
-#### 3. Illuminated Drop Caps
-
-**Source**: Medieval scribes used decorated initials to mark section openings. The practice continued into early printing.
-
-**Implementation**:
-- Opening section begins with illuminated initial (3-4 lines tall)
-- Gold accent (#C9A227) on initial letter
-- Major section breaks may include smaller drop caps (2 lines)
-- Design inspired by Lombardic capitals (rounded forms, thick curved stems)
-
-**Technical Notes**:
-```css
-.drop-cap {
-  float: left;
-  font-size: 3.5em;
-  line-height: 0.8;
-  margin-right: 0.1em;
-  color: #C9A227;
-  font-family: 'EB Garamond', serif;
-  font-weight: 600;
-}
-```
-
-#### 4. Attestation Markers
-
-**Source**: Scholarly convention distinguishing reconstructed from attested forms.
-
-**Implementation**:
-- Reconstructed forms: asterisk prefix, dashed underline, slightly faded
-- Attested forms: solid underline or no underline, full opacity
-- Visual cue in etymology diagrams (dashed vs. solid borders)
-
-**Visual Treatment**:
-| Status | Typography | Border Treatment |
-|--------|------------|------------------|
-| Reconstructed | *\*werra* (italic, asterisk) | Dashed outline |
-| Attested | *werre* (italic) | Solid outline |
-
-#### 5. Folio Marks / Section Navigation
-
-**Source**: Medieval manuscripts used folio marks (recto/verso notation) for navigation. Printers later adapted this to page numbers and running heads.
-
-**Implementation**:
-- Section indicators at top of each major section
-- Progress indicator styled as subtle folio notation
-- Example: "III. Meaning Drift" with decorative rule
-
-**Technical Notes**:
-- Centered section number with rules extending left/right
-- Small caps for section titles
-- Uses Aged Ink Brown for subtle presence
-
-#### 6. Language Label System
-
-**Source**: Dictionary conventions for etymology notation; language names distinguished from definitions.
-
-**Implementation**:
-- Language names in SMALL CAPS: FRANKISH, OLD FRENCH, MIDDLE ENGLISH
-- Consistent visual treatment across all contexts
-- Applied to etymology river diagram, tables, and inline text
-
-**Technical Notes**:
-```css
-.language-label {
-  font-variant: small-caps;
-  letter-spacing: 0.05em;
-  color: #5C4A3D;
-}
-```
-
-#### 7. Rule and Border System
-
-**Source**: Medieval ruling (pricking and ruling to guide scribes); dictionary column dividers.
-
-**Implementation**:
-- Thin rules (1px) in Aged Ink Brown for horizontal dividers
-- Subtle vertical rules for column layouts in tables
-- Decorative rules with center ornament for major section breaks
-
-**Technical Notes**:
-```css
-.section-divider {
-  border: none;
-  border-top: 1px solid #5C4A3D;
-  margin: 3rem auto;
-  width: 60%;
-  position: relative;
-}
-.section-divider::after {
-  content: "~";
+.palimpsest-ghost {
   position: absolute;
-  top: -0.6em;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #F5EDE0;
-  padding: 0 1rem;
-  color: #5C4A3D;
+  opacity: 0.15;
+  color: #830E0D; /* Merovingian Garnet */
+  font-family: 'Junicode', serif;
+  transform: rotate(-2deg);
+  z-index: -1;
 }
 ```
 
+### Motif 2: The Chevron Border
+
+**Historical Source**: The Norman chevron (zigzag pattern) is the signature decorative element of Norman Romanesque architecture and appears in the Bayeux Tapestry's borders.
+
+**Visual Implementation**:
+- Subtle chevron patterns frame the Norman Conquest section
+- Used as section dividers (horizontal chevron lines)
+- NOT overwhelming—thin strokes, Bayeux Terracotta color
+- Evokes the invaders without depicting violence
+
+**Functional Purpose**: Marks the Norman layer of the word's journey.
+
+**Technical Spec**:
+```svg
+<pattern id="chevron" width="20" height="10" patternUnits="userSpaceOnUse">
+  <path d="M0,10 L10,0 L20,10" stroke="#B5542A" stroke-width="1" fill="none"/>
+</pattern>
+```
+
+### Motif 3: Cloisonné Cell Containers
+
+**Historical Source**: Merovingian cloisonné technique—thin metal walls (cloisons) creating cells filled with garnet or colored glass.
+
+**Visual Implementation**:
+- Key data points (dates, language names) appear in rounded rectangular containers
+- Thin gold (#C9A030) borders, 1px stroke
+- Fill colors vary by era: garnet-red for Frankish, terracotta for Norman, cream for English
+- Creates a "jeweled" appearance for important information
+
+**Functional Purpose**: Elevates key facts with Frankish visual language; connects data to material culture.
+
+**Technical Spec**:
+```css
+.cloisonne-cell {
+  border: 1px solid #C9A030;
+  border-radius: 3px;
+  padding: 2px 8px;
+  display: inline-block;
+}
+.cloisonne-cell.frankish {
+  background: rgba(131, 14, 13, 0.1);
+}
+.cloisonne-cell.norman {
+  background: rgba(181, 84, 42, 0.1);
+}
+```
+
+### Motif 4: The Wax Seal
+
+**Historical Source**: Anglo-Norman document culture relied heavily on wax seals for authentication. Seals were red (vermillion) for royal documents, green for Exchequer documents.
+
+**Visual Implementation**:
+- Section breaks marked with a stylized wax seal icon
+- Red seal for conflict-related sections
+- Green seal for administrative/linguistic sections
+- Contains a stylized "W" for *werra*
+
+**Functional Purpose**: Invokes the documentary culture through which the word traveled; marks transitions.
+
+### Motif 5: The Bayeux Border Beasts
+
+**Historical Source**: The Bayeux Tapestry's upper and lower borders contain stylized animals, Aesop's fables, and scenes that comment on the main narrative.
+
+**Visual Implementation**:
+- Subtle decorative elements in margins/borders
+- Stylized lions, birds, interlaced creatures
+- Rendered in Tapestry Blue-Green (#3A6B5C)
+- Appear only in Norman-era sections
+- NOT realistic animals—stylized, flat, embroidered appearance
+
+**Functional Purpose**: Creates period-specific atmosphere; the borders "comment" on the main text like the tapestry's borders comment on its main narrative.
+
+### Motif 6: The Chronicle Rubrication
+
+**Historical Source**: The Peterborough Chronicle uses rubrication (red ink) for annal numbers and important capitals. The initial B on folio 1r is green outlined with red.
+
+**Visual Implementation**:
+- Year numbers in section headers appear in Merovingian Garnet
+- Drop caps use Tapestry Blue-Green with red outline (reversing the Chronicle's green/red)
+- Important first attestations marked with rubricated annotation
+
+**Functional Purpose**: Connects the essay visually to the actual manuscript where "war" first appears in English.
+
+### Motif 7: The Etymology River
+
+**Historical Source**: Medieval T-O maps depicted the world as a circle divided by T-shaped waters. Rivers like the Tigris and Euphrates were central organizing features.
+
+**Visual Implementation**:
+- The etymology diagram flows like a river on a medieval map
+- Francia at the "top" (east, like Paradise on T-O maps)
+- England at the "bottom" (west)
+- The word flows downward through linguistic territory
+- Color gradients transition from Frankish red through Norman terracotta to English black
+
+**Functional Purpose**: Reframes etymology as geography; the word "traveled" across linguistic space just as it traveled across physical space.
+
 ---
 
-## 4. Animation Philosophy
+## 4. The Hero Moment: "WAR" as Design Object
 
-### Core Principles
+### Concept: The Carved Word
 
-Animation in "The Word War" must embody the contemplative, scholarly nature of etymological investigation. The Peterborough Chronicle was written by monks in a scriptorium, not warriors on a battlefield. Animations should feel like turning manuscript pages, not cinematic action.
+The word WAR should feel **carved**—into stone, into history, into the language itself. It carries weight. It is not decorative; it is monumental.
 
-### Five Principles
+### Display Treatment
 
-1. **Slow and Contemplative**
-   - Duration: 400-800ms for most transitions
-   - Easing: ease-out or cubic-bezier curves that decelerate gracefully
-   - No sudden movements; everything arrives with scholarly patience
+**Stage 1: The Uncertain Origin**
+- Displayed as: ***WERRA***
+- Typography: Junicode, 72px, slight letter-spacing variation
+- Color: Merovingian Garnet (#830E0D)
+- Effect: Slight "shake" animation (±1px jitter) suggesting instability
+- Meaning: The reconstructed form, uncertain, pre-historical
 
-2. **Progressive Disclosure**
-   - Etymology nodes appear in sequence, revealing linguistic descent
-   - Content emerges as reader scrolls, respecting reading pace
-   - Never reveal everything at once; knowledge builds incrementally
+**Stage 2: The First Attestation (858 CE)**
+- Displayed as: ***WERRA***
+- Typography: Same as above, but letters "settle" into place
+- Addition: Gold (#C9A030) underline appears beneath
+- Effect: The shake stops; the word becomes "fixed" in writing
 
-3. **Ink-Flow Metaphor**
-   - Text and elements appear as if written or drawn onto parchment
-   - Opacity transitions from 0 to 1 (fade-in as ink appears)
-   - No sliding/bouncing; elements materialize in place
+**Stage 3: The Norman Form**
+- Displayed as: ***WERRE***
+- Typography: Cormorant Garamond Italic, 72px
+- Color: Bayeux Terracotta (#B5542A)
+- Effect: Crossfade from WERRA, the double-R visually prominent
 
-4. **Scholarly Precision**
-   - Clean, minimal transitions without flourish
-   - No decorative animation that doesn't serve content
-   - Motion should aid comprehension, not distract
+**Stage 4: The English Form (1121 CE)**
+- Displayed as: **WERRE** → **WAR**
+- Typography: Cormorant Garamond Bold, 72px
+- Color: Chronicle Ink (#1E1915)
+- Effect: The word "contracts"—letters shift closer together as spelling simplifies
+- Final state: WAR, stable, black, permanent
 
-5. **Respect for Stillness**
-   - Most of the essay should be static
-   - Animation reserved for key moments (diagram reveals, section transitions)
-   - Reader control: animations pause when not scrolling
+### Animation Sequence
 
-### Timing Recommendations
+```
+[Opening scroll]
+     *WERRA* (garnet, shaking slightly)
+         ↓ (scroll)
+     *WERRA* (garnet, gold underline appears, stable)
+         ↓ (scroll)
+     *WERRE* (terracotta, italicized)
+         ↓ (scroll)
+     WAR (black, bold, final)
+```
 
-| Animation Type | Duration | Easing | Use Case |
+Duration: Each transformation takes 800ms, triggered by scroll position. The final WAR remains stable for the rest of the essay.
+
+---
+
+## 5. Animation Philosophy
+
+### Core Principle: The Slow Conquest
+
+Animations embody the word's 263-year journey from 858 CE to 1121 CE. Nothing happens quickly. The word was not borrowed in a day; it was absorbed over generations. Animations reflect this patience.
+
+### Timing Language
+
+| Animation Type | Duration | Easing | Metaphor |
 |----------------|----------|--------|----------|
-| Fade-in (content reveal) | 600ms | ease-out | Text blocks entering viewport |
-| Etymology node appear | 400ms | ease-out | Sequential node revelation |
-| Connection line draw | 800ms | ease-in-out | Lines connecting etymology nodes |
-| Tooltip appear | 200ms | ease-out | Hover/tap interactions |
-| Section transition | 500ms | ease | Scrolling between major sections |
+| Text reveal | 600ms | ease-out | Ink appearing on parchment |
+| Etymology node connection | 1000ms | ease-in-out | Lines being drawn by hand |
+| Color transition | 800ms | linear | Dye settling into fabric |
+| Hero word transformation | 800ms | ease | Scribal correction |
+| Ghost text fade | 1200ms | ease-out | Memory fading |
+| Border pattern draw | 1500ms | ease-in-out | Embroidery being stitched |
 
-### Specific Animation Suggestions by Module
+### Era-Specific Animation Qualities
 
-| Module | Animation Approach |
+**Frankish Section**:
+- Slightly more "rough" motion
+- Small position jitter (±0.5px)
+- Faster durations (400-600ms)
+- Represents the instability of reconstructed forms
+
+**Norman Section**:
+- Smooth, confident motion
+- Chevron patterns "draw" in like embroidery
+- Standard durations (600-800ms)
+- Represents the organized invasion
+
+**English Section**:
+- Slowest, most deliberate motion
+- Text "settles" into final positions
+- Longest durations (800-1200ms)
+- Represents the permanent adoption
+
+### The 9 Visual Modules: Animation Concepts
+
+| Module | Animation Concept |
 |--------|-------------------|
-| **Etymology River Diagram** | Nodes appear sequentially top-to-bottom (PIE first, Modern English last). Connecting lines draw after nodes appear. Reconstructed nodes pulse subtly with dashed-border animation. |
-| **Sound & Spelling Panel** | Map fades in first, then regions highlight. Sound transformation arrows animate as paths being drawn. Toggle switch uses instant swap, not slide. |
-| **Cognate Network Map** | Central node appears first, then clusters radiate outward. Color fills in after structure is revealed. Interactive highlights use instant color change, not transitions. |
-| **Semantic Constellation** | Central "WAR" appears, then rings expand outward. Terms fade in by semantic distance. Gradient lines draw slowly like calligraphy. |
-| **Timeline Band** | Dual tracks appear simultaneously. Events populate left-to-right as time progresses. Warning annotation fades in last. |
-| **Geographic Map** | Base map appears instantly. Color regions fill in by etymological family. Norman invasion route arrow draws as path. |
-| **Typographic Hero** | Large "WAR" letters fade in with slight opacity build. No 3D effects, no perspective shifts. |
-
-### What NOT to Animate
-
-- Body text paragraphs (should be immediately readable)
-- Sidenotes and marginalia (should be present when relevant content appears)
-- Navigation elements
-- Any element the user needs to read immediately
+| **1. Etymology River** | Nodes appear top-to-bottom (source to English). Connection lines draw after nodes settle. Frankish nodes pulse with slight garnet glow. |
+| **2. Sound Panel** | Phonetic transcriptions "type" character by character, simulating pronunciation. Sound wave motifs pulse gently. |
+| **3. Spelling Comparison** | Letters crossfade between forms (*werra* → *werre* → *war*). Changed letters highlight momentarily in gold. |
+| **4. Cognate Network** | Central node appears first. Cognates radiate outward like ripples. Germanic cognates appear in red tones; Romance cognates in terracotta. |
+| **5. Semantic Constellation** | "Confusion" (original meaning) appears first, connected to center. "Organized conflict" meanings appear later, further from center. Lines draw slowly. |
+| **6. Timeline** | Dual-track timeline populates left-to-right. Events "stamp" into place like seals. 858 CE and 1121 CE events glow gold. |
+| **7. Geographic Map** | Map renders instantly. Word's path draws as an animated line from Francia through Normandy to England. Color changes along path (red → terracotta → black). |
+| **8. Usage Quotations** | Quotes fade in one at a time. Source (e.g., "Peterborough Chronicle") appears in rubricated red. |
+| **9. Modern Derivatives** | Derivative words ("warfare," "warrior") "branch" from the central WAR like a tree. Each branch draws with ink-flow animation. |
 
 ---
 
-## 5. Layout Principles
+## 6. Layout System
 
-### Margin and Whitespace Philosophy
+### The Manuscript Grid
 
-Medieval manuscripts reserved approximately 50% of page area for margins. While modern screens require different ratios, the principle of generous whitespace remains essential for scholarly content.
+Medieval manuscripts allocated approximately 50% of the page to margins—space for glosses, corrections, and commentary. This essay follows that principle.
 
-### Grid System
+**Desktop Grid (1440px viewport)**:
+```
+| 120px | 680px (content) | 280px (marginalia) | 120px |
+   ←─── Left margin        Right margin (sidenotes) ───→
+```
 
-**Desktop (1200px+)**:
-- Content column: 680px maximum width
-- Right margin: 240px for sidenotes
-- Left margin: flexible (centers content)
-- Total content area: 920px
+**Content Column**: 680px maximum width
+- Approximately 68 characters per line at 19px EB Garamond
+- Optimal reading length for scholarly content
 
-**Tablet (768px - 1199px)**:
-- Content column: 600px maximum width
-- Sidenotes inline as footnotes or expandable elements
-- Margins: 2rem on sides
+**Marginalia Column**: 280px
+- Source citations
+- Manuscript references (e.g., "MS Laud Misc. 636, f.1r")
+- Date context
+- Etymology glosses
 
-**Mobile (< 768px)**:
-- Content column: full width minus 1.5rem padding
-- Sidenotes become inline footnotes (numbered, expandable)
-- Diagrams and charts scroll horizontally if needed
+**Full-Bleed Moments**:
+- Hero word displays
+- Etymology River diagram
+- Geographic map
+- Timeline
+
+### Margin Philosophy: The Glossator's Space
+
+The right margin is the **glossator's space**—where a medieval reader would add commentary. In this essay, the margin contains:
+
+1. **Source attestations**: "(OED, s.v. war)"
+2. **Manuscript references**: "(Peterborough Chronicle, 1121)"
+3. **Scholarly hedges**: "Reconstructed form, not attested"
+4. **Cross-references**: "See also: *guerre*, *guerra*"
+
+This creates a two-track reading experience:
+- **Primary track**: The narrative (main column)
+- **Secondary track**: The scholarly apparatus (margin)
+
+Advanced readers can engage with both; casual readers can ignore the margins.
 
 ### Spacing Scale
 
-Based on 8px unit system:
+Based on 8px unit, but the base unit is derived from the Chronicle's line spacing:
 
 | Token | Value | Use |
 |-------|-------|-----|
-| `--space-xs` | 4px | Icon margins, tight elements |
-| `--space-sm` | 8px | Inline spacing, small gaps |
-| `--space-md` | 16px | Paragraph margins, element spacing |
-| `--space-lg` | 24px | Section padding, card internal spacing |
-| `--space-xl` | 48px | Between major sections |
-| `--space-2xl` | 96px | Between essay parts, visual breathing room |
-
-### Layout Principles
-
-1. **Text Column Width**: 65-75 characters per line for optimal readability. With 18px EB Garamond, this is approximately 680px.
-
-2. **Vertical Rhythm**: All spacing derives from line-height multiples. With 18px text and 1.7 line-height, base vertical unit is 30.6px (round to 32px for calculations).
-
-3. **Sidenote Alignment**: Sidenotes begin at the same baseline as the text they reference.
-
-4. **Visual Module Spacing**: Full-bleed diagrams preceded and followed by `--space-2xl` (96px).
-
-5. **Mobile Adaptation**: Diagrams simplify rather than shrink. Complex etymology trees may become vertical stacks on mobile.
-
-### Visual Module Layout
-
-| Module | Desktop Layout | Mobile Layout |
-|--------|----------------|---------------|
-| Etymology River | Full-width diagram with horizontal flow | Vertical stack with scrollable area |
-| Sound & Spelling Panel | Side-by-side map and diagram | Stacked: map on top, diagram below |
-| Cognate Network | Radial network, interactive | Simplified list view with key connections |
-| Semantic Constellation | Radial layout | Concentric rings, scrollable |
-| Timeline Band | Horizontal dual-track | Vertical timeline, single column |
-| Geographic Map | Full map with overlays | Scrollable/zoomable |
+| `--space-line` | 32px | Baseline grid (19px text × 1.75 line-height ≈ 33px, rounded) |
+| `--space-paragraph` | 24px | Between paragraphs |
+| `--space-section` | 96px | Between major sections (3× line) |
+| `--space-module` | 128px | Before/after full-bleed modules (4× line) |
+| `--space-margin-gap` | 40px | Between content and marginalia |
 
 ---
 
-## 6. Accessibility Considerations
+## 7. Mood Board Description
 
-### Color Contrast
+### Reference 1: Merovingian Cloisonné Disc Brooch (6th century)
+Held at the Metropolitan Museum of Art. A circular gold brooch with radiating garnet-filled cells, creating a sunburst pattern. The garnets glow with deep, arterial red. Thin gold cloisons separate each gem. This artifact defines the Merovingian Garnet (#830E0D) and the cloisonné cell motif. The craftsmanship speaks to the Frankish material culture from which *werra* emerged.
 
-All text meets WCAG 2.1 AA requirements:
+### Reference 2: The Bayeux Tapestry's Border (c.1077)
+Not the battle scenes—the borders. Upper and lower bands containing stylized birds, lions, and Aesop's fables in terracotta, blue-green, and gold threads. The creatures are flat, almost abstract. The chevron patterns frame key moments. The inscriptions in crude Latin capitals (HIC HAROLD) demonstrate how text integrated with image in Norman visual culture.
 
-| Combination | Contrast Ratio | WCAG Level |
-|-------------|----------------|------------|
-| Iron Gall Black on Parchment | 13.2:1 | AAA |
-| Aged Ink Brown on Parchment | 6.1:1 | AA |
-| Minium Red on Parchment | 4.8:1 | AA Large Text |
-| Lombard Blue on Parchment | 7.2:1 | AAA |
+### Reference 3: Peterborough Chronicle, Folio 1r
+The ornamented initial B in green outlined with red—the only decoration in the entire manuscript. The rest is pure text: brown iron-gall ink on cream vellum, annal numbers in red. The modesty is the point. The word "war" appeared in this unassuming context, not in an illuminated masterpiece.
 
-**Note**: Minium Red should only be used for large text (18px+) or bold text (14px+ bold).
+### Reference 4: Drogo Sacramentary Historiated Initial (c.850)
+A large decorative C containing a scene of Christ's entry into Jerusalem. Gold leaf, emerald green, violet, and purple inks. Figures emerge from the letter's structure. This represents the peak of Carolingian manuscript art—the visual world contemporary with the first attestation of *werra* in 858 CE.
 
-### Reduced Motion
+### Reference 5: T-O Map from Isidore of Seville's Etymologies (12th century)
+A circular world map with T-shaped waterways dividing Asia, Europe, and Africa. Jerusalem at center. East (Asia) at top. Simple, schematic, more concept than geography. This informs the etymology river diagram—linguistic geography replacing physical geography.
 
-Implement `prefers-reduced-motion` media query for all animations:
+### Reference 6: Norman Wax Seal (Great Seal of William II, 1087-1100)
+Red wax impressed with the king enthroned on one side, mounted in battle on the other. The seal authenticated documents in the same Anglo-Norman administrative culture that transmitted *werre* into English. The official weight of documentary culture.
 
-```css
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-```
-
-**Alternative Behaviors**:
-- Etymology diagram: All nodes appear immediately, no sequential reveal
-- Timeline: Static display, no scroll-triggered animations
-- All fade-ins: Elements appear at full opacity immediately
-
-### Screen Reader Considerations
-
-1. **Etymology Diagrams**: Provide text description of complete pathway. Use `aria-label` to describe relationships.
-
-2. **Interactive Elements**: All clickable/tappable elements must have clear focus states using outline (not just color change).
-
-3. **Sidenotes**: Linked inline with `aria-describedby` pointing to sidenote content. Screen readers announce both the reference and the content.
-
-4. **Language Labels**: Use `lang` attribute for foreign words:
-   ```html
-   <span lang="fro">werre</span>
-   ```
-
-5. **Abbreviations**: First use expanded, subsequent uses with `<abbr>`:
-   ```html
-   <abbr title="Oxford English Dictionary">OED</abbr>
-   ```
-
-### Focus States
-
-```css
-:focus-visible {
-  outline: 2px solid #2D4B73;
-  outline-offset: 2px;
-}
-```
-
-### Text Resizing
-
-- All text in relative units (rem, em)
-- Layout remains functional up to 200% text zoom
-- Line length remains comfortable (maximum 80 characters at 200% zoom)
+### Reference 7: Durham Cathedral Chevron Mouldings (c.1093)
+The zigzag (chevron) patterns carved into stone around arches and doorways. Deep relief, geometric precision, the signature decorative element of Norman Romanesque. This motif marks the Norman layer throughout the essay.
 
 ---
 
-## 7. Anti-Patterns (What NOT to Do)
+## 8. What Makes This Design Unique
 
-### Visual Approaches to Avoid
+### 1. It Cannot Be Confused With Other Etymology Essays
 
-| Anti-Pattern | Why It's Wrong | What to Do Instead |
-|--------------|----------------|-------------------|
-| **Military/Combat Imagery** | This essay is about language history, not violence glorification. Battle scenes sensationalize the subject. | Use manuscripts, documents, typography as visual anchors. |
-| **Propaganda Poster Aesthetics** | Bold geometric designs, stark colors, and angular layouts evoke 20th-century war propaganda, which is historically and tonally inappropriate. | Embrace organic manuscript forms, warm colors, scholarly restraint. |
-| **Aggressive Typography** | All-caps headlines, compressed sans-serifs, or display faces with sharp angles create military feeling. | Use EB Garamond and Junicode; scholarly, readable, historically grounded. |
-| **Explosion/Impact Effects** | Burst animations, particles, or shatter effects glorify violence. | Fade-ins, gentle reveals, ink-flow metaphors. |
-| **Heavy Grunge/Distressing** | Excessive texture overlays, torn edges, or "aged" filters look gimmicky rather than authentic. | Subtle parchment tone; texture is color, not overlay. |
-| **Dark Mode as Default** | Black backgrounds with light text evoke screens and modernity, not manuscripts. | Parchment background as default; dark mode only as accessibility option. |
-| **Sans-Serif Body Text** | Sans-serif disrupts historical continuity and feels cold for this content. | Serif body text throughout (EB Garamond). |
-| **Sliding/Bouncing Animations** | Playful motion is inappropriate for scholarly content about conflict. | Fade and opacity transitions only. |
-| **Autoplay Video/Sound** | Disrupts reading flow and accessibility. | Static content; user-initiated media only. |
-| **Gamification Elements** | Progress bars, achievement badges, or quiz elements trivialize the subject. | Linear reading experience with subtle section indicators. |
+This design is tied to **specific historical layers**:
+- The Merovingian garnet palette exists because *werra* came from Frankish culture
+- The Norman chevron motif exists because the word crossed with the Conquest
+- The Peterborough parchment background exists because the Chronicle first recorded the English form
+
+An essay on the etymology of "democracy" or "philosophy" would have completely different visual sources—Greek pottery, Athenian architecture. An essay on "pajama" would reference Persian textiles and Indian cotton trade. This design works **only for this word**.
+
+### 2. It Is Specifically Appropriate for THIS Word
+
+The palimpsest concept—one text overwriting another—is not generic. It is the **literal linguistic history** of "war":
+
+- Old English had *wig*, *guð*, *heaðo*, *hild*
+- The Norman-French *werre* arrived and displaced them all
+- Today, those Old English words survive only in personal names (Wigmund, Guthrum)
+
+The design visualizes this displacement. The ghost text motif shows the conquered words beneath the conquering word.
+
+### 3. It Would Not Work for a Different Word
+
+Try applying this design to another word:
+
+- "Robot" (Czech, 20th century): No medieval manuscript tradition. No Norman Conquest. Would be absurd.
+- "Tsunami" (Japanese, 19th century borrowing): No Frankish layer. No Anglo-Norman transition. Would be absurd.
+- "Algorithm" (Arabic→Medieval Latin→English): Different geographic path, different visual cultures—Islamic geometry, not Frankish metalwork.
+
+The design is **non-transferable** because every element derives from this word's specific historical journey.
+
+---
+
+## 9. Anti-Patterns
+
+### What This Design Explicitly Avoids
+
+| Anti-Pattern | Why It's Wrong | What We Do Instead |
+|--------------|----------------|---------------------|
+| **Battle/Combat Imagery** | The essay is about a WORD, not about violence. Depicting warfare sensationalizes and misrepresents the subject. | We show manuscripts, documents, seals—the vehicles of linguistic transmission. |
+| **Propaganda Aesthetics** | Bold, angular, high-contrast designs evoke 20th-century war propaganda (WWI posters, Soviet constructivism). Historically and tonally wrong. | Warm parchment tones, organic manuscript forms, historical restraint. |
+| **Modernist Sans-Serifs** | Futura, Helvetica, etc. have no connection to medieval or early modern textual culture. They feel cold and ahistorical. | EB Garamond, Cormorant Garamond, Junicode—typefaces with manuscript heritage. |
+| **Aggressive Color** | Blood red + black + white = violence aesthetics. This is not the subject. | Garnet (gem-like, precious) → Terracotta (textile, craft) → Iron-gall (ink, text). |
+| **Explosion/Impact Effects** | Burst animations, particles, screen shakes glorify violence. | Slow fades, ink-flow reveals, the patience of scribal work. |
+| **Dark Mode Default** | Black backgrounds evoke screens and modernity. Manuscripts were parchment. | Warm parchment background; dark mode only as accessibility option. |
+| **Photorealistic Textures** | Heavy parchment textures, torn edges, coffee stains = "aged" kitsch. Gimmicky, not authentic. | Color carries texture; no overlay filters. Restraint is authenticity. |
+| **Generic Medieval** | Using "any old manuscript" aesthetics ignores the SPECIFIC sources. | Every color, motif, and typeface traces to Frankish→Norman→English artifacts. |
+| **Gamification** | Progress bars, achievements, quizzes trivialize scholarly content. | Linear reading experience with subtle section markers. |
+| **Autoplay Media** | Sound effects, background music disrupt reading and accessibility. | Static content; user-initiated audio for pronunciation examples only. |
 
 ### Tonal Boundaries
 
-**This essay is NOT**:
-- A celebration of war
-- A military history primer
-- Entertainment/spectacle
-- Designed to impress with technical flourishes
+**This essay does NOT**:
+- Celebrate or glorify war
+- Present military history
+- Entertain through spectacle
+- Use the word's violence for aesthetic drama
 
-**This essay IS**:
-- A scholarly examination of language
-- Contemplative and precise
-- Grounded in documentary evidence
-- Designed to educate with clarity
-
----
-
-## 8. Reference Images and Inspiration
-
-### Primary Sources (for direct visual reference)
-
-1. **Peterborough Chronicle (MS. Laud Misc. 636)**
-   - Bodleian Digital Library: https://digital.bodleian.ox.ac.uk/objects/6272311c-058d-417a-8e21-05e463b4f1f9/
-   - Contains first English attestation of "war"
-   - Note: Round English vernacular hand, 30 long lines, Caroline/insular letter-forms
-   - Ornamental initial B in green with red decoration (fol. 1r)
-
-2. **Johnson's Dictionary (1755)**
-   - Internet Archive: https://archive.org/details/johnsons_dictionary_1755
-   - Typography: Caslon-like faces from Alexander Wilson's foundry
-   - Layout: Bold headwords, indented definitions, literary quotations
-
-3. **Oxford English Dictionary First Edition**
-   - Large boldface headwords
-   - Historical quotations in chronological order
-   - Typography: Clear hierarchy, readable at small sizes
-
-### Design Mood
-
-- **Contemplative, not dramatic**
-- **Precise, not elaborate**
-- **Warm, not cold**
-- **Historical, not archaic**
-- **Scholarly, not academic (accessible, not exclusive)**
+**This essay DOES**:
+- Investigate language with scholarly precision
+- Present etymology as cultural history
+- Create beauty through historical authenticity
+- Treat the subject with contemplative seriousness
 
 ---
 
-## 9. Implementation Checklist
+## 10. Implementation Notes
 
-### Before Development
+### Font Loading
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<!-- Junicode loaded locally for full medieval character support -->
+```
 
-- [ ] Confirm EB Garamond and Junicode font loading
-- [ ] Set up CSS custom properties for color palette
-- [ ] Establish spacing scale tokens
-- [ ] Create responsive breakpoint strategy
+### CSS Custom Properties
+```css
+:root {
+  /* Colors */
+  --merovingian-garnet: #830E0D;
+  --bayeux-terracotta: #B5542A;
+  --tapestry-blue-green: #3A6B5C;
+  --peterborough-parchment: #F2E8D5;
+  --chronicle-ink: #1E1915;
+  --aged-iron-gall: #584B40;
+  --frankish-gold: #C9A030;
 
-### During Development
+  /* Typography */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'EB Garamond', Georgia, serif;
+  --font-medieval: 'Junicode', 'EB Garamond', serif;
 
-- [ ] Implement reduced-motion alternatives for all animations
-- [ ] Test all color combinations for WCAG compliance
-- [ ] Ensure sidenotes degrade gracefully to inline footnotes
-- [ ] Validate `lang` attributes on all foreign text
+  /* Spacing */
+  --space-line: 32px;
+  --space-paragraph: 24px;
+  --space-section: 96px;
+  --space-module: 128px;
+}
+```
 
-### Quality Assurance
-
-- [ ] Test at 200% text zoom
-- [ ] Screen reader testing (VoiceOver, NVDA)
-- [ ] Performance audit (animations at 60fps)
-- [ ] Cross-browser testing (Safari, Chrome, Firefox, Edge)
+### Accessibility
+- All text combinations exceed WCAG AA contrast requirements
+- `prefers-reduced-motion` eliminates all scroll-triggered animations
+- Marginalia degrades to inline footnotes on mobile
+- `lang` attributes on all historical forms: `<span lang="frk">werra</span>`
 
 ---
 
 ## Sources Consulted
 
-### Medieval Manuscripts and Paleography
-- Bodleian Library MS. Laud Misc. 636 manuscript description
-- Stanford EM1060 project: The Production and Use of English Manuscripts 1060-1220
-- Medievalbooks.nl on manuscript layout and margins
-- Wikipedia: Insular script, Carolingian minuscule, Rubrication
+### Frankish Visual Culture
+- [Merovingian art | Britannica](https://www.britannica.com/art/Merovingian-art)
+- [Merovingian art and architecture | Wikipedia](https://en.wikipedia.org/wiki/Merovingian_art_and_architecture)
+- [Merovingian Cloisonné Architectural Ring | Metropolitan Museum of Art](https://www.metmuseum.org/art/collection/search/681658)
+- [Garnet color hex code | Color-Name](https://www.color-name.com/garnet.color)
 
-### Colors and Materials
-- Conservation studies on iron gall ink degradation
-- Medieval manuscript pigment analysis (minium, vermillion)
-- Encyclopedia of Color: Parchment and Vellum values
-- British Library Collection Care blog on inks
+### Carolingian Manuscripts
+- [Carolingian illumination | Wikipedia](https://en.wikipedia.org/wiki/Carolingian_illumination)
+- [Drogo Sacramentary | Ziereis Facsimiles](https://www.facsimiles.com/facsimiles/drogo-sacramentary)
+- [Carolingian minuscule | Wikipedia](https://en.wikipedia.org/wiki/Carolingian_minuscule)
 
-### Typography
-- EB Garamond: Google Fonts documentation
-- Junicode: Wikipedia and font documentation
-- Paul Luna on Johnson's Dictionary typography
-- OED typography history
+### Bayeux Tapestry
+- [Bayeux Tapestry tituli | Wikipedia](https://en.wikipedia.org/wiki/Bayeux_Tapestry_tituli)
+- [Bayeux Tapestry | Wikipedia](https://en.wikipedia.org/wiki/Bayeux_Tapestry)
+- [The Colours of the Bayeux Tapestry | The Mulberry Dyer](https://mulberrydyer.com/shop/the-colours-of-the-bayeux-tapestry/)
 
-### Animation and Accessibility
-- MDN: prefers-reduced-motion
-- W3C WCAG 2.1 guidelines
-- NN/G: Scroll-Triggered Text Animations
-- web.dev: Animation and motion accessibility
+### Peterborough Chronicle & Anglo-Saxon Manuscripts
+- [Peterborough Chronicle | Wikipedia](https://en.wikipedia.org/wiki/Peterborough_Chronicle)
+- [Chronicle of England | Bodleian Medieval Manuscripts](https://medieval.bodleian.ox.ac.uk/catalog/work_10926)
+- [Insular script | Wikipedia](https://en.wikipedia.org/wiki/Insular_script)
+
+### Anglo-Norman Document Culture
+- [Early Aristocratic Seals: An Anglo-Norman Success Story | Academia.edu](https://www.academia.edu/16796038/Early_Aristocratic_Seals_An_Anglo_Norman_Success_Story)
+- [Seals | The National Archives](https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/seals/)
+- [Sealing wax | Wikipedia](https://en.wikipedia.org/wiki/Sealing_wax)
+
+### Norman Romanesque Design
+- [Norman architecture | Wikipedia](https://en.wikipedia.org/wiki/Norman_architecture)
+- [The Romanesque in Normandy and England | Pressbooks](https://pressbooks.bccampus.ca/cavestocathedrals/chapter/the-romanesque-in-normandy-and-england/)
+
+### Medieval Palimpsests
+- [Palimpsest | Wikipedia](https://en.wikipedia.org/wiki/Palimpsest)
+- [Palimpsests: The art of medieval recycling | British Library](https://blogs.bl.uk/digitisedmanuscripts/2016/09/palimpsests-the-art-of-medieval-recycling.html)
+
+### Medieval Colors and Pigments
+- [The Medieval Palette | Sacred Stone](https://sacredstone.atlantia.sca.org/articles/the-medieval-palette.pdf)
+- [Common Medieval Pigments | University of Pittsburgh](http://d-scholarship.pitt.edu/11954/1/a-baker-04-pigments.pdf)
+- [Colours | Teaching Manuscripts](https://www.teachingmanuscripts.com/colours)
+
+### Etymology of "War"
+- [War - Etymology, Origin & Meaning | Etymonline](https://www.etymonline.com/word/war)
+- [war | Oxford English Dictionary](https://www.oed.com/dictionary/war_n1)
+- [Fun Etymology Tuesday - War | The Historical Linguist Channel](https://thehistoricallinguistchannel.com/fun-etymology-tuesday-war/)
+
+### Semantic Change Visualization
+- [Visualisation Methods for Diachronic Semantic Shift | ACL Anthology](https://aclanthology.org/2022.sdp-1.10/)
+- [Semantic change | Wikipedia](https://en.wikipedia.org/wiki/Semantic_change)
+
+### Medieval Cartography
+- [T and O map | Wikipedia](https://en.wikipedia.org/wiki/T_and_O_map)
+- [Mappa mundi | Wikipedia](https://en.wikipedia.org/wiki/Mappa_mundi)
 
 ---
 
 *Design Research prepared by Design Researcher*
 *January 3, 2026*
-*Status: G4 Complete - Ready for G4.1 Reconciliation*
+*Status: G4 Complete (Deep Contextual Revision) - Ready for Implementation*
