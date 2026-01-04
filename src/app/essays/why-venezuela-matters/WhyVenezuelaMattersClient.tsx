@@ -72,61 +72,88 @@ interface TimelineEvent {
   source?: string;
 }
 
-// Fact Box Component - Timeline-based design
-function FactBox({
+// Mission Timeline Event type
+interface MissionEvent {
+  time: string;
+  phase?: 'strikes' | 'extraction' | 'transit' | 'custody';
+  headline: string;
+  details?: string[];
+}
+
+// Mission Timeline Component - Military briefing style
+function MissionTimeline({
   title,
   timestamp,
-  confirmed,
+  events,
   reported,
   unknown,
 }: {
   title: string;
   timestamp: string;
-  confirmed: FactItem[];
+  events: MissionEvent[];
   reported: FactItem[];
   unknown: FactItem[];
 }) {
-  // Parse confirmed items to extract time if present at the start
-  const timelineEvents: TimelineEvent[] = confirmed.map((item) => {
-    // Check for time patterns like "~2:00 AM VET:", "3:29 AM ET:", "Evening:"
-    const timeMatch = item.text.match(/^([^:]+(?:AM|PM|Evening)[^:]*?):\s*(.+)$/i);
-    if (timeMatch) {
-      return { time: timeMatch[1], text: timeMatch[2] };
-    }
-    return { text: item.text };
-  });
+  const phaseColors = {
+    strikes: '#ef4444',
+    extraction: '#f59e0b', 
+    transit: '#3b82f6',
+    custody: '#22c55e',
+  };
+
+  const phaseLabels = {
+    strikes: 'STRIKES',
+    extraction: 'EXTRACTION',
+    transit: 'TRANSIT',
+    custody: 'CUSTODY',
+  };
 
   return (
-    <div className="fact-box">
-      <div className="fact-box-header">
-        <h3 className="fact-box-title">{title}</h3>
-        <span className="fact-box-timestamp">As of {timestamp}</span>
+    <div className="mission-timeline">
+      <div className="mission-timeline__header">
+        <h3 className="mission-timeline__title">{title}</h3>
+        <span className="mission-timeline__timestamp">As of {timestamp}</span>
       </div>
 
-      {/* Timeline of confirmed events */}
-      <div className="fact-timeline">
-        <div className="fact-timeline-label">
-          <svg viewBox="0 0 20 20" fill="currentColor" className="fact-timeline-icon">
-            <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
-          </svg>
-          Confirmed Sequence
-        </div>
-        <div className="fact-timeline-track">
-          {timelineEvents.map((event, i) => (
-            <div key={i} className="fact-timeline-event">
-              <div className="fact-timeline-marker">
-                <svg viewBox="0 0 20 20" fill="currentColor" className="fact-timeline-check">
-                  <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
-                </svg>
-                {i < timelineEvents.length - 1 && <div className="fact-timeline-line" />}
-              </div>
-              <div className="fact-timeline-content">
-                {event.time && <span className="fact-timeline-time">{event.time}</span>}
-                <span className="fact-timeline-text">{event.text}</span>
-              </div>
+      <div className="mission-timeline__track">
+        {events.map((event, i) => (
+          <div 
+            key={i} 
+            className={`mission-timeline__event ${event.phase ? `mission-timeline__event--${event.phase}` : ''}`}
+          >
+            <div className="mission-timeline__time-column">
+              <span className="mission-timeline__time">{event.time}</span>
+              {event.phase && (
+                <span 
+                  className="mission-timeline__phase"
+                  style={{ color: phaseColors[event.phase] }}
+                >
+                  {phaseLabels[event.phase]}
+                </span>
+              )}
             </div>
-          ))}
-        </div>
+            <div className="mission-timeline__connector">
+              <div 
+                className="mission-timeline__node"
+                style={{ 
+                  borderColor: event.phase ? phaseColors[event.phase] : '#22c55e',
+                  boxShadow: event.phase ? `0 0 12px ${phaseColors[event.phase]}40` : '0 0 12px rgba(34, 197, 94, 0.25)'
+                }}
+              />
+              {i < events.length - 1 && <div className="mission-timeline__line" />}
+            </div>
+            <div className="mission-timeline__content">
+              <span className="mission-timeline__headline">{event.headline}</span>
+              {event.details && event.details.length > 0 && (
+                <ul className="mission-timeline__details">
+                  {event.details.map((detail, j) => (
+                    <li key={j}>{detail}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+        ))}
       </div>
 
       {/* Bottom row: Reported and Unknown side by side */}
@@ -1125,18 +1152,54 @@ export default function WhyVenezuelaMattersClient() {
         {/* Operation Absolute Resolve */}
         <h2>Operation Absolute Resolve</h2>
         <section>
-          <FactBox
+          <MissionTimeline
             title="Operation Absolute Resolve"
             timestamp="January 3, 2026, 11:00 PM ET"
-            confirmed={[
-              { text: '~2:00 AM VET: U.S. military strikes begin; explosions heard in Caracas' },
-              { text: 'Targets: Military installations and air defenses struck' },
-              { text: 'Delta Force and law enforcement led extraction' },
-              { text: '150+ aircraft involved (B-1B, F-22, F-35, F/A-18, EA-18G, E-2)' },
-              { text: 'Maduro and Cilia Flores captured; "gave up"' },
-              { text: '3:29 AM ET: Maduro aboard USS Iwo Jima' },
-              { text: 'Evening: Arrives DEA facility, NYC' },
-              { text: 'Charges: Narco-terrorism, cocaine importation, weapons (SDNY)' },
+            events={[
+              {
+                time: '~02:00',
+                phase: 'strikes',
+                headline: 'U.S. military strikes begin',
+                details: [
+                  'Explosions heard across Caracas',
+                  '150+ aircraft: B-1B, F-22, F-35, F/A-18, EA-18G, E-2',
+                  'Targets: Military installations, air defenses',
+                ],
+              },
+              {
+                time: '02:30',
+                phase: 'extraction',
+                headline: 'Ground operation commences',
+                details: [
+                  'Delta Force and law enforcement lead extraction',
+                  'Maduro and Cilia Flores located',
+                ],
+              },
+              {
+                time: '02:45',
+                phase: 'extraction',
+                headline: 'Maduro captured',
+                details: [
+                  'Trump: "gave up without a fight"',
+                ],
+              },
+              {
+                time: '03:29',
+                phase: 'transit',
+                headline: 'Transferred to USS Iwo Jima',
+                details: [
+                  'Amphibious assault ship stationed offshore',
+                ],
+              },
+              {
+                time: 'EVE',
+                phase: 'custody',
+                headline: 'Arrives DEA facility, NYC',
+                details: [
+                  'Charges: Narco-terrorism, cocaine importation, weapons',
+                  'Jurisdiction: Southern District of New York',
+                ],
+              },
             ]}
             reported={[
               { text: '~40 casualties (military + civilian) — Venezuelan officials; not independently verified' },
