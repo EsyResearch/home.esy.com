@@ -460,6 +460,166 @@
 }
 
 /* --------------------------------------------------------------------------
+   List Styling (Pipeline-Themed)
+   -------------------------------------------------------------------------- */
+
+.venezuela-essay__container > section > ul,
+.venezuela-essay__container > section > div > ul {
+  list-style: none;
+  margin: 0 0 var(--space-xl) 0;
+  padding: 0;
+  padding-left: var(--space-md);
+  border-left: 2px solid var(--crude-border);
+}
+
+.venezuela-essay__container > section > ul > li,
+.venezuela-essay__container > section > div > ul > li {
+  position: relative;
+  padding: var(--space-sm) 0 var(--space-sm) var(--space-lg);
+  font-family: var(--font-headline);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(245, 242, 235, 0.9);
+  border-bottom: 1px solid rgba(100, 83, 60, 0.3);
+}
+
+.venezuela-essay__container > section > ul > li:last-child,
+.venezuela-essay__container > section > div > ul > li:last-child {
+  border-bottom: none;
+}
+
+/* Pipeline marker bullet */
+.venezuela-essay__container > section > ul > li::before,
+.venezuela-essay__container > section > div > ul > li::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background: var(--crude-black);
+  border: 2px solid var(--flare-orange);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 140, 50, 0.3);
+}
+
+/* Hover state - pipeline flow glow */
+.venezuela-essay__container > section > ul > li:hover::before,
+.venezuela-essay__container > section > div > ul > li:hover::before {
+  background: var(--flare-orange);
+  box-shadow: 0 0 12px rgba(255, 140, 50, 0.6);
+}
+
+/* Strong text within list items */
+.venezuela-essay__container > section > ul > li strong,
+.venezuela-essay__container > section > div > ul > li strong {
+  color: var(--pipeline-gold);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   Checklist Variant (For exit criteria, requirements)
+   -------------------------------------------------------------------------- */
+
+.checklist {
+  list-style: none;
+  margin: 0 0 var(--space-xl) 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-sm);
+}
+
+.checklist li {
+  position: relative;
+  padding: var(--space-sm) var(--space-sm) var(--space-sm) calc(var(--space-lg) + var(--space-sm));
+  font-family: var(--font-headline);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(245, 242, 235, 0.85);
+  background: rgba(26, 32, 44, 0.4);
+  border: 1px solid var(--crude-border);
+  transition: all var(--duration-normal) var(--ease-viscous);
+}
+
+.checklist li::before {
+  content: "";
+  position: absolute;
+  left: var(--space-sm);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--uncertain-gray);
+  background: transparent;
+  transition: all var(--duration-normal) var(--ease-viscous);
+}
+
+.checklist li:hover {
+  background: rgba(26, 32, 44, 0.6);
+  border-color: var(--flare-orange);
+}
+
+.checklist li:hover::before {
+  border-color: var(--flare-orange);
+  box-shadow: 0 0 8px rgba(255, 140, 50, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   Watch List Variant (For upcoming events with time sensitivity)
+   -------------------------------------------------------------------------- */
+
+.watch-list {
+  list-style: none;
+  margin: 0 0 var(--space-lg) 0;
+  padding: 0;
+}
+
+.watch-list li {
+  position: relative;
+  padding: var(--space-md) var(--space-md) var(--space-md) calc(var(--space-lg) + var(--space-md));
+  font-family: var(--font-headline);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(245, 242, 235, 0.9);
+  background: linear-gradient(90deg, rgba(26, 32, 44, 0.5) 0%, transparent 100%);
+  border-left: 3px solid var(--flare-orange);
+  margin-bottom: var(--space-xs);
+  transition: all var(--duration-normal) var(--ease-viscous);
+}
+
+.watch-list li:hover {
+  background: linear-gradient(90deg, rgba(255, 140, 50, 0.08) 0%, transparent 100%);
+  border-left-color: var(--pipeline-gold);
+}
+
+/* Pulse indicator for upcoming items */
+.watch-list li::before {
+  content: "";
+  position: absolute;
+  left: var(--space-sm);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: var(--flare-orange);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 140, 50, 0.5);
+  animation: watch-pulse 2s ease-in-out infinite;
+}
+
+@keyframes watch-pulse {
+  0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }
+  50% { opacity: 0.6; transform: translateY(-50%) scale(0.8); }
+}
+
+.watch-list li strong {
+  color: var(--pipeline-gold);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
    Chapter Sections
    -------------------------------------------------------------------------- */
 
@@ -856,6 +1016,141 @@
   .fact-timeline-check {
     width: 14px;
     height: 14px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Scroll-Lock Sections
+   -------------------------------------------------------------------------- */
+
+.scroll-lock-container {
+  position: relative;
+  /* Break out of container for full-width */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+.scroll-lock-pinned {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--crude-black);
+}
+
+.scroll-lock-pinned.is-pinned {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  transform: translateZ(0); /* Safari iOS GPU acceleration */
+}
+
+.scroll-lock-pinned.is-complete {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.scroll-lock-content {
+  width: 100%;
+  max-width: var(--max-width-wide);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg);
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+
+.scroll-lock-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.scroll-lock-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--flare-orange);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.scroll-lock-description {
+  font-family: var(--font-headline);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--document-cream);
+  margin: 0;
+  min-height: 4em; /* Prevent layout shift */
+}
+
+.scroll-lock-diagram {
+  width: 100%;
+}
+
+.scroll-lock-diagram .visual-module {
+  margin: 0;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.scroll-lock-diagram .visual-module-label {
+  display: none; /* Hide module label in scroll-lock context */
+}
+
+.scroll-lock-diagram .visual-module-caption {
+  text-align: center;
+  margin-top: var(--space-md);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .scroll-lock-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    text-align: center;
+  }
+  
+  .scroll-lock-text {
+    order: -1;
+  }
+  
+  .scroll-lock-description {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .scroll-lock-pinned {
+    min-height: 100svh; /* Use small viewport height on mobile */
+  }
+  
+  .scroll-lock-title {
+    font-size: 1.25rem;
+  }
+  
+  .scroll-lock-description {
+    font-size: 1rem;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-lock-pinned {
+    position: relative !important;
+    min-height: auto;
+  }
+  
+  .scroll-lock-container {
+    height: auto !important;
   }
 }
 
@@ -1761,6 +2056,27 @@
     opacity: 1;
     transform: none;
   }
+}
+
+/* --------------------------------------------------------------------------
+   Inline Source Notes
+   -------------------------------------------------------------------------- */
+
+.source-note {
+  font-family: var(--font-mono);
+  font-size: 0.75em;
+  color: var(--pipeline-gold);
+  opacity: 0.7;
+  margin-left: 0.25em;
+  white-space: nowrap;
+}
+
+.source-note::before {
+  content: "(";
+}
+
+.source-note::after {
+  content: ")";
 }
 
 /* --------------------------------------------------------------------------

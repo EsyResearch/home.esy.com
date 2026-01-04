@@ -1,7 +1,62 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import './why-venezuela-matters.css';
+
+// =============================================================================
+// SCROLL-LOCK HOOK (Three-State System)
+// =============================================================================
+
+interface ScrollLockState {
+  containerRef: React.RefObject<HTMLDivElement>;
+  progress: number;
+  isPinned: boolean;
+  isComplete: boolean;
+}
+
+function useScrollLock(sectionHeight: number = 2.5): ScrollLockState {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+  const [isPinned, setIsPinned] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
+
+  useEffect(() => {
+    const updateScrollState = () => {
+      if (!containerRef.current) return;
+
+      const rect = containerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const sectionTop = rect.top;
+      const sectionTotalHeight = rect.height;
+      const scrollableDistance = sectionTotalHeight - windowHeight;
+      const scrolledIntoSection = -sectionTop;
+
+      if (sectionTop <= 0 && scrolledIntoSection <= scrollableDistance) {
+        // Currently in the scroll-lock zone
+        setIsPinned(true);
+        setIsComplete(false);
+        const newProgress = Math.min(Math.max(scrolledIntoSection / scrollableDistance, 0), 1);
+        setProgress(newProgress);
+      } else if (sectionTop > 0) {
+        // Above the section (haven't reached it yet)
+        setIsPinned(false);
+        setIsComplete(false);
+        setProgress(0);
+      } else {
+        // Below the section (scrolled past it)
+        setIsPinned(false);
+        setIsComplete(true);
+        setProgress(1);
+      }
+    };
+
+    window.addEventListener('scroll', updateScrollState, { passive: true });
+    updateScrollState();
+    return () => window.removeEventListener('scroll', updateScrollState);
+  }, [sectionHeight]);
+
+  return { containerRef, progress, isPinned, isComplete };
+}
 
 // Types
 interface FactItem {
@@ -132,8 +187,17 @@ function HemisphereMap() {
   );
 }
 
-// Module B: Heavy vs Light Crude Comparison
-function HeavyVsLightCrudeDiagram() {
+// Module B: Heavy vs Light Crude Comparison (with phase animation)
+function HeavyVsLightCrudeDiagram({ phase = 'complete' }: { phase?: string }) {
+  // Phase progression: scale → labels → orinoco → brent → details
+  const showScale = phase !== 'init';
+  const showLabels = ['labels', 'orinoco', 'brent', 'complete'].includes(phase);
+  const showOrinoco = ['orinoco', 'brent', 'complete'].includes(phase);
+  const showBrent = ['brent', 'complete'].includes(phase);
+  const showDetails = phase === 'complete';
+
+  const transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+
   return (
     <div className="visual-module">
       <div className="visual-module-label">Module B: Crude Oil Chemistry</div>
@@ -141,7 +205,7 @@ function HeavyVsLightCrudeDiagram() {
         {/* Background */}
         <rect width="700" height="320" fill="#242424" rx="8" />
 
-        {/* Title */}
+        {/* Title - always visible */}
         <text x="350" y="30" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="16" fontWeight="700" fill="#F5F2EB">
           API Gravity Scale: Why Oil Type Matters
         </text>
@@ -155,148 +219,270 @@ function HeavyVsLightCrudeDiagram() {
             <stop offset="100%" stopColor="#f6e05e" />
           </linearGradient>
         </defs>
-        <rect x="50" y="60" width="600" height="30" fill="url(#apiGradient)" rx="4" />
+        <g style={{ opacity: showScale ? 1 : 0, transition }}>
+          <rect x="50" y="60" width="600" height="30" fill="url(#apiGradient)" rx="4" />
+        </g>
 
         {/* Scale Labels */}
-        <text x="50" y="110" fontFamily="IBM Plex Mono, monospace" fontSize="11" fill="#718096">0°</text>
-        <text x="140" y="110" fontFamily="IBM Plex Mono, monospace" fontSize="11" fill="#718096">10°</text>
-        <text x="350" y="110" fontFamily="IBM Plex Mono, monospace" fontSize="11" fill="#718096">22°</text>
-        <text x="560" y="110" fontFamily="IBM Plex Mono, monospace" fontSize="11" fill="#718096">40°</text>
-        <text x="640" y="110" fontFamily="IBM Plex Mono, monospace" fontSize="11" fill="#718096">50°+</text>
+        <g style={{ opacity: showLabels ? 1 : 0, transition }}>
+          <text x="50" y="110" fontFamily="IBM Plex Mono, monospace" fontSize="11" fill="#718096">0°</text>
+          <text x="140" y="110" fontFamily="IBM Plex Mono, monospace" fontSize="11" fill="#718096">10°</text>
+          <text x="350" y="110" fontFamily="IBM Plex Mono, monospace" fontSize="11" fill="#718096">22°</text>
+          <text x="560" y="110" fontFamily="IBM Plex Mono, monospace" fontSize="11" fill="#718096">40°</text>
+          <text x="640" y="110" fontFamily="IBM Plex Mono, monospace" fontSize="11" fill="#718096">50°+</text>
+        </g>
 
         {/* Orinoco Marker */}
-        <line x1="110" y1="55" x2="110" y2="95" stroke="#FF4500" strokeWidth="3" />
-        <circle cx="110" cy="52" r="6" fill="#FF4500" />
-        <text x="110" y="130" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="12" fontWeight="600" fill="#FF4500">
-          Orinoco
-        </text>
-        <text x="110" y="145" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="10" fill="#718096">
-          8-12° API
-        </text>
+        <g style={{ opacity: showOrinoco ? 1 : 0, transform: `translateY(${showOrinoco ? 0 : -10}px)`, transition }}>
+          <line x1="110" y1="55" x2="110" y2="95" stroke="#FF4500" strokeWidth="3" />
+          <circle cx="110" cy="52" r="6" fill="#FF4500" />
+          <text x="110" y="130" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="12" fontWeight="600" fill="#FF4500">
+            Orinoco
+          </text>
+          <text x="110" y="145" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="10" fill="#718096">
+            8-12° API
+          </text>
+          {/* Heavy Label */}
+          <text x="130" y="175" fontFamily="Inter, sans-serif" fontSize="13" fontWeight="600" fill="#F5F2EB">HEAVY</text>
+          <text x="130" y="192" fontFamily="Inter, sans-serif" fontSize="11" fill="#718096">Thick, high sulfur</text>
+          <text x="130" y="207" fontFamily="Inter, sans-serif" fontSize="11" fill="#718096">Requires complex refining</text>
+        </g>
 
         {/* Brent Marker */}
-        <text x="540" y="130" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="12" fontWeight="600" fill="#2E5A3C">
-          Brent
-        </text>
-        <text x="540" y="145" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="10" fill="#718096">
-          38° API
-        </text>
-        <line x1="540" y1="55" x2="540" y2="95" stroke="#2E5A3C" strokeWidth="3" />
-        <circle cx="540" cy="52" r="6" fill="#2E5A3C" />
-
-        {/* Heavy/Light Labels */}
-        <text x="130" y="175" fontFamily="Inter, sans-serif" fontSize="13" fontWeight="600" fill="#F5F2EB">HEAVY</text>
-        <text x="130" y="192" fontFamily="Inter, sans-serif" fontSize="11" fill="#718096">Thick, high sulfur</text>
-        <text x="130" y="207" fontFamily="Inter, sans-serif" fontSize="11" fill="#718096">Requires complex refining</text>
-
-        <text x="500" y="175" fontFamily="Inter, sans-serif" fontSize="13" fontWeight="600" fill="#F5F2EB">LIGHT</text>
-        <text x="500" y="192" fontFamily="Inter, sans-serif" fontSize="11" fill="#718096">Flows easily, low sulfur</text>
-        <text x="500" y="207" fontFamily="Inter, sans-serif" fontSize="11" fill="#718096">Simple refining</text>
+        <g style={{ opacity: showBrent ? 1 : 0, transform: `translateY(${showBrent ? 0 : -10}px)`, transition }}>
+          <line x1="540" y1="55" x2="540" y2="95" stroke="#2E5A3C" strokeWidth="3" />
+          <circle cx="540" cy="52" r="6" fill="#2E5A3C" />
+          <text x="540" y="130" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="12" fontWeight="600" fill="#2E5A3C">
+            Brent
+          </text>
+          <text x="540" y="145" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="10" fill="#718096">
+            38° API
+          </text>
+          {/* Light Label */}
+          <text x="500" y="175" fontFamily="Inter, sans-serif" fontSize="13" fontWeight="600" fill="#F5F2EB">LIGHT</text>
+          <text x="500" y="192" fontFamily="Inter, sans-serif" fontSize="11" fill="#718096">Flows easily, low sulfur</text>
+          <text x="500" y="207" fontFamily="Inter, sans-serif" fontSize="11" fill="#718096">Simple refining</text>
+        </g>
 
         {/* Comparison Boxes */}
-        <rect x="50" y="230" width="290" height="75" fill="#0D0D0D" rx="6" stroke="#FF4500" strokeWidth="1" strokeOpacity="0.3" />
-        <text x="195" y="255" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="12" fontWeight="600" fill="#D69E2E">
-          Venezuela (Orinoco)
-        </text>
-        <text x="195" y="275" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="11" fill="#a0aec0">
-          303B barrels reserves
-        </text>
-        <text x="195" y="292" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="11" fill="#a0aec0">
-          ~1M bpd production
-        </text>
+        <g style={{ opacity: showDetails ? 1 : 0, transform: `translateY(${showDetails ? 0 : 20}px)`, transition }}>
+          <rect x="50" y="230" width="290" height="75" fill="#0D0D0D" rx="6" stroke="#FF4500" strokeWidth="1" strokeOpacity="0.3" />
+          <text x="195" y="255" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="12" fontWeight="600" fill="#D69E2E">
+            Venezuela (Orinoco)
+          </text>
+          <text x="195" y="275" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="11" fill="#a0aec0">
+            303B barrels reserves
+          </text>
+          <text x="195" y="292" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="11" fill="#a0aec0">
+            ~1M bpd production
+          </text>
 
-        <rect x="360" y="230" width="290" height="75" fill="#0A1628" rx="6" />
-        <text x="505" y="255" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="12" fontWeight="600" fill="#90cdf4">
-          U.S. Shale
-        </text>
-        <text x="505" y="275" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="11" fill="#a0aec0">
-          Light sweet crude
-        </text>
-        <text x="505" y="292" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="11" fill="#a0aec0">
-          13M+ bpd production
-        </text>
+          <rect x="360" y="230" width="290" height="75" fill="#0A1628" rx="6" />
+          <text x="505" y="255" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="12" fontWeight="600" fill="#90cdf4">
+            U.S. Shale
+          </text>
+          <text x="505" y="275" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="11" fill="#a0aec0">
+            Light sweet crude
+          </text>
+          <text x="505" y="292" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="11" fill="#a0aec0">
+            13M+ bpd production
+          </text>
+        </g>
       </svg>
-      <p className="visual-module-caption">
+      <p className="visual-module-caption" style={{ opacity: showDetails ? 1 : 0, transition }}>
         Higher API gravity = lighter oil. Gulf Coast refineries were built for heavy crude like Venezuela produces.
       </p>
     </div>
   );
 }
 
-// Module C: Import Flow Diagram
-function ImportFlowDiagram() {
+// =============================================================================
+// SCROLL-LOCK: Chemistry Lesson (Ch2)
+// =============================================================================
+
+function ChemistryLessonScrollLock() {
+  const { containerRef, progress, isPinned, isComplete } = useScrollLock(2.5);
+
+  const phase = useMemo(() => {
+    if (progress < 0.20) return 'scale';
+    if (progress < 0.40) return 'labels';
+    if (progress < 0.60) return 'orinoco';
+    if (progress < 0.80) return 'brent';
+    return 'complete';
+  }, [progress]);
+
+  const getPinnedClass = () => {
+    if (isPinned) return 'is-pinned';
+    if (isComplete) return 'is-complete';
+    return '';
+  };
+
+  return (
+    <section
+      ref={containerRef}
+      className="scroll-lock-container"
+      style={{ height: '250vh' }}
+    >
+      <div className={`scroll-lock-pinned ${getPinnedClass()}`}>
+        <div className="scroll-lock-content">
+          <div className="scroll-lock-text">
+            <h3 className="scroll-lock-title">The Chemistry Problem</h3>
+            <p className="scroll-lock-description">
+              {phase === 'scale' && 'Oil density is measured on the API gravity scale...'}
+              {phase === 'labels' && 'Higher numbers mean lighter oil that flows more easily.'}
+              {phase === 'orinoco' && 'Orinoco crude: 8-12° API — so thick it barely flows at room temperature.'}
+              {phase === 'brent' && 'Brent crude: 38° API — the light benchmark. These are not interchangeable.'}
+              {phase === 'complete' && 'Gulf Coast refineries were built for heavy crude. U.S. shale produces light.'}
+            </p>
+          </div>
+          <div className="scroll-lock-diagram">
+            <HeavyVsLightCrudeDiagram phase={phase} />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Module C: Import Flow Diagram (with phase animation)
+function ImportFlowDiagram({ phase = 'complete' }: { phase?: string }) {
+  // Phase progression: shale → exports → refineries → sources → complete
+  const showShale = phase !== 'init';
+  const showExports = ['exports', 'refineries', 'sources', 'complete'].includes(phase);
+  const showRefineries = ['refineries', 'sources', 'complete'].includes(phase);
+  const showSources = ['sources', 'complete'].includes(phase);
+  const showConnections = phase === 'complete';
+
+  const transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+
   return (
     <div className="visual-module">
       <div className="visual-module-label">Module C: The Structural Mismatch</div>
       <svg viewBox="0 0 700 280" style={{ width: '100%', height: 'auto' }}>
         <rect width="700" height="280" fill="#242424" rx="8" />
 
-        {/* Title */}
+        {/* Title - always visible */}
         <text x="350" y="28" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="15" fontWeight="700" fill="#F5F2EB">
           Why the U.S. Both Exports AND Imports Oil
         </text>
 
-        {/* Left side: U.S. Shale Production */}
-        <rect x="30" y="60" width="140" height="70" fill="#0A1628" rx="6" />
-        <text x="100" y="90" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="12" fontWeight="600" fill="white">U.S. Shale</text>
-        <text x="100" y="108" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="10" fill="#90cdf4">13M bpd</text>
-        <text x="100" y="122" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="9" fill="#a0aec0">Light Sweet</text>
-
-        {/* Arrow: Shale to Export */}
-        <path d="M 170 95 L 220 60" stroke="#38a169" strokeWidth="3" fill="none" markerEnd="url(#arrowGreen)" />
+        {/* Defs for arrows */}
         <defs>
           <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
             <path d="M0,0 L0,6 L9,3 z" fill="#38a169" />
           </marker>
-        </defs>
-
-        {/* Export Box */}
-        <rect x="220" y="35" width="120" height="50" fill="#38a169" rx="6" />
-        <text x="280" y="58" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="11" fontWeight="600" fill="white">EXPORTS</text>
-        <text x="280" y="74" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="10" fill="#c6f6d5">→ Global Markets</text>
-
-        {/* Center: Gulf Coast Refineries */}
-        <rect x="250" y="130" width="200" height="90" fill="#d69e2e" rx="8" />
-        <text x="350" y="160" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="14" fontWeight="700" fill="#1a202c">Gulf Coast Refineries</text>
-        <text x="350" y="180" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="11" fill="#744210">Built for HEAVY crude</text>
-        <text x="350" y="198" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="10" fill="#744210">Cokers • Hydrocrackers • Desulfurizers</text>
-
-        {/* Right side: Heavy Crude Sources */}
-        <rect x="530" y="50" width="140" height="55" fill="#1a202c" rx="6" />
-        <text x="600" y="73" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="11" fontWeight="600" fill="#d69e2e">Canada</text>
-        <text x="600" y="90" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#a0aec0">4M+ bpd heavy</text>
-
-        <rect x="530" y="115" width="140" height="55" fill="#1a202c" rx="6" />
-        <text x="600" y="138" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="11" fontWeight="600" fill="#ed8936">Venezuela</text>
-        <text x="600" y="155" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#a0aec0">Blocked by sanctions</text>
-
-        <rect x="530" y="180" width="140" height="55" fill="#1a202c" rx="6" />
-        <text x="600" y="203" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="11" fontWeight="600" fill="#a0aec0">Mexico</text>
-        <text x="600" y="220" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#718096">Declining (22K bpd)</text>
-
-        {/* Arrows: Heavy to Refineries */}
-        <defs>
           <marker id="arrowAmber" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
             <path d="M0,0 L0,6 L9,3 z" fill="#d69e2e" />
           </marker>
         </defs>
-        <path d="M 530 77 L 460 150" stroke="#d69e2e" strokeWidth="3" fill="none" markerEnd="url(#arrowAmber)" />
-        <path d="M 530 175 L 460 175" stroke="#ed8936" strokeWidth="2" strokeDasharray="5,5" fill="none" />
 
-        {/* IMPORTS label */}
-        <rect x="470" y="95" width="50" height="24" fill="#e53e3e" rx="4" />
-        <text x="495" y="112" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="10" fontWeight="600" fill="white">IMPORTS</text>
+        {/* Left side: U.S. Shale Production */}
+        <g style={{ opacity: showShale ? 1 : 0, transform: `translateX(${showShale ? 0 : -20}px)`, transition }}>
+          <rect x="30" y="60" width="140" height="70" fill="#0A1628" rx="6" />
+          <text x="100" y="90" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="12" fontWeight="600" fill="white">U.S. Shale</text>
+          <text x="100" y="108" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="10" fill="#90cdf4">13M bpd</text>
+          <text x="100" y="122" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="9" fill="#a0aec0">Light Sweet</text>
+        </g>
+
+        {/* Export Arrow and Box */}
+        <g style={{ opacity: showExports ? 1 : 0, transform: `translateY(${showExports ? 0 : -10}px)`, transition }}>
+          <path d="M 170 95 L 220 60" stroke="#38a169" strokeWidth="3" fill="none" markerEnd="url(#arrowGreen)" />
+          <rect x="220" y="35" width="120" height="50" fill="#38a169" rx="6" />
+          <text x="280" y="58" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="11" fontWeight="600" fill="white">EXPORTS</text>
+          <text x="280" y="74" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="10" fill="#c6f6d5">→ Global Markets</text>
+        </g>
+
+        {/* Center: Gulf Coast Refineries */}
+        <g style={{ opacity: showRefineries ? 1 : 0, transform: `scale(${showRefineries ? 1 : 0.9})`, transformOrigin: '350px 175px', transition }}>
+          <rect x="250" y="130" width="200" height="90" fill="#d69e2e" rx="8" />
+          <text x="350" y="160" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="14" fontWeight="700" fill="#1a202c">Gulf Coast Refineries</text>
+          <text x="350" y="180" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="11" fill="#744210">Built for HEAVY crude</text>
+          <text x="350" y="198" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="10" fill="#744210">Cokers • Hydrocrackers • Desulfurizers</text>
+        </g>
+
+        {/* Right side: Heavy Crude Sources */}
+        <g style={{ opacity: showSources ? 1 : 0, transform: `translateX(${showSources ? 0 : 20}px)`, transition }}>
+          <rect x="530" y="50" width="140" height="55" fill="#1a202c" rx="6" />
+          <text x="600" y="73" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="11" fontWeight="600" fill="#d69e2e">Canada</text>
+          <text x="600" y="90" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#a0aec0">4M+ bpd heavy</text>
+
+          <rect x="530" y="115" width="140" height="55" fill="#1a202c" rx="6" />
+          <text x="600" y="138" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="11" fontWeight="600" fill="#ed8936">Venezuela</text>
+          <text x="600" y="155" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#a0aec0">Blocked by sanctions</text>
+
+          <rect x="530" y="180" width="140" height="55" fill="#1a202c" rx="6" />
+          <text x="600" y="203" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="11" fontWeight="600" fill="#a0aec0">Mexico</text>
+          <text x="600" y="220" textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="9" fill="#718096">Declining (22K bpd)</text>
+        </g>
+
+        {/* Import Arrows and Label */}
+        <g style={{ opacity: showConnections ? 1 : 0, transition }}>
+          <path d="M 530 77 L 460 150" stroke="#d69e2e" strokeWidth="3" fill="none" markerEnd="url(#arrowAmber)" />
+          <path d="M 530 175 L 460 175" stroke="#ed8936" strokeWidth="2" strokeDasharray="5,5" fill="none" />
+          <rect x="470" y="95" width="50" height="24" fill="#e53e3e" rx="4" />
+          <text x="495" y="112" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="10" fontWeight="600" fill="white">IMPORTS</text>
+        </g>
 
         {/* Key insight */}
-        <rect x="30" y="240" width="640" height="30" fill="#edf2f7" rx="4" />
-        <text x="350" y="260" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="12" fill="#4a5568">
-          The U.S. exports light crude it produces, but must import heavy crude its refineries need.
-        </text>
+        <g style={{ opacity: showConnections ? 1 : 0, transform: `translateY(${showConnections ? 0 : 10}px)`, transition }}>
+          <rect x="30" y="240" width="640" height="30" fill="#edf2f7" rx="4" />
+          <text x="350" y="260" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="12" fill="#4a5568">
+            The U.S. exports light crude it produces, but must import heavy crude its refineries need.
+          </text>
+        </g>
       </svg>
-      <p className="visual-module-caption">
+      <p className="visual-module-caption" style={{ opacity: showConnections ? 1 : 0, transition }}>
         Gulf Coast refineries represent billions in specialized equipment that cannot simply switch to processing light shale oil.
       </p>
     </div>
+  );
+}
+
+// =============================================================================
+// SCROLL-LOCK: The Split Flow (Ch3)
+// =============================================================================
+
+function SplitFlowScrollLock() {
+  const { containerRef, progress, isPinned, isComplete } = useScrollLock(2.5);
+
+  const phase = useMemo(() => {
+    if (progress < 0.20) return 'shale';
+    if (progress < 0.40) return 'exports';
+    if (progress < 0.60) return 'refineries';
+    if (progress < 0.80) return 'sources';
+    return 'complete';
+  }, [progress]);
+
+  const getPinnedClass = () => {
+    if (isPinned) return 'is-pinned';
+    if (isComplete) return 'is-complete';
+    return '';
+  };
+
+  return (
+    <section
+      ref={containerRef}
+      className="scroll-lock-container"
+      style={{ height: '250vh' }}
+    >
+      <div className={`scroll-lock-pinned ${getPinnedClass()}`}>
+        <div className="scroll-lock-content">
+          <div className="scroll-lock-text">
+            <h3 className="scroll-lock-title">The U.S. Paradox</h3>
+            <p className="scroll-lock-description">
+              {phase === 'shale' && 'The shale revolution made the U.S. the world\'s largest oil producer — 13M barrels per day.'}
+              {phase === 'exports' && 'But shale oil is light and sweet. Much of it gets exported to global markets.'}
+              {phase === 'refineries' && 'Gulf Coast refineries were built for heavy crude. Billions in specialized equipment.'}
+              {phase === 'sources' && 'So the U.S. must import heavy crude from Canada, Venezuela, and Mexico.'}
+              {phase === 'complete' && 'The structural mismatch: producing light, needing heavy. They are not interchangeable.'}
+            </p>
+          </div>
+          <div className="scroll-lock-diagram">
+            <ImportFlowDiagram phase={phase} />
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -714,7 +900,7 @@ export default function WhyVenezuelaMattersClient() {
           </p>
           <p>
             The December blockade froze them in place. Twenty-five million barrels of crude and
-            fuel oil sit in storage, approaching capacity limits. PDVSA, Venezuela&apos;s state oil
+            fuel oil sit in storage, approaching capacity limits<span className="source-note">Reuters</span>. PDVSA, Venezuela&apos;s state oil
             company, is running out of places to put the oil it produces but cannot sell.
           </p>
           <p>
@@ -771,18 +957,12 @@ export default function WhyVenezuelaMattersClient() {
           <p>
             These are staggering numbers. But &quot;reserves&quot; does not equal &quot;production.&quot;
           </p>
-          <h3>The chemistry problem</h3>
-          <p>
-            Orinoco crude has an API gravity of roughly 8-12 degrees. The API scale measures oil
-            density — higher numbers mean lighter oil. Brent crude, the global benchmark, typically
-            measures around 38-40 degrees. Light crude flows easily, is cheaper to refine, and
-            produces more valuable products per barrel.
-          </p>
-          <p>
-            Orinoco crude is the opposite. It&apos;s so thick that at room temperature, it barely flows.
-            Extracting it requires heating, dilution with lighter petroleum products, and
-            specialized infrastructure. Refining it requires even more specialized equipment.
-          </p>
+        </section>
+
+        {/* SCROLL-LOCK: Chemistry Lesson */}
+        <ChemistryLessonScrollLock />
+
+        <section>
           <h3>The sulfur problem</h3>
           <p>
             Orinoco crude is &quot;sour&quot; — high in sulfur content. Sulfur must be removed during
@@ -805,43 +985,38 @@ export default function WhyVenezuelaMattersClient() {
             Not all refineries have this equipment. Most were built for lighter, sweeter crudes.
             The ones that have it represent billions of dollars in sunk costs.
           </p>
-
-          <HeavyVsLightCrudeDiagram />
         </section>
 
         {/* The U.S. Paradox */}
         <h2>The U.S. Paradox: Producing Light, Needing Heavy</h2>
         <section>
           <p>
-            The shale revolution transformed the United States into the world&apos;s largest oil
-            producer. In 2024, the U.S. produced over 13 million barrels per day of crude oil —
-            more than Saudi Arabia or Russia.
-          </p>
-          <p>
-            But shale crude is light and sweet. It has high API gravity and low sulfur. It&apos;s
-            excellent for some purposes. But Gulf Coast refineries weren&apos;t built for it.
-          </p>
-          <p>
             The U.S. Gulf Coast (PADD 3 in EIA terminology) hosts the largest concentration of
             complex refineries in the world. These facilities were constructed decades ago to
             process heavy, sour crude — the kind that once flowed abundantly from Venezuela and
             Mexico.
           </p>
+        </section>
+
+        {/* SCROLL-LOCK: The Split Flow */}
+        <SplitFlowScrollLock />
+
+        <section>
           <h3>The structural mismatch</h3>
           <p>
             For the 12 months ending in February 2025, Gulf Coast refiners imported roughly 40
-            million barrels of heavy crude each month. This is not a choice. It&apos;s a necessity. The
+            million barrels of heavy crude each month<span className="source-note">EIA</span>. This is not a choice. It&apos;s a necessity. The
             equipment cannot efficiently process light shale oil.
           </p>
           <h3>Who supplies heavy crude?</h3>
           <ul>
             <li>
               <strong>Canada</strong>: Now the largest single supplier, exporting over 4 million
-              barrels per day from Alberta&apos;s oil sands
+              barrels per day from Alberta&apos;s oil sands<span className="source-note">EIA</span>
             </li>
             <li>
-              <strong>Mexico</strong>: Historically important, but collapsing (Maya crude exports
-              down to 22,000 barrels/day, a six-year low)
+              <strong>Mexico</strong>: Historically important, but collapsing — Maya crude exports
+              down to 22,000 barrels/day, a six-year low<span className="source-note">S&amp;P Global</span>
             </li>
             <li>
               <strong>Venezuela</strong>: Once supplied millions of barrels monthly; now reduced to
@@ -853,8 +1028,6 @@ export default function WhyVenezuelaMattersClient() {
             crude. These are not substitutable products. The wrong-shaped key does not fit the
             lock.
           </p>
-
-          <ImportFlowDiagram />
 
           <ProductionMismatchChart />
         </section>
@@ -1165,7 +1338,7 @@ export default function WhyVenezuelaMattersClient() {
         <h2>A Clean Exit Checklist (systems, not slogans)</h2>
         <section>
           <p>What would &quot;success&quot; require? Not rhetoric, but systems:</p>
-          <ul>
+          <ul className="checklist">
             <li>Legitimate successor government formed</li>
             <li>Military/security forces aligned or neutralized</li>
             <li>PDVSA operational control established</li>
@@ -1185,7 +1358,7 @@ export default function WhyVenezuelaMattersClient() {
         <h2>What to Watch Next</h2>
         <section>
           <h3>This Week</h3>
-          <ul>
+          <ul className="watch-list">
             <li>
               <strong>UN Security Council (January 5)</strong>: What resolutions are proposed?
             </li>
@@ -1202,7 +1375,7 @@ export default function WhyVenezuelaMattersClient() {
           </ul>
 
           <h3>Coming Weeks</h3>
-          <ul>
+          <ul className="watch-list">
             <li>Congressional action on War Powers resolutions</li>
             <li>Regional responses from Colombia, Brazil, Caribbean states</li>
             <li>International legal proceedings</li>
@@ -1210,7 +1383,7 @@ export default function WhyVenezuelaMattersClient() {
           </ul>
 
           <h3>Ongoing</h3>
-          <ul>
+          <ul className="watch-list">
             <li>Governance implementation: What does &quot;running the country&quot; look like?</li>
             <li>Disinformation monitoring: AI-generated content will continue spreading</li>
             <li>Economic recovery (or not): Venezuela&apos;s economy collapsed before the intervention</li>

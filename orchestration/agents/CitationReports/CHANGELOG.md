@@ -4,6 +4,20 @@ Master changelog tracking all citation changes across all visual essays.
 
 ---
 
+## January 2026
+
+### 2026-01-03
+- **why-venezuela-matters** [v1.0] INIT: Initial citation audit completed — ✅ Approved
+  - 42 sources verified, all links functional via browser navigation
+  - 100% Tier 1-2 sources (exceeds 80% threshold)
+  - 0 critical issues, 2 minor polish suggestions (deferred)
+  - Key claims: Oil reserves (303B barrels), API gravity, Gulf Coast refinery data
+  - Quotes verified: Trump statements, Guterres "dangerous precedent," Sen. Kaine
+  - Exceptional fact-check discipline: FactBox separates confirmed/unverified/unknown
+  - Disinformation coverage: AI-generated image fact-check included
+
+---
+
 ## December 2025
 
 ### 2025-12-15
