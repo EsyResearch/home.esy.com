@@ -368,29 +368,29 @@ const useIntersectionReveal = (threshold = 0.1) => {
 
 // ==================== COMPONENTS ====================
 
-// Progress Bar showing word evolution
-const ChronicleProgressBar: React.FC<{ progress: number }> = ({ progress }) => {
-  const forms = [
-    { text: "*WERRA", class: "frankish", threshold: 0 },
-    { text: "WERRE", class: "norman", threshold: 33 },
-    { text: "WAR", class: "english", threshold: 66 },
-  ];
+// Progress Bar showing word as tracked target
+const TrackingProgressBar: React.FC<{ progress: number }> = ({ progress }) => {
+  const getTargetWord = () => {
+    if (progress < 33) return "*WERRA";
+    if (progress < 66) return "WERRE";
+    return "WAR";
+  };
 
   return (
-    <div className="chronicle-progress-bar">
-      <div className="progress-word-evolution">
-        {forms.map((form, i) => (
-          <React.Fragment key={form.text}>
-            {i > 0 && <span className="progress-arrow">&rarr;</span>}
-            <span
-              className={`progress-form ${form.class} ${progress >= form.threshold ? "active" : ""}`}
-            >
-              {form.text}
-            </span>
-          </React.Fragment>
-        ))}
+    <div className="tracking-progress-bar">
+      <div className="tracking-status">
+        <span className="status-indicator" />
+        <span className="status-text">Target Tracking</span>
       </div>
-      <span className="progress-percentage">{Math.round(progress)}%</span>
+      <div className="target-word-display">
+        <span className={`target-word ${progress >= 66 ? "locked" : ""}`}>
+          {getTargetWord()}
+        </span>
+        <span className="tracking-coordinates">
+          {progress < 33 ? "FRANKISH c.500" : progress < 66 ? "NORMAN 1066" : "ENGLISH 1121"}
+        </span>
+      </div>
+      <span className="tracking-percentage">{Math.round(progress)}%</span>
     </div>
   );
 };
@@ -409,7 +409,7 @@ const Section: React.FC<{
       ref={ref}
       id={id}
       data-era={era}
-      className={`section ${className} ${isVisible ? "visible" : ""}`}
+      className={`content-section ${className} ${isVisible ? "visible" : ""}`}
     >
       {children}
     </section>
@@ -509,42 +509,30 @@ const TheWordWarClient: React.FC = () => {
   return (
     <div className="war-essay">
       {/* Progress Bar */}
-      <ChronicleProgressBar progress={scrollProgress} />
+      <TrackingProgressBar progress={scrollProgress} />
 
       {/* ==================== HERO SECTION ==================== */}
-      <section className="war-hero">
-        <div className="hero-palimpsest">
-          <span className="ghost-words" lang="ang">WIG GUTH</span>
+      <section className="hero-section">
+        <div className="radar-sweep" />
+        <p className="hero-acquisition">Signal Detected // Linguistic Asset</p>
+        <div className="hero-target-container">
+          <span className={`hero-word ${scrollProgress >= 66 ? "tracking" : ""}`}>{heroWord}</span>
         </div>
-        <div className="hero-content">
-          <div className="hero-scriptorium">
-            <span>Peterborough Abbey Scriptorium, 1121</span>
-          </div>
-          <div className="hero-word-container">
-            <span className={`hero-word ${heroClass}`}>{heroWord}</span>
-          </div>
-          <h1 className="hero-subtitle">The Conquered Word</h1>
-          <p className="hero-tagline">
-            The word &ldquo;war&rdquo; is itself a survivor of war. It arrived in English
-            through the Norman Conquest, displacing native Old English terms just as
-            Norman lords displaced Anglo-Saxon thanes.
-          </p>
-          <div className="hero-meta">
-            <DataStat value="3,000+" label="Years of History" />
-            <DataStat value="858 CE" label="First Written Record" />
-            <DataStat value="15" label="Languages Compared" />
-          </div>
-          <div className="hero-scroll-cue">
-            <span>Scroll to trace the word&apos;s journey</span>
-            <div className="scroll-quill" />
-          </div>
+        <p className="hero-designation">
+          ORIGIN: PIE *wers- // STATUS: {scrollProgress >= 66 ? "LOCKED" : "TRACKING"}
+        </p>
+        <h1 className="hero-subtitle">
+          How a Frankish term for confusion became English&apos;s name for organized violence
+        </h1>
+        <div className="evergreen-frame">
+          This essay studies the history of a word, not the glamor of violence.
         </div>
       </section>
 
       {/* ==================== SECTION 1: WHAT WE MEAN ==================== */}
       <Section id="what-we-mean" era="english" className="chapter">
         <div className="section-header">
-          <span className="section-number">Section One</span>
+          <span className="section-id">SEC-01</span>
           <h2 className="section-title">What We Mean When We Say &ldquo;War&rdquo;</h2>
         </div>
 

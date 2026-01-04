@@ -2,28 +2,20 @@
 
 > **For**: Visual Essay Implementation Team
 > **From**: Design Researcher
-> **Date**: January 3, 2026
-> **Status**: G4 Design Research Complete (Deep Contextual Revision)
+> **Date**: January 4, 2026
+> **Status**: G4 Design Research Complete (Radical Redesign)
 
 ---
 
 ## Design Concept Statement
 
-### "The Conquered Word"
+### "OPERATION LEXICON"
 
-This visual identity embodies a singular insight: **the word "war" was itself conquered.** It arrived in English not through peaceful borrowing but through invasion. When Norman soldiers crossed the Channel in 1066, they brought not just swords but also the Frankish word *werra*—and it displaced the native Old English words *wig* and *guð* just as Norman lords displaced Anglo-Saxon thanes.
+This visual identity reimagines etymology through the lens of modern warfare's cold precision. The word "war" does not belong on parchment—it belongs on targeting displays, declassified briefings, and satellite imagery. We treat the essay as an **intelligence dossier**: the reader is an analyst being briefed on a linguistic target, viewing the word's history through the same interfaces that track missiles and map conflict zones.
 
-The design treats the essay as a **palimpsest**—a manuscript where one text has been scraped away and overwritten by another, yet traces of the original remain visible beneath. This is linguistically true: *werra* (meaning "confusion, strife") was overwritten by the organized, state-sponsored concept of "war," yet the original semantic DNA of confusion persists in the word's essence.
+The design draws from the **sterile elegance of destruction**: defense contractor presentations, DARPA research decks, war room displays, and the clinical aesthetics of weapons engineering. There is a terrible beauty in how modern warfare packages violence—in the smooth interfaces of drone control stations, the geometric perfection of satellite imagery, the calm precision of targeting systems. This essay occupies that unsettling space: sophisticated, elegant, and deeply disquieting.
 
-Every visual element traces to one of three historical layers:
-
-1. **The Frankish Layer (5th-9th c.)**: Merovingian metalwork, garnet cloisonné, the raw Germanic source
-2. **The Norman Layer (1066)**: Bayeux Tapestry, conquest documents, chevron patterns
-3. **The English Chronicle Layer (1121)**: Peterborough Chronicle, insular script, the moment of adoption
-
-The reader moves through these layers as they move through the essay. Color deepens from Frankish garnet-red to Norman blue-green to English iron-gall black. Typography evolves from rough Germanic forms to the settled Carolingian of the English monasteries. The word "WAR" itself transforms across the essay—from *WERRA* in scratched, uncertain letters to WAR in its modern, stable form.
-
-This is not decoration. This is **the word's journey made visible**.
+Every visual element channels the military-industrial complex's visual language. We use the typography of technical specifications and battlefield communications. We use the colors of radar screens, thermal imaging, and warning systems. We use the grid systems of coordinate overlays and targeting reticles. The word "WAR" is not calligraphy—it is a **target designation**, tracked through linguistic space with the same cold efficiency that tracks hostile assets.
 
 ---
 
@@ -31,586 +23,669 @@ This is not decoration. This is **the word's journey made visible**.
 
 ### Derivation Method
 
-Each color is extracted from specific historical artifacts in the word's journey—not generic "medieval" sources, but the actual material culture of Frankish metalwork, the Bayeux Tapestry, and the Peterborough Chronicle.
+Each color is extracted from modern warfare visual systems—radar displays, night vision, infrared imaging, military user interfaces, and warning systems. These are not historical colors but the colors of contemporary conflict as mediated through technology.
 
 ### The Palette (7 Colors)
 
-| Role | Name | Hex | Historical Source | Usage |
-|------|------|-----|-------------------|-------|
-| **Primary Accent** | Merovingian Garnet | `#830E0D` | Garnets from India/Sri Lanka used in Frankish cloisonné jewelry (5th-8th c.). The signature color of Merovingian royal graves, including Childeric I's tomb with its garnet-winged golden bees. | Frankish-era references, the word *werra*, the opening sections. Represents the Germanic origin. |
-| **Secondary Accent** | Bayeux Terracotta | `#B5542A` | Terracotta/russet madder dye used in the Bayeux Tapestry (c.1077). The most abundant color in the tapestry's embroidered figures. | Norman Conquest sections, the word crossing the Channel. Represents the vehicle of transmission. |
-| **Tertiary Accent** | Tapestry Blue-Green | `#3A6B5C` | Woad-based blue-green dye from the Bayeux Tapestry. Used for water, cloaks, and decorative borders. | Norman visual elements, conquest themes, the invasion moment. |
-| **Background** | Peterborough Parchment | `#F2E8D5` | Aged vellum of MS Laud Misc. 636 (the Peterborough Chronicle). A warm cream with slight yellow undertone, typical of 12th-century English manuscripts. | Primary reading surface. Evokes the chronicle where "war" first appears in English. |
-| **Primary Text** | Chronicle Ink | `#1E1915` | Iron gall ink of the Peterborough Chronicle. Darker than typical manuscripts due to the Chronicle's excellent preservation. | All body text. The English endpoint of the word's journey. |
-| **Secondary Text** | Aged Iron Gall | `#584B40` | Oxidized iron gall ink. Over centuries, iron gall ink fades to reddish-brown. | Marginalia, annotations, source citations. Represents scholarly apparatus. |
-| **Metallic Accent** | Frankish Gold | `#C9A030` | Gold leaf from Merovingian metalwork and Carolingian manuscripts. The Drogo Sacramentary (c.850) used gold ink for sacred text. | Hero moments, the word WAR at key transformations, the "858 CE" first attestation. |
+| Role | Name | Hex | Source | Usage |
+|------|------|-----|--------|-------|
+| **Primary Background** | Void Black | `#0A0C0E` | Deep space of satellite imagery, unlit war room displays. The absence of signal. | Primary reading surface. The void from which data emerges. |
+| **Secondary Background** | Tactical Gray | `#1A1D21` | Steel of bunker walls, anodized weapon housings, military hardware finishes. | Elevated surfaces, cards, panels. |
+| **Primary Text** | Signal White | `#E8EAED` | Display text on military interfaces, cockpit HUD elements. High-contrast operational readability. | All body text. Maximum legibility in darkness. |
+| **Primary Accent** | Targeting Red | `#FF3B3B` | Weapon lock indicators, hostile designations, critical warnings. The color of engagement. | Key terms, the word WAR, critical data points. |
+| **Secondary Accent** | Radar Green | `#00FF88` | Radar sweep lines, night vision phosphor, terminal displays. The color of surveillance. | Etymology pathways, connection lines, progress indicators. |
+| **Tertiary Accent** | Thermal Orange | `#FF7B00` | Infrared heat signatures, explosion bloom, FLIR imaging. The color of detection. | Timeline markers, historical events, secondary highlights. |
+| **Data Color** | Grid Cyan | `#00D4FF` | Coordinate overlays, satellite targeting grids, HUD elements. The color of precision. | Coordinates, technical data, IPA transcriptions, dates. |
 
-### Color Story: The Three Layers
+### Color Philosophy: The War Room
 
-The palette tells the word's geographic and temporal journey:
+The palette tells the story of modern warfare's visual mediation:
 
 ```
-Frankish Layer (5th-9th c.)     Norman Layer (1066)           English Layer (1121+)
-──────────────────────────     ─────────────────────          ────────────────────────
-Merovingian Garnet #830E0D  →  Bayeux Terracotta #B5542A  →  Chronicle Ink #1E1915
-Frankish Gold #C9A030          Tapestry Blue-Green #3A6B5C   Aged Iron Gall #584B40
-                                                              Peterborough Parchment #F2E8D5
+SURVEILLANCE          TARGETING              ENGAGEMENT
+─────────────────     ─────────────────     ─────────────────
+Radar Green           Grid Cyan              Targeting Red
+#00FF88               #00D4FF                #FF3B3B
+watching              locating               striking
 ```
 
-**The semantic shift is also encoded**: Garnet-red evokes violence and confusion (the original meaning of *werra*), while the blue-green and iron-black represent the organized, state-sanctioned nature of modern "war."
+**The emotional arc is encoded**: From the cold surveillance of reconnaissance, through the precision of targeting, to the violence of engagement. The reader moves through these phases as they move through the essay.
 
-### Color Usage Principles
+### WCAG Compliance
 
-1. **Narrative Progression**: Colors shift as the essay progresses. The Frankish section is dominated by garnet-red and gold. Norman sections introduce terracotta and blue-green. English sections settle into iron-gall black on parchment.
-
-2. **Semantic Encoding**: Red tones = chaos, confusion, the original Germanic meaning. Blue-green tones = conquest, order, organization. Black = the settled modern word.
-
-3. **Accessibility**: All combinations meet WCAG AA:
-   - Chronicle Ink on Peterborough Parchment: 14.1:1 (AAA)
-   - Aged Iron Gall on Peterborough Parchment: 7.2:1 (AAA)
-   - Merovingian Garnet on Parchment: 8.5:1 (AAA)
-   - Bayeux Terracotta on Parchment: 5.1:1 (AA)
+All text combinations exceed WCAG AA:
+- Signal White on Void Black: 15.2:1 (AAA)
+- Signal White on Tactical Gray: 12.1:1 (AAA)
+- Targeting Red on Void Black: 5.3:1 (AA)
+- Radar Green on Void Black: 12.8:1 (AAA)
+- Grid Cyan on Void Black: 11.4:1 (AAA)
 
 ---
 
 ## 2. Typography System
 
-### The Core Insight
+### Core Philosophy: Engineered Precision
 
-The word "war" traveled through three script traditions:
-
-1. **Frankish/Carolingian**: The script of the 858 CE episcopal letter
-2. **Norman**: Anglo-Norman document culture post-1066
-3. **Insular English**: The Peterborough Chronicle
-
-The typography system mirrors this journey.
+No Garamond. No serifs that evoke manuscripts. The typography of modern warfare is engineered for clarity under pressure—the same fonts that appear on cockpit displays, technical specifications, and battlefield communications.
 
 ### Display Typography
 
-| Role | Typeface | Weight | Contextual Justification |
-|------|----------|--------|--------------------------|
-| **Hero Title** | **Cormorant Garamond** | Bold (700) | Based on Claude Garamond's 16th-century designs, but with sharper serifs that evoke the transition from manuscript to print. The word "WAR" deserves a typeface that feels carved, not drawn. |
-| **Frankish Forms** | **Junicode** | Regular | Designed for medieval studies. Supports the wyn (ƿ), thorn (þ), and eth (ð) of Old English. When displaying *werra*, Junicode connects the word to its manuscript origins. |
-| **Section Heads** | **Cormorant Garamond** | SemiBold (600) | Maintains display family consistency while stepping down in hierarchy. |
+| Role | Typeface | Weight | Justification |
+|------|----------|--------|---------------|
+| **Hero Title** | **Space Grotesk** | Bold (700) | A geometric sans-serif with monospace-inspired proportions. The letterforms feel engineered, technical, designed for displays not paper. |
+| **Section Heads** | **Space Grotesk** | SemiBold (600) | Maintains display family hierarchy. Slightly softer than hero weight for content sections. |
+| **Tactical Headers** | **IBM Plex Sans** | Medium (500) | The corporate typeface of technology. Used for section titles within content, evoking technical documentation. |
 
 ### Body Typography
 
 | Role | Typeface | Weight | Justification |
 |------|----------|--------|---------------|
-| **Body Text** | **EB Garamond** | Regular (400) | 3,218 glyphs including full IPA support. Derives from Garamond's punches preserved at the Plantin-Moretus Museum—a direct link to 16th-century printing that emerged from manuscript culture. |
-| **Italic/Historical Forms** | **EB Garamond** | Italic | Based on Robert Granjon's designs. All attested historical forms (*werre*, *guerre*, *wærra*) appear in italics. |
+| **Body Text** | **Inter** | Regular (400) | The interface font of modern technology. Optimized for screen reading, designed for dense information presentation. Clean, legible, contemporary. |
+| **Body Emphasis** | **Inter** | SemiBold (600) | For key terms and emphasis within running text. |
 
-### Typographic Treatments
+### Data Typography
 
-| Element | Treatment | Example |
-|---------|-----------|---------|
-| **Reconstructed Forms** | Italic + asterisk + dashed underline | *\*werra* with dashed border |
-| **Attested Forms** | Italic only | *werre* |
-| **Language Labels** | Small caps + letter-spacing: 0.05em | FRANKISH, NORMAN FRENCH |
-| **Dates** | Oldstyle numerals + red accent | 858 CE in Merovingian Garnet |
-| **First Attestations** | Gold highlight + slight weight increase | "858 CE: First written record" |
-| **IPA Transcriptions** | Junicode, within slashes | /wɛrə/ |
+| Role | Typeface | Weight | Justification |
+|------|----------|--------|---------------|
+| **Coordinates/Data** | **JetBrains Mono** | Regular (400) | For all data elements: dates, coordinates, IPA transcriptions, statistics. The monospace rhythm creates visual order and suggests precision. |
+| **Redacted/Classified** | **JetBrains Mono** | Bold (700) | For redaction bars and classified markers. |
 
 ### Type Scale
 
-Based on a 1.333 ratio (perfect fourth) for scholarly gravitas:
+Based on a 1.25 ratio (major third) for technical precision:
 
-| Element | Desktop | Mobile | Line Height |
-|---------|---------|--------|-------------|
-| H1 (Hero) | 56px | 40px | 1.05 |
-| H2 (Section) | 36px | 28px | 1.15 |
-| H3 (Subsection) | 24px | 22px | 1.25 |
-| Body | 19px | 17px | 1.75 |
-| Sidenote | 14px | 13px | 1.5 |
-| Caption | 13px | 12px | 1.4 |
+| Element | Desktop | Mobile | Line Height | Letter Spacing |
+|---------|---------|--------|-------------|----------------|
+| H1 (Hero) | 64px | 44px | 1.0 | -0.02em |
+| H2 (Section) | 36px | 28px | 1.1 | -0.01em |
+| H3 (Subsection) | 24px | 20px | 1.2 | 0 |
+| Body | 17px | 16px | 1.65 | 0.01em |
+| Data | 14px | 13px | 1.5 | 0.05em |
+| Caption | 12px | 11px | 1.4 | 0.03em |
 
-### The "WAR" Typography Evolution
+### The "WAR" Typography Treatment
 
-The word WAR itself transforms through the essay:
+The word WAR is a **target designation**:
 
-1. **Opening**: Displayed as *WERRA* in Junicode, with slightly rough, uncertain letterforms
-2. **Norman Section**: Displayed as *WERRE* in Cormorant Garamond italic, more refined
-3. **Chronicle Section**: Displayed as *WERRE* in EB Garamond, settling into English
-4. **Modern Section**: Displayed as **WAR** in Cormorant Garamond bold, stable and final
-
-This typographic evolution is the design's most powerful narrative device.
+1. **Initial State**: `WAR` in Space Grotesk Bold, Targeting Red, with subtle scan-line effect
+2. **Active Tracking**: Targeting reticle animates around the word, Grid Cyan coordinates appear
+3. **Target Lock**: Red glow intensifies, corner brackets appear (military UI pattern)
+4. **Historical Forms**: `*WERRA` → `WERRE` → `WAR` displayed in JetBrains Mono as data transformations
 
 ---
 
 ## 3. Visual Motifs (7 Unique Elements)
 
-### Motif 1: The Palimpsest Layer
+### Motif 1: The Targeting Reticle
 
-**Historical Source**: Medieval palimpsests—manuscripts where older text was scraped off and new text written over, but traces of the original remain visible.
+**Visual Source**: Weapon targeting systems, drone control interfaces, missile guidance displays.
 
 **Visual Implementation**:
-- Key moments show faded text "beneath" the primary text
-- The Old English word *wig* appears ghosted behind the first instance of "war"
-- Implemented via reduced opacity (15-20%) text layers
-- On scroll, the ghost text fades further as the "new" text becomes dominant
-
-**Functional Purpose**: Visualizes linguistic displacement—the word "war" literally overwriting the native English terms.
+- Crosshair/bracket system frames key content
+- Corner brackets `[ ]` around important data (military UI pattern)
+- Animated reticle that "locks" onto scrolled content
+- Used sparingly for maximum impact
 
 **Technical Spec**:
 ```css
-.palimpsest-ghost {
+.target-lock {
+  position: relative;
+}
+.target-lock::before,
+.target-lock::after,
+.target-lock .corner-tl,
+.target-lock .corner-br {
+  content: '';
   position: absolute;
-  opacity: 0.15;
-  color: #830E0D; /* Merovingian Garnet */
-  font-family: 'Junicode', serif;
-  transform: rotate(-2deg);
-  z-index: -1;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #FF3B3B;
 }
+.target-lock::before { top: -8px; left: -8px; border-right: none; border-bottom: none; }
+.target-lock::after { bottom: -8px; right: -8px; border-left: none; border-top: none; }
 ```
 
-### Motif 2: The Chevron Border
+### Motif 2: The Coordinate Grid
 
-**Historical Source**: The Norman chevron (zigzag pattern) is the signature decorative element of Norman Romanesque architecture and appears in the Bayeux Tapestry's borders.
-
-**Visual Implementation**:
-- Subtle chevron patterns frame the Norman Conquest section
-- Used as section dividers (horizontal chevron lines)
-- NOT overwhelming—thin strokes, Bayeux Terracotta color
-- Evokes the invaders without depicting violence
-
-**Functional Purpose**: Marks the Norman layer of the word's journey.
-
-**Technical Spec**:
-```svg
-<pattern id="chevron" width="20" height="10" patternUnits="userSpaceOnUse">
-  <path d="M0,10 L10,0 L20,10" stroke="#B5542A" stroke-width="1" fill="none"/>
-</pattern>
-```
-
-### Motif 3: Cloisonné Cell Containers
-
-**Historical Source**: Merovingian cloisonné technique—thin metal walls (cloisons) creating cells filled with garnet or colored glass.
+**Visual Source**: Satellite imagery overlays, military mapping systems, GPS targeting grids.
 
 **Visual Implementation**:
-- Key data points (dates, language names) appear in rounded rectangular containers
-- Thin gold (#C9A030) borders, 1px stroke
-- Fill colors vary by era: garnet-red for Frankish, terracotta for Norman, cream for English
-- Creates a "jeweled" appearance for important information
+- Subtle grid lines overlay key visualizations
+- Coordinates appear at intersection points (styled as military grid references)
+- Grid animates subtly—lines pulse or shift like active tracking
+- Etymology tree rendered as geographic coordinates
 
-**Functional Purpose**: Elevates key facts with Frankish visual language; connects data to material culture.
+**Functional Purpose**: Transforms linguistic relationships into spatial data; the word "traveled" through coordinate space.
 
 **Technical Spec**:
 ```css
-.cloisonne-cell {
-  border: 1px solid #C9A030;
-  border-radius: 3px;
-  padding: 2px 8px;
-  display: inline-block;
-}
-.cloisonne-cell.frankish {
-  background: rgba(131, 14, 13, 0.1);
-}
-.cloisonne-cell.norman {
-  background: rgba(181, 84, 42, 0.1);
+.coordinate-grid {
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 ```
 
-### Motif 4: The Wax Seal
+### Motif 3: The Redaction Bar
 
-**Historical Source**: Anglo-Norman document culture relied heavily on wax seals for authentication. Seals were red (vermillion) for royal documents, green for Exchequer documents.
-
-**Visual Implementation**:
-- Section breaks marked with a stylized wax seal icon
-- Red seal for conflict-related sections
-- Green seal for administrative/linguistic sections
-- Contains a stylized "W" for *werra*
-
-**Functional Purpose**: Invokes the documentary culture through which the word traveled; marks transitions.
-
-### Motif 5: The Bayeux Border Beasts
-
-**Historical Source**: The Bayeux Tapestry's upper and lower borders contain stylized animals, Aesop's fables, and scenes that comment on the main narrative.
+**Visual Source**: Declassified documents, FOIA releases, censored intelligence reports.
 
 **Visual Implementation**:
-- Subtle decorative elements in margins/borders
-- Stylized lions, birds, interlaced creatures
-- Rendered in Tapestry Blue-Green (#3A6B5C)
-- Appear only in Norman-era sections
-- NOT realistic animals—stylized, flat, embroidered appearance
+- Black bars over "classified" information that reveal on interaction
+- Used for dramatic reveals (e.g., disputed etymological claims)
+- Some redactions never reveal—maintaining mystery
+- Creates visual rhythm and intrigue
 
-**Functional Purpose**: Creates period-specific atmosphere; the borders "comment" on the main text like the tapestry's borders comment on its main narrative.
+**Functional Purpose**: Acknowledges uncertainty in etymology; some origins remain "classified."
 
-### Motif 6: The Chronicle Rubrication
+**Technical Spec**:
+```css
+.redacted {
+  background: #0A0C0E;
+  color: #0A0C0E;
+  transition: background 400ms ease;
+  cursor: help;
+}
+.redacted:hover {
+  background: transparent;
+  color: #E8EAED;
+}
+.redacted.permanent {
+  cursor: not-allowed;
+}
+.redacted.permanent::after {
+  content: '[CLASSIFIED]';
+  color: #FF3B3B;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75em;
+}
+```
 
-**Historical Source**: The Peterborough Chronicle uses rubrication (red ink) for annal numbers and important capitals. The initial B on folio 1r is green outlined with red.
+### Motif 4: The Scan Line
+
+**Visual Source**: CRT displays, radar screens, security monitors, analog military displays.
 
 **Visual Implementation**:
-- Year numbers in section headers appear in Merovingian Garnet
-- Drop caps use Tapestry Blue-Green with red outline (reversing the Chronicle's green/red)
-- Important first attestations marked with rubricated annotation
+- Horizontal scan lines at 2-4% opacity over content areas
+- Animated vertical "sweep" line that moves across visualizations
+- Creates the feeling of being monitored, of data being read
+- Used selectively—hero section, key visualizations
 
-**Functional Purpose**: Connects the essay visually to the actual manuscript where "war" first appears in English.
+**Functional Purpose**: Evokes surveillance and the technological mediation of modern warfare.
 
-### Motif 7: The Etymology River
+**Technical Spec**:
+```css
+.scan-lines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+}
+```
 
-**Historical Source**: Medieval T-O maps depicted the world as a circle divided by T-shaped waters. Rivers like the Tigris and Euphrates were central organizing features.
+### Motif 5: The Data Stream
+
+**Visual Source**: Live intelligence feeds, real-time battle management systems, SIGINT displays.
 
 **Visual Implementation**:
-- The etymology diagram flows like a river on a medieval map
-- Francia at the "top" (east, like Paradise on T-O maps)
-- England at the "bottom" (west)
-- The word flows downward through linguistic territory
-- Color gradients transition from Frankish red through Norman terracotta to English black
+- Flowing text/data animations in margins
+- Binary, coordinates, or linguistic data scrolling continuously
+- Very low opacity (5-10%)—ambient texture, not distraction
+- Suggests constant surveillance, information overload
 
-**Functional Purpose**: Reframes etymology as geography; the word "traveled" across linguistic space just as it traveled across physical space.
+**Functional Purpose**: Creates ambient intelligence atmosphere; the word is under constant analysis.
+
+### Motif 6: The Warning Stripe
+
+**Visual Source**: Hazard markings, military vehicle striping, caution tape, nuclear facility warnings.
+
+**Visual Implementation**:
+- Diagonal stripes (45 degrees) in Targeting Red and Void Black
+- Used for section transitions, danger/violence content warnings
+- Thin implementation—3px stripes, not overwhelming
+- Marks moments of semantic violence (displacement of Old English words)
+
+**Technical Spec**:
+```css
+.warning-stripe {
+  background: repeating-linear-gradient(
+    45deg,
+    #FF3B3B,
+    #FF3B3B 3px,
+    #0A0C0E 3px,
+    #0A0C0E 6px
+  );
+  height: 4px;
+}
+```
+
+### Motif 7: The Signal Interference
+
+**Visual Source**: Jammed communications, electronic warfare, disrupted transmissions.
+
+**Visual Implementation**:
+- Glitch effects for historical uncertainty moments
+- Static/noise overlays during transitions
+- "Signal lost" states for disputed/reconstructed forms
+- Chromatic aberration on uncertain data
+
+**Functional Purpose**: Visual language for scholarly uncertainty—when the historical record is "jammed."
 
 ---
 
-## 4. The Hero Moment: "WAR" as Design Object
+## 4. The Hero Moment: "WAR" as Target
 
-### Concept: The Carved Word
+### Concept: The Tracked Word
 
-The word WAR should feel **carved**—into stone, into history, into the language itself. It carries weight. It is not decorative; it is monumental.
+The word WAR is a target under constant surveillance. It is tracked through linguistic space with military precision.
 
-### Display Treatment
+### Hero Animation Sequence
 
-**Stage 1: The Uncertain Origin**
-- Displayed as: ***WERRA***
-- Typography: Junicode, 72px, slight letter-spacing variation
-- Color: Merovingian Garnet (#830E0D)
-- Effect: Slight "shake" animation (±1px jitter) suggesting instability
-- Meaning: The reconstructed form, uncertain, pre-historical
+**Phase 1: ACQUISITION**
+- Screen dark. Radar sweep animation (Radar Green).
+- Text appears: `SIGNAL DETECTED`
+- Coordinates begin populating: `ORIGIN: PIE *wers- // STATUS: TRACKING`
 
-**Stage 2: The First Attestation (858 CE)**
-- Displayed as: ***WERRA***
-- Typography: Same as above, but letters "settle" into place
-- Addition: Gold (#C9A030) underline appears beneath
-- Effect: The shake stops; the word becomes "fixed" in writing
+**Phase 2: IDENTIFICATION**
+- Target reticle appears, searching
+- `*WERRA` appears in JetBrains Mono, Grid Cyan, glitching slightly
+- Text: `LINGUISTIC ASSET IDENTIFIED // FRANKISH c.500 CE`
 
-**Stage 3: The Norman Form**
-- Displayed as: ***WERRE***
-- Typography: Cormorant Garamond Italic, 72px
-- Color: Bayeux Terracotta (#B5542A)
-- Effect: Crossfade from WERRA, the double-R visually prominent
+**Phase 3: TRACKING**
+- Etymology pathway draws like flight path
+- Forms transition: `*WERRA → WERRE → WAR`
+- Each transformation marked with timestamp coordinates
+- Final lock: `WAR` in Space Grotesk Bold, Targeting Red
 
-**Stage 4: The English Form (1121 CE)**
-- Displayed as: **WERRE** → **WAR**
-- Typography: Cormorant Garamond Bold, 72px
-- Color: Chronicle Ink (#1E1915)
-- Effect: The word "contracts"—letters shift closer together as spelling simplifies
-- Final state: WAR, stable, black, permanent
+**Phase 4: LOCK**
+- Corner brackets snap into position
+- Background pulse in Targeting Red
+- Text: `TARGET DESIGNATION: WAR // STATUS: LOCKED`
+- Subtle warning stripe appears below
 
-### Animation Sequence
+### Technical Implementation
 
+```typescript
+const heroPhases = [
+  { phase: 'acquisition', duration: 2000, elements: ['radar', 'coordinates'] },
+  { phase: 'identification', duration: 1500, elements: ['reticle', 'etymology'] },
+  { phase: 'tracking', duration: 2000, elements: ['pathway', 'transforms'] },
+  { phase: 'lock', duration: 800, elements: ['brackets', 'pulse'] },
+];
 ```
-[Opening scroll]
-     *WERRA* (garnet, shaking slightly)
-         ↓ (scroll)
-     *WERRA* (garnet, gold underline appears, stable)
-         ↓ (scroll)
-     *WERRE* (terracotta, italicized)
-         ↓ (scroll)
-     WAR (black, bold, final)
-```
-
-Duration: Each transformation takes 800ms, triggered by scroll position. The final WAR remains stable for the rest of the essay.
 
 ---
 
 ## 5. Animation Philosophy
 
-### Core Principle: The Slow Conquest
+### Core Principle: Mechanical Precision
 
-Animations embody the word's 263-year journey from 858 CE to 1121 CE. Nothing happens quickly. The word was not borrowed in a day; it was absorbed over generations. Animations reflect this patience.
+Animations are precise, calculated, mechanical. Nothing organic. Nothing that breathes or flows. Movement is the movement of machines: servo-driven, step-function, clinical.
 
 ### Timing Language
 
-| Animation Type | Duration | Easing | Metaphor |
-|----------------|----------|--------|----------|
-| Text reveal | 600ms | ease-out | Ink appearing on parchment |
-| Etymology node connection | 1000ms | ease-in-out | Lines being drawn by hand |
-| Color transition | 800ms | linear | Dye settling into fabric |
-| Hero word transformation | 800ms | ease | Scribal correction |
-| Ghost text fade | 1200ms | ease-out | Memory fading |
-| Border pattern draw | 1500ms | ease-in-out | Embroidery being stitched |
+| Animation Type | Duration | Easing | Character |
+|----------------|----------|--------|-----------|
+| Data reveal | 200ms | `steps(4)` | Digital, stepped, instant |
+| Target lock | 400ms | `cubic-bezier(0.4, 0, 0.2, 1)` | Snapping, decisive |
+| Scan sweep | 3000ms | `linear` | Constant, surveillance |
+| Redaction reveal | 300ms | `ease-out` | Declassification |
+| Path trace | 1200ms | `cubic-bezier(0.16, 1, 0.3, 1)` | Trajectory plotting |
+| Warning flash | 150ms | `steps(2)` | Alert, binary |
 
-### Era-Specific Animation Qualities
+### Motion Principles
 
-**Frankish Section**:
-- Slightly more "rough" motion
-- Small position jitter (±0.5px)
-- Faster durations (400-600ms)
-- Represents the instability of reconstructed forms
+1. **No Organic Curves**: All easing is mechanical—linear, stepped, or sharp cubic-bezier
+2. **Grid-Aligned Movement**: Elements move along axes, never diagonal curves
+3. **Step Functions**: Data appears in discrete steps, not smooth fades
+4. **Constant Motion**: Background elements (scans, data streams) never stop
+5. **Snap Transitions**: No lazy drifts; elements snap to position
 
-**Norman Section**:
-- Smooth, confident motion
-- Chevron patterns "draw" in like embroidery
-- Standard durations (600-800ms)
-- Represents the organized invasion
+### Animation by Content Type
 
-**English Section**:
-- Slowest, most deliberate motion
-- Text "settles" into final positions
-- Longest durations (800-1200ms)
-- Represents the permanent adoption
-
-### The 9 Visual Modules: Animation Concepts
-
-| Module | Animation Concept |
-|--------|-------------------|
-| **1. Etymology River** | Nodes appear top-to-bottom (source to English). Connection lines draw after nodes settle. Frankish nodes pulse with slight garnet glow. |
-| **2. Sound Panel** | Phonetic transcriptions "type" character by character, simulating pronunciation. Sound wave motifs pulse gently. |
-| **3. Spelling Comparison** | Letters crossfade between forms (*werra* → *werre* → *war*). Changed letters highlight momentarily in gold. |
-| **4. Cognate Network** | Central node appears first. Cognates radiate outward like ripples. Germanic cognates appear in red tones; Romance cognates in terracotta. |
-| **5. Semantic Constellation** | "Confusion" (original meaning) appears first, connected to center. "Organized conflict" meanings appear later, further from center. Lines draw slowly. |
-| **6. Timeline** | Dual-track timeline populates left-to-right. Events "stamp" into place like seals. 858 CE and 1121 CE events glow gold. |
-| **7. Geographic Map** | Map renders instantly. Word's path draws as an animated line from Francia through Normandy to England. Color changes along path (red → terracotta → black). |
-| **8. Usage Quotations** | Quotes fade in one at a time. Source (e.g., "Peterborough Chronicle") appears in rubricated red. |
-| **9. Modern Derivatives** | Derivative words ("warfare," "warrior") "branch" from the central WAR like a tree. Each branch draws with ink-flow animation. |
+| Content | Animation | Example |
+|---------|-----------|---------|
+| Etymology data | Character-by-character reveal | Coordinates typing in |
+| Language transitions | Hard cut with glitch | FRANKISH → NORMAN |
+| Timeline events | Stamp/impact | Date markers appear |
+| Quotes | Declassification reveal | Black bars removing |
+| Diagrams | Path tracing | Etymology tree drawing |
 
 ---
 
 ## 6. Layout System
 
-### The Manuscript Grid
+### The Intelligence Brief Grid
 
-Medieval manuscripts allocated approximately 50% of the page to margins—space for glosses, corrections, and commentary. This essay follows that principle.
+This is not a manuscript layout. It is a **tactical display**—asymmetric, data-dense, designed for rapid information processing.
 
 **Desktop Grid (1440px viewport)**:
 ```
-| 120px | 680px (content) | 280px (marginalia) | 120px |
-   ←─── Left margin        Right margin (sidenotes) ───→
+| 80px | 200px (sidebar) | 40px | 680px (content) | 200px (data) | 80px |
+   ←── Status panel         Main content          Live data feed ──→
 ```
 
 **Content Column**: 680px maximum width
-- Approximately 68 characters per line at 19px EB Garamond
-- Optimal reading length for scholarly content
+- Approximately 75 characters per line at 17px Inter
+- Optimized for rapid comprehension
 
-**Marginalia Column**: 280px
-- Source citations
-- Manuscript references (e.g., "MS Laud Misc. 636, f.1r")
-- Date context
-- Etymology glosses
+**Status Sidebar** (Left): 200px
+- Section identifiers
+- Progress indicators
+- Navigation elements
+- "Mission status" information
 
-**Full-Bleed Moments**:
-- Hero word displays
-- Etymology River diagram
-- Geographic map
-- Timeline
+**Data Feed** (Right): 200px
+- Coordinates and timestamps
+- Cross-references
+- Source citations styled as intelligence sources
+- Scrolling data stream (ambient)
 
-### Margin Philosophy: The Glossator's Space
-
-The right margin is the **glossator's space**—where a medieval reader would add commentary. In this essay, the margin contains:
-
-1. **Source attestations**: "(OED, s.v. war)"
-2. **Manuscript references**: "(Peterborough Chronicle, 1121)"
-3. **Scholarly hedges**: "Reconstructed form, not attested"
-4. **Cross-references**: "See also: *guerre*, *guerra*"
-
-This creates a two-track reading experience:
-- **Primary track**: The narrative (main column)
-- **Secondary track**: The scholarly apparatus (margin)
-
-Advanced readers can engage with both; casual readers can ignore the margins.
+### Full-Bleed Moments
+- Hero target acquisition sequence
+- Etymology pathway visualization (styled as flight path)
+- Geographic transmission map (satellite view)
+- Timeline (styled as mission log)
 
 ### Spacing Scale
 
-Based on 8px unit, but the base unit is derived from the Chronicle's line spacing:
+Military precision—all values divisible by 4:
 
 | Token | Value | Use |
 |-------|-------|-----|
-| `--space-line` | 32px | Baseline grid (19px text × 1.75 line-height ≈ 33px, rounded) |
-| `--space-paragraph` | 24px | Between paragraphs |
-| `--space-section` | 96px | Between major sections (3× line) |
-| `--space-module` | 128px | Before/after full-bleed modules (4× line) |
-| `--space-margin-gap` | 40px | Between content and marginalia |
+| `--space-4` | 4px | Micro spacing, data elements |
+| `--space-8` | 8px | Component internal padding |
+| `--space-16` | 16px | Between related elements |
+| `--space-24` | 24px | Component separation |
+| `--space-48` | 48px | Section internal padding |
+| `--space-96` | 96px | Between major sections |
+| `--space-128` | 128px | Hero spacing |
 
 ---
 
-## 7. Mood Board Description
+## 7. What Makes This Design Unique
 
-### Reference 1: Merovingian Cloisonné Disc Brooch (6th century)
-Held at the Metropolitan Museum of Art. A circular gold brooch with radiating garnet-filled cells, creating a sunburst pattern. The garnets glow with deep, arterial red. Thin gold cloisons separate each gem. This artifact defines the Merovingian Garnet (#830E0D) and the cloisonné cell motif. The craftsmanship speaks to the Frankish material culture from which *werra* emerged.
+### 1. It Cannot Be Confused With Any Other Etymology Essay
 
-### Reference 2: The Bayeux Tapestry's Border (c.1077)
-Not the battle scenes—the borders. Upper and lower bands containing stylized birds, lions, and Aesop's fables in terracotta, blue-green, and gold threads. The creatures are flat, almost abstract. The chevron patterns frame key moments. The inscriptions in crude Latin capitals (HIC HAROLD) demonstrate how text integrated with image in Norman visual culture.
+| Existing Essay | Its Aesthetic | This Essay's Difference |
+|----------------|---------------|------------------------|
+| the-word-pussy | Parchment, EB Garamond, era-evolving medieval | Black void, Space Grotesk, military interfaces |
+| the-word-robot | Industrial factory, metallic, assembly line | Digital warfare, surveillance, targeting systems |
+| the-word-animal | Natural history illustration, forest palette | Cold technology, radar/thermal colors |
+| the-word-etymology | Academic book, scholarly gold/leather | Intelligence dossier, declassified documents |
 
-### Reference 3: Peterborough Chronicle, Folio 1r
-The ornamented initial B in green outlined with red—the only decoration in the entire manuscript. The rest is pure text: brown iron-gall ink on cream vellum, annal numbers in red. The modesty is the point. The word "war" appeared in this unassuming context, not in an illuminated masterpiece.
+This essay exists in **an entirely different visual universe**: the world of defense contractors, war rooms, and satellite surveillance.
 
-### Reference 4: Drogo Sacramentary Historiated Initial (c.850)
-A large decorative C containing a scene of Christ's entry into Jerusalem. Gold leaf, emerald green, violet, and purple inks. Figures emerge from the letter's structure. This represents the peak of Carolingian manuscript art—the visual world contemporary with the first attestation of *werra* in 858 CE.
+### 2. The Aesthetic Is Specifically Appropriate for THIS Word
 
-### Reference 5: T-O Map from Isidore of Seville's Etymologies (12th century)
-A circular world map with T-shaped waterways dividing Asia, Europe, and Africa. Jerusalem at center. East (Asia) at top. Simple, schematic, more concept than geography. This informs the etymology river diagram—linguistic geography replacing physical geography.
+The word is "war." Modern war is:
+- Mediated through screens (drone warfare, satellite targeting)
+- Packaged in sterile interfaces (weapons systems UI)
+- Documented in intelligence reports (declassified, redacted)
+- Tracked through coordinate systems (GPS-guided precision)
 
-### Reference 6: Norman Wax Seal (Great Seal of William II, 1087-1100)
-Red wax impressed with the king enthroned on one side, mounted in battle on the other. The seal authenticated documents in the same Anglo-Norman administrative culture that transmitted *werre* into English. The official weight of documentary culture.
-
-### Reference 7: Durham Cathedral Chevron Mouldings (c.1093)
-The zigzag (chevron) patterns carved into stone around arches and doorways. Deep relief, geometric precision, the signature decorative element of Norman Romanesque. This motif marks the Norman layer throughout the essay.
-
----
-
-## 8. What Makes This Design Unique
-
-### 1. It Cannot Be Confused With Other Etymology Essays
-
-This design is tied to **specific historical layers**:
-- The Merovingian garnet palette exists because *werra* came from Frankish culture
-- The Norman chevron motif exists because the word crossed with the Conquest
-- The Peterborough parchment background exists because the Chronicle first recorded the English form
-
-An essay on the etymology of "democracy" or "philosophy" would have completely different visual sources—Greek pottery, Athenian architecture. An essay on "pajama" would reference Persian textiles and Indian cotton trade. This design works **only for this word**.
-
-### 2. It Is Specifically Appropriate for THIS Word
-
-The palimpsest concept—one text overwriting another—is not generic. It is the **literal linguistic history** of "war":
-
-- Old English had *wig*, *guð*, *heaðo*, *hild*
-- The Norman-French *werre* arrived and displaced them all
-- Today, those Old English words survive only in personal names (Wigmund, Guthrum)
-
-The design visualizes this displacement. The ghost text motif shows the conquered words beneath the conquering word.
+The design treats the etymology itself as a military operation: **tracking a linguistic target through space and time**.
 
 ### 3. It Would Not Work for a Different Word
 
-Try applying this design to another word:
+Try applying this design to:
+- "Pussy" (cats and femininity): Targeting reticles on kittens? Absurd.
+- "Robot" (industrial labor): Already has its own factory aesthetic.
+- "Love" (emotion, connection): Thermal imaging of affection? Grotesque.
+- "Etymology" (scholarly pursuit): War room for word origins? Overkill.
 
-- "Robot" (Czech, 20th century): No medieval manuscript tradition. No Norman Conquest. Would be absurd.
-- "Tsunami" (Japanese, 19th century borrowing): No Frankish layer. No Anglo-Norman transition. Would be absurd.
-- "Algorithm" (Arabic→Medieval Latin→English): Different geographic path, different visual cultures—Islamic geometry, not Frankish metalwork.
-
-The design is **non-transferable** because every element derives from this word's specific historical journey.
+The design works **only for war** because war is the only word whose modern reality is this interface-driven, surveillance-mediated, technologically precise.
 
 ---
 
-## 9. Anti-Patterns
+## 8. Anti-Patterns
 
 ### What This Design Explicitly Avoids
 
 | Anti-Pattern | Why It's Wrong | What We Do Instead |
 |--------------|----------------|---------------------|
-| **Battle/Combat Imagery** | The essay is about a WORD, not about violence. Depicting warfare sensationalizes and misrepresents the subject. | We show manuscripts, documents, seals—the vehicles of linguistic transmission. |
-| **Propaganda Aesthetics** | Bold, angular, high-contrast designs evoke 20th-century war propaganda (WWI posters, Soviet constructivism). Historically and tonally wrong. | Warm parchment tones, organic manuscript forms, historical restraint. |
-| **Modernist Sans-Serifs** | Futura, Helvetica, etc. have no connection to medieval or early modern textual culture. They feel cold and ahistorical. | EB Garamond, Cormorant Garamond, Junicode—typefaces with manuscript heritage. |
-| **Aggressive Color** | Blood red + black + white = violence aesthetics. This is not the subject. | Garnet (gem-like, precious) → Terracotta (textile, craft) → Iron-gall (ink, text). |
-| **Explosion/Impact Effects** | Burst animations, particles, screen shakes glorify violence. | Slow fades, ink-flow reveals, the patience of scribal work. |
-| **Dark Mode Default** | Black backgrounds evoke screens and modernity. Manuscripts were parchment. | Warm parchment background; dark mode only as accessibility option. |
-| **Photorealistic Textures** | Heavy parchment textures, torn edges, coffee stains = "aged" kitsch. Gimmicky, not authentic. | Color carries texture; no overlay filters. Restraint is authenticity. |
-| **Generic Medieval** | Using "any old manuscript" aesthetics ignores the SPECIFIC sources. | Every color, motif, and typeface traces to Frankish→Norman→English artifacts. |
-| **Gamification** | Progress bars, achievements, quizzes trivialize scholarly content. | Linear reading experience with subtle section markers. |
-| **Autoplay Media** | Sound effects, background music disrupt reading and accessibility. | Static content; user-initiated audio for pronunciation examples only. |
+| **Medieval Manuscripts** | Already done for pussy. No differentiation. Historically inaccurate for "modern war" theme. | Cold digital interfaces, surveillance displays |
+| **Parchment/Cream Backgrounds** | Too warm, too historical, too similar to existing essays. | Void Black (#0A0C0E), the darkness of war rooms |
+| **Garamond/Serif Body Text** | Evokes books, manuscripts, traditional publishing. | Inter (modern interface), JetBrains Mono (data) |
+| **Warm Color Palettes** | Suggests comfort, history, scholarship. War is cold. | Radar Green, Grid Cyan, Targeting Red—screen colors |
+| **Organic Animations** | Breathing, flowing motion suggests life. War is mechanical. | Stepped functions, linear sweeps, snap transitions |
+| **Decorative Ornamentation** | Illuminated capitals, borders belong to manuscripts. | Functional elements only: grids, coordinates, brackets |
+| **Explicit Violence Imagery** | Photos of combat, blood, destruction are sensationalist. | Abstracted: targeting systems, satellite views, redaction |
+| **Propaganda Aesthetics** | WWII posters, Soviet constructivism—historical, obvious. | Contemporary military-industrial: DARPA, defense contractors |
+| **Gamification** | Progress bars as health bars, achievements—trivializes. | Progress as mission status: clinical, informational |
+| **Dark Mode with Warm Accents** | Gold on black is too "luxury" or "scholarly." | Cold accent colors: green/cyan/red—all screen-derived |
 
-### Tonal Boundaries
+### Visual Boundaries
 
 **This essay does NOT**:
-- Celebrate or glorify war
-- Present military history
-- Entertain through spectacle
-- Use the word's violence for aesthetic drama
+- Show photographs of warfare or casualties
+- Use nationalistic or propaganda imagery
+- Glorify military technology
+- Create "cool" weapons fetishism
+- Reference specific wars (WWII, Vietnam, etc.)
 
 **This essay DOES**:
-- Investigate language with scholarly precision
-- Present etymology as cultural history
-- Create beauty through historical authenticity
-- Treat the subject with contemplative seriousness
+- Abstract warfare into its interface layer
+- Create discomfort through sterile precision
+- Acknowledge the modern reality of technological war
+- Treat the subject with cold analytical distance
+- Make the reader complicit as "analyst"
+
+---
+
+## 9. Component Specifications
+
+### Intelligence Card
+
+```css
+.intel-card {
+  background: var(--tactical-gray);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  padding: 24px;
+  position: relative;
+}
+
+.intel-card::before {
+  content: attr(data-classification);
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--grid-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.intel-card.critical {
+  border-color: var(--targeting-red);
+}
+.intel-card.critical::before {
+  color: var(--targeting-red);
+}
+```
+
+### Coordinate Display
+
+```css
+.coordinates {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--grid-cyan);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.coordinates::before {
+  content: '//';
+  margin-right: 8px;
+  opacity: 0.5;
+}
+```
+
+### Status Indicator
+
+```css
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-indicator::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--radar-green);
+  animation: pulse 2s infinite;
+}
+
+.status-indicator.alert::before {
+  background: var(--targeting-red);
+  animation: flash 0.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+```
 
 ---
 
 ## 10. Implementation Notes
 
 ### Font Loading
+
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
-<!-- Junicode loaded locally for full medieval character support -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 ```
 
 ### CSS Custom Properties
+
 ```css
 :root {
   /* Colors */
-  --merovingian-garnet: #830E0D;
-  --bayeux-terracotta: #B5542A;
-  --tapestry-blue-green: #3A6B5C;
-  --peterborough-parchment: #F2E8D5;
-  --chronicle-ink: #1E1915;
-  --aged-iron-gall: #584B40;
-  --frankish-gold: #C9A030;
+  --void-black: #0A0C0E;
+  --tactical-gray: #1A1D21;
+  --signal-white: #E8EAED;
+  --targeting-red: #FF3B3B;
+  --radar-green: #00FF88;
+  --thermal-orange: #FF7B00;
+  --grid-cyan: #00D4FF;
 
   /* Typography */
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'EB Garamond', Georgia, serif;
-  --font-medieval: 'Junicode', 'EB Garamond', serif;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-tactical: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-data: 'JetBrains Mono', 'Consolas', monospace;
 
   /* Spacing */
-  --space-line: 32px;
-  --space-paragraph: 24px;
-  --space-section: 96px;
-  --space-module: 128px;
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-48: 48px;
+  --space-96: 96px;
+  --space-128: 128px;
+
+  /* Animation */
+  --ease-snap: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-instant: 150ms;
+  --duration-fast: 300ms;
+  --duration-normal: 600ms;
+  --duration-slow: 1200ms;
 }
 ```
 
 ### Accessibility
+
 - All text combinations exceed WCAG AA contrast requirements
-- `prefers-reduced-motion` eliminates all scroll-triggered animations
-- Marginalia degrades to inline footnotes on mobile
-- `lang` attributes on all historical forms: `<span lang="frk">werra</span>`
+- `prefers-reduced-motion` eliminates scan lines, data streams, and all continuous animation
+- Focus states use Grid Cyan with 2px offset
+- Screen reader content for redacted elements
+- `lang` attributes on all historical forms
+
+### Reduced Motion Fallback
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  .scan-lines::after,
+  .data-stream {
+    display: none;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .target-reticle {
+    /* Static reticle instead of animated */
+    animation: none;
+  }
+}
+```
 
 ---
 
-## Sources Consulted
+## 11. Mood Board Description
 
-### Frankish Visual Culture
-- [Merovingian art | Britannica](https://www.britannica.com/art/Merovingian-art)
-- [Merovingian art and architecture | Wikipedia](https://en.wikipedia.org/wiki/Merovingian_art_and_architecture)
-- [Merovingian Cloisonné Architectural Ring | Metropolitan Museum of Art](https://www.metmuseum.org/art/collection/search/681658)
-- [Garnet color hex code | Color-Name](https://www.color-name.com/garnet.color)
+### Reference 1: Drone Control Interface (MQ-9 Reaper Ground Control Station)
+Not the drone itself—the interface where an operator views targeting data. Multiple screens showing thermal imagery, coordinates, status indicators. The calm workspace where violence is executed through technology. This defines the color palette and typography hierarchy.
 
-### Carolingian Manuscripts
-- [Carolingian illumination | Wikipedia](https://en.wikipedia.org/wiki/Carolingian_illumination)
-- [Drogo Sacramentary | Ziereis Facsimiles](https://www.facsimiles.com/facsimiles/drogo-sacramentary)
-- [Carolingian minuscule | Wikipedia](https://en.wikipedia.org/wiki/Carolingian_minuscule)
+### Reference 2: DARPA Research Presentation Deck
+The visual language of advanced military research: clean sans-serifs, sparse layouts, technical diagrams that make devastating technology look like any other engineering project. The corporate aesthetics of the defense industry.
 
-### Bayeux Tapestry
-- [Bayeux Tapestry tituli | Wikipedia](https://en.wikipedia.org/wiki/Bayeux_Tapestry_tituli)
-- [Bayeux Tapestry | Wikipedia](https://en.wikipedia.org/wiki/Bayeux_Tapestry)
-- [The Colours of the Bayeux Tapestry | The Mulberry Dyer](https://mulberrydyer.com/shop/the-colours-of-the-bayeux-tapestry/)
+### Reference 3: Declassified CIA Document (FOIA Release)
+Pages of type with heavy redaction bars. The rhythm of black rectangles interrupting text. Classification stamps: CONFIDENTIAL, TOP SECRET. The visual language of hidden knowledge and partial revelation.
 
-### Peterborough Chronicle & Anglo-Saxon Manuscripts
-- [Peterborough Chronicle | Wikipedia](https://en.wikipedia.org/wiki/Peterborough_Chronicle)
-- [Chronicle of England | Bodleian Medieval Manuscripts](https://medieval.bodleian.ox.ac.uk/catalog/work_10926)
-- [Insular script | Wikipedia](https://en.wikipedia.org/wiki/Insular_script)
+### Reference 4: Satellite Imagery with Coordinate Overlay
+The Earth viewed from above with grid lines, coordinates at intersections, targeting reticles on structures. The abstraction of geography into data. The god's-eye view of military reconnaissance.
 
-### Anglo-Norman Document Culture
-- [Early Aristocratic Seals: An Anglo-Norman Success Story | Academia.edu](https://www.academia.edu/16796038/Early_Aristocratic_Seals_An_Anglo_Norman_Success_Story)
-- [Seals | The National Archives](https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/seals/)
-- [Sealing wax | Wikipedia](https://en.wikipedia.org/wiki/Sealing_wax)
+### Reference 5: Nuclear Missile Silo Control Room (1980s)
+Brutalist architecture housing rows of identical stations. CRT screens with green phosphor text. The sterile elegance of apocalyptic capability. Physical buttons and switches with clear labeling. Form following terrifying function.
 
-### Norman Romanesque Design
-- [Norman architecture | Wikipedia](https://en.wikipedia.org/wiki/Norman_architecture)
-- [The Romanesque in Normandy and England | Pressbooks](https://pressbooks.bccampus.ca/cavestocathedrals/chapter/the-romanesque-in-normandy-and-england/)
+### Reference 6: Raytheon/Lockheed Martin Annual Report Design
+How weapons manufacturers present themselves: sophisticated corporate design, clean typography, abstracted imagery of their products. The visual language that makes missiles look like any other industrial product.
 
-### Medieval Palimpsests
-- [Palimpsest | Wikipedia](https://en.wikipedia.org/wiki/Palimpsest)
-- [Palimpsests: The art of medieval recycling | British Library](https://blogs.bl.uk/digitisedmanuscripts/2016/09/palimpsests-the-art-of-medieval-recycling.html)
+### Reference 7: Air Traffic Control Display (TRACON System)
+Multiple blips tracked across dark screens. Vectors showing projected paths. Callsigns and altitude data. The constant surveillance of everything in motion. The abstraction of aircraft into data points.
 
-### Medieval Colors and Pigments
-- [The Medieval Palette | Sacred Stone](https://sacredstone.atlantia.sca.org/articles/the-medieval-palette.pdf)
-- [Common Medieval Pigments | University of Pittsburgh](http://d-scholarship.pitt.edu/11954/1/a-baker-04-pigments.pdf)
-- [Colours | Teaching Manuscripts](https://www.teachingmanuscripts.com/colours)
+---
 
-### Etymology of "War"
-- [War - Etymology, Origin & Meaning | Etymonline](https://www.etymonline.com/word/war)
-- [war | Oxford English Dictionary](https://www.oed.com/dictionary/war_n1)
-- [Fun Etymology Tuesday - War | The Historical Linguist Channel](https://thehistoricallinguistchannel.com/fun-etymology-tuesday-war/)
+## 12. Summary: Why This Design
 
-### Semantic Change Visualization
-- [Visualisation Methods for Diachronic Semantic Shift | ACL Anthology](https://aclanthology.org/2022.sdp-1.10/)
-- [Semantic change | Wikipedia](https://en.wikipedia.org/wiki/Semantic_change)
+The word "war" is not a medieval artifact. It is a living word, and its modern life is inseparable from the technology that wages contemporary conflict. This design asks: **What does war look like when you're the one at the controls?**
 
-### Medieval Cartography
-- [T and O map | Wikipedia](https://en.wikipedia.org/wiki/T_and_O_map)
-- [Mappa mundi | Wikipedia](https://en.wikipedia.org/wiki/Mappa_mundi)
+The answer is: clinical, precise, beautiful in a terrifying way. It is targeting reticles and coordinate grids. It is data streams and status indicators. It is the sterile elegance of interfaces designed to make violence efficient.
+
+By placing the etymology of "war" in this visual context, we create productive discomfort. The reader becomes the analyst. The word becomes the target. The history becomes the intelligence briefing.
+
+This is not a celebration of military aesthetics. It is an acknowledgment that this is how modern war actually looks—and that understanding the word requires confronting its contemporary reality.
 
 ---
 
 *Design Research prepared by Design Researcher*
-*January 3, 2026*
-*Status: G4 Complete (Deep Contextual Revision) - Ready for Implementation*
+*January 4, 2026*
+*Status: G4 Complete (Radical Redesign) - Ready for Implementation*

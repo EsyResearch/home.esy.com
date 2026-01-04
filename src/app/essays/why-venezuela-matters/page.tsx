@@ -22,23 +22,35 @@ export const metadata: Metadata = {
     description:
       'A visual systems essay explaining the forces behind Operation Absolute Resolve and the capture of Nicolas Maduro.',
     type: 'article',
+    url: 'https://esy.com/essays/why-venezuela-matters',
+    siteName: 'Esy',
+    locale: 'en_US',
     publishedTime: '2026-01-03T23:00:00Z',
     modifiedTime: '2026-01-03T23:00:00Z',
     authors: ['Esy'],
     tags: ['Venezuela', 'Oil', 'Geopolitics', 'International Law'],
+    images: [
+      {
+        url: 'https://esy.com/og/orinoco-oil-belt.png',
+        width: 1200,
+        height: 630,
+        alt: 'Orinoco Oil Belt geological map showing East Venezuela Basin Province and oil assessment units',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Why Venezuela Matters: Oil, Refineries & Power',
     description:
       'A visual essay on Venezuela\'s oil, Gulf Coast refining, and Operation Absolute Resolve.',
+    images: ['https://esy.com/og/orinoco-oil-belt.png'],
   },
   robots: {
     index: true,
     follow: true,
   },
   alternates: {
-    canonical: '/essays/why-venezuela-matters',
+    canonical: 'https://esy.com/essays/why-venezuela-matters',
   },
 };
 
@@ -49,7 +61,7 @@ const articleSchema = {
   headline: 'Why Venezuela Matters: Oil, Refineries, and Power in the Western Hemisphere',
   description:
     'A visual systems essay explaining the forces behind Operation Absolute Resolve and the capture of Nicolas Maduro.',
-  image: 'https://upload.wikimedia.org/wikipedia/commons/d/da/Orinoco_Oil_Belt.png',
+  image: 'https://esy.com/og/orinoco-oil-belt.png',
   author: {
     '@type': 'Organization',
     name: 'Esy',
