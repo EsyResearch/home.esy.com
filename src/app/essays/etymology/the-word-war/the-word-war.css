@@ -1,0 +1,1465 @@
+/* ==================== WAR — THE CONQUERED WORD ==================== */
+/* Visual Essay: The Word That Arrived Through Conquest */
+/* Design System: Medieval Palimpsest - Three Historical Layers */
+
+/* ==================== CSS CUSTOM PROPERTIES ==================== */
+
+:root {
+  /* === The Three Layers Palette === */
+
+  /* Frankish Layer (5th-9th c.) */
+  --merovingian-garnet: #830E0D;
+  --frankish-gold: #C9A030;
+
+  /* Norman Layer (1066) */
+  --bayeux-terracotta: #B5542A;
+  --tapestry-blue-green: #3A6B5C;
+
+  /* English Chronicle Layer (1121+) */
+  --peterborough-parchment: #F2E8D5;
+  --chronicle-ink: #1E1915;
+  --aged-iron-gall: #584B40;
+
+  /* Functional Colors */
+  --border-gold: rgba(201, 160, 48, 0.3);
+  --border-subtle: rgba(88, 75, 64, 0.2);
+  --ghost-text: rgba(131, 14, 13, 0.15);
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'EB Garamond', Georgia, serif;
+  --font-medieval: 'Junicode', 'EB Garamond', Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+
+  /* Type Scale (1.333 ratio - perfect fourth) */
+  --text-hero: clamp(3rem, 12vw, 5rem);
+  --text-h1: clamp(2.5rem, 8vw, 3.5rem);
+  --text-h2: clamp(1.75rem, 5vw, 2.25rem);
+  --text-h3: clamp(1.25rem, 3vw, 1.5rem);
+  --text-body: clamp(1.0625rem, 2vw, 1.1875rem);
+  --text-small: clamp(0.8125rem, 1.5vw, 0.875rem);
+  --text-caption: clamp(0.75rem, 1.25vw, 0.8125rem);
+
+  /* Spacing (based on 8px unit) */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-line: 32px;
+  --space-paragraph: 24px;
+  --space-section: 96px;
+  --space-module: 128px;
+
+  /* Layout */
+  --content-width: 680px;
+  --marginalia-width: 280px;
+  --full-width: 1200px;
+
+  /* Animation */
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-scribal: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-ink: 600ms;
+  --duration-draw: 1000ms;
+  --duration-settle: 800ms;
+  --duration-fade: 1200ms;
+}
+
+/* ==================== BASE STYLES ==================== */
+
+.war-essay {
+  background: var(--peterborough-parchment);
+  color: var(--chronicle-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.75;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Subtle parchment texture */
+.war-essay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ==================== PROGRESS BAR ==================== */
+
+.chronicle-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: linear-gradient(
+    180deg,
+    var(--peterborough-parchment) 0%,
+    rgba(242, 232, 213, 0.95) 100%
+  );
+  border-bottom: 1px solid var(--border-subtle);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 0 var(--space-md);
+  backdrop-filter: blur(8px);
+}
+
+.progress-word-evolution {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.progress-form {
+  opacity: 0.25;
+  transition: all var(--duration-settle) var(--ease-smooth);
+  position: relative;
+}
+
+.progress-form.active {
+  opacity: 1;
+}
+
+.progress-form.frankish {
+  color: var(--merovingian-garnet);
+  font-style: italic;
+}
+
+.progress-form.norman {
+  color: var(--bayeux-terracotta);
+  font-style: italic;
+}
+
+.progress-form.english {
+  color: var(--chronicle-ink);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.progress-arrow {
+  color: var(--aged-iron-gall);
+  opacity: 0.4;
+  font-size: 0.875rem;
+}
+
+.progress-percentage {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--aged-iron-gall);
+  margin-left: var(--space-md);
+}
+
+/* ==================== HERO SECTION ==================== */
+
+.war-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: var(--space-3xl) var(--space-md);
+  padding-top: calc(48px + var(--space-3xl));
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-palimpsest {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ghost-words {
+  font-family: var(--font-medieval);
+  font-size: clamp(4rem, 20vw, 12rem);
+  color: var(--ghost-text);
+  opacity: 0.12;
+  transform: rotate(-3deg);
+  user-select: none;
+  letter-spacing: 0.1em;
+}
+
+.war-hero .hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-scriptorium {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  color: var(--aged-iron-gall);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.hero-scriptorium::before,
+.hero-scriptorium::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--aged-iron-gall));
+}
+
+.hero-scriptorium::after {
+  background: linear-gradient(90deg, var(--aged-iron-gall), transparent);
+}
+
+.hero-word-container {
+  margin-bottom: var(--space-lg);
+}
+
+.hero-word {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  line-height: 1;
+  display: block;
+}
+
+.hero-word.frankish-form {
+  color: var(--merovingian-garnet);
+  font-style: italic;
+  animation: subtle-shake 3s ease-in-out infinite;
+}
+
+.hero-word.settled-form {
+  color: var(--chronicle-ink);
+  font-style: normal;
+  animation: none;
+}
+
+@keyframes subtle-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-1px); }
+  75% { transform: translateX(1px); }
+}
+
+.hero-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  font-weight: 400;
+  color: var(--aged-iron-gall);
+  margin-bottom: var(--space-xl);
+  font-style: italic;
+}
+
+.hero-tagline {
+  font-size: var(--text-body);
+  color: var(--aged-iron-gall);
+  max-width: 600px;
+  margin: 0 auto var(--space-xl);
+  line-height: 1.8;
+}
+
+.hero-meta {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+  flex-wrap: wrap;
+}
+
+.hero-scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--aged-iron-gall);
+  font-size: var(--text-small);
+  font-style: italic;
+  animation: gentle-pulse 2s ease-in-out infinite;
+}
+
+@keyframes gentle-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.scroll-quill {
+  width: 24px;
+  height: 24px;
+  border-right: 2px solid var(--bayeux-terracotta);
+  border-bottom: 2px solid var(--bayeux-terracotta);
+  transform: rotate(45deg);
+  animation: scroll-drift 2s ease-in-out infinite;
+}
+
+@keyframes scroll-drift {
+  0%, 100% { transform: rotate(45deg) translateY(0); }
+  50% { transform: rotate(45deg) translateY(6px); }
+}
+
+/* ==================== DATA STATS ==================== */
+
+.data-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.data-value {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--chronicle-ink);
+  line-height: 1;
+}
+
+.data-label {
+  font-size: var(--text-caption);
+  color: var(--aged-iron-gall);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.25rem;
+}
+
+.data-source {
+  font-size: 0.625rem;
+  font-family: var(--font-mono);
+  color: var(--aged-iron-gall);
+  opacity: 0.7;
+  margin-top: 0.25rem;
+}
+
+/* ==================== SECTION STYLES ==================== */
+
+.section {
+  position: relative;
+  padding: var(--space-section) var(--space-md);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all var(--duration-settle) var(--ease-smooth);
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Era-specific section backgrounds */
+.section[data-era="frankish"] {
+  --era-accent: var(--merovingian-garnet);
+  background: linear-gradient(
+    180deg,
+    var(--peterborough-parchment) 0%,
+    rgba(131, 14, 13, 0.03) 50%,
+    var(--peterborough-parchment) 100%
+  );
+}
+
+.section[data-era="norman"] {
+  --era-accent: var(--bayeux-terracotta);
+  background: linear-gradient(
+    180deg,
+    var(--peterborough-parchment) 0%,
+    rgba(181, 84, 42, 0.03) 50%,
+    var(--peterborough-parchment) 100%
+  );
+}
+
+.section[data-era="english"] {
+  --era-accent: var(--chronicle-ink);
+}
+
+.section[data-era="modern"] {
+  --era-accent: var(--tapestry-blue-green);
+}
+
+/* Section Headers */
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-number {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  color: var(--aged-iron-gall);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: var(--space-sm);
+  color: var(--era-accent, var(--chronicle-ink));
+}
+
+.section-temporal {
+  font-size: var(--text-body);
+  color: var(--merovingian-garnet);
+  font-style: italic;
+  font-family: var(--font-body);
+}
+
+/* Section Content */
+.section-intro {
+  max-width: 800px;
+  margin: 0 auto var(--space-2xl);
+}
+
+.lead-paragraph {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--aged-iron-gall);
+}
+
+.lead-paragraph strong {
+  color: var(--chronicle-ink);
+}
+
+/* ==================== CONTENT BLOCKS ==================== */
+
+.content-block {
+  max-width: 800px;
+  margin: 0 auto var(--space-2xl);
+}
+
+.content-block h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+  color: var(--chronicle-ink);
+}
+
+.content-block p {
+  margin-bottom: var(--space-paragraph);
+  color: var(--aged-iron-gall);
+}
+
+.content-block p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==================== ETYMOLOGY RIVER ==================== */
+
+.etymology-river {
+  max-width: var(--full-width);
+  margin: var(--space-module) auto;
+  padding: var(--space-xl);
+  position: relative;
+}
+
+.etymology-river-title {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  color: var(--chronicle-ink);
+}
+
+.etymology-nodes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  position: relative;
+}
+
+.etymology-nodes::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    var(--merovingian-garnet) 0%,
+    var(--bayeux-terracotta) 50%,
+    var(--chronicle-ink) 100%
+  );
+  transform: translateX(-50%);
+}
+
+.etymology-node {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  position: relative;
+  padding: var(--space-md);
+  background: rgba(242, 232, 213, 0.9);
+  border-radius: 4px;
+  transition: all var(--duration-ink) var(--ease-smooth);
+}
+
+.etymology-node:nth-child(odd) {
+  flex-direction: row;
+  margin-right: 50%;
+  padding-right: var(--space-xl);
+}
+
+.etymology-node:nth-child(even) {
+  flex-direction: row-reverse;
+  margin-left: 50%;
+  padding-left: var(--space-xl);
+}
+
+.etymology-node::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: var(--peterborough-parchment);
+  border: 3px solid var(--era-accent, var(--bayeux-terracotta));
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.etymology-node:nth-child(odd)::after {
+  right: -8px;
+}
+
+.etymology-node:nth-child(even)::after {
+  left: -8px;
+}
+
+.etymology-node.reconstructed::after {
+  border-style: dashed;
+}
+
+.node-content {
+  flex: 1;
+}
+
+.node-form {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.node-form.reconstructed {
+  font-style: italic;
+}
+
+.node-form.reconstructed::before {
+  content: '*';
+  color: var(--merovingian-garnet);
+}
+
+.node-language {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--aged-iron-gall);
+  margin-bottom: 0.5rem;
+}
+
+.node-meaning {
+  font-size: var(--text-small);
+  color: var(--aged-iron-gall);
+  font-style: italic;
+}
+
+.node-date {
+  font-size: var(--text-caption);
+  color: var(--merovingian-garnet);
+  margin-top: 0.25rem;
+}
+
+/* ==================== COGNATE NETWORK ==================== */
+
+.cognate-network {
+  max-width: var(--full-width);
+  margin: var(--space-module) auto;
+  padding: var(--space-xl);
+}
+
+.cognate-network-title {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  color: var(--chronicle-ink);
+}
+
+.cognate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-md);
+}
+
+.cognate-card {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: var(--space-md);
+  transition: all var(--duration-ink) var(--ease-smooth);
+}
+
+.cognate-card:hover {
+  border-color: var(--frankish-gold);
+  box-shadow: 0 4px 20px rgba(201, 160, 48, 0.15);
+  transform: translateY(-2px);
+}
+
+.cognate-card[data-family="germanic"] {
+  border-left: 3px solid var(--merovingian-garnet);
+}
+
+.cognate-card[data-family="romance"] {
+  border-left: 3px solid var(--bayeux-terracotta);
+}
+
+.cognate-card[data-family="slavic"] {
+  border-left: 3px solid var(--tapestry-blue-green);
+}
+
+.cognate-card[data-family="semitic"] {
+  border-left: 3px solid var(--frankish-gold);
+}
+
+.cognate-card[data-family="sino-tibetan"],
+.cognate-card[data-family="japonic"],
+.cognate-card[data-family="koreanic"] {
+  border-left: 3px solid var(--aged-iron-gall);
+}
+
+.cognate-card[data-family="indo-iranian"] {
+  border-left: 3px solid #8B4513;
+}
+
+.cognate-language {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--aged-iron-gall);
+  margin-bottom: 0.5rem;
+}
+
+.cognate-word {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--chronicle-ink);
+  margin-bottom: 0.25rem;
+}
+
+.cognate-ipa {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  color: var(--aged-iron-gall);
+  margin-bottom: 0.5rem;
+}
+
+.cognate-etymology {
+  font-size: var(--text-small);
+  color: var(--aged-iron-gall);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.cognate-relation {
+  font-size: var(--text-caption);
+  color: var(--bayeux-terracotta);
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ==================== QUOTE MONUMENTS ==================== */
+
+.quote-monument {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(242, 232, 213, 0.8) 100%
+  );
+  border-left: 4px solid var(--era-accent, var(--bayeux-terracotta));
+  padding: var(--space-xl) var(--space-lg);
+  margin: var(--space-2xl) auto;
+  max-width: 900px;
+  position: relative;
+}
+
+.quote-monument::before {
+  content: '\201C';
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-md);
+  font-size: 4rem;
+  font-family: var(--font-display);
+  color: var(--era-accent, var(--bayeux-terracotta));
+  opacity: 0.2;
+  line-height: 1;
+}
+
+.quote-monument blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+.quote-monument p {
+  font-size: 1.375rem;
+  line-height: 1.6;
+  color: var(--chronicle-ink);
+  margin-bottom: var(--space-md);
+  font-style: italic;
+  font-family: var(--font-body);
+}
+
+.quote-monument cite {
+  font-size: var(--text-small);
+  color: var(--aged-iron-gall);
+  font-style: normal;
+  display: block;
+}
+
+/* Historical quote variant */
+.quote-monument.historical p {
+  font-family: var(--font-medieval);
+}
+
+.quote-monument.historical .translation {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--aged-iron-gall);
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--border-subtle);
+  font-style: normal;
+}
+
+/* ==================== TIMELINE ==================== */
+
+.timeline-section {
+  max-width: var(--full-width);
+  margin: var(--space-module) auto;
+  padding: var(--space-xl);
+}
+
+.timeline-title {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  color: var(--chronicle-ink);
+}
+
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--bayeux-terracotta) 5%,
+    var(--bayeux-terracotta) 95%,
+    transparent 100%
+  );
+  transform: translateX(-50%);
+}
+
+.timeline-event {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: var(--space-lg);
+  position: relative;
+}
+
+.timeline-year {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  color: var(--merovingian-garnet);
+  width: 100px;
+  text-align: right;
+  padding-right: var(--space-md);
+  flex-shrink: 0;
+}
+
+.timeline-dot {
+  width: 14px;
+  height: 14px;
+  background: var(--peterborough-parchment);
+  border: 3px solid var(--bayeux-terracotta);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin: 0.25rem var(--space-md);
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-event.first-attestation .timeline-dot {
+  background: var(--frankish-gold);
+  border-color: var(--frankish-gold);
+  box-shadow: 0 0 10px rgba(201, 160, 48, 0.5);
+}
+
+.timeline-content {
+  flex: 1;
+  padding-left: var(--space-md);
+}
+
+.timeline-event-title {
+  font-weight: 600;
+  color: var(--chronicle-ink);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-event-description {
+  font-size: var(--text-small);
+  color: var(--aged-iron-gall);
+}
+
+/* ==================== GLOSSARY ==================== */
+
+.glossary-section {
+  background: linear-gradient(
+    180deg,
+    var(--peterborough-parchment) 0%,
+    rgba(88, 75, 64, 0.05) 50%,
+    var(--peterborough-parchment) 100%
+  );
+  padding: var(--space-section) var(--space-md);
+}
+
+.glossary-title {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  color: var(--chronicle-ink);
+}
+
+.glossary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-md);
+  max-width: var(--full-width);
+  margin: 0 auto;
+}
+
+.glossary-term {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: var(--space-md);
+}
+
+.glossary-term-word {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--chronicle-ink);
+  margin-bottom: 0.5rem;
+}
+
+.glossary-term-definition {
+  font-size: var(--text-small);
+  color: var(--aged-iron-gall);
+  line-height: 1.6;
+}
+
+/* ==================== FAQ SECTION ==================== */
+
+.faq-section {
+  max-width: 900px;
+  margin: var(--space-section) auto;
+  padding: 0 var(--space-md);
+}
+
+.faq-title {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  color: var(--chronicle-ink);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border-subtle);
+  padding: var(--space-md) 0;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-question {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--chronicle-ink);
+  margin-bottom: var(--space-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.faq-question::before {
+  content: 'Q';
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  color: var(--merovingian-garnet);
+  flex-shrink: 0;
+  width: 1.5rem;
+  text-align: center;
+}
+
+.faq-answer {
+  font-size: var(--text-body);
+  color: var(--aged-iron-gall);
+  line-height: 1.7;
+  padding-left: 2rem;
+}
+
+/* ==================== SOURCES SECTION ==================== */
+
+.sources-section {
+  background: rgba(30, 25, 21, 0.03);
+  padding: var(--space-section) var(--space-md);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.sources-title {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  color: var(--chronicle-ink);
+}
+
+.sources-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-lg);
+  max-width: var(--full-width);
+  margin: 0 auto;
+}
+
+.source-category {
+  background: rgba(255, 255, 255, 0.5);
+  padding: var(--space-lg);
+  border-radius: 4px;
+  border: 1px solid var(--border-subtle);
+}
+
+.source-category-title {
+  font-size: var(--text-small);
+  color: var(--bayeux-terracotta);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-md);
+  font-weight: 600;
+}
+
+.source-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.source-list li {
+  font-size: var(--text-small);
+  color: var(--aged-iron-gall);
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.source-list li::before {
+  content: '\2014';
+  position: absolute;
+  left: 0;
+  color: var(--border-subtle);
+}
+
+/* ==================== SECTION DIVIDERS ==================== */
+
+.era-transition {
+  height: 120px;
+  position: relative;
+  margin: var(--space-xl) 0;
+}
+
+.era-transition::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--bayeux-terracotta) 20%,
+    var(--bayeux-terracotta) 80%,
+    transparent 100%
+  );
+}
+
+/* Chevron border pattern */
+.chevron-divider {
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='20' viewBox='0 0 40 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 L20 0 L40 20' stroke='%23B5542A' stroke-width='1' fill='none' opacity='0.3'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  margin: var(--space-xl) 0;
+}
+
+/* Wax seal section break */
+.wax-seal-break {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-xl) 0;
+}
+
+.wax-seal {
+  width: 40px;
+  height: 40px;
+  background: var(--merovingian-garnet);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--frankish-gold);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  box-shadow:
+    0 2px 8px rgba(131, 14, 13, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+/* ==================== CONCLUSION ==================== */
+
+.conclusion {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-md);
+  background: linear-gradient(
+    180deg,
+    var(--peterborough-parchment) 0%,
+    rgba(30, 25, 21, 0.05) 50%,
+    var(--peterborough-parchment) 100%
+  );
+}
+
+.conclusion-title {
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  font-weight: 700;
+  color: var(--chronicle-ink);
+  margin-bottom: var(--space-lg);
+}
+
+.conclusion-text {
+  max-width: 700px;
+  margin: 0 auto var(--space-xl);
+  font-size: 1.25rem;
+  color: var(--aged-iron-gall);
+  line-height: 1.8;
+}
+
+.conclusion-question {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--bayeux-terracotta);
+  font-style: italic;
+}
+
+/* ==================== FOOTER ==================== */
+
+.war-footer {
+  padding: var(--space-2xl) var(--space-md);
+  text-align: center;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--peterborough-parchment);
+}
+
+.footer-word {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--chronicle-ink);
+  margin-bottom: var(--space-sm);
+  letter-spacing: 0.1em;
+}
+
+.footer-text {
+  font-size: var(--text-small);
+  color: var(--aged-iron-gall);
+}
+
+/* ==================== CLOISONNE CELLS (Historical Tag Style) ==================== */
+
+.cloisonne-cell {
+  display: inline-block;
+  padding: 2px 10px;
+  border: 1px solid var(--frankish-gold);
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cloisonne-cell.frankish {
+  background: rgba(131, 14, 13, 0.08);
+  color: var(--merovingian-garnet);
+}
+
+.cloisonne-cell.norman {
+  background: rgba(181, 84, 42, 0.08);
+  color: var(--bayeux-terracotta);
+}
+
+.cloisonne-cell.english {
+  background: rgba(88, 75, 64, 0.08);
+  color: var(--aged-iron-gall);
+}
+
+/* ==================== RUBRICATED DATES ==================== */
+
+.rubricated {
+  color: var(--merovingian-garnet);
+  font-weight: 600;
+}
+
+.first-attestation-highlight {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 160, 48, 0.2) 10%,
+    rgba(201, 160, 48, 0.2) 90%,
+    transparent 100%
+  );
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+/* ==================== HISTORICAL FORMS ==================== */
+
+.attested-form {
+  font-style: italic;
+  font-family: var(--font-body);
+}
+
+.reconstructed-form {
+  font-style: italic;
+  font-family: var(--font-body);
+  border-bottom: 1px dashed var(--aged-iron-gall);
+}
+
+.reconstructed-form::before {
+  content: '*';
+  color: var(--merovingian-garnet);
+}
+
+.lang-label {
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+  color: var(--aged-iron-gall);
+  font-size: 0.9em;
+}
+
+/* ==================== SEMANTIC CONSTELLATION ==================== */
+
+.semantic-constellation {
+  max-width: var(--full-width);
+  margin: var(--space-module) auto;
+  padding: var(--space-xl);
+}
+
+.semantic-constellation-title {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  color: var(--chronicle-ink);
+}
+
+.semantic-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.semantic-card {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: var(--space-lg);
+  text-align: center;
+  transition: all var(--duration-ink) var(--ease-smooth);
+}
+
+.semantic-card:hover {
+  border-color: var(--frankish-gold);
+  transform: translateY(-2px);
+}
+
+.semantic-card.primary {
+  border-color: var(--merovingian-garnet);
+  border-width: 2px;
+}
+
+.semantic-word {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--chronicle-ink);
+  margin-bottom: var(--space-sm);
+}
+
+.semantic-etymology {
+  font-size: var(--text-small);
+  color: var(--aged-iron-gall);
+  font-style: italic;
+  margin-bottom: var(--space-sm);
+}
+
+.semantic-distinction {
+  font-size: var(--text-small);
+  color: var(--aged-iron-gall);
+  line-height: 1.5;
+}
+
+/* ==================== WORD FAMILY TREE ==================== */
+
+.word-family {
+  max-width: 900px;
+  margin: var(--space-2xl) auto;
+  padding: var(--space-xl);
+}
+
+.word-family-title {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  color: var(--chronicle-ink);
+}
+
+.word-family-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-md);
+}
+
+.word-family-item {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: var(--space-md);
+  transition: all var(--duration-ink) var(--ease-smooth);
+}
+
+.word-family-item:hover {
+  border-color: var(--frankish-gold);
+}
+
+.word-family-word {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--chronicle-ink);
+  margin-bottom: 0.25rem;
+}
+
+.word-family-origin {
+  font-size: var(--text-caption);
+  color: var(--merovingian-garnet);
+  margin-bottom: 0.5rem;
+}
+
+.word-family-meaning {
+  font-size: var(--text-small);
+  color: var(--aged-iron-gall);
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 900px) {
+  .etymology-node:nth-child(odd),
+  .etymology-node:nth-child(even) {
+    margin: 0;
+    margin-left: 20px;
+    flex-direction: row;
+    padding-left: var(--space-lg);
+  }
+
+  .etymology-nodes::before {
+    left: 20px;
+  }
+
+  .etymology-node::after {
+    left: -8px !important;
+    right: auto !important;
+  }
+
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timeline-event {
+    flex-wrap: wrap;
+  }
+
+  .timeline-year {
+    width: auto;
+    text-align: left;
+    padding-left: 40px;
+    margin-bottom: 0.5rem;
+  }
+
+  .semantic-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --space-section: 64px;
+    --space-module: 80px;
+  }
+
+  .war-essay {
+    font-size: 1rem;
+  }
+
+  .chronicle-progress-bar {
+    height: 40px;
+  }
+
+  .progress-word-evolution {
+    font-size: 1rem;
+  }
+
+  .hero-word {
+    letter-spacing: 0.1em;
+  }
+
+  .hero-meta {
+    gap: var(--space-lg);
+  }
+
+  .data-value {
+    font-size: 2rem;
+  }
+
+  .quote-monument {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .quote-monument p {
+    font-size: 1.125rem;
+  }
+
+  .cognate-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .glossary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sources-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==================== REDUCED MOTION ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-word.frankish-form {
+    animation: none;
+  }
+
+  .hero-scroll-cue {
+    animation: none;
+  }
+
+  .scroll-quill {
+    animation: none;
+  }
+
+  .progress-form {
+    transition: none;
+  }
+
+  .etymology-node,
+  .cognate-card,
+  .word-family-item,
+  .semantic-card {
+    transition: none;
+  }
+}
+
+/* ==================== PRINT STYLES ==================== */
+
+@media print {
+  .chronicle-progress-bar {
+    display: none;
+  }
+
+  .war-essay {
+    background: white;
+  }
+
+  .section {
+    opacity: 1;
+    transform: none;
+    page-break-inside: avoid;
+  }
+
+  .quote-monument {
+    page-break-inside: avoid;
+  }
+}

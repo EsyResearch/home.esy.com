@@ -1038,7 +1038,7 @@
 
 .mission-timeline__header {
   text-align: center;
-  padding: var(--space-sm) 0 var(--space-md);
+  padding: var(--space-xs) 0 var(--space-md);
   margin-bottom: var(--space-lg);
   border-bottom: 1px solid var(--crude-border);
 }
