@@ -111,7 +111,7 @@ function MissionTimeline({
   return (
     <div className="mission-timeline">
       <div className="mission-timeline__header">
-        <h3 className="mission-timeline__title">{title}</h3>
+        <h2 className="mission-timeline__title">{title}</h2>
         <span className="mission-timeline__timestamp">As of {timestamp}</span>
       </div>
 
@@ -1150,7 +1150,6 @@ export default function WhyVenezuelaMattersClient() {
         </section>
 
         {/* Operation Absolute Resolve */}
-        <h2>Operation Absolute Resolve</h2>
         <section>
           <MissionTimeline
             title="Operation Absolute Resolve"
