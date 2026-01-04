@@ -1028,7 +1028,7 @@
   border: 1px solid var(--crude-border);
   border-top: none;
   padding: 0 var(--space-2xl) var(--space-2xl);
-  margin: var(--space-lg) 0 var(--space-2xl);
+  margin: var(--space-md) 0 var(--space-2xl);
   /* Break out of the narrow container */
   width: calc(100vw - var(--space-2xl) * 2);
   max-width: 1000px;
@@ -1041,7 +1041,6 @@
   text-align: center;
   padding: var(--space-md) 0;
   margin-bottom: var(--space-lg);
-  border-top: none;
   border-bottom: 1px solid var(--crude-border);
 }
 
@@ -1051,8 +1050,6 @@
   font-size: 1.75rem;
   color: var(--pipeline-gold);
   margin: 0 0 var(--space-sm) 0;
-  padding: 0;
-  border: none;
   letter-spacing: 0.02em;
 }
 
