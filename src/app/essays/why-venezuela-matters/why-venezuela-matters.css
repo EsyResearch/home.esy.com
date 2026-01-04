@@ -286,6 +286,7 @@
   text-transform: uppercase;
   color: var(--uncertain-gray);
   margin-bottom: var(--space-sm);
+  text-align: center;
 }
 
 .hero__scroll-line {
