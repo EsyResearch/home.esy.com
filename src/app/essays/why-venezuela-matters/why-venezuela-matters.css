@@ -1026,9 +1026,8 @@
 .mission-timeline {
   background: var(--crude-surface);
   border: 1px solid var(--crude-border);
-  border-top: none;
   padding: 0 var(--space-2xl) var(--space-2xl);
-  margin: var(--space-md) 0 var(--space-2xl);
+  margin: var(--space-2xl) 0;
   /* Break out of the narrow container */
   width: calc(100vw - var(--space-2xl) * 2);
   max-width: 1000px;
@@ -1039,7 +1038,7 @@
 
 .mission-timeline__header {
   text-align: center;
-  padding: var(--space-md) 0;
+  padding: var(--space-sm) 0 var(--space-md);
   margin-bottom: var(--space-lg);
   border-bottom: 1px solid var(--crude-border);
 }
