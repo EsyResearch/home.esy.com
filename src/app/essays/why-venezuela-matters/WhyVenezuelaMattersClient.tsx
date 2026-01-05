@@ -710,10 +710,10 @@ function LegalityMatrix() {
 
         {/* Matrix Grid */}
         {/* Headers */}
-        <rect x="50" y="50" width="300" height="40" fill="#1a365d" rx="4 4 0 0" />
+        <rect x="50" y="50" width="300" height="40" fill="#1a365d" rx="4" />
         <text x="200" y="76" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="13" fontWeight="600" fill="white">U.S. DOMESTIC LAW</text>
 
-        <rect x="360" y="50" width="300" height="40" fill="#1a202c" rx="4 4 0 0" />
+        <rect x="360" y="50" width="300" height="40" fill="#1a202c" rx="4" />
         <text x="510" y="76" textAnchor="middle" fontFamily="Inter, sans-serif" fontSize="13" fontWeight="600" fill="white">INTERNATIONAL LAW</text>
 
         {/* Domestic Column */}
