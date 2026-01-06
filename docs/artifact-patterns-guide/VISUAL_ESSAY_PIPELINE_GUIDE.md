@@ -1,6 +1,7 @@
 # Visual Essay Pipeline Guide
 
 > Created: December 30, 2024
+> Last Updated: January 5, 2026
 
 ## Purpose
 
@@ -10,18 +11,24 @@ This guide documents the complete Visual Essay production pipeline, including al
 
 ## Pipeline Overview
 
-The Visual Essay Pipeline consists of **6 phases** and **11 quality gates** (G1-G9 plus G4.5 and G5.5). Every visual essay must pass through all applicable gates before publication.
+The Visual Essay Pipeline consists of **6 phases** and **13 quality gates** (G1-G9, plus G4.1, G4.5, G5.2, and G5.5). Every visual essay must pass through all applicable gates before publication.
 
 ### Phase Distribution
 
 | Phase | Focus | Time Allocation |
 |-------|-------|-----------------|
 | Phase 1: Intake | Scope & intent | 5% |
-| Phase 2: Research | Source gathering | 25% |
-| Phase 3: Production | Content creation | 40% |
-| Phase 4: Bibliography | Citation structure | 5% |
+| Phase 2: Research | Source gathering | 20% |
+| Phase 3: Spec Build | Content specification | 10% |
+| Phase 4: Production | Content, design, implementation | 40% |
 | Phase 5: Audit | Quality verification | 10% |
 | Phase 6: Publication | Final certification | 15% |
+
+### Gate Flow
+
+```
+G1 → G2 → G3 → G4 → G4.1 → G4.5 → G5 → G5.2 → G5.5 → G6 → G7 → G8 → G9
+```
 
 ---
 
@@ -30,7 +37,7 @@ The Visual Essay Pipeline consists of **6 phases** and **11 quality gates** (G1-
 ```
 ╔══════════════════════════════════════════════════════════════════════════════════════╗
 ║                        VISUAL ESSAY ORCHESTRATOR PIPELINE                             ║
-║                              (10 Gates + 1 Approval)                                  ║
+║                                 (13 Gates Pipeline)                                   ║
 ╚══════════════════════════════════════════════════════════════════════════════════════╝
 
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
@@ -44,10 +51,11 @@ The Visual Essay Pipeline consists of **6 phases** and **11 quality gates** (G1-
                           │  • Structured intake doc  │
                           │  • Scope & intent clear   │
                           │  • Editorial direction    │
+                          │  • SKILL.md requirements  │
                           └─────────────┬─────────────┘
                                         │
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
-│                            PHASE 2: RESEARCH (25%)                                   │
+│                            PHASE 2: RESEARCH (20%)                                   │
 └─────────────────────────────────────────────────────────────────────────────────────┘
                                         │
                           ┌─────────────▼─────────────┐
@@ -65,7 +73,26 @@ The Visual Essay Pipeline consists of **6 phases** and **11 quality gates** (G1-
                           │  ─────────────────────    │
                           │  • research/ package      │
                           │  • CITATIONS.md           │
+                          │  • FIGURES.md             │
+                          │  • QUOTES.md              │
+                          │  • TIMELINE.md            │
+                          │  • VISUALS.md             │
+                          │  • GAPS.md                │
                           │  • Primary sources        │
+                          └─────────────┬─────────────┘
+                                        │
+┌─────────────────────────────────────────────────────────────────────────────────────┐
+│                          PHASE 3: SPEC BUILD (10%)                                   │
+└─────────────────────────────────────────────────────────────────────────────────────┘
+                                        │
+                          ┌─────────────▼─────────────┐
+                          │  Visual Essay Invocation  │
+                          │         Agent             │
+                          │  ─────────────────────    │
+                          │  • Builds spec FROM       │
+                          │    research package       │
+                          │  • 6-layer structure      │
+                          │  • No orphan claims       │
                           └─────────────┬─────────────┘
                                         │
                           ┌─────────────▼─────────────┐
@@ -75,10 +102,11 @@ The Visual Essay Pipeline consists of **6 phases** and **11 quality gates** (G1-
                           │  • EXPERIENCE-SPEC.md     │
                           │  • specs/[slug].md        │
                           │  • SEO requirements       │
+                          │  • Research-backed        │
                           └─────────────┬─────────────┘
                                         │
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
-│                            PHASE 3: PRODUCTION (40%)                                 │
+│                            PHASE 4: PRODUCTION (40%)                                 │
 └─────────────────────────────────────────────────────────────────────────────────────┘
                                         │
            ┌────────────────────────────┼────────────────────────────┐
@@ -105,6 +133,17 @@ The Visual Essay Pipeline consists of **6 phases** and **11 quality gates** (G1-
           │  • Design system defined        │
           │  • Subject-derived aesthetics   │
           │  • Color, typography, motifs    │
+          │  • DESIGN-RESEARCH.md complete  │
+          └────────────────┬────────────────┘
+                           │
+          ┌────────────────▼────────────────┐
+          │            G4.1                 │
+          │   DESIGN RESEARCH RECONCILIATION│
+          │  ───────────────────────────    │
+          │  • Thematic authenticity        │
+          │  • Cross-essay novelty          │
+          │  • CSS implements design res.   │
+          │  • No aesthetic collisions      │
           └────────────────┬────────────────┘
                            │
           ┌────────────────▼────────────────┐
@@ -113,6 +152,7 @@ The Visual Essay Pipeline consists of **6 phases** and **11 quality gates** (G1-
           │  ───────────────────────────    │
           │  • All images sourced           │
           │  • Licenses verified            │
+          │  • URLs extracted               │
           │  • Attribution data ready       │
           └────────────────┬────────────────┘
                            │
@@ -123,20 +163,17 @@ The Visual Essay Pipeline consists of **6 phases** and **11 quality gates** (G1-
           │  • All narrative written        │
           │  • All visuals created          │
           │  • Component implemented        │
+          │  • Fact-checked vs. research    │
           └────────────────┬────────────────┘
                            │
-┌─────────────────────────────────────────────────────────────────────────────────────┐
-│                          PHASE 4: BIBLIOGRAPHY (5%)                                  │
-└─────────────────────────────────────────────────────────────────────────────────────┘
-                           │
           ┌────────────────▼────────────────┐
-          │   Bibliography Orchestrator     │
+          │            G5.2                 │
+          │   DESIGN RESEARCH INTEGRATION   │
           │  ───────────────────────────    │
-          │  → Citation Audit Agent         │
-          │  → Quotes Audit Agent           │
-          │  → Image Research Expert        │
-          │  Pattern: docs/artifact-        │
-          │           patterns-guide/       │
+          │  • CSS selectors bind to TSX    │
+          │  • ≥95% className coverage      │
+          │  • No convention mismatches     │
+          │  • Styling properly applied     │
           └────────────────┬────────────────┘
                            │
           ┌────────────────▼────────────────┐
@@ -170,6 +207,7 @@ The Visual Essay Pipeline consists of **6 phases** and **11 quality gates** (G1-
           │  • All sources verified         │
           │  • Quotes authenticated         │
           │  • No broken links              │
+          │  • Content matches research     │
           └────────────────┬────────────────┘
                            │
           ┌────────────────▼────────────────┐
@@ -178,6 +216,7 @@ The Visual Essay Pipeline consists of **6 phases** and **11 quality gates** (G1-
           │  • Scroll-lock behavior         │
           │  • 60fps performance            │
           │  • Mobile Safari compatibility  │
+          │  • Real device testing          │
           └────────────────┬────────────────┘
                            │
           ┌────────────────▼────────────────┐
@@ -187,6 +226,7 @@ The Visual Essay Pipeline consists of **6 phases** and **11 quality gates** (G1-
           │  • Score ≥ 8.0/10               │
           │  • No Tier 1 failures           │
           │  • Mobile verified              │
+          │  • 60fps confirmed              │
           └────────────────┬────────────────┘
                            │
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
@@ -283,11 +323,13 @@ The Visual Essay Pipeline consists of **6 phases** and **11 quality gates** (G1-
 |------|------|-------|-------|
 | G1 | Intake Approval | Visual Essay Orchestrator | Intake |
 | G2 | Research Complete | Research Orchestrator | Research |
-| G3 | Spec Approval | Visual Essay Orchestrator | Research |
+| G3 | Spec Approval | Visual Essay Orchestrator | Spec Build |
 | G4 | Design Research | Design Researcher | Production |
+| G4.1 | Design Research Reconciliation | Design Research Reconciliation Agent | Production |
 | G4.5 | Image Sourcing | Image Research Licensing Expert | Production |
 | G5 | Content Complete | Scrollytelling Expert | Production |
-| G5.5 | Bibliography Implementation | Bibliography Orchestrator | Bibliography |
+| G5.2 | Design Research Integration | Design Research Integration Agent | Production |
+| G5.5 | Bibliography Implementation | Bibliography Orchestrator | Production |
 | G6 | Citation Audit | Citation Audit Agent | Audit |
 | G7 | Scroll Certification | Immersive Scrolling Auditor | Audit |
 | G8 | Publication Certification | Publish Artifact Orchestrator | Publication |
@@ -295,19 +337,21 @@ The Visual Essay Pipeline consists of **6 phases** and **11 quality gates** (G1-
 
 ### Gate Pass Criteria
 
-| Gate | Pass Criteria | Blocking? |
-|------|---------------|-----------|
-| **G1** | Scope defined, SKILL.md requirements identified, research targets clear | Yes |
-| **G2** | Research package complete: figures, quotes, timeline, visuals all verified | Yes |
-| **G3** | 6-layer spec complete, all content research-backed, no orphan claims | Yes |
-| **G4** | Unique visual identity derived from subject matter | Yes |
-| **G4.5** | All images sourced, URLs extracted, licenses verified | Yes |
-| **G5** | All sections drafted, fact-checked, uses research package | Yes |
-| **G5.5** | Bibliography section complete (Works Cited, Image Credits, A/V, Data Sources) | Yes |
-| **G6** | Citation Certification achieved (content vs. research match) | Yes |
-| **G7** | Immersive Scrolling Auditor certification (≥8.0/10) | Yes |
-| **G8** | Pre-publication certification (GO/CONDITIONAL) from all domain audits | Yes |
-| **G9** | Director sign-off on complete package | Yes |
+| Gate | Pass Criteria | Blocks |
+|------|---------------|--------|
+| **G1** | Scope defined, SKILL.md requirements identified, research targets clear | G2 |
+| **G2** | Research package complete: figures, quotes, timeline, visuals all verified | G3 |
+| **G3** | 6-layer spec complete, all content research-backed, no orphan claims | G4 |
+| **G4** | Unique visual identity derived from subject matter, DESIGN-RESEARCH.md complete | G4.1 |
+| **G4.1** | Thematic authenticity verified, no cross-essay collisions, CSS implements design research | G4.5 |
+| **G4.5** | All images sourced, URLs extracted, licenses verified | G5 |
+| **G5** | All sections drafted, fact-checked, uses research package | G5.2 |
+| **G5.2** | CSS selectors bind to TSX classNames (≥95%), no convention mismatches | G5.5 |
+| **G5.5** | Bibliography section complete (Works Cited, Image Credits, A/V, Data Sources) | G6 |
+| **G6** | Citation Certification achieved (content vs. research match) | G7 |
+| **G7** | Immersive Scrolling Auditor certification (≥8.0/10, 60fps, mobile verified) | G8 |
+| **G8** | Pre-publication certification (GO/CONDITIONAL) from all domain audits | G9 |
+| **G9** | Director sign-off on complete package | Deploy |
 
 ---
 
@@ -319,10 +363,12 @@ The Visual Essay Pipeline consists of **6 phases** and **11 quality gates** (G1-
 |--------------|----------------|-------------|
 | **Visual Essay Orchestrator** | Pipeline executive, editorial direction | G1, G3, G9 |
 | **Research Orchestrator** | Research coordination | G2 |
+| **Scrollytelling Expert** | Production coordination | G5 (participates in G4-G5.5) |
 | **Bibliography Orchestrator** | Bibliography implementation & audit | G5.5 |
 | **Publish Artifact Orchestrator** | Pre-publication certification | G8 |
 | **Audit Orchestrator** | Multi-domain quality assessment | (Invoked by G8) |
 | **QA Remediation Orchestrator** | Issue resolution | (Invoked by G8) |
+| **SEO Orchestrator** | SEO pipeline management | (Invoked by G8) |
 
 ### Specialist Agents
 
@@ -331,10 +377,12 @@ The Visual Essay Pipeline consists of **6 phases** and **11 quality gates** (G1-
 | **Brainstorming Agent** | Research | Question formulation (G2) |
 | **Research Citations Expert** | Research | Source discovery (G2) |
 | **Design Researcher** | Design | Visual identity research (G4) |
+| **Design Research Reconciliation Agent** | Design | Thematic authenticity, cross-essay novelty (G4.1) |
 | **Image Research Licensing Expert** | Images | Image sourcing & licensing (G4.5) |
 | **Scrollytelling Expert** | Production | Content creation coordination (G5) |
 | **Historian Writer** | Content | Narrative writing (G5) |
 | **Historian Editor** | Content | Fact-checking (G5) |
+| **Design Research Integration Agent** | Engineering | CSS↔TSX binding verification (G5.2) |
 | **Citation Audit Agent** | Audit | Source verification (G6) |
 | **Quotes Audit Agent** | Audit | Quote verification (via G6) |
 | **Immersive Scrolling Auditor** | Audit | Scroll performance (G7) |
@@ -354,7 +402,31 @@ SKILL.md (template) → Research Orchestrator → research/ package → Invocati
 
 **Critical**: Research happens BEFORE spec construction. The spec is built FROM verified research, ensuring no orphan claims.
 
-### Bibliography Flow (G5 → G5.5)
+### Design Research Flow (G4 → G4.1 → G4.5)
+
+```
+Design Researcher → DESIGN-RESEARCH.md → Reconciliation Agent → Image Research Expert
+                          │                      │                      │
+                          ▼                      ▼                      ▼
+                     G4: Visual           G4.1: CSS             G4.5: Images
+                     identity              binds design          sourced
+```
+
+**Critical**: Design research must be reconciled (G4.1) before image sourcing (G4.5) to ensure visual assets match the design system.
+
+### Content Integration Flow (G5 → G5.2 → G5.5)
+
+```
+Content Complete → Integration Agent → Bibliography Orchestrator
+                         │                    │
+                         ▼                    ▼
+                   G5.2: CSS↔TSX        G5.5: Works Cited
+                   binding verified      Image Credits
+```
+
+**Critical**: CSS must properly bind to TSX classNames (≥95% coverage) before bibliography implementation.
+
+### Bibliography Flow (G5.5)
 
 ```
 Content Complete → Bibliography Orchestrator → Works Cited + Image Credits + A/V + Data Sources
@@ -402,33 +474,77 @@ Scroll Certified → Publish Artifact Orchestrator
 
 ---
 
+## G2 Requirements (Research Complete)
+
+The Research Orchestrator must verify research package satisfies SKILL.md requirements:
+
+- [ ] `research/` directory exists
+- [ ] `FIGURES.md` has 5-15 figures with imagery availability confirmed
+- [ ] `QUOTES.md` has 10+ verified quotes with sources
+- [ ] `TIMELINE.md` maps major events chronologically
+- [ ] `VISUALS.md` identifies archive/visual sources
+- [ ] `CITATIONS.md` contains minimum sources (varies by depth)
+- [ ] All sources are Tier 1-2 (or justified exceptions)
+- [ ] All links verified working
+- [ ] `GAPS.md` documents what cannot be verified
+- [ ] Domain expert sign-off (if applicable)
+
+---
+
+## G3 Requirements (Spec Approval)
+
+The Visual Essay Orchestrator must verify spec is research-backed:
+
+- [ ] Spec follows 6-layer SKILL.md structure
+- [ ] All figure profiles sourced from `research/FIGURES.md`
+- [ ] All quotes verified in `research/QUOTES.md`
+- [ ] Narrative arc matches `research/TIMELINE.md`
+- [ ] No claims from `research/GAPS.md` appear in spec
+- [ ] Appropriate lens applied (mythology, history, etc.)
+
+---
+
 ## Related Documents
 
 ### Orchestration Agents
 - [Visual Essay Orchestrator](../../orchestration/agents/orchestrators/visual-essay-orchestrator.md)
+- [Research Orchestrator](../../orchestration/agents/orchestrators/research-orchestrator.md)
+- [Scrollytelling Expert](../../orchestration/agents/orchestrators/scrollytelling-expert.md)
 - [Bibliography Orchestrator](../../orchestration/agents/orchestrators/bibliography-orchestrator.md)
 - [Publish Artifact Orchestrator](../../orchestration/agents/orchestrators/publish-artifact-orchestrator.md)
 - [Audit Orchestrator](../../orchestration/agents/orchestrators/audit-orchestrator.md)
+- [QA Remediation Orchestrator](../../orchestration/agents/orchestrators/qa-remediation-orchestrator.md)
+
+### Auditor Agents
+- [Design Research Reconciliation Agent](../../orchestration/agents/auditors/design-research-reconciliation-agent.md)
+- [Design Research Integration Agent](../../orchestration/agents/auditors/design-research-integration-agent.md)
+- [Citation Audit Agent](../../orchestration/agents/auditors/citation-audit-agent.md)
+- [Immersive Scrolling Auditor](../../orchestration/agents/auditors/immersive-scrolling-auditor.md)
 
 ### Implementation Guides
 - [Bibliography Structure Guide](./BIBLIOGRAPHY_STRUCTURE_GUIDE.md)
 - [Artifact Citation Patterns Guide](./ARTIFACT_CITATION_PATTERNS_GUIDE.md)
+- [CSS TSX Binding Patterns Guide](./CSS_TSX_BINDING_PATTERNS_GUIDE.md)
 
 ### Framework Documentation
-- [META-AGENT-FRAMEWORK.md](../../orchestration/agents/META-AGENT-FRAMEWORK.md)
 - [FRAMEWORK.md](../../orchestration/FRAMEWORK.md)
+- [META-AGENT-FRAMEWORK.md](../../orchestration/agents/META-AGENT-FRAMEWORK.md)
 
 ---
 
 ## Last Updated
-December 30, 2024
+January 5, 2026
 
 ### Recent Changes
-- Initial creation documenting complete 11-gate pipeline
-- Added Bibliography phase (G5.5) and Publication Certification (G8)
-- Documented Publish Artifact Orchestrator and QA Remediation integration
-- Added certification status definitions
+- Updated to 13-gate pipeline (was 11 gates)
+- Added G4.1: Design Research Reconciliation
+- Added G5.2: Design Research Integration
+- Updated phase descriptions and time allocations
+- Added detailed G2/G3 requirements
+- Added Design Research and Content Integration workflow diagrams
+- Added links to new auditor agents
+- Synchronized with FRAMEWORK.md
 
 ---
 
-*This guide serves as the authoritative reference for the Visual Essay production pipeline, documenting all gates, agent ownership, and workflows from intake to publication.*
+*This guide serves as the authoritative reference for the Visual Essay production pipeline, documenting all 13 gates, agent ownership, and workflows from intake to publication.*
