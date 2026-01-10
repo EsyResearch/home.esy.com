@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import { 
   Search,
   Users,
@@ -93,7 +94,7 @@ const AboutPage = () => {
           marginBottom: '1.75rem',
           fontWeight: 400
         }}>
-          Esy (pronounced "Eh-see") is a workflow-based research platform.
+          Esy (pronounced &quot;Eh-see&quot;) is a workflow-based research platform.
         </p>
 
         <p style={{
@@ -111,7 +112,7 @@ const AboutPage = () => {
           color: theme.subtle,
           marginBottom: '1.5rem'
         }}>
-          It's built for people who don't just want fast answers, but need to understand a subject, organize what they find, and produce work they can trust and return to later.
+          It&apos;s built for people who don&apos;t just want fast answers, but need to understand a subject, organize what they find, and produce work they can trust and return to later.
         </p>
 
         <p style={{
@@ -213,7 +214,7 @@ const AboutPage = () => {
           marginBottom: '1.5rem'
         }}>
           The name Esy comes from the word{' '}
-          <a 
+          <Link 
             href="/essays/etymology/the-word-essay/" 
             style={{ 
               color: theme.muted, 
@@ -226,7 +227,7 @@ const AboutPage = () => {
             onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.faint}
           >
             essay
-          </a>, which originally meant an attempt or a way of thinking something through.
+          </Link>, which originally meant an attempt or a way of thinking something through.
         </p>
 
         <p style={{
@@ -325,7 +326,7 @@ const AboutPage = () => {
             marginBottom: '1.5rem'
           }}>
             At the center of Esy is a type of publishable work we call{' '}
-            <a 
+            <Link 
               href="/essays" 
               style={{ 
                 color: theme.text, 
@@ -338,7 +339,7 @@ const AboutPage = () => {
               onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.faint}
             >
               Visual Essays
-            </a>.
+            </Link>.
           </p>
 
           <p style={{
@@ -357,7 +358,7 @@ const AboutPage = () => {
             fontWeight: 500,
             marginBottom: '1.5rem'
           }}>
-            Visual essays are Esy's North Star artifact.
+            Visual essays are Esy&apos;s North Star artifact.
           </p>
 
           <p style={{
@@ -417,7 +418,7 @@ const AboutPage = () => {
             lineHeight: 1.85,
             color: theme.subtle
           }}>
-            Visual essays are not a special mode or separate product. They are a demonstration of Esy's full range — a way to show how different kinds of work can be composed into major educational pieces.
+            Visual essays are not a special mode or separate product. They are a demonstration of Esy&apos;s full range — a way to show how different kinds of work can be composed into major educational pieces.
           </p>
         </div>
       </section>
