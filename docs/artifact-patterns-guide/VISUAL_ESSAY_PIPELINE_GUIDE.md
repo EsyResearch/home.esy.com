@@ -1,7 +1,7 @@
 # Visual Essay Pipeline Guide
 
 > Created: December 30, 2024
-> Last Updated: January 5, 2026
+> Last Updated: January 18, 2026
 
 ## Purpose
 
@@ -378,17 +378,23 @@ G1 → G2 → G3 → G4 → G4.1 → G4.5 → G5 → G5.2 → G5.5 → G6 → G7
 | **Research Citations Expert** | Research | Source discovery (G2) |
 | **Design Researcher** | Design | Visual identity research (G4) |
 | **Design Research Reconciliation Agent** | Design | Thematic authenticity, cross-essay novelty (G4.1) |
+| **Design Slop Auditor** | Design | AI pattern detection, subject-derived design verification (G4, G7) |
 | **Image Research Licensing Expert** | Images | Image sourcing & licensing (G4.5) |
 | **Scrollytelling Expert** | Production | Content creation coordination (G5) |
 | **Historian Writer** | Content | Narrative writing (G5) |
 | **Historian Editor** | Content | Fact-checking (G5) |
+| **Content Research Reconciliation Agent** | Content | Research-to-spec gap analysis (post-G2) |
+| **Content Research Integration Agent** | Content | Spec-to-artifact fidelity verification (post-G5) |
 | **Design Research Integration Agent** | Engineering | CSS↔TSX binding verification (G5.2) |
+| **Design Research Implementation Auditor** | Engineering | Spec-to-implementation compliance verification (post-G5) |
+| **Animation Pattern Auditor** | Engineering | Scroll-lock pattern & animation taxonomy mapping (G5, G7) |
 | **Citation Audit Agent** | Audit | Source verification (G6) |
 | **Quotes Audit Agent** | Audit | Quote verification (via G6) |
 | **Immersive Scrolling Auditor** | Audit | Scroll performance (G7) |
+| **Rich Results Auditor** | SEO | Article/BreadcrumbList/FAQPage schema & OG/Twitter meta (G8) |
 | **Social Media Meta Expert** | Publication | OG/Twitter meta (G8) |
 | **SEO Audit Agent** | Publication | Search optimization (G8) |
-| **Gate Guard Auditor** | Publication | Gate verification (G8) |
+| **Gate Guard Auditor** | Publication | G1-G9 pipeline compliance verification (G8) |
 
 ---
 
@@ -518,8 +524,15 @@ The Visual Essay Orchestrator must verify spec is research-backed:
 ### Auditor Agents
 - [Design Research Reconciliation Agent](../../orchestration/agents/auditors/design-research-reconciliation-agent.md)
 - [Design Research Integration Agent](../../orchestration/agents/auditors/design-research-integration-agent.md)
+- [Design Research Implementation Auditor](../../orchestration/agents/auditors/design-research-implementation-auditor.md)
+- [Design Slop Auditor](../../orchestration/agents/auditors/design-slop-auditor.md)
 - [Citation Audit Agent](../../orchestration/agents/auditors/citation-audit-agent.md)
 - [Immersive Scrolling Auditor](../../orchestration/agents/auditors/immersive-scrolling-auditor.md)
+- [Animation Pattern Auditor](../../orchestration/agents/auditors/animation-pattern-auditor.md)
+- [Content Research Reconciliation Agent](../../orchestration/agents/auditors/content-research-reconciliation-agent.md)
+- [Content Research Integration Agent](../../orchestration/agents/auditors/content-research-integration-agent.md)
+- [Rich Results Auditor](../../orchestration/agents/auditors/rich-results-auditor.md)
+- [Gate Guard Auditor](../../orchestration/agents/auditors/gate-guard-auditor.md)
 
 ### Implementation Guides
 - [Bibliography Structure Guide](./BIBLIOGRAPHY_STRUCTURE_GUIDE.md)
@@ -533,16 +546,24 @@ The Visual Essay Orchestrator must verify spec is research-backed:
 ---
 
 ## Last Updated
-January 5, 2026
+January 18, 2026
 
 ### Recent Changes
+- Added missing auditor agents to Specialist Agents table:
+  - Design Slop Auditor (AI pattern detection)
+  - Content Research Reconciliation Agent (research→spec gaps)
+  - Content Research Integration Agent (spec→artifact fidelity)
+  - Design Research Implementation Auditor (spec compliance)
+  - Animation Pattern Auditor (scroll-lock patterns)
+  - Rich Results Auditor (SEO structured data)
+- Expanded Auditor Agents links section with 7 additional agents
+- Clarified Gate Guard Auditor role as G1-G9 pipeline compliance
 - Updated to 13-gate pipeline (was 11 gates)
 - Added G4.1: Design Research Reconciliation
 - Added G5.2: Design Research Integration
 - Updated phase descriptions and time allocations
 - Added detailed G2/G3 requirements
 - Added Design Research and Content Integration workflow diagrams
-- Added links to new auditor agents
 - Synchronized with FRAMEWORK.md
 
 ---
