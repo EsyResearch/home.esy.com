@@ -1,0 +1,130 @@
+{
+  "run_id": "run_20260119T222250635Z_the-word-war_cmfi9k",
+  "workflow": {
+    "name": "visual-essay",
+    "version": "local-dev",
+    "slug": "the-word-war",
+    "artifact_path": "src/app/essays/etymology/the-word-war"
+  },
+  "depth": "standard",
+  "status": "FAILED",
+  "started_at": "2026-01-19T22:22:50.636Z",
+  "finished_at": null,
+  "gates": [
+    {
+      "gate": "G1",
+      "name": "Intake Approval",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G2",
+      "name": "Research Complete",
+      "status": "FAIL",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-01-19T22:22:54.469Z",
+          "finished_at": "2026-01-19T22:22:58.861Z",
+          "agent": "research-orchestrator",
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CITATIONS.md",
+            "{artifact_path}/research/SYNTHESIS.md",
+            "{artifact_path}/research/FIGURES.md",
+            "{artifact_path}/research/QUOTES.md",
+            "{artifact_path}/research/TIMELINE.md",
+            "{artifact_path}/research/VISUALS.md"
+          ],
+          "artifacts": [],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-war/research/CITATIONS.md",
+              "pass": false,
+              "description": "All sources with verification status"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/SYNTHESIS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-war/research/SYNTHESIS.md",
+              "pass": false,
+              "description": "Key findings synthesis"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/FIGURES.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-war/research/FIGURES.md",
+              "pass": false,
+              "description": "5-15 figures with imagery availability"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/QUOTES.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-war/research/QUOTES.md",
+              "pass": false,
+              "description": "10+ verified quotes with sources"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/TIMELINE.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-war/research/TIMELINE.md",
+              "pass": false,
+              "description": "Chronological events mapping"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/VISUALS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-war/research/VISUALS.md",
+              "pass": false,
+              "description": "Archive/visual sources identification"
+            },
+            {
+              "type": "min_sources",
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "count": 0,
+              "threshold": 8,
+              "depth": "standard",
+              "pass": false,
+              "description": "CITATIONS.md must contain minimum sources based on depth mode"
+            }
+          ],
+          "failure_reason": "Missing: {artifact_path}/research/CITATIONS.md; Missing: {artifact_path}/research/SYNTHESIS.md; Missing: {artifact_path}/research/FIGURES.md; Missing: {artifact_path}/research/QUOTES.md; Missing: {artifact_path}/research/TIMELINE.md; Missing: {artifact_path}/research/VISUALS.md; Insufficient sources: 0/8 (depth: standard)"
+        }
+      ]
+    },
+    {
+      "gate": "G3",
+      "name": "Spec Approval",
+      "status": "NOT_STARTED",
+      "attempts": []
+    }
+  ],
+  "invocations": [],
+  "artifacts_index": [],
+  "validations": [],
+  "events": [
+    {
+      "timestamp": "2026-01-19T22:22:50.636Z",
+      "type": "RUN_STARTED",
+      "message": "Run initialized for visual-essay/the-word-war"
+    },
+    {
+      "timestamp": "2026-01-19T22:22:54.470Z",
+      "type": "GATE_STARTED",
+      "gate": "G2",
+      "attempt": 1,
+      "agent": "research-orchestrator",
+      "message": "Gate G2 attempt 1 started with agent research-orchestrator"
+    },
+    {
+      "timestamp": "2026-01-19T22:22:58.862Z",
+      "type": "GATE_FAILED",
+      "gate": "G2",
+      "attempt": 1,
+      "message": "Gate G2 failed: Missing: {artifact_path}/research/CITATIONS.md; Missing: {artifact_path}/research/SYNTHESIS.md; Missing: {artifact_path}/research/FIGURES.md; Missing: {artifact_path}/research/QUOTES.md; Missing: {artifact_path}/research/TIMELINE.md; Missing: {artifact_path}/research/VISUALS.md; Insufficient sources: 0/8 (depth: standard)"
+    }
+  ]
+}

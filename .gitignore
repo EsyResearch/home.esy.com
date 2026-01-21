@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Orchestration run logs (verbose/temp data)
+# Run records (orchestration/runs/**/record/) ARE committed
+orchestration/runs/**/logs/

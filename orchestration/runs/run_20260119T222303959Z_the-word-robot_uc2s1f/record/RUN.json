@@ -1,0 +1,435 @@
+{
+  "run_id": "run_20260119T222303959Z_the-word-robot_uc2s1f",
+  "workflow": {
+    "name": "visual-essay",
+    "version": "local-dev",
+    "slug": "the-word-robot",
+    "artifact_path": "src/app/essays/etymology/the-word-robot"
+  },
+  "depth": "standard",
+  "status": "FAILED",
+  "started_at": "2026-01-19T22:23:03.960Z",
+  "finished_at": null,
+  "gates": [
+    {
+      "gate": "G1",
+      "name": "Intake Approval",
+      "status": "FAIL",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-01-19T22:24:08.318Z",
+          "finished_at": "2026-01-19T22:24:08.345Z",
+          "agent": "visual-essay-orchestrator",
+          "invocation_ids": [],
+          "required_outputs": [
+            "orchestration/projects/{slug}/INTAKE-APPROVAL.md",
+            "{artifact_path}/research/INTAKE.md"
+          ],
+          "artifacts": [],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": false,
+              "checked": [
+                {
+                  "path": "orchestration/projects/{slug}/INTAKE-APPROVAL.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/research/INTAKE.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            }
+          ],
+          "failure_reason": "None of required files exist: orchestration/projects/{slug}/INTAKE-APPROVAL.md, {artifact_path}/research/INTAKE.md"
+        }
+      ]
+    },
+    {
+      "gate": "G2",
+      "name": "Research Complete",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-01-19T22:23:08.284Z",
+          "finished_at": "2026-01-19T22:23:08.312Z",
+          "agent": "research-orchestrator",
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CITATIONS.md",
+            "{artifact_path}/research/SYNTHESIS.md",
+            "{artifact_path}/research/FIGURES.md",
+            "{artifact_path}/research/QUOTES.md",
+            "{artifact_path}/research/TIMELINE.md",
+            "{artifact_path}/research/VISUALS.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/CITATIONS.md",
+              "sha256": "a3f89322ba13240198155ef7281233e40a129f897dd8b475871a5bc87fd422cf",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/CITATIONS.md",
+              "pass": true,
+              "description": "All sources with verification status"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/SYNTHESIS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/SYNTHESIS.md",
+              "pass": false,
+              "description": "Key findings synthesis"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/FIGURES.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/FIGURES.md",
+              "pass": false,
+              "description": "5-15 figures with imagery availability"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/QUOTES.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/QUOTES.md",
+              "pass": false,
+              "description": "10+ verified quotes with sources"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/TIMELINE.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/TIMELINE.md",
+              "pass": false,
+              "description": "Chronological events mapping"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/VISUALS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/VISUALS.md",
+              "pass": false,
+              "description": "Archive/visual sources identification"
+            },
+            {
+              "type": "min_sources",
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "count": 10,
+              "threshold": 8,
+              "depth": "standard",
+              "pass": true,
+              "description": "CITATIONS.md must contain minimum sources based on depth mode"
+            }
+          ],
+          "failure_reason": "Missing: {artifact_path}/research/SYNTHESIS.md; Missing: {artifact_path}/research/FIGURES.md; Missing: {artifact_path}/research/QUOTES.md; Missing: {artifact_path}/research/TIMELINE.md; Missing: {artifact_path}/research/VISUALS.md"
+        },
+        {
+          "attempt": 2,
+          "status": "PASS",
+          "started_at": "2026-01-19T22:23:39.520Z",
+          "finished_at": "2026-01-19T22:23:39.550Z",
+          "agent": "research-orchestrator",
+          "invocation_ids": [
+            "inv_1768861428652_b1g2"
+          ],
+          "required_outputs": [
+            "{artifact_path}/research/CITATIONS.md",
+            "{artifact_path}/research/SYNTHESIS.md",
+            "{artifact_path}/research/FIGURES.md",
+            "{artifact_path}/research/QUOTES.md",
+            "{artifact_path}/research/TIMELINE.md",
+            "{artifact_path}/research/VISUALS.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/CITATIONS.md",
+              "sha256": "a3f89322ba13240198155ef7281233e40a129f897dd8b475871a5bc87fd422cf",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/SYNTHESIS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/SYNTHESIS.md",
+              "sha256": "80d5d5b3043cea5c38fbc0b2816e3e11db333345687cd8462d4346677d0ed52b",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/FIGURES.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/FIGURES.md",
+              "sha256": "efbe462f42007459f22c6f62ad82b40edb5eb7f15a003ef0c3d75df04c306d54",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/QUOTES.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/QUOTES.md",
+              "sha256": "e31b3b419c379b31e7baa3d202faa67333a7d3dae518feb64b3df9cdbfbddf98",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/TIMELINE.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/TIMELINE.md",
+              "sha256": "baff85569107e833256251a02157e334d62ab2f8bf9d03c5d013edca0c1f855a",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/VISUALS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/VISUALS.md",
+              "sha256": "79ec4056fbd8a525e0d5423b77bda97af84debb77cdefdce9a1a94b946351104",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/CITATIONS.md",
+              "pass": true,
+              "description": "All sources with verification status"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/SYNTHESIS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/SYNTHESIS.md",
+              "pass": true,
+              "description": "Key findings synthesis"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/FIGURES.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/FIGURES.md",
+              "pass": true,
+              "description": "5-15 figures with imagery availability"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/QUOTES.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/QUOTES.md",
+              "pass": true,
+              "description": "10+ verified quotes with sources"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/TIMELINE.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/TIMELINE.md",
+              "pass": true,
+              "description": "Chronological events mapping"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/VISUALS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/VISUALS.md",
+              "pass": true,
+              "description": "Archive/visual sources identification"
+            },
+            {
+              "type": "min_sources",
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "count": 10,
+              "threshold": 8,
+              "depth": "standard",
+              "pass": true,
+              "description": "CITATIONS.md must contain minimum sources based on depth mode"
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G3",
+      "name": "Spec Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-01-19T22:24:03.628Z",
+          "finished_at": "2026-01-19T22:24:03.656Z",
+          "agent": "visual-essay-invocation-agent",
+          "invocation_ids": [],
+          "required_outputs": [
+            "orchestration/skills/visual-essay-invocation/specs/{slug}.md"
+          ],
+          "artifacts": [
+            {
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-word-robot.md",
+              "sha256": "3a3dcb718a1c1e317e0ede8f2c9eca58c3efe612b3ef727b42a58462c6c8ac51",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-word-robot.md",
+              "pass": true,
+              "description": "6-layer visual essay specification"
+            },
+            {
+              "type": "contains_headings",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "pass": true,
+              "missing": [],
+              "description": "Spec must contain all 6 layer headings"
+            },
+            {
+              "type": "not_contains",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "pattern": "[DRAFT]",
+              "found": false,
+              "severity": "warning",
+              "description": "Spec should not contain [DRAFT] marker (configurable)",
+              "pass": true,
+              "warning": false
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    }
+  ],
+  "invocations": [
+    {
+      "invocation_id": "inv_1768861428652_b1g2",
+      "gate": "G2",
+      "agent": "research-citations-expert",
+      "model": "unknown",
+      "started_at": "2026-01-19T22:23:48.652Z",
+      "finished_at": "2026-01-19T22:23:48.653Z",
+      "duration_ms": 0,
+      "status": "SUCCESS",
+      "input_refs": [],
+      "output_refs": []
+    }
+  ],
+  "artifacts_index": [
+    {
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "sha256": "a3f89322ba13240198155ef7281233e40a129f897dd8b475871a5bc87fd422cf",
+      "gate": "G2",
+      "recorded_at": "2026-01-19T22:23:08.313Z",
+      "updated_at": "2026-01-19T22:23:39.551Z"
+    },
+    {
+      "path": "{artifact_path}/research/SYNTHESIS.md",
+      "sha256": "80d5d5b3043cea5c38fbc0b2816e3e11db333345687cd8462d4346677d0ed52b",
+      "gate": "G2",
+      "recorded_at": "2026-01-19T22:23:39.551Z"
+    },
+    {
+      "path": "{artifact_path}/research/FIGURES.md",
+      "sha256": "efbe462f42007459f22c6f62ad82b40edb5eb7f15a003ef0c3d75df04c306d54",
+      "gate": "G2",
+      "recorded_at": "2026-01-19T22:23:39.551Z"
+    },
+    {
+      "path": "{artifact_path}/research/QUOTES.md",
+      "sha256": "e31b3b419c379b31e7baa3d202faa67333a7d3dae518feb64b3df9cdbfbddf98",
+      "gate": "G2",
+      "recorded_at": "2026-01-19T22:23:39.551Z"
+    },
+    {
+      "path": "{artifact_path}/research/TIMELINE.md",
+      "sha256": "baff85569107e833256251a02157e334d62ab2f8bf9d03c5d013edca0c1f855a",
+      "gate": "G2",
+      "recorded_at": "2026-01-19T22:23:39.551Z"
+    },
+    {
+      "path": "{artifact_path}/research/VISUALS.md",
+      "sha256": "79ec4056fbd8a525e0d5423b77bda97af84debb77cdefdce9a1a94b946351104",
+      "gate": "G2",
+      "recorded_at": "2026-01-19T22:23:39.551Z"
+    },
+    {
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "sha256": "3a3dcb718a1c1e317e0ede8f2c9eca58c3efe612b3ef727b42a58462c6c8ac51",
+      "gate": "G3",
+      "recorded_at": "2026-01-19T22:24:03.656Z"
+    }
+  ],
+  "validations": [],
+  "events": [
+    {
+      "timestamp": "2026-01-19T22:23:03.960Z",
+      "type": "RUN_STARTED",
+      "message": "Run initialized for visual-essay/the-word-robot"
+    },
+    {
+      "timestamp": "2026-01-19T22:23:08.285Z",
+      "type": "GATE_STARTED",
+      "gate": "G2",
+      "attempt": 1,
+      "agent": "research-orchestrator",
+      "message": "Gate G2 attempt 1 started with agent research-orchestrator"
+    },
+    {
+      "timestamp": "2026-01-19T22:23:08.313Z",
+      "type": "GATE_FAILED",
+      "gate": "G2",
+      "attempt": 1,
+      "message": "Gate G2 failed: Missing: {artifact_path}/research/SYNTHESIS.md; Missing: {artifact_path}/research/FIGURES.md; Missing: {artifact_path}/research/QUOTES.md; Missing: {artifact_path}/research/TIMELINE.md; Missing: {artifact_path}/research/VISUALS.md"
+    },
+    {
+      "timestamp": "2026-01-19T22:23:39.520Z",
+      "type": "GATE_STARTED",
+      "gate": "G2",
+      "attempt": 2,
+      "agent": "research-orchestrator",
+      "message": "Gate G2 attempt 2 started with agent research-orchestrator"
+    },
+    {
+      "timestamp": "2026-01-19T22:23:39.551Z",
+      "type": "GATE_PASSED",
+      "gate": "G2",
+      "attempt": 2,
+      "message": "Gate G2 passed on attempt 2"
+    },
+    {
+      "timestamp": "2026-01-19T22:23:48.653Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1768861428652_b1g2",
+      "gate": "G2",
+      "agent": "research-citations-expert"
+    },
+    {
+      "timestamp": "2026-01-19T22:24:03.629Z",
+      "type": "GATE_STARTED",
+      "gate": "G3",
+      "attempt": 1,
+      "agent": "visual-essay-invocation-agent",
+      "message": "Gate G3 attempt 1 started with agent visual-essay-invocation-agent"
+    },
+    {
+      "timestamp": "2026-01-19T22:24:03.656Z",
+      "type": "GATE_PASSED",
+      "gate": "G3",
+      "attempt": 1,
+      "message": "Gate G3 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-01-19T22:24:08.319Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 1,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 1 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-01-19T22:24:08.346Z",
+      "type": "GATE_FAILED",
+      "gate": "G1",
+      "attempt": 1,
+      "message": "Gate G1 failed: None of required files exist: orchestration/projects/{slug}/INTAKE-APPROVAL.md, {artifact_path}/research/INTAKE.md"
+    }
+  ]
+}

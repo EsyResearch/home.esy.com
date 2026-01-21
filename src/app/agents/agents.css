@@ -1,0 +1,355 @@
+/* =============================================================================
+   AGENTS REFERENCE BOOK - Scoped Styles
+   Premium academic documentation aesthetic
+   ============================================================================= */
+
+/* CSS Variables for agents section */
+:root {
+  --agents-bg: #0a0a0c;
+  --agents-surface: #0f0f12;
+  --agents-elevated: #18181b;
+  --agents-card: #1f1f24;
+  --agents-text: #fafafa;
+  --agents-muted: rgba(250, 250, 250, 0.7);
+  --agents-subtle: rgba(250, 250, 250, 0.45);
+  --agents-border: rgba(250, 250, 250, 0.06);
+  --agents-border-hover: rgba(250, 250, 250, 0.12);
+  --agents-accent: #a78bfa;
+  --agents-accent-muted: rgba(167, 139, 250, 0.15);
+}
+
+/* Layout */
+.agents-layout {
+  min-height: 100vh;
+  background-color: var(--agents-bg);
+}
+
+.agents-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.agents-main {
+  flex: 1;
+  min-width: 0;
+  background-color: var(--agents-surface);
+}
+
+/* Page wrapper for content pages */
+.agents-page {
+  display: flex;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2.5rem 3rem 4rem;
+}
+
+.agents-page-content {
+  flex: 1;
+  min-width: 0;
+  max-width: 780px;
+}
+
+/* Typography */
+.agents-page h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--agents-text);
+  margin-bottom: 0.75rem;
+}
+
+.agents-page h2 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: var(--agents-text);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--agents-border);
+}
+
+.agents-page h2:first-of-type {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 2rem;
+}
+
+.agents-page h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  color: var(--agents-text);
+  margin-top: 1.75rem;
+  margin-bottom: 0.625rem;
+}
+
+.agents-page h4 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  color: var(--agents-muted);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Lede (intro paragraph) */
+.agents-lede {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--agents-muted);
+  margin-bottom: 2rem;
+  letter-spacing: -0.01em;
+}
+
+/* Body text */
+.agents-page p {
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: var(--agents-muted);
+  margin-bottom: 1rem;
+  letter-spacing: -0.005em;
+}
+
+.agents-page strong {
+  font-weight: 600;
+  color: var(--agents-text);
+}
+
+/* Lists */
+.agents-page ul,
+.agents-page ol {
+  margin-bottom: 1rem;
+  padding-left: 1.25rem;
+}
+
+.agents-page li {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--agents-muted);
+  margin-bottom: 0.375rem;
+}
+
+.agents-page li::marker {
+  color: var(--agents-subtle);
+}
+
+/* Links */
+.agents-page a:not(.agents-chip):not(.agents-card-link) {
+  color: var(--agents-accent);
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.agents-page a:not(.agents-chip):not(.agents-card-link):hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* Code inline */
+.agents-page code {
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.8125rem;
+  padding: 0.125rem 0.375rem;
+  background: rgba(167, 139, 250, 0.1);
+  border: 1px solid rgba(167, 139, 250, 0.15);
+  border-radius: 4px;
+  color: #c4b5fd;
+}
+
+/* Code blocks */
+.agents-page pre {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background: var(--agents-elevated);
+  border: 1px solid var(--agents-border);
+  border-radius: 10px;
+  overflow-x: auto;
+}
+
+.agents-page pre code {
+  padding: 0;
+  background: transparent;
+  border: none;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--agents-muted);
+}
+
+/* Blockquotes */
+.agents-page blockquote {
+  margin: 1.5rem 0;
+  padding: 0.75rem 1.25rem;
+  border-left: 3px solid var(--agents-accent);
+  background: var(--agents-accent-muted);
+  border-radius: 0 8px 8px 0;
+}
+
+.agents-page blockquote p {
+  margin-bottom: 0;
+  font-style: italic;
+  color: var(--agents-muted);
+}
+
+/* Horizontal rules */
+.agents-page hr {
+  border: none;
+  border-top: 1px solid var(--agents-border);
+  margin: 2.5rem 0;
+}
+
+/* Key takeaways */
+.agents-takeaways {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.06) 0%, rgba(192, 132, 252, 0.04) 100%);
+  border: 1px solid rgba(167, 139, 250, 0.12);
+  border-radius: 12px;
+}
+
+.agents-takeaways h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--agents-accent);
+}
+
+.agents-takeaways ul {
+  margin-bottom: 0;
+  padding-left: 1rem;
+}
+
+.agents-takeaways li {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  color: var(--agents-muted);
+}
+
+.agents-takeaways li:last-child {
+  margin-bottom: 0;
+}
+
+/* Section anchors */
+.agents-page [id] {
+  scroll-margin-top: 6rem;
+}
+
+/* Hub page specific */
+.agents-hub {
+  padding: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.agents-hub-header {
+  margin-bottom: 3rem;
+  max-width: 680px;
+}
+
+.agents-hub-header h1 {
+  font-size: 2.75rem;
+  margin-bottom: 1rem;
+}
+
+.agents-hub-header p {
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: var(--agents-subtle);
+}
+
+/* Responsive */
+@media (max-width: 1279px) {
+  .agents-page {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .agents-page {
+    padding: 1.5rem;
+  }
+  
+  .agents-hub {
+    padding: 2rem 1.5rem;
+  }
+  
+  .agents-hub-header h1 {
+    font-size: 2rem;
+  }
+  
+  .agents-page h1 {
+    font-size: 1.75rem;
+  }
+  
+  .agents-page h2 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .agents-page {
+    padding: 1.25rem 1rem;
+  }
+  
+  .agents-hub {
+    padding: 1.5rem 1rem;
+  }
+  
+  .agents-hub-header h1 {
+    font-size: 1.75rem;
+  }
+  
+  .agents-page h1 {
+    font-size: 1.5rem;
+  }
+  
+  .agents-lede {
+    font-size: 1rem;
+  }
+}
+
+/* Focus states */
+.agents-page a:focus-visible,
+.agents-page button:focus-visible {
+  outline: 2px solid var(--agents-accent);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .agents-layout * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .agents-layout {
+    background: white;
+    color: black;
+  }
+  
+  .agents-sidebar,
+  .agents-toc,
+  .agents-mobile-toggle {
+    display: none !important;
+  }
+  
+  .agents-page {
+    padding: 0;
+    max-width: none;
+  }
+}

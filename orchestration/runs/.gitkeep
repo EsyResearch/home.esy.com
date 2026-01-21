@@ -1,0 +1,7 @@
+# This directory contains run records and logs for orchestration workflows.
+# 
+# Structure per run:
+#   orchestration/runs/<run-id>/record/   ← COMMITTED (durable truth)
+#   orchestration/runs/<run-id>/logs/     ← GITIGNORED (verbose/temp)
+#
+# See orchestration/runner/README.md for usage.

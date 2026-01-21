@@ -1,0 +1,43 @@
+{
+  "gate": "G3",
+  "name": "Spec Approval",
+  "blocking": true,
+  "description": "Validates that the 6-layer spec exists and contains required structure",
+  "required_outputs": {
+    "all_of": [
+      {
+        "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+        "description": "6-layer visual essay specification"
+      }
+    ]
+  },
+  "validations": [
+    {
+      "type": "file_exists",
+      "target": "all_required",
+      "description": "Spec file must exist"
+    },
+    {
+      "type": "contains_headings",
+      "target": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "required_headings": [
+        "## Layer 1",
+        "## Layer 2",
+        "## Layer 3",
+        "## Layer 4",
+        "## Layer 5",
+        "## Layer 6"
+      ],
+      "description": "Spec must contain all 6 layer headings"
+    },
+    {
+      "type": "not_contains",
+      "target": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "pattern": "[DRAFT]",
+      "severity": "warning",
+      "configurable": true,
+      "description": "Spec should not contain [DRAFT] marker (configurable)"
+    }
+  ],
+  "notes": "G3 verifies the spec follows the 6-layer SKILL.md structure. The [DRAFT] check is a warning by default and can be configured to fail."
+}

@@ -60,12 +60,16 @@ const ConditionalNavigation = () => {
   // Check if we're on docs pages
   const isDocsPage = normalizedPath?.startsWith('/docs');
   
+  // Check if we're on agents reference pages (own sidebar navigation)
+  const isAgentsPage = normalizedPath?.startsWith('/agents');
+  
   // Don't render navigation on:
   // - Essay view pages (focused reading)
   // - Docs pages (own navigation)
+  // - Agents pages (own sidebar navigation)
   // - Scrollytelling story pages (own header via ScrollytellingHeader)
   // - Photo essays landing page (immersive experience with own header)
-  if (isEssayViewPage || isDocsPage || isScrollytellingStoryPage || isPhotoEssaysPage) {
+  if (isEssayViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage) {
     return null;
   }
 

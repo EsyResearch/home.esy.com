@@ -34,6 +34,12 @@ const ConditionalFooter = () => {
     return null;
   }
   
+  // Check if we're on agents reference pages (they have their own sidebar/CTA)
+  const isAgentsPage = normalizedPath?.startsWith('/agents');
+  if (isAgentsPage) {
+    return null;
+  }
+  
   // Check if we're on scrollytelling story pages (individual stories, not index)
   // These pages have their own footer via ScrollytellingTheatreBar
   const isScrollytellingStoryPage = normalizedPath?.startsWith('/scrollytelling/') && normalizedPath !== '/scrollytelling';

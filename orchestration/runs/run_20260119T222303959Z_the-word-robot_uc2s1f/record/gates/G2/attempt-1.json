@@ -1,0 +1,78 @@
+{
+  "attempt": 1,
+  "status": "FAIL",
+  "started_at": "2026-01-19T22:23:08.284Z",
+  "finished_at": "2026-01-19T22:23:08.312Z",
+  "agent": "research-orchestrator",
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CITATIONS.md",
+    "{artifact_path}/research/SYNTHESIS.md",
+    "{artifact_path}/research/FIGURES.md",
+    "{artifact_path}/research/QUOTES.md",
+    "{artifact_path}/research/TIMELINE.md",
+    "{artifact_path}/research/VISUALS.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/CITATIONS.md",
+      "sha256": "a3f89322ba13240198155ef7281233e40a129f897dd8b475871a5bc87fd422cf",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/CITATIONS.md",
+      "pass": true,
+      "description": "All sources with verification status"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/SYNTHESIS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/SYNTHESIS.md",
+      "pass": false,
+      "description": "Key findings synthesis"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/FIGURES.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/FIGURES.md",
+      "pass": false,
+      "description": "5-15 figures with imagery availability"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/QUOTES.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/QUOTES.md",
+      "pass": false,
+      "description": "10+ verified quotes with sources"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/TIMELINE.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/TIMELINE.md",
+      "pass": false,
+      "description": "Chronological events mapping"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/VISUALS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/VISUALS.md",
+      "pass": false,
+      "description": "Archive/visual sources identification"
+    },
+    {
+      "type": "min_sources",
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "count": 10,
+      "threshold": 8,
+      "depth": "standard",
+      "pass": true,
+      "description": "CITATIONS.md must contain minimum sources based on depth mode"
+    }
+  ],
+  "failure_reason": "Missing: {artifact_path}/research/SYNTHESIS.md; Missing: {artifact_path}/research/FIGURES.md; Missing: {artifact_path}/research/QUOTES.md; Missing: {artifact_path}/research/TIMELINE.md; Missing: {artifact_path}/research/VISUALS.md"
+}

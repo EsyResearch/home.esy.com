@@ -1,0 +1,60 @@
+{
+  "gate": "G2",
+  "name": "Research Complete",
+  "blocking": true,
+  "description": "Validates that the research package is complete with all required artifacts",
+  "required_outputs": {
+    "all_of": [
+      {
+        "path": "{artifact_path}/research/CITATIONS.md",
+        "description": "All sources with verification status",
+        "required": true
+      },
+      {
+        "path": "{artifact_path}/research/SYNTHESIS.md",
+        "description": "Key findings synthesis",
+        "required_for_depth": ["standard", "deep"],
+        "optional_for_depth": ["quick"]
+      },
+      {
+        "path": "{artifact_path}/research/FIGURES.md",
+        "description": "5-15 figures with imagery availability",
+        "required": true
+      },
+      {
+        "path": "{artifact_path}/research/QUOTES.md",
+        "description": "10+ verified quotes with sources",
+        "required": true
+      },
+      {
+        "path": "{artifact_path}/research/TIMELINE.md",
+        "description": "Chronological events mapping",
+        "required": true
+      },
+      {
+        "path": "{artifact_path}/research/VISUALS.md",
+        "description": "Archive/visual sources identification",
+        "required": true
+      }
+    ]
+  },
+  "validations": [
+    {
+      "type": "file_exists",
+      "target": "all_required",
+      "description": "All required research artifacts must exist"
+    },
+    {
+      "type": "min_sources",
+      "target": "{artifact_path}/research/CITATIONS.md",
+      "thresholds": {
+        "quick": 3,
+        "standard": 8,
+        "deep": 15
+      },
+      "heuristic": "count_source_headings_or_urls",
+      "description": "CITATIONS.md must contain minimum sources based on depth mode"
+    }
+  ],
+  "notes": "G2 is the research quality gate. SYNTHESIS.md is required for standard/deep modes but optional for quick mode. Source count validation uses a simple heuristic: counting '### Source' headings or URLs."
+}
