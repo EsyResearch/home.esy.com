@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { usePathname } from 'next/navigation';
 import './the-word-slang-typographic.css';
 
 // Panel data structure
@@ -347,15 +346,11 @@ const concepts = [
 export default function TheWordSlangTypographicClient() {
   const [activePanel, setActivePanel] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [animationKey, setAnimationKey] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const pathname = usePathname();
-
-  // Re-trigger animations on every navigation (client-side nav or refresh)
-  // Using pathname as dependency ensures this runs on route changes
-  useEffect(() => {
-    setAnimationKey(prev => prev + 1);
-  }, [pathname]);
+  
+  // Generate unique key on each mount to force fresh CSS animations
+  // Using lazy initializer with Date.now() ensures uniqueness
+  const [animationKey] = useState(() => Date.now());
 
   useEffect(() => {
     const handleScroll = () => {

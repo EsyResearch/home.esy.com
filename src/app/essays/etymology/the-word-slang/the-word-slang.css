@@ -892,7 +892,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   color: var(--era-digital-text);
   z-index: 10;
-}
+  }
 
 .map-region:hover .map-tooltip {
   opacity: 1;
