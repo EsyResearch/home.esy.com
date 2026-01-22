@@ -391,7 +391,7 @@ export default function TheWordSlangTypographicClient() {
       case 'quote':
         return (
           <div className="artifact artifact-quote">
-            <blockquote>"{artifact.content}"</blockquote>
+            <blockquote>&ldquo;{artifact.content}&rdquo;</blockquote>
             {artifact.source && <cite>— {artifact.source}</cite>}
           </div>
         );
@@ -604,7 +604,7 @@ export default function TheWordSlangTypographicClient() {
               <li>Grose, Francis. <em>A Classical Dictionary of the Vulgar Tongue</em>. London, 1785.</li>
               <li>Hotten, John Camden. <em>The Slang Dictionary</em>. London, 1859.</li>
               <li>Partridge, Eric. <em>A Dictionary of Slang and Unconventional English</em>. Routledge, 1937.</li>
-              <li>Green, Jonathon. <em>Green's Dictionary of Slang</em>. Chambers, 2010.</li>
+              <li>Green, Jonathon. <em>Green&apos;s Dictionary of Slang</em>. Chambers, 2010.</li>
             </ul>
           </div>
           <div className="bib-category">
@@ -619,9 +619,9 @@ export default function TheWordSlangTypographicClient() {
           <div className="bib-category">
             <h3>Essays & Articles</h3>
             <ul>
-              <li>Whitman, Walt. "Slang in America." <em>North American Review</em>, 1885.</li>
-              <li>Bradley, Henry. "Slang." <em>Encyclopædia Britannica</em>, 11th ed., 1911.</li>
-              <li>Liberman, Anatoly. "The origin of slang." <em>OUP Blog</em>, 2016.</li>
+              <li>Whitman, Walt. &ldquo;Slang in America.&rdquo; <em>North American Review</em>, 1885.</li>
+              <li>Bradley, Henry. &ldquo;Slang.&rdquo; <em>Encyclopædia Britannica</em>, 11th ed., 1911.</li>
+              <li>Liberman, Anatoly. &ldquo;The origin of slang.&rdquo; <em>OUP Blog</em>, 2016.</li>
             </ul>
           </div>
         </div>

@@ -189,7 +189,7 @@ export function AgentsSearchModal({ isOpen, onClose }: AgentsSearchModalProps) {
                 opacity: 0.5,
               }} />
               <div style={{ fontSize: '0.875rem', marginBottom: '0.25rem' }}>
-                No results for "{query}"
+                No results for &ldquo;{query}&rdquo;
               </div>
               <div style={{ fontSize: '0.75rem', color: theme.subtle }}>
                 Try a different search term
