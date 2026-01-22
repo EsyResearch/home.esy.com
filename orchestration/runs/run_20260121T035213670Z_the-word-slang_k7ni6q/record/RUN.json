@@ -1,0 +1,69 @@
+{
+  "run_id": "run_20260121T035213670Z_the-word-slang_k7ni6q",
+  "workflow": {
+    "name": "visual-essay",
+    "version": "local-dev",
+    "slug": "the-word-slang",
+    "artifact_path": "src/app/essays/etymology/the-word-slang"
+  },
+  "depth": "deep",
+  "prompt": {
+    "file": "orchestration/prompts/the-word-slang.md",
+    "sha256": "d82e3cb017495e736603adadee2c435713ccd71bc33d078a09d0cb58d983e0eb"
+  },
+  "status": "RUNNING",
+  "started_at": "2026-01-21T03:52:13.671Z",
+  "finished_at": null,
+  "gates": [
+    {
+      "gate": "G1",
+      "name": "Intake Approval",
+      "status": "RUNNING",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "RUNNING",
+          "started_at": "2026-01-21T03:52:13.672Z",
+          "finished_at": null,
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": "0f7507464baf8dd1f0026f08992eb29d3716212bc0735c9031e76c0c9030e4da",
+          "invocation_ids": [],
+          "required_outputs": [],
+          "artifacts": [],
+          "validations": [],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G2",
+      "name": "Research Complete",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G3",
+      "name": "Spec Approval",
+      "status": "NOT_STARTED",
+      "attempts": []
+    }
+  ],
+  "invocations": [],
+  "artifacts_index": [],
+  "validations": [],
+  "events": [
+    {
+      "timestamp": "2026-01-21T03:52:13.671Z",
+      "type": "RUN_STARTED",
+      "message": "Run initialized for visual-essay/the-word-slang"
+    },
+    {
+      "timestamp": "2026-01-21T03:52:13.672Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 1,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 1 started with agent visual-essay-orchestrator"
+    }
+  ]
+}

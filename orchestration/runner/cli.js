@@ -24,8 +24,20 @@ const {
   failGate,
   recordInvocation,
   listRuns,
-  completeRun
+  completeRun,
+  getRunPaths
 } = require('./lib/run-manager');
+
+const {
+  loadWorkflow,
+  generatePromptPacket,
+  writePromptPacket,
+  saveOriginalPrompt,
+  readPromptFile,
+  hashString
+} = require('./lib/prompt-generator');
+
+const readline = require('readline');
 
 function parseArgs(args) {
   const parsed = { _: [] };
@@ -54,6 +66,23 @@ function parseArgs(args) {
   return parsed;
 }
 
+/**
+ * Wait for user to press Enter
+ */
+function waitForEnter(prompt = 'Press Enter to continue...') {
+  return new Promise((resolve) => {
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+    
+    rl.question(prompt, () => {
+      rl.close();
+      resolve();
+    });
+  });
+}
+
 function printUsage() {
   console.log(`
 Orchestration Runner CLI
@@ -62,7 +91,13 @@ Usage:
   node cli.js <command> <subcommand> [options]
 
 Commands:
-  run start     Initialize a new run
+  run visual-essay   Run the complete visual-essay pipeline (CI-style, human-in-the-loop)
+    --slug <slug>           Essay/project slug (REQUIRED)
+    --artifact-path <path>  Repo-relative path to essay directory (REQUIRED)
+    --depth <mode>          Depth mode: quick|standard|deep (default: standard)
+    --prompt-file <path>    Path to topic/prompt file (optional)
+
+  run start     Initialize a new run (manual mode)
     --workflow <name>       Workflow name (e.g., visual-essay)
     --slug <slug>           Essay/project slug
     --artifact-path <path>  Repo-relative path to essay directory
@@ -98,15 +133,210 @@ Commands:
     --status <status>       SUCCESS|FAIL (default: SUCCESS)
 
 Examples:
-  # Start a new run
+  # Run the full visual-essay pipeline (recommended)
+  node cli.js run visual-essay --slug the-word-robot --artifact-path src/app/essays/etymology/the-word-robot --depth standard
+
+  # Run with a prompt file
+  node cli.js run visual-essay --slug the-word-robot --artifact-path src/app/essays/etymology/the-word-robot --prompt-file prompts/robot-topic.txt
+
+  # Manual mode: Start a new run
   node cli.js run start --workflow visual-essay --slug the-word-robot --artifact-path src/app/essays/etymology/the-word-robot
 
-  # Start G2 gate with research orchestrator
+  # Manual mode: Start G2 gate with research orchestrator
   node cli.js gate start --run run_20260119_the-word-robot_abc123 --gate G2 --agent research-orchestrator
 
-  # Finish G2 gate (runs validations)
+  # Manual mode: Finish G2 gate (runs validations)
   node cli.js gate finish --run run_20260119_the-word-robot_abc123 --gate G2
 `);
+}
+
+/**
+ * Run the visual-essay pipeline in CI-style with human-in-the-loop execution
+ */
+async function runVisualEssayPipeline(options) {
+  const { slug, artifactPath, depth, promptFile } = options;
+  
+  console.log('');
+  console.log('═══════════════════════════════════════════════════════════════════════════════');
+  console.log('  VISUAL ESSAY PIPELINE - CI Mode (Human-in-the-Loop)');
+  console.log('═══════════════════════════════════════════════════════════════════════════════');
+  console.log('');
+  
+  // Read and hash prompt file if provided
+  let originalPrompt = null;
+  let promptSha256 = null;
+  
+  if (promptFile) {
+    originalPrompt = readPromptFile(promptFile);
+    promptSha256 = hashString(originalPrompt);
+    console.log(`📄 Prompt file: ${promptFile}`);
+    console.log(`   SHA256: ${promptSha256.substring(0, 16)}...`);
+  } else {
+    console.log('📄 No prompt file provided (will use slug as topic)');
+    originalPrompt = `Topic: ${slug}\n\nProduce a visual essay about "${slug.replace(/-/g, ' ')}".`;
+    promptSha256 = hashString(originalPrompt);
+  }
+  
+  console.log(`📁 Artifact path: ${artifactPath}`);
+  console.log(`📊 Depth mode: ${depth}`);
+  console.log('');
+  
+  // Load workflow definition
+  const workflow = loadWorkflow('visual-essay');
+  console.log(`🔄 Loaded workflow: ${workflow.workflow} (${workflow.gates.length} gates)`);
+  console.log('');
+  
+  // Initialize run
+  const { runId, paths, runRecord } = initRun({
+    workflow: 'visual-essay',
+    slug,
+    artifactPath,
+    depth,
+    promptFile: promptFile || null,
+    promptSha256
+  });
+  
+  console.log(`✓ Run initialized: ${runId}`);
+  console.log(`  Record: orchestration/runs/${runId}/record/RUN.json`);
+  console.log('');
+  
+  // Save original prompt to logs
+  saveOriginalPrompt(paths, originalPrompt);
+  
+  // Process each gate
+  for (const gateDef of workflow.gates) {
+    const gateCode = gateDef.gate;
+    
+    console.log('───────────────────────────────────────────────────────────────────────────────');
+    console.log(`  GATE ${gateCode}: ${gateDef.name}`);
+    console.log('───────────────────────────────────────────────────────────────────────────────');
+    console.log('');
+    
+    // Get current attempt number
+    const { runRecord: currentRecord } = loadRun(runId);
+    const gate = currentRecord.gates.find(g => g.gate === gateCode);
+    const attemptNumber = gate ? gate.attempts.length + 1 : 1;
+    
+    // Generate prompt packet
+    const promptPacket = generatePromptPacket({
+      gateCode,
+      gateDef,
+      runId,
+      slug,
+      artifactPath,
+      depth,
+      originalPrompt,
+      attemptNumber
+    });
+    
+    // Compute prompt packet hash
+    const packetSha256 = hashString(promptPacket);
+    
+    // Start gate (records attempt)
+    const startResult = startGate(runId, gateCode, gateDef.agent, packetSha256);
+    
+    // Write prompt packet to logs
+    const promptPath = writePromptPacket(paths, gateCode, promptPacket);
+    
+    console.log(`📋 Prompt packet generated:`);
+    console.log(`   ${promptPath}`);
+    console.log('');
+    console.log('┌─────────────────────────────────────────────────────────────────────────────┐');
+    console.log('│  HUMAN ACTION REQUIRED                                                      │');
+    console.log('├─────────────────────────────────────────────────────────────────────────────┤');
+    console.log('│                                                                             │');
+    console.log('│  1. Open the prompt packet file above                                       │');
+    console.log('│  2. Copy the entire contents                                                │');
+    console.log('│  3. Paste into Claude Code and execute                                      │');
+    console.log('│  4. Wait for agent to complete and produce outputs                          │');
+    console.log('│  5. Return here and press Enter                                             │');
+    console.log('│                                                                             │');
+    console.log('└─────────────────────────────────────────────────────────────────────────────┘');
+    console.log('');
+    
+    // Wait for user
+    await waitForEnter(`⏸️  Press Enter when ${gateCode} execution is complete...`);
+    console.log('');
+    
+    // Run gate validation
+    console.log(`🔍 Validating ${gateCode} outputs...`);
+    console.log('');
+    
+    const result = await finishGate(runId, gateCode);
+    
+    // Display results
+    if (result.pass) {
+      console.log(`✅ Gate ${gateCode} PASSED`);
+    } else {
+      console.log(`❌ Gate ${gateCode} FAILED`);
+      console.log(`   Reason: ${result.attempt.failure_reason}`);
+    }
+    
+    console.log('');
+    console.log('Validation Results:');
+    for (const v of result.results) {
+      const icon = v.pass ? '✓' : (v.warning ? '⚠' : '✗');
+      console.log(`  ${icon} ${v.type}: ${v.description || v.path || ''}`);
+      
+      if (v.type === 'min_sources' && !v.pass) {
+        console.log(`    Found ${v.count} sources, need ${v.threshold} for depth=${v.depth}`);
+      }
+      if (v.type === 'contains_headings' && v.missing?.length > 0) {
+        console.log(`    Missing: ${v.missing.join(', ')}`);
+      }
+      if (v.type === 'file_exists_any_of' && !v.pass) {
+        console.log(`    Checked: ${v.checked.map(c => `${c.path} (${c.exists ? 'exists' : 'missing'})`).join(', ')}`);
+      }
+    }
+    
+    if (result.attempt.artifacts.length > 0) {
+      console.log('');
+      console.log('Artifacts Hashed:');
+      for (const a of result.attempt.artifacts) {
+        console.log(`  ${a.path}`);
+        console.log(`    sha256: ${a.sha256.substring(0, 16)}...`);
+      }
+    }
+    console.log('');
+    
+    // If gate failed, stop pipeline
+    if (!result.pass) {
+      console.log('═══════════════════════════════════════════════════════════════════════════════');
+      console.log('  PIPELINE STOPPED - Gate validation failed');
+      console.log('═══════════════════════════════════════════════════════════════════════════════');
+      console.log('');
+      console.log('To retry this gate:');
+      console.log('  1. Fix the missing outputs');
+      console.log(`  2. Run: node orchestration/runner/cli.js run visual-essay --slug ${slug} --artifact-path ${artifactPath} --depth ${depth}`);
+      console.log('     (Or continue from the failed gate using manual mode)');
+      console.log('');
+      
+      // Mark run as failed
+      completeRun(runId, 'FAILED');
+      
+      process.exit(1);
+    }
+  }
+  
+  // All gates passed
+  completeRun(runId, 'PASSED');
+  
+  console.log('═══════════════════════════════════════════════════════════════════════════════');
+  console.log('  PIPELINE COMPLETE - All gates passed!');
+  console.log('═══════════════════════════════════════════════════════════════════════════════');
+  console.log('');
+  console.log(`Run ID: ${runId}`);
+  console.log(`Record: orchestration/runs/${runId}/record/RUN.json`);
+  console.log('');
+  console.log('Gate Summary:');
+  
+  const { runRecord: finalRecord } = loadRun(runId);
+  for (const gate of finalRecord.gates) {
+    const statusIcon = gate.status === 'PASS' ? '✅' : '❌';
+    const attempts = gate.attempts.length;
+    console.log(`  ${statusIcon} ${gate.gate}: ${gate.name} (${attempts} attempt${attempts !== 1 ? 's' : ''})`);
+  }
+  console.log('');
 }
 
 async function main() {
@@ -121,6 +351,19 @@ async function main() {
   try {
     // RUN commands
     if (command === 'run') {
+      // CI-style visual-essay pipeline
+      if (subcommand === 'visual-essay') {
+        const { slug, 'artifact-path': artifactPath, depth = 'standard', 'prompt-file': promptFile } = args;
+        
+        if (!slug || !artifactPath) {
+          console.error('Error: --slug and --artifact-path are required');
+          process.exit(1);
+        }
+        
+        await runVisualEssayPipeline({ slug, artifactPath, depth, promptFile });
+        return;
+      }
+      
       if (subcommand === 'start') {
         const { workflow, slug, 'artifact-path': artifactPath, depth } = args;
         

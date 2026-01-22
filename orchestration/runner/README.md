@@ -15,7 +15,38 @@ The runner produces two types of output for each workflow run:
 
 No installation required. Uses Node.js (already available in this project).
 
-## Quick Start
+## Quick Start (CI Mode - Recommended)
+
+Run the complete visual-essay pipeline with human-in-the-loop execution:
+
+```bash
+node orchestration/runner/cli.js run visual-essay \
+  --slug the-word-robot \
+  --artifact-path src/app/essays/etymology/the-word-robot \
+  --depth standard
+```
+
+The runner will:
+1. Initialize a run record
+2. For each gate (G1, G2, G3):
+   - Generate a **Prompt Packet** with instructions
+   - Pause and wait for you to execute in Claude Code
+   - Validate outputs and record results
+3. Stop on failure or complete when all gates pass
+
+### With a Prompt File
+
+```bash
+node orchestration/runner/cli.js run visual-essay \
+  --slug the-word-robot \
+  --artifact-path src/app/essays/etymology/the-word-robot \
+  --depth standard \
+  --prompt-file prompts/robot-topic.txt
+```
+
+## Quick Start (Manual Mode)
+
+For fine-grained control, use individual commands:
 
 ```bash
 # 1. Start a new run
@@ -43,8 +74,31 @@ node orchestration/runner/cli.js gate finish \
 
 ### Run Commands
 
+#### `run visual-essay` (Recommended)
+Run the complete visual-essay pipeline with human-in-the-loop execution.
+
+```bash
+node orchestration/runner/cli.js run visual-essay \
+  --slug <slug> \
+  --artifact-path <path> \
+  [--depth quick|standard|deep] \
+  [--prompt-file <path>]
+```
+
+**Options:**
+- `--slug` — Essay slug (REQUIRED)
+- `--artifact-path` — Repo-relative path to essay directory (REQUIRED)
+- `--depth` — Research depth mode (default: `standard`)
+- `--prompt-file` — Path to topic/prompt file (optional)
+
+**Behavior:**
+1. Creates run record and loads workflow definition
+2. For each gate: generates prompt packet, pauses for human execution, validates
+3. Stops pipeline on any gate failure
+4. Generates prompt packets in `logs/gates/<gate>/prompt.txt`
+
 #### `run start`
-Initialize a new workflow run.
+Initialize a new workflow run (manual mode).
 
 ```bash
 node orchestration/runner/cli.js run start \

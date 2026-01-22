@@ -1,0 +1,342 @@
+{
+  "run_id": "run_20260121T145214945Z_the-word-slang-typographic_ra3ksn",
+  "workflow": {
+    "name": "visual-essay",
+    "version": "local-dev",
+    "slug": "the-word-slang-typographic",
+    "artifact_path": "src/app/essays/etymology/the-word-slang-typographic"
+  },
+  "depth": "deep",
+  "prompt": null,
+  "status": "PASSED",
+  "started_at": "2026-01-21T14:52:14.946Z",
+  "finished_at": "2026-01-21T15:00:04.505Z",
+  "gates": [
+    {
+      "gate": "G1",
+      "name": "Intake Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-01-21T14:52:22.272Z",
+          "finished_at": "2026-01-21T14:52:28.442Z",
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "orchestration/projects/{slug}/INTAKE-APPROVAL.md",
+            "{artifact_path}/research/INTAKE.md"
+          ],
+          "artifacts": [
+            {
+              "path": "orchestration/projects/{slug}/INTAKE-APPROVAL.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/projects/the-word-slang-typographic/INTAKE-APPROVAL.md",
+              "sha256": "fa28193deb59fc7da4814bd49cdeb0f57220d01f3a79dc5d6b23ee8dc6896615",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "orchestration/projects/{slug}/INTAKE-APPROVAL.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/INTAKE.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G2",
+      "name": "Research Complete",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-01-21T14:52:36.442Z",
+          "finished_at": "2026-01-21T14:57:51.810Z",
+          "agent": "research-orchestrator",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CITATIONS.md",
+            "{artifact_path}/research/SYNTHESIS.md",
+            "{artifact_path}/research/FIGURES.md",
+            "{artifact_path}/research/QUOTES.md",
+            "{artifact_path}/research/TIMELINE.md",
+            "{artifact_path}/research/VISUALS.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/CITATIONS.md",
+              "sha256": "eb0bfa09550da2c84b3dc09cd94e37594b5b5c56ec13306c3176eedb41b1171e",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/SYNTHESIS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/SYNTHESIS.md",
+              "sha256": "13cb2c09cf2db362da5300075ae52b83c352e57b2edb00112a3b91f627a1b741",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/FIGURES.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/FIGURES.md",
+              "sha256": "ee91c3104a4032b04708c642dac26e1604c7593d53ebf34358083e2ea2dec44b",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/QUOTES.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/QUOTES.md",
+              "sha256": "2eb8d1abad9ebffbf30c1648aa2f9017fad095f005436c4afc13b9b47f3d7311",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/TIMELINE.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/TIMELINE.md",
+              "sha256": "e279d19067b1fc44bcde8d76fa3821ba1a9dc73e9f6b001e1d21de93fa9dafdf",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/VISUALS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/VISUALS.md",
+              "sha256": "647453fa874dd80ddd192de60ecaa03d4f0156e39ec5f61d509fb097d4e59519",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/CITATIONS.md",
+              "pass": true,
+              "description": "All sources with verification status"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/SYNTHESIS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/SYNTHESIS.md",
+              "pass": true,
+              "description": "Key findings synthesis"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/FIGURES.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/FIGURES.md",
+              "pass": true,
+              "description": "5-15 figures with imagery availability"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/QUOTES.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/QUOTES.md",
+              "pass": true,
+              "description": "10+ verified quotes with sources"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/TIMELINE.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/TIMELINE.md",
+              "pass": true,
+              "description": "Chronological events mapping"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/VISUALS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/VISUALS.md",
+              "pass": true,
+              "description": "Archive/visual sources identification"
+            },
+            {
+              "type": "min_sources",
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "count": 17,
+              "threshold": 15,
+              "depth": "deep",
+              "pass": true,
+              "description": "CITATIONS.md must contain minimum sources based on depth mode"
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G3",
+      "name": "Spec Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-01-21T14:57:58.126Z",
+          "finished_at": "2026-01-21T14:59:58.815Z",
+          "agent": "visual-essay-invocation-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "orchestration/skills/visual-essay-invocation/specs/{slug}.md"
+          ],
+          "artifacts": [
+            {
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-word-slang-typographic.md",
+              "sha256": "a3ca9aa2a84682374d9c1120c969646d28a93c64d639639598585df42bb4f28e",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-word-slang-typographic.md",
+              "pass": true,
+              "description": "6-layer visual essay specification"
+            },
+            {
+              "type": "contains_headings",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "pass": true,
+              "missing": [],
+              "description": "Spec must contain all 6 layer headings"
+            },
+            {
+              "type": "not_contains",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "pattern": "[DRAFT]",
+              "found": false,
+              "severity": "warning",
+              "description": "Spec should not contain [DRAFT] marker (configurable)",
+              "pass": true,
+              "warning": false
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    }
+  ],
+  "invocations": [],
+  "artifacts_index": [
+    {
+      "path": "orchestration/projects/{slug}/INTAKE-APPROVAL.md",
+      "sha256": "fa28193deb59fc7da4814bd49cdeb0f57220d01f3a79dc5d6b23ee8dc6896615",
+      "gate": "G1",
+      "recorded_at": "2026-01-21T14:52:28.442Z"
+    },
+    {
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "sha256": "eb0bfa09550da2c84b3dc09cd94e37594b5b5c56ec13306c3176eedb41b1171e",
+      "gate": "G2",
+      "recorded_at": "2026-01-21T14:57:51.810Z"
+    },
+    {
+      "path": "{artifact_path}/research/SYNTHESIS.md",
+      "sha256": "13cb2c09cf2db362da5300075ae52b83c352e57b2edb00112a3b91f627a1b741",
+      "gate": "G2",
+      "recorded_at": "2026-01-21T14:57:51.810Z"
+    },
+    {
+      "path": "{artifact_path}/research/FIGURES.md",
+      "sha256": "ee91c3104a4032b04708c642dac26e1604c7593d53ebf34358083e2ea2dec44b",
+      "gate": "G2",
+      "recorded_at": "2026-01-21T14:57:51.810Z"
+    },
+    {
+      "path": "{artifact_path}/research/QUOTES.md",
+      "sha256": "2eb8d1abad9ebffbf30c1648aa2f9017fad095f005436c4afc13b9b47f3d7311",
+      "gate": "G2",
+      "recorded_at": "2026-01-21T14:57:51.810Z"
+    },
+    {
+      "path": "{artifact_path}/research/TIMELINE.md",
+      "sha256": "e279d19067b1fc44bcde8d76fa3821ba1a9dc73e9f6b001e1d21de93fa9dafdf",
+      "gate": "G2",
+      "recorded_at": "2026-01-21T14:57:51.810Z"
+    },
+    {
+      "path": "{artifact_path}/research/VISUALS.md",
+      "sha256": "647453fa874dd80ddd192de60ecaa03d4f0156e39ec5f61d509fb097d4e59519",
+      "gate": "G2",
+      "recorded_at": "2026-01-21T14:57:51.810Z"
+    },
+    {
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "sha256": "a3ca9aa2a84682374d9c1120c969646d28a93c64d639639598585df42bb4f28e",
+      "gate": "G3",
+      "recorded_at": "2026-01-21T14:59:58.815Z"
+    }
+  ],
+  "validations": [],
+  "events": [
+    {
+      "timestamp": "2026-01-21T14:52:14.946Z",
+      "type": "RUN_STARTED",
+      "message": "Run initialized for visual-essay/the-word-slang-typographic"
+    },
+    {
+      "timestamp": "2026-01-21T14:52:22.273Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 1,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 1 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-01-21T14:52:28.442Z",
+      "type": "GATE_PASSED",
+      "gate": "G1",
+      "attempt": 1,
+      "message": "Gate G1 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-01-21T14:52:36.443Z",
+      "type": "GATE_STARTED",
+      "gate": "G2",
+      "attempt": 1,
+      "agent": "research-orchestrator",
+      "message": "Gate G2 attempt 1 started with agent research-orchestrator"
+    },
+    {
+      "timestamp": "2026-01-21T14:57:51.810Z",
+      "type": "GATE_PASSED",
+      "gate": "G2",
+      "attempt": 1,
+      "message": "Gate G2 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-01-21T14:57:58.126Z",
+      "type": "GATE_STARTED",
+      "gate": "G3",
+      "attempt": 1,
+      "agent": "visual-essay-invocation-agent",
+      "message": "Gate G3 attempt 1 started with agent visual-essay-invocation-agent"
+    },
+    {
+      "timestamp": "2026-01-21T14:59:58.815Z",
+      "type": "GATE_PASSED",
+      "gate": "G3",
+      "attempt": 1,
+      "message": "Gate G3 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-01-21T15:00:04.506Z",
+      "type": "RUN_COMPLETED",
+      "status": "PASSED",
+      "message": "Run completed with status: PASSED"
+    }
+  ]
+}

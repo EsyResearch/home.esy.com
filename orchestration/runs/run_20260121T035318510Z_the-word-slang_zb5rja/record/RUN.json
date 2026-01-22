@@ -1,0 +1,366 @@
+{
+  "run_id": "run_20260121T035318510Z_the-word-slang_zb5rja",
+  "workflow": {
+    "name": "visual-essay",
+    "version": "local-dev",
+    "slug": "the-word-slang",
+    "artifact_path": "src/app/essays/etymology/the-word-slang"
+  },
+  "depth": "deep",
+  "prompt": {
+    "file": "orchestration/prompts/the-word-slang.md",
+    "sha256": "d82e3cb017495e736603adadee2c435713ccd71bc33d078a09d0cb58d983e0eb"
+  },
+  "status": "PASSED",
+  "started_at": "2026-01-21T03:53:18.512Z",
+  "finished_at": "2026-01-21T04:01:16.348Z",
+  "gates": [
+    {
+      "gate": "G1",
+      "name": "Intake Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "RUNNING",
+          "started_at": "2026-01-21T03:53:18.513Z",
+          "finished_at": null,
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": "1a5e3407ca314e8bbc4bf61df8c571796927f9472e6d2dd028801e865b42c77b",
+          "invocation_ids": [],
+          "required_outputs": [],
+          "artifacts": [],
+          "validations": [],
+          "failure_reason": null
+        },
+        {
+          "attempt": 2,
+          "status": "PASS",
+          "started_at": "2026-01-21T03:55:56.399Z",
+          "finished_at": "2026-01-21T03:55:56.432Z",
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "orchestration/projects/{slug}/INTAKE-APPROVAL.md",
+            "{artifact_path}/research/INTAKE.md"
+          ],
+          "artifacts": [
+            {
+              "path": "orchestration/projects/{slug}/INTAKE-APPROVAL.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/projects/the-word-slang/INTAKE-APPROVAL.md",
+              "sha256": "1a59b0fbb610504cc0e1c5b87362d0de02c5e15854fc836934d95c031edc486f",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "orchestration/projects/{slug}/INTAKE-APPROVAL.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/INTAKE.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G2",
+      "name": "Research Complete",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-01-21T03:56:32.505Z",
+          "finished_at": "2026-01-21T03:59:34.673Z",
+          "agent": "research-orchestrator",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CITATIONS.md",
+            "{artifact_path}/research/SYNTHESIS.md",
+            "{artifact_path}/research/FIGURES.md",
+            "{artifact_path}/research/QUOTES.md",
+            "{artifact_path}/research/TIMELINE.md",
+            "{artifact_path}/research/VISUALS.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/CITATIONS.md",
+              "sha256": "bb46673b24d2c63c6eec4ce81d1a730081a6562662967110993c88ee3529fab7",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/SYNTHESIS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/SYNTHESIS.md",
+              "sha256": "c5ee31988520eab0cc61a4c0cfefb6e642157b969f83f6f29f1b10a4d8dfd2d8",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/FIGURES.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/FIGURES.md",
+              "sha256": "d8b0db42035d27f21b7449eae39493f77b26b789a5c045c9254d7dfd14b59ab9",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/QUOTES.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/QUOTES.md",
+              "sha256": "2515dba44619df0c2c0f69ecd432e3609aada0c2e860de0be7faa927b57a230a",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/TIMELINE.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/TIMELINE.md",
+              "sha256": "5edad670998d2f44a16ecd9ad7199a620909792f43d093b99177577c9e12f930",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/VISUALS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/VISUALS.md",
+              "sha256": "2b5b5b9e4657c0633da190eb24d88eb7b60e069c9f437530822abf7d42c23f43",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/CITATIONS.md",
+              "pass": true,
+              "description": "All sources with verification status"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/SYNTHESIS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/SYNTHESIS.md",
+              "pass": true,
+              "description": "Key findings synthesis"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/FIGURES.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/FIGURES.md",
+              "pass": true,
+              "description": "5-15 figures with imagery availability"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/QUOTES.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/QUOTES.md",
+              "pass": true,
+              "description": "10+ verified quotes with sources"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/TIMELINE.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/TIMELINE.md",
+              "pass": true,
+              "description": "Chronological events mapping"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/research/VISUALS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/VISUALS.md",
+              "pass": true,
+              "description": "Archive/visual sources identification"
+            },
+            {
+              "type": "min_sources",
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "count": 17,
+              "threshold": 15,
+              "depth": "deep",
+              "pass": true,
+              "description": "CITATIONS.md must contain minimum sources based on depth mode"
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G3",
+      "name": "Spec Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-01-21T03:59:43.153Z",
+          "finished_at": "2026-01-21T04:01:09.454Z",
+          "agent": "visual-essay-invocation-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "orchestration/skills/visual-essay-invocation/specs/{slug}.md"
+          ],
+          "artifacts": [
+            {
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-word-slang.md",
+              "sha256": "07a5979ebb0455b8909f988b37177b2f6a40ad901f8071f49214aadad6e20c1b",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-word-slang.md",
+              "pass": true,
+              "description": "6-layer visual essay specification"
+            },
+            {
+              "type": "contains_headings",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "pass": true,
+              "missing": [],
+              "description": "Spec must contain all 6 layer headings"
+            },
+            {
+              "type": "not_contains",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "pattern": "[DRAFT]",
+              "found": false,
+              "severity": "warning",
+              "description": "Spec should not contain [DRAFT] marker (configurable)",
+              "pass": true,
+              "warning": false
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    }
+  ],
+  "invocations": [],
+  "artifacts_index": [
+    {
+      "path": "orchestration/projects/{slug}/INTAKE-APPROVAL.md",
+      "sha256": "1a59b0fbb610504cc0e1c5b87362d0de02c5e15854fc836934d95c031edc486f",
+      "gate": "G1",
+      "recorded_at": "2026-01-21T03:55:56.433Z"
+    },
+    {
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "sha256": "bb46673b24d2c63c6eec4ce81d1a730081a6562662967110993c88ee3529fab7",
+      "gate": "G2",
+      "recorded_at": "2026-01-21T03:59:34.674Z"
+    },
+    {
+      "path": "{artifact_path}/research/SYNTHESIS.md",
+      "sha256": "c5ee31988520eab0cc61a4c0cfefb6e642157b969f83f6f29f1b10a4d8dfd2d8",
+      "gate": "G2",
+      "recorded_at": "2026-01-21T03:59:34.674Z"
+    },
+    {
+      "path": "{artifact_path}/research/FIGURES.md",
+      "sha256": "d8b0db42035d27f21b7449eae39493f77b26b789a5c045c9254d7dfd14b59ab9",
+      "gate": "G2",
+      "recorded_at": "2026-01-21T03:59:34.674Z"
+    },
+    {
+      "path": "{artifact_path}/research/QUOTES.md",
+      "sha256": "2515dba44619df0c2c0f69ecd432e3609aada0c2e860de0be7faa927b57a230a",
+      "gate": "G2",
+      "recorded_at": "2026-01-21T03:59:34.674Z"
+    },
+    {
+      "path": "{artifact_path}/research/TIMELINE.md",
+      "sha256": "5edad670998d2f44a16ecd9ad7199a620909792f43d093b99177577c9e12f930",
+      "gate": "G2",
+      "recorded_at": "2026-01-21T03:59:34.674Z"
+    },
+    {
+      "path": "{artifact_path}/research/VISUALS.md",
+      "sha256": "2b5b5b9e4657c0633da190eb24d88eb7b60e069c9f437530822abf7d42c23f43",
+      "gate": "G2",
+      "recorded_at": "2026-01-21T03:59:34.674Z"
+    },
+    {
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "sha256": "07a5979ebb0455b8909f988b37177b2f6a40ad901f8071f49214aadad6e20c1b",
+      "gate": "G3",
+      "recorded_at": "2026-01-21T04:01:09.455Z"
+    }
+  ],
+  "validations": [],
+  "events": [
+    {
+      "timestamp": "2026-01-21T03:53:18.512Z",
+      "type": "RUN_STARTED",
+      "message": "Run initialized for visual-essay/the-word-slang"
+    },
+    {
+      "timestamp": "2026-01-21T03:53:18.513Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 1,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 1 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-01-21T03:55:56.399Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 2,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 2 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-01-21T03:55:56.433Z",
+      "type": "GATE_PASSED",
+      "gate": "G1",
+      "attempt": 2,
+      "message": "Gate G1 passed on attempt 2"
+    },
+    {
+      "timestamp": "2026-01-21T03:56:32.506Z",
+      "type": "GATE_STARTED",
+      "gate": "G2",
+      "attempt": 1,
+      "agent": "research-orchestrator",
+      "message": "Gate G2 attempt 1 started with agent research-orchestrator"
+    },
+    {
+      "timestamp": "2026-01-21T03:59:34.674Z",
+      "type": "GATE_PASSED",
+      "gate": "G2",
+      "attempt": 1,
+      "message": "Gate G2 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-01-21T03:59:43.154Z",
+      "type": "GATE_STARTED",
+      "gate": "G3",
+      "attempt": 1,
+      "agent": "visual-essay-invocation-agent",
+      "message": "Gate G3 attempt 1 started with agent visual-essay-invocation-agent"
+    },
+    {
+      "timestamp": "2026-01-21T04:01:09.455Z",
+      "type": "GATE_PASSED",
+      "gate": "G3",
+      "attempt": 1,
+      "message": "Gate G3 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-01-21T04:01:16.349Z",
+      "type": "RUN_COMPLETED",
+      "status": "PASSED",
+      "message": "Run completed with status: PASSED"
+    }
+  ]
+}

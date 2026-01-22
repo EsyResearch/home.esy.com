@@ -1,0 +1,109 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-01-21T03:56:32.505Z",
+  "finished_at": "2026-01-21T03:59:34.673Z",
+  "agent": "research-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CITATIONS.md",
+    "{artifact_path}/research/SYNTHESIS.md",
+    "{artifact_path}/research/FIGURES.md",
+    "{artifact_path}/research/QUOTES.md",
+    "{artifact_path}/research/TIMELINE.md",
+    "{artifact_path}/research/VISUALS.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/CITATIONS.md",
+      "sha256": "bb46673b24d2c63c6eec4ce81d1a730081a6562662967110993c88ee3529fab7",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/SYNTHESIS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/SYNTHESIS.md",
+      "sha256": "c5ee31988520eab0cc61a4c0cfefb6e642157b969f83f6f29f1b10a4d8dfd2d8",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/FIGURES.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/FIGURES.md",
+      "sha256": "d8b0db42035d27f21b7449eae39493f77b26b789a5c045c9254d7dfd14b59ab9",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/QUOTES.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/QUOTES.md",
+      "sha256": "2515dba44619df0c2c0f69ecd432e3609aada0c2e860de0be7faa927b57a230a",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/TIMELINE.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/TIMELINE.md",
+      "sha256": "5edad670998d2f44a16ecd9ad7199a620909792f43d093b99177577c9e12f930",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/VISUALS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/VISUALS.md",
+      "sha256": "2b5b5b9e4657c0633da190eb24d88eb7b60e069c9f437530822abf7d42c23f43",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/CITATIONS.md",
+      "pass": true,
+      "description": "All sources with verification status"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/SYNTHESIS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/SYNTHESIS.md",
+      "pass": true,
+      "description": "Key findings synthesis"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/FIGURES.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/FIGURES.md",
+      "pass": true,
+      "description": "5-15 figures with imagery availability"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/QUOTES.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/QUOTES.md",
+      "pass": true,
+      "description": "10+ verified quotes with sources"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/TIMELINE.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/TIMELINE.md",
+      "pass": true,
+      "description": "Chronological events mapping"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/VISUALS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang/research/VISUALS.md",
+      "pass": true,
+      "description": "Archive/visual sources identification"
+    },
+    {
+      "type": "min_sources",
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "count": 17,
+      "threshold": 15,
+      "depth": "deep",
+      "pass": true,
+      "description": "CITATIONS.md must contain minimum sources based on depth mode"
+    }
+  ],
+  "failure_reason": null
+}

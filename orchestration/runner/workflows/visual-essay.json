@@ -1,0 +1,31 @@
+{
+  "workflow": "visual-essay",
+  "version": "local-dev",
+  "description": "Visual Essay production pipeline with research-first methodology",
+  "gates": [
+    {
+      "gate": "G1",
+      "name": "Intake Approval",
+      "agent": "visual-essay-orchestrator",
+      "contract": "orchestration/gates/contracts/G1.contract.json",
+      "prompt_template": "G1",
+      "description": "Validates scope, depth, and creates intake approval artifact"
+    },
+    {
+      "gate": "G2",
+      "name": "Research Complete",
+      "agent": "research-orchestrator",
+      "contract": "orchestration/gates/contracts/G2.contract.json",
+      "prompt_template": "G2",
+      "description": "Produces complete research package with citations, figures, quotes, timeline, visuals"
+    },
+    {
+      "gate": "G3",
+      "name": "Spec Approval",
+      "agent": "visual-essay-invocation-agent",
+      "contract": "orchestration/gates/contracts/G3.contract.json",
+      "prompt_template": "G3",
+      "description": "Generates 6-layer visual essay specification from research"
+    }
+  ]
+}

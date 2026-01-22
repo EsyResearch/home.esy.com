@@ -38,7 +38,7 @@ function getRunPaths(runId) {
  * Initialize a new run
  */
 function initRun(options) {
-  const { workflow, slug, artifactPath, depth = 'standard' } = options;
+  const { workflow, slug, artifactPath, depth = 'standard', promptFile = null, promptSha256 = null } = options;
   
   const runId = generateRunId(slug);
   const paths = getRunPaths(runId);
@@ -59,6 +59,10 @@ function initRun(options) {
       artifact_path: artifactPath
     },
     depth,
+    prompt: promptFile ? {
+      file: promptFile,
+      sha256: promptSha256
+    } : null,
     status: 'QUEUED',
     started_at: new Date().toISOString(),
     finished_at: null,
@@ -118,7 +122,7 @@ function saveRun(runId, runRecord) {
 /**
  * Start a gate attempt
  */
-function startGate(runId, gateCode, agentName) {
+function startGate(runId, gateCode, agentName, promptSha256 = null) {
   const { paths, runRecord } = loadRun(runId);
   
   // Find the gate
@@ -135,6 +139,7 @@ function startGate(runId, gateCode, agentName) {
     started_at: new Date().toISOString(),
     finished_at: null,
     agent: agentName,
+    prompt_sha256: promptSha256,
     invocation_ids: [],
     required_outputs: [],
     artifacts: [],
@@ -161,7 +166,7 @@ function startGate(runId, gateCode, agentName) {
   const gateDir = path.join(paths.gatesDir, gateCode);
   fs.mkdirSync(gateDir, { recursive: true });
   
-  return { attempt: attemptNumber, gate };
+  return { attempt: attemptNumber, gate, paths };
 }
 
 /**

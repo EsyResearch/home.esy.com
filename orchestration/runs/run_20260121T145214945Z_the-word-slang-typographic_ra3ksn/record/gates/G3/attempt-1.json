@@ -1,0 +1,47 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-01-21T14:57:58.126Z",
+  "finished_at": "2026-01-21T14:59:58.815Z",
+  "agent": "visual-essay-invocation-agent",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "orchestration/skills/visual-essay-invocation/specs/{slug}.md"
+  ],
+  "artifacts": [
+    {
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-word-slang-typographic.md",
+      "sha256": "a3ca9aa2a84682374d9c1120c969646d28a93c64d639639598585df42bb4f28e",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-word-slang-typographic.md",
+      "pass": true,
+      "description": "6-layer visual essay specification"
+    },
+    {
+      "type": "contains_headings",
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "pass": true,
+      "missing": [],
+      "description": "Spec must contain all 6 layer headings"
+    },
+    {
+      "type": "not_contains",
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "pattern": "[DRAFT]",
+      "found": false,
+      "severity": "warning",
+      "description": "Spec should not contain [DRAFT] marker (configurable)",
+      "pass": true,
+      "warning": false
+    }
+  ],
+  "failure_reason": null
+}

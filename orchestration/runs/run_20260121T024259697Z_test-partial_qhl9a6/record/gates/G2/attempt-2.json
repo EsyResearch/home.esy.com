@@ -1,0 +1,109 @@
+{
+  "attempt": 2,
+  "status": "PASS",
+  "started_at": "2026-01-21T02:43:22.224Z",
+  "finished_at": "2026-01-21T02:43:22.301Z",
+  "agent": "research-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CITATIONS.md",
+    "{artifact_path}/research/SYNTHESIS.md",
+    "{artifact_path}/research/FIGURES.md",
+    "{artifact_path}/research/QUOTES.md",
+    "{artifact_path}/research/TIMELINE.md",
+    "{artifact_path}/research/VISUALS.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/CITATIONS.md",
+      "sha256": "a3f89322ba13240198155ef7281233e40a129f897dd8b475871a5bc87fd422cf",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/SYNTHESIS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/SYNTHESIS.md",
+      "sha256": "88d7cf2f5a3f3dcf37eb0675dba97a3841f8faeee0b6825f74b79ed053978ddf",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/FIGURES.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/FIGURES.md",
+      "sha256": "db37db163a435130b5a7de7a34608dde6e215aef698670d00b527e02c9df29dc",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/QUOTES.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/QUOTES.md",
+      "sha256": "0b3ab79433dd7f93e8b75918577232add4c220c03072d5b6fd1037c2f9cb4075",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/TIMELINE.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/TIMELINE.md",
+      "sha256": "6b77699c92c43e6dae43166aaf1b151fc1ce1a0c90671831db15c5102e2f60c2",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/VISUALS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/VISUALS.md",
+      "sha256": "09717e9e3459b92f96dfac765482aae45fe7e7b61b6a18eac0e8fa551ed041f9",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/CITATIONS.md",
+      "pass": true,
+      "description": "All sources with verification status"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/SYNTHESIS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/SYNTHESIS.md",
+      "pass": true,
+      "description": "Key findings synthesis"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/FIGURES.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/FIGURES.md",
+      "pass": true,
+      "description": "5-15 figures with imagery availability"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/QUOTES.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/QUOTES.md",
+      "pass": true,
+      "description": "10+ verified quotes with sources"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/TIMELINE.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/TIMELINE.md",
+      "pass": true,
+      "description": "Chronological events mapping"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/VISUALS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-robot/research/VISUALS.md",
+      "pass": true,
+      "description": "Archive/visual sources identification"
+    },
+    {
+      "type": "min_sources",
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "count": 10,
+      "threshold": 8,
+      "depth": "standard",
+      "pass": true,
+      "description": "CITATIONS.md must contain minimum sources based on depth mode"
+    }
+  ],
+  "failure_reason": null
+}

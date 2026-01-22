@@ -1,0 +1,69 @@
+{
+  "run_id": "run_20260121T145139987Z_the-word-slang-typographic_3s1kaf",
+  "workflow": {
+    "name": "visual-essay",
+    "version": "local-dev",
+    "slug": "the-word-slang-typographic",
+    "artifact_path": "src/app/essays/etymology/the-word-slang-typographic"
+  },
+  "depth": "deep",
+  "prompt": {
+    "file": "orchestration/prompts/the-word-slang-v2.md",
+    "sha256": "3139eeb5ba2e680bd19dc571d9ac745a09bbdae2eae9794de5247c130a20baa8"
+  },
+  "status": "RUNNING",
+  "started_at": "2026-01-21T14:51:39.988Z",
+  "finished_at": null,
+  "gates": [
+    {
+      "gate": "G1",
+      "name": "Intake Approval",
+      "status": "RUNNING",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "RUNNING",
+          "started_at": "2026-01-21T14:51:39.990Z",
+          "finished_at": null,
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": "ef0b9fc43a8d4bd87f62210f7583e7f508d1d7ff54a1488a53bf8e5010dcde71",
+          "invocation_ids": [],
+          "required_outputs": [],
+          "artifacts": [],
+          "validations": [],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G2",
+      "name": "Research Complete",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G3",
+      "name": "Spec Approval",
+      "status": "NOT_STARTED",
+      "attempts": []
+    }
+  ],
+  "invocations": [],
+  "artifacts_index": [],
+  "validations": [],
+  "events": [
+    {
+      "timestamp": "2026-01-21T14:51:39.988Z",
+      "type": "RUN_STARTED",
+      "message": "Run initialized for visual-essay/the-word-slang-typographic"
+    },
+    {
+      "timestamp": "2026-01-21T14:51:39.990Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 1,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 1 started with agent visual-essay-orchestrator"
+    }
+  ]
+}

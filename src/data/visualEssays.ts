@@ -986,6 +986,20 @@ export const visualEssays: VisualEssay[] = [
     tags: ["war etymology", "werra", "frankish", "norman conquest", "middle english", "etymology", "word origin", "guerre", "guerra", "cross-linguistic", "PIE", "visual essay", "military interface", "targeting"],
     visualStyle: "illustrated",
   },
+  {
+    id: "the-word-slang-typographic",
+    number: "85",
+    title: "SLANG: The Rogue Archive",
+    subtitle: "A Typographic Etymology",
+    description: "A typography-led visual essay tracing the word 'slang' from London's criminal underworld in 1756 to the present. No photographs—only type, pattern, and the power of letters. Explore the word that names the unnamed through 16 panels of era-shifting design.",
+    category: "Education & Writing",
+    readTime: "20 min",
+    href: "/essays/etymology/the-word-slang-typographic",
+    isNew: true,
+    tags: ["slang etymology", "slang origin", "typographic essay", "typography design", "visual etymology", "Francis Grose", "H.L. Mencken", "cant", "argot", "lexicography", "visual essay", "editorial design"],
+    visualStyle: "illustrated",
+    heroImage: "/og/the-word-slang-typographic.png",
+  },
   // Children's Fiction (draft - not shown in production)
   {
     id: "the-night-the-stars-fell",

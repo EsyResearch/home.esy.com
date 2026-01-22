@@ -1,0 +1,109 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-01-21T14:52:36.442Z",
+  "finished_at": "2026-01-21T14:57:51.810Z",
+  "agent": "research-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CITATIONS.md",
+    "{artifact_path}/research/SYNTHESIS.md",
+    "{artifact_path}/research/FIGURES.md",
+    "{artifact_path}/research/QUOTES.md",
+    "{artifact_path}/research/TIMELINE.md",
+    "{artifact_path}/research/VISUALS.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/CITATIONS.md",
+      "sha256": "eb0bfa09550da2c84b3dc09cd94e37594b5b5c56ec13306c3176eedb41b1171e",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/SYNTHESIS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/SYNTHESIS.md",
+      "sha256": "13cb2c09cf2db362da5300075ae52b83c352e57b2edb00112a3b91f627a1b741",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/FIGURES.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/FIGURES.md",
+      "sha256": "ee91c3104a4032b04708c642dac26e1604c7593d53ebf34358083e2ea2dec44b",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/QUOTES.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/QUOTES.md",
+      "sha256": "2eb8d1abad9ebffbf30c1648aa2f9017fad095f005436c4afc13b9b47f3d7311",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/TIMELINE.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/TIMELINE.md",
+      "sha256": "e279d19067b1fc44bcde8d76fa3821ba1a9dc73e9f6b001e1d21de93fa9dafdf",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/VISUALS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/VISUALS.md",
+      "sha256": "647453fa874dd80ddd192de60ecaa03d4f0156e39ec5f61d509fb097d4e59519",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/CITATIONS.md",
+      "pass": true,
+      "description": "All sources with verification status"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/SYNTHESIS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/SYNTHESIS.md",
+      "pass": true,
+      "description": "Key findings synthesis"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/FIGURES.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/FIGURES.md",
+      "pass": true,
+      "description": "5-15 figures with imagery availability"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/QUOTES.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/QUOTES.md",
+      "pass": true,
+      "description": "10+ verified quotes with sources"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/TIMELINE.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/TIMELINE.md",
+      "pass": true,
+      "description": "Chronological events mapping"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/VISUALS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/etymology/the-word-slang-typographic/research/VISUALS.md",
+      "pass": true,
+      "description": "Archive/visual sources identification"
+    },
+    {
+      "type": "min_sources",
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "count": 17,
+      "threshold": 15,
+      "depth": "deep",
+      "pass": true,
+      "description": "CITATIONS.md must contain minimum sources based on depth mode"
+    }
+  ],
+  "failure_reason": null
+}
