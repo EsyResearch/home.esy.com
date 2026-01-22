@@ -346,7 +346,13 @@ const concepts = [
 export default function TheWordSlangTypographicClient() {
   const [activePanel, setActivePanel] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [animationKey, setAnimationKey] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Re-trigger animations on every mount (client-side nav or refresh)
+  useEffect(() => {
+    setAnimationKey(prev => prev + 1);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -450,7 +456,7 @@ export default function TheWordSlangTypographicClient() {
       </nav>
 
       {/* Hero Section */}
-      <section className="hero-section">
+      <section className="hero-section" key={`hero-${animationKey}`}>
         <div className="hero-background">
           <div className="floating-words">
             <span className="float-word" style={{ '--delay': '0s', '--x': '10%', '--y': '20%' } as React.CSSProperties}>cool</span>

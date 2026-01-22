@@ -264,9 +264,9 @@ function EtymologyTheories() {
       confidence: 1, 
       description: 'Folk etymology combining "sling" and "language"', 
       status: 'Unlikely' 
-    },
-  ];
-  
+  },
+];
+
   return (
     <div className="etymology-theories">
       {theories.map((theory, i) => (
@@ -332,10 +332,10 @@ export default function TheWordSlangClient() {
   const contentRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = useCallback(() => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = Math.min(scrollTop / docHeight, 1);
-    setScrollProgress(progress);
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = Math.min(scrollTop / docHeight, 1);
+      setScrollProgress(progress);
 
     // Find active chapter
     for (let i = chapters.length - 1; i >= 0; i--) {
@@ -343,16 +343,16 @@ export default function TheWordSlangClient() {
       const element = document.getElementById(chapter.id);
       if (element) {
         const rect = element.getBoundingClientRect();
-        if (rect.top <= window.innerHeight * 0.4) {
+          if (rect.top <= window.innerHeight * 0.4) {
           setActiveChapter(chapter.id);
           setCurrentEra(chapter.era);
           if (chapter.letter) {
             setProgressWord(chapter.letter);
+            }
+            break;
           }
-          break;
         }
       }
-    }
   }, []);
 
   useEffect(() => {
@@ -457,13 +457,13 @@ export default function TheWordSlangClient() {
           <div className="slang-chapter-marker">Chapter B</div>
           <h2 className="slang-section-title">Birth Certificate</h2>
           <p className="slang-section-subtitle">First Sightings in Print</p>
-          
+
           <div className="slang-attestation-block">
             <div className="slang-attestation-year">1756</div>
             <blockquote className="slang-attestation-quote">
               <p>
                 &ldquo;Thomas Throw had been upon the town, <mark>knew the slang well</mark>; had 
-                often sate a flasher at M——d——g——n&apos;s, and understood every word in the 
+                often sate a flasher at M——d——g——n&apos;s, and understood every word in the
                 scoundrel&apos;s dictionary.&rdquo;
               </p>
               <cite>
@@ -485,20 +485,20 @@ export default function TheWordSlangClient() {
               an elaborate deception scheme.
             </p>
             <p>
-              The word was already in circulation, already useful, already marking the boundary 
+              The word was already in circulation, already useful, already marking the boundary
               between those who belonged and those who did not.
             </p>
           </div>
 
           <figure className="slang-figure">
-            <div className="slang-figure-image">
-              <img
+                <div className="slang-figure-image">
+                  <img
                 src="https://upload.wikimedia.org/wikipedia/commons/d/d0/William_Hogarth_-_Gin_Lane.jpg"
                 alt="Gin Lane by William Hogarth, 1751"
-                loading="lazy"
-              />
-            </div>
-            <figcaption>
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption>
               The world where &ldquo;slang&rdquo; was born: Georgian London&apos;s underworld. 
               William Hogarth, &ldquo;Gin Lane,&rdquo; 1751. Public Domain.
             </figcaption>
@@ -518,7 +518,7 @@ export default function TheWordSlangClient() {
             <div className="slang-dict-pronunciation">/slaŋ/</div>
             <div className="slang-dict-pos">noun</div>
             <div className="slang-dict-origin">
-              <strong>Origin:</strong> unknown
+                <strong>Origin:</strong> unknown
             </div>
           </div>
 
@@ -538,7 +538,7 @@ export default function TheWordSlangClient() {
               The OED, reviewing the same evidence, politely disagreed. The mystery endures.
             </p>
             <p className="slang-emphasis">
-              The word performs what it names: it arrived from the margins, its papers never quite 
+              The word performs what it names: it arrived from the margins, its papers never quite
               in order, and it has never fully disclosed its origins.
             </p>
           </div>
@@ -551,7 +551,7 @@ export default function TheWordSlangClient() {
           <div className="slang-chapter-marker">Chapter D</div>
           <h2 className="slang-section-title">The Social Life of Slang</h2>
           <p className="slang-section-subtitle">Why It Exists</p>
-          
+
           <div className="slang-narrative">
             <p className="slang-lede">
               Every slang word is born for a reason. And every slang word eventually dies. 
@@ -564,7 +564,7 @@ export default function TheWordSlangClient() {
               <div className="slang-function-icon">🔐</div>
               <h4>Secrecy</h4>
               <p>From thieves&apos; cant to teen texting—keeping outsiders out</p>
-            </div>
+          </div>
             <div className="slang-function-card">
               <div className="slang-function-icon">🤝</div>
               <h4>Identity</h4>
@@ -574,7 +574,7 @@ export default function TheWordSlangClient() {
               <div className="slang-function-icon">⚡</div>
               <h4>Rebellion</h4>
               <p>Rejecting &ldquo;proper&rdquo; language, asserting autonomy</p>
-            </div>
+        </div>
             <div className="slang-function-card">
               <div className="slang-function-icon">✨</div>
               <h4>Freshness</h4>
@@ -589,7 +589,7 @@ export default function TheWordSlangClient() {
             <p>&ldquo;Slang is language at play.&rdquo;</p>
             <cite>— Eric Partridge, 1933</cite>
           </blockquote>
-        </div>
+          </div>
       </section>
 
       {/* ==================== CHAPTER E: AMERICAN TIMELINE ==================== */}
@@ -608,7 +608,7 @@ export default function TheWordSlangClient() {
                 <span>cat&apos;s meow</span>
                 <span>hooch</span>
                 <span>speakeasy</span>
-              </div>
+                </div>
             </div>
             <div className="slang-era-card era-beat">
               <div className="slang-era-decade">1950s</div>
@@ -628,8 +628,8 @@ export default function TheWordSlangClient() {
                 <span>far out</span>
                 <span>uptight</span>
                 <span>trip</span>
-              </div>
-            </div>
+          </div>
+          </div>
             <div className="slang-era-card era-hiphop">
               <div className="slang-era-decade">1980s</div>
               <div className="slang-era-name">Hip-Hop</div>
@@ -638,7 +638,7 @@ export default function TheWordSlangClient() {
                 <span>fresh</span>
                 <span>fly</span>
                 <span>dis</span>
-              </div>
+        </div>
             </div>
             <div className="slang-era-card era-internet">
               <div className="slang-era-decade">2000s</div>
@@ -703,7 +703,7 @@ export default function TheWordSlangClient() {
           <div className="slang-chapter-marker">Chapter G</div>
           <h2 className="slang-section-title">Gatekeepers &amp; Champions</h2>
           <p className="slang-section-subtitle">Who Documented Slang</p>
-          
+
           <div className="slang-narrative">
             <p>
               For centuries, &ldquo;proper&rdquo; lexicographers ignored slang or condemned it. 
@@ -726,7 +726,7 @@ export default function TheWordSlangClient() {
           <div className="slang-chapter-marker">Chapter H</div>
           <h2 className="slang-section-title">Slang Today</h2>
           <p className="slang-section-subtitle">The Internet as a Slang Engine</p>
-          
+
           <div className="slang-digital-mockup">
             <div className="slang-search-bar">
               <span className="slang-search-icon">🔍</span>
@@ -880,7 +880,7 @@ export default function TheWordSlangClient() {
 
           <div className="slang-sources-note">
             <p>
-              <strong>Note on Etymology:</strong> This essay presents the current scholarly 
+              <strong>Note on Etymology:</strong> This essay presents the current scholarly
               consensus that the etymology of &ldquo;slang&rdquo; remains uncertain. The Scandinavian 
               theory is the leading hypothesis but has not been definitively proven.
             </p>
