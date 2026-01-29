@@ -511,27 +511,28 @@ When working with this agent, reference the role by stating:
 
 ### VISUALS.md Output (for Visual Essays)
 
-For visual essay production (Gate 4.5), output structured `VISUALS.md` with all fields required for the `IMAGES` constant:
+For visual essay production (Gate 4.5), output structured `VISUALS.md` with research findings:
 
 ```markdown
 ## VISUALS.md - [Essay Title]
 
 ### Chapter 1: [Chapter Name]
 
-| Key | Source URL | Alt Text | Credit | License | Caption |
-|-----|-----------|----------|--------|---------|---------|
-| keyName | https://upload.wikimedia.org/... | Descriptive alt text for accessibility | Creator, via Source | Public Domain | Optional caption |
+| Key | Source URL | Description | Credit | License |
+|-----|-----------|-------------|--------|---------|
+| keyName | https://upload.wikimedia.org/... | Factual description of image (artist, medium, date) | Creator, via Source | Public Domain |
 ```
 
 **Required fields per image:**
-| Field | Description |
-|-------|-------------|
+| Field | Responsibility |
+|-------|----------------|
 | `Key` | camelCase identifier (e.g., `josephPriestley`) |
 | `Source URL` | Direct image URL (NOT wiki file page) |
-| `Alt Text` | Accessible, descriptive text (see `docs/IMAGE_STANDARDS.md`) |
+| `Description` | **Factual description** — artist, medium, date, subject (NOT contextual alt text) |
 | `Credit` | Full attribution line |
 | `License` | Verified license identifier |
-| `Caption` | Optional display caption |
+
+> **Note:** You provide `Description` (factual, archival). The **Scrollytelling Expert** writes contextual `alt` text during production. See `docs/IMAGE_STANDARDS.md` for the full workflow.
 
 **URL Verification**: All URLs must return image content (`Content-Type: image/*`), not HTML.
 

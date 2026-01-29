@@ -94,21 +94,33 @@ const IMAGES = {
 
 ## Alt Text Guidelines
 
+> **Responsibility:** The **Scrollytelling Expert** writes alt text during production, using the Image Research Expert's `description` as input.
+
 ### Good Alt Text
 
-- **Descriptive**: Conveys the content and purpose of the image
-- **Contextual**: Relates to the surrounding narrative
+- **Contextual**: Relates to the essay's narrative (why is this image here?)
+- **Descriptive**: Conveys the content and purpose
 - **Concise**: Typically 125 characters or less
 - **No redundancy**: Don't start with "Image of..." or "Photo of..."
+
+### Description vs Alt Text
+
+| Type | Written By | Focus | Example |
+|------|-----------|-------|---------|
+| `description` | Image Research Expert | Factual, archival | "Portrait of Joseph Priestley by Ellen Sharples, oil on canvas, circa 1797" |
+| `alt` | Scrollytelling Expert | Narrative context | "Joseph Priestley, the scientist who discovered carbonated water in 1767" |
 
 ### Examples
 
 ```typescript
-// ✅ Good
-alt: "Portrait of Joseph Priestley by Ellen Sharples, showing the scientist in formal 18th-century attire"
+// ✅ Good - contextual, relates to narrative
+alt: "Joseph Priestley, the scientist who discovered carbonated water in 1767"
 
-// ✅ Good (for data visualization)
+// ✅ Good - for data visualization
 alt: "Line graph showing Coca-Cola's market share growth from 12% in 1920 to 45% in 1950"
+
+// ⚠️ Acceptable but not ideal - factual but not contextual
+alt: "Portrait of Joseph Priestley by Ellen Sharples"
 
 // ❌ Bad - too vague
 alt: "A man"
@@ -150,27 +162,31 @@ Use standardized license identifiers:
 
 ### Image Research Expert (G4.5) Responsibilities
 
-The **Image Research Licensing Expert** (`@agents/research/image-research-licensing-expert.md`) is responsible for sourcing all images during Gate 4.5. The agent must output structured data that maps directly to the `IMAGES` constant format.
+The **Image Research Licensing Expert** (`@agents/research/image-research-licensing-expert.md`) is responsible for sourcing all images during Gate 4.5. The agent outputs structured data with **descriptions** that inform the final alt text.
+
+> **Important distinction:**
+> - `description` — What the Image Research Expert provides (factual, archival)
+> - `alt` — What the Scrollytelling Expert writes (contextual, narrative-aware)
 
 #### Required Output: `VISUALS.md`
 
-For each chapter/section, the agent produces a table with **all required fields**:
+For each chapter/section, the agent produces a table with research findings:
 
 ```markdown
 ## VISUALS.md - [Essay Title]
 
 ### Chapter 1: Scientific Discovery
 
-| Key | Source URL | Alt Text | Credit | License | Caption |
-|-----|-----------|----------|--------|---------|---------|
-| josephPriestley | https://upload.wikimedia.org/.../Priestley.jpg | Portrait of Joseph Priestley by Ellen Sharples, showing the scientist in formal 18th-century attire | Ellen Sharples, via Wikimedia Commons | Public Domain | Joseph Priestley (1733-1804), discoverer of carbonated water |
-| pneumaticTrough | https://upload.wikimedia.org/.../Pneumatic_trough.jpg | Diagram of Priestley's pneumatic trough apparatus used for carbonation experiments | Science History Institute | Public Domain | |
+| Key | Source URL | Description | Credit | License |
+|-----|-----------|-------------|--------|---------|
+| josephPriestley | https://upload.wikimedia.org/.../Priestley.jpg | Portrait of Joseph Priestley by Ellen Sharples, oil on canvas, circa 1797 | Ellen Sharples, via Wikimedia Commons | Public Domain |
+| pneumaticTrough | https://upload.wikimedia.org/.../Pneumatic_trough.jpg | Technical diagram showing Priestley's pneumatic trough apparatus | Science History Institute | Public Domain |
 
 ### Chapter 2: The Pharmacy Era
 
-| Key | Source URL | Alt Text | Credit | License | Caption |
-|-----|-----------|----------|--------|---------|---------|
-| johnPemberton | https://upload.wikimedia.org/.../Pemberton.jpg | Portrait photograph of John Stith Pemberton, inventor of Coca-Cola | Unknown photographer, via Wikimedia Commons | Public Domain | John Pemberton (1831-1888) |
+| Key | Source URL | Description | Credit | License |
+|-----|-----------|-------------|--------|---------|
+| johnPemberton | https://upload.wikimedia.org/.../Pemberton.jpg | Formal portrait photograph of John Stith Pemberton, late 19th century | Unknown photographer, via Wikimedia Commons | Public Domain |
 ```
 
 #### Field Requirements for Image Research Expert
@@ -179,10 +195,11 @@ For each chapter/section, the agent produces a table with **all required fields*
 |-------|----------|---------------------|
 | `Key` | ✅ | Generate camelCase key name matching the subject (e.g., `josephPriestley`, not `image1`) |
 | `Source URL` | ✅ | Direct image URL (must be `upload.wikimedia.org`, not `commons.wikimedia.org/wiki/File:`) |
-| `Alt Text` | ✅ | Write descriptive, accessible alt text (see Alt Text Guidelines above) |
+| `Description` | ✅ | Factual description of the image (artist, medium, date, subject) — **NOT contextual alt text** |
 | `Credit` | ✅ | Full attribution: artist/photographer, source institution |
 | `License` | ✅ | Verify and document license (prefer Public Domain, CC0, CC BY) |
-| `Caption` | Optional | Display caption if different from alt text |
+
+> **Note:** The Image Research Expert provides `Description`, not `Alt`. Writing contextual alt text is the Scrollytelling Expert's responsibility during production.
 
 #### URL Verification
 
@@ -208,32 +225,79 @@ The agent must verify license status on the source page:
 
 ### From VISUALS.md to IMAGES Constant
 
-After Image Research Expert completes sourcing:
+The workflow from research to production:
 
-1. **Create migration config** from VISUALS.md:
-   ```json
-   {
-     "essaySlug": "the-complete-history-of-soda",
-     "images": [
-       {
-         "key": "josephPriestley",
-         "filename": "priestley.jpg",
-         "sourceUrl": "https://upload.wikimedia.org/...",
-         "alt": "Portrait of Joseph Priestley by Ellen Sharples",
-         "credit": "Ellen Sharples, via Wikimedia Commons",
-         "license": "Public Domain",
-         "caption": "Joseph Priestley (1733-1804)"
-       }
-     ]
-   }
-   ```
+```
+┌─────────────────────────────────────────────────────────────┐
+│  1. VISUALS.md (Image Research Expert)                      │
+│  ─────────────────────────────────────                      │
+│  • description: "Portrait of Priestley by Sharples, 1797"   │
+│  • credit, license, sourceUrl                               │
+│  • Factual, archival focus                                  │
+└─────────────────────────────────────────────────────────────┘
+                          │
+                          ▼
+┌─────────────────────────────────────────────────────────────┐
+│  2. Migration (scripts)                                     │
+│  ─────────────────────────────────────                      │
+│  • Upload images to R2                                      │
+│  • Generate R2 URLs with content hashes                     │
+└─────────────────────────────────────────────────────────────┘
+                          │
+                          ▼
+┌─────────────────────────────────────────────────────────────┐
+│  3. Production (Scrollytelling Expert)                      │
+│  ─────────────────────────────────────                      │
+│  • Writes contextual ALT text using description + narrative │
+│  • Creates final IMAGES constant                            │
+└─────────────────────────────────────────────────────────────┘
+```
 
-2. **Run migration** to upload to R2:
-   ```bash
-   node scripts/migrate-essay-images-to-r2.mjs --config=path/images-migration.json --update
-   ```
+#### Step 1: Create migration config from VISUALS.md
 
-3. **Scrollytelling Expert** receives structured IMAGES constant with all metadata for production
+```json
+{
+  "essaySlug": "the-complete-history-of-soda",
+  "images": [
+    {
+      "key": "josephPriestley",
+      "filename": "priestley.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/...",
+      "description": "Portrait of Joseph Priestley by Ellen Sharples, circa 1797",
+      "credit": "Ellen Sharples, via Wikimedia Commons",
+      "license": "Public Domain"
+    }
+  ]
+}
+```
+
+#### Step 2: Run migration to upload to R2
+
+```bash
+node scripts/migrate-essay-images-to-r2.mjs --config=path/images-migration.json --update
+```
+
+#### Step 3: Scrollytelling Expert writes contextual alt text
+
+The Scrollytelling Expert creates the final IMAGES constant, transforming factual descriptions into narrative-aware alt text:
+
+```typescript
+const IMAGES = {
+  josephPriestley: {
+    src: "https://images.esy.com/essays/.../priestley.abc123.jpg",
+    // Alt text is contextual — relates to the essay's narrative
+    alt: "Joseph Priestley, the scientist who discovered carbonated water in 1767",
+    credit: "Ellen Sharples, via Wikimedia Commons",
+    license: "Public Domain",
+  },
+} as const;
+```
+
+**Description vs Alt:**
+| Field | Source | Purpose |
+|-------|--------|---------|
+| `description` | Image Research Expert | Factual: "Portrait by Sharples, 1797" |
+| `alt` | Scrollytelling Expert | Contextual: "Priestley, discoverer of carbonated water" |
 
 ---
 
