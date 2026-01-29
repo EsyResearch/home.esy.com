@@ -234,4 +234,177 @@ All essay images must be self-hosted on R2:
 
 ---
 
+## Future: Database Architecture
+
+> For scaling to thousands of essays with CMS support
+
+### Overview
+
+The current `IMAGES` constant approach works well for the current scale (~30 essays). As Esy grows to thousands of essays, image management should migrate to a database-backed registry.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         Postgres                                 │
+│  ┌─────────────┐    ┌──────────────────┐    ┌───────────────┐   │
+│  │   images    │◄──►│  essay_images    │◄──►│    essays     │   │
+│  │ (registry)  │    │ (relationships)  │    │  (metadata)   │   │
+│  └─────────────┘    └──────────────────┘    └───────────────┘   │
+└─────────────────────────────────────────────────────────────────┘
+           │
+           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    Cloudflare R2                                 │
+│              (actual file storage)                               │
+│         https://images.esy.com/essays/...                        │
+└─────────────────────────────────────────────────────────────────┘
+           │
+           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    Build / Runtime                               │
+│  • Static build: fetch from DB → generate IMAGES constants       │
+│  • Or runtime: API call to get image data                        │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Database Schema
+
+```sql
+-- Central image registry
+CREATE TABLE images (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  
+  -- R2 storage
+  r2_key TEXT UNIQUE NOT NULL,           -- essays/soda/priestley.abc123.jpg
+  r2_url TEXT NOT NULL,                  -- https://images.esy.com/essays/...
+  
+  -- Original source (for reference/re-download)
+  original_url TEXT,                     -- https://upload.wikimedia.org/...
+  original_source TEXT,                  -- "Wikimedia Commons", "Library of Congress"
+  
+  -- Required metadata
+  alt TEXT NOT NULL,
+  
+  -- Attribution
+  credit TEXT,
+  license TEXT,                          -- "Public Domain", "CC BY-SA 4.0"
+  license_url TEXT,                      -- Link to license deed
+  
+  -- Display
+  caption TEXT,
+  
+  -- Technical
+  width INTEGER,
+  height INTEGER,
+  file_size INTEGER,
+  mime_type TEXT,
+  content_hash TEXT,                     -- For deduplication
+  
+  -- Audit
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW(),
+  uploaded_by TEXT
+);
+
+-- Essay metadata (if not managed elsewhere)
+CREATE TABLE essays (
+  slug TEXT PRIMARY KEY,
+  title TEXT NOT NULL,
+  category TEXT,                         -- "history", "etymology", etc.
+  published_at TIMESTAMP,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Many-to-many: which images are used in which essays
+CREATE TABLE essay_images (
+  essay_slug TEXT REFERENCES essays(slug) ON DELETE CASCADE,
+  image_id UUID REFERENCES images(id) ON DELETE RESTRICT,
+  key_name TEXT NOT NULL,                -- "josephPriestley" (used in IMAGES constant)
+  display_order INTEGER,                 -- For ordered galleries
+  
+  PRIMARY KEY (essay_slug, key_name)
+);
+
+-- Indexes for common queries
+CREATE INDEX idx_images_license ON images(license);
+CREATE INDEX idx_images_source ON images(original_source);
+CREATE INDEX idx_essay_images_image ON essay_images(image_id);
+```
+
+### Capabilities Enabled
+
+| Capability | Query Example |
+|------------|---------------|
+| Find missing alt text | `SELECT * FROM images WHERE alt IS NULL OR alt = ''` |
+| Audit by license | `SELECT * FROM images WHERE license = 'CC BY-SA 4.0'` |
+| Find unlicensed images | `SELECT * FROM images WHERE license IS NULL` |
+| Image reuse detection | `SELECT image_id, COUNT(*) FROM essay_images GROUP BY image_id HAVING COUNT(*) > 1` |
+| Essay image count | `SELECT essay_slug, COUNT(*) FROM essay_images GROUP BY essay_slug` |
+| Storage usage | `SELECT SUM(file_size) FROM images` |
+| Find by source | `SELECT * FROM images WHERE original_source = 'Wikimedia Commons'` |
+| Unused images | `SELECT * FROM images WHERE id NOT IN (SELECT image_id FROM essay_images)` |
+
+### Build-Time Integration
+
+Generate `IMAGES` constants from database at build time:
+
+```typescript
+// scripts/generate-images-constants.ts
+import { db } from './db';
+
+async function generateImagesForEssay(slug: string) {
+  const images = await db.query(`
+    SELECT ei.key_name, i.r2_url, i.alt, i.credit, i.license, i.caption
+    FROM essay_images ei
+    JOIN images i ON ei.image_id = i.id
+    WHERE ei.essay_slug = $1
+  `, [slug]);
+  
+  const constant = `export const IMAGES = {\n${
+    images.rows.map(img => `  ${img.key_name}: {
+    src: "${img.r2_url}",
+    alt: "${img.alt}",
+    ${img.credit ? `credit: "${img.credit}",` : ''}
+    ${img.license ? `license: "${img.license}",` : ''}
+    ${img.caption ? `caption: "${img.caption}",` : ''}
+  }`).join(',\n')
+  }\n} as const;`;
+  
+  return constant;
+}
+```
+
+### CMS Features (Future)
+
+- **Image Browser**: Search, filter, preview all images
+- **Upload Flow**: Drag-and-drop → R2 upload → DB record
+- **Essay Editor**: Visual picker to add images to essays
+- **Audit Dashboard**: License compliance, alt text coverage
+- **Bulk Operations**: Update license for all images from source
+- **Usage Analytics**: Most used images, orphaned images
+
+### Migration Path
+
+| Phase | State | Transition |
+|-------|-------|------------|
+| **Current** | IMAGES constants in TSX files | — |
+| **Phase 1** | Database + build script | Import existing IMAGES into DB, generate constants at build |
+| **Phase 2** | Database + API | Runtime fetch, SSR/ISR for image data |
+| **Phase 3** | Full CMS | Admin UI for image management |
+
+### Migration Script (Phase 1)
+
+```typescript
+// scripts/import-images-to-db.ts
+// Reads existing IMAGES constants and imports to database
+
+async function importEssayImages(essaySlug: string) {
+  const filePath = `src/app/essays/**/${essaySlug}/*Client.tsx`;
+  // Parse IMAGES constant from file
+  // Insert into images table
+  // Create essay_images relationships
+}
+```
+
+---
+
 *This standard applies to all new visual essays. Existing essays may use the legacy URL-only format until opportunistically migrated.*
