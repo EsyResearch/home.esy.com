@@ -148,26 +148,92 @@ Use standardized license identifiers:
 
 ## Integration with Visual Essay Pipeline
 
-### Image Research Expert (G4.5) Output
+### Image Research Expert (G4.5) Responsibilities
 
-The Image Research Expert should produce `VISUALS.md` with structured data:
+The **Image Research Licensing Expert** (`@agents/research/image-research-licensing-expert.md`) is responsible for sourcing all images during Gate 4.5. The agent must output structured data that maps directly to the `IMAGES` constant format.
+
+#### Required Output: `VISUALS.md`
+
+For each chapter/section, the agent produces a table with **all required fields**:
 
 ```markdown
-## Chapter 1: Scientific Discovery
+## VISUALS.md - [Essay Title]
 
-| Key | Source URL | Alt Text | Credit | License |
-|-----|-----------|----------|--------|---------|
-| josephPriestley | https://upload.wikimedia.org/... | Portrait of Joseph Priestley by Ellen Sharples | Ellen Sharples, Wikimedia Commons | Public Domain |
-| pneumaticTrough | https://upload.wikimedia.org/... | Priestley's pneumatic trough apparatus | Science History Institute | Public Domain |
+### Chapter 1: Scientific Discovery
+
+| Key | Source URL | Alt Text | Credit | License | Caption |
+|-----|-----------|----------|--------|---------|---------|
+| josephPriestley | https://upload.wikimedia.org/.../Priestley.jpg | Portrait of Joseph Priestley by Ellen Sharples, showing the scientist in formal 18th-century attire | Ellen Sharples, via Wikimedia Commons | Public Domain | Joseph Priestley (1733-1804), discoverer of carbonated water |
+| pneumaticTrough | https://upload.wikimedia.org/.../Pneumatic_trough.jpg | Diagram of Priestley's pneumatic trough apparatus used for carbonation experiments | Science History Institute | Public Domain | |
+
+### Chapter 2: The Pharmacy Era
+
+| Key | Source URL | Alt Text | Credit | License | Caption |
+|-----|-----------|----------|--------|---------|---------|
+| johnPemberton | https://upload.wikimedia.org/.../Pemberton.jpg | Portrait photograph of John Stith Pemberton, inventor of Coca-Cola | Unknown photographer, via Wikimedia Commons | Public Domain | John Pemberton (1831-1888) |
 ```
 
-### Migration to R2
+#### Field Requirements for Image Research Expert
+
+| Field | Required | Agent Responsibility |
+|-------|----------|---------------------|
+| `Key` | ✅ | Generate camelCase key name matching the subject (e.g., `josephPriestley`, not `image1`) |
+| `Source URL` | ✅ | Direct image URL (must be `upload.wikimedia.org`, not `commons.wikimedia.org/wiki/File:`) |
+| `Alt Text` | ✅ | Write descriptive, accessible alt text (see Alt Text Guidelines above) |
+| `Credit` | ✅ | Full attribution: artist/photographer, source institution |
+| `License` | ✅ | Verify and document license (prefer Public Domain, CC0, CC BY) |
+| `Caption` | Optional | Display caption if different from alt text |
+
+#### URL Verification
+
+The Image Research Expert must verify URLs are **direct image links**:
+
+```bash
+# ✅ Correct - returns image content
+curl -sI "https://upload.wikimedia.org/wikipedia/commons/d/d5/Priestley.jpg" | grep Content-Type
+# Content-Type: image/jpeg
+
+# ❌ Wrong - returns HTML (wiki page, not image)
+curl -sI "https://commons.wikimedia.org/wiki/File:Priestley.jpg" | grep Content-Type
+# Content-Type: text/html
+```
+
+#### License Verification
+
+The agent must verify license status on the source page:
+1. Navigate to Wikimedia Commons file page
+2. Check "Licensing" section
+3. Document exact license (e.g., "CC BY-SA 4.0", not just "Creative Commons")
+4. Flag any images that are **not** Public Domain or CC-licensed
+
+### From VISUALS.md to IMAGES Constant
 
 After Image Research Expert completes sourcing:
 
-1. Create `images-migration.json` from VISUALS.md
-2. Run migration: `node scripts/migrate-essay-images-to-r2.mjs --config=... --update`
-3. The script updates URLs; metadata (alt, credit, license) is preserved in the IMAGES constant
+1. **Create migration config** from VISUALS.md:
+   ```json
+   {
+     "essaySlug": "the-complete-history-of-soda",
+     "images": [
+       {
+         "key": "josephPriestley",
+         "filename": "priestley.jpg",
+         "sourceUrl": "https://upload.wikimedia.org/...",
+         "alt": "Portrait of Joseph Priestley by Ellen Sharples",
+         "credit": "Ellen Sharples, via Wikimedia Commons",
+         "license": "Public Domain",
+         "caption": "Joseph Priestley (1733-1804)"
+       }
+     ]
+   }
+   ```
+
+2. **Run migration** to upload to R2:
+   ```bash
+   node scripts/migrate-essay-images-to-r2.mjs --config=path/images-migration.json --update
+   ```
+
+3. **Scrollytelling Expert** receives structured IMAGES constant with all metadata for production
 
 ---
 

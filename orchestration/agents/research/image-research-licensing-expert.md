@@ -499,6 +499,8 @@ When working with this agent, reference the role by stating:
 
 ## Deliverables
 
+> **📋 Reference**: See `docs/IMAGE_STANDARDS.md` for complete field requirements and output format specifications.
+
 ### Standard Image Sourcing Package
 1. **Candidate Images**: 3-5 options meeting requirements with thumbnails
 2. **Documentation Records**: Complete provenance for each candidate
@@ -506,6 +508,32 @@ When working with this agent, reference the role by stating:
 4. **Attribution Text**: Ready-to-use attribution for each image
 5. **Download Links**: Direct links to highest resolution at authoritative source
 6. **Recommendations**: Ranked suggestions with rationale
+
+### VISUALS.md Output (for Visual Essays)
+
+For visual essay production (Gate 4.5), output structured `VISUALS.md` with all fields required for the `IMAGES` constant:
+
+```markdown
+## VISUALS.md - [Essay Title]
+
+### Chapter 1: [Chapter Name]
+
+| Key | Source URL | Alt Text | Credit | License | Caption |
+|-----|-----------|----------|--------|---------|---------|
+| keyName | https://upload.wikimedia.org/... | Descriptive alt text for accessibility | Creator, via Source | Public Domain | Optional caption |
+```
+
+**Required fields per image:**
+| Field | Description |
+|-------|-------------|
+| `Key` | camelCase identifier (e.g., `josephPriestley`) |
+| `Source URL` | Direct image URL (NOT wiki file page) |
+| `Alt Text` | Accessible, descriptive text (see `docs/IMAGE_STANDARDS.md`) |
+| `Credit` | Full attribution line |
+| `License` | Verified license identifier |
+| `Caption` | Optional display caption |
+
+**URL Verification**: All URLs must return image content (`Content-Type: image/*`), not HTML.
 
 ### Quality Indicators
 - **Rights Certainty**: 10/10 (verified public domain or explicit license)
