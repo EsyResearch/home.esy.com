@@ -2,7 +2,41 @@
 
 import { useState, useEffect, useRef, useMemo } from 'react';
 import Link from 'next/link';
+import { Playfair_Display, Inter, Source_Serif_4, IBM_Plex_Mono } from 'next/font/google';
 import './why-venezuela-matters.css';
+
+// =============================================================================
+// SELF-HOSTED FONTS (next/font)
+// Eliminates external Google Fonts request, auto-subsets, improves LCP
+// =============================================================================
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['600', '700'],
+  variable: '--font-display',
+  display: 'swap',
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-headline',
+  display: 'swap',
+});
+
+const sourceSerif4 = Source_Serif_4({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-body',
+  display: 'swap',
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-mono',
+  display: 'swap',
+});
 
 // =============================================================================
 // SCROLL-LOCK HOOK (Three-State System)
@@ -884,8 +918,11 @@ function Hero() {
 
 // Main Component
 export default function WhyVenezuelaMattersClient() {
+  // Combine font variables for CSS custom properties
+  const fontClasses = `${playfairDisplay.variable} ${inter.variable} ${sourceSerif4.variable} ${ibmPlexMono.variable}`;
+  
   return (
-    <article className="venezuela-essay">
+    <article className={`venezuela-essay ${fontClasses}`}>
       <ProgressBar />
       <Hero />
 

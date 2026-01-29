@@ -26,7 +26,10 @@
    4. Blockade freeze effect for sanctions sections
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+/* Fonts loaded via next/font in WhyVenezuelaMattersClient.tsx
+   This eliminates the external Google Fonts request (~230ms savings)
+   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+*/
 
 /* --------------------------------------------------------------------------
    CSS Custom Properties (Subject-Derived)
@@ -74,11 +77,10 @@
   --document-text: #1A1A1A;
   --redaction-black: #000000;
 
-  /* Typography */
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-headline: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Source Serif 4', Georgia, serif;
-  --font-mono: 'IBM Plex Mono', 'Consolas', monospace;
+  /* Typography - provided by next/font via CSS variables
+     The font classes applied to the article element set these variables:
+     --font-display, --font-headline, --font-body, --font-mono
+     Fallbacks are handled by next/font's built-in system font stack */
 
   /* Animation (Viscous - Heavy, Deliberate) */
   --ease-viscous: cubic-bezier(0.4, 0.0, 0.2, 1);
