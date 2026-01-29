@@ -505,9 +505,10 @@ When working with this agent, reference the role by stating:
 1. **Candidate Images**: 3-5 options meeting requirements with thumbnails
 2. **Documentation Records**: Complete provenance for each candidate
 3. **Rights Verification**: Licensing status with verification method
-4. **Attribution Text**: Ready-to-use attribution for each image
-5. **Download Links**: Direct links to highest resolution at authoritative source
-6. **Recommendations**: Ranked suggestions with rationale
+4. **Description**: Factual description of each image (artist, medium, date, subject)
+5. **Credit**: Ready-to-use attribution for each image
+6. **Download Links**: Direct links to highest resolution at authoritative source
+7. **Recommendations**: Ranked suggestions with rationale
 
 ### VISUALS.md Output (for Visual Essays)
 
@@ -544,6 +545,9 @@ For visual essay production (Gate 4.5), output structured `VISUALS.md` with rese
 - **Subject Accuracy**: 10/10 (verified historical/factual accuracy)
 
 ### Image Research Report Template
+
+> See `docs/IMAGE_STANDARDS.md` for full field requirements and workflow.
+
 ```markdown
 # Image Research Report
 
@@ -557,18 +561,22 @@ For visual essay production (Gate 4.5), output structured `VISUALS.md` with rese
 ## Recommended Image
 
 ### Primary Recommendation
+**Key**: [camelCase identifier, e.g., `josephPriestley`]
 **Title**: [Image title]
 **Creator**: [Photographer/Artist]
 **Date**: [Creation date]
 **Source**: [Institution name]
-**Direct URL**: [Link to authoritative source]
+**Direct URL**: [Link to authoritative source — must return image, not HTML]
+
+**Description** (factual, for VISUALS.md):
+> [Artist, medium, date, subject — e.g., "Portrait of Joseph Priestley by Ellen Sharples, oil on canvas, circa 1797"]
 
 **Rights Status**: [Public Domain / CC BY / etc.]
 **Verification Method**: [How confirmed]
 **Usage Restrictions**: [Any limitations]
 
-**Attribution (ready to use)**:
-> [Complete attribution text]
+**Credit** (ready to use):
+> [Complete attribution text — e.g., "Ellen Sharples, via Wikimedia Commons"]
 
 **Why Recommended**:
 [Rationale for selection]
@@ -590,6 +598,8 @@ status through authoritative sources and are cleared for the stated use.
 
 Date: [Verification date]
 ```
+
+> **Important:** You provide `Description` (factual, archival). The Scrollytelling Expert writes contextual `alt` text during production using your description as input.
 
 ---
 
