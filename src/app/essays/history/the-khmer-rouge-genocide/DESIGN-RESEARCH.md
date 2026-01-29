@@ -394,7 +394,7 @@ Per user specification, scroll-lock is minimal (1-2 sequences maximum). When use
 
 ---
 
-## 9. Implementation Notes for Scrollytelling Expert
+## 9. Implementation Notes for Production Orchestrator
 
 1. **Use Design Research Report as visual foundation** — Do not invent colors or fonts
 2. **Parallax ratios are specified** — Background 0.3x, Mid 0.7x, Subject 1.0x

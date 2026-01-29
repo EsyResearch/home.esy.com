@@ -744,4 +744,4 @@ This visual essay about the word "essay" should itself be an attempt — explora
 *Spec Status: DRAFT*
 *Generated: December 14, 2025*
 *Research Package: research/the-word-essay/*
-*Ready for: Scrollytelling Expert production*
+*Ready for: Production Orchestrator production*

@@ -79,7 +79,7 @@ visual-essay-invocation/
 | Starting a new visual essay | ✅ Yes |
 | Need comprehensive production spec | ✅ Yes |
 | Want consistency across essays | ✅ Yes |
-| Quick draft without full spec | ❌ No — invoke Scrollytelling Expert directly |
+| Quick draft without full spec | ❌ No — invoke Production Orchestrator directly |
 | Editing existing essay | ❌ No — work with the implementation |
 
 ---

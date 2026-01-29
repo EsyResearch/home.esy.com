@@ -621,7 +621,7 @@ Progress visualized as a metaphorical assembly line where the word "ROBOT" is be
 
 **Lens Applied**: History + Linguistics (etymology focus, temporal progression, semantic evolution)
 
-**Ready For**: Visual Essay Orchestrator → Scrollytelling Expert → Production
+**Ready For**: Visual Essay Orchestrator → Production Orchestrator → Production
 
 ---
 

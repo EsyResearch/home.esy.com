@@ -683,4 +683,4 @@ None required—content is educational/historical, no graphic material.
 
 **Lens Applied:** Technology-History hybrid (engineering subject with biographical/historical treatment)
 
-**Ready for:** Visual Essay Orchestrator (Phase 4: Production) or direct handoff to Scrollytelling Expert
+**Ready for:** Visual Essay Orchestrator (Phase 4: Production) or direct handoff to Production Orchestrator

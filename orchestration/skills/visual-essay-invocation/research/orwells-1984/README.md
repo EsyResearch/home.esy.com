@@ -164,7 +164,7 @@ This essay must make readers *feel*:
 
 1. **Visual Essay Invocation Agent** to construct six-layer spec from research package
 2. Spec to be stored at `specs/orwells-1984.md`
-3. **Scrollytelling Expert** to implement with Design Research phase
+3. **Production Orchestrator** to implement with Design Research phase
 4. Hero section requires exceptional emotional engagement
 
 

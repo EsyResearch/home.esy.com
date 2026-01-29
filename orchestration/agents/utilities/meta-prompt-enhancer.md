@@ -1007,7 +1007,7 @@ Any AI System    Any Esy.com Agent
 Rough idea → Meta Prompt Enhancer → Visual Essay Intake Enhancer → Orchestrator
 ```
 
-**Before Scrollytelling Expert:**
+**Before Production Orchestrator:**
 ```
 Rough request → Meta Prompt Enhancer → Scrollytelling Invocation Enhancer → Expert
 ```

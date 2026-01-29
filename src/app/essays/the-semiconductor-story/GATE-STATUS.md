@@ -216,9 +216,9 @@
 
 ## Next Action
 
-Invoke Scrollytelling Expert:
+Invoke Production Orchestrator:
 ```
-Using @orchestration/agents/orchestrators/scrollytelling-expert.md:
+Using @orchestration/agents/orchestrators/production-orchestrator.md:
 
 Spec Location: orchestration/skills/visual-essay-invocation/specs/the-semiconductor-story.md
 Research Package: src/app/essays/the-semiconductor-story/research/
@@ -293,7 +293,7 @@ Begin production with Design Research phase.
 ## Gate 4: Design Research
 
 **Phase**: Pre-Production
-**Owner**: Scrollytelling Expert
+**Owner**: Production Orchestrator
 **Blocking**: Yes
 
 ### Design Research Deliverables
@@ -314,7 +314,7 @@ Begin production with Design Research phase.
 ## Gate 4 Status: ✅ APPROVED
 
 **Approval Date**: December 18, 2025
-**Approved By**: Scrollytelling Expert
+**Approved By**: Production Orchestrator
 
 **Notes**:
 - Unique visual identity derived from semiconductor materials
@@ -326,7 +326,7 @@ Begin production with Design Research phase.
 ## Gate 5: Content Complete
 
 **Phase**: Production → Audit
-**Owner**: Scrollytelling Expert
+**Owner**: Production Orchestrator
 **Blocking**: Yes
 
 ### Implementation Deliverables
@@ -351,7 +351,7 @@ Begin production with Design Research phase.
 ## Gate 5 Status: ✅ APPROVED
 
 **Approval Date**: December 18, 2025
-**Approved By**: Scrollytelling Expert
+**Approved By**: Production Orchestrator
 
 **Notes**:
 - All 9 chapters implemented with content

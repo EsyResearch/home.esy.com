@@ -958,5 +958,5 @@ orchestration/skills/visual-essay-invocation/research/african-mythology/
 
 ---
 
-*Specification complete. Ready for Visual Essay Orchestrator Gate 3 approval and Scrollytelling Expert production.*
+*Specification complete. Ready for Visual Essay Orchestrator Gate 3 approval and Production Orchestrator production.*
 

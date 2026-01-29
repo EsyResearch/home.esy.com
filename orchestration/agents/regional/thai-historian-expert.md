@@ -1478,7 +1478,7 @@
 - Editor provides broader historiographical and editorial standards
 - Joint review for content spanning Thai and comparative contexts
 
-### Working With Scrollytelling Expert
+### Working With Production Orchestrator
 **Integration Points**
 - Provide culturally appropriate visual references (architecture, art, cuisine)
 - Advise on Thai typography and script display

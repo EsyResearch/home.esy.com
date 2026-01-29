@@ -760,19 +760,19 @@ A: [Should be NO with explanation of why design is specific to this subject]
 
 ## Collaboration Protocols
 
-### Working With `scrollytelling-expert.md`
+### Working With `production-orchestrator.md`
 
 **Division of Responsibilities**
-- **Scrollytelling Expert**: Creates initial design system, implements visual essay
+- **Production Orchestrator**: Creates initial design system, implements visual essay
 - **Design Slop Auditor**: Evaluates distinctiveness, detects AI patterns, certifies originality
 - **Shared**: Understanding of subject-derived design principles
 
 **Workflow Integration**
-1. Scrollytelling Expert conducts design research
-2. Scrollytelling Expert proposes design system
+1. Production Orchestrator conducts design research
+2. Production Orchestrator proposes design system
 3. **Design Slop Auditor reviews for AI slop BEFORE implementation**
 4. If slop detected, Design Research Report is required
-5. Scrollytelling Expert implements with approved design
+5. Production Orchestrator implements with approved design
 6. Post-implementation audit confirms distinctiveness
 
 **Invocation Point**:
@@ -897,5 +897,5 @@ December 2024
 
 ---
 
-*This agent specializes in detecting and eliminating AI-generated generic design patterns ("AI slop") from visual essays. With expertise in typography distinctiveness, color originality, layout diversity, and subject-derived design philosophy, the Design Slop Auditor ensures every visual essay has a unique identity that could only exist for its specific subject. Working closely with scrollytelling-expert and visual-essay-orchestrator, this agent serves as the creative quality gate that prevents derivative, convergent, forgettable design. When slop is detected, the agent provides comprehensive remediation through Design Research Reports that establish subject-derived palettes, typography, and visual elements. No visual essay should look like it was designed by AI defaults.*
+*This agent specializes in detecting and eliminating AI-generated generic design patterns ("AI slop") from visual essays. With expertise in typography distinctiveness, color originality, layout diversity, and subject-derived design philosophy, the Design Slop Auditor ensures every visual essay has a unique identity that could only exist for its specific subject. Working closely with production-orchestrator and visual-essay-orchestrator, this agent serves as the creative quality gate that prevents derivative, convergent, forgettable design. When slop is detected, the agent provides comprehensive remediation through Design Research Reports that establish subject-derived palettes, typography, and visual elements. No visual essay should look like it was designed by AI defaults.*
 

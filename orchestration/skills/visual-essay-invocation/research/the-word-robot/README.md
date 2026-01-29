@@ -73,7 +73,7 @@ This research package supports the production of a photo visual essay exploring 
 
 This research package meets all Deep Mode requirements for Gate 2 (Research Complete). The package is ready for handoff to:
 1. **Visual Essay Invocation Agent** — To build the six-layer spec
-2. **Scrollytelling Expert** — For production using this research
+2. **Production Orchestrator** — For production using this research
 
 ---
 
@@ -147,7 +147,7 @@ Build the six-layer spec using:
 2. ⏳ Invoke Visual Essay Invocation Agent with research package
 3. ⏳ Build six-layer invocation spec
 4. ⏳ Proceed to G3 Gate (Spec Approval)
-5. ⏳ Hand off to Scrollytelling Expert for production
+5. ⏳ Hand off to Production Orchestrator for production
 
 ---
 

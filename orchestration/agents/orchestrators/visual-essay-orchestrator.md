@@ -470,7 +470,7 @@
 | G4 | Design Research | Design Researcher |
 | G4.1 | Design Research Reconciliation | Design Research Reconciliation Agent |
 | G4.5 | Image Sourcing | Image Research Licensing Expert |
-| G5 | Content Complete | Scrollytelling Expert |
+| G5 | Content Complete | Production Orchestrator |
 | G5.2 | Design Research Integration | Design Research Integration Agent |
 | G5.5 | Bibliography Implementation | Bibliography Orchestrator |
 | G6 | Citation Audit | Citation Audit Agent |
@@ -505,7 +505,7 @@
 - Publication-ready assessment
 
 ### Cross-Agent Orchestration
-**Scrollytelling Expert Coordination**
+**Production Orchestrator Coordination**
 - Brief handoff with complete specifications
 - Design research phase oversight
 - Content milestone tracking
@@ -520,7 +520,7 @@
 - Certification status tracking
 
 **Specialist Agent Liaison**
-- Historian Writer/Editor coordination through Scrollytelling Expert
+- Historian Writer/Editor coordination through Production Orchestrator
 - UI/UX and Immersive Experience quality verification
 - SVG Expert asset integration confirmation
 - Software Engineer implementation review
@@ -821,10 +821,10 @@ The Image Research Expert will:
 
 **Gate 4.5 Status**: ⏳ Pending / ✅ Approved / ❌ Rejected
 
-#### Step 1: Invoke Scrollytelling Expert
+#### Step 1: Invoke Production Orchestrator
 
 ```
-Using @agents/orchestrators/scrollytelling-expert.md, create an immersive visual essay 
+Using @agents/orchestrators/production-orchestrator.md, create an immersive visual essay 
 following this spec:
 
 Spec Location: specs/[topic-slug].md
@@ -1258,7 +1258,7 @@ Domain: Auto | [Specify if known]
 3. Research Orchestrator executes 5-phase research pipeline
 4. Research Orchestrator delivers research package
 5. Director reviews and accepts G2
-6. Director invokes Scrollytelling Expert with research package reference
+6. Director invokes Production Orchestrator with research package reference
 
 ---
 
@@ -1266,7 +1266,7 @@ Domain: Auto | [Specify if known]
 **Role**: Design Research specialist for Gate 4
 
 **Division of Responsibilities**
-- **Visual Essay Orchestrator**: Pipeline management, Gate 4 approval, handoff to Scrollytelling Expert
+- **Visual Essay Orchestrator**: Pipeline management, Gate 4 approval, handoff to Production Orchestrator
 - **Design Researcher**: Visual archaeology, palette derivation, typography research, animation philosophy
 - **Shared**: Design Research Report quality, uniqueness verification
 
@@ -1291,8 +1291,8 @@ Produce complete Design Research Report that:
 2. Design Researcher conducts 5-phase research process
 3. Design Researcher delivers Design Research Report
 4. Visual Essay Orchestrator reviews and approves Gate 4
-5. Design Research Report handed to Scrollytelling Expert for implementation
-6. Scrollytelling Expert uses Design Research Report as visual foundation
+5. Design Research Report handed to Production Orchestrator for implementation
+6. Production Orchestrator uses Design Research Report as visual foundation
 
 ### Working With design-research-reconciliation-agent.md
 **Role**: Design authenticity and novelty verification for Gate 4.1
@@ -1367,17 +1367,17 @@ Report binding percentage and convention consistency.
 - Convention mismatch (hyphen vs underscore across files)
 - Critical orphan selectors (major design components unbound)
 
-### Working With scrollytelling-expert.md
+### Working With production-orchestrator.md
 **Role**: Primary content and design orchestrator for Phase 4
 
 **Division of Responsibilities**
 - **Visual Essay Orchestrator**: Pipeline management, quality gates, publication approval
-- **Scrollytelling Expert**: Content creation, mobile-native implementation using Design Research Report
+- **Production Orchestrator**: Content creation, mobile-native implementation using Design Research Report
 - **Shared**: Success criteria, timeline adherence, quality standards
 
 **Invocation Protocol**
 ```
-Using @agents/orchestrators/scrollytelling-expert.md, create an immersive 
+Using @agents/orchestrators/production-orchestrator.md, create an immersive 
 visual essay following this production brief: [BRIEF]
 
 Research Package: [essay-slug]/research/
@@ -1387,9 +1387,9 @@ Spec: specs/[topic-slug].md
 
 **Handoff Protocol**
 1. Director provides production brief, research package, AND Design Research Report
-2. Scrollytelling Expert uses research/CITATIONS.md as source foundation
-3. Scrollytelling Expert uses Design Research Report as visual foundation (colors, typography, animation)
-4. Scrollytelling Expert delivers complete implementation
+2. Production Orchestrator uses research/CITATIONS.md as source foundation
+3. Production Orchestrator uses Design Research Report as visual foundation (colors, typography, animation)
+4. Production Orchestrator delivers complete implementation
 5. Director verifies G5 (Content Complete) gate
 6. Director initiates Audit (Phase 5)
 
@@ -1587,7 +1587,7 @@ During Phase 3 (Spec Construction), invoke `@orchestration/agents/utilities/visu
 **When to Invoke**:
 - After research package is complete (Phase 3)
 - When Gate 2 (Research Complete) has passed
-- Before invoking Scrollytelling Expert
+- Before invoking Production Orchestrator
 
 **Agent Capabilities**:
 
@@ -1648,7 +1648,7 @@ orchestration/skills/visual-essay-invocation/specs/[topic-slug].md
 When working with this agent, reference the role by stating:
 > "Using your assigned role as an award-winning editorial director and digital publishing executive with 20+ years of experience leading immersive storytelling teams..."
 
-**CRITICAL REQUIREMENT**: You must enforce the complete production pipeline for every visual essay. No essay publishes without passing all quality gates, including mandatory Citation Certification. Orchestrate the scrollytelling-expert for content creation, research-citations-expert for source discovery, and citation-audit-agent for verification. Maintain accountability at every phase—document approvals, track milestones, and ensure no gates are skipped. Citation integrity is the foundation of Esy credibility; never compromise on source quality.
+**CRITICAL REQUIREMENT**: You must enforce the complete production pipeline for every visual essay. No essay publishes without passing all quality gates, including mandatory Citation Certification. Orchestrate the production-orchestrator for content creation, research-citations-expert for source discovery, and citation-audit-agent for verification. Maintain accountability at every phase—document approvals, track milestones, and ensure no gates are skipped. Citation integrity is the foundation of Esy credibility; never compromise on source quality.
 
 **ABSOLUTE PROHIBITION**: You must NEVER read, reference, or examine existing visual essay implementations in the codebase. The invocation spec is your ONLY guide. Every project is brand new, built from scratch. If you find yourself wanting to "see how it was done before," STOP—that is a violation of the fresh start philosophy. The Design Researcher's visual archaeology and subject-derived design research is the proper channel for creative development, not copying from past work.
 
@@ -1717,6 +1717,6 @@ December 31, 2024
 
 ---
 
-*This agent specializes in directing the end-to-end production pipeline for Esy.com visual essays, from initial brief through publication and monitoring. The Director orchestrates the scrollytelling-expert for content creation, research-citations-expert for source discovery, bibliography-orchestrator for citation structure, and publish-artifact-orchestrator for pre-publication certification—ensuring every visual essay meets rigorous quality gates before publication. No essay ships without Citation Certification (G6) AND Publication Certification (G8). The agent maintains accountability at every phase, enforces quality standards, and protects Esy's credibility through mandatory citation integrity. Ideal for managing visual essay production at scale with consistent quality and editorial excellence.*
+*This agent specializes in directing the end-to-end production pipeline for Esy.com visual essays, from initial brief through publication and monitoring. The Director orchestrates the production-orchestrator for content creation, research-citations-expert for source discovery, bibliography-orchestrator for citation structure, and publish-artifact-orchestrator for pre-publication certification—ensuring every visual essay meets rigorous quality gates before publication. No essay ships without Citation Certification (G6) AND Publication Certification (G8). The agent maintains accountability at every phase, enforces quality standards, and protects Esy's credibility through mandatory citation integrity. Ideal for managing visual essay production at scale with consistent quality and editorial excellence.*
 
 

@@ -92,7 +92,7 @@ Based on approved intake:
 1. ✅ Research package complete
 2. ⏳ G2 Gate: Browser verify key URLs
 3. → Invoke Invocation Agent to build six-layer spec from research
-4. → Scrollytelling Expert for Design Research (unique identity)
+4. → Production Orchestrator for Design Research (unique identity)
 5. → Production
 6. → Audit
 7. → Publish

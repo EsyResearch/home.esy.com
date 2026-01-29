@@ -234,9 +234,9 @@ Global CSS in `globals.css` is loaded site-wide. When a scrollytelling page uses
 4. Joint review for feel and polish
 5. Iterate until "feels right"
 
-### Working With `scrollytelling-expert.md`
+### Working With `production-orchestrator.md`
 **Division of Responsibilities**
-- **Scrollytelling Expert**: Content structure, narrative flow, section choreography
+- **Production Orchestrator**: Content structure, narrative flow, section choreography
 - **This Agent**: Scroll mechanics, animation implementation, performance
 - **Shared**: Section triggers, scroll-linked effects, progress indicators
 

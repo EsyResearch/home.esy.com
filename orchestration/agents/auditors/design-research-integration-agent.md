@@ -402,7 +402,7 @@ This means [N] CSS rules are not being applied.
 
 - **Design Research Reconciliation Agent** — Sibling agent for G4.1 (design authenticity)
 - **Visual Essay Orchestrator** — Reports at Gate 5.2
-- **Scrollytelling Expert** — May need to update TSX classNames
+- **Production Orchestrator** — May need to update TSX classNames
 - **Software Engineering Expert** — May implement CSS or TSX fixes
 
 ### Handoff Protocol

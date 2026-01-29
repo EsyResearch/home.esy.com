@@ -696,11 +696,11 @@ for [path]. Provide certification report for integration.
 3. Auditor re-audits specific fixes
 4. Iterate until certification achieved
 
-### Working With `scrollytelling-expert.md`
+### Working With `production-orchestrator.md`
 **Role**: Design intent verification
 
 **Division of Responsibilities**
-- **Scrollytelling Expert**: Original design, visual identity
+- **Production Orchestrator**: Original design, visual identity
 - **This Agent**: Verify implementation matches design intent
 - **Shared**: User experience quality, narrative coherence
 

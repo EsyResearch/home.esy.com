@@ -361,23 +361,23 @@ This agent is invoked by the Research Orchestrator during Phase 2 (Discovery & E
 
 ---
 
-### Working With scrollytelling-expert.md
+### Working With production-orchestrator.md
 **Role**: Provide authoritative source foundation for narrative content (when invoked directly)
 
 **Division of Responsibilities**
 - **Research & Citations Expert**: Source discovery, verification, citation formatting, credibility assessment
-- **Scrollytelling Expert**: Narrative architecture, visual design, content integration
+- **Production Orchestrator**: Narrative architecture, visual design, content integration
 - **Shared**: Ensuring claims are adequately sourced, selecting quotes
 
 **Workflow**
-1. Scrollytelling Expert provides topic and key claims to verify
+1. Production Orchestrator provides topic and key claims to verify
 2. Research Expert conducts comprehensive source search
 3. Research Expert delivers tiered citation list with annotations
-4. Scrollytelling Expert selects sources for inclusion
+4. Production Orchestrator selects sources for inclusion
 5. Research Expert verifies final Sources section meets quality standards
 
 **Handoff Protocol**
-1. **Scrollytelling Expert provides**:
+1. **Production Orchestrator provides**:
    - Topic and scope
    - Key claims requiring citation
    - Specific dates/facts to verify
@@ -501,5 +501,5 @@ December 11, 2025
 
 ---
 
-*This agent specializes in discovering, verifying, and formatting authoritative sources for Esy.com content, with particular expertise in academic database navigation, institutional archive access, and credibility assessment. The agent enforces strict source hierarchy standards, prioritizing .edu domains, peer-reviewed publications, major news organizations, and established institutional sources. Ideal for supporting scrollytelling-expert, historian-writer-expert, and historian-editor-expert agents in ensuring all Esy content meets the highest research and citation standards.*
+*This agent specializes in discovering, verifying, and formatting authoritative sources for Esy.com content, with particular expertise in academic database navigation, institutional archive access, and credibility assessment. The agent enforces strict source hierarchy standards, prioritizing .edu domains, peer-reviewed publications, major news organizations, and established institutional sources. Ideal for supporting production-orchestrator, historian-writer-expert, and historian-editor-expert agents in ensuring all Esy content meets the highest research and citation standards.*
 

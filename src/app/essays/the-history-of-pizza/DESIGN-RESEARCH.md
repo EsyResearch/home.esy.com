@@ -1,6 +1,6 @@
 # Design Research Report: The History of Pizza
 
-> Scrollytelling Expert | Design Research Phase | December 12, 2025
+> Production Orchestrator | Design Research Phase | December 12, 2025
 > 
 > **Spec Source**: orchestration/skills/visual-essay-invocation/specs/the-history-of-pizza.md
 > **Research Package**: orchestration/skills/visual-essay-invocation/research/the-history-of-pizza/

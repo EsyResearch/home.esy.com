@@ -60,7 +60,7 @@ Use this research package to build the six-layer spec:
 4. **CITATIONS.md** → Ensure all claims are sourced
 5. **GAPS.md** → Avoid claims we couldn't verify
 
-### For Scrollytelling Expert
+### For Production Orchestrator
 
 Reference CITATIONS.md when implementing sources section. All quotes must trace back to verified sources in this package.
 

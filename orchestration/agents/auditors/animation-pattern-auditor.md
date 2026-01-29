@@ -346,7 +346,7 @@ Analyze both spec and implementation, compare for gaps
 - Design Auditor verifies HOW WELL they're implemented
 - Share pattern list as input to design auditor
 
-**Scrollytelling Expert**
+**Production Orchestrator**
 - Provide pattern inventory for new essay planning
 - Receive pattern requirements from spec creation
 

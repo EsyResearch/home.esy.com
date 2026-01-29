@@ -194,9 +194,9 @@
 | **Citation** | Missing source | **Manual flag** | — |
 | **SEO** | Missing meta | Software Engineering Expert | `engineering/` |
 | **SEO** | Schema errors | Software Engineering Expert | `engineering/` |
-| **Spec** | Missing chapter from spec | Scrollytelling Expert | `orchestrators/` |
+| **Spec** | Missing chapter from spec | Production Orchestrator | `orchestrators/` |
 | **Spec** | Scroll-lock deviates from spec choreography | Immersive Experience Engineer + spec context | `engineering/` |
-| **Spec** | Missing figure profile | Scrollytelling Expert | `orchestrators/` |
+| **Spec** | Missing figure profile | Production Orchestrator | `orchestrators/` |
 | **Spec** | Progress bar concept mismatch | Immersive Experience Engineer | `engineering/` |
 | **Spec** | Design system deviation | Software Engineering Expert | `engineering/` |
 | **Spec** | Visual asset missing | Image Research & Licensing Expert | `research/` |
@@ -208,10 +208,10 @@ Issue Detected
     │
     ├─► Is it a SPEC DEVIATION?
     │       │
-    │       ├─► Missing chapter/content → Scrollytelling Expert (with spec context)
+    │       ├─► Missing chapter/content → Production Orchestrator (with spec context)
     │       ├─► Scroll-lock choreography wrong → Immersive Exp Engineer (with spec %)
     │       ├─► Design system off → Software Engineering Expert (with spec colors)
-    │       └─► Missing figure → Scrollytelling Expert (with spec profile)
+    │       └─► Missing figure → Production Orchestrator (with spec profile)
     │
     ├─► Is it scroll/animation/interaction?
     │       └─► Immersive Experience Engineer

@@ -1076,7 +1076,7 @@ Remember. Rebuild.
 - Destabilization of Great Lakes region
 - Rwanda's current influence in East African Community
 
-**Ready for:** Visual Essay Orchestrator or Scrollytelling Expert
+**Ready for:** Visual Essay Orchestrator or Production Orchestrator
 
 ---
 

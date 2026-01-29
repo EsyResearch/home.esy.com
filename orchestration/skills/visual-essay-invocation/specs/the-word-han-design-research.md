@@ -484,7 +484,7 @@ Bottom (Contemporary)
 
 ## Next Steps
 
-1. **Production Implementation**: The Scrollytelling Expert can now proceed with production using this design system
+1. **Production Implementation**: The Production Orchestrator can now proceed with production using this design system
 2. **Font Acquisition**: Ensure Source Han Serif/Sans are properly loaded
 3. **Character Animation**: Work with Immersive Experience Engineer on script morph animation
 4. **Progress Bar**: Custom brush stroke SVG for the "Ink Stroke" progress indicator

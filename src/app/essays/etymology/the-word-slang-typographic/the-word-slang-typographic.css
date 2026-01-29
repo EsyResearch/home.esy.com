@@ -233,9 +233,12 @@
   color: var(--parchment);
 }
 
+/* Base state: VISIBLE (fallback if animation doesn't run) */
 .hero-letter {
   display: inline-block;
   transition: transform var(--transition-medium);
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
 }
 
 .hero-letter:hover {
@@ -243,11 +246,12 @@
   color: var(--attestation-gold);
 }
 
-.hero-s { animation: letter-appear 0.8s ease-out 0.1s both; }
-.hero-l { animation: letter-appear 0.8s ease-out 0.2s both; }
-.hero-a { animation: letter-appear 0.8s ease-out 0.3s both; }
-.hero-n { animation: letter-appear 0.8s ease-out 0.4s both; }
-.hero-g { animation: letter-appear 0.8s ease-out 0.5s both; }
+/* Animation only applied when .animate class is added via JS */
+.hero-title.animate .hero-s { animation: letter-appear 0.8s ease-out 0.1s both; }
+.hero-title.animate .hero-l { animation: letter-appear 0.8s ease-out 0.2s both; }
+.hero-title.animate .hero-a { animation: letter-appear 0.8s ease-out 0.3s both; }
+.hero-title.animate .hero-n { animation: letter-appear 0.8s ease-out 0.4s both; }
+.hero-title.animate .hero-g { animation: letter-appear 0.8s ease-out 0.5s both; }
 
 @keyframes letter-appear {
   from {
@@ -261,6 +265,7 @@
 }
 
 /* Override global hero-tagline styles */
+/* Base state: VISIBLE */
 .slang-typographic .hero-tagline {
   font-family: var(--font-mono);
   font-size: clamp(0.75rem, 2vw, 1rem);
@@ -268,13 +273,19 @@
   text-transform: uppercase;
   color: var(--attestation-gold);
   margin: 0 0 var(--space-md);
-  animation: fade-in 1s ease-out 0.8s both;
+  opacity: 1;
   /* Reset any global overrides */
   background: none;
   -webkit-text-fill-color: currentColor;
 }
 
+/* Animation only when .animate class present */
+.slang-typographic .hero-section.animate .hero-tagline {
+  animation: fade-in 1s ease-out 0.8s both;
+}
+
 /* Override global hero-subtitle styles */
+/* Base state: VISIBLE */
 .slang-typographic .hero-subtitle {
   font-family: var(--font-text);
   font-size: clamp(1rem, 2.5vw, 1.5rem);
@@ -282,10 +293,15 @@
   color: var(--aged-cream);
   max-width: 600px;
   margin: 0 auto var(--space-2xl);
-  animation: fade-in 1s ease-out 1s both;
+  opacity: 1;
   /* Reset any global overrides */
   background: none;
   -webkit-text-fill-color: currentColor;
+}
+
+/* Animation only when .animate class present */
+.slang-typographic .hero-section.animate .hero-subtitle {
+  animation: fade-in 1s ease-out 1s both;
 }
 
 @keyframes fade-in {
@@ -293,12 +309,18 @@
   to { opacity: 1; }
 }
 
+/* Base state: VISIBLE */
 .scroll-indicator {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba(245, 240, 230, 0.5);
+  opacity: 1;
+}
+
+/* Animation only when .animate class present */
+.hero-section.animate .scroll-indicator {
   animation: fade-in 1s ease-out 1.5s both;
 }
 

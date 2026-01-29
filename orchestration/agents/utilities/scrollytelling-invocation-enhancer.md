@@ -53,7 +53,7 @@ Or the agent will automatically switch to Guided Mode when:
 ### Step 1: Detect Target Agent
 Based on the request, determine which agent the brief is for:
 - **Children's Fiction Scrollytelling Agent** → Ages 3-6, fiction, animated stories
-- **Scrollytelling Expert** → General topics, educational, historical, factual
+- **Production Orchestrator** → General topics, educational, historical, factual
 
 ### Step 2: Assess Clarity Level
 Evaluate the request for:
@@ -647,7 +647,7 @@ After enhancement, pass the brief to:
 ### For General Scrollytelling
 After enhancement, pass the brief to:
 ```
-@agents/scrollytelling-expert.md
+@agents/production-orchestrator.md
 ```
 
 ---
@@ -723,7 +723,7 @@ Questions are prioritized by impact on final quality:
 ## Project Context
 - **Primary Focus**: Enhancing invocations for Esy.com scrollytelling agents
 - **Content Type**: Structured briefs and invocation optimization
-- **Target Agents**: `childrens-fiction-scrollytelling-agent.md`, `scrollytelling-expert.md`
+- **Target Agents**: `childrens-fiction-scrollytelling-agent.md`, `production-orchestrator.md`
 - **Goal**: Ensure every scrollytelling request produces world-class output through strategic questioning and intelligent enhancement
 
 ## Last Updated

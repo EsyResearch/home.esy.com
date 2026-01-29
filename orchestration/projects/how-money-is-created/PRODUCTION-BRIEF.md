@@ -9,7 +9,7 @@
 ## Production Invocation
 
 ```
-Using @orchestration/agents/orchestrators/scrollytelling-expert.md, create an immersive visual essay 
+Using @orchestration/agents/orchestrators/production-orchestrator.md, create an immersive visual essay 
 following this spec:
 
 Spec Location: orchestration/skills/visual-essay-invocation/specs/how-money-is-created.md

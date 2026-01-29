@@ -388,7 +388,7 @@ Await human decision before proceeding.
 - **Visual Essay Orchestrator** — Reports at Gate 4.1
 - **Design Research Integration Agent** — Sibling agent for G5.2 (CSS→TSX binding)
 - **Design Slop Auditor** — Complementary audit for visual distinctiveness
-- **Scrollytelling Expert** — May revise design based on findings
+- **Production Orchestrator** — May revise design based on findings
 
 ### Handoff Protocol
 

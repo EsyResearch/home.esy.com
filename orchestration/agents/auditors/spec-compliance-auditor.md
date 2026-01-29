@@ -335,7 +335,7 @@ Add `PioneerPortrait` or `ArchivalPhoto` component with this data.
 
 | Agent | Context Provided |
 |-------|------------------|
-| **Scrollytelling Expert** | Missing chapters, figure gaps |
+| **Production Orchestrator** | Missing chapters, figure gaps |
 | **Immersive Experience Engineer** | Scroll-lock choreography from spec |
 | **Software Engineering Expert** | Design system deviations |
 

@@ -64,7 +64,7 @@ Technical implementation agents for frontend development, design, and optimizati
 ## Collaboration
 
 ```
-Scrollytelling Expert (orchestrators/)
+Production Orchestrator (orchestrators/)
         │
         ├──► UI/UX Design ◄──┐
         │         │          │
@@ -94,7 +94,7 @@ scroll performance for [ESSAY] to achieve 60fps on mobile devices.
 
 ## See Also
 
-- [Scrollytelling Expert](../orchestrators/scrollytelling-expert.md) — Coordinates engineering work
+- [Production Orchestrator](../orchestrators/production-orchestrator.md) — Coordinates engineering work
 - [Visual Auditor](../auditors/visual-auditor-agent.md) — Audits SVG quality
 - [Immersive Scrolling Auditor](../auditors/immersive-scrolling-auditor.md) — Certifies scroll performance
 

@@ -629,11 +629,11 @@ element.addEventListener('scroll', handler, { passive: true });
 3. Auditor verifies fixes with targeted re-testing
 4. Iterate until certification achieved
 
-### Working With `scrollytelling-expert.md`
+### Working With `production-orchestrator.md`
 **Role**: Narrative alignment verification
 
 **Division of Responsibilities**
-- **Scrollytelling Expert**: Story design, scroll choreography decisions
+- **Production Orchestrator**: Story design, scroll choreography decisions
 - **This Agent**: Verify implementation matches design intent
 - **Shared**: User experience quality, narrative flow
 

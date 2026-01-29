@@ -622,7 +622,7 @@ Visual identity is unique, authentic to Hip-Hop's material culture, and producti
 - Verify licenses for all imagery
 
 **Gate 5: Content Complete**
-- Invoke Scrollytelling Expert with:
+- Invoke Production Orchestrator with:
   - Spec: `specs/hip-hop-history.md`
   - Research: `src/app/essays/history/hip-hop-history/research/`
   - Design Research: This document

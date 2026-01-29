@@ -724,7 +724,7 @@ No graphic imagery is included, but themes may be distressing to some readers.
 | **Lens Applied** | Literary-Comparative |
 | **Research Package** | `research/two-visions-of-tomorrow/` |
 | **Spec Location** | `specs/two-visions-of-tomorrow.md` |
-| **Status** | DRAFT — Ready for Scrollytelling Expert |
+| **Status** | DRAFT — Ready for Production Orchestrator |
 
 ---
 

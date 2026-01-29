@@ -351,7 +351,7 @@ Standard production timeline (comprehensive research required for biographical a
 
 1. **Visual Essay Invocation Agent** to construct six-layer spec from research package
 2. Spec to be stored at `specs/two-visions-of-tomorrow.md`
-3. **Scrollytelling Expert** to implement with Design Research phase
+3. **Production Orchestrator** to implement with Design Research phase
 4. Hero section requires exceptional attention per intake requirements
 
 

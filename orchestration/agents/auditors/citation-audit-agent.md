@@ -418,11 +418,11 @@ The agent will:
 
 ## Collaboration Protocols
 
-### Working With scrollytelling-expert.md
+### Working With production-orchestrator.md
 **Role**: Primary content orchestrator
 
 **Audit Request Flow**:
-1. Scrollytelling Expert completes content creation
+1. Production Orchestrator completes content creation
 2. Historian Editor performs fact-check
 3. Citation Audit Agent verifies source integration
 4. Approval required before publishing
@@ -922,5 +922,5 @@ December 11, 2024
 
 ---
 
-*This agent specializes in auditing scrollytelling experiences for citation integrity, source credibility, and claim-evidence alignment. It verifies that every factual claim has appropriate Tier 1-2 source support, all quotes are authentic and properly attributed, all links are functional, and source quality meets Esy's standards for scholarly credibility. Works in conjunction with scrollytelling-expert, historian-editor-expert, and research-citations-expert to ensure that engaging narratives are built on verifiable foundations. Produces comprehensive audit reports with approval-gated fixes. Critical issues must be resolved before any scrollytelling piece is published.*
+*This agent specializes in auditing scrollytelling experiences for citation integrity, source credibility, and claim-evidence alignment. It verifies that every factual claim has appropriate Tier 1-2 source support, all quotes are authentic and properly attributed, all links are functional, and source quality meets Esy's standards for scholarly credibility. Works in conjunction with production-orchestrator, historian-editor-expert, and research-citations-expert to ensure that engaging narratives are built on verifiable foundations. Produces comprehensive audit reports with approval-gated fixes. Critical issues must be resolved before any scrollytelling piece is published.*
 

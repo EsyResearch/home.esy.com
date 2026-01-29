@@ -244,7 +244,7 @@ The era guide interacts with the design system color palette:
 - Create transition animations between eras
 - Design era indicator for progress bar
 
-### For Scrollytelling Expert (Gate 5)
+### For Production Orchestrator (Gate 5)
 - Apply era treatments consistently within chapters
 - Handle transitions at chapter boundaries
 - Maintain accessibility across all treatments

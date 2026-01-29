@@ -1438,7 +1438,7 @@ rock-and-roll-venues-research.md (8 studios, 8 venues, 7 festivals)
 **Next Steps:**
 - Gate 4: Design Research (invoke Design Researcher)
 - Gate 4.5: Image Sourcing (invoke Image Research Expert)
-- Gate 5: Content Complete (invoke Scrollytelling Expert)
+- Gate 5: Content Complete (invoke Production Orchestrator)
 
 ---
 

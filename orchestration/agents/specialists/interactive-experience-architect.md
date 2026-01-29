@@ -348,7 +348,7 @@ Create one working scene as proof-of-concept:
 
 ### Downstream: Hands Off To
 
-**Scrollytelling Expert** (`orchestrators/scrollytelling-expert.md`)
+**Production Orchestrator** (`orchestrators/production-orchestrator.md`)
 - 12-section specification for implementation
 - Works alongside for narrative integration
 

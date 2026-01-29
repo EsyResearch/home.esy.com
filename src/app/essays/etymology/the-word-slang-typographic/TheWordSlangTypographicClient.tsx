@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import './the-word-slang-typographic.css';
 
 // Panel data structure
@@ -44,12 +45,9 @@ const panels: Panel[] = [
     era: 'hook',
     title: 'The Word in the Wild',
     subtitle: "Language you weren't supposed to hear",
-    body: `Some words describe the margins. This one was born there. "Slang" arrived in print as a whisper from the underworld—a label thieves used for their own secret tongue before lexicographers could catch it in their nets.`,
-    artifact: {
-      type: 'quote',
-      content: 'The vocabulary of the streets, the cant of the canting crew',
-      source: 'Common parlance, 18th c.',
-    },
+    body: `The earliest recorded use of "slang" dates to 1756, where it appears not as a general term for informal language, but as a specific label for criminal argot. The word belonged to the world it described.
+
+Its etymology remains contested. The Oxford English Dictionary traces possible roots to Norwegian sleng (a sling or verbal attack) or to a clipped form of "beggars' language." What's certain is the trajectory: from the mouths of pickpockets and con artists into the pages of respectable dictionaries, a journey of about a century.`,
   },
   // Panel 2: Birth Certificate
   {
@@ -347,10 +345,33 @@ export default function TheWordSlangTypographicClient() {
   const [activePanel, setActivePanel] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
   
-  // Generate unique key on each mount to force fresh CSS animations
-  // Using lazy initializer with Date.now() ensures uniqueness
-  const [animationKey] = useState(() => Date.now());
+  // ChatGPT Fix A: animate class is added AFTER mount
+  // Base state is visible; animation only runs when .animate is present
+  const [animate, setAnimate] = useState(false);
+
+  // Trigger animation on every navigation to this page
+  // Using pathname as dependency ensures it runs on client-side navigation too
+  useEffect(() => {
+    // Reset animation state first
+    setAnimate(false);
+    
+    // Double requestAnimationFrame ensures:
+    // 1. First frame: DOM updates with animate=false
+    // 2. Second frame: CSS has processed the change, now safe to animate
+    let frame2: number;
+    const frame1 = requestAnimationFrame(() => {
+      frame2 = requestAnimationFrame(() => {
+        setAnimate(true);
+      });
+    });
+    
+    return () => {
+      cancelAnimationFrame(frame1);
+      cancelAnimationFrame(frame2);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -453,8 +474,8 @@ export default function TheWordSlangTypographicClient() {
         <div className="nav-subtitle">The Rogue Archive</div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="hero-section" key={`hero-${animationKey}`}>
+      {/* Hero Section - .animate class triggers CSS animations after mount */}
+      <section className={`hero-section ${animate ? 'animate' : ''}`}>
         <div className="hero-background">
           <div className="floating-words">
             <span className="float-word" style={{ '--delay': '0s', '--x': '10%', '--y': '20%' } as React.CSSProperties}>cool</span>
@@ -467,8 +488,8 @@ export default function TheWordSlangTypographicClient() {
             <span className="float-word" style={{ '--delay': '3.5s', '--x': '40%', '--y': '25%' } as React.CSSProperties}>sick</span>
           </div>
         </div>
-        <div className="hero-content">
-          <h1 className="hero-title">
+        <div className={`hero-content ${animate ? 'animate' : ''}`}>
+          <h1 className={`hero-title ${animate ? 'animate' : ''}`}>
             <span className="hero-letter hero-s">S</span>
             <span className="hero-letter hero-l">L</span>
             <span className="hero-letter hero-a">A</span>

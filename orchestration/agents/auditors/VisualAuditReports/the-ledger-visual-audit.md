@@ -4,7 +4,7 @@
 **Audit Date**: December 9, 2024
 **Auditor**: Visual Auditor Agent
 **Asset Type**: 7 Inline SVG Illustrations + Animations
-**Associated Agents**: svg-illustration-animation-expert.md, scrollytelling-expert.md
+**Associated Agents**: svg-illustration-animation-expert.md, production-orchestrator.md
 
 ---
 

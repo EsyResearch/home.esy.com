@@ -67,6 +67,6 @@ narrative about [HISTORICAL TOPIC] based on the research provided.
 
 - [Research Agents](../research/README.md) — Source discovery
 - [Regional Experts](../regional/README.md) — Subject matter specialists
-- [Scrollytelling Expert](../orchestrators/scrollytelling-expert.md) — Coordinates content creation
+- [Production Orchestrator](../orchestrators/production-orchestrator.md) — Coordinates content creation
 
 

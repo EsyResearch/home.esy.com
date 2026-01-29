@@ -1338,7 +1338,7 @@ orchestration/skills/visual-essay-invocation/research/the-word-war/
 
 ---
 
-## Implementation Notes for Scrollytelling Expert
+## Implementation Notes for Production Orchestrator
 
 ### Content Completeness
 This spec contains all content needed to build the essay without consulting research files directly.

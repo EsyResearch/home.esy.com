@@ -618,7 +618,7 @@ Current agents derived from this framework:
 
 | Agent | Domain | Primary Role | Collaboration |
 |-------|--------|--------------|---------------|
-| `visual-essay-orchestrator.md` | **Editorial Direction** | **Pipeline Executive** | **TOP-LEVEL ORCHESTRATOR** → Research Orchestrator (Phase 2), Scrollytelling Expert (Phase 3), Audit Orchestrator (Phase 4) |
+| `visual-essay-orchestrator.md` | **Editorial Direction** | **Pipeline Executive** | **TOP-LEVEL ORCHESTRATOR** → Research Orchestrator (Phase 2), Production Orchestrator (Phase 3), Audit Orchestrator (Phase 4) |
 | `research-orchestrator.md` | **Research Pipeline** | **Research Director** | **ORCHESTRATOR** → Brainstorming Agent, Research Citations Expert, Citation Audit (validation), Routes to Regional Experts, Historians |
 | `historian-writer-expert.md` | History | Narrative Writer | → Editor, ← Research |
 | `historian-editor-expert.md` | History | Fact-Checker/Editor | ← Writer, ← Research |
@@ -632,15 +632,15 @@ Current agents derived from this framework:
 | `template-integration-engineer.md` | Frontend | Template → Next.js | Standalone |
 | `brainstorming-agent.md` | **Research Design** | Question Formulation & Scope | **Orchestrated by** Research Orchestrator (Phase 1) |
 | `research-citations-expert.md` | Research | Source Discovery & Verification | → All content agents, ← **Research Orchestrator** (Phase 2) |
-| `design-researcher.md` | **Visual Identity Research** | Subject-Derived Design Research | → Scrollytelling Expert, ← **Visual Essay Orchestrator** (Gate 4) |
-| `scrollytelling-expert.md` | Digital Storytelling | **Mobile-Native** Immersive Narratives | **Orchestrator** → Writer, Editor, Research, UI/UX, SW Eng, **Immersive Eng**, SVG Expert, **Visual Auditor**; ← **Visual Essay Orchestrator** |
+| `design-researcher.md` | **Visual Identity Research** | Subject-Derived Design Research | → Production Orchestrator, ← **Visual Essay Orchestrator** (Gate 4) |
+| `production-orchestrator.md` | Digital Storytelling | **Mobile-Native** Immersive Narratives | **Orchestrator** → Writer, Editor, Research, UI/UX, SW Eng, **Immersive Eng**, SVG Expert, **Visual Auditor**; ← **Visual Essay Orchestrator** |
 | `childrens-books-writer-expert.md` | **Children's Fiction (3-6)** | Picture Book Narratives | ← Children's Fiction Scrollytelling |
 | `childrens-fiction-scrollytelling-agent.md` | **Children's Scrollytelling** | Magical Story Experiences | **Orchestrator** → Children's Writer, UI/UX, SW Eng, Immersive Eng, SVG Expert, **Visual Auditor** |
 | `visual-essay-intake-enhancer.md` | **Intake Enhancement** | Rough Request → Structured Intake | **Pre-processor** → Visual Essay Orchestrator (Phase 1) |
 | `visual-essay-refurbish-agent.md` | **Legacy Modernization** | Legacy Essay → Pipeline Compliance | **Pre-processor** → Visual Essay Orchestrator (REFURBISH mode); Evaluates essays missing research/, extracts intent, proposes expansions, formalizes intake |
-| `scrollytelling-invocation-enhancer.md` | **Invocation Enhancement** | Brief Builder & Optimizer | **Pre-processor** → Scrollytelling Expert, Children's Fiction |
-| `scrollytelling-audit-agent.md` | **Quality Assurance** | Experience Auditor | **Orchestrator** → Scrollytelling Expert, Immersive Eng, Children's Fiction |
-| `citation-audit-agent.md` | **Citation Integrity** | Source & Citation Verifier | **Post-processor** → Scrollytelling Expert, Research Citations, Historian Editor, Quotes Audit; ← **Visual Essay Orchestrator** |
+| `scrollytelling-invocation-enhancer.md` | **Invocation Enhancement** | Brief Builder & Optimizer | **Pre-processor** → Production Orchestrator, Children's Fiction |
+| `scrollytelling-audit-agent.md` | **Quality Assurance** | Experience Auditor | **Orchestrator** → Production Orchestrator, Immersive Eng, Children's Fiction |
+| `citation-audit-agent.md` | **Citation Integrity** | Source & Citation Verifier | **Post-processor** → Production Orchestrator, Research Citations, Historian Editor, Quotes Audit; ← **Visual Essay Orchestrator** |
 | `quotes-audit-agent.md` | **Quote Verification** | Quote Authenticity Specialist | **Orchestrated by** Citation Audit Agent |
 | `svg-illustration-animation-expert.md` | **Visual Design** | SVG Illustrator & Animator | ← Scrollytelling, ← Children's Fiction, → Immersive Eng, ← UI/UX, → **Visual Auditor** |
 | `visual-auditor-agent.md` | **Visual Quality Assurance** | SVG Quality & Performance Certifier | **Post-processor** ← SVG Expert, → Scrollytelling, → Children's Fiction (MANDATORY) |
@@ -654,8 +654,8 @@ Current agents derived from this framework:
 | `seo-specialist-expert.md` | **Search Optimization** | SEO Strategy & Organic Growth | **Specialist** — Technical SEO, Content Optimization, SERP Features, Link Strategy |
 | `sitemap-canonical-expert.md` | **Sitemap & URL Architecture** | Sitemap Specialist & URL Standardization | **Specialist** — Sitemap generation, Canonical enforcement, Trailing slash policy, Crawl optimization; → SEO Specialist, → Software Engineer |
 | `seo-audit-agent.md` | **SEO Quality Assurance** | Page-Level SEO Auditor & Grader | **Auditor** → SEO Specialist, Visual Essay Orchestrator (G3); Uses `seo-element-extraction` skill |
-| `hydration-audit-agent.md` | **React Hydration QA** | SSR/Client Mismatch Detector | **Auditor** → Immersive Experience Eng, Scrollytelling Expert; IntersectionObserver, useState, browser API safety |
-| `design-slop-auditor.md` | **Design Distinctiveness** | AI Slop Detector & Design Research | **Auditor** → Scrollytelling Expert, Visual Essay Orchestrator; Enforces subject-derived aesthetics, rejects generic/convergent patterns |
+| `hydration-audit-agent.md` | **React Hydration QA** | SSR/Client Mismatch Detector | **Auditor** → Immersive Experience Eng, Production Orchestrator; IntersectionObserver, useState, browser API safety |
+| `design-slop-auditor.md` | **Design Distinctiveness** | AI Slop Detector & Design Research | **Auditor** → Production Orchestrator, Visual Essay Orchestrator; Enforces subject-derived aesthetics, rejects generic/convergent patterns |
 | `content-audit-agent.md` | **Content Quality** | Word Count, Depth, Tone Auditor | **Auditor** → QA Remediation Orchestrator, Audit Orchestrator; Genocide/atrocity sensitivity protocols; Spec content compliance verification |
 | `content-research-reconciliation-agent.md` | **Research-Spec Verification** | Research→Spec Gap Detector | **Auditor** (G2.5) → Visual Essay Orchestrator; Ensures research findings are properly elevated into specifications; Human-in-the-loop remediation; Blocks spec approval for critical gaps |
 | `content-research-integration-agent.md` | **Spec-Artifact Verification** | Spec→Artifact Gap Detector | **Auditor** (G5.1) → Bibliography Orchestrator, Image Research Expert; Ensures spec content is faithfully implemented; Human-in-the-loop remediation; Blocks bibliography phase for critical gaps |
@@ -665,8 +665,8 @@ Current agents derived from this framework:
 | `meta-prompt-enhancer.md` | **Universal Enhancement** | Prompt Architect & Instruction Designer | **Universal Pre-processor** → Any AI System, Any Agent; Uses CRISP-E framework (Context, Role, Intent, Specifics, Parameters, Examples) |
 | `social-media-meta-expert.md` | **Social Sharing Optimization** | Social Meta Specialist (Audit + Implementation) | **Dual-Role Expert** — Audit Mode (QA gate), Implementation Mode (fixes), Advisory Mode (strategy); OG, Twitter Cards, JSON-LD; → Visual Essay Orchestrator (publish gate) |
 | `design-research-implementation-auditor.md` | **Design Spec Compliance** | Design Implementation Verifier | **Auditor** → Visual Essay Orchestrator (publish gate); Compares `specs/` vs implementation; Typography, Color, Spacing, Interaction fidelity; 100% compliance target |
-| `animation-pattern-auditor.md` | **Animation Architecture** | Pattern Extraction & Classification | **Auditor** — Analyzes specs/implementations against `scroll-lock-patterns.md` (21 patterns) + `animation-taxonomy.md` (36 categories); Outputs precise pattern inventories with evidence; → Design Research Auditor, Scrollytelling Expert |
-| `concept-extraction-agent.md` | **Educational Content** | Concept Extraction & Documentation | **Utility** ← Scrollytelling Expert (educational essays); Extracts concepts, generates CORE-CONCEPTS.md, produces ConceptualFoundationsSection; → Scrollytelling Expert |
+| `animation-pattern-auditor.md` | **Animation Architecture** | Pattern Extraction & Classification | **Auditor** — Analyzes specs/implementations against `scroll-lock-patterns.md` (21 patterns) + `animation-taxonomy.md` (36 categories); Outputs precise pattern inventories with evidence; → Design Research Auditor, Production Orchestrator |
+| `concept-extraction-agent.md` | **Educational Content** | Concept Extraction & Documentation | **Utility** ← Production Orchestrator (educational essays); Extracts concepts, generates CORE-CONCEPTS.md, produces ConceptualFoundationsSection; → Production Orchestrator |
 | `gate-guard-auditor.md` | **Pipeline Compliance** | Gate Verification & Publication Readiness | **Final Checkpoint Auditor** — Verifies all 9 gates (G1-G9) have artifacts; Blocks publication for missing gates; → Visual Essay Orchestrator (pre-G9) |
 | `redesign-visual-essay-agent.md` | **Visual Design Transformation** | Subject-Derived Design System Creator | **Specialist** — Transforms derivative/generic designs into subject-derived visual systems; Cultural artifact → digital metaphor translation; Era-specific skins; Zero cross-pollination between essays; ← Visual Essay Orchestrator, → Design Slop Auditor |
 | `bibliography-orchestrator.md` | **Bibliography Management** | Bibliography Implementation & Audit Coordinator | **ORCHESTRATOR** → Citation Audit Agent, Quotes Audit Agent (via Citation), Image Research Licensing Expert; References `docs/artifact-patterns-guide/`; Dual-mode: Implementation + Audit; G5.5 owner |

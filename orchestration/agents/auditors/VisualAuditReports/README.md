@@ -72,7 +72,7 @@ The agent will produce:
 
 - `@agents/visual-auditor-agent.md` — Generates these reports
 - `@agents/svg-illustration-animation-expert.md` — Creates the assets being audited
-- `@agents/scrollytelling-expert.md` — Orchestrates visual essay production
+- `@agents/production-orchestrator.md` — Orchestrates visual essay production
 - `@agents/immersive-experience-engineer.md` — Animation performance
 
 ---

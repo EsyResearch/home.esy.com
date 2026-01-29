@@ -681,7 +681,7 @@ Global curious learners (English-speaking, ages 16-65+) seeking:
 
 ---
 
-*This invocation specification is ready for handoff to the Visual Essay Orchestrator or Scrollytelling Expert for production implementation.*
+*This invocation specification is ready for handoff to the Visual Essay Orchestrator or Production Orchestrator for production implementation.*
 
 *Generated using the Visual Essay Invocation Framework v2.0*
 *Lens applied: burmese-historian-expert*

@@ -724,7 +724,7 @@ This visual essay contains documentary photographs of colonial violence, includi
 
 **Content Sensitivity:** Atrocity photography requires content warning and skip option
 
-**Ready for:** Visual Essay Orchestrator Phase 4 (Production) or Scrollytelling Expert direct implementation
+**Ready for:** Visual Essay Orchestrator Phase 4 (Production) or Production Orchestrator direct implementation
 
 ---
 

@@ -1691,4 +1691,4 @@ The interaction patterns, state management, and scene templates transfer directl
 
 **Ready for Phase 4: Production**
 
-This specification can now be handed to the Scrollytelling Expert for implementation, with the Interactive Experience Architect available for consultation on state management and interaction design.
+This specification can now be handed to the Production Orchestrator for implementation, with the Interactive Experience Architect available for consultation on state management and interaction design.

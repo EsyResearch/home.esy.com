@@ -140,7 +140,7 @@ The invocation spec is **complete, research-backed, and ready** for Phase 4: Pro
 ## Next Steps
 
 1. ✅ **Gate 3 Approved** - Spec accepted
-2. **Phase 4: Production** - Invoke Scrollytelling Expert
+2. **Phase 4: Production** - Invoke Production Orchestrator
    - Spec Location: `orchestration/skills/visual-essay-invocation/specs/how-money-is-created.md`
    - Research Package: `orchestration/projects/how-money-is-created/research/`
    - Begin Design Research phase

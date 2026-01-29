@@ -11,7 +11,7 @@ This guide teaches you how to work with the orchestration system—when to use w
 | I want to... | Invoke this | Example |
 |--------------|-------------|---------|
 | Create a visual essay | Visual Essay Orchestrator | `@agents/visual-essay-orchestrator.md` |
-| Write essay content only | Scrollytelling Expert | `@agents/scrollytelling-expert.md` |
+| Write essay content only | Production Orchestrator | `@agents/production-orchestrator.md` |
 | Find scholarly sources | Research Citations Expert | `@agents/research-citations-expert.md` |
 | Verify citations | Citation Audit Agent | `@agents/citation-audit-agent.md` |
 | Audit scroll performance | Immersive Scrolling Auditor | `@agents/immersive-scrolling-auditor.md` |
@@ -30,7 +30,7 @@ The **Visual Essay Orchestrator** is your primary entry point for creating compl
 | New visual essay from scratch | ✅ Yes |
 | Full production with quality gates | ✅ Yes |
 | Need citation certification | ✅ Yes |
-| Quick content draft only | ❌ No — use Scrollytelling Expert |
+| Quick content draft only | ❌ No — use Production Orchestrator |
 | Editing existing essay | ❌ No — use specific expert agents |
 | Research-only task | ❌ No — use Research Citations Expert |
 
@@ -122,7 +122,7 @@ The Visual Essay Orchestrator follows a **5-phase pipeline** with **8 quality ga
 │  ┌───────────────────────────────────────────────────────────────────────┐ │
 │  │  🎨 Design Research → Unique visual identity                          │ │
 │  │  ✅ GATE 2: Design Research Approved                                  │ │
-│  │  📝 Content Creation → Scrollytelling Expert orchestration            │ │
+│  │  📝 Content Creation → Production Orchestrator orchestration            │ │
 │  │  💻 Implementation → page.tsx, Client.tsx, CSS                        │ │
 │  │  ✅ GATE 3: Content Complete                                          │ │
 │  └───────────────────────────────────────────────────────────────────────┘ │
@@ -271,7 +271,7 @@ src/data/visualEssays.ts        ← Updated with new entry
 
 Future sections will cover:
 
-- **Scrollytelling Expert** — Direct content creation without full pipeline
+- **Production Orchestrator** — Direct content creation without full pipeline
 - **Research Citations Expert** — Standalone research tasks
 - **Citation Audit Agent** — Auditing existing essays
 - **Immersive Scrolling Auditor** — Performance audits

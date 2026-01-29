@@ -35,7 +35,7 @@ agents/
 | [Research Orchestrator](./orchestrators/research-orchestrator.md) | **Research pipeline** — Phase 2, domain routing, package assembly | `orchestrators/` |
 | [Meta Audit Orchestrator](./orchestrators/meta-audit-orchestrator.md) | Multi-domain audit coordination | `orchestrators/` |
 | [QA Remediation Orchestrator](./orchestrators/qa-remediation-orchestrator.md) | **Iterative fix loop** — Audit→Fix→Reaudit until passing | `orchestrators/` |
-| [Scrollytelling Expert](./orchestrators/scrollytelling-expert.md) | Mobile-native immersive narratives | `orchestrators/` |
+| [Production Orchestrator](./orchestrators/production-orchestrator.md) | Mobile-native immersive narratives | `orchestrators/` |
 
 ### 🔍 Auditors
 *Quality verification and certification*

@@ -286,7 +286,7 @@ This agent applies `@orchestration/skills/visual-essay-invocation/SKILL.md` as i
 - Handoff summary with key metrics
 - Ready for pipeline Phase 1 continuation
 
-**Scrollytelling Expert** (`scrollytelling-expert.md`)
+**Production Orchestrator** (`production-orchestrator.md`)
 - Can receive spec directly for expedited production
 - Bypasses orchestrator when appropriate
 
@@ -305,7 +305,7 @@ This agent applies `@orchestration/skills/visual-essay-invocation/SKILL.md` as i
 ## Project Context
 - **Primary Focus**: Esy.com visual essay specification generation
 - **Output Location**: `orchestration/skills/visual-essay-invocation/specs/`
-- **Target Users**: Visual Essay Orchestrator, Scrollytelling Expert, production teams
+- **Target Users**: Visual Essay Orchestrator, Production Orchestrator, production teams
 - **Standards**: Six-layer architecture, cinematic quality, scroll-as-dramaturgy
 - **Goal**: Transform topic requests into comprehensive, production-ready specifications
 
@@ -364,7 +364,7 @@ December 2024
 
 ---
 
-*This agent specializes in transforming topic requests into comprehensive, production-ready visual essay specifications. It applies the visual-essay-invocation skill framework to generate six-layer invocation documents with scroll-lock choreography, chapter metaphors, figure profiles, and design systems. Outputs are stored to the specs directory for downstream consumption by the Visual Essay Orchestrator or Scrollytelling Expert. Ideal for initiating any visual essay production with a solid architectural foundation.*
+*This agent specializes in transforming topic requests into comprehensive, production-ready visual essay specifications. It applies the visual-essay-invocation skill framework to generate six-layer invocation documents with scroll-lock choreography, chapter metaphors, figure profiles, and design systems. Outputs are stored to the specs directory for downstream consumption by the Visual Essay Orchestrator or Production Orchestrator. Ideal for initiating any visual essay production with a solid architectural foundation.*
 
 
 

@@ -290,7 +290,7 @@ min-height: 100dvh;
 
 ## Design Research Sign-Off
 
-**Researcher**: Scrollytelling Expert (Design Research Phase)
+**Researcher**: Production Orchestrator (Design Research Phase)
 **Date**: December 2024
 **Subject**: Rwanda Genocide - Kwibuka Visual Essay
 

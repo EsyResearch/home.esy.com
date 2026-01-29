@@ -424,18 +424,18 @@ curl -s "https://collectionapi.metmuseum.org/public/collection/v1/objects/{id}" 
 
 ## Collaboration Protocols
 
-### Working With `scrollytelling-expert.md`
+### Working With `production-orchestrator.md`
 **Division of Responsibilities**
 - **Image Research Expert**: Source discovery, rights verification, attribution
-- **Scrollytelling Expert**: Visual direction, narrative integration, placement
+- **Production Orchestrator**: Visual direction, narrative integration, placement
 - **Shared**: Subject matter accuracy, cultural sensitivity
 
 **Workflow**
-1. Scrollytelling Expert defines visual requirements in brief
+1. Production Orchestrator defines visual requirements in brief
 2. Image Research Expert identifies candidate sources
 3. Image Research Expert verifies rights and obtains assets
 4. Image Research Expert delivers with complete documentation
-5. Scrollytelling Expert integrates with proper attribution
+5. Production Orchestrator integrates with proper attribution
 
 ### Working With `visual-essay-orchestrator.md`
 **Division of Responsibilities**
@@ -533,7 +533,7 @@ For visual essay production (Gate 4.5), output structured `VISUALS.md` with rese
 | `Credit` | Full attribution line |
 | `License` | Verified license identifier |
 
-> **Note:** You provide `Description` (factual, archival). The **Scrollytelling Expert** writes contextual `alt` text during production. See `docs/IMAGE_STANDARDS.md` for the full workflow.
+> **Note:** You provide `Description` (factual, archival). The **Production Orchestrator** writes contextual `alt` text during production. See `docs/IMAGE_STANDARDS.md` for the full workflow.
 
 **URL Verification**: All URLs must return image content (`Content-Type: image/*`), not HTML.
 
@@ -599,7 +599,7 @@ status through authoritative sources and are cleared for the stated use.
 Date: [Verification date]
 ```
 
-> **Important:** You provide `Description` (factual, archival). The Scrollytelling Expert writes contextual `alt` text during production using your description as input.
+> **Important:** You provide `Description` (factual, archival). The Production Orchestrator writes contextual `alt` text during production using your description as input.
 
 ---
 

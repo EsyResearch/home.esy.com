@@ -327,7 +327,7 @@ G1 → G2 → G3 → G4 → G4.1 → G4.5 → G5 → G5.2 → G5.5 → G6 → G7
 | G4 | Design Research | Design Researcher | Production |
 | G4.1 | Design Research Reconciliation | Design Research Reconciliation Agent | Production |
 | G4.5 | Image Sourcing | Image Research Licensing Expert | Production |
-| G5 | Content Complete | Scrollytelling Expert | Production |
+| G5 | Content Complete | Production Orchestrator | Production |
 | G5.2 | Design Research Integration | Design Research Integration Agent | Production |
 | G5.5 | Bibliography Implementation | Bibliography Orchestrator | Production |
 | G6 | Citation Audit | Citation Audit Agent | Audit |
@@ -363,7 +363,7 @@ G1 → G2 → G3 → G4 → G4.1 → G4.5 → G5 → G5.2 → G5.5 → G6 → G7
 |--------------|----------------|-------------|
 | **Visual Essay Orchestrator** | Pipeline executive, editorial direction | G1, G3, G9 |
 | **Research Orchestrator** | Research coordination | G2 |
-| **Scrollytelling Expert** | Production coordination | G5 (participates in G4-G5.5) |
+| **Production Orchestrator** | Production coordination | G5 (participates in G4-G5.5) |
 | **Bibliography Orchestrator** | Bibliography implementation & audit | G5.5 |
 | **Publish Artifact Orchestrator** | Pre-publication certification | G8 |
 | **Audit Orchestrator** | Multi-domain quality assessment | (Invoked by G8) |
@@ -380,7 +380,7 @@ G1 → G2 → G3 → G4 → G4.1 → G4.5 → G5 → G5.2 → G5.5 → G6 → G7
 | **Design Research Reconciliation Agent** | Design | Thematic authenticity, cross-essay novelty (G4.1) |
 | **Design Slop Auditor** | Design | AI pattern detection, subject-derived design verification (G4, G7) |
 | **Image Research Licensing Expert** | Images | Image sourcing & licensing (G4.5) |
-| **Scrollytelling Expert** | Production | Content creation coordination (G5) |
+| **Production Orchestrator** | Production | Content creation coordination (G5) |
 | **Historian Writer** | Content | Narrative writing (G5) |
 | **Historian Editor** | Content | Fact-checking (G5) |
 | **Content Research Reconciliation Agent** | Content | Research-to-spec gap analysis (post-G2) |
@@ -515,7 +515,7 @@ The Visual Essay Orchestrator must verify spec is research-backed:
 ### Orchestration Agents
 - [Visual Essay Orchestrator](../../orchestration/agents/orchestrators/visual-essay-orchestrator.md)
 - [Research Orchestrator](../../orchestration/agents/orchestrators/research-orchestrator.md)
-- [Scrollytelling Expert](../../orchestration/agents/orchestrators/scrollytelling-expert.md)
+- [Production Orchestrator](../../orchestration/agents/orchestrators/production-orchestrator.md)
 - [Bibliography Orchestrator](../../orchestration/agents/orchestrators/bibliography-orchestrator.md)
 - [Publish Artifact Orchestrator](../../orchestration/agents/orchestrators/publish-artifact-orchestrator.md)
 - [Audit Orchestrator](../../orchestration/agents/orchestrators/audit-orchestrator.md)

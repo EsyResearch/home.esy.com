@@ -173,11 +173,11 @@ Verify this claim with sources.
 
 ---
 
-## Scrollytelling Expert
+## Production Orchestrator
 
 ### New Visual Essay Content
 ```
-Using @agents/orchestrators/scrollytelling-expert.md, create an immersive 
+Using @agents/orchestrators/production-orchestrator.md, create an immersive 
 visual essay following this production brief:
 
 [INSERT BRIEF]
@@ -194,7 +194,7 @@ Requirements:
 
 ### Design Research Only
 ```
-Using @agents/orchestrators/scrollytelling-expert.md, conduct Design Research 
+Using @agents/orchestrators/production-orchestrator.md, conduct Design Research 
 for the visual essay:
 
 Spec: orchestration/skills/visual-essay-invocation/specs/[slug].md

@@ -663,4 +663,4 @@ All figures, quotes, and timeline events are research-verified. See GAPS.md for 
 
 ---
 
-*This invocation is ready for production by the Scrollytelling Expert.*
+*This invocation is ready for production by the Production Orchestrator.*

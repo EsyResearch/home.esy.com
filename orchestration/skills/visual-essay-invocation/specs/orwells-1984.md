@@ -882,7 +882,7 @@ Content is documentary and historical. No gratuitous imagery, but themes are hea
 | **Lens Applied** | Historical-Biographical |
 | **Research Package** | `research/orwells-1984/` |
 | **Spec Location** | `specs/orwells-1984.md` |
-| **Status** | DRAFT — Ready for Scrollytelling Expert |
+| **Status** | DRAFT — Ready for Production Orchestrator |
 
 ---
 

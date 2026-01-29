@@ -97,7 +97,7 @@ G1 ─► G2 ─► G3 ─► G4 ─► G4.1 ─► G4.5 ─► G5 ─► G5.2 �
 | 1 | Intake | Visual Essay Orchestrator | G1 | Scope + SKILL.md research requirements |
 | 2 | Research | Research Orchestrator | G2 | `research/` package (maps to SKILL.md) |
 | 3 | Spec Construction | Visual Essay Invocation Agent | G3 | 6-layer spec (built from research) |
-| 4 | Production | Scrollytelling Expert | G4, G4.1, G4.5, G5, G5.2, G5.5 | Content, design, bibliography implementation |
+| 4 | Production | Production Orchestrator | G4, G4.1, G4.5, G5, G5.2, G5.5 | Content, design, bibliography implementation |
 | 5 | Audit | Audit Orchestrator | G6, G7 | Citation & scroll certification |
 | 6 | Publish | Publish Artifact Orchestrator + Visual Essay Orchestrator | G8, G9 | Publication certification + deployed essay |
 
@@ -341,7 +341,7 @@ Research depth adapts to content type and complexity. Three modes are available:
 | **G4** | Design Research | 4 | Design Researcher | G4.1 | Visual identity derived from subject matter |
 | **G4.1** | Design Research Reconciliation | 4 | Design Research Reconciliation Agent | G4.5 | Thematic authenticity verified, no cross-essay collisions, CSS implements design research |
 | **G4.5** | Image Sourcing | 4 | Image Research Licensing Expert | G5 | All images sourced, URLs extracted, licenses verified |
-| **G5** | Content Complete | 4→5 | Scrollytelling Expert | G5.2 | All sections drafted, fact-checked, uses research package |
+| **G5** | Content Complete | 4→5 | Production Orchestrator | G5.2 | All sections drafted, fact-checked, uses research package |
 | **G5.2** | Design Research Integration | 4 | Design Research Integration Agent | G5.5 | CSS selectors bind to TSX classNames (≥95%), no convention mismatches |
 | **G5.5** | Bibliography Implementation | 4 | Bibliography Orchestrator | G6 | Bibliography section complete (Works Cited, Image Credits, A/V, Data Sources) |
 | **G6** | Citation Audit | 5 | Citation Audit Agent | G7 | Citation certification achieved |
@@ -391,7 +391,7 @@ orchestration/agents/
 │   ├── publish-artifact-orchestrator.md  # G8 Publication certification
 │   ├── qa-remediation-orchestrator.md    # Auto-fix coordination
 │   ├── seo-orchestrator.md           # SEO pipeline management
-│   ├── scrollytelling-expert.md
+│   ├── production-orchestrator.md
 │   └── childrens-fiction-scrollytelling-agent.md
 │
 ├── research/                # 🔬 Research specialists
@@ -470,7 +470,7 @@ orchestration/agents/
              │    ┌─────────────────────────────────────────────────────────────┐
              │    │                         PRODUCTION                          │
              │    │                                                             │
-             └───►│   Scrollytelling Expert ──► Content Agents ──► Engineering  │
+             └───►│   Production Orchestrator ──► Content Agents ──► Engineering  │
                   │   (implements the spec, which is research-backed)           │
                   └─────────────────────────────────────────────────────────────┘
                                           │

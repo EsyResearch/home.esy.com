@@ -30,7 +30,7 @@ agents/
 | [Research Orchestrator](#research-orchestrator) | **Research pipeline (Phase 2)** | `@agents/orchestrators/research-orchestrator.md` |
 | [Meta Audit Orchestrator](#meta-audit-orchestrator) | Multi-domain audit coordination | `@agents/orchestrators/meta-audit-orchestrator.md` |
 | [QA Remediation Orchestrator](#qa-remediation-orchestrator) | **Iterative fix loop** (audit→fix→reaudit) | `@agents/orchestrators/qa-remediation-orchestrator.md` |
-| [Scrollytelling Expert](#scrollytelling-expert) | Immersive scroll-based stories | `@agents/orchestrators/scrollytelling-expert.md` |
+| [Production Orchestrator](#production-orchestrator) | Immersive scroll-based stories | `@agents/orchestrators/production-orchestrator.md` |
 
 ### 🔍 Auditors
 | Agent | Best For | Invocation |
@@ -104,7 +104,7 @@ agents/
 Reference the agent file directly in your prompt:
 
 ```
-Using @agents/scrollytelling-expert.md, create a scrollytelling experience 
+Using @agents/production-orchestrator.md, create a scrollytelling experience 
 about the history of coffee.
 ```
 
@@ -147,7 +147,7 @@ our scrollytelling piece about [topic]. Focus on .edu and major news sources.
 | Phase | Description | Owner |
 |-------|-------------|-------|
 | **1. Intake & Planning** | Brief development, scope, timeline | Director |
-| **2. Production** | Content & design creation | → Scrollytelling Expert |
+| **2. Production** | Content & design creation | → Production Orchestrator |
 | **3. Citation Pipeline** | Source research + audit | → Research Expert → Citation Audit |
 | **4. Publication Approval** | Final quality gates | Director |
 | **5. Deployment & Monitoring** | Publish + track | Director |
@@ -156,7 +156,7 @@ our scrollytelling piece about [topic]. Focus on .edu and major news sources.
 | Gate | Pass Criteria | Certified By |
 |------|---------------|--------------|
 | G1: Brief Approval | Complete brief with scope, timeline, criteria | Director |
-| G2: Design Research | Unique visual identity from subject matter | Scrollytelling Expert |
+| G2: Design Research | Unique visual identity from subject matter | Production Orchestrator |
 | G3: Content Complete | All sections drafted, fact-checked | Historian Editor |
 | G4: Citation Research | Tier 1-2 sources for all major claims | Research Expert |
 | G5: Citation Audit | Citation Certification achieved | Citation Audit Agent |
@@ -167,7 +167,7 @@ our scrollytelling piece about [topic]. Focus on .edu and major news sources.
 > 📖 **Learn More:** See [Quality Gates System](#quality-gates-system) for comprehensive documentation.
 
 **Orchestrates:**
-- `scrollytelling-expert.md` — Content and design creation
+- `production-orchestrator.md` — Content and design creation
 - `research-citations-expert.md` — Source discovery and verification
 - `citation-audit-agent.md` — Citation integrity certification
 - `immersive-scrolling-auditor.md` — Scroll functionality certification
@@ -204,7 +204,7 @@ src/app/essays/visual/history-of-coffee/
 | Scenario | Use Director? |
 |----------|---------------|
 | Complete visual essay from scratch | ✅ Yes |
-| Just need content creation | ❌ Use scrollytelling-expert directly |
+| Just need content creation | ❌ Use production-orchestrator directly |
 | Just need citations | ❌ Use research-citations-expert directly |
 | Just need citation audit | ❌ Use citation-audit-agent directly |
 | Multiple essays in parallel | ✅ Yes (project tracking) |
@@ -397,7 +397,7 @@ Using @agents/scrollytelling-invocation-enhancer.md:
 - Systematic quality improvement
 
 **Orchestrates:**
-- `scrollytelling-expert.md` — Narrative & design evaluation
+- `production-orchestrator.md` — Narrative & design evaluation
 - `immersive-experience-engineer.md` — Mobile-native & performance
 
 **Audit Depths:**
@@ -680,7 +680,7 @@ The agent produces a structured Visual Audit Report with:
 
 **Collaboration:**
 - ← **SVG Illustration & Animation Expert**: Creates assets → Visual Auditor certifies
-- ← **Scrollytelling Expert**: Requests certification before publication
+- ← **Production Orchestrator**: Requests certification before publication
 - ← **Immersive Experience Engineer**: Performance validation
 
 ---
@@ -762,7 +762,7 @@ certification for visual essay "The Thinking Machine" prior to G7.
 **Collaboration:**
 - ← **Visual Essay Orchestrator**: Invokes for Gate 6 certification
 - ← **Immersive Experience Engineer**: Implementation partner for fixes
-- ← **Scrollytelling Expert**: Narrative-scroll synchronization review
+- ← **Production Orchestrator**: Narrative-scroll synchronization review
 
 ---
 
@@ -1079,8 +1079,8 @@ for the broken ACE computer image on Wikimedia Commons.
 
 ---
 
-### Scrollytelling Expert
-**File:** `orchestrators/scrollytelling-expert.md`
+### Production Orchestrator
+**File:** `orchestrators/production-orchestrator.md`
 
 **Role:** Award-winning digital storytelling architect specializing in immersive, **mobile-native**, scroll-based narrative experiences.
 
@@ -1121,11 +1121,11 @@ Before creating any new scrollytelling:
 **Invocation Examples:**
 ```
 # Create a new scrollytelling piece
-Apply @agents/scrollytelling-expert.md to create a scrollytelling 
+Apply @agents/production-orchestrator.md to create a scrollytelling 
 experience about "The History of the Bicycle"
 
 # With specific requirements
-Using @agents/scrollytelling-expert.md, build an immersive narrative 
+Using @agents/production-orchestrator.md, build an immersive narrative 
 about the invention of the printing press. Include 8 sections, emphasize 
 the Gutenberg era, and use a medieval manuscript aesthetic.
 ```
@@ -1137,7 +1137,7 @@ the Gutenberg era, and use a medieval manuscript aesthetic.
 
 **Role:** World-class frontend engineer specializing in immersive web experiences, building app-like, scroll-driven, and native-feeling interfaces.
 
-**⚠️ MANDATORY for Scrollytelling:** This agent is required for every scrollytelling piece to ensure mobile-native feel. Designs created by `scrollytelling-expert.md` must be implemented through this agent.
+**⚠️ MANDATORY for Scrollytelling:** This agent is required for every scrollytelling piece to ensure mobile-native feel. Designs created by `production-orchestrator.md` must be implemented through this agent.
 
 **Best For:**
 - Making web experiences feel like native apps
@@ -1333,7 +1333,7 @@ for accuracy and provide corrections with sources.
 **Collaboration:**
 - Works with `historian-writer-expert.md` — provides cultural/linguistic verification
 - Works with `historian-editor-expert.md` — specialized Myanmar fact-checking
-- Works with `scrollytelling-expert.md` — authentic Burmese visual references
+- Works with `production-orchestrator.md` — authentic Burmese visual references
 
 **Invocation Examples:**
 ```
@@ -1449,7 +1449,7 @@ for accessibility and usability issues.
 - **Performance**: GPU-accelerated transforms, reduced motion support
 
 **Collaboration:**
-- ← **Scrollytelling Expert**: Provides visual direction, receives illustrated assets
+- ← **Production Orchestrator**: Provides visual direction, receives illustrated assets
 - → **Immersive Experience Engineer**: Animation implementation
 - ← **UI/UX Designer**: Design system alignment
 
@@ -1747,7 +1747,7 @@ components for hydration issues.
 
 **Collaboration:**
 - Works with `immersive-experience-engineer.md` for animation hydration
-- Works with `scrollytelling-expert.md` for scroll-triggered visibility
+- Works with `production-orchestrator.md` for scroll-triggered visibility
 - Integrates with `meta-audit-orchestrator.md` for comprehensive QA
 
 **Reference:** [Hero Hydration Pattern](../../docs/front-end/HERO_HYDRATION_PATTERN.md) — Documented fix for IntersectionObserver hero issue
@@ -1897,7 +1897,7 @@ An **orchestrator agent** coordinates multiple specialized agents to produce com
 | Orchestrator | Domain | Agents Coordinated | Output |
 |--------------|--------|-------------------|--------|
 | `visual-essay-orchestrator.md` | **Production Pipeline** | 4 orchestrators | **Publication-ready visual essays** |
-| `scrollytelling-expert.md` | Digital Storytelling | 7 agents | Mobile-native scrollytelling pages |
+| `production-orchestrator.md` | Digital Storytelling | 7 agents | Mobile-native scrollytelling pages |
 | `scrollytelling-audit-agent.md` | Quality Assurance | 3-4 agents | Experience audit reports |
 | `citation-audit-agent.md` | **Citation Integrity (G5)** | 2-3 agents | Source verification reports |
 | `visual-auditor-agent.md` | **Visual Quality Assurance** | 1-2 agents | SVG certification reports |
@@ -2103,7 +2103,7 @@ These checkpoints **must pass** before proceeding. See [Quality Gates System](#q
 
 | Scenario | Approach |
 |----------|----------|
-| Complete scrollytelling page | Use `scrollytelling-expert.md` (orchestrator) |
+| Complete scrollytelling page | Use `production-orchestrator.md` (orchestrator) |
 | Just need sources | Use `research-citations-expert.md` (standalone) |
 | Just need fact-check | Use `historian-editor-expert.md` (standalone) |
 | Just need UI component | Use `ui-ux-design-expert.md` (standalone) |
@@ -2169,7 +2169,7 @@ Think of gates like airport security checkpoints:
 ---
 
 #### G2: Design Research
-**Owner:** Scrollytelling Expert
+**Owner:** Production Orchestrator
 **Phase Boundary:** Pre-Production → Production
 
 | Criterion | Requirement |
@@ -2447,7 +2447,7 @@ for "The Thinking Machine" visual essay.
 | Gate | Owner Agent | Certification Output |
 |------|-------------|---------------------|
 | G1 | Visual Essay Orchestrator | Production Brief |
-| G2 | Scrollytelling Expert | Design Research Report |
+| G2 | Production Orchestrator | Design Research Report |
 | G3 | Historian Editor | Fact-Check Approval |
 | G4 | Research & Citations Expert | Source Package |
 | G5 | Citation Audit Agent | Citation Certification |
@@ -2462,7 +2462,7 @@ When you invoke an orchestrator, it **automatically coordinates** all required a
 
 ```
 # This single invocation triggers the full 6-agent workflow:
-Apply @agents/scrollytelling-expert.md to create a scrollytelling 
+Apply @agents/production-orchestrator.md to create a scrollytelling 
 experience about "The History of Coffee"
 
 # The orchestrator will:
@@ -2595,7 +2595,7 @@ For complete end-to-end production with quality gates and certification:
 @agents/visual-essay-orchestrator.md
      │
      ├─► Develops production brief (G1)
-     ├─► Invokes scrollytelling-expert.md for content/design (G2, G3)
+     ├─► Invokes production-orchestrator.md for content/design (G2, G3)
      ├─► Invokes research-citations-expert.md for sources (G4)
      ├─► Invokes citation-audit-agent.md for verification (G5)
      ├─► Invokes immersive-scrolling-auditor.md for scroll certification (G6)
@@ -2607,13 +2607,13 @@ For complete end-to-end production with quality gates and certification:
 The detailed workflow for creating **mobile-native** scrollytelling content:
 
 ```
-1.  @agents/scrollytelling-expert.md              → Design Research (mobile-first visual identity) [G2]
+1.  @agents/production-orchestrator.md              → Design Research (mobile-first visual identity) [G2]
 2.  @agents/research-citations-expert.md          → Source Discovery (Tier 1-2 only) [G4]
-3.  @agents/scrollytelling-expert.md              → Story Architecture (mobile layouts first)
+3.  @agents/production-orchestrator.md              → Story Architecture (mobile layouts first)
 4.  @agents/historian-writer-expert.md            → Narrative Draft
 5.  @agents/historian-editor-expert.md            → Fact-Check [G3]
 6.  @agents/research-citations-expert.md          → Final Source Audit
-7.  @agents/scrollytelling-expert.md              → Content Integration
+7.  @agents/production-orchestrator.md              → Content Integration
 8.  @agents/ui-ux-design-expert.md                → Visual Refinement (mobile typography)
 9.  @agents/svg-illustration-animation-expert.md  → Visual Assets (characters, icons, animations)
 10. @agents/visual-auditor-agent.md               → Visual Certification (SVG quality) ⚠️ BLOCKING
@@ -2621,7 +2621,7 @@ The detailed workflow for creating **mobile-native** scrollytelling content:
 12. @agents/immersive-experience-engineer.md      → Mobile-Native Layer (60fps, touch, Theatre Bar)
 13. @agents/citation-audit-agent.md               → Citation Verification (claim-source mapping) [G5]
 14. @agents/immersive-scrolling-auditor.md        → Scroll Certification (scroll-lock, 60fps, devices) [G6] ⚠️ NEW
-15. @agents/scrollytelling-expert.md              → Final Review → Publication Approval [G7]
+15. @agents/production-orchestrator.md              → Final Review → Publication Approval [G7]
 ```
 
 **When to Use Which:**
@@ -2646,7 +2646,7 @@ The detailed workflow for creating **mobile-native** scrollytelling content:
 For faster iteration, use combined invocations:
 
 ```
-Using @agents/scrollytelling-expert.md with support from 
+Using @agents/production-orchestrator.md with support from 
 @agents/research-citations-expert.md, create a complete 
 scrollytelling experience about [topic] with verified sources.
 ```
@@ -2861,7 +2861,7 @@ This global rule applies to ANY element with class `.hero-content`, including th
 
 | Requirement | Agent Responsible |
 |-------------|-------------------|
-| Design mobile-first layouts | `scrollytelling-expert.md` |
+| Design mobile-first layouts | `production-orchestrator.md` |
 | 60fps animations on mobile | `immersive-experience-engineer.md` |
 | Touch-friendly (44px+ targets) | `immersive-experience-engineer.md` |
 | Safe area handling (notches) | `immersive-experience-engineer.md` |

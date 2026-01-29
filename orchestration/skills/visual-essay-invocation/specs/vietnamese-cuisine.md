@@ -63,8 +63,8 @@ g3_passed: 2025-12-10
 |-----------|-------------|-------|--------|
 | ~~Invocation Complete~~ | 2025-12-10 | Visual Essay Invocation Agent | ✅ |
 | ~~G1: Brief Approval~~ | 2025-12-10 | Visual Essay Orchestrator | ✅ |
-| ~~Design Research Complete~~ | 2025-12-10 | Scrollytelling Expert | ✅ |
-| ~~Content Draft Complete~~ | 2025-12-10 | Scrollytelling Expert | ✅ |
+| ~~Design Research Complete~~ | 2025-12-10 | Production Orchestrator | ✅ |
+| ~~Content Draft Complete~~ | 2025-12-10 | Production Orchestrator | ✅ |
 | ~~Image Research Complete~~ | 2025-12-10 | Image Research & Licensing Expert | ✅ |
 | Citation Research Complete | TBD | Research Citations Expert | ⏳ Ready |
 | Citation Audit Complete | TBD | Citation Audit Agent | ⏳ Pending |
@@ -122,12 +122,12 @@ g3_passed: 2025-12-10
 
 ## 📋 Current Action: Phase 2 Production
 
-### Scrollytelling Expert Invocation
+### Production Orchestrator Invocation
 
 The following invocation should be executed to begin Phase 2 production:
 
 ```
-Using @agents/scrollytelling-expert.md, create an immersive visual essay 
+Using @agents/production-orchestrator.md, create an immersive visual essay 
 following this production brief:
 
 PROJECT: "Mùi Vị Quê Hương — The Taste of Home: A Visual Journey Through Vietnamese Cuisine"

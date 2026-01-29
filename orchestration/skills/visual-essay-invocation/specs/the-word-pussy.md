@@ -602,7 +602,7 @@ The title emerges organically from the sequence:
 
 ---
 
-*This invocation is ready for production. The Scrollytelling Expert should proceed with implementation using this spec as the authoritative guide. Reference the research package for source material and the design research for visual direction.*
+*This invocation is ready for production. The Production Orchestrator should proceed with implementation using this spec as the authoritative guide. Reference the research package for source material and the design research for visual direction.*
 
 
 

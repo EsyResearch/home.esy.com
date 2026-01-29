@@ -436,7 +436,7 @@ All text combinations must meet WCAG AA:
 
 ## Gate 4 Status: ✅ COMPLETE
 
-This Design Research Report provides the visual foundation for implementation. The Scrollytelling Expert should use this as the authoritative guide for all visual decisions.
+This Design Research Report provides the visual foundation for implementation. The Production Orchestrator should use this as the authoritative guide for all visual decisions.
 
 ---
 

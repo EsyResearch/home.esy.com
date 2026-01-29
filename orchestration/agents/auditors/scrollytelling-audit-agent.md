@@ -95,7 +95,7 @@ This agent acts as an **orchestrating auditor** that coordinates specialized age
 | Browser chrome | Feels like app, not website | 🟡 Important |
 
 ### Category 2: Narrative & Visual Design
-**Audited by**: Scrollytelling Expert
+**Audited by**: Production Orchestrator
 
 | Check | Pass Criteria | Weight |
 |-------|---------------|--------|
@@ -144,7 +144,7 @@ This agent acts as an **orchestrating auditor** that coordinates specialized age
 ### Phase 2: Specialist Evaluations
 Parallel invocation of specialist agents:
 
-**Scrollytelling Expert Evaluation:**
+**Production Orchestrator Evaluation:**
 ```
 Evaluate this scrollytelling experience for:
 - Narrative arc and pacing
@@ -360,7 +360,7 @@ The agent will:
 
 ## Collaboration Protocols
 
-### Working With scrollytelling-expert.md
+### Working With production-orchestrator.md
 **Role**: Narrative and design evaluation
 
 **Audit Request**:
@@ -435,5 +435,5 @@ December 2024
 
 ---
 
-*This agent specializes in orchestrating comprehensive audits of scrollytelling experiences by coordinating evaluations from scrollytelling-expert (narrative/design), immersive-experience-engineer (mobile-native/performance), and childrens-fiction-scrollytelling-agent (age-appropriate/safety). It produces structured audit reports with categorized findings, severity ratings, and approval-required recommendations. All suggested fixes must be explicitly approved by the user before implementation. Ideal for quality assurance of completed scrollytelling pieces, identifying improvement opportunities, and maintaining world-class experience standards across the Esy.com scrollytelling portfolio.*
+*This agent specializes in orchestrating comprehensive audits of scrollytelling experiences by coordinating evaluations from production-orchestrator (narrative/design), immersive-experience-engineer (mobile-native/performance), and childrens-fiction-scrollytelling-agent (age-appropriate/safety). It produces structured audit reports with categorized findings, severity ratings, and approval-required recommendations. All suggested fixes must be explicitly approved by the user before implementation. Ideal for quality assurance of completed scrollytelling pieces, identifying improvement opportunities, and maintaining world-class experience standards across the Esy.com scrollytelling portfolio.*
 

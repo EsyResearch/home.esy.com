@@ -58,7 +58,7 @@ director_review: 2025-12-10
 | ~~Content Draft Complete~~ | Complete | Invocation Template | ✅ |
 | ~~Citation Research Complete~~ | 2025-12-10 | Research Citations Expert | ✅ |
 | Citation Audit Complete | TBD | Citation Audit Agent | ⏳ Pending |
-| Scroll Implementation | TBD | Scrollytelling Expert | ⏳ Pending |
+| Scroll Implementation | TBD | Production Orchestrator | ⏳ Pending |
 | Scroll Certification | TBD | Immersive Scrolling Auditor | ⏳ Pending |
 | Publication Approval | TBD | Visual Essay Orchestrator | ⏳ Pending |
 | Deployment | TBD | Visual Essay Orchestrator | ⏳ Pending |

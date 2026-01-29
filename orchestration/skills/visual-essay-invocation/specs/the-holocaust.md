@@ -777,7 +777,7 @@ It is not entertainment. It is not content. It is testimony—presented digitall
 - Source attribution for all photographs
 - Ethical photography selection guidelines
 
-**Ready for:** Visual Essay Orchestrator or Scrollytelling Expert
+**Ready for:** Visual Essay Orchestrator or Production Orchestrator
 
 ---
 

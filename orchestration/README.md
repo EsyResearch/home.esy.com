@@ -58,7 +58,7 @@ The system has three component types, each serving a distinct purpose:
 │                                                                              │
 │   Examples:                Examples:              Examples:                  │
 │   • Historian Editor       • image-url-extraction • Visual Essay Orchestrator   │
-│   • Citation Audit         • visual-essay-        • Scrollytelling Expert   │
+│   • Citation Audit         • visual-essay-        • Production Orchestrator   │
 │   • Image Research           invocation           • Citation Audit Agent    │
 │                                                                              │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -111,7 +111,7 @@ The system has three component types, each serving a distinct purpose:
 | Orchestrator | Domain | Agents Coordinated |
 |--------------|--------|-------------------|
 | `visual-essay-orchestrator.md` | Publication Pipeline | 4+ agents, 8 gates |
-| `scrollytelling-expert.md` | Content Production | 7 agents |
+| `production-orchestrator.md` | Content Production | 7 agents |
 | `citation-audit-agent.md` | Source Verification | 2-3 agents |
 | `immersive-experience-auditor.md` | Experience QA | 1 agent (Scrolling Auditor) + direct checks |
 | `meta-audit-orchestrator.md` | **Comprehensive QA** | 5 agents (Scroll, Experience, Visual, Citation, Quotes) |
@@ -154,7 +154,7 @@ The system has three component types, each serving a distinct purpose:
 │  ─────────────────────────────────────                                      │
 │  ┌──────────────────┐                                                       │
 │  │ Visual Essay     │──G1──► Brief Approval                                 │
-│  │ Director         │──G2──► Scrollytelling Expert (design)                 │
+│  │ Director         │──G2──► Production Orchestrator (design)                 │
 │  │                  │──G3──► Historian Editor (content)                     │
 │  │                  │──G4──► Research Expert (sources)                      │
 │  │                  │──G5──► Citation Audit (verification)                  │
@@ -174,7 +174,7 @@ The system has three component types, each serving a distinct purpose:
 |--------------|-----------|--------|---------|
 | Agent → Skill | Apply | Agent uses procedural knowledge | Image Expert applies URL extraction |
 | Agent → Agent | Invoke | Delegation to specialist | Citation Audit invokes Quotes Audit |
-| Orchestrator → Agent | Sequence | Pipeline stage execution | Director invokes Scrollytelling Expert |
+| Orchestrator → Agent | Sequence | Pipeline stage execution | Director invokes Production Orchestrator |
 | Orchestrator → Gate | Enforce | Quality checkpoint | Director enforces G5 Citation Audit |
 
 ---
@@ -234,7 +234,7 @@ Brief  Design Content Sources Citation Scroll  Mobile  Publish
 | Gate | Owner | What's Verified |
 |------|-------|-----------------|
 | G1 | Director | Complete brief with scope |
-| G2 | Scrollytelling Expert | Unique visual identity |
+| G2 | Production Orchestrator | Unique visual identity |
 | G3 | Historian Editor | Facts verified |
 | G4 | Research Expert | Tier 1-2 sources |
 | G5 | Citation Audit | All claims supported |
@@ -259,7 +259,7 @@ orchestration/
 │   ├── readme-curator.md          ← Documentation management agent
 │   ├── visual-essay-orchestrator.md   ← Top-level orchestrator
 │   ├── meta-audit-orchestrator.md ← Comprehensive audit coordinator
-│   ├── scrollytelling-expert.md   ← Content production orchestrator
+│   ├── production-orchestrator.md   ← Content production orchestrator
 │   ├── [15+ specialist agents]
 │   ├── CitationReports/           ← Citation audit archives
 │   └── VisualAuditReports/        ← Visual audit archives

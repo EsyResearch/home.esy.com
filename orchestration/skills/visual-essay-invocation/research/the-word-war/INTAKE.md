@@ -252,7 +252,7 @@ Include naturally:
 1. **Phase 2: Research** — Invoke Research Orchestrator with this intake document
 2. Research Orchestrator produces `research/` package (CITATIONS.md, FIGURES.md, TIMELINE.md, etc.)
 3. **Phase 3: Spec Construction** — Invoke Visual Essay Invocation Agent to build spec from research
-4. **Phase 4: Production** — Invoke Design Researcher, then Scrollytelling Expert
+4. **Phase 4: Production** — Invoke Design Researcher, then Production Orchestrator
 5. **Phase 5: Audit** — Citation Audit, Scroll Certification
 6. **Phase 6: Publish** — Publication Certification, Director Sign-off
 

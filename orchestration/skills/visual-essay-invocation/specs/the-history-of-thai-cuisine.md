@@ -1241,7 +1241,7 @@ All photographs must be attributed with:
 - Malay/Indonesian influence (satay, rendang, Muslim traditions)
 - Portuguese/European influence (chilies, egg desserts)
 
-**Ready for:** Visual Essay Orchestrator or Scrollytelling Expert
+**Ready for:** Visual Essay Orchestrator or Production Orchestrator
 
 ---
 

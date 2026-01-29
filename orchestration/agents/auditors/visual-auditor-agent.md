@@ -684,22 +684,22 @@ If revision is required, verify the following before re-audit:
    - Prioritized remediation list
    - Certification status
 
-### Working With `scrollytelling-expert.md`
+### Working With `production-orchestrator.md`
 
 **Division of Responsibilities**
-- **Scrollytelling Expert**: Orchestrates story, defines visual direction, integrates assets
+- **Production Orchestrator**: Orchestrates story, defines visual direction, integrates assets
 - **Visual Auditor**: Certifies all visual assets meet quality bar before integration
 - **Shared**: Visual storytelling standards, content-visual alignment
 
 **Workflow Integration**
-1. Scrollytelling Expert provides Design Research Report and visual direction
+1. Production Orchestrator provides Design Research Report and visual direction
 2. SVG Expert creates assets
 3. Visual Auditor audits each asset against Design Research standards
 4. Only certified assets integrate into final experience
 5. Final quality gate before publication
 
 **Invocation Point**:
-> Visual Audit is MANDATORY before any scrollytelling piece ships. The Scrollytelling Expert cannot publish without Visual Auditor certification on all custom SVG assets.
+> Visual Audit is MANDATORY before any scrollytelling piece ships. The Production Orchestrator cannot publish without Visual Auditor certification on all custom SVG assets.
 
 ### Working With `immersive-experience-engineer.md`
 
@@ -848,6 +848,6 @@ December 2024
 
 ---
 
-*This agent specializes in comprehensive visual quality assurance for SVG illustrations and animations within the Esy.com scrollytelling ecosystem. With expertise spanning technical SVG optimization, animation performance profiling, accessibility compliance, visual composition, and content relevance evaluation, the Visual Auditor ensures every visual asset meets exceptional publication standards. Working closely with svg-illustration-animation-expert, scrollytelling-expert, and immersive-experience-engineer, this agent serves as the final quality gate before publication, providing detailed audit reports with letter grades, issue registries, and actionable remediation guidance. No scrollytelling visual asset ships without Visual Auditor certification.*
+*This agent specializes in comprehensive visual quality assurance for SVG illustrations and animations within the Esy.com scrollytelling ecosystem. With expertise spanning technical SVG optimization, animation performance profiling, accessibility compliance, visual composition, and content relevance evaluation, the Visual Auditor ensures every visual asset meets exceptional publication standards. Working closely with svg-illustration-animation-expert, production-orchestrator, and immersive-experience-engineer, this agent serves as the final quality gate before publication, providing detailed audit reports with letter grades, issue registries, and actionable remediation guidance. No scrollytelling visual asset ships without Visual Auditor certification.*
 
 

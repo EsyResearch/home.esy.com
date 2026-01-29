@@ -97,7 +97,7 @@ Rough Idea ("story about a bunny")
                │
                ▼
 ┌─────────────────────────────┐
-│ Scrollytelling Expert       │
+│ Production Orchestrator       │
 │ (orchestrators/)            │
 └─────────────────────────────┘
 ```

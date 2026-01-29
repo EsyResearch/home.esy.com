@@ -234,7 +234,7 @@ The Nakba (Arabic: النكبة, "the catastrophe") — the displacement of appr
 | G3: Spec Approval | ⏳ Pending | Visual Essay Orchestrator |
 | G4: Design Research | ⏳ Pending | Design Researcher |
 | G4.5: Image Sourcing | ⏳ Pending | Image Research Expert |
-| G5: Content Complete | ⏳ Pending | Scrollytelling Expert |
+| G5: Content Complete | ⏳ Pending | Production Orchestrator |
 | G5.5: Bibliography Implementation | ⏳ Pending | Bibliography Orchestrator |
 | G6: Citation Audit | ⏳ Pending | Citation Audit Agent |
 | G7: Scroll Certification | ⏳ Pending | Immersive Scrolling Auditor |

@@ -559,7 +559,7 @@ Visual identity is unique, appropriate, and production-ready. The design derives
 
 ## Handoff Summary
 
-**For Scrollytelling Expert / Implementation Team**:
+**For Production Orchestrator / Implementation Team**:
 
 1. **Color System**: 11 tokens with derivation; era-specific palette shifts
 2. **Typography**: Playfair Display (headlines), Source Serif Pro (body), IBM Plex Mono (documentary), era-specific alternatives

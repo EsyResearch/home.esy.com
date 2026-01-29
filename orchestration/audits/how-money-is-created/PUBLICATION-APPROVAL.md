@@ -25,8 +25,8 @@
 | G1: Intake Approval | Intake | ✅ Pass | Visual Essay Orchestrator |
 | G2: Research Complete | Research | ✅ Pass | Research Orchestrator |
 | G3: Spec Approval | Spec Construction | ✅ Pass | Visual Essay Orchestrator |
-| G4: Design Approval | Production | ✅ Pass | Scrollytelling Expert |
-| G5: Content Approval | Production | ✅ Pass | Scrollytelling Expert |
+| G4: Design Approval | Production | ✅ Pass | Production Orchestrator |
+| G5: Content Approval | Production | ✅ Pass | Production Orchestrator |
 | G6: Citation Audit | Audit | ✅ Pass | Meta Audit Orchestrator (9.5/10) |
 | G7: Comprehensive Audit | Audit | ⚠️ Conditional | Meta Audit Orchestrator (7.8/10) |
 | G8: Publication Approval | Publish | ⚠️ Conditional | Visual Essay Orchestrator |

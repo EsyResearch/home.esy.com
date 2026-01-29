@@ -713,7 +713,7 @@ Six-layer depth for industrial monumentality:
 
 **Lens Applied**: History + Technology + Sociology (intimacy focus)
 
-**Ready For**: Scrollytelling Expert → Design Research → Production
+**Ready For**: Production Orchestrator → Design Research → Production
 
 ---
 

@@ -639,10 +639,10 @@
 - **Engineer**: Implementation, site speed optimization, structured data deployment
 - **Shared**: Site architecture decisions, Core Web Vitals fixes
 
-### Working With `scrollytelling-expert.md`
+### Working With `production-orchestrator.md`
 **Division of Responsibilities**
 - **SEO Expert**: SEO-friendly URL structure, meta data, indexability
-- **Scrollytelling Expert**: User experience, narrative flow, visual design
+- **Production Orchestrator**: User experience, narrative flow, visual design
 - **Shared**: Page speed optimization, content structure
 
 ### Working With `visual-essay-orchestrator.md`

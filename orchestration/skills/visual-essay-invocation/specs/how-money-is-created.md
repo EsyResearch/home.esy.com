@@ -670,7 +670,7 @@ The hero sequence reveals money creation as a system coming to life—not a sing
 
 **Spec Status**: [DRAFT]  
 **Ready for**: Production (Phase 4)  
-**Next Step**: Invoke Scrollytelling Expert with this spec and research package
+**Next Step**: Invoke Production Orchestrator with this spec and research package
 
 ---
 

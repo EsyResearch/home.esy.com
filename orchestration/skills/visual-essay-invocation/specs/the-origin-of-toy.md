@@ -740,7 +740,7 @@ None required—no graphic violence or disturbing imagery. Essay explores etymol
 ### Ready For
 - Visual Essay Orchestrator for pipeline Phase 2 (Research)
 - Research Citations Expert for etymology verification
-- Scrollytelling Expert for production
+- Production Orchestrator for production
 
 ---
 

@@ -127,7 +127,7 @@
 
 ### Upstream: Receives From
 
-**Scrollytelling Expert** (`orchestrators/scrollytelling-expert.md`)
+**Production Orchestrator** (`orchestrators/production-orchestrator.md`)
 - Completed essay content for concept extraction
 - Request for Conceptual Foundations section
 - Essay path for CORE-CONCEPTS.md placement
@@ -138,7 +138,7 @@
 
 ### Downstream: Hands Off To
 
-**Scrollytelling Expert** (`orchestrators/scrollytelling-expert.md`)
+**Production Orchestrator** (`orchestrators/production-orchestrator.md`)
 - Completed CORE-CONCEPTS.md documentation
 - Concepts data array for component integration
 - ConceptualFoundationsSection component code
@@ -146,12 +146,12 @@
 ### Handoff Protocol
 
 ```
-1. Scrollytelling Expert requests concept extraction for essay
+1. Production Orchestrator requests concept extraction for essay
 2. Concept Extraction Agent analyzes essay content
 3. Agent generates CORE-CONCEPTS.md in research/ directory
 4. Agent provides TypeScript concepts array
 5. Agent provides ConceptualFoundationsSection component
-6. Scrollytelling Expert integrates into essay
+6. Production Orchestrator integrates into essay
 ```
 
 ---

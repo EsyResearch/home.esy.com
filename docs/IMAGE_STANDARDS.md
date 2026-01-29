@@ -94,7 +94,7 @@ const IMAGES = {
 
 ## Alt Text Guidelines
 
-> **Responsibility:** The **Scrollytelling Expert** writes alt text during production, using the Image Research Expert's `description` as input.
+> **Responsibility:** The **Production Orchestrator** writes alt text during production, using the Image Research Expert's `description` as input.
 
 ### Good Alt Text
 
@@ -108,7 +108,7 @@ const IMAGES = {
 | Type | Written By | Focus | Example |
 |------|-----------|-------|---------|
 | `description` | Image Research Expert | Factual, archival | "Portrait of Joseph Priestley by Ellen Sharples, oil on canvas, circa 1797" |
-| `alt` | Scrollytelling Expert | Narrative context | "Joseph Priestley, the scientist who discovered carbonated water in 1767" |
+| `alt` | Production Orchestrator | Narrative context | "Joseph Priestley, the scientist who discovered carbonated water in 1767" |
 
 ### Examples
 
@@ -166,7 +166,7 @@ The **Image Research Licensing Expert** (`@agents/research/image-research-licens
 
 > **Important distinction:**
 > - `description` — What the Image Research Expert provides (factual, archival)
-> - `alt` — What the Scrollytelling Expert writes (contextual, narrative-aware)
+> - `alt` — What the Production Orchestrator writes (contextual, narrative-aware)
 
 #### Required Output: `VISUALS.md`
 
@@ -199,7 +199,7 @@ For each chapter/section, the agent produces a table with research findings:
 | `Credit` | ✅ | Full attribution: artist/photographer, source institution |
 | `License` | ✅ | Verify and document license (prefer Public Domain, CC0, CC BY) |
 
-> **Note:** The Image Research Expert provides `Description`, not `Alt`. Writing contextual alt text is the Scrollytelling Expert's responsibility during production.
+> **Note:** The Image Research Expert provides `Description`, not `Alt`. Writing contextual alt text is the Production Orchestrator's responsibility during production.
 
 #### URL Verification
 
@@ -246,7 +246,7 @@ The workflow from research to production:
                           │
                           ▼
 ┌─────────────────────────────────────────────────────────────┐
-│  3. Production (Scrollytelling Expert)                      │
+│  3. Production (Production Orchestrator)                      │
 │  ─────────────────────────────────────                      │
 │  • Writes contextual ALT text using description + narrative │
 │  • Creates final IMAGES constant                            │
@@ -277,9 +277,9 @@ The workflow from research to production:
 node scripts/migrate-essay-images-to-r2.mjs --config=path/images-migration.json --update
 ```
 
-#### Step 3: Scrollytelling Expert writes contextual alt text
+#### Step 3: Production Orchestrator writes contextual alt text
 
-The Scrollytelling Expert creates the final IMAGES constant, transforming factual descriptions into narrative-aware alt text:
+The Production Orchestrator creates the final IMAGES constant, transforming factual descriptions into narrative-aware alt text:
 
 ```typescript
 const IMAGES = {
@@ -297,7 +297,7 @@ const IMAGES = {
 | Field | Source | Purpose |
 |-------|--------|---------|
 | `description` | Image Research Expert | Factual: "Portrait by Sharples, 1797" |
-| `alt` | Scrollytelling Expert | Contextual: "Priestley, discoverer of carbonated water" |
+| `alt` | Production Orchestrator | Contextual: "Priestley, discoverer of carbonated water" |
 
 ---
 

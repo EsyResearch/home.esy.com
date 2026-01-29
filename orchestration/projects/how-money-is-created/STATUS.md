@@ -88,7 +88,7 @@
 ---
 
 ### ✅ Phase 4: Production (COMPLETE)
-- [x] Scrollytelling Expert invoked
+- [x] Production Orchestrator invoked
 - [x] Design Research phase completed
 - [x] Story Architecture created
 - [x] Content drafted (all 8 stages)

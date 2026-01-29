@@ -720,7 +720,7 @@ Writers must reference GAPS.md before making any claim about:
 This specification is ready for:
 
 ```
-Using @orchestration/agents/orchestrators/scrollytelling-expert.md, create an immersive 
+Using @orchestration/agents/orchestrators/production-orchestrator.md, create an immersive 
 visual essay following this spec:
 
 Spec Location: specs/the-history-of-pizza.md

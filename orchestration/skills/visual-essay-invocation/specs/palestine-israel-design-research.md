@@ -559,7 +559,7 @@ Visual identity is unique, appropriate, culturally sensitive, and production-rea
 - All photography attributed and sourced
 
 **Next Steps**:
-1. Scrollytelling Expert receives Design Research Report
+1. Production Orchestrator receives Design Research Report
 2. Implementation follows spec + design research
 3. Era-specific photography processing applied
 4. Progress bar component built to excavation stratigraphy design

@@ -200,7 +200,7 @@
 - Research package validates existing spec content
 - Minor updates recommended based on GAPS.md findings
 
-### For Scrollytelling Expert
+### For Production Orchestrator
 - Research package provides source foundation
 - CITATIONS.md should inform Sources section
 - VISUALS.md provides museum/archive guidance for image research

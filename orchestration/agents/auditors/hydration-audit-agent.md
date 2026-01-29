@@ -317,7 +317,7 @@ For each component with visibility animations:
 
 ### Collaboration Patterns
 
-**With Scrollytelling Expert**
+**With Production Orchestrator**
 - Audit scroll-triggered animations for hydration safety
 - Verify IntersectionObserver patterns
 - Check visibility state management

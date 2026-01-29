@@ -583,7 +583,7 @@ export function DigitalTwin({ state, highlightPart }: DigitalTwinProps) {
 
 ### Parallel Collaboration
 
-**Scrollytelling Expert** (`orchestrators/scrollytelling-expert.md`)
+**Production Orchestrator** (`orchestrators/production-orchestrator.md`)
 - Narrative integration review
 - Design research alignment
 - Mobile-native feel verification

@@ -682,7 +682,7 @@ None required—no graphic violence or disturbing imagery. Brief mention of plag
 
 ### Ready For
 - Visual Essay Orchestrator for pipeline Phase 1 continuation
-- Scrollytelling Expert for expedited production
+- Production Orchestrator for expedited production
 - Image Research & Licensing Expert for archival image sourcing
 
 ---

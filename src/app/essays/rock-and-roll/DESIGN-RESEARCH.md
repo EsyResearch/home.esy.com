@@ -685,7 +685,7 @@ Visual identity is unique, authentic to rock and roll's material culture and his
 - Ensure era-appropriate photography for each chapter
 
 **Gate 5: Content Complete**
-- Invoke Scrollytelling Expert with:
+- Invoke Production Orchestrator with:
   - Spec: `src/app/essays/rock-and-roll/SPEC.md`
   - Research: `src/app/essays/rock-and-roll/research/`
   - Design Research: This document

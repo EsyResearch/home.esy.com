@@ -509,7 +509,7 @@ Visual identity is unique, appropriate, and production-ready.
 
 **Division of Responsibilities**
 - **Design Researcher**: Visual archaeology, palette derivation, typography research, animation philosophy
-- **Visual Essay Orchestrator**: Pipeline management, Gate 4 approval, handoff to Scrollytelling Expert
+- **Visual Essay Orchestrator**: Pipeline management, Gate 4 approval, handoff to Production Orchestrator
 - **Shared**: Design Research Report quality, uniqueness verification
 
 **Invocation Protocol**
@@ -533,24 +533,24 @@ Produce complete Design Research Report that:
 2. Design Researcher conducts 5-phase research process
 3. Design Researcher delivers Design Research Report
 4. Visual Essay Orchestrator reviews and approves Gate 4
-5. Design Research Report handed to Scrollytelling Expert for implementation
-6. Scrollytelling Expert uses Design Research Report as visual foundation
+5. Design Research Report handed to Production Orchestrator for implementation
+6. Production Orchestrator uses Design Research Report as visual foundation
 
-### Working With scrollytelling-expert.md
+### Working With production-orchestrator.md
 
-**Role**: Design Research provider for Scrollytelling Expert
+**Role**: Design Research provider for Production Orchestrator
 
 **Division of Responsibilities**
 - **Design Researcher**: Produces Design Research Report with complete visual identity
-- **Scrollytelling Expert**: Implements design based on Design Research Report
+- **Production Orchestrator**: Implements design based on Design Research Report
 - **Shared**: Visual identity uniqueness, subject authenticity
 
 **Handoff Protocol**
 1. Design Researcher delivers Design Research Report
-2. Scrollytelling Expert receives Design Research Report as visual foundation
-3. Scrollytelling Expert implements design following Design Research Report
+2. Production Orchestrator receives Design Research Report as visual foundation
+3. Production Orchestrator implements design following Design Research Report
 4. Design Researcher available for clarification if needed
-5. Scrollytelling Expert maintains design fidelity to Design Research Report
+5. Production Orchestrator maintains design fidelity to Design Research Report
 
 ---
 
@@ -558,7 +558,7 @@ Produce complete Design Research Report that:
 
 - **Primary Focus**: Esy.com Visual Essays design research
 - **Content Type**: Design Research Reports for visual essays at `/essays/[slug]/`
-- **Target Audience**: Visual Essay Orchestrator, Scrollytelling Expert, design stakeholders
+- **Target Audience**: Visual Essay Orchestrator, Production Orchestrator, design stakeholders
 - **Standards**: Subject-derived design systems, unique visual identities per essay
 - **Goal**: Ensure every visual essay has a unique, subject-authentic visual identity derived from research
 
@@ -623,7 +623,7 @@ Report for [ESSAY TITLE] and verify:
 - **Uniqueness Score**: Visual identity could only exist for this subject
 - **Authenticity Rating**: Design feels authentic to subject matter
 - **Documentation Completeness**: All derivations documented
-- **Implementation Readiness**: Report ready for Scrollytelling Expert
+- **Implementation Readiness**: Report ready for Production Orchestrator
 
 ---
 
@@ -632,7 +632,7 @@ December 16, 2025
 
 ---
 
-*This agent specializes in conducting comprehensive design research that derives unique visual identities from subject matter itself. Through visual archaeology, material-driven palette development, era-appropriate typography research, and animation philosophy matching, the Design Researcher ensures every visual essay has a distinctive, subject-authentic design system. Working with the Visual Essay Orchestrator and Scrollytelling Expert, this agent produces Design Research Reports that serve as the visual foundation for implementation, guaranteeing no two essays share the same visual language.*
+*This agent specializes in conducting comprehensive design research that derives unique visual identities from subject matter itself. Through visual archaeology, material-driven palette development, era-appropriate typography research, and animation philosophy matching, the Design Researcher ensures every visual essay has a distinctive, subject-authentic design system. Working with the Visual Essay Orchestrator and Production Orchestrator, this agent produces Design Research Reports that serve as the visual foundation for implementation, guaranteeing no two essays share the same visual language.*
 
 
 

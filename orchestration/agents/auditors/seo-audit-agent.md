@@ -912,12 +912,12 @@ High-impact changes requiring minimal effort:
 - Check indexability settings
 - Provide go/no-go recommendation
 
-### Working With `scrollytelling-expert.md`
+### Working With `production-orchestrator.md`
 **Role**: Pre-implementation SEO requirements
 
 **Division of Responsibilities**
 - **Audit Agent**: SEO requirements and standards
-- **Scrollytelling Expert**: Implementation that meets requirements
+- **Production Orchestrator**: Implementation that meets requirements
 - **Shared**: Balancing SEO with user experience
 
 ### Working With Content Writers

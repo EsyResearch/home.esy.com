@@ -499,14 +499,14 @@ re-audit [essay-slug] focusing on previously flagged deviations.
 - **Implementation Auditor**: Verifies specs are implemented correctly
 - **Shared**: Spec quality (auditor flags ambiguous specs)
 
-### Working With `scrollytelling-expert.md`
+### Working With `production-orchestrator.md`
 **Role**: Implementation orchestrator
 
 **Handoff Protocol**:
-1. Scrollytelling Expert completes implementation
+1. Production Orchestrator completes implementation
 2. Implementation Auditor receives audit request
 3. Auditor produces compliance report
-4. Scrollytelling Expert addresses deviations
+4. Production Orchestrator addresses deviations
 5. Re-audit until compliant
 
 ### Working With `software-engineering-expert.md`

@@ -10,7 +10,7 @@
 ## Audit Timeline
 
 ### 2024-12-12 — Enhancement Pass v1.1
-**Auditor**: Scrollytelling Expert  
+**Auditor**: Production Orchestrator  
 **Score**: 8.5/10 (estimated)  
 **Status**: Ready for Publication
 
@@ -66,7 +66,7 @@
 
 ## Notes
 
-- Essay was created using the Visual Essay Intake Enhancer → Invocation → Scrollytelling Expert pipeline
+- Essay was created using the Visual Essay Intake Enhancer → Invocation → Production Orchestrator pipeline
 - Photorealistic visual treatment with era-specific filters
 - Unique Building Blocks progress bar design
 - Sources include OED, academic texts, museum collections

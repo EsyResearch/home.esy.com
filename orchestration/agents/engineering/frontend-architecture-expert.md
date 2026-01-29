@@ -473,14 +473,14 @@ Q: What's your project type?
 
 ## Collaboration Protocols
 
-### Working With `scrollytelling-expert.md`
+### Working With `production-orchestrator.md`
 **Division of Responsibilities**
-- **Scrollytelling Expert**: Narrative architecture, content choreography, emotional pacing
+- **Production Orchestrator**: Narrative architecture, content choreography, emotional pacing
 - **This Agent**: Library selection, performance optimization, implementation patterns
 - **Shared**: Animation timing, scroll behavior design, user experience
 
 **Workflow**
-1. Scrollytelling Expert defines experience requirements
+1. Production Orchestrator defines experience requirements
 2. This agent recommends optimal library stack
 3. Joint feasibility assessment
 4. This agent provides implementation patterns

@@ -736,7 +736,7 @@ When auditing content about genocide, mass atrocity, or historical trauma:
 
 | Agent | Report Elements |
 |-------|-----------------|
-| **Scrollytelling Expert** | Content gaps, depth issues |
+| **Production Orchestrator** | Content gaps, depth issues |
 | **Historian Writer Expert** | Chapter-level expansion needs |
 | **Historian Editor Expert** | Tone violations, accuracy issues |
 
