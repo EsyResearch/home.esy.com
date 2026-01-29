@@ -1,0 +1,35 @@
+{
+  "essaySlug": "the-word-slang",
+  "images": [
+    {
+      "key": "captainFrancisaGrose2cFsa",
+      "filename": "captain-francisa-grose-fsa.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/Captain_Francisa_Grose%2C_FSA.jpg"
+    },
+    {
+      "key": "440pxJohnCamdenHotten",
+      "filename": "440px-john-camden-hotten.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/John_Camden_Hotten.png/440px-John_Camden_Hotten.png"
+    },
+    {
+      "key": "waltWhitmanGeorgeCollinsCox",
+      "filename": "walt-whitman-george-collins-cox.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Walt_Whitman_-_George_Collins_Cox.jpg"
+    },
+    {
+      "key": "5a52407r",
+      "filename": "5a52407r.jpg",
+      "sourceUrl": "https://tile.loc.gov/storage-services/service/pnp/van/5a52000/5a52400/5a52407r.jpg"
+    },
+    {
+      "key": "ericPartridge",
+      "filename": "eric-partridge.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/en/0/09/Eric_Partridge.jpg"
+    },
+    {
+      "key": "williamHogarthGinLane",
+      "filename": "william-hogarth-gin-lane.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d0/William_Hogarth_-_Gin_Lane.jpg"
+    }
+  ]
+}

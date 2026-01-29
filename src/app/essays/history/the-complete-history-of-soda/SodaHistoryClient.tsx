@@ -51,49 +51,32 @@ interface Figure {
 // ==================== IMAGE SOURCES ====================
 // All images verified for licensing - see research/IMAGES.md
 const IMAGES = {
-  // Era 1: Scientific Discovery
-  josephPriestley: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Priestley.jpg",
-  pneumaticTrough: "https://upload.wikimedia.org/wikipedia/commons/b/b4/Priestley_Joseph_pneumatic_trough.jpg",
-  torbernBergman: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Torbern_Bergman.jpg",
-
-  // Era 2: Commercial Pioneering
-  johannSchweppe: "https://upload.wikimedia.org/wikipedia/commons/0/07/1783_Johann_Jacob_Schweppe.jpg",
-  benjaminSilliman: "https://upload.wikimedia.org/wikipedia/commons/8/84/Benjamin_Silliman.jpg",
-
-  // Era 3: Pharmacy Golden Age
-  johnPemberton: "https://upload.wikimedia.org/wikipedia/commons/9/98/John_Pemberton.jpg",
-  asaCandler: "https://upload.wikimedia.org/wikipedia/commons/6/6a/Asa_Candler_2a.jpg",
-  calebBradham: "https://upload.wikimedia.org/wikipedia/commons/b/ba/Caleb_Davis_Bradham.jpg",
-  charlesHires: "https://upload.wikimedia.org/wikipedia/commons/0/0d/Charles_Elmer_Hires.jpg",
-  cocaCola1890sAd: "https://upload.wikimedia.org/wikipedia/commons/8/8c/Cocacola-5cents-1900_edit1.jpg",
-  cocaCola5CentsLOC: "https://upload.wikimedia.org/wikipedia/commons/f/f2/Drink_Coca-Cola_5_cents_LCCN2004671509.jpg",
-  sodaFountainWeeds: "https://upload.wikimedia.org/wikipedia/commons/3/32/Soda_fountain_at_Weed%27s_Pharmacy%2C_circa_1910_%28MOHAI_9541%29.jpg",
-  sodaJerk: "https://upload.wikimedia.org/wikipedia/commons/d/d8/Soda_jerk_NYWTS.jpg",
-
-  // Era 4: Brand Building
-  contourBottlePrototype: "https://upload.wikimedia.org/wikipedia/commons/6/66/1915_contour_Coca-Cola_contour_bottle_prototype.png",
-  contourBottlePatent: "https://upload.wikimedia.org/wikipedia/commons/8/8f/Coke_bottle_patent.png",
-  vintageVendingMachine: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Vintage_Coca-Cola_Vending_Machine-04.jpg",
-
-  // Era 5: WWII Expansion
-  wwiiCocaColaAd: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Dean_Cornwell%2C_Have_a_%22Coke%22_%3D_Kia_Ora%2C_c.1943-1945_%2811841204884%29.jpg",
-  bottlingPlant1940: "https://upload.wikimedia.org/wikipedia/commons/4/40/Coca-Cola_Bottling_Plant%2C_Worcester%2C_MA.jpg",
-
-  // Era 6: Cola Wars
-  kitchenDebate: "https://upload.wikimedia.org/wikipedia/commons/c/c2/Kitchen_debate.jpg",
-  newCokeCan: "https://upload.wikimedia.org/wikipedia/commons/f/fa/New_Coke_can.jpg",
-  pepsiChallenge: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Pepsi_Challenge.jpg",
-
-  // Era 7: Global Dominance
-  deliveryTruckTaiwan: "https://upload.wikimedia.org/wikipedia/commons/9/94/Tainan_Taiwan_Coca-Cola-Truck-01.jpg",
-
-  // Additional Figure Portraits
-  robertWoodruff: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Robert_Winship_Woodruff%2C_President_of_the_Coca-Cola_Company_%28cropped%29.jpg",
-  charlesAlderton: "https://upload.wikimedia.org/wikipedia/commons/8/88/Charles_Alderton.jpg",
-  donaldKendall: "https://upload.wikimedia.org/wikipedia/commons/7/72/Donald_Mcintosh_Kendall_%28cropped%29.jpg",
-
-  // Root Glass Company
-  rootGlassCompanyTeam: "https://discoverindianahistory.org/files/fullsize/b72d7acef212620ba9cb71cfe7332fb0.jpg",
+  josephPriestley: "https://images.esy.com/essays/the-complete-history-of-soda/priestley.bfa51bd351.jpg",
+  pneumaticTrough: "https://images.esy.com/essays/the-complete-history-of-soda/priestley-joseph-pneumatic-trough.6aaabd011a.jpg",
+  torbernBergman: "https://images.esy.com/essays/the-complete-history-of-soda/torbern-bergman.d07fd8fcd8.jpg",
+  johannSchweppe: "https://images.esy.com/essays/the-complete-history-of-soda/1783-johann-jacob-schweppe.7a873bf32c.jpg",
+  benjaminSilliman: "https://images.esy.com/essays/the-complete-history-of-soda/benjamin-silliman.098254b182.jpg",
+  johnPemberton: "https://images.esy.com/essays/the-complete-history-of-soda/john-pemberton.2481e63993.jpg",
+  asaCandler: "https://images.esy.com/essays/the-complete-history-of-soda/asa-candler-2a.90344713a0.jpg",
+  calebBradham: "https://images.esy.com/essays/the-complete-history-of-soda/caleb-davis-bradham.ff1cf76351.jpg",
+  charlesHires: "https://images.esy.com/essays/the-complete-history-of-soda/charles-elmer-hires.5d1ce89fe9.jpg",
+  cocaCola1890sAd: "https://images.esy.com/essays/the-complete-history-of-soda/cocacola-5cents-1900-edit1.42d269dd04.jpg",
+  cocaCola5CentsLOC: "https://images.esy.com/essays/the-complete-history-of-soda/drink-coca-cola-5-cents-lccn2004671509.50492f32b9.jpg",
+  sodaFountainWeeds: "https://images.esy.com/essays/the-complete-history-of-soda/soda-fountain-at-weed-s-pharmacy-circa-1910-mohai-9541.3de2735df8.jpg",
+  sodaJerk: "https://images.esy.com/essays/the-complete-history-of-soda/soda-jerk-nywts.4e58220231.jpg",
+  contourBottlePrototype: "https://images.esy.com/essays/the-complete-history-of-soda/1915-contour-coca-cola-contour-bottle-prototype.237a48ebb0.png",
+  contourBottlePatent: "https://images.esy.com/essays/the-complete-history-of-soda/coke-bottle-patent.69fa3d554f.png",
+  vintageVendingMachine: "https://images.esy.com/essays/the-complete-history-of-soda/vintage-coca-cola-vending-machine-04.95ebb14585.jpg",
+  wwiiCocaColaAd: "https://images.esy.com/essays/the-complete-history-of-soda/dean-cornwell-have-a-coke-kia-ora-c-1943-1945-11841204884.b59585d49a.jpg",
+  bottlingPlant1940: "https://images.esy.com/essays/the-complete-history-of-soda/coca-cola-bottling-plant-worcester-ma.5968042f8d.jpg",
+  kitchenDebate: "https://images.esy.com/essays/the-complete-history-of-soda/kitchen-debate.131c6b8779.jpg",
+  newCokeCan: "https://images.esy.com/essays/the-complete-history-of-soda/new-coke-can.b0b7330bc5.jpg",
+  pepsiChallenge: "https://images.esy.com/essays/the-complete-history-of-soda/pepsi-challenge.176f1edbca.jpg",
+  deliveryTruckTaiwan: "https://images.esy.com/essays/the-complete-history-of-soda/tainan-taiwan-coca-cola-truck-01.2f9fa2b896.jpg",
+  robertWoodruff: "https://images.esy.com/essays/the-complete-history-of-soda/robert-winship-woodruff-president-of-the-coca-cola-company-cropped.3ac38f3d28.jpg",
+  charlesAlderton: "https://images.esy.com/essays/the-complete-history-of-soda/charles-alderton.597698341a.jpg",
+  donaldKendall: "https://images.esy.com/essays/the-complete-history-of-soda/donald-mcintosh-kendall-cropped.dba0159281.jpg",
+  rootGlassCompanyTeam: "https://images.esy.com/essays/the-complete-history-of-soda/b72d7acef212620ba9cb71cfe7332fb0.d028a0b634.jpg",
 } as const;
 
 // ==================== ERA DEFINITIONS ====================

@@ -1,0 +1,225 @@
+{
+  "essaySlug": "the-thinking-machine",
+  "images": [
+    {
+      "key": "alanTuringAged16",
+      "filename": "alan-turing-aged-16.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Alan_Turing_Aged_16.jpg"
+    },
+    {
+      "key": "charlesBabbage1860",
+      "filename": "charles-babbage-1860.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Charles_Babbage_-_1860.jpg"
+    },
+    {
+      "key": "babbageDifferenceEngine",
+      "filename": "babbage-difference-engine.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Babbage_Difference_Engine.jpg"
+    },
+    {
+      "key": "adaLovelacePortrait",
+      "filename": "ada-lovelace-portrait.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Ada_Lovelace_portrait.jpg"
+    },
+    {
+      "key": "twoWomenOperatingEniac",
+      "filename": "two-women-operating-eniac.gif",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Two_women_operating_ENIAC.gif"
+    },
+    {
+      "key": "sackvilleParkTuringPlaque",
+      "filename": "sackville-park-turing-plaque.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Sackville_Park_Turing_plaque.jpg"
+    },
+    {
+      "key": "bletchleyParkDraco2008",
+      "filename": "bletchley-park-draco2008.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/82/Bletchley_Park_-_Draco2008.jpg"
+    },
+    {
+      "key": "bombeRebuild",
+      "filename": "bombe-rebuild.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Bombe-rebuild.jpg"
+    },
+    {
+      "key": "dartmouthCollegeCampus2007102009",
+      "filename": "dartmouth-college-campus-2007-10-20-09.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Dartmouth_College_campus_2007-10-20_09.JPG"
+    },
+    {
+      "key": "johnMccarthyStanford",
+      "filename": "john-mccarthy-stanford.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/49/John_McCarthy_Stanford.jpg"
+    },
+    {
+      "key": "marvinMinskyAtOlpcb",
+      "filename": "marvin-minsky-at-olpcb.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/28/Marvin_Minsky_at_OLPCb.jpg"
+    },
+    {
+      "key": "claudeshannonMfo3807",
+      "filename": "claudeshannon-mfo3807.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/99/ClaudeShannon_MFO3807.jpg"
+    },
+    {
+      "key": "mitStataCenter",
+      "filename": "mit-stata-center.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4f/MIT_Stata_Center.jpg"
+    },
+    {
+      "key": "frankRosenblatt",
+      "filename": "frank-rosenblatt.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Frank_Rosenblatt.jpg"
+    },
+    {
+      "key": "markIPerceptron",
+      "filename": "mark-i-perceptron.jpeg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/en/5/52/Mark_I_perceptron.jpeg"
+    },
+    {
+      "key": "fileMarkIPerceptron",
+      "filename": "file-mark-i-perceptron.jpeg",
+      "sourceUrl": "https://en.wikipedia.org/wiki/File:Mark_I_perceptron.jpeg"
+    },
+    {
+      "key": "sriShakeyRobot2c19692cComputerHistoryMuseum",
+      "filename": "sri-shakey-robot-1969-computer-history-museum.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c3/SRI_Shakey_robot%2C_1969%2C_Computer_History_Museum.jpg"
+    },
+    {
+      "key": "elizaConversation",
+      "filename": "eliza-conversation.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/79/ELIZA_conversation.png"
+    },
+    {
+      "key": "josephWeizenbaum",
+      "filename": "joseph-weizenbaum.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/17/Joseph_Weizenbaum.jpg"
+    },
+    {
+      "key": "deepBlue",
+      "filename": "deep-blue.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/be/Deep_Blue.jpg"
+    },
+    {
+      "key": "kasparovVersusDeepBlue",
+      "filename": "kasparov-versus-deep-blue.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/be/Kasparov_Versus_Deep_Blue.jpg"
+    },
+    {
+      "key": "perceptronExample",
+      "filename": "perceptron-example.svg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Perceptron_example.svg"
+    },
+    {
+      "key": "symbolicsLispWorkstation28computerHistoryMuseum29",
+      "filename": "symbolics-lisp-workstation-computer-history-museum-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Symbolics_LISP_Workstation_%28Computer_History_Museum%29.jpg"
+    },
+    {
+      "key": "ibmWatson",
+      "filename": "ibm-watson.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0a/IBM_Watson.PNG"
+    },
+    {
+      "key": "geoffreyEHinton2c2024NobelPrizeLaureateInPhysics28cropped129",
+      "filename": "geoffrey-e.-hinton-2024-nobel-prize-laureate-in-physics-cropped1-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/30/Geoffrey_E._Hinton%2C_2024_Nobel_Prize_Laureate_in_Physics_%28cropped1%29.jpg"
+    },
+    {
+      "key": "yannLecun201828cropped29",
+      "filename": "yann-lecun-2018-cropped-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/22/Yann_LeCun_-_2018_%28cropped%29.jpg"
+    },
+    {
+      "key": "yoshuaBengio2019Cropped",
+      "filename": "yoshua-bengio-2019-cropped.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Yoshua_Bengio_2019_cropped.jpg"
+    },
+    {
+      "key": "440pxYannLecun201828cropped29",
+      "filename": "440px-yann-lecun-2018-cropped-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Yann_LeCun_-_2018_%28cropped%29.jpg/440px-Yann_LeCun_-_2018_%28cropped%29.jpg"
+    },
+    {
+      "key": "feiFeiLiAtAiForGood2017",
+      "filename": "fei-fei-li-at-ai-for-good-2017.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Fei-Fei_Li_at_AI_for_Good_2017.jpg"
+    },
+    {
+      "key": "ilyaSutskeverAndSamAltmanInTau28cropped29",
+      "filename": "ilya-sutskever-and-sam-altman-in-tau-cropped-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Ilya_Sutskever_and_Sam_Altman_in_TAU_%28cropped%29.jpg"
+    },
+    {
+      "key": "andrewNg",
+      "filename": "andrew-ng.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/18/Andrew_Ng.jpg"
+    },
+    {
+      "key": "ibmBlueGenePSupercomputer",
+      "filename": "ibm-blue-gene-p-supercomputer.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d3/IBM_Blue_Gene_P_supercomputer.jpg"
+    },
+    {
+      "key": "leeSedol28b29VsAlphago28w29Game1",
+      "filename": "lee-sedol-b-vs-alphago-w-game-1.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/23/Lee_Sedol_%28B%29_vs_AlphaGo_%28W%29_-_Game_1.jpg"
+    },
+    {
+      "key": "leeSeDol2012",
+      "filename": "lee-se-dol-2012.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Lee_Se-dol_2012.jpg"
+    },
+    {
+      "key": "demisHassabis2c2024NobelPrizeLaureateInChemistry28cropped29",
+      "filename": "demis-hassabis-2024-nobel-prize-laureate-in-chemistry-cropped-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/Demis_Hassabis%2C_2024_Nobel_Prize_Laureate_in_Chemistry_%28cropped%29.jpg"
+    },
+    {
+      "key": "floorgoban",
+      "filename": "floorgoban.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2a/FloorGoban.JPG"
+    },
+    {
+      "key": "theTransformerModelArchitecture",
+      "filename": "the-transformer-model-architecture.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/The-Transformer-model-architecture.png"
+    },
+    {
+      "key": "neuralMachineTranslation",
+      "filename": "neural-machine-translation.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Neural_machine_translation.png"
+    },
+    {
+      "key": "google2015Logo",
+      "filename": "google-2015-logo.svg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+    },
+    {
+      "key": "samAltman2cJune202328gpoabg2442928cropped29",
+      "filename": "sam-altman-june-2023-gpoabg244-cropped-.jpeg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/83/Sam_Altman%2C_June_2023_%28GPOABG244%29_%28cropped%29.jpeg"
+    },
+    {
+      "key": "darioAmodeiIn2023",
+      "filename": "dario-amodei-in-2023.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Dario_Amodei_in_2023.jpg"
+    },
+    {
+      "key": "geoffreyHintonCollision2023CentreStageRcz130728cropped29",
+      "filename": "geoffrey-hinton-collision-2023-centre-stage-rcz-1307-cropped-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/09/Geoffrey_Hinton_-_Collision_2023_-_Centre_Stage_RCZ_1307_%28cropped%29.jpg"
+    },
+    {
+      "key": "cernServer03",
+      "filename": "cern-server-03.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d7/CERN_Server_03.jpg"
+    },
+    {
+      "key": "alanTuringMemorialCloser",
+      "filename": "alan-turing-memorial-closer.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Alan_Turing_Memorial_Closer.jpg"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "essaySlug": "two-visions-of-tomorrow",
+  "images": [
+    {
+      "key": "bbc1940",
+      "filename": "george-orwell-bbc.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7a/George-orwell-BBC.jpg"
+    },
+    {
+      "key": "spanishWar1937",
+      "filename": "george-orwell-and-eileen-o-shaughnessy-with-members-of-the-ilp-unit-on-the-aragon-front-outside-huesca-13th-march-1937.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3a/George_Orwell_and_Eileen_O%E2%80%99Shaughnessy_with_members_of_the_ILP_unit_on_the_Aragon_Front_outside_Huesca%2C_13th_March_1937.jpg"
+    },
+    {
+      "key": "aldousHuxley1947",
+      "filename": "aldous-huxley-1947.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Aldous_Huxley_1947.png"
+    },
+    {
+      "key": "aldousHuxley1927",
+      "filename": "aldous-huxley-1927.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Aldous_Huxley_1927.png"
+    },
+    {
+      "key": "1984first",
+      "filename": "1984first.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c3/1984first.jpg"
+    }
+  ]
+}

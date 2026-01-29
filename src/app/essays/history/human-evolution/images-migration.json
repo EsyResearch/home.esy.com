@@ -1,0 +1,155 @@
+{
+  "essaySlug": "human-evolution",
+  "images": [
+    {
+      "key": "lucyMexico",
+      "filename": "lucy-mexico.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Lucy_Mexico.jpg"
+    },
+    {
+      "key": "laetoliFootprintsReplica",
+      "filename": "laetoli-footprints-replica.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/Laetoli_footprints_replica.jpg"
+    },
+    {
+      "key": "turkanaBoy",
+      "filename": "turkana-boy.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Turkana_Boy.jpg"
+    },
+    {
+      "key": "homoSapiensNeanderthalensis",
+      "filename": "homo-sapiens-neanderthalensis.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Homo_sapiens_neanderthalensis.jpg"
+    },
+    {
+      "key": "denPescheraAnui",
+      "filename": "den-peschera-anui.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/11/Den_peschera_anui.jpg"
+    },
+    {
+      "key": "homoFloresiensisImg2936",
+      "filename": "homo-floresiensis-img-2936.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/69/Homo_floresiensis_IMG_2936.JPG"
+    },
+    {
+      "key": "homoNalediCranialParatypes",
+      "filename": "homo-naledi-cranial-paratypes.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/54/Homo_naledi_cranial_paratypes.jpg"
+    },
+    {
+      "key": "homoSapiensFromJebelIrhoud",
+      "filename": "homo-sapiens-from-jebel-irhoud.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Homo_sapiens_from_Jebel_Irhoud.jpg"
+    },
+    {
+      "key": "sahelanthropusTchadensisTm266010601",
+      "filename": "sahelanthropus-tchadensis-tm-266-01-060-1.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Sahelanthropus_tchadensis_-_TM_266-01-060-1.jpg"
+    },
+    {
+      "key": "ardipithecusRamidus",
+      "filename": "ardipithecus-ramidus.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Ardipithecus_ramidus.jpg"
+    },
+    {
+      "key": "omoKibishMcn415228cropped29",
+      "filename": "omo-kibish-mcn-4152-cropped-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/01/Omo_Kibish_-_MCN_4152_%28cropped%29.jpg"
+    },
+    {
+      "key": "teschioDiHomoSapiensIdaltu2cDelPleistocene2c200160MilaAnniFa",
+      "filename": "teschio-di-homo-sapiens-idaltu-del-pleistocene-200-160-mila-anni-fa.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/df/Teschio_di_Homo_sapiens_idaltu%2C_del_pleistocene%2C_200-160_mila_anni_fa.jpg"
+    },
+    {
+      "key": "olduvaiChopper",
+      "filename": "olduvai-chopper.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Olduvai_Chopper.JPG"
+    },
+    {
+      "key": "bifazDeAtapuerca28tg1029",
+      "filename": "bifaz-de-atapuerca-tg10-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Bifaz_de_Atapuerca_%28TG10%29.jpg"
+    },
+    {
+      "key": "levalloisNC3BacleoTabuniense",
+      "filename": "levallois-n-cleo-tabuniense.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/25/Levallois_N%C3%BAcleo_Tabuniense.png"
+    },
+    {
+      "key": "blombo",
+      "filename": "blombo.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Blombo.jpg"
+    },
+    {
+      "key": "bbcShellBeads",
+      "filename": "bbc-shell-beads.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/46/BBC-shell-beads.jpg"
+    },
+    {
+      "key": "olduvaiGorgeOrOldupaiGorge",
+      "filename": "olduvai-gorge-or-oldupai-gorge.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Olduvai_Gorge_or_Oldupai_Gorge.jpg"
+    },
+    {
+      "key": "iss30EastAfricanRiftValleyInKenya",
+      "filename": "iss-30-east-african-rift-valley-in-kenya.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/66/ISS-30_East_African_Rift_Valley_in_Kenya.jpg"
+    },
+    {
+      "key": "risingStarCaveExploration281405404727529",
+      "filename": "rising-star-cave-exploration-14054047275-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/39/Rising_star_cave_exploration_%2814054047275%29.jpg"
+    },
+    {
+      "key": "blombos",
+      "filename": "blombos.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Blombos.jpg"
+    },
+    {
+      "key": "skhulCave",
+      "filename": "skhul-cave.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/58/Skhul_Cave.JPG"
+    },
+    {
+      "key": "eingangDerQafzehHC3B6hle",
+      "filename": "eingang-der-qafzeh-h-hle.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Eingang_der_Qafzeh-H%C3%B6hle.jpg"
+    },
+    {
+      "key": "niahGreatCave2cSarawak2cMalaysia",
+      "filename": "niah-great-cave-sarawak-malaysia.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Niah_Great_Cave%2C_Sarawak%2C_Malaysia.jpg"
+    },
+    {
+      "key": "lakeMungoLunette",
+      "filename": "lake-mungo-lunette.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Lake_Mungo_lunette.jpg"
+    },
+    {
+      "key": "decayChain284n2b22cUraniumSeries29",
+      "filename": "decay-chain-4n-2-uranium-series-.svg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/65/Decay_chain%284n%2B2%2C_Uranium_series%29.svg"
+    },
+    {
+      "key": "neanderthalDnaExtraction",
+      "filename": "neanderthal-dna-extraction.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Neanderthal_DNA_extraction.jpg"
+    },
+    {
+      "key": "stratigraphyOfTheGrandCanyon",
+      "filename": "stratigraphy-of-the-grand-canyon.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/14/Stratigraphy_of_the_Grand_Canyon.png"
+    },
+    {
+      "key": "theSkullsOfTheGorilla2cchimpanzeeAndHumansKaiweiZhang",
+      "filename": "the-skulls-of-the-gorilla-chimpanzee-and-humans-kaiwei-zhang.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ae/The_Skulls_of_the_gorilla%2Cchimpanzee_and_humans_-_Kaiwei_Zhang.jpg"
+    },
+    {
+      "key": "dnaSimple",
+      "filename": "dna-simple.svg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e7/DNA_simple.svg"
+    }
+  ]
+}

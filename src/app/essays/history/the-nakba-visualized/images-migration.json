@@ -1,0 +1,40 @@
+{
+  "essaySlug": "the-nakba-visualized",
+  "images": [
+    {
+      "key": "arthurBalfour2cPhotoPortraitFacingLeft",
+      "filename": "arthur-balfour-photo-portrait-facing-left.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Arthur_Balfour%2C_photo_portrait_facing_left.jpg"
+    },
+    {
+      "key": "chaimWeizmann",
+      "filename": "chaim-weizmann.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/50/Chaim_Weizmann.jpg"
+    },
+    {
+      "key": "menachemBegin2c1978",
+      "filename": "menachem-begin-1978.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/99/Menachem_Begin%2C_1978.jpg"
+    },
+    {
+      "key": "yitzhakRabin28198629Cropped",
+      "filename": "yitzhak-rabin-1986-cropped.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/13/Yitzhak_Rabin_%281986%29_cropped.jpg"
+    },
+    {
+      "key": "benGurion1959",
+      "filename": "ben-gurion-1959.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Ben_Gurion_1959.jpg"
+    },
+    {
+      "key": "countFolkeBernadotte",
+      "filename": "count-folke-bernadotte.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Count_folke_bernadotte.jpg"
+    },
+    {
+      "key": "ralphBunche1963MarchOnWashington",
+      "filename": "ralph-bunche-1963-march-on-washington.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Ralph_Bunche_-_1963_March_on_Washington.jpg"
+    }
+  ]
+}

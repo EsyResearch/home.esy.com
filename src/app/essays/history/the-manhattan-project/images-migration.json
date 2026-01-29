@@ -1,0 +1,210 @@
+{
+  "essaySlug": "the-manhattan-project",
+  "images": [
+    {
+      "key": "800pxTrinityTestSiteGadgetAndTower",
+      "filename": "800px-trinity-test-site-gadget-and-tower.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Trinity_Test_Site_-_Gadget_and_Tower.jpg/800px-Trinity_Test_Site_-_Gadget_and_Tower.jpg"
+    },
+    {
+      "key": "trinityTestFireball16ms",
+      "filename": "trinity-test-fireball-16ms.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/78/Trinity_Test_Fireball_16ms.jpg"
+    },
+    {
+      "key": "trinityTestMushroomCloud12s",
+      "filename": "trinity-test-mushroom-cloud-12s.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Trinity_Test_Mushroom_Cloud_12s.jpg"
+    },
+    {
+      "key": "440pxOppenheimer28cropped29",
+      "filename": "440px-oppenheimer-cropped-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Oppenheimer_%28cropped%29.jpg/440px-Oppenheimer_%28cropped%29.jpg"
+    },
+    {
+      "key": "440pxAlbertEinsteinHead",
+      "filename": "440px-albert-einstein-head.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_Head.jpg/440px-Albert_Einstein_Head.jpg"
+    },
+    {
+      "key": "440pxEinsteinRooseveltLetter",
+      "filename": "440px-einstein-roosevelt-letter.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Einstein-Roosevelt-letter.png/440px-Einstein-Roosevelt-letter.png"
+    },
+    {
+      "key": "440pxJroppenheimerLosalamos",
+      "filename": "440px-jroppenheimer-losalamos.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/JROppenheimer-LosAlamos.jpg/440px-JROppenheimer-LosAlamos.jpg"
+    },
+    {
+      "key": "leslieGroves",
+      "filename": "leslie-groves.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/37/Leslie_Groves.jpg"
+    },
+    {
+      "key": "trinitySite2",
+      "filename": "trinity-site-2.jpg",
+      "sourceUrl": "https://www.atomicarchive.com/media/photographs/trinity/media/trinity-site-2.jpg"
+    },
+    {
+      "key": "440pxNielsBohr",
+      "filename": "440px-niels-bohr.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Niels_Bohr.jpg/440px-Niels_Bohr.jpg"
+    },
+    {
+      "key": "richardFeynmanNobel",
+      "filename": "richard-feynman-nobel.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/en/4/42/Richard_Feynman_Nobel.jpg"
+    },
+    {
+      "key": "richardFeynmanLosAlamosIdBadge",
+      "filename": "richard-feynman-los-alamos-id-badge.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Richard_Feynman_Los_Alamos_ID_badge.jpg"
+    },
+    {
+      "key": "440pxLeoSzilard",
+      "filename": "440px-leo-szilard.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Leo_Szilard.jpg/440px-Leo_Szilard.jpg"
+    },
+    {
+      "key": "440pxEdwardteller1958",
+      "filename": "440px-edwardteller1958.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/EdwardTeller1958.jpg/440px-EdwardTeller1958.jpg"
+    },
+    {
+      "key": "440pxHansBethe",
+      "filename": "440px-hans-bethe.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Hans_Bethe.jpg/440px-Hans_Bethe.jpg"
+    },
+    {
+      "key": "klausFuchsIdBadge",
+      "filename": "klaus-fuchs-id-badge.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Klaus_Fuchs_ID_badge.png"
+    },
+    {
+      "key": "rOppenheimerOverseesFinalAssemblyOfTheGadget281053762786429",
+      "filename": "r.-oppenheimer-oversees-final-assembly-of-the-gadget-10537627864-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c6/R._Oppenheimer_oversees_final_assembly_of_the_gadget_%2810537627864%29.jpg"
+    },
+    {
+      "key": "theGadgetInTheTrinityTestSiteTower28194529",
+      "filename": "the-gadget-in-the-trinity-test-site-tower-1945-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2d/The_gadget_in_the_Trinity_Test_Site_tower_%281945%29.jpg"
+    },
+    {
+      "key": "explosiveLensesOfFatMan",
+      "filename": "explosive-lenses-of-fat-man.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Explosive_lenses_of_Fat_Man.jpg"
+    },
+    {
+      "key": "partiallyReflectedPlutoniumSphere",
+      "filename": "partially-reflected-plutonium-sphere.jpeg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/13/Partially-reflected-plutonium-sphere.jpeg"
+    },
+    {
+      "key": "trinityTestTheEarlyFireballAt6Milliseconds281053769976629",
+      "filename": "trinity-test-the-early-fireball-at-6-milliseconds-10537699766-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Trinity_Test_-_the_early_fireball_at_6_milliseconds_%2810537699766%29.jpg"
+    },
+    {
+      "key": "trinityTestFireball25ms",
+      "filename": "trinity-test-fireball-25ms.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Trinity_Test_Fireball-25ms.jpg"
+    },
+    {
+      "key": "800pxTrinityDetonationT26b",
+      "filename": "800px-trinity-detonation-t-b.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Trinity_Detonation_T%26B.jpg/800px-Trinity_Detonation_T%26B.jpg"
+    },
+    {
+      "key": "grovesOppenheimer",
+      "filename": "groves-oppenheimer.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/75/Groves_Oppenheimer.jpg"
+    },
+    {
+      "key": "trinitite",
+      "filename": "trinitite.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/54/Trinitite.jpg"
+    },
+    {
+      "key": "potsdamConference28josephStalin2cHarrySTruman29",
+      "filename": "potsdam-conference-joseph-stalin-harry-s.-truman-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Potsdam_Conference_%28Joseph_Stalin%2C_Harry_S._Truman%29.jpg"
+    },
+    {
+      "key": "harrySTruman2cBwHalfLengthPhotoPortrait2cFacingFront2c1945",
+      "filename": "harry-s-truman-bw-half-length-photo-portrait-facing-front-1945.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Harry_S_Truman%2C_bw_half-length_photo_portrait%2C_facing_front%2C_1945.jpg"
+    },
+    {
+      "key": "b29EnolaGayWCrews",
+      "filename": "b-29-enola-gay-w-crews.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/70/B-29_Enola_Gay_w_Crews.jpg"
+    },
+    {
+      "key": "colPaulWTibbets2cPilotOfB29Superfortress27enolaGay27",
+      "filename": "col-paul-w.-tibbets-pilot-of-b-29-superfortress-enola-gay-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Col_Paul_W._Tibbets%2C_Pilot_Of_B-29_Superfortress_%27Enola_Gay%27.jpg"
+    },
+    {
+      "key": "downtownHiroshima2cBeforeTheABomb",
+      "filename": "downtown-hiroshima-before-the-a-bomb.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/09/Downtown_Hiroshima%2C_before_the_A-bomb.jpg"
+    },
+    {
+      "key": "hiroshimaAftermath",
+      "filename": "hiroshima-aftermath.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Hiroshima_aftermath.jpg"
+    },
+    {
+      "key": "atomicCloudOverHiroshima",
+      "filename": "atomic-cloud-over-hiroshima.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Atomic_cloud_over_Hiroshima.jpg"
+    },
+    {
+      "key": "humanShadowOnStoneByAtomicBombingOnHiroshimaSumitomoBank2cHiroshimaBranchAroundDecember1946",
+      "filename": "human-shadow-on-stone-by-atomic-bombing-on-hiroshima-sumitomo-bank-hiroshima-branch-around-december-1946.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Human_shadow_on_stone_by_atomic_bombing_on_Hiroshima_-_Sumitomo_Bank%2C_Hiroshima_branch_-_around_December_1946.png"
+    },
+    {
+      "key": "22fatMan22AtomicBomb282799289345129",
+      "filename": "-fat-man-atomic-bomb-27992893451-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2e/%22Fat_Man%22_Atomic_Bomb_%2827992893451%29.jpg"
+    },
+    {
+      "key": "440pxNagasakibomb",
+      "filename": "440px-nagasakibomb.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Nagasakibomb.jpg/440px-Nagasakibomb.jpg"
+    },
+    {
+      "key": "inTheBackground2cARomanCatholicCathedralOnAHillInNagasaki2cCa1945Nara519385",
+      "filename": "in-the-background-a-roman-catholic-cathedral-on-a-hill-in-nagasaki-ca.-1945-nara-519385.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a6/In_the_background%2C_a_Roman_Catholic_cathedral_on_a_hill_in_Nagasaki%2C_ca._1945_-_NARA_-_519385.jpg"
+    },
+    {
+      "key": "trinityTestOppenheimerAndGrovesAtGroundZero001",
+      "filename": "trinity-test-oppenheimer-and-groves-at-ground-zero-001.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/Trinity_Test_-_Oppenheimer_and_Groves_at_Ground_Zero_001.jpg"
+    },
+    {
+      "key": "jRobertOppenheimerTestifiesToCongress",
+      "filename": "j.-robert-oppenheimer-testifies-to-congress.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/J._Robert_Oppenheimer_Testifies_to_Congress.jpg"
+    },
+    {
+      "key": "jRobertOppenheimerVisitToIsrael289970093269883051712928cropped29",
+      "filename": "j.-robert-oppenheimer-visit-to-israel-997009326988305171-cropped-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6a/J._Robert_Oppenheimer_visit_to_Israel_%28997009326988305171%29_%28cropped%29.jpg"
+    },
+    {
+      "key": "aBombDome",
+      "filename": "a-bomb-dome.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/51/A-Bomb_Dome.jpg"
+    },
+    {
+      "key": "20181111HiroshimaMemorialCenotaph2",
+      "filename": "20181111-hiroshima-memorial-cenotaph-2.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/20181111_Hiroshima_Memorial_Cenotaph-2.jpg"
+    }
+  ]
+}

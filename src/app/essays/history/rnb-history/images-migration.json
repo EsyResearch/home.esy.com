@@ -1,0 +1,145 @@
+{
+  "essaySlug": "rnb-history",
+  "images": [
+    {
+      "key": "hitsvilleUsa",
+      "filename": "hitsville-usa.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Hitsville_USA.jpg"
+    },
+    {
+      "key": "staxMuseum",
+      "filename": "stax-museum-memphis-tn-01.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Stax_Museum_Memphis_TN_01.jpg"
+    },
+    {
+      "key": "apolloTheater",
+      "filename": "apollo-theater-harlem-46992038484-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Apollo_Theater%2C_Harlem_%2846992038484%29.jpg"
+    },
+    {
+      "key": "sunStudio",
+      "filename": "sun-studio.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Sun_Studio.jpg"
+    },
+    {
+      "key": "tr808",
+      "filename": "roland-tr-808-drum-machine.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/be/Roland_TR-808_drum_machine.jpg"
+    },
+    {
+      "key": "yamahaDx7",
+      "filename": "yamaha-dx7.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Yamaha_DX7.jpg"
+    },
+    {
+      "key": "mpc3000",
+      "filename": "akai-mpc-3000.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/03/AKAI_MPC_3000.jpg"
+    },
+    {
+      "key": "ruthBrown",
+      "filename": "ruth-brown-cropped.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Ruth_Brown_cropped.jpg"
+    },
+    {
+      "key": "fatsDomino",
+      "filename": "fats-domino018.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Fats_Domino018.JPG"
+    },
+    {
+      "key": "otisRedding",
+      "filename": "otis-redding-1967.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/14/Otis_Redding_1967.JPG"
+    },
+    {
+      "key": "bookerTJones",
+      "filename": "booker-t.-jones-2009.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/94/Booker_T._Jones_2009.jpg"
+    },
+    {
+      "key": "alGreen",
+      "filename": "al-green-1973.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Al_Green_1973.jpg"
+    },
+    {
+      "key": "berryGordy",
+      "filename": "berrygordydec10.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d1/BerryGordyDec10.jpg"
+    },
+    {
+      "key": "smokeyRobinson",
+      "filename": "smokey-robinson-special-1970.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Smokey_Robinson_special_1970.JPG"
+    },
+    {
+      "key": "stevieWonder",
+      "filename": "stevie-wonder.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/81/Stevie_Wonder.jpg"
+    },
+    {
+      "key": "marvinGaye",
+      "filename": "marvin-gaye-1973-publicity-photo-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/03/Marvin_Gaye_%281973_publicity_photo%29.jpg"
+    },
+    {
+      "key": "arethaFranklin",
+      "filename": "aretha-franklin-1960s-cropped-retouched.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/99/Aretha_franklin_1960s_cropped_retouched.jpg"
+    },
+    {
+      "key": "missyElliott",
+      "filename": "missy-elliot.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/77/Missy_Elliot.jpg"
+    },
+    {
+      "key": "maryJBlige",
+      "filename": "mary-j.-blige-in-2009.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Mary_J._Blige_in_2009.JPG"
+    },
+    {
+      "key": "teddyRiley",
+      "filename": "teddy-riley-at-the-90-s-block-party-tour.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Teddy_Riley_at_the_90%27s_Block_Party_Tour.jpg"
+    },
+    {
+      "key": "timbaland",
+      "filename": "timbaland-47903248821-cropped-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/Timbaland_%2847903248821%29_%28cropped%29.jpg"
+    },
+    {
+      "key": "tinaTurner",
+      "filename": "tina-turner-50th-anniversary-tour.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/Tina_Turner_50th_Anniversary_Tour.jpg"
+    },
+    {
+      "key": "sza",
+      "filename": "kendrickszaspurs230725-19-54683179509-cropped-cropped-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f4/KendrickSZASPurs230725-19_-_54683179509_%28cropped%29_%28cropped%29.jpg"
+    },
+    {
+      "key": "frankOcean",
+      "filename": "frank-ocean-2022-blonded.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Frank_Ocean_2022_Blonded.jpg"
+    },
+    {
+      "key": "bigMamaThornton",
+      "filename": "blues-is-a-woman-reitz-big-mama-thornton-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Blues_is_a_woman_Reitz_%28Big_Mama_Thornton%29.jpg"
+    },
+    {
+      "key": "gambleAndHuff",
+      "filename": "kenny-gamble-leon-huff.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/02/Kenny_Gamble_Leon_Huff.jpg"
+    },
+    {
+      "key": "funkBrothers",
+      "filename": "the-funk-brothers.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/43/The_Funk_Brothers.jpg"
+    },
+    {
+      "key": "cosimoMatassa",
+      "filename": "cosimo-matassa.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/11/Cosimo_Matassa.jpg"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "essaySlug": "jazz-history-archived",
+  "images": [
+    {
+      "key": "dukeEllington",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-02351-001:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "countBasie",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-00471-001:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "bennyGoodman",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-03431:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "ellaFitzgerald",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-11471:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "billieHoliday",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-04221-001:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "lionelHampton",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-03841:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "cabCalloway",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-01021:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "lesterYoung",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-09431-001:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "colemanHawkins",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-03991-001:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "louisArmstrong",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-00171-001:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "charlieParker",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-06901:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "dizzyGillespie",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-03091-001:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "theloniousMonk",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-06221:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "maxRoach",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-07451-001:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "milesDavis",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-05711-001:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "sarahVaughan",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-08821:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "fiftySecondStreet",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-11231-001:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "sidneyBechet",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-00531-001:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "billyStrayhorn",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-08221:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "maryLouWilliams",
+      "filename": "default.jpg",
+      "sourceUrl": "https://tile.loc.gov/image-services/iiif/public:music:musgottlieb-15991:0001/full/pct:50.0/0/default.jpg"
+    },
+    {
+      "key": "bessieSmith",
+      "filename": "5a52888r.jpg",
+      "sourceUrl": "https://tile.loc.gov/storage-services/service/pnp/van/5a52000/5a52800/5a52888r.jpg"
+    }
+  ]
+}
