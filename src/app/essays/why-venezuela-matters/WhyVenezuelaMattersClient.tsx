@@ -203,7 +203,7 @@ function HemisphereMap() {
       <div className="visual-module-label">Module A: Geographic Context</div>
       <div style={{ background: '#1a365d', padding: '1rem' }}>
         <img
-          src="https://upload.wikimedia.org/wikipedia/commons/d/da/Orinoco_Oil_Belt.png"
+          src="https://images.esy.com/essays/why-venezuela-matters/orinoco-oil-belt-map.2de055ee32.png"
           alt="Orinoco Oil Belt geological map showing Venezuela's heavy crude deposits"
           style={{ width: '100%', height: 'auto' }}
         />
@@ -843,7 +843,7 @@ function Hero() {
     <section className="hero">
       <div className="hero__background">
         <img
-          src="https://upload.wikimedia.org/wikipedia/commons/d/da/Orinoco_Oil_Belt.png"
+          src="https://images.esy.com/essays/why-venezuela-matters/orinoco-oil-belt-map.2de055ee32.png"
           alt=""
           className="hero__background-image"
         />
