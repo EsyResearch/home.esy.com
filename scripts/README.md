@@ -20,9 +20,9 @@ These scripts handle migrating hotlinked images from external sources (Wikimedia
 | Script | Purpose | When to Use |
 |--------|---------|-------------|
 | `scan-hotlinked-images.mjs` | Find hotlinked images in essays | First step - identify what needs migration |
-| `migrate-essay-images-to-r2.mjs` | Migrate images using config file | Essays with flat `IMAGES` constant |
-| `migrate-images-ts-to-r2.mjs` | Migrate images.ts files directly | Essays with nested object structures |
-| `upload-image-to-r2.mjs` | Upload a single local image | Manual one-off uploads |
+| `r2-migrate-flat-url-map.mjs` | Migrate flat `{ key: "url" }` structures | Essays with `const IMAGES = { hero: "url" }` |
+| `r2-migrate-nested-src-objects.mjs` | Migrate nested `{ key: { src } }` structures | Essays with `{ hero: { src: "url", alt } }` |
+| `r2-upload-single-image.mjs` | Upload a single local image | Manual one-off uploads |
 
 ---
 
@@ -74,31 +74,31 @@ Check the generated config file:
 
 ### Step 3: Run Migration
 
-**For essays with flat `IMAGES` constant:**
+**For essays with flat `{ key: "url" }` structure:**
 
 ```bash
 # Dry run (preview without uploading)
-node scripts/migrate-essay-images-to-r2.mjs \
+node scripts/r2-migrate-flat-url-map.mjs \
   --config=src/app/essays/history/the-complete-history-of-soda/images-migration.json \
   --dry
 
 # Actual migration with auto-update
-node scripts/migrate-essay-images-to-r2.mjs \
+node scripts/r2-migrate-flat-url-map.mjs \
   --config=src/app/essays/history/the-complete-history-of-soda/images-migration.json \
   --update
 ```
 
-**For essays with nested `images.ts` structures:**
+**For essays with nested `{ key: { src, alt } }` structure:**
 
 ```bash
 # Dry run
-node scripts/migrate-images-ts-to-r2.mjs \
+node scripts/r2-migrate-nested-src-objects.mjs \
   --file=src/app/essays/history/the-manhattan-project/images.ts \
   --slug=the-manhattan-project \
   --dry
 
 # Actual migration
-node scripts/migrate-images-ts-to-r2.mjs \
+node scripts/r2-migrate-nested-src-objects.mjs \
   --file=src/app/essays/history/the-manhattan-project/images.ts \
   --slug=the-manhattan-project
 ```
@@ -126,12 +126,12 @@ Options:
 
 ---
 
-### `migrate-essay-images-to-r2.mjs`
+### `r2-migrate-flat-url-map.mjs`
 
-Migrates images using a config file. Best for essays with flat `IMAGES` constants.
+Migrates images using a config file. For essays with flat `{ key: "url" }` structures.
 
 ```bash
-node scripts/migrate-essay-images-to-r2.mjs [options]
+node scripts/r2-migrate-flat-url-map.mjs [options]
 
 Options:
   --config=<path>      Path to images-migration.json (required)
@@ -139,6 +139,14 @@ Options:
   --update             Auto-update the TSX file with new URLs
   --no-webp            Skip WebP conversion, keep original format
   --max-width=N        Maximum image width in pixels (default: 1200)
+```
+
+**Input format:** Flat key-to-URL mapping
+```typescript
+const IMAGES = {
+  hero: "https://...",      // key: url
+  portrait: "https://...",  // key: url
+}
 ```
 
 **Features:**
@@ -150,18 +158,29 @@ Options:
 
 ---
 
-### `migrate-images-ts-to-r2.mjs`
+### `r2-migrate-nested-src-objects.mjs`
 
 Migrates images directly from `images.ts` files with nested structures.
 
 ```bash
-node scripts/migrate-images-ts-to-r2.mjs [options]
+node scripts/r2-migrate-nested-src-objects.mjs [options]
 
 Options:
   --file=<path>        Path to images.ts file (required)
   --slug=<slug>        Essay slug for R2 path (required)
   --dry                Preview without uploading
   --no-webp            Skip WebP conversion
+```
+
+**Input format:** Nested objects with `src` property
+```typescript
+const IMAGES = {
+  hero: { 
+    src: "https://...",  // ← Updates this
+    alt: "...",
+    caption: "..."
+  }
+}
 ```
 
 **Features:**
@@ -172,12 +191,12 @@ Options:
 
 ---
 
-### `upload-image-to-r2.mjs`
+### `r2-upload-single-image.mjs`
 
-Uploads a single local image file to R2.
+Uploads a single local image file to R2. For manual one-off uploads.
 
 ```bash
-node scripts/upload-image-to-r2.mjs [options]
+node scripts/r2-upload-single-image.mjs [options]
 
 Options:
   --file=<path>        Local image file path (required)
@@ -188,7 +207,7 @@ Options:
 
 **Example:**
 ```bash
-node scripts/upload-image-to-r2.mjs \
+node scripts/r2-upload-single-image.mjs \
   --file=./downloads/trinity-tower.jpg \
   --essay=the-manhattan-project \
   --name=trinity-tower
@@ -283,7 +302,7 @@ Wikimedia is rate-limiting requests. The scripts will retry automatically. If pe
 The source URL is broken or the file was moved. Find an alternative source manually.
 
 ### "Could not find file with IMAGES constant"
-The `--update` flag only works with essays that have a flat `IMAGES` constant. For nested structures, use `migrate-images-ts-to-r2.mjs` instead.
+The `--update` flag only works with essays that have a flat `{ key: "url" }` structure. For nested `{ key: { src } }` structures, use `r2-migrate-nested-src-objects.mjs` instead.
 
 ---
 

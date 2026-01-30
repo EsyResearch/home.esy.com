@@ -5,20 +5,20 @@ import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import sharp from "sharp";
 
 /**
- * migrate-images-ts-to-r2.mjs
+ * r2-migrate-nested-src-objects.mjs
  * 
  * Specialized script for migrating images.ts files with nested object structures.
  * Finds all external URLs in the file, uploads them to R2 (with WebP conversion),
  * and replaces the URLs in-place.
  * 
- * Unlike migrate-essay-images-to-r2.mjs, this works directly with images.ts files
+ * Unlike r2-migrate-flat-url-map.mjs (which uses a config file), this works directly with images.ts files
  * that have nested structures like:
  *   export const heroImages = { 
  *     trinityTower: { src: "https://...", alt: "...", ... } 
  *   }
  * 
  * Usage:
- *   node scripts/migrate-images-ts-to-r2.mjs --file=path/to/images.ts --slug=essay-slug [--dry] [--no-webp]
+ *   node scripts/r2-migrate-nested-src-objects.mjs --file=path/to/images.ts --slug=essay-slug [--dry] [--no-webp]
  * 
  * Requires env vars (unless --dry):
  *   R2_BUCKET, R2_ENDPOINT, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY
@@ -68,7 +68,7 @@ const dryRun = args.dry === true || args.dry === "true";
 const convertToWebP = !(args["no-webp"] === true || args["no-webp"] === "true");
 
 if (!filePath || !essaySlug) {
-  console.error("\nUsage: node scripts/migrate-images-ts-to-r2.mjs --file=path/to/images.ts --slug=essay-slug [--dry] [--no-webp]\n");
+  console.error("\nUsage: node scripts/r2-migrate-nested-src-objects.mjs --file=path/to/images.ts --slug=essay-slug [--dry] [--no-webp]\n");
   process.exit(1);
 }
 

@@ -274,7 +274,7 @@ The workflow from research to production:
 #### Step 2: Run migration to upload to R2
 
 ```bash
-node scripts/migrate-essay-images-to-r2.mjs --config=path/images-migration.json --update
+node scripts/r2-migrate-flat-url-map.mjs --config=path/images-migration.json --update
 ```
 
 #### Step 3: Production Orchestrator writes contextual alt text
@@ -368,7 +368,7 @@ The migration scripts automatically:
 5. Upload to R2 with content hash in filename
 
 ```typescript
-// Sharp conversion settings (in migrate-images-ts-to-r2.mjs)
+// Sharp conversion settings (in r2-migrate-nested-src-objects.mjs)
 const webpBuffer = await sharp(buffer)
   .resize(1600, null, { 
     fit: 'inside', 
@@ -434,7 +434,7 @@ Thumbnail URLs are **dynamically resized** by Wikimedia's Thumbor service. This 
 Our migration script automatically converts thumbnail URLs to full-resolution:
 
 ```javascript
-// In migrate-images-ts-to-r2.mjs
+// In r2-migrate-nested-src-objects.mjs
 function convertToFullRes(url) {
   // Thumbnail: .../thumb/8/85/Image.jpg/440px-Image.jpg
   // Full-res: .../8/85/Image.jpg
@@ -478,8 +478,8 @@ If you hit HTTP 429:
 
 | Script | Wikimedia Handling |
 |--------|-------------------|
-| `migrate-images-ts-to-r2.mjs` | Converts thumbnails → full-res, WebP output |
-| `migrate-essay-images-to-r2.mjs` | Basic retry logic, respects delays |
+| `r2-migrate-nested-src-objects.mjs` | Converts thumbnails → full-res, WebP output |
+| `r2-migrate-flat-url-map.mjs` | Basic retry logic, respects delays |
 | `scan-hotlinked-images.mjs` | Identifies thumbnail URLs for review |
 
 ---
@@ -489,9 +489,9 @@ If you hit HTTP 429:
 | Script | Purpose |
 |--------|---------|
 | `scripts/scan-hotlinked-images.mjs` | Detect external image URLs, generate migration configs |
-| `scripts/migrate-essay-images-to-r2.mjs` | Upload images to R2 from config file (flat IMAGES constant) |
-| `scripts/migrate-images-ts-to-r2.mjs` | Upload images to R2 from `images.ts` (nested structures), WebP conversion |
-| `scripts/upload-image-to-r2.mjs` | Upload a single image to R2 |
+| `scripts/r2-migrate-flat-url-map.mjs` | Upload images to R2 from config file — flat `{ key: "url" }` |
+| `scripts/r2-migrate-nested-src-objects.mjs` | Upload images to R2 from `images.ts` — nested `{ key: { src } }` |
+| `scripts/r2-upload-single-image.mjs` | Upload a single local image to R2 |
 
 See `scripts/README.md` for detailed usage instructions.
 

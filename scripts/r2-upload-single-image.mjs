@@ -44,7 +44,7 @@ function cf(url, opts) {
 
 // ---- CLI ----
 // Usage:
-// node upload-image-to-r2.mjs --file ./map.png --essay why-venezuela-matters --name venezuela-orinoco-oil-belt-map --dry
+// node r2-upload-single-image.mjs --file ./map.png --essay why-venezuela-matters --name venezuela-orinoco-oil-belt-map --dry
 const args = Object.fromEntries(
   process.argv
     .slice(2)
@@ -59,7 +59,7 @@ const dryRun = args.dry === true || args.dry === "true";
 
 if (!filePath || !essaySlug || !baseName) {
   console.error(
-    "Missing args. Example:\nnode upload-image-to-r2.mjs --file=./map.png --essay=why-venezuela-matters --name=venezuela-orinoco-oil-belt-map"
+    "Missing args. Example:\nnode scripts/r2-upload-single-image.mjs --file=./map.png --essay=why-venezuela-matters --name=my-image"
   );
   process.exit(1);
 }

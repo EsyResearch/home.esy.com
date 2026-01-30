@@ -22,7 +22,7 @@ if (existsSync(envPath)) {
 }
 
 /**
- * migrate-essay-images-to-r2.mjs
+ * r2-migrate-flat-url-map.mjs
  * 
  * Generic script to migrate hotlinked images from external sources (Wikimedia, etc.)
  * to Cloudflare R2 for self-hosting. Eliminates dependency on third-party image URLs
@@ -38,7 +38,7 @@ if (existsSync(envPath)) {
  *   7. Optionally auto-updates the source file (--update)
  * 
  * Usage:
- *   node scripts/migrate-essay-images-to-r2.mjs --config=path/to/images-migration.json [--dry] [--update] [--no-webp]
+ *   node scripts/r2-migrate-flat-url-map.mjs --config=path/to/images-migration.json [--dry] [--update] [--no-webp]
  * 
  *   --dry      Preview without uploading to R2
  *   --update   Auto-update the TSX file with new IMAGES constant (requires actual upload, not dry run)
@@ -94,7 +94,7 @@ const convertToWebP = !(args["no-webp"] === true || args["no-webp"] === "true");
 const maxWidth = parseInt(args["max-width"], 10) || 1200; // Default 1200px for good retina support
 
 if (!configPath) {
-  console.error("\nUsage: node scripts/migrate-essay-images-to-r2.mjs --config=path/to/images-migration.json [--dry] [--update] [--no-webp]\n");
+  console.error("\nUsage: node scripts/r2-migrate-flat-url-map.mjs --config=path/to/images-migration.json [--dry] [--update] [--no-webp]\n");
   process.exit(1);
 }
 

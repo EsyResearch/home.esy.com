@@ -17,7 +17,7 @@ import path from "path";
  *   node scripts/scan-hotlinked-images.mjs [--write]  # --write to create config files
  * 
  * Then migrate with:
- *   node scripts/migrate-essay-images-to-r2.mjs --config=path/to/images-migration.json
+ *   node scripts/r2-migrate-flat-url-map.mjs --config=path/to/images-migration.json
  */
 
 const ESSAYS_ROOT = "src/app/essays";
@@ -277,11 +277,11 @@ if (summary.length > 0 && !writeConfigs) {
   console.log("  node scripts/scan-hotlinked-images.mjs --write\n");
   
   console.log("Then migrate each essay:");
-  console.log("  node scripts/migrate-essay-images-to-r2.mjs --config=<path>/images-migration.json\n");
+  console.log("  node scripts/r2-migrate-flat-url-map.mjs --config=<path>/images-migration.json\n");
   
   console.log("Or batch migrate all:");
   console.log('  for f in $(find src/app/essays -name "images-migration.json"); do');
-  console.log('    node scripts/migrate-essay-images-to-r2.mjs --config="$f"');
+  console.log('    node scripts/r2-migrate-flat-url-map.mjs --config="$f"');
   console.log("  done\n");
 }
 
@@ -291,7 +291,7 @@ if (writeConfigs && summary.length > 0) {
   console.log("2. Fix any key names that need manual adjustment");
   console.log("3. Run the migration:\n");
   console.log('   for f in $(find src/app/essays -name "images-migration.json"); do');
-  console.log('     node scripts/migrate-essay-images-to-r2.mjs --config="$f" --dry');
+  console.log('     node scripts/r2-migrate-flat-url-map.mjs --config="$f" --dry');
   console.log("   done\n");
 }
 
