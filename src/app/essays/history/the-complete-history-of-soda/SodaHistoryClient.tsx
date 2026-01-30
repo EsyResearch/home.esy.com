@@ -1,7 +1,34 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from 'react';
+import { Playfair_Display, Source_Serif_4, JetBrains_Mono } from 'next/font/google';
 import './the-complete-history-of-soda.css';
+
+// =============================================================================
+// SELF-HOSTED FONTS (next/font)
+// Eliminates external Google Fonts request, auto-subsets, improves LCP
+// =============================================================================
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-display',
+  display: 'swap',
+});
+
+const sourceSerif4 = Source_Serif_4({
+  subsets: ['latin'],
+  weight: ['300', '400', '600', '700'],
+  variable: '--font-body',
+  display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-data',
+  display: 'swap',
+});
 
 /*
  * THE COMPLETE HISTORY OF SODA - Archive Drawer Scrollytelling
@@ -979,6 +1006,9 @@ const Footer: React.FC = () => (
 export default function SodaHistoryClient() {
   const [currentEra, setCurrentEra] = useState(0);
 
+  // Combine font variables for CSS custom properties
+  const fontClasses = `${playfairDisplay.variable} ${sourceSerif4.variable} ${jetbrainsMono.variable}`;
+
   const handleScroll = useCallback(() => {
     const sections = document.querySelectorAll('[data-era]');
     let activeEra = 0;
@@ -1002,7 +1032,7 @@ export default function SodaHistoryClient() {
   }, [handleScroll]);
 
   return (
-    <div className="soda-history-container">
+    <div className={`soda-history-container ${fontClasses}`}>
       <EraProgress currentEra={currentEra} />
       <Hero />
 
@@ -1014,7 +1044,9 @@ export default function SodaHistoryClient() {
               src={IMAGES.josephPriestley}
               alt="Portrait of Joseph Priestley by Ellen Sharples"
               className="chapter-image"
-              loading="lazy"
+              loading="eager"
+              fetchPriority="high"
+              sizes="(max-width: 768px) 100vw, 280px"
             />
             <figcaption>Joseph Priestley (1733-1804), by Ellen Sharples</figcaption>
           </figure>
@@ -1037,7 +1069,9 @@ export default function SodaHistoryClient() {
               src={IMAGES.pneumaticTrough}
               alt="Priestley's pneumatic trough apparatus for carbonation experiments"
               className="chapter-image"
-              loading="lazy"
+              loading="eager"
+              fetchPriority="high"
+              sizes="(max-width: 768px) 100vw, 708px"
             />
             <figcaption>
               Priestley&apos;s pneumatic trough apparatus (1775) — the device that created
@@ -1062,6 +1096,7 @@ export default function SodaHistoryClient() {
               alt="Portrait of Torbern Bergman, Swedish chemist"
               className="chapter-image"
               loading="lazy"
+              sizes="(max-width: 768px) 100vw, 280px"
             />
             <figcaption>Torbern Bergman (1735-1784), who refined Priestley&apos;s process</figcaption>
           </figure>
@@ -1118,6 +1153,7 @@ export default function SodaHistoryClient() {
               alt="Benjamin Silliman, Yale's first chemistry professor"
               className="chapter-image"
               loading="lazy"
+              sizes="(max-width: 768px) 100vw, 400px"
             />
             <figcaption>
               Benjamin Silliman (1779-1864) — Yale&apos;s first chemistry professor,

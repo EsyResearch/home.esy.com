@@ -1,5 +1,5 @@
-import type { Metadata } from 'next';
-import SodaHistoryClient from './SodaHistoryClient';
+import type { Metadata } from 'next'
+import SodaHistoryClient from './SodaHistoryClient'
 
 const jsonLd = {
   "@context": "https://schema.org",

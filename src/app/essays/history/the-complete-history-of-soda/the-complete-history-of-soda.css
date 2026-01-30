@@ -30,7 +30,13 @@
  * - Data: JetBrains Mono (precise, ledger-like)
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Source+Serif+Pro:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+/* Fonts loaded via next/font in SodaHistoryClient.tsx
+   Self-hosted, auto-subsetted, display: swap for optimal performance.
+   CSS variables set by next/font:
+   - --font-display (Playfair Display)
+   - --font-body (Source Serif 4)
+   - --font-data (JetBrains Mono)
+*/
 
 :root {
   /* Era Color Palette */
@@ -59,10 +65,10 @@
   --color-drawer-edge: #2A2520;
   --color-brass: #B8860B;
 
-  /* Typography */
-  --font-display: 'Playfair Display', serif;
-  --font-body: 'Source Serif Pro', serif;
-  --font-data: 'JetBrains Mono', monospace;
+  /* Typography - provided by next/font via CSS variables
+     The font classes applied to the container element set these variables:
+     --font-display, --font-body, --font-data
+     Fallbacks are handled by next/font's built-in system font stack */
 
   /* Motion */
   --ease-drawer: cubic-bezier(0.22, 1, 0.36, 1);
@@ -933,7 +939,8 @@
 
 .timeline-event.filed .timeline-marker {
   background: var(--era-color);
-  box-shadow: 0 0 12px var(--era-color);
+  /* Use filter instead of box-shadow for GPU-accelerated compositing */
+  filter: drop-shadow(0 0 8px var(--era-color));
 }
 
 .timeline-description {
