@@ -148,7 +148,8 @@ let content = readFileSync(filePath, "utf-8");
 
 // Find all external image URLs (Wikimedia, atomicarchive, etc.)
 // Match: src: "https://..." patterns
-const urlPattern = /src:\s*["']((https?:\/\/(?:upload\.wikimedia\.org|www\.atomicarchive\.com|commons\.wikimedia\.org)[^"']+))["']/g;
+// Match: src: "https://...", imageUrl: "https://...", or src="https://..." (JSX) patterns
+const urlPattern = /(?:src|imageUrl)[=:]\s*["']((https?:\/\/(?:upload\.wikimedia\.org|www\.atomicarchive\.com|commons\.wikimedia\.org|tile\.loc\.gov)[^"']+))["']/g;
 
 const matches = [...content.matchAll(urlPattern)];
 const urls = [...new Set(matches.map(m => m[1]))]; // Dedupe

@@ -36,7 +36,7 @@ const figures: Record<string, FigureProfile> = {
       text: 'The primitive Southern Negro, as he sang, was sure to bear down on the third and seventh tone of the scale, slurring between major and minor.',
       attribution: 'W.C. Handy',
     },
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/W._C._Handy_%281941_Van_Vechten_portrait%29.jpg/800px-W._C._Handy_%281941_Van_Vechten_portrait%29.jpg',
+    imageUrl: 'https://images.esy.com/essays/the-blues-history/800px-w-c-handy-281941-van-vechten-portrait-29.5ea3f484bc.webp',
     imageAlt: 'W.C. Handy portrait by Carl Van Vechten, 1941',
     imageAttribution: 'Carl Van Vechten, 1941. Library of Congress. Public domain.',
   },
@@ -54,7 +54,7 @@ const figures: Record<string, FigureProfile> = {
       text: "Pony Blues",
       attribution: 'Added to National Recording Registry, 2006',
     },
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Charley_Patton_%281929_photo_portrait%29.jpg/800px-Charley_Patton_%281929_photo_portrait%29.jpg',
+    imageUrl: 'https://images.esy.com/essays/the-blues-history/800px-charley-patton-281929-photo-portrait-29.a34da1b44a.webp',
     imageAlt: 'Charley Patton portrait, c. 1929, Paramount Records publicity',
     imageAttribution: 'Paramount Records, c. 1929. Only known photograph of Patton. Public domain.',
   },
@@ -72,7 +72,7 @@ const figures: Record<string, FigureProfile> = {
       text: "I ain't good-lookin', but I'm somebody's angel child.",
       attribution: 'Bessie Smith',
     },
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Bessie_Smith_%281936%29_by_Carl_Van_Vechten.jpg/800px-Bessie_Smith_%281936%29_by_Carl_Van_Vechten.jpg',
+    imageUrl: 'https://images.esy.com/essays/the-blues-history/800px-bessie-smith-281936-29-by-carl-van-vechten.2664b3ce68.webp',
     imageAlt: 'Bessie Smith portrait by Carl Van Vechten, 1936',
     imageAttribution: 'Carl Van Vechten, 1936. Library of Congress. Public domain.',
   },
@@ -89,7 +89,7 @@ const figures: Record<string, FigureProfile> = {
     quote: {
       text: 'She claimed she "created the term \'blues\'" when asked what kind of song she was singing.',
     },
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Ma_Rainey%2C_1923.jpg/800px-Ma_Rainey%2C_1923.jpg',
+    imageUrl: 'https://images.esy.com/essays/the-blues-history/800px-ma-rainey-2c-1923.a82dd51822.webp',
     imageAlt: 'Ma Rainey theatrical portrait, c. 1923',
     imageAttribution: 'Studio portrait, c. 1923. Public domain.',
   },
@@ -107,7 +107,7 @@ const figures: Record<string, FigureProfile> = {
       text: "When I went into the clubs, the first thing I wanted was an amplifier. Couldn't nobody hear you with an acoustic.",
       attribution: 'Muddy Waters',
     },
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Muddy_Waters_%28cropped%29.jpg/800px-Muddy_Waters_%28cropped%29.jpg',
+    imageUrl: 'https://images.esy.com/essays/the-blues-history/800px-muddy-waters-28cropped-29.b8629c4ca4.webp',
     imageAlt: 'Muddy Waters performing, 1978, photo by Jean-Luc Ourlin',
     imageAttribution: 'Jean-Luc Ourlin, 1978. CC BY-SA 2.0.',
   },
@@ -125,7 +125,7 @@ const figures: Record<string, FigureProfile> = {
       text: "I couldn't do no yodelin', so I turned to howlin'. And it's done me just fine.",
       attribution: "Howlin' Wolf",
     },
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Howlin_Wolf_1972.jpg',
+    imageUrl: 'https://images.esy.com/essays/the-blues-history/howlin-wolf-1972.2d11c31fa9.webp',
     imageAlt: "Howlin' Wolf, 1972",
     imageAttribution: 'Photographer unknown, 1972. Wikimedia Commons. Public domain.',
   },
@@ -158,7 +158,7 @@ const figures: Record<string, FigureProfile> = {
       text: "The blues are three L's—living, loving, and hopefully laughing.",
       attribution: 'B.B. King',
     },
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/25/B.B._King_Presidential_Medal_of_Freedom.jpg',
+    imageUrl: 'https://images.esy.com/essays/the-blues-history/b-b-king-presidential-medal-of-freedom.c6b87050f0.webp',
     imageAlt: 'B.B. King receiving Presidential Medal of Freedom from George W. Bush, 2006',
     imageAttribution: 'White House photo, 2006. Public domain.',
   },
@@ -176,7 +176,7 @@ const figures: Record<string, FigureProfile> = {
       text: 'The blues are the roots and the other musics are the fruits.',
       attribution: 'Willie Dixon',
     },
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Willie_Dixon.jpg',
+    imageUrl: 'https://images.esy.com/essays/the-blues-history/willie-dixon.0be4b80c98.webp',
     imageAlt: 'Willie Dixon at Monterey Jazz Festival, 1981, photo by Brianmcmillen',
     imageAttribution: 'Brian McMillen, 1981. CC BY-SA 3.0.',
   },
@@ -409,7 +409,7 @@ export function TheBluesHistoryClient() {
       <header className="blues-hero">
         <div className="blues-hero__image-container">
           <img
-            src="https://tile.loc.gov/storage-services/service/pnp/fsa/8c10000/8c10900/8c10917v.jpg"
+            src="https://images.esy.com/essays/the-blues-history/8c10917v.5e58fca1fc.webp"
             alt="Jitterbugging in a juke joint on Saturday evening, outside Clarksdale, Mississippi Delta, November 1939. Photo by Marion Post Wolcott for the Farm Security Administration."
             className="blues-hero__image"
           />
