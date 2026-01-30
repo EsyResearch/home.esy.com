@@ -247,6 +247,30 @@ To disable: add `--no-webp` flag.
 
 ---
 
+## R2 Custom Metadata
+
+All scripts automatically attach metadata to uploaded images for tracking and auditing:
+
+| Metadata Key | Description | Example |
+|--------------|-------------|---------|
+| `source-url` | Original source URL | `https://upload.wikimedia.org/...` |
+| `essay-slug` | Essay the image belongs to | `the-complete-history-of-soda` |
+| `original-filename` | Filename before slugification | `Joseph_Priestley.jpg` |
+| `migrated-at` / `uploaded-at` | ISO timestamp | `2026-01-30T13:45:00.000Z` |
+
+**Accessing metadata:**
+- Cloudflare Dashboard: R2 → Bucket → Object → Metadata tab
+- AWS CLI: `aws s3api head-object --bucket esy-images-prod --key essays/...`
+- Programmatically: Use S3 SDK `HeadObjectCommand`
+
+**Use cases:**
+- Audit trail for image sources
+- License compliance tracking
+- Debugging (find original sources)
+- Future CMS integration
+
+---
+
 ## Troubleshooting
 
 ### "Missing env vars" error

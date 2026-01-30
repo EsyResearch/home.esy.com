@@ -118,6 +118,12 @@ await client.send(
     Body: buf,
     ContentType: contentType,
     CacheControl: "public, max-age=31536000, immutable",
+    Metadata: {
+      "source-url": "local-upload",
+      "essay-slug": essaySlug,
+      "original-filename": path.basename(filePath),
+      "uploaded-at": new Date().toISOString(),
+    },
   })
 );
 

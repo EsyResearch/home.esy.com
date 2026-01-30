@@ -225,6 +225,12 @@ for (const sourceUrl of externalUrls) {
           Body: buf,
           ContentType: contentType,
           CacheControl: "public, max-age=31536000, immutable",
+          Metadata: {
+            "source-url": sourceUrl,
+            "essay-slug": essaySlug,
+            "original-filename": originalFilename,
+            "migrated-at": new Date().toISOString(),
+          },
         })
       );
       console.log(`✅ ${baseName}${finalExt}`);

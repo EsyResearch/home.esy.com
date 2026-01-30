@@ -247,6 +247,12 @@ for (const { key, filename, sourceUrl } of images) {
           Body: buf,
           ContentType: contentType,
           CacheControl: "public, max-age=31536000, immutable",
+          Metadata: {
+            "source-url": sourceUrl,
+            "essay-slug": essaySlug,
+            "original-filename": filename,
+            "migrated-at": new Date().toISOString(),
+          },
         })
       );
       console.log(`✅ ${key}: ${publicUrl}`);
