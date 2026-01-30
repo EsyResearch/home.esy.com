@@ -332,15 +332,155 @@ Existing essays use a simpler `IMAGES` constant (URL strings only). Migration to
 
 ---
 
-## Hosting
+## Hosting & Format Standards
 
 All essay images must be self-hosted on R2:
 
 - **Domain**: `https://images.esy.com/`
-- **Path pattern**: `essays/{essay-slug}/{filename}.{hash}.{ext}`
+- **Path pattern**: `essays/{essay-slug}/{filename}.{hash}.webp`
 - **Cache**: Immutable (`max-age=31536000, immutable`)
 
 **Never hotlink** from external sources (Wikimedia, etc.) in production code.
+
+### WebP Format Standard
+
+> **All images uploaded to R2 should be WebP format.**
+
+| Format | Use Case | Notes |
+|--------|----------|-------|
+| **WebP** | ✅ All essay images | Default format, best compression |
+| **JPEG** | ⚠️ Legacy only | Acceptable for already-uploaded images |
+| **PNG** | ⚠️ Only when needed | For transparency, diagrams, screenshots |
+
+**Why WebP?**
+- **30-50% smaller** than JPEG at equivalent quality
+- **Universal support** in modern browsers (Chrome, Firefox, Safari 14+, Edge)
+- **Lossless option** available (like PNG but smaller)
+- **Transparency support** (like PNG)
+
+### Image Processing Pipeline
+
+The migration scripts automatically:
+1. Download source image (any format)
+2. Convert to WebP using Sharp
+3. Resize to max 1600px width (preserves aspect ratio)
+4. Quality: 80% (configurable, good balance of size/quality)
+5. Upload to R2 with content hash in filename
+
+```typescript
+// Sharp conversion settings (in migrate-images-ts-to-r2.mjs)
+const webpBuffer = await sharp(buffer)
+  .resize(1600, null, { 
+    fit: 'inside', 
+    withoutEnlargement: true 
+  })
+  .webp({ quality: 80 })
+  .toBuffer();
+```
+
+### Filename Convention
+
+```
+{slugified-name}.{content-hash}.webp
+```
+
+Examples:
+- `joseph-priestley.bfa51bd351.webp`
+- `trinity-test-fireball-16ms.83ddf63450.webp`
+
+The content hash enables:
+- **Cache busting**: New hash = new URL = fresh cache
+- **Deduplication**: Same image = same hash
+- **Integrity**: Verify file hasn't been corrupted
+
+---
+
+## Wikimedia Migration: Rate Limits & Solutions
+
+> Lessons learned from migrating Wikimedia-hosted images to R2.
+
+### The Problem: Thumbnail Rate Limiting
+
+Wikimedia serves two types of image URLs:
+
+**Full-Resolution URL** (✅ works well):
+```
+https://upload.wikimedia.org/wikipedia/commons/7/78/Trinity_Test_Fireball_16ms.jpg
+```
+
+**Thumbnail URL** (⚠️ heavily rate-limited):
+```
+https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Oppenheimer.jpg/440px-Oppenheimer.jpg
+                                               ↑                        ↑
+                                            /thumb/                   size prefix
+```
+
+Thumbnail URLs are **dynamically resized** by Wikimedia's Thumbor service. This costs CPU, so they aggressively rate-limit these requests:
+
+| Request Type | Behavior |
+|--------------|----------|
+| Full-resolution | Static cached file, rarely rate-limited |
+| Thumbnail | Dynamic resize, **HTTP 429** after ~10-20 requests |
+
+### Rate Limit Specifics
+
+- **Anonymous**: 500 requests/hour per IP
+- **Authenticated**: 5,000 requests/hour
+- **Retry-After**: Must respect header (could be minutes/hours)
+- **Aggressive retries**: May result in **IP ban**
+
+### The Solution: Convert Thumbnails to Full-Res
+
+Our migration script automatically converts thumbnail URLs to full-resolution:
+
+```javascript
+// In migrate-images-ts-to-r2.mjs
+function convertToFullRes(url) {
+  // Thumbnail: .../thumb/8/85/Image.jpg/440px-Image.jpg
+  // Full-res: .../8/85/Image.jpg
+  
+  const thumbMatch = url.match(/\/thumb\/([^/]+\/[^/]+\/[^/]+)\/\d+px-/);
+  if (thumbMatch) {
+    return url.replace(/\/thumb\//, '/').replace(/\/\d+px-[^/]+$/, '');
+  }
+  return url;
+}
+```
+
+Then we use Sharp to resize locally (much faster, no rate limits).
+
+### Best Practices for Wikimedia Migration
+
+1. **Always use full-resolution URLs** — Convert thumbnails before fetching
+2. **Include User-Agent header** — Wikimedia requires this for API policy compliance
+3. **Respect Retry-After** — Don't retry every few seconds
+4. **Batch with delays** — 1-2 second delay between requests
+5. **Convert to WebP locally** — Better compression than Wikimedia thumbnails
+
+```javascript
+// Required headers for Wikimedia
+const response = await fetch(url, {
+  headers: {
+    'User-Agent': 'EsyImageMigration/1.0 (https://esy.com; contact@esy.com)'
+  }
+});
+```
+
+### What If Rate Limited?
+
+If you hit HTTP 429:
+1. **Stop immediately** — Don't retry aggressively
+2. **Check Retry-After header** — Wait that long
+3. **If no header** — Wait at least 1 hour
+4. **Consider authentication** — 10x higher limits with API token
+
+### Script Reference
+
+| Script | Wikimedia Handling |
+|--------|-------------------|
+| `migrate-images-ts-to-r2.mjs` | Converts thumbnails → full-res, WebP output |
+| `migrate-essay-images-to-r2.mjs` | Basic retry logic, respects delays |
+| `scan-hotlinked-images.mjs` | Identifies thumbnail URLs for review |
 
 ---
 
@@ -349,7 +489,11 @@ All essay images must be self-hosted on R2:
 | Script | Purpose |
 |--------|---------|
 | `scripts/scan-hotlinked-images.mjs` | Detect external image URLs, generate migration configs |
-| `scripts/migrate-essay-images-to-r2.mjs` | Upload images to R2, update IMAGES constant |
+| `scripts/migrate-essay-images-to-r2.mjs` | Upload images to R2 from config file (flat IMAGES constant) |
+| `scripts/migrate-images-ts-to-r2.mjs` | Upload images to R2 from `images.ts` (nested structures), WebP conversion |
+| `scripts/upload-image-to-r2.mjs` | Upload a single image to R2 |
+
+See `scripts/README.md` for detailed usage instructions.
 
 ---
 
