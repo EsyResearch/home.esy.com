@@ -3,6 +3,7 @@ import { readFileSync, writeFileSync, existsSync, readdirSync } from "fs";
 import path from "path";
 import mime from "mime-types";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import sharp from "sharp";
 
 // Auto-load .env.local if it exists (no dotenv dependency needed)
 const envPath = path.resolve(process.cwd(), ".env.local");
@@ -30,16 +31,18 @@ if (existsSync(envPath)) {
  * What it does:
  *   1. Reads image config from a JSON file
  *   2. Fetches each image directly from its source URL
- *   3. Computes a content hash for cache-busting filenames
- *   4. Uploads to R2 with immutable cache headers
- *   5. Outputs the new IMAGES constant with R2 URLs
- *   6. Optionally auto-updates the source file (--update)
+ *   3. Converts to WebP format using Sharp (smaller files, better quality)
+ *   4. Computes a content hash for cache-busting filenames
+ *   5. Uploads to R2 with immutable cache headers
+ *   6. Outputs the new IMAGES constant with R2 URLs
+ *   7. Optionally auto-updates the source file (--update)
  * 
  * Usage:
- *   node scripts/migrate-essay-images-to-r2.mjs --config=path/to/images-migration.json [--dry] [--update]
+ *   node scripts/migrate-essay-images-to-r2.mjs --config=path/to/images-migration.json [--dry] [--update] [--no-webp]
  * 
- *   --dry     Preview without uploading to R2
- *   --update  Auto-update the TSX file with new IMAGES constant (requires actual upload, not dry run)
+ *   --dry      Preview without uploading to R2
+ *   --update   Auto-update the TSX file with new IMAGES constant (requires actual upload, not dry run)
+ *   --no-webp  Skip WebP conversion, keep original format
  * 
  * Config file format (images-migration.json):
  *   {
@@ -86,9 +89,10 @@ const args = Object.fromEntries(
 const configPath = args.config;
 const dryRun = args.dry === true || args.dry === "true";
 const autoUpdate = args.update === true || args.update === "true";
+const convertToWebP = !(args["no-webp"] === true || args["no-webp"] === "true");
 
 if (!configPath) {
-  console.error("\nUsage: node scripts/migrate-essay-images-to-r2.mjs --config=path/to/images-migration.json [--dry] [--update]\n");
+  console.error("\nUsage: node scripts/migrate-essay-images-to-r2.mjs --config=path/to/images-migration.json [--dry] [--update] [--no-webp]\n");
   process.exit(1);
 }
 
@@ -133,6 +137,7 @@ console.log("\n=== R2 Image Migration ===\n");
 console.log(`Config: ${configPath}`);
 console.log(`Essay:  ${essaySlug}`);
 console.log(`Images: ${images.length}`);
+console.log(`Format: ${convertToWebP ? "WebP (optimized)" : "Original"}`);
 console.log(`Mode:   ${dryRun ? "DRY RUN" : "UPLOADING"}${autoUpdate ? " + AUTO-UPDATE" : ""}\n`);
 
 const imageUrls = {};
@@ -140,17 +145,24 @@ let uploaded = 0;
 let failed = 0;
 
 // Helper: fetch with retry for rate limiting
-async function fetchWithRetry(url, maxRetries = 3) {
+// Wikimedia requires a User-Agent header per their API policy
+const USER_AGENT = "EsyImageMigration/1.0 (https://esy.com; contact@esy.com)";
+
+async function fetchWithRetry(url, maxRetries = 5) {
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      headers: {
+        "User-Agent": USER_AGENT,
+      },
+    });
     
     if (response.ok) {
       return response;
     }
     
-    // Rate limited - wait and retry
+    // Rate limited - wait and retry with exponential backoff
     if (response.status === 429 && attempt < maxRetries) {
-      const delay = Math.pow(2, attempt) * 1000; // 2s, 4s, 8s
+      const delay = Math.pow(2, attempt) * 2000; // 4s, 8s, 16s, 32s
       console.log(`   ⏳ Rate limited, waiting ${delay/1000}s (attempt ${attempt}/${maxRetries})...`);
       await new Promise(r => setTimeout(r, delay));
       continue;
@@ -160,8 +172,8 @@ async function fetchWithRetry(url, maxRetries = 3) {
   }
 }
 
-// Small delay between requests to avoid rate limiting
-const DELAY_BETWEEN_REQUESTS = 200; // ms
+// Delay between requests to avoid rate limiting (Wikimedia needs generous delays)
+const DELAY_BETWEEN_REQUESTS = 1500; // ms
 
 for (const { key, filename, sourceUrl } of images) {
   if (!key || !filename || !sourceUrl) {
@@ -174,18 +186,31 @@ for (const { key, filename, sourceUrl } of images) {
     // Fetch image from source with retry
     const response = await fetchWithRetry(sourceUrl);
     const arrayBuffer = await response.arrayBuffer();
-    const buf = Buffer.from(arrayBuffer);
+    let buf = Buffer.from(arrayBuffer);
     
     // Small delay to avoid rate limiting
     await new Promise(r => setTimeout(r, DELAY_BETWEEN_REQUESTS));
 
-    // Compute hash and build key
-    const hash = hashBytes(buf, 10);
-    const ext = path.extname(filename).toLowerCase();
+    // Determine original extension
+    const originalExt = path.extname(filename).toLowerCase();
     const baseName = slugify(path.parse(filename).name);
-    const contentType = mime.lookup(ext) || "application/octet-stream";
+    
+    // Convert to WebP using Sharp (unless disabled or SVG)
+    let finalExt = originalExt;
+    let contentType = mime.lookup(originalExt) || "application/octet-stream";
+    
+    if (convertToWebP && ![".svg", ".gif"].includes(originalExt)) {
+      // Convert to WebP with good quality settings
+      buf = await sharp(buf)
+        .webp({ quality: 85, effort: 6 })
+        .toBuffer();
+      finalExt = ".webp";
+      contentType = "image/webp";
+    }
 
-    const r2Key = buildKey({ essaySlug, baseName, hash, ext });
+    // Compute hash AFTER conversion (so hash reflects final content)
+    const hash = hashBytes(buf, 10);
+    const r2Key = buildKey({ essaySlug, baseName, hash, ext: finalExt });
     const publicUrl = `https://images.esy.com/${r2Key}`;
 
     imageUrls[key] = publicUrl;

@@ -1,8 +1,24 @@
 import { createHash } from "crypto";
-import { readFileSync } from "fs";
+import { readFileSync, existsSync } from "fs";
 import path from "path";
 import mime from "mime-types";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+
+// Auto-load .env.local if it exists
+const envPath = path.resolve(process.cwd(), ".env.local");
+if (existsSync(envPath)) {
+  const envContent = readFileSync(envPath, "utf-8");
+  for (const line of envContent.split("\n")) {
+    const trimmed = line.trim();
+    if (trimmed && !trimmed.startsWith("#")) {
+      const [key, ...valueParts] = trimmed.split("=");
+      const value = valueParts.join("=").replace(/^["']|["']$/g, "");
+      if (key && !process.env[key]) {
+        process.env[key] = value;
+      }
+    }
+  }
+}
 
 function slugify(s) {
   return s
