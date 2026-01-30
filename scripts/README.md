@@ -138,10 +138,12 @@ Options:
   --dry                Preview without uploading
   --update             Auto-update the TSX file with new URLs
   --no-webp            Skip WebP conversion, keep original format
+  --max-width=N        Maximum image width in pixels (default: 1200)
 ```
 
 **Features:**
-- Converts images to WebP (85% quality, ~25-35% smaller)
+- Converts images to WebP (85% quality, ~50% smaller than JPG)
+- Resizes to max width (default 1200px, good for retina displays)
 - Adds content-hash to filenames for cache busting
 - Retry logic for rate-limited requests
 - Auto-updates source files with `--update` flag
@@ -237,7 +239,8 @@ If you still hit rate limits:
 All scripts use Sharp to convert images to WebP:
 
 - **Quality**: 85% (good balance of size vs quality)
-- **Max width**: 1600px (resizes larger images)
+- **Max width**: 1200px for standard script, 1600px for images.ts script
+- **Typical savings**: 50% smaller than JPG, 25-35% smaller than PNG
 - **Skipped for**: SVG, GIF (kept as original format)
 
 To disable: add `--no-webp` flag.
