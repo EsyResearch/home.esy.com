@@ -43,6 +43,7 @@ if (existsSync(envPath)) {
  *   --dry      Preview without uploading to R2
  *   --update   Auto-update the TSX file with new IMAGES constant (requires actual upload, not dry run)
  *   --no-webp  Skip WebP conversion, keep original format
+ *   --max-width=N  Maximum image width in pixels (default: 1200, good for retina)
  * 
  * Config file format (images-migration.json):
  *   {
@@ -90,6 +91,7 @@ const configPath = args.config;
 const dryRun = args.dry === true || args.dry === "true";
 const autoUpdate = args.update === true || args.update === "true";
 const convertToWebP = !(args["no-webp"] === true || args["no-webp"] === "true");
+const maxWidth = parseInt(args["max-width"], 10) || 1200; // Default 1200px for good retina support
 
 if (!configPath) {
   console.error("\nUsage: node scripts/migrate-essay-images-to-r2.mjs --config=path/to/images-migration.json [--dry] [--update] [--no-webp]\n");
@@ -138,6 +140,7 @@ console.log(`Config: ${configPath}`);
 console.log(`Essay:  ${essaySlug}`);
 console.log(`Images: ${images.length}`);
 console.log(`Format: ${convertToWebP ? "WebP (optimized)" : "Original"}`);
+console.log(`Resize: max ${maxWidth}px width`);
 console.log(`Mode:   ${dryRun ? "DRY RUN" : "UPLOADING"}${autoUpdate ? " + AUTO-UPDATE" : ""}\n`);
 
 const imageUrls = {};
@@ -195,17 +198,36 @@ for (const { key, filename, sourceUrl } of images) {
     const originalExt = path.extname(filename).toLowerCase();
     const baseName = slugify(path.parse(filename).name);
     
-    // Convert to WebP using Sharp (unless disabled or SVG)
+    // Process image: resize and convert to WebP (unless disabled or SVG/GIF)
     let finalExt = originalExt;
     let contentType = mime.lookup(originalExt) || "application/octet-stream";
     
-    if (convertToWebP && ![".svg", ".gif"].includes(originalExt)) {
-      // Convert to WebP with good quality settings
-      buf = await sharp(buf)
-        .webp({ quality: 85, effort: 6 })
-        .toBuffer();
-      finalExt = ".webp";
-      contentType = "image/webp";
+    if (![".svg", ".gif"].includes(originalExt)) {
+      // Create Sharp instance for processing
+      let sharpInstance = sharp(buf);
+      
+      // Get metadata to check if resize is needed
+      const metadata = await sharpInstance.metadata();
+      
+      // Resize if width exceeds max (maintains aspect ratio)
+      if (metadata.width && metadata.width > maxWidth) {
+        sharpInstance = sharpInstance.resize(maxWidth, null, {
+          withoutEnlargement: true,
+          fit: "inside"
+        });
+      }
+      
+      // Convert to WebP with good quality settings (unless disabled)
+      if (convertToWebP) {
+        buf = await sharpInstance
+          .webp({ quality: 85, effort: 6 })
+          .toBuffer();
+        finalExt = ".webp";
+        contentType = "image/webp";
+      } else {
+        // Keep original format but apply resize
+        buf = await sharpInstance.toBuffer();
+      }
     }
 
     // Compute hash AFTER conversion (so hash reflects final content)
