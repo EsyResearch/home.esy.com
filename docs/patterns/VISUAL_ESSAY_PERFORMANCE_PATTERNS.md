@@ -307,9 +307,31 @@ Match `sizes` to your CSS `max-width` for that image type.
 ### "NO_LCP" Error
 **Cause:** The browser couldn't identify a Largest Contentful Paint element, usually because:
 - All above-fold images have `loading="lazy"`
-- Hero content uses CSS animations with delays that hide content
+- Hero content uses CSS animations with `opacity: 0` and long delays that hide content during measurement
 
-**Fix:** Add `loading="eager"` and `fetchPriority="high"` to first visible image.
+**Fix:** 
+1. Add `loading="eager"` and `fetchPriority="high"` to first visible image
+2. **Critical:** Hero text must NOT start with `opacity: 0`. Use LCP-safe animations:
+
+```css
+/* ❌ BAD: Content hidden during Lighthouse measurement */
+.hero-title {
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.7s forwards;
+}
+
+/* ✅ GOOD: Content visible immediately (70% opacity min) */
+@keyframes gentleSlideUp {
+  from { opacity: 0.7; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-title {
+  animation: gentleSlideUp 0.8s ease 0.1s both;
+}
+```
+
+**Why 70%?** Mobile Lighthouse uses slow 4G throttling. Long animation delays (>0.5s) can cause content to still be hidden when LCP is measured.
 
 ### "Serve images in next-gen formats"
 **Cause:** Using JPG/PNG instead of WebP.
