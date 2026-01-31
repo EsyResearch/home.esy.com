@@ -162,6 +162,9 @@ export const metadata: Metadata = {
 export default function TheCompleteHistoryOfSodaPage() {
   return (
     <>
+      {/* Preconnect to image CDN for faster image loading */}
+      <link rel="preconnect" href="https://images.esy.com" />
+      <link rel="dns-prefetch" href="https://images.esy.com" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

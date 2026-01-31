@@ -8,7 +8,9 @@ This document captures proven performance optimization patterns for visual essay
 |-------|----------|--------|
 | Font render-blocking | Use `next/font/google` | -200ms FCP |
 | NO_LCP error | Remove `loading="lazy"` from above-fold images | Critical |
+| Hero with `opacity: 0` | Use LCP-safe animations (min 70% opacity) | Critical |
 | Large images | Add `sizes` attribute | -50-70% transfer |
+| Slow image loading | Add `preconnect` to image CDN | -100-200ms |
 | Jank animations | Use GPU-accelerated properties | Smooth 60fps |
 | CLS from images | Always set explicit dimensions | 0 CLS |
 
@@ -244,7 +246,30 @@ Match `sizes` to your CSS `max-width` for that image type.
 
 ---
 
-## 6. Third-Party Script Management
+## 6. Preconnect to Image CDN
+
+**Problem:** Browser doesn't know about `images.esy.com` until it parses CSS/HTML, causing connection delay.
+
+**Solution:** Add preconnect hints in `page.tsx`:
+
+```tsx
+export default function EssayPage() {
+  return (
+    <>
+      {/* Preconnect to image CDN for faster image loading */}
+      <link rel="preconnect" href="https://images.esy.com" />
+      <link rel="dns-prefetch" href="https://images.esy.com" />
+      <EssayClient />
+    </>
+  );
+}
+```
+
+This tells the browser to establish the connection early, before images are discovered in HTML.
+
+---
+
+## 7. Third-Party Script Management
 
 **Problem:** Analytics scripts (GTM, FullStory, Clarity) block main thread.
 
