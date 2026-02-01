@@ -42,6 +42,8 @@ export default function Footer () {
             </div>
             <p className="footer-desc" style={{ color: elevatedDarkTheme.muted }}>
               Esy is a citation-first research platform for creating reliable, auditable artifacts — essays, visuals, and learning materials.
+              <br />
+              <strong>Experimentation, designed.</strong>
             </p>
             <div className="footer-socials">
               <a href="https://research.esy.com" target="_blank" className="social-link" aria-label="Substack">
