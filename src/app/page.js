@@ -1,35 +1,43 @@
-import GalleryHomePage from "../components/Home/GalleryHomePage";
+import CitationFirstLandingPage from "../components/Home/CitationFirstLandingPage";
 
 /**
- * Homepage - Gallery-First Design
+ * Homepage - Citation-First Research Platform
  * 
- * Strategic positioning: Visual essays as primary value, SaaS secondary.
- * This page leads with authority and trust, not product conversion.
+ * Strategic positioning: Esy as a workflow-based research platform
+ * where citations come first and artifacts are defensible.
+ * 
+ * Key messaging:
+ * - "Citation-First Research" as a methodology
+ * - Workflows as the product (not visual essays)
+ * - Visual essays as proof of the method
+ * - Trust, rigor, and defensibility as core values
  * 
  * SEO Strategy:
- * - Title focuses on "visual essays" not "AI essay writer"
- * - Description emphasizes research and storytelling
- * - Avoids generic SaaS positioning that competes with 1000s of tools
- * - Unique positioning: "essays that unfold"
+ * - Title focuses on research platform positioning
+ * - Description emphasizes workflow-based, citation-first approach
+ * - Unique positioning: research platform, not AI essay generator
  * 
  * @see /orchestration/agents/engineering/seo-specialist-expert.md
  */
 
 export const metadata = {
-  title: "Esy — Visual Essays That Unfold",
-  description: "Cinematic, research-driven essays exploring history, language, power, and ideas. Interactive storytelling that brings knowledge to life.",
+  title: "Esy — Citation-First Research Platform",
+  description: "Transform trusted sources into structured, defensible artifacts. Workflows for research synthesis, visual essays, and teaching materials. Citations first. Always.",
   keywords: [
+    "citation-first research",
+    "research platform",
+    "academic research tools",
+    "research synthesis",
     "visual essays",
-    "interactive essays", 
-    "scrollytelling",
-    "history essays",
-    "research essays",
-    "educational content",
-    "narrative journalism"
+    "source-verified research",
+    "research workflows",
+    "PDF research tools",
+    "academic writing",
+    "research artifacts"
   ],
   openGraph: {
-    title: "Esy — Visual Essays That Unfold",
-    description: "Cinematic, research-driven essays exploring history, language, power, and ideas.",
+    title: "Esy — Citation-First Research Platform",
+    description: "Transform trusted sources into structured, defensible artifacts. Workflows for research synthesis, visual essays, and teaching materials.",
     type: "website",
     url: "https://esy.com",
     siteName: "Esy",
@@ -38,13 +46,13 @@ export const metadata = {
       url: "https://esy.com/og/homepage.png",
       width: 1200,
       height: 630,
-      alt: "Esy — Visual Essays That Unfold: Cinematic, research-driven essays exploring history, language, power, and ideas"
+      alt: "Esy — Citation-First Research Platform: Transform trusted sources into structured, defensible artifacts"
     }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Esy — Visual Essays That Unfold",
-    description: "Cinematic, research-driven essays exploring history, language, power, and ideas.",
+    title: "Esy — Citation-First Research Platform",
+    description: "Transform trusted sources into structured, defensible artifacts. Workflows for research synthesis, visual essays, and teaching materials.",
     site: "@EsyResearch",
     images: ["https://esy.com/og/homepage.png"],
   },
@@ -53,4 +61,4 @@ export const metadata = {
   },
 };
 
-export default GalleryHomePage;
+export default CitationFirstLandingPage;
