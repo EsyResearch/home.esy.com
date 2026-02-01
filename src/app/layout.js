@@ -35,6 +35,9 @@ const literata = Literata({
   subsets: ["latin"],
 });
 
+// Check if QA environment (set via NEXT_PUBLIC_IS_QA=true)
+const isQA = process.env.NEXT_PUBLIC_IS_QA === 'true';
+
 export const metadata = {
   title: {
     template: '%s | Esy',
@@ -54,6 +57,22 @@ export const metadata = {
     locale: 'en_US',
     type: 'website',
   },
+  // Block crawlers and AI bots on QA environment
+  ...(isQA && {
+    robots: {
+      index: false,
+      follow: false,
+      nocache: true,
+      googleBot: {
+        index: false,
+        follow: false,
+        noimageindex: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'none',
+        'max-snippet': -1,
+      },
+    },
+  }),
 };
 
 export const viewport = {

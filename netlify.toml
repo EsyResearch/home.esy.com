@@ -8,6 +8,18 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
+# QA Branch Deploy Configuration
+# When deploying the 'qa' branch, block all crawlers
+[context.qa]
+  environment = { NEXT_PUBLIC_IS_QA = "true" }
+
+# Headers for QA branch deploys - block all crawlers and AI bots
+[context.qa.processing]
+  skip = false
+
+# Note: For qa.esy.com as a separate site, configure headers in that site's settings
+# or deploy with NEXT_PUBLIC_IS_QA=true to enable noindex meta tags
+
 # Redirect /essays/visual/* to /essays/* (canonical URLs)
 [[redirects]]
   from = "/essays/visual/*"
