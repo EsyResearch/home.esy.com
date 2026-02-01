@@ -7,11 +7,11 @@ import { headers } from 'next/headers';
  * - Production (esy.com): Allow all crawlers
  * - QA (qa.esy.com): Block all crawlers and AI bots
  */
-export default function robots(): MetadataRoute.Robots {
+export default async function robots(): Promise<MetadataRoute.Robots> {
   // Check if we're on QA environment
-  const headersList = headers();
-  const host = headersList.get('host') || '';
-  const isQA = host.includes('qa.esy.com') || host.includes('qa-esy') || host.includes('localhost');
+  const headersList = await headers();
+  const host = headersList.get('host') ?? '';
+  const isQA = host.includes('qa.esy.com') || host.includes('qa-home.esy.com');
 
   if (isQA) {
     // Block everything on QA
