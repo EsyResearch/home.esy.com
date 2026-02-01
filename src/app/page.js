@@ -21,23 +21,22 @@ import CitationFirstLandingPage from "../components/Home/CitationFirstLandingPag
  */
 
 export const metadata = {
-  title: "Esy — Citation-First Research Platform",
-  description: "Transform trusted sources into structured, defensible artifacts. Workflows for research synthesis, visual essays, and teaching materials. Citations first. Always.",
+  title: "Esy — Citation-First Research Workflows",
+  description: "Esy is a citation-first research platform that turns trusted sources into structured, reliable, and auditable artifacts — essays, visuals, and learning materials.",
   keywords: [
     "citation-first research",
     "research platform",
-    "academic research tools",
-    "research synthesis",
-    "visual essays",
-    "source-verified research",
     "research workflows",
-    "PDF research tools",
-    "academic writing",
-    "research artifacts"
+    "visual essays",
+    "auditable artifacts",
+    "academic research",
+    "research synthesis",
+    "reliable research",
+    "learning materials"
   ],
   openGraph: {
-    title: "Esy — Citation-First Research Platform",
-    description: "Transform trusted sources into structured, defensible artifacts. Workflows for research synthesis, visual essays, and teaching materials.",
+    title: "Esy — Citation-First Research Workflows",
+    description: "Esy is a citation-first research platform that turns trusted sources into structured, reliable, and auditable artifacts — essays, visuals, and learning materials.",
     type: "website",
     url: "https://esy.com",
     siteName: "Esy",
@@ -46,13 +45,13 @@ export const metadata = {
       url: "https://esy.com/og/homepage.png",
       width: 1200,
       height: 630,
-      alt: "Esy — Citation-First Research Platform: Transform trusted sources into structured, defensible artifacts"
+      alt: "Esy — Citation-First Research Workflows"
     }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Esy — Citation-First Research Platform",
-    description: "Transform trusted sources into structured, defensible artifacts. Workflows for research synthesis, visual essays, and teaching materials.",
+    title: "Esy — Citation-First Research Workflows",
+    description: "Esy is a citation-first research platform that turns trusted sources into structured, reliable, and auditable artifacts — essays, visuals, and learning materials.",
     site: "@EsyResearch",
     images: ["https://esy.com/og/homepage.png"],
   },

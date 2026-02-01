@@ -38,17 +38,17 @@ const literata = Literata({
 export const metadata = {
   title: {
     template: '%s | Esy',
-    default: 'Esy - Skip Boring Research, Write Smarter Essays',
+    default: 'Esy — Citation-First Research Workflows',
   },
-  description: "Visual essays and research-driven storytelling exploring history, language, power, and ideas. Experimentation, Designed.",
-  keywords: 'AI essay writer, research assistant, academic writing, essay generator, AI writing tool, skip research, smart essays, ESL writing help',
+  description: "Esy is a citation-first research platform that turns trusted sources into structured, reliable, and auditable artifacts — essays, visuals, and learning materials.",
+  keywords: 'citation-first research, research platform, research workflows, visual essays, auditable artifacts, academic research, research synthesis',
   metadataBase: new URL('https://esy.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'Esy - Skip Boring Research, Write Smarter Essays',
-    description: 'Visual essays and research-driven storytelling exploring history, language, power, and ideas. Experimentation, Designed.',
+    title: 'Esy — Citation-First Research Workflows',
+    description: 'Esy is a citation-first research platform that turns trusted sources into structured, reliable, and auditable artifacts — essays, visuals, and learning materials.',
     url: 'https://esy.com',
     siteName: 'Esy',
     locale: 'en_US',
