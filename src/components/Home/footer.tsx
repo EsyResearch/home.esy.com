@@ -41,7 +41,9 @@ export default function Footer () {
               <Logo suffix={logoSuffix} href="" showText={false} />
             </div>
             <p className="footer-desc" style={{ color: elevatedDarkTheme.muted }}>
-              Esy is a citation-first research platform for creating reliable, auditable artifacts — essays, visuals, and learning materials.
+              Esy is a citation-first research platform for creating
+              <br />
+              reliable, auditable artifacts — essays, visuals, and learning materials.
               <br />
               <strong>Experimentation, designed.</strong>
             </p>
