@@ -41,9 +41,7 @@ export default function Footer () {
               <Logo suffix={logoSuffix} href="" showText={false} />
             </div>
             <p className="footer-desc" style={{ color: elevatedDarkTheme.muted }}>
-              Citation-first research workflows for essays, visuals, and learning.
-              <br />
-              <strong>Experimentation, designed.</strong>
+              Esy is a citation-first research platform for creating reliable, auditable artifacts — essays, visuals, and learning materials.
             </p>
             <div className="footer-socials">
               <a href="https://research.esy.com" target="_blank" className="social-link" aria-label="Substack">
