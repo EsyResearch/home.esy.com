@@ -488,16 +488,16 @@ export default function TheWordSlangTypographicClient() {
             <span className="float-word" style={{ '--delay': '3.5s', '--x': '40%', '--y': '25%' } as React.CSSProperties}>sick</span>
           </div>
         </div>
-        <div className={`hero-content ${animate ? 'animate' : ''}`}>
-          <h1 className={`hero-title ${animate ? 'animate' : ''}`}>
-            <span className="hero-letter hero-s">S</span>
-            <span className="hero-letter hero-l">L</span>
-            <span className="hero-letter hero-a">A</span>
-            <span className="hero-letter hero-n">N</span>
-            <span className="hero-letter hero-g">G</span>
+        <div className={`slang-hero-content ${animate ? 'animate' : ''}`}>
+          <h1 className={`slang-hero-title ${animate ? 'animate' : ''}`}>
+            <span className="slang-letter slang-s">S</span>
+            <span className="slang-letter slang-l">L</span>
+            <span className="slang-letter slang-a">A</span>
+            <span className="slang-letter slang-n">N</span>
+            <span className="slang-letter slang-g">G</span>
           </h1>
-          <p className="hero-tagline">The Rogue Archive</p>
-          <p className="hero-subtitle">A typographic etymology of the word that names the unnamed</p>
+          <p className="slang-tagline">The Rogue Archive</p>
+          <p className="slang-subtitle">A typographic etymology of the word that names the unnamed</p>
           <div className="scroll-indicator">
             <span>Scroll to begin</span>
             <div className="scroll-arrow">↓</div>

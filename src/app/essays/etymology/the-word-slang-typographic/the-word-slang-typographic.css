@@ -197,9 +197,8 @@
   }
 }
 
-/* Override global .hero-content grid styles from globals.css 
-   Using .slang-typographic scoping for higher specificity */
-.slang-typographic .hero-content {
+/* Slang hero content - unique class to avoid global conflicts */
+.slang-typographic .slang-hero-content {
   position: relative;
   z-index: 10;
   max-width: 900px;
@@ -208,13 +207,10 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  /* Explicitly unset global grid properties */
-  grid-template-columns: unset;
-  gap: unset;
 }
 
-/* Override global .hero-title styles from globals.css */
-.slang-typographic .hero-title {
+/* Slang hero title - unique class to avoid global conflicts */
+.slang-typographic .slang-hero-title {
   font-family: var(--font-display);
   font-size: clamp(4rem, 20vw, 12rem);
   font-weight: 700;
@@ -224,34 +220,28 @@
   display: flex;
   justify-content: center;
   gap: 0.02em;
-  /* Reset global gradient/animation that may interfere */
-  background: none;
-  -webkit-text-fill-color: currentColor;
-  background-clip: border-box;
-  animation: none;
-  /* Story-specific color */
   color: var(--parchment);
 }
 
 /* Base state: VISIBLE (fallback if animation doesn't run) */
-.hero-letter {
+.slang-letter {
   display: inline-block;
   transition: transform var(--transition-medium);
   opacity: 1;
   transform: translateY(0) rotate(0deg);
 }
 
-.hero-letter:hover {
+.slang-letter:hover {
   transform: translateY(-10px) rotate(-3deg);
   color: var(--attestation-gold);
 }
 
 /* Animation only applied when .animate class is added via JS */
-.hero-title.animate .hero-s { animation: letter-appear 0.8s ease-out 0.1s both; }
-.hero-title.animate .hero-l { animation: letter-appear 0.8s ease-out 0.2s both; }
-.hero-title.animate .hero-a { animation: letter-appear 0.8s ease-out 0.3s both; }
-.hero-title.animate .hero-n { animation: letter-appear 0.8s ease-out 0.4s both; }
-.hero-title.animate .hero-g { animation: letter-appear 0.8s ease-out 0.5s both; }
+.slang-hero-title.animate .slang-s { animation: letter-appear 0.8s ease-out 0.1s both; }
+.slang-hero-title.animate .slang-l { animation: letter-appear 0.8s ease-out 0.2s both; }
+.slang-hero-title.animate .slang-a { animation: letter-appear 0.8s ease-out 0.3s both; }
+.slang-hero-title.animate .slang-n { animation: letter-appear 0.8s ease-out 0.4s both; }
+.slang-hero-title.animate .slang-g { animation: letter-appear 0.8s ease-out 0.5s both; }
 
 @keyframes letter-appear {
   from {
@@ -264,9 +254,8 @@
   }
 }
 
-/* Override global hero-tagline styles */
-/* Base state: VISIBLE */
-.slang-typographic .hero-tagline {
+/* Slang tagline - unique class to avoid global conflicts */
+.slang-typographic .slang-tagline {
   font-family: var(--font-mono);
   font-size: clamp(0.75rem, 2vw, 1rem);
   letter-spacing: 0.2em;
@@ -274,19 +263,15 @@
   color: var(--attestation-gold);
   margin: 0 0 var(--space-md);
   opacity: 1;
-  /* Reset any global overrides */
-  background: none;
-  -webkit-text-fill-color: currentColor;
 }
 
 /* Animation only when .animate class present */
-.slang-typographic .hero-section.animate .hero-tagline {
+.slang-typographic .hero-section.animate .slang-tagline {
   animation: fade-in 1s ease-out 0.8s both;
 }
 
-/* Override global hero-subtitle styles */
-/* Base state: VISIBLE */
-.slang-typographic .hero-subtitle {
+/* Slang subtitle - unique class to avoid global conflicts */
+.slang-typographic .slang-subtitle {
   font-family: var(--font-text);
   font-size: clamp(1rem, 2.5vw, 1.5rem);
   font-style: italic;
@@ -294,13 +279,10 @@
   max-width: 600px;
   margin: 0 auto var(--space-2xl);
   opacity: 1;
-  /* Reset any global overrides */
-  background: none;
-  -webkit-text-fill-color: currentColor;
 }
 
 /* Animation only when .animate class present */
-.slang-typographic .hero-section.animate .hero-subtitle {
+.slang-typographic .hero-section.animate .slang-subtitle {
   animation: fade-in 1s ease-out 1s both;
 }
 
@@ -999,7 +981,7 @@
     font-size: 1rem;
   }
 
-  .hero-title {
+  .slang-hero-title {
     flex-wrap: wrap;
   }
 
@@ -1057,9 +1039,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .float-word,
-  .hero-letter,
-  .hero-tagline,
-  .hero-subtitle,
+  .slang-letter,
+  .slang-tagline,
+  .slang-subtitle,
   .scroll-arrow {
     animation: none;
   }

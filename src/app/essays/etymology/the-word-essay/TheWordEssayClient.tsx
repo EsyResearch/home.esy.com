@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import './the-word-essay.css';
 
 /* ============================================
@@ -425,16 +426,30 @@ const SourcesSection: React.FC = () => {
 
 export default function TheWordEssayClient() {
   const [scrollProgress, setScrollProgress] = useState(0);
-  // Initialize with 'hero' already visible to prevent flash of unstyled content
-  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set(['hero']));
-  const [heroComplete, setHeroComplete] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set());
   const heroRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
+  
+  // Animation state - base is visible, animate class triggers entrance effects
+  const [animate, setAnimate] = useState(false);
 
-  // Mark as mounted to trigger hero animations after hydration
+  // Trigger animation on every navigation to this page
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
+    setAnimate(false);
+    
+    // Double requestAnimationFrame ensures DOM has updated before animating
+    let frame2: number;
+    const frame1 = requestAnimationFrame(() => {
+      frame2 = requestAnimationFrame(() => {
+        setAnimate(true);
+      });
+    });
+    
+    return () => {
+      cancelAnimationFrame(frame1);
+      cancelAnimationFrame(frame2);
+    };
+  }, [pathname]);
 
   // Track scroll progress
   useEffect(() => {
@@ -442,11 +457,6 @@ export default function TheWordEssayClient() {
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
       const currentProgress = window.scrollY / scrollHeight;
       setScrollProgress(Math.min(1, Math.max(0, currentProgress)));
-      
-      // Hero completion
-      if (window.scrollY > window.innerHeight * 0.8) {
-        setHeroComplete(true);
-      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -478,18 +488,18 @@ export default function TheWordEssayClient() {
       {/* Progress Indicator */}
       <WeighingScaleProgress progress={scrollProgress} chapters={chapters} />
 
-      {/* Hero Section */}
+      {/* Hero Section - animate class triggers entrance animations */}
       <section 
         ref={heroRef}
         id="hero" 
-        className={`hero-section ${isMounted && visibleSections.has('hero') ? 'visible' : ''}`}
+        className={`hero-section ${animate ? 'animate' : ''}`}
       >
         <div className="hero-background">
           <div className="paper-texture" />
           <div className="library-glow" />
         </div>
         
-        <div className="hero-content">
+        <div className={`essay-hero-content ${animate ? 'animate' : ''}`}>
           <div className="etymology-chain">
             <span className="etymology-word latin">exigere</span>
             <span className="etymology-arrow">→</span>
@@ -498,17 +508,17 @@ export default function TheWordEssayClient() {
             <span className="etymology-word english">essay</span>
           </div>
           
-          <h1 className="hero-title">
-            <span className="hero-word era-renaissance">ESSAIS</span>
+          <h1 className="essay-main-title">
+            <span className="essay-title-word">ESSAIS</span>
           </h1>
           
-          <p className="hero-subtitle">A History of Attempting to Think</p>
+          <p className="essay-subtitle">A History of Attempting to Think</p>
           
-          <p className="hero-tagline">
+          <p className="essay-tagline">
             How a humble French word meaning &ldquo;to try&rdquo; became the form that thinks out loud
           </p>
           
-          <div className="hero-quote">
+          <div className="essay-quote">
             <blockquote>
               <p>&ldquo;Que sais-je?&rdquo;</p>
               <footer>— Montaigne, 1580 — &ldquo;What do I know?&rdquo;</footer>

@@ -197,9 +197,9 @@
   background: radial-gradient(ellipse, rgba(114, 47, 55, 0.1) 0%, transparent 70%);
 }
 
-/* Override global .hero-content grid styles from globals.css
-   Using .the-word-essay scoping for higher specificity */
-.the-word-essay .hero-content {
+/* Essay hero content - unique class to avoid global conflicts */
+/* Base state: VISIBLE (content shows immediately, animations are opt-in) */
+.the-word-essay .essay-hero-content {
   position: relative;
   z-index: 2;
   max-width: 900px;
@@ -207,17 +207,24 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  /* Explicitly unset global grid properties */
-  grid-template-columns: unset;
-  gap: unset;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all var(--duration-slow) var(--easing-smooth);
+  opacity: 1;
+  transform: none;
 }
 
-.the-word-essay .hero-section.visible .hero-content {
-  opacity: 1;
-  transform: translateY(0);
+/* Animation only when .animate class is present */
+.the-word-essay .essay-hero-content.animate {
+  animation: heroContentFadeIn 0.8s ease-out forwards;
+}
+
+@keyframes heroContentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .the-word-essay .etymology-chain {
@@ -235,121 +242,158 @@
   font-style: italic;
   padding: 0.25rem 0.75rem;
   border-radius: 4px;
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: all var(--duration-normal) var(--easing-smooth);
+  opacity: 1;
+  transform: none;
 }
 
-.the-word-essay .hero-section.visible .etymology-word {
-  opacity: 1;
-  transform: translateX(0);
+/* Staggered animation for etymology chain */
+.the-word-essay .hero-section.animate .etymology-word {
+  animation: etymologyWordAppear 0.6s ease-out both;
+}
+
+.the-word-essay .hero-section.animate .etymology-word.latin {
+  animation-delay: 0.2s;
+}
+
+.the-word-essay .hero-section.animate .etymology-word.french {
+  animation-delay: 0.4s;
+}
+
+.the-word-essay .hero-section.animate .etymology-word.english {
+  animation-delay: 0.6s;
+}
+
+@keyframes etymologyWordAppear {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .the-word-essay .etymology-word.latin {
   background: rgba(139, 69, 19, 0.1);
   color: var(--color-sepia);
-  transition-delay: 0.2s;
 }
 
 .the-word-essay .etymology-word.french {
   background: rgba(114, 47, 55, 0.1);
   color: var(--color-bordeaux);
-  transition-delay: 0.4s;
 }
 
 .the-word-essay .etymology-word.english {
   background: rgba(91, 143, 185, 0.1);
   color: var(--color-enlightenment-blue);
-  transition-delay: 0.6s;
 }
 
 .the-word-essay .etymology-arrow {
   color: var(--color-text-secondary);
   font-size: 1.25rem;
-  opacity: 0;
-  transition: opacity var(--duration-normal) var(--easing-smooth);
-}
-
-.the-word-essay .hero-section.visible .etymology-arrow {
   opacity: 0.5;
-  transition-delay: 0.3s;
 }
 
-/* Override global .hero-title styles from globals.css */
-.the-word-essay .hero-title {
-  /* Reset global gradient/animation that may interfere */
-  background: none;
-  -webkit-text-fill-color: currentColor;
-  -webkit-background-clip: border-box;
-  background-clip: border-box;
-  animation: none;
+.the-word-essay .hero-section.animate .etymology-arrow {
+  animation: fadeIn 0.5s ease-out 0.3s both;
+}
+
+/* Essay main title - using unique class to avoid global .hero-title conflicts */
+.the-word-essay .essay-main-title {
   margin-bottom: var(--space-md);
+  text-align: center;
 }
 
-.the-word-essay .hero-word {
+.the-word-essay .essay-title-word {
   display: block;
   font-size: clamp(4rem, 15vw, 10rem);
   font-weight: 400;
   letter-spacing: 0.1em;
-  opacity: 0;
-  transform: scale(0.9);
-  transition: all 1s var(--easing-smooth);
-  transition-delay: 0.5s;
-}
-
-.the-word-essay .hero-section.visible .hero-word {
+  font-family: var(--font-display);
+  color: #722F37;
+  -webkit-text-fill-color: #722F37;
   opacity: 1;
-  transform: scale(1);
 }
 
-/* Override global .hero-subtitle styles from globals.css */
-.the-word-essay .hero-subtitle {
+/* Title scale-in animation */
+.the-word-essay .hero-section.animate .essay-title-word {
+  animation: titleScaleIn 1s ease-out 0.5s both;
+}
+
+@keyframes titleScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Essay subtitle - unique class to avoid global conflicts */
+.the-word-essay .essay-subtitle {
   font-family: var(--font-display);
   font-size: clamp(1.25rem, 3vw, 1.75rem);
   font-style: italic;
   color: var(--color-text-secondary);
   margin-bottom: var(--space-sm);
-  opacity: 0;
-  transition: opacity var(--duration-slow) var(--easing-smooth);
-  transition-delay: 0.8s;
-}
-
-.the-word-essay .hero-section.visible .hero-subtitle {
+  text-align: center;
   opacity: 1;
 }
 
-.the-word-essay .hero-tagline {
+/* Subtitle fade-in animation */
+.the-word-essay .hero-section.animate .essay-subtitle {
+  animation: fadeIn 0.8s ease-out 0.8s both;
+}
+
+.the-word-essay .essay-tagline {
   font-family: var(--font-body);
   font-size: 1.125rem;
   color: var(--color-text-secondary);
   max-width: 500px;
   margin: 0 auto var(--space-lg);
-  opacity: 0;
-  transition: opacity var(--duration-slow) var(--easing-smooth);
-  transition-delay: 1s;
-}
-
-.the-word-essay .hero-section.visible .hero-tagline {
+  text-align: center;
   opacity: 1;
 }
 
-.the-word-essay .hero-quote {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all var(--duration-slow) var(--easing-smooth);
-  transition-delay: 1.2s;
+/* Tagline fade-in animation */
+.the-word-essay .hero-section.animate .essay-tagline {
+  animation: fadeIn 0.8s ease-out 1s both;
 }
 
-.the-word-essay .hero-section.visible .hero-quote {
+.the-word-essay .essay-quote {
+  text-align: center;
   opacity: 1;
-  transform: translateY(0);
 }
 
-.the-word-essay .hero-quote blockquote {
+/* Quote slide-up animation */
+.the-word-essay .hero-section.animate .essay-quote {
+  animation: slideUp 0.8s ease-out 1.2s both;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.the-word-essay .essay-quote blockquote {
   margin: 0;
 }
 
-.the-word-essay .hero-quote p {
+.the-word-essay .essay-quote p {
   font-family: var(--font-display);
   font-size: 2rem;
   font-style: italic;
@@ -357,7 +401,7 @@
   margin: 0;
 }
 
-.the-word-essay .hero-quote footer {
+.the-word-essay .essay-quote footer {
   font-family: var(--font-sans);
   font-size: 0.875rem;
   color: var(--color-text-secondary);
@@ -373,8 +417,12 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  opacity: 0;
-  animation: fadeInUp 1s var(--easing-smooth) 2s forwards;
+  opacity: 1;
+}
+
+/* Scroll indicator delayed fade-in */
+.the-word-essay .hero-section.animate .scroll-indicator {
+  animation: fadeIn 1s ease-out 2s both;
 }
 
 .the-word-essay .scroll-indicator span {
@@ -1029,9 +1077,6 @@
     transition-duration: 0.01ms !important;
   }
   
-  .the-word-essay .hero-section.visible .hero-content,
-  .the-word-essay .hero-section.visible .etymology-word,
-  .the-word-essay .hero-section.visible .hero-word,
   .the-word-essay .chapter-section.visible,
   .the-word-essay .word-display.visible,
   .the-word-essay .figure-profile.visible,

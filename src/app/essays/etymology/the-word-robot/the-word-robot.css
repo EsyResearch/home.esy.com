@@ -199,13 +199,13 @@
   overflow: hidden;
 }
 
-.hero-background {
+.robot-hero-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
 }
 
-.hero-gradient {
+.robot-hero-gradient {
   position: absolute;
   inset: 0;
   background: 
@@ -215,7 +215,7 @@
     linear-gradient(180deg, var(--color-void-black) 0%, var(--color-machine-steel) 100%);
 }
 
-.hero-sparks {
+.robot-hero-sparks {
   position: absolute;
   inset: 0;
   overflow: hidden;
@@ -242,8 +242,8 @@
   }
 }
 
-/* Override global .hero-content grid styles */
-.robot-hero .hero-content {
+/* Robot hero content - unique class to avoid global CSS conflicts */
+.robot-hero .robot-hero-content {
   position: relative;
   z-index: 2;
   max-width: 900px;
@@ -251,11 +251,9 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  grid-template-columns: unset;
-  gap: unset;
 }
 
-.hero-forging-text {
+.robot-forging-text {
   font-family: var(--font-mono);
   font-size: 0.875rem;
   color: var(--color-copper-glow);
@@ -267,29 +265,24 @@
   gap: var(--spacing-sm);
 }
 
-.hero-forging-text::before,
-.hero-forging-text::after {
+.robot-forging-text::before,
+.robot-forging-text::after {
   content: '';
   width: 40px;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--color-copper-wire));
 }
 
-.hero-forging-text::after {
+.robot-forging-text::after {
   background: linear-gradient(90deg, var(--color-copper-wire), transparent);
 }
 
-/* Override global .hero-title styles */
-.robot-hero .hero-title {
+/* Robot main title - unique class to avoid global .hero-title conflicts */
+.robot-hero .robot-main-title {
   margin-bottom: var(--spacing-lg);
-  background: none;
-  -webkit-text-fill-color: currentColor;
-  background-clip: border-box;
-  -webkit-background-clip: border-box;
-  animation: none;
 }
 
-.hero-title-main {
+.robot-title-main {
   display: block;
   font-family: var(--font-display);
   font-size: clamp(4rem, 18vw, 14rem);
@@ -309,7 +302,7 @@
   text-shadow: 0 0 60px rgba(184, 115, 51, 0.3);
 }
 
-.hero-title-sub {
+.robot-title-sub {
   display: block;
   font-family: var(--font-display);
   font-size: clamp(1.25rem, 4vw, 2rem);
@@ -319,7 +312,7 @@
   letter-spacing: 0.05em;
 }
 
-.hero-tagline {
+.robot-tagline {
   font-size: 1.25rem;
   color: var(--color-text-muted);
   max-width: 700px;
@@ -328,7 +321,7 @@
   font-style: italic;
 }
 
-.hero-meta {
+.robot-meta {
   display: flex;
   justify-content: center;
   gap: var(--spacing-xl);
@@ -359,7 +352,7 @@
   margin-top: 0.25rem;
 }
 
-.hero-scroll-cue {
+.robot-scroll-cue {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -932,11 +925,11 @@
     font-size: 1.25rem;
   }
   
-  .hero-title-main {
+  .robot-title-main {
     letter-spacing: 0.1em;
   }
   
-  .hero-meta {
+  .robot-meta {
     gap: var(--spacing-lg);
   }
   
@@ -993,7 +986,7 @@
     animation: none;
   }
   
-  .hero-scroll-cue {
+  .robot-scroll-cue {
     animation: none;
   }
   

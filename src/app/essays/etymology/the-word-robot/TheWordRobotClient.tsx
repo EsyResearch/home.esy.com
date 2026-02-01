@@ -359,9 +359,9 @@ const TheWordRobotClient: React.FC = () => {
 
       {/* ==================== HERO SECTION ==================== */}
       <section className="robot-hero">
-        <div className="hero-background">
-          <div className="hero-gradient" />
-          <div className="hero-sparks">
+        <div className="robot-hero-bg">
+          <div className="robot-hero-gradient" />
+          <div className="robot-hero-sparks">
             {SPARK_POSITIONS.map((spark, i) => (
               <span 
                 key={i} 
@@ -376,23 +376,23 @@ const TheWordRobotClient: React.FC = () => {
             ))}
           </div>
         </div>
-        <div className="hero-content">
-          <div className="hero-forging-text">
+        <div className="robot-hero-content">
+          <div className="robot-forging-text">
             <span>Forged in Fiction • Built in Reality</span>
           </div>
-          <h1 className="hero-title">
-            <span className="hero-title-main">ROBOT</span>
-            <span className="hero-title-sub">Grand Machina</span>
+          <h1 className="robot-main-title">
+            <span className="robot-title-main">ROBOT</span>
+            <span className="robot-title-sub">Grand Machina</span>
           </h1>
-          <p className="hero-tagline">
+          <p className="robot-tagline">
             The Word That Built Our Future, and Now Shares Our Bed
           </p>
-          <div className="hero-meta">
+          <div className="robot-meta">
             <DataStat value="105" label="Years Since R.U.R." />
             <DataStat value="14" label="Key Figures" />
             <DataStat value="6" label="Cultural Eras" />
           </div>
-          <div className="hero-scroll-cue">
+          <div className="robot-scroll-cue">
             <span>Scroll to begin the journey</span>
             <div className="scroll-arrow" />
           </div>

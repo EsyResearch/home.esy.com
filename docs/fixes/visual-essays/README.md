@@ -2,22 +2,56 @@
 
 This directory contains fix patterns and solutions specific to **visual essays** (scrollytelling pages).
 
+## File Naming Convention
+
+All pattern files follow this format:
+
+```
+PATTERN-[kebab-case-description].md
+```
+
+**Guidelines:**
+- Prefix with `PATTERN-` (all caps)
+- Use kebab-case for the description
+- Be descriptive about the problem or solution
+- Keep it concise but clear
+
+**Examples:**
+- `PATTERN-base-visible-animate-class-animations.md` — Describes the technique
+- `PATTERN-global-css-hero-invisible-title-client-navigation.md` — Describes the problem context
+
+---
+
 ## Patterns
 
 | Pattern | Description |
 |---------|-------------|
+| [PATTERN-base-visible-animate-class-animations.md](./PATTERN-base-visible-animate-class-animations.md) | Robust animation pattern: base visible, `.animate` class triggers effects |
 | [PATTERN-global-css-hero-content-fix.md](./PATTERN-global-css-hero-content-fix.md) | Fix for invisible hero content caused by global CSS conflicts |
+| [PATTERN-global-css-hero-invisible-title-client-navigation.md](./PATTERN-global-css-hero-invisible-title-client-navigation.md) | Fix for hero titles invisible on client-side navigation |
 | [PATTERN-scroll-lock-unlock-transition.md](./PATTERN-scroll-lock-unlock-transition.md) | Fix for content disappearing when scroll-lock releases |
 
 ## Quick Reference
 
-When creating a new visual essay and the hero is broken:
+### Hero title invisible on client-side navigation (but shows on refresh):
+
+```
+@docs/fixes/visual-essays/PATTERN-global-css-hero-invisible-title-client-navigation.md
+```
+
+### Adding entrance animations that work reliably:
+
+```
+@docs/fixes/visual-essays/PATTERN-base-visible-animate-class-animations.md
+```
+
+### Hero content broken or misaligned:
 
 ```
 @docs/fixes/visual-essays/PATTERN-global-css-hero-content-fix.md
 ```
 
-When scroll-locked content disappears abruptly on unlock:
+### Scroll-locked content disappears abruptly on unlock:
 
 ```
 @docs/fixes/visual-essays/PATTERN-scroll-lock-unlock-transition.md
