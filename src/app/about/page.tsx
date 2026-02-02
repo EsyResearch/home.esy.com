@@ -3,15 +3,15 @@
 import React from 'react';
 import Link from 'next/link';
 import { 
-  Search,
   Users,
   GraduationCap,
-  PenTool,
-  BookOpen,
-  Wrench
+  Wrench,
+  FileText,
+  Search,
+  CheckCircle
 } from 'lucide-react';
 
-const AboutPage = () => {
+export default function AboutPage() {
   const theme = {
     bg: '#121215',
     elevated: '#1a1a1f',
@@ -25,42 +25,43 @@ const AboutPage = () => {
 
   const differentiators = [
     {
-      title: 'Workflows, not prompts',
-      description: 'Esy uses structured processes instead of one-off prompts. This helps people research more carefully and produce consistent, reliable results.'
+      title: 'Structured templates, not open-ended prompts',
+      description: 'Select from workflows designed for real outputs — essays, research briefs, visual essays — and complete a guided intake. No prompt engineering required.'
     },
     {
-      title: 'Artifacts, not chats',
-      description: 'Esy produces real outputs — documents, analyses, and educational materials you can return to later. Not temporary chat conversations that disappear.'
+      title: 'Publishable artifacts, not chat transcripts',
+      description: 'Esy produces finished documents you can use, share, and return to. Not temporary conversations that vanish after a session.'
     },
     {
-      title: 'Research before writing',
-      description: 'Information is gathered and organized first. Claims are connected to sources. Gaps and uncertainty are recorded instead of ignored.'
+      title: 'Orchestrated process, not one-shot generation',
+      description: 'Research, analysis, drafting, and quality assurance happen in sequence. Each step informs the next, producing outputs that are coherent and defensible.'
     },
     {
-      title: 'Human-led, AI-assisted',
-      description: 'AI helps explore sources, organize information, and refine drafts. People stay in control of decisions, conclusions, and authorship.'
+      title: 'Guided structure, not guesswork',
+      description: 'Think of the difference between asking ChatGPT to "make a logo" versus using Canva. Esy provides the structure; you provide the intent.'
     }
   ];
 
   const audiences = [
-    { icon: Search, text: 'Researchers and analysts who need to explain how they reached a conclusion' },
-    { icon: PenTool, text: 'Writers who want to think through structure before writing' },
-    { icon: GraduationCap, text: 'Students learning how to research and reason, not just what to submit' },
-    { icon: Users, text: 'Educators teaching structured inquiry and analysis' },
-    { icon: Wrench, text: 'Builders documenting complex ideas or systems' }
+    { icon: FileText, text: 'Anyone who needs a finished essay, brief, or document — not an AI draft to rewrite' },
+    { icon: Search, text: 'Researchers who want organized, source-backed outputs without juggling prompts' },
+    { icon: GraduationCap, text: 'Students learning to produce structured, credible academic work' },
+    { icon: Users, text: 'Educators who need reliable materials for teaching complex topics' },
+    { icon: Wrench, text: 'Professionals documenting ideas, processes, or analyses for real use' }
   ];
 
-  const workflowElements = [
-    'what research to gather',
-    'how to organize and check it',
-    'what is produced at each stage'
+  const artifactTypes = [
+    'Academic essays with proper structure and citations',
+    'Research briefs that synthesize sources into clear takeaways',
+    'Visual essays that combine narrative, analysis, and graphics',
+    'Educational materials designed for learning and reference'
   ];
 
-  const visualEssayElements = [
-    'researched narrative and explanation',
-    'academic-style analysis with sources',
-    'infographics, diagrams, or timelines',
-    'charts or data-driven visuals'
+  const processSteps = [
+    { label: 'Select a template', desc: 'Choose the type of artifact you need' },
+    { label: 'Complete the intake', desc: 'Answer guided questions to capture your intent' },
+    { label: 'Let Esy orchestrate', desc: 'Research, drafting, and QA happen automatically' },
+    { label: 'Receive a finished artifact', desc: 'Publishable output, ready to use' }
   ];
 
   return (
@@ -94,7 +95,7 @@ const AboutPage = () => {
           marginBottom: '1.75rem',
           fontWeight: 400
         }}>
-          Esy (pronounced &quot;Eh-see&quot;) is a workflow-based research platform.
+          Esy (pronounced &quot;Eh-see&quot;) is a workflow-driven AI platform that turns intent into finished, publishable artifacts.
         </p>
 
         <p style={{
@@ -103,16 +104,7 @@ const AboutPage = () => {
           color: theme.muted,
           marginBottom: '1.5rem'
         }}>
-          It helps people research complex topics and turn that research into clear, publishable work.
-        </p>
-
-        <p style={{
-          fontSize: '1.125rem',
-          lineHeight: 1.85,
-          color: theme.subtle,
-          marginBottom: '1.5rem'
-        }}>
-          It&apos;s built for people who don&apos;t just want fast answers, but need to understand a subject, organize what they find, and produce work they can trust and return to later.
+          Instead of typing open-ended prompts, users select a structured template — such as an academic essay, research brief, or visual essay — and complete an intake designed to capture what they actually want.
         </p>
 
         <p style={{
@@ -122,11 +114,11 @@ const AboutPage = () => {
           fontWeight: 500,
           fontStyle: 'italic'
         }}>
-          Esy keeps the research and the reasoning — not just the final text.
+          Esy orchestrates research, analysis, drafting, and quality assurance to produce outputs that are defensible, coherent, and ready to use.
         </p>
       </section>
 
-      {/* Why Esy Exists */}
+      {/* The Difference */}
       <section style={{
         padding: '5rem 2rem',
         backgroundColor: theme.elevated,
@@ -141,7 +133,7 @@ const AboutPage = () => {
             letterSpacing: '-0.01em',
             fontFamily: 'var(--font-literata)'
           }}>
-            Why Esy exists
+            Why Esy is different
           </h2>
 
           <p style={{
@@ -150,48 +142,45 @@ const AboutPage = () => {
             color: theme.muted,
             marginBottom: '1.5rem'
           }}>
-            Most modern tools are built for speed.
+            Most AI tools require you to learn prompt engineering — crafting the right question to get a useful answer. Even then, results are often experimental: drafts that need heavy editing, outputs that require fact-checking, conversations that disappear.
           </p>
 
-          <p style={{
-            fontSize: '1.125rem',
-            lineHeight: 1.85,
-            color: theme.muted,
+          <div style={{
+            padding: '1.75rem',
+            borderRadius: '12px',
+            border: `1px solid ${theme.accent}`,
+            backgroundColor: 'rgba(59, 130, 246, 0.05)',
             marginBottom: '1.5rem'
           }}>
-            They jump straight to output, hide the research behind it, and use AI to generate text as quickly as possible. That can work for simple tasks — but it breaks down when accuracy, depth, or trust matter.
-          </p>
+            <p style={{
+              fontSize: '1.125rem',
+              lineHeight: 1.8,
+              color: theme.text,
+              fontWeight: 500,
+              marginBottom: '0.75rem'
+            }}>
+              Think of the difference between asking ChatGPT to &quot;make a logo&quot; and using Canva.
+            </p>
+            <p style={{
+              fontSize: '1rem',
+              lineHeight: 1.8,
+              color: theme.muted
+            }}>
+              Guided structure replaces guesswork, and the result is something real — not experimental.
+            </p>
+          </div>
 
           <p style={{
             fontSize: '1.125rem',
             lineHeight: 1.85,
-            color: theme.text,
-            fontWeight: 500,
-            marginBottom: '1.5rem'
+            color: theme.muted
           }}>
-            Esy takes a different approach.
-          </p>
-
-          <p style={{
-            fontSize: '1.125rem',
-            lineHeight: 1.85,
-            color: theme.muted,
-            marginBottom: '1.5rem'
-          }}>
-            Good work starts with doing the research properly, not just writing faster. Understanding where information comes from, how ideas connect, and why conclusions make sense is part of the work — not something to skip.
-          </p>
-
-          <p style={{
-            fontSize: '1.125rem',
-            lineHeight: 1.85,
-            color: theme.subtle
-          }}>
-            Esy is designed to support that full process, even when it takes more time.
+            Esy provides that structure. You don&apos;t need to learn prompts or interact with a chat interface. You select what you want to create, answer guided questions, and receive a finished artifact.
           </p>
         </div>
       </section>
 
-      {/* From Research to Publication */}
+      {/* How It Works */}
       <section style={{
         padding: '6rem 2rem',
         maxWidth: '800px',
@@ -204,92 +193,69 @@ const AboutPage = () => {
           letterSpacing: '-0.01em',
           fontFamily: 'var(--font-literata)'
         }}>
-          From research to publication
+          How Esy works
         </h2>
 
         <p style={{
           fontSize: '1.125rem',
           lineHeight: 1.85,
           color: theme.muted,
-          marginBottom: '1.5rem'
+          marginBottom: '2rem'
         }}>
-          The name Esy comes from the word{' '}
-          <Link 
-            href="/essays/etymology/the-word-essay/" 
-            style={{ 
-              color: theme.muted, 
-              textDecoration: 'none',
-              borderBottom: `1px solid ${theme.faint}`,
-              fontStyle: 'italic',
-              transition: 'border-color 0.2s ease'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.borderColor = theme.accent}
-            onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.faint}
-          >
-            essay
-          </Link>, which originally meant an attempt or a way of thinking something through.
-        </p>
-
-        <p style={{
-          fontSize: '1.125rem',
-          lineHeight: 1.85,
-          color: theme.muted,
-          marginBottom: '1.5rem'
-        }}>
-          Essays are still one way to present ideas. But Esy focuses on what comes before — and what supports — the final piece of writing.
-        </p>
-
-        <p style={{
-          fontSize: '1.125rem',
-          lineHeight: 1.85,
-          color: theme.text,
-          fontWeight: 500,
-          marginBottom: '1.5rem'
-        }}>
-          At the core of Esy are workflows.
-        </p>
-
-        <p style={{
-          fontSize: '1.125rem',
-          lineHeight: 1.85,
-          color: theme.muted,
-          marginBottom: '1.5rem'
-        }}>
-          A workflow is a clear, repeatable process that guides work from research to a finished result without losing important steps along the way.
+          Every Esy workflow follows a clear process — from your intent to a finished, usable result.
         </p>
 
         <div style={{
-          padding: '1.5rem',
-          borderRadius: '12px',
-          border: `1px solid ${theme.border}`,
-          backgroundColor: 'rgba(255, 255, 255, 0.02)',
-          marginBottom: '1.5rem'
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1.5rem',
+          marginBottom: '2.5rem'
         }}>
-          <p style={{
-            fontSize: '1rem',
-            lineHeight: 1.8,
-            color: theme.subtle,
-            marginBottom: '1rem'
-          }}>
-            Each workflow defines:
-          </p>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '0.5rem'
-          }}>
-            {workflowElements.map((item, index) => (
-              <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <div style={{
-                  width: '6px',
-                  height: '6px',
-                  borderRadius: '50%',
-                  backgroundColor: theme.accent
-                }} />
-                <span style={{ fontSize: '1rem', color: theme.muted }}>{item}</span>
+          {processSteps.map((step, index) => (
+            <div key={index} style={{
+              display: 'grid',
+              gridTemplateColumns: '48px 1fr',
+              gap: '1.25rem',
+              alignItems: 'start'
+            }}>
+              <div style={{
+                width: '48px',
+                height: '48px',
+                borderRadius: '12px',
+                border: `1px solid ${theme.border}`,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: index === 3 ? theme.accent : 'rgba(255, 255, 255, 0.02)',
+                flexShrink: 0
+              }}>
+                <span style={{
+                  fontSize: '1.125rem',
+                  fontWeight: 600,
+                  color: index === 3 ? 'white' : theme.muted
+                }}>
+                  {index + 1}
+                </span>
               </div>
-            ))}
-          </div>
+              <div style={{ paddingTop: '0.25rem' }}>
+                <h3 style={{
+                  fontSize: '1.125rem',
+                  fontWeight: 600,
+                  marginBottom: '0.375rem',
+                  color: theme.text
+                }}>
+                  {step.label}
+                </h3>
+                <p style={{
+                  fontSize: '1rem',
+                  lineHeight: 1.7,
+                  color: theme.subtle
+                }}>
+                  {step.desc}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
 
         <p style={{
@@ -297,11 +263,11 @@ const AboutPage = () => {
           lineHeight: 1.85,
           color: theme.subtle
         }}>
-          This makes the research process easier to follow, easier to review, and easier to improve over time.
+          Behind the scenes, Esy orchestrates multiple AI capabilities — research gathering, source verification, content structuring, drafting, and quality checks — so you don&apos;t have to manage them yourself.
         </p>
       </section>
 
-      {/* Visual Essays Section */}
+      {/* What Esy Creates */}
       <section style={{
         padding: '5rem 2rem',
         backgroundColor: theme.elevated,
@@ -316,7 +282,7 @@ const AboutPage = () => {
             letterSpacing: '-0.01em',
             fontFamily: 'var(--font-literata)'
           }}>
-            Visual Essays: the North Star artifact
+            What Esy creates
           </h2>
 
           <p style={{
@@ -325,7 +291,58 @@ const AboutPage = () => {
             color: theme.muted,
             marginBottom: '1.5rem'
           }}>
-            At the center of Esy is a type of publishable work we call{' '}
+            Esy produces structured, publishable artifacts — not rough drafts or chat outputs. Each workflow is designed to create something real:
+          </p>
+
+          <div style={{
+            padding: '1.5rem',
+            borderRadius: '12px',
+            border: `1px solid ${theme.border}`,
+            backgroundColor: 'rgba(255, 255, 255, 0.02)',
+            marginBottom: '1.5rem'
+          }}>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem'
+            }}>
+              {artifactTypes.map((item, index) => (
+                <div key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                  <CheckCircle size={18} color={theme.accent} style={{ marginTop: '2px', flexShrink: 0 }} />
+                  <span style={{ fontSize: '1rem', color: theme.muted, lineHeight: 1.6 }}>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <p style={{
+            fontSize: '1.125rem',
+            lineHeight: 1.85,
+            color: theme.muted,
+            marginBottom: '1.5rem'
+          }}>
+            The name Esy comes from the word{' '}
+            <Link 
+              href="/essays/etymology/the-word-essay/" 
+              style={{ 
+                color: theme.muted, 
+                textDecoration: 'none',
+                borderBottom: `1px solid ${theme.faint}`,
+                fontStyle: 'italic',
+                transition: 'border-color 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.borderColor = theme.accent}
+              onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.faint}
+            >
+              essay
+            </Link>, which originally meant an attempt — a way of thinking something through. Esy helps you move from attempt to artifact.
+          </p>
+
+          <p style={{
+            fontSize: '1.125rem',
+            lineHeight: 1.85,
+            color: theme.subtle
+          }}>
             <Link 
               href="/essays" 
               style={{ 
@@ -339,86 +356,7 @@ const AboutPage = () => {
               onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.faint}
             >
               Visual Essays
-            </Link>.
-          </p>
-
-          <p style={{
-            fontSize: '1.125rem',
-            lineHeight: 1.85,
-            color: theme.muted,
-            marginBottom: '1.5rem'
-          }}>
-            Visual essays are long-form educational pieces that combine research, writing, and visuals into a single, coherent artifact. They are designed to explain complex topics clearly — not just through text, but through structure, layout, diagrams, and visual narrative.
-          </p>
-
-          <p style={{
-            fontSize: '1.125rem',
-            lineHeight: 1.85,
-            color: theme.text,
-            fontWeight: 500,
-            marginBottom: '1.5rem'
-          }}>
-            Visual essays are Esy&apos;s North Star artifact.
-          </p>
-
-          <p style={{
-            fontSize: '1.125rem',
-            lineHeight: 1.85,
-            color: theme.muted,
-            marginBottom: '1.5rem'
-          }}>
-            Not because they are the only thing Esy produces — but because they best demonstrate what Esy makes possible when multiple workflows are combined into one finished piece.
-          </p>
-
-          <div style={{
-            padding: '1.5rem',
-            borderRadius: '12px',
-            border: `1px solid ${theme.border}`,
-            backgroundColor: 'rgba(255, 255, 255, 0.02)',
-            marginBottom: '1.5rem'
-          }}>
-            <p style={{
-              fontSize: '1rem',
-              lineHeight: 1.8,
-              color: theme.subtle,
-              marginBottom: '1rem'
-            }}>
-              A visual essay might bring together:
-            </p>
-            <div style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '0.5rem'
-            }}>
-              {visualEssayElements.map((item, index) => (
-                <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <div style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    backgroundColor: theme.accent
-                  }} />
-                  <span style={{ fontSize: '1rem', color: theme.muted }}>{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <p style={{
-            fontSize: '1.125rem',
-            lineHeight: 1.85,
-            color: theme.muted,
-            marginBottom: '1.5rem'
-          }}>
-            Each of these elements can be developed through its own workflow. A visual essay brings them together into a single, publishable work — showing how research, analysis, and visuals can connect without losing clarity.
-          </p>
-
-          <p style={{
-            fontSize: '1.125rem',
-            lineHeight: 1.85,
-            color: theme.subtle
-          }}>
-            Visual essays are not a special mode or separate product. They are a demonstration of Esy&apos;s full range — a way to show how different kinds of work can be composed into major educational pieces.
+            </Link> — long-form pieces combining research, narrative, and graphics — represent Esy&apos;s most comprehensive workflow, demonstrating what&apos;s possible when multiple capabilities are composed into a single artifact.
           </p>
         </div>
       </section>
@@ -506,16 +444,7 @@ const AboutPage = () => {
             color: theme.muted,
             marginBottom: '2rem'
           }}>
-            Esy is for people who need help researching complex topics and turning that research into clear, publishable work.
-          </p>
-
-          <p style={{
-            fontSize: '1.125rem',
-            lineHeight: 1.85,
-            color: theme.subtle,
-            marginBottom: '2rem'
-          }}>
-            That includes:
+            Esy is for anyone who needs to produce real work — without becoming a prompt engineer.
           </p>
 
           <div style={{
@@ -565,7 +494,7 @@ const AboutPage = () => {
             paddingTop: '2rem',
             borderTop: `1px solid ${theme.border}`
           }}>
-            Esy is for anyone frustrated with shallow AI output and looking for work that lasts beyond a single session.
+            If you&apos;ve been frustrated by AI tools that require endless prompting and still produce unusable output, Esy offers a different path.
           </p>
         </div>
       </section>
@@ -596,7 +525,7 @@ const AboutPage = () => {
           paddingLeft: '1.5rem',
           borderLeft: `2px solid ${theme.accent}`
         }}>
-          Research and writing are processes, not shortcuts.
+          AI should produce work you can use — not experiments you have to fix.
         </blockquote>
 
         <p style={{
@@ -605,7 +534,7 @@ const AboutPage = () => {
           color: theme.muted,
           marginBottom: '2rem'
         }}>
-          Esy values:
+          Esy is built on a simple belief: the value of AI isn&apos;t in generating text faster — it&apos;s in producing artifacts that are actually usable.
         </p>
 
         <div style={{
@@ -615,9 +544,9 @@ const AboutPage = () => {
           marginBottom: '2.5rem'
         }}>
           {[
-            'clarity over speed',
-            'understanding over volume',
-            'trust over hype'
+            'Structure over prompting',
+            'Artifacts over conversations',
+            'Ready-to-use over requires-editing'
           ].map((value, index) => (
             <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               <div style={{
@@ -640,7 +569,7 @@ const AboutPage = () => {
           lineHeight: 1.85,
           color: theme.subtle
         }}>
-          Our goal is to become a reliable place for serious work — where research is preserved, reasoning is visible, and ideas can move from exploration to publication without losing their meaning.
+          Our goal is to make AI genuinely useful — not as a brainstorming partner or chat companion, but as a reliable system that transforms what you want into something finished.
         </p>
       </section>
 
@@ -676,6 +605,4 @@ const AboutPage = () => {
       </section>
     </div>
   );
-};
-
-export default AboutPage;
+}
