@@ -295,29 +295,7 @@ export default function Navigation({
                     >
                       <div className="nav-artifact-content">
                         <span className="nav-artifact-title">Essays</span>
-                        <span className="nav-artifact-desc">Long-form research narratives</span>
-                      </div>
-                    </Link>
-                    
-                    <Link 
-                      href="/scrollytelling/" 
-                      className="nav-artifact-item"
-                      onClick={() => setIsArtifactsOpen(false)}
-                    >
-                      <div className="nav-artifact-content">
-                        <span className="nav-artifact-title">Visual Essays</span>
-                        <span className="nav-artifact-desc">Interactive storytelling</span>
-                      </div>
-                    </Link>
-                    
-                    <Link 
-                      href="/school/" 
-                      className="nav-artifact-item"
-                      onClick={() => setIsArtifactsOpen(false)}
-                    >
-                      <div className="nav-artifact-content">
-                        <span className="nav-artifact-title">Learning Materials</span>
-                        <span className="nav-artifact-desc">Worksheets, flashcards, guides</span>
+                        <span className="nav-artifact-desc">Visual research narratives</span>
                       </div>
                     </Link>
                   </div>
@@ -347,14 +325,29 @@ export default function Navigation({
               Templates
             </Link>
 
-            {/* App CTA */}
+            {/* App CTA - toned down */}
               <a 
                 href={ctaConfig.ctaHref}
               target="_blank"
               rel="noopener noreferrer"
-                className="nav-cta"
+                className="nav-cta-muted"
                 style={{
-                  backgroundColor: isLightMode ? '#7c3aed' : '#8b5cf6',
+                  padding: '8px 16px',
+                  borderRadius: '8px',
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                  color: isLightMode ? '#6b7280' : 'rgba(255, 255, 255, 0.6)',
+                  background: 'transparent',
+                  border: isLightMode ? '1px solid #e5e7eb' : '1px solid rgba(255, 255, 255, 0.15)',
+                  transition: 'all 0.2s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = isLightMode ? '#374151' : 'rgba(255, 255, 255, 0.9)';
+                  e.currentTarget.style.borderColor = isLightMode ? '#d1d5db' : 'rgba(255, 255, 255, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = isLightMode ? '#6b7280' : 'rgba(255, 255, 255, 0.6)';
+                  e.currentTarget.style.borderColor = isLightMode ? '#e5e7eb' : 'rgba(255, 255, 255, 0.15)';
                 }}
               >
               App
@@ -406,23 +399,7 @@ export default function Navigation({
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <span className="mobile-nav-subitem-title">Essays</span>
-                    <span className="mobile-nav-subitem-desc">Long-form research</span>
-                  </Link>
-                  <Link 
-                    href="/scrollytelling/" 
-                    className="mobile-nav-subitem"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <span className="mobile-nav-subitem-title">Visual Essays</span>
-                    <span className="mobile-nav-subitem-desc">Interactive storytelling</span>
-                  </Link>
-                  <Link 
-                    href="/school/" 
-                    className="mobile-nav-subitem"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <span className="mobile-nav-subitem-title">Learning Materials</span>
-                    <span className="mobile-nav-subitem-desc">Worksheets & guides</span>
+                    <span className="mobile-nav-subitem-desc">Visual research narratives</span>
                   </Link>
                 </div>
               )}
@@ -447,6 +424,11 @@ export default function Navigation({
                   rel="noopener noreferrer"
                   className="mobile-nav-cta-button"
                   onClick={() => setIsMobileMenuOpen(false)}
+                  style={{
+                    background: 'transparent',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    color: 'rgba(255, 255, 255, 0.7)',
+                  }}
                 >
                 Open App
                 </a>

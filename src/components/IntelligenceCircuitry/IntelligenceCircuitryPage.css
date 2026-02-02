@@ -314,7 +314,7 @@
   align-items: center;
   gap: var(--ic-space-sm);
   padding: 14px 24px;
-  background: var(--ic-gradient-hero);
+  background: #8b5cf6;
   color: #fff;
   font-weight: 600;
   font-size: 0.9375rem;
@@ -411,7 +411,7 @@
   position: relative;
   width: 100%;
   max-width: 400px;
-  aspect-ratio: 400 / 520;
+  aspect-ratio: 400 / 430;
 }
 
 .circuit-canvas {
@@ -768,188 +768,201 @@
 }
 
 /* ============================================
-   PROCESS / QUALITY GATES SECTION
+   HOW IT WORKS SECTION
+   Clean, minimal 4-step process
    ============================================ */
-.ic-process-section {
-  padding: var(--ic-space-4xl) 0;
-  background: var(--ic-bg);
-  border-top: 1px solid var(--ic-border-subtle);
+.hiw-section {
+  padding: 120px 0;
+  background: linear-gradient(180deg, #08080c 0%, #0c0c12 100%);
   position: relative;
-  overflow: hidden;
 }
 
-.ic-process-section::before {
+.hiw-section::before {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.03) 0%, transparent 70%);
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
 }
 
-/* Process Steps */
-.ic-process-steps {
+.hiw-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Header */
+.hiw-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.hiw-label {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8b5cf6;
+  margin-bottom: 20px;
+  padding: 8px 16px;
+  background: rgba(139, 92, 246, 0.08);
+  border-radius: 4px;
+}
+
+.hiw-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 300;
+  color: #fafafa;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+/* Steps Grid - Horizontal on desktop */
+.hiw-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--ic-space-lg);
-  margin-bottom: var(--ic-space-3xl);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
   position: relative;
 }
 
-@media (min-width: 768px) {
-  .ic-process-steps {
-    grid-template-columns: repeat(4, 1fr);
-  }
+/* Connecting line between steps */
+.hiw-grid::before {
+  content: '';
+  position: absolute;
+  top: 32px;
+  left: 60px;
+  right: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    #8b5cf6 0%, 
+    rgba(139, 92, 246, 0.5) 33%,
+    rgba(139, 92, 246, 0.5) 66%,
+    #8b5cf6 100%
+  );
 }
 
-.ic-process-line {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .ic-process-line {
-    display: block;
-    position: absolute;
-    top: 32px;
-    left: 12%;
-    right: 12%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--ic-accent) 0%, var(--ic-accent-pink) 100%);
-    opacity: 0.15;
-    z-index: 0;
-  }
-}
-
-.ic-process-step {
+/* Individual Step */
+.hiw-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   position: relative;
-  z-index: 1;
+  padding: 0 16px;
 }
 
-.ic-process-node {
+/* Step Number */
+.hiw-step-number {
   width: 64px;
   height: 64px;
-  margin: 0 auto var(--ic-space-md);
-  background: var(--ic-surface);
-  border: 2px solid var(--ic-border);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s var(--ic-ease);
-}
-
-.ic-process-step:hover .ic-process-node {
-  background: var(--ic-gradient-hero);
-  border-color: transparent;
-  transform: scale(1.1);
-}
-
-.ic-process-number {
-  font-family: var(--ic-font-mono);
-  font-size: 1rem;
+  background: #0c0c12;
+  border: 2px solid #8b5cf6;
+  border-radius: 50%;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
   font-weight: 600;
-  color: var(--ic-accent);
-  transition: color 0.3s var(--ic-ease);
+  color: #8b5cf6;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 
+    0 0 0 8px #0c0c12,
+    0 0 20px rgba(139, 92, 246, 0.2);
 }
 
-.ic-process-step:hover .ic-process-number {
-  color: #fff;
+/* Step Title */
+.hiw-step-title {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #fafafa;
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
 }
 
-.ic-process-title {
-  font-family: var(--ic-font-display);
-  font-size: 1.125rem;
+/* Step Description */
+.hiw-step-description {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 14px;
   font-weight: 400;
-  margin-bottom: var(--ic-space-xs);
+  color: rgba(250, 250, 250, 0.55);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 200px;
 }
 
-.ic-process-description {
-  font-size: 0.8125rem;
-  color: var(--ic-text-muted);
-  max-width: 180px;
-  margin: 0 auto;
+/* Arrow between steps (hidden on mobile) */
+.hiw-step-arrow {
+  display: none;
 }
 
-/* Quality Gates Container */
-.ic-gates-container {
-  background: var(--ic-surface);
-  border: 1px solid var(--ic-border);
-  border-radius: 20px;
-  padding: var(--ic-space-xl);
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.ic-gates-header {
-  text-align: center;
-  margin-bottom: var(--ic-space-lg);
-}
-
-.ic-gates-label {
-  font-family: var(--ic-font-mono);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--ic-gate-pass);
-  display: block;
-  margin-bottom: var(--ic-space-xs);
-}
-
-.ic-gates-tagline {
-  font-size: 0.9375rem;
-  color: var(--ic-text-muted);
-}
-
-/* Gates Grid */
-.ic-gates-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--ic-space-md);
-}
-
-@media (min-width: 768px) {
-  .ic-gates-grid {
-    grid-template-columns: repeat(4, 1fr);
+/* ============================================
+   HOW IT WORKS - TABLET
+   ============================================ */
+@media (max-width: 900px) {
+  .hiw-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px 24px;
+  }
+  
+  .hiw-grid::before {
+    display: none;
+  }
+  
+  .hiw-step-number {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
   }
 }
 
-.ic-gate-card {
-  text-align: center;
-  padding: var(--ic-space-md);
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
-  transition: all 0.3s var(--ic-ease);
-}
-
-.ic-gate-card:hover {
-  background: rgba(34, 197, 94, 0.05);
-}
-
-.ic-gate-symbol {
-  font-family: var(--ic-font-mono);
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--ic-gate-pass);
-  margin-bottom: var(--ic-space-xs);
-}
-
-.ic-gate-name {
-  font-family: var(--ic-font-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--ic-text);
-  margin-bottom: 4px;
-}
-
-.ic-gate-description {
-  font-size: 0.6875rem;
-  color: var(--ic-text-subtle);
-  line-height: 1.4;
+/* ============================================
+   HOW IT WORKS - MOBILE
+   ============================================ */
+@media (max-width: 600px) {
+  .hiw-section {
+    padding: 80px 0;
+  }
+  
+  .hiw-header {
+    margin-bottom: 56px;
+  }
+  
+  .hiw-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .hiw-step {
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 0;
+  }
+  
+  .hiw-step-number {
+    width: 52px;
+    height: 52px;
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-bottom: 0;
+  }
+  
+  .hiw-step-content {
+    flex: 1;
+  }
+  
+  .hiw-step-description {
+    max-width: none;
+  }
 }
 
 /* ============================================
@@ -1196,11 +1209,53 @@
   transform: translateX(0);
 }
 
-/* Trust metadata */
+/* Trust metadata - elegant verification display */
 .ic-artifact-trust {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin-top: calc(var(--ic-space-xs) * 0.75);
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+}
+
+.ic-trust-sources,
+.ic-trust-qa {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ic-trust-count {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  font-variant-numeric: tabular-nums;
+}
+
+.ic-trust-label {
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+}
+
+.ic-trust-divider {
+  width: 1px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.ic-trust-qa {
+  color: rgba(52, 211, 153, 0.9);
+}
+
+.ic-trust-check {
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.ic-trust-qa .ic-trust-label {
+  color: rgba(52, 211, 153, 0.7);
 }
 
 /* Gallery Footer */

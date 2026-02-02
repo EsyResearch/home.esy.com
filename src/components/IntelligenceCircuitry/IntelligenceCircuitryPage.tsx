@@ -65,36 +65,28 @@ const templates = [
   },
 ];
 
-// Quality gates for the pipeline section
-const qualityGates = [
-  {
-    symbol: '∧',
-    name: 'Evidence Gate',
-    description: 'Every claim requires supporting source',
+// How It Works - simplified to core value props
+const howItWorksSteps = [
+  { 
+    number: '01', 
+    title: 'Pick a Template',
+    description: 'Essay, visual narrative, research brief, or infographic.'
   },
-  {
-    symbol: '∨',
-    name: 'Structure Gate',
-    description: 'Argument flow validated against template',
+  { 
+    number: '02', 
+    title: 'Add Your Sources',
+    description: 'PDFs, citations, notes — Esy uses only what you provide.'
   },
-  {
-    symbol: '¬',
-    name: 'Citation Gate',
-    description: 'No unsourced assertions pass through',
+  { 
+    number: '03', 
+    title: 'Verified Output',
+    description: 'Every claim traced to a source. Every source cited.'
   },
-  {
-    symbol: '≡',
-    name: 'Consistency Gate',
-    description: 'Style and voice remain coherent',
+  { 
+    number: '04', 
+    title: 'Publish or Export',
+    description: 'Download, share, or keep editing. It\'s yours.'
   },
-];
-
-// Process steps
-const processSteps = [
-  { number: '01', title: 'Choose Template', description: 'Select the artifact type you need' },
-  { number: '02', title: 'Provide Intake', description: 'Add your sources and parameters' },
-  { number: '03', title: 'QA Gates Run', description: 'Esy verifies claims and structure' },
-  { number: '04', title: 'Get Artifact', description: 'Publish-ready, fully sourced output' },
 ];
 
 // Featured artifacts for gallery - using essay data with source counts
@@ -123,6 +115,137 @@ const getEssayImage = (essay: VisualEssay): string => {
   return '/og/default.png';
 };
 
+/**
+ * HowItWorksSection Component
+ * 
+ * Clean, minimal 4-step process visualization.
+ * No animations. Pure clarity.
+ */
+const HowItWorksSection: React.FC = () => {
+  return (
+    <section 
+      className="hiw-section"
+      style={{
+        padding: '100px 0',
+        background: 'linear-gradient(180deg, #08080c 0%, #0c0c12 100%)',
+        position: 'relative',
+        borderTop: '1px solid rgba(139, 92, 246, 0.2)',
+      }}
+    >
+      <div 
+        className="hiw-container"
+        style={{
+          maxWidth: '1100px',
+          margin: '0 auto',
+          padding: '0 24px',
+        }}
+      >
+        {/* Header */}
+        <div style={{ textAlign: 'center', marginBottom: '72px' }}>
+          <span 
+            style={{
+              display: 'inline-block',
+              fontFamily: 'JetBrains Mono, monospace',
+              fontSize: '11px',
+              fontWeight: 500,
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: '#8b5cf6',
+              marginBottom: '20px',
+              padding: '8px 16px',
+              background: 'rgba(139, 92, 246, 0.08)',
+              borderRadius: '4px',
+            }}
+          >
+            How It Works
+          </span>
+          <h2 
+            style={{
+              fontFamily: 'Cormorant Garamond, Georgia, serif',
+              fontSize: 'clamp(32px, 5vw, 48px)',
+              fontWeight: 300,
+              color: '#fafafa',
+              lineHeight: 1.15,
+              letterSpacing: '-0.02em',
+              margin: 0,
+            }}
+          >
+            Four steps to defensible work
+          </h2>
+        </div>
+
+        {/* Steps Grid */}
+        <div 
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: '32px',
+            position: 'relative',
+          }}
+        >
+          {howItWorksSteps.map((step) => (
+            <div 
+              key={step.number} 
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                textAlign: 'center',
+              }}
+            >
+              <div 
+                style={{
+                  width: '64px',
+                  height: '64px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: '#0c0c12',
+                  border: '2px solid #8b5cf6',
+                  borderRadius: '50%',
+                  fontFamily: 'JetBrains Mono, monospace',
+                  fontSize: '18px',
+                  fontWeight: 600,
+                  color: '#8b5cf6',
+                  marginBottom: '24px',
+                  boxShadow: '0 0 20px rgba(139, 92, 246, 0.2)',
+                }}
+              >
+                {step.number}
+              </div>
+              <h3 
+                style={{
+                  fontFamily: 'Inter, -apple-system, sans-serif',
+                  fontSize: '17px',
+                  fontWeight: 600,
+                  color: '#fafafa',
+                  margin: '0 0 10px',
+                  letterSpacing: '-0.01em',
+                }}
+              >
+                {step.title}
+              </h3>
+              <p 
+                style={{
+                  fontFamily: 'Inter, -apple-system, sans-serif',
+                  fontSize: '14px',
+                  fontWeight: 400,
+                  color: 'rgba(250, 250, 250, 0.55)',
+                  lineHeight: 1.6,
+                  margin: 0,
+                  maxWidth: '200px',
+                }}
+              >
+                {step.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const IntelligenceCircuitryPage: React.FC = () => {
   return (
     <div className="ic-page">
@@ -136,9 +259,9 @@ const IntelligenceCircuitryPage: React.FC = () => {
           <div className="ic-hero-grid" />
         </div>
 
-        <div className="ic-hero-container flex items-center justify-center px-4 lg:px-8 pt-24 lg:pt-36 pb-16 lg:pb-24">
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 w-full max-w-[1400px] items-center">
-            <div className="flex-1 text-white order-2 lg:order-1 text-center lg:text-left">
+        <div className="ic-hero-container flex items-center justify-center px-4 lg:px-8 pt-16 lg:pt-36 pb-12 lg:pb-24">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-16 w-full max-w-[1400px] items-center">
+            <div className="flex-1 text-white order-1 text-center lg:text-left">
               {/* Headline */}
               <h1 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 'clamp(2.5rem, 6vw, 4rem)', fontWeight: 300, lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: '24px', color: '#fafafa' }}>
                 <span style={{ display: 'block' }}>Choose a template.</span>
@@ -147,7 +270,7 @@ const IntelligenceCircuitryPage: React.FC = () => {
 
               {/* Subheadline */}
               <p style={{ fontSize: '1.125rem', lineHeight: 1.7, color: 'rgba(250, 250, 250, 0.7)', marginBottom: '32px' }}>
-                A citation-first research platform. Start from real sources — PDFs, citations, or notes — and run structured templates that verify claims, enforce structure, and produce work you can stand behind.
+                Start from real sources — PDFs, citations, or notes — and use citation-first templates to produce structured, publishable research artifacts.
               </p>
 
               {/* CTAs */}
@@ -156,7 +279,7 @@ const IntelligenceCircuitryPage: React.FC = () => {
                   href="https://app.esy.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '14px 24px', background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)', color: '#fff', fontWeight: 600, fontSize: '0.9375rem', borderRadius: '10px', textDecoration: 'none' }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '14px 24px', background: '#8b5cf6', color: '#fff', fontWeight: 600, fontSize: '0.9375rem', borderRadius: '10px', textDecoration: 'none' }}
                 >
                   <span>Start with a Template</span>
                   <ArrowRight size={18} />
@@ -167,8 +290,8 @@ const IntelligenceCircuitryPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Circuit Visual */}
-            <div className="flex-1 flex justify-center items-center order-1 lg:order-2 max-w-[350px] lg:max-w-none mx-auto lg:mx-0">
+            {/* Circuit Visual - Desktop only */}
+            <div className="flex-1 justify-center items-center order-2 hidden lg:flex">
               <CircuitCanvas />
             </div>
           </div>
@@ -235,81 +358,9 @@ const IntelligenceCircuitryPage: React.FC = () => {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════
-          HOW IT WORKS / QUALITY GATES
+          HOW IT WORKS SECTION (Redesigned)
           ══════════════════════════════════════════════════════════════ */}
-      <section className="ic-process-section">
-        <div className="ic-section-container">
-          <div className="ic-section-header">
-            <span className="ic-section-eyebrow">How It Works</span>
-            <h2 className="ic-section-title">
-              Intelligence flows through <span className="ic-gradient-text">quality gates</span>
-            </h2>
-          </div>
-
-          {/* Process Steps */}
-          <div className="ic-process-steps">
-            <div className="ic-process-line" />
-            {processSteps.map((step, index) => (
-              <div key={step.number} className="ic-process-step">
-                <div className="ic-process-node">
-                  <span className="ic-process-number">{step.number}</span>
-                </div>
-                <h3 className="ic-process-title">{step.title}</h3>
-                <p className="ic-process-description">{step.description}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Quality Gates */}
-          <div className="ic-gates-container">
-            <div className="ic-gates-header">
-              <span className="ic-gates-label">Quality Gates</span>
-              <p className="ic-gates-tagline">
-                Every artifact passes through verification before output
-              </p>
-            </div>
-            <div className="ic-gates-grid">
-              {qualityGates.map((gate) => (
-                <div key={gate.name} className="ic-gate-card">
-                  <div className="ic-gate-symbol">{gate.symbol}</div>
-                  <div className="ic-gate-content">
-                    <h4 className="ic-gate-name">{gate.name}</h4>
-                    <p className="ic-gate-description">{gate.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════════
-          TRUST STRIP
-          ══════════════════════════════════════════════════════════════ */}
-      <section className="ic-trust-section">
-        <div className="ic-trust-container">
-          <span className="ic-section-eyebrow">Across Every Artifact</span>
-          <p className="ic-trust-headline">
-            &ldquo;Sources tracked. Claims checked. Structure enforced.&rdquo;
-          </p>
-          <div className="ic-trust-stats">
-            <div className="ic-trust-stat">
-              <span className="ic-trust-stat-value">12+</span>
-              <span className="ic-trust-stat-label">Sources Indexed</span>
-            </div>
-            <div className="ic-trust-divider" />
-            <div className="ic-trust-stat">
-              <span className="ic-trust-stat-value">8</span>
-              <span className="ic-trust-stat-label">Claims Verified</span>
-            </div>
-            <div className="ic-trust-divider" />
-            <div className="ic-trust-stat">
-              <span className="ic-trust-stat-value">94%</span>
-              <span className="ic-trust-stat-label">QA Score</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HowItWorksSection />
 
       {/* ══════════════════════════════════════════════════════════════
           ARTIFACT GALLERY
@@ -365,7 +416,15 @@ const IntelligenceCircuitryPage: React.FC = () => {
                     <ArrowRight size={12} className="ic-artifact-arrow" />
                   </div>
                   <div className="ic-artifact-trust">
-                    {ARTIFACT_SOURCE_COUNTS[essay.id] || 0} sources &middot; QA passed
+                    <span className="ic-trust-sources">
+                      <span className="ic-trust-count">{ARTIFACT_SOURCE_COUNTS[essay.id] || 0}</span>
+                      <span className="ic-trust-label">sources</span>
+                    </span>
+                    <span className="ic-trust-divider" />
+                    <span className="ic-trust-qa">
+                      <span className="ic-trust-check">✓</span>
+                      <span className="ic-trust-label">QA passed</span>
+                    </span>
                   </div>
                 </div>
               </Link>

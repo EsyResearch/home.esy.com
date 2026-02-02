@@ -1,12 +1,12 @@
 import IntelligenceCircuitryPage from '@/components/IntelligenceCircuitry/IntelligenceCircuitryPage';
 
 export const metadata = {
-  title: 'Esy — Template-Driven Research Workflows',
-  description: 'Choose a template, provide structured intake, and get publish-ready artifacts. Esy runs quality gates so every claim is sourced, every structure is sound.',
+  title: 'Esy — Citation-First Research Workflows',
+  description: 'Start from real sources — PDFs, citations, or notes — and use citation-first templates to produce structured, publishable research artifacts.',
   keywords: 'research templates, AI writing, citation-first, defensible artifacts, visual essays, academic writing',
   openGraph: {
-    title: 'Esy — Template-Driven Research Workflows',
-    description: 'Choose a template, provide structured intake, and get publish-ready artifacts.',
+    title: 'Esy — Citation-First Research Workflows',
+    description: 'Start from real sources — PDFs, citations, or notes — and use citation-first templates to produce structured, publishable research artifacts.',
     url: 'https://esy.com',
     siteName: 'Esy',
     locale: 'en_US',

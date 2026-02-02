@@ -1,18 +1,18 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 
 /**
- * CircuitCanvas - Animated SVG circuit visualization
+ * CircuitCanvas - Redesigned Pipeline Visualization
  * 
- * Visual metaphor: Intelligence flows through quality gates
- * like electricity through a circuit board.
+ * A citation-first pipeline diagram showing:
+ * 1. Your Sources (PDFs, Citations, Notes)
+ * 2. Research & Analysis
+ * 3. Verify + Structure (diamond split with checkmarks)
+ * 4. Your Artifact (with accent treatment)
  * 
- * Features:
- * - Animated pulse traveling along traces
- * - Nodes that "activate" when pulse arrives
- * - Output artifact card that "prints in"
- * - Reduced motion support
+ * Animation: Ball flows through the pipeline, splits at diamond,
+ * triggers checkmarks, and settles at output with pulse.
  */
 
 interface CircuitCanvasProps {
@@ -21,7 +21,52 @@ interface CircuitCanvasProps {
 
 const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [animationPhase, setAnimationPhase] = useState(0);
+  const [showVerifyCheck, setShowVerifyCheck] = useState(false);
+  const [showStructureCheck, setShowStructureCheck] = useState(false);
+  const [outputPulse, setOutputPulse] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number | null>(null);
+  const startTimeRef = useRef<number>(0);
+
+  // Animation timing constants (in ms)
+  const CYCLE_DURATION = 5000;
+  const DIAMOND_START = 0.45; // When ball reaches diamond split
+  const DIAMOND_END = 0.75; // When paths reconverge
+  const OUTPUT_ARRIVAL = 0.85;
+  const CHECK_DURATION = 400;
+
+  // Animation loop
+  const animate = useCallback((timestamp: number) => {
+    if (!startTimeRef.current) startTimeRef.current = timestamp;
+    
+    const elapsed = timestamp - startTimeRef.current;
+    const cycleProgress = (elapsed % CYCLE_DURATION) / CYCLE_DURATION;
+    
+    setAnimationPhase(cycleProgress);
+
+    // Trigger checkmarks during diamond traversal
+    if (cycleProgress >= 0.52 && cycleProgress < 0.52 + (CHECK_DURATION / CYCLE_DURATION)) {
+      setShowVerifyCheck(true);
+    } else {
+      setShowVerifyCheck(false);
+    }
+
+    if (cycleProgress >= 0.58 && cycleProgress < 0.58 + (CHECK_DURATION / CYCLE_DURATION)) {
+      setShowStructureCheck(true);
+    } else {
+      setShowStructureCheck(false);
+    }
+
+    // Trigger output pulse
+    if (cycleProgress >= OUTPUT_ARRIVAL && cycleProgress < OUTPUT_ARRIVAL + 0.08) {
+      setOutputPulse(true);
+    } else {
+      setOutputPulse(false);
+    }
+
+    animationRef.current = requestAnimationFrame(animate);
+  }, []);
 
   // Intersection observer to start animation when visible
   useEffect(() => {
@@ -41,10 +86,74 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
     return () => observer.disconnect();
   }, []);
 
+  // Start/stop animation based on visibility
+  useEffect(() => {
+    if (isVisible) {
+      animationRef.current = requestAnimationFrame(animate);
+    }
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isVisible, animate]);
+
+  // Y positions for nodes (compact layout)
+  const Y = {
+    sources: 45,
+    research: 130,
+    diamondTop: 195,
+    diamondNodes: 245,
+    diamondBottom: 295,
+    output: 370
+  };
+
+  // Calculate ball positions based on animation phase
+  const getBallPosition = (phase: number, isLeftPath: boolean = true) => {
+    // Phase 0-0.2: Top node to Research node
+    if (phase < 0.2) {
+      const t = phase / 0.2;
+      return { x: 200, y: Y.sources + t * (Y.research - Y.sources), opacity: 1 };
+    }
+    // Phase 0.2-0.45: Research node to diamond top
+    if (phase < DIAMOND_START) {
+      const t = (phase - 0.2) / (DIAMOND_START - 0.2);
+      return { x: 200, y: Y.research + t * (Y.diamondTop - Y.research), opacity: 1 };
+    }
+    // Phase 0.45-0.75: Diamond split (two balls)
+    if (phase < DIAMOND_END) {
+      const t = (phase - DIAMOND_START) / (DIAMOND_END - DIAMOND_START);
+      if (isLeftPath) {
+        // Left path: goes to Verify
+        const x = 200 - Math.sin(t * Math.PI) * 80;
+        const y = Y.diamondTop + t * (Y.diamondBottom - Y.diamondTop);
+        return { x, y, opacity: 1 };
+      } else {
+        // Right path: goes to Structure
+        const x = 200 + Math.sin(t * Math.PI) * 80;
+        const y = Y.diamondTop + t * (Y.diamondBottom - Y.diamondTop);
+        return { x, y, opacity: 1 };
+      }
+    }
+    // Phase 0.75-0.85: Diamond bottom to output
+    if (phase < OUTPUT_ARRIVAL) {
+      const t = (phase - DIAMOND_END) / (OUTPUT_ARRIVAL - DIAMOND_END);
+      return { x: 200, y: Y.diamondBottom + t * (Y.output - Y.diamondBottom), opacity: 1 };
+    }
+    // Phase 0.85-1.0: At output, fade out
+    const t = (phase - OUTPUT_ARRIVAL) / (1 - OUTPUT_ARRIVAL);
+    return { x: 200, y: Y.output, opacity: 1 - t };
+  };
+
+  const leftBallPos = getBallPosition(animationPhase, true);
+  const rightBallPos = getBallPosition(animationPhase, false);
+  const showSplitBalls = animationPhase >= DIAMOND_START && animationPhase < DIAMOND_END;
+  const singleBallPos = getBallPosition(animationPhase);
+
   return (
     <div ref={containerRef} className={`circuit-canvas-container ${className}`}>
       <svg 
-        viewBox="0 0 400 520" 
+        viewBox="0 0 400 430" 
         className={`circuit-canvas ${isVisible ? 'circuit-canvas--active' : ''}`}
         aria-hidden="true"
         role="img"
@@ -53,21 +162,11 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
         <defs>
           {/* Gradient for traces */}
           <linearGradient id="traceGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="rgba(139, 92, 246, 0.4)" />
-            <stop offset="50%" stopColor="rgba(139, 92, 246, 0.6)" />
-            <stop offset="100%" stopColor="rgba(236, 72, 153, 0.4)" />
+            <stop offset="0%" stopColor="rgba(139, 92, 246, 0.3)" />
+            <stop offset="100%" stopColor="rgba(139, 92, 246, 0.4)" />
           </linearGradient>
 
-          {/* Glow filter for active elements */}
-          <filter id="nodeGlow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-
-          {/* Pulse glow */}
+          {/* Glow filter for pulse */}
           <filter id="pulseGlow" x="-100%" y="-100%" width="300%" height="300%">
             <feGaussianBlur stdDeviation="6" result="blur" />
             <feMerge>
@@ -76,188 +175,327 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
             </feMerge>
           </filter>
 
-          {/* Main path for pulse animation */}
-          <path 
-            id="mainPath" 
-            d="M200,60 L200,120 L200,180 L200,240 L120,280 L120,340 L200,380 L200,440"
-            fill="none"
-          />
-          
-          {/* Branch path for parallel gate */}
-          <path 
-            id="branchPath" 
-            d="M200,240 L280,280 L280,340 L200,380"
-            fill="none"
-          />
+          {/* Output node glow */}
+          <filter id="outputGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="8" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+
+          {/* Checkmark glow */}
+          <filter id="checkGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
         </defs>
 
         {/* Background grid pattern */}
-        <g className="circuit-grid" opacity="0.03">
-          {[...Array(20)].map((_, i) => (
+        <g className="circuit-grid" opacity="0.025">
+          {[...Array(17)].map((_, i) => (
             <line key={`h-${i}`} x1="0" y1={i * 26} x2="400" y2={i * 26} stroke="#fff" strokeWidth="0.5" />
           ))}
           {[...Array(16)].map((_, i) => (
-            <line key={`v-${i}`} x1={i * 26} y1="0" x2={i * 26} y2="520" stroke="#fff" strokeWidth="0.5" />
+            <line key={`v-${i}`} x1={i * 26} y1="0" x2={i * 26} y2="430" stroke="#fff" strokeWidth="0.5" />
           ))}
         </g>
 
         {/* Circuit traces */}
         <g className="circuit-traces">
-          {/* Main vertical trace */}
+          {/* Main vertical trace: Sources to Research */}
           <path 
-            d="M200,60 L200,240" 
+            d={`M200,${Y.sources + 24} L200,${Y.research - 24}`}
+            stroke="url(#traceGradient)"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
             className="circuit-trace"
+          />
+          
+          {/* Research to diamond top */}
+          <path 
+            d={`M200,${Y.research + 24} L200,${Y.diamondTop}`}
             stroke="url(#traceGradient)"
             strokeWidth="2"
             fill="none"
             strokeLinecap="round"
+            className="circuit-trace"
           />
           
-          {/* Branch to left gate */}
+          {/* Left diamond path */}
           <path 
-            d="M200,240 L120,280 L120,340 L200,380" 
+            d={`M200,${Y.diamondTop} L120,${Y.diamondNodes} L200,${Y.diamondBottom}`}
+            stroke="url(#traceGradient)"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className="circuit-trace circuit-trace--left"
+          />
+          
+          {/* Right diamond path */}
+          <path 
+            d={`M200,${Y.diamondTop} L280,${Y.diamondNodes} L200,${Y.diamondBottom}`}
             stroke="url(#traceGradient)"
             strokeWidth="2"
             fill="none"
             strokeLinecap="round"
             strokeLinejoin="round"
-          />
-          
-          {/* Branch to right gate */}
-          <path 
-            d="M200,240 L280,280 L280,340 L200,380" 
             className="circuit-trace circuit-trace--right"
-            stroke="url(#traceGradient)"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
           />
           
-          {/* Final trace to output */}
+          {/* Diamond bottom to output */}
           <path 
-            d="M200,380 L200,440" 
-            className="circuit-trace circuit-trace--output"
+            d={`M200,${Y.diamondBottom} L200,${Y.output - 34}`}
             stroke="url(#traceGradient)"
             strokeWidth="2"
             fill="none"
             strokeLinecap="round"
+            className="circuit-trace circuit-trace--output"
           />
         </g>
 
-        {/* Node: Template Intake */}
-        <g className="circuit-node circuit-node--intake" transform="translate(200, 60)">
+        {/* ═══════════════════════════════════════════════════════════
+            NODE 1: YOUR SOURCES
+            ═══════════════════════════════════════════════════════════ */}
+        <g className="circuit-node circuit-node--sources" transform={`translate(200, ${Y.sources})`}>
           <rect 
-            x="-60" y="-24" 
-            width="120" height="48" 
+            x="-70" y="-22" 
+            width="140" height="44" 
             rx="8" 
-            className="circuit-node-bg"
+            fill="#16161f"
+            stroke="#2a2a3a"
+            strokeWidth="1"
           />
-          <circle cx="0" cy="24" r="4" className="circuit-port circuit-port--output" />
-          <text x="0" y="4" className="circuit-node-label">Template</text>
-          <text x="0" y="16" className="circuit-node-sublabel">Intake</text>
+          <text 
+            x="0" y="-3" 
+            fill="#fafafa"
+            fontSize="14"
+            fontWeight="500"
+            fontFamily="Inter, -apple-system, sans-serif"
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            Your Sources
+          </text>
+          <text 
+            x="0" y="12" 
+            fill="rgba(250, 250, 250, 0.5)"
+            fontSize="10"
+            fontWeight="400"
+            fontFamily="Inter, -apple-system, sans-serif"
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            PDFs · Citations · Notes
+          </text>
         </g>
 
-        {/* Node: Research Agent */}
-        <g className="circuit-node circuit-node--research" transform="translate(200, 180)">
+        {/* ═══════════════════════════════════════════════════════════
+            NODE 2: RESEARCH & ANALYSIS
+            ═══════════════════════════════════════════════════════════ */}
+        <g className="circuit-node circuit-node--research" transform={`translate(200, ${Y.research})`}>
           <rect 
-            x="-55" y="-22" 
-            width="110" height="44" 
+            x="-75" y="-22" 
+            width="150" height="44" 
             rx="8" 
-            className="circuit-node-bg"
+            fill="#16161f"
+            stroke="#2a2a3a"
+            strokeWidth="1"
           />
-          <circle cx="0" cy="-22" r="4" className="circuit-port circuit-port--input" />
-          <circle cx="0" cy="22" r="4" className="circuit-port circuit-port--output" />
-          <text x="0" y="4" className="circuit-node-label">Research</text>
+          <text 
+            x="0" y="2" 
+            fill="#fafafa"
+            fontSize="14"
+            fontWeight="500"
+            fontFamily="Inter, -apple-system, sans-serif"
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            Research &amp; Analysis
+          </text>
         </g>
 
-        {/* Junction point */}
-        <circle cx="200" cy="240" r="6" className="circuit-junction" />
+        {/* ═══════════════════════════════════════════════════════════
+            NODE 3: DIAMOND - VERIFY & STRUCTURE
+            ═══════════════════════════════════════════════════════════ */}
+        
+        {/* Diamond junction points */}
+        <circle cx="200" cy={Y.diamondTop} r="4" fill="#16161f" stroke="#2a2a3a" strokeWidth="1" />
+        <circle cx="200" cy={Y.diamondBottom} r="4" fill="#16161f" stroke="#2a2a3a" strokeWidth="1" />
 
-        {/* Gate: Evidence (Left) */}
-        <g className="circuit-node circuit-node--gate circuit-node--evidence" transform="translate(120, 310)">
+        {/* VERIFY (Left) */}
+        <g className="circuit-node circuit-node--verify" transform={`translate(120, ${Y.diamondNodes})`}>
           <rect 
-            x="-45" y="-22" 
-            width="90" height="44" 
+            x="-40" y="-18" 
+            width="80" height="36" 
             rx="6" 
-            className="circuit-node-bg circuit-node-bg--gate"
+            fill="#16161f"
+            stroke={showVerifyCheck ? "rgba(34, 197, 94, 0.5)" : "#2a2a3a"}
+            strokeWidth="1"
+            style={{ transition: 'stroke 0.2s ease' }}
           />
-          <circle cx="0" cy="-22" r="3" className="circuit-port circuit-port--input" />
-          <circle cx="0" cy="22" r="3" className="circuit-port circuit-port--output" />
-          <text x="0" y="-2" className="circuit-gate-symbol">∧</text>
-          <text x="0" y="12" className="circuit-gate-label">Evidence</text>
+          <text 
+            x="0" y={showVerifyCheck ? "-3" : "2"} 
+            fill="#fafafa"
+            fontSize="13"
+            fontWeight="500"
+            fontFamily="Inter, -apple-system, sans-serif"
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            Verify
+          </text>
+          {/* Checkmark - appears when ball passes */}
+          <text 
+            x="0" y="11" 
+            fill="#22c55e"
+            fontSize="13"
+            fontWeight="600"
+            textAnchor="middle"
+            dominantBaseline="middle"
+            opacity={showVerifyCheck ? 0.8 : 0}
+            filter={showVerifyCheck ? "url(#checkGlow)" : undefined}
+            style={{ transition: 'opacity 0.15s ease' }}
+          >
+            ✓
+          </text>
         </g>
 
-        {/* Gate: Structure (Right) */}
-        <g className="circuit-node circuit-node--gate circuit-node--structure" transform="translate(280, 310)">
+        {/* STRUCTURE (Right) */}
+        <g className="circuit-node circuit-node--structure" transform={`translate(280, ${Y.diamondNodes})`}>
           <rect 
-            x="-45" y="-22" 
-            width="90" height="44" 
+            x="-40" y="-18" 
+            width="80" height="36" 
             rx="6" 
-            className="circuit-node-bg circuit-node-bg--gate"
+            fill="#16161f"
+            stroke={showStructureCheck ? "rgba(34, 197, 94, 0.5)" : "#2a2a3a"}
+            strokeWidth="1"
+            style={{ transition: 'stroke 0.2s ease' }}
           />
-          <circle cx="0" cy="-22" r="3" className="circuit-port circuit-port--input" />
-          <circle cx="0" cy="22" r="3" className="circuit-port circuit-port--output" />
-          <text x="0" y="-2" className="circuit-gate-symbol">∨</text>
-          <text x="0" y="12" className="circuit-gate-label">Structure</text>
+          <text 
+            x="0" y={showStructureCheck ? "-3" : "2"}
+            fill="#fafafa"
+            fontSize="13"
+            fontWeight="500"
+            fontFamily="Inter, -apple-system, sans-serif"
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            Structure
+          </text>
+          {/* Checkmark - appears when ball passes */}
+          <text 
+            x="0" y="11" 
+            fill="#22c55e"
+            fontSize="13"
+            fontWeight="600"
+            textAnchor="middle"
+            dominantBaseline="middle"
+            opacity={showStructureCheck ? 0.8 : 0}
+            filter={showStructureCheck ? "url(#checkGlow)" : undefined}
+            style={{ transition: 'opacity 0.15s ease' }}
+          >
+            ✓
+          </text>
         </g>
 
-        {/* Merge junction */}
-        <circle cx="200" cy="380" r="6" className="circuit-junction" />
-
-        {/* Node: Output Artifact */}
-        <g className="circuit-node circuit-node--output" transform="translate(200, 470)">
+        {/* ═══════════════════════════════════════════════════════════
+            NODE 4: YOUR ARTIFACT
+            ═══════════════════════════════════════════════════════════ */}
+        <g className="circuit-node circuit-node--output" transform={`translate(200, ${Y.output})`}>
+          {/* Accent glow behind node */}
           <rect 
-            x="-70" y="-30" 
-            width="140" height="60" 
-            rx="10" 
-            className="circuit-node-bg circuit-node-bg--output"
+            x="-90" y="-32" 
+            width="180" height="64" 
+            rx="12" 
+            fill="none"
+            stroke="rgba(139, 92, 246, 0.3)"
+            strokeWidth="2"
+            filter={outputPulse ? "url(#outputGlow)" : undefined}
+            opacity={outputPulse ? 1 : 0.6}
+            style={{ transition: 'opacity 0.2s ease' }}
           />
-          <circle cx="0" cy="-30" r="4" className="circuit-port circuit-port--input" />
-          
-          {/* Mini artifact preview */}
-          <rect x="-58" y="-18" width="40" height="32" rx="4" className="artifact-preview-thumb" />
-          <line x1="-52" y1="-8" x2="-24" y2="-8" className="artifact-preview-line" />
-          <line x1="-52" y1="-2" x2="-30" y2="-2" className="artifact-preview-line" />
-          <line x1="-52" y1="4" x2="-28" y2="4" className="artifact-preview-line" />
-          
-          <text x="20" y="-4" className="circuit-node-label circuit-node-label--output">Output</text>
-          <text x="20" y="10" className="circuit-node-sublabel">Artifact</text>
+          {/* Main node background */}
+          <rect 
+            x="-86" y="-28" 
+            width="172" height="56" 
+            rx="8" 
+            fill="#16161f"
+            stroke={outputPulse ? "rgba(139, 92, 246, 0.5)" : "#2a2a3a"}
+            strokeWidth="1"
+            style={{ transition: 'stroke 0.2s ease' }}
+          />
+          <text 
+            x="0" y="-6" 
+            fill="#fafafa"
+            fontSize="14"
+            fontWeight="500"
+            fontFamily="Inter, -apple-system, sans-serif"
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            Your Artifact
+          </text>
+          <text 
+            x="0" y="13" 
+            fill="rgba(250, 250, 250, 0.5)"
+            fontSize="11"
+            fontWeight="400"
+            fontFamily="Inter, -apple-system, sans-serif"
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            Essays · Visuals · Reports
+          </text>
         </g>
 
-        {/* Animated pulse - Main path */}
-        <g className="circuit-pulse-group">
-          <circle r="6" className="circuit-pulse circuit-pulse--main" filter="url(#pulseGlow)">
-            <animateMotion 
-              dur="3s" 
-              repeatCount="indefinite"
-              keyPoints="0;0.3;0.5;0.7;1"
-              keyTimes="0;0.25;0.5;0.75;1"
-              calcMode="spline"
-              keySplines="0.4 0 0.2 1; 0.4 0 0.2 1; 0.4 0 0.2 1; 0.4 0 0.2 1"
-            >
-              <mpath href="#mainPath" />
-            </animateMotion>
-          </circle>
-        </g>
-
-        {/* Animated pulse - Branch path (delayed) */}
-        <g className="circuit-pulse-group circuit-pulse-group--branch">
-          <circle r="5" className="circuit-pulse circuit-pulse--branch" filter="url(#pulseGlow)">
-            <animateMotion 
-              dur="3s" 
-              repeatCount="indefinite"
-              begin="0.3s"
-              keyPoints="0;0.5;1"
-              keyTimes="0;0.5;1"
-              calcMode="spline"
-              keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"
-            >
-              <mpath href="#branchPath" />
-            </animateMotion>
-          </circle>
-        </g>
+        {/* ═══════════════════════════════════════════════════════════
+            ANIMATED BALLS/PARTICLES
+            ═══════════════════════════════════════════════════════════ */}
+        {isVisible && (
+          <>
+            {/* Before and after diamond split: single ball */}
+            {!showSplitBalls && (
+              <circle 
+                cx={singleBallPos.x} 
+                cy={singleBallPos.y} 
+                r="6" 
+                fill="#8b5cf6"
+                opacity={singleBallPos.opacity}
+                filter="url(#pulseGlow)"
+              />
+            )}
+            
+            {/* During diamond split: two balls */}
+            {showSplitBalls && (
+              <>
+                {/* Left ball (Verify path) */}
+                <circle 
+                  cx={leftBallPos.x} 
+                  cy={leftBallPos.y} 
+                  r="5" 
+                  fill="#8b5cf6"
+                  opacity={leftBallPos.opacity}
+                  filter="url(#pulseGlow)"
+                />
+                {/* Right ball (Structure path) */}
+                <circle 
+                  cx={rightBallPos.x} 
+                  cy={rightBallPos.y} 
+                  r="5" 
+                  fill="#8b5cf6"
+                  opacity={rightBallPos.opacity}
+                  filter="url(#pulseGlow)"
+                />
+              </>
+            )}
+          </>
+        )}
       </svg>
 
       {/* Decorative corner accents */}

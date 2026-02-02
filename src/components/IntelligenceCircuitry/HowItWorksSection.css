@@ -1,0 +1,410 @@
+/*
+ * How It Works Section - Redesigned
+ * 
+ * Design Philosophy:
+ * - Clear, student-friendly process explanation
+ * - Unified timeline with integrated quality checks
+ * - Propagation animation that shows the flow of work
+ * - Premium, minimal aesthetic matching the site
+ */
+
+/* ============================================
+   SECTION CONTAINER
+   ============================================ */
+.hiw-section {
+  padding: var(--ic-space-4xl, 8rem) 0;
+  background: var(--ic-bg, #0a0a0c);
+  border-top: 1px solid var(--ic-border-subtle, rgba(63, 63, 70, 0.15));
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle background glow */
+.hiw-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1000px;
+  height: 600px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(139, 92, 246, 0.04) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.hiw-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--ic-space-lg, 2rem);
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   SECTION HEADER
+   ============================================ */
+.hiw-header {
+  text-align: center;
+  margin-bottom: var(--ic-space-3xl, 6rem);
+}
+
+.hiw-eyebrow {
+  display: block;
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ic-accent, #8b5cf6);
+  margin-bottom: var(--ic-space-md, 1.5rem);
+}
+
+.hiw-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ic-text, #fafafa);
+}
+
+/* ============================================
+   TIMELINE
+   ============================================ */
+.hiw-timeline {
+  position: relative;
+}
+
+/* Timeline track (the connecting line) */
+.hiw-timeline-track {
+  position: absolute;
+  top: 32px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(139, 92, 246, 0.1);
+  z-index: 0;
+}
+
+@media (max-width: 1023px) {
+  .hiw-timeline-track {
+    display: none;
+  }
+}
+
+/* Animated progress fill */
+.hiw-timeline-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #8b5cf6 0%, #ec4899 100%);
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.1s linear;
+}
+
+/* Animated pulse dot */
+.hiw-pulse-dot {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background: #8b5cf6;
+  border-radius: 50%;
+  box-shadow: 
+    0 0 20px rgba(139, 92, 246, 0.6),
+    0 0 40px rgba(139, 92, 246, 0.4);
+  transition: opacity 0.2s ease;
+  z-index: 10;
+}
+
+/* ============================================
+   STEPS GRID
+   ============================================ */
+.hiw-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--ic-space-lg, 2rem);
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 1023px) {
+  .hiw-steps {
+    grid-template-columns: 1fr;
+    gap: var(--ic-space-xl, 3rem);
+  }
+}
+
+/* ============================================
+   INDIVIDUAL STEP
+   ============================================ */
+.hiw-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+@media (max-width: 1023px) {
+  .hiw-step {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: var(--ic-space-md, 1.5rem);
+  }
+}
+
+/* Step node (the numbered circle) */
+.hiw-step-node {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  background: var(--ic-surface, #18181b);
+  border: 2px solid var(--ic-border, rgba(63, 63, 70, 0.3));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--ic-space-md, 1.5rem);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 1023px) {
+  .hiw-step-node {
+    margin-bottom: 0;
+    width: 56px;
+    height: 56px;
+  }
+}
+
+.hiw-step-number {
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ic-text-subtle, #71717a);
+  transition: color 0.4s ease;
+}
+
+/* Step states */
+.hiw-step--active .hiw-step-node {
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  border-color: transparent;
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+}
+
+.hiw-step--active .hiw-step-number {
+  color: #fff;
+}
+
+.hiw-step--completed .hiw-step-node {
+  background: var(--ic-surface, #18181b);
+  border-color: var(--ic-accent, #8b5cf6);
+}
+
+.hiw-step--completed .hiw-step-number {
+  color: var(--ic-accent, #8b5cf6);
+}
+
+/* Step content */
+.hiw-step-content {
+  flex: 1;
+}
+
+.hiw-step-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--ic-text, #fafafa);
+  margin-bottom: var(--ic-space-xs, 0.5rem);
+}
+
+.hiw-step-description {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--ic-text-muted, #a1a1aa);
+  max-width: 240px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1023px) {
+  .hiw-step-description {
+    max-width: none;
+    margin: 0;
+  }
+}
+
+/* ============================================
+   VERIFICATION STEP (Step 3) - Special Treatment
+   ============================================ */
+.hiw-step--verification {
+  grid-column: span 1;
+}
+
+@media (min-width: 1024px) {
+  /* On desktop, Step 3 gets more visual weight */
+  .hiw-step--verification .hiw-step-node {
+    width: 72px;
+    height: 72px;
+  }
+  
+  .hiw-step--verification .hiw-step-title {
+    font-size: 1.375rem;
+  }
+}
+
+/* ============================================
+   QUALITY CHECKS PANEL (Inside Step 3)
+   ============================================ */
+.hiw-checks-panel {
+  width: 100%;
+  margin-top: var(--ic-space-lg, 2rem);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hiw-checks-panel--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 1023px) {
+  .hiw-checks-panel {
+    margin-left: calc(56px + var(--ic-space-md, 1.5rem));
+    margin-top: var(--ic-space-md, 1.5rem);
+  }
+}
+
+/* Checks grid */
+.hiw-checks-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--ic-space-sm, 1rem);
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .hiw-checks-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hiw-checks-grid {
+    grid-template-columns: repeat(4, 1fr);
+    position: absolute;
+    top: calc(100% + var(--ic-space-lg, 2rem));
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100vw - 4rem);
+    max-width: 900px;
+  }
+}
+
+/* Individual check card */
+.hiw-check-card {
+  background: #16161f;
+  border: 1px solid #2a2a3a;
+  border-left: 3px solid #22c55e;
+  border-radius: 8px;
+  padding: var(--ic-space-md, 1.5rem);
+  text-align: left;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hiw-check-card--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hiw-check-card:hover {
+  background: #1a1a24;
+  border-color: #3a3a4a;
+}
+
+.hiw-check-title {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--ic-text, #fafafa);
+  margin-bottom: 6px;
+}
+
+.hiw-check-description {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ic-text-subtle, #71717a);
+  margin: 0;
+}
+
+/* ============================================
+   MOBILE TIMELINE CONNECTOR
+   ============================================ */
+@media (max-width: 1023px) {
+  .hiw-step {
+    position: relative;
+  }
+  
+  /* Vertical connector line between steps */
+  .hiw-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 28px;
+    top: 56px;
+    width: 2px;
+    height: calc(100% + var(--ic-space-xl, 3rem) - 56px);
+    background: linear-gradient(180deg, var(--ic-accent, #8b5cf6) 0%, rgba(139, 92, 246, 0.2) 100%);
+    z-index: 0;
+  }
+  
+  .hiw-step--verification:not(:last-child)::after {
+    height: calc(100% + var(--ic-space-xl, 3rem));
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .hiw-timeline-progress,
+  .hiw-pulse-dot,
+  .hiw-step-node,
+  .hiw-checks-panel,
+  .hiw-check-card {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .hiw-pulse-dot {
+    display: none;
+  }
+  
+  .hiw-checks-panel,
+  .hiw-check-card {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .hiw-step--pending .hiw-step-node {
+    border-color: var(--ic-accent, #8b5cf6);
+  }
+  
+  .hiw-step--pending .hiw-step-number {
+    color: var(--ic-accent, #8b5cf6);
+  }
+}

@@ -1,42 +1,42 @@
 import IntelligenceCircuitryPage from "../components/IntelligenceCircuitry/IntelligenceCircuitryPage";
 
 /**
- * Homepage - Template-Driven Research Workflows
+ * Homepage - Citation-First Research Platform
  * 
- * Strategic positioning: Esy as a template-driven research platform
- * where you choose a template, provide sources, and get publish-ready artifacts.
+ * Strategic positioning: Esy as a workflow-based research platform
+ * where citations come first and artifacts are defensible.
  * 
  * Key messaging:
- * - "Choose a template. Get a publishable artifact."
- * - Quality gates ensure defensibility
- * - Templates as the entry point
- * - Visual essays and artifacts as proof of the method
+ * - "Citation-First Research" as a methodology
+ * - Workflows as the product (not visual essays)
+ * - Visual essays as proof of the method
+ * - Trust, rigor, and defensibility as core values
  * 
- * Visual language:
- * - Circuit board / node graph aesthetic
- * - Intelligence flows through quality gates
- * - Editorial sophistication meets systems thinking
+ * SEO Strategy:
+ * - Title focuses on research platform positioning
+ * - Description emphasizes workflow-based, citation-first approach
+ * - Unique positioning: research platform, not AI essay generator
  * 
  * @see /orchestration/agents/engineering/seo-specialist-expert.md
  */
 
 export const metadata = {
-  title: "Esy — Template-Driven Research Workflows",
-  description: "Choose a template, provide structured intake, and get publish-ready artifacts. Esy runs quality gates so every claim is sourced, every structure is sound.",
+  title: "Esy — Citation-First Research Workflows",
+  description: "Esy is a citation-first research platform. Turn trusted sources into structured, auditable artifacts — essays, visuals, and learning materials.",
   keywords: [
-    "research templates",
-    "AI writing",
-    "citation-first",
-    "defensible artifacts",
-    "visual essays",
-    "academic writing",
+    "citation-first research",
+    "research platform",
     "research workflows",
-    "quality gates",
-    "research platform"
+    "visual essays",
+    "auditable artifacts",
+    "academic research",
+    "research synthesis",
+    "defensible research",
+    "source verification"
   ],
   openGraph: {
-    title: "Esy — Template-Driven Research Workflows",
-    description: "Choose a template, provide structured intake, and get publish-ready artifacts. Esy runs quality gates so every claim is sourced, every structure is sound.",
+    title: "Esy — Citation-First Research Workflows",
+    description: "Esy is a citation-first research platform. Turn trusted sources into structured, auditable artifacts — essays, visuals, and learning materials.",
     type: "website",
     url: "https://esy.com",
     siteName: "Esy",
@@ -45,13 +45,13 @@ export const metadata = {
       url: "https://esy.com/og/homepage.png",
       width: 1200,
       height: 630,
-      alt: "Esy — Template-Driven Research Workflows"
+      alt: "Esy — Citation-First Research Workflows"
     }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Esy — Template-Driven Research Workflows",
-    description: "Choose a template, provide structured intake, and get publish-ready artifacts. Esy runs quality gates so every claim is sourced, every structure is sound.",
+    title: "Esy — Citation-First Research Workflows",
+    description: "Esy is a citation-first research platform. Turn trusted sources into structured, auditable artifacts — essays, visuals, and learning materials.",
     site: "@EsyResearch",
     images: ["https://esy.com/og/homepage.png"],
   },
