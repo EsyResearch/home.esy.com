@@ -299,7 +299,7 @@ const IntelligenceCircuitryPage: React.FC = () => {
       <section className="ic-trust-section">
         <div className="ic-trust-container">
           <p className="ic-trust-headline">
-            "Sources tracked. Claims checked. Structure enforced."
+            &ldquo;Sources tracked. Claims checked. Structure enforced.&rdquo;
           </p>
           <div className="ic-trust-stats">
             <div className="ic-trust-stat">

@@ -184,7 +184,7 @@ const CitationFirstLandingPage: React.FC = () => {
 
         {/* Scroll Indicator */}
         <div className="cf-scroll-indicator" aria-hidden="true">
-          <span>How it's different</span>
+          <span>How it&apos;s different</span>
           <ChevronDown className="cf-scroll-arrow" />
         </div>
       </section>
@@ -203,8 +203,8 @@ const CitationFirstLandingPage: React.FC = () => {
             </h2>
             <p className="cf-why-description">
               They produce fluent text immediately. Citations are optional—bolted on after, 
-              or worse, hallucinated. The result? Outputs that look authoritative but can't 
-              withstand scrutiny. You can't defend what you can't trace.
+              or worse, hallucinated. The result? Outputs that look authoritative but can&apos;t 
+              withstand scrutiny. You can&apos;t defend what you can&apos;t trace.
             </p>
           </div>
 
@@ -527,8 +527,8 @@ const CitationFirstLandingPage: React.FC = () => {
               Research You Can <span className="cf-gradient-text">Stand Behind</span>
             </h2>
             <p className="cf-trust-description">
-              Citation-first isn't just a methodology—it's a commitment to defensibility. 
-              When someone asks "where did this come from?" you have an answer.
+              Citation-first isn&apos;t just a methodology—it&apos;s a commitment to defensibility. 
+              When someone asks &ldquo;where did this come from?&rdquo; you have an answer.
             </p>
           </div>
 

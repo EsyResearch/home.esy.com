@@ -8,6 +8,9 @@ import { MetadataRoute } from 'next';
  * - Production builds: Allow crawlers, block AI training bots
  */
 
+// Required for static export
+export const dynamic = 'force-static';
+
 // Check QA environment at build time
 const isQA = process.env.NEXT_PUBLIC_IS_QA === 'true';
 
