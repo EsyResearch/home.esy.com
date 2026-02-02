@@ -40,4 +40,6 @@ The runner will:
 
 | File | Essay | Description |
 |------|-------|-------------|
-| `the-word-slang.md` | Etymology: Slang | Photo-visual etymology essay on the word "slang" |
+| `the-word-slang-v1.md` | Etymology: Slang | Photo-visual etymology essay on the word "slang" |
+| `the-word-slang-v2.md` | Etymology: Slang | Updated version with refined prompts |
+| `the-brain-as-prediction-machine-v1.md` | Science: Neuroscience | SVG-first visual essay on predictive processing |
