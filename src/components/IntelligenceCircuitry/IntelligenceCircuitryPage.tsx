@@ -3,8 +3,9 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, FileText, Layers, BarChart3, FileSpreadsheet } from 'lucide-react';
+import { ArrowRight, FileText, Layers, BarChart3, FileSpreadsheet, Clock } from 'lucide-react';
 import CircuitCanvas from './CircuitCanvas';
+import { publishedVisualEssays, CATEGORY_COLORS, type VisualEssay } from '@/data/visualEssays';
 import './IntelligenceCircuitryPage.css';
 
 /**
@@ -96,33 +97,24 @@ const processSteps = [
   { number: '04', title: 'Get Artifact', description: 'Publish-ready, fully sourced output' },
 ];
 
-// Sample artifacts for gallery
-const sampleArtifacts = [
-  {
-    title: 'The Manhattan Project',
-    type: 'Visual Essay',
-    sources: 8,
-    readTime: '12 min',
-    image: '/images/manhattan-project/trinity-gadget-assembled.jpg',
-    href: '/essays/history/the-manhattan-project/',
-  },
-  {
-    title: 'The History of Soda',
-    type: 'Visual Essay',
-    sources: 12,
-    readTime: '15 min',
-    image: '/og/the-complete-history-of-soda.png',
-    href: '/essays/history/the-complete-history-of-soda/',
-  },
-  {
-    title: 'The Word Robot',
-    type: 'Visual Essay',
-    sources: 8,
-    readTime: '10 min',
-    image: '/images/robot/robot-hero.jpg',
-    href: '/essays/etymology/the-word-robot/',
-  },
-];
+// Featured artifacts for gallery - using essay data
+const FEATURED_ESSAY_IDS = ['the-manhattan-project', 'the-complete-history-of-soda', 'the-word-robot'];
+
+const featuredArtifacts = FEATURED_ESSAY_IDS
+  .map(id => publishedVisualEssays.find(e => e.id === id))
+  .filter((e): e is VisualEssay => e !== undefined);
+
+/**
+ * Get the hero image for an essay with fallback chain:
+ * 1. heroImage (if defined in data)
+ * 2. OG image at /og/[slug].png
+ */
+const getEssayImage = (essay: VisualEssay): string => {
+  if (essay.heroImage) return essay.heroImage;
+  const slug = essay.href.split('/').pop();
+  if (slug) return `/og/${slug}.png`;
+  return '/og/default.png';
+};
 
 const IntelligenceCircuitryPage: React.FC = () => {
   return (
@@ -335,29 +327,42 @@ const IntelligenceCircuitryPage: React.FC = () => {
           </div>
 
           <div className="ic-gallery-grid">
-            {sampleArtifacts.map((artifact, index) => (
+            {featuredArtifacts.map((essay) => (
               <Link
-                key={index}
-                href={artifact.href}
+                key={essay.id}
+                href={essay.href}
                 className="ic-artifact-card"
               >
+                {/* Hero Image */}
                 <div className="ic-artifact-image">
                   <Image
-                    src={artifact.image}
-                    alt={artifact.title}
+                    src={getEssayImage(essay)}
+                    alt={essay.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     style={{ objectFit: 'cover' }}
+                    unoptimized
                   />
                   <div className="ic-artifact-overlay" />
                 </div>
+                {/* Content */}
                 <div className="ic-artifact-content">
-                  <span className="ic-artifact-type">{artifact.type}</span>
-                  <h3 className="ic-artifact-title">{artifact.title}</h3>
+                  <div className="ic-artifact-header">
+                    <span 
+                      className="ic-artifact-category"
+                      style={{ color: CATEGORY_COLORS[essay.category] }}
+                    >
+                      {essay.category}
+                    </span>
+                    <span className="ic-artifact-badge">Artifact</span>
+                    {essay.isNew && <span className="ic-artifact-new">New</span>}
+                  </div>
+                  <h3 className="ic-artifact-title">{essay.title}</h3>
+                  <p className="ic-artifact-subtitle">{essay.subtitle}</p>
                   <div className="ic-artifact-meta">
-                    <span>{artifact.sources} sources</span>
-                    <span>•</span>
-                    <span>{artifact.readTime}</span>
+                    <Clock size={12} />
+                    <span>{essay.readTime}</span>
+                    <ArrowRight size={12} className="ic-artifact-arrow" />
                   </div>
                 </div>
               </Link>
