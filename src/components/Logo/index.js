@@ -8,7 +8,8 @@ const Logo = ({
   className = '', 
   size = 60,
   showText = true,
-  theme = 'dark' // New prop for theme
+  theme = 'dark', // New prop for theme
+  priority = false // Whether this image should be preloaded (for LCP optimization)
 }) => {
   const suffixRef = useRef(null);
   
@@ -40,6 +41,7 @@ const Logo = ({
           alt="Esy Logo" 
           width={size} 
           height={size}
+          priority={priority}
         />
       </div>
       {suffix && (
