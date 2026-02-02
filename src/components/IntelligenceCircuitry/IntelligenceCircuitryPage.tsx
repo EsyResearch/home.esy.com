@@ -112,7 +112,7 @@ const sampleArtifacts = [
     sources: 6,
     readTime: '10 min',
     image: '/images/great-fire/great-fire-london-1675.jpg',
-    href: '/essays/history/great-fire-of-london/',
+    href: '/essays/the-great-fire/',
   },
   {
     title: 'The Fork',
