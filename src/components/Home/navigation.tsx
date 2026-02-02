@@ -338,7 +338,7 @@ export default function Navigation({
 
             {/* Workflows - First-class nav item */}
             <Link
-              href="/agentic-workflows/"
+              href="/templates/"
               className="nav-link"
               style={{
                 color: isLightMode ? '#475569' : 'rgba(255, 255, 255, 0.85)',
@@ -431,7 +431,7 @@ export default function Navigation({
             {/* Workflows */}
             <div className="mobile-nav-section">
               <Link 
-                href="/agentic-workflows/" 
+                href="/templates/" 
                 className="mobile-nav-link"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
