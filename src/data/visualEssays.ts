@@ -387,7 +387,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/the-manhattan-project",
     tags: ["Manhattan Project", "atomic bomb", "nuclear weapons", "Oppenheimer", "Trinity test", "Hiroshima", "Nagasaki", "Los Alamos", "World War II", "nuclear history", "Enrico Fermi", "Einstein", "history of science", "military history"],
     visualStyle: "photorealistic",
-    heroImage: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Trinity_Test_Fireball_16ms.jpg",
+    heroImage: "/og/the-manhattan-project.png",
   },
   {
     id: "the-thinking-machine",
