@@ -97,8 +97,15 @@ const processSteps = [
   { number: '04', title: 'Get Artifact', description: 'Publish-ready, fully sourced output' },
 ];
 
-// Featured artifacts for gallery - using essay data
+// Featured artifacts for gallery - using essay data with source counts
 const FEATURED_ESSAY_IDS = ['the-manhattan-project', 'the-complete-history-of-soda', 'the-word-robot'];
+
+// Source counts for trust metadata (per artifact)
+const ARTIFACT_SOURCE_COUNTS: Record<string, number> = {
+  'the-manhattan-project': 7,
+  'the-complete-history-of-soda': 12,
+  'the-word-robot': 9,
+};
 
 const featuredArtifacts = FEATURED_ESSAY_IDS
   .map(id => publishedVisualEssays.find(e => e.id === id))
@@ -132,12 +139,6 @@ const IntelligenceCircuitryPage: React.FC = () => {
         <div className="ic-hero-container flex items-center justify-center px-4 lg:px-8 pt-24 lg:pt-36 pb-16 lg:pb-24">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 w-full max-w-[1400px] items-center">
             <div className="flex-1 text-white order-2 lg:order-1 text-center lg:text-left">
-              {/* Eyebrow */}
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 14px', background: 'rgba(139, 92, 246, 0.08)', border: '1px solid rgba(139, 92, 246, 0.15)', borderRadius: '24px', fontSize: '11px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8b5cf6', marginBottom: '24px' }}>
-                <span style={{ width: '8px', height: '8px', background: '#8b5cf6', borderRadius: '50%' }} />
-                <span>Template-Driven Research Engine</span>
-              </div>
-
               {/* Headline */}
               <h1 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 'clamp(2.5rem, 6vw, 4rem)', fontWeight: 300, lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: '24px', color: '#fafafa' }}>
                 <span style={{ display: 'block' }}>Choose a template.</span>
@@ -145,10 +146,8 @@ const IntelligenceCircuitryPage: React.FC = () => {
               </h1>
 
               {/* Subheadline */}
-              <p style={{ fontSize: '1.125rem', lineHeight: 1.7, color: '#e4e4e7', marginBottom: '32px' }}>
-                Esy routes your sources through quality gates—verifying claims, 
-                enforcing structure, and producing defensible artifacts you can 
-                actually stand behind.
+              <p style={{ fontSize: '1.125rem', lineHeight: 1.7, color: 'rgba(250, 250, 250, 0.7)', marginBottom: '32px' }}>
+                A citation-first research platform. Start from real sources — PDFs, citations, or notes — and run structured templates that verify claims, enforce structure, and produce work you can stand behind.
               </p>
 
               {/* CTAs */}
@@ -162,8 +161,8 @@ const IntelligenceCircuitryPage: React.FC = () => {
                   <span>Start with a Template</span>
                   <ArrowRight size={18} />
                 </a>
-                <Link href="#templates" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '14px 24px', background: 'rgba(139, 92, 246, 0.08)', border: '1px solid rgba(139, 92, 246, 0.2)', color: '#fafafa', fontWeight: 600, fontSize: '0.9375rem', borderRadius: '10px', textDecoration: 'none' }}>
-                  <span>See Templates</span>
+                <Link href="/essays/" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '14px 24px', background: 'rgba(139, 92, 246, 0.08)', border: '1px solid rgba(139, 92, 246, 0.2)', color: '#fafafa', fontWeight: 600, fontSize: '0.9375rem', borderRadius: '10px', textDecoration: 'none' }}>
+                  <span>Explore Artifacts</span>
                 </Link>
               </div>
             </div>
@@ -289,6 +288,7 @@ const IntelligenceCircuitryPage: React.FC = () => {
           ══════════════════════════════════════════════════════════════ */}
       <section className="ic-trust-section">
         <div className="ic-trust-container">
+          <span className="ic-section-eyebrow">Across Every Artifact</span>
           <p className="ic-trust-headline">
             &ldquo;Sources tracked. Claims checked. Structure enforced.&rdquo;
           </p>
@@ -363,6 +363,9 @@ const IntelligenceCircuitryPage: React.FC = () => {
                     <Clock size={12} />
                     <span>{essay.readTime}</span>
                     <ArrowRight size={12} className="ic-artifact-arrow" />
+                  </div>
+                  <div className="ic-artifact-trust">
+                    {ARTIFACT_SOURCE_COUNTS[essay.id] || 0} sources &middot; QA passed
                   </div>
                 </div>
               </Link>

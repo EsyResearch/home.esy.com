@@ -1196,6 +1196,13 @@
   transform: translateX(0);
 }
 
+/* Trust metadata */
+.ic-artifact-trust {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: calc(var(--ic-space-xs) * 0.75);
+}
+
 /* Gallery Footer */
 .ic-gallery-footer {
   margin-top: var(--ic-space-xl);

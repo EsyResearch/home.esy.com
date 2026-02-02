@@ -44,22 +44,22 @@ export default function Navigation({
   searchContext = 'general',
   pathname: propPathname
 }: NavigationProps = {}) {
-  const hookPathname = usePathname();
-  const pathname = propPathname || hookPathname;
-  const [searchData, setSearchData] = useState([]);
-  const [isMobile, setIsMobile] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
-  const [modalSource, setModalSource] = useState<'nav-tips' | 'nav-school' | 'other'>('other');
-  const [isLightMode, setIsLightMode] = useState(false);
+    const hookPathname = usePathname();
+    const pathname = propPathname || hookPathname;
+    const [searchData, setSearchData] = useState([]);
+    const [isMobile, setIsMobile] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
+    const [modalSource, setModalSource] = useState<'nav-tips' | 'nav-school' | 'other'>('other');
+    const [isLightMode, setIsLightMode] = useState(false);
   const [isArtifactsOpen, setIsArtifactsOpen] = useState(false);
   const [isArtifactsClosing, setIsArtifactsClosing] = useState(false);
   const [mobileArtifactsExpanded, setMobileArtifactsExpanded] = useState(false);
-  
+    
   // Normalize pathname
-  const normalizedPathForNav = pathname?.endsWith('/') && pathname.length > 1
-    ? pathname.slice(0, -1)
-    : pathname || '';
+    const normalizedPathForNav = pathname?.endsWith('/') && pathname.length > 1
+      ? pathname.slice(0, -1)
+      : pathname || '';
     
   // Get CTA config
   const ctaConfig = getCTAConfig(pathname);
@@ -74,129 +74,129 @@ export default function Navigation({
   }, []);
 
   // Theme detection
-  useEffect(() => {
-    const checkTheme = () => {
-      let isLight = false;
-      const normalizedPath = pathname?.endsWith('/') && pathname.length > 1 
-        ? pathname.slice(0, -1) 
-        : pathname || '';
-      
-      const isSchoolArticle = normalizedPath.includes('/school/articles/');
-      const isBlogArticle = normalizedPath.includes('/blog/') && normalizedPath !== '/blog';
-      const hasThemeToggle = isSchoolArticle || isBlogArticle;
-      
-      if (hasThemeToggle) {
-        const sectionKey = isSchoolArticle ? 'school' : 'blog';
+    useEffect(() => {
+      const checkTheme = () => {
+        let isLight = false;
+        const normalizedPath = pathname?.endsWith('/') && pathname.length > 1 
+          ? pathname.slice(0, -1) 
+          : pathname || '';
+        
+        const isSchoolArticle = normalizedPath.includes('/school/articles/');
+        const isBlogArticle = normalizedPath.includes('/blog/') && normalizedPath !== '/blog';
+        const hasThemeToggle = isSchoolArticle || isBlogArticle;
+        
+        if (hasThemeToggle) {
+          const sectionKey = isSchoolArticle ? 'school' : 'blog';
         const storedTheme = localStorage.getItem(`theme-${sectionKey}`);
-        
-        if (storedTheme === 'light') {
-          isLight = true;
-        } else if (storedTheme === 'dark') {
-          isLight = false;
-        } else {
+          
+          if (storedTheme === 'light') {
+            isLight = true;
+          } else if (storedTheme === 'dark') {
+            isLight = false;
+          } else {
           isLight = true; // Default to light for articles
-        }
-        
+          }
+          
         // Check body classes as override
-        const bodyClasses = document.body.className;
-        const htmlClasses = document.documentElement.className;
-        if (bodyClasses?.includes('light') || htmlClasses?.includes('light')) {
-          isLight = true;
-        } else if (bodyClasses?.includes('dark') || htmlClasses?.includes('dark')) {
+          const bodyClasses = document.body.className;
+          const htmlClasses = document.documentElement.className;
+          if (bodyClasses?.includes('light') || htmlClasses?.includes('light')) {
+            isLight = true;
+          } else if (bodyClasses?.includes('dark') || htmlClasses?.includes('dark')) {
           isLight = false;
         }
-      } else {
+          } else {
         isLight = false; // Pages without toggle always dark
       }
       
       setIsLightMode(isLight);
-    };
-    
-    checkTheme();
-    setTimeout(() => checkTheme(), 100);
+      };
+      
+      checkTheme();
+      setTimeout(() => checkTheme(), 100);
     
     const observer = new MutationObserver(checkTheme);
     observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
     
     return () => observer.disconnect();
-  }, [pathname]);
+    }, [pathname]);
 
   // Load search data
-  useEffect(() => {
-    if (showHeaderSearch) {
-      if (searchContext === 'prompt-library') {
-        getAllPrompts().then(setSearchData).catch(console.error);
-      } else if (searchContext === 'glossary') {
-        fetch('/glossary-terms.json')
-          .then(res => res.json())
+    useEffect(() => {
+      if (showHeaderSearch) {
+        if (searchContext === 'prompt-library') {
+          getAllPrompts().then(setSearchData).catch(console.error);
+        } else if (searchContext === 'glossary') {
+          fetch('/glossary-terms.json')
+            .then(res => res.json())
           .then(setSearchData)
-          .catch(console.error);
-      } else if (searchContext === 'templates') {
-        const templates = getAllTemplates().map(t => ({
+            .catch(console.error);
+        } else if (searchContext === 'templates') {
+          const templates = getAllTemplates().map(t => ({
           id: t.slug, slug: t.slug, title: t.title,
           description: t.description, category: t.category,
-        }));
-        setSearchData(templates);
-      } else if (searchContext === 'essays') {
-        fetch('/essays-data.json')
-          .then(res => res.json())
+          }));
+          setSearchData(templates);
+        } else if (searchContext === 'essays') {
+          fetch('/essays-data.json')
+            .then(res => res.json())
           .then(setSearchData)
-          .catch(console.error);
+            .catch(console.error);
+        }
       }
-    }
-  }, [showHeaderSearch, searchContext]);
+    }, [showHeaderSearch, searchContext]);
 
   // Scroll handler for nav background
-  useEffect(() => {
-    const handleScroll = () => {
-      const nav = document.getElementById('nav');
+    useEffect(() => {
+      const handleScroll = () => {
+        const nav = document.getElementById('nav');
       if (!nav) return;
-      
-      const navInner = nav.querySelector('.nav-inner');
-      const scrollY = window.scrollY;
-      const normalizedPath = pathname?.endsWith('/') && pathname.length > 1 
-        ? pathname.slice(0, -1) 
-        : pathname || '';
-      
-      const isHomepage = normalizedPath === '/' || normalizedPath === '';
-      const isBlogIndexPage = normalizedPath === '/blog';
-      const isScrollytellingPage = normalizedPath?.startsWith('/scrollytelling');
-      const isTemplatesPage = normalizedPath?.startsWith('/templates');
-      const shouldBeTransparent = isHomepage || isBlogIndexPage || isScrollytellingPage || isTemplatesPage;
-      
-      if (scrollY === 0) {
-        if (shouldBeTransparent) {
-          nav.style.background = 'transparent';
-          nav.style.boxShadow = 'none';
-          nav.style.borderBottom = 'none';
-          nav.style.backdropFilter = 'none';
-          if (navInner) {
+        
+        const navInner = nav.querySelector('.nav-inner');
+        const scrollY = window.scrollY;
+        const normalizedPath = pathname?.endsWith('/') && pathname.length > 1 
+          ? pathname.slice(0, -1) 
+          : pathname || '';
+        
+        const isHomepage = normalizedPath === '/' || normalizedPath === '';
+        const isBlogIndexPage = normalizedPath === '/blog';
+        const isScrollytellingPage = normalizedPath?.startsWith('/scrollytelling');
+        const isTemplatesPage = normalizedPath?.startsWith('/templates');
+        const shouldBeTransparent = isHomepage || isBlogIndexPage || isScrollytellingPage || isTemplatesPage;
+        
+        if (scrollY === 0) {
+          if (shouldBeTransparent) {
+            nav.style.background = 'transparent';
+            nav.style.boxShadow = 'none';
+            nav.style.borderBottom = 'none';
+            nav.style.backdropFilter = 'none';
+            if (navInner) {
             (navInner as HTMLElement).style.textShadow = '0 2px 4px rgba(0, 0, 0, 0.5)';
-          }
-        } else {
-          if (isLightMode) {
-            nav.style.background = 'linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 250, 250, 0.95) 100%)';
-            nav.style.boxShadow = lightTheme.shadows?.sm || '0 1px 3px rgba(0, 0, 0, 0.06)';
-            nav.style.borderBottom = `1px solid ${lightTheme.border}`;
+            }
           } else {
-            nav.style.background = 'linear-gradient(180deg, rgba(31, 31, 35, 0.95) 0%, rgba(24, 24, 27, 0.85) 100%)';
-            nav.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.2)';
-            nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
-          }
-          nav.style.backdropFilter = 'blur(20px)';
+            if (isLightMode) {
+              nav.style.background = 'linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 250, 250, 0.95) 100%)';
+              nav.style.boxShadow = lightTheme.shadows?.sm || '0 1px 3px rgba(0, 0, 0, 0.06)';
+              nav.style.borderBottom = `1px solid ${lightTheme.border}`;
+            } else {
+              nav.style.background = 'linear-gradient(180deg, rgba(31, 31, 35, 0.95) 0%, rgba(24, 24, 27, 0.85) 100%)';
+              nav.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.2)';
+              nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+            }
+            nav.style.backdropFilter = 'blur(20px)';
         }
       } else if (scrollY > 50) {
-        if (isBlogIndexPage || !isLightMode) {
+          if (isBlogIndexPage || !isLightMode) {
           nav.style.background = 'rgba(24, 24, 27, 0.98)';
           nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
-          nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
+            nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
         } else {
-          nav.style.background = 'rgba(255, 255, 255, 0.98)';
-          nav.style.boxShadow = lightTheme.shadows?.lg || '0 4px 10px rgba(0, 0, 0, 0.1)';
-          nav.style.borderBottom = `1px solid ${lightTheme.border}`;
-        }
-        nav.style.backdropFilter = 'blur(20px) saturate(150%)';
+            nav.style.background = 'rgba(255, 255, 255, 0.98)';
+            nav.style.boxShadow = lightTheme.shadows?.lg || '0 4px 10px rgba(0, 0, 0, 0.1)';
+            nav.style.borderBottom = `1px solid ${lightTheme.border}`;
+          }
+          nav.style.backdropFilter = 'blur(20px) saturate(150%)';
       } else {
         // Transition zone
         const progress = scrollY / 50;
@@ -207,10 +207,10 @@ export default function Navigation({
       }
     };
     
-    handleScroll();
-    window.addEventListener('scroll', handleScroll);
+        handleScroll();
+      window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [pathname, isLightMode]);
+    }, [pathname, isLightMode]);
 
   // Artifacts dropdown handlers
   const handleArtifactsEnter = () => {
@@ -225,9 +225,9 @@ export default function Navigation({
       setIsArtifactsClosing(false);
     }, 150);
   };
-
-  return (
-    <>
+  
+    return (
+      <>
       <nav className="nav" id="nav">
         <div className="nav-inner">
           {/* Logo */}
@@ -259,8 +259,8 @@ export default function Navigation({
               className="nav-dropdown-container"
               onMouseEnter={handleArtifactsEnter}
               onMouseLeave={handleArtifactsLeave}
-            >
-              <button
+              >
+              <button 
                 className={`nav-dropdown-trigger ${isArtifactsOpen ? 'active' : ''}`}
                 aria-expanded={isArtifactsOpen}
                 aria-haspopup="true"
@@ -336,7 +336,7 @@ export default function Navigation({
               )}
             </div>
 
-            {/* Workflows - First-class nav item */}
+            {/* Templates - First-class nav item */}
             <Link
               href="/templates/"
               className="nav-link"
@@ -344,32 +344,32 @@ export default function Navigation({
                 color: isLightMode ? '#475569' : 'rgba(255, 255, 255, 0.85)',
               }}
             >
-              Workflows
+              Templates
             </Link>
 
             {/* App CTA */}
-            <a 
-              href={ctaConfig.ctaHref}
+              <a 
+                href={ctaConfig.ctaHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="nav-cta"
-              style={{
-                backgroundColor: isLightMode ? '#7c3aed' : '#8b5cf6',
-              }}
-            >
+                className="nav-cta"
+                style={{
+                  backgroundColor: isLightMode ? '#7c3aed' : '#8b5cf6',
+                }}
+              >
               App
-            </a>
+              </a>
 
             {/* Mobile Menu Button */}
-            <button
-              className="mobile-menu-button"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isMobileMenuOpen}
-              style={{ color: isLightMode ? '#1e293b' : '#ffffff' }}
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+              <button
+                className="mobile-menu-button"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isMobileMenuOpen}
+                style={{ color: isLightMode ? '#1e293b' : '#ffffff' }}
+              >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
           </div>
         </div>
       </nav>
@@ -385,7 +385,7 @@ export default function Navigation({
             onClick={(e) => e.stopPropagation()}
           >
             {/* Artifacts Section - Expandable */}
-            <div className="mobile-nav-section">
+              <div className="mobile-nav-section">
               <button
                 className="mobile-nav-section-header"
                 onClick={() => setMobileArtifactsExpanded(!mobileArtifactsExpanded)}
@@ -426,31 +426,31 @@ export default function Navigation({
                   </Link>
                 </div>
               )}
-            </div>
+                </div>
 
-            {/* Workflows */}
-            <div className="mobile-nav-section">
+            {/* Templates */}
+                <div className="mobile-nav-section">
               <Link 
                 href="/templates/" 
                 className="mobile-nav-link"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Workflows
-              </Link>
-            </div>
+                Templates
+                  </Link>
+                </div>
 
             {/* App CTA */}
             <div className="mobile-nav-cta">
-              <a 
-                href={ctaConfig.ctaHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mobile-nav-cta-button"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
+                <a 
+                  href={ctaConfig.ctaHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mobile-nav-cta-button"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
                 Open App
-              </a>
-            </div>
+                </a>
+              </div>
           </div>
         </div>
       )}
@@ -462,5 +462,5 @@ export default function Navigation({
         source={modalSource}
       />
     </>
-  );
+    );
 }
