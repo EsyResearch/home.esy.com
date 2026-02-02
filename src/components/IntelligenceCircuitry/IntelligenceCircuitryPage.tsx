@@ -103,7 +103,7 @@ const sampleArtifacts = [
     type: 'Visual Essay',
     sources: 8,
     readTime: '12 min',
-    image: '/images/great-fire/great-fire-london-1675.jpg',
+    image: '/images/manhattan-project/trinity-gadget-assembled.jpg',
     href: '/essays/history/the-manhattan-project/',
   },
   {
@@ -119,7 +119,7 @@ const sampleArtifacts = [
     type: 'Interactive',
     sources: 5,
     readTime: '8 min',
-    image: '/images/great-fire/great-fire-london-1675.jpg',
+    image: '/images/essays/fork/hero-byzantine-fork.jpg',
     href: '/scrollytelling/the-fork/',
   },
 ];
