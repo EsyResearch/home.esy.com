@@ -1,18 +1,17 @@
 import { MetadataRoute } from 'next';
-import { headers } from 'next/headers';
 
 /**
- * Dynamic robots.txt
+ * Static robots.txt generation
  * 
- * - Production (esy.com): Allow all crawlers
- * - QA (qa.esy.com): Block all crawlers and AI bots
+ * For static export (output: export), we check the env var at build time.
+ * - QA builds (NEXT_PUBLIC_IS_QA=true): Block all crawlers
+ * - Production builds: Allow crawlers, block AI training bots
  */
-export default async function robots(): Promise<MetadataRoute.Robots> {
-  // Check if we're on QA environment
-  const headersList = await headers();
-  const host = headersList.get('host') ?? '';
-  const isQA = host.includes('qa.esy.com') || host.includes('qa-home.esy.com');
 
+// Check QA environment at build time
+const isQA = process.env.NEXT_PUBLIC_IS_QA === 'true';
+
+export default function robots(): MetadataRoute.Robots {
   if (isQA) {
     // Block everything on QA
     return {
@@ -66,7 +65,7 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
         allow: '/',
         disallow: ['/api/', '/private/'],
       },
-      // Block AI training bots on production too (optional)
+      // Block AI training bots on production too
       {
         userAgent: 'GPTBot',
         disallow: '/',

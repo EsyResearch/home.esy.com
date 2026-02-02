@@ -1,21 +1,13 @@
 /*
- * Citation-First Landing Page Styles
+ * Citation-First Landing Page Styles - Complete Redesign
  * 
  * Design Philosophy:
  * - Premium cinematic dark aesthetic
  * - Editorial typography with Cormorant Garamond
- * - Purple/pink brand gradient accents
- * - Clear visual hierarchy for citation-first messaging
- * - Confident, calm, humanistic feel
+ * - Clear visual hierarchy for instant comprehension
+ * - Confident, calm, humanistic feel—no hype
  * 
- * Key Sections:
- * 1. Hero - Citation-first positioning
- * 2. Why Citation-First - Contrast comparison
- * 3. Workflows - Three product pathways
- * 4. Artifacts - Proof of method
- * 5. How It Works - Process steps
- * 6. Trust - Credibility signals
- * 7. Final CTA - Conversion
+ * Success Metric: Visitor understands Esy in 5 seconds
  */
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
@@ -105,7 +97,7 @@
   text-decoration: none;
 }
 
-/* Section Eyebrow - Consistent across all sections */
+/* Section Eyebrow */
 .cf-section-eyebrow {
   display: block;
   font-family: var(--cf-font-mono);
@@ -127,6 +119,7 @@
 
 /* ============================================
    HERO SECTION
+   Goal: Instant clarity - what is Esy?
    ============================================ */
 .cf-hero {
   min-height: 100vh;
@@ -209,7 +202,7 @@
   border: 1px solid rgba(139, 92, 246, 0.2);
   border-radius: 24px;
   font-family: var(--cf-font-mono);
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -233,10 +226,10 @@
   50% { opacity: 0.5; transform: scale(1.3); }
 }
 
-/* Hero Title */
+/* Hero Title - Clear 2-line structure */
 .cf-hero-title {
   font-family: var(--cf-font-editorial);
-  font-size: clamp(2.75rem, 8vw, 5rem);
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -0.03em;
@@ -246,26 +239,21 @@
   animation-delay: 0.4s;
 }
 
-@media (min-width: 480px) {
-  .cf-hero-title {
-    font-size: clamp(3rem, 8vw, 5rem);
-  }
-}
-
 @media (min-width: 768px) {
   .cf-hero-title {
-    font-size: clamp(3.5rem, 8vw, 5rem);
-  }
-}
-
-@media (min-width: 1024px) {
-  .cf-hero-title {
-    font-size: 5rem;
+    font-size: clamp(3rem, 7vw, 4.5rem);
   }
 }
 
 .cf-hero-title-line {
   display: block;
+}
+
+.cf-hero-title-primary {
+  color: var(--cf-text-secondary);
+  font-size: 0.65em;
+  font-weight: 400;
+  margin-bottom: var(--cf-space-xs);
 }
 
 .cf-hero-title-emphasis {
@@ -277,20 +265,14 @@
   background-clip: text;
 }
 
-.cf-hero-title-secondary {
-  font-size: 0.6em;
-  color: var(--cf-text-secondary);
-  margin-top: var(--cf-space-sm);
-}
-
 /* Hero Subtitle */
 .cf-hero-subtitle {
   font-family: var(--cf-font-editorial);
-  font-size: clamp(1.125rem, 3vw, 1.375rem);
+  font-size: clamp(1.0625rem, 2.5vw, 1.25rem);
   font-weight: 300;
   line-height: 1.7;
   color: var(--cf-text-secondary);
-  max-width: 640px;
+  max-width: 620px;
   margin-bottom: var(--cf-space-2xl);
   opacity: 0;
   animation: fadeInUp 0.8s ease forwards;
@@ -342,7 +324,11 @@
   transition: transform var(--cf-transition);
 }
 
-.cf-hero-cta-primary:hover svg {
+.cf-hero-cta-primary svg:last-child {
+  margin-left: var(--cf-space-xs);
+}
+
+.cf-hero-cta-primary:hover svg:last-child {
   transform: translateX(4px);
 }
 
@@ -368,15 +354,22 @@
   transform: translateY(-2px);
 }
 
-/* Hero Trust Signals */
+/* Hero Trust Signals - Key differentiators */
 .cf-hero-trust {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--cf-space-lg);
+  align-items: center;
+  gap: var(--cf-space-md);
   opacity: 0;
   animation: fadeInUp 0.8s ease forwards;
   animation-delay: 1s;
+}
+
+@media (min-width: 768px) {
+  .cf-hero-trust {
+    gap: var(--cf-space-lg);
+  }
 }
 
 .cf-hero-trust-item {
@@ -388,7 +381,19 @@
 }
 
 .cf-hero-trust-item svg {
-  color: var(--cf-accent);
+  color: var(--cf-green);
+  flex-shrink: 0;
+}
+
+.cf-hero-trust-separator {
+  color: var(--cf-text-faint);
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .cf-hero-trust-separator {
+    display: block;
+  }
 }
 
 /* Scroll Indicator */
@@ -424,6 +429,7 @@
 
 /* ============================================
    WHY CITATION-FIRST SECTION
+   Focus on consequences, not features
    ============================================ */
 .cf-why-section {
   padding: var(--cf-space-4xl) var(--cf-space-lg);
@@ -445,13 +451,13 @@
 
 .cf-why-header {
   text-align: center;
-  max-width: 700px;
+  max-width: 750px;
   margin: 0 auto var(--cf-space-3xl);
 }
 
 .cf-why-title {
   font-family: var(--cf-font-editorial);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.875rem, 4.5vw, 2.75rem);
   font-weight: 300;
   line-height: 1.2;
   letter-spacing: -0.02em;
@@ -471,7 +477,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--cf-space-lg);
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto var(--cf-space-2xl);
 }
 
@@ -486,6 +492,14 @@
   padding: var(--cf-space-xl);
   border-radius: 16px;
   border: 1px solid var(--cf-border);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .cf-why-column {
+    padding: var(--cf-space-2xl);
+  }
 }
 
 .cf-why-column-generation {
@@ -498,14 +512,19 @@
 }
 
 .cf-why-column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--cf-space-md);
   margin-bottom: var(--cf-space-lg);
   padding-bottom: var(--cf-space-md);
   border-bottom: 1px solid var(--cf-border-subtle);
+  flex-wrap: wrap;
 }
 
 .cf-why-column-label {
   font-family: var(--cf-font-mono);
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -519,11 +538,34 @@
   color: var(--cf-accent);
 }
 
+.cf-why-column-tag {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-family: var(--cf-font-mono);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.cf-tag-warning {
+  background: rgba(248, 113, 113, 0.1);
+  color: var(--cf-red);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+}
+
+.cf-tag-accent {
+  background: rgba(139, 92, 246, 0.15);
+  color: var(--cf-accent);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
 .cf-why-list {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: var(--cf-space-md);
+  flex: 1;
 }
 
 .cf-why-list-item {
@@ -544,6 +586,7 @@
   font-weight: 600;
   font-size: 0.875rem;
   border-radius: 50%;
+  margin-top: 1px;
 }
 
 .cf-why-item-negative .cf-why-icon {
@@ -564,14 +607,31 @@
   color: var(--cf-text);
 }
 
-/* Tagline */
-.cf-why-tagline {
+/* Consequence - Key outcome */
+.cf-why-consequence {
+  margin-top: var(--cf-space-lg);
+  padding-top: var(--cf-space-md);
+  border-top: 1px solid var(--cf-border-subtle);
+  font-family: var(--cf-font-mono);
+  font-size: 0.8125rem;
+  color: var(--cf-text-muted);
+}
+
+.cf-why-consequence-positive {
+  color: var(--cf-green);
+}
+
+/* Bottom tagline */
+.cf-why-bottom {
   text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cf-why-tagline {
   font-family: var(--cf-font-editorial);
   font-size: 1.125rem;
   color: var(--cf-text-secondary);
-  max-width: 600px;
-  margin: 0 auto;
 }
 
 .cf-why-tagline strong {
@@ -580,6 +640,7 @@
 
 /* ============================================
    WORKFLOWS SECTION
+   Clear flagship hierarchy
    ============================================ */
 .cf-workflows-section {
   padding: var(--cf-space-4xl) var(--cf-space-lg);
@@ -606,7 +667,7 @@
 
 .cf-workflows-title {
   font-family: var(--cf-font-editorial);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.875rem, 4.5vw, 2.75rem);
   font-weight: 300;
   line-height: 1.2;
   letter-spacing: -0.02em;
@@ -621,7 +682,193 @@
   color: var(--cf-text-secondary);
 }
 
-/* Workflow Grid */
+/* Flagship Workflow - Prominent */
+.cf-workflow-flagship {
+  position: relative;
+  margin-bottom: var(--cf-space-3xl);
+}
+
+.cf-workflow-flagship-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  padding: 6px 16px;
+  background: var(--cf-gradient-hero);
+  border-radius: 20px;
+  font-family: var(--cf-font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.cf-workflow-flagship-card {
+  background: linear-gradient(145deg, rgba(139, 92, 246, 0.08) 0%, rgba(236, 72, 153, 0.05) 100%);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-radius: 24px;
+  padding: var(--cf-space-2xl);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .cf-workflow-flagship-card {
+    padding: var(--cf-space-3xl);
+  }
+}
+
+.cf-workflow-flagship-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--cf-gradient-hero);
+}
+
+.cf-workflow-flagship-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--cf-space-xl);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .cf-workflow-flagship-content {
+    grid-template-columns: auto 1fr auto;
+    gap: var(--cf-space-2xl);
+  }
+}
+
+.cf-workflow-flagship-icon {
+  width: 72px;
+  height: 72px;
+  background: rgba(139, 92, 246, 0.15);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cf-accent);
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .cf-workflow-flagship-icon {
+    margin: 0;
+  }
+}
+
+.cf-workflow-flagship-text {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .cf-workflow-flagship-text {
+    text-align: left;
+  }
+}
+
+.cf-workflow-flagship-title {
+  font-family: var(--cf-font-editorial);
+  font-size: clamp(1.375rem, 3vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: var(--cf-space-md);
+}
+
+.cf-workflow-flagship-description {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--cf-text-secondary);
+  margin-bottom: var(--cf-space-lg);
+  max-width: 560px;
+}
+
+.cf-workflow-flagship-outputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cf-space-sm);
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .cf-workflow-flagship-outputs {
+    justify-content: flex-start;
+  }
+}
+
+.cf-workflow-output-tag {
+  padding: 4px 12px;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 6px;
+  font-family: var(--cf-font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--cf-text-tertiary);
+}
+
+.cf-workflow-flagship-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cf-space-sm);
+  padding: var(--cf-space-md) var(--cf-space-xl);
+  background: var(--cf-gradient-hero);
+  border: none;
+  color: #fff;
+  font-family: var(--cf-font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.3);
+  transition: all var(--cf-transition);
+  white-space: nowrap;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .cf-workflow-flagship-cta {
+    margin: 0;
+  }
+}
+
+.cf-workflow-flagship-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(139, 92, 246, 0.4);
+}
+
+.cf-workflow-flagship-cta svg {
+  transition: transform var(--cf-transition);
+}
+
+.cf-workflow-flagship-cta:hover svg {
+  transform: translateX(4px);
+}
+
+/* Secondary Workflows */
+.cf-workflows-secondary {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cf-workflows-secondary-label {
+  font-family: var(--cf-font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cf-text-muted);
+  text-align: center;
+  margin-bottom: var(--cf-space-lg);
+}
+
 .cf-workflows-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -630,7 +877,7 @@
 
 @media (min-width: 768px) {
   .cf-workflows-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--cf-space-xl);
   }
 }
@@ -666,10 +913,6 @@
   transition: transform var(--cf-transition);
 }
 
-.cf-workflow-card--purple::before {
-  background: var(--cf-gradient-subtle);
-}
-
 .cf-workflow-card--pink::before {
   background: linear-gradient(90deg, #ec4899, #f472b6);
 }
@@ -688,11 +931,7 @@
   transform: scaleX(1);
 }
 
-/* Workflow Header */
 .cf-workflow-header {
-  display: flex;
-  align-items: center;
-  gap: var(--cf-space-md);
   margin-bottom: var(--cf-space-lg);
 }
 
@@ -706,11 +945,6 @@
   flex-shrink: 0;
 }
 
-.cf-workflow-icon--purple {
-  background: rgba(139, 92, 246, 0.15);
-  color: var(--cf-accent);
-}
-
 .cf-workflow-icon--pink {
   background: rgba(236, 72, 153, 0.15);
   color: var(--cf-pink);
@@ -721,19 +955,9 @@
   color: var(--cf-amber);
 }
 
-.cf-workflow-tagline {
-  font-family: var(--cf-font-mono);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--cf-text-muted);
-}
-
-/* Workflow Content */
 .cf-workflow-title {
   font-family: var(--cf-font-editorial);
-  font-size: 1.375rem;
+  font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.25;
   margin-bottom: var(--cf-space-sm);
@@ -797,16 +1021,6 @@
   transition: all var(--cf-transition);
 }
 
-.cf-workflow-cta--purple {
-  background: rgba(139, 92, 246, 0.1);
-  border: 1px solid rgba(139, 92, 246, 0.2);
-  color: var(--cf-accent);
-}
-
-.cf-workflow-cta--purple:hover {
-  background: rgba(139, 92, 246, 0.2);
-}
-
 .cf-workflow-cta--pink {
   background: rgba(236, 72, 153, 0.1);
   border: 1px solid rgba(236, 72, 153, 0.2);
@@ -837,6 +1051,7 @@
 
 /* ============================================
    ARTIFACTS SECTION
+   Proof of method, not identity
    ============================================ */
 .cf-artifacts-section {
   padding: var(--cf-space-4xl) var(--cf-space-lg);
@@ -863,7 +1078,7 @@
 
 .cf-artifacts-title {
   font-family: var(--cf-font-editorial);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.875rem, 4.5vw, 2.75rem);
   font-weight: 300;
   line-height: 1.2;
   letter-spacing: -0.02em;
@@ -893,7 +1108,6 @@
 
 @media (min-width: 1024px) {
   .cf-artifacts-grid {
-    grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: 360px;
   }
 }
@@ -1015,15 +1229,21 @@
 }
 
 .cf-artifact-meta-badge {
-  padding: 2px 8px;
-  background: rgba(34, 197, 94, 0.2);
-  border: 1px solid rgba(34, 197, 94, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
   border-radius: 4px;
   font-family: var(--cf-font-mono);
   font-size: 0.625rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+.cf-artifact-meta-badge--verified {
+  background: rgba(34, 197, 94, 0.2);
+  border: 1px solid rgba(34, 197, 94, 0.3);
   color: var(--cf-green);
 }
 
@@ -1067,6 +1287,17 @@
 .cf-artifacts-footer {
   margin-top: var(--cf-space-3xl);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--cf-space-lg);
+}
+
+.cf-artifacts-note {
+  font-family: var(--cf-font-editorial);
+  font-size: 0.9375rem;
+  font-style: italic;
+  color: var(--cf-text-muted);
 }
 
 .cf-artifacts-view-all {
@@ -1101,6 +1332,7 @@
 
 /* ============================================
    PROCESS SECTION
+   Simple 5-step flow with icons
    ============================================ */
 .cf-process-section {
   padding: var(--cf-space-4xl) var(--cf-space-lg);
@@ -1142,10 +1374,18 @@
 
 .cf-process-title {
   font-family: var(--cf-font-editorial);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.875rem, 4.5vw, 2.75rem);
   font-weight: 300;
   line-height: 1.2;
   letter-spacing: -0.02em;
+  margin-bottom: var(--cf-space-md);
+}
+
+.cf-process-description {
+  font-family: var(--cf-font-mono);
+  font-size: 0.8125rem;
+  color: var(--cf-text-muted);
+  letter-spacing: 0.05em;
 }
 
 /* Process Steps */
@@ -1171,7 +1411,7 @@
   .cf-process-line {
     display: block;
     position: absolute;
-    top: 32px;
+    top: 40px;
     left: 10%;
     right: 10%;
     height: 2px;
@@ -1187,47 +1427,51 @@
   z-index: 1;
 }
 
-.cf-process-number {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto var(--cf-space-lg);
-  background: var(--cf-elevated);
-  border: 2px solid var(--cf-border);
-  border-radius: 50%;
+.cf-process-step-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--cf-space-sm);
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--cf-font-mono);
-  font-size: 1rem;
-  font-weight: 600;
   color: var(--cf-accent);
   transition: all var(--cf-transition);
 }
 
-.cf-process-step:hover .cf-process-number {
+.cf-process-step:hover .cf-process-step-icon {
   background: var(--cf-gradient-subtle);
-  border-color: transparent;
   color: white;
   transform: scale(1.1);
 }
 
+.cf-process-number {
+  font-family: var(--cf-font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--cf-text-muted);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--cf-space-sm);
+}
+
 .cf-process-step-title {
   font-family: var(--cf-font-editorial);
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   font-weight: 400;
-  margin-bottom: var(--cf-space-sm);
+  margin-bottom: var(--cf-space-xs);
 }
 
 .cf-process-step-description {
   font-size: 0.8125rem;
   line-height: 1.6;
   color: var(--cf-text-tertiary);
-  max-width: 200px;
+  max-width: 180px;
   margin: 0 auto;
 }
 
 /* ============================================
-   TRUST SECTION
+   TRUST / DEFENSIBILITY SECTION
    ============================================ */
 .cf-trust-section {
   padding: var(--cf-space-4xl) var(--cf-space-lg);
@@ -1254,7 +1498,7 @@
 
 .cf-trust-title {
   font-family: var(--cf-font-editorial);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.875rem, 4.5vw, 2.75rem);
   font-weight: 300;
   line-height: 1.2;
   letter-spacing: -0.02em;
@@ -1359,7 +1603,7 @@
 
 .cf-final-cta-title {
   font-family: var(--cf-font-editorial);
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 5vw, 3.25rem);
   font-weight: 300;
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -1368,7 +1612,7 @@
 
 .cf-final-cta-description {
   font-family: var(--cf-font-editorial);
-  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  font-size: clamp(1.0625rem, 2.5vw, 1.25rem);
   font-weight: 300;
   line-height: 1.6;
   color: var(--cf-text-secondary);
@@ -1381,6 +1625,7 @@
   gap: var(--cf-space-md);
   justify-content: center;
   align-items: center;
+  margin-bottom: var(--cf-space-xl);
 }
 
 @media (min-width: 480px) {
@@ -1417,7 +1662,11 @@
   transition: transform var(--cf-transition);
 }
 
-.cf-final-cta-primary:hover svg {
+.cf-final-cta-primary svg:last-child {
+  margin-left: var(--cf-space-xs);
+}
+
+.cf-final-cta-primary:hover svg:last-child {
   transform: translateX(4px);
 }
 
@@ -1443,6 +1692,13 @@
   border-color: var(--cf-accent);
   color: var(--cf-text);
   transform: translateY(-2px);
+}
+
+.cf-final-cta-note {
+  font-family: var(--cf-font-editorial);
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--cf-text-muted);
 }
 
 /* ============================================
