@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, FileText, Layers, BarChart3, FileSpreadsheet, Sparkles } from 'lucide-react';
+import { ArrowRight, FileText, Layers, BarChart3, FileSpreadsheet } from 'lucide-react';
 import CircuitCanvas from './CircuitCanvas';
 import './IntelligenceCircuitryPage.css';
 
@@ -167,7 +167,6 @@ const IntelligenceCircuitryPage: React.FC = () => {
                   rel="noopener noreferrer"
                   style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '14px 24px', background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)', color: '#fff', fontWeight: 600, fontSize: '0.9375rem', borderRadius: '10px', textDecoration: 'none' }}
                 >
-                  <Sparkles size={18} />
                   <span>Start with a Template</span>
                   <ArrowRight size={18} />
                 </a>
@@ -393,7 +392,6 @@ const IntelligenceCircuitryPage: React.FC = () => {
               rel="noopener noreferrer"
               className="ic-cta-primary ic-cta-primary--large"
             >
-              <Sparkles size={20} />
               <span>Start with a Template</span>
               <ArrowRight size={20} />
             </a>
