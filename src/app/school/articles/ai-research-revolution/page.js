@@ -87,6 +87,7 @@ export default function AIResearchRevolutionArticle() {
     initials: 'ZU',
     name: 'Zev Uhuru',
     role: 'Founder, Esy',
+    image: 'https://images.esy.com/essays/authors/zev-uhuru.1d0f7777ab.webp',
     bio: 'Explores the intersection of AI and academic research, helping researchers leverage cutting-edge technology to accelerate their work.',
     meta: '15 articles published · Joined January 2024'
   };

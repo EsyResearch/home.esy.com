@@ -1,6 +1,7 @@
 "use client"
 
 import React from 'react';
+import Image from 'next/image';
 
 const ArticleHero = ({ category, title, author, date, readTime, theme, isDarkMode = true }) => {
   // Default theme if not provided
@@ -59,7 +60,9 @@ const ArticleHero = ({ category, title, author, date, readTime, theme, isDarkMod
       alignItems: 'center',
       justifyContent: 'center',
       fontSize: '1.25rem',
-      fontWeight: '300'
+      fontWeight: '300',
+      overflow: 'hidden',
+      position: 'relative'
     },
     authorDetails: {
       textAlign: 'left'
@@ -94,7 +97,19 @@ const ArticleHero = ({ category, title, author, date, readTime, theme, isDarkMod
       
       <div style={styles.articleMeta}>
         <div style={styles.authorInfo}>
-          <div style={styles.authorAvatar}>{author.initials}</div>
+          <div style={styles.authorAvatar}>
+            {author.image ? (
+              <Image
+                src={author.image}
+                alt={author.name}
+                width={48}
+                height={48}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+              />
+            ) : (
+              author.initials
+            )}
+          </div>
           <div style={styles.authorDetails}>
             <div style={styles.authorName}>{author.name}</div>
             <div style={styles.authorRole}>{author.role}</div>

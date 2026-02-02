@@ -86,6 +86,7 @@ export default function ToKillAMockingbirdArticle() {
     initials: 'ZU',
     name: 'Zev Uhuru',
     role: 'Founder, Esy',
+    image: 'https://images.esy.com/essays/authors/zev-uhuru.1d0f7777ab.webp',
     bio: 'Software Engineer with 5 years of experience, passionate about the intersection of AI and writing. Building tools that empower writers to create better content with the help of artificial intelligence.',
     meta: '38 articles published · Joined February 2024'
   };

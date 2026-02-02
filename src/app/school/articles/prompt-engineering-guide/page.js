@@ -85,6 +85,7 @@ export default function PromptEngineeringGuideArticle() {
     initials: 'ZU',
     name: 'Zev Uhuru',
     role: 'Founder, Esy',
+    image: 'https://images.esy.com/essays/authors/zev-uhuru.1d0f7777ab.webp',
     bio: 'Software Engineer with 5 years of experience, passionate about the intersection of AI and writing. Building tools that empower writers to create better content with the help of artificial intelligence.',
     meta: '15 articles published · Joined January 2024'
   };
