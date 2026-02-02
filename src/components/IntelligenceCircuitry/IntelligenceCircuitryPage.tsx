@@ -30,7 +30,6 @@ const templates = [
     timeSaved: '~15 min',
     automates: ['Research', 'Structure', 'Citations'],
     icon: FileText,
-    gateSymbol: '∧',
     accent: 'purple',
   },
   {
@@ -40,7 +39,6 @@ const templates = [
     timeSaved: '~20 min',
     automates: ['Synthesis', 'Key Findings', 'Sources'],
     icon: FileSpreadsheet,
-    gateSymbol: '∨',
     accent: 'blue',
   },
   {
@@ -50,7 +48,6 @@ const templates = [
     timeSaved: '~30 min',
     automates: ['Narrative', 'Visuals', 'Flow'],
     icon: Layers,
-    gateSymbol: '⊕',
     accent: 'pink',
   },
   {
@@ -60,7 +57,6 @@ const templates = [
     timeSaved: '~25 min',
     automates: ['Data Viz', 'Layout', 'Fact Check'],
     icon: BarChart3,
-    gateSymbol: '≡',
     accent: 'amber',
   },
 ];
@@ -119,125 +115,25 @@ const getEssayImage = (essay: VisualEssay): string => {
  * HowItWorksSection Component
  * 
  * Clean, minimal 4-step process visualization.
- * No animations. Pure clarity.
+ * Responsive: 4 columns on desktop, 2 on tablet, 1 on mobile.
  */
 const HowItWorksSection: React.FC = () => {
   return (
-    <section 
-      className="hiw-section"
-      style={{
-        padding: '100px 0',
-        background: 'linear-gradient(180deg, #08080c 0%, #0c0c12 100%)',
-        position: 'relative',
-        borderTop: '1px solid rgba(139, 92, 246, 0.2)',
-      }}
-    >
-      <div 
-        className="hiw-container"
-        style={{
-          maxWidth: '1100px',
-          margin: '0 auto',
-          padding: '0 24px',
-        }}
-      >
+    <section className="ic-hiw-section">
+      <div className="ic-hiw-container">
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '72px' }}>
-          <span 
-            style={{
-              display: 'inline-block',
-              fontFamily: 'JetBrains Mono, monospace',
-              fontSize: '11px',
-              fontWeight: 500,
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              color: '#8b5cf6',
-              marginBottom: '20px',
-              padding: '8px 16px',
-              background: 'rgba(139, 92, 246, 0.08)',
-              borderRadius: '4px',
-            }}
-          >
-            How It Works
-          </span>
-          <h2 
-            style={{
-              fontFamily: 'Cormorant Garamond, Georgia, serif',
-              fontSize: 'clamp(32px, 5vw, 48px)',
-              fontWeight: 300,
-              color: '#fafafa',
-              lineHeight: 1.15,
-              letterSpacing: '-0.02em',
-              margin: 0,
-            }}
-          >
-            Four steps to defensible work
-          </h2>
+        <div className="ic-hiw-header">
+          <span className="ic-hiw-eyebrow">How It Works</span>
+          <h2 className="ic-hiw-title">Four steps to defensible work</h2>
         </div>
 
         {/* Steps Grid */}
-        <div 
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '32px',
-            position: 'relative',
-          }}
-        >
+        <div className="ic-hiw-grid">
           {howItWorksSteps.map((step) => (
-            <div 
-              key={step.number} 
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                textAlign: 'center',
-              }}
-            >
-              <div 
-                style={{
-                  width: '64px',
-                  height: '64px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: '#0c0c12',
-                  border: '2px solid #8b5cf6',
-                  borderRadius: '50%',
-                  fontFamily: 'JetBrains Mono, monospace',
-                  fontSize: '18px',
-                  fontWeight: 600,
-                  color: '#8b5cf6',
-                  marginBottom: '24px',
-                  boxShadow: '0 0 20px rgba(139, 92, 246, 0.2)',
-                }}
-              >
-                {step.number}
-              </div>
-              <h3 
-                style={{
-                  fontFamily: 'Inter, -apple-system, sans-serif',
-                  fontSize: '17px',
-                  fontWeight: 600,
-                  color: '#fafafa',
-                  margin: '0 0 10px',
-                  letterSpacing: '-0.01em',
-                }}
-              >
-                {step.title}
-              </h3>
-              <p 
-                style={{
-                  fontFamily: 'Inter, -apple-system, sans-serif',
-                  fontSize: '14px',
-                  fontWeight: 400,
-                  color: 'rgba(250, 250, 250, 0.55)',
-                  lineHeight: 1.6,
-                  margin: 0,
-                  maxWidth: '200px',
-                }}
-              >
-                {step.description}
-              </p>
+            <div key={step.number} className="ic-hiw-step">
+              <div className="ic-hiw-step-number">{step.number}</div>
+              <h3 className="ic-hiw-step-title">{step.title}</h3>
+              <p className="ic-hiw-step-description">{step.description}</p>
             </div>
           ))}
         </div>
@@ -333,7 +229,6 @@ const IntelligenceCircuitryPage: React.FC = () => {
                   <div className={`ic-template-icon ic-template-icon--${template.accent}`}>
                     <template.icon size={24} />
                   </div>
-                  <span className="ic-template-gate">{template.gateSymbol}</span>
                 </div>
                 
                 <h3 className="ic-template-title">{template.title}</h3>

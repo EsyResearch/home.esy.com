@@ -314,18 +314,21 @@ export default function Navigation({
               )}
             </div>
 
-            {/* Templates - First-class nav item */}
-            <Link
-              href="/templates/"
-              className="nav-link"
-              style={{
-                color: isLightMode ? '#475569' : 'rgba(255, 255, 255, 0.85)',
-              }}
-            >
-              Templates
-            </Link>
+            {/* Templates - First-class nav item (hidden on mobile, available in hamburger menu) */}
+            {!isMobile && (
+              <Link
+                href="/templates/"
+                className="nav-link"
+                style={{
+                  color: isLightMode ? '#475569' : 'rgba(255, 255, 255, 0.85)',
+                }}
+              >
+                Templates
+              </Link>
+            )}
 
-            {/* App CTA - toned down */}
+            {/* App CTA - toned down (hidden on mobile, available in hamburger menu) */}
+            {!isMobile && (
               <a 
                 href={ctaConfig.ctaHref}
               target="_blank"
@@ -352,6 +355,7 @@ export default function Navigation({
               >
               App
               </a>
+            )}
 
             {/* Mobile Menu Button */}
               <button
