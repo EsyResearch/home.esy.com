@@ -1046,7 +1046,6 @@ const BrainPredictionMachineClient: React.FC = () => {
         {/* Sources & Further Reading */}
         <section className="sources-section">
           <div className="sources-header">
-            <span className="sources-eyebrow">Bibliography</span>
             <h2 className="sources-title">Sources &amp; Further Reading</h2>
             <p className="sources-description">
               The scientific foundations behind the prediction model of the brain.
