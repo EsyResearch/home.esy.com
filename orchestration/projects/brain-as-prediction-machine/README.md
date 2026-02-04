@@ -1,7 +1,7 @@
 # The Brain as a Prediction Machine
 
 > **Type**: Conceptual Visual Essay  
-> **Status**: G4 COMPLETE — Ready for G5 (Content Implementation)  
+> **Status**: G5 COMPLETE — Ready for Audits (G6-G7)  
 > **Orchestrator**: Conceptual Essay Orchestrator  
 > **Started**: February 3, 2026
 
@@ -52,8 +52,8 @@ brain-as-prediction-machine/
 | G3 | ✅ COMPLETE | `specs/brain-as-prediction-machine.md` |
 | G4 | ✅ COMPLETE | `DESIGN-RESEARCH.md` (Pedagogical Lens) |
 | G4.5 | ✅ INCLUDED | SVG Blueprints in Design Research |
-| G5 | ⏳ NEXT | Content Implementation |
-| G6 | ⬜ NOT STARTED | Accuracy Audit |
+| G5 | ✅ COMPLETE | `src/app/essays/brain-as-prediction-machine/` |
+| G6 | ⏳ NEXT | Accuracy Audit |
 | G6.5 | ⬜ NOT STARTED | Pedagogy Audit |
 | G7 | ⬜ NOT STARTED | Diagram Clarity Audit |
 | G7.5 | ⬜ NOT STARTED | Scroll Certification |
@@ -122,12 +122,30 @@ brain-as-prediction-machine/
 
 1. ~~**G3**: Create 6-layer invocation spec using Conceptual Essay Skill~~ ✅
 2. ~~**G4**: Design Research (Pedagogical Lens)~~ ✅
-3. **G5**: Content Implementation — Build the essay using:
-   - Spec: `specs/brain-as-prediction-machine.md`
-   - Design: `DESIGN-RESEARCH.md`
-   - Research: `research/*.md`
+3. ~~**G5**: Content Implementation~~ ✅
 4. **G6-G7**: Quality audits (Accuracy, Pedagogy, Diagram Clarity)
 5. **G8-G9**: Publication certification and approval
+
+## Implementation Files
+
+```
+src/app/essays/brain-as-prediction-machine/
+├── page.tsx                              ← Next.js page with metadata + JSON-LD
+├── BrainPredictionMachineClient.tsx      ← React client component (800+ lines)
+└── brain-as-prediction-machine.css       ← Styles with CSS tokens (400+ lines)
+```
+
+### Features Implemented
+
+- 8 sections following the learning sequence from SEQUENCE.md
+- 8 SVG diagrams with intersection observer animations
+- Accent color (#E53E3E) used ONLY for prediction error
+- Definition callouts for key terms
+- Misconception blocks (wrong vs. right)
+- Reading progress indicator
+- Responsive design (mobile + desktop)
+- Reduced motion support
+- SEO metadata + JSON-LD structured data
 
 ---
 

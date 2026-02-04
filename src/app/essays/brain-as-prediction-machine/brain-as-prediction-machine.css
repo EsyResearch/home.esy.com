@@ -1,0 +1,707 @@
+/**
+ * THE BRAIN AS A PREDICTION MACHINE
+ * A Conceptual Visual Essay
+ * 
+ * Design Research: orchestration/projects/brain-as-prediction-machine/DESIGN-RESEARCH.md
+ * Color System: Pedagogical (comprehension-focused)
+ * Primary Visual Medium: SVG Diagrams
+ * 
+ * CRITICAL: --diagram-accent (#E53E3E) is reserved ONLY for prediction error.
+ */
+
+/* ==================== CSS TOKENS ==================== */
+:root {
+  /* Base tokens */
+  --ink: #2D3748;
+  --background: #F7FAFC;
+  
+  /* Diagram tokens */
+  --diagram-primary: #4A90D9;
+  --diagram-secondary: #718096;
+  --diagram-accent: #E53E3E; /* PREDICTION ERROR ONLY */
+  --diagram-muted: #A0AEC0;
+  --diagram-surface: #EDF2F7;
+  
+  /* Typography */
+  --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Animation */
+  --duration-appear: 400ms;
+  --duration-draw: 600ms;
+  --duration-highlight: 1000ms;
+  --duration-state: 300ms;
+  --easing-default: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==================== ESSAY CONTAINER ==================== */
+.brain-prediction-machine {
+  background: var(--background);
+  color: var(--ink);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  line-height: 1.7;
+}
+
+.brain-prediction-machine * {
+  box-sizing: border-box;
+}
+
+/* ==================== HEADER ==================== */
+.essay-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: transparent;
+  transition: background var(--duration-state) var(--easing-default),
+              box-shadow var(--duration-state) var(--easing-default);
+}
+
+.essay-header.scrolled {
+  background: rgba(247, 250, 252, 0.95);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.back-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ink);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 500;
+  opacity: 0.7;
+  transition: opacity var(--duration-state);
+}
+
+.back-link:hover {
+  opacity: 1;
+}
+
+.header-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--diagram-muted);
+}
+
+.header-category {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ==================== PROGRESS BAR ==================== */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 101;
+  background: var(--diagram-surface);
+}
+
+.reading-progress-fill {
+  height: 100%;
+  background: var(--diagram-primary);
+  transition: width 100ms linear;
+}
+
+/* ==================== HERO SECTION ==================== */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 30% 20%, rgba(74, 144, 217, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(74, 144, 217, 0.05) 0%, transparent 40%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--diagram-primary);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeInUp var(--duration-appear) var(--easing-default) forwards;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 1.5rem;
+  color: var(--ink);
+  opacity: 0;
+  animation: fadeInUp var(--duration-appear) var(--easing-default) 100ms forwards;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--diagram-secondary);
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  opacity: 0;
+  animation: fadeInUp var(--duration-appear) var(--easing-default) 200ms forwards;
+}
+
+.hero-thesis {
+  background: white;
+  border-left: 4px solid var(--diagram-primary);
+  padding: 1.5rem 2rem;
+  text-align: left;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0;
+  animation: fadeInUp var(--duration-appear) var(--easing-default) 300ms forwards;
+}
+
+.hero-thesis p {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--diagram-muted);
+  font-size: 0.75rem;
+  opacity: 0;
+  animation: fadeInUp var(--duration-appear) var(--easing-default) 500ms forwards,
+             bounce 2s ease-in-out 1s infinite;
+}
+
+/* ==================== SECTION STYLES ==================== */
+.essay-section {
+  padding: 6rem 2rem;
+  max-width: 720px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-appear) var(--easing-default),
+              transform var(--duration-appear) var(--easing-default);
+}
+
+.essay-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-number {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--diagram-primary);
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 1.5rem;
+  color: var(--ink);
+}
+
+.section-content p {
+  margin: 0 0 1.5rem;
+  font-size: 1.125rem;
+}
+
+.section-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Key sentences */
+.key-sentence {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* ==================== DIAGRAM CONTAINER ==================== */
+.diagram-container {
+  background: var(--diagram-surface);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2.5rem 0;
+  position: relative;
+}
+
+.diagram-container.scroll-locked {
+  /* Styles for scroll-locked diagrams handled in component */
+}
+
+.diagram-label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--diagram-muted);
+  margin-bottom: 1rem;
+}
+
+.diagram-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.diagram-caption {
+  font-size: 0.875rem;
+  color: var(--diagram-secondary);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* ==================== SVG DIAGRAM STYLES ==================== */
+.diagram-svg text {
+  font-family: var(--font-display);
+  fill: var(--ink);
+}
+
+.diagram-svg .element-label {
+  font-size: 14px;
+  font-weight: 500;
+  text-anchor: middle;
+}
+
+.diagram-svg .process-rect {
+  fill: white;
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.diagram-svg .model-rect {
+  fill: var(--diagram-primary);
+  stroke: var(--diagram-primary);
+  stroke-width: 2;
+  rx: 8;
+  ry: 8;
+}
+
+.diagram-svg .model-rect text {
+  fill: white;
+}
+
+.diagram-svg .input-circle {
+  fill: var(--diagram-secondary);
+}
+
+.diagram-svg .input-circle text {
+  fill: white;
+}
+
+.diagram-svg .output-circle {
+  fill: var(--diagram-primary);
+}
+
+.diagram-svg .arrow-line {
+  stroke: var(--ink);
+  stroke-width: 2;
+  fill: none;
+}
+
+.diagram-svg .arrow-head {
+  fill: var(--ink);
+}
+
+.diagram-svg .arrow-dashed {
+  stroke-dasharray: 8, 4;
+}
+
+/* ACCENT COLOR - PREDICTION ERROR ONLY */
+.diagram-svg .error-element {
+  fill: var(--diagram-accent);
+  stroke: var(--diagram-accent);
+}
+
+.diagram-svg .error-element text {
+  fill: white;
+  font-weight: 600;
+}
+
+.diagram-svg .error-pulse {
+  animation: errorPulse var(--duration-highlight) ease-in-out infinite;
+}
+
+@keyframes errorPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* ==================== SCROLL-LOCK SECTION ==================== */
+.scroll-lock-section {
+  position: relative;
+}
+
+.scroll-lock-content {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.scroll-lock-content.is-pinned {
+  /* Active state */
+}
+
+.scroll-lock-progress {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 4px;
+  background: var(--diagram-surface);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.scroll-lock-progress-fill {
+  height: 100%;
+  background: var(--diagram-primary);
+  transition: width 100ms linear;
+}
+
+.skip-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: white;
+  border: 1px solid var(--diagram-muted);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: var(--ink);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all var(--duration-state);
+}
+
+.skip-button:hover {
+  background: var(--diagram-surface);
+  border-color: var(--diagram-primary);
+}
+
+/* ==================== DEFINITION CALLOUT ==================== */
+.definition-callout {
+  background: white;
+  border: 1px solid var(--diagram-surface);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.definition-term {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--diagram-primary);
+  margin: 0 0 0.5rem;
+}
+
+.definition-text {
+  margin: 0;
+  color: var(--ink);
+}
+
+/* ==================== QUOTE BLOCK ==================== */
+.quote-block {
+  border-left: 4px solid var(--diagram-primary);
+  padding: 1.5rem 2rem;
+  margin: 2.5rem 0;
+  background: white;
+  border-radius: 0 8px 8px 0;
+}
+
+.quote-text {
+  font-size: 1.25rem;
+  font-style: italic;
+  margin: 0 0 0.75rem;
+  color: var(--ink);
+}
+
+.quote-attribution {
+  font-size: 0.875rem;
+  color: var(--diagram-secondary);
+}
+
+/* ==================== MISCONCEPTION BLOCK ==================== */
+.misconception-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.misconception-wrong,
+.misconception-right {
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.misconception-wrong {
+  background: rgba(229, 62, 62, 0.05);
+  border: 1px solid rgba(229, 62, 62, 0.2);
+}
+
+.misconception-right {
+  background: rgba(74, 144, 217, 0.05);
+  border: 1px solid rgba(74, 144, 217, 0.2);
+}
+
+.misconception-label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.misconception-wrong .misconception-label {
+  color: var(--diagram-accent);
+}
+
+.misconception-right .misconception-label {
+  color: var(--diagram-primary);
+}
+
+.misconception-text {
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ==================== FINAL SECTION ==================== */
+.final-section {
+  background: linear-gradient(180deg, var(--background) 0%, white 100%);
+  padding: 8rem 2rem;
+  text-align: center;
+}
+
+.final-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.final-thesis {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+  margin: 0 0 2rem;
+}
+
+/* ==================== FOOTER ==================== */
+.essay-footer {
+  padding: 4rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--diagram-surface);
+}
+
+.footer-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--diagram-primary);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.footer-note {
+  font-size: 0.75rem;
+  color: var(--diagram-muted);
+  margin: 0;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+@keyframes drawLine {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* ==================== REDUCED MOTION ==================== */
+@media (prefers-reduced-motion: reduce) {
+  .hero-eyebrow,
+  .hero-title,
+  .hero-subtitle,
+  .hero-thesis,
+  .scroll-hint {
+    animation: none;
+    opacity: 1;
+  }
+  
+  .essay-section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  
+  .diagram-svg .error-pulse {
+    animation: none;
+  }
+  
+  .scroll-hint {
+    animation: none;
+  }
+}
+
+/* ==================== MOBILE STYLES ==================== */
+@media (max-width: 768px) {
+  .essay-header {
+    padding: 0.75rem 1rem;
+  }
+  
+  .hero-section {
+    padding: 1.5rem;
+  }
+  
+  .hero-thesis {
+    padding: 1rem 1.5rem;
+  }
+  
+  .essay-section {
+    padding: 4rem 1.5rem;
+  }
+  
+  .diagram-container {
+    padding: 1.5rem;
+    margin: 2rem -0.5rem;
+    border-radius: 8px;
+  }
+  
+  .misconception-block {
+    grid-template-columns: 1fr;
+  }
+  
+  .scroll-lock-progress {
+    width: 150px;
+    bottom: 1rem;
+  }
+  
+  .skip-button {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.625rem;
+  }
+}
+
+/* ==================== SPECIFIC DIAGRAM STYLES ==================== */
+
+/* Naive Model Diagram */
+.naive-model-diagram .element {
+  opacity: 0;
+  transition: opacity var(--duration-appear) var(--easing-default);
+}
+
+.naive-model-diagram.animated .element {
+  opacity: 1;
+}
+
+.naive-model-diagram .element:nth-child(1) { transition-delay: 0ms; }
+.naive-model-diagram .element:nth-child(2) { transition-delay: 200ms; }
+.naive-model-diagram .element:nth-child(3) { transition-delay: 400ms; }
+.naive-model-diagram .element:nth-child(4) { transition-delay: 600ms; }
+
+/* Prediction Loop Diagram */
+.prediction-loop-diagram .loop-arrow {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  transition: stroke-dashoffset var(--duration-draw) var(--easing-default);
+}
+
+.prediction-loop-diagram.animated .loop-arrow {
+  stroke-dashoffset: 0;
+}
+
+/* Error Comparison Diagram */
+.error-comparison-diagram .error-box {
+  transform: scale(0.8);
+  opacity: 0;
+  transition: all var(--duration-appear) var(--easing-default);
+}
+
+.error-comparison-diagram.animated .error-box {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Complete Loop Diagram */
+.complete-loop-diagram .connection {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+
+.complete-loop-diagram.animated .connection {
+  animation: drawLine var(--duration-draw) var(--easing-default) forwards;
+}
+
+.complete-loop-diagram .connection:nth-child(1) { animation-delay: 0ms; }
+.complete-loop-diagram .connection:nth-child(2) { animation-delay: 200ms; }
+.complete-loop-diagram .connection:nth-child(3) { animation-delay: 400ms; }
+.complete-loop-diagram .connection:nth-child(4) { animation-delay: 600ms; }
+.complete-loop-diagram .connection:nth-child(5) { animation-delay: 800ms; }
