@@ -37,7 +37,8 @@ Create a skill when you observe:
 | Skill | Purpose | Used By |
 |-------|---------|---------|
 | [image-url-extraction](./image-url-extraction/) | Extract direct image URLs from archive HTML pages | `image-research-licensing-expert.md` |
-| [visual-essay-invocation](./visual-essay-invocation/) | Generate comprehensive visual essay briefs | `visual-essay-orchestrator.md` |
+| [visual-essay-invocation](./visual-essay-invocation/) | Generate 6-layer specs for historical visual essays | `visual-essay-orchestrator.md` |
+| [conceptual-essay-invocation](./conceptual-essay-invocation/) | Generate 6-layer specs for conceptual/educational essays | `conceptual-essay-orchestrator.md` |
 | [seo-element-extraction](./seo-element-extraction/) | Extract all SEO-relevant elements from webpages | `seo-audit-agent.md` |
 
 ---
@@ -260,5 +261,8 @@ Before considering a skill complete:
 
 ---
 
-*Last Updated: December 2024*
+*Last Updated: February 2026*
+
+### Recent Changes
+- Added **conceptual-essay-invocation** skill for diagram-first educational essays
 

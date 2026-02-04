@@ -3,13 +3,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import Breadcrumbs from '@/components/Breadcrumbs';
+import { 
+  FileText, 
+  BookOpen,
+  Lightbulb,
+  Target,
+  Layers,
+  PenTool,
+  Search,
+  GraduationCap,
+  ArrowRight,
+  Sparkles,
+  BarChart3,
+  Quote,
+  Microscope
+} from 'lucide-react';
 import SearchBar from '@/components/SearchBar/SearchBar';
-import { StructuredLearningPaths, EssentialResources } from '@/components/School';
 import SchoolNewsletter from '@/components/School/SchoolNewsletter';
 import { useSchoolSearch } from '@/hooks/useSchoolSearch';
 import { useScrollHeaderSearch } from '@/hooks/useScrollHeaderSearch';
-import { elevatedDarkTheme } from '@/lib/theme';
 
 const EsySchool = () => {
   const router = useRouter();
@@ -17,20 +29,14 @@ const EsySchool = () => {
   const emailInputRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
-  const [viewMode, setViewMode] = useState('grid');
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [email, setEmail] = useState('');
 
-  // Show header search when in-page search scrolls out of view
   useScrollHeaderSearch(searchBarRef);
 
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
-    // Handle newsletter subscription
     console.log('Newsletter subscription:', emailInputRef.current?.value);
   };
   
-  // Responsive breakpoints
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   
@@ -45,709 +51,655 @@ const EsySchool = () => {
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
-  // Scroll progress indicator
-  useEffect(() => {
-    const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (window.scrollY / totalHeight) * 100;
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const styles = {
-    container: {
-      minHeight: '100vh',
-      backgroundColor: elevatedDarkTheme.bg,
-      color: elevatedDarkTheme.text,
-      fontFamily: 'var(--font-inter)',
-      lineHeight: 1.6,
-      position: 'relative'
-    },
-    progressBar: {
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      height: '2px',
-      backgroundColor: elevatedDarkTheme.accent,
-      width: `${scrollProgress}%`,
-      transition: 'width 0.1s ease',
-      zIndex: 1001
-    },
-    header: {
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      zIndex: 1000,
-      backgroundColor: 'rgba(24, 24, 27, 0.85)',
-      backdropFilter: 'blur(20px)',
-      borderBottom: `1px solid ${elevatedDarkTheme.borderSubtle}`
-    },
-    headerInner: {
-      maxWidth: '1400px',
-      margin: '0 auto',
-      padding: '1.25rem 3rem',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center'
-    },
-    logoGroup: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '1rem'
-    },
-    logo: {
-      fontSize: '1.375rem',
-      fontWeight: '300',
-      letterSpacing: '-0.02em',
-      color: '#ffffff',
-      textDecoration: 'none'
-    },
-    badge: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: '0.375rem',
-      padding: '0.375rem 0.875rem',
-      backgroundColor: 'rgba(139, 92, 246, 0.15)',  // Increased opacity for better contrast
-      border: '1px solid rgba(139, 92, 246, 0.25)',  // Slightly more visible border
-      borderRadius: '20px',
-      fontSize: '0.75rem',
-      fontWeight: '500',
-      letterSpacing: '0.05em',
-      textTransform: 'uppercase',
-      color: '#a78bfa',  // Lighter purple for better readability
-      boxShadow: '0 2px 8px rgba(139, 92, 246, 0.15)'  // Subtle glow
-    },
-    badgeDot: {
-      width: '6px',
-      height: '6px',
-      backgroundColor: elevatedDarkTheme.accent,
-      borderRadius: '50%',
-      animation: 'pulse 2s ease-in-out infinite'
-    },
-    nav: {
-      display: 'flex',
-      gap: '3rem',
-      alignItems: 'center'
-    },
-    navLink: {
-      color: elevatedDarkTheme.muted,
-      textDecoration: 'none',
-      fontSize: '0.9375rem',
-      transition: 'color 0.2s ease',
-      position: 'relative'
-    },
-    heroContent: {
-      display: 'grid',
-      gridTemplateColumns: isTablet ? '1fr' : '1.2fr 0.8fr',
-      gap: isTablet ? '3rem' : '4rem',
-      alignItems: 'center',
-      width: '100%',
-      maxWidth: '1200px',
-      margin: '0 auto',
-      textAlign: isTablet ? 'center' : 'left'
-    },
-    heroLeft: {
-      maxWidth: '720px',
-      margin: isTablet ? '0 auto' : '0'
-    },
-    heroTitle: {
-      fontFamily: 'Literata, Georgia, serif',
-      fontSize: 'clamp(3rem, 7vw, 6rem)',
-      fontWeight: '300',
-      lineHeight: '1.15',
-      marginBottom: '2rem',
-      opacity: '1',
-      letterSpacing: '-0.02em'
-    },
-    heroTitleAccent: {
-      display: 'block',
-      fontSize: 'clamp(2.5rem, 6vw, 5rem)',
-      fontWeight: '400',
-      marginTop: '0.5rem',
-      color: '#8b5cf6'
-    },
-    heroSubtitle: {
-      fontSize: 'clamp(1rem, 2vw, 1.2rem)',
-      fontWeight: '400',
-      opacity: '0.8',
-      lineHeight: '1.6',
-      marginBottom: '3rem',
-      maxWidth: '500px'
-    },
-    heroSearchSection: {
-      marginTop: '0',
-      maxWidth: '500px'
-    },
-    heroRight: {
-      position: 'relative',
-      display: isTablet ? 'none' : 'flex',
-      flexDirection: 'column',
-      gap: '0.75rem'
-    },
-    featureCard: {
-      background: elevatedDarkTheme.gradients?.featured || `linear-gradient(135deg, rgba(31, 31, 35, 0.9) 0%, rgba(39, 39, 42, 0.7) 100%)`,
-      border: `1px solid ${elevatedDarkTheme.accentBorder || 'rgba(159, 122, 234, 0.2)'}`,
-      borderRadius: '10px',
-      padding: '1rem',
-      backdropFilter: 'blur(10px)',
-      transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-      cursor: 'pointer',
-      boxShadow: elevatedDarkTheme.shadows?.sm || '0 2px 4px rgba(0, 0, 0, 0.2)'
-    },
-    featureTitle: {
-      fontFamily: 'Literata, Georgia, serif',
-      fontSize: '1rem',
-      fontWeight: '400',
-      marginBottom: '0.5rem',
-      opacity: '0.9'
-    },
-    featureDescription: {
-      fontSize: '0.8rem',
-      opacity: '0.6',
-      lineHeight: '1.5'
-    },
-    contentHeader: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      marginBottom: '3rem'
-    },
-    contentTitle: {
-      fontSize: '2.5rem',
-      fontWeight: '200',
-      letterSpacing: '-0.02em',
-      fontFamily: 'var(--font-literata)'
-    },
-    contentMeta: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '2rem'
-    },
-    viewToggle: {
-      display: 'flex',
-      gap: '0.5rem',
-      backgroundColor: 'rgba(255, 255, 255, 0.05)',
-      padding: '0.25rem',
-      borderRadius: '8px'
-    },
-    viewButton: {
-      padding: '0.5rem 1rem',
-      backgroundColor: 'transparent',
-      border: 'none',
-      borderRadius: '6px',
-      color: 'rgba(255, 255, 255, 0.6)',
-      cursor: 'pointer',
-      transition: 'all 0.2s ease',
-      fontSize: '0.875rem'
-    },
-    viewButtonActive: {
-      backgroundColor: 'rgba(255, 255, 255, 0.1)',
-      color: '#ffffff'
-    },
-    categoryTabs: {
-      display: 'flex',
-      gap: '2rem',
-      marginBottom: '3rem',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
-      overflowX: 'auto'
-    },
-    categoryTab: {
-      padding: '1rem 0',
-      backgroundColor: 'transparent',
-      border: 'none',
-      color: 'rgba(255, 255, 255, 0.6)',
-      fontSize: '0.9375rem',
-      cursor: 'pointer',
-      transition: 'all 0.2s ease',
-      position: 'relative',
-      whiteSpace: 'nowrap'
-    },
-    categoryTabActive: {
-      color: '#ffffff'
-    },
-    categoryIndicator: {
-      position: 'absolute',
-      bottom: '-1px',
-      left: 0,
-      right: 0,
-      height: '2px',
-      backgroundColor: elevatedDarkTheme.accent,
-      transform: 'scaleX(0)',
-      transition: 'transform 0.3s ease'
-    },
-    categoryIndicatorActive: {
-      transform: 'scaleX(1)'
-    },
-    articlesGrid: {
-      display: 'grid',
-      gridTemplateColumns: viewMode === 'grid' ? 'repeat(auto-fill, minmax(380px, 1fr))' : '1fr',
-      gap: '2rem'
-    },
-    articleCard: {
-      background: elevatedDarkTheme.gradients?.card || `linear-gradient(180deg, rgba(31, 31, 35, 0.6) 0%, rgba(24, 24, 27, 0.4) 100%)`,
-      borderRadius: '12px',
-      overflow: 'hidden',
-      transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-      cursor: 'pointer',
-      border: '1px solid rgba(255, 255, 255, 0.05)',
-      display: viewMode === 'list' ? 'flex' : 'block',
-      gap: viewMode === 'list' ? '2rem' : '0',
-      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
-    },
-    articleImage: {
-      width: viewMode === 'list' ? '240px' : '100%',
-      height: viewMode === 'list' ? '160px' : '200px',
-      backgroundColor: 'rgba(139, 92, 246, 0.05)',
-      position: 'relative',
-      overflow: 'hidden',
-      flexShrink: 0
-    },
-    articleImageOverlay: {
-      position: 'absolute',
-      inset: 0,
-      background: 'linear-gradient(to bottom, transparent 0%, rgba(10, 10, 15, 0.6) 100%)',
-      display: 'flex',
-      alignItems: 'flex-end',
-      padding: '1.5rem'
-    },
-    articleType: {
-      display: 'inline-block',
-      padding: '0.25rem 0.75rem',
-      backgroundColor: 'rgba(139, 92, 246, 0.2)',
-      borderRadius: '4px',
-      fontSize: '0.75rem',
-      fontWeight: '500',
-      textTransform: 'uppercase',
-      letterSpacing: '0.05em',
-      color: '#8b5cf6'
-    },
-    articleContent: {
-      padding: '1.5rem',
-      flex: 1
-    },
-    articleCategory: {
-      fontSize: '0.75rem',
-      color: '#8b5cf6',
-      textTransform: 'uppercase',
-      letterSpacing: '0.1em',
-      fontWeight: '500',
-      marginBottom: '0.5rem'
-    },
-    articleTitle: {
-      fontSize: '1.25rem',
-      fontWeight: '400',
-      marginBottom: '0.75rem',
-      letterSpacing: '-0.01em',
-      lineHeight: '1.4'
-    },
-    articleExcerpt: {
-      color: 'rgba(255, 255, 255, 0.6)',
-      fontSize: '0.9375rem',
-      lineHeight: '1.6',
-      marginBottom: '1rem'
-    },
-    articleMeta: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      fontSize: '0.875rem',
-      color: 'rgba(255, 255, 255, 0.4)'
-    },
-    articleAuthor: {
-      display: 'flex',
-      gap: '0.5rem'
-    },
-
-
-    footer: {
-      borderTop: '1px solid rgba(255, 255, 255, 0.05)',
-      padding: '3rem',
-      textAlign: 'center'
-    },
-    footerText: {
-      color: 'rgba(255, 255, 255, 0.4)',
-      fontSize: '0.875rem'
+  // Sophisticated dark theme - Warm orange primary
+  const theme = {
+    bg: '#09090b',
+    surface: '#131316',
+    elevated: '#1a1a1f',
+    card: '#16161a',
+    text: 'rgba(255, 255, 255, 0.95)',
+    muted: 'rgba(255, 255, 255, 0.72)',
+    subtle: 'rgba(255, 255, 255, 0.5)',
+    faint: 'rgba(255, 255, 255, 0.15)',
+    accent: '#c2410c',
+    accentLight: '#fdba74',
+    accentSoft: 'rgba(154, 52, 18, 0.12)',
+    accentBorder: 'rgba(154, 52, 18, 0.3)',
+    border: 'rgba(255, 255, 255, 0.06)',
+    // Category colors - warm palette variations
+    colors: {
+      essays: { bg: 'linear-gradient(135deg, #7c2d12 0%, #9a3412 100%)', accent: '#fdba74' },
+      research: { bg: 'linear-gradient(135deg, #713f12 0%, #854d0e 100%)', accent: '#fcd34d' },
+      visual: { bg: 'linear-gradient(135deg, #9a3412 0%, #c2410c 100%)', accent: '#fed7aa' },
+      briefs: { bg: 'linear-gradient(135deg, #78350f 0%, #92400e 100%)', accent: '#fbbf24' },
+      getting: { bg: 'linear-gradient(135deg, #451a03 0%, #78350f 100%)', accent: '#f59e0b' },
+      process: { bg: 'linear-gradient(135deg, #292524 0%, #44403c 100%)', accent: '#d6d3d1' }
     }
   };
 
+  // Categories for filtering
   const categories = [
-    { key: 'all', label: 'All Articles' },
-    { key: 'getting-started', label: 'Getting Started' },
-    { key: 'writing-guides', label: 'Writing Guides' },
-    { key: 'research', label: 'Research Methods' },
-    { key: 'ai-tools', label: 'AI Tools & Prompts' },
-    { key: 'case-studies', label: 'Case Studies' }
+    { key: 'all', label: 'All Topics' },
+    { key: 'essays', label: 'Academic Essays' },
+    { key: 'research', label: 'Research Briefs' },
+    { key: 'visual', label: 'Visual Essays' },
+    { key: 'getting-started', label: 'Getting Started' }
   ];
 
+  // Featured article - large hero
+  const featuredArticle = {
+    category: 'visual',
+    categoryLabel: 'Visual Essays',
+    title: 'How to Create a Visual Essay That Captivates Readers',
+    description: 'Learn how Esy combines research, narrative structure, and visual elements into long-form publishable content — without writing a single prompt.',
+    readTime: '12 min read',
+    href: '/school/articles/create-visual-essay',
+    icon: Sparkles
+  };
+
+  // SEO-optimized problem-solution articles
   const articles = [
     {
-      type: 'Article',
-      category: 'AI Research',
-      title: '5 Ways AI is Revolutionizing Academic Research',
-      excerpt: 'Discover how artificial intelligence is transforming the landscape of academic research, from automated literature reviews to predictive modeling.',
-      author: 'Zev Uhuru',
-      readTime: '6 min',
-      featured: true,
-      link: '/school/articles/ai-research-revolution'
-    },
-    {
-      type: 'Guide',
-      category: 'Prompt Engineering',
-      title: 'What is Prompt Engineering? A Comprehensive Guide',
-      excerpt: 'Master the art and science of crafting effective prompts for AI systems. Learn techniques that will transform your interactions with language models.',
-      author: 'Zev Uhuru',
+      category: 'essays',
+      categoryLabel: 'Academic Essays',
+      title: 'How to Write an Academic Essay with Proper Structure',
+      description: 'A complete guide to producing well-structured academic essays using Esy\'s workflow templates.',
       readTime: '8 min',
-      link: '/school/articles/prompt-engineering-guide'
+      href: '/school/articles/write-academic-essay',
+      icon: FileText
     },
     {
-      type: 'Tutorial',
-      category: 'LLM Basics',
-      title: 'Understanding Large Language Models: From Theory to Practice',
-      excerpt: 'Demystify the technology behind ChatGPT, Claude, and other LLMs. A beginner-friendly guide to transformer architecture and its applications.',
-      author: 'Zev Uhuru',
+      category: 'research',
+      categoryLabel: 'Research Briefs',
+      title: 'How to Create a Research Brief That Synthesizes Sources',
+      description: 'Transform scattered research into organized, source-backed briefs ready for use.',
+      readTime: '10 min',
+      href: '/school/articles/create-research-brief',
+      icon: Search
+    },
+    {
+      category: 'getting-started',
+      categoryLabel: 'Getting Started',
+      title: 'How to Complete Your First Esy Intake',
+      description: 'A walkthrough of the guided intake process — capture your intent, receive finished work.',
+      readTime: '6 min',
+      href: '/school/articles/first-intake-guide',
+      icon: Target
+    },
+    {
+      category: 'essays',
+      categoryLabel: 'Academic Essays',
+      title: 'How to Write a Thesis Statement That Works',
+      description: 'Craft compelling thesis statements using Esy\'s structured approach to argument building.',
+      readTime: '7 min',
+      href: '/school/articles/write-thesis-statement',
+      icon: Lightbulb
+    },
+    {
+      category: 'visual',
+      categoryLabel: 'Visual Essays',
+      title: 'How to Structure a Long-Form Visual Narrative',
+      description: 'Combine research, storytelling, and visual elements into cohesive long-form content.',
+      readTime: '14 min',
+      href: '/school/articles/visual-narrative-structure',
+      icon: Layers
+    },
+    {
+      category: 'research',
+      categoryLabel: 'Research Briefs',
+      title: 'How to Find and Evaluate Sources for Academic Work',
+      description: 'Let Esy automate source discovery and learn how to evaluate research quality.',
+      readTime: '9 min',
+      href: '/school/articles/find-evaluate-sources',
+      icon: Microscope
+    },
+    {
+      category: 'getting-started',
+      categoryLabel: 'Getting Started',
+      title: 'Why Structure Beats Prompting Every Time',
+      description: 'The difference between asking AI to "write an essay" and using a workflow designed for results.',
+      readTime: '5 min',
+      href: '/school/articles/structure-vs-prompting',
+      icon: BarChart3
+    },
+    {
+      category: 'essays',
+      categoryLabel: 'Academic Essays',
+      title: 'How to Write an Introduction That Hooks Readers',
+      description: 'Create compelling essay introductions that establish context and engage your audience.',
+      readTime: '6 min',
+      href: '/school/articles/write-introduction',
+      icon: PenTool
+    },
+    {
+      category: 'visual',
+      categoryLabel: 'Visual Essays',
+      title: 'How to Use Data Visualization in Essays',
+      description: 'Integrate charts, graphs, and visual data into narrative content effectively.',
+      readTime: '11 min',
+      href: '/school/articles/data-visualization-essays',
+      icon: BarChart3
+    },
+    {
+      category: 'research',
+      categoryLabel: 'Research Briefs',
+      title: 'How to Write a Literature Review Section',
+      description: 'Synthesize existing research into a coherent literature review using Esy\'s workflows.',
       readTime: '12 min',
-      link: '/school/articles/understanding-llms'
+      href: '/school/articles/write-literature-review',
+      icon: BookOpen
     },
     {
-      type: 'Literature',
-      category: 'Classic Literature',
-      title: 'To Kill a Mockingbird: A Timeless Exploration of Justice',
-      excerpt: 'Explore Harper Lee\'s masterpiece through the lens of moral courage, racial injustice, and the loss of innocence in 1930s Alabama.',
-      author: 'Zev Uhuru',
-      readTime: '15 min',
-      link: '/school/articles/to-kill-a-mockingbird'
+      category: 'essays',
+      categoryLabel: 'Academic Essays',
+      title: 'How to Write Conclusions That Resonate',
+      description: 'Craft conclusions that tie together your arguments and leave a lasting impression.',
+      readTime: '6 min',
+      href: '/school/articles/write-conclusions',
+      icon: Quote
+    },
+    {
+      category: 'getting-started',
+      categoryLabel: 'Getting Started',
+      title: 'Understanding Esy\'s Artifact Types',
+      description: 'Learn when to use essays, briefs, or visual essays for your specific project needs.',
+      readTime: '7 min',
+      href: '/school/articles/artifact-types-guide',
+      icon: GraduationCap
     }
   ];
 
-  const featuredResources = [
-    {
-      icon: '📚',
-      title: 'Research Templates',
-      description: 'Pre-structured templates for papers, proposals, and dissertations'
-    },
-    {
-      icon: '🎯',
-      title: 'Prompt Library',
-      description: 'Curated prompts for every academic discipline and writing stage',
-      link: '/prompt-library'
-    },
-    {
-      icon: '🎥',
-      title: 'Video Workshops',
-      description: 'Expert-led sessions on advanced AI writing techniques'
-    }
-  ];
+  // Filter articles by category
+  const filteredArticles = activeCategory === 'all' 
+    ? articles 
+    : articles.filter(a => a.category === activeCategory);
 
-  const courses = [
-    {
-      title: 'AI Writing Fundamentals',
-      duration: '4 weeks',
-      level: 'Beginner',
-      students: '2.3k enrolled'
-    },
-    {
-      title: 'Advanced Research Methods',
-      duration: '6 weeks',
-      level: 'Intermediate',
-      students: '1.8k enrolled'
-    },
-    {
-      title: 'Ethics in AI Academia',
-      duration: '3 weeks',
-      level: 'All levels',
-      students: '3.1k enrolled'
-    },
-    {
-      title: 'Dissertation Excellence',
-      duration: '8 weeks',
-      level: 'Advanced',
-      students: '890 enrolled'
-    }
-  ];
-
-  // Use the search hook for dropdown functionality
+  // Search functionality
   const {
     searchResults,
     isLoading: searchLoading,
-    searchTerm: dropdownSearchTerm,
     setSearchTerm: setDropdownSearchTerm,
     showDropdown
   } = useSchoolSearch({ 
     articles, 
-    resources: featuredResources, 
-    courses, 
+    resources: [], 
+    courses: [], 
     debounceMs: 300, 
     maxResults: 8 
   });
 
-  // Handle search result selection
   const handleResultSelect = (result) => {
-    if (result.type === 'article' && result.slug) {
-      router.push(result.slug);
-    } else if (result.type === 'resource' && result.slug) {
-      router.push(result.slug);
-    } else if (result.type === 'course') {
-      // For courses, we could scroll to the courses section or show a modal
-      const coursesSection = document.getElementById('courses');
-      if (coursesSection) {
-        coursesSection.scrollIntoView({ behavior: 'smooth' });
-      }
+    if (result.href) {
+      router.push(result.href);
     }
   };
 
-  return (
-    <div style={styles.container}>
-      <div style={styles.progressBar} />
-      
-      {/* Breadcrumbs */}
-      {/* <div style={{ marginTop: '6rem', marginBottom: '0.5rem' }}>
-        <Breadcrumbs 
-          items={[
-            { label: 'Home', href: '/' },
-            { label: 'School', isCurrent: true }
-          ]}
-        />
-      </div> */}
+  // Card gradient based on category
+  const getCardStyle = (category) => {
+    const colorSet = theme.colors[category] || theme.colors.process;
+    return {
+      background: colorSet.bg,
+      accentColor: colorSet.accent
+    };
+  };
 
+  return (
+    <div style={{
+      minHeight: '100vh',
+      backgroundColor: theme.bg,
+      color: theme.text,
+      fontFamily: 'var(--font-inter)'
+    }}>
+      
       {/* Hero Section */}
       <section style={{
-        position: 'relative',
         maxWidth: '1200px',
         margin: '0 auto',
-        marginTop: '5rem',
-        padding: '2rem 2rem 2rem 2rem',
-        minHeight: '70vh',
-        display: 'flex',
-        alignItems: 'center'
+        padding: '7rem 2rem 4rem'
       }}>
-        <div style={styles.heroContent}>
-          <div style={styles.heroLeft}>
-            <h1 style={styles.heroTitle}>
-              Esy
-              <span style={styles.heroTitleAccent}>School</span>
-            </h1>
-            <p style={styles.heroSubtitle}>
-              Master essay writing with AI agents<br />
-              and prompt engineering.
-            </p>
-            
-            {/* Search Bar in Hero */}
-            <div ref={searchBarRef} style={styles.heroSearchSection}>
-              <SearchBar
-                placeholder="Search articles & guides..."
-                value={searchQuery}
-                onChange={(value) => {
-                  setSearchQuery(value);
-                  setDropdownSearchTerm(value);
-                }}
-                onSearch={(query) => console.log('Searching for:', query)}
-                context="school"
-                inputFontSize="0.9rem"
-                style={{ marginBottom: '0' }}
-                autoFocus={true}
-                showDropdown={showDropdown}
-                searchResults={searchResults}
-                onResultSelect={handleResultSelect}
-                loadingResults={searchLoading}
-                maxResults={8}
-              />
-            </div>
-          </div>
+        {/* Breadcrumb */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          marginBottom: '2rem',
+          fontSize: '0.875rem',
+          color: theme.subtle
+        }}>
+          <Link href="/" style={{ color: theme.subtle, textDecoration: 'none' }}>Home</Link>
+          <span>›</span>
+          <span style={{ color: theme.muted }}>School</span>
+        </div>
 
-          <div style={styles.heroRight}>
-            <div 
-              style={styles.featureCard}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.borderColor = elevatedDarkTheme.accentBorder || 'rgba(159, 122, 234, 0.3)';
-                e.currentTarget.style.boxShadow = `${elevatedDarkTheme.shadows?.glow || '0 4px 16px rgba(159, 122, 234, 0.2)'}, ${elevatedDarkTheme.shadows?.hover || '0 12px 24px rgba(159, 122, 234, 0.15)'}`;
-                e.currentTarget.style.background = elevatedDarkTheme.gradients?.hover || `linear-gradient(135deg, rgba(39, 39, 42, 0.95) 0%, rgba(31, 31, 35, 0.8) 100%)`;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = elevatedDarkTheme.accentBorder || 'rgba(159, 122, 234, 0.2)';
-                e.currentTarget.style.boxShadow = elevatedDarkTheme.shadows?.sm || '0 2px 4px rgba(0, 0, 0, 0.2)';
-                e.currentTarget.style.background = elevatedDarkTheme.gradients?.featured || `linear-gradient(135deg, rgba(31, 31, 35, 0.9) 0%, rgba(39, 39, 42, 0.7) 100%)`;
-              }}
-            >
-              <h3 style={styles.featureTitle}>AI Agent Workflows</h3>
-              <p style={styles.featureDescription}>
-                Learn to build and deploy AI agents that research, outline, and draft essays with academic rigor.
-              </p>
-            </div>
-            <div 
-              style={styles.featureCard}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.borderColor = elevatedDarkTheme.accentBorder || 'rgba(159, 122, 234, 0.3)';
-                e.currentTarget.style.boxShadow = `${elevatedDarkTheme.shadows?.glow || '0 4px 16px rgba(159, 122, 234, 0.2)'}, ${elevatedDarkTheme.shadows?.hover || '0 12px 24px rgba(159, 122, 234, 0.15)'}`;
-                e.currentTarget.style.background = elevatedDarkTheme.gradients?.hover || `linear-gradient(135deg, rgba(39, 39, 42, 0.95) 0%, rgba(31, 31, 35, 0.8) 100%)`;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = elevatedDarkTheme.accentBorder || 'rgba(159, 122, 234, 0.2)';
-                e.currentTarget.style.boxShadow = elevatedDarkTheme.shadows?.sm || '0 2px 4px rgba(0, 0, 0, 0.2)';
-                e.currentTarget.style.background = elevatedDarkTheme.gradients?.featured || `linear-gradient(135deg, rgba(31, 31, 35, 0.9) 0%, rgba(39, 39, 42, 0.7) 100%)`;
-              }}
-            >
-              <h3 style={styles.featureTitle}>Prompt Engineering</h3>
-              <p style={styles.featureDescription}>
-                Master the art of crafting <Link href="/prompt-library" style={{ color: elevatedDarkTheme.accent, textDecoration: 'underline', textUnderlineOffset: '0.2em' }}>prompts</Link> that generate scholarly content, citations, and critical analysis.
-              </p>
-            </div>
-            <div 
-              style={styles.featureCard}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.borderColor = elevatedDarkTheme.accentBorder || 'rgba(159, 122, 234, 0.3)';
-                e.currentTarget.style.boxShadow = `${elevatedDarkTheme.shadows?.glow || '0 4px 16px rgba(159, 122, 234, 0.2)'}, ${elevatedDarkTheme.shadows?.hover || '0 12px 24px rgba(159, 122, 234, 0.15)'}`;
-                e.currentTarget.style.background = elevatedDarkTheme.gradients?.hover || `linear-gradient(135deg, rgba(39, 39, 42, 0.95) 0%, rgba(31, 31, 35, 0.8) 100%)`;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = elevatedDarkTheme.accentBorder || 'rgba(159, 122, 234, 0.2)';
-                e.currentTarget.style.boxShadow = elevatedDarkTheme.shadows?.sm || '0 2px 4px rgba(0, 0, 0, 0.2)';
-                e.currentTarget.style.background = elevatedDarkTheme.gradients?.featured || `linear-gradient(135deg, rgba(31, 31, 35, 0.9) 0%, rgba(39, 39, 42, 0.7) 100%)`;
-              }}
-            >
-              <h3 style={styles.featureTitle}>Research Automation</h3>
-              <p style={styles.featureDescription}>
-                Discover how to use AI to find sources, synthesize literature, and build compelling arguments.
-              </p>
-            </div>
-          </div>
+        {/* Title */}
+        <h1 style={{
+          fontFamily: 'var(--font-literata)',
+          fontSize: 'clamp(2.75rem, 6vw, 4.5rem)',
+          fontWeight: 300,
+          lineHeight: 1.1,
+          marginBottom: '1.25rem',
+          letterSpacing: '-0.02em'
+        }}>
+          Esy <span style={{ color: theme.accent }}>School</span>
+        </h1>
+
+        {/* Subtitle */}
+        <p style={{
+          fontSize: 'clamp(1.0625rem, 2vw, 1.25rem)',
+          lineHeight: 1.6,
+          color: theme.muted,
+          maxWidth: '600px',
+          marginBottom: '2.5rem'
+        }}>
+          Solve your writing and research challenges with Esy's in-depth guides and tutorials.
+        </p>
+
+        {/* Search */}
+        <div ref={searchBarRef} style={{ maxWidth: '480px' }}>
+          <SearchBar
+            placeholder="Search guides..."
+            value={searchQuery}
+            onChange={(value) => {
+              setSearchQuery(value);
+              setDropdownSearchTerm(value);
+            }}
+            onSearch={(query) => console.log('Searching for:', query)}
+            context="school"
+            inputFontSize="0.9375rem"
+            showDropdown={showDropdown}
+            searchResults={searchResults}
+            onResultSelect={handleResultSelect}
+            loadingResults={searchLoading}
+            maxResults={8}
+          />
         </div>
       </section>
 
-      {/* Articles Section */}
-      <section id="articles" style={{ 
-        maxWidth: '1400px',
+      {/* Featured Article - Large Visual Hero */}
+      <section style={{
+        maxWidth: '1200px',
         margin: '0 auto',
-        padding: '4rem 3rem'
+        padding: '0 2rem 4rem'
       }}>
-        <div style={styles.contentHeader}>
-          <h2 style={styles.contentTitle}>Articles & Tutorials</h2>
-          <div style={styles.contentMeta}>
-            <span style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.5)' }}>
-              156 articles
-            </span>
-            <div style={styles.viewToggle}>
-              <button
-                style={{
-                  ...styles.viewButton,
-                  ...(viewMode === 'grid' ? styles.viewButtonActive : {})
-                }}
-                onClick={() => setViewMode('grid')}
-              >
-                Grid
-              </button>
-              <button
-                style={{
-                  ...styles.viewButton,
-                  ...(viewMode === 'list' ? styles.viewButtonActive : {})
-                }}
-                onClick={() => setViewMode('list')}
-              >
-                List
-              </button>
+        <Link href={featuredArticle.href} style={{ textDecoration: 'none', color: 'inherit' }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: isTablet ? '1fr' : '1.4fr 1fr',
+              borderRadius: '20px',
+              overflow: 'hidden',
+              border: `1px solid ${theme.border}`,
+              transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              cursor: 'pointer'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = theme.accentBorder;
+              e.currentTarget.style.transform = 'translateY(-4px)';
+              e.currentTarget.style.boxShadow = '0 24px 64px rgba(0, 0, 0, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = theme.border;
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            {/* Visual Side */}
+            <div style={{
+              background: theme.colors.visual.bg,
+              padding: isTablet ? '3rem 2rem' : '4rem',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              minHeight: isTablet ? '240px' : '360px',
+              position: 'relative',
+              overflow: 'hidden'
+            }}>
+              {/* Abstract visual pattern */}
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                opacity: 0.1,
+                background: `
+                  radial-gradient(circle at 20% 30%, rgba(255,255,255,0.3) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(255,255,255,0.2) 0%, transparent 40%),
+                  radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 60%)
+                `
+              }} />
+              
+              {/* Large icon */}
+              <div style={{
+                width: '120px',
+                height: '120px',
+                borderRadius: '32px',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '1.5rem'
+              }}>
+                <featuredArticle.icon size={56} color={theme.colors.visual.accent} strokeWidth={1.25} />
+              </div>
+              
+              <span style={{
+                fontSize: '0.8125rem',
+                fontWeight: 600,
+                color: theme.colors.visual.accent,
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em'
+              }}>
+                Featured Guide
+              </span>
+            </div>
+
+            {/* Content Side */}
+            <div style={{
+              backgroundColor: theme.surface,
+              padding: isTablet ? '2rem' : '3rem',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}>
+              <span style={{
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                color: theme.colors.visual.accent,
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                marginBottom: '1rem'
+              }}>
+                {featuredArticle.categoryLabel}
+              </span>
+
+              <h2 style={{
+                fontFamily: 'var(--font-literata)',
+                fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+                fontWeight: 400,
+                lineHeight: 1.25,
+                marginBottom: '1rem',
+                letterSpacing: '-0.01em'
+              }}>
+                {featuredArticle.title}
+              </h2>
+
+              <p style={{
+                fontSize: '1rem',
+                color: theme.muted,
+                lineHeight: 1.7,
+                marginBottom: '1.5rem'
+              }}>
+                {featuredArticle.description}
+              </p>
+
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+              }}>
+                <span style={{
+                  fontSize: '0.875rem',
+                  color: theme.subtle
+                }}>
+                  {featuredArticle.readTime}
+                </span>
+                <span style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  fontSize: '0.9375rem',
+                  fontWeight: 500,
+                  color: theme.accent
+                }}>
+                  Read guide
+                  <ArrowRight size={16} strokeWidth={2} />
+                </span>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
+      </section>
 
-        <div style={styles.categoryTabs}>
-          {categories.map((category) => (
+      {/* Category Filter */}
+      <section style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '0 2rem 2rem'
+      }}>
+        <div style={{
+          display: 'flex',
+          gap: '0.5rem',
+          flexWrap: 'wrap',
+          paddingBottom: '2rem',
+          borderBottom: `1px solid ${theme.border}`
+        }}>
+          {categories.map((cat) => (
             <button
-              key={category.key}
+              key={cat.key}
+              onClick={() => setActiveCategory(cat.key)}
               style={{
-                ...styles.categoryTab,
-                ...(activeCategory === category.key ? styles.categoryTabActive : {})
+                padding: '0.625rem 1.25rem',
+                borderRadius: '24px',
+                border: `1px solid ${activeCategory === cat.key ? theme.accentBorder : theme.border}`,
+                backgroundColor: activeCategory === cat.key ? theme.accentSoft : 'transparent',
+                color: activeCategory === cat.key ? theme.accent : theme.muted,
+                fontSize: '0.875rem',
+                fontWeight: 500,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
               }}
-              onClick={() => setActiveCategory(category.key)}
             >
-              {category.label}
-              <span style={{
-                ...styles.categoryIndicator,
-                ...(activeCategory === category.key ? styles.categoryIndicatorActive : {})
-              }} />
+              {cat.label}
             </button>
           ))}
         </div>
+      </section>
 
-        <div style={styles.articlesGrid}>
-          {articles.map((article, index) => (
-            <Link
-              key={index}
-              href={article.link}
-              style={{ textDecoration: 'none', color: 'inherit' }}
-            >
-              <article
-                style={styles.articleCard}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = elevatedDarkTheme.accentBorder || 'rgba(159, 122, 234, 0.3)';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
-                  e.currentTarget.style.background = elevatedDarkTheme.gradients?.hover || `linear-gradient(135deg, rgba(39, 39, 42, 0.8) 0%, rgba(31, 31, 35, 0.6) 100%)`;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.05)';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
-                  e.currentTarget.style.background = elevatedDarkTheme.gradients?.card || `linear-gradient(180deg, rgba(31, 31, 35, 0.6) 0%, rgba(24, 24, 27, 0.4) 100%)`;
-                }}
+      {/* Articles Grid */}
+      <section style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '2rem 2rem 5rem'
+      }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: isTablet 
+            ? '1fr' 
+            : isMobile 
+              ? '1fr' 
+              : 'repeat(3, 1fr)',
+          gap: '1.5rem'
+        }}>
+          {filteredArticles.map((article, index) => {
+            const cardStyle = getCardStyle(article.category);
+            const Icon = article.icon;
+            
+            return (
+              <Link 
+                key={index}
+                href={article.href}
+                style={{ textDecoration: 'none', color: 'inherit' }}
               >
-                <div style={styles.articleImage}>
-                  <div style={styles.articleImageOverlay}>
-                    <span style={styles.articleType}>{article.type}</span>
-                  </div>
-                </div>
-                <div style={styles.articleContent}>
-                  <div style={styles.articleCategory}>{article.category}</div>
-                  <h3 style={styles.articleTitle}>{article.title}</h3>
-                  <p style={styles.articleExcerpt}>{article.excerpt}</p>
-                  <div style={styles.articleMeta}>
-                    <div style={styles.articleAuthor}>
-                      <span>{article.author}</span>
-                      <span>·</span>
-                      <span>{article.readTime} read</span>
+                <article
+                  style={{
+                    borderRadius: '16px',
+                    overflow: 'hidden',
+                    border: `1px solid ${theme.border}`,
+                    transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                    cursor: 'pointer',
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = theme.accentBorder;
+                    e.currentTarget.style.transform = 'translateY(-4px)';
+                    e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = theme.border;
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
+                >
+                  {/* Visual Header */}
+                  <div style={{
+                    background: cardStyle.background,
+                    padding: '2rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    minHeight: '160px',
+                    position: 'relative',
+                    overflow: 'hidden'
+                  }}>
+                    {/* Subtle pattern */}
+                    <div style={{
+                      position: 'absolute',
+                      inset: 0,
+                      opacity: 0.08,
+                      background: `
+                        radial-gradient(circle at 30% 40%, rgba(255,255,255,0.4) 0%, transparent 40%),
+                        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.3) 0%, transparent 35%)
+                      `
+                    }} />
+                    
+                    <div style={{
+                      width: '64px',
+                      height: '64px',
+                      borderRadius: '16px',
+                      backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                      border: '1px solid rgba(255, 255, 255, 0.15)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      <Icon size={28} color={cardStyle.accentColor} strokeWidth={1.5} />
                     </div>
-                    <span style={{ color: '#8b5cf6' }}>→</span>
                   </div>
-                </div>
-              </article>
-            </Link>
-          ))}
+
+                  {/* Content */}
+                  <div style={{
+                    backgroundColor: theme.surface,
+                    padding: '1.5rem',
+                    flex: 1,
+                    display: 'flex',
+                    flexDirection: 'column'
+                  }}>
+                    <span style={{
+                      fontSize: '0.6875rem',
+                      fontWeight: 600,
+                      color: cardStyle.accentColor,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.08em',
+                      marginBottom: '0.75rem'
+                    }}>
+                      {article.categoryLabel}
+                    </span>
+
+                    <h3 style={{
+                      fontSize: '1.0625rem',
+                      fontWeight: 500,
+                      lineHeight: 1.35,
+                      marginBottom: '0.75rem',
+                      letterSpacing: '-0.01em'
+                    }}>
+                      {article.title}
+                    </h3>
+
+                    <p style={{
+                      fontSize: '0.9375rem',
+                      color: theme.muted,
+                      lineHeight: 1.6,
+                      marginBottom: '1rem',
+                      flex: 1
+                    }}>
+                      {article.description}
+                    </p>
+
+                    <span style={{
+                      fontSize: '0.8125rem',
+                      color: theme.subtle
+                    }}>
+                      {article.readTime}
+                    </span>
+                  </div>
+                </article>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
-      {/* Essential Resources */}
-      <EssentialResources featuredResources={featuredResources} />
+      {/* Value Proposition Banner */}
+      <section style={{
+        backgroundColor: theme.surface,
+        borderTop: `1px solid ${theme.border}`,
+        borderBottom: `1px solid ${theme.border}`,
+        padding: '4rem 2rem'
+      }}>
+        <div style={{
+          maxWidth: '900px',
+          margin: '0 auto',
+          textAlign: 'center'
+        }}>
+          <h2 style={{
+            fontFamily: 'var(--font-literata)',
+            fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+            fontWeight: 400,
+            marginBottom: '1.25rem',
+            letterSpacing: '-0.01em'
+          }}>
+            Stop prompting. Start creating.
+          </h2>
+          
+          <p style={{
+            fontSize: '1.0625rem',
+            color: theme.muted,
+            lineHeight: 1.7,
+            maxWidth: '600px',
+            margin: '0 auto 2rem'
+          }}>
+            Esy replaces prompt engineering with structured workflows. Select a template, complete an intake, and receive publishable artifacts — essays, briefs, and visual content ready to use.
+          </p>
 
-      {/* Structured Learning Paths */}
-      {/* <StructuredLearningPaths courses={courses} /> */}
+          <Link
+            href="/about"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.625rem',
+              padding: '0.875rem 1.75rem',
+              backgroundColor: theme.accent,
+              color: 'white',
+              borderRadius: '10px',
+              fontSize: '0.9375rem',
+              fontWeight: 500,
+              textDecoration: 'none',
+              transition: 'all 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#7c3aed';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = theme.accent;
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+          >
+            Learn more about Esy
+            <ArrowRight size={16} strokeWidth={2} />
+          </Link>
+        </div>
+      </section>
 
+      {/* Newsletter */}
       <SchoolNewsletter 
         emailInputRef={emailInputRef}
         handleNewsletterSubmit={handleNewsletterSubmit}
         isMobile={isMobile}
         isTablet={isTablet}
       />
-
-
-      <style>{`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.6; transform: scale(1.2); }
-        }
-        
-        @keyframes rotate {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
     </div>
   );
 };

@@ -17,9 +17,43 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 
 interface CircuitCanvasProps {
   className?: string;
+  theme?: 'dark' | 'light';
 }
 
-const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
+// Theme-specific colors
+const themes = {
+  dark: {
+    nodeFill: '#16161f',
+    nodeStroke: '#2a2a3a',
+    textPrimary: '#fafafa',
+    textSecondary: 'rgba(250, 250, 250, 0.5)',
+    traceStart: 'rgba(234, 88, 12, 0.3)',
+    traceEnd: 'rgba(234, 88, 12, 0.4)',
+    accentGlow: 'rgba(234, 88, 12, 0.3)',
+    ballColor: '#ea580c',
+    gridColor: '#fff',
+    gridOpacity: 0.025,
+    checkColor: '#22c55e',
+    checkGlowStroke: 'rgba(34, 197, 94, 0.5)',
+  },
+  light: {
+    nodeFill: '#ffffff',
+    nodeStroke: 'rgba(28, 25, 23, 0.12)',
+    textPrimary: '#1c1917',
+    textSecondary: 'rgba(28, 25, 23, 0.5)',
+    traceStart: 'rgba(194, 65, 12, 0.25)',
+    traceEnd: 'rgba(194, 65, 12, 0.35)',
+    accentGlow: 'rgba(194, 65, 12, 0.25)',
+    ballColor: '#c2410c',
+    gridColor: '#1c1917',
+    gridOpacity: 0.04,
+    checkColor: '#16a34a',
+    checkGlowStroke: 'rgba(22, 163, 74, 0.5)',
+  },
+};
+
+const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '', theme = 'dark' }) => {
+  const colors = themes[theme];
   const [isVisible, setIsVisible] = useState(false);
   const [animationPhase, setAnimationPhase] = useState(0);
   const [showVerifyCheck, setShowVerifyCheck] = useState(false);
@@ -161,9 +195,9 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
         {/* Definitions */}
         <defs>
           {/* Gradient for traces */}
-          <linearGradient id="traceGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="rgba(139, 92, 246, 0.3)" />
-            <stop offset="100%" stopColor="rgba(139, 92, 246, 0.4)" />
+          <linearGradient id={`traceGradient-${theme}`} x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor={colors.traceStart} />
+            <stop offset="100%" stopColor={colors.traceEnd} />
           </linearGradient>
 
           {/* Glow filter for pulse */}
@@ -195,12 +229,12 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
         </defs>
 
         {/* Background grid pattern */}
-        <g className="circuit-grid" opacity="0.025">
+        <g className="circuit-grid" opacity={colors.gridOpacity}>
           {[...Array(17)].map((_, i) => (
-            <line key={`h-${i}`} x1="0" y1={i * 26} x2="400" y2={i * 26} stroke="#fff" strokeWidth="0.5" />
+            <line key={`h-${i}`} x1="0" y1={i * 26} x2="400" y2={i * 26} stroke={colors.gridColor} strokeWidth="0.5" />
           ))}
           {[...Array(16)].map((_, i) => (
-            <line key={`v-${i}`} x1={i * 26} y1="0" x2={i * 26} y2="430" stroke="#fff" strokeWidth="0.5" />
+            <line key={`v-${i}`} x1={i * 26} y1="0" x2={i * 26} y2="430" stroke={colors.gridColor} strokeWidth="0.5" />
           ))}
         </g>
 
@@ -209,7 +243,7 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
           {/* Main vertical trace: Sources to Research */}
           <path 
             d={`M200,${Y.sources + 24} L200,${Y.research - 24}`}
-            stroke="url(#traceGradient)"
+            stroke={`url(#traceGradient-${theme})`}
             strokeWidth="2"
             fill="none"
             strokeLinecap="round"
@@ -219,7 +253,7 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
           {/* Research to diamond top */}
           <path 
             d={`M200,${Y.research + 24} L200,${Y.diamondTop}`}
-            stroke="url(#traceGradient)"
+            stroke={`url(#traceGradient-${theme})`}
             strokeWidth="2"
             fill="none"
             strokeLinecap="round"
@@ -229,7 +263,7 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
           {/* Left diamond path */}
           <path 
             d={`M200,${Y.diamondTop} L120,${Y.diamondNodes} L200,${Y.diamondBottom}`}
-            stroke="url(#traceGradient)"
+            stroke={`url(#traceGradient-${theme})`}
             strokeWidth="2"
             fill="none"
             strokeLinecap="round"
@@ -240,7 +274,7 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
           {/* Right diamond path */}
           <path 
             d={`M200,${Y.diamondTop} L280,${Y.diamondNodes} L200,${Y.diamondBottom}`}
-            stroke="url(#traceGradient)"
+            stroke={`url(#traceGradient-${theme})`}
             strokeWidth="2"
             fill="none"
             strokeLinecap="round"
@@ -251,7 +285,7 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
           {/* Diamond bottom to output */}
           <path 
             d={`M200,${Y.diamondBottom} L200,${Y.output - 34}`}
-            stroke="url(#traceGradient)"
+            stroke={`url(#traceGradient-${theme})`}
             strokeWidth="2"
             fill="none"
             strokeLinecap="round"
@@ -267,13 +301,13 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
             x="-70" y="-22" 
             width="140" height="44" 
             rx="8" 
-            fill="#16161f"
-            stroke="#2a2a3a"
+            fill={colors.nodeFill}
+            stroke={colors.nodeStroke}
             strokeWidth="1"
           />
           <text 
             x="0" y="-3" 
-            fill="#fafafa"
+            fill={colors.textPrimary}
             fontSize="14"
             fontWeight="500"
             fontFamily="Inter, -apple-system, sans-serif"
@@ -284,7 +318,7 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
           </text>
           <text 
             x="0" y="12" 
-            fill="rgba(250, 250, 250, 0.5)"
+            fill={colors.textSecondary}
             fontSize="10"
             fontWeight="400"
             fontFamily="Inter, -apple-system, sans-serif"
@@ -303,13 +337,13 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
             x="-75" y="-22" 
             width="150" height="44" 
             rx="8" 
-            fill="#16161f"
-            stroke="#2a2a3a"
+            fill={colors.nodeFill}
+            stroke={colors.nodeStroke}
             strokeWidth="1"
           />
           <text 
             x="0" y="2" 
-            fill="#fafafa"
+            fill={colors.textPrimary}
             fontSize="14"
             fontWeight="500"
             fontFamily="Inter, -apple-system, sans-serif"
@@ -325,8 +359,8 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
             ═══════════════════════════════════════════════════════════ */}
         
         {/* Diamond junction points */}
-        <circle cx="200" cy={Y.diamondTop} r="4" fill="#16161f" stroke="#2a2a3a" strokeWidth="1" />
-        <circle cx="200" cy={Y.diamondBottom} r="4" fill="#16161f" stroke="#2a2a3a" strokeWidth="1" />
+        <circle cx="200" cy={Y.diamondTop} r="4" fill={colors.nodeFill} stroke={colors.nodeStroke} strokeWidth="1" />
+        <circle cx="200" cy={Y.diamondBottom} r="4" fill={colors.nodeFill} stroke={colors.nodeStroke} strokeWidth="1" />
 
         {/* VERIFY (Left) */}
         <g className="circuit-node circuit-node--verify" transform={`translate(120, ${Y.diamondNodes})`}>
@@ -334,14 +368,14 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
             x="-40" y="-18" 
             width="80" height="36" 
             rx="6" 
-            fill="#16161f"
-            stroke={showVerifyCheck ? "rgba(34, 197, 94, 0.5)" : "#2a2a3a"}
+            fill={colors.nodeFill}
+            stroke={showVerifyCheck ? colors.checkGlowStroke : colors.nodeStroke}
             strokeWidth="1"
             style={{ transition: 'stroke 0.2s ease' }}
           />
           <text 
             x="0" y={showVerifyCheck ? "-3" : "2"} 
-            fill="#fafafa"
+            fill={colors.textPrimary}
             fontSize="13"
             fontWeight="500"
             fontFamily="Inter, -apple-system, sans-serif"
@@ -353,7 +387,7 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
           {/* Checkmark - appears when ball passes */}
           <text 
             x="0" y="11" 
-            fill="#22c55e"
+            fill={colors.checkColor}
             fontSize="13"
             fontWeight="600"
             textAnchor="middle"
@@ -372,14 +406,14 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
             x="-40" y="-18" 
             width="80" height="36" 
             rx="6" 
-            fill="#16161f"
-            stroke={showStructureCheck ? "rgba(34, 197, 94, 0.5)" : "#2a2a3a"}
+            fill={colors.nodeFill}
+            stroke={showStructureCheck ? colors.checkGlowStroke : colors.nodeStroke}
             strokeWidth="1"
             style={{ transition: 'stroke 0.2s ease' }}
           />
           <text 
             x="0" y={showStructureCheck ? "-3" : "2"}
-            fill="#fafafa"
+            fill={colors.textPrimary}
             fontSize="13"
             fontWeight="500"
             fontFamily="Inter, -apple-system, sans-serif"
@@ -391,7 +425,7 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
           {/* Checkmark - appears when ball passes */}
           <text 
             x="0" y="11" 
-            fill="#22c55e"
+            fill={colors.checkColor}
             fontSize="13"
             fontWeight="600"
             textAnchor="middle"
@@ -414,7 +448,7 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
             width="180" height="64" 
             rx="12" 
             fill="none"
-            stroke="rgba(139, 92, 246, 0.3)"
+            stroke={colors.accentGlow}
             strokeWidth="2"
             filter={outputPulse ? "url(#outputGlow)" : undefined}
             opacity={outputPulse ? 1 : 0.6}
@@ -425,14 +459,14 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
             x="-86" y="-28" 
             width="172" height="56" 
             rx="8" 
-            fill="#16161f"
-            stroke={outputPulse ? "rgba(139, 92, 246, 0.5)" : "#2a2a3a"}
+            fill={colors.nodeFill}
+            stroke={outputPulse ? colors.ballColor : colors.nodeStroke}
             strokeWidth="1"
             style={{ transition: 'stroke 0.2s ease' }}
           />
           <text 
             x="0" y="-6" 
-            fill="#fafafa"
+            fill={colors.textPrimary}
             fontSize="14"
             fontWeight="500"
             fontFamily="Inter, -apple-system, sans-serif"
@@ -443,7 +477,7 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
           </text>
           <text 
             x="0" y="13" 
-            fill="rgba(250, 250, 250, 0.5)"
+            fill={colors.textSecondary}
             fontSize="11"
             fontWeight="400"
             fontFamily="Inter, -apple-system, sans-serif"
@@ -465,7 +499,7 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
                 cx={singleBallPos.x} 
                 cy={singleBallPos.y} 
                 r="6" 
-                fill="#8b5cf6"
+                fill={colors.ballColor}
                 opacity={singleBallPos.opacity}
                 filter="url(#pulseGlow)"
               />
@@ -479,7 +513,7 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
                   cx={leftBallPos.x} 
                   cy={leftBallPos.y} 
                   r="5" 
-                  fill="#8b5cf6"
+                  fill={colors.ballColor}
                   opacity={leftBallPos.opacity}
                   filter="url(#pulseGlow)"
                 />
@@ -488,7 +522,7 @@ const CircuitCanvas: React.FC<CircuitCanvasProps> = ({ className = '' }) => {
                   cx={rightBallPos.x} 
                   cy={rightBallPos.y} 
                   r="5" 
-                  fill="#8b5cf6"
+                  fill={colors.ballColor}
                   opacity={rightBallPos.opacity}
                   filter="url(#pulseGlow)"
                 />

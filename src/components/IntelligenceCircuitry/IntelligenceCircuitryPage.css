@@ -16,22 +16,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 /* ============================================
-   DESIGN TOKENS
+   DESIGN TOKENS - DARK MODE (Default)
    ============================================ */
 .ic-page {
   /* Background - deeper ink for circuit contrast */
   --ic-bg: #0a0a0c;
   --ic-bg-elevated: #111113;
+  --ic-bg-alternate: #08080a;
   --ic-surface: #18181b;
   --ic-surface-elevated: #1f1f23;
   
-  /* Circuit colors */
-  --ic-trace: rgba(139, 92, 246, 0.25);
-  --ic-trace-active: rgba(139, 92, 246, 0.6);
-  --ic-signal: #a78bfa;
-  --ic-signal-glow: rgba(167, 139, 250, 0.5);
+  /* Circuit colors - Warm Orange */
+  --ic-trace: rgba(234, 88, 12, 0.25);
+  --ic-trace-active: rgba(234, 88, 12, 0.6);
+  --ic-signal: #fdba74;
+  --ic-signal-glow: rgba(253, 186, 116, 0.5);
   --ic-node-bg: rgba(24, 24, 27, 0.9);
-  --ic-node-border: rgba(139, 92, 246, 0.2);
+  --ic-node-border: rgba(234, 88, 12, 0.2);
   --ic-gate-pass: #22c55e;
   
   /* Text */
@@ -44,15 +45,28 @@
   --ic-border: rgba(63, 63, 70, 0.3);
   --ic-border-subtle: rgba(63, 63, 70, 0.15);
   
-  /* Accents */
-  --ic-accent: #8b5cf6;
-  --ic-accent-pink: #ec4899;
+  /* Shadows */
+  --ic-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --ic-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --ic-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --ic-shadow-card: 0 4px 16px rgba(0, 0, 0, 0.3);
+  
+  /* Accents - Warm Orange Primary */
+  --ic-accent: #ea580c;
+  --ic-accent-darker: #9a3412;
+  --ic-accent-light: #fdba74;
   --ic-accent-amber: #f59e0b;
   --ic-accent-blue: #3b82f6;
+  --ic-accent-tint: rgba(234, 88, 12, 0.08);
   
-  /* Gradients */
-  --ic-gradient-hero: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-  --ic-gradient-subtle: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%);
+  /* Gradients - Warm */
+  --ic-gradient-hero: linear-gradient(135deg, #ea580c 0%, #f59e0b 100%);
+  --ic-gradient-subtle: linear-gradient(135deg, rgba(234, 88, 12, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+  
+  /* Card specific */
+  --ic-card-bg: rgba(255, 255, 255, 0.02);
+  --ic-card-border: rgba(255, 255, 255, 0.08);
+  --ic-card-hover-bg: rgba(255, 255, 255, 0.04);
   
   /* Typography */
   --ic-font-display: 'Cormorant Garamond', Georgia, serif;
@@ -76,6 +90,64 @@
   /* Layout */
   --ic-max-width: 1400px;
   --ic-content-width: 1100px;
+}
+
+/* ============================================
+   DESIGN TOKENS - LIGHT MODE
+   Premium warm academic aesthetic
+   ============================================ */
+.ic-page--light {
+  /* Backgrounds - Warm paper tones with subtle variation */
+  --ic-bg: #fdfbf7;
+  --ic-bg-elevated: #ffffff;
+  --ic-bg-alternate: #f7f5f0;
+  --ic-surface: #ffffff;
+  --ic-surface-elevated: #ffffff;
+  
+  /* Hero specific - warm cream with subtle warmth */
+  --ic-hero-bg: linear-gradient(180deg, #fdfbf7 0%, #f9f6f0 100%);
+  
+  /* Circuit colors - Warm Orange (more vivid on light) */
+  --ic-trace: rgba(194, 65, 12, 0.15);
+  --ic-trace-active: rgba(194, 65, 12, 0.4);
+  --ic-signal: #c2410c;
+  --ic-signal-glow: rgba(194, 65, 12, 0.3);
+  --ic-node-bg: rgba(255, 255, 255, 0.95);
+  --ic-node-border: rgba(194, 65, 12, 0.2);
+  --ic-gate-pass: #16a34a;
+  
+  /* Text - Warm stone palette */
+  --ic-text: #1c1917;
+  --ic-text-secondary: #44403c;
+  --ic-text-muted: #78716c;
+  --ic-text-subtle: #a8a29e;
+  
+  /* Borders - Warm and subtle */
+  --ic-border: rgba(28, 25, 23, 0.1);
+  --ic-border-subtle: rgba(28, 25, 23, 0.06);
+  
+  /* Shadows - Warm gray, not cold */
+  --ic-shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.05);
+  --ic-shadow-md: 0 4px 12px rgba(28, 25, 23, 0.08);
+  --ic-shadow-lg: 0 8px 24px rgba(28, 25, 23, 0.12);
+  --ic-shadow-card: 0 2px 8px rgba(28, 25, 23, 0.06), 0 8px 24px rgba(28, 25, 23, 0.08);
+  
+  /* Accents - Deeper orange for light mode contrast */
+  --ic-accent: #c2410c;
+  --ic-accent-darker: #7c2d12;
+  --ic-accent-light: #fed7aa;
+  --ic-accent-amber: #d97706;
+  --ic-accent-blue: #2563eb;
+  --ic-accent-tint: rgba(194, 65, 12, 0.06);
+  
+  /* Gradients - Richer on light */
+  --ic-gradient-hero: linear-gradient(135deg, #c2410c 0%, #d97706 100%);
+  --ic-gradient-subtle: linear-gradient(135deg, rgba(194, 65, 12, 0.06) 0%, rgba(217, 119, 6, 0.03) 100%);
+  
+  /* Card specific */
+  --ic-card-bg: #ffffff;
+  --ic-card-border: rgba(28, 25, 23, 0.08);
+  --ic-card-hover-bg: #fdfcfa;
 }
 
 /* ============================================
@@ -175,8 +247,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 50% at 30% 60%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(234, 88, 12, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 30% 60%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
   animation: heroBreath 15s ease-in-out infinite;
 }
 
@@ -189,8 +261,8 @@
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(234, 88, 12, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(234, 88, 12, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
   mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
   -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
@@ -247,8 +319,8 @@
   align-items: center;
   gap: var(--ic-space-sm);
   padding: 6px 14px;
-  background: rgba(139, 92, 246, 0.08);
-  border: 1px solid rgba(139, 92, 246, 0.15);
+  background: rgba(234, 88, 12, 0.08);
+  border: 1px solid rgba(234, 88, 12, 0.15);
   border-radius: 24px;
   font-family: var(--ic-font-mono);
   font-size: 0.6875rem;
@@ -314,18 +386,18 @@
   align-items: center;
   gap: var(--ic-space-sm);
   padding: 14px 24px;
-  background: #8b5cf6;
-  color: #fff;
+  background: #9a3412;
+  color: #fafafa;
   font-weight: 600;
   font-size: 0.9375rem;
   border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 8px 24px rgba(124, 45, 18, 0.25);
   transition: all 0.3s var(--ic-ease);
 }
 
 .ic-cta-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 12px 32px rgba(124, 45, 18, 0.35);
 }
 
 .ic-cta-primary svg:last-child {
@@ -346,8 +418,8 @@
   align-items: center;
   gap: var(--ic-space-xs);
   padding: 14px 24px;
-  background: rgba(139, 92, 246, 0.08);
-  border: 1px solid rgba(139, 92, 246, 0.2);
+  background: rgba(154, 52, 18, 0.12);
+  border: 1px solid rgba(154, 52, 18, 0.25);
   color: var(--ic-text);
   font-weight: 600;
   font-size: 0.9375rem;
@@ -356,7 +428,7 @@
 }
 
 .ic-cta-secondary:hover {
-  background: rgba(139, 92, 246, 0.15);
+  background: rgba(154, 52, 18, 0.2);
   transform: translateY(-2px);
 }
 
@@ -440,7 +512,7 @@
 
 .circuit-node:hover .circuit-node-bg {
   fill: rgba(31, 31, 35, 0.95);
-  stroke: rgba(139, 92, 246, 0.4);
+  stroke: rgba(234, 88, 12, 0.4);
 }
 
 .circuit-node-bg--gate {
@@ -449,8 +521,8 @@
 }
 
 .circuit-node-bg--output {
-  fill: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
-  stroke: rgba(139, 92, 246, 0.3);
+  fill: linear-gradient(135deg, rgba(234, 88, 12, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+  stroke: rgba(234, 88, 12, 0.3);
   stroke-width: 1.5;
 }
 
@@ -532,13 +604,13 @@
 
 /* Artifact preview inside node */
 .artifact-preview-thumb {
-  fill: rgba(139, 92, 246, 0.15);
-  stroke: rgba(139, 92, 246, 0.3);
+  fill: rgba(234, 88, 12, 0.15);
+  stroke: rgba(234, 88, 12, 0.3);
   stroke-width: 0.5;
 }
 
 .artifact-preview-line {
-  stroke: rgba(139, 92, 246, 0.4);
+  stroke: rgba(234, 88, 12, 0.4);
   stroke-width: 2;
   stroke-linecap: round;
 }
@@ -548,7 +620,7 @@
   position: absolute;
   width: 20px;
   height: 20px;
-  border: 1px solid rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(154, 52, 18, 0.2);
 }
 
 .circuit-corner--tl {
@@ -632,7 +704,7 @@
 }
 
 .ic-template-card--purple::before {
-  background: var(--ic-accent);
+  background: #ea580c;
 }
 
 .ic-template-card--blue::before {
@@ -640,7 +712,7 @@
 }
 
 .ic-template-card--pink::before {
-  background: var(--ic-accent-pink);
+  background: #f59e0b;
 }
 
 .ic-template-card--amber::before {
@@ -649,7 +721,7 @@
 
 .ic-template-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(139, 92, 246, 0.3);
+  border-color: rgba(234, 88, 12, 0.3);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
 }
 
@@ -680,7 +752,7 @@
 }
 
 .ic-template-icon--purple {
-  background: rgba(139, 92, 246, 0.15);
+  background: rgba(234, 88, 12, 0.15);
   color: var(--ic-accent);
 }
 
@@ -690,8 +762,8 @@
 }
 
 .ic-template-icon--pink {
-  background: rgba(236, 72, 153, 0.15);
-  color: var(--ic-accent-pink);
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--ic-accent-amber);
 }
 
 .ic-template-icon--amber {
@@ -784,7 +856,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(234, 88, 12, 0.3), transparent);
 }
 
 .hiw-container {
@@ -806,10 +878,10 @@
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #8b5cf6;
+  color: #ea580c;
   margin-bottom: 20px;
   padding: 8px 16px;
-  background: rgba(139, 92, 246, 0.08);
+  background: rgba(234, 88, 12, 0.08);
   border-radius: 4px;
 }
 
@@ -840,10 +912,10 @@
   right: 60px;
   height: 1px;
   background: linear-gradient(90deg, 
-    #8b5cf6 0%, 
-    rgba(139, 92, 246, 0.5) 33%,
-    rgba(139, 92, 246, 0.5) 66%,
-    #8b5cf6 100%
+    #ea580c 0%, 
+    rgba(234, 88, 12, 0.5) 33%,
+    rgba(234, 88, 12, 0.5) 66%,
+    #ea580c 100%
   );
 }
 
@@ -865,18 +937,18 @@
   align-items: center;
   justify-content: center;
   background: #0c0c12;
-  border: 2px solid #8b5cf6;
+  border: 2px solid #ea580c;
   border-radius: 50%;
   font-family: 'JetBrains Mono', monospace;
   font-size: 18px;
   font-weight: 600;
-  color: #8b5cf6;
+  color: #ea580c;
   margin-bottom: 24px;
   position: relative;
   z-index: 1;
   box-shadow: 
     0 0 0 8px #0c0c12,
-    0 0 20px rgba(139, 92, 246, 0.2);
+    0 0 20px rgba(234, 88, 12, 0.2);
 }
 
 /* Step Title */
@@ -919,7 +991,7 @@
   }
   
   .hiw-step-number {
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+    box-shadow: 0 0 20px rgba(234, 88, 12, 0.2);
   }
 }
 
@@ -970,7 +1042,7 @@
    ============================================ */
 .ic-trust-section {
   padding: var(--ic-space-xl) 0;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(236, 72, 153, 0.03) 100%);
+  background: linear-gradient(135deg, rgba(234, 88, 12, 0.05) 0%, rgba(245, 158, 11, 0.03) 100%);
   border-top: 1px solid var(--ic-border-subtle);
   border-bottom: 1px solid var(--ic-border-subtle);
 }
@@ -1302,8 +1374,8 @@
   position: absolute;
   inset: -50%;
   background:
-    radial-gradient(ellipse at 30% 50%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 50%, rgba(236, 72, 153, 0.04) 0%, transparent 50%);
+    radial-gradient(ellipse at 30% 50%, rgba(234, 88, 12, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 50%, rgba(245, 158, 11, 0.04) 0%, transparent 50%);
   animation: heroBreath 12s ease-in-out infinite;
   pointer-events: none;
 }
@@ -1362,7 +1434,7 @@
   padding: 100px 0;
   background: linear-gradient(180deg, #08080c 0%, #0c0c12 100%);
   position: relative;
-  border-top: 1px solid rgba(139, 92, 246, 0.2);
+  border-top: 1px solid rgba(234, 88, 12, 0.2);
 }
 
 @media (max-width: 768px) {
@@ -1401,10 +1473,10 @@
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #8b5cf6;
+  color: #ea580c;
   margin-bottom: 20px;
   padding: 8px 16px;
-  background: rgba(139, 92, 246, 0.08);
+  background: rgba(234, 88, 12, 0.08);
   border-radius: 4px;
 }
 
@@ -1464,14 +1536,14 @@
   align-items: center;
   justify-content: center;
   background: #0c0c12;
-  border: 2px solid #8b5cf6;
+  border: 2px solid #ea580c;
   border-radius: 50%;
   font-family: 'JetBrains Mono', monospace;
   font-size: 18px;
   font-weight: 600;
-  color: #8b5cf6;
+  color: #ea580c;
   margin-bottom: 24px;
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+  box-shadow: 0 0 20px rgba(234, 88, 12, 0.2);
 }
 
 @media (max-width: 640px) {
@@ -1568,4 +1640,347 @@
   .ic-final-cta-section {
     display: none;
   }
+}
+
+/* ============================================
+   LIGHT MODE - COMPREHENSIVE THEME
+   World-class academic aesthetic
+   ============================================ */
+
+/* Base light mode */
+.ic-page--light {
+  background: var(--ic-bg);
+  color: var(--ic-text);
+}
+
+/* ─────────────────────────────────────────────
+   HERO SECTION - Light Mode
+   Warm cream with subtle grain texture feel
+   ───────────────────────────────────────────── */
+.ic-page--light .ic-hero {
+  background: linear-gradient(180deg, #fdfbf7 0%, #f8f5ef 100%);
+}
+
+.ic-page--light .ic-hero-gradient {
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(194, 65, 12, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 30% 60%, rgba(217, 119, 6, 0.03) 0%, transparent 50%);
+}
+
+.ic-page--light .ic-hero-grid {
+  background-image: 
+    linear-gradient(rgba(28, 25, 23, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28, 25, 23, 0.03) 1px, transparent 1px);
+}
+
+/* Hero text - Light mode */
+.ic-page--light .ic-hero h1 {
+  color: var(--ic-text) !important;
+}
+
+.ic-page--light .ic-hero h1 span:first-child {
+  color: #1c1917 !important;
+}
+
+.ic-page--light .ic-hero p {
+  color: var(--ic-text-secondary) !important;
+}
+
+/* Hero CTAs - Light mode */
+.ic-page--light .ic-hero a[href*="app.esy.com"] {
+  background: var(--ic-accent-darker) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(124, 45, 18, 0.2);
+}
+
+.ic-page--light .ic-hero a[href*="app.esy.com"]:hover {
+  background: #7c2d12 !important;
+  box-shadow: 0 6px 20px rgba(124, 45, 18, 0.3);
+}
+
+.ic-page--light .ic-hero a[href="/essays/"] {
+  background: var(--ic-accent-tint) !important;
+  border-color: rgba(194, 65, 12, 0.2) !important;
+  color: var(--ic-accent-darker) !important;
+}
+
+.ic-page--light .ic-hero a[href="/essays/"]:hover {
+  background: rgba(194, 65, 12, 0.1) !important;
+}
+
+/* Scroll indicator - Light */
+.ic-page--light .ic-scroll-indicator {
+  color: var(--ic-text-muted);
+}
+
+.ic-page--light .ic-scroll-line {
+  background: linear-gradient(180deg, var(--ic-accent) 0%, transparent 100%);
+}
+
+/* ─────────────────────────────────────────────
+   TEMPLATES SECTION - Light Mode
+   Clean white cards with warm shadows
+   ───────────────────────────────────────────── */
+.ic-page--light .ic-templates-section {
+  background: #f7f5f0;
+  border-top: 1px solid var(--ic-border);
+}
+
+.ic-page--light .ic-section-eyebrow {
+  color: var(--ic-accent);
+  background: var(--ic-accent-tint);
+  padding: 6px 12px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.ic-page--light .ic-section-title {
+  color: var(--ic-text);
+}
+
+.ic-page--light .ic-section-description {
+  color: var(--ic-text-secondary);
+}
+
+.ic-page--light .ic-template-card {
+  background: var(--ic-card-bg);
+  border: 1px solid var(--ic-card-border);
+  box-shadow: var(--ic-shadow-card);
+}
+
+.ic-page--light .ic-template-card:hover {
+  background: var(--ic-card-hover-bg);
+  border-color: rgba(194, 65, 12, 0.2);
+  box-shadow: 0 8px 32px rgba(28, 25, 23, 0.12);
+  transform: translateY(-4px);
+}
+
+.ic-page--light .ic-template-title {
+  color: var(--ic-text);
+}
+
+.ic-page--light .ic-template-description {
+  color: var(--ic-text-muted);
+}
+
+.ic-page--light .ic-template-meta {
+  color: var(--ic-text-subtle);
+}
+
+.ic-page--light .ic-template-time {
+  color: var(--ic-gate-pass);
+}
+
+.ic-page--light .ic-template-hover-cta {
+  color: var(--ic-accent);
+}
+
+/* Template icons - Light mode */
+.ic-page--light .ic-template-icon--purple {
+  background: rgba(194, 65, 12, 0.08);
+  color: var(--ic-accent);
+}
+
+.ic-page--light .ic-template-icon--blue {
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--ic-accent-blue);
+}
+
+.ic-page--light .ic-template-icon--pink {
+  background: rgba(217, 119, 6, 0.08);
+  color: var(--ic-accent-amber);
+}
+
+.ic-page--light .ic-template-icon--amber {
+  background: rgba(217, 119, 6, 0.1);
+  color: var(--ic-accent-amber);
+}
+
+/* ─────────────────────────────────────────────
+   HOW IT WORKS SECTION - Light Mode
+   Warm white with elegant step indicators
+   ───────────────────────────────────────────── */
+.ic-page--light .ic-hiw-section {
+  background: linear-gradient(180deg, #fffefa 0%, #fdfbf7 100%);
+  border-top: 1px solid var(--ic-border);
+}
+
+.ic-page--light .ic-hiw-eyebrow {
+  color: var(--ic-accent);
+  background: var(--ic-accent-tint);
+}
+
+.ic-page--light .ic-hiw-title {
+  color: var(--ic-text);
+}
+
+.ic-page--light .ic-hiw-step-number {
+  background: #ffffff;
+  border-color: var(--ic-accent);
+  color: var(--ic-accent);
+  box-shadow: 0 4px 12px rgba(194, 65, 12, 0.1);
+}
+
+.ic-page--light .ic-hiw-step-title {
+  color: var(--ic-text);
+}
+
+.ic-page--light .ic-hiw-step-description {
+  color: var(--ic-text-muted);
+}
+
+/* ─────────────────────────────────────────────
+   GALLERY SECTION - Light Mode
+   Subtle warm stone background
+   ───────────────────────────────────────────── */
+.ic-page--light .ic-gallery-section {
+  background: #f5f3ef;
+  border-top: 1px solid var(--ic-border);
+}
+
+.ic-page--light .ic-artifact-card {
+  background: var(--ic-card-bg);
+  border: 1px solid var(--ic-card-border);
+  box-shadow: var(--ic-shadow-card);
+}
+
+.ic-page--light .ic-artifact-card:hover {
+  background: var(--ic-card-hover-bg);
+  border-color: rgba(28, 25, 23, 0.12);
+  box-shadow: 0 12px 40px rgba(28, 25, 23, 0.15);
+}
+
+.ic-page--light .ic-artifact-badge {
+  background: rgba(28, 25, 23, 0.06);
+  color: var(--ic-text-muted);
+  border-color: rgba(28, 25, 23, 0.08);
+}
+
+.ic-page--light .ic-artifact-new {
+  background: var(--ic-accent);
+  color: #ffffff;
+}
+
+.ic-page--light .ic-artifact-title {
+  color: var(--ic-text);
+}
+
+.ic-page--light .ic-artifact-subtitle {
+  color: var(--ic-text-muted);
+}
+
+.ic-page--light .ic-artifact-meta {
+  color: var(--ic-text-subtle);
+}
+
+.ic-page--light .ic-artifact-arrow {
+  color: var(--ic-text-subtle);
+}
+
+.ic-page--light .ic-trust-count {
+  color: var(--ic-text-secondary);
+}
+
+.ic-page--light .ic-trust-label {
+  color: var(--ic-text-subtle);
+}
+
+.ic-page--light .ic-trust-divider {
+  background: var(--ic-border);
+}
+
+.ic-page--light .ic-trust-qa {
+  color: var(--ic-gate-pass);
+}
+
+.ic-page--light .ic-gallery-link {
+  color: var(--ic-text-muted);
+}
+
+.ic-page--light .ic-gallery-link:hover {
+  color: var(--ic-accent);
+}
+
+/* ─────────────────────────────────────────────
+   FINAL CTA SECTION - Light Mode
+   Warm cream with accent undertone
+   ───────────────────────────────────────────── */
+.ic-page--light .ic-final-cta-section {
+  background: linear-gradient(180deg, #fdfbf7 0%, #fff7ed 100%);
+  border-top: 1px solid var(--ic-border);
+}
+
+.ic-page--light .ic-final-cta-background {
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(194, 65, 12, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 50%, rgba(217, 119, 6, 0.03) 0%, transparent 50%);
+}
+
+.ic-page--light .ic-final-cta-headline {
+  color: var(--ic-text);
+}
+
+.ic-page--light .ic-final-cta-description {
+  color: var(--ic-text-secondary);
+}
+
+.ic-page--light .ic-cta-primary {
+  background: var(--ic-accent-darker);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(124, 45, 18, 0.2);
+}
+
+.ic-page--light .ic-cta-primary:hover {
+  background: #7c2d12;
+  box-shadow: 0 8px 24px rgba(124, 45, 18, 0.3);
+}
+
+.ic-page--light .ic-cta-secondary {
+  background: var(--ic-accent-tint);
+  border: 1px solid rgba(194, 65, 12, 0.2);
+  color: var(--ic-accent-darker);
+}
+
+.ic-page--light .ic-cta-secondary:hover {
+  background: rgba(194, 65, 12, 0.1);
+}
+
+/* ─────────────────────────────────────────────
+   GRADIENT TEXT - Light Mode
+   ───────────────────────────────────────────── */
+.ic-page--light .ic-gradient-text {
+  background: var(--ic-gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─────────────────────────────────────────────
+   CIRCUIT CANVAS - Light Mode
+   Warm orange traces on cream
+   ───────────────────────────────────────────── */
+.ic-page--light .circuit-canvas-container {
+  filter: none;
+}
+
+.ic-page--light .circuit-node-bg,
+.ic-page--light .circuit-node rect {
+  fill: rgba(255, 255, 255, 0.95);
+  stroke: rgba(28, 25, 23, 0.1);
+}
+
+.ic-page--light .circuit-node text {
+  fill: var(--ic-text);
+}
+
+.ic-page--light .circuit-node-sublabel,
+.ic-page--light .circuit-node text[fill*="rgba(250"] {
+  fill: var(--ic-text-muted);
+}
+
+/* ─────────────────────────────────────────────
+   CORNER DECORATIONS - Light Mode
+   ───────────────────────────────────────────── */
+.ic-page--light .circuit-corner {
+  border-color: rgba(194, 65, 12, 0.15);
 }

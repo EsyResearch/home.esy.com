@@ -13,10 +13,10 @@ agents/
 ├── AGENT-REGISTRY.md            # This file
 ├── META-AGENT-FRAMEWORK.md      # Agent creation template
 │
-├── orchestrators/               # 🎬 Top-level coordination (5)
-├── auditors/                    # 🔍 Quality verification (16)
+├── orchestrators/               # 🎬 Top-level coordination (6)
+├── auditors/                    # 🔍 Quality verification (19)
 ├── content/                     # 📚 Content creation (4)
-├── research/                    # 🔬 Source discovery (4)
+├── research/                    # 🔬 Source discovery (5)
 ├── regional/                    # 🌏 Regional specialists (2)
 ├── engineering/                 # ⚙️ Technical implementation (8)
 └── utilities/                   # 🔧 Support & enhancement (5)
@@ -31,7 +31,8 @@ agents/
 
 | Agent | Purpose | Path |
 |-------|---------|------|
-| [Visual Essay Orchestrator](./orchestrators/visual-essay-orchestrator.md) | **TOP-LEVEL** — End-to-end production pipeline | `orchestrators/` |
+| [Visual Essay Orchestrator](./orchestrators/visual-essay-orchestrator.md) | **TOP-LEVEL** — End-to-end pipeline for historical/etymology essays | `orchestrators/` |
+| [Conceptual Essay Orchestrator](./orchestrators/conceptual-essay-orchestrator.md) | **TOP-LEVEL** — End-to-end pipeline for conceptual/educational essays | `orchestrators/` |
 | [Research Orchestrator](./orchestrators/research-orchestrator.md) | **Research pipeline** — Phase 2, domain routing, package assembly | `orchestrators/` |
 | [Meta Audit Orchestrator](./orchestrators/meta-audit-orchestrator.md) | Multi-domain audit coordination | `orchestrators/` |
 | [QA Remediation Orchestrator](./orchestrators/qa-remediation-orchestrator.md) | **Iterative fix loop** — Audit→Fix→Reaudit until passing | `orchestrators/` |
@@ -58,6 +59,9 @@ agents/
 | [Content Research Integration Agent](./auditors/content-research-integration-agent.md) | **Spec→Artifact Verification** | G5.1 | `auditors/` |
 | [Design Research Reconciliation Agent](./auditors/design-research-reconciliation-agent.md) | **Design Authenticity** | G4.1 | `auditors/` |
 | [Design Research Integration Agent](./auditors/design-research-integration-agent.md) | **CSS→TSX Binding** | G5.2 | `auditors/` |
+| [Accuracy Audit Agent](./auditors/accuracy-audit-agent.md) | **Scientific Claims** | G6 (conceptual) | `auditors/` |
+| [Pedagogy Audit Agent](./auditors/pedagogy-audit-agent.md) | **Learning Effectiveness** | G6.5 (conceptual) | `auditors/` |
+| [Diagram Clarity Auditor](./auditors/diagram-clarity-auditor.md) | **Diagram Comprehension** | G7 (conceptual) | `auditors/` |
 
 **Report Storage:**
 - Citation Reports: `auditors/CitationReports/`
@@ -82,8 +86,9 @@ agents/
 | [Research & Citations](./research/research-citations-expert.md) | Tier 1-2 Sources | — | `research/` |
 | [Image Research & Licensing](./research/image-research-licensing-expert.md) | Public Domain Images | — | `research/` |
 | [Design Researcher](./research/design-researcher.md) | Visual Identity Research | G4 | `research/` |
+| [Concept Research Agent](./research/concept-research-agent.md) | Concept Verification | G2 (conceptual) | `research/` |
 
-> **Note**: These agents are orchestrated by the [Research Orchestrator](./orchestrators/research-orchestrator.md) which owns G2 (Research Complete). Research uses SKILL.md as a blueprint to gather exactly what the spec template requires. Design Researcher is invoked by Visual Essay Orchestrator for Gate 4 (Design Research).
+> **Note**: Research agents are orchestrated by specialized orchestrators. The [Research Orchestrator](./orchestrators/research-orchestrator.md) owns G2 for historical essays. The [Concept Research Agent](./research/concept-research-agent.md) owns G2 for conceptual essays. Design Researcher supports both pipelines (with Archival or Pedagogical lens).
 
 ### 🌏 Regional Experts
 *Subject matter specialists by region*
@@ -339,14 +344,14 @@ See [META-AGENT-FRAMEWORK.md](./META-AGENT-FRAMEWORK.md) for the complete agent 
 
 | Category | Count | Key Responsibility |
 |----------|-------|-------------------|
-| 🎬 Orchestrators | 5 | Multi-agent coordination |
-| 🔍 Auditors | 16 | Quality verification |
+| 🎬 Orchestrators | 6 | Multi-agent coordination |
+| 🔍 Auditors | 19 | Quality verification |
 | 📚 Content | 4 | Content creation |
-| 🔬 Research | 4 | Source discovery |
+| 🔬 Research | 5 | Source discovery |
 | 🌏 Regional | 2 | Subject expertise |
 | ⚙️ Engineering | 8 | Technical implementation |
 | 🔧 Utilities | 5 | Support functions |
-| **Total** | **44** | |
+| **Total** | **49** | |
 
 ---
 
@@ -367,9 +372,18 @@ See [META-AGENT-FRAMEWORK.md](./META-AGENT-FRAMEWORK.md) for the complete agent 
 
 ---
 
-*Last Updated: December 31, 2024*
+*Last Updated: February 2026*
 
 ### Recent Changes
+- Added **Conceptual Essay Orchestrator** to orchestrators — end-to-end pipeline for conceptual/educational essays with diagram-first design
+- Added **Concept Research Agent** to research — verifies scientific claims, designs learning sequences, documents misconceptions for G2 (conceptual)
+- Added **Accuracy Audit Agent** to auditors — verifies all claims match CLAIMS.md for G6 (conceptual essays)
+- Added **Pedagogy Audit Agent** to auditors — verifies learning sequence and misconception coverage for G6.5 (conceptual essays)
+- Added **Diagram Clarity Auditor** to auditors — verifies diagram language consistency and accessibility for G7 (conceptual essays)
+- Extended **Design Researcher** with Pedagogical Lens for conceptual essay design research
+- Added `orchestration/base/` directory with base-artifact-orchestrator.md for shared gate patterns
+- Added `orchestration/profiles/` directory with research and design profiles for compositional workflows
+- Updated category statistics (Orchestrators: 5→6, Research: 4→5, Auditors: 16→19, Total: 44→49)
 - Added **Design Research Reconciliation Agent** (G4.1) to auditors category — three-phase audit verifying thematic authenticity, cross-essay novelty, and CSS implementation fidelity
 - Added **Design Research Integration Agent** (G5.2) to auditors category — CSS-to-TSX binding verification requiring ≥95% selector binding; catches convention mismatches
 - Updated Quality Gate Ownership table with G4.1 and G5.2 gates

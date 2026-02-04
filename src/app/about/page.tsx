@@ -152,22 +152,22 @@ export default function AboutPage() {
             backgroundColor: 'rgba(59, 130, 246, 0.05)',
             marginBottom: '1.5rem'
           }}>
-            <p style={{
-              fontSize: '1.125rem',
+          <p style={{
+            fontSize: '1.125rem',
               lineHeight: 1.8,
-              color: theme.text,
-              fontWeight: 500,
+            color: theme.text,
+            fontWeight: 500,
               marginBottom: '0.75rem'
-            }}>
+          }}>
               Think of the difference between asking ChatGPT to &quot;make a logo&quot; and using Canva.
-            </p>
-            <p style={{
+          </p>
+          <p style={{
               fontSize: '1rem',
               lineHeight: 1.8,
               color: theme.muted
             }}>
               Guided structure replaces guesswork, and the result is something real — not experimental.
-            </p>
+          </p>
           </div>
 
           <p style={{
@@ -221,8 +221,8 @@ export default function AboutPage() {
               <div style={{
                 width: '48px',
                 height: '48px',
-                borderRadius: '12px',
-                border: `1px solid ${theme.border}`,
+          borderRadius: '12px',
+          border: `1px solid ${theme.border}`,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -243,19 +243,19 @@ export default function AboutPage() {
                   fontWeight: 600,
                   marginBottom: '0.375rem',
                   color: theme.text
-                }}>
+        }}>
                   {step.label}
                 </h3>
-                <p style={{
-                  fontSize: '1rem',
+          <p style={{
+            fontSize: '1rem',
                   lineHeight: 1.7,
                   color: theme.subtle
                 }}>
                   {step.desc}
                 </p>
               </div>
-            </div>
-          ))}
+              </div>
+            ))}
         </div>
 
         <p style={{

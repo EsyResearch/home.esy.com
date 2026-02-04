@@ -1741,6 +1741,37 @@ html {
   font-size: 0.875rem;
 }
 
+/* Footer Light Mode */
+.footer--light {
+  background: linear-gradient(180deg, #f5f3ef 0%, #ece9e3 100%) !important;
+  border-top-color: rgba(28, 25, 23, 0.1) !important;
+}
+
+.footer--light .footer-column h4 {
+  color: #1c1917;
+}
+
+.footer--light .footer-link {
+  color: #78716c;
+}
+
+.footer--light .footer-link:hover {
+  color: #1c1917;
+}
+
+.footer--light .footer-bottom {
+  border-top-color: rgba(28, 25, 23, 0.1);
+  color: #78716c;
+}
+
+.footer--light .social-link {
+  color: #78716c;
+}
+
+.footer--light .social-link:hover {
+  color: #c2410c;
+}
+
 /* Animations */
 @keyframes fadeInLeft {
   from {

@@ -143,6 +143,354 @@
 
 ---
 
+## Research Lenses
+
+The Design Researcher applies different lenses based on the essay type:
+
+| Essay Type | Primary Lens | Focus |
+|------------|--------------|-------|
+| Historical/Biographical | Archival Lens | Visual archaeology, historical materials |
+| Etymology | Minimalist Lens | Typography, scroll effects, thematic colors |
+| Conceptual/Educational | **Pedagogical Lens** | Diagram systems, clarity, learning support |
+| Cultural | Cultural Lens | Regional aesthetics, cultural sensitivity |
+
+---
+
+## Pedagogical Lens (Conceptual Essays)
+
+### When to Apply
+
+Apply the Pedagogical Lens when the essay:
+- Explains abstract concepts (science, philosophy, processes)
+- Uses diagrams as primary visual medium (not photography)
+- Prioritizes comprehension over emotional impact
+- Teaches through progressive visual reveals
+
+### Pedagogical Lens Philosophy
+
+**Design Serves Comprehension**: Every visual choice must aid understanding, not just look good.
+
+**Diagrams Are Primary**: Unlike historical essays where photography dominates, conceptual essays use SVG diagrams as the main visual medium.
+
+**Clarity Over Style**: A comprehensible diagram beats a beautiful but confusing one.
+
+**Consistency Enables Learning**: Repeated visual language reduces cognitive load.
+
+### Pedagogical Research Targets
+
+Instead of visual archaeology, research:
+
+| Archival Lens Target | Pedagogical Lens Equivalent |
+|---------------------|----------------------------|
+| Museum collections | Educational visualization research |
+| Historical photography | Domain diagram conventions |
+| Era materials/colors | Pedagogical color psychology |
+| Cultural visual motifs | Diagram element semantics |
+| Period typography | Clarity-focused typography |
+
+### Phase 1: Domain Visualization Research (30%)
+
+**Step 1: Survey Existing Visualizations**
+- How does this field typically visualize these concepts?
+- What diagrams appear in textbooks, papers, educational videos?
+- What visual metaphors are standard in the domain?
+- What conventions can we leverage (readers may already know)?
+
+**Step 2: Identify Visual Conventions**
+- Standard shapes for different elements
+- Established color associations (if any)
+- Common arrow/flow conventions
+- Existing diagram templates
+
+**Step 3: Note Domain Colors**
+- What colors are associated with this subject?
+- Are there field-standard color codings?
+- What colors aid comprehension vs. hinder it?
+
+**Deliverable**: Domain Visualization Survey
+
+### Phase 2: Diagram Language System Design (25%)
+
+**Step 1: Define Shape Semantics**
+
+| Shape | Meaning | Usage |
+|-------|---------|-------|
+| Rectangle | Process/Action | "Predict", "Compare" |
+| Rounded Rectangle | State/Model | "Internal model" |
+| Circle | Input/Output | "Sensory data" |
+| Diamond | Decision | "Match?" |
+| Hexagon | External entity | "Environment" |
+
+**Step 2: Define Arrow Semantics**
+
+| Arrow Type | Meaning | Usage |
+|------------|---------|-------|
+| Solid → | Information flow | Data movement |
+| Dashed → | Uncertainty | Hypotheses |
+| Loop ↺ | Continuous cycle | Feedback loops |
+| Bidirectional ↔ | Two-way | Interaction |
+
+**Step 3: Define Grouping Conventions**
+- Dashed border = conceptual grouping
+- Solid border = functional unit
+- Background shading = phase/stage
+- Proximity = relationship strength
+
+**Deliverable**: Diagram Language Specification
+
+### Phase 3: Pedagogical Color System (20%)
+
+**Step 1: Functional Color Assignment**
+
+| Color Token | Semantic Meaning | Usage |
+|-------------|------------------|-------|
+| `--diagram-primary` | Main flow | Primary elements |
+| `--diagram-secondary` | Supporting | Context, labels |
+| `--diagram-accent` | Attention/Error | Highlights, errors |
+| `--diagram-success` | Correct/Match | Confirmation |
+| `--diagram-muted` | Inactive | Past states |
+
+**Step 2: Cognitive Color Research**
+- What colors aid comprehension for this topic?
+- Color blindness considerations
+- Background/foreground contrast for readability
+- Avoid color overload (limit active colors)
+
+**Step 3: Color Derivation from Subject** (if applicable)
+- Even conceptual essays can derive colors from subject
+- Brain essay: neural/biological colors (warm coral, soft blue)
+- Encryption essay: technical colors (cyan, terminal green)
+- Philosophy essay: contemplative colors (deep blue, gold)
+
+**Deliverable**: Pedagogical Color Token System
+
+### Phase 4: Clarity-Focused Typography (15%)
+
+**Step 1: Diagram Label Typography**
+- Clear, sans-serif for diagram labels
+- Sufficient size for mobile legibility
+- Consistent weight hierarchy
+- Good contrast in diagram contexts
+
+**Step 2: Body Typography**
+- Readable body font for explanatory text
+- Clear hierarchy for sections
+- Comfortable line length and spacing
+- Mobile-optimized sizes
+
+**Step 3: Subject Tone** (optional)
+- Can typography reflect subject character?
+- Technical subjects: clean, precise fonts
+- Philosophical subjects: elegant, contemplative fonts
+- Scientific subjects: clarity-first, modern fonts
+
+**Deliverable**: Typography Specification
+
+### Phase 5: Learning Animation Philosophy (10%)
+
+**Step 1: Reveal Strategy**
+- How do concepts build/reveal?
+- Progressive disclosure (simple → complex)
+- Animation as explanation (show process)
+- Timing that supports comprehension
+
+**Step 2: Cognitive Animation Principles**
+
+| Animation Type | Duration | Easing | Rationale |
+|---------------|----------|--------|-----------|
+| Element appear | 400ms | ease-out | Gentle introduction |
+| Arrow draw | 600ms | ease-in-out | Shows directionality |
+| Highlight | 1000ms | ease-in-out | Draws attention |
+| State change | 300ms | ease-out | Quick feedback |
+
+**Step 3: Scroll-Lock Diagram Sequences**
+- Define what diagrams animate on scroll
+- Percentage-based choreography
+- Clear before/after states
+
+**Deliverable**: Animation Philosophy Document
+
+---
+
+## Pedagogical Design Research Report Template
+
+When using the Pedagogical Lens, produce this adapted template:
+
+```markdown
+# Pedagogical Design Research Report: [Topic]
+
+**Date**: [Date]  
+**Status**: ✅ Complete  
+**Gate**: G4 - Design Research  
+**Lens**: Pedagogical
+
+---
+
+## Design Research Overview
+
+[Brief summary of concept being explained and visual challenges]
+
+---
+
+## Domain Visualization Survey
+
+### How This Topic Is Typically Visualized
+
+- [Visualization approach 1]: [Examples]
+- [Visualization approach 2]: [Examples]
+
+### Existing Conventions We Can Leverage
+
+- [Convention 1]: [Why useful]
+- [Convention 2]: [Why useful]
+
+### Domain Color Associations
+
+- [Color 1]: [Association in this field]
+- [Color 2]: [Association in this field]
+
+---
+
+## Diagram Language Specification
+
+### Shape Semantics
+
+| Shape | Meaning | Example Use |
+|-------|---------|-------------|
+| [Shape] | [Meaning] | [Usage in this essay] |
+
+### Arrow Semantics
+
+| Arrow Type | Meaning | Example |
+|------------|---------|---------|
+| [Arrow] | [Meaning] | [Usage] |
+
+### Grouping Conventions
+
+- [Convention 1]: [Meaning]
+- [Convention 2]: [Meaning]
+
+---
+
+## Pedagogical Color System
+
+### Color Token Definitions
+
+| Token | Hex | Semantic Meaning | Usage |
+|-------|-----|------------------|-------|
+| `--diagram-primary` | #XXX | [Meaning] | [Usage] |
+| `--diagram-secondary` | #XXX | [Meaning] | [Usage] |
+| `--diagram-accent` | #XXX | [Meaning] | [Usage] |
+
+### Color Derivation
+
+- [Color]: Derived from [subject element or pedagogical reason]
+
+### Accessibility Notes
+
+- Contrast ratio: [Verification]
+- Color blindness: [Considerations]
+
+---
+
+## Typography Specification
+
+### Diagram Typography
+
+- **Labels**: [Font] at [Size] — [Rationale]
+- **Annotations**: [Font] at [Size] — [Rationale]
+
+### Body Typography
+
+- **Display**: [Font] — [Subject connection/clarity rationale]
+- **Body**: [Font] — [Readability rationale]
+
+---
+
+## Animation Philosophy
+
+### Learning Animation Principles
+
+Animation should feel like: "[metaphor — e.g., discovery, revelation, building]"
+
+### Reveal Strategy
+
+1. Start with [foundation]
+2. Build to [complexity]
+3. Resolve at [synthesis]
+
+### Timing Specifications
+
+| Animation | Duration | Easing | Rationale |
+|-----------|----------|--------|-----------|
+| [Type] | [ms] | [Easing] | [Why] |
+
+### Scroll-Lock Sequences
+
+**Sequence 1: [Name]**
+- 0-25%: [State]
+- 25-50%: [State]
+- 50-75%: [State]
+- 75-100%: [State]
+
+---
+
+## SVG Blueprint Summary
+
+### Diagrams Required
+
+1. **[Diagram Name]**: [Purpose, key elements]
+2. **[Diagram Name]**: [Purpose, key elements]
+
+### Responsive Considerations
+
+- Desktop: [Full layout]
+- Mobile: [Adaptations]
+
+---
+
+## Accessibility Requirements
+
+### Reduced Motion
+
+- Show final state immediately
+- Use opacity only
+- No motion animations
+
+### Color Blindness
+
+- [How diagrams remain comprehensible]
+
+### Screen Reader
+
+- [Alt text strategy for diagrams]
+
+---
+
+## Uniqueness Verification
+
+### What Makes This Design Unique
+
+- [Element 1]: Specific to [this topic]
+- [Element 2]: Specific to [this concept]
+
+### Comparison to Similar Essays
+
+- NOT like [previous essay]: [Difference]
+
+---
+
+## Gate 4 Status
+
+**Design Research Report**: ✅ **COMPLETE**
+
+**Gate 4: Design Research** — **APPROVED** (Pedagogical Lens)
+
+Visual language is unique, comprehension-focused, and production-ready.
+```
+
+---
+
 ## Design Research Process
 
 ### Phase 1: Subject Visual Archaeology (30%)
@@ -552,6 +900,45 @@ Produce complete Design Research Report that:
 4. Design Researcher available for clarification if needed
 5. Production Orchestrator maintains design fidelity to Design Research Report
 
+### Working With conceptual-essay-orchestrator.md
+
+**Role**: Pedagogical Design Research specialist for Gate 4 (using Pedagogical Lens)
+
+**Division of Responsibilities**
+- **Design Researcher**: Pedagogical Lens research, diagram language design, color system
+- **Conceptual Essay Orchestrator**: Pipeline management, Gate 4 approval, handoff to Production
+- **Shared**: Design research quality, comprehension effectiveness
+
+**Invocation Protocol**
+```
+Using @agents/research/design-researcher.md with Pedagogical Lens,
+conduct design research for conceptual essay about [TOPIC].
+
+Research Package: [essay-slug]/research/CONCEPTS.md
+Spec: specs/[topic-slug].md (if available)
+
+Produce Pedagogical Design Research Report that:
+- Surveys domain visualization conventions
+- Defines diagram language system (shapes, arrows, colors)
+- Creates pedagogical color token system
+- Specifies clarity-focused typography
+- Develops learning-oriented animation philosophy
+```
+
+**Handoff Protocol**
+1. Conceptual Essay Orchestrator invokes with Pedagogical Lens specified
+2. Design Researcher applies Pedagogical Lens (not Archival Lens)
+3. Design Researcher surveys domain visualization conventions
+4. Design Researcher delivers Pedagogical Design Research Report
+5. Orchestrator reviews and approves Gate 4
+6. Report handed to Production for diagram implementation
+
+**Key Difference from Visual Essay Pipeline**:
+- Uses Pedagogical Lens instead of Archival Lens
+- Focuses on diagram language instead of photography
+- Prioritizes comprehension over emotional impact
+- Produces SVG blueprints instead of image sourcing specs
+
 ---
 
 ## Project Context
@@ -628,7 +1015,14 @@ Report for [ESSAY TITLE] and verify:
 ---
 
 ## Last Updated
-December 16, 2025
+February 2026
+
+### Recent Changes
+- Added **Research Lenses** section — Different lenses for different essay types
+- Added **Pedagogical Lens** for conceptual/educational essays
+- Added Pedagogical Design Research Report template
+- Added collaboration protocol for conceptual-essay-orchestrator.md
+- Pedagogical Lens focuses on diagram language, comprehension-focused color, clarity typography
 
 ---
 

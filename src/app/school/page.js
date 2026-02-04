@@ -1,12 +1,12 @@
 import SchoolClient from './client';
 
 export const metadata = {
-  title: 'Esy School - Free Academic Resources & Study Guides',
-  description: 'Access free study guides, academic resources, and educational content. Learn writing techniques, research methods, and improve your academic skills.',
-  keywords: 'study guides, academic resources, educational content, learning resources, writing guides, research methods',
+  title: 'Esy School - Learn to Create Publishable Artifacts with AI',
+  description: 'Master workflow-driven artifact creation. Learn to produce academic essays, research briefs, and visual essays through structured templates — no prompt engineering required.',
+  keywords: 'AI workflows, academic essays, research briefs, visual essays, structured templates, artifact creation, educational resources',
   openGraph: {
-    title: 'Esy School - Your Academic Learning Hub',
-    description: 'Master academic writing and research with our comprehensive educational resources.',
+    title: 'Esy School - From Intent to Finished Artifacts',
+    description: 'Learn how to transform your ideas into publishable essays, briefs, and visual content using Esy\'s structured workflows.',
     type: 'website',
   },
 }

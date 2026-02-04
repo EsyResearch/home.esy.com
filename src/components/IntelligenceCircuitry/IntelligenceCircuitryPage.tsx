@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, FileText, Layers, BarChart3, FileSpreadsheet, Clock } from 'lucide-react';
+import { ArrowRight, FileText, Layers, BarChart3, FileSpreadsheet, Clock, Sun, Moon } from 'lucide-react';
 import CircuitCanvas from './CircuitCanvas';
 import { publishedVisualEssays, CATEGORY_COLORS, type VisualEssay } from '@/data/visualEssays';
 import './IntelligenceCircuitryPage.css';
@@ -143,8 +143,43 @@ const HowItWorksSection: React.FC = () => {
 };
 
 const IntelligenceCircuitryPage: React.FC = () => {
+  const [theme, setTheme] = useState<'dark' | 'light'>('light');
+
+  // Toggle theme
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+  };
+
   return (
-    <div className="ic-page">
+    <div className={`ic-page ${theme === 'light' ? 'ic-page--light' : ''}`}>
+      {/* Theme Toggle Button */}
+      <button 
+        onClick={toggleTheme}
+        className="ic-theme-toggle"
+        aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+        style={{
+          position: 'fixed',
+          bottom: '24px',
+          right: '24px',
+          zIndex: 100,
+          width: '48px',
+          height: '48px',
+          borderRadius: '50%',
+          border: theme === 'light' ? '1px solid rgba(28, 25, 23, 0.1)' : '1px solid rgba(255, 255, 255, 0.1)',
+          background: theme === 'light' ? '#ffffff' : '#1f1f23',
+          color: theme === 'light' ? '#1c1917' : '#fafafa',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          cursor: 'pointer',
+          boxShadow: theme === 'light' 
+            ? '0 4px 12px rgba(28, 25, 23, 0.1)' 
+            : '0 4px 12px rgba(0, 0, 0, 0.3)',
+          transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+        }}
+      >
+        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+      </button>
       {/* ══════════════════════════════════════════════════════════════
           HERO SECTION
           Left: Headline + CTAs | Right: Circuit Visual
@@ -161,7 +196,7 @@ const IntelligenceCircuitryPage: React.FC = () => {
               {/* Headline */}
               <h1 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 'clamp(2.5rem, 6vw, 4rem)', fontWeight: 300, lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: '24px', color: '#fafafa' }}>
                 <span style={{ display: 'block' }}>Choose a template.</span>
-                <span style={{ display: 'block', background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Get a publishable artifact.</span>
+                <span style={{ display: 'block', background: 'linear-gradient(135deg, #ea580c 0%, #f59e0b 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Get a publishable artifact.</span>
               </h1>
 
               {/* Subheadline */}
@@ -175,12 +210,12 @@ const IntelligenceCircuitryPage: React.FC = () => {
                   href="https://app.esy.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '14px 24px', background: '#8b5cf6', color: '#fff', fontWeight: 600, fontSize: '0.9375rem', borderRadius: '10px', textDecoration: 'none' }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '14px 24px', background: '#9a3412', color: '#fafafa', fontWeight: 600, fontSize: '0.9375rem', borderRadius: '10px', textDecoration: 'none' }}
                 >
                   <span>Start with a Template</span>
                   <ArrowRight size={18} />
                 </a>
-                <Link href="/essays/" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '14px 24px', background: 'rgba(139, 92, 246, 0.08)', border: '1px solid rgba(139, 92, 246, 0.2)', color: '#fafafa', fontWeight: 600, fontSize: '0.9375rem', borderRadius: '10px', textDecoration: 'none' }}>
+                <Link href="/essays/" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '14px 24px', background: 'rgba(154, 52, 18, 0.12)', border: '1px solid rgba(154, 52, 18, 0.25)', color: '#fafafa', fontWeight: 600, fontSize: '0.9375rem', borderRadius: '10px', textDecoration: 'none' }}>
                   <span>Explore Artifacts</span>
                 </Link>
               </div>
@@ -188,7 +223,7 @@ const IntelligenceCircuitryPage: React.FC = () => {
 
             {/* Circuit Visual - Desktop only */}
             <div className="flex-1 justify-center items-center order-2 hidden lg:flex">
-              <CircuitCanvas />
+              <CircuitCanvas theme={theme} />
             </div>
           </div>
         </div>

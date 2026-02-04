@@ -81,11 +81,20 @@ export default function Navigation({
           ? pathname.slice(0, -1) 
           : pathname || '';
         
+        const isHomepage = normalizedPath === '/' || normalizedPath === '';
         const isSchoolArticle = normalizedPath.includes('/school/articles/');
         const isBlogArticle = normalizedPath.includes('/blog/') && normalizedPath !== '/blog';
         const hasThemeToggle = isSchoolArticle || isBlogArticle;
         
-        if (hasThemeToggle) {
+        // Check for homepage light mode (ic-page--light class)
+        if (isHomepage) {
+          const icPage = document.querySelector('.ic-page');
+          if (icPage?.classList.contains('ic-page--light')) {
+            isLight = true;
+          } else {
+            isLight = false;
+          }
+        } else if (hasThemeToggle) {
           const sectionKey = isSchoolArticle ? 'school' : 'blog';
         const storedTheme = localStorage.getItem(`theme-${sectionKey}`);
           
@@ -115,9 +124,16 @@ export default function Navigation({
       checkTheme();
       setTimeout(() => checkTheme(), 100);
     
+    // Also observe the ic-page element for class changes (homepage theme toggle)
     const observer = new MutationObserver(checkTheme);
     observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    
+    // Observe ic-page for homepage theme changes
+    const icPage = document.querySelector('.ic-page');
+    if (icPage) {
+      observer.observe(icPage, { attributes: true, attributeFilter: ['class'] });
+    }
     
     return () => observer.disconnect();
     }, [pathname]);
@@ -163,7 +179,7 @@ export default function Navigation({
         const isBlogIndexPage = normalizedPath === '/blog';
         const isScrollytellingPage = normalizedPath?.startsWith('/scrollytelling');
         const isTemplatesPage = normalizedPath?.startsWith('/templates');
-        const shouldBeTransparent = isHomepage || isBlogIndexPage || isScrollytellingPage || isTemplatesPage;
+        const shouldBeTransparent = (isHomepage && !isLightMode) || isBlogIndexPage || isScrollytellingPage || isTemplatesPage;
         
         if (scrollY === 0) {
           if (shouldBeTransparent) {
@@ -173,6 +189,15 @@ export default function Navigation({
             nav.style.backdropFilter = 'none';
             if (navInner) {
             (navInner as HTMLElement).style.textShadow = '0 2px 4px rgba(0, 0, 0, 0.5)';
+            }
+          } else if (isHomepage && isLightMode) {
+            // Homepage light mode - warm cream transparent
+            nav.style.background = 'transparent';
+            nav.style.boxShadow = 'none';
+            nav.style.borderBottom = 'none';
+            nav.style.backdropFilter = 'none';
+            if (navInner) {
+              (navInner as HTMLElement).style.textShadow = 'none';
             }
           } else {
             if (isLightMode) {
@@ -187,14 +212,19 @@ export default function Navigation({
             nav.style.backdropFilter = 'blur(20px)';
         }
       } else if (scrollY > 50) {
-          if (isBlogIndexPage || !isLightMode) {
+          if (isBlogIndexPage || (!isLightMode && !isHomepage)) {
           nav.style.background = 'rgba(24, 24, 27, 0.98)';
           nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
             nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
-        } else {
-            nav.style.background = 'rgba(255, 255, 255, 0.98)';
-            nav.style.boxShadow = lightTheme.shadows?.lg || '0 4px 10px rgba(0, 0, 0, 0.1)';
-            nav.style.borderBottom = `1px solid ${lightTheme.border}`;
+        } else if (isLightMode) {
+            // Light mode scrolled - warm white
+            nav.style.background = 'rgba(253, 251, 247, 0.98)';
+            nav.style.boxShadow = '0 2px 8px rgba(28, 25, 23, 0.08)';
+            nav.style.borderBottom = '1px solid rgba(28, 25, 23, 0.08)';
+          } else {
+            nav.style.background = 'rgba(24, 24, 27, 0.98)';
+            nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
+            nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
           }
           nav.style.backdropFilter = 'blur(20px) saturate(150%)';
       } else {
@@ -202,6 +232,10 @@ export default function Navigation({
         const progress = scrollY / 50;
         if (shouldBeTransparent) {
           nav.style.background = `rgba(31, 31, 35, ${progress * 0.85})`;
+          nav.style.backdropFilter = `blur(${progress * 20}px)`;
+        } else if (isHomepage && isLightMode) {
+          // Homepage light mode transition
+          nav.style.background = `rgba(253, 251, 247, ${progress * 0.98})`;
           nav.style.backdropFilter = `blur(${progress * 20}px)`;
         }
       }
