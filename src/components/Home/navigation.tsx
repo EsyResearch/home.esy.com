@@ -217,10 +217,10 @@ export default function Navigation({
           nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
             nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
         } else if (isLightMode) {
-            // Light mode scrolled - warm white
-            nav.style.background = 'rgba(253, 251, 247, 0.98)';
-            nav.style.boxShadow = '0 2px 8px rgba(28, 25, 23, 0.08)';
-            nav.style.borderBottom = '1px solid rgba(28, 25, 23, 0.08)';
+            // Light mode scrolled - violet mist
+            nav.style.background = 'rgba(250, 248, 255, 0.98)';
+            nav.style.boxShadow = '0 2px 8px rgba(15, 23, 42, 0.06)';
+            nav.style.borderBottom = '1px solid rgba(124, 58, 237, 0.08)';
           } else {
             nav.style.background = 'rgba(24, 24, 27, 0.98)';
             nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
@@ -234,8 +234,8 @@ export default function Navigation({
           nav.style.background = `rgba(31, 31, 35, ${progress * 0.85})`;
           nav.style.backdropFilter = `blur(${progress * 20}px)`;
         } else if (isHomepage && isLightMode) {
-          // Homepage light mode transition
-          nav.style.background = `rgba(253, 251, 247, ${progress * 0.98})`;
+          // Homepage light mode transition - violet mist
+          nav.style.background = `rgba(250, 248, 255, ${progress * 0.98})`;
           nav.style.backdropFilter = `blur(${progress * 20}px)`;
         }
       }

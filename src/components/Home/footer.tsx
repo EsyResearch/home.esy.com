@@ -7,17 +7,17 @@ import Logo from "@/components/Logo";
 import { getPageSuffix } from "./navigation";
 import { elevatedDarkTheme } from '@/lib/theme';
 
-// Light theme colors for footer
+// Light theme colors for footer - Violet Mist palette
 const lightThemeFooter = {
-  bg: '#f5f3ef',
-  bgGradient: 'linear-gradient(180deg, #f5f3ef 0%, #ece9e3 100%)',
-  border: 'rgba(28, 25, 23, 0.1)',
-  text: '#1c1917',
-  muted: '#44403c',
-  subtle: '#78716c',
-  faint: '#a8a29e',
-  accent: '#c2410c',
-  accentGlow: 'rgba(194, 65, 12, 0.3)',
+  bg: '#f8fafc',
+  bgGradient: 'linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%)',
+  border: 'rgba(15, 23, 42, 0.08)',
+  text: '#0f172a',
+  muted: '#334155',
+  subtle: '#64748b',
+  faint: '#94a3b8',
+  accent: '#7c3aed',
+  accentGlow: 'rgba(124, 58, 237, 0.2)',
 };
 
 export default function Footer () {

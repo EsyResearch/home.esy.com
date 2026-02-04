@@ -97,9 +97,10 @@ export const lightTheme = {
 };
 
 // ============================================
-// WARM ACADEMIC LIGHT THEME
-// Premium light theme with cream/parchment tones
+// WARM ACADEMIC LIGHT THEME (Terracotta)
+// Legacy - Premium light theme with cream/parchment tones
 // Created: February 2026
+// Status: Archived - kept for reference
 // ============================================
 export const warmAcademicLightTheme = {
   // Backgrounds - Warm cream/parchment tones
@@ -121,11 +122,11 @@ export const warmAcademicLightTheme = {
   },
   
   // Text - Warm dark tones (Stone palette)
-  text: '#1c1917',           // Stone-900 - Primary
-  textSecondary: '#44403c',  // Stone-700 - Secondary
-  muted: '#78716c',          // Stone-500 - Muted
-  subtle: '#a8a29e',         // Stone-400 - Subtle
-  faint: '#d6d3d1',          // Stone-300 - Faint
+  text: '#1c1917',
+  textSecondary: '#44403c',
+  muted: '#78716c',
+  subtle: '#a8a29e',
+  faint: '#d6d3d1',
   
   // Borders - Warm subtle
   border: 'rgba(28, 25, 23, 0.1)',
@@ -133,22 +134,22 @@ export const warmAcademicLightTheme = {
   divider: 'rgba(28, 25, 23, 0.04)',
   
   // Accent - Warm Orange/Terracotta
-  accent: '#c2410c',         // Orange-700 - Primary accent
-  accentHover: '#9a3412',    // Orange-800 - Hover/CTA
-  accentDark: '#7c2d12',     // Orange-900 - Dark accent
-  accentLight: '#ea580c',    // Orange-600 - Bright accent
-  accentLighter: '#fdba74',  // Orange-300 - Highlights
+  accent: '#c2410c',
+  accentHover: '#9a3412',
+  accentDark: '#7c2d12',
+  accentLight: '#ea580c',
+  accentLighter: '#fdba74',
   accentGlow: 'rgba(194, 65, 12, 0.15)',
   accentBorder: 'rgba(194, 65, 12, 0.2)',
   
-  // Semantic colors (optimized for light bg)
-  success: '#16a34a',        // Green-600
+  // Semantic colors
+  success: '#16a34a',
   successGlow: 'rgba(22, 163, 74, 0.1)',
-  warning: '#d97706',        // Amber-600
+  warning: '#d97706',
   warningGlow: 'rgba(217, 119, 6, 0.1)',
-  error: '#dc2626',          // Red-600
+  error: '#dc2626',
   errorGlow: 'rgba(220, 38, 38, 0.1)',
-  info: '#2563eb',           // Blue-600
+  info: '#2563eb',
   infoGlow: 'rgba(37, 99, 235, 0.1)',
   
   // Gradients
@@ -159,7 +160,7 @@ export const warmAcademicLightTheme = {
     subtle: 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(253,251,247,0.4) 100%)'
   },
   
-  // Shadows - Warm, light
+  // Shadows
   shadows: {
     xs: '0 1px 2px rgba(28, 25, 23, 0.03)',
     sm: '0 1px 3px rgba(28, 25, 23, 0.05)',
@@ -197,6 +198,118 @@ export const warmAcademicLightTheme = {
     gridOpacity: 0.03,
     checkColor: '#16a34a',
     checkGlowStroke: 'rgba(22, 163, 74, 0.4)'
+  }
+};
+
+// ============================================
+// VIOLET MIST LIGHT THEME
+// Premium light theme with subtle violet tinting
+// Created: February 2026
+// Status: Active
+// 
+// Color Theory Foundation:
+// - Subtle violet-tinted backgrounds create brand cohesion
+// - Slate text palette (cool undertones) complements violet
+// - Section delimitation through varying violet intensity
+// - WCAG AA compliant contrast ratios throughout
+// ============================================
+export const violetMistLightTheme = {
+  // Backgrounds - Subtle violet-tinted whites
+  bg: '#faf8ff',                    // Very subtle violet tint
+  bgElevated: '#ffffff',            // Pure white for cards
+  bgAlternate: '#f5f3ff',           // Slightly more violet
+  surface: '#ffffff',
+  surfaceElevated: '#fefcff',       // Warmest white with violet hint
+  hover: 'rgba(124, 58, 237, 0.04)',
+  
+  // Section backgrounds
+  sections: {
+    hero: 'linear-gradient(180deg, #faf8ff 0%, #f5f3ff 100%)',
+    templates: '#f8fafc',
+    howItWorks: 'linear-gradient(180deg, #fefcff 0%, #faf8ff 100%)',
+    gallery: '#f1f5f9',
+    finalCta: 'linear-gradient(180deg, #faf8ff 0%, #ede9fe 100%)',
+    footer: 'linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%)'
+  },
+  
+  // Text - Cool Slate palette (complements violet)
+  text: '#0f172a',                  // Slate-900 - near black
+  textSecondary: '#334155',         // Slate-700
+  muted: '#64748b',                 // Slate-500
+  subtle: '#94a3b8',                // Slate-400
+  faint: '#cbd5e1',                 // Slate-300
+  
+  // Borders - Cool subtle
+  border: 'rgba(15, 23, 42, 0.08)',
+  borderSubtle: 'rgba(15, 23, 42, 0.05)',
+  divider: 'rgba(15, 23, 42, 0.04)',
+  
+  // Accent - Violet optimized for light backgrounds
+  accent: '#7c3aed',                // Violet-600
+  accentHover: '#6d28d9',           // Violet-700
+  accentDark: '#5b21b6',            // Violet-800 - for CTAs
+  accentDarkest: '#4c1d95',         // Violet-900
+  accentLight: '#a78bfa',           // Violet-400
+  accentLighter: '#c4b5fd',         // Violet-300
+  accentGlow: 'rgba(124, 58, 237, 0.1)',
+  accentBorder: 'rgba(124, 58, 237, 0.15)',
+  
+  // Semantic colors
+  success: '#16a34a',
+  successGlow: 'rgba(22, 163, 74, 0.1)',
+  warning: '#d97706',
+  warningGlow: 'rgba(217, 119, 6, 0.1)',
+  error: '#dc2626',
+  errorGlow: 'rgba(220, 38, 38, 0.1)',
+  info: '#2563eb',
+  infoGlow: 'rgba(37, 99, 235, 0.1)',
+  
+  // Gradients - Violet spectrum
+  gradients: {
+    hero: 'linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%)',
+    card: 'linear-gradient(180deg, #ffffff 0%, #faf8ff 100%)',
+    cta: 'linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%)',
+    subtle: 'linear-gradient(135deg, rgba(124, 58, 237, 0.06) 0%, rgba(139, 92, 246, 0.03) 100%)'
+  },
+  
+  // Shadows - Cool violet-tinted
+  shadows: {
+    xs: '0 1px 2px rgba(124, 58, 237, 0.03)',
+    sm: '0 1px 3px rgba(15, 23, 42, 0.05)',
+    md: '0 2px 6px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(124, 58, 237, 0.04)',
+    lg: '0 4px 12px rgba(15, 23, 42, 0.08), 0 2px 4px rgba(124, 58, 237, 0.04)',
+    xl: '0 8px 24px rgba(124, 58, 237, 0.1), 0 4px 8px rgba(15, 23, 42, 0.06)',
+    glow: '0 0 0 3px rgba(124, 58, 237, 0.1)',
+    hover: '0 8px 32px rgba(124, 58, 237, 0.12)',
+    cta: '0 4px 16px rgba(91, 33, 182, 0.25)'
+  },
+  
+  // Navigation
+  navBg: 'rgba(250, 248, 255, 0.9)',
+  navBgScrolled: 'rgba(250, 248, 255, 0.98)',
+  navBorder: 'rgba(124, 58, 237, 0.08)',
+  
+  // Footer
+  footerBg: '#f8fafc',
+  footerBgGradient: 'linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%)',
+  footerText: '#334155',
+  footerMuted: '#64748b',
+  footerBorder: 'rgba(15, 23, 42, 0.08)',
+  
+  // Circuit Canvas specific
+  circuit: {
+    nodeFill: '#ffffff',
+    nodeStroke: 'rgba(124, 58, 237, 0.1)',
+    textPrimary: '#0f172a',
+    textSecondary: 'rgba(15, 23, 42, 0.5)',
+    traceStart: 'rgba(124, 58, 237, 0.15)',
+    traceEnd: 'rgba(124, 58, 237, 0.25)',
+    accentGlow: 'rgba(124, 58, 237, 0.2)',
+    ballColor: '#7c3aed',
+    gridColor: '#0f172a',
+    gridOpacity: 0.03,
+    checkColor: '#16a34a',
+    checkGlowStroke: 'rgba(22, 163, 74, 0.5)'
   }
 };
 

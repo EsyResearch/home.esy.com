@@ -20,17 +20,17 @@ interface CircuitCanvasProps {
   theme?: 'dark' | 'light';
 }
 
-// Theme-specific colors
+// Theme-specific colors - Violet/Purple palette
 const themes = {
   dark: {
-    nodeFill: '#16161f',
+    nodeFill: '#12121a',
     nodeStroke: '#2a2a3a',
     textPrimary: '#fafafa',
     textSecondary: 'rgba(250, 250, 250, 0.5)',
-    traceStart: 'rgba(234, 88, 12, 0.3)',
-    traceEnd: 'rgba(234, 88, 12, 0.4)',
-    accentGlow: 'rgba(234, 88, 12, 0.3)',
-    ballColor: '#ea580c',
+    traceStart: 'rgba(139, 92, 246, 0.3)',
+    traceEnd: 'rgba(139, 92, 246, 0.4)',
+    accentGlow: 'rgba(139, 92, 246, 0.3)',
+    ballColor: '#8b5cf6',
     gridColor: '#fff',
     gridOpacity: 0.025,
     checkColor: '#22c55e',
@@ -38,15 +38,15 @@ const themes = {
   },
   light: {
     nodeFill: '#ffffff',
-    nodeStroke: 'rgba(28, 25, 23, 0.12)',
-    textPrimary: '#1c1917',
-    textSecondary: 'rgba(28, 25, 23, 0.5)',
-    traceStart: 'rgba(194, 65, 12, 0.25)',
-    traceEnd: 'rgba(194, 65, 12, 0.35)',
-    accentGlow: 'rgba(194, 65, 12, 0.25)',
-    ballColor: '#c2410c',
-    gridColor: '#1c1917',
-    gridOpacity: 0.04,
+    nodeStroke: 'rgba(124, 58, 237, 0.1)',
+    textPrimary: '#0f172a',
+    textSecondary: 'rgba(15, 23, 42, 0.5)',
+    traceStart: 'rgba(124, 58, 237, 0.15)',
+    traceEnd: 'rgba(124, 58, 237, 0.25)',
+    accentGlow: 'rgba(124, 58, 237, 0.2)',
+    ballColor: '#7c3aed',
+    gridColor: '#0f172a',
+    gridOpacity: 0.03,
     checkColor: '#16a34a',
     checkGlowStroke: 'rgba(22, 163, 74, 0.5)',
   },

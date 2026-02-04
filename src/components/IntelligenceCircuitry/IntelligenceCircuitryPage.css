@@ -17,22 +17,23 @@
 
 /* ============================================
    DESIGN TOKENS - DARK MODE (Default)
+   Original Violet/Purple Theme
    ============================================ */
 .ic-page {
-  /* Background - deeper ink for circuit contrast */
-  --ic-bg: #0a0a0c;
-  --ic-bg-elevated: #111113;
-  --ic-bg-alternate: #08080a;
-  --ic-surface: #18181b;
-  --ic-surface-elevated: #1f1f23;
+  /* Background - Deep ink with subtle violet undertone */
+  --ic-bg: #0a0a0f;
+  --ic-bg-elevated: #12121a;
+  --ic-bg-alternate: #08080c;
+  --ic-surface: #18181f;
+  --ic-surface-elevated: #1f1f28;
   
-  /* Circuit colors - Warm Orange */
-  --ic-trace: rgba(234, 88, 12, 0.25);
-  --ic-trace-active: rgba(234, 88, 12, 0.6);
-  --ic-signal: #fdba74;
-  --ic-signal-glow: rgba(253, 186, 116, 0.5);
-  --ic-node-bg: rgba(24, 24, 27, 0.9);
-  --ic-node-border: rgba(234, 88, 12, 0.2);
+  /* Circuit colors - Violet/Purple */
+  --ic-trace: rgba(139, 92, 246, 0.25);
+  --ic-trace-active: rgba(139, 92, 246, 0.6);
+  --ic-signal: #c4b5fd;
+  --ic-signal-glow: rgba(196, 181, 253, 0.5);
+  --ic-node-bg: rgba(24, 24, 31, 0.9);
+  --ic-node-border: rgba(139, 92, 246, 0.2);
   --ic-gate-pass: #22c55e;
   
   /* Text */
@@ -51,17 +52,17 @@
   --ic-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
   --ic-shadow-card: 0 4px 16px rgba(0, 0, 0, 0.3);
   
-  /* Accents - Warm Orange Primary */
-  --ic-accent: #ea580c;
-  --ic-accent-darker: #9a3412;
-  --ic-accent-light: #fdba74;
-  --ic-accent-amber: #f59e0b;
+  /* Accents - Violet/Purple Primary */
+  --ic-accent: #8b5cf6;
+  --ic-accent-darker: #7c3aed;
+  --ic-accent-light: #c4b5fd;
+  --ic-accent-violet: #a78bfa;
   --ic-accent-blue: #3b82f6;
-  --ic-accent-tint: rgba(234, 88, 12, 0.08);
+  --ic-accent-tint: rgba(139, 92, 246, 0.08);
   
-  /* Gradients - Warm */
-  --ic-gradient-hero: linear-gradient(135deg, #ea580c 0%, #f59e0b 100%);
-  --ic-gradient-subtle: linear-gradient(135deg, rgba(234, 88, 12, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+  /* Gradients - Violet */
+  --ic-gradient-hero: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+  --ic-gradient-subtle: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.05) 100%);
   
   /* Card specific */
   --ic-card-bg: rgba(255, 255, 255, 0.02);
@@ -94,60 +95,69 @@
 
 /* ============================================
    DESIGN TOKENS - LIGHT MODE
-   Premium warm academic aesthetic
+   "Violet Mist" - Premium academic light theme
+   
+   Color Theory Foundation:
+   - Subtle violet-tinted backgrounds create brand cohesion
+   - Slate text palette (cool undertones) complements violet
+   - Section delimitation through varying violet intensity
+   - WCAG AA compliant contrast ratios throughout
    ============================================ */
 .ic-page--light {
-  /* Backgrounds - Warm paper tones with subtle variation */
-  --ic-bg: #fdfbf7;
-  --ic-bg-elevated: #ffffff;
-  --ic-bg-alternate: #f7f5f0;
+  /* Backgrounds - Subtle violet-tinted whites */
+  --ic-bg: #faf8ff;                    /* Very subtle violet tint */
+  --ic-bg-elevated: #ffffff;           /* Pure white for cards */
+  --ic-bg-alternate: #f5f3ff;          /* Slightly more violet */
   --ic-surface: #ffffff;
-  --ic-surface-elevated: #ffffff;
+  --ic-surface-elevated: #fefcff;      /* Warmest white with violet hint */
   
-  /* Hero specific - warm cream with subtle warmth */
-  --ic-hero-bg: linear-gradient(180deg, #fdfbf7 0%, #f9f6f0 100%);
+  /* Hero specific - violet mist gradient */
+  --ic-hero-bg: linear-gradient(180deg, #faf8ff 0%, #f5f3ff 100%);
   
-  /* Circuit colors - Warm Orange (more vivid on light) */
-  --ic-trace: rgba(194, 65, 12, 0.15);
-  --ic-trace-active: rgba(194, 65, 12, 0.4);
-  --ic-signal: #c2410c;
-  --ic-signal-glow: rgba(194, 65, 12, 0.3);
-  --ic-node-bg: rgba(255, 255, 255, 0.95);
-  --ic-node-border: rgba(194, 65, 12, 0.2);
+  /* Circuit colors - Violet (darker for light bg contrast) */
+  --ic-trace: rgba(124, 58, 237, 0.12);
+  --ic-trace-active: rgba(124, 58, 237, 0.35);
+  --ic-signal: #7c3aed;
+  --ic-signal-glow: rgba(124, 58, 237, 0.25);
+  --ic-node-bg: rgba(255, 255, 255, 0.98);
+  --ic-node-border: rgba(124, 58, 237, 0.15);
   --ic-gate-pass: #16a34a;
   
-  /* Text - Warm stone palette */
-  --ic-text: #1c1917;
-  --ic-text-secondary: #44403c;
-  --ic-text-muted: #78716c;
-  --ic-text-subtle: #a8a29e;
+  /* Text - Cool Slate palette (complements violet) */
+  --ic-text: #0f172a;                  /* Slate-900 - near black */
+  --ic-text-secondary: #334155;        /* Slate-700 */
+  --ic-text-muted: #64748b;            /* Slate-500 */
+  --ic-text-subtle: #94a3b8;           /* Slate-400 */
   
-  /* Borders - Warm and subtle */
-  --ic-border: rgba(28, 25, 23, 0.1);
-  --ic-border-subtle: rgba(28, 25, 23, 0.06);
+  /* Borders - Cool subtle */
+  --ic-border: rgba(15, 23, 42, 0.08);
+  --ic-border-subtle: rgba(15, 23, 42, 0.05);
   
-  /* Shadows - Warm gray, not cold */
-  --ic-shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.05);
-  --ic-shadow-md: 0 4px 12px rgba(28, 25, 23, 0.08);
-  --ic-shadow-lg: 0 8px 24px rgba(28, 25, 23, 0.12);
-  --ic-shadow-card: 0 2px 8px rgba(28, 25, 23, 0.06), 0 8px 24px rgba(28, 25, 23, 0.08);
+  /* Shadows - Cool violet-tinted */
+  --ic-shadow-sm: 0 1px 2px rgba(124, 58, 237, 0.04);
+  --ic-shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06), 0 2px 4px rgba(124, 58, 237, 0.04);
+  --ic-shadow-lg: 0 8px 24px rgba(15, 23, 42, 0.08), 0 4px 8px rgba(124, 58, 237, 0.04);
+  --ic-shadow-card: 0 2px 8px rgba(15, 23, 42, 0.05), 0 8px 24px rgba(124, 58, 237, 0.06);
   
-  /* Accents - Deeper orange for light mode contrast */
-  --ic-accent: #c2410c;
-  --ic-accent-darker: #7c2d12;
-  --ic-accent-light: #fed7aa;
-  --ic-accent-amber: #d97706;
+  /* Accents - Violet optimized for light backgrounds */
+  --ic-accent: #7c3aed;                /* Violet-600 */
+  --ic-accent-darker: #6d28d9;         /* Violet-700 */
+  --ic-accent-darkest: #5b21b6;        /* Violet-800 - for CTAs */
+  --ic-accent-light: #a78bfa;          /* Violet-400 */
+  --ic-accent-lighter: #c4b5fd;        /* Violet-300 */
   --ic-accent-blue: #2563eb;
-  --ic-accent-tint: rgba(194, 65, 12, 0.06);
+  --ic-accent-tint: rgba(124, 58, 237, 0.06);
   
-  /* Gradients - Richer on light */
-  --ic-gradient-hero: linear-gradient(135deg, #c2410c 0%, #d97706 100%);
-  --ic-gradient-subtle: linear-gradient(135deg, rgba(194, 65, 12, 0.06) 0%, rgba(217, 119, 6, 0.03) 100%);
+  /* Gradients - Violet spectrum */
+  --ic-gradient-hero: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+  --ic-gradient-subtle: linear-gradient(135deg, rgba(124, 58, 237, 0.06) 0%, rgba(139, 92, 246, 0.03) 100%);
+  --ic-gradient-cta: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%);
   
   /* Card specific */
   --ic-card-bg: #ffffff;
-  --ic-card-border: rgba(28, 25, 23, 0.08);
-  --ic-card-hover-bg: #fdfcfa;
+  --ic-card-border: rgba(124, 58, 237, 0.08);
+  --ic-card-hover-bg: #fefcff;
+  --ic-card-hover-border: rgba(124, 58, 237, 0.15);
 }
 
 /* ============================================
@@ -247,8 +257,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(234, 88, 12, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 50% at 30% 60%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 30% 60%, rgba(167, 139, 250, 0.05) 0%, transparent 50%);
   animation: heroBreath 15s ease-in-out infinite;
 }
 
@@ -261,8 +271,8 @@
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(234, 88, 12, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(234, 88, 12, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
   mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
   -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
@@ -319,8 +329,8 @@
   align-items: center;
   gap: var(--ic-space-sm);
   padding: 6px 14px;
-  background: rgba(234, 88, 12, 0.08);
-  border: 1px solid rgba(234, 88, 12, 0.15);
+  background: rgba(139, 92, 246, 0.08);
+  border: 1px solid rgba(139, 92, 246, 0.15);
   border-radius: 24px;
   font-family: var(--ic-font-mono);
   font-size: 0.6875rem;
@@ -386,18 +396,18 @@
   align-items: center;
   gap: var(--ic-space-sm);
   padding: 14px 24px;
-  background: #9a3412;
+  background: #7c3aed;
   color: #fafafa;
   font-weight: 600;
   font-size: 0.9375rem;
   border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(124, 45, 18, 0.25);
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.25);
   transition: all 0.3s var(--ic-ease);
 }
 
 .ic-cta-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(124, 45, 18, 0.35);
+  box-shadow: 0 12px 32px rgba(124, 58, 237, 0.35);
 }
 
 .ic-cta-primary svg:last-child {
@@ -418,8 +428,8 @@
   align-items: center;
   gap: var(--ic-space-xs);
   padding: 14px 24px;
-  background: rgba(154, 52, 18, 0.12);
-  border: 1px solid rgba(154, 52, 18, 0.25);
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.25);
   color: var(--ic-text);
   font-weight: 600;
   font-size: 0.9375rem;
@@ -428,7 +438,7 @@
 }
 
 .ic-cta-secondary:hover {
-  background: rgba(154, 52, 18, 0.2);
+  background: rgba(139, 92, 246, 0.2);
   transform: translateY(-2px);
 }
 
@@ -512,7 +522,7 @@
 
 .circuit-node:hover .circuit-node-bg {
   fill: rgba(31, 31, 35, 0.95);
-  stroke: rgba(234, 88, 12, 0.4);
+  stroke: rgba(139, 92, 246, 0.4);
 }
 
 .circuit-node-bg--gate {
@@ -521,8 +531,8 @@
 }
 
 .circuit-node-bg--output {
-  fill: linear-gradient(135deg, rgba(234, 88, 12, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
-  stroke: rgba(234, 88, 12, 0.3);
+  fill: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%);
+  stroke: rgba(139, 92, 246, 0.3);
   stroke-width: 1.5;
 }
 
@@ -604,13 +614,13 @@
 
 /* Artifact preview inside node */
 .artifact-preview-thumb {
-  fill: rgba(234, 88, 12, 0.15);
-  stroke: rgba(234, 88, 12, 0.3);
+  fill: rgba(139, 92, 246, 0.15);
+  stroke: rgba(139, 92, 246, 0.3);
   stroke-width: 0.5;
 }
 
 .artifact-preview-line {
-  stroke: rgba(234, 88, 12, 0.4);
+  stroke: rgba(139, 92, 246, 0.4);
   stroke-width: 2;
   stroke-linecap: round;
 }
@@ -620,7 +630,7 @@
   position: absolute;
   width: 20px;
   height: 20px;
-  border: 1px solid rgba(154, 52, 18, 0.2);
+  border: 1px solid rgba(124, 58, 237, 0.2);
 }
 
 .circuit-corner--tl {
@@ -704,7 +714,7 @@
 }
 
 .ic-template-card--purple::before {
-  background: #ea580c;
+  background: #8b5cf6;
 }
 
 .ic-template-card--blue::before {
@@ -712,7 +722,7 @@
 }
 
 .ic-template-card--pink::before {
-  background: #f59e0b;
+  background: #ec4899;
 }
 
 .ic-template-card--amber::before {
@@ -720,13 +730,13 @@
 }
 
 .ic-template-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(234, 88, 12, 0.3);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .ic-template-card:hover::before {
-  transform: scaleX(1);
+  transform: scaleX(0);
 }
 
 /* Template Header */
@@ -748,11 +758,11 @@
 }
 
 .ic-template-card:hover .ic-template-icon {
-  transform: scale(1.05);
+  transform: scale(1);
 }
 
 .ic-template-icon--purple {
-  background: rgba(234, 88, 12, 0.15);
+  background: rgba(139, 92, 246, 0.15);
   color: var(--ic-accent);
 }
 
@@ -762,8 +772,8 @@
 }
 
 .ic-template-icon--pink {
-  background: rgba(245, 158, 11, 0.15);
-  color: var(--ic-accent-amber);
+  background: rgba(236, 72, 153, 0.15);
+  color: #ec4899;
 }
 
 .ic-template-icon--amber {
@@ -856,7 +866,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(234, 88, 12, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
 }
 
 .hiw-container {
@@ -878,10 +888,10 @@
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #ea580c;
+  color: #8b5cf6;
   margin-bottom: 20px;
   padding: 8px 16px;
-  background: rgba(234, 88, 12, 0.08);
+  background: rgba(139, 92, 246, 0.08);
   border-radius: 4px;
 }
 
@@ -912,10 +922,10 @@
   right: 60px;
   height: 1px;
   background: linear-gradient(90deg, 
-    #ea580c 0%, 
-    rgba(234, 88, 12, 0.5) 33%,
-    rgba(234, 88, 12, 0.5) 66%,
-    #ea580c 100%
+    #8b5cf6 0%, 
+    rgba(139, 92, 246, 0.5) 33%,
+    rgba(139, 92, 246, 0.5) 66%,
+    #8b5cf6 100%
   );
 }
 
@@ -937,18 +947,18 @@
   align-items: center;
   justify-content: center;
   background: #0c0c12;
-  border: 2px solid #ea580c;
+  border: 2px solid #8b5cf6;
   border-radius: 50%;
   font-family: 'JetBrains Mono', monospace;
   font-size: 18px;
   font-weight: 600;
-  color: #ea580c;
+  color: #8b5cf6;
   margin-bottom: 24px;
   position: relative;
   z-index: 1;
   box-shadow: 
     0 0 0 8px #0c0c12,
-    0 0 20px rgba(234, 88, 12, 0.2);
+    0 0 20px rgba(139, 92, 246, 0.2);
 }
 
 /* Step Title */
@@ -991,7 +1001,7 @@
   }
   
   .hiw-step-number {
-    box-shadow: 0 0 20px rgba(234, 88, 12, 0.2);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
   }
 }
 
@@ -1042,7 +1052,7 @@
    ============================================ */
 .ic-trust-section {
   padding: var(--ic-space-xl) 0;
-  background: linear-gradient(135deg, rgba(234, 88, 12, 0.05) 0%, rgba(245, 158, 11, 0.03) 100%);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(167, 139, 250, 0.03) 100%);
   border-top: 1px solid var(--ic-border-subtle);
   border-bottom: 1px solid var(--ic-border-subtle);
 }
@@ -1374,8 +1384,8 @@
   position: absolute;
   inset: -50%;
   background:
-    radial-gradient(ellipse at 30% 50%, rgba(234, 88, 12, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 50%, rgba(245, 158, 11, 0.04) 0%, transparent 50%);
+    radial-gradient(ellipse at 30% 50%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 50%, rgba(167, 139, 250, 0.04) 0%, transparent 50%);
   animation: heroBreath 12s ease-in-out infinite;
   pointer-events: none;
 }
@@ -1434,7 +1444,7 @@
   padding: 100px 0;
   background: linear-gradient(180deg, #08080c 0%, #0c0c12 100%);
   position: relative;
-  border-top: 1px solid rgba(234, 88, 12, 0.2);
+  border-top: 1px solid rgba(139, 92, 246, 0.2);
 }
 
 @media (max-width: 768px) {
@@ -1473,10 +1483,10 @@
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #ea580c;
+  color: #8b5cf6;
   margin-bottom: 20px;
   padding: 8px 16px;
-  background: rgba(234, 88, 12, 0.08);
+  background: rgba(139, 92, 246, 0.08);
   border-radius: 4px;
 }
 
@@ -1536,14 +1546,14 @@
   align-items: center;
   justify-content: center;
   background: #0c0c12;
-  border: 2px solid #ea580c;
+  border: 2px solid #8b5cf6;
   border-radius: 50%;
   font-family: 'JetBrains Mono', monospace;
   font-size: 18px;
   font-weight: 600;
-  color: #ea580c;
+  color: #8b5cf6;
   margin-bottom: 24px;
-  box-shadow: 0 0 20px rgba(234, 88, 12, 0.2);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
 }
 
 @media (max-width: 640px) {
@@ -1655,22 +1665,22 @@
 
 /* ─────────────────────────────────────────────
    HERO SECTION - Light Mode
-   Warm cream with subtle grain texture feel
+   Violet mist with subtle ambient glow
    ───────────────────────────────────────────── */
 .ic-page--light .ic-hero {
-  background: linear-gradient(180deg, #fdfbf7 0%, #f8f5ef 100%);
+  background: linear-gradient(180deg, #faf8ff 0%, #f5f3ff 100%);
 }
 
 .ic-page--light .ic-hero-gradient {
   background:
-    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(194, 65, 12, 0.04) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 50% at 30% 60%, rgba(217, 119, 6, 0.03) 0%, transparent 50%);
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 30% 60%, rgba(139, 92, 246, 0.04) 0%, transparent 50%);
 }
 
 .ic-page--light .ic-hero-grid {
   background-image: 
-    linear-gradient(rgba(28, 25, 23, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(28, 25, 23, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(124, 58, 237, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 58, 237, 0.03) 1px, transparent 1px);
 }
 
 /* Hero text - Light mode */
@@ -1679,7 +1689,7 @@
 }
 
 .ic-page--light .ic-hero h1 span:first-child {
-  color: #1c1917 !important;
+  color: #0f172a !important;
 }
 
 .ic-page--light .ic-hero p {
@@ -1688,24 +1698,24 @@
 
 /* Hero CTAs - Light mode */
 .ic-page--light .ic-hero a[href*="app.esy.com"] {
-  background: var(--ic-accent-darker) !important;
+  background: var(--ic-accent-darkest, #5b21b6) !important;
   color: #ffffff !important;
-  box-shadow: 0 4px 12px rgba(124, 45, 18, 0.2);
+  box-shadow: 0 4px 12px rgba(91, 33, 182, 0.25);
 }
 
 .ic-page--light .ic-hero a[href*="app.esy.com"]:hover {
-  background: #7c2d12 !important;
-  box-shadow: 0 6px 20px rgba(124, 45, 18, 0.3);
+  background: #4c1d95 !important;
+  box-shadow: 0 6px 20px rgba(91, 33, 182, 0.35);
 }
 
 .ic-page--light .ic-hero a[href="/essays/"] {
   background: var(--ic-accent-tint) !important;
-  border-color: rgba(194, 65, 12, 0.2) !important;
+  border-color: rgba(124, 58, 237, 0.2) !important;
   color: var(--ic-accent-darker) !important;
 }
 
 .ic-page--light .ic-hero a[href="/essays/"]:hover {
-  background: rgba(194, 65, 12, 0.1) !important;
+  background: rgba(124, 58, 237, 0.1) !important;
 }
 
 /* Scroll indicator - Light */
@@ -1719,10 +1729,10 @@
 
 /* ─────────────────────────────────────────────
    TEMPLATES SECTION - Light Mode
-   Clean white cards with warm shadows
+   Clean slate background with violet-tinted cards
    ───────────────────────────────────────────── */
 .ic-page--light .ic-templates-section {
-  background: #f7f5f0;
+  background: #f8fafc;
   border-top: 1px solid var(--ic-border);
 }
 
@@ -1750,9 +1760,9 @@
 
 .ic-page--light .ic-template-card:hover {
   background: var(--ic-card-hover-bg);
-  border-color: rgba(194, 65, 12, 0.2);
-  box-shadow: 0 8px 32px rgba(28, 25, 23, 0.12);
-  transform: translateY(-4px);
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+  transform: translateY(-2px);
 }
 
 .ic-page--light .ic-template-title {
@@ -1775,9 +1785,9 @@
   color: var(--ic-accent);
 }
 
-/* Template icons - Light mode */
+/* Template icons - Light mode (violet primary) */
 .ic-page--light .ic-template-icon--purple {
-  background: rgba(194, 65, 12, 0.08);
+  background: rgba(124, 58, 237, 0.08);
   color: var(--ic-accent);
 }
 
@@ -1787,21 +1797,21 @@
 }
 
 .ic-page--light .ic-template-icon--pink {
-  background: rgba(217, 119, 6, 0.08);
-  color: var(--ic-accent-amber);
+  background: rgba(236, 72, 153, 0.08);
+  color: #db2777;
 }
 
 .ic-page--light .ic-template-icon--amber {
-  background: rgba(217, 119, 6, 0.1);
-  color: var(--ic-accent-amber);
+  background: rgba(245, 158, 11, 0.1);
+  color: #d97706;
 }
 
 /* ─────────────────────────────────────────────
    HOW IT WORKS SECTION - Light Mode
-   Warm white with elegant step indicators
+   Subtle violet gradient with elegant indicators
    ───────────────────────────────────────────── */
 .ic-page--light .ic-hiw-section {
-  background: linear-gradient(180deg, #fffefa 0%, #fdfbf7 100%);
+  background: linear-gradient(180deg, #fefcff 0%, #faf8ff 100%);
   border-top: 1px solid var(--ic-border);
 }
 
@@ -1818,7 +1828,7 @@
   background: #ffffff;
   border-color: var(--ic-accent);
   color: var(--ic-accent);
-  box-shadow: 0 4px 12px rgba(194, 65, 12, 0.1);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.12);
 }
 
 .ic-page--light .ic-hiw-step-title {
@@ -1831,10 +1841,10 @@
 
 /* ─────────────────────────────────────────────
    GALLERY SECTION - Light Mode
-   Subtle warm stone background
+   Neutral slate for contrast/visual break
    ───────────────────────────────────────────── */
 .ic-page--light .ic-gallery-section {
-  background: #f5f3ef;
+  background: #f1f5f9;
   border-top: 1px solid var(--ic-border);
 }
 
@@ -1846,8 +1856,8 @@
 
 .ic-page--light .ic-artifact-card:hover {
   background: var(--ic-card-hover-bg);
-  border-color: rgba(28, 25, 23, 0.12);
-  box-shadow: 0 12px 40px rgba(28, 25, 23, 0.15);
+  border-color: rgba(124, 58, 237, 0.15);
+  box-shadow: 0 12px 40px rgba(124, 58, 237, 0.12), 0 4px 16px rgba(15, 23, 42, 0.08);
 }
 
 .ic-page--light .ic-artifact-badge {
@@ -1903,17 +1913,17 @@
 
 /* ─────────────────────────────────────────────
    FINAL CTA SECTION - Light Mode
-   Warm cream with accent undertone
+   Stronger violet tint for emphasis
    ───────────────────────────────────────────── */
 .ic-page--light .ic-final-cta-section {
-  background: linear-gradient(180deg, #fdfbf7 0%, #fff7ed 100%);
+  background: linear-gradient(180deg, #faf8ff 0%, #ede9fe 100%);
   border-top: 1px solid var(--ic-border);
 }
 
 .ic-page--light .ic-final-cta-background {
   background:
-    radial-gradient(ellipse at 30% 50%, rgba(194, 65, 12, 0.04) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 50%, rgba(217, 119, 6, 0.03) 0%, transparent 50%);
+    radial-gradient(ellipse at 30% 50%, rgba(124, 58, 237, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 50%, rgba(139, 92, 246, 0.04) 0%, transparent 50%);
 }
 
 .ic-page--light .ic-final-cta-headline {
@@ -1925,24 +1935,24 @@
 }
 
 .ic-page--light .ic-cta-primary {
-  background: var(--ic-accent-darker);
+  background: var(--ic-accent-darkest, #5b21b6);
   color: #ffffff;
-  box-shadow: 0 4px 16px rgba(124, 45, 18, 0.2);
+  box-shadow: 0 4px 16px rgba(91, 33, 182, 0.25);
 }
 
 .ic-page--light .ic-cta-primary:hover {
-  background: #7c2d12;
-  box-shadow: 0 8px 24px rgba(124, 45, 18, 0.3);
+  background: #4c1d95;
+  box-shadow: 0 8px 24px rgba(91, 33, 182, 0.35);
 }
 
 .ic-page--light .ic-cta-secondary {
   background: var(--ic-accent-tint);
-  border: 1px solid rgba(194, 65, 12, 0.2);
+  border: 1px solid rgba(124, 58, 237, 0.2);
   color: var(--ic-accent-darker);
 }
 
 .ic-page--light .ic-cta-secondary:hover {
-  background: rgba(194, 65, 12, 0.1);
+  background: rgba(124, 58, 237, 0.1);
 }
 
 /* ─────────────────────────────────────────────
@@ -1957,7 +1967,7 @@
 
 /* ─────────────────────────────────────────────
    CIRCUIT CANVAS - Light Mode
-   Warm orange traces on cream
+   Violet traces on mist background
    ───────────────────────────────────────────── */
 .ic-page--light .circuit-canvas-container {
   filter: none;
@@ -1965,8 +1975,8 @@
 
 .ic-page--light .circuit-node-bg,
 .ic-page--light .circuit-node rect {
-  fill: rgba(255, 255, 255, 0.95);
-  stroke: rgba(28, 25, 23, 0.1);
+  fill: rgba(255, 255, 255, 0.98);
+  stroke: rgba(124, 58, 237, 0.1);
 }
 
 .ic-page--light .circuit-node text {
@@ -1982,5 +1992,5 @@
    CORNER DECORATIONS - Light Mode
    ───────────────────────────────────────────── */
 .ic-page--light .circuit-corner {
-  border-color: rgba(194, 65, 12, 0.15);
+  border-color: rgba(124, 58, 237, 0.12);
 }

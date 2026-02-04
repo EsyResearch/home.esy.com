@@ -250,7 +250,7 @@ const EsySchool = () => {
       color: theme.text,
       fontFamily: 'var(--font-inter)'
     }}>
-      
+
       {/* Hero Section */}
       <section style={{
         maxWidth: '1200px',
@@ -259,13 +259,13 @@ const EsySchool = () => {
       }}>
         {/* Breadcrumb */}
         <div style={{
-          display: 'flex',
+        display: 'flex',
           alignItems: 'center',
           gap: '0.5rem',
           marginBottom: '2rem',
           fontSize: '0.875rem',
           color: theme.subtle
-        }}>
+      }}>
           <Link href="/" style={{ color: theme.subtle, textDecoration: 'none' }}>Home</Link>
           <span>›</span>
           <span style={{ color: theme.muted }}>School</span>
@@ -281,7 +281,7 @@ const EsySchool = () => {
           letterSpacing: '-0.02em'
         }}>
           Esy <span style={{ color: theme.accent }}>School</span>
-        </h1>
+            </h1>
 
         {/* Subtitle */}
         <p style={{
@@ -292,27 +292,27 @@ const EsySchool = () => {
           marginBottom: '2.5rem'
         }}>
           Solve your writing and research challenges with Esy's in-depth guides and tutorials.
-        </p>
-
+            </p>
+            
         {/* Search */}
         <div ref={searchBarRef} style={{ maxWidth: '480px' }}>
-          <SearchBar
+              <SearchBar
             placeholder="Search guides..."
-            value={searchQuery}
-            onChange={(value) => {
-              setSearchQuery(value);
-              setDropdownSearchTerm(value);
-            }}
-            onSearch={(query) => console.log('Searching for:', query)}
-            context="school"
+                value={searchQuery}
+                onChange={(value) => {
+                  setSearchQuery(value);
+                  setDropdownSearchTerm(value);
+                }}
+                onSearch={(query) => console.log('Searching for:', query)}
+                context="school"
             inputFontSize="0.9375rem"
-            showDropdown={showDropdown}
-            searchResults={searchResults}
-            onResultSelect={handleResultSelect}
-            loadingResults={searchLoading}
-            maxResults={8}
-          />
-        </div>
+                showDropdown={showDropdown}
+                searchResults={searchResults}
+                onResultSelect={handleResultSelect}
+                loadingResults={searchLoading}
+                maxResults={8}
+              />
+            </div>
       </section>
 
       {/* Featured Article - Large Visual Hero */}
@@ -322,7 +322,7 @@ const EsySchool = () => {
         padding: '0 2rem 4rem'
       }}>
         <Link href={featuredArticle.href} style={{ textDecoration: 'none', color: 'inherit' }}>
-          <div
+            <div 
             style={{
               display: 'grid',
               gridTemplateColumns: isTablet ? '1fr' : '1.4fr 1fr',
@@ -332,14 +332,14 @@ const EsySchool = () => {
               transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
               cursor: 'pointer'
             }}
-            onMouseEnter={(e) => {
+              onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = theme.accentBorder;
               e.currentTarget.style.transform = 'translateY(-4px)';
               e.currentTarget.style.boxShadow = '0 24px 64px rgba(0, 0, 0, 0.4)';
-            }}
-            onMouseLeave={(e) => {
+              }}
+              onMouseLeave={(e) => {
               e.currentTarget.style.borderColor = theme.border;
-              e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.transform = 'translateY(0)';
               e.currentTarget.style.boxShadow = 'none';
             }}
           >
@@ -454,7 +454,7 @@ const EsySchool = () => {
                   Read guide
                   <ArrowRight size={16} strokeWidth={2} />
                 </span>
-              </div>
+            </div>
             </div>
           </div>
         </Link>
@@ -515,12 +515,12 @@ const EsySchool = () => {
             const Icon = article.icon;
             
             return (
-              <Link 
-                key={index}
+            <Link
+              key={index}
                 href={article.href}
-                style={{ textDecoration: 'none', color: 'inherit' }}
-              >
-                <article
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
+              <article
                   style={{
                     borderRadius: '16px',
                     overflow: 'hidden',
@@ -531,14 +531,14 @@ const EsySchool = () => {
                     display: 'flex',
                     flexDirection: 'column'
                   }}
-                  onMouseEnter={(e) => {
+                onMouseEnter={(e) => {
                     e.currentTarget.style.borderColor = theme.accentBorder;
                     e.currentTarget.style.transform = 'translateY(-4px)';
                     e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.3)';
-                  }}
-                  onMouseLeave={(e) => {
+                }}
+                onMouseLeave={(e) => {
                     e.currentTarget.style.borderColor = theme.border;
-                    e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.transform = 'translateY(0)';
                     e.currentTarget.style.boxShadow = 'none';
                   }}
                 >
@@ -623,9 +623,9 @@ const EsySchool = () => {
                     }}>
                       {article.readTime}
                     </span>
-                  </div>
-                </article>
-              </Link>
+                </div>
+              </article>
+            </Link>
             );
           })}
         </div>

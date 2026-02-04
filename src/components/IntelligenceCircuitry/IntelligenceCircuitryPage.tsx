@@ -194,13 +194,13 @@ const IntelligenceCircuitryPage: React.FC = () => {
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-16 w-full max-w-[1400px] items-center">
             <div className="flex-1 text-white order-1 text-center lg:text-left">
               {/* Headline */}
-              <h1 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 'clamp(2.5rem, 6vw, 4rem)', fontWeight: 300, lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: '24px', color: '#fafafa' }}>
+              <h1 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 'clamp(2.5rem, 6vw, 4rem)', fontWeight: 300, lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: '24px', color: theme === 'light' ? '#0f172a' : '#fafafa' }}>
                 <span style={{ display: 'block' }}>Choose a template.</span>
-                <span style={{ display: 'block', background: 'linear-gradient(135deg, #ea580c 0%, #f59e0b 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Get a publishable artifact.</span>
+                <span style={{ display: 'block', background: 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Get a publishable artifact.</span>
               </h1>
 
               {/* Subheadline */}
-              <p style={{ fontSize: '1.125rem', lineHeight: 1.7, color: 'rgba(250, 250, 250, 0.7)', marginBottom: '32px' }}>
+              <p style={{ fontSize: '1.125rem', lineHeight: 1.7, color: theme === 'light' ? 'rgba(15, 23, 42, 0.7)' : 'rgba(250, 250, 250, 0.7)', marginBottom: '32px' }}>
                 Start from real sources — PDFs, citations, or notes — and use citation-first templates to produce structured, publishable research artifacts.
               </p>
 
@@ -210,12 +210,12 @@ const IntelligenceCircuitryPage: React.FC = () => {
                   href="https://app.esy.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '14px 24px', background: '#9a3412', color: '#fafafa', fontWeight: 600, fontSize: '0.9375rem', borderRadius: '10px', textDecoration: 'none' }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '14px 24px', background: theme === 'light' ? '#5b21b6' : '#7c3aed', color: '#fafafa', fontWeight: 600, fontSize: '0.9375rem', borderRadius: '10px', textDecoration: 'none', boxShadow: theme === 'light' ? '0 4px 12px rgba(91, 33, 182, 0.25)' : '0 4px 12px rgba(124, 58, 237, 0.3)' }}
                 >
                   <span>Start with a Template</span>
                   <ArrowRight size={18} />
                 </a>
-                <Link href="/essays/" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '14px 24px', background: 'rgba(154, 52, 18, 0.12)', border: '1px solid rgba(154, 52, 18, 0.25)', color: '#fafafa', fontWeight: 600, fontSize: '0.9375rem', borderRadius: '10px', textDecoration: 'none' }}>
+                <Link href="/essays/" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '14px 24px', background: theme === 'light' ? 'rgba(124, 58, 237, 0.08)' : 'rgba(139, 92, 246, 0.12)', border: theme === 'light' ? '1px solid rgba(124, 58, 237, 0.2)' : '1px solid rgba(139, 92, 246, 0.25)', color: theme === 'light' ? '#5b21b6' : '#fafafa', fontWeight: 600, fontSize: '0.9375rem', borderRadius: '10px', textDecoration: 'none' }}>
                   <span>Explore Artifacts</span>
                 </Link>
               </div>
