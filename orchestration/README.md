@@ -10,7 +10,8 @@ The orchestration system coordinates specialized AI agents and procedural skills
 |--------------|------------|
 | **Understand the framework** | [`FRAMEWORK.md`](./FRAMEWORK.md) ⭐ |
 | **Learn how to invoke agents** | [`INVOCATION-GUIDE.md`](./INVOCATION-GUIDE.md) |
-| Create a visual essay | `@orchestration/agents/orchestrators/visual-essay-orchestrator.md` |
+| Create a historical/etymology visual essay | `@orchestration/agents/orchestrators/visual-essay-orchestrator.md` |
+| Create a conceptual/educational essay | `@orchestration/agents/orchestrators/conceptual-essay-orchestrator.md` |
 | Conduct research | `@orchestration/agents/orchestrators/research-orchestrator.md` |
 | Run a comprehensive audit | `@orchestration/agents/orchestrators/meta-audit-orchestrator.md` |
 | Understand available agents | `@orchestration/agents/README.md` |
@@ -252,39 +253,42 @@ Brief  Design Content Sources Citation Scroll  Mobile  Publish
 orchestration/
 ├── README.md                      ← You are here (system overview)
 ├── INVOCATION-GUIDE.md            ← How to invoke agents (start here!)
+├── FRAMEWORK.md                   ← Core architecture, pipeline diagrams
+├── FUTURE-WORK.md                 ← Planned improvements (deferred work)
+│
+├── base/                          ← Universal patterns shared by all orchestrators
+│   ├── README.md
+│   └── base-artifact-orchestrator.md  ← Universal gates (G1, G5, G8-G9)
+│
+├── profiles/                      ← Composable modules for different artifact types
+│   ├── README.md
+│   ├── research/                  ← G2 deliverables by domain
+│   │   └── conceptual-research-profile.md
+│   └── design/                    ← G4 research targets by domain
+│       └── diagram-design-profile.md
 │
 ├── agents/
 │   ├── README.md                  ← Agent details, invocation patterns
+│   ├── AGENT-REGISTRY.md          ← Complete agent index
 │   ├── META-AGENT-FRAMEWORK.md    ← How to create new agents
-│   ├── readme-curator.md          ← Documentation management agent
-│   ├── visual-essay-orchestrator.md   ← Top-level orchestrator
-│   ├── meta-audit-orchestrator.md ← Comprehensive audit coordinator
-│   ├── production-orchestrator.md   ← Content production orchestrator
-│   ├── [15+ specialist agents]
-│   ├── CitationReports/           ← Citation audit archives
-│   └── VisualAuditReports/        ← Visual audit archives
+│   ├── orchestrators/             ← Top-level coordinators (6)
+│   ├── auditors/                  ← Quality verification (19)
+│   ├── content/                   ← Content creation (4)
+│   ├── research/                  ← Source discovery (5)
+│   ├── regional/                  ← Regional specialists (2)
+│   ├── engineering/               ← Technical implementation (8)
+│   └── utilities/                 ← Support functions (5)
 │
 ├── audits/                        ← All audit reports (organized by essay)
 │   ├── README.md                  ← Audit system overview
 │   └── [essay-slug]/              ← Audits for specific essay
-│       ├── README.md              ← Essay audit history
-│       └── YYYY-MM-DD-*-audit.md  ← Timestamped audit reports
 │
 └── skills/
     ├── README.md                  ← Skills overview, creation guide
     ├── image-url-extraction/      ← URL extraction from archives
-    │   ├── SKILL.md
-    │   ├── references/
-    │   └── examples/
     ├── seo-element-extraction/    ← SEO element extraction
-    │   └── SKILL.md
-    └── visual-essay-invocation/   ← Visual essay spec creation
-        ├── SKILL.md               ← Core framework
-        ├── README.md              ← Quick reference
-        ├── examples/              ← Condensed format references
-        ├── specs/                 ← Finished production-ready specs
-        ├── references/            ← Templates, patterns
-        └── lenses/                ← Subject-specific guidance
+    ├── visual-essay-invocation/   ← Historical essay spec creation
+    └── conceptual-essay-invocation/  ← Conceptual essay spec creation
 ```
 
 ---
@@ -338,5 +342,12 @@ The curator will:
 
 ---
 
-*Last Updated: December 2024*
+*Last Updated: February 2026*
+
+### Recent Changes
+- Added `base/` directory with universal gate patterns (G1, G5, G8-G9)
+- Added `profiles/` directory for compositional workflow design
+- Added Conceptual Essay Orchestrator for educational/explainer essays
+- Added conceptual-essay-invocation skill
+- See FUTURE-WORK.md for planned improvements
 

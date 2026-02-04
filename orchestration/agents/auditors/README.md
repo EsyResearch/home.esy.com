@@ -24,6 +24,9 @@ Quality verification and certification agents that ensure content meets Esy stan
 | [Content Research Integration Agent](./content-research-integration-agent.md) | **Spec→Artifact Verification** | G5.1 | Integration Report, Implementation Hints |
 | [Design Research Reconciliation Agent](./design-research-reconciliation-agent.md) | **Design Authenticity Verification** | G4.1 | Reconciliation Report, Collision Detection |
 | [Design Research Integration Agent](./design-research-integration-agent.md) | **CSS→TSX Binding Verification** | G5.2 | Binding Report, Convention Analysis |
+| [Accuracy Audit Agent](./accuracy-audit-agent.md) | **Scientific Claim Verification** | G6 (conceptual) | Accuracy Certification Report |
+| [Pedagogy Audit Agent](./pedagogy-audit-agent.md) | **Learning Effectiveness** | G6.5 (conceptual) | Pedagogy Certification Report |
+| [Diagram Clarity Auditor](./diagram-clarity-auditor.md) | **Diagram Comprehension** | G7 (conceptual) | Diagram Clarity Report |
 
 ---
 
@@ -57,6 +60,9 @@ Quality verification and certification agents that ensure content meets Esy stan
 | **Verify spec implemented in artifact** | Content Research Integration Agent (G5.1) |
 | **Verify design is authentic & novel** | Design Research Reconciliation Agent (G4.1) |
 | **Verify CSS binds to TSX classNames** | Design Research Integration Agent (G5.2) |
+| **Verify scientific claims match sources** | Accuracy Audit Agent (G6 conceptual) |
+| **Verify learning sequence & misconceptions** | Pedagogy Audit Agent (G6.5 conceptual) |
+| **Verify diagram language consistency** | Diagram Clarity Auditor (G7 conceptual) |
 | **Comprehensive QA** | Use Meta Audit Orchestrator (orchestrators/) |
 
 ---

@@ -11,7 +11,8 @@ Research and source discovery agents that ensure content is built on authoritati
 | [Brainstorming Agent](./brainstorming-agent.md) | Research Design | Question formulation, hypothesis generation, scope definition |
 | [Research & Citations](./research-citations-expert.md) | Source Discovery | Tier 1-2 authoritative sources, evaluation, synthesis |
 | [Image Research & Licensing](./image-research-licensing-expert.md) | Visual Assets | Public domain image sourcing & rights verification |
-| [Design Researcher](./design-researcher.md) | Visual Identity | Subject-derived design research, color palette derivation, typography research |
+| [Design Researcher](./design-researcher.md) | Visual Identity | Subject-derived design (Archival or Pedagogical lens) |
+| [Concept Research Agent](./concept-research-agent.md) | Concept Verification | Scientific claims, learning sequences, misconceptions |
 
 ---
 
@@ -65,7 +66,9 @@ Research Orchestrator (orchestrators/)
 | Verify image licensing | Image Research & Licensing |
 | Upgrade weak sources | Research & Citations |
 | **Derive visual identity from subject matter** | Design Researcher (Gate 4) |
-| **Full research pipeline** | Use Research Orchestrator (orchestrators/) |
+| **Research concepts for educational essays** | Concept Research Agent (G2 conceptual) |
+| **Full historical research pipeline** | Use Research Orchestrator (orchestrators/) |
+| **Full conceptual research pipeline** | Use Conceptual Essay Orchestrator (orchestrators/) |
 
 ---
 
@@ -77,20 +80,36 @@ Using @agents/research/research-citations-expert.md, find Tier 1-2 sources
 for claims about [TOPIC]. Focus on .edu and peer-reviewed journals.
 ```
 
-**Design Research:**
+**Design Research (Archival Lens - Historical Essays):**
 ```
 Using @agents/research/design-researcher.md, conduct comprehensive 
 design research for visual essay about [TOPIC]. Produce Design Research 
 Report with subject-derived color palette, typography, and animation philosophy.
 ```
 
+**Design Research (Pedagogical Lens - Conceptual Essays):**
+```
+Using @agents/research/design-researcher.md with Pedagogical Lens,
+conduct design research for conceptual essay about [TOPIC].
+Produce diagram language system, pedagogical color tokens, SVG blueprints.
+```
+
+**Concept Research:**
+```
+Using @agents/research/concept-research-agent.md, conduct concept
+research for educational essay about [TOPIC]. Produce CONCEPTS.md,
+SEQUENCE.md, DEFINITIONS.md, ANALOGIES.md, MISCONCEPTIONS.md, CLAIMS.md.
+```
+
 ---
 
 ## See Also
 
-- [Research Orchestrator](../orchestrators/research-orchestrator.md) — Coordinates research pipeline (Phase 2)
+- [Research Orchestrator](../orchestrators/research-orchestrator.md) — Coordinates research pipeline for historical essays
+- [Conceptual Essay Orchestrator](../orchestrators/conceptual-essay-orchestrator.md) — Coordinates research for conceptual essays
 - [Visual Essay Orchestrator](../orchestrators/visual-essay-orchestrator.md) — Invokes Design Researcher for Gate 4
 - [Citation Audit Agent](../auditors/citation-audit-agent.md) — Verifies research quality
+- [Accuracy Audit Agent](../auditors/accuracy-audit-agent.md) — Verifies conceptual research accuracy
 - [Content Creators](../content/README.md) — Consumes research output
 - [Regional Experts](../regional/README.md) — Provides domain expertise
 
