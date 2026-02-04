@@ -1,7 +1,7 @@
 # The Brain as a Prediction Machine
 
 > **Type**: Conceptual Visual Essay  
-> **Status**: G5 COMPLETE — Ready for Audits (G6-G7)  
+> **Status**: G8 CERTIFIED — Ready for G9 Publication Approval  
 > **Orchestrator**: Conceptual Essay Orchestrator  
 > **Started**: February 3, 2026
 
@@ -37,8 +37,14 @@ brain-as-prediction-machine/
 │   ├── ANALOGIES.md       ← Concrete comparisons
 │   ├── MISCONCEPTIONS.md  ← Common errors to address
 │   └── CLAIMS.md          ← Verified scientific claims
-└── specs/                 ← G3 Invocation Spec (COMPLETE)
-    └── brain-as-prediction-machine.md
+├── specs/                 ← G3 Invocation Spec (COMPLETE)
+│   └── brain-as-prediction-machine.md
+└── audits/                ← G6-G8 Quality Audits (ALL PASSED)
+    ├── G6-ACCURACY-AUDIT.md
+    ├── G6.5-PEDAGOGY-AUDIT.md
+    ├── G7-DIAGRAM-CLARITY-AUDIT.md
+    ├── G7.5-SCROLL-CERTIFICATION.md
+    └── G8-PUBLICATION-CERTIFICATION.md
 ```
 
 ---
@@ -53,12 +59,12 @@ brain-as-prediction-machine/
 | G4 | ✅ COMPLETE | `DESIGN-RESEARCH.md` (Pedagogical Lens) |
 | G4.5 | ✅ INCLUDED | SVG Blueprints in Design Research |
 | G5 | ✅ COMPLETE | `src/app/essays/brain-as-prediction-machine/` |
-| G6 | ⏳ NEXT | Accuracy Audit |
-| G6.5 | ⬜ NOT STARTED | Pedagogy Audit |
-| G7 | ⬜ NOT STARTED | Diagram Clarity Audit |
-| G7.5 | ⬜ NOT STARTED | Scroll Certification |
-| G8 | ⬜ NOT STARTED | Publication Certification |
-| G9 | ⬜ NOT STARTED | Publication Approval |
+| G6 | ✅ PASSED | `audits/G6-ACCURACY-AUDIT.md` |
+| G6.5 | ✅ PASSED | `audits/G6.5-PEDAGOGY-AUDIT.md` |
+| G7 | ✅ PASSED | `audits/G7-DIAGRAM-CLARITY-AUDIT.md` |
+| G7.5 | ✅ PASSED | `audits/G7.5-SCROLL-CERTIFICATION.md` |
+| G8 | ✅ GO | `audits/G8-PUBLICATION-CERTIFICATION.md` |
+| G9 | ⏳ PENDING | Publication Approval (final sign-off) |
 
 ---
 
