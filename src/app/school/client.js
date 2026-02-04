@@ -51,39 +51,49 @@ const EsySchool = () => {
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
-  // Sophisticated dark theme - Warm orange primary
+  // Clean Light Theme with dark alternating sections
   const theme = {
-    bg: '#09090b',
-    surface: '#131316',
-    elevated: '#1a1a1f',
-    card: '#16161a',
-    text: 'rgba(255, 255, 255, 0.95)',
-    muted: 'rgba(255, 255, 255, 0.72)',
-    subtle: 'rgba(255, 255, 255, 0.5)',
-    faint: 'rgba(255, 255, 255, 0.15)',
-    accent: '#c2410c',
-    accentLight: '#fdba74',
-    accentSoft: 'rgba(154, 52, 18, 0.12)',
-    accentBorder: 'rgba(154, 52, 18, 0.3)',
-    border: 'rgba(255, 255, 255, 0.06)',
-    // Category colors - warm palette variations
+    bg: '#fafafa',
+    surface: '#ffffff',
+    elevated: '#f5f5f5',
+    card: '#ffffff',
+    text: '#1e293b',
+    muted: '#475569',
+    subtle: '#64748b',
+    faint: 'rgba(0, 0, 0, 0.06)',
+    accent: '#7c3aed',
+    accentLight: '#a78bfa',
+    accentSoft: 'rgba(0, 0, 0, 0.03)',
+    accentBorder: 'rgba(0, 0, 0, 0.08)',
+    border: 'rgba(0, 0, 0, 0.06)',
+    // Dark section colors
+    dark: {
+      bg: '#0f0f14',
+      surface: '#16161f',
+      text: '#fafafa',
+      muted: 'rgba(250, 250, 250, 0.7)',
+      subtle: 'rgba(250, 250, 250, 0.5)',
+      border: 'rgba(255, 255, 255, 0.08)',
+      accent: '#a78bfa'
+    },
+    // Category colors - violet-harmonious palette
     colors: {
-      essays: { bg: 'linear-gradient(135deg, #7c2d12 0%, #9a3412 100%)', accent: '#fdba74' },
-      research: { bg: 'linear-gradient(135deg, #713f12 0%, #854d0e 100%)', accent: '#fcd34d' },
-      visual: { bg: 'linear-gradient(135deg, #9a3412 0%, #c2410c 100%)', accent: '#fed7aa' },
-      briefs: { bg: 'linear-gradient(135deg, #78350f 0%, #92400e 100%)', accent: '#fbbf24' },
-      getting: { bg: 'linear-gradient(135deg, #451a03 0%, #78350f 100%)', accent: '#f59e0b' },
-      process: { bg: 'linear-gradient(135deg, #292524 0%, #44403c 100%)', accent: '#d6d3d1' }
+      'ai-research': { bg: 'linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%)', accent: '#c4b5fd' },
+      'prompt-engineering': { bg: 'linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)', accent: '#93c5fd' },
+      'llm-basics': { bg: 'linear-gradient(135deg, #9333ea 0%, #a855f7 100%)', accent: '#d8b4fe' },
+      'literature': { bg: 'linear-gradient(135deg, #059669 0%, #10b981 100%)', accent: '#6ee7b7' },
+      visual: { bg: 'linear-gradient(135deg, #9333ea 0%, #a855f7 100%)', accent: '#d8b4fe' },
+      process: { bg: 'linear-gradient(135deg, #475569 0%, #64748b 100%)', accent: '#cbd5e1' }
     }
   };
 
   // Categories for filtering
   const categories = [
     { key: 'all', label: 'All Topics' },
-    { key: 'essays', label: 'Academic Essays' },
-    { key: 'research', label: 'Research Briefs' },
-    { key: 'visual', label: 'Visual Essays' },
-    { key: 'getting-started', label: 'Getting Started' }
+    { key: 'ai-research', label: 'AI Research' },
+    { key: 'prompt-engineering', label: 'Prompt Engineering' },
+    { key: 'llm-basics', label: 'LLM Basics' },
+    { key: 'literature', label: 'Classic Literature' }
   ];
 
   // Featured article - large hero
@@ -97,8 +107,48 @@ const EsySchool = () => {
     icon: Sparkles
   };
 
-  // SEO-optimized problem-solution articles
+  // Original articles restored
   const articles = [
+    {
+      category: 'ai-research',
+      categoryLabel: 'AI Research',
+      title: '5 Ways AI is Revolutionizing Academic Research',
+      description: 'Discover how artificial intelligence is transforming the landscape of academic research, from automated literature reviews to predictive modeling.',
+      readTime: '6 min',
+      href: '/school/articles/ai-research-revolution',
+      icon: Microscope
+    },
+    {
+      category: 'prompt-engineering',
+      categoryLabel: 'Prompt Engineering',
+      title: 'What is Prompt Engineering? A Comprehensive Guide',
+      description: 'Master the art and science of crafting effective prompts for AI systems. Learn techniques that will transform your interactions with language models.',
+      readTime: '8 min',
+      href: '/school/articles/prompt-engineering-guide',
+      icon: Target
+    },
+    {
+      category: 'llm-basics',
+      categoryLabel: 'LLM Basics',
+      title: 'Understanding Large Language Models: From Theory to Practice',
+      description: 'Demystify the technology behind ChatGPT, Claude, and other LLMs. A beginner-friendly guide to transformer architecture and its applications.',
+      readTime: '12 min',
+      href: '/school/articles/understanding-llms',
+      icon: Lightbulb
+    },
+    {
+      category: 'literature',
+      categoryLabel: 'Classic Literature',
+      title: 'To Kill a Mockingbird: A Timeless Exploration of Justice',
+      description: 'Explore Harper Lee\'s masterpiece through the lens of moral courage, racial injustice, and the loss of innocence in 1930s Alabama.',
+      readTime: '15 min',
+      href: '/school/articles/to-kill-a-mockingbird',
+      icon: BookOpen
+    }
+  ];
+
+  /* SEO-optimized problem-solution articles - commented out for now
+  const seoArticles = [
     {
       category: 'essays',
       categoryLabel: 'Academic Essays',
@@ -208,6 +258,7 @@ const EsySchool = () => {
       icon: GraduationCap
     }
   ];
+  */
 
   // Filter articles by category
   const filteredArticles = activeCategory === 'all' 
@@ -291,10 +342,10 @@ const EsySchool = () => {
           maxWidth: '600px',
           marginBottom: '2.5rem'
         }}>
-          Solve your writing and research challenges with Esy's in-depth guides and tutorials.
+          Your guide to mastering Esy's workflow templates and AI research tools. Learn to create essays, briefs, and visual artifacts that are citation-backed and publication-ready.
             </p>
             
-        {/* Search */}
+        {/* Search - temporarily hidden
         <div ref={searchBarRef} style={{ maxWidth: '480px' }}>
               <SearchBar
             placeholder="Search guides..."
@@ -313,6 +364,7 @@ const EsySchool = () => {
                 maxResults={8}
               />
             </div>
+        */}
       </section>
 
       {/* Featured Article - Large Visual Hero */}
@@ -631,11 +683,11 @@ const EsySchool = () => {
         </div>
       </section>
 
-      {/* Value Proposition Banner */}
+      {/* Value Proposition Banner - Dark Section */}
       <section style={{
-        backgroundColor: theme.surface,
-        borderTop: `1px solid ${theme.border}`,
-        borderBottom: `1px solid ${theme.border}`,
+        backgroundColor: theme.dark.bg,
+        borderTop: `1px solid ${theme.dark.border}`,
+        borderBottom: `1px solid ${theme.dark.border}`,
         padding: '4rem 2rem'
       }}>
         <div style={{
@@ -648,14 +700,15 @@ const EsySchool = () => {
             fontSize: 'clamp(1.5rem, 3vw, 2rem)',
             fontWeight: 400,
             marginBottom: '1.25rem',
-            letterSpacing: '-0.01em'
+            letterSpacing: '-0.01em',
+            color: theme.dark.text
           }}>
             Stop prompting. Start creating.
           </h2>
           
           <p style={{
             fontSize: '1.0625rem',
-            color: theme.muted,
+            color: theme.dark.muted,
             lineHeight: 1.7,
             maxWidth: '600px',
             margin: '0 auto 2rem'
@@ -670,7 +723,7 @@ const EsySchool = () => {
               alignItems: 'center',
               gap: '0.625rem',
               padding: '0.875rem 1.75rem',
-              backgroundColor: theme.accent,
+              backgroundColor: theme.dark.accent,
               color: 'white',
               borderRadius: '10px',
               fontSize: '0.9375rem',
@@ -679,11 +732,11 @@ const EsySchool = () => {
               transition: 'all 0.2s ease'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#7c3aed';
+              e.currentTarget.style.backgroundColor = '#8b5cf6';
               e.currentTarget.style.transform = 'translateY(-2px)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = theme.accent;
+              e.currentTarget.style.backgroundColor = theme.dark.accent;
               e.currentTarget.style.transform = 'translateY(0)';
             }}
           >
@@ -693,12 +746,13 @@ const EsySchool = () => {
         </div>
       </section>
 
-      {/* Newsletter */}
+      {/* Newsletter - Light Section */}
       <SchoolNewsletter 
         emailInputRef={emailInputRef}
         handleNewsletterSubmit={handleNewsletterSubmit}
         isMobile={isMobile}
         isTablet={isTablet}
+        isDarkMode={false}
       />
     </div>
   );

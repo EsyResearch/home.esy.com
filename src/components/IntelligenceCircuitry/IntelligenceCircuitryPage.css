@@ -104,15 +104,15 @@
    - WCAG AA compliant contrast ratios throughout
    ============================================ */
 .ic-page--light {
-  /* Backgrounds - Subtle violet-tinted whites */
-  --ic-bg: #faf8ff;                    /* Very subtle violet tint */
+  /* Backgrounds - Clean, neutral whites for researchers */
+  --ic-bg: #fafafa;                    /* Clean near-white */
   --ic-bg-elevated: #ffffff;           /* Pure white for cards */
-  --ic-bg-alternate: #f5f3ff;          /* Slightly more violet */
+  --ic-bg-alternate: #f5f5f5;          /* Neutral light gray */
   --ic-surface: #ffffff;
-  --ic-surface-elevated: #fefcff;      /* Warmest white with violet hint */
+  --ic-surface-elevated: #ffffff;      /* Pure white */
   
-  /* Hero specific - violet mist gradient */
-  --ic-hero-bg: linear-gradient(180deg, #faf8ff 0%, #f5f3ff 100%);
+  /* Hero specific - clean background */
+  --ic-hero-bg: #fafafa;
   
   /* Circuit colors - Violet (darker for light bg contrast) */
   --ic-trace: rgba(124, 58, 237, 0.12);
@@ -155,9 +155,9 @@
   
   /* Card specific */
   --ic-card-bg: #ffffff;
-  --ic-card-border: rgba(124, 58, 237, 0.08);
-  --ic-card-hover-bg: #fefcff;
-  --ic-card-hover-border: rgba(124, 58, 237, 0.15);
+  --ic-card-border: rgba(0, 0, 0, 0.06);
+  --ic-card-hover-bg: #ffffff;
+  --ic-card-hover-border: rgba(0, 0, 0, 0.12);
 }
 
 /* ============================================
@@ -1665,22 +1665,20 @@
 
 /* ─────────────────────────────────────────────
    HERO SECTION - Light Mode
-   Violet mist with subtle ambient glow
+   Clean, professional background for researchers
    ───────────────────────────────────────────── */
 .ic-page--light .ic-hero {
-  background: linear-gradient(180deg, #faf8ff 0%, #f5f3ff 100%);
+  background: #fafafa;
 }
 
 .ic-page--light .ic-hero-gradient {
-  background:
-    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 50% at 30% 60%, rgba(139, 92, 246, 0.04) 0%, transparent 50%);
+  background: none;
 }
 
 .ic-page--light .ic-hero-grid {
   background-image: 
-    linear-gradient(rgba(124, 58, 237, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(124, 58, 237, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
 }
 
 /* Hero text - Light mode */
@@ -1811,59 +1809,59 @@
    Subtle violet gradient with elegant indicators
    ───────────────────────────────────────────── */
 .ic-page--light .ic-hiw-section {
-  background: linear-gradient(180deg, #fefcff 0%, #faf8ff 100%);
-  border-top: 1px solid var(--ic-border);
+  background: #0f0f14;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .ic-page--light .ic-hiw-eyebrow {
-  color: var(--ic-accent);
-  background: var(--ic-accent-tint);
+  color: #a78bfa;
+  background: rgba(167, 139, 250, 0.1);
 }
 
 .ic-page--light .ic-hiw-title {
-  color: var(--ic-text);
+  color: #fafafa;
 }
 
 .ic-page--light .ic-hiw-step-number {
-  background: #ffffff;
-  border-color: var(--ic-accent);
-  color: var(--ic-accent);
-  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.12);
+  background: #16161f;
+  border-color: #a78bfa;
+  color: #a78bfa;
+  box-shadow: 0 4px 12px rgba(167, 139, 250, 0.2);
 }
 
 .ic-page--light .ic-hiw-step-title {
-  color: var(--ic-text);
+  color: #fafafa;
 }
 
 .ic-page--light .ic-hiw-step-description {
-  color: var(--ic-text-muted);
+  color: rgba(250, 250, 250, 0.7);
 }
 
 /* ─────────────────────────────────────────────
    GALLERY SECTION - Light Mode
-   Neutral slate for contrast/visual break
+   Clean light background for alternation
    ───────────────────────────────────────────── */
 .ic-page--light .ic-gallery-section {
-  background: #f1f5f9;
-  border-top: 1px solid var(--ic-border);
+  background: #fafafa;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .ic-page--light .ic-artifact-card {
-  background: var(--ic-card-bg);
-  border: 1px solid var(--ic-card-border);
-  box-shadow: var(--ic-shadow-card);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
 .ic-page--light .ic-artifact-card:hover {
-  background: var(--ic-card-hover-bg);
-  border-color: rgba(124, 58, 237, 0.15);
-  box-shadow: 0 12px 40px rgba(124, 58, 237, 0.12), 0 4px 16px rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 .ic-page--light .ic-artifact-badge {
-  background: rgba(28, 25, 23, 0.06);
+  background: rgba(0, 0, 0, 0.04);
   color: var(--ic-text-muted);
-  border-color: rgba(28, 25, 23, 0.08);
+  border-color: rgba(0, 0, 0, 0.06);
 }
 
 .ic-page--light .ic-artifact-new {
@@ -1896,11 +1894,11 @@
 }
 
 .ic-page--light .ic-trust-divider {
-  background: var(--ic-border);
+  background: rgba(0, 0, 0, 0.06);
 }
 
 .ic-page--light .ic-trust-qa {
-  color: var(--ic-gate-pass);
+  color: #059669;
 }
 
 .ic-page--light .ic-gallery-link {
@@ -1916,22 +1914,20 @@
    Stronger violet tint for emphasis
    ───────────────────────────────────────────── */
 .ic-page--light .ic-final-cta-section {
-  background: linear-gradient(180deg, #faf8ff 0%, #ede9fe 100%);
-  border-top: 1px solid var(--ic-border);
+  background: #0f0f14;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .ic-page--light .ic-final-cta-background {
-  background:
-    radial-gradient(ellipse at 30% 50%, rgba(124, 58, 237, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 50%, rgba(139, 92, 246, 0.04) 0%, transparent 50%);
+  background: none;
 }
 
 .ic-page--light .ic-final-cta-headline {
-  color: var(--ic-text);
+  color: #fafafa;
 }
 
 .ic-page--light .ic-final-cta-description {
-  color: var(--ic-text-secondary);
+  color: rgba(250, 250, 250, 0.7);
 }
 
 .ic-page--light .ic-cta-primary {
@@ -1981,6 +1977,12 @@
 
 .ic-page--light .circuit-node text {
   fill: var(--ic-text);
+}
+
+/* Preserve green checkmarks in light mode */
+.ic-page--light .circuit-node text[fill="#16a34a"],
+.ic-page--light .circuit-node text[fill="#22c55e"] {
+  fill: #16a34a !important;
 }
 
 .ic-page--light .circuit-node-sublabel,

@@ -500,6 +500,53 @@ html {
   color: #a78bfa;
 }
 
+/* ============================================
+   NAVIGATION DROPDOWN - Light Mode
+   ============================================ */
+.nav--light .nav-artifacts-dropdown {
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 
+    0 4px 24px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.02) inset;
+}
+
+.nav--light .nav-artifacts-label {
+  color: #64748b;
+}
+
+.nav--light .nav-artifact-item {
+  color: #334155;
+}
+
+.nav--light .nav-artifact-item:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.nav--light .nav-artifact-title {
+  color: #1e293b;
+}
+
+.nav--light .nav-artifact-desc {
+  color: #64748b;
+}
+
+.nav--light .nav-artifact-item:hover .nav-artifact-title {
+  color: #7c3aed;
+}
+
+.nav--light .nav-artifacts-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.nav--light .nav-artifacts-footer-link {
+  color: #64748b;
+}
+
+.nav--light .nav-artifacts-footer-link:hover {
+  color: #7c3aed;
+}
+
 /* Hide dropdown on mobile */
 @media (max-width: 768px) {
   .nav-dropdown-container {

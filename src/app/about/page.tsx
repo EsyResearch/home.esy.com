@@ -12,15 +12,29 @@ import {
 } from 'lucide-react';
 
 export default function AboutPage() {
+  // Clean Light Theme with Dark alternating sections
   const theme = {
-    bg: '#121215',
-    elevated: '#1a1a1f',
-    text: 'rgba(255, 255, 255, 0.95)',
-    muted: 'rgba(255, 255, 255, 0.75)',
-    subtle: 'rgba(255, 255, 255, 0.55)',
-    faint: 'rgba(255, 255, 255, 0.25)',
-    accent: '#3B82F6',
-    border: 'rgba(255, 255, 255, 0.08)'
+    // Light sections
+    bg: '#fafafa',
+    elevated: '#f5f5f5',
+    surface: '#ffffff',
+    text: '#1e293b',
+    muted: '#475569',
+    subtle: '#64748b',
+    faint: '#94a3b8',
+    accent: '#7c3aed',
+    accentLight: '#a78bfa',
+    border: 'rgba(0, 0, 0, 0.06)',
+    // Dark sections
+    dark: {
+      bg: '#0f0f14',
+      surface: '#16161f',
+      text: '#fafafa',
+      muted: 'rgba(250, 250, 250, 0.7)',
+      subtle: 'rgba(250, 250, 250, 0.5)',
+      border: 'rgba(255, 255, 255, 0.08)',
+      accent: '#a78bfa'
+    }
   };
 
   const differentiators = [
@@ -118,12 +132,12 @@ export default function AboutPage() {
         </p>
       </section>
 
-      {/* The Difference */}
+      {/* The Difference - Dark Section */}
       <section style={{
         padding: '5rem 2rem',
-        backgroundColor: theme.elevated,
-        borderTop: `1px solid ${theme.border}`,
-        borderBottom: `1px solid ${theme.border}`
+        backgroundColor: theme.dark.bg,
+        borderTop: `1px solid ${theme.dark.border}`,
+        borderBottom: `1px solid ${theme.dark.border}`
       }}>
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
           <h2 style={{
@@ -131,7 +145,8 @@ export default function AboutPage() {
             fontWeight: 400,
             marginBottom: '2.5rem',
             letterSpacing: '-0.01em',
-            fontFamily: 'var(--font-literata)'
+            fontFamily: 'var(--font-literata)',
+            color: theme.dark.text
           }}>
             Why Esy is different
           </h2>
@@ -139,7 +154,7 @@ export default function AboutPage() {
           <p style={{
             fontSize: '1.125rem',
             lineHeight: 1.85,
-            color: theme.muted,
+            color: theme.dark.muted,
             marginBottom: '1.5rem'
           }}>
             Most AI tools require you to learn prompt engineering — crafting the right question to get a useful answer. Even then, results are often experimental: drafts that need heavy editing, outputs that require fact-checking, conversations that disappear.
@@ -148,14 +163,14 @@ export default function AboutPage() {
           <div style={{
             padding: '1.75rem',
             borderRadius: '12px',
-            border: `1px solid ${theme.accent}`,
-            backgroundColor: 'rgba(59, 130, 246, 0.05)',
+            border: `1px solid ${theme.dark.accent}`,
+            backgroundColor: 'rgba(167, 139, 250, 0.08)',
             marginBottom: '1.5rem'
           }}>
           <p style={{
             fontSize: '1.125rem',
               lineHeight: 1.8,
-            color: theme.text,
+            color: theme.dark.text,
             fontWeight: 500,
               marginBottom: '0.75rem'
           }}>
@@ -164,7 +179,7 @@ export default function AboutPage() {
           <p style={{
               fontSize: '1rem',
               lineHeight: 1.8,
-              color: theme.muted
+              color: theme.dark.muted
             }}>
               Guided structure replaces guesswork, and the result is something real — not experimental.
           </p>
@@ -173,7 +188,7 @@ export default function AboutPage() {
           <p style={{
             fontSize: '1.125rem',
             lineHeight: 1.85,
-            color: theme.muted
+            color: theme.dark.muted
           }}>
             Esy provides that structure. You don&apos;t need to learn prompts or interact with a chat interface. You select what you want to create, answer guided questions, and receive a finished artifact.
           </p>
@@ -226,7 +241,7 @@ export default function AboutPage() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: index === 3 ? theme.accent : 'rgba(255, 255, 255, 0.02)',
+                backgroundColor: index === 3 ? theme.accent : 'rgba(0, 0, 0, 0.03)',
                 flexShrink: 0
               }}>
                 <span style={{
@@ -267,12 +282,12 @@ export default function AboutPage() {
         </p>
       </section>
 
-      {/* What Esy Creates */}
+      {/* What Esy Creates - Dark Section */}
       <section style={{
         padding: '5rem 2rem',
-        backgroundColor: theme.elevated,
-        borderTop: `1px solid ${theme.border}`,
-        borderBottom: `1px solid ${theme.border}`
+        backgroundColor: theme.dark.bg,
+        borderTop: `1px solid ${theme.dark.border}`,
+        borderBottom: `1px solid ${theme.dark.border}`
       }}>
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
           <h2 style={{
@@ -280,7 +295,8 @@ export default function AboutPage() {
             fontWeight: 400,
             marginBottom: '2.5rem',
             letterSpacing: '-0.01em',
-            fontFamily: 'var(--font-literata)'
+            fontFamily: 'var(--font-literata)',
+            color: theme.dark.text
           }}>
             What Esy creates
           </h2>
@@ -288,7 +304,7 @@ export default function AboutPage() {
           <p style={{
             fontSize: '1.125rem',
             lineHeight: 1.85,
-            color: theme.muted,
+            color: theme.dark.muted,
             marginBottom: '1.5rem'
           }}>
             Esy produces structured, publishable artifacts — not rough drafts or chat outputs. Each workflow is designed to create something real:
@@ -297,8 +313,8 @@ export default function AboutPage() {
           <div style={{
             padding: '1.5rem',
             borderRadius: '12px',
-            border: `1px solid ${theme.border}`,
-            backgroundColor: 'rgba(255, 255, 255, 0.02)',
+            border: `1px solid ${theme.dark.border}`,
+            backgroundColor: theme.dark.surface,
             marginBottom: '1.5rem'
           }}>
             <div style={{
@@ -308,8 +324,8 @@ export default function AboutPage() {
             }}>
               {artifactTypes.map((item, index) => (
                 <div key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
-                  <CheckCircle size={18} color={theme.accent} style={{ marginTop: '2px', flexShrink: 0 }} />
-                  <span style={{ fontSize: '1rem', color: theme.muted, lineHeight: 1.6 }}>{item}</span>
+                  <CheckCircle size={18} color={theme.dark.accent} style={{ marginTop: '2px', flexShrink: 0 }} />
+                  <span style={{ fontSize: '1rem', color: theme.dark.muted, lineHeight: 1.6 }}>{item}</span>
                 </div>
               ))}
             </div>
@@ -318,21 +334,21 @@ export default function AboutPage() {
           <p style={{
             fontSize: '1.125rem',
             lineHeight: 1.85,
-            color: theme.muted,
+            color: theme.dark.muted,
             marginBottom: '1.5rem'
           }}>
             The name Esy comes from the word{' '}
             <Link 
               href="/essays/etymology/the-word-essay/" 
               style={{ 
-                color: theme.muted, 
+                color: theme.dark.muted, 
                 textDecoration: 'none',
-                borderBottom: `1px solid ${theme.faint}`,
+                borderBottom: `1px solid ${theme.dark.subtle}`,
                 fontStyle: 'italic',
                 transition: 'border-color 0.2s ease'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.borderColor = theme.accent}
-              onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.faint}
+              onMouseEnter={(e) => e.currentTarget.style.borderColor = theme.dark.accent}
+              onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.dark.subtle}
             >
               essay
             </Link>, which originally meant an attempt — a way of thinking something through. Esy helps you move from attempt to artifact.
@@ -341,19 +357,19 @@ export default function AboutPage() {
           <p style={{
             fontSize: '1.125rem',
             lineHeight: 1.85,
-            color: theme.subtle
+            color: theme.dark.subtle
           }}>
             <Link 
               href="/essays" 
               style={{ 
-                color: theme.text, 
+                color: theme.dark.text, 
                 fontWeight: 500,
                 textDecoration: 'none',
-                borderBottom: `1px solid ${theme.faint}`,
+                borderBottom: `1px solid ${theme.dark.subtle}`,
                 transition: 'border-color 0.2s ease'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.borderColor = theme.accent}
-              onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.faint}
+              onMouseEnter={(e) => e.currentTarget.style.borderColor = theme.dark.accent}
+              onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.dark.subtle}
             >
               Visual Essays
             </Link> — long-form pieces combining research, narrative, and graphics — represent Esy&apos;s most comprehensive workflow, demonstrating what&apos;s possible when multiple capabilities are composed into a single artifact.
@@ -420,12 +436,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Who Esy is For */}
+      {/* Who Esy is For - Dark Section */}
       <section style={{
         padding: '5rem 2rem',
-        backgroundColor: theme.elevated,
-        borderTop: `1px solid ${theme.border}`,
-        borderBottom: `1px solid ${theme.border}`
+        backgroundColor: theme.dark.bg,
+        borderTop: `1px solid ${theme.dark.border}`,
+        borderBottom: `1px solid ${theme.dark.border}`
       }}>
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
           <h2 style={{
@@ -433,7 +449,8 @@ export default function AboutPage() {
             fontWeight: 400,
             marginBottom: '2.5rem',
             letterSpacing: '-0.01em',
-            fontFamily: 'var(--font-literata)'
+            fontFamily: 'var(--font-literata)',
+            color: theme.dark.text
           }}>
             Who Esy is for
           </h2>
@@ -441,7 +458,7 @@ export default function AboutPage() {
           <p style={{
             fontSize: '1.125rem',
             lineHeight: 1.85,
-            color: theme.muted,
+            color: theme.dark.muted,
             marginBottom: '2rem'
           }}>
             Esy is for anyone who needs to produce real work — without becoming a prompt engineer.
@@ -464,19 +481,19 @@ export default function AboutPage() {
                     width: '40px',
                     height: '40px',
                     borderRadius: '8px',
-                    border: `1px solid ${theme.border}`,
+                    border: `1px solid ${theme.dark.border}`,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     flexShrink: 0,
-                    backgroundColor: 'rgba(255, 255, 255, 0.02)'
+                    backgroundColor: theme.dark.surface
                   }}>
-                    <Icon size={18} color={theme.subtle} strokeWidth={1.5} />
+                    <Icon size={18} color={theme.dark.subtle} strokeWidth={1.5} />
                   </div>
                   <p style={{
                     fontSize: '1.0625rem',
                     lineHeight: 1.7,
-                    color: theme.muted,
+                    color: theme.dark.muted,
                     paddingTop: '0.5rem'
                   }}>
                     {item.text}
@@ -489,10 +506,10 @@ export default function AboutPage() {
           <p style={{
             fontSize: '1.125rem',
             lineHeight: 1.85,
-            color: theme.subtle,
+            color: theme.dark.subtle,
             marginTop: '2.5rem',
             paddingTop: '2rem',
-            borderTop: `1px solid ${theme.border}`
+            borderTop: `1px solid ${theme.dark.border}`
           }}>
             If you&apos;ve been frustrated by AI tools that require endless prompting and still produce unusable output, Esy offers a different path.
           </p>
@@ -573,24 +590,24 @@ export default function AboutPage() {
         </p>
       </section>
 
-      {/* Contact Footer */}
+      {/* Contact Footer - Dark Section */}
       <section style={{
         padding: '3rem 2rem',
-        borderTop: `1px solid ${theme.border}`,
-        backgroundColor: theme.elevated
+        borderTop: `1px solid ${theme.dark.border}`,
+        backgroundColor: theme.dark.bg
       }}>
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
           <p style={{
             fontSize: '1rem',
             lineHeight: 1.7,
-            color: theme.subtle,
+            color: theme.dark.subtle,
             textAlign: 'center'
           }}>
             Questions? Email us at{' '}
             <a 
               href="mailto:hello@esy.com" 
               style={{
-                color: theme.accent,
+                color: theme.dark.accent,
                 textDecoration: 'none',
                 fontWeight: 500,
                 transition: 'opacity 0.2s ease'

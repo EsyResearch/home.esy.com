@@ -25,15 +25,21 @@ export default function Footer () {
     const logoSuffix = getPageSuffix(pathname);
     const [isLightMode, setIsLightMode] = useState(false);
 
-    // Detect homepage light mode
+    // Detect light mode pages
     useEffect(() => {
       const checkTheme = () => {
         const normalizedPath = pathname?.endsWith('/') && pathname.length > 1 
           ? pathname.slice(0, -1) 
           : pathname || '';
         const isHomepage = normalizedPath === '/' || normalizedPath === '';
+        const isEssaysPage = normalizedPath === '/essays' || normalizedPath.startsWith('/essays/');
+        const isAboutPage = normalizedPath === '/about';
+        const isSchoolPage = normalizedPath === '/school';
         
-        if (isHomepage) {
+        // Essays, About, and School pages always use light theme
+        if (isEssaysPage || isAboutPage || isSchoolPage) {
+          setIsLightMode(true);
+        } else if (isHomepage) {
           const icPage = document.querySelector('.ic-page');
           setIsLightMode(icPage?.classList.contains('ic-page--light') || false);
         } else {
@@ -43,7 +49,7 @@ export default function Footer () {
 
       checkTheme();
       
-      // Observe ic-page for theme changes
+      // Observe ic-page for theme changes (only on homepage)
       const observer = new MutationObserver(checkTheme);
       const icPage = document.querySelector('.ic-page');
       if (icPage) {

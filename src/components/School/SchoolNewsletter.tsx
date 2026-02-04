@@ -194,7 +194,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                     ? '0 4px 12px rgba(139, 92, 246, 0.2)'
                     : 'none'
                 }}>
-                  <span style={{ fontSize: isMobile ? '20px' : '24px' }}>📚</span>
+                  <span style={{ fontSize: isMobile ? '20px' : '24px' }}>📬</span>
                 </div>
 
                 {/* Title */}
@@ -207,7 +207,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                   fontFamily: 'Literata, Georgia, serif',
                   color: isDarkMode ? '#ffffff' : '#0f172a'
                 }}>
-                  Get Weekly AI Writing Tips
+                  Master Esy Workflows
                 </h3>
 
                 {/* Subtitle */}
@@ -215,10 +215,10 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                   fontSize: isMobile ? '0.875rem' : '0.9375rem',
                   color: isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(15, 23, 42, 0.7)',
                   margin: '0 auto 1.5rem auto',
-                  maxWidth: isMobile ? '100%' : '400px',
-                  lineHeight: '1.5'
+                  maxWidth: isMobile ? '100%' : '480px',
+                  lineHeight: '1.6'
                 }}>
-                  Real-world tutorials from Esy School to help you apply AI writing strategies that actually work.
+                  Get tutorials, workflow templates, and practical guides on using Esy's AI research tools to create publishable artifacts faster.
                 </p>
 
                 {/* Trust indicators */}
@@ -247,7 +247,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                     color: isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(15, 23, 42, 0.7)',
                     fontWeight: '500'
                   }}>
-                    #️⃣ Weekly delivery
+                    Free tutorials weekly
                   </span>
                   <span style={{ 
                     display: 'flex', 
@@ -265,7 +265,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                     color: isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(15, 23, 42, 0.7)',
                     fontWeight: '500'
                   }}>
-                    👤 Zero spam
+                    Unsubscribe anytime
                   </span>
                 </div>
               </div>
@@ -347,7 +347,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                       target.style.transform = 'translateY(0)';
                       target.style.boxShadow = isDarkMode ? '0 6px 20px rgba(139, 92, 246, 0.25)' : 'none';
                     }}>
-                    Send Me Writing Tips
+                    Get Free Tutorials
                   </button>
                 </div>
               </div>

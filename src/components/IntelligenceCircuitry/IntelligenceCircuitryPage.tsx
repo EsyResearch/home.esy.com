@@ -194,7 +194,7 @@ const IntelligenceCircuitryPage: React.FC = () => {
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-16 w-full max-w-[1400px] items-center">
             <div className="flex-1 text-white order-1 text-center lg:text-left">
               {/* Headline */}
-              <h1 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 'clamp(2.5rem, 6vw, 4rem)', fontWeight: 300, lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: '24px', color: theme === 'light' ? '#0f172a' : '#fafafa' }}>
+              <h1 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 'clamp(2.5rem, 6vw, 4rem)', fontWeight: 900, lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: '24px', color: theme === 'light' ? '#0f172a' : '#fafafa' }}>
                 <span style={{ display: 'block' }}>Choose a template.</span>
                 <span style={{ display: 'block', background: 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Get a publishable artifact.</span>
               </h1>

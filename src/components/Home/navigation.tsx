@@ -82,9 +82,15 @@ export default function Navigation({
           : pathname || '';
         
         const isHomepage = normalizedPath === '/' || normalizedPath === '';
+        const isEssaysPage = normalizedPath === '/essays' || normalizedPath.startsWith('/essays/');
+        const isAboutPage = normalizedPath === '/about';
+        const isSchoolPage = normalizedPath === '/school';
         const isSchoolArticle = normalizedPath.includes('/school/articles/');
         const isBlogArticle = normalizedPath.includes('/blog/') && normalizedPath !== '/blog';
         const hasThemeToggle = isSchoolArticle || isBlogArticle;
+        
+        // Pages that always use light theme
+        const isAlwaysLightPage = isEssaysPage || isAboutPage || isSchoolPage;
         
         // Check for homepage light mode (ic-page--light class)
         if (isHomepage) {
@@ -94,6 +100,9 @@ export default function Navigation({
           } else {
             isLight = false;
           }
+        } else if (isAlwaysLightPage) {
+          // Essays and About pages always use light theme
+          isLight = true;
         } else if (hasThemeToggle) {
           const sectionKey = isSchoolArticle ? 'school' : 'blog';
         const storedTheme = localStorage.getItem(`theme-${sectionKey}`);
@@ -217,10 +226,10 @@ export default function Navigation({
           nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
             nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
         } else if (isLightMode) {
-            // Light mode scrolled - violet mist
-            nav.style.background = 'rgba(250, 248, 255, 0.98)';
-            nav.style.boxShadow = '0 2px 8px rgba(15, 23, 42, 0.06)';
-            nav.style.borderBottom = '1px solid rgba(124, 58, 237, 0.08)';
+            // Light mode scrolled - clean white
+            nav.style.background = 'rgba(250, 250, 250, 0.98)';
+            nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.06)';
+            nav.style.borderBottom = '1px solid rgba(0, 0, 0, 0.06)';
           } else {
             nav.style.background = 'rgba(24, 24, 27, 0.98)';
             nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
@@ -234,8 +243,8 @@ export default function Navigation({
           nav.style.background = `rgba(31, 31, 35, ${progress * 0.85})`;
           nav.style.backdropFilter = `blur(${progress * 20}px)`;
         } else if (isHomepage && isLightMode) {
-          // Homepage light mode transition - violet mist
-          nav.style.background = `rgba(250, 248, 255, ${progress * 0.98})`;
+          // Homepage light mode transition - clean white
+          nav.style.background = `rgba(250, 250, 250, ${progress * 0.98})`;
           nav.style.backdropFilter = `blur(${progress * 20}px)`;
         }
       }
@@ -262,7 +271,7 @@ export default function Navigation({
   
     return (
       <>
-      <nav className="nav" id="nav">
+      <nav className={`nav ${isLightMode ? 'nav--light' : ''}`} id="nav">
         <div className="nav-inner">
           {/* Logo */}
           <Link href="/" className="logo">
