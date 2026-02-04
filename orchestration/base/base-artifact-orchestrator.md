@@ -9,7 +9,7 @@ This document defines the **universal patterns** shared by all artifact orchestr
 ## Purpose
 
 Extract and centralize:
-- Universal quality gates (G1, G5, G8-G9)
+- Universal quality gates (G1, G5, G5.5, G8-G9)
 - Quality assurance framework patterns
 - Collaboration protocol structures
 - Red flags and red lines patterns
@@ -47,6 +47,15 @@ All artifact pipelines share these foundational gates:
 │  │  • All content drafted and reviewed                                 │   │
 │  │  • Implementation functional                                        │   │
 │  │  • Mobile/responsive testing performed                              │   │
+│  └─────────────────────────────────────────────────────────────────────┘   │
+│                                    │                                        │
+│                                    ▼                                        │
+│  G5.5: BIBLIOGRAPHY IMPLEMENTATION ──────────────────────────────────     │
+│  ┌─────────────────────────────────────────────────────────────────────┐   │
+│  │  • Sources & Further Reading section implemented                    │   │
+│  │  • All claims properly attributed                                   │   │
+│  │  • Source categorization complete                                   │   │
+│  │  • Verification date noted                                          │   │
 │  └─────────────────────────────────────────────────────────────────────┘   │
 │                                    │                                        │
 │                                    ▼                                        │
@@ -106,6 +115,33 @@ All artifact pipelines share these foundational gates:
 - [ ] Implementation functional
 - [ ] Mobile/responsive testing performed
 - [ ] Accessibility baseline met
+
+**Gate Status**: ⏳ Pending / ✅ Approved / ❌ Rejected
+
+---
+
+### G5.5: Bibliography Implementation
+
+**Purpose**: Ensure all artifacts include proper source attribution and further reading.
+
+**Owner**: Bibliography Orchestrator (or Production Orchestrator)
+
+**Universal Pass Criteria**:
+- [ ] Sources & Further Reading section exists
+- [ ] All claims from research package have corresponding sources
+- [ ] Sources organized into logical categories
+- [ ] Source count badge displayed
+- [ ] Verification date noted
+- [ ] Further reading / accessible resources included
+- [ ] CSS styling complete and responsive
+
+**Required Components**:
+| Component | Description |
+|-----------|-------------|
+| **Section Header** | "Bibliography" eyebrow + "Sources & Further Reading" title |
+| **Source Blocks** | Categorized groups (Primary, Secondary, etc.) |
+| **Source Items** | Author, year, title, journal/publisher |
+| **Footer** | Source count badge + verification date |
 
 **Gate Status**: ⏳ Pending / ✅ Approved / ❌ Rejected
 
@@ -278,6 +314,7 @@ All orchestrators use this sign-off template:
 | G3: [Domain-specific] | ⏳/✅/❌ |
 | G4: [Domain-specific] | ⏳/✅/❌ |
 | G5: Content Complete | ⏳/✅/❌ |
+| G5.5: Bibliography Implementation | ⏳/✅/❌ |
 | G6: [Domain-specific Audit] | ⏳/✅/❌ |
 | G7: [Domain-specific Audit] | ⏳/✅/❌ |
 | G8: Publication Certification | ⏳/✅/❌ |
@@ -368,4 +405,4 @@ February 2026
 
 ---
 
-*This base orchestrator provides the foundational patterns shared by all Esy artifact orchestrators. It is not invoked directly — domain-specific orchestrators compose their pipelines by extending this base with research, design, and audit profiles appropriate to their artifact type. The universal gates (G1, G5, G8-G9) ensure consistent quality standards across all artifact types, while allowing flexibility in domain-specific gates (G2-G4, G6-G7).*
+*This base orchestrator provides the foundational patterns shared by all Esy artifact orchestrators. It is not invoked directly — domain-specific orchestrators compose their pipelines by extending this base with research, design, and audit profiles appropriate to their artifact type. The universal gates (G1, G5, G5.5, G8-G9) ensure consistent quality standards across all artifact types, while allowing flexibility in domain-specific gates (G2-G4, G6-G7). Note: G5.5 (Bibliography Implementation) is UNIVERSAL — all artifacts require proper source attribution.*
