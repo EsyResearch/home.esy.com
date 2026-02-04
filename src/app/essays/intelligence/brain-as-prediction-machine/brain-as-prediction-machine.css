@@ -724,8 +724,8 @@
 .sources-section {
   margin-top: 5rem;
   padding: 4rem 0;
-  background: linear-gradient(180deg, var(--bg-primary) 0%, #f0f4f8 100%);
-  border-top: 1px solid rgba(99, 179, 237, 0.2);
+  background: linear-gradient(180deg, var(--background) 0%, var(--diagram-surface) 100%);
+  border-top: 1px solid rgba(74, 144, 217, 0.2);
 }
 
 .sources-header {
@@ -744,7 +744,7 @@
 
 .sources-description {
   font-size: 1rem;
-  color: var(--text-muted);
+  color: var(--diagram-secondary);
   line-height: 1.6;
   margin: 0;
 }
@@ -833,31 +833,31 @@
 }
 
 .source-year {
-  color: var(--text-muted);
+  color: var(--diagram-muted);
   font-size: 0.8125rem;
 }
 
 .source-title {
   font-style: italic;
-  color: var(--text-secondary);
+  color: var(--diagram-secondary);
   flex-basis: 100%;
 }
 
 .source-journal {
   font-size: 0.8125rem;
-  color: var(--text-muted);
+  color: var(--diagram-muted);
   flex-basis: 100%;
 }
 
 .source-publisher {
   font-size: 0.8125rem;
-  color: var(--accent);
+  color: var(--diagram-primary);
   font-weight: 500;
 }
 
 .source-note {
   font-size: 0.8125rem;
-  color: var(--text-muted);
+  color: var(--diagram-muted);
   flex-basis: 100%;
 }
 
@@ -877,12 +877,12 @@
   gap: 0.5rem;
   margin: 0 0 0.75rem;
   font-size: 0.875rem;
-  color: var(--text-secondary);
+  color: var(--diagram-secondary);
 }
 
 .sources-badge {
   display: inline-block;
-  background: var(--accent);
+  background: var(--diagram-primary);
   color: white;
   font-size: 0.75rem;
   font-weight: 600;
@@ -892,7 +892,7 @@
 
 .sources-note {
   font-size: 0.8125rem;
-  color: var(--text-muted);
+  color: var(--diagram-muted);
   margin: 0;
 }
 
