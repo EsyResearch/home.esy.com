@@ -1,7 +1,7 @@
 # The Brain as a Prediction Machine
 
 > **Type**: Conceptual Visual Essay  
-> **Status**: G3 COMPLETE — Awaiting G4 (Design Research)  
+> **Status**: G4 COMPLETE — Ready for G5 (Content Implementation)  
 > **Orchestrator**: Conceptual Essay Orchestrator  
 > **Started**: February 3, 2026
 
@@ -29,6 +29,7 @@
 brain-as-prediction-machine/
 ├── README.md              ← You are here
 ├── G1-INTAKE.md           ← Approved intake document
+├── DESIGN-RESEARCH.md     ← G4 Pedagogical Design Research (COMPLETE)
 ├── research/              ← G2 Concept Research (COMPLETE)
 │   ├── CONCEPTS.md        ← Core concepts + relationships
 │   ├── SEQUENCE.md        ← Learning progression
@@ -49,9 +50,9 @@ brain-as-prediction-machine/
 | G1 | ✅ COMPLETE | `G1-INTAKE.md` |
 | G2 | ✅ COMPLETE | `research/` package |
 | G3 | ✅ COMPLETE | `specs/brain-as-prediction-machine.md` |
-| G4 | ⏳ NEXT | Design Research (Pedagogical Lens) |
-| G4.5 | ⬜ NOT STARTED | Diagram Specifications |
-| G5 | ⬜ NOT STARTED | Content Implementation |
+| G4 | ✅ COMPLETE | `DESIGN-RESEARCH.md` (Pedagogical Lens) |
+| G4.5 | ✅ INCLUDED | SVG Blueprints in Design Research |
+| G5 | ⏳ NEXT | Content Implementation |
 | G6 | ⬜ NOT STARTED | Accuracy Audit |
 | G6.5 | ⬜ NOT STARTED | Pedagogy Audit |
 | G7 | ⬜ NOT STARTED | Diagram Clarity Audit |
@@ -96,16 +97,37 @@ brain-as-prediction-machine/
 
 ---
 
+## Design Research Summary (G4)
+
+### Color Tokens
+| Token | Hex | Usage |
+|-------|-----|-------|
+| `--diagram-primary` | #4A90D9 | Brain model, predictions |
+| `--diagram-secondary` | #718096 | World, sensory input |
+| `--diagram-accent` | #E53E3E | Prediction error ONLY |
+
+### Typography
+- **Display**: Space Grotesk
+- **Body**: Inter
+
+### Key Design Decisions
+- **Accent color constraint**: #E53E3E used ONLY for prediction error
+- **8 SVG diagrams** with scroll-lock animations
+- **Pedagogical color system** — comprehension over decoration
+- **No brain imagery** — abstract process diagrams only
+
+---
+
 ## Next Steps
 
 1. ~~**G3**: Create 6-layer invocation spec using Conceptual Essay Skill~~ ✅
-2. **G4**: Design Research (Pedagogical Lens) — Full design research including:
-   - Domain visualization survey (how neuroscience visualizes these concepts)
-   - Pedagogical color research (validate/refine coral/red for error)
-   - Shape semantics validation
-   - Animation philosophy for learning
-   - Complete SVG blueprints
-3. **G5**: Content implementation
+2. ~~**G4**: Design Research (Pedagogical Lens)~~ ✅
+3. **G5**: Content Implementation — Build the essay using:
+   - Spec: `specs/brain-as-prediction-machine.md`
+   - Design: `DESIGN-RESEARCH.md`
+   - Research: `research/*.md`
+4. **G6-G7**: Quality audits (Accuracy, Pedagogy, Diagram Clarity)
+5. **G8-G9**: Publication certification and approval
 
 ---
 
