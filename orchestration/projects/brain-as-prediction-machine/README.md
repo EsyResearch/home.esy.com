@@ -1,7 +1,7 @@
 # The Brain as a Prediction Machine
 
 > **Type**: Conceptual Visual Essay  
-> **Status**: G2 COMPLETE — Proceeding to G3 (Spec Creation)  
+> **Status**: G3 COMPLETE — Awaiting G4 (Design Research)  
 > **Orchestrator**: Conceptual Essay Orchestrator  
 > **Started**: February 3, 2026
 
@@ -36,7 +36,7 @@ brain-as-prediction-machine/
 │   ├── ANALOGIES.md       ← Concrete comparisons
 │   ├── MISCONCEPTIONS.md  ← Common errors to address
 │   └── CLAIMS.md          ← Verified scientific claims
-└── specs/                 ← G3 Invocation Spec (PENDING)
+└── specs/                 ← G3 Invocation Spec (COMPLETE)
     └── brain-as-prediction-machine.md
 ```
 
@@ -48,8 +48,8 @@ brain-as-prediction-machine/
 |------|--------|-------------|
 | G1 | ✅ COMPLETE | `G1-INTAKE.md` |
 | G2 | ✅ COMPLETE | `research/` package |
-| G3 | ⏳ PENDING | `specs/brain-as-prediction-machine.md` |
-| G4 | ⬜ NOT STARTED | Design Research |
+| G3 | ✅ COMPLETE | `specs/brain-as-prediction-machine.md` |
+| G4 | ⏳ NEXT | Design Research (Pedagogical Lens) |
 | G4.5 | ⬜ NOT STARTED | Diagram Specifications |
 | G5 | ⬜ NOT STARTED | Content Implementation |
 | G6 | ⬜ NOT STARTED | Accuracy Audit |
@@ -98,8 +98,13 @@ brain-as-prediction-machine/
 
 ## Next Steps
 
-1. **G3**: Create 6-layer invocation spec using Conceptual Essay Skill
-2. **G4**: Design Research (Pedagogical Lens) for diagram system
+1. ~~**G3**: Create 6-layer invocation spec using Conceptual Essay Skill~~ ✅
+2. **G4**: Design Research (Pedagogical Lens) — Full design research including:
+   - Domain visualization survey (how neuroscience visualizes these concepts)
+   - Pedagogical color research (validate/refine coral/red for error)
+   - Shape semantics validation
+   - Animation philosophy for learning
+   - Complete SVG blueprints
 3. **G5**: Content implementation
 
 ---
