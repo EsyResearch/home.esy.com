@@ -342,7 +342,7 @@ const EsySchool = () => {
           maxWidth: '600px',
           marginBottom: '2.5rem'
         }}>
-          Your guide to mastering Esy's workflow templates and AI research tools. Learn to create essays, briefs, and visual artifacts that are citation-backed and publication-ready.
+          Your guide to mastering Esy&apos;s workflow templates and AI research tools. Learn to create essays, briefs, and visual artifacts that are citation-backed and publication-ready.
             </p>
             
         {/* Search - temporarily hidden

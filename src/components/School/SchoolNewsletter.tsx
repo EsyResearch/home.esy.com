@@ -218,7 +218,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                   maxWidth: isMobile ? '100%' : '480px',
                   lineHeight: '1.6'
                 }}>
-                  Get tutorials, workflow templates, and practical guides on using Esy's AI research tools to create publishable artifacts faster.
+                  Get tutorials, workflow templates, and practical guides on using Esy&apos;s AI research tools to create publishable artifacts faster.
                 </p>
 
                 {/* Trust indicators */}
