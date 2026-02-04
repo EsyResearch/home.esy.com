@@ -143,20 +143,37 @@ const HowItWorksSection: React.FC = () => {
 };
 
 const IntelligenceCircuitryPage: React.FC = () => {
-  const [theme, setTheme] = useState<'dark' | 'light'>('light');
+  // Theme options: 'navy-calm' (navy light), 'navy-dark' (navy dark), 'light' (violet mist), 'dark' (violet dark)
+  const [theme, setTheme] = useState<'dark' | 'light' | 'navy-calm' | 'navy-dark'>('navy-calm');
 
-  // Toggle theme
+  // Toggle theme - cycles through all themes
   const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+    setTheme(prev => {
+      if (prev === 'navy-calm') return 'navy-dark';
+      if (prev === 'navy-dark') return 'light';
+      if (prev === 'light') return 'dark';
+      return 'navy-calm';
+    });
+  };
+
+  // Check if current theme is a dark variant
+  const isDarkTheme = theme === 'dark' || theme === 'navy-dark';
+
+  // Get CSS class for current theme
+  const getThemeClass = () => {
+    if (theme === 'light') return 'ic-page--light';
+    if (theme === 'navy-calm') return 'ic-page--navy-calm';
+    if (theme === 'navy-dark') return 'ic-page--navy-dark';
+    return ''; // dark theme is default, no class needed
   };
 
   return (
-    <div className={`ic-page ${theme === 'light' ? 'ic-page--light' : ''}`}>
+    <div className={`ic-page ${getThemeClass()}`}>
       {/* Theme Toggle Button */}
       <button 
         onClick={toggleTheme}
         className="ic-theme-toggle"
-        aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+        aria-label={`Switch theme (current: ${theme})`}
         style={{
           position: 'fixed',
           bottom: '24px',
@@ -165,20 +182,32 @@ const IntelligenceCircuitryPage: React.FC = () => {
           width: '48px',
           height: '48px',
           borderRadius: '50%',
-          border: theme === 'light' ? '1px solid rgba(28, 25, 23, 0.1)' : '1px solid rgba(255, 255, 255, 0.1)',
-          background: theme === 'light' ? '#ffffff' : '#1f1f23',
-          color: theme === 'light' ? '#1c1917' : '#fafafa',
+          border: isDarkTheme 
+            ? '1px solid rgba(255, 255, 255, 0.1)' 
+            : theme === 'navy-calm'
+            ? '1px solid rgba(10, 37, 64, 0.1)'
+            : '1px solid rgba(124, 58, 237, 0.1)',
+          background: isDarkTheme 
+            ? theme === 'navy-dark' ? '#0F3460' : '#1f1f23'
+            : '#FFFFFF',
+          color: isDarkTheme 
+            ? '#fafafa' 
+            : theme === 'navy-calm'
+            ? '#0A2540'
+            : '#5b21b6',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
-          boxShadow: theme === 'light' 
-            ? '0 4px 12px rgba(28, 25, 23, 0.1)' 
-            : '0 4px 12px rgba(0, 0, 0, 0.3)',
+          boxShadow: isDarkTheme 
+            ? '0 4px 12px rgba(0, 0, 0, 0.3)' 
+            : theme === 'navy-calm'
+            ? '0 4px 12px rgba(10, 37, 64, 0.1)'
+            : '0 4px 12px rgba(124, 58, 237, 0.1)',
           transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
         }}
       >
-        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+        {isDarkTheme ? <Sun size={20} /> : <Moon size={20} />}
       </button>
       {/* ══════════════════════════════════════════════════════════════
           HERO SECTION
@@ -194,13 +223,33 @@ const IntelligenceCircuitryPage: React.FC = () => {
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-16 w-full max-w-[1400px] items-center">
             <div className="flex-1 text-white order-1 text-center lg:text-left">
               {/* Headline */}
-              <h1 style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 'clamp(2.5rem, 6vw, 4rem)', fontWeight: 900, lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: '24px', color: theme === 'light' ? '#0f172a' : '#fafafa' }}>
+              <h1 style={{ 
+                fontFamily: 'Cormorant Garamond, Georgia, serif', 
+                fontSize: 'clamp(2.5rem, 6vw, 4rem)', 
+                fontWeight: 900, 
+                lineHeight: 1.1, 
+                letterSpacing: '-0.03em', 
+                marginBottom: '24px', 
+                color: isDarkTheme ? '#fafafa' : theme === 'navy-calm' ? '#0A2540' : '#0f172a' 
+              }}>
                 <span style={{ display: 'block' }}>Choose a template.</span>
-                <span style={{ display: 'block', background: 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Get a publishable artifact.</span>
+                <span style={{ 
+                  display: 'block', 
+                  background: (theme === 'navy-calm' || theme === 'navy-dark')
+                    ? 'linear-gradient(135deg, #00A896 0%, #00D4AA 100%)' 
+                    : 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)', 
+                  WebkitBackgroundClip: 'text', 
+                  WebkitTextFillColor: 'transparent' 
+                }}>Get a publishable artifact.</span>
               </h1>
 
               {/* Subheadline */}
-              <p style={{ fontSize: '1.125rem', lineHeight: 1.7, color: theme === 'light' ? 'rgba(15, 23, 42, 0.7)' : 'rgba(250, 250, 250, 0.7)', marginBottom: '32px' }}>
+              <p style={{ 
+                fontSize: '1.125rem', 
+                lineHeight: 1.7, 
+                color: isDarkTheme ? 'rgba(250, 250, 250, 0.7)' : theme === 'navy-calm' ? '#6C757D' : 'rgba(15, 23, 42, 0.7)', 
+                marginBottom: '32px' 
+              }}>
                 Start from real sources — PDFs, citations, or notes — and use citation-first templates to produce structured, publishable research artifacts.
               </p>
 
@@ -210,12 +259,48 @@ const IntelligenceCircuitryPage: React.FC = () => {
                   href="https://app.esy.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '14px 24px', background: theme === 'light' ? '#5b21b6' : '#7c3aed', color: '#fafafa', fontWeight: 600, fontSize: '0.9375rem', borderRadius: '10px', textDecoration: 'none', boxShadow: theme === 'light' ? '0 4px 12px rgba(91, 33, 182, 0.25)' : '0 4px 12px rgba(124, 58, 237, 0.3)' }}
+                  style={{ 
+                    display: 'inline-flex', 
+                    alignItems: 'center', 
+                    gap: '8px', 
+                    padding: '14px 24px', 
+                    background: (theme === 'navy-calm' || theme === 'navy-dark') ? '#00A896' : isDarkTheme ? '#7c3aed' : '#5b21b6', 
+                    color: '#fafafa', 
+                    fontWeight: 600, 
+                    fontSize: '0.9375rem', 
+                    borderRadius: '10px', 
+                    textDecoration: 'none', 
+                    boxShadow: (theme === 'navy-calm' || theme === 'navy-dark')
+                      ? '0 4px 12px rgba(0, 168, 150, 0.25)'
+                      : isDarkTheme 
+                      ? '0 4px 12px rgba(124, 58, 237, 0.3)' 
+                      : '0 4px 12px rgba(91, 33, 182, 0.25)' 
+                  }}
                 >
                   <span>Start with a Template</span>
                   <ArrowRight size={18} />
                 </a>
-                <Link href="/essays/" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '14px 24px', background: theme === 'light' ? 'rgba(124, 58, 237, 0.08)' : 'rgba(139, 92, 246, 0.12)', border: theme === 'light' ? '1px solid rgba(124, 58, 237, 0.2)' : '1px solid rgba(139, 92, 246, 0.25)', color: theme === 'light' ? '#5b21b6' : '#fafafa', fontWeight: 600, fontSize: '0.9375rem', borderRadius: '10px', textDecoration: 'none' }}>
+                <Link href="/essays/" style={{ 
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  gap: '4px', 
+                  padding: '14px 24px', 
+                  background: isDarkTheme 
+                    ? theme === 'navy-dark' ? 'rgba(0, 212, 170, 0.1)' : 'rgba(139, 92, 246, 0.12)' 
+                    : theme === 'navy-calm'
+                    ? 'rgba(10, 37, 64, 0.06)'
+                    : 'rgba(124, 58, 237, 0.08)', 
+                  border: isDarkTheme 
+                    ? theme === 'navy-dark' ? '1px solid rgba(0, 212, 170, 0.25)' : '1px solid rgba(139, 92, 246, 0.25)' 
+                    : theme === 'navy-calm'
+                    ? '1px solid rgba(10, 37, 64, 0.15)'
+                    : '1px solid rgba(124, 58, 237, 0.2)', 
+                  color: isDarkTheme ? '#fafafa' : theme === 'navy-calm' ? '#0A2540' : '#5b21b6', 
+                  fontWeight: 600, 
+                  fontSize: '0.9375rem', 
+                  borderRadius: '10px', 
+                  textDecoration: 'none' 
+                }}>
                   <span>Explore Artifacts</span>
                 </Link>
               </div>
@@ -223,7 +308,7 @@ const IntelligenceCircuitryPage: React.FC = () => {
 
             {/* Circuit Visual - Desktop only */}
             <div className="flex-1 justify-center items-center order-2 hidden lg:flex">
-              <CircuitCanvas theme={theme} />
+              <CircuitCanvas theme={theme === 'navy-dark' ? 'navy-dark' : theme === 'navy-calm' ? 'navy-calm' : theme} />
             </div>
           </div>
         </div>

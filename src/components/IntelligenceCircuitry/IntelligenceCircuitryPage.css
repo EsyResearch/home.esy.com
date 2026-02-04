@@ -161,6 +161,87 @@
 }
 
 /* ============================================
+   DESIGN TOKENS - NAVY CALM THEME
+   "Navy Calm" - Professional academic theme
+   
+   Design Philosophy:
+   - Authority without coldness: Navy provides intellectual gravitas
+   - Academic credibility: Mirrors scholarly publishing
+   - Trust-first: Colors reinforce "reliable, auditable artifacts"
+   - Calm professionalism: Reduced visual noise, content-focused
+   ============================================ */
+.ic-page--navy-calm {
+  /* Backgrounds - Clean whites */
+  --ic-bg: #FFFFFF;
+  --ic-bg-elevated: #FFFFFF;
+  --ic-bg-alternate: #F8F9FA;
+  --ic-surface: #FFFFFF;
+  --ic-surface-elevated: #F8F9FA;
+  
+  /* Hero specific */
+  --ic-hero-bg: #FFFFFF;
+  
+  /* Circuit colors - Teal on light */
+  --ic-trace: rgba(0, 168, 150, 0.12);
+  --ic-trace-active: rgba(0, 168, 150, 0.35);
+  --ic-signal: #00A896;
+  --ic-signal-glow: rgba(0, 168, 150, 0.25);
+  --ic-node-bg: rgba(255, 255, 255, 0.98);
+  --ic-node-border: rgba(10, 37, 64, 0.1);
+  --ic-gate-pass: #2A9D8F;
+  
+  /* Text - Professional dark hierarchy */
+  --ic-text: #333333;
+  --ic-text-secondary: #6C757D;
+  --ic-text-muted: #8E9AAF;
+  --ic-text-subtle: #ADB5BD;
+  
+  /* Borders - Navy-tinted subtle */
+  --ic-border: #E9ECEF;
+  --ic-border-subtle: rgba(10, 37, 64, 0.05);
+  
+  /* Shadows - Navy-tinted */
+  --ic-shadow-sm: 0 1px 2px rgba(10, 37, 64, 0.04);
+  --ic-shadow-md: 0 4px 12px rgba(10, 37, 64, 0.08);
+  --ic-shadow-lg: 0 8px 24px rgba(10, 37, 64, 0.1);
+  --ic-shadow-card: 0 2px 8px rgba(10, 37, 64, 0.06);
+  
+  /* Primary - Deep Navy */
+  --ic-primary: #0A2540;
+  --ic-primary-light: #0F3460;
+  --ic-primary-dark: #061527;
+  
+  /* Accents - Teal (for CTAs, links) */
+  --ic-accent: #00A896;
+  --ic-accent-darker: #008F7A;
+  --ic-accent-darkest: #007A6A;
+  --ic-accent-light: #00D4AA;
+  --ic-accent-lighter: #5EEAD4;
+  --ic-accent-blue: #3B82F6;
+  --ic-accent-tint: rgba(0, 168, 150, 0.08);
+  
+  /* Success - Emerald */
+  --ic-success: #2A9D8F;
+  --ic-success-light: #3AB4A5;
+  
+  /* Premium - Gold */
+  --ic-premium: #D4A017;
+  --ic-premium-light: #E8B92E;
+  
+  /* Gradients - Navy/Teal */
+  --ic-gradient-hero: linear-gradient(135deg, #00A896 0%, #00D4AA 100%);
+  --ic-gradient-subtle: linear-gradient(180deg, rgba(10, 37, 64, 0.02) 0%, rgba(10, 37, 64, 0.04) 100%);
+  --ic-gradient-cta: linear-gradient(135deg, #00A896 0%, #008F7A 100%);
+  --ic-gradient-navy: linear-gradient(135deg, #0A2540 0%, #0F3460 100%);
+  
+  /* Card specific */
+  --ic-card-bg: #FFFFFF;
+  --ic-card-border: #E9ECEF;
+  --ic-card-hover-bg: #FFFFFF;
+  --ic-card-hover-border: #DEE2E6;
+}
+
+/* ============================================
    BASE STYLES
    ============================================ */
 .ic-page {
@@ -1995,4 +2076,806 @@
    ───────────────────────────────────────────── */
 .ic-page--light .circuit-corner {
   border-color: rgba(124, 58, 237, 0.12);
+}
+
+/* ============================================
+   NAVY CALM THEME - COMPREHENSIVE STYLES
+   Professional academic theme with deep navy
+   ============================================ */
+
+/* Base navy calm mode */
+.ic-page--navy-calm {
+  background: var(--ic-bg);
+  color: var(--ic-text);
+}
+
+/* ─────────────────────────────────────────────
+   HERO SECTION - Navy Calm
+   Clean white with subtle navy accents
+   ───────────────────────────────────────────── */
+.ic-page--navy-calm .ic-hero {
+  background: #FFFFFF;
+}
+
+.ic-page--navy-calm .ic-hero-gradient {
+  background: none;
+}
+
+.ic-page--navy-calm .ic-hero-grid {
+  background-image: 
+    linear-gradient(rgba(10, 37, 64, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 37, 64, 0.03) 1px, transparent 1px);
+}
+
+/* Hero text - Navy Calm */
+.ic-page--navy-calm .ic-hero-text {
+  color: #333333;
+}
+
+.ic-page--navy-calm .ic-hero h1 {
+  color: #0A2540 !important;
+}
+
+.ic-page--navy-calm .ic-hero h1 span:first-child {
+  color: #0A2540 !important;
+}
+
+.ic-page--navy-calm .ic-hero p {
+  color: #6C757D !important;
+}
+
+/* Hero eyebrow - Navy Calm */
+.ic-page--navy-calm .ic-hero-eyebrow {
+  background: rgba(0, 168, 150, 0.08);
+  border-color: rgba(0, 168, 150, 0.2);
+  color: #00A896;
+}
+
+.ic-page--navy-calm .ic-eyebrow-pulse {
+  background: #00A896;
+}
+
+/* Hero headline gradient - Navy Calm */
+.ic-page--navy-calm .ic-headline-gradient {
+  background: linear-gradient(135deg, #00A896 0%, #00D4AA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hero CTAs - Navy Calm */
+.ic-page--navy-calm .ic-cta-primary {
+  background: #00A896 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px rgba(0, 168, 150, 0.25);
+}
+
+.ic-page--navy-calm .ic-cta-primary:hover {
+  background: #008F7A !important;
+  box-shadow: 0 6px 20px rgba(0, 168, 150, 0.35);
+}
+
+.ic-page--navy-calm .ic-cta-secondary {
+  background: rgba(10, 37, 64, 0.06) !important;
+  border-color: rgba(10, 37, 64, 0.15) !important;
+  color: #0A2540 !important;
+}
+
+.ic-page--navy-calm .ic-cta-secondary:hover {
+  background: rgba(10, 37, 64, 0.1) !important;
+}
+
+/* Scroll indicator - Navy Calm */
+.ic-page--navy-calm .ic-scroll-indicator {
+  color: #8E9AAF;
+}
+
+.ic-page--navy-calm .ic-scroll-line {
+  background: linear-gradient(180deg, #00A896 0%, transparent 100%);
+}
+
+/* ─────────────────────────────────────────────
+   TEMPLATES SECTION - Navy Calm
+   Light gray background with clean cards
+   ───────────────────────────────────────────── */
+.ic-page--navy-calm .ic-templates-section {
+  background: #F8F9FA;
+  border-top: 1px solid #E9ECEF;
+}
+
+.ic-page--navy-calm .ic-section-eyebrow {
+  color: #00A896;
+  background: rgba(0, 168, 150, 0.08);
+  padding: 6px 12px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.ic-page--navy-calm .ic-section-title {
+  color: #0A2540;
+}
+
+.ic-page--navy-calm .ic-section-description {
+  color: #6C757D;
+}
+
+.ic-page--navy-calm .ic-template-card {
+  background: #FFFFFF;
+  border: 1px solid #E9ECEF;
+  box-shadow: 0 2px 8px rgba(10, 37, 64, 0.06);
+}
+
+.ic-page--navy-calm .ic-template-card:hover {
+  background: #FFFFFF;
+  border-color: #DEE2E6;
+  box-shadow: 0 4px 16px rgba(10, 37, 64, 0.1);
+  transform: translateY(-2px);
+}
+
+.ic-page--navy-calm .ic-template-title {
+  color: #0A2540;
+}
+
+.ic-page--navy-calm .ic-template-description {
+  color: #6C757D;
+}
+
+.ic-page--navy-calm .ic-template-meta {
+  color: #ADB5BD;
+}
+
+.ic-page--navy-calm .ic-template-time {
+  color: #2A9D8F;
+}
+
+.ic-page--navy-calm .ic-template-hover-cta {
+  color: #00A896;
+}
+
+/* Template icons - Navy Calm (teal primary) */
+.ic-page--navy-calm .ic-template-icon--purple {
+  background: rgba(0, 168, 150, 0.1);
+  color: #00A896;
+}
+
+.ic-page--navy-calm .ic-template-icon--blue {
+  background: rgba(59, 130, 246, 0.08);
+  color: #3B82F6;
+}
+
+.ic-page--navy-calm .ic-template-icon--pink {
+  background: rgba(236, 72, 153, 0.08);
+  color: #db2777;
+}
+
+.ic-page--navy-calm .ic-template-icon--amber {
+  background: rgba(212, 160, 23, 0.1);
+  color: #D4A017;
+}
+
+/* Template card color bars - Navy Calm */
+.ic-page--navy-calm .ic-template-card--purple::before {
+  background: #00A896;
+}
+
+/* ─────────────────────────────────────────────
+   HOW IT WORKS SECTION - Navy Calm
+   Dark navy section for contrast
+   ───────────────────────────────────────────── */
+.ic-page--navy-calm .ic-hiw-section {
+  background: linear-gradient(180deg, #0A2540 0%, #061527 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ic-page--navy-calm .ic-hiw-eyebrow {
+  color: #00D4AA;
+  background: rgba(0, 212, 170, 0.1);
+}
+
+.ic-page--navy-calm .ic-hiw-title {
+  color: #FFFFFF;
+}
+
+.ic-page--navy-calm .ic-hiw-step-number {
+  background: #0F3460;
+  border-color: #00A896;
+  color: #00D4AA;
+  box-shadow: 0 4px 12px rgba(0, 168, 150, 0.2);
+}
+
+.ic-page--navy-calm .ic-hiw-step-title {
+  color: #FFFFFF;
+}
+
+.ic-page--navy-calm .ic-hiw-step-description {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ─────────────────────────────────────────────
+   GALLERY SECTION - Navy Calm
+   Clean white for artifact showcase
+   ───────────────────────────────────────────── */
+.ic-page--navy-calm .ic-gallery-section {
+  background: #FFFFFF;
+  border-top: 1px solid #E9ECEF;
+}
+
+.ic-page--navy-calm .ic-artifact-card {
+  background: #FFFFFF;
+  border: 1px solid #E9ECEF;
+  box-shadow: 0 4px 16px rgba(10, 37, 64, 0.06);
+}
+
+.ic-page--navy-calm .ic-artifact-card:hover {
+  background: #FFFFFF;
+  border-color: #DEE2E6;
+  box-shadow: 0 8px 24px rgba(10, 37, 64, 0.1);
+}
+
+.ic-page--navy-calm .ic-artifact-badge {
+  background: rgba(10, 37, 64, 0.04);
+  color: #6C757D;
+  border-color: rgba(10, 37, 64, 0.08);
+}
+
+.ic-page--navy-calm .ic-artifact-new {
+  background: #00A896;
+  color: #FFFFFF;
+}
+
+.ic-page--navy-calm .ic-artifact-title {
+  color: #0A2540;
+}
+
+.ic-page--navy-calm .ic-artifact-subtitle {
+  color: #6C757D;
+}
+
+.ic-page--navy-calm .ic-artifact-meta {
+  color: #ADB5BD;
+}
+
+.ic-page--navy-calm .ic-artifact-arrow {
+  color: #ADB5BD;
+}
+
+.ic-page--navy-calm .ic-trust-count {
+  color: #6C757D;
+}
+
+.ic-page--navy-calm .ic-trust-label {
+  color: #ADB5BD;
+}
+
+.ic-page--navy-calm .ic-trust-divider {
+  background: rgba(10, 37, 64, 0.08);
+}
+
+.ic-page--navy-calm .ic-trust-qa {
+  color: #2A9D8F;
+}
+
+.ic-page--navy-calm .ic-gallery-link {
+  color: #6C757D;
+}
+
+.ic-page--navy-calm .ic-gallery-link:hover {
+  color: #00A896;
+}
+
+/* ─────────────────────────────────────────────
+   FINAL CTA SECTION - Navy Calm
+   Navy background for strong call-to-action
+   ───────────────────────────────────────────── */
+.ic-page--navy-calm .ic-final-cta-section {
+  background: linear-gradient(180deg, #0A2540 0%, #061527 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ic-page--navy-calm .ic-final-cta-background {
+  background: 
+    radial-gradient(ellipse at 30% 50%, rgba(0, 168, 150, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 50%, rgba(0, 212, 170, 0.05) 0%, transparent 50%);
+}
+
+.ic-page--navy-calm .ic-final-cta-headline {
+  color: #FFFFFF;
+}
+
+.ic-page--navy-calm .ic-final-cta-description {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ic-page--navy-calm .ic-final-cta-section .ic-cta-primary {
+  background: #00A896 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 16px rgba(0, 168, 150, 0.3);
+}
+
+.ic-page--navy-calm .ic-final-cta-section .ic-cta-primary:hover {
+  background: #00D4AA !important;
+  box-shadow: 0 8px 24px rgba(0, 212, 170, 0.4);
+}
+
+.ic-page--navy-calm .ic-final-cta-section .ic-cta-secondary {
+  background: rgba(0, 168, 150, 0.1) !important;
+  border: 1px solid rgba(0, 168, 150, 0.25) !important;
+  color: #00D4AA !important;
+}
+
+.ic-page--navy-calm .ic-final-cta-section .ic-cta-secondary:hover {
+  background: rgba(0, 168, 150, 0.15) !important;
+}
+
+/* ─────────────────────────────────────────────
+   GRADIENT TEXT - Navy Calm
+   ───────────────────────────────────────────── */
+.ic-page--navy-calm .ic-gradient-text {
+  background: linear-gradient(135deg, #00A896 0%, #00D4AA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─────────────────────────────────────────────
+   CIRCUIT CANVAS - Navy Calm
+   Teal traces on white background
+   ───────────────────────────────────────────── */
+.ic-page--navy-calm .circuit-canvas-container {
+  filter: none;
+}
+
+.ic-page--navy-calm .circuit-node-bg,
+.ic-page--navy-calm .circuit-node rect {
+  fill: rgba(255, 255, 255, 0.98);
+  stroke: rgba(10, 37, 64, 0.1);
+}
+
+.ic-page--navy-calm .circuit-node text {
+  fill: #0A2540;
+}
+
+/* Preserve emerald checkmarks in Navy Calm */
+.ic-page--navy-calm .circuit-node text[fill="#16a34a"],
+.ic-page--navy-calm .circuit-node text[fill="#22c55e"],
+.ic-page--navy-calm .circuit-node text[fill="#2A9D8F"] {
+  fill: #2A9D8F !important;
+}
+
+.ic-page--navy-calm .circuit-node-sublabel,
+.ic-page--navy-calm .circuit-node text[fill*="rgba(250"] {
+  fill: #6C757D;
+}
+
+/* ─────────────────────────────────────────────
+   CORNER DECORATIONS - Navy Calm
+   ───────────────────────────────────────────── */
+.ic-page--navy-calm .circuit-corner {
+  border-color: rgba(0, 168, 150, 0.15);
+}
+
+/* ============================================
+   NAVY DARK THEME - COMPREHENSIVE STYLES
+   Dark mode variant with deep navy foundation
+   ============================================ */
+
+/* Design Tokens - Navy Dark */
+.ic-page--navy-dark {
+  /* Backgrounds - Deep navy */
+  --ic-bg: #0A2540;
+  --ic-bg-elevated: #0F3460;
+  --ic-bg-alternate: #061527;
+  --ic-surface: #0F3460;
+  --ic-surface-elevated: #143D6B;
+  
+  /* Circuit colors - Teal on dark */
+  --ic-trace: rgba(0, 212, 170, 0.2);
+  --ic-trace-active: rgba(0, 212, 170, 0.45);
+  --ic-signal: #00D4AA;
+  --ic-signal-glow: rgba(0, 212, 170, 0.3);
+  --ic-node-bg: rgba(15, 52, 96, 0.9);
+  --ic-node-border: rgba(0, 212, 170, 0.2);
+  --ic-gate-pass: #3AB4A5;
+  
+  /* Text - White hierarchy */
+  --ic-text: #FFFFFF;
+  --ic-text-secondary: rgba(255, 255, 255, 0.85);
+  --ic-text-muted: rgba(255, 255, 255, 0.7);
+  --ic-text-subtle: rgba(255, 255, 255, 0.5);
+  
+  /* Borders */
+  --ic-border: rgba(255, 255, 255, 0.1);
+  --ic-border-subtle: rgba(255, 255, 255, 0.06);
+  
+  /* Shadows */
+  --ic-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --ic-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --ic-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --ic-shadow-card: 0 4px 16px rgba(0, 0, 0, 0.3);
+  
+  /* Accents - Teal (brighter for dark backgrounds) */
+  --ic-accent: #00D4AA;
+  --ic-accent-darker: #00A896;
+  --ic-accent-darkest: #008F7A;
+  --ic-accent-light: #5EEAD4;
+  --ic-accent-lighter: #99F6E4;
+  --ic-accent-blue: #60A5FA;
+  --ic-accent-tint: rgba(0, 212, 170, 0.1);
+  
+  /* Success - Emerald (brighter) */
+  --ic-success: #3AB4A5;
+  --ic-success-light: #5EEAD4;
+  
+  /* Premium - Gold (brighter) */
+  --ic-premium: #E8B92E;
+  --ic-premium-light: #FCD34D;
+  
+  /* Gradients - Teal spectrum */
+  --ic-gradient-hero: linear-gradient(135deg, #00D4AA 0%, #5EEAD4 100%);
+  --ic-gradient-subtle: linear-gradient(135deg, rgba(0, 212, 170, 0.1) 0%, rgba(0, 168, 150, 0.05) 100%);
+  --ic-gradient-cta: linear-gradient(135deg, #00A896 0%, #008F7A 100%);
+  --ic-gradient-navy: linear-gradient(135deg, #0F3460 0%, #0A2540 100%);
+  
+  /* Card specific */
+  --ic-card-bg: rgba(15, 52, 96, 0.6);
+  --ic-card-border: rgba(255, 255, 255, 0.1);
+  --ic-card-hover-bg: rgba(20, 61, 107, 0.8);
+  --ic-card-hover-border: rgba(0, 212, 170, 0.2);
+}
+
+/* Base navy dark mode */
+.ic-page--navy-dark {
+  background: var(--ic-bg);
+  color: var(--ic-text);
+}
+
+/* ─────────────────────────────────────────────
+   HERO SECTION - Navy Dark
+   Deep navy with teal accents
+   ───────────────────────────────────────────── */
+.ic-page--navy-dark .ic-hero {
+  background: linear-gradient(180deg, #0A2540 0%, #061527 100%);
+}
+
+.ic-page--navy-dark .ic-hero-gradient {
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(0, 212, 170, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 30% 60%, rgba(0, 168, 150, 0.05) 0%, transparent 50%);
+}
+
+.ic-page--navy-dark .ic-hero-grid {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Hero eyebrow - Navy Dark */
+.ic-page--navy-dark .ic-hero-eyebrow {
+  background: rgba(0, 212, 170, 0.1);
+  border-color: rgba(0, 212, 170, 0.25);
+  color: #00D4AA;
+}
+
+.ic-page--navy-dark .ic-eyebrow-pulse {
+  background: #00D4AA;
+}
+
+/* Hero headline gradient - Navy Dark */
+.ic-page--navy-dark .ic-headline-gradient {
+  background: linear-gradient(135deg, #00D4AA 0%, #5EEAD4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hero CTAs - Navy Dark */
+.ic-page--navy-dark .ic-cta-primary {
+  background: #00A896 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px rgba(0, 168, 150, 0.3);
+}
+
+.ic-page--navy-dark .ic-cta-primary:hover {
+  background: #00D4AA !important;
+  box-shadow: 0 6px 20px rgba(0, 212, 170, 0.4);
+}
+
+.ic-page--navy-dark .ic-cta-secondary {
+  background: rgba(0, 212, 170, 0.1) !important;
+  border-color: rgba(0, 212, 170, 0.25) !important;
+  color: #00D4AA !important;
+}
+
+.ic-page--navy-dark .ic-cta-secondary:hover {
+  background: rgba(0, 212, 170, 0.15) !important;
+}
+
+/* Scroll indicator - Navy Dark */
+.ic-page--navy-dark .ic-scroll-indicator {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.ic-page--navy-dark .ic-scroll-line {
+  background: linear-gradient(180deg, #00D4AA 0%, transparent 100%);
+}
+
+/* ─────────────────────────────────────────────
+   TEMPLATES SECTION - Navy Dark
+   Elevated navy surface
+   ───────────────────────────────────────────── */
+.ic-page--navy-dark .ic-templates-section {
+  background: #0F3460;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ic-page--navy-dark .ic-section-eyebrow {
+  color: #00D4AA;
+  background: rgba(0, 212, 170, 0.1);
+  padding: 6px 12px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.ic-page--navy-dark .ic-section-title {
+  color: #FFFFFF;
+}
+
+.ic-page--navy-dark .ic-section-description {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ic-page--navy-dark .ic-template-card {
+  background: rgba(15, 52, 96, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.ic-page--navy-dark .ic-template-card:hover {
+  background: rgba(20, 61, 107, 0.8);
+  border-color: rgba(0, 212, 170, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 212, 170, 0.15);
+  transform: translateY(-2px);
+}
+
+.ic-page--navy-dark .ic-template-title {
+  color: #FFFFFF;
+}
+
+.ic-page--navy-dark .ic-template-description {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ic-page--navy-dark .ic-template-meta {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.ic-page--navy-dark .ic-template-time {
+  color: #3AB4A5;
+}
+
+.ic-page--navy-dark .ic-template-hover-cta {
+  color: #00D4AA;
+}
+
+/* Template icons - Navy Dark */
+.ic-page--navy-dark .ic-template-icon--purple {
+  background: rgba(0, 212, 170, 0.15);
+  color: #00D4AA;
+}
+
+.ic-page--navy-dark .ic-template-icon--blue {
+  background: rgba(96, 165, 250, 0.15);
+  color: #60A5FA;
+}
+
+.ic-page--navy-dark .ic-template-icon--pink {
+  background: rgba(236, 72, 153, 0.15);
+  color: #f472b6;
+}
+
+.ic-page--navy-dark .ic-template-icon--amber {
+  background: rgba(232, 185, 46, 0.15);
+  color: #E8B92E;
+}
+
+/* Template card color bars - Navy Dark */
+.ic-page--navy-dark .ic-template-card--purple::before {
+  background: #00D4AA;
+}
+
+/* ─────────────────────────────────────────────
+   HOW IT WORKS SECTION - Navy Dark
+   Slightly lighter navy for contrast
+   ───────────────────────────────────────────── */
+.ic-page--navy-dark .ic-hiw-section {
+  background: linear-gradient(180deg, #061527 0%, #0A2540 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ic-page--navy-dark .ic-hiw-eyebrow {
+  color: #5EEAD4;
+  background: rgba(94, 234, 212, 0.1);
+}
+
+.ic-page--navy-dark .ic-hiw-title {
+  color: #FFFFFF;
+}
+
+.ic-page--navy-dark .ic-hiw-step-number {
+  background: #0A2540;
+  border-color: #00D4AA;
+  color: #00D4AA;
+  box-shadow: 0 4px 12px rgba(0, 212, 170, 0.25);
+}
+
+.ic-page--navy-dark .ic-hiw-step-title {
+  color: #FFFFFF;
+}
+
+.ic-page--navy-dark .ic-hiw-step-description {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ─────────────────────────────────────────────
+   GALLERY SECTION - Navy Dark
+   Elevated surface for cards
+   ───────────────────────────────────────────── */
+.ic-page--navy-dark .ic-gallery-section {
+  background: #0F3460;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ic-page--navy-dark .ic-artifact-card {
+  background: rgba(10, 37, 64, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.ic-page--navy-dark .ic-artifact-card:hover {
+  background: rgba(15, 52, 96, 0.9);
+  border-color: rgba(0, 212, 170, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 212, 170, 0.15);
+}
+
+.ic-page--navy-dark .ic-artifact-badge {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.ic-page--navy-dark .ic-artifact-new {
+  background: #00D4AA;
+  color: #0A2540;
+}
+
+.ic-page--navy-dark .ic-artifact-title {
+  color: #FFFFFF;
+}
+
+.ic-page--navy-dark .ic-artifact-subtitle {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ic-page--navy-dark .ic-artifact-meta {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.ic-page--navy-dark .ic-artifact-arrow {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.ic-page--navy-dark .ic-trust-count {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ic-page--navy-dark .ic-trust-label {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.ic-page--navy-dark .ic-trust-divider {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.ic-page--navy-dark .ic-trust-qa {
+  color: #3AB4A5;
+}
+
+.ic-page--navy-dark .ic-gallery-link {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ic-page--navy-dark .ic-gallery-link:hover {
+  color: #00D4AA;
+}
+
+/* ─────────────────────────────────────────────
+   FINAL CTA SECTION - Navy Dark
+   Deep navy with teal glow
+   ───────────────────────────────────────────── */
+.ic-page--navy-dark .ic-final-cta-section {
+  background: linear-gradient(180deg, #061527 0%, #040d1a 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ic-page--navy-dark .ic-final-cta-background {
+  background: 
+    radial-gradient(ellipse at 30% 50%, rgba(0, 212, 170, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 50%, rgba(0, 168, 150, 0.06) 0%, transparent 50%);
+}
+
+.ic-page--navy-dark .ic-final-cta-headline {
+  color: #FFFFFF;
+}
+
+.ic-page--navy-dark .ic-final-cta-description {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ic-page--navy-dark .ic-final-cta-section .ic-cta-primary {
+  background: #00A896 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 16px rgba(0, 168, 150, 0.35);
+}
+
+.ic-page--navy-dark .ic-final-cta-section .ic-cta-primary:hover {
+  background: #00D4AA !important;
+  box-shadow: 0 8px 24px rgba(0, 212, 170, 0.45);
+}
+
+.ic-page--navy-dark .ic-final-cta-section .ic-cta-secondary {
+  background: rgba(0, 212, 170, 0.1) !important;
+  border: 1px solid rgba(0, 212, 170, 0.25) !important;
+  color: #00D4AA !important;
+}
+
+.ic-page--navy-dark .ic-final-cta-section .ic-cta-secondary:hover {
+  background: rgba(0, 212, 170, 0.15) !important;
+}
+
+/* ─────────────────────────────────────────────
+   GRADIENT TEXT - Navy Dark
+   ───────────────────────────────────────────── */
+.ic-page--navy-dark .ic-gradient-text {
+  background: linear-gradient(135deg, #00D4AA 0%, #5EEAD4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─────────────────────────────────────────────
+   CIRCUIT CANVAS - Navy Dark
+   Teal traces on navy background
+   ───────────────────────────────────────────── */
+.ic-page--navy-dark .circuit-canvas-container {
+  filter: none;
+}
+
+.ic-page--navy-dark .circuit-node-bg,
+.ic-page--navy-dark .circuit-node rect {
+  fill: rgba(15, 52, 96, 0.9);
+  stroke: rgba(0, 212, 170, 0.2);
+}
+
+.ic-page--navy-dark .circuit-node text {
+  fill: #FFFFFF;
+}
+
+/* Preserve emerald checkmarks in Navy Dark */
+.ic-page--navy-dark .circuit-node text[fill="#16a34a"],
+.ic-page--navy-dark .circuit-node text[fill="#22c55e"],
+.ic-page--navy-dark .circuit-node text[fill="#2A9D8F"],
+.ic-page--navy-dark .circuit-node text[fill="#3AB4A5"] {
+  fill: #3AB4A5 !important;
+}
+
+.ic-page--navy-dark .circuit-node-sublabel,
+.ic-page--navy-dark .circuit-node text[fill*="rgba(250"] {
+  fill: rgba(255, 255, 255, 0.6);
+}
+
+/* ─────────────────────────────────────────────
+   CORNER DECORATIONS - Navy Dark
+   ───────────────────────────────────────────── */
+.ic-page--navy-dark .circuit-corner {
+  border-color: rgba(0, 212, 170, 0.2);
 }

@@ -52,6 +52,7 @@ export default function Navigation({
     const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
     const [modalSource, setModalSource] = useState<'nav-tips' | 'nav-school' | 'other'>('other');
     const [isLightMode, setIsLightMode] = useState(false);
+    const [isNavyDark, setIsNavyDark] = useState(false); // Track navy-dark mode specifically
   const [isArtifactsOpen, setIsArtifactsOpen] = useState(false);
   const [isArtifactsClosing, setIsArtifactsClosing] = useState(false);
   const [mobileArtifactsExpanded, setMobileArtifactsExpanded] = useState(false);
@@ -77,6 +78,7 @@ export default function Navigation({
     useEffect(() => {
       const checkTheme = () => {
         let isLight = false;
+        let isNavyDarkMode = false;
         const normalizedPath = pathname?.endsWith('/') && pathname.length > 1 
           ? pathname.slice(0, -1) 
           : pathname || '';
@@ -92,11 +94,14 @@ export default function Navigation({
         // Pages that always use light theme
         const isAlwaysLightPage = isEssaysPage || isAboutPage || isSchoolPage;
         
-        // Check for homepage light mode (ic-page--light class)
+        // Check for homepage themes
         if (isHomepage) {
           const icPage = document.querySelector('.ic-page');
-          if (icPage?.classList.contains('ic-page--light')) {
+          if (icPage?.classList.contains('ic-page--light') || icPage?.classList.contains('ic-page--navy-calm')) {
             isLight = true;
+          } else if (icPage?.classList.contains('ic-page--navy-dark')) {
+            isLight = false;
+            isNavyDarkMode = true;
           } else {
             isLight = false;
           }
@@ -128,6 +133,7 @@ export default function Navigation({
       }
       
       setIsLightMode(isLight);
+      setIsNavyDark(isNavyDarkMode);
       };
       
       checkTheme();
@@ -190,6 +196,10 @@ export default function Navigation({
         const isTemplatesPage = normalizedPath?.startsWith('/templates');
         const shouldBeTransparent = (isHomepage && !isLightMode) || isBlogIndexPage || isScrollytellingPage || isTemplatesPage;
         
+        // Navy Dark specific colors
+        const navyDarkBg = 'rgba(10, 37, 64, 0.98)';
+        const navyDarkBorder = 'rgba(0, 212, 170, 0.15)';
+        
         if (scrollY === 0) {
           if (shouldBeTransparent) {
             nav.style.background = 'transparent';
@@ -213,6 +223,10 @@ export default function Navigation({
               nav.style.background = 'linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 250, 250, 0.95) 100%)';
               nav.style.boxShadow = lightTheme.shadows?.sm || '0 1px 3px rgba(0, 0, 0, 0.06)';
               nav.style.borderBottom = `1px solid ${lightTheme.border}`;
+            } else if (isNavyDark) {
+              nav.style.background = 'linear-gradient(180deg, rgba(10, 37, 64, 0.95) 0%, rgba(6, 21, 39, 0.85) 100%)';
+              nav.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.3)';
+              nav.style.borderBottom = `1px solid ${navyDarkBorder}`;
             } else {
               nav.style.background = 'linear-gradient(180deg, rgba(31, 31, 35, 0.95) 0%, rgba(24, 24, 27, 0.85) 100%)';
               nav.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.2)';
@@ -221,7 +235,7 @@ export default function Navigation({
             nav.style.backdropFilter = 'blur(20px)';
         }
       } else if (scrollY > 50) {
-          if (isBlogIndexPage || (!isLightMode && !isHomepage)) {
+          if (isBlogIndexPage || (!isLightMode && !isHomepage && !isNavyDark)) {
           nav.style.background = 'rgba(24, 24, 27, 0.98)';
           nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
             nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
@@ -230,6 +244,11 @@ export default function Navigation({
             nav.style.background = 'rgba(250, 250, 250, 0.98)';
             nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.06)';
             nav.style.borderBottom = '1px solid rgba(0, 0, 0, 0.06)';
+          } else if (isNavyDark) {
+            // Navy Dark scrolled
+            nav.style.background = navyDarkBg;
+            nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.4)';
+            nav.style.borderBottom = `1px solid ${navyDarkBorder}`;
           } else {
             nav.style.background = 'rgba(24, 24, 27, 0.98)';
             nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
@@ -240,7 +259,11 @@ export default function Navigation({
         // Transition zone
         const progress = scrollY / 50;
         if (shouldBeTransparent) {
-          nav.style.background = `rgba(31, 31, 35, ${progress * 0.85})`;
+          if (isNavyDark) {
+            nav.style.background = `rgba(10, 37, 64, ${progress * 0.95})`;
+          } else {
+            nav.style.background = `rgba(31, 31, 35, ${progress * 0.85})`;
+          }
           nav.style.backdropFilter = `blur(${progress * 20}px)`;
         } else if (isHomepage && isLightMode) {
           // Homepage light mode transition - clean white
@@ -253,7 +276,7 @@ export default function Navigation({
         handleScroll();
       window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-    }, [pathname, isLightMode]);
+    }, [pathname, isLightMode, isNavyDark]);
 
   // Artifacts dropdown handlers
   const handleArtifactsEnter = () => {
@@ -279,7 +302,7 @@ export default function Navigation({
               suffix=""
               href=""
               showText={false}
-              theme={isLightMode ? 'light' : 'dark'}
+              theme={isLightMode ? 'light' : isNavyDark ? 'navy-dark' : 'dark'}
               size={isMobile ? 36 : 60}
               priority
             />

@@ -17,11 +17,12 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 
 interface CircuitCanvasProps {
   className?: string;
-  theme?: 'dark' | 'light';
+  theme?: 'dark' | 'light' | 'navy-calm' | 'navy-dark';
 }
 
-// Theme-specific colors - Violet/Purple palette
+// Theme-specific colors
 const themes = {
+  // Original Violet/Purple theme
   dark: {
     nodeFill: '#12121a',
     nodeStroke: '#2a2a3a',
@@ -49,6 +50,36 @@ const themes = {
     gridOpacity: 0.04,
     checkColor: '#16a34a',
     checkGlowStroke: 'rgba(22, 163, 74, 0.6)',
+  },
+  // Navy Calm theme - Professional academic palette
+  'navy-calm': {
+    nodeFill: '#FFFFFF',
+    nodeStroke: 'rgba(10, 37, 64, 0.1)',
+    textPrimary: '#0A2540',
+    textSecondary: '#6C757D',
+    traceStart: 'rgba(0, 168, 150, 0.2)',
+    traceEnd: 'rgba(0, 168, 150, 0.35)',
+    accentGlow: 'rgba(0, 168, 150, 0.25)',
+    ballColor: '#00A896',
+    gridColor: '#0A2540',
+    gridOpacity: 0.03,
+    checkColor: '#2A9D8F',
+    checkGlowStroke: 'rgba(42, 157, 143, 0.5)',
+  },
+  // Navy Dark theme - Dark mode variant
+  'navy-dark': {
+    nodeFill: '#0F3460',
+    nodeStroke: 'rgba(0, 212, 170, 0.2)',
+    textPrimary: '#FFFFFF',
+    textSecondary: 'rgba(255, 255, 255, 0.7)',
+    traceStart: 'rgba(0, 212, 170, 0.25)',
+    traceEnd: 'rgba(0, 212, 170, 0.4)',
+    accentGlow: 'rgba(0, 212, 170, 0.3)',
+    ballColor: '#00D4AA',
+    gridColor: '#FFFFFF',
+    gridOpacity: 0.03,
+    checkColor: '#3AB4A5',
+    checkGlowStroke: 'rgba(58, 180, 165, 0.5)',
   },
 };
 

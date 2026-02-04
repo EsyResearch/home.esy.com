@@ -20,10 +20,24 @@ const lightThemeFooter = {
   accentGlow: 'rgba(124, 58, 237, 0.2)',
 };
 
+// Navy Dark theme colors for footer
+const navyDarkThemeFooter = {
+  bg: '#061527',
+  bgGradient: 'linear-gradient(180deg, #0A2540 0%, #061527 100%)',
+  border: 'rgba(0, 212, 170, 0.15)',
+  text: '#FFFFFF',
+  muted: 'rgba(255, 255, 255, 0.7)',
+  subtle: 'rgba(255, 255, 255, 0.5)',
+  faint: 'rgba(255, 255, 255, 0.4)',
+  accent: '#00D4AA',
+  accentGlow: 'rgba(0, 212, 170, 0.2)',
+};
+
 export default function Footer () {
     const pathname = usePathname();
     const logoSuffix = getPageSuffix(pathname);
     const [isLightMode, setIsLightMode] = useState(false);
+    const [isNavyDark, setIsNavyDark] = useState(false);
 
     // Detect light mode pages
     useEffect(() => {
@@ -39,11 +53,16 @@ export default function Footer () {
         // Essays, About, and School pages always use light theme
         if (isEssaysPage || isAboutPage || isSchoolPage) {
           setIsLightMode(true);
+          setIsNavyDark(false);
         } else if (isHomepage) {
           const icPage = document.querySelector('.ic-page');
-          setIsLightMode(icPage?.classList.contains('ic-page--light') || false);
+          const isNavyCalmLight = icPage?.classList.contains('ic-page--light') || icPage?.classList.contains('ic-page--navy-calm');
+          const isNavyDarkMode = icPage?.classList.contains('ic-page--navy-dark');
+          setIsLightMode(isNavyCalmLight || false);
+          setIsNavyDark(isNavyDarkMode || false);
         } else {
           setIsLightMode(false);
+          setIsNavyDark(false);
         }
       };
 
@@ -60,14 +79,18 @@ export default function Footer () {
     }, [pathname]);
 
     // Select theme based on mode
-    const theme = isLightMode ? lightThemeFooter : elevatedDarkTheme;
+    const theme = isLightMode ? lightThemeFooter : isNavyDark ? navyDarkThemeFooter : elevatedDarkTheme;
 
     // Footer-specific elevated styling
+    const getFooterBg = () => {
+      if (isLightMode) return lightThemeFooter.bgGradient;
+      if (isNavyDark) return navyDarkThemeFooter.bgGradient;
+      return `linear-gradient(180deg, ${elevatedDarkTheme.bg} 0%, rgba(15, 15, 18, 0.98) 100%)`;
+    };
+
     const footerStyles = {
       footer: {
-        background: isLightMode 
-          ? lightThemeFooter.bgGradient
-          : `linear-gradient(180deg, ${elevatedDarkTheme.bg} 0%, rgba(15, 15, 18, 0.98) 100%)`,
+        background: getFooterBg(),
         borderTop: `1px solid ${theme.border}`,
         backdropFilter: 'blur(10px)',
         position: 'relative' as const,
@@ -79,10 +102,13 @@ export default function Footer () {
         left: 0,
         right: 0,
         height: '1px',
-        background: `linear-gradient(90deg, transparent 0%, ${isLightMode ? lightThemeFooter.accentGlow : elevatedDarkTheme.accentGlow} 50%, transparent 100%)`,
+        background: `linear-gradient(90deg, transparent 0%, ${theme.accentGlow} 50%, transparent 100%)`,
         opacity: isLightMode ? 0.5 : 0.3
       }
     };
+
+    // Determine logo theme
+    const logoTheme = isLightMode ? 'light' : isNavyDark ? 'navy-dark' : 'dark';
 
     return (
       <footer className={`footer ${isLightMode ? 'footer--light' : ''}`} style={footerStyles.footer}>
@@ -92,7 +118,7 @@ export default function Footer () {
         <div className="footer-content">
           <div className="footer-brand">
             <div className="footer-logo">
-              <Logo suffix={logoSuffix} href="" showText={false} theme={isLightMode ? 'light' : 'dark'} />
+              <Logo suffix={logoSuffix} href="" showText={false} theme={logoTheme} />
             </div>
             <p className="footer-desc" style={{ color: theme.muted }}>
               Esy is a citation-first research platform for creating reliable, auditable artifacts — essays, visuals, and learning materials.

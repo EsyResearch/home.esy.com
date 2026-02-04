@@ -393,5 +393,234 @@ export const terracottaInkDarkTheme = {
   infoGlow: 'rgba(96, 165, 250, 0.15)'
 };
 
+// ============================================
+// NAVY CALM LIGHT THEME
+// Professional academic theme with deep navy primary
+// Created: February 2026
+// Status: Active
+// 
+// Design Philosophy:
+// - Authority without coldness: Navy provides intellectual gravitas
+// - Academic credibility: Mirrors scholarly publishing
+// - Trust-first: Colors reinforce "reliable, auditable artifacts"
+// - Calm professionalism: Reduced visual noise, content-focused
+// ============================================
+export const navyCalmLightTheme = {
+  // Backgrounds - Clean whites for readability
+  bg: '#FFFFFF',
+  bgAlt: '#F8F9FA',
+  bgElevated: '#FFFFFF',
+  surface: '#FFFFFF',
+  surfaceElevated: '#F8F9FA',
+  hover: 'rgba(10, 37, 64, 0.04)',
+  
+  // Section backgrounds
+  sections: {
+    hero: '#FFFFFF',
+    templates: '#F8F9FA',
+    howItWorks: '#0A2540',      // Navy - dark section
+    gallery: '#FFFFFF',
+    finalCta: '#0A2540',         // Navy - dark section
+    footer: '#0A2540'
+  },
+  
+  // Text - Professional hierarchy
+  text: '#333333',
+  textSecondary: '#6C757D',
+  muted: '#8E9AAF',
+  subtle: '#ADB5BD',
+  faint: '#CED4DA',
+  
+  // Primary - Deep Navy
+  primary: '#0A2540',
+  primaryLight: '#0F3460',
+  primaryDark: '#061527',
+  
+  // Accent - Teal (for CTAs, links, interactive elements)
+  accent: '#00A896',
+  accentHover: '#00D4AA',
+  accentDark: '#008F7A',
+  accentLight: '#5EEAD4',
+  accentTint: 'rgba(0, 168, 150, 0.08)',
+  accentGlow: 'rgba(0, 168, 150, 0.15)',
+  accentBorder: 'rgba(0, 168, 150, 0.2)',
+  
+  // Success - Emerald (for verification, completed states)
+  success: '#2A9D8F',
+  successLight: '#3AB4A5',
+  successGlow: 'rgba(42, 157, 143, 0.15)',
+  
+  // Premium - Gold (for quality badges)
+  premium: '#D4A017',
+  premiumLight: '#E8B92E',
+  premiumGlow: 'rgba(212, 160, 23, 0.15)',
+  
+  // Semantic colors
+  warning: '#F59E0B',
+  warningGlow: 'rgba(245, 158, 11, 0.1)',
+  error: '#EF4444',
+  errorGlow: 'rgba(239, 68, 68, 0.1)',
+  info: '#3B82F6',
+  infoGlow: 'rgba(59, 130, 246, 0.1)',
+  
+  // Borders
+  border: '#E9ECEF',
+  borderStrong: '#DEE2E6',
+  borderSubtle: 'rgba(10, 37, 64, 0.06)',
+  divider: 'rgba(10, 37, 64, 0.08)',
+  
+  // Gradients
+  gradients: {
+    hero: 'linear-gradient(135deg, #00A896 0%, #00D4AA 100%)',
+    card: 'linear-gradient(180deg, #FFFFFF 0%, #F8F9FA 100%)',
+    cta: 'linear-gradient(135deg, #00A896 0%, #008F7A 100%)',
+    subtle: 'linear-gradient(180deg, rgba(10, 37, 64, 0.02) 0%, rgba(10, 37, 64, 0.04) 100%)',
+    navy: 'linear-gradient(135deg, #0A2540 0%, #0F3460 100%)'
+  },
+  
+  // Shadows - Navy-tinted
+  shadows: {
+    xs: '0 1px 2px rgba(10, 37, 64, 0.04)',
+    sm: '0 1px 3px rgba(10, 37, 64, 0.06)',
+    md: '0 4px 12px rgba(10, 37, 64, 0.08)',
+    lg: '0 8px 24px rgba(10, 37, 64, 0.1)',
+    xl: '0 12px 32px rgba(10, 37, 64, 0.12)',
+    glow: '0 0 0 3px rgba(0, 168, 150, 0.15)',
+    hover: '0 8px 24px rgba(10, 37, 64, 0.12)',
+    cta: '0 4px 16px rgba(0, 168, 150, 0.25)'
+  },
+  
+  // Navigation
+  navBg: 'rgba(255, 255, 255, 0.95)',
+  navBgScrolled: 'rgba(255, 255, 255, 0.98)',
+  navBorder: 'rgba(10, 37, 64, 0.08)',
+  
+  // Footer (Navy background)
+  footerBg: '#0A2540',
+  footerBgGradient: 'linear-gradient(180deg, #0A2540 0%, #061527 100%)',
+  footerText: '#FFFFFF',
+  footerMuted: 'rgba(255, 255, 255, 0.7)',
+  footerSubtle: 'rgba(255, 255, 255, 0.5)',
+  footerBorder: 'rgba(255, 255, 255, 0.1)',
+  
+  // Circuit Canvas specific
+  circuit: {
+    nodeFill: '#FFFFFF',
+    nodeStroke: 'rgba(10, 37, 64, 0.1)',
+    textPrimary: '#333333',
+    textSecondary: '#6C757D',
+    traceStart: 'rgba(0, 168, 150, 0.15)',
+    traceEnd: 'rgba(0, 168, 150, 0.3)',
+    accentGlow: 'rgba(0, 168, 150, 0.2)',
+    ballColor: '#00A896',
+    gridColor: '#0A2540',
+    gridOpacity: 0.03,
+    checkColor: '#2A9D8F',
+    checkGlowStroke: 'rgba(42, 157, 143, 0.4)'
+  }
+};
+
+// ============================================
+// NAVY CALM DARK THEME
+// Dark mode variant with navy foundation
+// Created: February 2026
+// ============================================
+export const navyCalmDarkTheme = {
+  // Backgrounds - Deep navy
+  bg: '#0A2540',
+  bgAlt: '#061527',
+  bgElevated: '#0F3460',
+  surface: '#0F3460',
+  surfaceElevated: '#143D6B',
+  hover: 'rgba(0, 168, 150, 0.08)',
+  
+  // Text - White hierarchy
+  text: '#FFFFFF',
+  textSecondary: 'rgba(255, 255, 255, 0.85)',
+  muted: 'rgba(255, 255, 255, 0.7)',
+  subtle: 'rgba(255, 255, 255, 0.5)',
+  faint: 'rgba(255, 255, 255, 0.3)',
+  
+  // Primary - Navy (for dark mode, teal becomes primary accent)
+  primary: '#00A896',
+  primaryLight: '#00D4AA',
+  primaryDark: '#008F7A',
+  
+  // Accent - Teal (brighter for dark backgrounds)
+  accent: '#00D4AA',
+  accentHover: '#5EEAD4',
+  accentDark: '#00A896',
+  accentLight: '#99F6E4',
+  accentTint: 'rgba(0, 212, 170, 0.1)',
+  accentGlow: 'rgba(0, 212, 170, 0.2)',
+  accentBorder: 'rgba(0, 212, 170, 0.25)',
+  
+  // Success - Emerald (brighter)
+  success: '#3AB4A5',
+  successLight: '#5EEAD4',
+  successGlow: 'rgba(58, 180, 165, 0.2)',
+  
+  // Premium - Gold (brighter)
+  premium: '#E8B92E',
+  premiumLight: '#FCD34D',
+  premiumGlow: 'rgba(232, 185, 46, 0.2)',
+  
+  // Semantic colors
+  warning: '#FBBF24',
+  warningGlow: 'rgba(251, 191, 36, 0.15)',
+  error: '#F87171',
+  errorGlow: 'rgba(248, 113, 113, 0.15)',
+  info: '#60A5FA',
+  infoGlow: 'rgba(96, 165, 250, 0.15)',
+  
+  // Borders
+  border: 'rgba(255, 255, 255, 0.1)',
+  borderStrong: 'rgba(255, 255, 255, 0.15)',
+  borderSubtle: 'rgba(255, 255, 255, 0.06)',
+  divider: 'rgba(255, 255, 255, 0.05)',
+  
+  // Gradients
+  gradients: {
+    hero: 'linear-gradient(135deg, #00D4AA 0%, #5EEAD4 100%)',
+    card: 'linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%)',
+    cta: 'linear-gradient(135deg, #00A896 0%, #008F7A 100%)',
+    subtle: 'linear-gradient(135deg, rgba(0, 212, 170, 0.1) 0%, rgba(0, 168, 150, 0.05) 100%)',
+    navy: 'linear-gradient(135deg, #0F3460 0%, #0A2540 100%)'
+  },
+  
+  // Shadows
+  shadows: {
+    sm: '0 1px 2px rgba(0, 0, 0, 0.3)',
+    md: '0 4px 12px rgba(0, 0, 0, 0.4)',
+    lg: '0 8px 24px rgba(0, 0, 0, 0.5)',
+    xl: '0 12px 32px rgba(0, 0, 0, 0.6)',
+    card: '0 4px 16px rgba(0, 0, 0, 0.3)',
+    glow: '0 4px 16px rgba(0, 212, 170, 0.2)',
+    hover: '0 8px 24px rgba(0, 212, 170, 0.15)',
+    cta: '0 4px 16px rgba(0, 168, 150, 0.3)'
+  },
+  
+  // Navigation (dark)
+  navBg: 'rgba(10, 37, 64, 0.95)',
+  navBgScrolled: 'rgba(10, 37, 64, 0.98)',
+  navBorder: 'rgba(255, 255, 255, 0.08)',
+  
+  // Circuit Canvas specific
+  circuit: {
+    nodeFill: 'rgba(15, 52, 96, 0.9)',
+    nodeStroke: 'rgba(0, 212, 170, 0.2)',
+    textPrimary: '#FFFFFF',
+    textSecondary: 'rgba(255, 255, 255, 0.7)',
+    traceStart: 'rgba(0, 212, 170, 0.2)',
+    traceEnd: 'rgba(0, 212, 170, 0.4)',
+    accentGlow: 'rgba(0, 212, 170, 0.3)',
+    ballColor: '#00D4AA',
+    gridColor: '#FFFFFF',
+    gridOpacity: 0.03,
+    checkColor: '#3AB4A5',
+    checkGlowStroke: 'rgba(58, 180, 165, 0.5)'
+  }
+};
+
 // Export default theme (elevated dark)
 export const defaultTheme = elevatedDarkTheme;

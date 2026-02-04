@@ -51,39 +51,39 @@ const EsySchool = () => {
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
-  // Clean Light Theme with dark alternating sections
+  // Navy Calm Theme with dark alternating sections
   const theme = {
-    bg: '#fafafa',
-    surface: '#ffffff',
-    elevated: '#f5f5f5',
-    card: '#ffffff',
-    text: '#1e293b',
-    muted: '#475569',
-    subtle: '#64748b',
-    faint: 'rgba(0, 0, 0, 0.06)',
-    accent: '#7c3aed',
-    accentLight: '#a78bfa',
-    accentSoft: 'rgba(0, 0, 0, 0.03)',
-    accentBorder: 'rgba(0, 0, 0, 0.08)',
-    border: 'rgba(0, 0, 0, 0.06)',
-    // Dark section colors
+    bg: '#FFFFFF',
+    surface: '#FFFFFF',
+    elevated: '#F8F9FA',
+    card: '#FFFFFF',
+    text: '#0A2540',
+    muted: '#6C757D',
+    subtle: '#8E9AAF',
+    faint: 'rgba(10, 37, 64, 0.06)',
+    accent: '#00A896',
+    accentLight: '#00D4AA',
+    accentSoft: 'rgba(0, 168, 150, 0.04)',
+    accentBorder: '#E9ECEF',
+    border: '#E9ECEF',
+    // Dark section colors - Navy
     dark: {
-      bg: '#0f0f14',
-      surface: '#16161f',
-      text: '#fafafa',
-      muted: 'rgba(250, 250, 250, 0.7)',
-      subtle: 'rgba(250, 250, 250, 0.5)',
-      border: 'rgba(255, 255, 255, 0.08)',
-      accent: '#a78bfa'
+      bg: '#0A2540',
+      surface: '#0F3460',
+      text: '#FFFFFF',
+      muted: 'rgba(255, 255, 255, 0.8)',
+      subtle: 'rgba(255, 255, 255, 0.6)',
+      border: 'rgba(255, 255, 255, 0.1)',
+      accent: '#00D4AA'
     },
-    // Category colors - violet-harmonious palette
+    // Category colors - Navy/Teal harmonious palette
     colors: {
-      'ai-research': { bg: 'linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%)', accent: '#c4b5fd' },
-      'prompt-engineering': { bg: 'linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)', accent: '#93c5fd' },
-      'llm-basics': { bg: 'linear-gradient(135deg, #9333ea 0%, #a855f7 100%)', accent: '#d8b4fe' },
-      'literature': { bg: 'linear-gradient(135deg, #059669 0%, #10b981 100%)', accent: '#6ee7b7' },
-      visual: { bg: 'linear-gradient(135deg, #9333ea 0%, #a855f7 100%)', accent: '#d8b4fe' },
-      process: { bg: 'linear-gradient(135deg, #475569 0%, #64748b 100%)', accent: '#cbd5e1' }
+      'ai-research': { bg: 'linear-gradient(135deg, #00A896 0%, #00D4AA 100%)', accent: '#5EEAD4' },
+      'prompt-engineering': { bg: 'linear-gradient(135deg, #0A2540 0%, #0F3460 100%)', accent: '#6C757D' },
+      'llm-basics': { bg: 'linear-gradient(135deg, #2A9D8F 0%, #3AB4A5 100%)', accent: '#99F6E4' },
+      'literature': { bg: 'linear-gradient(135deg, #D4A017 0%, #E8B92E 100%)', accent: '#FCD34D' },
+      visual: { bg: 'linear-gradient(135deg, #00A896 0%, #00D4AA 100%)', accent: '#5EEAD4' },
+      process: { bg: 'linear-gradient(135deg, #6C757D 0%, #8E9AAF 100%)', accent: '#ADB5BD' }
     }
   };
 

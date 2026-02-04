@@ -12,28 +12,28 @@ import {
 } from 'lucide-react';
 
 export default function AboutPage() {
-  // Clean Light Theme with Dark alternating sections
+  // Navy Calm Theme with Dark alternating sections
   const theme = {
-    // Light sections
-    bg: '#fafafa',
-    elevated: '#f5f5f5',
-    surface: '#ffffff',
-    text: '#1e293b',
-    muted: '#475569',
-    subtle: '#64748b',
-    faint: '#94a3b8',
-    accent: '#7c3aed',
-    accentLight: '#a78bfa',
-    border: 'rgba(0, 0, 0, 0.06)',
-    // Dark sections
+    // Light sections - Clean whites with navy accents
+    bg: '#FFFFFF',
+    elevated: '#F8F9FA',
+    surface: '#FFFFFF',
+    text: '#0A2540',
+    muted: '#6C757D',
+    subtle: '#8E9AAF',
+    faint: '#ADB5BD',
+    accent: '#00A896',
+    accentLight: '#00D4AA',
+    border: '#E9ECEF',
+    // Dark sections - Deep navy
     dark: {
-      bg: '#0f0f14',
-      surface: '#16161f',
-      text: '#fafafa',
-      muted: 'rgba(250, 250, 250, 0.7)',
-      subtle: 'rgba(250, 250, 250, 0.5)',
-      border: 'rgba(255, 255, 255, 0.08)',
-      accent: '#a78bfa'
+      bg: '#0A2540',
+      surface: '#0F3460',
+      text: '#FFFFFF',
+      muted: 'rgba(255, 255, 255, 0.8)',
+      subtle: 'rgba(255, 255, 255, 0.6)',
+      border: 'rgba(255, 255, 255, 0.1)',
+      accent: '#00D4AA'
     }
   };
 
@@ -164,7 +164,7 @@ export default function AboutPage() {
             padding: '1.75rem',
             borderRadius: '12px',
             border: `1px solid ${theme.dark.accent}`,
-            backgroundColor: 'rgba(167, 139, 250, 0.08)',
+            backgroundColor: 'rgba(0, 212, 170, 0.08)',
             marginBottom: '1.5rem'
           }}>
           <p style={{
