@@ -171,6 +171,7 @@
 | **G4: Design Research** | Design → Production | Pedagogical design research complete, diagram language defined | **Design Researcher** | ✅ Yes |
 | **G4.5: Diagram Specification** | Pre-Production | SVG blueprints for all major diagrams, animation sequences defined | Design Researcher | ✅ Yes |
 | **G5: Content Complete** | Production → Audit | All sections written, diagrams implemented, mobile tested | Production Orchestrator | ✅ Yes |
+| **G5.5: Bibliography Implementation** | Post-Production | Sources section complete, all claims attributed, further reading included | **Bibliography Orchestrator** | ✅ Yes |
 | **G6: Accuracy Audit** | Audit | All claims verified against sources, no errors or speculation | **Accuracy Audit Agent** | ✅ Yes |
 | **G6.5: Pedagogy Audit** | Audit | Learning effectiveness verified, sequence flows, misconceptions addressed | **Pedagogy Audit Agent** | ✅ Yes |
 | **G7: Diagram Clarity Audit** | Audit | Diagrams comprehensible, consistent language, accessibility verified | **Diagram Clarity Auditor** | ✅ Yes |
@@ -493,6 +494,7 @@ Produce publication certification report.
 | G4: Design Research (Pedagogical) | ✅ |
 | G4.5: Diagram Specification | ✅ |
 | G5: Content Complete | ✅ |
+| G5.5: Bibliography Implementation | ✅ |
 | G6: Accuracy Audit | ✅ |
 | G6.5: Pedagogy Audit | ✅ |
 | G7: Diagram Clarity Audit | ✅ |

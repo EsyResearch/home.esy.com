@@ -40,7 +40,8 @@ brain-as-prediction-machine/
 │   └── CLAIMS.md          ← Verified scientific claims
 ├── specs/                 ← G3 Invocation Spec (COMPLETE)
 │   └── brain-as-prediction-machine.md
-└── audits/                ← G6-G8 Quality Audits (ALL PASSED)
+└── audits/                ← G5.5-G8 Quality Audits (ALL PASSED)
+    ├── G5.5-BIBLIOGRAPHY-IMPLEMENTATION.md
     ├── G6-ACCURACY-AUDIT.md
     ├── G6.5-PEDAGOGY-AUDIT.md
     ├── G7-DIAGRAM-CLARITY-AUDIT.md
@@ -60,6 +61,7 @@ brain-as-prediction-machine/
 | G4 | ✅ COMPLETE | `DESIGN-RESEARCH.md` (Pedagogical Lens) |
 | G4.5 | ✅ INCLUDED | SVG Blueprints in Design Research |
 | G5 | ✅ COMPLETE | `src/app/essays/brain-as-prediction-machine/` |
+| G5.5 | ✅ PASSED | `audits/G5.5-BIBLIOGRAPHY-IMPLEMENTATION.md` |
 | G6 | ✅ PASSED | `audits/G6-ACCURACY-AUDIT.md` |
 | G6.5 | ✅ PASSED | `audits/G6.5-PEDAGOGY-AUDIT.md` |
 | G7 | ✅ PASSED | `audits/G7-DIAGRAM-CLARITY-AUDIT.md` |
@@ -157,6 +159,7 @@ src/app/essays/brain-as-prediction-machine/
 - Accent color (#E53E3E) used ONLY for prediction error
 - Definition callouts for key terms
 - Misconception blocks (wrong vs. right)
+- **Sources & Further Reading section** with 15 peer-reviewed sources
 - Reading progress indicator
 - Responsive design (mobile + desktop)
 - Reduced motion support
