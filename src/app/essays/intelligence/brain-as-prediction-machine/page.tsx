@@ -25,7 +25,7 @@ const jsonLd = {
       "headline": "The Brain as a Prediction Machine",
       "alternativeHeadline": "Understanding How Your Brain Anticipates the World",
       "description": "A visual essay explaining how the brain predicts the world instead of just reacting to it. Understand prediction error, perception, learning, and attention through clear diagrams.",
-      "url": "https://esy.com/essays/brain-as-prediction-machine/",
+      "url": "https://esy.com/essays/intelligence/brain-as-prediction-machine/",
       "datePublished": "2026-02-03",
       "dateModified": "2026-02-03",
       "author": {
@@ -72,8 +72,14 @@ const jsonLd = {
         {
           "@type": "ListItem",
           "position": 3,
+          "name": "Intelligence",
+          "item": "https://esy.com/essays/intelligence/",
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
           "name": "The Brain as a Prediction Machine",
-          "item": "https://esy.com/essays/brain-as-prediction-machine/",
+          "item": "https://esy.com/essays/intelligence/brain-as-prediction-machine/",
         },
       ],
     },
@@ -132,7 +138,7 @@ export const metadata: Metadata = {
     description:
       "Your brain doesn't just react — it predicts. A visual essay explaining how prediction shapes every moment of conscious experience.",
     type: "article",
-    url: "https://esy.com/essays/brain-as-prediction-machine/",
+    url: "https://esy.com/essays/intelligence/brain-as-prediction-machine/",
     siteName: "Esy",
     locale: "en_US",
     images: [
@@ -153,7 +159,7 @@ export const metadata: Metadata = {
     images: ["https://esy.com/og/brain-as-prediction-machine.png"],
   },
   alternates: {
-    canonical: "https://esy.com/essays/brain-as-prediction-machine/",
+    canonical: "https://esy.com/essays/intelligence/brain-as-prediction-machine/",
   },
   robots: {
     index: true,

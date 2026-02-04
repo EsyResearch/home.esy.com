@@ -60,7 +60,7 @@ brain-as-prediction-machine/
 | G3 | ✅ COMPLETE | `specs/brain-as-prediction-machine.md` |
 | G4 | ✅ COMPLETE | `DESIGN-RESEARCH.md` (Pedagogical Lens) |
 | G4.5 | ✅ INCLUDED | SVG Blueprints in Design Research |
-| G5 | ✅ COMPLETE | `src/app/essays/brain-as-prediction-machine/` |
+| G5 | ✅ COMPLETE | `src/app/essays/intelligence/brain-as-prediction-machine/` |
 | G5.5 | ✅ PASSED | `audits/G5.5-BIBLIOGRAPHY-IMPLEMENTATION.md` |
 | G6 | ✅ PASSED | `audits/G6-ACCURACY-AUDIT.md` |
 | G6.5 | ✅ PASSED | `audits/G6.5-PEDAGOGY-AUDIT.md` |
@@ -146,7 +146,7 @@ brain-as-prediction-machine/
 ## Implementation Files
 
 ```
-src/app/essays/brain-as-prediction-machine/
+src/app/essays/intelligence/brain-as-prediction-machine/
 ├── page.tsx                              ← Next.js page with metadata + JSON-LD
 ├── BrainPredictionMachineClient.tsx      ← React client component (800+ lines)
 └── brain-as-prediction-machine.css       ← Styles with CSS tokens (400+ lines)

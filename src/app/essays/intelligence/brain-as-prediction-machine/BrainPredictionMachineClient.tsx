@@ -68,9 +68,9 @@ const useIntersectionObserver = (
 // Header
 const EssayHeader: React.FC<{ scrolled: boolean }> = ({ scrolled }) => (
   <header className={`essay-header ${scrolled ? "scrolled" : ""}`}>
-    <Link href="/essays/visual" className="back-link">
+    <Link href="/essays/intelligence" className="back-link">
       <ArrowLeft size={18} />
-      <span>Essays</span>
+      <span>Intelligence Essays</span>
     </Link>
     <div className="header-meta">
       <span className="header-category">{ESSAY_META.category}</span>
@@ -1231,9 +1231,9 @@ const BrainPredictionMachineClient: React.FC = () => {
 
         {/* Footer */}
         <footer className="essay-footer">
-          <Link href="/essays/visual" className="footer-back">
+          <Link href="/essays/intelligence" className="footer-back">
             <ArrowLeft size={16} />
-            <span>All Visual Essays</span>
+            <span>All Intelligence Essays</span>
           </Link>
           <p className="footer-note">An Esy Conceptual Visual Essay</p>
         </footer>
