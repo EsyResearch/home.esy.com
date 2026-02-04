@@ -1,9 +1,10 @@
 # The Brain as a Prediction Machine
 
 > **Type**: Conceptual Visual Essay  
-> **Status**: G8 CERTIFIED — Ready for G9 Publication Approval  
+> **Status**: ✅ PUBLISHED (Design iteration pending)  
 > **Orchestrator**: Conceptual Essay Orchestrator  
-> **Started**: February 3, 2026
+> **Started**: February 3, 2026  
+> **Published**: February 3, 2026
 
 ---
 
@@ -64,7 +65,15 @@ brain-as-prediction-machine/
 | G7 | ✅ PASSED | `audits/G7-DIAGRAM-CLARITY-AUDIT.md` |
 | G7.5 | ✅ PASSED | `audits/G7.5-SCROLL-CERTIFICATION.md` |
 | G8 | ✅ GO | `audits/G8-PUBLICATION-CERTIFICATION.md` |
-| G9 | ⏳ PENDING | Publication Approval (final sign-off) |
+| G9 | ✅ APPROVED | `audits/G9-PUBLICATION-APPROVAL.md` |
+
+## Post-Publication Notes
+
+**Design Iteration Needed**: The current design doesn't fully capture the neuroscience theme. Future iteration should explore:
+- Neural/synaptic visual motifs
+- More biologically-inspired colors
+- Diagram styling evoking neural pathways
+- Scientific typography
 
 ---
 
