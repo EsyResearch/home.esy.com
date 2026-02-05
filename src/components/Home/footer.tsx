@@ -49,6 +49,7 @@ export default function Footer () {
         const isEssaysPage = normalizedPath === '/essays' || normalizedPath.startsWith('/essays/');
         const isAboutPage = normalizedPath === '/about';
         const isSchoolPage = normalizedPath === '/school';
+        const isSchoolArticle = normalizedPath.includes('/school/articles/');
         const isTemplatesPage = normalizedPath === '/templates' || normalizedPath.startsWith('/templates/');
         const isDocsPage = normalizedPath === '/docs' || normalizedPath.startsWith('/docs/');
         const isAgentsPage = normalizedPath === '/agents' || normalizedPath.startsWith('/agents/');
@@ -69,6 +70,31 @@ export default function Footer () {
           const isNavyDarkMode = icPage?.classList.contains('ic-page--navy-dark');
           setIsLightMode(isNavyCalmLight || false);
           setIsNavyDark(isNavyDarkMode || false);
+        } else if (isSchoolArticle) {
+          // Check localStorage for school article theme
+          const storedTheme = localStorage.getItem('theme-school');
+          if (storedTheme === 'light') {
+            setIsLightMode(true);
+            setIsNavyDark(false);
+          } else if (storedTheme === 'dark') {
+            setIsLightMode(false);
+            setIsNavyDark(true); // Use Navy Dark theme
+          } else {
+            // Default to light for school articles
+            setIsLightMode(true);
+            setIsNavyDark(false);
+          }
+          
+          // Check body classes as override
+          const bodyClasses = document.body.className;
+          const htmlClasses = document.documentElement.className;
+          if (bodyClasses?.includes('light') || htmlClasses?.includes('light')) {
+            setIsLightMode(true);
+            setIsNavyDark(false);
+          } else if (bodyClasses?.includes('dark') || htmlClasses?.includes('dark')) {
+            setIsLightMode(false);
+            setIsNavyDark(true);
+          }
         } else {
           setIsLightMode(false);
           setIsNavyDark(false);
@@ -79,12 +105,23 @@ export default function Footer () {
       
       // Observe ic-page for theme changes (only on homepage)
       const observer = new MutationObserver(checkTheme);
+      observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
       const icPage = document.querySelector('.ic-page');
       if (icPage) {
         observer.observe(icPage, { attributes: true, attributeFilter: ['class'] });
       }
 
-      return () => observer.disconnect();
+      // Listen for theme change events from school article pages
+      const handleThemeChange = () => {
+        checkTheme();
+      };
+      window.addEventListener('themechange', handleThemeChange);
+
+      return () => {
+        observer.disconnect();
+        window.removeEventListener('themechange', handleThemeChange);
+      };
     }, [pathname]);
 
     // Select theme based on mode

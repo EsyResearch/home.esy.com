@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { elevatedDarkTheme } from '@/lib/theme';
+import { navyCalmDarkTheme } from '@/lib/theme';
 
 export default function ArticlesIndexPage() {
   const articles = [
@@ -49,8 +49,8 @@ export default function ArticlesIndexPage() {
   const styles = {
     container: {
       minHeight: '100vh',
-      backgroundColor: elevatedDarkTheme.bg,
-      color: elevatedDarkTheme.text,
+      backgroundColor: navyCalmDarkTheme.bg,
+      color: navyCalmDarkTheme.text,
       paddingTop: '6rem'
     },
     header: {
@@ -68,7 +68,7 @@ export default function ArticlesIndexPage() {
     },
     subtitle: {
       fontSize: '1.25rem',
-      color: elevatedDarkTheme.textSecondary,
+      color: navyCalmDarkTheme.textSecondary,
       lineHeight: '1.6'
     },
     articlesContainer: {
@@ -82,7 +82,7 @@ export default function ArticlesIndexPage() {
       gap: '2rem'
     },
     articleCard: {
-      backgroundColor: elevatedDarkTheme.elevated,
+      backgroundColor: navyCalmDarkTheme.bgElevated,
       borderRadius: '12px',
       padding: '2rem',
       transition: 'all 0.2s ease',
@@ -95,7 +95,7 @@ export default function ArticlesIndexPage() {
     },
     category: {
       fontSize: '0.875rem',
-      color: elevatedDarkTheme.accent,
+      color: navyCalmDarkTheme.accent,
       textTransform: 'uppercase',
       letterSpacing: '0.1em',
       fontWeight: '500',
@@ -111,7 +111,7 @@ export default function ArticlesIndexPage() {
     },
     excerpt: {
       fontSize: '1rem',
-      color: elevatedDarkTheme.textSecondary,
+      color: navyCalmDarkTheme.textSecondary,
       lineHeight: '1.6',
       marginBottom: '1.5rem'
     },
@@ -120,7 +120,7 @@ export default function ArticlesIndexPage() {
       justifyContent: 'space-between',
       alignItems: 'center',
       fontSize: '0.875rem',
-      color: elevatedDarkTheme.muted
+      color: navyCalmDarkTheme.muted
     },
     author: {
       display: 'flex',
@@ -158,12 +158,12 @@ export default function ArticlesIndexPage() {
               href={`/school/articles/${article.slug}`}
               style={styles.articleCard}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = elevatedDarkTheme.surface;
+                e.currentTarget.style.backgroundColor = navyCalmDarkTheme.surface;
                 e.currentTarget.style.transform = 'translateY(-2px)';
                 e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = elevatedDarkTheme.elevated;
+                e.currentTarget.style.backgroundColor = navyCalmDarkTheme.bgElevated;
                 e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
               }}

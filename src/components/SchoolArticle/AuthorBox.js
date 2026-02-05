@@ -17,8 +17,8 @@ const AuthorBox = ({ author, theme, isDarkMode = true }) => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Updated bio text to match blog profile
-  const updatedBio = "Software Engineer with 5 years of experience, passionate about the intersection of AI and writing. Building tools that empower writers to create better content with the help of artificial intelligence.";
+  // Use author's bio if provided, otherwise use default positioning
+  const displayBio = author.bio || "I design citation-first research workflows for essays and learning artifacts. Esy School documents how these workflows are built and used in practice.";
 
   // Default theme if not provided - Navy Calm
   const currentTheme = theme || {
@@ -131,7 +131,7 @@ const AuthorBox = ({ author, theme, isDarkMode = true }) => {
             marginBottom: '1.5rem',
             maxWidth: '600px'
           }}>
-            {updatedBio}
+            {displayBio}
           </p>
           
           {/* Action Buttons - Side by Side */}
@@ -144,7 +144,7 @@ const AuthorBox = ({ author, theme, isDarkMode = true }) => {
             alignItems: 'center'
           }}>
             <Link 
-              href="/school/articles/"
+              href="/school/"
               style={{
                 padding: '0.75rem 2rem',
                 background: `linear-gradient(135deg, ${currentTheme.accent} 0%, ${currentTheme.accentLight} 100%)`,
@@ -169,11 +169,13 @@ const AuthorBox = ({ author, theme, isDarkMode = true }) => {
                 // Removed box shadow
               }}
             >
-              Read More Articles
+              Explore Esy School →
             </Link>
             
             <Link 
-              href="/ai-essay-writer/"
+              href="https://app.esy.com"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 padding: '0.75rem 2rem',
                 backgroundColor: 'transparent',
@@ -197,7 +199,7 @@ const AuthorBox = ({ author, theme, isDarkMode = true }) => {
                 e.currentTarget.style.borderColor = currentTheme.border;
               }}
             >
-              Try AI Essay Writer
+              Try Esy
             </Link>
           </div>
         </div>

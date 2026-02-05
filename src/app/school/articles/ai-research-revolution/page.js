@@ -11,7 +11,7 @@ import ShareSection from '@/components/SchoolArticle/ShareSection';
 import RelatedArticles from '@/components/SchoolArticle/RelatedArticles';
 import SchoolNewsletter from '@/components/School/SchoolNewsletter';
 import { articleContentStyles as styles } from '@/components/SchoolArticle/articleStyles';
-import { elevatedDarkTheme } from '@/lib/theme';
+import { navyCalmDarkTheme } from '@/lib/theme';
 import { lightTheme } from '@/lib/lightTheme';
 
 export default function AIResearchRevolutionArticle() {
@@ -35,7 +35,7 @@ export default function AIResearchRevolutionArticle() {
   // Update DOM when theme changes
   useEffect(() => {
     if (isDarkMode) {
-      document.body.style.backgroundColor = elevatedDarkTheme.bg;
+      document.body.style.backgroundColor = navyCalmDarkTheme.bg;
       document.body.className = document.body.className.replace('light', 'dark');
       localStorage.setItem('theme-school', 'dark');
     } else {
@@ -88,7 +88,7 @@ export default function AIResearchRevolutionArticle() {
     name: 'Zev Uhuru',
     role: 'Founder, Esy',
     image: 'https://images.esy.com/essays/authors/zev-uhuru.1d0f7777ab.webp',
-    bio: 'Explores the intersection of AI and academic research, helping researchers leverage cutting-edge technology to accelerate their work.',
+    bio: 'I design citation-first research workflows for essays and learning artifacts. Esy School documents how these workflows are built and used in practice.',
     meta: '15 articles published · Joined January 2024'
   };
 
@@ -139,25 +139,25 @@ export default function AIResearchRevolutionArticle() {
 
   // Theme configuration
   const theme = isDarkMode ? {
-    // Dark theme uses elevated dark theme
-    bg: elevatedDarkTheme.bg,
+    // Dark theme uses Navy Calm dark theme
+    bg: navyCalmDarkTheme.bg,
     contentBg: 'transparent',
-    text: elevatedDarkTheme.text,
-    textMuted: elevatedDarkTheme.textSecondary,
-    textSubtle: elevatedDarkTheme.muted,
-    heading: elevatedDarkTheme.text,
-    border: elevatedDarkTheme.borderSubtle,
-    accent: elevatedDarkTheme.accent,
-    accentLight: elevatedDarkTheme.accentLight,
-    accentBg: elevatedDarkTheme.accentGlow,
-    accentBorder: elevatedDarkTheme.accentBorder,
-    codeBg: elevatedDarkTheme.elevated,
-    codeBorder: elevatedDarkTheme.border,
-    calloutBg: elevatedDarkTheme.accentGlow,
-    calloutBorder: elevatedDarkTheme.accent,
-    buttonBg: elevatedDarkTheme.accentGlow,
-    buttonHoverBg: elevatedDarkTheme.accentBorder,
-    headerBg: 'rgba(24, 24, 27, 0.95)',
+    text: navyCalmDarkTheme.text,
+    textMuted: navyCalmDarkTheme.textSecondary,
+    textSubtle: navyCalmDarkTheme.muted,
+    heading: navyCalmDarkTheme.text,
+    border: navyCalmDarkTheme.border,
+    accent: navyCalmDarkTheme.accent,
+    accentLight: navyCalmDarkTheme.accentLight,
+    accentBg: navyCalmDarkTheme.accentGlow,
+    accentBorder: navyCalmDarkTheme.accentBorder,
+    codeBg: navyCalmDarkTheme.bgElevated,
+    codeBorder: navyCalmDarkTheme.border,
+    calloutBg: navyCalmDarkTheme.accentGlow,
+    calloutBorder: navyCalmDarkTheme.accent,
+    buttonBg: navyCalmDarkTheme.accentGlow,
+    buttonHoverBg: navyCalmDarkTheme.accentBorder,
+    headerBg: 'rgba(10, 37, 64, 0.95)',
   } : {
     // Optimized light theme for readability
     bg: lightTheme.bg,
@@ -192,7 +192,7 @@ export default function AIResearchRevolutionArticle() {
           width: '48px',
           height: '48px',
           borderRadius: '50%',
-          backgroundColor: isDarkMode ? elevatedDarkTheme.elevated : '#f9fafb',
+          backgroundColor: isDarkMode ? navyCalmDarkTheme.bgElevated : '#f9fafb',
           border: isDarkMode ? 'none' : `1px solid ${theme.border}`,
           display: 'flex',
           alignItems: 'center',
@@ -205,11 +205,11 @@ export default function AIResearchRevolutionArticle() {
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = 'scale(1.1)';
-          e.currentTarget.style.backgroundColor = isDarkMode ? elevatedDarkTheme.surface : '#ffffff';
+          e.currentTarget.style.backgroundColor = isDarkMode ? navyCalmDarkTheme.surface : '#ffffff';
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = 'scale(1)';
-          e.currentTarget.style.backgroundColor = isDarkMode ? elevatedDarkTheme.elevated : '#f9fafb';
+          e.currentTarget.style.backgroundColor = isDarkMode ? navyCalmDarkTheme.bgElevated : '#f9fafb';
         }}
         aria-label="Toggle theme"
       >
@@ -432,8 +432,8 @@ model.predict({
             }))}
             scrollProgress={scrollProgress}
             showEmailCapture={true}
-            emailCaptureTitle="Get Weekly AI Writing Tips"
-            emailCaptureDescription="Join 10,000+ writers improving their craft with AI"
+            emailCaptureTitle="Master Esy Workflows"
+            emailCaptureDescription="Get tutorials and guides on using AI research tools to create publishable artifacts"
             onEmailSubmit={(email) => {
               console.log('Email submitted:', email);
               // Handle email submission

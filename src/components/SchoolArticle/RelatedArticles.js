@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Clock } from 'lucide-react';
-import { elevatedDarkTheme } from '@/lib/theme';
+import { navyCalmDarkTheme } from '@/lib/theme';
 import { lightTheme } from '@/lib/lightTheme';
 
 const RelatedArticles = ({ articles, theme, isDarkMode = true }) => {
@@ -37,7 +37,7 @@ const RelatedArticles = ({ articles, theme, isDarkMode = true }) => {
       position: 'relative',
       padding: '4rem 2rem',
       background: isDarkMode 
-        ? elevatedDarkTheme.bg
+        ? navyCalmDarkTheme.bg
         : 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%)',
       borderRadius: '0px',
       border: 'none',
@@ -66,7 +66,7 @@ const RelatedArticles = ({ articles, theme, isDarkMode = true }) => {
       marginTop: '2rem'
     },
     relatedCard: {
-      backgroundColor: isDarkMode ? elevatedDarkTheme.elevated : lightTheme.surface,
+      backgroundColor: isDarkMode ? navyCalmDarkTheme.bgElevated : lightTheme.surface,
       borderRadius: '12px',
       padding: '1.5rem',
       border: 'none',
@@ -78,8 +78,8 @@ const RelatedArticles = ({ articles, theme, isDarkMode = true }) => {
     relatedCategory: {
       display: 'inline-block',
       padding: '0.25rem 0.75rem',
-      backgroundColor: isDarkMode ? elevatedDarkTheme.accentGlow : lightTheme.accentGlow,
-      color: isDarkMode ? elevatedDarkTheme.accent : lightTheme.accent,
+      backgroundColor: isDarkMode ? navyCalmDarkTheme.accentGlow : lightTheme.accentGlow,
+      color: isDarkMode ? navyCalmDarkTheme.accent : lightTheme.accent,
       borderRadius: '8px',
       fontSize: '0.75rem',
       fontWeight: '600',
@@ -188,11 +188,11 @@ const RelatedArticles = ({ articles, theme, isDarkMode = true }) => {
               <article
                 style={styles.relatedCard}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = isDarkMode ? elevatedDarkTheme.surface : lightTheme.elevated;
+                  e.currentTarget.style.backgroundColor = isDarkMode ? navyCalmDarkTheme.surface : lightTheme.elevated;
                   e.currentTarget.style.boxShadow = isDarkMode ? '0 4px 12px rgba(0,0,0,0.15)' : lightTheme.shadows?.md;
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = isDarkMode ? elevatedDarkTheme.elevated : lightTheme.surface;
+                  e.currentTarget.style.backgroundColor = isDarkMode ? navyCalmDarkTheme.bgElevated : lightTheme.surface;
                   e.currentTarget.style.boxShadow = isDarkMode ? '0 1px 3px rgba(0, 0, 0, 0.1)' : lightTheme.shadows?.sm;
                 }}
               >

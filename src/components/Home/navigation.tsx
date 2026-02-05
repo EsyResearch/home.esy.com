@@ -121,10 +121,13 @@ export default function Navigation({
           
           if (storedTheme === 'light') {
             isLight = true;
+            isNavyDarkMode = false;
           } else if (storedTheme === 'dark') {
             isLight = false;
+            isNavyDarkMode = isSchoolArticle; // Use Navy Dark for school articles
           } else {
           isLight = true; // Default to light for articles
+          isNavyDarkMode = false;
           }
           
         // Check body classes as override
@@ -132,8 +135,10 @@ export default function Navigation({
           const htmlClasses = document.documentElement.className;
           if (bodyClasses?.includes('light') || htmlClasses?.includes('light')) {
             isLight = true;
+            isNavyDarkMode = false;
           } else if (bodyClasses?.includes('dark') || htmlClasses?.includes('dark')) {
           isLight = false;
+          isNavyDarkMode = isSchoolArticle; // Use Navy Dark for school articles
         }
           } else {
         isLight = false; // Pages without toggle always dark
@@ -157,7 +162,16 @@ export default function Navigation({
       observer.observe(icPage, { attributes: true, attributeFilter: ['class'] });
     }
     
-    return () => observer.disconnect();
+    // Listen for theme change events from school article pages
+    const handleThemeChange = () => {
+      checkTheme();
+    };
+    window.addEventListener('themechange', handleThemeChange);
+    
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('themechange', handleThemeChange);
+    };
     }, [pathname]);
 
   // Load search data

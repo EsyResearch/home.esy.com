@@ -37,7 +37,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
           position: 'relative',
           padding: isMobile ? '1.5rem' : isTablet ? '2rem' : '2.5rem',
           background: isDarkMode 
-            ? 'rgba(22, 22, 31, 0.95)' 
+            ? 'rgba(10, 37, 64, 0.95)' 
             : 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%)',
           backdropFilter: 'blur(20px)',
           borderTop: isDarkMode 
@@ -150,7 +150,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
             position: 'relative',
             padding: isMobile ? '2rem 1.5rem' : isTablet ? '3rem 2.5rem' : '3.5rem 3rem',
             background: isDarkMode 
-              ? 'rgba(10, 10, 15, 0.3)'
+              ? 'rgba(15, 52, 96, 0.4)'
               : 'linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(248, 250, 252, 0.6) 100%)',
             backdropFilter: 'blur(10px)',
             border: isDarkMode 
@@ -158,7 +158,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
               : '1px solid rgba(0, 168, 150, 0.1)',
             borderRadius: isMobile ? '8px' : '12px',
             boxShadow: isDarkMode 
-              ? '0 4px 20px rgba(10, 10, 15, 0.15)'
+              ? '0 4px 20px rgba(6, 21, 39, 0.3)'
               : 'none'
           }}>
             {/* Newsletter Content */}
@@ -237,7 +237,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                     gap: '0.5rem',
                     padding: '0.5rem 1rem',
                     background: isDarkMode 
-                      ? 'rgba(22, 22, 31, 0.5)'
+                      ? 'rgba(15, 52, 96, 0.3)'
                       : 'rgba(0, 168, 150, 0.04)',
                     borderRadius: '20px',
                     border: isDarkMode 
@@ -255,7 +255,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                     gap: '0.5rem',
                     padding: '0.5rem 1rem',
                     background: isDarkMode 
-                      ? 'rgba(22, 22, 31, 0.5)'
+                      ? 'rgba(15, 52, 96, 0.3)'
                       : 'rgba(0, 168, 150, 0.04)',
                     borderRadius: '20px',
                     border: isDarkMode 
@@ -289,7 +289,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                       flex: 1,
                       padding: isMobile ? '1rem 1.25rem' : '1rem 1.5rem',
                       background: isDarkMode 
-                        ? '#16161f' 
+                        ? '#0F3460' 
                         : 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%)',
                       border: isDarkMode 
                         ? '2px solid rgba(255, 255, 255, 0.05)' 
@@ -301,14 +301,14 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                       minHeight: '48px',
                       fontFamily: 'inherit',
                       boxShadow: isDarkMode 
-                        ? '0 4px 12px rgba(10, 10, 15, 0.3)'
+                        ? '0 4px 12px rgba(6, 21, 39, 0.4)'
                         : 'none',
                       transition: 'all 0.2s ease'
                     }}
                     onFocus={(e) => {
                       e.target.style.borderColor = '#00A896';
                       e.target.style.boxShadow = isDarkMode 
-                        ? '0 4px 12px rgba(10, 10, 15, 0.3), 0 0 0 3px rgba(0, 168, 150, 0.1)'
+                        ? '0 4px 12px rgba(6, 21, 39, 0.4), 0 0 0 3px rgba(0, 168, 150, 0.1)'
                         : 'none';
                     }}
                     onBlur={(e) => {
@@ -316,7 +316,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                         ? 'rgba(255, 255, 255, 0.05)'
                         : 'rgba(0, 168, 150, 0.1)';
                       e.target.style.boxShadow = isDarkMode 
-                        ? '0 4px 12px rgba(10, 10, 15, 0.3)'
+                        ? '0 4px 12px rgba(6, 21, 39, 0.4)'
                         : 'none';
                     }}
                   />

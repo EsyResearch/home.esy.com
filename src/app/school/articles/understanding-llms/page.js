@@ -11,7 +11,7 @@ import ShareSection from '@/components/SchoolArticle/ShareSection';
 import RelatedArticles from '@/components/SchoolArticle/RelatedArticles';
 import SchoolNewsletter from '@/components/School/SchoolNewsletter';
 import { articleContentStyles as styles } from '@/components/SchoolArticle/articleStyles';
-import { elevatedDarkTheme } from '@/lib/theme';
+import { navyCalmDarkTheme } from '@/lib/theme';
 import { lightTheme } from '@/lib/lightTheme';
 
 export default function UnderstandingLLMsArticle() {
@@ -35,7 +35,7 @@ export default function UnderstandingLLMsArticle() {
   // Update DOM when theme changes
   useEffect(() => {
     if (isDarkMode) {
-      document.body.style.backgroundColor = elevatedDarkTheme.bg;
+      document.body.style.backgroundColor = navyCalmDarkTheme.bg;
       document.body.className = document.body.className.replace('light', 'dark');
       localStorage.setItem('theme-school', 'dark');
     } else {
@@ -87,30 +87,30 @@ export default function UnderstandingLLMsArticle() {
     name: 'Zev Uhuru',
     role: 'Founder, Esy',
     image: 'https://images.esy.com/essays/authors/zev-uhuru.1d0f7777ab.webp',
-    bio: 'Software Engineer with 5 years of experience, passionate about the intersection of AI and writing. Building tools that empower writers to create better content with the help of artificial intelligence.',
+    bio: 'I design citation-first research workflows for essays and learning artifacts. Esy School documents how these workflows are built and used in practice.',
     meta: '15 articles published · Joined January 2024'
   };
 
   const theme = isDarkMode ? {
-    // Elevated Dark theme
-    bg: elevatedDarkTheme.bg,
+    // Navy Calm Dark theme
+    bg: navyCalmDarkTheme.bg,
     contentBg: 'transparent',
-    text: elevatedDarkTheme.text,
-    textMuted: elevatedDarkTheme.muted,
-    textSubtle: elevatedDarkTheme.subtle,
-    heading: elevatedDarkTheme.text,
-    border: elevatedDarkTheme.borderSubtle,
-    accent: elevatedDarkTheme.accent,
-    accentLight: elevatedDarkTheme.accent,
-    accentBg: elevatedDarkTheme.accentGlow,
-    accentBorder: `1px solid ${elevatedDarkTheme.accent}`,
-    codeBg: elevatedDarkTheme.elevated,
-    codeBorder: elevatedDarkTheme.border,
-    calloutBg: elevatedDarkTheme.accentGlow,
-    calloutBorder: elevatedDarkTheme.accent,
-    buttonBg: elevatedDarkTheme.accentGlow,
-    buttonHoverBg: 'rgba(167, 139, 250, 0.2)',
-    headerBg: 'rgba(24, 24, 27, 0.95)',
+    text: navyCalmDarkTheme.text,
+    textMuted: navyCalmDarkTheme.muted,
+    textSubtle: navyCalmDarkTheme.subtle,
+    heading: navyCalmDarkTheme.text,
+    border: navyCalmDarkTheme.border,
+    accent: navyCalmDarkTheme.accent,
+    accentLight: navyCalmDarkTheme.accent,
+    accentBg: navyCalmDarkTheme.accentGlow,
+    accentBorder: `1px solid ${navyCalmDarkTheme.accent}`,
+    codeBg: navyCalmDarkTheme.bgElevated,
+    codeBorder: navyCalmDarkTheme.border,
+    calloutBg: navyCalmDarkTheme.accentGlow,
+    calloutBorder: navyCalmDarkTheme.accent,
+    buttonBg: navyCalmDarkTheme.accentGlow,
+    buttonHoverBg: navyCalmDarkTheme.accentBorder,
+    headerBg: 'rgba(10, 37, 64, 0.95)',
   } : {
     // Optimized light theme for readability
     bg: lightTheme.bg,
@@ -511,8 +511,8 @@ Token IDs: [8100, 5646, 27140, 16101, 318, 13899, 0]`}
           }))}
           scrollProgress={scrollProgress}
           showEmailCapture={true}
-          emailCaptureTitle="Get Weekly AI Writing Tips"
-          emailCaptureDescription="Join 10,000+ writers improving their craft with AI"
+          emailCaptureTitle="Master Esy Workflows"
+          emailCaptureDescription="Get tutorials and guides on using AI research tools to create publishable artifacts"
           onEmailSubmit={(email) => {
             console.log('Email submitted:', email);
             // Handle email submission
