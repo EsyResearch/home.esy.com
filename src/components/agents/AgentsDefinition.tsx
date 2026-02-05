@@ -5,8 +5,8 @@ const theme = {
   muted: 'rgba(250, 250, 250, 0.7)',
   subtle: 'rgba(250, 250, 250, 0.45)',
   border: 'rgba(250, 250, 250, 0.08)',
-  accent: '#a78bfa',
-  accentMuted: 'rgba(167, 139, 250, 0.08)',
+  accent: '#00A896',
+  accentMuted: 'rgba(0, 168, 150, 0.08)',
 };
 
 interface AgentsDefinitionProps {
@@ -23,7 +23,7 @@ export function AgentsDefinition({ term, children }: AgentsDefinitionProps) {
         padding: '1.25rem 1.5rem',
         borderRadius: '10px',
         background: theme.accentMuted,
-        border: `1px solid rgba(167, 139, 250, 0.12)`,
+        border: `1px solid rgba(0, 168, 150, 0.12)`,
         position: 'relative',
       }}
     >

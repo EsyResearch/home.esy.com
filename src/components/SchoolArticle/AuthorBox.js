@@ -20,14 +20,14 @@ const AuthorBox = ({ author, theme, isDarkMode = true }) => {
   // Updated bio text to match blog profile
   const updatedBio = "Software Engineer with 5 years of experience, passionate about the intersection of AI and writing. Building tools that empower writers to create better content with the help of artificial intelligence.";
 
-  // Default theme if not provided
+  // Default theme if not provided - Navy Calm
   const currentTheme = theme || {
-    text: isDarkMode ? '#ffffff' : '#0f172a',
-    muted: isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(15, 23, 42, 0.7)',
-    accent: isDarkMode ? '#8b5cf6' : '#7c3aed',
-    accentLight: isDarkMode ? '#a78bfa' : '#8b5cf6',
-    border: isDarkMode ? 'rgba(139, 92, 246, 0.15)' : 'rgba(139, 92, 246, 0.2)',
-    bg: isDarkMode ? 'linear-gradient(135deg, rgba(30, 30, 40, 0.9) 0%, rgba(25, 25, 35, 0.7) 100%)' : '#f8f9fa',
+    text: isDarkMode ? '#ffffff' : '#0A2540',
+    muted: isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(10, 37, 64, 0.7)',
+    accent: isDarkMode ? '#00D4AA' : '#00A896',
+    accentLight: isDarkMode ? '#5EEAD4' : '#00D4AA',
+    border: isDarkMode ? 'rgba(0, 168, 150, 0.15)' : 'rgba(10, 37, 64, 0.1)',
+    bg: isDarkMode ? 'linear-gradient(135deg, rgba(10, 37, 64, 0.9) 0%, rgba(6, 21, 39, 0.7) 100%)' : '#F8F9FA',
   };
 
   return (
@@ -51,7 +51,7 @@ const AuthorBox = ({ author, theme, isDarkMode = true }) => {
           right: '-50px',
           width: '200px',
           height: '200px',
-          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0, 168, 150, 0.1) 0%, transparent 70%)',
           borderRadius: '50%',
           filter: 'blur(40px)'
         }} />
@@ -74,8 +74,8 @@ const AuthorBox = ({ author, theme, isDarkMode = true }) => {
             height: isMobile ? '80px' : '100px',
             borderRadius: '50%',
             background: isDarkMode 
-              ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(139, 92, 246, 0.15) 100%)'
-              : 'rgba(139, 92, 246, 0.08)',
+              ? 'linear-gradient(135deg, rgba(0, 168, 150, 0.3) 0%, rgba(0, 168, 150, 0.15) 100%)'
+              : 'rgba(0, 168, 150, 0.08)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -83,9 +83,22 @@ const AuthorBox = ({ author, theme, isDarkMode = true }) => {
             fontSize: isMobile ? '2rem' : '2.5rem',
             fontWeight: '600',
             boxShadow: 'none',
-            border: `2px solid ${currentTheme.border}`
+            border: `2px solid ${currentTheme.border}`,
+            overflow: 'hidden'
           }}>
-            ZU
+            {author.image ? (
+              <img 
+                src={author.image} 
+                alt={author.name}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
+              />
+            ) : (
+              author.initials || 'ZU'
+            )}
           </div>
         </div>
         
@@ -176,12 +189,12 @@ const AuthorBox = ({ author, theme, isDarkMode = true }) => {
                 whiteSpace: 'nowrap'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(139, 92, 246, 0.1)';
-                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.5)';
+                e.currentTarget.style.backgroundColor = 'rgba(0, 168, 150, 0.1)';
+                e.currentTarget.style.borderColor = 'rgba(0, 168, 150, 0.5)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
+                e.currentTarget.style.borderColor = currentTheme.border;
               }}
             >
               Try AI Essay Writer

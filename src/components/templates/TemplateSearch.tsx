@@ -1,8 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
-import { elevatedDarkTheme } from '@/lib/theme';
 import { Search } from 'lucide-react';
+
+// Navy Calm Light Theme for search
+const theme = {
+  bg: '#FFFFFF',
+  text: '#0A2540',
+  muted: 'rgba(10, 37, 64, 0.5)',
+  border: 'rgba(10, 37, 64, 0.12)',
+  accent: '#00A896',
+  accentLight: 'rgba(0, 168, 150, 0.08)',
+  accentBorder: 'rgba(0, 168, 150, 0.3)',
+};
 
 interface TemplateSearchProps {
   value: string;
@@ -39,24 +49,19 @@ export default function TemplateSearch({
           alignItems: 'center',
           gap: '0.75rem',
           padding: '1rem 1.25rem',
-          background: isFocused
-            ? 'rgba(31, 31, 35, 0.95)'
-            : 'rgba(31, 31, 35, 0.7)',
-          border: `1px solid ${
-            isFocused ? `${elevatedDarkTheme.accent}50` : elevatedDarkTheme.border
-          }`,
+          background: theme.bg,
+          border: `1px solid ${isFocused ? theme.accentBorder : theme.border}`,
           borderRadius: '12px',
-          transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          transition: 'all 0.2s ease',
           boxShadow: isFocused
-            ? `0 0 0 3px ${elevatedDarkTheme.accent}15, ${elevatedDarkTheme.shadows.glow}`
-            : elevatedDarkTheme.shadows.sm,
-          backdropFilter: 'blur(20px)',
+            ? `0 0 0 3px ${theme.accentLight}, 0 4px 12px rgba(10, 37, 64, 0.08)`
+            : '0 2px 8px rgba(10, 37, 64, 0.04)',
         }}
       >
         <Search
           size={20}
           style={{
-            color: isFocused ? elevatedDarkTheme.accent : elevatedDarkTheme.subtle,
+            color: isFocused ? theme.accent : theme.muted,
             transition: 'color 0.2s ease',
             flexShrink: 0,
           }}
@@ -74,21 +79,22 @@ export default function TemplateSearch({
             background: 'transparent',
             border: 'none',
             outline: 'none',
-            color: elevatedDarkTheme.text,
+            color: theme.text,
             fontSize: '1rem',
-            fontWeight: 300,
+            fontWeight: 400,
           }}
         />
         {value && (
           <button
             onClick={() => onChange('')}
             style={{
-              padding: '0.25rem 0.5rem',
-              background: elevatedDarkTheme.borderSubtle,
+              padding: '0.25rem 0.625rem',
+              background: 'rgba(10, 37, 64, 0.06)',
               border: 'none',
               borderRadius: '4px',
-              color: elevatedDarkTheme.subtle,
+              color: theme.muted,
               fontSize: '0.75rem',
+              fontWeight: 500,
               cursor: 'pointer',
               transition: 'all 0.2s ease',
             }}

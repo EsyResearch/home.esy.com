@@ -17,18 +17,18 @@ import { DocsPageNav, DocsCallout, WorkflowStep } from "@/components/docs";
 
 // Design system colors from DESIGN_SYSTEM.md - Updated for better contrast
 const colors = {
-  bg: '#18181b',
-  elevated: '#27272a',
-  surface: '#1f1f23',
-  text: '#fafafa',
-  textSecondary: 'rgba(255, 255, 255, 0.85)',
-  muted: 'rgba(255, 255, 255, 0.75)',
-  subtle: 'rgba(255, 255, 255, 0.5)',
-  border: 'rgba(255, 255, 255, 0.08)',
-  borderSubtle: 'rgba(255, 255, 255, 0.05)',
-  accent: '#8b5cf6',
-  accentHover: '#7c3aed',
-  accentLight: '#a78bfa',
+  bg: '#FFFFFF',
+  elevated: '#F8FAFC',
+  surface: '#F1F5F9',
+  text: '#0A2540',
+  textSecondary: 'rgba(10, 37, 64, 0.85)',
+  muted: 'rgba(10, 37, 64, 0.75)',
+  subtle: 'rgba(10, 37, 64, 0.5)',
+  border: 'rgba(10, 37, 64, 0.08)',
+  borderSubtle: 'rgba(10, 37, 64, 0.05)',
+  accent: '#00A896',
+  accentHover: '#00D4AA',
+  accentLight: '#00D4AA',
 };
 
 export const metadata: Metadata = {

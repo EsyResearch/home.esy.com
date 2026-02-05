@@ -14,8 +14,34 @@ import {
   getContextResultUrl,
   type SearchContext 
 } from '@/lib/searchContexts';
-import { elevatedDarkTheme } from '@/lib/theme';
-import { lightTheme } from '@/lib/lightTheme';
+import { navyCalmDarkTheme, navyCalmLightTheme } from '@/lib/theme';
+
+// Category colors for search results (matches CATEGORY_COLORS from visualEssays)
+const getCategoryColor = (category: string): string => {
+  const categoryLower = category?.toLowerCase() || '';
+  
+  // Visual Essay categories
+  if (categoryLower.includes('science')) return '#10B981';
+  if (categoryLower.includes('history')) return '#F59E0B';
+  if (categoryLower.includes('technology')) return '#3B82F6';
+  if (categoryLower.includes('culture')) return '#EC4899';
+  if (categoryLower.includes('space')) return '#8B5CF6';
+  if (categoryLower.includes('nature')) return '#06B6D4';
+  if (categoryLower.includes('education') || categoryLower.includes('writing')) return '#14B8A6';
+  if (categoryLower.includes('economics')) return '#22C55E';
+  if (categoryLower.includes('fiction')) return '#FFD700';
+  
+  // Prompt categories
+  if (categoryLower.includes('academic') || categoryLower.includes('research')) return '#3B82F6';
+  if (categoryLower.includes('creative')) return '#EC4899';
+  if (categoryLower.includes('business') || categoryLower.includes('professional')) return '#8B5CF6';
+  if (categoryLower.includes('seo') || categoryLower.includes('marketing')) return '#F59E0B';
+  if (categoryLower.includes('social')) return '#06B6D4';
+  if (categoryLower.includes('ai') || categoryLower.includes('prompt')) return '#10B981';
+  
+  // Default teal
+  return '#00A896';
+};
 
 interface HeaderSearchProps {
   prompts: any[];
@@ -226,8 +252,8 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
 
   // Removed auto-focus - users can click when they want to search
 
-  // Theme selection
-  const currentTheme = isLightMode ? lightTheme : elevatedDarkTheme;
+  // Theme selection - Use Navy Calm themes
+  const currentTheme = isLightMode ? navyCalmLightTheme : navyCalmDarkTheme;
 
   const styles = {
     container: {
@@ -273,7 +299,7 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
       display: 'flex',
       alignItems: 'center',
       cursor: shouldAlwaysExpand ? 'default' : 'pointer',
-      color: (isExpanded || shouldAlwaysExpand) ? currentTheme.accent : currentTheme.textMuted,
+      color: (isExpanded || shouldAlwaysExpand) ? currentTheme.accent : (isLightMode ? 'rgba(10, 37, 64, 0.5)' : 'rgba(255, 255, 255, 0.5)'),
       transition: 'color 0.3s ease',
       flexShrink: 0
     },
@@ -325,13 +351,13 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
     dropdownItemTitle: {
       fontSize: '0.875rem',
       fontWeight: '500' as const,
-      color: currentTheme.textSecondary,
+      color: isLightMode ? '#0A2540' : currentTheme.text,
       margin: '0',
       lineHeight: '1.3'
     },
     dropdownItemDescription: {
       fontSize: '0.75rem',
-      color: currentTheme.textMuted,
+      color: isLightMode ? 'rgba(10, 37, 64, 0.6)' : 'rgba(255, 255, 255, 0.6)',
       margin: '0',
       lineHeight: '1.4'
     },
@@ -360,13 +386,13 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
     dropdownLoading: {
       padding: '16px',
       textAlign: 'center' as const,
-      color: currentTheme.textMuted,
+      color: isLightMode ? 'rgba(10, 37, 64, 0.6)' : 'rgba(255, 255, 255, 0.6)',
       fontSize: '0.8rem'
     },
     dropdownEmpty: {
       padding: '16px',
       textAlign: 'center' as const,
-      color: currentTheme.textSubtle,
+      color: isLightMode ? 'rgba(10, 37, 64, 0.5)' : 'rgba(255, 255, 255, 0.5)',
       fontSize: '0.8rem'
     },
     // Mobile modal styles
@@ -445,7 +471,7 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
     mobileResultCategory: {
       fontSize: '0.75rem',
       color: currentTheme.accent,
-      backgroundColor: 'rgba(159, 122, 234, 0.2)',
+      backgroundColor: 'rgba(0, 168, 150, 0.2)',
       padding: '0.125rem 0.5rem',
       borderRadius: '6px',
       fontWeight: 500
@@ -488,7 +514,7 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
         }
 
         .mobile-search-input:focus {
-          border-color: rgba(159, 122, 234, 0.6);
+          border-color: rgba(0, 168, 150, 0.6);
           background: rgba(255, 255, 255, 0.15);
         }
       `}</style>
@@ -597,17 +623,18 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
                     </div>
                   )}
                   <div style={styles.dropdownItemMeta}>
-                    {result.category && (
-                      <span style={{
-                        ...styles.dropdownItemCategory,
-                        ...(result.metadata?.categoryColor ? {
-                          color: result.metadata.categoryColor,
-                          backgroundColor: `${result.metadata.categoryColor}15`
-                        } : {})
-                      }}>
-                        {result.category}
-                      </span>
-                    )}
+                    {result.category && (() => {
+                      const catColor = result.metadata?.categoryColor || getCategoryColor(result.category);
+                      return (
+                        <span style={{
+                          ...styles.dropdownItemCategory,
+                          color: catColor,
+                          backgroundColor: `${catColor}15`
+                        }}>
+                          {result.category}
+                        </span>
+                      );
+                    })()}
                     {result.isPro && (
                       <span style={styles.dropdownItemPro}>
                         PRO
@@ -708,17 +735,18 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
                     <div style={styles.mobileResultDescription}>{result.description}</div>
                   )}
                   <div style={styles.mobileResultMeta}>
-                    {result.category && (
-                      <span style={{
-                        ...styles.mobileResultCategory,
-                        ...(result.metadata?.categoryColor ? {
-                          color: result.metadata.categoryColor,
-                          backgroundColor: `${result.metadata.categoryColor}20`
-                        } : {})
-                      }}>
-                        {result.category}
-                      </span>
-                    )}
+                    {result.category && (() => {
+                      const catColor = result.metadata?.categoryColor || getCategoryColor(result.category);
+                      return (
+                        <span style={{
+                          ...styles.mobileResultCategory,
+                          color: catColor,
+                          backgroundColor: `${catColor}20`
+                        }}>
+                          {result.category}
+                        </span>
+                      );
+                    })()}
                   </div>
                 </div>
               ))

@@ -8,7 +8,7 @@ const theme = {
   text: '#fafafa',
   muted: 'rgba(255, 255, 255, 0.7)',
   border: 'rgba(255, 255, 255, 0.08)',
-  accent: '#8b5cf6',
+  accent: '#00A896',
 };
 
 interface PageLink {
@@ -53,8 +53,8 @@ export function DocsPageNav({ prev, next }: DocsPageNavProps) {
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
-            e.currentTarget.style.boxShadow = '0 8px 24px rgba(139, 92, 246, 0.15)';
+            e.currentTarget.style.borderColor = 'rgba(0, 168, 150, 0.3)';
+            e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 168, 150, 0.15)';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'translateY(0)';
@@ -93,8 +93,8 @@ export function DocsPageNav({ prev, next }: DocsPageNavProps) {
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
-            e.currentTarget.style.boxShadow = '0 8px 24px rgba(139, 92, 246, 0.15)';
+            e.currentTarget.style.borderColor = 'rgba(0, 168, 150, 0.3)';
+            e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 168, 150, 0.15)';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'translateY(0)';

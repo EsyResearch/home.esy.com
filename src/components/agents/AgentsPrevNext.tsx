@@ -13,7 +13,7 @@ const theme = {
   subtle: 'rgba(250, 250, 250, 0.45)',
   border: 'rgba(250, 250, 250, 0.06)',
   borderHover: 'rgba(250, 250, 250, 0.12)',
-  accent: '#a78bfa',
+  accent: '#00A896',
 };
 
 interface AgentsPrevNextProps {

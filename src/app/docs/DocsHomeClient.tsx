@@ -11,17 +11,17 @@ import {
 } from "lucide-react";
 import { DocsPageNav } from "@/components/docs";
 
-// Elevated Dark Theme
+// Navy Calm Light Theme
 const theme = {
-  bg: '#18181b',
-  elevated: '#27272a',
-  surface: '#1f1f23',
-  text: '#fafafa',
-  muted: 'rgba(255, 255, 255, 0.7)',
-  subtle: 'rgba(255, 255, 255, 0.5)',
-  border: 'rgba(255, 255, 255, 0.08)',
-  divider: 'rgba(255, 255, 255, 0.05)',
-  accent: '#8b5cf6',
+  bg: '#FFFFFF',
+  elevated: '#F8FAFC',
+  surface: '#F1F5F9',
+  text: '#0A2540',
+  muted: 'rgba(10, 37, 64, 0.7)',
+  subtle: 'rgba(10, 37, 64, 0.5)',
+  border: 'rgba(10, 37, 64, 0.08)',
+  divider: 'rgba(10, 37, 64, 0.05)',
+  accent: '#00A896',
 };
 
 const DocsHomeClient = () => {
@@ -550,17 +550,16 @@ const DocsHomeClient = () => {
               >
                 <div style={{
                   background: hoveredCard === ref.id
-                    ? 'linear-gradient(135deg, rgba(39, 39, 42, 0.95) 0%, rgba(31, 31, 35, 0.8) 100%)'
-                    : 'linear-gradient(135deg, rgba(31, 31, 35, 0.9) 0%, rgba(39, 39, 42, 0.7) 100%)',
-                  border: `1px solid ${hoveredCard === ref.id ? 'rgba(159, 122, 234, 0.3)' : theme.border}`,
+                    ? 'linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 100%)'
+                    : '#FFFFFF',
+                  border: `1px solid ${hoveredCard === ref.id ? 'rgba(0, 168, 150, 0.3)' : theme.border}`,
                   borderRadius: '16px',
                   padding: '1.75rem',
                   transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                   cursor: 'pointer',
-                  backdropFilter: 'blur(10px)',
                   boxShadow: hoveredCard === ref.id
-                    ? '0 12px 32px rgba(159, 122, 234, 0.2)'
-                    : '0 4px 16px rgba(0, 0, 0, 0.15)',
+                    ? '0 12px 32px rgba(0, 168, 150, 0.15)'
+                    : '0 2px 8px rgba(10, 37, 64, 0.06)',
                   transform: hoveredCard === ref.id ? 'translateY(-4px)' : 'translateY(0)',
                   height: '100%',
                   display: 'flex',
@@ -588,14 +587,14 @@ const DocsHomeClient = () => {
                     width: '48px',
                     height: '48px',
                     borderRadius: '12px',
-                    background: 'rgba(139, 92, 246, 0.15)',
-                    border: '1px solid rgba(139, 92, 246, 0.2)',
+                    background: 'rgba(0, 168, 150, 0.1)',
+                    border: '1px solid rgba(0, 168, 150, 0.2)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: '#a78bfa',
+                    color: '#00A896',
                     marginBottom: '1.25rem',
-                    boxShadow: '0 4px 12px rgba(139, 92, 246, 0.15)'
+                    boxShadow: '0 4px 12px rgba(0, 168, 150, 0.1)'
                   }}>
                     {ref.icon}
                   </div>

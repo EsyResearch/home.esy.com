@@ -40,7 +40,7 @@ const ArticleLayout = ({ children, meta, theme, isDarkMode = true }) => {
   } : {
     bg: isDarkMode ? '#0a0a0f' : '#ffffff',
     text: isDarkMode ? '#ffffff' : '#0f172a',
-    accent: isDarkMode ? '#8b5cf6' : '#7c3aed',
+    accent: isDarkMode ? '#00D4AA' : '#00A896',
     headerBg: isDarkMode ? 'rgba(10, 10, 15, 0.95)' : 'rgba(255, 255, 255, 1)',
     border: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
     muted: isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)'

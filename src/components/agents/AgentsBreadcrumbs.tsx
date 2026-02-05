@@ -7,7 +7,7 @@ const theme = {
   text: '#fafafa',
   muted: 'rgba(250, 250, 250, 0.7)',
   subtle: 'rgba(250, 250, 250, 0.45)',
-  accent: '#a78bfa',
+  accent: '#00A896',
 };
 
 interface BreadcrumbItem {

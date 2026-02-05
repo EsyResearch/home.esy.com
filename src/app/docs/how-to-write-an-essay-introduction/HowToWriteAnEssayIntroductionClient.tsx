@@ -18,16 +18,16 @@ import { DocsPageNav } from "@/components/docs";
 
 // Elevated Dark Theme
 const theme = {
-  bg: '#18181b',
-  elevated: '#27272a',
-  surface: '#1f1f23',
-  text: '#fafafa',
-  muted: 'rgba(255, 255, 255, 0.75)',
-  subtle: 'rgba(255, 255, 255, 0.5)',
-  border: 'rgba(255, 255, 255, 0.08)',
-  divider: 'rgba(255, 255, 255, 0.05)',
-  accent: '#8b5cf6',
-  accentLight: '#a78bfa',
+  bg: '#FFFFFF',
+  elevated: '#F8FAFC',
+  surface: '#F1F5F9',
+  text: '#0A2540',
+  muted: 'rgba(10, 37, 64, 0.75)',
+  subtle: 'rgba(10, 37, 64, 0.5)',
+  border: 'rgba(10, 37, 64, 0.08)',
+  divider: 'rgba(10, 37, 64, 0.05)',
+  accent: '#00A896',
+  accentLight: '#00D4AA',
 };
 
 const HowToWriteAnEssayIntroductionClient = () => {

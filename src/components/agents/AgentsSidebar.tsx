@@ -30,19 +30,19 @@ import {
   Menu,
 } from "lucide-react";
 
-// Premium dark theme tokens
+// Navy Calm Light Theme
 const theme = {
-  bg: '#0f0f12',
-  surface: '#18181b',
-  elevated: '#1f1f24',
-  text: '#fafafa',
-  muted: 'rgba(250, 250, 250, 0.7)',
-  subtle: 'rgba(250, 250, 250, 0.45)',
-  border: 'rgba(250, 250, 250, 0.06)',
-  borderHover: 'rgba(250, 250, 250, 0.12)',
-  accent: '#a78bfa',
-  accentMuted: 'rgba(167, 139, 250, 0.15)',
-  accentBorder: 'rgba(167, 139, 250, 0.25)',
+  bg: '#FFFFFF',
+  surface: '#F8FAFC',
+  elevated: '#F1F5F9',
+  text: '#0A2540',
+  muted: 'rgba(10, 37, 64, 0.7)',
+  subtle: 'rgba(10, 37, 64, 0.5)',
+  border: 'rgba(10, 37, 64, 0.08)',
+  borderHover: 'rgba(10, 37, 64, 0.12)',
+  accent: '#00A896',
+  accentMuted: 'rgba(0, 168, 150, 0.15)',
+  accentBorder: 'rgba(0, 168, 150, 0.25)',
 };
 
 // Icon mapping
@@ -106,7 +106,7 @@ function NavItemComponent({ item, isActive }: { item: NavItem; isActive: boolean
           width: '24px',
           height: '24px',
           borderRadius: '6px',
-          background: isActive ? 'rgba(167, 139, 250, 0.2)' : theme.surface,
+          background: isActive ? 'rgba(0, 168, 150, 0.2)' : theme.surface,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -133,7 +133,7 @@ function NavItemComponent({ item, isActive }: { item: NavItem; isActive: boolean
         {item.isNew && (
           <span style={{
             padding: '0.125rem 0.375rem',
-            background: 'linear-gradient(135deg, #a78bfa 0%, #c084fc 100%)',
+            background: 'linear-gradient(135deg, #00A896 0%, #00D4AA 100%)',
             color: '#0f0f12',
             borderRadius: '4px',
             fontSize: '0.5625rem',
@@ -245,7 +245,7 @@ export function AgentsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
           background: `linear-gradient(135deg, ${theme.accent} 0%, #c084fc 100%)`,
           color: theme.bg,
           border: 'none',
-          boxShadow: '0 8px 24px rgba(167, 139, 250, 0.4)',
+          boxShadow: '0 8px 24px rgba(0, 168, 150, 0.4)',
           cursor: 'pointer',
           display: 'none',
         }}
@@ -299,7 +299,7 @@ export function AgentsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
             href="/agents"
             size={42}
             showText={false}
-            theme="dark"
+            theme="light"
           />
           
           <button
@@ -404,15 +404,15 @@ export function AgentsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
               fontWeight: 600,
               textDecoration: 'none',
               transition: 'all 0.2s ease',
-              boxShadow: '0 4px 12px rgba(167, 139, 250, 0.25)',
+              boxShadow: '0 4px 12px rgba(0, 168, 150, 0.25)',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-1px)';
-              e.currentTarget.style.boxShadow = '0 6px 16px rgba(167, 139, 250, 0.35)';
+              e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 168, 150, 0.35)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(167, 139, 250, 0.25)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 168, 150, 0.25)';
             }}
           >
             Try Esy Free →

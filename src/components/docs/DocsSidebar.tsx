@@ -30,16 +30,16 @@ import {
   Lock,
 } from "lucide-react";
 
-// Elevated Dark Theme
+// Navy Calm Light Theme
 const theme = {
-  bg: '#18181b',
-  elevated: '#27272a',
-  surface: '#1f1f23',
-  text: '#fafafa',
-  muted: 'rgba(255, 255, 255, 0.7)',
-  subtle: 'rgba(255, 255, 255, 0.5)',
-  border: 'rgba(255, 255, 255, 0.08)',
-  accent: '#8b5cf6',
+  bg: '#FFFFFF',
+  elevated: '#F8FAFC',
+  surface: '#F1F5F9',
+  text: '#0A2540',
+  muted: 'rgba(10, 37, 64, 0.7)',
+  subtle: 'rgba(10, 37, 64, 0.5)',
+  border: 'rgba(10, 37, 64, 0.08)',
+  accent: '#00A896',
 };
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -73,9 +73,9 @@ function NavItemComponent({ item, isActive }: { item: NavItem; isActive: boolean
         borderRadius: '10px',
         transition: 'all 0.2s ease',
         background: isActive 
-          ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.08) 100%)'
+          ? 'linear-gradient(135deg, rgba(0, 168, 150, 0.15) 0%, rgba(0, 168, 150, 0.08) 100%)'
           : 'transparent',
-        border: `1px solid ${isActive ? 'rgba(139, 92, 246, 0.25)' : 'transparent'}`,
+        border: `1px solid ${isActive ? 'rgba(0, 168, 150, 0.25)' : 'transparent'}`,
         position: 'relative' as const
       }}>
         {/* Active indicator bar */}
@@ -97,11 +97,11 @@ function NavItemComponent({ item, isActive }: { item: NavItem; isActive: boolean
           width: '28px',
           height: '28px',
           borderRadius: '8px',
-          background: isActive ? 'rgba(139, 92, 246, 0.2)' : theme.elevated,
+          background: isActive ? 'rgba(0, 168, 150, 0.2)' : theme.elevated,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: isActive ? '#a78bfa' : theme.subtle,
+          color: isActive ? '#00A896' : theme.subtle,
           transition: 'all 0.2s ease',
           flexShrink: 0
         }}>
@@ -123,7 +123,7 @@ function NavItemComponent({ item, isActive }: { item: NavItem; isActive: boolean
         {item.isNew && (
           <span style={{
             padding: '0.125rem 0.375rem',
-            background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
+            background: 'linear-gradient(135deg, #00A896 0%, #00D4AA 100%)',
             color: '#ffffff',
             borderRadius: '6px',
             fontSize: '0.625rem',
@@ -206,10 +206,10 @@ export function DocsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
           zIndex: 50,
           padding: '1rem',
           borderRadius: '50%',
-          background: `linear-gradient(135deg, ${theme.accent} 0%, rgba(139, 92, 246, 0.9) 100%)`,
+          background: `linear-gradient(135deg, ${theme.accent} 0%, rgba(0, 168, 150, 0.9) 100%)`,
           color: '#ffffff',
           border: 'none',
-          boxShadow: '0 8px 24px rgba(139, 92, 246, 0.4)',
+          boxShadow: '0 8px 24px rgba(0, 168, 150, 0.4)',
           cursor: 'pointer',
           display: 'none'
         }}
@@ -265,7 +265,7 @@ export function DocsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
             href="/docs/"
             size={50}
             showText={false}
-            theme="dark"
+            theme="light"
           />
           
           <button
@@ -310,7 +310,7 @@ export function DocsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
               textAlign: 'left' as const
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.3)';
+              e.currentTarget.style.borderColor = 'rgba(0, 168, 150, 0.3)';
               e.currentTarget.style.background = theme.elevated;
             }}
             onMouseLeave={(e) => {
@@ -369,7 +369,7 @@ export function DocsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = theme.accent;
                   e.currentTarget.style.color = theme.text;
-                  e.currentTarget.style.background = 'rgba(139, 92, 246, 0.08)';
+                  e.currentTarget.style.background = 'rgba(0, 168, 150, 0.08)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.borderColor = theme.border;
@@ -407,7 +407,7 @@ export function DocsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
               display: 'block',
               width: '100%',
               padding: '0.875rem 1.25rem',
-              background: `linear-gradient(135deg, ${theme.accent} 0%, rgba(139, 92, 246, 0.9) 100%)`,
+              background: `linear-gradient(135deg, ${theme.accent} 0%, rgba(0, 168, 150, 0.9) 100%)`,
               color: '#ffffff',
               borderRadius: '10px',
               textAlign: 'center' as const,
@@ -415,15 +415,15 @@ export function DocsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
               fontWeight: 600,
               textDecoration: 'none',
               transition: 'all 0.2s ease',
-              boxShadow: '0 4px 12px rgba(139, 92, 246, 0.25)'
+              boxShadow: '0 4px 12px rgba(0, 168, 150, 0.25)'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-1px)';
-              e.currentTarget.style.boxShadow = '0 6px 16px rgba(139, 92, 246, 0.35)';
+              e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 168, 150, 0.35)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(139, 92, 246, 0.25)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 168, 150, 0.25)';
             }}
           >
             Try Esy Free →

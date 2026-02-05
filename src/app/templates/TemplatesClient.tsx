@@ -8,10 +8,11 @@ import {
   Clock,
   BarChart3,
   BookOpen,
-  ChevronDown,
-  ChevronUp,
+  Sparkles,
+  Layers,
+  Zap,
+  GraduationCap,
 } from 'lucide-react';
-import { elevatedDarkTheme } from '@/lib/theme';
 import { useScrollHeaderSearch } from '@/hooks/useScrollHeaderSearch';
 import {
   templateCategories,
@@ -29,52 +30,92 @@ import {
   TemplateSearch,
 } from '@/components/templates';
 
-// Theme matching docs page
+// Navy Calm Light Theme
 const theme = {
-  bg: '#18181b',
-  elevated: '#27272a',
-  surface: '#1f1f23',
-  text: '#fafafa',
-  muted: 'rgba(255, 255, 255, 0.7)',
-  subtle: 'rgba(255, 255, 255, 0.5)',
-  border: 'rgba(255, 255, 255, 0.08)',
-  divider: 'rgba(255, 255, 255, 0.05)',
-  accent: '#8b5cf6',
+  bg: '#FFFFFF',
+  elevated: '#F8FAFC',
+  surface: '#F1F5F9',
+  text: '#0A2540',
+  muted: 'rgba(10, 37, 64, 0.7)',
+  subtle: 'rgba(10, 37, 64, 0.5)',
+  faint: 'rgba(10, 37, 64, 0.35)',
+  border: 'rgba(10, 37, 64, 0.08)',
+  divider: 'rgba(10, 37, 64, 0.05)',
+  accent: '#00A896',
+  accentLight: 'rgba(0, 168, 150, 0.08)',
+  accentBorder: 'rgba(0, 168, 150, 0.2)',
 };
 
-// Intent-based paths
-const startHerePaths = [
+// Intent-based creation paths with enhanced metadata
+const creationPaths = [
   {
     id: 'visual-essays',
-    title: 'Create a visual essay',
-    description: 'Scroll-driven narratives that combine research, writing, and visuals',
+    title: 'Visual Essays',
+    tagline: 'Scroll-driven narratives',
+    description: 'Research + writing + visuals in immersive, explorable stories',
     href: '/templates?category=visual-essay',
-    icon: <FileText className="w-5 h-5" />,
+    icon: FileText,
     category: 'visual-essay',
+    count: 12,
   },
-  {
-    id: 'timelines',
-    title: 'Build a timeline',
-    description: 'Historical overviews and chronological narratives',
-    href: '/templates?category=timeline',
-    icon: <Clock className="w-5 h-5" />,
-    category: 'timeline',
-  },
+  // {
+  //   id: 'timelines',
+  //   title: 'Timelines',
+  //   tagline: 'Chronological narratives',
+  //   description: 'Historical overviews and event sequences made visual',
+  //   href: '/templates?category=timeline',
+  //   icon: Clock,
+  //   category: 'timeline',
+  //   count: 8,
+  // },
   {
     id: 'infographics',
-    title: 'Make an infographic',
-    description: 'Visual summaries and data-driven explanations',
+    title: 'Infographics',
+    tagline: 'Data-driven visuals',
+    description: 'Complex information distilled into clear visual summaries',
     href: '/templates?category=infographic',
-    icon: <BarChart3 className="w-5 h-5" />,
+    icon: BarChart3,
     category: 'infographic',
+    count: 6,
   },
   {
-    id: 'explainers',
-    title: 'Write an explainer',
-    description: 'Clear breakdowns of complex topics for any audience',
-    href: '/templates?category=explainer',
-    icon: <BookOpen className="w-5 h-5" />,
-    category: 'explainer',
+    id: 'academic-essays',
+    title: 'Academic Essays',
+    tagline: 'Scholarly writing',
+    description: 'Research-backed essays with proper structure, citations, and academic rigor',
+    href: '/templates?category=academic-essay',
+    icon: GraduationCap,
+    category: 'academic-essay',
+    count: 15,
+  },
+  // {
+  //   id: 'explainers',
+  //   title: 'Explainers',
+  //   tagline: 'Clear breakdowns',
+  //   description: 'Complex topics made accessible for any audience',
+  //   href: '/templates?category=explainer',
+  //   icon: BookOpen,
+  //   category: 'explainer',
+  //   count: 10,
+  // },
+];
+
+// Value propositions
+const valueProps = [
+  {
+    icon: Layers,
+    title: 'Multi-step workflows',
+    description: 'Not single prompts — guided processes from idea to output',
+  },
+  {
+    icon: Zap,
+    title: 'Run or customize',
+    description: 'Use as-is for speed, or adjust to fit your exact needs',
+  },
+  {
+    icon: Sparkles,
+    title: 'Reliable results',
+    description: 'Structured approaches that produce trustworthy artifacts',
   },
 ];
 
@@ -85,23 +126,17 @@ export default function TemplatesClient() {
   const [activeDifficulty, setActiveDifficulty] = useState<TemplateDifficulty | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [showFilters, setShowFilters] = useState(true);
-  const [showAllTemplates, setShowAllTemplates] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [hoveredPath, setHoveredPath] = useState<string | null>(null);
 
-  // Show header search when in-page search scrolls out of view
   useScrollHeaderSearch(searchBarRef);
 
-  // Get subcategories for active category
   const subcategories = useMemo(() => {
-    if (activeCategory === 'all') {
-      return getAllSubcategories();
-    }
+    if (activeCategory === 'all') return getAllSubcategories();
     const category = templateCategories.find((c) => c.id === activeCategory);
     return category?.subcategories || [];
   }, [activeCategory]);
 
-  // Filter templates based on all active filters
   const filteredTemplates = useMemo(() => {
     let templates = searchQuery
       ? searchTemplates(searchQuery)
@@ -109,25 +144,23 @@ export default function TemplatesClient() {
       ? getAllTemplates()
       : getTemplatesByCategory(activeCategory);
 
-    // Apply subcategory filter
     if (activeSubcategory) {
       templates = templates.filter((t) => t.subcategory === activeSubcategory);
     }
-
-    // Apply difficulty filter
     if (activeDifficulty) {
       templates = templates.filter((t) => t.difficulty === activeDifficulty);
     }
-
     return templates;
   }, [activeCategory, activeSubcategory, activeDifficulty, searchQuery]);
 
-  const featuredTemplates = getFeaturedTemplates().slice(0, 4);
+  const featuredTemplates = getFeaturedTemplates().slice(0, 3);
 
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category);
     setActiveSubcategory(null);
-    setShowAllTemplates(true);
+    setTimeout(() => {
+      document.getElementById('browse-templates')?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
   };
 
   const handleClearFilters = () => {
@@ -138,165 +171,148 @@ export default function TemplatesClient() {
   const handlePathClick = (category: string) => {
     setActiveCategory(category);
     setActiveSubcategory(null);
-    setShowAllTemplates(true);
-    // Scroll to browse section
     setTimeout(() => {
       document.getElementById('browse-templates')?.scrollIntoView({ behavior: 'smooth' });
     }, 100);
   };
 
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        backgroundColor: theme.bg,
-        color: theme.text,
-        fontFamily: 'var(--font-inter)',
-      }}
-    >
-      <div
+    <div style={{ minHeight: '100vh', backgroundColor: theme.bg, color: theme.text }}>
+      {/* Hero Section - Clean, Minimal */}
+      <section
         style={{
           maxWidth: '1200px',
           margin: '0 auto',
           padding: '0 clamp(1.5rem, 5vw, 3rem)',
+          paddingTop: 'clamp(6rem, 12vh, 8rem)',
+          paddingBottom: 'clamp(4rem, 8vh, 6rem)',
         }}
       >
-        {/* Hero Section */}
-        <section
+        {/* Main Headline */}
+        <h1
           style={{
-            paddingTop: 'clamp(4rem, 10vh, 6rem)',
-            paddingBottom: 'clamp(3rem, 6vh, 4rem)',
+            fontFamily: 'var(--font-literata)',
+            fontSize: 'clamp(2.75rem, 7vw, 4rem)',
+            fontWeight: 300,
+            letterSpacing: '-0.03em',
+            lineHeight: 1.1,
+            marginBottom: '1.5rem',
+            color: theme.text,
+            maxWidth: '700px',
           }}
         >
-          <h1
-            style={{
-              fontFamily: 'var(--font-literata)',
-              fontSize: 'clamp(2.5rem, 6vw, 3.5rem)',
-              fontWeight: 300,
-              letterSpacing: '-0.02em',
-              marginBottom: '1.5rem',
-              color: theme.text,
-              lineHeight: 1.2,
-            }}
-          >
-            Esy Templates
-          </h1>
+          From idea to artifact
+        </h1>
 
-          {/* Intro */}
-          <div
-            style={{
-              fontSize: '1.125rem',
-              lineHeight: 1.8,
-              color: theme.muted,
-              maxWidth: '800px',
-              marginBottom: '2rem',
-            }}
-          >
-            <p style={{ marginBottom: '1rem' }}>
-              Esy Templates help you go from an idea to a polished result — without starting from
-              scratch.
-            </p>
-            <p>
-              Each template gives you a clear structure for creating things like visual essays,
-              timelines, infographics, explainers, and other research-backed artifacts. Pick a
-              template, adjust it to your needs, and run it in the Esy editor to produce something
-              you can trust.
-            </p>
-          </div>
-
-          {/* TL;DR Box */}
-          <div
-            style={{
-              padding: '1.25rem 1.5rem',
-              background: `${theme.accent}08`,
-              border: `1px solid ${theme.accent}20`,
-              borderRadius: '12px',
-              marginBottom: '3rem',
-              maxWidth: '800px',
-            }}
-          >
-            <ul
-              style={{
-                listStyle: 'none',
-                padding: 0,
-                margin: 0,
-                fontSize: '1rem',
-                lineHeight: 1.7,
-                color: theme.muted,
-              }}
-            >
-              <li style={{ marginBottom: '0.5rem' }}>
-                • Templates are step-by-step workflows, not single prompts.
-              </li>
-              <li style={{ marginBottom: '0.5rem' }}>
-                • Pick one, run it as-is, or adjust it to fit your project.
-              </li>
-              <li>
-                • The goal is reliable output you can trust.
-              </li>
-            </ul>
-          </div>
-
-          {/* Search */}
-          <div ref={searchBarRef} style={{ maxWidth: '600px' }}>
-            <TemplateSearch
-              value={searchQuery}
-              onChange={(value) => {
-                setSearchQuery(value);
-                if (value) setShowAllTemplates(true);
-              }}
-              placeholder="Search templates by topic, goal, or output type..."
-            />
-            <p
-              style={{
-                fontSize: '0.8125rem',
-                color: theme.subtle,
-                marginTop: '0.75rem',
-                opacity: 0.8,
-              }}
-            >
-              Not sure which one to choose? Start with any template — you can change things later.
-            </p>
-          </div>
-        </section>
-
-        {/* Start Here Section */}
-        <section
+        {/* Subheadline */}
+        <p
           style={{
-            paddingBottom: 'clamp(3rem, 6vh, 4rem)',
+            fontSize: 'clamp(1.125rem, 2vw, 1.25rem)',
+            lineHeight: 1.7,
+            color: theme.muted,
+            maxWidth: '580px',
+            marginBottom: '2.5rem',
           }}
         >
+          Templates are step-by-step workflows that guide Esy from your initial concept to a polished,
+          research-backed result you can trust.
+        </p>
+
+        {/* Search */}
+        <div ref={searchBarRef} style={{ maxWidth: '520px' }}>
+          <TemplateSearch
+            value={searchQuery}
+            onChange={(value) => setSearchQuery(value)}
+            placeholder="Search by topic, goal, or output type..."
+          />
+        </div>
+      </section>
+
+      {/* Value Props - Subtle, Horizontal */}
+      <section
+        style={{
+          borderTop: `1px solid ${theme.divider}`,
+          borderBottom: `1px solid ${theme.divider}`,
+          background: theme.elevated,
+        }}
+      >
+        <div
+          style={{
+            maxWidth: '1200px',
+            margin: '0 auto',
+            padding: 'clamp(2rem, 4vh, 3rem) clamp(1.5rem, 5vw, 3rem)',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '2rem',
+          }}
+        >
+          {valueProps.map((prop, i) => (
+            <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+              <div
+                style={{
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '10px',
+                  background: theme.bg,
+                  border: `1px solid ${theme.border}`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                <prop.icon size={18} style={{ color: theme.accent }} />
+              </div>
+              <div>
+                <h3 style={{ fontSize: '0.9375rem', fontWeight: 600, color: theme.text, marginBottom: '0.25rem' }}>
+                  {prop.title}
+                </h3>
+                <p style={{ fontSize: '0.875rem', color: theme.subtle, lineHeight: 1.5, margin: 0 }}>
+                  {prop.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Creation Paths - Primary Navigation */}
+      <section
+        style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: 'clamp(4rem, 8vh, 6rem) clamp(1.5rem, 5vw, 3rem)',
+        }}
+      >
+        <div style={{ marginBottom: '2.5rem' }}>
           <h2
             style={{
               fontFamily: 'var(--font-literata)',
-              fontSize: '1.5rem',
-              fontWeight: 400,
+              fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+              fontWeight: 300,
+              letterSpacing: '-0.02em',
               color: theme.text,
-              marginBottom: '1rem',
+              marginBottom: '0.5rem',
             }}
           >
-            Start Here (Based on What You Want to Make)
+            What do you want to create?
           </h2>
-          <p
-            style={{
-              fontSize: '1rem',
-              color: theme.muted,
-              marginBottom: '2rem',
-              maxWidth: '600px',
-            }}
-          >
-            Choose a path based on your goal. Each leads to templates designed for that output type.
+          <p style={{ fontSize: '1rem', color: theme.subtle }}>
+            Choose a path to see relevant templates
           </p>
+        </div>
 
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '0.75rem',
-              maxWidth: '700px',
-            }}
-          >
-            {startHerePaths.map((path) => (
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: '1rem',
+          }}
+        >
+          {creationPaths.map((path) => {
+            const IconComponent = path.icon;
+            const isHovered = hoveredPath === path.id;
+            return (
               <button
                 key={path.id}
                 onClick={() => handlePathClick(path.category)}
@@ -304,622 +320,395 @@ export default function TemplatesClient() {
                 onMouseLeave={() => setHoveredPath(null)}
                 style={{
                   display: 'flex',
-                  alignItems: 'center',
-                  gap: '1rem',
-                  padding: '1rem 1.25rem',
-                  background: hoveredPath === path.id ? theme.elevated : 'transparent',
-                  border: `1px solid ${hoveredPath === path.id ? theme.border : 'transparent'}`,
-                  borderRadius: '12px',
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
+                  padding: '1.5rem',
+                  background: isHovered ? theme.bg : theme.elevated,
+                  border: `1px solid ${isHovered ? theme.accentBorder : theme.border}`,
+                  borderRadius: '16px',
                   cursor: 'pointer',
-                  transition: 'all 0.2s ease',
+                  transition: 'all 0.25s ease',
                   textAlign: 'left',
-                  width: '100%',
+                  boxShadow: isHovered ? '0 8px 24px rgba(10, 37, 64, 0.08)' : 'none',
+                  transform: isHovered ? 'translateY(-2px)' : 'translateY(0)',
                 }}
               >
                 <div
                   style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '10px',
-                    background: `${theme.accent}15`,
-                    border: `1px solid ${theme.accent}25`,
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '12px',
+                    background: isHovered ? theme.accentLight : theme.bg,
+                    border: `1px solid ${isHovered ? theme.accentBorder : theme.border}`,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: theme.accent,
-                    flexShrink: 0,
+                    marginBottom: '1rem',
+                    transition: 'all 0.25s ease',
                   }}
                 >
-                  {path.icon}
+                  <IconComponent
+                    size={22}
+                    style={{ color: isHovered ? theme.accent : theme.subtle, transition: 'color 0.25s ease' }}
+                  />
                 </div>
-                <div style={{ flex: 1 }}>
-                  <div
-                    style={{
-                      fontSize: '1rem',
-                      fontWeight: 500,
-                      color: theme.text,
-                      marginBottom: '0.25rem',
-                    }}
-                  >
-                    {path.title}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: '0.875rem',
-                      color: theme.subtle,
-                    }}
-                  >
-                    {path.description}
-                  </div>
-                </div>
-                <ArrowRight
+                <h3
                   style={{
-                    width: '18px',
-                    height: '18px',
-                    color: theme.accent,
-                    opacity: hoveredPath === path.id ? 1 : 0.5,
-                    transform: hoveredPath === path.id ? 'translateX(4px)' : 'translateX(0)',
-                    transition: 'all 0.2s ease',
+                    fontSize: '1.125rem',
+                    fontWeight: 500,
+                    color: theme.text,
+                    marginBottom: '0.25rem',
                   }}
-                />
+                >
+                  {path.title}
+                </h3>
+                <span
+                  style={{
+                    fontSize: '0.8125rem',
+                    color: theme.accent,
+                    fontWeight: 500,
+                    marginBottom: '0.5rem',
+                  }}
+                >
+                  {path.tagline}
+                </span>
+                <p
+                  style={{
+                    fontSize: '0.875rem',
+                    color: theme.subtle,
+                    lineHeight: 1.5,
+                    margin: 0,
+                  }}
+                >
+                  {path.description}
+                </p>
               </button>
-            ))}
-          </div>
-        </section>
+            );
+          })}
+        </div>
+      </section>
 
-        {/* Featured Templates */}
-        <section
+      {/* Featured Templates */}
+      <section
+        style={{
+          background: theme.elevated,
+          borderTop: `1px solid ${theme.divider}`,
+          borderBottom: `1px solid ${theme.divider}`,
+        }}
+      >
+        <div
           style={{
-            paddingTop: 'clamp(3rem, 6vh, 4rem)',
-            paddingBottom: 'clamp(3rem, 6vh, 4rem)',
-            borderTop: `1px solid ${theme.divider}`,
+            maxWidth: '1200px',
+            margin: '0 auto',
+            padding: 'clamp(4rem, 8vh, 6rem) clamp(1.5rem, 5vw, 3rem)',
           }}
         >
-          <div style={{ marginBottom: '2rem' }}>
-            <h2
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '2rem' }}>
+            <div>
+              <h2
+                style={{
+                  fontFamily: 'var(--font-literata)',
+                  fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                  fontWeight: 300,
+                  letterSpacing: '-0.02em',
+                  color: theme.text,
+                  marginBottom: '0.5rem',
+                }}
+              >
+                Popular templates
+              </h2>
+              <p style={{ fontSize: '1rem', color: theme.subtle, margin: 0 }}>
+                Good starting points for your first project
+              </p>
+            </div>
+            <Link
+              href="#browse-templates"
+              onClick={() => setActiveCategory('all')}
               style={{
-                fontFamily: 'var(--font-literata)',
-                fontSize: 'clamp(1.5rem, 4vw, 2rem)',
-                fontWeight: 300,
-                letterSpacing: '-0.02em',
-                marginBottom: '0.75rem',
-                color: theme.text,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                fontSize: '0.875rem',
+                fontWeight: 500,
+                color: theme.accent,
+                textDecoration: 'none',
               }}
             >
-              Featured Templates
-            </h2>
-            <p
-              style={{
-                fontSize: '1rem',
-                color: theme.muted,
-                maxWidth: '600px',
-              }}
-            >
-              Good places to start if you&apos;re new.
-            </p>
+              View all
+              <ArrowRight size={16} />
+            </Link>
           </div>
 
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '1.5rem',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '1.25rem',
             }}
           >
-            {featuredTemplates.map((template) => (
-              <Link
-                key={template.id}
-                href={`/templates/${template.slug}`}
-                style={{ textDecoration: 'none' }}
-                onMouseEnter={() => setHoveredCard(template.id)}
-                onMouseLeave={() => setHoveredCard(null)}
-              >
-                <div
-                  style={{
-                    background:
-                      hoveredCard === template.id
-                        ? 'linear-gradient(135deg, rgba(39, 39, 42, 0.95) 0%, rgba(31, 31, 35, 0.8) 100%)'
-                        : 'linear-gradient(135deg, rgba(31, 31, 35, 0.9) 0%, rgba(39, 39, 42, 0.7) 100%)',
-                    border: `1px solid ${hoveredCard === template.id ? 'rgba(139, 92, 246, 0.3)' : theme.border}`,
-                    borderRadius: '16px',
-                    padding: '1.75rem',
-                    transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                    cursor: 'pointer',
-                    backdropFilter: 'blur(10px)',
-                    boxShadow:
-                      hoveredCard === template.id
-                        ? '0 12px 32px rgba(139, 92, 246, 0.2)'
-                        : '0 4px 16px rgba(0, 0, 0, 0.15)',
-                    transform: hoveredCard === template.id ? 'translateY(-4px)' : 'translateY(0)',
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column' as const,
-                  }}
+            {featuredTemplates.map((template) => {
+              const isHovered = hoveredCard === template.id;
+              return (
+                <Link
+                  key={template.id}
+                  href={`/templates/${template.slug}`}
+                  style={{ textDecoration: 'none' }}
+                  onMouseEnter={() => setHoveredCard(template.id)}
+                  onMouseLeave={() => setHoveredCard(null)}
                 >
-                  {/* Category Badge */}
-                  <div
+                  <article
                     style={{
-                      padding: '0.25rem 0.75rem',
-                      background: `${theme.accent}20`,
-                      color: theme.accent,
-                      borderRadius: '12px',
-                      fontSize: '0.7rem',
-                      fontWeight: 600,
-                      textTransform: 'uppercase' as const,
-                      letterSpacing: '0.05em',
-                      border: `1px solid ${theme.accent}30`,
-                      alignSelf: 'flex-start',
-                      marginBottom: '1rem',
-                    }}
-                  >
-                    {template.category}
-                  </div>
-
-                  {/* Title */}
-                  <h3
-                    style={{
-                      fontSize: '1.25rem',
-                      fontWeight: 400,
-                      letterSpacing: '-0.01em',
-                      lineHeight: 1.3,
-                      marginBottom: '0.75rem',
-                      color: theme.text,
-                      fontFamily: 'var(--font-literata)',
-                    }}
-                  >
-                    {template.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p
-                    style={{
-                      fontSize: '0.9375rem',
-                      color: theme.muted,
-                      lineHeight: 1.6,
-                      marginBottom: '1.25rem',
-                      flexGrow: 1,
-                    }}
-                  >
-                    {template.description}
-                  </p>
-
-                  {/* Arrow */}
-                  <div
-                    style={{
+                      background: theme.bg,
+                      border: `1px solid ${isHovered ? theme.accentBorder : theme.border}`,
+                      borderRadius: '16px',
+                      padding: '1.75rem',
+                      transition: 'all 0.25s ease',
+                      boxShadow: isHovered ? '0 12px 32px rgba(10, 37, 64, 0.1)' : '0 2px 8px rgba(10, 37, 64, 0.04)',
+                      transform: isHovered ? 'translateY(-4px)' : 'translateY(0)',
+                      height: '100%',
                       display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      color: theme.accent,
-                      fontSize: '0.875rem',
-                      fontWeight: 500,
+                      flexDirection: 'column',
                     }}
                   >
-                    Use template
-                    <ArrowRight
+                    {/* Category */}
+                    <span
                       style={{
-                        width: '16px',
-                        height: '16px',
-                        transform:
-                          hoveredCard === template.id ? 'translateX(4px)' : 'translateX(0)',
-                        transition: 'transform 0.2s ease',
+                        display: 'inline-block',
+                        padding: '0.25rem 0.625rem',
+                        background: theme.accentLight,
+                        color: theme.accent,
+                        borderRadius: '6px',
+                        fontSize: '0.6875rem',
+                        fontWeight: 600,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em',
+                        marginBottom: '1rem',
+                        alignSelf: 'flex-start',
                       }}
-                    />
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
+                    >
+                      {template.category}
+                    </span>
 
-        {/* What's Inside a Template */}
-        <section
-          style={{
-            paddingTop: 'clamp(3rem, 6vh, 4rem)',
-            paddingBottom: 'clamp(3rem, 6vh, 4rem)',
-            borderTop: `1px solid ${theme.divider}`,
-          }}
-        >
-          <div
-            style={{
-              maxWidth: '800px',
-            }}
-          >
-            <h2
-              style={{
-                fontFamily: 'var(--font-literata)',
-                fontSize: '1.5rem',
-                fontWeight: 400,
-                color: theme.text,
-                marginBottom: '1rem',
-              }}
-            >
-              What&apos;s inside a template?
-            </h2>
-            <p
-              style={{
-                fontSize: '1.125rem',
-                lineHeight: 1.8,
-                color: theme.muted,
-                marginBottom: '1.5rem',
-              }}
-            >
-              A template is more than a single prompt. It&apos;s a step-by-step guide that helps
-              Esy:
-            </p>
-            <ul
-              style={{
-                listStyle: 'none',
-                padding: 0,
-                margin: '0 0 1.5rem 0',
-              }}
-            >
-              {[
-                "understand what you're trying to make",
-                'gather and organize information',
-                'shape it into a clear, professional output',
-              ].map((item, i) => (
-                <li
-                  key={i}
-                  style={{
-                    fontSize: '1rem',
-                    color: theme.muted,
-                    marginBottom: '0.5rem',
-                    paddingLeft: '1.5rem',
-                    position: 'relative',
-                  }}
-                >
-                  <span
-                    style={{
-                      position: 'absolute',
-                      left: 0,
-                      color: theme.accent,
-                    }}
-                  >
-                    •
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <p
-              style={{
-                fontSize: '1rem',
-                lineHeight: 1.8,
-                color: theme.subtle,
-              }}
-            >
-              You don&apos;t need to understand how it works — just start, tweak, and run.
-            </p>
-          </div>
-
-          {/* How This Is Different - Recessed Box */}
-          <div
-            style={{
-              fontSize: '1rem',
-              lineHeight: 1.8,
-              color: theme.subtle,
-              maxWidth: '800px',
-              marginTop: '2rem',
-              padding: '1.5rem',
-              background: theme.surface,
-              borderRadius: '12px',
-              border: `1px solid ${theme.border}`,
-            }}
-          >
-            <h3
-              style={{
-                fontFamily: 'var(--font-literata)',
-                fontSize: '1.125rem',
-                fontWeight: 400,
-                color: theme.muted,
-                marginBottom: '1rem',
-              }}
-            >
-              How this is different from prompt packs
-            </h3>
-            <p style={{ marginBottom: '0.75rem' }}>
-              Prompt packs usually give you a single instruction and leave the rest up to you.
-            </p>
-            <p style={{ marginBottom: '0.75rem' }}>
-              Esy templates guide the entire process — from shaping your idea, to organizing
-              research, to producing a clear final result.
-            </p>
-            <p style={{ color: theme.muted, fontWeight: 500, margin: 0 }}>
-              The goal isn&apos;t clever prompts. It&apos;s reliable output.
-            </p>
-          </div>
-        </section>
-
-        {/* Browse All Templates */}
-        <section
-          id="browse-templates"
-          style={{
-            paddingTop: 'clamp(3rem, 6vh, 4rem)',
-            paddingBottom: 'clamp(3rem, 6vh, 4rem)',
-            borderTop: `1px solid ${theme.divider}`,
-          }}
-        >
-          <button
-            onClick={() => setShowAllTemplates(!showAllTemplates)}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              background: 'transparent',
-              border: 'none',
-              cursor: 'pointer',
-              padding: 0,
-              marginBottom: showAllTemplates ? '2rem' : 0,
-            }}
-          >
-            <h2
-              style={{
-                fontFamily: 'var(--font-literata)',
-                fontSize: 'clamp(1.5rem, 4vw, 2rem)',
-                fontWeight: 300,
-                letterSpacing: '-0.02em',
-                color: theme.text,
-                margin: 0,
-              }}
-            >
-              Browse All Templates
-            </h2>
-            <span
-              style={{
-                fontSize: '0.875rem',
-                color: theme.subtle,
-                fontFamily: 'var(--font-inter)',
-              }}
-            >
-              ({getAllTemplates().length})
-            </span>
-            {showAllTemplates ? (
-              <ChevronUp size={24} style={{ color: theme.muted }} />
-            ) : (
-              <ChevronDown size={24} style={{ color: theme.muted }} />
-            )}
-          </button>
-
-          {showAllTemplates && (
-            <>
-              {/* Category Navigation */}
-              <TemplateCategoryNav
-                categories={templateCategories}
-                activeCategory={activeCategory}
-                onCategoryChange={handleCategoryChange}
-              />
-
-              {/* Content Layout with Sidebar */}
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: showFilters ? '240px 1fr' : '1fr',
-                  gap: '2rem',
-                  marginTop: '2rem',
-                }}
-              >
-                {/* Sidebar Filters */}
-                {showFilters && (
-                  <div style={{ position: 'sticky', top: '100px', alignSelf: 'start' }}>
-                    <TemplateFilters
-                      subcategories={subcategories}
-                      activeSubcategory={activeSubcategory}
-                      activeDifficulty={activeDifficulty}
-                      onSubcategoryChange={setActiveSubcategory}
-                      onDifficultyChange={setActiveDifficulty}
-                      onClearFilters={handleClearFilters}
-                    />
-                  </div>
-                )}
-
-                {/* Main Grid */}
-                <div>
-                  {/* Results header */}
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      marginBottom: '1.5rem',
-                    }}
-                  >
+                    {/* Title */}
                     <h3
                       style={{
                         fontFamily: 'var(--font-literata)',
-                        fontSize: 'clamp(1.25rem, 3vw, 1.5rem)',
-                        fontWeight: 300,
+                        fontSize: '1.25rem',
+                        fontWeight: 400,
                         letterSpacing: '-0.01em',
+                        lineHeight: 1.3,
+                        marginBottom: '0.75rem',
                         color: theme.text,
-                        margin: 0,
                       }}
                     >
-                      {searchQuery
-                        ? `Search Results`
-                        : activeCategory === 'all'
-                          ? 'All Templates'
-                          : templateCategories.find((c) => c.id === activeCategory)?.name ||
-                            'Templates'}
-                      <span
-                        style={{
-                          marginLeft: '0.75rem',
-                          fontSize: '0.875rem',
-                          color: theme.subtle,
-                          fontWeight: 400,
-                          fontFamily: 'var(--font-inter)',
-                        }}
-                      >
-                        ({filteredTemplates.length})
-                      </span>
+                      {template.title}
                     </h3>
-                  </div>
 
-                  <TemplateGrid
-                    templates={filteredTemplates}
-                    showCategory={activeCategory === 'all'}
-                    columns={showFilters ? 2 : 3}
-                    emptyMessage={
-                      searchQuery
-                        ? `No results found for "${searchQuery}"`
-                        : 'No templates found with the current filters.'
-                    }
-                  />
-                </div>
-              </div>
-            </>
-          )}
-        </section>
+                    {/* Description */}
+                    <p
+                      style={{
+                        fontSize: '0.9375rem',
+                        color: theme.muted,
+                        lineHeight: 1.6,
+                        marginBottom: '1.5rem',
+                        flexGrow: 1,
+                      }}
+                    >
+                      {template.description}
+                    </p>
 
-        {/* What Can I Make Section */}
-        <section
-          style={{
-            paddingTop: 'clamp(3rem, 6vh, 4rem)',
-            paddingBottom: 'clamp(3rem, 6vh, 4rem)',
-            borderTop: `1px solid ${theme.divider}`,
-          }}
-        >
-          <div style={{ maxWidth: '800px' }}>
-            <h2
-              style={{
-                fontFamily: 'var(--font-literata)',
-                fontSize: '1.5rem',
-                fontWeight: 400,
-                color: theme.text,
-                marginBottom: '1rem',
-              }}
-            >
-              What can I make?
-            </h2>
-            <p
-              style={{
-                fontSize: '1.125rem',
-                lineHeight: 1.8,
-                color: theme.muted,
-                marginBottom: '1.5rem',
-              }}
-            >
-              Templates are designed to help you create:
-            </p>
-            <ul
-              style={{
-                listStyle: 'none',
-                padding: 0,
-                margin: '0 0 1.5rem 0',
-              }}
-            >
-              {[
-                'Visual essays and scroll-driven narratives',
-                'Timelines and historical overviews',
-                'Infographics and visual summaries',
-                'Explainers and research-backed writing',
-                'School projects and structured artifacts',
-              ].map((item, i) => (
-                <li
-                  key={i}
-                  style={{
-                    fontSize: '1rem',
-                    color: theme.muted,
-                    marginBottom: '0.5rem',
-                    paddingLeft: '1.5rem',
-                    position: 'relative',
-                  }}
-                >
-                  <span
-                    style={{
-                      position: 'absolute',
-                      left: 0,
-                      color: theme.accent,
-                    }}
-                  >
-                    •
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <p
-              style={{
-                fontSize: '1rem',
-                lineHeight: 1.8,
-                color: theme.subtle,
-              }}
-            >
-              Templates work for students, educators, researchers, and anyone who needs to produce
-              clear, well-sourced work.
-            </p>
+                    {/* CTA */}
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem',
+                        color: theme.accent,
+                        fontSize: '0.875rem',
+                        fontWeight: 500,
+                      }}
+                    >
+                      Use template
+                      <ArrowRight
+                        size={16}
+                        style={{
+                          transform: isHovered ? 'translateX(4px)' : 'translateX(0)',
+                          transition: 'transform 0.2s ease',
+                        }}
+                      />
+                    </div>
+                  </article>
+                </Link>
+              );
+            })}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* New to Esy CTA Section */}
-        <section
-          style={{
-            paddingTop: 'clamp(3rem, 6vh, 4rem)',
-            paddingBottom: 'clamp(4rem, 8vh, 6rem)',
-            borderTop: `1px solid ${theme.divider}`,
-          }}
-        >
-          <div
+      {/* Browse All Templates */}
+      {/* 
+      <section
+        id="browse-templates"
+        style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: 'clamp(4rem, 8vh, 6rem) clamp(1.5rem, 5vw, 3rem)',
+        }}
+      >
+        <div style={{ marginBottom: '2rem' }}>
+          <h2
             style={{
-              padding: 'clamp(2.5rem, 5vh, 3.5rem)',
-              background: 'linear-gradient(135deg, rgba(31, 31, 35, 0.9) 0%, rgba(39, 39, 42, 0.7) 100%)',
-              borderRadius: '24px',
-              border: `1px solid ${theme.border}`,
-              textAlign: 'center',
-              maxWidth: '700px',
-              margin: '0 auto',
+              fontFamily: 'var(--font-literata)',
+              fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+              fontWeight: 300,
+              letterSpacing: '-0.02em',
+              color: theme.text,
+              marginBottom: '0.5rem',
             }}
           >
-            <h2
+            All templates
+          </h2>
+          <p style={{ fontSize: '1rem', color: theme.subtle }}>
+            Browse the full collection or filter by category
+          </p>
+        </div>
+
+        <TemplateCategoryNav
+          categories={templateCategories}
+          activeCategory={activeCategory}
+          onCategoryChange={handleCategoryChange}
+        />
+
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: showFilters ? '220px 1fr' : '1fr',
+            gap: '2.5rem',
+            marginTop: '2rem',
+          }}
+        >
+          {showFilters && (
+            <div style={{ position: 'sticky', top: '100px', alignSelf: 'start' }}>
+              <TemplateFilters
+                subcategories={subcategories}
+                activeSubcategory={activeSubcategory}
+                activeDifficulty={activeDifficulty}
+                onSubcategoryChange={setActiveSubcategory}
+                onDifficultyChange={setActiveDifficulty}
+                onClearFilters={handleClearFilters}
+              />
+            </div>
+          )}
+
+          <div>
+            <div
               style={{
-                fontFamily: 'var(--font-literata)',
-                fontSize: 'clamp(1.5rem, 4vw, 2rem)',
-                fontWeight: 300,
-                letterSpacing: '-0.02em',
-                marginBottom: '1rem',
-                color: theme.text,
-              }}
-            >
-              New to Esy?
-            </h2>
-            <p
-              style={{
-                fontSize: '1.0625rem',
-                color: theme.muted,
-                marginBottom: '2rem',
-                maxWidth: '500px',
-                margin: '0 auto 2rem',
-                lineHeight: 1.7,
-              }}
-            >
-              Templates are the easiest way to get started. Choose one, run it as-is, or adjust it
-              to fit your project.
-            </p>
-            <Link
-              href="https://app.esy.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'inline-flex',
+                display: 'flex',
                 alignItems: 'center',
-                gap: '0.625rem',
-                padding: '1rem 2rem',
-                background:
-                  'linear-gradient(135deg, rgba(139, 92, 246, 0.9) 0%, rgba(124, 58, 237, 0.9) 100%)',
-                color: '#ffffff',
-                border: 'none',
-                borderRadius: '12px',
-                fontSize: '1rem',
-                fontWeight: 600,
-                textDecoration: 'none',
-                transition: 'all 0.3s ease',
-                boxShadow: `0 4px 15px ${theme.accent}40`,
+                justifyContent: 'space-between',
+                marginBottom: '1.5rem',
+                paddingBottom: '1rem',
+                borderBottom: `1px solid ${theme.divider}`,
               }}
             >
-              Try a Template
-              <ArrowRight size={18} />
-            </Link>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.75rem' }}>
+                <h3
+                  style={{
+                    fontSize: '1rem',
+                    fontWeight: 500,
+                    color: theme.text,
+                    margin: 0,
+                  }}
+                >
+                  {searchQuery
+                    ? 'Search Results'
+                    : activeCategory === 'all'
+                      ? 'All Templates'
+                      : templateCategories.find((c) => c.id === activeCategory)?.name || 'Templates'}
+                </h3>
+                <span style={{ fontSize: '0.875rem', color: theme.subtle }}>
+                  {filteredTemplates.length} {filteredTemplates.length === 1 ? 'template' : 'templates'}
+                </span>
+              </div>
+            </div>
+
+            <TemplateGrid
+              templates={filteredTemplates}
+              showCategory={activeCategory === 'all'}
+              columns={showFilters ? 2 : 3}
+              emptyMessage={
+                searchQuery
+                  ? `No results found for "${searchQuery}"`
+                  : 'No templates found with the current filters.'
+              }
+            />
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
+      */}
+
+      {/* CTA Section - Clean, Minimal */}
+      <section
+        style={{
+          background: theme.text,
+          color: theme.bg,
+        }}
+      >
+        <div
+          style={{
+            maxWidth: '1200px',
+            margin: '0 auto',
+            padding: 'clamp(4rem, 8vh, 6rem) clamp(1.5rem, 5vw, 3rem)',
+            textAlign: 'center',
+          }}
+        >
+          <h2
+            style={{
+              fontFamily: 'var(--font-literata)',
+              fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
+              fontWeight: 300,
+              letterSpacing: '-0.02em',
+              marginBottom: '1rem',
+            }}
+          >
+            Ready to start?
+          </h2>
+          <p
+            style={{
+              fontSize: '1.125rem',
+              opacity: 0.8,
+              marginBottom: '2rem',
+              maxWidth: '480px',
+              margin: '0 auto 2rem',
+              lineHeight: 1.6,
+            }}
+          >
+            Pick a template and run it in Esy. Adjust as needed, or use it as-is.
+          </p>
+          <Link
+            href="https://app.esy.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.625rem',
+              padding: '1rem 2rem',
+              background: theme.accent,
+              color: '#FFFFFF',
+              border: 'none',
+              borderRadius: '10px',
+              fontSize: '1rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              transition: 'all 0.2s ease',
+            }}
+          >
+            Open Esy
+            <ArrowRight size={18} />
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }

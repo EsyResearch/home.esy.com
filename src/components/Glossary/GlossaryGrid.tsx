@@ -12,7 +12,6 @@ interface GlossaryGridProps {
   setHoveredTerm: (term: string | null) => void;
   getCategoryColor: (category: string) => string;
   getPopularityDots: (popularity: number) => React.ReactNode;
-  formatViews: (views: number) => string;
   windowWidth: number;
 }
 
@@ -24,7 +23,6 @@ const GlossaryGrid: React.FC<GlossaryGridProps> = ({
   setHoveredTerm,
   getCategoryColor,
   getPopularityDots,
-  formatViews,
   windowWidth
 }) => (
   <div style={{
@@ -82,11 +80,8 @@ const GlossaryGrid: React.FC<GlossaryGridProps> = ({
           />
         </div>
         
-        {/* Category and Metrics */}
+        {/* Category */}
         <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.75rem',
           marginBottom: '0.75rem',
           fontSize: '0.75rem'
         }}>
@@ -95,10 +90,6 @@ const GlossaryGrid: React.FC<GlossaryGridProps> = ({
             fontWeight: 500
           }}>
             {categories.find(c => c.id === term.category)?.name}
-          </span>
-          <span style={{ color: currentTheme.faint }}>•</span>
-          <span style={{ color: currentTheme.subtle }}>
-            {formatViews(term.views)} views
           </span>
         </div>
         
@@ -143,7 +134,7 @@ const GlossaryGrid: React.FC<GlossaryGridProps> = ({
             background: currentTheme.elevated,
             border: `1px solid ${currentTheme.border}`,
             borderRadius: '8px',
-            boxShadow: '0 4px 24px rgba(0,0,0,0.3)',
+            boxShadow: '0 4px 24px rgba(10, 37, 64, 0.15)',
             zIndex: 10,
             fontSize: '0.813rem',
             lineHeight: 1.6,

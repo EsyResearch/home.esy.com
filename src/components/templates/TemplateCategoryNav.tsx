@@ -2,7 +2,19 @@
 
 import React from 'react';
 import { TemplateCategoryInfo } from '@/lib/templates';
-import { elevatedDarkTheme } from '@/lib/theme';
+
+// Navy Calm Light Theme
+const theme = {
+  bg: '#FFFFFF',
+  elevated: '#F8FAFC',
+  text: '#0A2540',
+  muted: 'rgba(10, 37, 64, 0.7)',
+  subtle: 'rgba(10, 37, 64, 0.5)',
+  faint: 'rgba(10, 37, 64, 0.35)',
+  border: 'rgba(10, 37, 64, 0.08)',
+  accent: '#00A896',
+  accentLight: 'rgba(0, 168, 150, 0.08)',
+};
 
 interface TemplateCategoryNavProps {
   categories: TemplateCategoryInfo[];
@@ -22,28 +34,22 @@ export default function TemplateCategoryNav({
         gap: '0.5rem',
         flexWrap: 'wrap',
         marginBottom: '2rem',
-        padding: '0.5rem',
-        background: elevatedDarkTheme.borderSubtle,
+        padding: '0.375rem',
+        background: theme.elevated,
         borderRadius: '12px',
-        border: `1px solid ${elevatedDarkTheme.border}`,
+        border: `1px solid ${theme.border}`,
       }}
     >
       {/* All category */}
       <button
         onClick={() => onCategoryChange('all')}
         style={{
-          padding: '0.75rem 1.5rem',
-          background:
-            activeCategory === 'all'
-              ? elevatedDarkTheme.accent
-              : 'transparent',
-          color:
-            activeCategory === 'all'
-              ? '#ffffff'
-              : elevatedDarkTheme.muted,
+          padding: '0.625rem 1.25rem',
+          background: activeCategory === 'all' ? theme.accent : 'transparent',
+          color: activeCategory === 'all' ? '#FFFFFF' : theme.muted,
           border: 'none',
           borderRadius: '8px',
-          fontSize: '0.9375rem',
+          fontSize: '0.875rem',
           fontWeight: 500,
           cursor: 'pointer',
           transition: 'all 0.2s ease',
@@ -59,20 +65,17 @@ export default function TemplateCategoryNav({
           onClick={() => !category.isComingSoon && onCategoryChange(category.id)}
           disabled={category.isComingSoon}
           style={{
-            padding: '0.75rem 1.5rem',
-            background:
-              activeCategory === category.id
-                ? elevatedDarkTheme.accent
-                : 'transparent',
+            padding: '0.625rem 1.25rem',
+            background: activeCategory === category.id ? theme.accent : 'transparent',
             color:
               activeCategory === category.id
-                ? '#ffffff'
+                ? '#FFFFFF'
                 : category.isComingSoon
-                ? elevatedDarkTheme.faint
-                : elevatedDarkTheme.muted,
+                ? theme.faint
+                : theme.muted,
             border: 'none',
             borderRadius: '8px',
-            fontSize: '0.9375rem',
+            fontSize: '0.875rem',
             fontWeight: 500,
             cursor: category.isComingSoon ? 'not-allowed' : 'pointer',
             transition: 'all 0.2s ease',
@@ -87,11 +90,11 @@ export default function TemplateCategoryNav({
           {category.isComingSoon && (
             <span
               style={{
-                fontSize: '0.65rem',
-                padding: '0.125rem 0.5rem',
-                background: elevatedDarkTheme.borderSubtle,
+                fontSize: '0.625rem',
+                padding: '0.125rem 0.375rem',
+                background: 'rgba(10, 37, 64, 0.06)',
                 borderRadius: '4px',
-                color: elevatedDarkTheme.subtle,
+                color: theme.subtle,
               }}
             >
               Soon
@@ -105,7 +108,7 @@ export default function TemplateCategoryNav({
                 background:
                   activeCategory === category.id
                     ? 'rgba(255, 255, 255, 0.2)'
-                    : elevatedDarkTheme.borderSubtle,
+                    : 'rgba(10, 37, 64, 0.06)',
                 borderRadius: '4px',
               }}
             >
@@ -117,4 +120,3 @@ export default function TemplateCategoryNav({
     </nav>
   );
 }
-

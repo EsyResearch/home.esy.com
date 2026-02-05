@@ -26,7 +26,7 @@ export const articleContentStyles = {
     fontFamily: 'var(--font-literata)'
   },
   blockquote: {
-    borderLeft: '3px solid #8b5cf6',
+    borderLeft: '3px solid #00A896',
     paddingLeft: '2rem',
     marginLeft: '-2rem',
     marginTop: '2rem',
@@ -58,8 +58,8 @@ export const articleContentStyles = {
     letterSpacing: '0.05em'
   },
   calloutBox: {
-    backgroundColor: 'rgba(139, 92, 246, 0.05)',
-    border: '1px solid rgba(139, 92, 246, 0.2)',
+    backgroundColor: 'rgba(0, 168, 150, 0.05)',
+    border: '1px solid rgba(0, 168, 150, 0.2)',
     borderRadius: '12px',
     padding: '2rem',
     marginTop: '2.5rem',
@@ -83,7 +83,7 @@ export const articleContentStyles = {
   },
   exampleLabel: {
     fontSize: '0.875rem',
-    color: '#8b5cf6',
+    color: '#00A896',
     textTransform: 'uppercase',
     letterSpacing: '0.05em',
     marginBottom: '1rem',
@@ -110,7 +110,7 @@ export const articleContentStyles = {
     position: 'relative'
   },
   inlineCode: {
-    backgroundColor: 'rgba(139, 92, 246, 0.1)',
+    backgroundColor: 'rgba(0, 168, 150, 0.1)',
     padding: '0.125rem 0.375rem',
     borderRadius: '4px',
     fontFamily: 'Monaco, Consolas, monospace',

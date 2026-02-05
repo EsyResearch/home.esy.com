@@ -89,10 +89,17 @@ export default function Navigation({
         const isSchoolPage = normalizedPath === '/school';
         const isSchoolArticle = normalizedPath.includes('/school/articles/');
         const isBlogArticle = normalizedPath.includes('/blog/') && normalizedPath !== '/blog';
+        const isTemplatesPage = normalizedPath === '/templates' || normalizedPath.startsWith('/templates/');
+        const isDocsPage = normalizedPath === '/docs' || normalizedPath.startsWith('/docs/');
+        const isAgentsPage = normalizedPath === '/agents' || normalizedPath.startsWith('/agents/');
+        const isContactPage = normalizedPath === '/contact';
+        const isTermsPage = normalizedPath === '/terms';
+        const isPrivacyPage = normalizedPath === '/privacy';
+        const isGlossaryPage = normalizedPath === '/glossary' || normalizedPath.startsWith('/glossary/');
         const hasThemeToggle = isSchoolArticle || isBlogArticle;
         
-        // Pages that always use light theme
-        const isAlwaysLightPage = isEssaysPage || isAboutPage || isSchoolPage;
+        // Pages that always use light theme (Navy Calm)
+        const isAlwaysLightPage = isEssaysPage || isAboutPage || isSchoolPage || isTemplatesPage || isDocsPage || isAgentsPage || isContactPage || isTermsPage || isPrivacyPage || isGlossaryPage;
         
         // Check for homepage themes
         if (isHomepage) {
@@ -207,7 +214,7 @@ export default function Navigation({
             nav.style.borderBottom = 'none';
             nav.style.backdropFilter = 'none';
             if (navInner) {
-            (navInner as HTMLElement).style.textShadow = '0 2px 4px rgba(0, 0, 0, 0.5)';
+            (navInner as HTMLElement).style.textShadow = 'none';
             }
           } else if (isHomepage && isLightMode) {
             // Homepage light mode - warm cream transparent
@@ -249,7 +256,7 @@ export default function Navigation({
             nav.style.background = navyDarkBg;
             nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.4)';
             nav.style.borderBottom = `1px solid ${navyDarkBorder}`;
-          } else {
+        } else {
             nav.style.background = 'rgba(24, 24, 27, 0.98)';
             nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.3)';
             nav.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
@@ -262,7 +269,7 @@ export default function Navigation({
           if (isNavyDark) {
             nav.style.background = `rgba(10, 37, 64, ${progress * 0.95})`;
           } else {
-            nav.style.background = `rgba(31, 31, 35, ${progress * 0.85})`;
+          nav.style.background = `rgba(31, 31, 35, ${progress * 0.85})`;
           }
           nav.style.backdropFilter = `blur(${progress * 20}px)`;
         } else if (isHomepage && isLightMode) {
@@ -384,9 +391,10 @@ export default function Navigation({
             {!isMobile && (
               <Link
                 href="/templates/"
-                className="nav-link"
+                className={`nav-link nav-link-templates ${pathname?.startsWith('/templates') ? 'active' : ''}`}
                 style={{
-                  color: isLightMode ? '#475569' : 'rgba(255, 255, 255, 0.85)',
+                  color: isLightMode ? 'rgba(10, 37, 64, 0.7)' : 'rgba(255, 255, 255, 0.85)',
+                  textShadow: 'none',
                 }}
               >
                 Templates

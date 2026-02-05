@@ -9,8 +9,8 @@ const ShareSection = ({ onShare, copiedLink, theme, isDarkMode = true }) => {
     muted: isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(15, 23, 42, 0.7)',
     border: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(15, 23, 42, 0.1)',
     divider: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.05)',
-    accent: isDarkMode ? '#8b5cf6' : '#7c3aed',
-    accentBg: isDarkMode ? 'rgba(139, 92, 246, 0.1)' : 'rgba(124, 58, 237, 0.1)'
+    accent: isDarkMode ? '#00D4AA' : '#00A896',
+    accentBg: isDarkMode ? 'rgba(0, 168, 150, 0.1)' : 'rgba(0, 168, 150, 0.1)'
   };
 
   const styles = {

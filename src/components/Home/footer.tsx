@@ -7,17 +7,17 @@ import Logo from "@/components/Logo";
 import { getPageSuffix } from "./navigation";
 import { elevatedDarkTheme } from '@/lib/theme';
 
-// Light theme colors for footer - Violet Mist palette
+// Light theme colors for footer - Navy Calm palette
 const lightThemeFooter = {
-  bg: '#f8fafc',
-  bgGradient: 'linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%)',
-  border: 'rgba(15, 23, 42, 0.08)',
-  text: '#0f172a',
-  muted: '#334155',
-  subtle: '#64748b',
-  faint: '#94a3b8',
-  accent: '#7c3aed',
-  accentGlow: 'rgba(124, 58, 237, 0.2)',
+  bg: '#F8FAFC',
+  bgGradient: 'linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%)',
+  border: 'rgba(10, 37, 64, 0.08)',
+  text: '#0A2540',
+  muted: 'rgba(10, 37, 64, 0.7)',
+  subtle: 'rgba(10, 37, 64, 0.5)',
+  faint: 'rgba(10, 37, 64, 0.4)',
+  accent: '#00A896',
+  accentGlow: 'rgba(0, 168, 150, 0.2)',
 };
 
 // Navy Dark theme colors for footer
@@ -49,9 +49,18 @@ export default function Footer () {
         const isEssaysPage = normalizedPath === '/essays' || normalizedPath.startsWith('/essays/');
         const isAboutPage = normalizedPath === '/about';
         const isSchoolPage = normalizedPath === '/school';
+        const isTemplatesPage = normalizedPath === '/templates' || normalizedPath.startsWith('/templates/');
+        const isDocsPage = normalizedPath === '/docs' || normalizedPath.startsWith('/docs/');
+        const isAgentsPage = normalizedPath === '/agents' || normalizedPath.startsWith('/agents/');
+        const isContactPage = normalizedPath === '/contact';
+        const isTermsPage = normalizedPath === '/terms';
+        const isPrivacyPage = normalizedPath === '/privacy';
+        const isGlossaryPage = normalizedPath === '/glossary' || normalizedPath.startsWith('/glossary/');
         
-        // Essays, About, and School pages always use light theme
-        if (isEssaysPage || isAboutPage || isSchoolPage) {
+        // Pages that always use light theme (Navy Calm)
+        const isAlwaysLightPage = isEssaysPage || isAboutPage || isSchoolPage || isTemplatesPage || isDocsPage || isAgentsPage || isContactPage || isTermsPage || isPrivacyPage || isGlossaryPage;
+        
+        if (isAlwaysLightPage) {
           setIsLightMode(true);
           setIsNavyDark(false);
         } else if (isHomepage) {
@@ -149,9 +158,8 @@ export default function Footer () {
           <FooterColumn 
             title="Explore"
             links={[
+              { href: "/templates/", text: "Templates" },
               { href: "/essays/", text: "Visual Essays" },
-              { href: "/scrollytelling/", text: "Scrollytelling" },
-              { href: "/templates/essay", text: "Essay Templates" },
             ]}
           />
           
@@ -159,7 +167,7 @@ export default function Footer () {
             title="Learn"
             links={[
               { href: "/school/", text: "School" },
-              { href: "/agentic-workflows/", text: "Agentic Workflows" },
+              { href: "/agents/", text: "Agents" },
             ]}
           />
           

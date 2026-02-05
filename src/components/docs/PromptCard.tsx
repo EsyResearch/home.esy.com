@@ -12,7 +12,7 @@ const colors = {
   muted: 'rgba(255, 255, 255, 0.75)',
   border: 'rgba(255, 255, 255, 0.08)',
   borderSubtle: 'rgba(255, 255, 255, 0.05)',
-  accentLight: '#a78bfa',
+  accentLight: '#00D4AA',
   success: '#22c55e',
 };
 
@@ -64,9 +64,9 @@ export function PromptCard({ title, prompt, category }: PromptCardProps) {
                 letterSpacing: '0.05em',
                 borderRadius: '8px',
                 marginBottom: '0.625rem',
-                background: 'rgba(139, 92, 246, 0.2)',
+                background: 'rgba(0, 168, 150, 0.2)',
                 color: colors.accentLight,
-                border: '1px solid rgba(139, 92, 246, 0.3)'
+                border: '1px solid rgba(0, 168, 150, 0.3)'
               }}
             >
               {category}
@@ -96,7 +96,7 @@ export function PromptCard({ title, prompt, category }: PromptCardProps) {
           title="Copy prompt"
           aria-label={copied ? "Copied!" : "Copy prompt"}
           onMouseEnter={(e) => {
-            if (!copied) e.currentTarget.style.backgroundColor = 'rgba(139, 92, 246, 0.1)';
+            if (!copied) e.currentTarget.style.backgroundColor = 'rgba(0, 168, 150, 0.1)';
           }}
           onMouseLeave={(e) => {
             if (!copied) e.currentTarget.style.backgroundColor = colors.surface;

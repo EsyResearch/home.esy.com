@@ -30,14 +30,14 @@ const ContactPage = () => {
   }, []);
 
   const currentTheme = {
-    bg: '#0a0a0f',
-    elevated: '#16161f',
-    text: '#ffffff',
-    muted: 'rgba(255, 255, 255, 0.7)',
-    subtle: 'rgba(255, 255, 255, 0.5)',
-    faint: 'rgba(255, 255, 255, 0.3)',
-    border: 'rgba(255, 255, 255, 0.05)',
-    accent: '#8b5cf6'
+    bg: '#FFFFFF',
+    elevated: '#F8FAFC',
+    text: '#0A2540',
+    muted: 'rgba(10, 37, 64, 0.7)',
+    subtle: 'rgba(10, 37, 64, 0.5)',
+    faint: 'rgba(10, 37, 64, 0.3)',
+    border: 'rgba(10, 37, 64, 0.08)',
+    accent: '#00A896'
   };
 
   const contactPaths = [

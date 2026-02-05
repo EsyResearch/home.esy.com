@@ -7,7 +7,7 @@ const theme = {
   text: '#fafafa',
   muted: 'rgba(255, 255, 255, 0.7)',
   border: 'rgba(255, 255, 255, 0.08)',
-  accent: '#8b5cf6',
+  accent: '#00A896',
 };
 
 interface FeatureCardProps {
@@ -68,13 +68,13 @@ export function FeatureCard({
                 width: '48px',
                 height: '48px',
                 borderRadius: '12px',
-                background: 'rgba(139, 92, 246, 0.15)',
-                border: '1px solid rgba(139, 92, 246, 0.2)',
+                background: 'rgba(0, 168, 150, 0.15)',
+                border: '1px solid rgba(0, 168, 150, 0.2)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#a78bfa',
-                boxShadow: '0 4px 12px rgba(139, 92, 246, 0.15)',
+                color: '#00A896',
+                boxShadow: '0 4px 12px rgba(0, 168, 150, 0.15)',
               }}
             >
               {icon}
@@ -84,7 +84,7 @@ export function FeatureCard({
             <span
               style={{
                 padding: '0.25rem 0.625rem',
-                background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
+                background: 'linear-gradient(135deg, #00A896 0%, #00D4AA 100%)',
                 color: '#ffffff',
                 borderRadius: '8px',
                 fontSize: '0.65rem',

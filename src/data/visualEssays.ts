@@ -685,7 +685,7 @@ export const visualEssays: VisualEssay[] = [
     href: "/essays/etymology/the-word-essay",
     tags: ["essay etymology", "Montaigne", "Francis Bacon", "Virginia Woolf", "James Baldwin", "Joan Didion", "typography", "literary history", "Garamond", "essay form", "word origin"],
     visualStyle: "photorealistic",
-    heroImage: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Montaigne_Essais_Manuscript.jpg",
+    heroImage: "https://upload.wikimedia.org/wikipedia/commons/5/5a/Portrait_of_Michel_de_Montaigne%2C_circa_unknown.jpg",
   },
   {
     id: "orwells-1984",

@@ -25,7 +25,7 @@ export function WorkflowStep({
       <div 
         className="absolute left-[17px] top-10 bottom-0 w-0.5"
         style={{
-          background: 'linear-gradient(180deg, rgba(139, 92, 246, 0.4) 0%, rgba(236, 72, 153, 0.15) 100%)',
+          background: 'linear-gradient(180deg, rgba(0, 168, 150, 0.4) 0%, rgba(0, 212, 170, 0.15) 100%)',
         }}
       />
 
@@ -33,8 +33,8 @@ export function WorkflowStep({
       <div 
         className="absolute left-0 top-0 w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm"
         style={{
-          background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
-          boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)',
+          background: 'linear-gradient(135deg, #00A896 0%, #00D4AA 100%)',
+          boxShadow: '0 4px 12px rgba(0, 168, 150, 0.3)',
         }}
       >
         {number}

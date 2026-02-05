@@ -36,7 +36,7 @@ const MockingbirdFeaturedImage = () => {
     imageGraphic: {
       width: '100%',
       height: '100%',
-      background: 'radial-gradient(circle at 30% 50%, rgba(139, 92, 246, 0.2) 0%, transparent 50%)',
+      background: 'radial-gradient(circle at 30% 50%, rgba(0, 168, 150, 0.2) 0%, transparent 50%)',
       position: 'relative',
       display: 'flex',
       alignItems: 'center',
@@ -57,7 +57,7 @@ const MockingbirdFeaturedImage = () => {
       height: '100%',
       background: 'linear-gradient(135deg, #2a2a3a 0%, #16161f 100%)',
       borderRadius: '8px',
-      border: '1px solid rgba(139, 92, 246, 0.3)',
+      border: '1px solid rgba(0, 168, 150, 0.3)',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -81,12 +81,12 @@ const MockingbirdFeaturedImage = () => {
     codeFloating: {
       position: 'absolute',
       padding: '0.5rem 1rem',
-      backgroundColor: 'rgba(139, 92, 246, 0.1)',
-      border: '1px solid rgba(139, 92, 246, 0.3)',
+      backgroundColor: 'rgba(0, 168, 150, 0.1)',
+      border: '1px solid rgba(0, 168, 150, 0.3)',
       borderRadius: '6px',
       fontFamily: 'Monaco, Consolas, monospace',
       fontSize: '0.875rem',
-      color: '#8b5cf6',
+      color: '#00A896',
       whiteSpace: 'nowrap'
     }
   };
@@ -103,7 +103,7 @@ const MockingbirdFeaturedImage = () => {
               <div style={{ 
                 width: '100px', 
                 height: '2px', 
-                backgroundColor: '#8b5cf6',
+                backgroundColor: '#00A896',
                 margin: '0 auto'
               }} />
             </div>

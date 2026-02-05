@@ -6,7 +6,18 @@ import GlossaryGrid from '@/components/Glossary/GlossaryGrid';
 import GlossarySidebar from '@/components/Glossary/GlossarySidebar';
 import { Theme, GlossaryTerm, GlossaryCategory, TermOfDay, CategoryType } from '@/types';
 import { useScrollHeaderSearch } from '@/hooks/useScrollHeaderSearch';
-import { elevatedDarkTheme } from '@/lib/theme';
+
+// Navy Calm Light Theme for Glossary
+const navyCalmLightTheme: Theme = {
+  bg: '#FFFFFF',
+  elevated: '#F8F9FA',
+  text: '#0A2540',
+  muted: 'rgba(10, 37, 64, 0.7)',
+  subtle: 'rgba(10, 37, 64, 0.5)',
+  faint: 'rgba(10, 37, 64, 0.4)',
+  border: 'rgba(10, 37, 64, 0.1)',
+  accent: '#00A896',
+};
 
 const GlossaryPage = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -36,7 +47,7 @@ const GlossaryPage = () => {
     };
   }, []);
 
-  const currentTheme: Theme = elevatedDarkTheme as Theme;
+  const currentTheme: Theme = navyCalmLightTheme;
 
   // Metrics summary
   const metrics = {
@@ -352,11 +363,11 @@ const GlossaryPage = () => {
 
   const categories: GlossaryCategory[] = [
     { id: 'all', name: 'All', icon: null, color: currentTheme.subtle },
-    { id: 'writing', name: 'Writing', icon: FileText, color: '#8b5cf6' },
-    { id: 'structure', name: 'Structure', icon: Brain, color: '#f59e0b' },
-    { id: 'research', name: 'Research', icon: Globe, color: '#ef4444' },
-    { id: 'citation', name: 'Citation', icon: Lightbulb, color: '#10b981' },
-    { id: 'grammar', name: 'Grammar', icon: Code, color: '#8b5cf6' }
+    { id: 'writing', name: 'Writing', icon: FileText, color: '#00A896' },
+    { id: 'structure', name: 'Structure', icon: Brain, color: '#0A2540' },
+    { id: 'research', name: 'Research', icon: Globe, color: '#2A9D8F' },
+    { id: 'citation', name: 'Citation', icon: Lightbulb, color: '#F59E0B' },
+    { id: 'grammar', name: 'Grammar', icon: Code, color: '#6C757D' }
   ];
 
   // Filter and sort terms
@@ -400,14 +411,7 @@ const GlossaryPage = () => {
     ));
   };
 
-  const formatViews = (views: number) => {
-    if (views >= 1000) {
-      return (views / 1000).toFixed(1) + 'k';
-    }
-    return views.toString();
-  };
-
-  // Sidebar data (Term of Day, Recent Terms)
+  // Sidebar data (Term of Day)
   const termOfDay: TermOfDay = {
     term: 'Thesis Statement',
     definition: 'A concise summary of the main point or claim of an essay, usually appearing in the introduction.',
@@ -416,12 +420,6 @@ const GlossaryPage = () => {
     views: 2987,
     isNew: true
   };
-
-  const recentTerms = glossaryTerms.slice(0, 5).map(t => ({ 
-    term: t.term, 
-    category: t.category, 
-    views: t.views 
-  }));
 
   return (
     <div className="academic-page" style={{
@@ -704,7 +702,6 @@ const GlossaryPage = () => {
               setHoveredTerm={setHoveredTerm}
               getCategoryColor={getCategoryColor}
               getPopularityDots={getPopularityDots}
-              formatViews={formatViews}
               windowWidth={windowWidth}
             />
           </div>
@@ -712,7 +709,6 @@ const GlossaryPage = () => {
           <div style={{ marginTop: windowWidth < 1024 ? '2rem' : 0 }}>
             <GlossarySidebar
               termOfDay={termOfDay}
-              recentTerms={recentTerms}
               currentTheme={currentTheme}
               getCategoryColor={getCategoryColor}
             />

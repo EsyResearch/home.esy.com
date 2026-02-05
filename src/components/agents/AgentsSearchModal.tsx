@@ -13,7 +13,7 @@ const theme = {
   muted: 'rgba(250, 250, 250, 0.7)',
   subtle: 'rgba(250, 250, 250, 0.45)',
   border: 'rgba(250, 250, 250, 0.06)',
-  accent: '#a78bfa',
+  accent: '#00A896',
 };
 
 const typeIcons: Record<PageType, React.ReactNode> = {
@@ -232,7 +232,7 @@ export function AgentsSearchModal({ isOpen, onClose }: AgentsSearchModalProps) {
                       width: '28px',
                       height: '28px',
                       borderRadius: '6px',
-                      background: 'rgba(167, 139, 250, 0.12)',
+                      background: 'rgba(0, 168, 150, 0.12)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',

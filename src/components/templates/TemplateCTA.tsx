@@ -34,7 +34,7 @@ export default function TemplateCTA({
         gap: '0.625rem',
         padding: isPrimary ? '1rem 2rem' : '0.75rem 1.5rem',
         background: isPrimary
-          ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.9) 0%, rgba(124, 58, 237, 0.9) 100%)'
+          ? 'linear-gradient(135deg, rgba(0, 168, 150, 0.9) 0%, rgba(0, 168, 150, 1) 100%)'
           : 'transparent',
         color: isPrimary ? '#ffffff' : elevatedDarkTheme.accent,
         border: isPrimary

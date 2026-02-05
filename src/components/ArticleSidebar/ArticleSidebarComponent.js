@@ -18,17 +18,17 @@ const ArticleSidebarComponent = ({
   const [isSubscribed, setIsSubscribed] = useState(false);
   const sidebarRef = useRef(null);
 
-  // Default theme if not provided
+  // Default theme if not provided - Navy Calm
   const theme = currentTheme || {
-    text: isDarkMode ? '#ffffff' : '#000000',
-    muted: isDarkMode ? 'rgba(255, 255, 255, 0.6)' : 'rgba(0, 0, 0, 0.6)',
-    subtle: isDarkMode ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.4)',
-    elevated: isDarkMode ? '#1a1a24' : '#f9fafb',
-    card: isDarkMode ? '#16161f' : '#ffffff',
-    border: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
-    accent: '#8b5cf6',
-    accentLight: '#a78bfa',
-    bg: isDarkMode ? '#0a0a0f' : '#ffffff'
+    text: isDarkMode ? '#ffffff' : '#0A2540',
+    muted: isDarkMode ? 'rgba(255, 255, 255, 0.6)' : 'rgba(10, 37, 64, 0.7)',
+    subtle: isDarkMode ? 'rgba(255, 255, 255, 0.4)' : 'rgba(10, 37, 64, 0.5)',
+    elevated: isDarkMode ? '#0F3460' : '#F8F9FA',
+    card: isDarkMode ? '#0A2540' : '#ffffff',
+    border: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(10, 37, 64, 0.08)',
+    accent: '#00A896',
+    accentLight: '#00D4AA',
+    bg: isDarkMode ? '#0A2540' : '#ffffff'
   };
 
   // Update active section based on scroll
@@ -360,7 +360,7 @@ const ArticleSidebarComponent = ({
                 padding: '0.75rem 1.5rem',
                 background: isSubscribed 
                   ? `linear-gradient(135deg, #10b981 0%, #059669 100%)`
-                  : `linear-gradient(135deg, ${theme.accent} 0%, #7c3aed 100%)`,
+                  : `linear-gradient(135deg, ${theme.accent} 0%, #00D4AA 100%)`,
                 color: '#ffffff',
                 border: 'none',
                 borderRadius: '12px',

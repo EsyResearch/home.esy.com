@@ -4,12 +4,12 @@ import React from 'react';
 import Image from 'next/image';
 
 const ArticleHero = ({ category, title, author, date, readTime, theme, isDarkMode = true }) => {
-  // Default theme if not provided
+  // Default theme if not provided - Navy Calm
   const currentTheme = theme || {
-    text: isDarkMode ? '#ffffff' : '#0f172a',
-    muted: isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
-    accent: isDarkMode ? '#8b5cf6' : '#7c3aed',
-    border: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+    text: isDarkMode ? '#ffffff' : '#0A2540',
+    muted: isDarkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(10, 37, 64, 0.7)',
+    accent: isDarkMode ? '#00D4AA' : '#00A896',
+    border: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(10, 37, 64, 0.08)'
   };
 
   const styles = {
@@ -55,7 +55,7 @@ const ArticleHero = ({ category, title, author, date, readTime, theme, isDarkMod
       width: '48px',
       height: '48px',
       borderRadius: '50%',
-      backgroundColor: 'rgba(139, 92, 246, 0.2)',
+      backgroundColor: 'rgba(0, 168, 150, 0.2)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',

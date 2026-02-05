@@ -17,7 +17,7 @@ import './visual-essays.css';
 
 // Manual featured essay override (for hero with clean photographic image)
 // Set to null to use the latest essay automatically
-const FEATURED_ESSAY_ID = "the-history-of-languages";
+const FEATURED_ESSAY_ID = "the-word-essay";
 
 const featuredEssay = FEATURED_ESSAY_ID
   ? publishedVisualEssays.find(e => e.id === FEATURED_ESSAY_ID) || latestEssay
@@ -155,7 +155,7 @@ const EditorialHero: React.FC = () => {
             alt={featuredEssay.title}
             fill
             sizes="100vw"
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', objectPosition: 'center 15%' }}
             priority
             unoptimized
             onError={() => setImageError(true)}

@@ -27,7 +27,7 @@ export default function DocsLayout({
     <div 
       style={{ 
         minHeight: '100vh',
-        backgroundColor: '#18181b',
+        backgroundColor: '#FFFFFF',
       }}
     >
       {/* Main Content */}

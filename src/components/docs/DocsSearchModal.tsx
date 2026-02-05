@@ -12,7 +12,7 @@ const theme = {
   muted: 'rgba(255, 255, 255, 0.7)',
   subtle: 'rgba(255, 255, 255, 0.5)',
   border: 'rgba(255, 255, 255, 0.08)',
-  accent: '#8b5cf6',
+  accent: '#00A896',
 };
 
 // Mock data - replace with actual search implementation
@@ -211,7 +211,7 @@ export function DocsSearchModal({ isOpen, onClose }: DocsSearchModalProps) {
                         width: '32px',
                         height: '32px',
                         borderRadius: '8px',
-                        background: 'rgba(139, 92, 246, 0.15)',
+                        background: 'rgba(0, 168, 150, 0.15)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',

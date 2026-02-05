@@ -14,17 +14,17 @@ import {
 import { DocsPageNav, DocsCallout } from "@/components/docs";
 
 const colors = {
-  bg: '#18181b',
-  elevated: '#27272a',
-  surface: '#1f1f23',
-  text: '#fafafa',
-  textSecondary: 'rgba(255, 255, 255, 0.85)',
-  muted: 'rgba(255, 255, 255, 0.7)',
-  subtle: 'rgba(255, 255, 255, 0.45)',
-  border: 'rgba(255, 255, 255, 0.06)',
-  accent: '#8b5cf6',
-  accentHover: '#7c3aed',
-  accentLight: '#a78bfa',
+  bg: '#FFFFFF',
+  elevated: '#F8FAFC',
+  surface: '#F1F5F9',
+  text: '#0A2540',
+  textSecondary: 'rgba(10, 37, 64, 0.85)',
+  muted: 'rgba(10, 37, 64, 0.7)',
+  subtle: 'rgba(10, 37, 64, 0.5)',
+  border: 'rgba(10, 37, 64, 0.08)',
+  accent: '#00A896',
+  accentHover: '#00D4AA',
+  accentLight: '#00D4AA',
 };
 
 export const metadata: Metadata = {

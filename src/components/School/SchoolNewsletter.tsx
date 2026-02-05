@@ -18,8 +18,8 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
         width: isMobile ? '150px' : '200px',
         height: isMobile ? '150px' : '200px',
         background: isDarkMode 
-          ? 'radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, transparent 70%)'
-          : 'radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%)',
+          ? 'radial-gradient(circle, rgba(0, 168, 150, 0.06) 0%, transparent 70%)'
+          : 'radial-gradient(circle, rgba(0, 168, 150, 0.08) 0%, transparent 70%)',
         borderRadius: '50%',
         zIndex: -1,
         filter: isMobile ? 'blur(30px)' : 'blur(40px)'
@@ -64,7 +64,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                 left: 0,
                 width: isMobile ? '40px' : '60px',
                 height: isMobile ? '40px' : '60px',
-                background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%)'
+                background: 'linear-gradient(135deg, rgba(0, 168, 150, 0.15) 0%, transparent 100%)'
               }} />
               
               <div style={{
@@ -73,7 +73,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                 right: 0,
                 width: isMobile ? '40px' : '60px',
                 height: isMobile ? '40px' : '60px',
-                background: 'linear-gradient(225deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%)'
+                background: 'linear-gradient(225deg, rgba(0, 168, 150, 0.15) 0%, transparent 100%)'
               }} />
               
               <div style={{
@@ -82,7 +82,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                 left: 0,
                 width: isMobile ? '40px' : '60px',
                 height: isMobile ? '40px' : '60px',
-                background: 'linear-gradient(45deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%)'
+                background: 'linear-gradient(45deg, rgba(0, 168, 150, 0.15) 0%, transparent 100%)'
               }} />
               
               <div style={{
@@ -91,7 +91,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                 right: 0,
                 width: isMobile ? '40px' : '60px',
                 height: isMobile ? '40px' : '60px',
-                background: 'linear-gradient(315deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%)'
+                background: 'linear-gradient(315deg, rgba(0, 168, 150, 0.15) 0%, transparent 100%)'
               }} />
             </>
           )}
@@ -106,7 +106,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                 transform: 'translateY(-50%)',
                 width: '3px',
                 height: isTablet ? '80px' : '120px',
-                background: 'linear-gradient(to bottom, transparent 0%, #8b5cf6 50%, transparent 100%)',
+                background: 'linear-gradient(to bottom, transparent 0%, #00A896 50%, transparent 100%)',
                 borderRadius: '2px'
               }} />
               
@@ -117,7 +117,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                 transform: 'translateY(-50%)',
                 width: '3px',
                 height: isTablet ? '80px' : '120px',
-                background: 'linear-gradient(to bottom, transparent 0%, #8b5cf6 50%, transparent 100%)',
+                background: 'linear-gradient(to bottom, transparent 0%, #00A896 50%, transparent 100%)',
                 borderRadius: '2px'
               }} />
 
@@ -128,7 +128,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                 transform: 'translateX(-50%)',
                 width: isTablet ? '80px' : '120px',
                 height: '3px',
-                background: 'linear-gradient(to right, transparent 0%, #8b5cf6 50%, transparent 100%)',
+                background: 'linear-gradient(to right, transparent 0%, #00A896 50%, transparent 100%)',
                 borderRadius: '2px'
               }} />
               
@@ -139,7 +139,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                 transform: 'translateX(-50%)',
                 width: isTablet ? '80px' : '120px',
                 height: '3px',
-                background: 'linear-gradient(to right, transparent 0%, #8b5cf6 50%, transparent 100%)',
+                background: 'linear-gradient(to right, transparent 0%, #00A896 50%, transparent 100%)',
                 borderRadius: '2px'
               }} />
             </>
@@ -155,7 +155,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
             backdropFilter: 'blur(10px)',
             border: isDarkMode 
               ? '1px solid rgba(255, 255, 255, 0.03)'
-              : '1px solid rgba(139, 92, 246, 0.1)',
+              : '1px solid rgba(0, 168, 150, 0.1)',
             borderRadius: isMobile ? '8px' : '12px',
             boxShadow: isDarkMode 
               ? '0 4px 20px rgba(10, 10, 15, 0.15)'
@@ -183,15 +183,15 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                   width: isMobile ? '48px' : '56px',
                   height: isMobile ? '48px' : '56px',
                   background: isDarkMode 
-                    ? 'rgba(139, 92, 246, 0.1)'
-                    : 'linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(139, 92, 246, 0.04) 100%)',
+                    ? 'rgba(0, 168, 150, 0.1)'
+                    : 'linear-gradient(135deg, rgba(0, 168, 150, 0.08) 0%, rgba(0, 168, 150, 0.04) 100%)',
                   borderRadius: '50%',
                   border: isDarkMode 
-                    ? '2px solid rgba(139, 92, 246, 0.2)'
-                    : '2px solid rgba(139, 92, 246, 0.15)',
+                    ? '2px solid rgba(0, 168, 150, 0.2)'
+                    : '2px solid rgba(0, 168, 150, 0.15)',
                   marginBottom: '1.5rem',
                   boxShadow: isDarkMode 
-                    ? '0 4px 12px rgba(139, 92, 246, 0.2)'
+                    ? '0 4px 12px rgba(0, 168, 150, 0.2)'
                     : 'none'
                 }}>
                   <span style={{ fontSize: isMobile ? '20px' : '24px' }}>📬</span>
@@ -238,11 +238,11 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                     padding: '0.5rem 1rem',
                     background: isDarkMode 
                       ? 'rgba(22, 22, 31, 0.5)'
-                      : 'rgba(139, 92, 246, 0.04)',
+                      : 'rgba(0, 168, 150, 0.04)',
                     borderRadius: '20px',
                     border: isDarkMode 
                       ? '1px solid rgba(255, 255, 255, 0.04)'
-                      : '1px solid rgba(139, 92, 246, 0.08)',
+                      : '1px solid rgba(0, 168, 150, 0.08)',
                     whiteSpace: 'nowrap',
                     color: isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(15, 23, 42, 0.7)',
                     fontWeight: '500'
@@ -256,11 +256,11 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                     padding: '0.5rem 1rem',
                     background: isDarkMode 
                       ? 'rgba(22, 22, 31, 0.5)'
-                      : 'rgba(139, 92, 246, 0.04)',
+                      : 'rgba(0, 168, 150, 0.04)',
                     borderRadius: '20px',
                     border: isDarkMode 
                       ? '1px solid rgba(255, 255, 255, 0.04)'
-                      : '1px solid rgba(139, 92, 246, 0.08)',
+                      : '1px solid rgba(0, 168, 150, 0.08)',
                     whiteSpace: 'nowrap',
                     color: isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(15, 23, 42, 0.7)',
                     fontWeight: '500'
@@ -293,7 +293,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                         : 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%)',
                       border: isDarkMode 
                         ? '2px solid rgba(255, 255, 255, 0.05)' 
-                        : '2px solid rgba(139, 92, 246, 0.1)',
+                        : '2px solid rgba(0, 168, 150, 0.1)',
                       borderRadius: '10px',
                       color: isDarkMode ? '#ffffff' : '#0f172a',
                       fontSize: '0.9375rem',
@@ -306,15 +306,15 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                       transition: 'all 0.2s ease'
                     }}
                     onFocus={(e) => {
-                      e.target.style.borderColor = '#8b5cf6';
+                      e.target.style.borderColor = '#00A896';
                       e.target.style.boxShadow = isDarkMode 
-                        ? '0 4px 12px rgba(10, 10, 15, 0.3), 0 0 0 3px rgba(139, 92, 246, 0.1)'
+                        ? '0 4px 12px rgba(10, 10, 15, 0.3), 0 0 0 3px rgba(0, 168, 150, 0.1)'
                         : 'none';
                     }}
                     onBlur={(e) => {
                       e.target.style.borderColor = isDarkMode 
                         ? 'rgba(255, 255, 255, 0.05)'
-                        : 'rgba(139, 92, 246, 0.1)';
+                        : 'rgba(0, 168, 150, 0.1)';
                       e.target.style.boxShadow = isDarkMode 
                         ? '0 4px 12px rgba(10, 10, 15, 0.3)'
                         : 'none';
@@ -324,7 +324,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                     onClick={handleNewsletterSubmit}
                     style={{
                       padding: isMobile ? '1rem 1.5rem' : '1rem 1.75rem',
-                      background: 'linear-gradient(135deg, #8b5cf6 0%, rgba(139, 92, 246, 0.87) 100%)',
+                      backgroundColor: '#00A896',
                       border: 'none',
                       borderRadius: '10px',
                       color: 'white',
@@ -332,7 +332,7 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                       fontWeight: '600',
                       cursor: 'pointer',
                       transition: 'all 0.2s ease',
-                      boxShadow: isDarkMode ? '0 6px 20px rgba(139, 92, 246, 0.25)' : 'none',
+                      boxShadow: isDarkMode ? '0 6px 20px rgba(0, 168, 150, 0.25)' : 'none',
                       minHeight: '48px',
                       whiteSpace: 'nowrap',
                       minWidth: isMobile ? 'auto' : '180px'
@@ -340,12 +340,12 @@ export default function SchoolNewsletter({ emailInputRef, handleNewsletterSubmit
                     onMouseEnter={(e) => {
                       const target = e.target as HTMLButtonElement;
                       target.style.transform = 'translateY(-2px)';
-                      target.style.boxShadow = isDarkMode ? '0 8px 24px rgba(139, 92, 246, 0.35)' : 'none';
+                      target.style.boxShadow = isDarkMode ? '0 8px 24px rgba(0, 168, 150, 0.35)' : 'none';
                     }}
                     onMouseLeave={(e) => {
                       const target = e.target as HTMLButtonElement;
                       target.style.transform = 'translateY(0)';
-                      target.style.boxShadow = isDarkMode ? '0 6px 20px rgba(139, 92, 246, 0.25)' : 'none';
+                      target.style.boxShadow = isDarkMode ? '0 6px 20px rgba(0, 168, 150, 0.25)' : 'none';
                     }}>
                     Get Free Tutorials
                   </button>

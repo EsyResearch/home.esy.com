@@ -23,11 +23,11 @@ interface GlossaryTermPageProps {
 }
 
 const categoryConfig: Record<string, { name: string; icon: React.ElementType; color: string }> = {
-  writing: { name: 'Writing', icon: FileText, color: '#8b5cf6' },
-  structure: { name: 'Structure', icon: Brain, color: '#f59e0b' },
-  research: { name: 'Research', icon: Globe, color: '#ef4444' },
-  citation: { name: 'Citation', icon: Lightbulb, color: '#10b981' },
-  grammar: { name: 'Grammar', icon: Code, color: '#8b5cf6' },
+  writing: { name: 'Writing', icon: FileText, color: '#00A896' },
+  structure: { name: 'Structure', icon: Brain, color: '#0A2540' },
+  research: { name: 'Research', icon: Globe, color: '#2A9D8F' },
+  citation: { name: 'Citation', icon: Lightbulb, color: '#F59E0B' },
+  grammar: { name: 'Grammar', icon: Code, color: '#6C757D' },
 };
 
 export default function GlossaryTermPage({ term }: GlossaryTermPageProps) {

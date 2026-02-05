@@ -11,8 +11,8 @@ const NewsletterSection = () => {
       maxWidth: '800px',
       margin: '8rem auto',
       padding: '4rem',
-      backgroundColor: 'rgba(139, 92, 246, 0.03)',
-      border: '1px solid rgba(139, 92, 246, 0.1)',
+      backgroundColor: 'rgba(0, 168, 150, 0.03)',
+      border: '1px solid rgba(0, 168, 150, 0.1)',
       borderRadius: '16px',
       textAlign: 'center',
       position: 'relative',
@@ -24,7 +24,7 @@ const NewsletterSection = () => {
       left: '-50%',
       width: '200%',
       height: '200%',
-      background: 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)',
+      background: 'radial-gradient(circle, rgba(0, 168, 150, 0.1) 0%, transparent 70%)',
       animation: newsletterHovered ? 'rotate 20s linear infinite' : 'none',
       opacity: newsletterHovered ? 1 : 0,
       transition: 'opacity 0.3s ease'
@@ -65,7 +65,7 @@ const NewsletterSection = () => {
     },
     newsletterButton: {
       padding: '1rem 2rem',
-      backgroundColor: '#8b5cf6',
+      backgroundColor: '#00A896',
       border: 'none',
       borderRadius: '8px',
       color: '#ffffff',
@@ -96,8 +96,8 @@ const NewsletterSection = () => {
             onChange={(e) => setEmail(e.target.value)}
             style={styles.newsletterInput}
             onFocus={(e) => {
-              e.target.style.borderColor = '#8b5cf6';
-              e.target.style.backgroundColor = 'rgba(139, 92, 246, 0.08)';
+              e.target.style.borderColor = '#00A896';
+              e.target.style.backgroundColor = 'rgba(0, 168, 150, 0.08)';
             }}
             onBlur={(e) => {
               e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';

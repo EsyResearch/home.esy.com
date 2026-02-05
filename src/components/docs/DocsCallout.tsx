@@ -4,7 +4,7 @@ import { Info, AlertTriangle, CheckCircle, Lightbulb, Zap } from "lucide-react";
 const theme = {
   text: '#fafafa',
   muted: 'rgba(255, 255, 255, 0.7)',
-  accent: '#8b5cf6',
+  accent: '#00A896',
   success: '#22c55e',
   warning: '#fbbf24',
   error: '#f87171',
@@ -44,8 +44,8 @@ const calloutStyles: Record<
   },
   tip: {
     icon: <Lightbulb className="w-5 h-5" />,
-    bg: 'rgba(139, 92, 246, 0.08)',
-    border: 'rgba(139, 92, 246, 0.2)',
+    bg: 'rgba(0, 168, 150, 0.08)',
+    border: 'rgba(0, 168, 150, 0.2)',
     iconColor: theme.accent,
   },
   note: {

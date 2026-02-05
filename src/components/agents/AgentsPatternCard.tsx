@@ -5,24 +5,24 @@ import { ArrowRight, BookOpen, Sparkles, GitBranch, Workflow } from 'lucide-reac
 import type { NavItem, PageType } from '@/lib/agents-navigation';
 
 const theme = {
-  bg: '#0f0f12',
-  surface: '#18181b',
-  elevated: '#1f1f24',
-  text: '#fafafa',
-  muted: 'rgba(250, 250, 250, 0.7)',
-  subtle: 'rgba(250, 250, 250, 0.45)',
-  border: 'rgba(250, 250, 250, 0.06)',
-  borderHover: 'rgba(250, 250, 250, 0.12)',
-  accent: '#a78bfa',
+  bg: '#FFFFFF',
+  surface: '#FFFFFF',
+  elevated: '#F8FAFC',
+  text: '#0A2540',
+  muted: 'rgba(10, 37, 64, 0.7)',
+  subtle: 'rgba(10, 37, 64, 0.5)',
+  border: 'rgba(10, 37, 64, 0.08)',
+  borderHover: 'rgba(10, 37, 64, 0.12)',
+  accent: '#00A896',
 };
 
 const typeConfig: Record<PageType, { icon: React.ReactNode; color: string }> = {
-  hub: { icon: <BookOpen className="w-5 h-5" />, color: '#a78bfa' },
-  canonical: { icon: <Sparkles className="w-5 h-5" />, color: '#c084fc' },
-  term: { icon: <BookOpen className="w-5 h-5" />, color: '#60a5fa' },
-  pattern: { icon: <GitBranch className="w-5 h-5" />, color: '#4ade80' },
-  workflow: { icon: <Workflow className="w-5 h-5" />, color: '#fbbf24' },
-  guide: { icon: <BookOpen className="w-5 h-5" />, color: '#a78bfa' },
+  hub: { icon: <BookOpen className="w-5 h-5" />, color: '#00A896' },
+  canonical: { icon: <Sparkles className="w-5 h-5" />, color: '#00A896' },
+  term: { icon: <BookOpen className="w-5 h-5" />, color: '#00A896' },
+  pattern: { icon: <GitBranch className="w-5 h-5" />, color: '#00A896' },
+  workflow: { icon: <Workflow className="w-5 h-5" />, color: '#00A896' },
+  guide: { icon: <BookOpen className="w-5 h-5" />, color: '#00A896' },
 };
 
 interface AgentsPatternCardProps {
@@ -50,7 +50,7 @@ export function AgentsPatternCard({ item }: AgentsPatternCardProps) {
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = theme.borderHover;
         e.currentTarget.style.transform = 'translateY(-2px)';
-        e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.3)';
+        e.currentTarget.style.boxShadow = '0 8px 24px rgba(10, 37, 64, 0.1)';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.borderColor = theme.border;
@@ -125,7 +125,7 @@ export function AgentsPatternCard({ item }: AgentsPatternCardProps) {
           top: '1rem',
           right: '1rem',
           padding: '0.125rem 0.5rem',
-          background: `linear-gradient(135deg, ${theme.accent} 0%, #c084fc 100%)`,
+          background: `linear-gradient(135deg, ${theme.accent} 0%, #00D4AA 100%)`,
           color: theme.bg,
           borderRadius: '4px',
           fontSize: '0.5625rem',

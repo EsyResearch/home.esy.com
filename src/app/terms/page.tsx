@@ -8,14 +8,14 @@ const EsyTermsPage = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   const colors = {
-    background: '#0a0a0f',
-    surface: '#16161f',
-    accent: '#8b5cf6',
-    textPrimary: 'rgba(255, 255, 255, 1)',
-    textSecondary: 'rgba(255, 255, 255, 0.7)',
-    textTertiary: 'rgba(255, 255, 255, 0.5)',
-    textQuaternary: 'rgba(255, 255, 255, 0.3)',
-    border: 'rgba(255, 255, 255, 0.05)'
+    background: '#FFFFFF',
+    surface: '#F8FAFC',
+    accent: '#00A896',
+    textPrimary: '#0A2540',
+    textSecondary: 'rgba(10, 37, 64, 0.7)',
+    textTertiary: 'rgba(10, 37, 64, 0.5)',
+    textQuaternary: 'rgba(10, 37, 64, 0.3)',
+    border: 'rgba(10, 37, 64, 0.08)'
   };
 
   // Enhanced table of contents with semantic groupings

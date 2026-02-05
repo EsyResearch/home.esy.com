@@ -123,18 +123,18 @@ const TableOfContents = ({ items, scrollProgress }) => {
     },
     progressBar: {
       height: '2px',
-      backgroundColor: 'rgba(139, 92, 246, 0.1)',
+      backgroundColor: 'rgba(0, 168, 150, 0.1)',
       borderRadius: '2px',
       overflow: 'hidden',
       position: 'relative'
     },
     progressFill: {
       height: '100%',
-      background: 'linear-gradient(90deg, #8b5cf6 0%, #a78bfa 100%)',
+      background: 'linear-gradient(90deg, #00A896 0%, #00D4AA 100%)',
       width: `${scrollProgress}%`,
       borderRadius: '2px',
       transition: 'width 0.2s ease',
-      boxShadow: '0 0 10px rgba(139, 92, 246, 0.3)'
+      boxShadow: '0 0 10px rgba(0, 168, 150, 0.3)'
     },
     progressText: {
       fontSize: '0.75rem',
@@ -148,7 +148,7 @@ const TableOfContents = ({ items, scrollProgress }) => {
       backdropFilter: 'blur(12px) saturate(1.5)',
       borderRadius: '16px',
       padding: isExpanded ? '1.5rem' : '1rem',
-      border: '1px solid rgba(139, 92, 246, 0.1)',
+      border: '1px solid rgba(0, 168, 150, 0.1)',
       boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.03)',
       maxHeight: isExpanded ? '420px' : '60px',
       overflowY: isExpanded ? 'auto' : 'hidden',
@@ -167,7 +167,7 @@ const TableOfContents = ({ items, scrollProgress }) => {
       fontWeight: '600',
       textTransform: 'uppercase',
       letterSpacing: '0.08em',
-      background: 'linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%)',
+      background: 'linear-gradient(135deg, #00D4AA 0%, #00A896 100%)',
       backgroundClip: 'text',
       WebkitBackgroundClip: 'text',
       color: 'transparent',
@@ -177,8 +177,8 @@ const TableOfContents = ({ items, scrollProgress }) => {
       gap: '0.5rem'
     },
     toggleButton: {
-      background: 'rgba(139, 92, 246, 0.1)',
-      border: '1px solid rgba(139, 92, 246, 0.2)',
+      background: 'rgba(0, 168, 150, 0.1)',
+      border: '1px solid rgba(0, 168, 150, 0.2)',
       borderRadius: '8px',
       width: '28px',
       height: '28px',
@@ -208,12 +208,12 @@ const TableOfContents = ({ items, scrollProgress }) => {
     },
     tocItemActive: {
       color: '#ffffff',
-      backgroundColor: 'rgba(139, 92, 246, 0.15)',
+      backgroundColor: 'rgba(0, 168, 150, 0.15)',
       transform: 'translateX(4px)'
     },
     tocItemHover: {
       color: 'rgba(255, 255, 255, 0.8)',
-      backgroundColor: 'rgba(139, 92, 246, 0.08)'
+      backgroundColor: 'rgba(0, 168, 150, 0.08)'
     },
     tocNumber: {
       display: 'inline-flex',
@@ -224,15 +224,15 @@ const TableOfContents = ({ items, scrollProgress }) => {
       borderRadius: '8px',
       fontSize: '0.75rem',
       fontWeight: '600',
-      backgroundColor: 'rgba(139, 92, 246, 0.1)',
+      backgroundColor: 'rgba(0, 168, 150, 0.1)',
       color: 'rgba(167, 139, 250, 0.6)',
       flexShrink: 0,
       transition: 'all 0.25s ease'
     },
     tocNumberActive: {
-      backgroundColor: 'rgba(139, 92, 246, 0.3)',
-      color: '#a78bfa',
-      boxShadow: '0 0 12px rgba(139, 92, 246, 0.3)'
+      backgroundColor: 'rgba(0, 168, 150, 0.3)',
+      color: '#00D4AA',
+      boxShadow: '0 0 12px rgba(0, 168, 150, 0.3)'
     },
     tocText: {
       lineHeight: 1.4,
@@ -306,12 +306,12 @@ const TableOfContents = ({ items, scrollProgress }) => {
               style={styles.toggleButton}
               onClick={() => setIsExpanded(!isExpanded)}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(139, 92, 246, 0.2)';
-                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.4)';
+                e.currentTarget.style.backgroundColor = 'rgba(0, 168, 150, 0.2)';
+                e.currentTarget.style.borderColor = 'rgba(0, 168, 150, 0.4)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(139, 92, 246, 0.1)';
-                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.2)';
+                e.currentTarget.style.backgroundColor = 'rgba(0, 168, 150, 0.1)';
+                e.currentTarget.style.borderColor = 'rgba(0, 168, 150, 0.2)';
               }}
             >
               <svg 
@@ -412,12 +412,12 @@ const TableOfContents = ({ items, scrollProgress }) => {
         }
         
         nav div::-webkit-scrollbar-thumb {
-          background: linear-gradient(180deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0.3));
+          background: linear-gradient(180deg, rgba(0, 168, 150, 0.2), rgba(0, 168, 150, 0.3));
           border-radius: 3px;
         }
         
         nav div::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(180deg, rgba(139, 92, 246, 0.3), rgba(139, 92, 246, 0.5));
+          background: linear-gradient(180deg, rgba(0, 168, 150, 0.3), rgba(0, 168, 150, 0.5));
         }
         
         /* Smooth animations for all transitions */
@@ -429,10 +429,10 @@ const TableOfContents = ({ items, scrollProgress }) => {
         /* Pulse animation for active number */
         @keyframes pulse {
           0%, 100% {
-            box-shadow: 0 0 12px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 0 12px rgba(0, 168, 150, 0.3);
           }
           50% {
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+            box-shadow: 0 0 20px rgba(0, 168, 150, 0.5);
           }
         }
       `}</style>

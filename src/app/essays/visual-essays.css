@@ -16,27 +16,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
 /* ============================================
-   DESIGN TOKENS - Violet Mist Light Theme
+   DESIGN TOKENS - Navy Calm Light Theme
    ============================================ */
 .visual-essays-index {
-  /* Backgrounds - Subtle violet-tinted whites */
-  --color-bg: #faf8ff;
-  --color-surface: #ffffff;
-  --color-elevated: #f8fafc;
+  /* Backgrounds - Clean whites */
+  --color-bg: #FFFFFF;
+  --color-surface: #FFFFFF;
+  --color-elevated: #F8FAFC;
   
-  /* Borders - Soft slate with violet undertones */
-  --color-border: rgba(124, 58, 237, 0.08);
-  --color-border-strong: rgba(124, 58, 237, 0.15);
+  /* Borders - Soft navy undertones */
+  --color-border: rgba(10, 37, 64, 0.08);
+  --color-border-strong: rgba(10, 37, 64, 0.15);
   
-  /* Text - Deep slate for excellent readability */
-  --color-text: #1e293b;
-  --color-text-secondary: #475569;
-  --color-text-tertiary: #64748b;
+  /* Text - Deep navy for excellent readability */
+  --color-text: #0A2540;
+  --color-text-secondary: rgba(10, 37, 64, 0.7);
+  --color-text-tertiary: rgba(10, 37, 64, 0.5);
   
-  /* Accent - Violet 600 */
-  --color-accent: #7c3aed;
-  --color-accent-muted: rgba(124, 58, 237, 0.08);
-  --color-accent-glow: rgba(124, 58, 237, 0.15);
+  /* Accent - Teal */
+  --color-accent: #00A896;
+  --color-accent-muted: rgba(0, 168, 150, 0.08);
+  --color-accent-glow: rgba(0, 168, 150, 0.15);
   
   --font-editorial: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Inter', -apple-system, sans-serif;
@@ -169,11 +169,12 @@
 
 .hero-fullbleed-title {
   font-family: var(--font-editorial);
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--color-text);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #FFFFFF;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8), 0 4px 24px rgba(0, 0, 0, 0.5);
   margin-bottom: calc(var(--space-unit) * 1.5);
 }
 
@@ -185,11 +186,12 @@
 
 .hero-fullbleed-subtitle {
   font-family: var(--font-editorial);
-  font-size: clamp(1rem, 2.5vw, 1.375rem);
-  font-weight: 300;
+  font-size: clamp(0.9rem, 2vw, 1.125rem);
+  font-weight: 400;
   font-style: italic;
-  line-height: 1.4;
-  color: var(--color-text-secondary);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
   margin-bottom: calc(var(--space-unit) * 3);
 }
 
@@ -933,7 +935,7 @@
   letter-spacing: 0.05em;
   padding: 0.1875rem 0.375rem;
   background: var(--color-accent);
-  color: #000;
+  color: #FFFFFF;
   border-radius: 4px;
   margin-left: auto;
 }
@@ -1323,7 +1325,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0.125rem 0.375rem;
-  background: rgba(124, 58, 237, 0.08);
+  background: rgba(0, 168, 150, 0.08);
   color: var(--color-text-tertiary);
   border-radius: 3px;
   border: 1px solid rgba(255, 255, 255, 0.04);
@@ -1398,7 +1400,7 @@
 .artifact-cta-link:hover {
   color: var(--color-text);
   border-color: var(--color-border-strong);
-  background: rgba(124, 58, 237, 0.03);
+  background: rgba(0, 168, 150, 0.03);
 }
 
 .artifact-cta-link-primary {

@@ -7,7 +7,7 @@ const theme = {
   muted: 'rgba(250, 250, 250, 0.7)',
   subtle: 'rgba(250, 250, 250, 0.45)',
   border: 'rgba(250, 250, 250, 0.08)',
-  accent: '#a78bfa',
+  accent: '#00A896',
 };
 
 interface AgentsTermChipProps {
@@ -23,8 +23,8 @@ export function AgentsTermChip({ slug, label }: AgentsTermChipProps) {
         display: 'inline-flex',
         alignItems: 'center',
         padding: '0.25rem 0.625rem',
-        background: 'rgba(167, 139, 250, 0.08)',
-        border: '1px solid rgba(167, 139, 250, 0.15)',
+        background: 'rgba(0, 168, 150, 0.08)',
+        border: '1px solid rgba(0, 168, 150, 0.15)',
         borderRadius: '6px',
         fontSize: '0.8125rem',
         fontWeight: 500,
@@ -34,12 +34,12 @@ export function AgentsTermChip({ slug, label }: AgentsTermChipProps) {
         letterSpacing: '-0.01em',
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.background = 'rgba(167, 139, 250, 0.15)';
-        e.currentTarget.style.borderColor = 'rgba(167, 139, 250, 0.25)';
+        e.currentTarget.style.background = 'rgba(0, 168, 150, 0.15)';
+        e.currentTarget.style.borderColor = 'rgba(0, 168, 150, 0.25)';
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.background = 'rgba(167, 139, 250, 0.08)';
-        e.currentTarget.style.borderColor = 'rgba(167, 139, 250, 0.15)';
+        e.currentTarget.style.background = 'rgba(0, 168, 150, 0.08)';
+        e.currentTarget.style.borderColor = 'rgba(0, 168, 150, 0.15)';
       }}
     >
       {label}

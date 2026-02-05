@@ -76,14 +76,14 @@ const EsySchool = () => {
       border: 'rgba(255, 255, 255, 0.1)',
       accent: '#00D4AA'
     },
-    // Category colors - Navy/Teal harmonious palette
+    // Category colors - Navy/Teal harmonious palette (solid colors, no gradients)
     colors: {
-      'ai-research': { bg: 'linear-gradient(135deg, #00A896 0%, #00D4AA 100%)', accent: '#5EEAD4' },
-      'prompt-engineering': { bg: 'linear-gradient(135deg, #0A2540 0%, #0F3460 100%)', accent: '#6C757D' },
-      'llm-basics': { bg: 'linear-gradient(135deg, #2A9D8F 0%, #3AB4A5 100%)', accent: '#99F6E4' },
-      'literature': { bg: 'linear-gradient(135deg, #D4A017 0%, #E8B92E 100%)', accent: '#FCD34D' },
-      visual: { bg: 'linear-gradient(135deg, #00A896 0%, #00D4AA 100%)', accent: '#5EEAD4' },
-      process: { bg: 'linear-gradient(135deg, #6C757D 0%, #8E9AAF 100%)', accent: '#ADB5BD' }
+      'ai-research': { bg: '#00A896', accent: '#5EEAD4' },
+      'prompt-engineering': { bg: '#0A2540', accent: '#6C757D' },
+      'llm-basics': { bg: '#2A9D8F', accent: '#99F6E4' },
+      'literature': { bg: '#D4A017', accent: '#FCD34D' },
+      visual: { bg: '#00A896', accent: '#5EEAD4' },
+      process: { bg: '#6C757D', accent: '#ADB5BD' }
     }
   };
 
@@ -732,7 +732,7 @@ const EsySchool = () => {
               transition: 'all 0.2s ease'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#8b5cf6';
+              e.currentTarget.style.backgroundColor = '#00A896';
               e.currentTarget.style.transform = 'translateY(-2px)';
             }}
             onMouseLeave={(e) => {

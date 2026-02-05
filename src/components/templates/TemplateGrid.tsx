@@ -36,7 +36,7 @@ export default function TemplateGrid({
         style={{
           textAlign: 'center',
           padding: '4rem 2rem',
-          color: 'rgba(255, 255, 255, 0.5)',
+          color: 'rgba(10, 37, 64, 0.5)',
           fontStyle: 'italic',
         }}
       >

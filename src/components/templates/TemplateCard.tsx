@@ -4,7 +4,24 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Sparkles, Star } from 'lucide-react';
 import { Template } from '@/lib/templates';
-import { elevatedDarkTheme } from '@/lib/theme';
+
+// Navy Calm Light Theme
+const theme = {
+  bg: '#FFFFFF',
+  elevated: '#F8FAFC',
+  text: '#0A2540',
+  muted: 'rgba(10, 37, 64, 0.7)',
+  subtle: 'rgba(10, 37, 64, 0.5)',
+  faint: 'rgba(10, 37, 64, 0.35)',
+  border: 'rgba(10, 37, 64, 0.08)',
+  accent: '#00A896',
+  accentLight: 'rgba(0, 168, 150, 0.08)',
+  accentBorder: 'rgba(0, 168, 150, 0.25)',
+  success: '#2A9D8F',
+  warning: '#F59E0B',
+  error: '#EF4444',
+  info: '#3B82F6',
+};
 
 interface TemplateCardProps {
   template: Template;
@@ -14,33 +31,20 @@ interface TemplateCardProps {
 export default function TemplateCard({ template, showCategory = true }: TemplateCardProps) {
   const [isHovered, setIsHovered] = useState(false);
 
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case 'prompt':
-        return elevatedDarkTheme.accent;
-      case 'template':
-        return elevatedDarkTheme.info;
-      case 'bundle':
-        return elevatedDarkTheme.success;
-      default:
-        return elevatedDarkTheme.accent;
-    }
-  };
+  const getCategoryColor = () => theme.accent;
 
   const getDifficultyColor = (difficulty?: string) => {
     switch (difficulty) {
       case 'beginner':
-        return elevatedDarkTheme.success;
+        return theme.success;
       case 'intermediate':
-        return elevatedDarkTheme.warning;
+        return theme.warning;
       case 'advanced':
-        return elevatedDarkTheme.error;
+        return theme.error;
       default:
-        return elevatedDarkTheme.muted;
+        return theme.subtle;
     }
   };
-
-  const categoryColor = getCategoryColor(template.category);
 
   return (
     <Link
@@ -51,18 +55,15 @@ export default function TemplateCard({ template, showCategory = true }: Template
     >
       <article
         style={{
-          background: isHovered
-            ? 'linear-gradient(135deg, rgba(39, 39, 42, 0.95) 0%, rgba(31, 31, 35, 0.8) 100%)'
-            : 'linear-gradient(135deg, rgba(31, 31, 35, 0.9) 0%, rgba(39, 39, 42, 0.7) 100%)',
-          border: `1px solid ${isHovered ? `${categoryColor}50` : elevatedDarkTheme.border}`,
+          background: theme.bg,
+          border: `1px solid ${isHovered ? theme.accentBorder : theme.border}`,
           borderRadius: '16px',
           padding: 'clamp(1.25rem, 3vw, 1.75rem)',
-          transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          transition: 'all 0.25s ease',
           cursor: 'pointer',
-          backdropFilter: 'blur(10px)',
           boxShadow: isHovered
-            ? `0 12px 32px ${categoryColor}30`
-            : elevatedDarkTheme.shadows.md,
+            ? '0 12px 32px rgba(10, 37, 64, 0.1)'
+            : '0 2px 8px rgba(10, 37, 64, 0.04)',
           transform: isHovered ? 'translateY(-4px)' : 'translateY(0)',
           height: '100%',
           display: 'flex',
@@ -84,15 +85,14 @@ export default function TemplateCard({ template, showCategory = true }: Template
             {showCategory && (
               <span
                 style={{
-                  padding: '0.25rem 0.75rem',
-                  background: `${categoryColor}20`,
-                  color: categoryColor,
-                  borderRadius: '12px',
-                  fontSize: '0.7rem',
+                  padding: '0.25rem 0.625rem',
+                  background: theme.accentLight,
+                  color: theme.accent,
+                  borderRadius: '6px',
+                  fontSize: '0.6875rem',
                   fontWeight: 600,
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em',
-                  border: `1px solid ${categoryColor}30`,
                 }}
               >
                 {template.category}
@@ -101,11 +101,11 @@ export default function TemplateCard({ template, showCategory = true }: Template
             {template.difficulty && (
               <span
                 style={{
-                  padding: '0.25rem 0.625rem',
+                  padding: '0.25rem 0.5rem',
                   background: `${getDifficultyColor(template.difficulty)}15`,
                   color: getDifficultyColor(template.difficulty),
-                  borderRadius: '8px',
-                  fontSize: '0.65rem',
+                  borderRadius: '6px',
+                  fontSize: '0.625rem',
                   fontWeight: 500,
                   textTransform: 'capitalize',
                 }}
@@ -118,14 +118,14 @@ export default function TemplateCard({ template, showCategory = true }: Template
             {template.isNew && (
               <span
                 style={{
-                  padding: '0.25rem 0.625rem',
-                  background: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)',
-                  color: '#ffffff',
-                  borderRadius: '8px',
-                  fontSize: '0.65rem',
+                  padding: '0.25rem 0.5rem',
+                  background: theme.accent,
+                  color: '#FFFFFF',
+                  borderRadius: '6px',
+                  fontSize: '0.625rem',
                   fontWeight: 700,
                   textTransform: 'uppercase',
-                  letterSpacing: '0.05em',
+                  letterSpacing: '0.03em',
                 }}
               >
                 New
@@ -134,11 +134,11 @@ export default function TemplateCard({ template, showCategory = true }: Template
             {template.isPro && (
               <span
                 style={{
-                  padding: '0.25rem 0.625rem',
-                  background: `${elevatedDarkTheme.warning}20`,
-                  color: elevatedDarkTheme.warning,
-                  borderRadius: '8px',
-                  fontSize: '0.65rem',
+                  padding: '0.25rem 0.5rem',
+                  background: `${theme.warning}15`,
+                  color: theme.warning,
+                  borderRadius: '6px',
+                  fontSize: '0.625rem',
                   fontWeight: 600,
                   display: 'flex',
                   alignItems: 'center',
@@ -150,10 +150,7 @@ export default function TemplateCard({ template, showCategory = true }: Template
               </span>
             )}
             {template.isFeatured && !template.isNew && !template.isPro && (
-              <Sparkles
-                size={16}
-                style={{ color: elevatedDarkTheme.accent, opacity: 0.8 }}
-              />
+              <Sparkles size={16} style={{ color: theme.accent, opacity: 0.8 }} />
             )}
           </div>
         </div>
@@ -162,11 +159,11 @@ export default function TemplateCard({ template, showCategory = true }: Template
         <h3
           style={{
             fontSize: 'clamp(1.1rem, 2.5vw, 1.25rem)',
-            fontWeight: 400,
+            fontWeight: 500,
             letterSpacing: '-0.01em',
             lineHeight: 1.3,
             marginBottom: '0.75rem',
-            color: elevatedDarkTheme.text,
+            color: theme.text,
             fontFamily: 'var(--font-literata)',
           }}
         >
@@ -177,7 +174,7 @@ export default function TemplateCard({ template, showCategory = true }: Template
         <p
           style={{
             fontSize: 'clamp(0.85rem, 2vw, 0.9375rem)',
-            color: elevatedDarkTheme.muted,
+            color: theme.muted,
             lineHeight: 1.6,
             marginBottom: '1rem',
             flexGrow: 1,
@@ -201,10 +198,10 @@ export default function TemplateCard({ template, showCategory = true }: Template
                 key={tag}
                 style={{
                   padding: '0.2rem 0.5rem',
-                  background: elevatedDarkTheme.borderSubtle,
-                  color: elevatedDarkTheme.subtle,
-                  borderRadius: '6px',
-                  fontSize: '0.7rem',
+                  background: 'rgba(10, 37, 64, 0.04)',
+                  color: theme.subtle,
+                  borderRadius: '4px',
+                  fontSize: '0.6875rem',
                 }}
               >
                 {tag}
@@ -214,8 +211,8 @@ export default function TemplateCard({ template, showCategory = true }: Template
               <span
                 style={{
                   padding: '0.2rem 0.5rem',
-                  color: elevatedDarkTheme.subtle,
-                  fontSize: '0.7rem',
+                  color: theme.faint,
+                  fontSize: '0.6875rem',
                 }}
               >
                 +{template.tags.length - 3}
@@ -230,7 +227,7 @@ export default function TemplateCard({ template, showCategory = true }: Template
             display: 'flex',
             alignItems: 'center',
             gap: '0.5rem',
-            color: categoryColor,
+            color: theme.accent,
             fontSize: '0.875rem',
             fontWeight: 500,
             marginTop: 'auto',
@@ -249,4 +246,3 @@ export default function TemplateCard({ template, showCategory = true }: Template
     </Link>
   );
 }
-

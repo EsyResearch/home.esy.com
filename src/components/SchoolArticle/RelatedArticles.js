@@ -27,8 +27,8 @@ const RelatedArticles = ({ articles, theme, isDarkMode = true }) => {
     elevated: isDarkMode ? '#16161f' : '#f8fafc',
     text: isDarkMode ? '#ffffff' : '#0f172a',
     muted: isDarkMode ? 'rgba(255, 255, 255, 0.4)' : 'rgba(15, 23, 42, 0.4)',
-    accent: isDarkMode ? '#8b5cf6' : '#7c3aed',
-    border: isDarkMode ? 'rgba(139, 92, 246, 0.3)' : 'rgba(124, 58, 237, 0.3)'
+    accent: isDarkMode ? '#00D4AA' : '#00A896',
+    border: isDarkMode ? 'rgba(0, 168, 150, 0.2)' : 'rgba(10, 37, 64, 0.1)'
   };
 
   const styles = {

@@ -2,8 +2,20 @@
 
 import React from 'react';
 import { TemplateSubcategory, TemplateDifficulty } from '@/lib/templates';
-import { elevatedDarkTheme } from '@/lib/theme';
 import { Filter, X } from 'lucide-react';
+
+// Navy Calm Light Theme
+const theme = {
+  bg: '#FFFFFF',
+  text: '#0A2540',
+  muted: 'rgba(10, 37, 64, 0.7)',
+  subtle: 'rgba(10, 37, 64, 0.5)',
+  faint: 'rgba(10, 37, 64, 0.35)',
+  border: 'rgba(10, 37, 64, 0.08)',
+  accent: '#00A896',
+  accentLight: 'rgba(0, 168, 150, 0.08)',
+  accentBorder: 'rgba(0, 168, 150, 0.25)',
+};
 
 interface TemplateFiltersProps {
   subcategories: TemplateSubcategory[];
@@ -54,11 +66,12 @@ export default function TemplateFilters({
             display: 'flex',
             alignItems: 'center',
             gap: '0.5rem',
-            color: elevatedDarkTheme.text,
+            color: theme.text,
             fontWeight: 500,
+            fontSize: '0.9375rem',
           }}
         >
-          <Filter size={18} />
+          <Filter size={16} style={{ color: theme.subtle }} />
           Filters
         </div>
         {hasActiveFilters && (
@@ -71,7 +84,7 @@ export default function TemplateFilters({
               padding: '0.25rem 0.5rem',
               background: 'transparent',
               border: 'none',
-              color: elevatedDarkTheme.accent,
+              color: theme.accent,
               fontSize: '0.8rem',
               cursor: 'pointer',
               borderRadius: '4px',
@@ -89,11 +102,11 @@ export default function TemplateFilters({
         <div>
           <h4
             style={{
-              fontSize: '0.75rem',
+              fontSize: '0.6875rem',
               fontWeight: 600,
               textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              color: elevatedDarkTheme.subtle,
+              letterSpacing: '0.06em',
+              color: theme.subtle,
               marginBottom: '0.75rem',
             }}
           >
@@ -107,21 +120,14 @@ export default function TemplateFilters({
                   onSubcategoryChange(activeSubcategory === sub.id ? null : sub.id)
                 }
                 style={{
-                  padding: '0.625rem 0.875rem',
+                  padding: '0.5rem 0.75rem',
                   background:
-                    activeSubcategory === sub.id
-                      ? `${elevatedDarkTheme.accent}15`
-                      : 'transparent',
+                    activeSubcategory === sub.id ? theme.accentLight : 'transparent',
                   border: `1px solid ${
-                    activeSubcategory === sub.id
-                      ? `${elevatedDarkTheme.accent}30`
-                      : 'transparent'
+                    activeSubcategory === sub.id ? theme.accentBorder : 'transparent'
                   }`,
                   borderRadius: '8px',
-                  color:
-                    activeSubcategory === sub.id
-                      ? elevatedDarkTheme.accent
-                      : elevatedDarkTheme.muted,
+                  color: activeSubcategory === sub.id ? theme.accent : theme.muted,
                   fontSize: '0.875rem',
                   fontWeight: activeSubcategory === sub.id ? 500 : 400,
                   cursor: 'pointer',
@@ -136,7 +142,7 @@ export default function TemplateFilters({
                 <span
                   style={{
                     fontSize: '0.75rem',
-                    color: elevatedDarkTheme.subtle,
+                    color: theme.faint,
                   }}
                 >
                   {sub.count}
@@ -151,11 +157,11 @@ export default function TemplateFilters({
       <div>
         <h4
           style={{
-            fontSize: '0.75rem',
+            fontSize: '0.6875rem',
             fontWeight: 600,
             textTransform: 'uppercase',
-            letterSpacing: '0.05em',
-            color: elevatedDarkTheme.subtle,
+            letterSpacing: '0.06em',
+            color: theme.subtle,
             marginBottom: '0.75rem',
           }}
         >
@@ -169,21 +175,14 @@ export default function TemplateFilters({
                 onDifficultyChange(activeDifficulty === diff.id ? null : diff.id)
               }
               style={{
-                padding: '0.625rem 0.875rem',
+                padding: '0.5rem 0.75rem',
                 background:
-                  activeDifficulty === diff.id
-                    ? `${elevatedDarkTheme.accent}15`
-                    : 'transparent',
+                  activeDifficulty === diff.id ? theme.accentLight : 'transparent',
                 border: `1px solid ${
-                  activeDifficulty === diff.id
-                    ? `${elevatedDarkTheme.accent}30`
-                    : 'transparent'
+                  activeDifficulty === diff.id ? theme.accentBorder : 'transparent'
                 }`,
                 borderRadius: '8px',
-                color:
-                  activeDifficulty === diff.id
-                    ? elevatedDarkTheme.accent
-                    : elevatedDarkTheme.muted,
+                color: activeDifficulty === diff.id ? theme.accent : theme.muted,
                 fontSize: '0.875rem',
                 fontWeight: activeDifficulty === diff.id ? 500 : 400,
                 cursor: 'pointer',
@@ -199,4 +198,3 @@ export default function TemplateFilters({
     </aside>
   );
 }
-
