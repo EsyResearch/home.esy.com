@@ -2,49 +2,26 @@
 
 import Link from 'next/link';
 import { ChevronRight, Home } from 'lucide-react';
-import { useEffect, useState } from 'react';
 
-// Light theme
-const lightTheme = {
+// Light theme (Navy Calm)
+const theme = {
   text: '#0A2540',
   muted: 'rgba(10, 37, 64, 0.7)',
   subtle: 'rgba(10, 37, 64, 0.5)',
   accent: '#00A896',
 };
 
-// Dark theme
-const darkTheme = {
-  text: '#FFFFFF',
-  muted: 'rgba(255, 255, 255, 0.7)',
-  subtle: 'rgba(255, 255, 255, 0.5)',
-  accent: '#00D4AA',
-};
-
 interface BreadcrumbItem {
-  title: string;
-  href: string;
+  label: string;
+  href?: string;
+  isCurrent?: boolean;
 }
 
-interface AgentsBreadcrumbsProps {
+interface BreadcrumbsProps {
   items: BreadcrumbItem[];
 }
 
-export function AgentsBreadcrumbs({ items }: AgentsBreadcrumbsProps) {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    const checkTheme = () => {
-      const storedTheme = localStorage.getItem('theme-agents');
-      setIsDarkMode(storedTheme === 'dark');
-    };
-    
-    checkTheme();
-    window.addEventListener('themechange', checkTheme);
-    return () => window.removeEventListener('themechange', checkTheme);
-  }, []);
-
-  const theme = isDarkMode ? darkTheme : lightTheme;
-
+export default function Breadcrumbs({ items }: BreadcrumbsProps) {
   return (
     <nav 
       aria-label="Breadcrumb"
@@ -54,7 +31,6 @@ export function AgentsBreadcrumbs({ items }: AgentsBreadcrumbsProps) {
         gap: '0.375rem',
         fontSize: '0.8125rem',
         color: theme.subtle,
-        marginBottom: '1.5rem',
         flexWrap: 'wrap',
       }}
     >
@@ -64,7 +40,7 @@ export function AgentsBreadcrumbs({ items }: AgentsBreadcrumbsProps) {
         
         return (
           <span 
-            key={item.href}
+            key={item.href || item.label}
             style={{ 
               display: 'flex', 
               alignItems: 'center', 
@@ -77,16 +53,16 @@ export function AgentsBreadcrumbs({ items }: AgentsBreadcrumbsProps) {
                 style={{ color: theme.subtle, opacity: 0.5 }} 
               />
             )}
-            {isLast ? (
+            {isLast || item.isCurrent ? (
               <span style={{ 
                 color: theme.muted,
                 fontWeight: 500,
               }}>
-                {item.title}
+                {item.label}
               </span>
             ) : (
               <Link
-                href={item.href}
+                href={item.href || '#'}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -103,7 +79,7 @@ export function AgentsBreadcrumbs({ items }: AgentsBreadcrumbsProps) {
                 }}
               >
                 {isFirst && <Home className="w-3 h-3" />}
-                {item.title}
+                {item.label}
               </Link>
             )}
           </span>
@@ -112,5 +88,3 @@ export function AgentsBreadcrumbs({ items }: AgentsBreadcrumbsProps) {
     </nav>
   );
 }
-
-export default AgentsBreadcrumbs;

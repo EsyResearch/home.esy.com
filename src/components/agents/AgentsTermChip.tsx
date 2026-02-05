@@ -1,13 +1,33 @@
 "use client";
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { navyCalmDarkTheme } from '@/lib/theme';
 
-const theme = {
-  text: '#fafafa',
-  muted: 'rgba(250, 250, 250, 0.7)',
-  subtle: 'rgba(250, 250, 250, 0.45)',
-  border: 'rgba(250, 250, 250, 0.08)',
+// Light theme
+const lightTheme = {
+  text: '#0A2540',
+  muted: 'rgba(10, 37, 64, 0.7)',
+  subtle: 'rgba(10, 37, 64, 0.5)',
+  border: 'rgba(10, 37, 64, 0.08)',
   accent: '#00A896',
+  accentBg: 'rgba(0, 168, 150, 0.08)',
+  accentBgHover: 'rgba(0, 168, 150, 0.15)',
+  accentBorder: 'rgba(0, 168, 150, 0.15)',
+  accentBorderHover: 'rgba(0, 168, 150, 0.25)',
+};
+
+// Dark theme
+const darkTheme = {
+  text: navyCalmDarkTheme.text,
+  muted: navyCalmDarkTheme.muted,
+  subtle: navyCalmDarkTheme.subtle,
+  border: navyCalmDarkTheme.border,
+  accent: navyCalmDarkTheme.accent,
+  accentBg: navyCalmDarkTheme.accentTint,
+  accentBgHover: navyCalmDarkTheme.accentGlow,
+  accentBorder: navyCalmDarkTheme.accentBorder,
+  accentBorderHover: 'rgba(0, 212, 170, 0.35)',
 };
 
 interface AgentsTermChipProps {
@@ -16,6 +36,21 @@ interface AgentsTermChipProps {
 }
 
 export function AgentsTermChip({ slug, label }: AgentsTermChipProps) {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const storedTheme = localStorage.getItem('theme-agents');
+      setIsDarkMode(storedTheme === 'dark');
+    };
+    
+    checkTheme();
+    window.addEventListener('themechange', checkTheme);
+    return () => window.removeEventListener('themechange', checkTheme);
+  }, []);
+
+  const theme = isDarkMode ? darkTheme : lightTheme;
+
   return (
     <Link
       href={`/agents/terms/${slug}`}
@@ -23,8 +58,8 @@ export function AgentsTermChip({ slug, label }: AgentsTermChipProps) {
         display: 'inline-flex',
         alignItems: 'center',
         padding: '0.25rem 0.625rem',
-        background: 'rgba(0, 168, 150, 0.08)',
-        border: '1px solid rgba(0, 168, 150, 0.15)',
+        background: theme.accentBg,
+        border: `1px solid ${theme.accentBorder}`,
         borderRadius: '6px',
         fontSize: '0.8125rem',
         fontWeight: 500,
@@ -34,12 +69,12 @@ export function AgentsTermChip({ slug, label }: AgentsTermChipProps) {
         letterSpacing: '-0.01em',
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.background = 'rgba(0, 168, 150, 0.15)';
-        e.currentTarget.style.borderColor = 'rgba(0, 168, 150, 0.25)';
+        e.currentTarget.style.background = theme.accentBgHover;
+        e.currentTarget.style.borderColor = theme.accentBorderHover;
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.background = 'rgba(0, 168, 150, 0.08)';
-        e.currentTarget.style.borderColor = 'rgba(0, 168, 150, 0.15)';
+        e.currentTarget.style.background = theme.accentBg;
+        e.currentTarget.style.borderColor = theme.accentBorder;
       }}
     >
       {label}
@@ -52,6 +87,21 @@ interface AgentsRelatedTermsProps {
 }
 
 export function AgentsRelatedTerms({ terms }: AgentsRelatedTermsProps) {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const storedTheme = localStorage.getItem('theme-agents');
+      setIsDarkMode(storedTheme === 'dark');
+    };
+    
+    checkTheme();
+    window.addEventListener('themechange', checkTheme);
+    return () => window.removeEventListener('themechange', checkTheme);
+  }, []);
+
+  const theme = isDarkMode ? darkTheme : lightTheme;
+
   if (terms.length === 0) return null;
 
   return (

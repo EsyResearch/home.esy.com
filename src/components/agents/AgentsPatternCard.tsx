@@ -1,10 +1,13 @@
 "use client";
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowRight, BookOpen, Sparkles, GitBranch, Workflow } from 'lucide-react';
 import type { NavItem, PageType } from '@/lib/agents-navigation';
+import { navyCalmDarkTheme } from '@/lib/theme';
 
-const theme = {
+// Light theme
+const lightTheme = {
   bg: '#FFFFFF',
   surface: '#FFFFFF',
   elevated: '#F8FAFC',
@@ -14,6 +17,19 @@ const theme = {
   border: 'rgba(10, 37, 64, 0.08)',
   borderHover: 'rgba(10, 37, 64, 0.12)',
   accent: '#00A896',
+};
+
+// Dark theme
+const darkTheme = {
+  bg: navyCalmDarkTheme.bg,
+  surface: navyCalmDarkTheme.surface,
+  elevated: navyCalmDarkTheme.bgElevated,
+  text: navyCalmDarkTheme.text,
+  muted: navyCalmDarkTheme.muted,
+  subtle: navyCalmDarkTheme.subtle,
+  border: navyCalmDarkTheme.border,
+  borderHover: navyCalmDarkTheme.borderStrong,
+  accent: navyCalmDarkTheme.accent,
 };
 
 const typeConfig: Record<PageType, { icon: React.ReactNode; color: string }> = {
@@ -30,7 +46,21 @@ interface AgentsPatternCardProps {
 }
 
 export function AgentsPatternCard({ item }: AgentsPatternCardProps) {
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const config = typeConfig[item.type];
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const storedTheme = localStorage.getItem('theme-agents');
+      setIsDarkMode(storedTheme === 'dark');
+    };
+    
+    checkTheme();
+    window.addEventListener('themechange', checkTheme);
+    return () => window.removeEventListener('themechange', checkTheme);
+  }, []);
+
+  const theme = isDarkMode ? darkTheme : lightTheme;
   
   return (
     <Link
@@ -50,7 +80,9 @@ export function AgentsPatternCard({ item }: AgentsPatternCardProps) {
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = theme.borderHover;
         e.currentTarget.style.transform = 'translateY(-2px)';
-        e.currentTarget.style.boxShadow = '0 8px 24px rgba(10, 37, 64, 0.1)';
+        e.currentTarget.style.boxShadow = isDarkMode
+          ? '0 8px 24px rgba(0, 0, 0, 0.4)'
+          : '0 8px 24px rgba(10, 37, 64, 0.1)';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.borderColor = theme.border;
@@ -126,7 +158,7 @@ export function AgentsPatternCard({ item }: AgentsPatternCardProps) {
           right: '1rem',
           padding: '0.125rem 0.5rem',
           background: `linear-gradient(135deg, ${theme.accent} 0%, #00D4AA 100%)`,
-          color: theme.bg,
+          color: '#FFFFFF',
           borderRadius: '4px',
           fontSize: '0.5625rem',
           fontWeight: 700,
@@ -147,6 +179,21 @@ interface AgentsSectionCardsProps {
 }
 
 export function AgentsSectionCards({ title, description, items }: AgentsSectionCardsProps) {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const storedTheme = localStorage.getItem('theme-agents');
+      setIsDarkMode(storedTheme === 'dark');
+    };
+    
+    checkTheme();
+    window.addEventListener('themechange', checkTheme);
+    return () => window.removeEventListener('themechange', checkTheme);
+  }, []);
+
+  const theme = isDarkMode ? darkTheme : lightTheme;
+
   return (
     <section style={{ marginBottom: '3rem' }}>
       <h2 style={{

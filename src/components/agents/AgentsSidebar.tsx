@@ -29,9 +29,10 @@ import {
   X,
   Menu,
 } from "lucide-react";
+import { navyCalmDarkTheme } from "@/lib/theme";
 
 // Navy Calm Light Theme
-const theme = {
+const lightTheme = {
   bg: '#FFFFFF',
   surface: '#F8FAFC',
   elevated: '#F1F5F9',
@@ -63,7 +64,7 @@ const iconMap: Record<string, React.ReactNode> = {
   search: <Search className="w-4 h-4" />,
 };
 
-function NavItemComponent({ item, isActive }: { item: NavItem; isActive: boolean }) {
+function NavItemComponent({ item, isActive, theme }: { item: NavItem; isActive: boolean; theme: typeof lightTheme }) {
   const [isHovered, setIsHovered] = useState(false);
   
   return (
@@ -106,7 +107,7 @@ function NavItemComponent({ item, isActive }: { item: NavItem; isActive: boolean
           width: '24px',
           height: '24px',
           borderRadius: '6px',
-          background: isActive ? 'rgba(0, 168, 150, 0.2)' : theme.surface,
+          background: isActive ? (theme.accentMuted || 'rgba(0, 168, 150, 0.2)') : theme.surface,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -134,7 +135,7 @@ function NavItemComponent({ item, isActive }: { item: NavItem; isActive: boolean
           <span style={{
             padding: '0.125rem 0.375rem',
             background: 'linear-gradient(135deg, #00A896 0%, #00D4AA 100%)',
-            color: '#0f0f12',
+            color: '#FFFFFF',
             borderRadius: '4px',
             fontSize: '0.5625rem',
             fontWeight: 700,
@@ -149,7 +150,7 @@ function NavItemComponent({ item, isActive }: { item: NavItem; isActive: boolean
   );
 }
 
-function NavSectionComponent({ section }: { section: NavSection }) {
+function NavSectionComponent({ section, theme }: { section: NavSection; theme: typeof lightTheme }) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
@@ -199,6 +200,7 @@ function NavSectionComponent({ section }: { section: NavSection }) {
               key={item.href}
               item={item}
               isActive={normalizedPath === item.href}
+              theme={theme}
             />
           ))}
         </div>
@@ -209,6 +211,33 @@ function NavSectionComponent({ section }: { section: NavSection }) {
 
 export function AgentsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Listen for theme changes
+  useEffect(() => {
+    const checkTheme = () => {
+      const storedTheme = localStorage.getItem('theme-agents');
+      setIsDarkMode(storedTheme === 'dark');
+    };
+    
+    checkTheme();
+    window.addEventListener('themechange', checkTheme);
+    return () => window.removeEventListener('themechange', checkTheme);
+  }, []);
+
+  const theme = isDarkMode ? {
+    bg: navyCalmDarkTheme.bg,
+    surface: navyCalmDarkTheme.surface,
+    elevated: navyCalmDarkTheme.bgElevated,
+    text: navyCalmDarkTheme.text,
+    muted: navyCalmDarkTheme.muted,
+    subtle: navyCalmDarkTheme.subtle,
+    border: navyCalmDarkTheme.border,
+    borderHover: navyCalmDarkTheme.borderStrong,
+    accent: navyCalmDarkTheme.accent,
+    accentMuted: navyCalmDarkTheme.accentTint,
+    accentBorder: navyCalmDarkTheme.accentBorder,
+  } : lightTheme;
 
   // Close mobile nav on route change
   const pathname = usePathname();
@@ -242,10 +271,12 @@ export function AgentsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
           zIndex: 50,
           padding: '0.875rem',
           borderRadius: '50%',
-          background: `linear-gradient(135deg, ${theme.accent} 0%, #c084fc 100%)`,
-          color: theme.bg,
+          background: `linear-gradient(135deg, ${theme.accent} 0%, #00D4AA 100%)`,
+          color: '#FFFFFF',
           border: 'none',
-          boxShadow: '0 8px 24px rgba(0, 168, 150, 0.4)',
+          boxShadow: isDarkMode 
+            ? '0 8px 24px rgba(0, 212, 170, 0.4)'
+            : '0 8px 24px rgba(0, 168, 150, 0.4)',
           cursor: 'pointer',
           display: 'none',
         }}
@@ -299,7 +330,7 @@ export function AgentsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
             href="/agents"
             size={42}
             showText={false}
-            theme="light"
+            theme={isDarkMode ? "navy-dark" : "light"}
           />
           
           <button
@@ -379,7 +410,7 @@ export function AgentsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
           padding: '1rem 0.5rem',
         }}>
           {agentsNavigation.map((section) => (
-            <NavSectionComponent key={section.title} section={section} />
+            <NavSectionComponent key={section.title} section={section} theme={theme} />
           ))}
         </nav>
 
@@ -396,23 +427,29 @@ export function AgentsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
               display: 'block',
               width: '100%',
               padding: '0.75rem 1rem',
-              background: `linear-gradient(135deg, ${theme.accent} 0%, #c084fc 100%)`,
-              color: theme.bg,
+              background: `linear-gradient(135deg, ${theme.accent} 0%, ${isDarkMode ? '#00D4AA' : '#00D4AA'} 100%)`,
+              color: '#FFFFFF',
               borderRadius: '8px',
               textAlign: 'center',
               fontSize: '0.8125rem',
               fontWeight: 600,
               textDecoration: 'none',
               transition: 'all 0.2s ease',
-              boxShadow: '0 4px 12px rgba(0, 168, 150, 0.25)',
+              boxShadow: isDarkMode 
+                ? '0 4px 12px rgba(0, 212, 170, 0.3)'
+                : '0 4px 12px rgba(0, 168, 150, 0.25)',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-1px)';
-              e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 168, 150, 0.35)';
+              e.currentTarget.style.boxShadow = isDarkMode
+                ? '0 6px 16px rgba(0, 212, 170, 0.4)'
+                : '0 6px 16px rgba(0, 168, 150, 0.35)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 168, 150, 0.25)';
+              e.currentTarget.style.boxShadow = isDarkMode
+                ? '0 4px 12px rgba(0, 212, 170, 0.3)'
+                : '0 4px 12px rgba(0, 168, 150, 0.25)';
             }}
           >
             Try Esy Free →
@@ -446,9 +483,9 @@ export function AgentsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
           }
         }
         
-        /* Scrollbar styling */
+        /* Scrollbar styling - Light Mode */
         .agents-sidebar::-webkit-scrollbar {
-          width: 4px;
+          width: 6px;
         }
         
         .agents-sidebar::-webkit-scrollbar-track {
@@ -456,12 +493,26 @@ export function AgentsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
         }
         
         .agents-sidebar::-webkit-scrollbar-thumb {
-          background: rgba(250, 250, 250, 0.08);
-          border-radius: 2px;
+          background: rgba(10, 37, 64, 0.12);
+          border-radius: 3px;
+          border: 1px solid transparent;
+          background-clip: padding-box;
         }
         
         .agents-sidebar::-webkit-scrollbar-thumb:hover {
-          background: rgba(250, 250, 250, 0.12);
+          background: rgba(10, 37, 64, 0.2);
+          background-clip: padding-box;
+        }
+        
+        /* Scrollbar styling - Dark Mode */
+        body.agents-dark .agents-sidebar::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.15);
+          background-clip: padding-box;
+        }
+        
+        body.agents-dark .agents-sidebar::-webkit-scrollbar-thumb:hover {
+          background: rgba(255, 255, 255, 0.25);
+          background-clip: padding-box;
         }
       `}</style>
     </>

@@ -428,18 +428,17 @@ const GlossaryPage = () => {
       color: currentTheme.text,
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
     }}>
-      {/* Breadcrumbs */}
-      <div style={{ marginTop: '6rem', marginBottom: '0.5rem' }}>
-        <Breadcrumbs 
-          items={[
-            { label: 'Home', href: '/' },
-            { label: 'Glossary', isCurrent: true }
-          ]}
-        />
-      </div>
-      
-      <header style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+      <header style={{ paddingTop: '7rem', paddingBottom: '2rem' }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
+          {/* Breadcrumbs */}
+          <div style={{ marginBottom: '1.5rem' }}>
+            <Breadcrumbs 
+              items={[
+                { label: 'Home', href: '/' },
+                { label: 'Glossary', isCurrent: true }
+              ]}
+            />
+          </div>
           <div style={{
             display: 'flex',
             justifyContent: 'space-between',

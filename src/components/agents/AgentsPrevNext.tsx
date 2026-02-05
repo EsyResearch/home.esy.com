@@ -1,19 +1,35 @@
 "use client";
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { NavItem } from '@/lib/agents-navigation';
+import { navyCalmDarkTheme } from '@/lib/theme';
 
-const theme = {
-  bg: '#0f0f12',
-  surface: '#18181b',
-  elevated: '#1f1f24',
-  text: '#fafafa',
-  muted: 'rgba(250, 250, 250, 0.7)',
-  subtle: 'rgba(250, 250, 250, 0.45)',
-  border: 'rgba(250, 250, 250, 0.06)',
-  borderHover: 'rgba(250, 250, 250, 0.12)',
+// Light theme
+const lightTheme = {
+  bg: '#FFFFFF',
+  surface: '#F8FAFC',
+  elevated: '#F1F5F9',
+  text: '#0A2540',
+  muted: 'rgba(10, 37, 64, 0.7)',
+  subtle: 'rgba(10, 37, 64, 0.5)',
+  border: 'rgba(10, 37, 64, 0.08)',
+  borderHover: 'rgba(10, 37, 64, 0.12)',
   accent: '#00A896',
+};
+
+// Dark theme
+const darkTheme = {
+  bg: navyCalmDarkTheme.bg,
+  surface: navyCalmDarkTheme.surface,
+  elevated: navyCalmDarkTheme.bgElevated,
+  text: navyCalmDarkTheme.text,
+  muted: navyCalmDarkTheme.muted,
+  subtle: navyCalmDarkTheme.subtle,
+  border: navyCalmDarkTheme.border,
+  borderHover: navyCalmDarkTheme.borderStrong,
+  accent: navyCalmDarkTheme.accent,
 };
 
 interface AgentsPrevNextProps {
@@ -22,6 +38,21 @@ interface AgentsPrevNextProps {
 }
 
 export function AgentsPrevNext({ prev, next }: AgentsPrevNextProps) {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      const storedTheme = localStorage.getItem('theme-agents');
+      setIsDarkMode(storedTheme === 'dark');
+    };
+    
+    checkTheme();
+    window.addEventListener('themechange', checkTheme);
+    return () => window.removeEventListener('themechange', checkTheme);
+  }, []);
+
+  const theme = isDarkMode ? darkTheme : lightTheme;
+
   if (!prev && !next) return null;
 
   return (

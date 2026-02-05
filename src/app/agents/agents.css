@@ -18,6 +18,21 @@
   --agents-accent-muted: rgba(0, 168, 150, 0.15);
 }
 
+/* Dark Theme - Navy Calm Dark */
+body.agents-dark {
+  --agents-bg: #0A2540;
+  --agents-surface: #0F3460;
+  --agents-elevated: #0F3460;
+  --agents-card: #143D6B;
+  --agents-text: #FFFFFF;
+  --agents-muted: rgba(255, 255, 255, 0.7);
+  --agents-subtle: rgba(255, 255, 255, 0.5);
+  --agents-border: rgba(255, 255, 255, 0.1);
+  --agents-border-hover: rgba(255, 255, 255, 0.15);
+  --agents-accent: #00D4AA;
+  --agents-accent-muted: rgba(0, 212, 170, 0.1);
+}
+
 /* Layout */
 .agents-layout {
   min-height: 100vh;
@@ -333,6 +348,68 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Scrollbar styling - Light Mode */
+.agents-main::-webkit-scrollbar,
+.agents-hub::-webkit-scrollbar,
+.agents-page::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.agents-main::-webkit-scrollbar-track,
+.agents-hub::-webkit-scrollbar-track,
+.agents-page::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.agents-main::-webkit-scrollbar-thumb,
+.agents-hub::-webkit-scrollbar-thumb,
+.agents-page::-webkit-scrollbar-thumb {
+  background: rgba(10, 37, 64, 0.12);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background 0.2s ease;
+}
+
+.agents-main::-webkit-scrollbar-thumb:hover,
+.agents-hub::-webkit-scrollbar-thumb:hover,
+.agents-page::-webkit-scrollbar-thumb:hover {
+  background: rgba(10, 37, 64, 0.2);
+  background-clip: padding-box;
+}
+
+/* Scrollbar styling - Dark Mode */
+body.agents-dark .agents-main::-webkit-scrollbar-thumb,
+body.agents-dark .agents-hub::-webkit-scrollbar-thumb,
+body.agents-dark .agents-page::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  background-clip: padding-box;
+}
+
+body.agents-dark .agents-main::-webkit-scrollbar-thumb:hover,
+body.agents-dark .agents-hub::-webkit-scrollbar-thumb:hover,
+body.agents-dark .agents-page::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+  background-clip: padding-box;
+}
+
+/* Firefox scrollbar styling */
+.agents-main,
+.agents-hub,
+.agents-page,
+.agents-sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(10, 37, 64, 0.12) transparent;
+}
+
+body.agents-dark .agents-main,
+body.agents-dark .agents-hub,
+body.agents-dark .agents-page,
+body.agents-dark .agents-sidebar {
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
 }
 
 /* Print styles */
