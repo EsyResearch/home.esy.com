@@ -87,19 +87,38 @@ export default function AboutPage() {
     }}>
       {/* Hero Section */}
       <section style={{
+        position: 'relative',
         padding: '10rem 2rem 6rem',
         maxWidth: '800px',
-        margin: '0 auto'
+        margin: '0 auto',
+        overflow: 'hidden'
       }}>
+        {/* Grid Background Pattern */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: `
+            linear-gradient(rgba(10, 37, 64, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(10, 37, 64, 0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: '60px 60px',
+          maskImage: 'radial-gradient(ellipse at center, black 0%, transparent 70%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at center, black 0%, transparent 70%)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }} />
+
+        <div style={{ position: 'relative', zIndex: 1 }}>
         <h1 style={{
-          fontSize: '3rem',
+          fontSize: 'clamp(2.75rem, 6vw, 4.5rem)',
           fontWeight: 300,
-          marginBottom: '2.5rem',
+          marginBottom: '1.25rem',
           letterSpacing: '-0.02em',
-          lineHeight: 1.2,
-          fontFamily: 'var(--font-literata)'
+          lineHeight: 1.1,
+          fontFamily: 'var(--font-literata)',
+          color: theme.text
         }}>
-          About Esy
+          About <span style={{ color: theme.accent }}>Esy</span>
         </h1>
 
         <p style={{
@@ -130,6 +149,7 @@ export default function AboutPage() {
         }}>
           Esy orchestrates research, analysis, drafting, and quality assurance to produce outputs that are defensible, coherent, and ready to use.
         </p>
+        </div>
       </section>
 
       {/* The Difference - Dark Section */}

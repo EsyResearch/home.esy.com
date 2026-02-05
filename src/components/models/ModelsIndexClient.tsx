@@ -111,15 +111,15 @@ export default function ModelsIndexClient() {
           {/* Header */}
           <header style={{ marginBottom: '4rem' }}>
             <h1 style={{
-              fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+              fontSize: 'clamp(2.75rem, 6vw, 4.5rem)',
               fontWeight: 300,
-              letterSpacing: '-0.03em',
+              letterSpacing: '-0.02em',
               lineHeight: 1.1,
-              marginBottom: '1.5rem',
+              marginBottom: '1.25rem',
               color: theme.text,
               fontFamily: 'var(--font-literata)',
             }}>
-              Model Reference
+              Model <span style={{ color: theme.accent }}>Reference</span>
             </h1>
 
             <p style={{
