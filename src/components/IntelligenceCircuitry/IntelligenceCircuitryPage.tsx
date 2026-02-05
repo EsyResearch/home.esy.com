@@ -124,10 +124,10 @@ const HowItWorksSection: React.FC = () => {
       <div className="ic-hiw-container">
         <div className="ic-section-header">
           <span className="ic-section-eyebrow">How It Works</span>
-          <h2 className="ic-section-title">
+          <h2 className="ic-final-cta-headline">
             Four steps to <span className="ic-gradient-text">defensible work</span>
           </h2>
-          <p className="ic-section-description">
+          <p className="ic-final-cta-description">
             Citation-first research workflows that produce structured, auditable artifacts.
           </p>
         </div>
@@ -137,8 +137,8 @@ const HowItWorksSection: React.FC = () => {
             <div key={step.number} className="ic-hiw-step">
               <span className="ic-hiw-step-number">{step.number}</span>
               <div className="ic-hiw-step-content">
-                <h3 className="ic-hiw-step-title">{step.title}</h3>
-                <p className="ic-hiw-step-description">{step.description}</p>
+              <h3 className="ic-hiw-step-title">{step.title}</h3>
+              <p className="ic-hiw-step-description">{step.description}</p>
               </div>
             </div>
           ))}
@@ -225,7 +225,7 @@ const IntelligenceCircuitryPage: React.FC = () => {
           <div className="ic-hero-grid" />
         </div>
 
-        <div className="ic-hero-container flex items-center justify-center px-4 lg:px-8 pt-16 lg:pt-36 pb-12 lg:pb-24">
+        <div className="ic-hero-container flex items-center justify-center px-4 lg:px-8 pt-8 lg:pt-36 pb-12 lg:pb-24">
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-16 w-full max-w-[1400px] items-center">
             <div className="flex-1 text-white order-1 text-center lg:text-left">
               {/* Headline */}
@@ -236,11 +236,14 @@ const IntelligenceCircuitryPage: React.FC = () => {
                 lineHeight: 1.1, 
                 letterSpacing: '-0.03em', 
                 marginBottom: '24px', 
-                color: isDarkTheme ? '#fafafa' : theme === 'navy-calm' ? '#0A2540' : '#0f172a' 
+                color: isDarkTheme ? '#fafafa' : theme === 'navy-calm' ? '#0A2540' : '#0f172a',
+                maxWidth: '100%',
+                overflow: 'hidden'
               }}>
-                <span style={{ display: 'block' }}>Choose a template.</span>
+                <span style={{ display: 'block', whiteSpace: 'nowrap' }}>Choose a template.</span>
                 <span style={{ 
                   display: 'block', 
+                  whiteSpace: 'nowrap',
                   background: (theme === 'navy-calm' || theme === 'navy-dark')
                     ? 'linear-gradient(135deg, #00A896 0%, #00D4AA 100%)' 
                     : 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)', 
@@ -260,7 +263,7 @@ const IntelligenceCircuitryPage: React.FC = () => {
               </p>
 
               {/* CTAs */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
+              <div className="ic-hero-ctas">
                 <a 
                   href="https://app.esy.com" 
                   target="_blank" 

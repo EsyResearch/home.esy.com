@@ -372,6 +372,12 @@
   z-index: 1;
 }
 
+@media (max-width: 768px) {
+  .ic-hero-container {
+    padding-top: 32px;
+  }
+}
+
 .ic-hero-content {
   display: grid;
   grid-template-columns: 1fr;
@@ -470,6 +476,20 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--ic-space-md);
+  justify-content: flex-start;
+}
+
+@media (max-width: 1024px) {
+  .ic-hero-ctas {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .ic-hero-ctas {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .ic-cta-primary {
@@ -1531,6 +1551,9 @@
   padding: 100px 0;
   background: var(--ic-bg);
   border-top: 1px solid var(--ic-border-subtle);
+  --hiw-text: #fafafa;
+  --hiw-text-secondary: rgba(250, 250, 250, 0.65);
+  --hiw-text-muted: rgba(250, 250, 250, 0.4);
 }
 
 @media (max-width: 768px) {
@@ -1582,7 +1605,7 @@
   font-family: var(--ic-font-mono);
   font-size: 14px;
   font-weight: 400;
-  color: var(--ic-text-muted);
+  color: var(--hiw-text-muted);
   line-height: 1.5;
   flex-shrink: 0;
   min-width: 32px;
@@ -1597,7 +1620,7 @@
   font-family: var(--ic-font-body);
   font-size: 18px;
   font-weight: 500;
-  color: var(--ic-text);
+  color: var(--hiw-text);
   line-height: 1.4;
   margin: 0 0 8px;
   letter-spacing: -0.01em;
@@ -1613,7 +1636,7 @@
   font-family: var(--ic-font-body);
   font-size: 15px;
   font-weight: 400;
-  color: var(--ic-text-secondary);
+  color: var(--hiw-text-secondary);
   line-height: 1.6;
   margin: 0;
 }
@@ -1826,16 +1849,37 @@
 
 /* ─────────────────────────────────────────────
    HOW IT WORKS SECTION - Theme Support
-   Uses CSS variables, automatically adapts to all themes
+   Matches final CTA section backgrounds
    ───────────────────────────────────────────── */
+.ic-page--light .ic-hiw-section {
+  background: #0f0f14;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ic-page--navy-calm .ic-hiw-section {
+  background: linear-gradient(180deg, #0A2540 0%, #061527 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ic-page--navy-dark .ic-hiw-section {
+  background: linear-gradient(180deg, #061527 0%, #040d1a 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Section header overrides for dark bg */
+.ic-hiw-section .ic-section-eyebrow {
+  color: var(--hiw-text-muted);
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+}
 
 /* ─────────────────────────────────────────────
    GALLERY SECTION - Light Mode
    Clean light background for alternation
    ───────────────────────────────────────────── */
 .ic-page--light .ic-gallery-section {
-  background: #f8fafc;
-  border-top: 1px solid var(--ic-border);
+  background: #fafafa;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .ic-page--light .ic-artifact-card {
@@ -2175,7 +2219,7 @@
    Clean white for artifact showcase
    ───────────────────────────────────────────── */
 .ic-page--navy-calm .ic-gallery-section {
-  background: #F8F9FA;
+  background: #FFFFFF;
   border-top: 1px solid #E9ECEF;
 }
 
@@ -2265,26 +2309,6 @@
   color: rgba(255, 255, 255, 0.7);
 }
 
-.ic-page--navy-calm .ic-final-cta-section .ic-cta-primary {
-  background: #00A896 !important;
-  color: #FFFFFF !important;
-  box-shadow: 0 4px 16px rgba(0, 168, 150, 0.3);
-}
-
-.ic-page--navy-calm .ic-final-cta-section .ic-cta-primary:hover {
-  background: #00D4AA !important;
-  box-shadow: 0 8px 24px rgba(0, 212, 170, 0.4);
-}
-
-.ic-page--navy-calm .ic-final-cta-section .ic-cta-secondary {
-  background: rgba(0, 168, 150, 0.1) !important;
-  border: 1px solid rgba(0, 168, 150, 0.25) !important;
-  color: #00D4AA !important;
-}
-
-.ic-page--navy-calm .ic-final-cta-section .ic-cta-secondary:hover {
-  background: rgba(0, 168, 150, 0.15) !important;
-}
 
 /* ─────────────────────────────────────────────
    GRADIENT TEXT - Navy Calm
@@ -2735,26 +2759,6 @@
   color: rgba(255, 255, 255, 0.7);
 }
 
-.ic-page--navy-dark .ic-final-cta-section .ic-cta-primary {
-  background: #00A896 !important;
-  color: #FFFFFF !important;
-  box-shadow: 0 4px 16px rgba(0, 168, 150, 0.35);
-}
-
-.ic-page--navy-dark .ic-final-cta-section .ic-cta-primary:hover {
-  background: #00D4AA !important;
-  box-shadow: 0 8px 24px rgba(0, 212, 170, 0.45);
-}
-
-.ic-page--navy-dark .ic-final-cta-section .ic-cta-secondary {
-  background: rgba(0, 212, 170, 0.1) !important;
-  border: 1px solid rgba(0, 212, 170, 0.25) !important;
-  color: #00D4AA !important;
-}
-
-.ic-page--navy-dark .ic-final-cta-section .ic-cta-secondary:hover {
-  background: rgba(0, 212, 170, 0.15) !important;
-}
 
 /* ─────────────────────────────────────────────
    GRADIENT TEXT - Navy Dark
