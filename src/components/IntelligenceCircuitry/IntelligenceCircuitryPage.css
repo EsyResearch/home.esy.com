@@ -1524,23 +1524,23 @@
 }
 
 /* ============================================
-   HOW IT WORKS SECTION (Inline - Responsive)
+   HOW IT WORKS SECTION - Minimal Academic Design
+   Calm, restrained, research-focused
    ============================================ */
 .ic-hiw-section {
   padding: 100px 0;
-  background: linear-gradient(180deg, #08080c 0%, #0c0c12 100%);
-  position: relative;
-  border-top: 1px solid rgba(139, 92, 246, 0.2);
+  background: var(--ic-bg);
+  border-top: 1px solid var(--ic-border-subtle);
 }
 
 @media (max-width: 768px) {
   .ic-hiw-section {
-    padding: 60px 0;
+    padding: 80px 0;
   }
 }
 
 .ic-hiw-container {
-  max-width: 1100px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -1551,143 +1551,77 @@
   }
 }
 
-.ic-hiw-header {
-  text-align: center;
-  margin-bottom: 72px;
+
+
+/* Steps List - Clean, Minimal */
+.ic-hiw-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
 }
 
 @media (max-width: 768px) {
-  .ic-hiw-header {
-    margin-bottom: 40px;
+  .ic-hiw-steps {
+    gap: 40px;
   }
 }
 
-.ic-hiw-eyebrow {
-  display: inline-block;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #8b5cf6;
-  margin-bottom: 20px;
-  padding: 8px 16px;
-  background: rgba(139, 92, 246, 0.08);
-  border-radius: 4px;
-}
-
-.ic-hiw-title {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(28px, 5vw, 48px);
-  font-weight: 300;
-  color: #fafafa;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  margin: 0;
-}
-
-/* Steps Grid - Responsive */
-.ic-hiw-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-}
-
-@media (max-width: 1024px) {
-  .ic-hiw-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px 24px;
-  }
-}
-
-@media (max-width: 640px) {
-  .ic-hiw-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-}
-
-/* Individual Step */
 .ic-hiw-step {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  gap: 24px;
+  align-items: flex-start;
 }
 
 @media (max-width: 640px) {
   .ic-hiw-step {
-    flex-direction: row;
-    text-align: left;
-    align-items: flex-start;
-    gap: 16px;
+    gap: 20px;
   }
 }
 
 .ic-hiw-step-number {
-  width: 64px;
-  height: 64px;
+  font-family: var(--ic-font-mono);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ic-text-muted);
+  line-height: 1.5;
   flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #0c0c12;
-  border: 2px solid #8b5cf6;
-  border-radius: 50%;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 18px;
-  font-weight: 600;
-  color: #8b5cf6;
-  margin-bottom: 24px;
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+  min-width: 32px;
+  padding-top: 2px;
 }
 
-@media (max-width: 640px) {
-  .ic-hiw-step-number {
-    width: 52px;
-    height: 52px;
-    font-size: 16px;
-    margin-bottom: 0;
-  }
+.ic-hiw-step-content {
+  flex: 1;
 }
 
 .ic-hiw-step-title {
-  font-family: 'Inter', -apple-system, sans-serif;
-  font-size: 17px;
-  font-weight: 600;
-  color: #fafafa;
-  margin: 0 0 10px;
+  font-family: var(--ic-font-body);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ic-text);
+  line-height: 1.4;
+  margin: 0 0 8px;
   letter-spacing: -0.01em;
 }
 
 @media (max-width: 640px) {
   .ic-hiw-step-title {
     font-size: 16px;
-    margin-bottom: 6px;
   }
 }
 
 .ic-hiw-step-description {
-  font-family: 'Inter', -apple-system, sans-serif;
-  font-size: 14px;
+  font-family: var(--ic-font-body);
+  font-size: 15px;
   font-weight: 400;
-  color: rgba(250, 250, 250, 0.55);
+  color: var(--ic-text-secondary);
   line-height: 1.6;
   margin: 0;
-  max-width: 200px;
-}
-
-@media (max-width: 1024px) {
-  .ic-hiw-step-description {
-    max-width: 240px;
-  }
 }
 
 @media (max-width: 640px) {
   .ic-hiw-step-description {
-    font-size: 13px;
-    max-width: none;
-    line-height: 1.5;
+    font-size: 14px;
+    line-height: 1.65;
   }
 }
 
@@ -1891,45 +1825,17 @@
 }
 
 /* ─────────────────────────────────────────────
-   HOW IT WORKS SECTION - Light Mode
-   Subtle violet gradient with elegant indicators
+   HOW IT WORKS SECTION - Theme Support
+   Uses CSS variables, automatically adapts to all themes
    ───────────────────────────────────────────── */
-.ic-page--light .ic-hiw-section {
-  background: #0f0f14;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.ic-page--light .ic-hiw-eyebrow {
-  color: #a78bfa;
-  background: rgba(167, 139, 250, 0.1);
-}
-
-.ic-page--light .ic-hiw-title {
-  color: #fafafa;
-}
-
-.ic-page--light .ic-hiw-step-number {
-  background: #16161f;
-  border-color: #a78bfa;
-  color: #a78bfa;
-  box-shadow: 0 4px 12px rgba(167, 139, 250, 0.2);
-}
-
-.ic-page--light .ic-hiw-step-title {
-  color: #fafafa;
-}
-
-.ic-page--light .ic-hiw-step-description {
-  color: rgba(250, 250, 250, 0.7);
-}
 
 /* ─────────────────────────────────────────────
    GALLERY SECTION - Light Mode
    Clean light background for alternation
    ───────────────────────────────────────────── */
 .ic-page--light .ic-gallery-section {
-  background: #fafafa;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  background: #f8fafc;
+  border-top: 1px solid var(--ic-border);
 }
 
 .ic-page--light .ic-artifact-card {
@@ -2263,45 +2169,13 @@
   background: #00A896;
 }
 
-/* ─────────────────────────────────────────────
-   HOW IT WORKS SECTION - Navy Calm
-   Dark navy section for contrast
-   ───────────────────────────────────────────── */
-.ic-page--navy-calm .ic-hiw-section {
-  background: linear-gradient(180deg, #0A2540 0%, #061527 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.ic-page--navy-calm .ic-hiw-eyebrow {
-  color: #00D4AA;
-  background: rgba(0, 212, 170, 0.1);
-}
-
-.ic-page--navy-calm .ic-hiw-title {
-  color: #FFFFFF;
-}
-
-.ic-page--navy-calm .ic-hiw-step-number {
-  background: #0F3460;
-  border-color: #00A896;
-  color: #00D4AA;
-  box-shadow: 0 4px 12px rgba(0, 168, 150, 0.2);
-}
-
-.ic-page--navy-calm .ic-hiw-step-title {
-  color: #FFFFFF;
-}
-
-.ic-page--navy-calm .ic-hiw-step-description {
-  color: rgba(255, 255, 255, 0.7);
-}
 
 /* ─────────────────────────────────────────────
    GALLERY SECTION - Navy Calm
    Clean white for artifact showcase
    ───────────────────────────────────────────── */
 .ic-page--navy-calm .ic-gallery-section {
-  background: #FFFFFF;
+  background: #F8F9FA;
   border-top: 1px solid #E9ECEF;
 }
 
@@ -2697,20 +2571,53 @@
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.ic-page--navy-dark .ic-hiw-section::before {
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 170, 0.3), transparent);
+}
+
 .ic-page--navy-dark .ic-hiw-eyebrow {
   color: #5EEAD4;
   background: rgba(94, 234, 212, 0.1);
+  border-color: rgba(94, 234, 212, 0.2);
 }
 
 .ic-page--navy-dark .ic-hiw-title {
   color: #FFFFFF;
 }
 
+.ic-page--navy-dark .ic-hiw-title-accent {
+  background: linear-gradient(135deg, #00D4AA 0%, #5EEAD4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ic-page--navy-dark .ic-hiw-subtitle {
+  color: rgba(255, 255, 255, 0.75);
+}
+
 .ic-page--navy-dark .ic-hiw-step-number {
   background: #0A2540;
   border-color: #00D4AA;
   color: #00D4AA;
-  box-shadow: 0 4px 12px rgba(0, 212, 170, 0.25);
+  box-shadow: 
+    0 0 0 8px #061527,
+    0 4px 20px rgba(0, 212, 170, 0.25);
+}
+
+.ic-page--navy-dark .ic-hiw-step:hover .ic-hiw-step-number {
+  box-shadow: 
+    0 0 0 8px #061527,
+    0 6px 28px rgba(0, 212, 170, 0.35);
+}
+
+.ic-page--navy-dark .ic-hiw-step-icon--purple,
+.ic-page--navy-dark .ic-hiw-step-icon--blue,
+.ic-page--navy-dark .ic-hiw-step-icon--green,
+.ic-page--navy-dark .ic-hiw-step-icon--pink {
+  background: rgba(0, 212, 170, 0.2);
+  color: #5EEAD4;
+  border-color: #061527;
 }
 
 .ic-page--navy-dark .ic-hiw-step-title {
@@ -2719,6 +2626,18 @@
 
 .ic-page--navy-dark .ic-hiw-step-description {
   color: rgba(255, 255, 255, 0.7);
+}
+
+.ic-page--navy-dark .ic-hiw-step-connector {
+  color: rgba(0, 212, 170, 0.4);
+}
+
+.ic-page--navy-dark .ic-hiw-step:hover .ic-hiw-step-connector {
+  color: rgba(0, 212, 170, 0.6);
+}
+
+.ic-page--navy-dark .ic-hiw-step::after {
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 170, 0.15), transparent);
 }
 
 /* ─────────────────────────────────────────────

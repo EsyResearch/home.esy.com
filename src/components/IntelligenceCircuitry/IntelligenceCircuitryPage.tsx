@@ -61,7 +61,7 @@ const templates = [
   },
 ];
 
-// How It Works - simplified to core value props
+// How It Works - Minimal, academic-focused
 const howItWorksSteps = [
   { 
     number: '01', 
@@ -114,26 +114,32 @@ const getEssayImage = (essay: VisualEssay): string => {
 /**
  * HowItWorksSection Component
  * 
- * Clean, minimal 4-step process visualization.
- * Responsive: 4 columns on desktop, 2 on tablet, 1 on mobile.
+ * Minimal, academic design for research audience.
+ * Clean typography, restrained colors, no decorative elements.
+ * Focus on clarity and content over visual flourishes.
  */
 const HowItWorksSection: React.FC = () => {
   return (
     <section className="ic-hiw-section">
       <div className="ic-hiw-container">
-        {/* Header */}
-        <div className="ic-hiw-header">
-          <span className="ic-hiw-eyebrow">How It Works</span>
-          <h2 className="ic-hiw-title">Four steps to defensible work</h2>
+        <div className="ic-section-header">
+          <span className="ic-section-eyebrow">How It Works</span>
+          <h2 className="ic-section-title">
+            Four steps to <span className="ic-gradient-text">defensible work</span>
+          </h2>
+          <p className="ic-section-description">
+            Citation-first research workflows that produce structured, auditable artifacts.
+          </p>
         </div>
 
-        {/* Steps Grid */}
-        <div className="ic-hiw-grid">
+        <div className="ic-hiw-steps">
           {howItWorksSteps.map((step) => (
             <div key={step.number} className="ic-hiw-step">
-              <div className="ic-hiw-step-number">{step.number}</div>
-              <h3 className="ic-hiw-step-title">{step.title}</h3>
-              <p className="ic-hiw-step-description">{step.description}</p>
+              <span className="ic-hiw-step-number">{step.number}</span>
+              <div className="ic-hiw-step-content">
+                <h3 className="ic-hiw-step-title">{step.title}</h3>
+                <p className="ic-hiw-step-description">{step.description}</p>
+              </div>
             </div>
           ))}
         </div>
