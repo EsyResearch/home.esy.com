@@ -2599,6 +2599,31 @@ export function getPremiumTemplates(): Template[] {
   return templates.filter((t) => t.pricing?.type === 'premium');
 }
 
+// Model Reference System query functions
+export function getTemplatesByModelFamily(family: string): Template[] {
+  return templates.filter((t) => t.modelFamily?.toLowerCase() === family.toLowerCase());
+}
+
+export function getTemplatesByModelSubFamily(family: string, subFamily: string): Template[] {
+  return templates.filter(
+    (t) => 
+      t.modelFamily?.toLowerCase() === family.toLowerCase() &&
+      t.modelSubFamily?.toLowerCase() === subFamily.toLowerCase()
+  );
+}
+
+export function getTemplatesByModelVersion(family: string, version: string): Template[] {
+  return templates.filter(
+    (t) => 
+      t.modelFamily?.toLowerCase() === family.toLowerCase() &&
+      t.modelVersion === version
+  );
+}
+
+export function getTemplatesByAgentRole(role: string): Template[] {
+  return templates.filter((t) => t.agentRole === role);
+}
+
 export function getFreeTemplates(): Template[] {
   return templates.filter((t) => !t.pricing || t.pricing.type === 'free');
 }

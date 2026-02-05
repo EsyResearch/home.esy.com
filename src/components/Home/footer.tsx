@@ -53,15 +53,74 @@ export default function Footer () {
         const isTemplatesPage = normalizedPath === '/templates' || normalizedPath.startsWith('/templates/');
         const isDocsPage = normalizedPath === '/docs' || normalizedPath.startsWith('/docs/');
         const isAgentsPage = normalizedPath === '/agents' || normalizedPath.startsWith('/agents/');
+        const isModelsPage = normalizedPath === '/models' || normalizedPath.startsWith('/models/');
         const isContactPage = normalizedPath === '/contact';
         const isTermsPage = normalizedPath === '/terms';
         const isPrivacyPage = normalizedPath === '/privacy';
         const isGlossaryPage = normalizedPath === '/glossary' || normalizedPath.startsWith('/glossary/');
+        // Check for 404 page - Next.js uses various paths
+        // Also check body classes as fallback since pathname might not be reliable
+        const hasNotFoundBodyClass = typeof window !== 'undefined' && (
+          document.body.classList.contains('not-found-light') ||
+          document.body.classList.contains('not-found-dark')
+        );
+        const isNotFoundPage = normalizedPath === '/_not-found' || 
+                               normalizedPath === '/404' || 
+                               normalizedPath === '/not-found' ||
+                               hasNotFoundBodyClass;
         
         // Pages that always use light theme (Navy Calm)
         const isAlwaysLightPage = isEssaysPage || isAboutPage || isSchoolPage || isTemplatesPage || isDocsPage || isAgentsPage || isContactPage || isTermsPage || isPrivacyPage || isGlossaryPage;
         
-        if (isAlwaysLightPage) {
+        if (isModelsPage) {
+          // Check localStorage for models page theme
+          const storedTheme = localStorage.getItem('theme-models');
+          if (storedTheme === 'light') {
+            setIsLightMode(true);
+            setIsNavyDark(false);
+          } else if (storedTheme === 'dark') {
+            setIsLightMode(false);
+            setIsNavyDark(true); // Use Navy Dark theme
+          } else {
+            // Default to light for models pages
+            setIsLightMode(true);
+            setIsNavyDark(false);
+          }
+          
+          // Check body classes as override
+          const bodyClasses = document.body.className;
+          if (bodyClasses?.includes('models-light')) {
+            setIsLightMode(true);
+            setIsNavyDark(false);
+          } else if (bodyClasses?.includes('models-dark')) {
+            setIsLightMode(false);
+            setIsNavyDark(true);
+          }
+        } else if (isNotFoundPage) {
+          // Check localStorage for 404 page theme
+          const storedTheme = localStorage.getItem('theme-404');
+          if (storedTheme === 'light') {
+            setIsLightMode(true);
+            setIsNavyDark(false);
+          } else if (storedTheme === 'dark') {
+            setIsLightMode(false);
+            setIsNavyDark(true); // Use Navy Dark theme
+          } else {
+            // Default to light for 404 page
+            setIsLightMode(true);
+            setIsNavyDark(false);
+          }
+          
+          // Check body classes as override
+          const bodyClasses = document.body.className;
+          if (bodyClasses?.includes('not-found-light')) {
+            setIsLightMode(true);
+            setIsNavyDark(false);
+          } else if (bodyClasses?.includes('not-found-dark')) {
+            setIsLightMode(false);
+            setIsNavyDark(true);
+          }
+        } else if (isAlwaysLightPage) {
           setIsLightMode(true);
           setIsNavyDark(false);
         } else if (isHomepage) {
@@ -112,14 +171,22 @@ export default function Footer () {
         observer.observe(icPage, { attributes: true, attributeFilter: ['class'] });
       }
 
-      // Listen for theme change events from school article pages
+      // Listen for theme change events from school article pages and models pages
       const handleThemeChange = () => {
         checkTheme();
       };
       window.addEventListener('themechange', handleThemeChange);
+      
+      // Also observe body class changes for models pages and 404 page
+      const bodyObserver = new MutationObserver(() => {
+        // Re-check theme whenever body classes change (covers models, 404, etc.)
+        checkTheme();
+      });
+      bodyObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
       return () => {
         observer.disconnect();
+        bodyObserver.disconnect();
         window.removeEventListener('themechange', handleThemeChange);
       };
     }, [pathname]);
@@ -213,6 +280,7 @@ export default function Footer () {
             links={[
               // { href: "/docs/", text: "Docs" },
               { href: "/glossary/", text: "Glossary" },
+              { href: "/models/", text: "Models" },
             ]}
           />
           

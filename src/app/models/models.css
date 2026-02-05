@@ -1,0 +1,364 @@
+/* =============================================================================
+   MODEL REFERENCE SYSTEM - Scoped Styles
+   Canonical reference system for LLM models used in Esy workflows
+   ============================================================================= */
+
+/* CSS Variables for models section - Navy Calm Light Theme */
+:root {
+  --models-bg: #FFFFFF;
+  --models-surface: #FFFFFF;
+  --models-elevated: #F8FAFC;
+  --models-card: #F1F5F9;
+  --models-text: #0A2540;
+  --models-muted: rgba(10, 37, 64, 0.7);
+  --models-subtle: rgba(10, 37, 64, 0.5);
+  --models-border: rgba(10, 37, 64, 0.08);
+  --models-border-hover: rgba(10, 37, 64, 0.12);
+  --models-accent: #00A896;
+  --models-accent-muted: rgba(0, 168, 150, 0.15);
+  --models-accent-border: rgba(0, 168, 150, 0.2);
+}
+
+/* Dark Theme - Navy Calm Dark */
+body.models-dark {
+  --models-bg: #0A2540;
+  --models-surface: #0F3460;
+  --models-elevated: #0F3460;
+  --models-card: #143D6B;
+  --models-text: #FFFFFF;
+  --models-muted: rgba(255, 255, 255, 0.7);
+  --models-subtle: rgba(255, 255, 255, 0.5);
+  --models-border: rgba(255, 255, 255, 0.1);
+  --models-border-hover: rgba(255, 255, 255, 0.15);
+  --models-accent: #00D4AA;
+  --models-accent-muted: rgba(0, 212, 170, 0.1);
+  --models-accent-border: rgba(0, 212, 170, 0.25);
+}
+
+/* Layout */
+.models-layout {
+  min-height: 100vh;
+  background-color: var(--models-bg);
+}
+
+.models-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.models-main {
+  flex: 1;
+  min-width: 0;
+  background-color: var(--models-surface);
+  overflow-y: auto;
+}
+
+/* Page wrapper */
+.models-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem 4rem;
+}
+
+/* Typography */
+.models-page h1 {
+  font-size: 2.75rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--models-text);
+  margin-bottom: 0.75rem;
+  font-family: var(--font-literata);
+}
+
+.models-page h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: var(--models-text);
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--models-border);
+}
+
+.models-page h2:first-of-type {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 2rem;
+}
+
+.models-page h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  color: var(--models-text);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.models-page p {
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: var(--models-muted);
+  margin-bottom: 1rem;
+  letter-spacing: -0.005em;
+}
+
+/* Tables */
+.models-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9375rem;
+}
+
+.models-table thead {
+  background: var(--models-elevated);
+  border-bottom: 2px solid var(--models-border);
+}
+
+.models-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--models-text);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.models-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--models-border);
+  color: var(--models-muted);
+  vertical-align: top;
+}
+
+.models-table tbody tr:hover {
+  background: var(--models-elevated);
+}
+
+.models-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Version badges */
+.models-version-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.625rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.models-version-badge.recommended {
+  background: rgba(0, 168, 150, 0.15);
+  color: var(--models-accent);
+  border: 1px solid var(--models-accent-border);
+}
+
+.models-version-badge.supported {
+  background: var(--models-elevated);
+  color: var(--models-text);
+  border: 1px solid var(--models-border);
+}
+
+.models-version-badge.legacy {
+  background: var(--models-elevated);
+  color: var(--models-subtle);
+  border: 1px solid var(--models-border);
+}
+
+/* Confidence badges */
+.models-confidence-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.models-confidence-badge.primary {
+  background: rgba(0, 168, 150, 0.15);
+  color: var(--models-accent);
+}
+
+.models-confidence-badge.secondary {
+  background: var(--models-elevated);
+  color: var(--models-text);
+}
+
+.models-confidence-badge.experimental {
+  background: var(--models-elevated);
+  color: var(--models-subtle);
+}
+
+/* Two-column layout for strengths/limitations */
+.models-two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 768px) {
+  .models-two-column {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.models-column h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.models-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.models-column li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--models-border);
+  color: var(--models-muted);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.models-column li:last-child {
+  border-bottom: none;
+}
+
+.models-column li::before {
+  content: '•';
+  color: var(--models-accent);
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-right: 0.5rem;
+}
+
+/* Links */
+.models-page a {
+  color: var(--models-accent);
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.models-page a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 1023px) {
+  .models-page {
+    padding: 2rem 1.5rem 3rem;
+  }
+  
+  .models-page h1 {
+    font-size: 2rem;
+  }
+  
+  .models-page h2 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .models-page {
+    padding: 1.5rem 1rem 2rem;
+  }
+  
+  .models-page h1 {
+    font-size: 1.75rem;
+  }
+  
+  .models-table {
+    font-size: 0.8125rem;
+  }
+  
+  .models-table th,
+  .models-table td {
+    padding: 0.5rem;
+  }
+}
+
+/* Scrollbar styling - Light Mode */
+.models-main::-webkit-scrollbar,
+.models-page::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.models-main::-webkit-scrollbar-track,
+.models-page::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.models-main::-webkit-scrollbar-thumb,
+.models-page::-webkit-scrollbar-thumb {
+  background: rgba(10, 37, 64, 0.12);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background 0.2s ease;
+}
+
+.models-main::-webkit-scrollbar-thumb:hover,
+.models-page::-webkit-scrollbar-thumb:hover {
+  background: rgba(10, 37, 64, 0.2);
+  background-clip: padding-box;
+}
+
+/* Scrollbar styling - Dark Mode */
+body.models-dark .models-main::-webkit-scrollbar-thumb,
+body.models-dark .models-page::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  background-clip: padding-box;
+}
+
+body.models-dark .models-main::-webkit-scrollbar-thumb:hover,
+body.models-dark .models-page::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+  background-clip: padding-box;
+}
+
+/* Firefox scrollbar styling */
+.models-main,
+.models-page {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(10, 37, 64, 0.12) transparent;
+}
+
+body.models-dark .models-main,
+body.models-dark .models-page {
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+
+/* Focus states */
+.models-page a:focus-visible,
+.models-page button:focus-visible {
+  outline: 2px solid var(--models-accent);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .models-layout * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

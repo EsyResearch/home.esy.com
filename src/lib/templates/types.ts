@@ -37,6 +37,11 @@ export interface Template {
   // New fields for SEO expansion
   model?: AIModel;
   pricing?: TemplatePricing;
+  // Model Reference System fields
+  modelFamily?: string; // e.g., 'Claude', 'GPT'
+  modelSubFamily?: string; // e.g., 'Opus'
+  modelVersion?: string; // e.g., '4.6', '5.2'
+  agentRole?: string; // e.g., 'planning', 'synthesis', 'code-generation'
 }
 
 export interface TemplateSubcategory {

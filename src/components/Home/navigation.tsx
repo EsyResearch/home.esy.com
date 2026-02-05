@@ -92,10 +92,21 @@ export default function Navigation({
         const isTemplatesPage = normalizedPath === '/templates' || normalizedPath.startsWith('/templates/');
         const isDocsPage = normalizedPath === '/docs' || normalizedPath.startsWith('/docs/');
         const isAgentsPage = normalizedPath === '/agents' || normalizedPath.startsWith('/agents/');
+        const isModelsPage = normalizedPath === '/models' || normalizedPath.startsWith('/models/');
         const isContactPage = normalizedPath === '/contact';
         const isTermsPage = normalizedPath === '/terms';
         const isPrivacyPage = normalizedPath === '/privacy';
         const isGlossaryPage = normalizedPath === '/glossary' || normalizedPath.startsWith('/glossary/');
+        // Check for 404 page - Next.js uses various paths
+        // Also check body classes as fallback since pathname might not be reliable
+        const hasNotFoundBodyClass = typeof window !== 'undefined' && (
+          document.body.classList.contains('not-found-light') ||
+          document.body.classList.contains('not-found-dark')
+        );
+        const isNotFoundPage = normalizedPath === '/_not-found' || 
+                               normalizedPath === '/404' || 
+                               normalizedPath === '/not-found' ||
+                               hasNotFoundBodyClass;
         const hasThemeToggle = isSchoolArticle || isBlogArticle;
         
         // Pages that always use light theme (Navy Calm)
@@ -111,6 +122,54 @@ export default function Navigation({
             isNavyDarkMode = true;
           } else {
             isLight = false;
+          }
+        } else if (isModelsPage) {
+          // Check localStorage for models page theme
+          const storedTheme = localStorage.getItem('theme-models');
+          if (storedTheme === 'light') {
+            isLight = true;
+            isNavyDarkMode = false;
+          } else if (storedTheme === 'dark') {
+            isLight = false;
+            isNavyDarkMode = true; // Use Navy Dark theme
+          } else {
+            // Default to light for models pages
+            isLight = true;
+            isNavyDarkMode = false;
+          }
+          
+          // Check body classes as override
+          const bodyClasses = document.body.className;
+          if (bodyClasses?.includes('models-light')) {
+            isLight = true;
+            isNavyDarkMode = false;
+          } else if (bodyClasses?.includes('models-dark')) {
+            isLight = false;
+            isNavyDarkMode = true;
+          }
+        } else if (isNotFoundPage) {
+          // Check localStorage for 404 page theme
+          const storedTheme = localStorage.getItem('theme-404');
+          if (storedTheme === 'light') {
+            isLight = true;
+            isNavyDarkMode = false;
+          } else if (storedTheme === 'dark') {
+            isLight = false;
+            isNavyDarkMode = true; // Use Navy Dark theme
+          } else {
+            // Default to light for 404 page
+            isLight = true;
+            isNavyDarkMode = false;
+          }
+          
+          // Check body classes as override
+          const bodyClasses = document.body.className;
+          if (bodyClasses?.includes('not-found-light')) {
+            isLight = true;
+            isNavyDarkMode = false;
+          } else if (bodyClasses?.includes('not-found-dark')) {
+            isLight = false;
+            isNavyDarkMode = true;
           }
         } else if (isAlwaysLightPage) {
           // Essays and About pages always use light theme
@@ -168,10 +227,11 @@ export default function Navigation({
     };
     window.addEventListener('themechange', handleThemeChange);
     
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('themechange', handleThemeChange);
-    };
+      return () => {
+        observer.disconnect();
+        window.removeEventListener('themechange', handleThemeChange);
+        window.removeEventListener('themechange', checkTheme);
+      };
     }, [pathname]);
 
   // Load search data
