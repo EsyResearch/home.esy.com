@@ -15,15 +15,16 @@ const EsyCookieNotice = () => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   const colors = {
-    background: '#0a0a0f',
-    surface: '#16161f',
-    accent: '#8b5cf6',
+    background: '#0A2540',
+    surface: '#0F3460',
+    accent: '#00A896',
+    accentHover: '#00D4AA',
     textPrimary: 'rgba(255, 255, 255, 1)',
     textSecondary: 'rgba(255, 255, 255, 0.7)',
     textTertiary: 'rgba(255, 255, 255, 0.5)',
     textQuaternary: 'rgba(255, 255, 255, 0.3)',
-    border: 'rgba(255, 255, 255, 0.05)',
-    borderHover: 'rgba(255, 255, 255, 0.1)'
+    border: 'rgba(255, 255, 255, 0.08)',
+    borderHover: 'rgba(255, 255, 255, 0.12)'
   };
 
   const cookieCategories = [
@@ -492,15 +493,15 @@ const EsyCookieNotice = () => {
                   style={{ 
                     color: colors.accent, 
                     textDecoration: 'none',
-                    borderBottom: `1px solid rgba(139, 92, 246, 0.3)`,
+                    borderBottom: `1px solid rgba(0, 168, 150, 0.3)`,
                     transition: 'all 0.2s ease'
                   }}
                   onMouseOver={(e) => {
-                    e.target.style.borderBottomColor = colors.accent;
+                    e.target.style.borderBottomColor = colors.accentHover;
                     e.target.style.opacity = '0.8';
                   }}
                   onMouseOut={(e) => {
-                    e.target.style.borderBottomColor = 'rgba(139, 92, 246, 0.3)';
+                    e.target.style.borderBottomColor = 'rgba(0, 168, 150, 0.3)';
                     e.target.style.opacity = '1';
                   }}
                 >

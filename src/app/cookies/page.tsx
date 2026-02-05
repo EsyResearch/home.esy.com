@@ -8,18 +8,18 @@ const EsyCookiesPage = () => {
   const [selectedCookieType, setSelectedCookieType] = useState('all');
 
   const colors = {
-    background: '#0a0a0f',
-    surface: '#16161f',
-    surfaceHover: '#1a1a24',
-    accent: '#8b5cf6',
-    accentHover: '#7c3aed',
-    textPrimary: 'rgba(255, 255, 255, 1)',
-    textSecondary: 'rgba(255, 255, 255, 0.7)',
-    textTertiary: 'rgba(255, 255, 255, 0.5)',
-    textQuaternary: 'rgba(255, 255, 255, 0.3)',
-    border: 'rgba(255, 255, 255, 0.05)',
-    borderHover: 'rgba(255, 255, 255, 0.1)',
-    borderAccent: 'rgba(139, 92, 246, 0.2)',
+    background: '#FFFFFF',
+    surface: '#F8FAFC',
+    surfaceHover: '#F1F5F9',
+    accent: '#00A896',
+    accentHover: '#00D4AA',
+    textPrimary: '#0A2540',
+    textSecondary: 'rgba(10, 37, 64, 0.7)',
+    textTertiary: 'rgba(10, 37, 64, 0.5)',
+    textQuaternary: 'rgba(10, 37, 64, 0.3)',
+    border: 'rgba(10, 37, 64, 0.08)',
+    borderHover: 'rgba(10, 37, 64, 0.12)',
+    borderAccent: 'rgba(0, 168, 150, 0.2)',
     success: '#10b981',
     warning: '#f59e0b'
   };
@@ -508,13 +508,13 @@ const EsyCookiesPage = () => {
                           fontSize: '0.9rem',
                           padding: '0.5rem',
                           borderRadius: '6px',
-                          backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                          backgroundColor: 'rgba(0, 168, 150, 0.1)',
                           textAlign: 'center',
                           transition: 'all 0.2s ease',
                           fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
                         }}
-                        onMouseOver={(e) => (e.target as HTMLElement).style.backgroundColor = 'rgba(139, 92, 246, 0.2)'}
-                        onMouseOut={(e) => (e.target as HTMLElement).style.backgroundColor = 'rgba(139, 92, 246, 0.1)'}
+                        onMouseOver={(e) => (e.target as HTMLElement).style.backgroundColor = 'rgba(0, 168, 150, 0.2)'}
+                        onMouseOut={(e) => (e.target as HTMLElement).style.backgroundColor = 'rgba(0, 168, 150, 0.1)'}
                       >
                         {browser}
                       </a>
