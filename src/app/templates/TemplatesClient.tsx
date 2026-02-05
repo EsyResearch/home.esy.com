@@ -13,6 +13,7 @@ import {
   Zap,
   GraduationCap,
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useScrollHeaderSearch } from '@/hooks/useScrollHeaderSearch';
 import {
   templateCategories,
@@ -27,8 +28,8 @@ import {
   TemplateGrid,
   TemplateCategoryNav,
   TemplateFilters,
-  TemplateSearch,
 } from '@/components/templates';
+import SearchBar from '@/components/SearchBar/SearchBar';
 
 // Navy Calm Light Theme
 const theme = {
@@ -120,6 +121,7 @@ const valueProps = [
 ];
 
 export default function TemplatesClient() {
+  const router = useRouter();
   const searchBarRef = useRef<HTMLDivElement>(null);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [activeSubcategory, setActiveSubcategory] = useState<string | null>(null);
@@ -137,6 +139,28 @@ export default function TemplatesClient() {
     return category?.subcategories || [];
   }, [activeCategory]);
 
+  // Convert templates to SearchBar format
+  const searchResults = useMemo(() => {
+    if (!searchQuery.trim()) {
+      return [];
+    }
+    const templates = searchTemplates(searchQuery);
+    return templates.slice(0, 8).map((template) => ({
+      id: template.id,
+      title: template.title,
+      description: template.shortDescription,
+      category: template.subcategory,
+      slug: `/templates/${template.slug}`,
+      type: 'prompt' as const,
+      isPro: template.isPro || false,
+      metadata: {
+        difficulty: template.difficulty,
+        tags: template.tags,
+        category: template.category,
+      },
+    }));
+  }, [searchQuery]);
+
   const filteredTemplates = useMemo(() => {
     let templates = searchQuery
       ? searchTemplates(searchQuery)
@@ -152,6 +176,13 @@ export default function TemplatesClient() {
     }
     return templates;
   }, [activeCategory, activeSubcategory, activeDifficulty, searchQuery]);
+
+  const handleResultSelect = (result: { slug?: string; href?: string }) => {
+    const href = result.slug || result.href;
+    if (href) {
+      router.push(href);
+    }
+  };
 
   const featuredTemplates = getFeaturedTemplates().slice(0, 3);
 
@@ -178,53 +209,96 @@ export default function TemplatesClient() {
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: theme.bg, color: theme.text }}>
-      {/* Hero Section - Clean, Minimal */}
+      {/* Hero Section */}
       <section
         style={{
           maxWidth: '1200px',
           margin: '0 auto',
-          padding: '0 clamp(1.5rem, 5vw, 3rem)',
-          paddingTop: 'clamp(6rem, 12vh, 8rem)',
-          paddingBottom: 'clamp(4rem, 8vh, 6rem)',
+          padding: '7rem 2rem 4rem',
+          position: 'relative',
         }}
       >
-        {/* Main Headline */}
-        <h1
+        {/* Grid Background Pattern */}
+        <div
           style={{
-            fontFamily: 'var(--font-literata)',
-            fontSize: 'clamp(2.75rem, 7vw, 4rem)',
-            fontWeight: 300,
-            letterSpacing: '-0.03em',
-            lineHeight: 1.1,
-            marginBottom: '1.5rem',
-            color: theme.text,
-            maxWidth: '700px',
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: `
+              linear-gradient(rgba(10, 37, 64, 0.03) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(10, 37, 64, 0.03) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px',
+            maskImage: 'radial-gradient(ellipse at center, black 0%, transparent 70%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at center, black 0%, transparent 70%)',
+            pointerEvents: 'none',
+            zIndex: 0,
           }}
-        >
-          From idea to artifact
-        </h1>
+        />
+        
+        {/* Content */}
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          {/* Breadcrumb */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              marginBottom: '2rem',
+              fontSize: '0.875rem',
+              color: theme.subtle,
+            }}
+          >
+            <Link href="/" style={{ color: theme.subtle, textDecoration: 'none' }}>
+              Home
+            </Link>
+            <span>›</span>
+            <span style={{ color: theme.muted }}>Templates</span>
+          </div>
 
-        {/* Subheadline */}
-        <p
-          style={{
-            fontSize: 'clamp(1.125rem, 2vw, 1.25rem)',
-            lineHeight: 1.7,
-            color: theme.muted,
-            maxWidth: '580px',
-            marginBottom: '2.5rem',
-          }}
-        >
-          Templates are step-by-step workflows that guide Esy from your initial concept to a polished,
-          research-backed result you can trust.
-        </p>
+          {/* Title */}
+          <h1
+            style={{
+              fontFamily: 'var(--font-literata)',
+              fontSize: 'clamp(2.75rem, 6vw, 4.5rem)',
+              fontWeight: 300,
+              lineHeight: 1.1,
+              marginBottom: '1.25rem',
+              letterSpacing: '-0.02em',
+              color: theme.text,
+            }}
+          >
+            From idea to <span style={{ color: theme.accent }}>artifact</span>
+          </h1>
 
-        {/* Search */}
-        <div ref={searchBarRef} style={{ maxWidth: '520px' }}>
-          <TemplateSearch
-            value={searchQuery}
-            onChange={(value) => setSearchQuery(value)}
-            placeholder="Search by topic, goal, or output type..."
-          />
+          {/* Subtitle */}
+          <p
+            style={{
+              fontSize: 'clamp(1.0625rem, 2vw, 1.25rem)',
+              lineHeight: 1.6,
+              color: theme.muted,
+              maxWidth: '600px',
+              marginBottom: '2.5rem',
+            }}
+          >
+            Templates are step-by-step workflows that guide Esy from your initial concept to a polished,
+            research-backed result you can trust.
+          </p>
+
+          {/* Search */}
+          <div ref={searchBarRef} style={{ maxWidth: '480px' }}>
+            <SearchBar
+              placeholder="Search by topic, goal, or output type..."
+              value={searchQuery}
+              onChange={(value) => setSearchQuery(value)}
+              context="templates"
+              inputFontSize="0.9375rem"
+              showDropdown={searchQuery.length > 0}
+              searchResults={searchResults}
+              onResultSelect={handleResultSelect}
+              maxResults={8}
+              isLightMode={true}
+            />
+          </div>
         </div>
       </section>
 

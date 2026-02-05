@@ -32,15 +32,15 @@ const templates = [
     icon: FileText,
     accent: 'purple',
   },
-  {
-    id: 'research-brief',
-    title: 'Research Brief',
-    description: 'Synthesized findings from multiple sources. Key insights extracted and organized.',
-    timeSaved: '~20 min',
-    automates: ['Synthesis', 'Key Findings', 'Sources'],
-    icon: FileSpreadsheet,
-    accent: 'blue',
-  },
+  // {
+  //   id: 'research-brief',
+  //   title: 'Research Brief',
+  //   description: 'Synthesized findings from multiple sources. Key insights extracted and organized.',
+  //   timeSaved: '~20 min',
+  //   automates: ['Synthesis', 'Key Findings', 'Sources'],
+  //   icon: FileSpreadsheet,
+  //   accent: 'blue',
+  // },
   {
     id: 'visual-essay',
     title: 'Visual Essay',
@@ -66,7 +66,7 @@ const howItWorksSteps = [
   { 
     number: '01', 
     title: 'Pick a Template',
-    description: 'Essay, visual narrative, research brief, or infographic.'
+    description: 'Essay, visual narrative, or infographic.'
   },
   { 
     number: '02', 

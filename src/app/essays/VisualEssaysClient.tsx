@@ -203,7 +203,6 @@ const EditorialHero: React.FC = () => {
         </div>
         <span className="hero-fullbleed-stat-divider">·</span>
         <div className="hero-fullbleed-stat">
-          <Sparkles size={14} />
           <span className="hero-fullbleed-stat-label">All Interactive</span>
         </div>
       </div>

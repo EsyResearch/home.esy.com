@@ -214,8 +214,7 @@ export default function Navigation({
         const isHomepage = normalizedPath === '/' || normalizedPath === '';
         const isBlogIndexPage = normalizedPath === '/blog';
         const isScrollytellingPage = normalizedPath?.startsWith('/scrollytelling');
-        const isTemplatesPage = normalizedPath?.startsWith('/templates');
-        const shouldBeTransparent = (isHomepage && !isLightMode) || isBlogIndexPage || isScrollytellingPage || isTemplatesPage;
+        const shouldBeTransparent = (isHomepage && !isLightMode) || isBlogIndexPage || isScrollytellingPage;
         
         // Navy Dark specific colors
         const navyDarkBg = 'rgba(10, 37, 64, 0.98)';

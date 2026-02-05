@@ -289,7 +289,7 @@
   backdrop-filter: blur(8px);
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   font-size: 0.6875rem;
-  color: var(--color-text-tertiary);
+  color: #ffffff;
 }
 
 @media (min-width: 768px) {
@@ -314,7 +314,7 @@
   font-family: var(--font-editorial);
   font-size: 1rem;
   font-weight: 400;
-  color: var(--color-text);
+  color: #ffffff;
 }
 
 @media (min-width: 768px) {
@@ -326,10 +326,12 @@
 .hero-fullbleed-stat-label {
   font-weight: 400;
   letter-spacing: 0.02em;
+  color: #ffffff;
 }
 
 .hero-fullbleed-stat-divider {
   opacity: 0.3;
+  color: #ffffff;
 }
 
 /* ============================================

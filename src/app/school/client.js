@@ -306,8 +306,26 @@ const EsySchool = () => {
       <section style={{
         maxWidth: '1200px',
         margin: '0 auto',
-        padding: '7rem 2rem 4rem'
+        padding: '7rem 2rem 4rem',
+        position: 'relative'
       }}>
+        {/* Grid Background Pattern */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: `
+            linear-gradient(rgba(10, 37, 64, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(10, 37, 64, 0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: '60px 60px',
+          maskImage: 'radial-gradient(ellipse at center, black 0%, transparent 70%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at center, black 0%, transparent 70%)',
+          pointerEvents: 'none',
+          zIndex: 0
+        }} />
+        
+        {/* Content */}
+        <div style={{ position: 'relative', zIndex: 1 }}>
         {/* Breadcrumb */}
         <div style={{
         display: 'flex',
@@ -365,6 +383,7 @@ const EsySchool = () => {
               />
             </div>
         */}
+        </div>
       </section>
 
       {/* Featured Article - Large Visual Hero */}

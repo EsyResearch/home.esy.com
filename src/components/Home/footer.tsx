@@ -211,7 +211,7 @@ export default function Footer () {
           <FooterColumn 
             title="Resources"
             links={[
-              { href: "/docs/", text: "Docs" },
+              // { href: "/docs/", text: "Docs" },
               { href: "/glossary/", text: "Glossary" },
             ]}
           />
