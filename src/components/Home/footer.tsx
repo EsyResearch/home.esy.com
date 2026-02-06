@@ -50,6 +50,7 @@ export default function Footer () {
         const isAboutPage = normalizedPath === '/about';
         const isSchoolPage = normalizedPath === '/school';
         const isSchoolArticle = normalizedPath.includes('/school/articles/');
+        const isCoursesPage = normalizedPath === '/courses' || normalizedPath.startsWith('/courses/');
         const isTemplatesPage = normalizedPath === '/templates' || normalizedPath.startsWith('/templates/');
         const isDocsPage = normalizedPath === '/docs' || normalizedPath.startsWith('/docs/');
         const isAgentsPage = normalizedPath === '/agents' || normalizedPath.startsWith('/agents/');
@@ -129,8 +130,8 @@ export default function Footer () {
           const isNavyDarkMode = icPage?.classList.contains('ic-page--navy-dark');
           setIsLightMode(isNavyCalmLight || false);
           setIsNavyDark(isNavyDarkMode || false);
-        } else if (isSchoolArticle) {
-          // Check localStorage for school article theme
+        } else if (isSchoolArticle || isCoursesPage) {
+          // Check localStorage for school page theme (articles + courses)
           const storedTheme = localStorage.getItem('theme-school');
           if (storedTheme === 'light') {
             setIsLightMode(true);
@@ -139,9 +140,14 @@ export default function Footer () {
             setIsLightMode(false);
             setIsNavyDark(true); // Use Navy Dark theme
           } else {
-            // Default to light for school articles
-            setIsLightMode(true);
-            setIsNavyDark(false);
+            // Default: dark for courses, light for articles
+            if (isCoursesPage) {
+              setIsLightMode(false);
+              setIsNavyDark(true);
+            } else {
+              setIsLightMode(true);
+              setIsNavyDark(false);
+            }
           }
           
           // Check body classes as override
@@ -271,6 +277,7 @@ export default function Footer () {
             title="Learn"
             links={[
               { href: "/school/", text: "School" },
+              { href: "/courses/", text: "Courses" },
               { href: "/agents/", text: "Agents" },
             ]}
           />

@@ -257,19 +257,8 @@ const HeaderSearch: React.FC<HeaderSearchProps> = ({
 
   const styles = {
     container: {
-      position: isMobile ? 'static' as const : 'absolute' as const,
-      left: isMobile ? undefined : '50%',
-      transform: isMobile ? 'none' : 'translateX(-50%)',
       display: 'flex',
       alignItems: 'center',
-      zIndex: 100,
-      flex: isMobile ? 1 : undefined,
-      maxWidth: isMobile ? '180px' : undefined,
-      margin: isMobile ? '0 0.5rem' : undefined,
-      ...(isExpanded || shouldAlwaysExpand ? {
-        width: isMobile ? '100%' : '500px',
-        maxWidth: isMobile ? '180px' : '90vw'
-      } : {})
     },
     searchWrapper: {
       position: 'relative' as const,

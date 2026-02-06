@@ -53,6 +53,12 @@ const ConditionalFooter = () => {
     return null;
   }
   
+  // Check if we're on course lesson pages (focused learning experience, no footer)
+  const isCourseLessonPage = normalizedPath?.match(/^\/courses\/[^/]+\/[^/]+$/);
+  if (isCourseLessonPage) {
+    return null;
+  }
+  
   // Render the common footer on all other pages (including homepage)
   return <Footer />;
 };

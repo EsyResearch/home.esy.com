@@ -303,7 +303,7 @@ const EsySchool = () => {
     }}>
 
       {/* Hero Section */}
-      <section style={{
+      <section ref={searchBarRef} style={{
         maxWidth: '1200px',
         margin: '0 auto',
         padding: '7rem 2rem 4rem',

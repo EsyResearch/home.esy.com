@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { usePathname } from 'next/navigation';
 import Logo from "@/components/Logo";
 import Link from "next/link";
-import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight } from "lucide-react";
 import HeaderSearch from "@/components/HeaderSearch/HeaderSearch";
 import NewsletterModal from "@/components/NewsletterModal/NewsletterModal";
 import { getAllPrompts } from "@/lib/prompts";
@@ -54,8 +54,11 @@ export default function Navigation({
     const [isLightMode, setIsLightMode] = useState(false);
     const [isNavyDark, setIsNavyDark] = useState(false); // Track navy-dark mode specifically
   const [isArtifactsOpen, setIsArtifactsOpen] = useState(false);
-  const [isArtifactsClosing, setIsArtifactsClosing] = useState(false);
+  const [isLearnOpen, setIsLearnOpen] = useState(false);
   const [mobileArtifactsExpanded, setMobileArtifactsExpanded] = useState(false);
+  const [mobileLearnExpanded, setMobileLearnExpanded] = useState(false);
+  const artifactsDropdownRef = useRef<HTMLDivElement>(null);
+  const learnDropdownRef = useRef<HTMLDivElement>(null);
     
   // Normalize pathname
     const normalizedPathForNav = pathname?.endsWith('/') && pathname.length > 1
@@ -88,6 +91,7 @@ export default function Navigation({
         const isAboutPage = normalizedPath === '/about';
         const isSchoolPage = normalizedPath === '/school';
         const isSchoolArticle = normalizedPath.includes('/school/articles/');
+        const isCoursesPage = normalizedPath === '/courses' || normalizedPath.startsWith('/courses/');
         const isBlogArticle = normalizedPath.includes('/blog/') && normalizedPath !== '/blog';
         const isTemplatesPage = normalizedPath === '/templates' || normalizedPath.startsWith('/templates/');
         const isDocsPage = normalizedPath === '/docs' || normalizedPath.startsWith('/docs/');
@@ -107,7 +111,8 @@ export default function Navigation({
                                normalizedPath === '/404' || 
                                normalizedPath === '/not-found' ||
                                hasNotFoundBodyClass;
-        const hasThemeToggle = isSchoolArticle || isBlogArticle;
+        const hasThemeToggle = isSchoolArticle || isBlogArticle || isCoursesPage;
+        const isSchoolOrCoursesSection = isSchoolArticle || isCoursesPage;
         
         // Pages that always use light theme (Navy Calm)
         const isAlwaysLightPage = isEssaysPage || isAboutPage || isSchoolPage || isTemplatesPage || isDocsPage || isAgentsPage || isContactPage || isTermsPage || isPrivacyPage || isGlossaryPage;
@@ -175,7 +180,7 @@ export default function Navigation({
           // Essays and About pages always use light theme
           isLight = true;
         } else if (hasThemeToggle) {
-          const sectionKey = isSchoolArticle ? 'school' : 'blog';
+          const sectionKey = isSchoolOrCoursesSection ? 'school' : 'blog';
         const storedTheme = localStorage.getItem(`theme-${sectionKey}`);
           
           if (storedTheme === 'light') {
@@ -183,10 +188,11 @@ export default function Navigation({
             isNavyDarkMode = false;
           } else if (storedTheme === 'dark') {
             isLight = false;
-            isNavyDarkMode = isSchoolArticle; // Use Navy Dark for school articles
+            isNavyDarkMode = isSchoolOrCoursesSection; // Use Navy Dark for school pages
           } else {
-          isLight = true; // Default to light for articles
-          isNavyDarkMode = false;
+          // Default: dark for courses, light for articles
+          isLight = isCoursesPage ? false : true;
+          isNavyDarkMode = isCoursesPage ? true : false;
           }
           
         // Check body classes as override
@@ -197,7 +203,7 @@ export default function Navigation({
             isNavyDarkMode = false;
           } else if (bodyClasses?.includes('dark') || htmlClasses?.includes('dark')) {
           isLight = false;
-          isNavyDarkMode = isSchoolArticle; // Use Navy Dark for school articles
+          isNavyDarkMode = isSchoolOrCoursesSection; // Use Navy Dark for school pages
         }
           } else {
         isLight = false; // Pages without toggle always dark
@@ -358,19 +364,35 @@ export default function Navigation({
     return () => window.removeEventListener('scroll', handleScroll);
     }, [pathname, isLightMode, isNavyDark]);
 
-  // Artifacts dropdown handlers
-  const handleArtifactsEnter = () => {
-    setIsArtifactsClosing(false);
-    setIsArtifactsOpen(true);
-  };
+  // Toggle dropdown and close the other
+  const toggleArtifacts = useCallback(() => {
+    setIsArtifactsOpen(prev => !prev);
+    setIsLearnOpen(false);
+  }, []);
 
-  const handleArtifactsLeave = () => {
-    setIsArtifactsClosing(true);
-    setTimeout(() => {
-      setIsArtifactsOpen(false);
-      setIsArtifactsClosing(false);
-    }, 150);
-  };
+  const toggleLearn = useCallback(() => {
+    setIsLearnOpen(prev => !prev);
+    setIsArtifactsOpen(false);
+  }, []);
+
+  // Close dropdowns on click outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        artifactsDropdownRef.current && !artifactsDropdownRef.current.contains(e.target as Node) &&
+        learnDropdownRef.current && !learnDropdownRef.current.contains(e.target as Node)
+      ) {
+        setIsArtifactsOpen(false);
+        setIsLearnOpen(false);
+      } else if (artifactsDropdownRef.current && !artifactsDropdownRef.current.contains(e.target as Node)) {
+        setIsArtifactsOpen(false);
+      } else if (learnDropdownRef.current && !learnDropdownRef.current.contains(e.target as Node)) {
+        setIsLearnOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
   
     return (
       <>
@@ -400,67 +422,43 @@ export default function Navigation({
           
           {/* Desktop Navigation */}
           <div className="nav-links">
-            {/* Artifacts Dropdown - Primary content concept */}
+            {/* Artifacts Dropdown */}
             <div 
               className="nav-dropdown-container"
-              onMouseEnter={handleArtifactsEnter}
-              onMouseLeave={handleArtifactsLeave}
-              >
+              ref={artifactsDropdownRef}
+            >
               <button 
                 className={`nav-dropdown-trigger ${isArtifactsOpen ? 'active' : ''}`}
                 aria-expanded={isArtifactsOpen}
                 aria-haspopup="true"
-                onClick={() => setIsArtifactsOpen(!isArtifactsOpen)}
+                onClick={toggleArtifacts}
                 style={{
                   color: isLightMode ? '#475569' : 'rgba(255, 255, 255, 0.85)',
                 }}
               >
                 <span>Artifacts</span>
-                <ChevronDown 
-                  size={14} 
-                  className={`nav-dropdown-chevron ${isArtifactsOpen ? 'rotated' : ''}`}
-                />
               </button>
 
-              {isArtifactsOpen && (
-                <div 
-                  className={`nav-artifacts-dropdown ${isArtifactsClosing ? 'closing' : ''}`}
-                  role="menu"
-                >
-                  {/* Dropdown Header */}
-                  <div className="nav-artifacts-header">
-                    <span className="nav-artifacts-label">Browse by type</span>
-                  </div>
-                  
-                  {/* Artifact Types */}
-                  <div className="nav-artifacts-list">
-                    <Link 
-                      href="/essays/" 
-                      className="nav-artifact-item"
-                      onClick={() => setIsArtifactsOpen(false)}
-                    >
-                      <div className="nav-artifact-content">
-                        <span className="nav-artifact-title">Essays</span>
-                        <span className="nav-artifact-desc">Visual research narratives</span>
-                      </div>
-                    </Link>
-                  </div>
-                  
-                  {/* Footer */}
-                  <div className="nav-artifacts-footer">
-                    <Link 
-                      href="/essays/" 
-                      className="nav-artifacts-footer-link"
-                      onClick={() => setIsArtifactsOpen(false)}
-                    >
-                      View all artifacts →
-                    </Link>
-                  </div>
+              <div 
+                className={`nav-artifacts-dropdown ${isArtifactsOpen ? 'open' : ''}`}
+                role="menu"
+              >
+                <div className="nav-artifacts-list">
+                  <Link 
+                    href="/essays/" 
+                    className="nav-artifact-item"
+                    onClick={() => setIsArtifactsOpen(false)}
+                  >
+                    <div className="nav-artifact-content">
+                      <span className="nav-artifact-title">Essays</span>
+                      <span className="nav-artifact-desc">Visual research narratives</span>
+                    </div>
+                  </Link>
                 </div>
-              )}
+              </div>
             </div>
 
-            {/* Templates - First-class nav item (hidden on mobile, available in hamburger menu) */}
+            {/* Templates (hidden on mobile, available in hamburger menu) */}
             {!isMobile && (
               <Link
                 href="/templates/"
@@ -474,7 +472,53 @@ export default function Navigation({
               </Link>
             )}
 
-            {/* App CTA - toned down (hidden on mobile, available in hamburger menu) */}
+            {/* Learn Dropdown */}
+            <div 
+              className="nav-dropdown-container"
+              ref={learnDropdownRef}
+            >
+              <button 
+                className={`nav-dropdown-trigger ${isLearnOpen ? 'active' : ''}`}
+                aria-expanded={isLearnOpen}
+                aria-haspopup="true"
+                onClick={toggleLearn}
+                style={{
+                  color: isLightMode ? '#475569' : 'rgba(255, 255, 255, 0.85)',
+                }}
+              >
+                <span>Learn</span>
+              </button>
+
+              <div 
+                className={`nav-artifacts-dropdown ${isLearnOpen ? 'open' : ''}`}
+                role="menu"
+              >
+                <div className="nav-artifacts-list">
+                  <Link 
+                    href="/courses/" 
+                    className="nav-artifact-item"
+                    onClick={() => setIsLearnOpen(false)}
+                  >
+                    <div className="nav-artifact-content">
+                      <span className="nav-artifact-title">Courses</span>
+                      <span className="nav-artifact-desc">Interactive video lessons</span>
+                    </div>
+                  </Link>
+                  <Link 
+                    href="/school/" 
+                    className="nav-artifact-item"
+                    onClick={() => setIsLearnOpen(false)}
+                  >
+                    <div className="nav-artifact-content">
+                      <span className="nav-artifact-title">School</span>
+                      <span className="nav-artifact-desc">Research articles & guides</span>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* App CTA (hidden on mobile, available in hamburger menu) */}
             {!isMobile && (
               <a 
                 href={ctaConfig.ctaHref}
@@ -484,7 +528,7 @@ export default function Navigation({
                 style={{
                   padding: '8px 16px',
                   borderRadius: '8px',
-                  fontSize: '0.875rem',
+                  fontSize: '14px',
                   fontWeight: 500,
                   color: isLightMode ? '#6b7280' : 'rgba(255, 255, 255, 0.6)',
                   background: 'transparent',
@@ -565,6 +609,42 @@ export default function Navigation({
               >
                 Templates
                   </Link>
+                </div>
+
+            {/* Learn Section - Expandable */}
+              <div className="mobile-nav-section">
+              <button
+                className="mobile-nav-section-header"
+                onClick={() => setMobileLearnExpanded(!mobileLearnExpanded)}
+                aria-expanded={mobileLearnExpanded}
+              >
+                <span className="mobile-nav-section-title">Learn</span>
+                <ChevronRight 
+                  size={18} 
+                  className={`mobile-nav-chevron ${mobileLearnExpanded ? 'expanded' : ''}`}
+                />
+              </button>
+              
+              {mobileLearnExpanded && (
+                <div className="mobile-nav-subitems">
+                  <Link 
+                    href="/courses/" 
+                    className="mobile-nav-subitem"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <span className="mobile-nav-subitem-title">Courses</span>
+                    <span className="mobile-nav-subitem-desc">Interactive video lessons</span>
+                  </Link>
+                  <Link 
+                    href="/school/" 
+                    className="mobile-nav-subitem"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <span className="mobile-nav-subitem-title">School</span>
+                    <span className="mobile-nav-subitem-desc">Research articles & guides</span>
+                  </Link>
+                </div>
+              )}
                 </div>
 
             {/* App CTA */}
