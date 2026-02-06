@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import {
   PlayCircle, Clock, BookOpen, ChevronRight,
-  Sparkles, Users, Award, ArrowRight, Play, Sun, Moon, Zap,
+  Sparkles, Users, Award, ArrowRight, Play, Sun, Moon,
 } from 'lucide-react';
 import { courses } from '@/lib/learn/mockData';
 import { getAllLessonsFlat } from '@/lib/learn/mockData';
@@ -443,14 +443,6 @@ export default function CoursesListClient() {
           position: 'relative', zIndex: 1,
           maxWidth: '600px', margin: '0 auto', textAlign: 'center',
         }}>
-          <div style={{
-            width: '48px', height: '48px', borderRadius: '12px',
-            backgroundColor: 'rgba(0,212,170,0.12)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            margin: '0 auto 1.5rem',
-          }}>
-            <Zap size={22} color="#00D4AA" />
-          </div>
           <h2 style={{
             fontFamily: 'var(--font-literata)',
             fontSize: isMobile ? '1.75rem' : '2.25rem',
