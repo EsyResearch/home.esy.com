@@ -20,7 +20,7 @@ function formatMs(ms: number): string {
 
 export default function TranscriptPanel({ segments, currentTimeMs, onSeek, isDark }: TranscriptPanelProps) {
   const [search, setSearch] = useState('');
-  const [autoScroll, setAutoScroll] = useState(true);
+  const [autoScroll, setAutoScroll] = useState(false);
   const activeRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const userScrollRef = useRef(false);

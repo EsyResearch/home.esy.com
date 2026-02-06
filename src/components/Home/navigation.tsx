@@ -495,16 +495,6 @@ export default function Navigation({
               >
                 <div className="nav-artifacts-list">
                   <Link 
-                    href="/courses/" 
-                    className="nav-artifact-item"
-                    onClick={() => setIsLearnOpen(false)}
-                  >
-                    <div className="nav-artifact-content">
-                      <span className="nav-artifact-title">Courses</span>
-                      <span className="nav-artifact-desc">Interactive video lessons</span>
-                    </div>
-                  </Link>
-                  <Link 
                     href="/school/" 
                     className="nav-artifact-item"
                     onClick={() => setIsLearnOpen(false)}
@@ -512,6 +502,16 @@ export default function Navigation({
                     <div className="nav-artifact-content">
                       <span className="nav-artifact-title">School</span>
                       <span className="nav-artifact-desc">Research articles & guides</span>
+                    </div>
+                  </Link>
+                  <Link 
+                    href="/courses/" 
+                    className="nav-artifact-item"
+                    onClick={() => setIsLearnOpen(false)}
+                  >
+                    <div className="nav-artifact-content">
+                      <span className="nav-artifact-title">Courses</span>
+                      <span className="nav-artifact-desc">Interactive video lessons</span>
                     </div>
                   </Link>
                 </div>
