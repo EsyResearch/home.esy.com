@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getLesson, courses } from '@/lib/learn/mockData';
@@ -50,10 +51,12 @@ export default async function LessonPage({ params }: PageProps) {
   const { course, lesson, chapter } = result;
 
   return (
-    <LessonClient
-      course={course}
-      lesson={lesson}
-      chapterTitle={chapter}
-    />
+    <Suspense fallback={null}>
+      <LessonClient
+        course={course}
+        lesson={lesson}
+        chapterTitle={chapter}
+      />
+    </Suspense>
   );
 }

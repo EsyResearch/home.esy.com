@@ -24,7 +24,7 @@ export default function TranscriptPanel({ segments, currentTimeMs, onSeek, isDar
   const activeRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const userScrollRef = useRef(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
+  const scrollTimeoutRef = useRef<NodeJS.Timeout>(undefined);
 
   const accent = isDark ? '#00D4AA' : '#00A896';
   const text = isDark ? '#FFFFFF' : '#1A1A2E';

@@ -9,7 +9,7 @@
  *  - Keep the same return types (Course, Lesson)
  */
 
-import { Course, TranscriptSegment, LessonCommentary } from './types';
+import { Course, Lesson, TranscriptSegment, LessonCommentary } from './types';
 
 // ─── Helper: generate transcript segments ──────────────────
 function generateTranscript(texts: string[], startMs = 0, segDuration = 4000): TranscriptSegment[] {
