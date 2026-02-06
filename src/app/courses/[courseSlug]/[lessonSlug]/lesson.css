@@ -1,16 +1,15 @@
 /* ─────────────────────────────────────────────
    Esy Courses – Lesson Page Styles
    Navy/Teal brand theme with dark & light modes
-   Premium three-surface learning experience
+   Two-surface layout: ToC + scrollable content
    ───────────────────────────────────────────── */
 
-/* ─── 3-Surface Desktop Grid ─────────────── */
+/* ─── 2-Surface Desktop Grid ─────────────── */
 .lesson-layout {
   display: grid;
-  grid-template-columns: 300px 1fr 400px;
+  grid-template-columns: 300px 1fr;
   grid-template-rows: 1fr;
   height: 100vh;
-  /* Nav height: 1rem(16px) top pad + 60px logo + 1rem(16px) bottom pad = 92px */
   padding-top: 92px;
   box-sizing: border-box;
   overflow: hidden;
@@ -18,20 +17,9 @@
   position: relative;
 }
 
-.lesson-layout--theater {
-  grid-template-columns: 0px 1fr 0px;
-}
-
+.lesson-layout--theater,
 .lesson-layout--no-left {
-  grid-template-columns: 0px 1fr 400px;
-}
-
-.lesson-layout--no-right {
-  grid-template-columns: 300px 1fr 0px;
-}
-
-.lesson-layout--no-both {
-  grid-template-columns: 0px 1fr 0px;
+  grid-template-columns: 0px 1fr;
 }
 
 /* ─── Left sidebar (ToC) ────────────────── */
@@ -66,6 +54,7 @@
   max-width: 960px;
   width: 100%;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .lesson-meta {
@@ -76,6 +65,7 @@
   max-width: 960px;
   width: 100%;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .lesson-title {
@@ -100,77 +90,15 @@
   font-size: 0.75rem;
 }
 
-/* ─── Right sidebar (Research Surface) ─── */
-.lesson-research {
-  overflow: hidden;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 1;
+/* ─── Commentary section (below video) ──── */
+.lesson-commentary-section {
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2rem;
+  box-sizing: border-box;
 }
 
-.lesson-research--collapsed {
-  width: 0;
-  min-width: 0;
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Tabs */
-.lesson-tabs {
-  display: flex;
-  flex-shrink: 0;
-  overflow-x: auto;
-  position: relative;
-}
-
-.lesson-tabs::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  opacity: 0.5;
-}
-
-.lesson-tabs::-webkit-scrollbar {
-  display: none;
-}
-
-.lesson-tab {
-  flex: 1;
-  padding: 0.75rem 0.5rem;
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  font-size: 0.75rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-  text-align: center;
-  letter-spacing: 0.01em;
-  position: relative;
-  z-index: 1;
-}
-
-.lesson-tab:hover {
-  opacity: 0.85;
-}
-
-.lesson-tab--active {
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
-  font-weight: 600;
-}
-
-.lesson-tab-content {
-  flex: 1;
-  overflow: hidden;
-}
 
 /* ─── Toggle buttons ─────────────────────── */
 .lesson-toggle-btn {
@@ -225,30 +153,11 @@
   to { transform: translateX(0); }
 }
 
-/* ─── Navigation bar (between video & tabs on mobile) ─── */
-.lesson-nav-row {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-}
-
 /* ─── Responsive: Tablet ─────────────────── */
 @media (max-width: 1200px) {
   .lesson-layout {
-    grid-template-columns: 0px 1fr 360px;
+    grid-template-columns: 0px 1fr;
   }
-  
-  .lesson-layout--no-right,
-  .lesson-layout--theater {
-    grid-template-columns: 0px 1fr 0px;
-  }
-}
-
-/* ─── Mobile research panel (below video) ── */
-.lesson-research-mobile {
-  display: none;
-  flex-direction: column;
 }
 
 /* ─── Responsive: Mobile ─────────────────── */
@@ -259,24 +168,11 @@
     grid-template-columns: none;
     height: auto;
     min-height: 100vh;
-    /* Mobile nav: 0.5rem(8px) top pad + 36px logo + 0.5rem(8px) bottom pad = 52px */
     padding-top: 52px;
   }
 
   .lesson-toc {
     display: none !important;
-  }
-
-  .lesson-research--desktop {
-    display: none !important;
-  }
-
-  .lesson-research-mobile {
-    display: flex;
-    flex: 1;
-    min-height: 50vh;
-    border-top-width: 1px;
-    border-top-style: solid;
   }
 
   .lesson-video-wrapper {
@@ -296,9 +192,8 @@
     font-size: 1.063rem;
   }
 
-  .lesson-tab {
-    padding: 0.625rem 0.375rem;
-    font-size: 0.688rem;
+  .lesson-commentary-section {
+    padding: 1rem 1rem 1.5rem;
   }
 
   /* Mobile toggles */
@@ -313,10 +208,6 @@
 
 /* Desktop: hide mobile-only elements */
 @media (min-width: 769px) {
-  .lesson-research-mobile {
-    display: none !important;
-  }
-
   .lesson-toggle-mobile {
     display: none !important;
   }
@@ -324,26 +215,22 @@
 
 /* ─── Scrollbar styling ──────────────────── */
 .lesson-toc ::-webkit-scrollbar,
-.lesson-research ::-webkit-scrollbar,
 .lesson-center ::-webkit-scrollbar {
   width: 4px;
 }
 
 .lesson-toc ::-webkit-scrollbar-thumb,
-.lesson-research ::-webkit-scrollbar-thumb,
 .lesson-center ::-webkit-scrollbar-thumb {
   background: rgba(128, 128, 128, 0.25);
   border-radius: 4px;
 }
 
 .lesson-toc ::-webkit-scrollbar-thumb:hover,
-.lesson-research ::-webkit-scrollbar-thumb:hover,
 .lesson-center ::-webkit-scrollbar-thumb:hover {
   background: rgba(128, 128, 128, 0.4);
 }
 
 .lesson-toc ::-webkit-scrollbar-track,
-.lesson-research ::-webkit-scrollbar-track,
 .lesson-center ::-webkit-scrollbar-track {
   background: transparent;
 }

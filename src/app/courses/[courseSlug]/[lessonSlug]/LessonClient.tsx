@@ -1,21 +1,22 @@
 /**
  * LessonClient — Main client component for the Esy Video Lesson experience.
  * 
- * Architecture: Three-surface layout
+ * Architecture: Two-surface layout
  *   A) NAVIGATION (left): Course outline, progress, search
- *   B) PRIMARY LEARNING (center): Video player, title, controls
- *   C) RESEARCH (right): Tabs for Transcript, Commentary, Notes, Discussion
+ *   B) PRIMARY LEARNING (center, scrollable):
+ *      - Video player
+ *      - Title & meta
+ *      - Commentary (instructor notes, inline below video)
+ *      - Transcript (collapsible, toggled via button)
  * 
  * State Management:
  *   - Video time synced via ref callbacks (no heavy state)
- *   - Notes persisted in localStorage (keyed by course/lesson slug)
  *   - Progress persisted in localStorage
  *   - Theme read from body class (set by parent or nav system)
  * 
  * To swap in real APIs later:
  *   - Replace mockData imports with fetch calls in page.tsx
  *   - Pass course/lesson as props (already structured this way)
- *   - Replace localStorage notes with API calls
  *   - Replace localStorage progress with API calls
  */
 
@@ -24,9 +25,9 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import {
-  PanelLeftClose, PanelLeftOpen, PanelRightClose, PanelRightOpen,
-  Maximize2, Minimize2, ChevronLeft, ChevronRight, Menu,
-  BookOpen, FileText, Edit3, MessageCircle, User, Calendar, Clock,
+  PanelLeftClose, PanelLeftOpen,
+  Maximize2, Minimize2, ChevronLeft, ChevronRight, ChevronDown, Menu,
+  User, Calendar, Clock, FileText,
   Sun, Moon
 } from 'lucide-react';
 
@@ -34,10 +35,8 @@ import VideoPlayer, { type VideoPlayerHandle } from '@/components/learn/VideoPla
 import CourseToc from '@/components/learn/CourseToc';
 import TranscriptPanel from '@/components/learn/TranscriptPanel';
 import CommentaryPanel from '@/components/learn/CommentaryPanel';
-import NotesPanel from '@/components/learn/NotesPanel';
-import DiscussionPanel from '@/components/learn/DiscussionPanel';
 
-import type { Course, Lesson, LessonProgress, UserNote } from '@/lib/learn/types';
+import type { Course, Lesson, LessonProgress } from '@/lib/learn/types';
 import { getAdjacentLessons } from '@/lib/learn/mockData';
 import { navyCalmDarkTheme } from '@/lib/theme';
 import { lightTheme } from '@/lib/lightTheme';
@@ -53,7 +52,6 @@ interface LessonClientProps {
 
 // ─── localStorage helpers ──────────────────────────────────
 const PROGRESS_KEY = 'esy-course-progress';
-const NOTES_KEY = 'esy-course-notes';
 
 function loadProgress(): Record<string, LessonProgress> {
   if (typeof window === 'undefined') return {};
@@ -67,38 +65,11 @@ function saveProgress(progress: Record<string, LessonProgress>) {
   localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
 }
 
-function loadNotes(courseSlug: string, lessonSlug: string): UserNote[] {
-  if (typeof window === 'undefined') return [];
-  try {
-    const all = JSON.parse(localStorage.getItem(NOTES_KEY) || '{}');
-    return all[`${courseSlug}/${lessonSlug}`] || [];
-  } catch { return []; }
-}
-
-function saveNotes(courseSlug: string, lessonSlug: string, notes: UserNote[]) {
-  if (typeof window === 'undefined') return;
-  try {
-    const all = JSON.parse(localStorage.getItem(NOTES_KEY) || '{}');
-    all[`${courseSlug}/${lessonSlug}`] = notes;
-    localStorage.setItem(NOTES_KEY, JSON.stringify(all));
-  } catch { /* ignore */ }
-}
-
-// ─── Tabs config ───────────────────────────────────────────
-type TabId = 'transcript' | 'commentary' | 'notes' | 'discussion';
-const tabs: { id: TabId; label: string; icon: React.ReactNode }[] = [
-  { id: 'transcript', label: 'Transcript', icon: <FileText size={14} /> },
-  { id: 'commentary', label: 'Commentary', icon: <BookOpen size={14} /> },
-  { id: 'notes', label: 'Notes', icon: <Edit3 size={14} /> },
-  { id: 'discussion', label: 'Discussion', icon: <MessageCircle size={14} /> },
-];
-
 export default function LessonClient({ course, lesson, chapterTitle }: LessonClientProps) {
   const searchParams = useSearchParams();
   const videoRef = useRef<VideoPlayerHandle>(null);
 
   // ─── Theme ───────────────────────────────────
-  // Always start dark (server-safe); read localStorage after mount
   const [isDark, setIsDark] = useState(true);
   const [mounted, setMounted] = useState(false);
 
@@ -126,21 +97,20 @@ export default function LessonClient({ course, lesson, chapterTitle }: LessonCli
 
   // ─── Layout state ────────────────────────────
   const [leftOpen, setLeftOpen] = useState(true);
-  const [rightOpen, setRightOpen] = useState(true);
   const [theater, setTheater] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [isTablet, setIsTablet] = useState(false);
-  const [activeTab, setActiveTab] = useState<TabId>('transcript');
+  const [transcriptOpen, setTranscriptOpen] = useState(false);
 
   // ─── Video state ─────────────────────────────
   const [currentTimeMs, setCurrentTimeMs] = useState(0);
 
-  // ─── Progress & Notes ────────────────────────
+  // ─── Progress ────────────────────────────────
   const [progress, setProgress] = useState<Record<string, LessonProgress>>({});
-  const [notes, setNotes] = useState<UserNote[]>([]);
 
   // Responsive
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+
   useEffect(() => {
     const check = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -156,10 +126,9 @@ export default function LessonClient({ course, lesson, chapterTitle }: LessonCli
     if (isTablet) setLeftOpen(false);
   }, [isTablet]);
 
-  // Load progress & notes
+  // Load progress
   useEffect(() => {
     setProgress(loadProgress());
-    setNotes(loadNotes(course.slug, lesson.slug));
   }, [course.slug, lesson.slug]);
 
   // URL timestamp ?t=
@@ -201,12 +170,6 @@ export default function LessonClient({ course, lesson, chapterTitle }: LessonCli
     });
   }, [course.slug, lesson.slug, lesson.durationMs]);
 
-  // Notes persistence
-  const handleSetNotes = useCallback((updated: UserNote[]) => {
-    setNotes(updated);
-    saveNotes(course.slug, lesson.slug, updated);
-  }, [course.slug, lesson.slug]);
-
   // Seek handler
   const handleSeek = useCallback((ms: number) => {
     videoRef.current?.seekTo(ms);
@@ -221,10 +184,10 @@ export default function LessonClient({ course, lesson, chapterTitle }: LessonCli
     return p?.lastWatchedMs || 0;
   }, [progress, course.slug, lesson.slug]);
 
-  // Colors — distinct surfaces for visual hierarchy
+  // Colors
   const accent = isDark ? '#00D4AA' : '#00A896';
-  const bgMain = isDark ? navyCalmDarkTheme.bg : '#FFFFFF';                   // Center: primary bg
-  const bgSidebar = isDark ? '#05101F' : '#F5F6F8';                           // Sidebars: slightly deeper/lighter
+  const bgMain = isDark ? navyCalmDarkTheme.bg : '#FFFFFF';
+  const bgSidebar = isDark ? '#05101F' : '#F5F6F8';
   const textColor = isDark ? '#FFFFFF' : '#1A1A2E';
   const mutedColor = isDark ? 'rgba(255,255,255,0.5)' : '#8E9AAF';
   const borderColor = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.08)';
@@ -232,9 +195,7 @@ export default function LessonClient({ course, lesson, chapterTitle }: LessonCli
   // Grid class
   let layoutClass = 'lesson-layout';
   if (theater) layoutClass += ' lesson-layout--theater';
-  else if (!leftOpen && !rightOpen) layoutClass += ' lesson-layout--no-both';
   else if (!leftOpen) layoutClass += ' lesson-layout--no-left';
-  else if (!rightOpen) layoutClass += ' lesson-layout--no-right';
 
   return (
     <>
@@ -290,8 +251,24 @@ export default function LessonClient({ course, lesson, chapterTitle }: LessonCli
           />
         </div>
 
-        {/* ═══ B) PRIMARY LEARNING (center) ═══ */}
+        {/* ═══ B) PRIMARY LEARNING (center, scrollable) ═══ */}
         <div className="lesson-center" style={{ backgroundColor: bgMain }}>
+          {/* Breadcrumbs */}
+          <div style={{
+            maxWidth: '960px', width: '100%', margin: '0 auto',
+            padding: '0.75rem 1rem 0', boxSizing: 'border-box',
+            display: 'flex', alignItems: 'center', gap: '0.5rem',
+            fontSize: '0.813rem', color: mutedColor,
+          }}>
+            <Link href="/" style={{ color: mutedColor, textDecoration: 'none', transition: 'color 0.15s' }}>Home</Link>
+            <span style={{ opacity: 0.5 }}>›</span>
+            <Link href="/courses" style={{ color: mutedColor, textDecoration: 'none', transition: 'color 0.15s' }}>Courses</Link>
+            <span style={{ opacity: 0.5 }}>›</span>
+            <Link href={`/courses/${course.slug}`} style={{ color: mutedColor, textDecoration: 'none', transition: 'color 0.15s' }}>{course.title}</Link>
+            <span style={{ opacity: 0.5 }}>›</span>
+            <span style={{ color: accent }}>{lesson.title}</span>
+          </div>
+
           {/* Video */}
           <div className="lesson-video-wrapper">
             <VideoPlayer
@@ -305,6 +282,67 @@ export default function LessonClient({ course, lesson, chapterTitle }: LessonCli
               initialTimeMs={initialTimeMs}
               isDark={isDark}
             />
+
+            {/* ─── Transcript toggle bar (flush under video) ─── */}
+            <button
+              onClick={() => setTranscriptOpen(o => !o)}
+              aria-expanded={transcriptOpen}
+              style={{
+                width: '100%',
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                padding: '0.625rem 0.875rem',
+                marginTop: '0',
+                background: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.025)',
+                border: 'none',
+                borderRadius: '0 0 12px 12px',
+                cursor: 'pointer',
+                transition: 'background 0.2s ease',
+                fontFamily: 'inherit',
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.045)'}
+              onMouseLeave={e => e.currentTarget.style.background = isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.025)'}
+            >
+              <span style={{
+                display: 'flex', alignItems: 'center', gap: '0.5rem',
+                fontSize: '0.75rem', fontWeight: 500,
+                color: transcriptOpen ? accent : mutedColor,
+                letterSpacing: '0.02em',
+                transition: 'color 0.2s ease',
+              }}>
+                <FileText size={13} />
+                {transcriptOpen ? 'Hide Transcript' : 'Show Transcript'}
+              </span>
+              <ChevronDown
+                size={13}
+                color={transcriptOpen ? accent : mutedColor}
+                style={{
+                  transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease',
+                  transform: transcriptOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                }}
+              />
+            </button>
+
+            {/* Collapsible transcript */}
+            <div style={{
+              overflow: 'hidden',
+              transition: 'max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease',
+              maxHeight: transcriptOpen ? '600px' : '0',
+              opacity: transcriptOpen ? 1 : 0,
+              borderRadius: '0 0 12px 12px',
+            }}>
+              <div style={{
+                maxHeight: '560px',
+                overflowY: 'auto',
+                borderTop: `1px solid ${borderColor}`,
+              }}>
+                <TranscriptPanel
+                  segments={lesson.transcript}
+                  currentTimeMs={currentTimeMs}
+                  onSeek={handleSeek}
+                  isDark={isDark}
+                />
+              </div>
+            </div>
           </div>
 
           {/* Control bar + meta */}
@@ -374,16 +412,6 @@ export default function LessonClient({ course, lesson, chapterTitle }: LessonCli
                     <ChevronRight size={16} />
                   </Link>
                 )}
-
-                {/* Desktop: toggle right panel */}
-                <button
-                  className="lesson-toggle-btn lesson-toggle-desktop"
-                  onClick={() => setRightOpen(o => !o)}
-                  style={{ backgroundColor: isDark ? 'rgba(255,255,255,0.05)' : '#F0F0F0', color: mutedColor }}
-                  aria-label={rightOpen ? 'Close research panel' : 'Open research panel'}
-                >
-                  {rightOpen ? <PanelRightClose size={16} /> : <PanelRightOpen size={16} />}
-                </button>
               </div>
             </div>
 
@@ -416,84 +444,11 @@ export default function LessonClient({ course, lesson, chapterTitle }: LessonCli
             </div>
           </div>
 
-          {/* Mobile: tabs below video — shown on mobile via CSS */}
-          <div className="lesson-research-mobile lesson-research" style={{ borderTopColor: borderColor }}>
-            <div className="lesson-tabs" style={{ borderBottom: `1px solid ${borderColor}` }}>
-              {tabs.map(tab => (
-                <button
-                  key={tab.id}
-                  className={`lesson-tab ${activeTab === tab.id ? 'lesson-tab--active' : ''}`}
-                  onClick={() => setActiveTab(tab.id)}
-                  style={{
-                    color: activeTab === tab.id ? accent : mutedColor,
-                    borderBottomColor: activeTab === tab.id ? accent : 'transparent',
-                  }}
-                  aria-selected={activeTab === tab.id}
-                  role="tab"
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-            <div className="lesson-tab-content">
-              {activeTab === 'transcript' && (
-                <TranscriptPanel segments={lesson.transcript} currentTimeMs={currentTimeMs} onSeek={handleSeek} isDark={isDark} />
-              )}
-              {activeTab === 'commentary' && (
-                <CommentaryPanel commentary={lesson.commentary} onSeek={handleSeek} isDark={isDark} />
-              )}
-              {activeTab === 'notes' && (
-                <NotesPanel courseSlug={course.slug} lessonSlug={lesson.slug} currentTimeMs={currentTimeMs} onSeek={handleSeek} isDark={isDark} notes={notes} setNotes={handleSetNotes} />
-              )}
-              {activeTab === 'discussion' && (
-                <DiscussionPanel isDark={isDark} />
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* ═══ C) RESEARCH (right sidebar) — hidden on mobile via CSS ═══ */}
-        <div
-          className={`lesson-research lesson-research--desktop ${!rightOpen || theater ? 'lesson-research--collapsed' : ''}`}
-          style={{ borderLeft: `1px solid ${borderColor}`, backgroundColor: bgSidebar }}
-        >
-          {/* Tabs */}
-          <div className="lesson-tabs" style={{ borderBottom: `1px solid ${borderColor}` }}>
-            {tabs.map(tab => (
-              <button
-                key={tab.id}
-                className={`lesson-tab ${activeTab === tab.id ? 'lesson-tab--active' : ''}`}
-                onClick={() => setActiveTab(tab.id)}
-                style={{
-                  color: activeTab === tab.id ? accent : mutedColor,
-                  borderBottomColor: activeTab === tab.id ? accent : 'transparent',
-                }}
-                aria-selected={activeTab === tab.id}
-                role="tab"
-              >
-                <span style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', justifyContent: 'center' }}>
-                  {tab.icon}
-                  {tab.label}
-                </span>
-              </button>
-            ))}
+          {/* ─── Commentary (inline below video) ─── */}
+          <div className="lesson-commentary-section">
+            <CommentaryPanel commentary={lesson.commentary} onSeek={handleSeek} isDark={isDark} />
           </div>
 
-          {/* Tab content */}
-          <div className="lesson-tab-content">
-            {activeTab === 'transcript' && (
-              <TranscriptPanel segments={lesson.transcript} currentTimeMs={currentTimeMs} onSeek={handleSeek} isDark={isDark} />
-            )}
-            {activeTab === 'commentary' && (
-              <CommentaryPanel commentary={lesson.commentary} onSeek={handleSeek} isDark={isDark} />
-            )}
-            {activeTab === 'notes' && (
-              <NotesPanel courseSlug={course.slug} lessonSlug={lesson.slug} currentTimeMs={currentTimeMs} onSeek={handleSeek} isDark={isDark} notes={notes} setNotes={handleSetNotes} />
-            )}
-            {activeTab === 'discussion' && (
-              <DiscussionPanel isDark={isDark} />
-            )}
-          </div>
         </div>
       </div>
     </>

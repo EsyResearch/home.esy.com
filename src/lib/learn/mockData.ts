@@ -816,6 +816,7 @@ export const courses: Course[] = [
     publishedAt: '2025-12-15',
     tags: ['Claude Code', 'AI Coding', 'Developer Tools', 'Productivity'],
   },
+  /* Commenting out courses below — only "How to Use Claude Code" is active
   {
     slug: 'chatgpt-for-research-workflows',
     title: 'ChatGPT for Research Workflows',
@@ -938,6 +939,7 @@ export const courses: Course[] = [
     publishedAt: '2026-02-01',
     tags: ['Infographics', 'Visual Design', 'Nano Banana', 'Data Visualization'],
   },
+  END of commented-out courses */
 ];
 
 // ─── Lookup Helpers ────────────────────────────────────────

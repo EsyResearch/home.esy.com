@@ -145,8 +145,8 @@ export default function Footer () {
               setIsLightMode(false);
               setIsNavyDark(true);
             } else {
-              setIsLightMode(true);
-              setIsNavyDark(false);
+            setIsLightMode(true);
+            setIsNavyDark(false);
             }
           }
           

@@ -385,11 +385,11 @@ export default function Navigation({
         setIsArtifactsOpen(false);
         setIsLearnOpen(false);
       } else if (artifactsDropdownRef.current && !artifactsDropdownRef.current.contains(e.target as Node)) {
-        setIsArtifactsOpen(false);
+      setIsArtifactsOpen(false);
       } else if (learnDropdownRef.current && !learnDropdownRef.current.contains(e.target as Node)) {
         setIsLearnOpen(false);
       }
-    };
+  };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
@@ -426,7 +426,7 @@ export default function Navigation({
             <div 
               className="nav-dropdown-container"
               ref={artifactsDropdownRef}
-            >
+              >
               <button 
                 className={`nav-dropdown-trigger ${isArtifactsOpen ? 'active' : ''}`}
                 aria-expanded={isArtifactsOpen}
@@ -439,23 +439,23 @@ export default function Navigation({
                 <span>Artifacts</span>
               </button>
 
-              <div 
+                <div 
                 className={`nav-artifacts-dropdown ${isArtifactsOpen ? 'open' : ''}`}
-                role="menu"
-              >
-                <div className="nav-artifacts-list">
-                  <Link 
-                    href="/essays/" 
-                    className="nav-artifact-item"
-                    onClick={() => setIsArtifactsOpen(false)}
-                  >
-                    <div className="nav-artifact-content">
-                      <span className="nav-artifact-title">Essays</span>
-                      <span className="nav-artifact-desc">Visual research narratives</span>
-                    </div>
-                  </Link>
+                  role="menu"
+                >
+                  <div className="nav-artifacts-list">
+                    <Link 
+                      href="/essays/" 
+                      className="nav-artifact-item"
+                      onClick={() => setIsArtifactsOpen(false)}
+                    >
+                      <div className="nav-artifact-content">
+                        <span className="nav-artifact-title">Essays</span>
+                        <span className="nav-artifact-desc">Visual research narratives</span>
+                      </div>
+                    </Link>
+                  </div>
                 </div>
-              </div>
             </div>
 
             {/* Templates (hidden on mobile, available in hamburger menu) */}

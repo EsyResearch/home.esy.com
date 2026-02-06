@@ -132,7 +132,7 @@ export default function CoursesListClient() {
           filter: 'blur(60px)', pointerEvents: 'none',
         }} />
         {/* Secondary glow */}
-        <div style={{
+          <div style={{
           position: 'absolute', top: '40%', right: '10%',
           width: '400px', height: '400px',
           background: isDark
@@ -141,25 +141,37 @@ export default function CoursesListClient() {
           filter: 'blur(80px)', pointerEvents: 'none',
         }} />
 
-        <div style={{
+            <div style={{
           position: 'relative', zIndex: 1,
           maxWidth: '1200px', margin: '0 auto',
           padding: isMobile ? '0 1.5rem' : '0 2.5rem',
-        }}>
+            }}>
+          {/* Breadcrumb */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            marginBottom: '2rem',
+            fontSize: '0.875rem',
+            color: subtle,
+          }}>
+            <Link href="/" style={{ color: subtle, textDecoration: 'none' }}>Home</Link>
+            <span>›</span>
+            <span style={{ color: muted }}>Courses</span>
+          </div>
+
           {/* Headline */}
           <h1 style={{
-            fontFamily: "'Cormorant Garamond', Georgia, serif",
-            fontSize: isMobile ? '2.5rem' : isTablet ? '3.5rem' : '4.25rem',
-            fontWeight: 700,
+            fontFamily: 'var(--font-literata)',
+            fontSize: 'clamp(2.75rem, 6vw, 4.5rem)',
+            fontWeight: 300,
             lineHeight: 1.1,
             letterSpacing: '-0.02em',
             margin: '0 0 1.25rem',
             color: text,
             maxWidth: '700px',
           }}>
-            Master AI
-            <span style={{ color: accent }}> Research</span>
-            <br />Workflows
+            Esy <span style={{ color: accent }}>Courses</span>
           </h1>
 
           {/* Subtitle */}
@@ -192,7 +204,7 @@ export default function CoursesListClient() {
               }}>
                 <span style={{ color: accent, display: 'flex' }}>{stat.icon}</span>
                 {stat.label}
-              </div>
+            </div>
             ))}
           </div>
         </div>
@@ -300,22 +312,22 @@ export default function CoursesListClient() {
                     </div>
                     {/* Play button */}
                     <div style={{
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
                       width: '44px', height: '44px', borderRadius: '50%',
                       backgroundColor: isHovered ? accent : 'rgba(255,255,255,0.1)',
                       border: `2px solid ${isHovered ? accent : 'rgba(255,255,255,0.2)'}`,
                       transition: 'all 0.3s',
                       transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-                    }}>
+                  }}>
                       <Play size={18} color="#FFFFFF" fill="#FFFFFF" style={{ marginLeft: '2px' }} />
-                    </div>
+                  </div>
                     {/* Metadata */}
-                    <span style={{
-                      fontSize: '0.688rem', color: 'rgba(255,255,255,0.5)',
+                  <span style={{
+                    fontSize: '0.688rem', color: 'rgba(255,255,255,0.5)',
                       textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 500,
-                    }}>
-                      {course.totalLessons} lessons · {course.totalDurationLabel}
-                    </span>
+                  }}>
+                    {course.totalLessons} lessons · {course.totalDurationLabel}
+                  </span>
                   </div>
                 </div>
 
@@ -375,19 +387,19 @@ export default function CoursesListClient() {
                           }}
                         />
                       ) : (
-                        <div style={{
+                      <div style={{
                           width: '30px', height: '30px', borderRadius: '50%',
                           background: `linear-gradient(135deg, ${accent}, ${accentLight})`,
-                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
                           fontSize: '0.688rem', fontWeight: 700, color: '#0A2540',
-                        }}>
-                          {course.author.name.split(' ').map(n => n[0]).join('')}
-                        </div>
+                      }}>
+                        {course.author.name.split(' ').map(n => n[0]).join('')}
+                      </div>
                       )}
                       <div>
                         <span style={{ fontSize: '0.813rem', color: text, fontWeight: 500, display: 'block', lineHeight: 1.2 }}>
-                          {course.author.name}
-                        </span>
+                        {course.author.name}
+                      </span>
                         <span style={{ fontSize: '0.688rem', color: subtle }}>
                           {course.author.role}
                         </span>
@@ -440,9 +452,9 @@ export default function CoursesListClient() {
             <Zap size={22} color="#00D4AA" />
           </div>
           <h2 style={{
-            fontFamily: "'Cormorant Garamond', Georgia, serif",
+            fontFamily: 'var(--font-literata)',
             fontSize: isMobile ? '1.75rem' : '2.25rem',
-            fontWeight: 700, color: '#FFFFFF',
+            fontWeight: 300, color: '#FFFFFF',
             margin: '0 0 0.75rem',
             letterSpacing: '-0.01em',
           }}>
@@ -466,7 +478,7 @@ export default function CoursesListClient() {
           }}>
             Browse Courses <ArrowRight size={16} />
           </Link>
-        </div>
+      </div>
       </section>
     </div>
   );

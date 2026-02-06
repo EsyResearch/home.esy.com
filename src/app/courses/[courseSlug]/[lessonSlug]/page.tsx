@@ -52,11 +52,11 @@ export default async function LessonPage({ params }: PageProps) {
 
   return (
     <Suspense fallback={null}>
-      <LessonClient
-        course={course}
-        lesson={lesson}
-        chapterTitle={chapter}
-      />
+    <LessonClient
+      course={course}
+      lesson={lesson}
+      chapterTitle={chapter}
+    />
     </Suspense>
   );
 }

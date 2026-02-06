@@ -304,7 +304,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                   boxShadow: `0 4px 16px ${isDark ? 'rgba(0,212,170,0.3)' : 'rgba(0,168,150,0.2)'}`,
                 }}
               >
-                <Play size={16} fill="#0A2540" /> Start Learning
+                <Play size={16} fill="#FFFFFF" /> Start Learning
               </Link>
               <button
                 onClick={handleShare}
@@ -717,7 +717,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                   transition: 'opacity 0.2s',
                 }}
               >
-                <Play size={14} fill="#0A2540" /> Start Learning
+                <Play size={14} fill="#FFFFFF" /> Start Learning
               </Link>
             </div>
           </div>
