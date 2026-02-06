@@ -10,6 +10,18 @@ const ArticleLayout = ({ children, meta, theme, isDarkMode = true }) => {
   const [fontSize, setFontSize] = useState('default');
   const [showShareMenu, setShowShareMenu] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Reading progress
   useEffect(() => {
@@ -147,7 +159,11 @@ const ArticleLayout = ({ children, meta, theme, isDarkMode = true }) => {
       
       <article style={styles.articleContainer}>
         {/* Breadcrumb */}
-        <div style={{ marginTop: '5.2rem' }}>
+        <div style={{ 
+          marginTop: '6.5rem', 
+          marginBottom: '1rem',
+          marginLeft: isMobile ? '25px' : '30px'
+        }} className="school-article-breadcrumbs">
           <Breadcrumbs 
             items={[
               { label: 'School', href: '/school' },

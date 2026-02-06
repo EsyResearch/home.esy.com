@@ -17,11 +17,19 @@
 .breadcrumbsContainer {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 1rem 3rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 0.813rem;
+}
+
+/* Ensure breadcrumbs don't hug the viewport on smaller screens */
+@media (max-width: 1400px) {
+  .breadcrumbsContainer {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 .breadcrumbLink {
@@ -92,5 +100,13 @@
   
   .breadcrumbCurrent {
     max-width: 150px;
+  }
+}
+
+/* Ensure breadcrumbs have proper spacing on all screen sizes */
+@media (min-width: 1401px) {
+  .breadcrumbsContainer {
+    padding-left: 4rem;
+    padding-right: 4rem;
   }
 }
