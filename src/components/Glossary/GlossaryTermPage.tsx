@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { FileText, Brain, Globe, Lightbulb, Code } from 'lucide-react';
+import { FileText, Brain, Globe, Lightbulb, Code, ArrowRight } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import styles from './GlossaryTermPage.module.css';
 
@@ -53,28 +53,45 @@ export default function GlossaryTermPage({ term }: GlossaryTermPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <main className={styles.page}>
-        <Breadcrumbs
-          items={[
-            { label: 'Home', href: '/' },
-            { label: 'Glossary', href: '/glossary' },
-            { label: term.title, isCurrent: true },
-          ]}
-        />
+      <div className={styles.page}>
+        {/* Hero Section */}
+        <section className={styles.hero}>
+          <div className={styles.heroInner}>
+            {/* Grid Background Pattern */}
+            <div className={styles.gridPattern} />
+            
+            <div className={styles.heroContent}>
+              <Breadcrumbs
+                items={[
+                  { label: 'Home', href: '/' },
+                  { label: 'Glossary', href: '/glossary' },
+                  { label: term.title, isCurrent: true },
+                ]}
+              />
 
-        <article className={styles.article}>
-          <header>
-            <div
-              className={styles.badge}
-              style={{ '--badge-color': category.color } as React.CSSProperties}
-            >
-              <IconComponent size={14} />
-              {category.name}
+              <div
+                className={styles.badge}
+                style={{ '--badge-color': category.color } as React.CSSProperties}
+              >
+                <IconComponent size={14} />
+                {category.name}
+              </div>
+
+              <h1 className={styles.title}>{term.title}</h1>
+
+              {term.pronunciation && (
+                <p className={styles.pronunciation}>{term.pronunciation}</p>
+              )}
+
+              {term.description && (
+                <p className={styles.description}>{term.description}</p>
+              )}
             </div>
-            <h1>{term.title}</h1>
-            {term.pronunciation && <p className={styles.pronunciation}>{term.pronunciation}</p>}
-          </header>
+          </div>
+        </section>
 
+        {/* Article Content */}
+        <article className={styles.article}>
           {term.content && (
             <section className={styles.prose}>
               <ReactMarkdown remarkPlugins={[remarkGfm]}>{term.content}</ReactMarkdown>
@@ -82,19 +99,27 @@ export default function GlossaryTermPage({ term }: GlossaryTermPageProps) {
           )}
 
           {term.relatedTerms && term.relatedTerms.length > 0 && (
-            <footer>
+            <footer className={styles.footer}>
               <h2>Related Terms</h2>
               <nav className={styles.related}>
                 {term.relatedTerms.map((slug) => (
                   <Link key={slug} href={`/glossary/${slug}`}>
                     {slug.replace(/-/g, ' ')}
+                    <ArrowRight size={12} style={{ opacity: 0.5 }} />
                   </Link>
                 ))}
               </nav>
             </footer>
           )}
+
+          {/* Back to Glossary */}
+          <div className={styles.backLink}>
+            <Link href="/glossary">
+              ← Browse all terms
+            </Link>
+          </div>
         </article>
-      </main>
+      </div>
     </>
   );
 }

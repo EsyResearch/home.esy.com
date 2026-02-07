@@ -1,13 +1,12 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
-import { Brain, FileText, Code, Globe, Lightbulb, Search, Filter } from 'lucide-react';
-import Breadcrumbs from '@/components/Breadcrumbs';
+import Link from 'next/link';
+import { Brain, FileText, Code, Globe, Lightbulb, Search, ArrowRight } from 'lucide-react';
 import GlossaryGrid from '@/components/Glossary/GlossaryGrid';
-import GlossarySidebar from '@/components/Glossary/GlossarySidebar';
-import { Theme, GlossaryTerm, GlossaryCategory, TermOfDay, CategoryType } from '@/types';
+import { Theme, GlossaryTerm, GlossaryCategory, CategoryType } from '@/types';
 import { useScrollHeaderSearch } from '@/hooks/useScrollHeaderSearch';
 
-// Navy Calm Light Theme for Glossary
+// Navy Calm Light Theme
 const navyCalmLightTheme: Theme = {
   bg: '#FFFFFF',
   elevated: '#F8F9FA',
@@ -20,44 +19,29 @@ const navyCalmLightTheme: Theme = {
 };
 
 const GlossaryPage = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [activeFilter, setActiveFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('alphabetical');
   const [hoveredTerm, setHoveredTerm] = useState<string | null>(null);
-  const [showFilters, setShowFilters] = useState(false);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
   const searchBarRef = useRef<HTMLDivElement>(null);
 
-  // Show header search when in-page search scrolls out of view
   useScrollHeaderSearch(searchBarRef);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
-    window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleResize);
-    };
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  const isMobile = windowWidth < 768;
+  const isTablet = windowWidth < 1024;
 
   const currentTheme: Theme = navyCalmLightTheme;
 
-  // Metrics summary
-  const metrics = {
-    totalTerms: 30,
-    totalViews: '8.7k',
-    avgReadTime: '2.3 min',
-    lastUpdated: 'Today'
-  };
-
-  // Sample glossary terms - Essay writing focused
+  // Glossary terms
   const glossaryTerms: GlossaryTerm[] = [
     {
       id: 'thesis-statement',
@@ -370,7 +354,7 @@ const GlossaryPage = () => {
     { id: 'grammar', name: 'Grammar', icon: Code, color: '#6C757D' }
   ];
 
-  // Filter and sort terms
+  // Filter and sort
   const filteredTerms = glossaryTerms.filter(term => {
     const matchesCategory = activeFilter === 'all' || term.category === activeFilter;
     const matchesSearch = term.term.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -378,15 +362,10 @@ const GlossaryPage = () => {
     return matchesCategory && matchesSearch;
   });
 
-  // Sort terms
   const sortedTerms = [...filteredTerms].sort((a, b) => {
-    if (sortBy === 'alphabetical') {
-      return a.term.localeCompare(b.term);
-    } else if (sortBy === 'popular') {
-      return b.views - a.views;
-    } else if (sortBy === 'recent') {
-      return new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime();
-    }
+    if (sortBy === 'alphabetical') return a.term.localeCompare(b.term);
+    if (sortBy === 'popular') return b.views - a.views;
+    if (sortBy === 'recent') return new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime();
     return 0;
   });
 
@@ -395,327 +374,355 @@ const GlossaryPage = () => {
     return cat?.color || currentTheme.subtle;
   };
 
-  const getPopularityDots = (popularity: number) => {
-    return Array.from({ length: 5 }, (_, i) => (
-      <span
-        key={i}
-        style={{
-          display: 'inline-block',
-          width: '4px',
-          height: '4px',
-          borderRadius: '50%',
-          background: i < popularity ? currentTheme.accent : currentTheme.border,
-          marginRight: '2px'
-        }}
-      />
-    ));
-  };
-
-  // Sidebar data (Term of Day)
-  const termOfDay: TermOfDay = {
-    term: 'Thesis Statement',
-    definition: 'A concise summary of the main point or claim of an essay, usually appearing in the introduction.',
-    category: 'structure',
-    personalNote: 'A strong thesis statement is the foundation of any successful essay.',
-    views: 2987,
-    isNew: true
-  };
+  // Alphabet index — gather unique first letters
+  const alphabetLetters = Array.from(
+    new Set(glossaryTerms.map(t => t.term[0].toUpperCase()))
+  ).sort();
 
   return (
-    <div className="academic-page" style={{
+    <div style={{
       minHeight: '100vh',
       backgroundColor: currentTheme.bg,
       color: currentTheme.text,
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+      fontFamily: 'var(--font-inter)'
     }}>
-      <header style={{ paddingTop: '7rem', paddingBottom: '2rem' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
-          {/* Breadcrumbs */}
-          <div style={{ marginBottom: '1.5rem' }}>
-            <Breadcrumbs 
-              items={[
-                { label: 'Home', href: '/' },
-                { label: 'Glossary', isCurrent: true }
-              ]}
-            />
-          </div>
+
+      {/* ─── Hero Section ─── */}
+      <section ref={searchBarRef} style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '7rem 2rem 3rem',
+        position: 'relative'
+      }}>
+        {/* Grid Background Pattern */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: `
+            linear-gradient(rgba(10, 37, 64, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(10, 37, 64, 0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: '60px 60px',
+          maskImage: 'radial-gradient(ellipse at center, black 0%, transparent 70%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at center, black 0%, transparent 70%)',
+          pointerEvents: 'none',
+          zIndex: 0
+        }} />
+        
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          {/* Breadcrumb */}
           <div style={{
             display: 'flex',
-            justifyContent: 'space-between',
             alignItems: 'center',
+            gap: '0.5rem',
             marginBottom: '2rem',
-            flexWrap: 'wrap',
-            gap: '1rem'
+            fontSize: '0.875rem',
+            color: currentTheme.subtle
           }}>
-            <div>
-              <h1 style={{
-                fontSize: '2.5rem',
-                fontWeight: 300,
-                letterSpacing: '-0.02em',
-                marginBottom: '0.5rem',
-                color: currentTheme.text,
-                fontFamily: 'var(--font-literata)'
-              }}>
-                Glossary
-              </h1>
-              <p style={{
-                fontSize: '1.125rem',
-                color: currentTheme.muted,
-                maxWidth: '600px',
-                lineHeight: 1.6,
-                fontWeight: 300
-              }}>
-                Essential terms and concepts for academic writing and essay composition. 
-                From thesis statements to citation formats.
-              </p>
-            </div>
-            
-            <div style={{
-              display: 'flex',
-              gap: '2rem',
-              fontSize: '0.875rem',
-              color: currentTheme.subtle
-            }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span>{metrics.totalTerms} terms</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span>{metrics.totalViews} views</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span>{metrics.avgReadTime} avg</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span>Updated {metrics.lastUpdated}</span>
-              </div>
-            </div>
+            <Link href="/" style={{ color: currentTheme.subtle, textDecoration: 'none' }}>Home</Link>
+            <span>›</span>
+            <span style={{ color: currentTheme.muted }}>Glossary</span>
           </div>
-          
-          {/* Search and Controls */}
-          <div ref={searchBarRef} style={{
-            display: 'flex',
-            gap: '1rem',
-            marginTop: '2rem',
-            marginBottom: '2rem',
-            flexWrap: 'wrap',
-            alignItems: 'center'
+
+          {/* Title */}
+          <h1 style={{
+            fontFamily: 'var(--font-literata)',
+            fontSize: 'clamp(2.75rem, 6vw, 4.5rem)',
+            fontWeight: 300,
+            lineHeight: 1.1,
+            marginBottom: '1.25rem',
+            letterSpacing: '-0.02em'
           }}>
-            {/* Search */}
-            <div style={{
-              flex: '1 1 300px',
-              minWidth: '250px',
-              position: 'relative'
-            }}>
-              <Search size={18} style={{
-                position: 'absolute',
-                left: '1rem',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                color: currentTheme.subtle,
-                pointerEvents: 'none',
-                zIndex: 1
-              }} />
-              <input
-                type="text"
-                placeholder="Search terms..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '0.75rem 1rem 0.75rem 2.75rem',
-                  background: currentTheme.elevated,
-                  border: `1px solid ${currentTheme.border}`,
-                  borderRadius: '8px',
-                  color: currentTheme.text,
-                  fontSize: '0.875rem',
-                  outline: 'none',
-                  transition: 'all 0.2s',
-                  boxSizing: 'border-box'
-                }}
-                onFocus={(e) => {
-                  e.target.style.borderColor = currentTheme.accent;
-                  e.target.style.boxShadow = `0 0 0 3px ${currentTheme.accent}20`;
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = currentTheme.border;
-                  e.target.style.boxShadow = 'none';
-                }}
-              />
-            </div>
-            
-            {/* Sort Dropdown */}
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
+            Writing <span style={{ color: currentTheme.accent }}>Glossary</span>
+          </h1>
+
+          {/* Subtitle */}
+          <p style={{
+            fontSize: 'clamp(1.0625rem, 2vw, 1.25rem)',
+            lineHeight: 1.6,
+            color: currentTheme.muted,
+            maxWidth: '600px',
+            marginBottom: '2.5rem'
+          }}>
+            Essential terms and concepts for academic writing and essay composition. 
+            From thesis statements to citation formats.
+          </p>
+        </div>
+      </section>
+
+      {/* ─── Search & Filters ─── */}
+      <section style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '0 2rem 1.5rem'
+      }}>
+        <div style={{
+          display: 'flex',
+          gap: '0.75rem',
+          alignItems: 'center',
+          flexWrap: 'wrap'
+        }}>
+          {/* Search Input */}
+          <div style={{
+            flex: '1 1 280px',
+            minWidth: '200px',
+            maxWidth: '400px',
+            position: 'relative'
+          }}>
+            <Search size={16} style={{
+              position: 'absolute',
+              left: '0.875rem',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              color: currentTheme.subtle,
+              pointerEvents: 'none'
+            }} />
+            <input
+              type="text"
+              placeholder="Search terms..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               style={{
-                padding: '0.75rem 1rem',
+                width: '100%',
+                padding: '0.625rem 1rem 0.625rem 2.5rem',
                 background: currentTheme.elevated,
                 border: `1px solid ${currentTheme.border}`,
-                borderRadius: '8px',
+                borderRadius: '10px',
                 color: currentTheme.text,
                 fontSize: '0.875rem',
-                cursor: 'pointer',
                 outline: 'none',
-                transition: 'all 0.2s',
-                minWidth: '140px',
-                appearance: 'none',
-                backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")`,
-                backgroundPosition: 'right 0.5rem center',
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: '1.5em 1.5em',
-                paddingRight: '2.5rem'
+                transition: 'all 0.2s ease',
+                boxSizing: 'border-box'
               }}
               onFocus={(e) => {
                 e.target.style.borderColor = currentTheme.accent;
-                e.target.style.boxShadow = `0 0 0 3px ${currentTheme.accent}20`;
+                e.target.style.boxShadow = `0 0 0 3px ${currentTheme.accent}15`;
               }}
               onBlur={(e) => {
                 e.target.style.borderColor = currentTheme.border;
                 e.target.style.boxShadow = 'none';
               }}
-            >
-              <option value="alphabetical">A-Z</option>
-              <option value="popular">Most Viewed</option>
-              <option value="recent">Recently Updated</option>
-            </select>
-            
-            {/* Filter Toggle */}
-            <button
-              onClick={() => setShowFilters(!showFilters)}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                padding: '0.75rem 1rem',
-                background: showFilters ? currentTheme.accent : currentTheme.elevated,
-                border: `1px solid ${showFilters ? currentTheme.accent : currentTheme.border}`,
-                borderRadius: '8px',
-                color: showFilters ? 'white' : currentTheme.text,
-                fontSize: '0.875rem',
-                cursor: 'pointer',
-                outline: 'none',
-                transition: 'all 0.2s'
-              }}
-              onMouseEnter={(e) => {
-                if (!showFilters) {
-                  e.currentTarget.style.background = currentTheme.accent;
-                  e.currentTarget.style.color = 'white';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!showFilters) {
-                  e.currentTarget.style.background = currentTheme.elevated;
-                  e.currentTarget.style.color = currentTheme.text;
-                }
-              }}
-            >
-              <Filter size={16} />
-              Categories
-            </button>
+            />
           </div>
-          
-          {/* Category Filters */}
-          {showFilters && (
-            <div style={{
-              marginBottom: '2rem',
-              padding: '1rem',
+
+          {/* Sort Dropdown */}
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            style={{
+              padding: '0.625rem 2.25rem 0.625rem 0.875rem',
               background: currentTheme.elevated,
               border: `1px solid ${currentTheme.border}`,
-              borderRadius: '8px',
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '0.5rem'
-            }}>
-              {categories.map(category => {
-                const isActive = activeFilter === category.id;
-                const IconComponent = category.icon;
-                
-                return (
-                  <button
-                    key={category.id}
-                    onClick={() => setActiveFilter(category.id)}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      padding: '0.5rem 1rem',
-                      background: isActive ? category.color : 'transparent',
-                      border: `1px solid ${isActive ? category.color : currentTheme.border}`,
-                      borderRadius: '6px',
-                      color: isActive ? 'white' : currentTheme.text,
-                      fontSize: '0.875rem',
-                      cursor: 'pointer',
-                      outline: 'none',
-                      transition: 'all 0.2s'
-                    }}
-                    onMouseEnter={(e) => {
-                      if (!isActive) {
-                        e.currentTarget.style.background = category.color;
-                        e.currentTarget.style.color = 'white';
-                        e.currentTarget.style.borderColor = category.color;
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!isActive) {
-                        e.currentTarget.style.background = 'transparent';
-                        e.currentTarget.style.color = currentTheme.text;
-                        e.currentTarget.style.borderColor = currentTheme.border;
-                      }
-                    }}
-                  >
-                    {IconComponent && <IconComponent size={16} color={isActive ? 'white' : category.color} />}
-                    {category.name}
-                  </button>
-                );
-              })}
-            </div>
-          )}
-          
-          <div style={{
-            fontSize: '0.813rem',
+              borderRadius: '10px',
+              color: currentTheme.text,
+              fontSize: '0.875rem',
+              cursor: 'pointer',
+              outline: 'none',
+              appearance: 'none',
+              backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e")`,
+              backgroundPosition: 'right 0.5rem center',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: '1.25em 1.25em',
+              transition: 'all 0.2s ease'
+            }}
+          >
+            <option value="alphabetical">A–Z</option>
+            <option value="popular">Most Viewed</option>
+            <option value="recent">Recently Updated</option>
+          </select>
+
+          {/* Spacer */}
+          <div style={{ flex: 1 }} />
+
+          {/* Term Count */}
+          <span style={{
+            fontSize: '0.8125rem',
             color: currentTheme.subtle,
-            marginBottom: '1rem'
+            whiteSpace: 'nowrap'
           }}>
-            Showing {sortedTerms.length} {sortedTerms.length === 1 ? 'term' : 'terms'}
+            {sortedTerms.length} {sortedTerms.length === 1 ? 'term' : 'terms'}
             {searchQuery && ` for "${searchQuery}"`}
-            {activeFilter !== 'all' && ` in ${categories.find(c => c.id === activeFilter)?.name}`}
-          </div>
+          </span>
         </div>
-      </header>
-      
-      <main style={{ paddingBottom: '6rem' }}>
+      </section>
+
+      {/* ─── Category Filter Pills ─── */}
+      <section style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '0 2rem 2.5rem'
+      }}>
         <div style={{
-          maxWidth: '1400px',
-          margin: '0 auto',
-          padding: '0 2rem',
-          display: windowWidth >= 1024 ? 'grid' : 'block',
-          gridTemplateColumns: windowWidth >= 1024 ? '3fr 1fr' : undefined,
-          gap: windowWidth >= 1024 ? '2rem' : undefined
+          display: 'flex',
+          gap: '0.5rem',
+          flexWrap: 'wrap',
+          paddingBottom: '2rem',
+          borderBottom: `1px solid ${currentTheme.border}`
         }}>
-          <div>
-            <GlossaryGrid
-              terms={sortedTerms}
-              categories={categories}
-              currentTheme={currentTheme}
-              hoveredTerm={hoveredTerm}
-              setHoveredTerm={setHoveredTerm}
-              getCategoryColor={getCategoryColor}
-              getPopularityDots={getPopularityDots}
-              windowWidth={windowWidth}
-            />
+          {categories.map(category => {
+            const isActive = activeFilter === category.id;
+            const IconComponent = category.icon;
+
+            return (
+              <button
+                key={category.id}
+                onClick={() => setActiveFilter(category.id)}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.375rem',
+                  padding: '0.5rem 1rem',
+                  borderRadius: '24px',
+                  border: `1px solid ${isActive ? 'transparent' : currentTheme.border}`,
+                  backgroundColor: isActive ? currentTheme.accent : 'transparent',
+                  color: isActive ? '#FFFFFF' : currentTheme.muted,
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                  cursor: 'pointer',
+                  outline: 'none',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                {IconComponent && <IconComponent size={14} />}
+                {category.name}
+              </button>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ─── Alphabet Quick Nav ─── */}
+      {!searchQuery && activeFilter === 'all' && sortBy === 'alphabetical' && (
+        <section style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: '0 2rem 2rem'
+        }}>
+          <div style={{
+            display: 'flex',
+            gap: '0.25rem',
+            flexWrap: 'wrap'
+          }}>
+            {alphabetLetters.map(letter => (
+              <button
+                key={letter}
+                onClick={() => {
+                  const el = document.getElementById(`letter-${letter}`);
+                  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: '8px',
+                  border: 'none',
+                  background: 'transparent',
+                  color: currentTheme.accent,
+                  fontSize: '0.8125rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = currentTheme.elevated;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'transparent';
+                }}
+              >
+                {letter}
+              </button>
+            ))}
           </div>
-          
-          <div style={{ marginTop: windowWidth < 1024 ? '2rem' : 0 }}>
-            <GlossarySidebar
-              termOfDay={termOfDay}
-              currentTheme={currentTheme}
-              getCategoryColor={getCategoryColor}
-            />
-          </div>
+        </section>
+      )}
+
+      {/* ─── Terms Grid ─── */}
+      <main style={{ paddingBottom: '4rem' }}>
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: '0 2rem'
+        }}>
+          <GlossaryGrid
+            terms={sortedTerms}
+            categories={categories}
+            currentTheme={currentTheme}
+            hoveredTerm={hoveredTerm}
+            setHoveredTerm={setHoveredTerm}
+            getCategoryColor={getCategoryColor}
+            windowWidth={windowWidth}
+          />
         </div>
       </main>
+
+      {/* ─── CTA Section ─── */}
+      <section style={{
+        backgroundColor: '#0A2540',
+        borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+        padding: '4rem 2rem'
+      }}>
+        <div style={{
+          maxWidth: '900px',
+          margin: '0 auto',
+          textAlign: 'center'
+        }}>
+          <h2 style={{
+            fontFamily: 'var(--font-literata)',
+            fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+            fontWeight: 400,
+            marginBottom: '1.25rem',
+            letterSpacing: '-0.01em',
+            color: '#FFFFFF'
+          }}>
+            Master academic writing with Esy
+          </h2>
+          
+          <p style={{
+            fontSize: '1.0625rem',
+            color: 'rgba(255, 255, 255, 0.7)',
+            lineHeight: 1.7,
+            maxWidth: '560px',
+            margin: '0 auto 2rem'
+          }}>
+            Go beyond definitions. Use Esy&apos;s structured workflows to produce essays, research briefs, and visual artifacts — publication-ready from the start.
+          </p>
+
+          <Link
+            href="/about"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '0.875rem 1.75rem',
+              backgroundColor: '#00D4AA',
+              color: '#0A2540',
+              borderRadius: '10px',
+              fontSize: '0.9375rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              transition: 'all 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#00A896';
+              e.currentTarget.style.color = '#FFFFFF';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#00D4AA';
+              e.currentTarget.style.color = '#0A2540';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+          >
+            Learn more about Esy
+            <ArrowRight size={16} strokeWidth={2} />
+          </Link>
+        </div>
+      </section>
     </div>
   );
 };
 
-export default GlossaryPage; 
+export default GlossaryPage;

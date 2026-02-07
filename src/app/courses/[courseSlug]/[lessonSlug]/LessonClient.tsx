@@ -446,7 +446,7 @@ export default function LessonClient({ course, lesson, chapterTitle }: LessonCli
 
           {/* ─── Commentary (inline below video) ─── */}
           <div className="lesson-commentary-section">
-            <CommentaryPanel commentary={lesson.commentary} onSeek={handleSeek} isDark={isDark} />
+                <CommentaryPanel commentary={lesson.commentary} onSeek={handleSeek} isDark={isDark} />
           </div>
 
         </div>
