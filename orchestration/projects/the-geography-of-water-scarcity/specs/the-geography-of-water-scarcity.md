@@ -1,6 +1,6 @@
 # Conceptual Essay Invocation Spec: The Geography of Water Scarcity
 
-**Status**: DRAFT  
+**Status**: ✅ APPROVED  
 **Date**: February 8, 2026  
 **Research Package**: `orchestration/projects/the-geography-of-water-scarcity/research/`  
 **Mode**: Data Journalism (Conceptual Essay Orchestrator)
@@ -1091,7 +1091,7 @@ performance:
 
 ## Spec Approval
 
-**Gate 3 Status**: ⏳ PENDING APPROVAL
+**Gate 3 Status**: ✅ APPROVED
 
 ### Checklist
 

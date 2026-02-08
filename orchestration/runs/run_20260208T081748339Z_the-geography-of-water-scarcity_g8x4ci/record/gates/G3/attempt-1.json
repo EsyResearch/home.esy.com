@@ -1,0 +1,48 @@
+{
+  "attempt": 1,
+  "status": "FAIL",
+  "started_at": "2026-02-08T08:18:00.324Z",
+  "finished_at": "2026-02-08T08:18:00.351Z",
+  "agent": "conceptual-essay-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "orchestration/skills/visual-essay-invocation/specs/{slug}.md"
+  ],
+  "artifacts": [],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-geography-of-water-scarcity.md",
+      "pass": false,
+      "description": "6-layer visual essay specification"
+    },
+    {
+      "type": "contains_headings",
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "missing": [
+        "## Layer 1",
+        "## Layer 2",
+        "## Layer 3",
+        "## Layer 4",
+        "## Layer 5",
+        "## Layer 6"
+      ],
+      "severity": "error",
+      "description": "Spec must contain all 6 layer headings",
+      "pass": false
+    },
+    {
+      "type": "not_contains",
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "pattern": "[DRAFT]",
+      "found": false,
+      "severity": "warning",
+      "description": "Spec should not contain [DRAFT] marker (configurable)",
+      "pass": true,
+      "warning": false
+    }
+  ],
+  "failure_reason": "Missing: orchestration/skills/visual-essay-invocation/specs/{slug}.md; Missing headings: ## Layer 1, ## Layer 2, ## Layer 3, ## Layer 4, ## Layer 5, ## Layer 6"
+}

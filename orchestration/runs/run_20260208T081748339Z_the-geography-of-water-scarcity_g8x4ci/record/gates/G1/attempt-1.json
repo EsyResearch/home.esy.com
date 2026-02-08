@@ -1,0 +1,32 @@
+{
+  "attempt": 1,
+  "status": "FAIL",
+  "started_at": "2026-02-08T08:18:00.199Z",
+  "finished_at": "2026-02-08T08:18:00.239Z",
+  "agent": "conceptual-essay-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "orchestration/projects/{slug}/INTAKE-APPROVAL.md",
+    "{artifact_path}/research/INTAKE.md"
+  ],
+  "artifacts": [],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": false,
+      "checked": [
+        {
+          "path": "orchestration/projects/{slug}/INTAKE-APPROVAL.md",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/research/INTAKE.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    }
+  ],
+  "failure_reason": "None of required files exist: orchestration/projects/{slug}/INTAKE-APPROVAL.md, {artifact_path}/research/INTAKE.md"
+}

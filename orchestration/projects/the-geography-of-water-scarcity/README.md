@@ -1,7 +1,7 @@
 # The Geography of Water Scarcity
 
 > **Type**: Data Journalism Visual Essay  
-> **Status**: ⏳ G3 — Spec Complete, Awaiting Approval  
+> **Status**: ✅ G4 — Design Research Complete  
 > **Orchestrator**: Conceptual Essay Orchestrator (Data Journalism Mode)  
 > **Started**: February 8, 2026
 
@@ -29,7 +29,7 @@
 the-geography-of-water-scarcity/
 ├── README.md              ← You are here
 ├── G1-INTAKE.md           ← Approved intake document
-├── DESIGN-RESEARCH.md     ← G4 Pedagogical Design Research (PENDING)
+├── DESIGN-RESEARCH.md     ← G4 Design Research (COMPLETE)
 ├── research/              ← G2 Concept Research (IN PROGRESS)
 │   ├── CONCEPTS.md        ← Core concepts + relationships
 │   ├── SEQUENCE.md        ← Learning progression (emotional arc)
@@ -54,8 +54,8 @@ the-geography-of-water-scarcity/
 |------|--------|-------------|
 | G1 | ✅ COMPLETE | `G1-INTAKE.md` |
 | G2 | ✅ COMPLETE | `research/` package (10 files) |
-| G3 | ⏳ PENDING APPROVAL | `specs/the-geography-of-water-scarcity.md` |
-| G4 | ⏳ PENDING | `DESIGN-RESEARCH.md` |
+| G3 | ✅ COMPLETE | `specs/the-geography-of-water-scarcity.md` |
+| G4 | ✅ COMPLETE | `DESIGN-RESEARCH.md` |
 | G4.5 | ⏳ PENDING | Data visualization blueprints |
 | G5 | ⏳ PENDING | Implementation |
 | G5.5 | ⏳ PENDING | Bibliography |
