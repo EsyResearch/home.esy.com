@@ -14,11 +14,11 @@ agents/
 ├── META-AGENT-FRAMEWORK.md      # Agent creation template
 │
 ├── orchestrators/               # 🎬 Top-level coordination (6)
-├── auditors/                    # 🔍 Quality verification (19)
-├── content/                     # 📚 Content creation (4)
+├── auditors/                    # 🔍 Quality verification (20)
+├── content/                     # 📚 Content creation (5)
 ├── research/                    # 🔬 Source discovery (5)
 ├── regional/                    # 🌏 Regional specialists (2)
-├── engineering/                 # ⚙️ Technical implementation (8)
+├── engineering/                 # ⚙️ Technical implementation (9)
 └── utilities/                   # 🔧 Support & enhancement (5)
 ```
 
@@ -62,6 +62,7 @@ agents/
 | [Accuracy Audit Agent](./auditors/accuracy-audit-agent.md) | **Scientific Claims** | G6 (conceptual) | `auditors/` |
 | [Pedagogy Audit Agent](./auditors/pedagogy-audit-agent.md) | **Learning Effectiveness** | G6.5 (conceptual) | `auditors/` |
 | [Diagram Clarity Auditor](./auditors/diagram-clarity-auditor.md) | **Diagram Comprehension** | G7 (conceptual) | `auditors/` |
+| [Data Accuracy Auditor](./auditors/data-accuracy-auditor.md) | **Data-to-Visual Fidelity** | G6.1 (data journalism) | `auditors/` |
 
 **Report Storage:**
 - Citation Reports: `auditors/CitationReports/`
@@ -76,6 +77,7 @@ agents/
 | [Historian Editor](./content/historian-editor-expert.md) | Fact-Checking (G5) | `content/` |
 | [Essayist Expert](./content/essayist-expert.md) | Academic Writing | `content/` |
 | [Copywriter Marketing](./content/copywriter-marketing-expert.md) | Conversion Copy | `content/` |
+| [Data Journalist Writer](./content/data-journalist-writer-expert.md) | Data Journalism Prose | `content/` |
 
 ### 🔬 Research
 *Source discovery and verification*
@@ -111,6 +113,7 @@ agents/
 | [UI/UX Design](./engineering/ui-ux-design-expert.md) | Interface Design | `engineering/` |
 | [Template Integration](./engineering/template-integration-engineer.md) | Template → Next.js | `engineering/` |
 | [SEO Specialist](./engineering/seo-specialist-expert.md) | Technical SEO | `engineering/` |
+| [Data Visualization Architect](./engineering/data-visualization-architect-expert.md) | Programmatic Data Viz | `engineering/` |
 
 ### 🔧 Utilities
 *Support and enhancement agents*
@@ -178,6 +181,38 @@ agents/
 
 Flow: Intake Enhancer → Orchestrator → Research → Spec → Implementation
       (structures)      (coordinates)   (fills)    (grounds)  (realizes)
+```
+
+### Conceptual Essay Pipeline (Data Journalism Mode)
+
+```
+                        ┌─────────────────────────────┐
+                        │  CONCEPTUAL ESSAY            │
+                        │  ORCHESTRATOR                │
+                        │  (Data Journalism Mode)      │
+                        └──────────────┬──────────────┘
+                                       │
+   ┌───────────────────────────────────┼───────────────────────────────────┐
+   │                    │                    │                              │
+   ▼                    ▼                    ▼                              ▼
+┌─────────────┐  ┌─────────────┐  ┌─────────────┐              ┌─────────────┐
+│  CONCEPT    │  │ INVOCATION  │  │  PRODUCTION │              │ AUDIT SUITE │
+│  RESEARCH   │  │   AGENT     │  │  (Phase 5)  │              │  (Phase 6)  │
+│  AGENT      │  │  (Phase 3)  │  │             │              │             │
+│  (Phase 2)  │  │  + Layer 4b │  │             │              │             │
+│  + Data     │  │    data viz │  │             │              │             │
+│  Journalism │  │    specs    │  │             │              │             │
+│  Profile    │  │             │  │             │              │             │
+└──────┬──────┘  └──────┬──────┘  └──────┬──────┘              └──────┬──────┘
+       │                │                │                            │
+       │ Produces:      │ Produces:      │ Team:                      │ Includes:
+       │ DATASETS.md    │ Layer 4b viz   │ Data Journalist Writer     │ Accuracy Audit
+       │ STATISTICS.md  │ specs for      │ Data Viz Architect         │ Data Accuracy
+       │ COMPARISONS.md │ choropleths,   │ SVG Expert                 │   Auditor (G6.1)
+       │ PROJECTIONS.md │ Sankey, etc.   │ Software Engineer          │ Pedagogy Audit
+       │ + standard     │                │ Immersive Experience       │ Diagram Clarity
+       │   deliverables │                │ UI/UX Design               │ Scroll Audit
+       ▼                ▼                ▼                            ▼
 ```
 
 ### Gate Dependency Chain (Enforced by Gate Guard Auditor)
@@ -345,13 +380,13 @@ See [META-AGENT-FRAMEWORK.md](./META-AGENT-FRAMEWORK.md) for the complete agent 
 | Category | Count | Key Responsibility |
 |----------|-------|-------------------|
 | 🎬 Orchestrators | 6 | Multi-agent coordination |
-| 🔍 Auditors | 19 | Quality verification |
-| 📚 Content | 4 | Content creation |
+| 🔍 Auditors | 20 | Quality verification |
+| 📚 Content | 5 | Content creation |
 | 🔬 Research | 5 | Source discovery |
 | 🌏 Regional | 2 | Subject expertise |
-| ⚙️ Engineering | 8 | Technical implementation |
+| ⚙️ Engineering | 9 | Technical implementation |
 | 🔧 Utilities | 5 | Support functions |
-| **Total** | **49** | |
+| **Total** | **52** | |
 
 ---
 
@@ -375,6 +410,14 @@ See [META-AGENT-FRAMEWORK.md](./META-AGENT-FRAMEWORK.md) for the complete agent 
 *Last Updated: February 2026*
 
 ### Recent Changes
+- Added **Data Journalist Writer Expert** to content — publication-quality data journalism prose for Data Journalism mode
+- Added **Data Visualization Architect Expert** to engineering — programmatic data viz (choropleths, Sankey, comparison widgets) for Data Journalism mode
+- Added **Data Accuracy Auditor** to auditors — G6.1 data-to-visual fidelity verification for Data Journalism mode
+- Extended **Conceptual Essay Orchestrator** with Data Journalism operating mode for data-driven argumentative essays
+- Added `orchestration/profiles/research/data-journalism-research-profile.md` with DATASETS.md, STATISTICS.md, COMPARISONS.md, PROJECTIONS.md deliverables
+- Extended **Conceptual Essay Invocation SKILL** with Layer 4b Data Visualization Specifications
+- Promoted scroll-lock patterns 18 (Map Journey) and 19 (Data Build) from 🔮 Future to 📋 Spec Only
+- Updated category statistics (Content: 4→5, Engineering: 8→9, Auditors: 19→20, Total: 49→52)
 - Added **Conceptual Essay Orchestrator** to orchestrators — end-to-end pipeline for conceptual/educational essays with diagram-first design
 - Added **Concept Research Agent** to research — verifies scientific claims, designs learning sequences, documents misconceptions for G2 (conceptual)
 - Added **Accuracy Audit Agent** to auditors — verifies all claims match CLAIMS.md for G6 (conceptual essays)

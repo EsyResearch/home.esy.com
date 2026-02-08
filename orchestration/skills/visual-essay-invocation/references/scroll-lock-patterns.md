@@ -36,8 +36,8 @@ This reference documents reusable scroll-lock animation patterns for visual essa
 | 15 | **The Depth Dive** | Z-axis movement into scene | 🔮 |
 | 16 | **The Split Screen** | Two narratives run simultaneously | 🔮 |
 | 17 | **The Video Scrub** | Frame-accurate video control | 🔮 |
-| 18 | **The Map Journey** | Geographic navigation | 🔮 |
-| 19 | **The Data Build** | Charts/graphs animate with data | 🔮 |
+| 18 | **The Map Journey** | Geographic navigation | 📋 |
+| 19 | **The Data Build** | Charts/graphs animate with data | 📋 |
 | 20 | **The Rotation** | Object rotates in 3D space | 🔮 |
 | 21 | **The Accordion** | Sections expand/collapse | 🔮 |
 
@@ -672,74 +672,184 @@ This reference documents reusable scroll-lock animation patterns for visual essa
 
 ---
 
-### 18. The Map Journey 🔮
+### 18. The Map Journey 📋
 
-**Purpose:** Navigate geographically across a map tied to narrative
+**Purpose:** Navigate geographically across a map, using scroll to drive viewport movement, region highlighting, and data layer transitions tied to narrative progression.
 
-**NOT IMPLEMENTED** — Future pattern for consideration.
+**Implementation Status:** Spec Only — Defined for data journalism essays; not yet in production.
 
-**Mechanics:** Scroll input pans and zooms across map; locations highlight as narrative reaches them.
+**Mechanics:** Scroll input drives geographic viewport navigation — panning across regions, zooming into areas of interest, toggling data layers, and optionally scrubbing through time. Regions highlight progressively as the narrative visits them. Data layers (choropleth colors, point markers, flow lines) animate on and off as the scroll advances through narrative waypoints.
 
 **Best for:**
-- Trade routes
-- Migration patterns
-- Historical journeys
-- Geographic spread of phenomena
+- Data journalism maps (water stress, climate change, economic indicators)
+- Trade routes and migration patterns
+- Historical journeys and territorial changes
+- Geographic spread of phenomena (disease, technology, language)
+- Comparative regional analysis
 
-**Choreography Example:**
+**Choreography Example (Data Journalism Choropleth):**
+```
+- 0-15% scroll: World map appears, neutral coloring, title and legend fade in
+- 15-30% scroll: Choropleth colors activate for baseline year (e.g., 2000)
+  - Annotation: "In 2000, water stress was concentrated in..."
+- 30-50% scroll: Time dimension advances (2000 → 2020)
+  - Colors shift to show intensifying stress patterns
+  - Annotation: "Over two decades, stress migrated to..."
+- 50-70% scroll: Time dimension continues (2020 → 2040 projection)
+  - Projection regions use dashed borders to signal modeled data
+  - Annotation: "By 2040, projections show..."
+- 70-85% scroll: Zoom into key region of interest
+  - Country-level detail panel appears alongside map
+  - Annotation: "Nowhere is this more acute than..."
+- 85-100% scroll: Zoom back to global view, final state
+  - All time periods accessible via hover, lock releases
+```
+
+**Choreography Example (Journey/Route):**
 ```
 - 0-20% scroll: Map centered on origin point A
-- 20-40% scroll: Pan and zoom to location B
-- 40-60% scroll: Route between A-B animates
-- 60-80% scroll: Continue to location C
-- 80-100% scroll: Full route visible, overview
+- 20-40% scroll: Pan and zoom to location B, route draws between A-B
+- 40-60% scroll: Continue to location C, route extends
+- 60-80% scroll: Pan to location D, annotations appear at each stop
+- 80-100% scroll: Full route visible in overview, lock releases
 ```
 
 **Variations:**
-- **Point-to-point**: Sequential location visits
-- **Path trace**: Route draws as you scroll
-- **Zoom levels**: Street → city → country → continent
-- **Time-based**: Map shows changes over time at each stop
+- **Choropleth scrub**: Scroll drives time slider across a data-colored map
+- **Point-to-point journey**: Sequential location visits with route drawing
+- **Zoom cascade**: Continent → country → region → city progressive zoom
+- **Layer toggle**: Different data layers activate/deactivate with scroll stages
+- **Time-based**: Map shows data changes over time at each scroll stage
+- **Split annotation**: Map on one side, data panel on the other, both scroll-synced
 
-**Technical Notes:**
-- Use vector maps (Mapbox, Leaflet) for zoom quality
-- Pre-render routes for performance
-- Consider static image fallback for simple journeys
+**Scroll Choreography Guidelines:**
+- **Scroll depth**: 800-1200px for 3-5 geographic waypoints; 600px for simple A→B journeys
+- **Waypoint hold**: Brief 100-150px hold at each waypoint for annotation reading
+- **Transition easing**: ease-in-out for pan, ease-out for zoom-in, ease-in for zoom-out
+- **Time scrubber sync**: If driving a time dimension, map year label updates continuously during scroll
+
+**Implementation Notes:**
+- Render regions as simplified SVG paths or use TopoJSON for efficient boundary data
+- For choropleth data, use D3 scales (scaleSequential, scaleDiverging) with perceptually uniform color interpolators (interpolateViridis, interpolateBlues)
+- Geographic projections: use geoEqualEarth or geoNaturalEarth1 for data display (area-preserving); avoid Mercator for area-based data
+- Time interpolation: lerp data values between known years for smooth scroll-driven transitions
+- Hover/tap interaction: show detail panel with country name, value, category, and primary driver
+- Legend must be visible throughout the scroll-lock sequence
+- Year indicator must update as time dimension advances
+
+**Mobile Adaptation:**
+- Stack annotation text below map (not overlaid) on viewports < 640px
+- Increase touch target for hover-equivalent tap interaction (≥ 44px)
+- Simplify detail panel to essential fields (name, value, category)
+- Consider horizontal scroll fallback if map aspect ratio is too wide for portrait
+- Reduce topology detail level for performance on mobile GPUs
+
+**Accessibility:**
+- Skip control to bypass sequence
+- Data table fallback listing all regions and values
+- Screen reader announces current region/year as scroll advances
+- `prefers-reduced-motion`: show final state map with all data visible, no animation
+- Keyboard: Space/Enter to advance waypoints, Escape to skip
 
 ---
 
-### 19. The Data Build 🔮
+### 19. The Data Build 📋
 
-**Purpose:** Animate data visualization construction tied to scroll
+**Purpose:** Animate the progressive construction of data visualizations — charts, graphs, flow diagrams, and statistical displays — tied to scroll position, so that readers absorb data incrementally rather than encountering a complete chart all at once.
 
-**NOT IMPLEMENTED** — Future pattern for consideration.
+**Implementation Status:** Spec Only — Defined for data journalism essays; not yet in production.
 
-**Mechanics:** Scroll input drives chart/graph animation—bars grow, lines draw, points plot.
+**Mechanics:** Scroll input drives the incremental construction of a data visualization. Elements appear progressively: axes render, then data points/bars/flows animate in, then trend lines or annotations layer on top. Each scroll stage adds visual information with synchronized prose annotations explaining what the reader is seeing.
 
 **Best for:**
-- Statistical revelations
-- Trend visualizations
-- Comparative data
-- Scientific findings
+- Sankey/alluvial flow diagrams (progressive stream fills)
+- Bar chart revelations (bars grow to reveal surprising proportions)
+- Line chart draws (trends emerge over time)
+- Scatter plot populations (patterns emerge from individual points)
+- Stacked area charts (composition layers build)
+- Multi-stage "equation" explainers (layers add to show cumulative effects)
 
-**Choreography Example:**
+**Choreography Example (Sankey/Flow Diagram):**
 ```
-- 0-20% scroll: Axes appear, labels render
-- 20-60% scroll: Data points/bars animate in sequence
-- 60-80% scroll: Trend line or annotation draws
-- 80-100% scroll: Final value highlights, insight text appears
+- 0-15% scroll: Empty frame with category labels (Agriculture, Industrial, Domestic)
+  - Annotation: "Of all the freshwater humans use each year..."
+- 15-35% scroll: First flow stream animates (Agriculture, ~70%)
+  - Stream width is proportionally dominant — viscerally obvious
+  - Annotation: "Agriculture claims the vast majority..."
+- 35-55% scroll: Second flow stream animates (Industrial, ~19%)
+  - Annotation: "Industry accounts for roughly a fifth..."
+- 55-70% scroll: Third flow stream animates (Domestic, ~11%)
+  - Annotation: "What we think of as 'water use' — showers, taps..."
+- 70-85% scroll: Subdivision streams animate (Agriculture → irrigation, livestock, aquaculture)
+  - Annotation: "Within agriculture, irrigation dominates..."
+- 85-100% scroll: Full diagram visible, flow particles animate direction, lock releases
+```
+
+**Choreography Example (Bar Chart Build):**
+```
+- 0-20% scroll: Axes appear, labels render, grid lines fade in
+- 20-60% scroll: Bars grow from zero to target values, staggered left-to-right
+  - countUp animation on value labels accompanies each bar
+- 60-80% scroll: Highlight bar with maximum value, annotation draws
+- 80-100% scroll: Trend line or threshold line overlays, insight text appears
+```
+
+**Choreography Example (Multi-Stage Explainer / "Equation"):**
+```
+- 0-20% scroll: Base layer — available resource (e.g., total freshwater)
+  - Annotation: "The planet holds X cubic kilometers of accessible freshwater..."
+- 20-40% scroll: Overlay 1 — demand layer (population consumption)
+  - Annotation: "But human demand currently draws..."
+- 40-60% scroll: Overlay 2 — external factor (climate reduction)
+  - Annotation: "Climate change is shrinking the supply side..."
+- 60-80% scroll: Overlay 3 — policy/infrastructure layer
+  - Annotation: "Infrastructure choices determine who feels it first..."
+- 80-100% scroll: Final state — resulting deficit/surplus calculation visible
+  - Annotation: "The gap between supply and demand is the scarcity equation."
 ```
 
 **Variations:**
-- **Bar chart build**: Bars grow from zero
-- **Line chart draw**: Line traces left-to-right
-- **Scatter populate**: Points appear one by one
-- **Pie chart fill**: Segments animate in sequence
+- **Bar chart build**: Bars grow from zero with staggered timing
+- **Line chart draw**: Line traces left-to-right, dot marks current position
+- **Scatter populate**: Points appear one by one or in clusters, revealing patterns
+- **Pie/donut fill**: Segments animate in clockwise sequence
+- **Sankey fill**: Flow streams animate with proportional widths
+- **Stacked area build**: Layers stack from bottom to top
+- **Progressive equation**: Overlay layers accumulate to show cumulative effect
+- **Count-up ticker**: Numbers animate from 0 to target at strategic narrative moment
 
-**Technical Notes:**
-- Use D3.js or similar for data binding
-- Consider `countUp` animations for displayed values
-- Ensure data is accessible in text form
+**Scroll Choreography Guidelines:**
+- **Scroll depth**: 600-1000px for simple charts (3-4 stages); 1000-1500px for complex multi-stage diagrams
+- **Stage hold**: 50-100px dwell at each stage for annotation reading
+- **Stagger timing**: 50-100ms between related elements within a stage
+- **Easing**: ease-out for growth animations; linear for flow/draw animations
+- **Annotation sync**: Annotation text must update exactly when corresponding visual elements appear
+
+**Implementation Notes:**
+- Use D3.js for data binding, scales, and path generation; React for DOM lifecycle
+- Sankey layout: use d3-sankey for node/link positioning; animate link paths with stroke-dasharray/stroke-dashoffset
+- Bar growth: animate `height` and `y` attributes (or transform) from 0 to target
+- Line draw: animate `stroke-dashoffset` from total length to 0
+- Flow particles: use requestAnimationFrame to move small circles along flow paths
+- countUp animations: interpolate from 0 to target value with configurable duration and easing
+- All data values must come from DATASETS.md / STATISTICS.md — never hardcode unverified numbers
+- SVG element budget: keep total elements < 500 per visualization for 60fps scroll performance
+
+**Mobile Adaptation:**
+- Simplify Sankey diagrams: show only top-level flows on mobile, collapse subdivisions into expandable detail
+- Stack horizontal charts vertically on viewports < 640px
+- Increase font sizes for chart labels (minimum 12px on mobile)
+- Reduce animation complexity: fewer stagger stages, shorter durations
+- Touch-friendly hover: tap to show tooltip, tap elsewhere to dismiss
+
+**Accessibility:**
+- Skip control to bypass sequence
+- Data table fallback with all values in tabular format
+- Screen reader announces each stage as it activates ("Agriculture: 70% of global freshwater")
+- `prefers-reduced-motion`: show complete chart immediately with all data visible, no progressive animation
+- Keyboard: Space/Enter to advance stages, Escape to skip
+- Color encoding must be colorblind-safe; test with Deuteranopia/Protanopia simulators
+- All charts must include source attribution visible in final state
 
 ---
 
@@ -969,4 +1079,4 @@ Every scroll-lock implementation must include:
 
 ---
 
-*Last Updated: December 2025*
+*Last Updated: February 2026*

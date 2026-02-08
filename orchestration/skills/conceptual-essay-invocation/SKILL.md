@@ -233,6 +233,266 @@ diagrams:
 
 ---
 
+### Layer 4b: Data Visualization Specifications (Data Journalism Mode)
+
+**Purpose**: When the orchestrator activates Data Journalism mode, this subsection extends Layer 4 with specifications for interactive, programmatic data visualizations. These are distinct from conceptual diagrams — they encode real data from DATASETS.md and STATISTICS.md into interactive visual representations.
+
+> **When to include**: Only when the Conceptual Essay Orchestrator is operating in Data Journalism mode. Standard conceptual essays use Layer 4 diagram specs only.
+
+```yaml
+# Layer 4b: Data Visualization Specifications
+# (Data Journalism Mode Extension)
+
+# Data source references
+data_sources:
+  datasets: "DATASETS.md"
+  statistics: "STATISTICS.md"
+  comparisons: "COMPARISONS.md"
+  projections: "PROJECTIONS.md"
+
+# Visualization specifications
+data_visualizations:
+
+  # --- CHOROPLETH MAP ---
+  - name: "[Map Title — insight statement, not description]"
+    type: choropleth_map
+    section: "[Section number]"
+    purpose: "[What insight this map conveys]"
+    data_source: "DATASETS.md#[dataset-reference]"
+
+    # Geographic configuration
+    geography:
+      scope: "[world | continent | country | region]"
+      projection: "[geoEqualEarth | geoNaturalEarth1 | geoMercator]"
+      topology: "[TopoJSON source — e.g., world-110m, world-50m]"
+      simplification: "[topology detail level for performance]"
+
+    # Data encoding
+    encoding:
+      variable: "[Data variable being mapped — e.g., water_stress_index]"
+      scale_type: "[sequential | diverging | threshold]"
+      color_interpolator: "[interpolateBlues | interpolateViridis | custom]"
+      domain: "[min, max values or threshold breakpoints]"
+      legend:
+        type: "[continuous | discrete]"
+        labels: ["[Low]", "[Moderate]", "[High]", "[Extreme]"]
+
+    # Time dimension (optional)
+    time_dimension:
+      enabled: true
+      range: "[start_year, end_year]"
+      driver: "[scroll | slider | both]"
+      interpolation: "[linear | step]"
+      projection_boundary_year: "[year where measured → projected]"
+      projection_visual_treatment: "[dashed borders | color shift | label]"
+
+    # Interaction
+    interaction:
+      hover: true
+      hover_content:
+        - "[field: Country Name]"
+        - "[field: Stress Category]"
+        - "[field: Population Affected]"
+        - "[field: Primary Driver]"
+      touch_target: "44px minimum"
+      click_behavior: "[none | zoom | detail-panel]"
+
+    # Animation
+    animation:
+      scroll_locked: "[true | false]"
+      year_transition_duration: "300ms"
+      year_transition_easing: "ease-in-out"
+      pattern_reference: "scroll-lock-patterns.md#18-the-map-journey"
+
+    # Accessibility
+    accessibility:
+      alt_text: "[Complete description]"
+      data_table_fallback: true
+      colorblind_safe: true
+      reduced_motion: "Show final year state, no animation"
+
+  # --- FLOW DIAGRAM (SANKEY / ALLUVIAL) ---
+  - name: "[Diagram Title — insight statement]"
+    type: flow_diagram
+    section: "[Section number]"
+    purpose: "[What proportional relationship this reveals]"
+    data_source: "STATISTICS.md#[reference]"
+
+    # Flow structure
+    flows:
+      source_nodes:
+        - name: "[Source Category]"
+          value: "[percentage or absolute]"
+          color_token: "[CSS variable]"
+      target_nodes:
+        - name: "[Target Category]"
+          parent: "[Source it flows from]"
+          value: "[percentage or absolute]"
+      subdivisions:
+        - parent: "[Source Category]"
+          children:
+            - name: "[Sub-category 1]"
+              value: "[value]"
+            - name: "[Sub-category 2]"
+              value: "[value]"
+
+    # Visual encoding
+    encoding:
+      width_encoding: "proportional to value"
+      flow_direction: "[left-to-right | top-to-bottom]"
+      flow_animation: "[particle | pulse | static]"
+      dominant_emphasis: "[Which flow should be viscerally obvious]"
+
+    # Animation
+    animation:
+      scroll_locked: true
+      progressive_build: true
+      build_sequence:
+        - at: "0-20%"
+          show: "[Labels and frame]"
+        - at: "20-50%"
+          show: "[Primary flows animate]"
+        - at: "50-75%"
+          show: "[Secondary flows animate]"
+        - at: "75-100%"
+          show: "[Subdivisions, particles, final state]"
+      pattern_reference: "scroll-lock-patterns.md#19-the-data-build"
+
+    accessibility:
+      alt_text: "[Complete description]"
+      data_table_fallback: true
+      reduced_motion: "Show complete diagram, no progressive build"
+
+  # --- COMPARISON WIDGET ---
+  - name: "[Widget Title — insight statement]"
+    type: comparison_widget
+    section: "[Section number]"
+    purpose: "[What divergence in outcomes this reveals]"
+    data_source: "COMPARISONS.md#[reference]"
+
+    # Entity selection
+    entities:
+      selectable: true
+      selection_ui: "[dropdown | button-group | search]"
+      curated_pairs:
+        - entity_a: "[Country/Region A]"
+          entity_b: "[Country/Region B]"
+          insight: "[Why this pair is meaningful]"
+        - entity_a: "[Country/Region C]"
+          entity_b: "[Country/Region D]"
+          insight: "[Key divergence]"
+
+    # Metrics
+    metrics:
+      - name: "[Metric 1 — e.g., Annual Rainfall]"
+        unit: "[mm/year]"
+        display: "[bar | number | icon]"
+        normalization: "[per capita | per GDP | raw]"
+      - name: "[Metric 2]"
+        unit: "[unit]"
+        display: "[bar | number | icon]"
+      # ... additional metrics
+
+    # Layout
+    layout: "[side-by-side | stacked | overlapping-bars]"
+
+    # Annotation
+    annotation:
+      contextual: true
+      annotation_source: "COMPARISONS.md#contextual-annotations"
+      placement: "[below | inline | tooltip]"
+
+    # Animation
+    animation:
+      metric_entrance: "[grow | count-up | slide]"
+      metric_duration: "500ms"
+      selection_transition: "300ms ease-out"
+
+    accessibility:
+      alt_text: "[Complete description]"
+      keyboard_navigable: true
+      screen_reader_announces_selection: true
+
+  # --- SCROLL-LOCKED EXPLAINER SEQUENCE ---
+  - name: "[Sequence Title — e.g., 'The Scarcity Equation']"
+    type: scroll_explainer
+    section: "[Section number]"
+    purpose: "[What cumulative understanding this builds]"
+    data_source: "STATISTICS.md#[reference]"
+
+    # Stages
+    stages:
+      - stage: 1
+        title: "[Stage name]"
+        visual_layer: "[What appears — e.g., base resource graphic]"
+        annotation: "[Prose text for this stage]"
+        data_values: ["[Values from STATISTICS.md used in this stage]"]
+      - stage: 2
+        title: "[Stage name]"
+        visual_layer: "[Overlay that adds to previous — e.g., demand layer]"
+        annotation: "[Prose text]"
+        data_values: ["[Values]"]
+      - stage: 3
+        title: "[Stage name]"
+        visual_layer: "[Next overlay]"
+        annotation: "[Prose text]"
+      - stage: 4
+        title: "[Stage name]"
+        visual_layer: "[Final overlay — resulting state]"
+        annotation: "[Concluding prose]"
+
+    # Animation
+    animation:
+      scroll_locked: true
+      scroll_depth: "[800-1200px depending on stage count]"
+      stage_transition: "ease-in-out 400ms"
+      layer_entrance: "[fade-in | draw | grow]"
+      pattern_reference: "scroll-lock-patterns.md#19-the-data-build"
+
+    accessibility:
+      alt_text: "[Complete description of final state]"
+      stage_announcements: true
+      reduced_motion: "Show all layers simultaneously"
+
+  # --- DATA TICKER / STATISTICS STRIP ---
+  - name: "[Strip Title — e.g., 'By The Numbers']"
+    type: data_ticker
+    section: "[Section number]"
+    purpose: "[Anchor key statistics at narratively strategic moment]"
+    data_source: "STATISTICS.md#[reference]"
+
+    # Statistics
+    statistics:
+      - value: "[Number]"
+        label: "[What this number means]"
+        source: "[STATISTICS.md entry reference]"
+        format: "[integer | decimal | percentage | currency]"
+        prefix: "[optional — e.g., '$']"
+        suffix: "[optional — e.g., ' billion']"
+      - value: "[Number]"
+        label: "[Label]"
+        source: "[Reference]"
+      # ... 4-6 statistics total
+
+    # Layout
+    layout: "[horizontal-strip | vertical-stack | grid]"
+    placement: "[after-section-X | strategic-narrative-moment]"
+
+    # Animation
+    animation:
+      trigger: "intersection-observer"
+      count_up: true
+      count_duration: "2000ms"
+      count_easing: "ease-out"
+      stagger_delay: "200ms between statistics"
+
+    accessibility:
+      alt_text: "[All statistics in text form]"
+      reduced_motion: "Show final values immediately"
+```
+
+---
+
 ### Layer 5: Content Specifications (20%)
 
 **Purpose**: Define the text content that supports diagrams.
@@ -453,8 +713,10 @@ accessibility:
 
 - [conceptual-essay-orchestrator.md](../../agents/orchestrators/conceptual-essay-orchestrator.md) — Uses this skill
 - [conceptual-research-profile.md](../../profiles/research/conceptual-research-profile.md) — Research package spec
+- [data-journalism-research-profile.md](../../profiles/research/data-journalism-research-profile.md) — Data journalism research extensions (DATASETS.md, STATISTICS.md, COMPARISONS.md, PROJECTIONS.md)
 - [diagram-design-profile.md](../../profiles/design/diagram-design-profile.md) — Design research spec
 - [visual-essay-invocation/SKILL.md](../visual-essay-invocation/SKILL.md) — Comparison skill
+- [scroll-lock-patterns.md](../visual-essay-invocation/references/scroll-lock-patterns.md) — Patterns 18 (Map Journey) and 19 (Data Build) for data visualization scroll-locks
 
 ---
 

@@ -22,7 +22,36 @@
 
 **Profiles**:
 - Research: `@orchestration/profiles/research/conceptual-research-profile.md`
+- Research (Data Journalism): `@orchestration/profiles/research/data-journalism-research-profile.md`
 - Design: `@orchestration/profiles/design/diagram-design-profile.md`
+
+---
+
+## Operating Modes
+
+This orchestrator supports two modes. The mode is selected at intake (Phase 1) and affects research deliverables, production team composition, spec format, and audit gates.
+
+| Mode | When to Use | Research Profile | Production Writer | Additional Auditor |
+|------|-------------|-----------------|-------------------|-------------------|
+| **Conceptual** (default) | Abstract concept explainers, science education, process visualizations | Conceptual Research Profile | (generic — orchestrator delegates to production team) | — |
+| **Data Journalism** | Data-driven argumentative essays, policy analysis, trend-driven narratives, systems-thinking pieces | Conceptual Research Profile + **Data Journalism Research Profile** | **Data Journalist Writer Expert** | **Data Accuracy Auditor** (G6.1) |
+
+### How Mode Selection Works
+
+At G1 (Intake), the orchestrator determines mode based on:
+- **Thesis type**: If the thesis is an argument supported by quantitative data → Data Journalism mode
+- **Visual elements**: If the essay requires data visualizations (choropleths, Sankey diagrams, comparison widgets) → Data Journalism mode
+- **Data sources**: If the essay will cite institutional datasets (UN, WRI, WHO) → Data Journalism mode
+- **Default**: If the essay explains an abstract concept through diagrams → Conceptual mode
+
+### Mode Differences Summary
+
+**Data Journalism mode adds:**
+1. **Research**: DATASETS.md, STATISTICS.md, COMPARISONS.md, PROJECTIONS.md (via Data Journalism Research Profile)
+2. **Spec**: Layer 4b Data Visualization Specifications in the invocation spec
+3. **Production**: Data Journalist Writer Expert + Data Visualization Architect Expert join the team
+4. **Audit**: G6.1 Data Integrity Audit (Data Accuracy Auditor) added to audit suite
+5. **Intake fields**: Thesis type, data source expectations, visualization requirements
 
 ---
 
@@ -122,13 +151,17 @@
 │  │         (Implements spec + design research)                         │   │
 │  │                                                                      │   │
 │  │    ┌──────────────┐ ┌──────────────┐ ┌──────────────┐               │   │
-│  │    │  Science     │ │   SVG        │ │  Software    │               │   │
-│  │    │   Writer     │ │   Expert     │ │  Engineer    │               │   │
+│  │    │  Data        │ │   SVG        │ │  Software    │               │   │
+│  │    │  Journalist  │ │   Expert     │ │  Engineer    │               │   │
+│  │    │  Writer ★    │ │              │ │              │               │   │
 │  │    └──────────────┘ └──────────────┘ └──────────────┘               │   │
-│  │    ┌──────────────┐ ┌──────────────┐                                │   │
-│  │    │  Immersive   │ │   UI/UX      │                                │   │
-│  │    │  Experience  │ │   Design     │                                │   │
-│  │    └──────────────┘ └──────────────┘                                │   │
+│  │    ┌──────────────┐ ┌──────────────┐ ┌──────────────┐               │   │
+│  │    │  Immersive   │ │   UI/UX      │ │  Data Viz   │               │   │
+│  │    │  Experience  │ │   Design     │ │  Architect ★ │               │   │
+│  │    └──────────────┘ └──────────────┘ └──────────────┘               │   │
+│  │                                                                      │   │
+│  │    ★ = Data Journalism mode only                                    │   │
+│  │    Conceptual mode: writer role filled by production team default   │   │
 │  └─────────────────────────────────────────────────────────────────────┘   │
 │                                    │                                        │
 │                                    ▼                                        │
@@ -141,10 +174,13 @@
 │  │    │   Audit      │ │   Audit      │ │  Clarity     │               │   │
 │  │    │   Agent      │ │   Agent      │ │  Auditor     │               │   │
 │  │    └──────────────┘ └──────────────┘ └──────────────┘               │   │
-│  │    ┌──────────────┐ ┌──────────────┐                                │   │
-│  │    │  Scrolling   │ │  SEO         │                                │   │
-│  │    │   Auditor    │ │  Audit       │                                │   │
-│  │    └──────────────┘ └──────────────┘                                │   │
+│  │    ┌──────────────┐ ┌──────────────┐ ┌──────────────┐               │   │
+│  │    │  Scrolling   │ │  SEO         │ │  Data        │               │   │
+│  │    │   Auditor    │ │  Audit       │ │  Accuracy ★  │               │   │
+│  │    │              │ │              │ │  Auditor     │               │   │
+│  │    └──────────────┘ └──────────────┘ └──────────────┘               │   │
+│  │                                                                      │   │
+│  │    ★ = Data Journalism mode only (G6.1: Data Integrity Audit)      │   │
 │  └─────────────────────────────────────────────────────────────────────┘   │
 │                                    │                                        │
 │                                    ▼                                        │
@@ -173,6 +209,7 @@
 | **G5: Content Complete** | Production → Audit | All sections written, diagrams implemented, mobile tested | Production Orchestrator | ✅ Yes |
 | **G5.5: Bibliography Implementation** | Post-Production | Sources section complete, all claims attributed, further reading included | **Bibliography Orchestrator** | ✅ Yes |
 | **G6: Accuracy Audit** | Audit | All claims verified against sources, no errors or speculation | **Accuracy Audit Agent** | ✅ Yes |
+| **G6.1: Data Integrity Audit** ★ | Audit | All data visualizations truthfully represent source data (scales, proportions, projections) | **Data Accuracy Auditor** | ✅ Yes |
 | **G6.5: Pedagogy Audit** | Audit | Learning effectiveness verified, sequence flows, misconceptions addressed | **Pedagogy Audit Agent** | ✅ Yes |
 | **G7: Diagram Clarity Audit** | Audit | Diagrams comprehensible, consistent language, accessibility verified | **Diagram Clarity Auditor** | ✅ Yes |
 | **G7.5: Scroll Certification** | Audit | Immersive experience certified (≥8.0/10) | Scrolling Auditor | ✅ Yes |
@@ -194,6 +231,14 @@
 - **Learning Objectives**: What should readers be able to do/explain after?
 - **Diagram Complexity**: How many key diagrams anticipated?
 - **Timeline**: Any publication deadline?
+
+**Data Journalism Mode — Additional Intake Fields** (if applicable):
+- **Thesis Type**: Is this an argument supported by quantitative data? (→ activates Data Journalism mode)
+- **Data Sources**: What institutional datasets will ground the argument? (UN, WRI, WHO, World Bank, etc.)
+- **Visualization Requirements**: What data visualizations are needed? (choropleth maps, flow diagrams, comparison widgets, time-series, data tickers)
+- **Comparison Entities**: If comparison widget needed — what entities should be compared? (countries, regions, time periods)
+- **Projection Data**: Will the essay include future projections? (requires PROJECTIONS.md with model sources)
+- **Emotional Arc**: What emotional journey should the reader experience? (e.g., disorientation → understanding → urgency → agency → reframing)
 
 #### Step 2: Define Research Requirements
 
@@ -222,6 +267,7 @@ Before proceeding to concept research:
 
 #### Step 1: Invoke Concept Research Agent
 
+**Conceptual Mode:**
 ```
 Using @agents/research/concept-research-agent.md:
 
@@ -241,6 +287,30 @@ Produce research package that includes:
 - CLAIMS.md (verified facts + quotes)
 ```
 
+**Data Journalism Mode** (adds data-specific deliverables):
+```
+Using @agents/research/concept-research-agent.md:
+
+Topic: [Topic from approved intake]
+Core Thesis: [Core thesis — argumentative, supported by data]
+Target Audience: [Audience description]
+Depth: Deep
+
+Research Profiles:
+- @orchestration/profiles/research/conceptual-research-profile.md
+- @orchestration/profiles/research/data-journalism-research-profile.md
+
+Produce research package that includes:
+Standard deliverables:
+- CONCEPTS.md, SEQUENCE.md, DEFINITIONS.md, ANALOGIES.md, MISCONCEPTIONS.md, CLAIMS.md
+
+Data journalism deliverables (additional):
+- DATASETS.md (curated datasets with sources, methodology, licensing)
+- STATISTICS.md (key statistics verified against Tier 1-2 sources)
+- COMPARISONS.md (entity comparison data with normalization methodology)
+- PROJECTIONS.md (future projections with model sources, confidence intervals)
+```
+
 #### Step 2: Review Research Package
 
 | Deliverable | Status | Notes |
@@ -251,6 +321,15 @@ Produce research package that includes:
 | ANALOGIES.md | ⏳/✅/❌ | Limitations documented |
 | MISCONCEPTIONS.md | ⏳/✅/❌ | Addressing strategies clear |
 | CLAIMS.md | ⏳/✅/❌ | ≥80% Tier 1-2 sources |
+
+**Data Journalism Mode — Additional Deliverables:**
+
+| Deliverable | Status | Notes |
+|-------------|--------|-------|
+| DATASETS.md | ⏳/✅/❌ | All datasets registered with sources, methodology, licensing |
+| STATISTICS.md | ⏳/✅/❌ | Key statistics verified (≥85% Tier 1-2) |
+| COMPARISONS.md | ⏳/✅/❌ | Entity pairs curated, normalization documented, fairness checked |
+| PROJECTIONS.md | ⏳/✅/❌ | Projections labeled, model sources cited, confidence intervals included |
 
 #### Step 3: Gate 2 Approval
 
@@ -405,6 +484,30 @@ Produce Accuracy Certification Report.
 
 **Gate 6 Status**: ⏳ Pending / ✅ Certified / ❌ Rejected
 
+#### Step 1b: Invoke Data Accuracy Auditor (Gate 6.1) — Data Journalism Mode Only ★
+
+```
+Using @agents/auditors/data-accuracy-auditor.md:
+
+Essay: src/app/essays/[slug]/
+Research Package: [essay-slug]/research/DATASETS.md, STATISTICS.md
+Visualization Spec: specs/[slug].md (Layer 4b)
+
+Verify:
+- All data values in visualizations match DATASETS.md / STATISTICS.md
+- Scales are honest (no truncation, no distortion)
+- Proportions are accurate (area encoding, flow widths)
+- Color scales are perceptually uniform and colorblind-safe
+- Projections visually distinct from measured data
+- Comparisons fairly normalized
+- Annotations and tooltips match source data
+- Source attribution present on every chart
+
+Produce Data Integrity Certification Report.
+```
+
+**Gate 6.1 Status**: ⏳ Pending / ✅ Certified / ❌ Rejected
+
 #### Step 2: Invoke Pedagogy Audit Agent (Gate 6.5)
 
 ```
@@ -496,6 +599,7 @@ Produce publication certification report.
 | G5: Content Complete | ✅ |
 | G5.5: Bibliography Implementation | ✅ |
 | G6: Accuracy Audit | ✅ |
+| G6.1: Data Integrity Audit ★ | ✅ |
 | G6.5: Pedagogy Audit | ✅ |
 | G7: Diagram Clarity Audit | ✅ |
 | G7.5: Scroll Certification | ✅ |
@@ -613,6 +717,56 @@ Produce: Pedagogical Design Research Report
 
 **Role**: Diagram quality for G7
 
+### Working With data-journalist-writer-expert.md ★
+
+**Role**: Production writer for data journalism essays (Data Journalism mode only)
+
+**Invocation Protocol**
+```
+Using @agents/content/data-journalist-writer-expert.md:
+
+Research Package: [essay-slug]/research/
+Spec: specs/[slug].md
+Design Research: DESIGN-RESEARCH.md
+
+Write publication-quality data journalism prose with:
+- ≥1,500 words integrating with data visualizations
+- ≥6 inline citations
+- Visualization setup/analysis prose for all data viz
+- Annotations, captions, and tooltip text
+```
+
+### Working With data-visualization-architect-expert.md ★
+
+**Role**: Data visualization implementation (Data Journalism mode only)
+
+**Invocation Protocol**
+```
+Using @agents/engineering/data-visualization-architect-expert.md:
+
+Spec: specs/[slug].md (Layer 4b)
+Research: [essay-slug]/research/DATASETS.md, STATISTICS.md
+Design Research: DESIGN-RESEARCH.md
+
+Implement all data visualizations per spec.
+```
+
+### Working With data-accuracy-auditor.md ★
+
+**Role**: Data-to-visual fidelity verification for G6.1 (Data Journalism mode only)
+
+**Invocation Protocol**
+```
+Using @agents/auditors/data-accuracy-auditor.md:
+
+Essay: src/app/essays/[slug]/
+Research: [essay-slug]/research/DATASETS.md, STATISTICS.md
+Visualization Spec: specs/[slug].md (Layer 4b)
+
+Verify all data visualizations for data integrity.
+Produce Data Integrity Certification Report.
+```
+
 ---
 
 ## Project Context
@@ -634,7 +788,7 @@ When working with this agent, reference the role by stating:
 
 ### Invocation Examples
 
-**For New Conceptual Essay:**
+**For New Conceptual Essay (default mode):**
 ```
 Using @agents/orchestrators/conceptual-essay-orchestrator.md, initiate 
 production for a conceptual essay about [TOPIC].
@@ -642,6 +796,18 @@ production for a conceptual essay about [TOPIC].
 Core thesis: [One-sentence core idea]
 Target audience: [Audience description]
 Learning objectives: [What readers should understand after]
+```
+
+**For New Data Journalism Essay (Data Journalism mode):**
+```
+Using @agents/orchestrators/conceptual-essay-orchestrator.md in Data Journalism mode,
+initiate production for a data-driven essay about [TOPIC].
+
+Core thesis: [Argumentative thesis supported by data]
+Target audience: [Audience description]
+Data sources: [Institutional datasets — UN, WRI, WHO, etc.]
+Visualization requirements: [Choropleth map, Sankey diagram, comparison widget, etc.]
+Emotional arc: [Disorientation → Understanding → Urgency → Agency → Reframing]
 ```
 
 ---
@@ -672,7 +838,11 @@ Learning objectives: [What readers should understand after]
 - [base-artifact-orchestrator.md](../../base/base-artifact-orchestrator.md) — Universal gate patterns
 - [visual-essay-orchestrator.md](./visual-essay-orchestrator.md) — Historical essay comparison
 - [conceptual-research-profile.md](../../profiles/research/conceptual-research-profile.md) — G2 deliverables
+- [data-journalism-research-profile.md](../../profiles/research/data-journalism-research-profile.md) — G2 data journalism deliverables (DATASETS.md, STATISTICS.md, COMPARISONS.md, PROJECTIONS.md)
 - [diagram-design-profile.md](../../profiles/design/diagram-design-profile.md) — G4 deliverables
+- [data-journalist-writer-expert.md](../content/data-journalist-writer-expert.md) — Production writer for Data Journalism mode
+- [data-visualization-architect-expert.md](../engineering/data-visualization-architect-expert.md) — Data visualization implementation for Data Journalism mode
+- [data-accuracy-auditor.md](../auditors/data-accuracy-auditor.md) — G6.1 Data Integrity Audit for Data Journalism mode
 
 ---
 
