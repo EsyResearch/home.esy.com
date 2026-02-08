@@ -1,0 +1,26 @@
+{
+  "gate": "G5.5",
+  "name": "Bibliography Implementation",
+  "blocking": true,
+  "description": "Validates that the essay includes a Works Cited section, Image Credits, and inline citations sync with the bibliography",
+  "required_outputs": {
+    "any_of": [
+      {
+        "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+        "description": "Content-bibliography audit confirming bibliography implementation"
+      },
+      {
+        "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+        "description": "Bibliography audit report"
+      }
+    ]
+  },
+  "validations": [
+    {
+      "type": "file_exists",
+      "target": "any_of",
+      "description": "At least one bibliography audit artifact must exist"
+    }
+  ],
+  "notes": "G5.5 validates that the Bibliography Orchestrator has produced and audited the Works Cited, Image Credits, A/V Credits, and Data Sources sections. The audit report confirms inline↔bibliography synchronization. See BIBLIOGRAPHY_STRUCTURE_GUIDE.md and ARTIFACT_CITATION_PATTERNS_GUIDE.md for patterns."
+}

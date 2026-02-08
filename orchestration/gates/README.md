@@ -23,11 +23,21 @@ Other paths are resolved relative to `artifact_path`.
 
 ## Contract Files
 
-| File | Gate | Purpose |
-|------|------|---------|
-| `G1.contract.json` | Intake Approval | Validates intake documents exist |
-| `G2.contract.json` | Research Complete | Validates research package completeness |
-| `G3.contract.json` | Spec Approval | Validates 6-layer spec structure |
+| File | Gate | Phase | Purpose |
+|------|------|-------|---------|
+| `G1.contract.json` | Intake Approval | Intake | Validates intake documents exist |
+| `G2.contract.json` | Research Complete | Research | Validates research package completeness |
+| `G3.contract.json` | Spec Approval | Spec Build | Validates 6-layer spec structure |
+| `G4.contract.json` | Design Research | Production | Validates subject-derived DESIGN-RESEARCH.md |
+| `G4.1.contract.json` | Design Research Reconciliation | Production | Validates no reconciliation issues remain |
+| `G4.5.contract.json` | Image Sourcing | Production | Validates image audit/sourcing artifact |
+| `G5.contract.json` | Content Complete | Production | Validates page.tsx and CSS implementation |
+| `G5.2.contract.json` | Design Research Integration | Production | Validates CSS↔TSX binding prerequisites |
+| `G5.5.contract.json` | Bibliography Implementation | Production | Validates bibliography audit report |
+| `G6.contract.json` | Citation Audit | Audit | Validates citation audit report |
+| `G7.contract.json` | Scroll Certification | Audit | Validates scroll certification report |
+| `G8.contract.json` | Publication Certification | Publication | Validates publication certification |
+| `G9.contract.json` | Publication Approval | Publication | Validates director sign-off |
 
 ## Validation Types
 

@@ -79,13 +79,35 @@ function initRun(options) {
     ]
   };
   
-  // Pre-populate gates based on workflow
-  if (workflow === 'visual-essay') {
-    runRecord.gates = [
-      { gate: 'G1', name: 'Intake Approval', status: 'NOT_STARTED', attempts: [] },
-      { gate: 'G2', name: 'Research Complete', status: 'NOT_STARTED', attempts: [] },
-      { gate: 'G3', name: 'Spec Approval', status: 'NOT_STARTED', attempts: [] }
-    ];
+  // Pre-populate gates from workflow definition
+  try {
+    const { loadWorkflow } = require('./prompt-generator');
+    const workflowDef = loadWorkflow(workflow);
+    runRecord.gates = workflowDef.gates.map(g => ({
+      gate: g.gate,
+      name: g.name,
+      status: 'NOT_STARTED',
+      attempts: []
+    }));
+  } catch (e) {
+    // Fallback: if workflow file doesn't exist, use hardcoded defaults
+    if (workflow === 'visual-essay') {
+      runRecord.gates = [
+        { gate: 'G1', name: 'Intake Approval', status: 'NOT_STARTED', attempts: [] },
+        { gate: 'G2', name: 'Research Complete', status: 'NOT_STARTED', attempts: [] },
+        { gate: 'G3', name: 'Spec Approval', status: 'NOT_STARTED', attempts: [] },
+        { gate: 'G4', name: 'Design Research', status: 'NOT_STARTED', attempts: [] },
+        { gate: 'G4.1', name: 'Design Research Reconciliation', status: 'NOT_STARTED', attempts: [] },
+        { gate: 'G4.5', name: 'Image Sourcing', status: 'NOT_STARTED', attempts: [] },
+        { gate: 'G5', name: 'Content Complete', status: 'NOT_STARTED', attempts: [] },
+        { gate: 'G5.2', name: 'Design Research Integration', status: 'NOT_STARTED', attempts: [] },
+        { gate: 'G5.5', name: 'Bibliography Implementation', status: 'NOT_STARTED', attempts: [] },
+        { gate: 'G6', name: 'Citation Audit', status: 'NOT_STARTED', attempts: [] },
+        { gate: 'G7', name: 'Scroll Certification', status: 'NOT_STARTED', attempts: [] },
+        { gate: 'G8', name: 'Publication Certification', status: 'NOT_STARTED', attempts: [] },
+        { gate: 'G9', name: 'Publication Approval', status: 'NOT_STARTED', attempts: [] }
+      ];
+    }
   }
   
   fs.writeFileSync(paths.runJson, JSON.stringify(runRecord, null, 2));

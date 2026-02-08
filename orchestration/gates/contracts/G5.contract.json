@@ -1,0 +1,36 @@
+{
+  "gate": "G5",
+  "name": "Content Complete",
+  "blocking": true,
+  "description": "Validates that all narrative content is written, visuals created, and components implemented",
+  "required_outputs": {
+    "all_of": [
+      {
+        "path": "{artifact_path}/page.tsx",
+        "description": "Next.js page with metadata and default export",
+        "required": true
+      },
+      {
+        "path": "{artifact_path}/{slug}.css",
+        "description": "Story-specific CSS stylesheet",
+        "required": false
+      }
+    ]
+  },
+  "validations": [
+    {
+      "type": "file_exists",
+      "target": "all_required",
+      "description": "page.tsx must exist"
+    },
+    {
+      "type": "contains_headings",
+      "target": "{artifact_path}/page.tsx",
+      "required_headings": [
+        "export"
+      ],
+      "description": "page.tsx must contain an export"
+    }
+  ],
+  "notes": "G5 validates the core implementation files exist. The CSS file is not strictly required because some essays use Tailwind-only. The Client component naming varies (e.g., TheWordRobotClient.tsx, RockAndRollClient.tsx), so we validate page.tsx as the stable entry point. The validator checks for 'export' as a minimal code-presence heuristic."
+}

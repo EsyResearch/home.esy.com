@@ -210,17 +210,26 @@ async function runValidations(contract, outputs, validations, context) {
       const targetPath = validation.resolvedTarget;
       const result = containsHeadings(targetPath, validation.required_headings);
       
-      results.push({
+      const headingResult = {
         type: 'contains_headings',
         path: validation.target,
-        pass: result.pass,
         missing: result.missing,
+        severity: validation.severity || 'error',
         description: validation.description
-      });
+      };
       
-      if (!result.pass) {
-        allPass = false;
+      // If severity is warning, don't fail the gate
+      if (validation.severity === 'warning') {
+        headingResult.pass = true;
+        headingResult.warning = !result.pass;
+      } else {
+        headingResult.pass = result.pass;
+        if (!result.pass) {
+          allPass = false;
+        }
       }
+      
+      results.push(headingResult);
     }
     
     if (validation.type === 'not_contains') {

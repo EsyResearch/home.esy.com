@@ -1,0 +1,28 @@
+{
+  "gate": "G5.2",
+  "name": "Design Research Integration",
+  "blocking": true,
+  "description": "Validates that CSS selectors bind to TSX classNames with ≥95% coverage and no convention mismatches",
+  "required_outputs": {
+    "all_of": [
+      {
+        "path": "{artifact_path}/page.tsx",
+        "description": "page.tsx must exist (implementation target)",
+        "required": true
+      },
+      {
+        "path": "{artifact_path}/DESIGN-RESEARCH.md",
+        "description": "DESIGN-RESEARCH.md must still exist (design source)",
+        "required": true
+      }
+    ]
+  },
+  "validations": [
+    {
+      "type": "file_exists",
+      "target": "all_required",
+      "description": "Both implementation and design research files must exist"
+    }
+  ],
+  "notes": "G5.2 is a structural integration gate. The Design Research Integration Agent checks that CSS custom properties defined in DESIGN-RESEARCH.md are used in the CSS file, and that className values in TSX have corresponding CSS selectors. Automated coverage checking (≥95%) is beyond the current validator's capability, so this gate relies on the agent's report. The runner validates file existence as a prerequisite."
+}

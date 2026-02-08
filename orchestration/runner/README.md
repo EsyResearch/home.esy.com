@@ -27,11 +27,12 @@ node orchestration/runner/cli.js run visual-essay \
 ```
 
 The runner will:
-1. Initialize a run record
-2. For each gate (G1, G2, G3):
-   - Generate a **Prompt Packet** with instructions
+1. Initialize a run record with all 13 gates pre-populated
+2. For each gate (G1 → G2 → G3 → G4 → G4.1 → G4.5 → G5 → G5.2 → G5.5 → G6 → G7 → G8 → G9):
+   - Generate a **Prompt Packet** with agent-specific instructions
    - Pause and wait for you to execute in Claude Code
-   - Validate outputs and record results
+   - Validate outputs against the gate contract
+   - Hash all artifacts and record results
 3. Stop on failure or complete when all gates pass
 
 ### With a Prompt File
@@ -272,11 +273,21 @@ Each gate attempt creates a file at:
 
 Gate contracts are stored in `orchestration/gates/contracts/`:
 
-| Contract | Gate | Purpose |
-|----------|------|---------|
-| `G1.contract.json` | Intake Approval | Validates intake documents exist |
-| `G2.contract.json` | Research Complete | Validates research package |
-| `G3.contract.json` | Spec Approval | Validates 6-layer spec |
+| Contract | Gate | Phase | Purpose |
+|----------|------|-------|---------|
+| `G1.contract.json` | Intake Approval | Intake | Validates intake documents exist |
+| `G2.contract.json` | Research Complete | Research | Validates research package (citations, figures, quotes, timeline, visuals) |
+| `G3.contract.json` | Spec Approval | Spec Build | Validates 6-layer spec with all required layer headings |
+| `G4.contract.json` | Design Research | Production | Validates DESIGN-RESEARCH.md exists with color/typography/animation |
+| `G4.1.contract.json` | Design Research Reconciliation | Production | Validates no [UNRECONCILED] or [COLLISION] markers |
+| `G4.5.contract.json` | Image Sourcing | Production | Validates image audit/migration/TS exists |
+| `G5.contract.json` | Content Complete | Production | Validates page.tsx and CSS implementation exist |
+| `G5.2.contract.json` | Design Research Integration | Production | Validates both implementation and design research files exist |
+| `G5.5.contract.json` | Bibliography Implementation | Production | Validates bibliography audit report exists |
+| `G6.contract.json` | Citation Audit | Audit | Validates citation audit report exists |
+| `G7.contract.json` | Scroll Certification | Audit | Validates scroll certification report exists |
+| `G8.contract.json` | Publication Certification | Publication | Validates publication certification report exists |
+| `G9.contract.json` | Publication Approval | Publication | Validates director sign-off document exists |
 
 ### Path Variables
 
@@ -329,25 +340,46 @@ It only adds:
 orchestration/
 ├── gates/
 │   ├── contracts/
-│   │   ├── G1.contract.json
-│   │   ├── G2.contract.json
-│   │   └── G3.contract.json
+│   │   ├── G1.contract.json        Intake Approval
+│   │   ├── G2.contract.json        Research Complete
+│   │   ├── G3.contract.json        Spec Approval
+│   │   ├── G4.contract.json        Design Research
+│   │   ├── G4.1.contract.json      Design Research Reconciliation
+│   │   ├── G4.5.contract.json      Image Sourcing
+│   │   ├── G5.contract.json        Content Complete
+│   │   ├── G5.2.contract.json      Design Research Integration
+│   │   ├── G5.5.contract.json      Bibliography Implementation
+│   │   ├── G6.contract.json        Citation Audit
+│   │   ├── G7.contract.json        Scroll Certification
+│   │   ├── G8.contract.json        Publication Certification
+│   │   └── G9.contract.json        Publication Approval
 │   └── README.md
 ├── runner/
-│   ├── cli.js
+│   ├── cli.js                      Main CLI entry point
 │   ├── lib/
-│   │   ├── contract-loader.js
-│   │   ├── hasher.js
-│   │   ├── run-manager.js
-│   │   └── validator.js
+│   │   ├── contract-loader.js      Contract loading and path resolution
+│   │   ├── hasher.js               SHA256 hashing utilities
+│   │   ├── prompt-generator.js     Prompt packet generation for each gate
+│   │   ├── run-manager.js          Run record CRUD and gate lifecycle
+│   │   └── validator.js            Validation logic for gate contracts
+│   ├── workflows/
+│   │   └── visual-essay.json       13-gate workflow definition
 │   └── README.md
 └── runs/
     └── <run-id>/
-        ├── record/          ← COMMITTED
+        ├── record/                  ← COMMITTED (durable truth)
         │   ├── RUN.json
         │   └── gates/
-        │       └── G2/
-        │           └── attempt-1.json
-        └── logs/            ← GITIGNORED
-            └── invocations/
+        │       ├── G1/
+        │       │   └── attempt-1.json
+        │       ├── G2/
+        │       │   └── attempt-1.json
+        │       └── ...
+        └── logs/                    ← GITIGNORED (verbose)
+            ├── prompts/
+            │   └── original.txt
+            └── gates/
+                ├── G1/
+                │   └── prompt.txt
+                └── ...
 ```

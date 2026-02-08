@@ -1,0 +1,30 @@
+{
+  "gate": "G8",
+  "name": "Publication Certification",
+  "blocking": true,
+  "description": "Validates that the Publish Artifact Orchestrator has run all domain audits and produced a GO or CONDITIONAL certification",
+  "required_outputs": {
+    "any_of": [
+      {
+        "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+        "description": "Publication certification report with GO/CONDITIONAL/NO-GO status"
+      },
+      {
+        "path": "{artifact_path}/PUBLICATION-CERTIFICATION.md",
+        "description": "Publication certification report (essay root level)"
+      },
+      {
+        "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+        "description": "Publication approval (legacy naming)"
+      }
+    ]
+  },
+  "validations": [
+    {
+      "type": "file_exists",
+      "target": "any_of",
+      "description": "Publication certification or approval report must exist"
+    }
+  ],
+  "notes": "G8 validates the aggregate pre-publication audit. The Publish Artifact Orchestrator invokes: Bibliography Orchestrator (audit mode), Audit Orchestrator (quality domains), Social Media Meta Expert, SEO Audit Agent, and Gate Guard Auditor (G1-G7 verification). If issues are found, QA Remediation Orchestrator runs first. Certification status must be GO or CONDITIONAL to proceed to G9."
+}

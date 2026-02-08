@@ -1,0 +1,34 @@
+{
+  "gate": "G4",
+  "name": "Design Research",
+  "blocking": true,
+  "description": "Validates that a unique, subject-derived visual identity has been researched and documented",
+  "required_outputs": {
+    "all_of": [
+      {
+        "path": "{artifact_path}/DESIGN-RESEARCH.md",
+        "description": "Subject-derived design research report with color palette, typography, animation philosophy",
+        "required": true
+      }
+    ]
+  },
+  "validations": [
+    {
+      "type": "file_exists",
+      "target": "all_required",
+      "description": "DESIGN-RESEARCH.md must exist"
+    },
+    {
+      "type": "contains_headings",
+      "target": "{artifact_path}/DESIGN-RESEARCH.md",
+      "required_headings": [
+        "Color",
+        "Typography",
+        "Animation"
+      ],
+      "severity": "warning",
+      "description": "Design research should cover Color, Typography, and Animation (warning if missing)"
+    }
+  ],
+  "notes": "G4 validates that the design researcher produced a unique visual identity derived from the subject matter. The heading check uses loose term matching (not exact headings) because agents use varied heading formats: '## Color System', '## Proposed Color Palette', '## Typography Selection', etc. The term check is a warning, not a hard fail."
+}

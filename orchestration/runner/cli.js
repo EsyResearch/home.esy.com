@@ -184,6 +184,17 @@ async function runVisualEssayPipeline(options) {
   // Load workflow definition
   const workflow = loadWorkflow('visual-essay');
   console.log(`🔄 Loaded workflow: ${workflow.workflow} (${workflow.gates.length} gates)`);
+  
+  // Show gate overview
+  const phases = {};
+  for (const g of workflow.gates) {
+    const phase = g.phase || 'Unknown';
+    if (!phases[phase]) phases[phase] = [];
+    phases[phase].push(g.gate);
+  }
+  for (const [phase, gates] of Object.entries(phases)) {
+    console.log(`   ${phase}: ${gates.join(' → ')}`);
+  }
   console.log('');
   
   // Initialize run
@@ -275,17 +286,19 @@ async function runVisualEssayPipeline(options) {
     console.log('');
     console.log('Validation Results:');
     for (const v of result.results) {
-      const icon = v.pass ? '✓' : (v.warning ? '⚠' : '✗');
+      const icon = v.pass ? (v.warning ? '⚠' : '✓') : '✗';
       console.log(`  ${icon} ${v.type}: ${v.description || v.path || ''}`);
       
       if (v.type === 'min_sources' && !v.pass) {
         console.log(`    Found ${v.count} sources, need ${v.threshold} for depth=${v.depth}`);
       }
       if (v.type === 'contains_headings' && v.missing?.length > 0) {
-        console.log(`    Missing: ${v.missing.join(', ')}`);
+        console.log(`    Missing terms: ${v.missing.join(', ')}`);
       }
-      if (v.type === 'file_exists_any_of' && !v.pass) {
-        console.log(`    Checked: ${v.checked.map(c => `${c.path} (${c.exists ? 'exists' : 'missing'})`).join(', ')}`);
+      if (v.type === 'file_exists_any_of') {
+        for (const c of (v.checked || [])) {
+          console.log(`    ${c.exists ? '✓' : '✗'} ${c.path}`);
+        }
       }
     }
     
@@ -488,17 +501,19 @@ async function main() {
         console.log('');
         console.log('Validation Results:');
         for (const v of result.results) {
-          const icon = v.pass ? '✓' : (v.warning ? '⚠' : '✗');
+          const icon = v.pass ? (v.warning ? '⚠' : '✓') : '✗';
           console.log(`  ${icon} ${v.type}: ${v.description || v.path || ''}`);
           
           if (v.type === 'min_sources' && !v.pass) {
             console.log(`    Found ${v.count} sources, need ${v.threshold} for depth=${v.depth}`);
           }
           if (v.type === 'contains_headings' && v.missing?.length > 0) {
-            console.log(`    Missing: ${v.missing.join(', ')}`);
+            console.log(`    Missing terms: ${v.missing.join(', ')}`);
           }
-          if (v.type === 'file_exists_any_of' && !v.pass) {
-            console.log(`    Checked: ${v.checked.map(c => `${c.path} (${c.exists ? 'exists' : 'missing'})`).join(', ')}`);
+          if (v.type === 'file_exists_any_of') {
+            for (const c of (v.checked || [])) {
+              console.log(`    ${c.exists ? '✓' : '✗'} ${c.path}`);
+            }
           }
         }
         

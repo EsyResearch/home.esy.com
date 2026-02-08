@@ -199,6 +199,279 @@ Build spec FROM research (research-first):
 - Narrative arc matches research/TIMELINE.md
 - No claims from research/GAPS.md appear in spec`;
 
+    case 'G4':
+      return `## G4: Design Research
+
+Using @orchestration/agents/research/design-researcher.md
+
+Execute the DESIGN RESEARCH phase for this visual essay:
+
+Topic/Slug: ${slug}
+Artifact Path: ${artifactPath}
+Spec Location: orchestration/skills/visual-essay-invocation/specs/${slug}.md
+
+Tasks:
+1. Read the spec and research package to understand the subject
+2. Research the subject's visual history, materials, cultural associations
+3. Derive a UNIQUE visual identity from the subject matter itself
+4. Produce a comprehensive Design Research Report
+
+Write to: ${artifactPath}/DESIGN-RESEARCH.md
+
+The report MUST include:
+- ## Color Palette — derived FROM the subject (with hex codes and subject connection)
+- ## Typography — font selections with era/character alignment rationale
+- ## Animation Philosophy — motion design matching the subject's nature
+- ## Visual Motifs — decorative elements inspired by subject-specific elements
+- ## Differentiation Check — how this differs from all previous Esy essays
+
+CRITICAL: The design must be unmistakably tied to THIS subject. Never copy from previous essays.`;
+
+    case 'G4.1':
+      return `## G4.1: Design Research Reconciliation
+
+Using @orchestration/agents/auditors/design-research-reconciliation-agent.md
+
+Execute DESIGN RESEARCH RECONCILIATION for this visual essay:
+
+Topic/Slug: ${slug}
+Design Research: ${artifactPath}/DESIGN-RESEARCH.md
+Spec: orchestration/skills/visual-essay-invocation/specs/${slug}.md
+
+Tasks:
+1. Read the DESIGN-RESEARCH.md produced in G4
+2. Verify thematic authenticity (design is subject-derived, not generic)
+3. Check for cross-essay aesthetic collisions with other Esy essays
+4. Verify CSS custom properties can implement the design research
+5. Reconcile any issues and update DESIGN-RESEARCH.md
+
+Pass criteria:
+- No [UNRECONCILED] markers remain
+- No [COLLISION] markers remain
+- Design is demonstrably unique to this subject`;
+
+    case 'G4.5':
+      return `## G4.5: Image Sourcing
+
+Using @orchestration/agents/research/image-research-licensing-expert.md
+
+Execute IMAGE SOURCING for this visual essay:
+
+Topic/Slug: ${slug}
+Artifact Path: ${artifactPath}
+Research: ${artifactPath}/research/
+Design Research: ${artifactPath}/DESIGN-RESEARCH.md
+
+Tasks:
+1. Identify all images needed based on the spec and design research
+2. Source images from Wikimedia, Library of Congress, public domain archives
+3. Verify licenses for each image (public domain, CC-BY, etc.)
+4. Extract URLs and prepare attribution data
+5. Produce image sourcing artifact
+
+Write ONE of:
+- ${artifactPath}/research/IMAGE_RESEARCH_AUDIT.md (preferred)
+- ${artifactPath}/images-migration.json (if using migration format)
+- ${artifactPath}/images.ts (if using TypeScript image data)
+
+NOTE: If this essay uses SVG-only illustrations (no external images), produce the audit file noting "SVG-only — no external images required" and this gate passes.`;
+
+    case 'G5':
+      return `## G5: Content Complete
+
+Using @orchestration/agents/orchestrators/visual-essay-orchestrator.md (production mode)
+
+Execute CONTENT PRODUCTION for this visual essay:
+
+Topic/Slug: ${slug}
+Artifact Path: ${artifactPath}
+Spec: orchestration/skills/visual-essay-invocation/specs/${slug}.md
+Design Research: ${artifactPath}/DESIGN-RESEARCH.md
+Research: ${artifactPath}/research/
+
+Tasks:
+1. Invoke the production team:
+   - Historian Writer → drafts narrative content
+   - Historian Editor → fact-checks all claims
+   - UI/UX Designer → refines visual system
+   - SVG Illustration Expert → creates visual assets
+   - Software Engineer → implements components
+   - Immersive Experience Engineer → mobile-native implementation
+2. Produce the complete implementation
+
+Required outputs:
+- ${artifactPath}/page.tsx (Next.js page with metadata)
+- ${artifactPath}/[Name]Client.tsx (main client component)
+- ${artifactPath}/${slug}.css (story-specific styles)
+
+The implementation must:
+- Follow the 6-layer spec exactly
+- Use the design research color palette and typography
+- Include all sections from the spec
+- Be mobile-first and responsive
+- Include Sources & Further Reading section`;
+
+    case 'G5.2':
+      return `## G5.2: Design Research Integration
+
+Using @orchestration/agents/auditors/design-research-integration-agent.md
+
+Execute DESIGN RESEARCH INTEGRATION audit for this visual essay:
+
+Topic/Slug: ${slug}
+Artifact Path: ${artifactPath}
+Design Research: ${artifactPath}/DESIGN-RESEARCH.md
+CSS File: ${artifactPath}/${slug}.css
+Implementation: ${artifactPath}/page.tsx
+
+Tasks:
+1. Read the DESIGN-RESEARCH.md for defined design tokens
+2. Read the CSS file for implemented custom properties
+3. Read the TSX file(s) for className usage
+4. Verify CSS selectors bind to TSX classNames (target: ≥95% coverage)
+5. Identify any convention mismatches
+6. Report findings
+
+Pass criteria:
+- CSS custom properties implement design research tokens
+- className values in TSX have corresponding CSS selectors
+- No orphan CSS selectors (defined but never used)
+- No orphan classNames (used but never defined)`;
+
+    case 'G5.5':
+      return `## G5.5: Bibliography Implementation
+
+Using @orchestration/agents/orchestrators/bibliography-orchestrator.md
+
+Execute BIBLIOGRAPHY IMPLEMENTATION for this visual essay:
+
+Topic/Slug: ${slug}
+Artifact Path: ${artifactPath}
+Research: ${artifactPath}/research/
+
+Tasks:
+1. Implement the complete bibliography section in the essay:
+   - Works Cited — all textual sources
+   - Image Credits — all image attributions with licenses
+   - A/V Credits — any audio/video sources (if applicable)
+   - Data Sources — any datasets used (if applicable)
+2. Ensure inline citations sync with the bibliography
+3. Verify all sources from research/CITATIONS.md are represented
+4. Produce the bibliography audit report
+
+Write to: ${artifactPath}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md
+
+See: docs/artifact-patterns-guide/BIBLIOGRAPHY_STRUCTURE_GUIDE.md
+See: docs/artifact-patterns-guide/ARTIFACT_CITATION_PATTERNS_GUIDE.md`;
+
+    case 'G6':
+      return `## G6: Citation Audit
+
+Using @orchestration/agents/auditors/citation-audit-agent.md
+
+Execute CITATION AUDIT for this visual essay:
+
+Topic/Slug: ${slug}
+Artifact Path: ${artifactPath}
+Research: ${artifactPath}/research/
+
+Tasks:
+1. Map every factual claim in the essay to a source in the research package
+2. Verify source tier distribution (must be 80%+ Tier 1-2)
+3. Authenticate all quotes (verify exact wording against sources)
+4. Check all URLs/links for health (functional or archived)
+5. Verify content matches research package (no orphan claims)
+6. Produce Citation Certification (Approved/Rejected)
+
+Write to: ${artifactPath}/research/CITATION-AUDIT.md
+
+The audit report must include:
+- Claim-citation mapping
+- Source tier analysis
+- Link integrity report
+- Quote verification status
+- Gap analysis (uncited claims)
+- Citation Certification status`;
+
+    case 'G7':
+      return `## G7: Scroll Certification
+
+Using @orchestration/agents/auditors/immersive-scrolling-auditor.md
+
+Execute SCROLL CERTIFICATION for this visual essay:
+
+Topic/Slug: ${slug}
+Artifact Path: ${artifactPath}
+
+Tasks:
+1. Audit scroll-lock behavior (all sticky sections work correctly)
+2. Test animation performance (60fps target on mobile)
+3. Verify Mobile Safari compatibility
+4. Test touch interactions (44px+ targets, thumb-friendly)
+5. Check safe areas and viewport handling
+6. Produce certification with score (must be ≥8.0/10 to pass)
+
+Write to: ${artifactPath}/research/SCROLL-CERTIFICATION.md
+
+Pass criteria:
+- Overall score ≥ 8.0/10
+- No Tier 1 failures (blocking issues)
+- 60fps confirmed on mobile
+- Mobile Safari verified
+- Touch targets ≥ 44px`;
+
+    case 'G8':
+      return `## G8: Publication Certification
+
+Using @orchestration/agents/orchestrators/publish-artifact-orchestrator.md
+
+Execute PRE-PUBLICATION CERTIFICATION for this visual essay:
+
+Topic/Slug: ${slug}
+Artifact Path: ${artifactPath}
+
+Tasks:
+1. Run all domain audits in parallel:
+   - Bibliography Orchestrator (audit mode) — verify bibliography completeness
+   - Audit Orchestrator — quality domains (scroll, experience, visual, content, hydration, spec)
+   - Social Media Meta Expert — verify OG/Twitter meta tags
+   - SEO Audit Agent — search optimization check
+   - Gate Guard Auditor — verify G1-G7 all passed
+2. If issues found → invoke QA Remediation Orchestrator (max 2 iterations)
+3. Produce certification: GO / CONDITIONAL / NO-GO
+
+Write to: ${artifactPath}/research/PUBLICATION-CERTIFICATION.md
+
+Status meanings:
+- GO: All audits pass, no blocking issues → proceed to G9
+- CONDITIONAL: Minor issues (🟡/🟢) only → proceed with documented conditions
+- NO-GO: Blocking issues (🔴) remain → return to remediation`;
+
+    case 'G9':
+      return `## G9: Publication Approval
+
+Using @orchestration/agents/orchestrators/visual-essay-orchestrator.md
+
+Execute FINAL PUBLICATION APPROVAL for this visual essay:
+
+Topic/Slug: ${slug}
+Artifact Path: ${artifactPath}
+
+Tasks:
+1. Review the complete package:
+   - All gates G1-G8 must be PASSED
+   - Publication Certification must be GO or CONDITIONAL
+2. Verify visualEssays.ts is updated:
+   - New entry added with isNew: true
+   - New story set as isFeatured: true
+   - Previous featured story unfeatured
+3. Director sign-off
+4. Trigger deployment
+
+Write to: ${artifactPath}/research/PUBLICATION-APPROVAL.md
+
+This is the final human gate. The essay will be published to esy.com/essays/ after this approval.`;
+
     default:
       return `## ${gateCode}: ${gateDef.name}
 

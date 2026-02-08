@@ -1,0 +1,34 @@
+{
+  "gate": "G4.5",
+  "name": "Image Sourcing",
+  "blocking": true,
+  "description": "Validates that all images are sourced, URLs extracted, and licenses verified",
+  "required_outputs": {
+    "any_of": [
+      {
+        "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+        "description": "Image research audit with sourced images and license verification"
+      },
+      {
+        "path": "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+        "description": "Image documentation with sourced images and license verification"
+      },
+      {
+        "path": "{artifact_path}/images-migration.json",
+        "description": "Image migration manifest with URLs and attribution"
+      },
+      {
+        "path": "{artifact_path}/images.ts",
+        "description": "TypeScript image data with URLs and attribution"
+      }
+    ]
+  },
+  "validations": [
+    {
+      "type": "file_exists",
+      "target": "any_of",
+      "description": "At least one image sourcing artifact must exist"
+    }
+  ],
+  "notes": "G4.5 is flexible because image sourcing artifacts vary by essay. Some essays use SVG-only illustrations (no external images), in which case this gate may be manually passed with a note. The any_of pattern accommodates the different formats that have been used historically."
+}

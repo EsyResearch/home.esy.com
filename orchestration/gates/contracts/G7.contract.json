@@ -1,0 +1,26 @@
+{
+  "gate": "G7",
+  "name": "Scroll Certification",
+  "blocking": true,
+  "description": "Validates that the Immersive Scrolling Auditor has certified the essay with ≥8.0/10 score, 60fps confirmed, and mobile verified",
+  "required_outputs": {
+    "any_of": [
+      {
+        "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+        "description": "Scroll certification report from Immersive Scrolling Auditor"
+      },
+      {
+        "path": "{artifact_path}/SCROLL-CERTIFICATION.md",
+        "description": "Scroll certification report (essay root level)"
+      }
+    ]
+  },
+  "validations": [
+    {
+      "type": "file_exists",
+      "target": "any_of",
+      "description": "Scroll certification report must exist"
+    }
+  ],
+  "notes": "G7 validates that the Immersive Scrolling Auditor has tested scroll-lock behavior, animation performance (60fps target), mobile Safari compatibility, and real device testing. The certification score (≥8.0/10 to pass) and any Tier 1 failures are recorded in the report. No Tier 1 failures are allowed."
+}

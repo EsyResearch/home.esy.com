@@ -1,0 +1,37 @@
+{
+  "gate": "G4.1",
+  "name": "Design Research Reconciliation",
+  "blocking": true,
+  "description": "Validates that the design system is thematically authentic, has no cross-essay collisions, and CSS implements the design research",
+  "required_outputs": {
+    "all_of": [
+      {
+        "path": "{artifact_path}/DESIGN-RESEARCH.md",
+        "description": "Design research report (verified reconciled)",
+        "required": true
+      }
+    ]
+  },
+  "validations": [
+    {
+      "type": "file_exists",
+      "target": "all_required",
+      "description": "DESIGN-RESEARCH.md must still exist and be reconciled"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/DESIGN-RESEARCH.md",
+      "pattern": "[UNRECONCILED]",
+      "severity": "error",
+      "description": "Design research must not contain [UNRECONCILED] marker"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/DESIGN-RESEARCH.md",
+      "pattern": "[COLLISION]",
+      "severity": "error",
+      "description": "Design research must not flag aesthetic collisions with other essays"
+    }
+  ],
+  "notes": "G4.1 is a reconciliation gate. The Design Research Reconciliation Agent verifies thematic authenticity, cross-essay novelty, and that CSS custom properties can implement the design research. It may annotate DESIGN-RESEARCH.md with [RECONCILED] or flag issues."
+}

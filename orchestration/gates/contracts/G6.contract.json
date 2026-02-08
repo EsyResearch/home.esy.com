@@ -1,0 +1,26 @@
+{
+  "gate": "G6",
+  "name": "Citation Audit",
+  "blocking": true,
+  "description": "Validates that all sources are verified, quotes authenticated, no broken links, and content matches research",
+  "required_outputs": {
+    "any_of": [
+      {
+        "path": "{artifact_path}/research/CITATION-AUDIT.md",
+        "description": "Citation audit report from Citation Audit Agent"
+      },
+      {
+        "path": "{artifact_path}/CITATION-AUDIT.md",
+        "description": "Citation audit report (essay root level)"
+      }
+    ]
+  },
+  "validations": [
+    {
+      "type": "file_exists",
+      "target": "any_of",
+      "description": "Citation audit report must exist"
+    }
+  ],
+  "notes": "G6 validates the Citation Audit Agent has verified all sources (80%+ Tier 1-2), authenticated quotes, checked link health, and confirmed content-research alignment. The audit file location varies by essay (some at root, some in research/). Citation Certification (Approved/Rejected) is recorded in the audit report."
+}

@@ -1,7 +1,7 @@
 {
   "workflow": "visual-essay",
   "version": "local-dev",
-  "description": "Visual Essay production pipeline with research-first methodology",
+  "description": "Visual Essay production pipeline — 13 gates from intake to publication",
   "gates": [
     {
       "gate": "G1",
@@ -9,7 +9,8 @@
       "agent": "visual-essay-orchestrator",
       "contract": "orchestration/gates/contracts/G1.contract.json",
       "prompt_template": "G1",
-      "description": "Validates scope, depth, and creates intake approval artifact"
+      "description": "Validates scope, depth, and creates intake approval artifact",
+      "phase": "Intake"
     },
     {
       "gate": "G2",
@@ -17,7 +18,8 @@
       "agent": "research-orchestrator",
       "contract": "orchestration/gates/contracts/G2.contract.json",
       "prompt_template": "G2",
-      "description": "Produces complete research package with citations, figures, quotes, timeline, visuals"
+      "description": "Produces complete research package with citations, figures, quotes, timeline, visuals",
+      "phase": "Research"
     },
     {
       "gate": "G3",
@@ -25,7 +27,98 @@
       "agent": "visual-essay-invocation-agent",
       "contract": "orchestration/gates/contracts/G3.contract.json",
       "prompt_template": "G3",
-      "description": "Generates 6-layer visual essay specification from research"
+      "description": "Generates 6-layer visual essay specification from research",
+      "phase": "Spec Build"
+    },
+    {
+      "gate": "G4",
+      "name": "Design Research",
+      "agent": "design-researcher",
+      "contract": "orchestration/gates/contracts/G4.contract.json",
+      "prompt_template": "G4",
+      "description": "Produces subject-derived visual identity (color, typography, animation philosophy)",
+      "phase": "Production"
+    },
+    {
+      "gate": "G4.1",
+      "name": "Design Research Reconciliation",
+      "agent": "design-research-reconciliation-agent",
+      "contract": "orchestration/gates/contracts/G4.1.contract.json",
+      "prompt_template": "G4.1",
+      "description": "Verifies thematic authenticity, cross-essay novelty, CSS implements design research",
+      "phase": "Production"
+    },
+    {
+      "gate": "G4.5",
+      "name": "Image Sourcing",
+      "agent": "image-research-licensing-expert",
+      "contract": "orchestration/gates/contracts/G4.5.contract.json",
+      "prompt_template": "G4.5",
+      "description": "Sources all images, verifies licenses, extracts URLs and attribution data",
+      "phase": "Production"
+    },
+    {
+      "gate": "G5",
+      "name": "Content Complete",
+      "agent": "scrollytelling-expert",
+      "contract": "orchestration/gates/contracts/G5.contract.json",
+      "prompt_template": "G5",
+      "description": "All narrative written, visuals created, component implemented, fact-checked",
+      "phase": "Production"
+    },
+    {
+      "gate": "G5.2",
+      "name": "Design Research Integration",
+      "agent": "design-research-integration-agent",
+      "contract": "orchestration/gates/contracts/G5.2.contract.json",
+      "prompt_template": "G5.2",
+      "description": "Verifies CSS selectors bind to TSX classNames (≥95% coverage)",
+      "phase": "Production"
+    },
+    {
+      "gate": "G5.5",
+      "name": "Bibliography Implementation",
+      "agent": "bibliography-orchestrator",
+      "contract": "orchestration/gates/contracts/G5.5.contract.json",
+      "prompt_template": "G5.5",
+      "description": "Implements Works Cited, Image Credits, A/V Credits, Data Sources sections",
+      "phase": "Production"
+    },
+    {
+      "gate": "G6",
+      "name": "Citation Audit",
+      "agent": "citation-audit-agent",
+      "contract": "orchestration/gates/contracts/G6.contract.json",
+      "prompt_template": "G6",
+      "description": "Verifies all sources, authenticates quotes, checks link health, content-research alignment",
+      "phase": "Audit"
+    },
+    {
+      "gate": "G7",
+      "name": "Scroll Certification",
+      "agent": "immersive-scrolling-auditor",
+      "contract": "orchestration/gates/contracts/G7.contract.json",
+      "prompt_template": "G7",
+      "description": "Certifies scroll-lock behavior, 60fps performance, mobile compatibility",
+      "phase": "Audit"
+    },
+    {
+      "gate": "G8",
+      "name": "Publication Certification",
+      "agent": "publish-artifact-orchestrator",
+      "contract": "orchestration/gates/contracts/G8.contract.json",
+      "prompt_template": "G8",
+      "description": "Pre-publication certification from all domain audits (GO/CONDITIONAL/NO-GO)",
+      "phase": "Publication"
+    },
+    {
+      "gate": "G9",
+      "name": "Publication Approval",
+      "agent": "visual-essay-orchestrator",
+      "contract": "orchestration/gates/contracts/G9.contract.json",
+      "prompt_template": "G9",
+      "description": "Director sign-off, visualEssays.ts updated, deployment triggered",
+      "phase": "Publication"
     }
   ]
 }
