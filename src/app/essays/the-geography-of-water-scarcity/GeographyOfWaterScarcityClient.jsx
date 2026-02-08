@@ -709,7 +709,7 @@ function ScarcityEquation() {
   const stage = EQUATION_STAGES[activeStage] || EQUATION_STAGES[0];
 
   return (
-    <div ref={containerRef} className="ws-scroll-lock" style={{ height: `${EQUATION_STAGES.length * 300 + window?.innerHeight || 800}px` }}>
+    <div ref={containerRef} className="ws-scroll-lock" style={{ height: `${EQUATION_STAGES.length * 300 + (typeof window !== 'undefined' ? window.innerHeight : 800)}px` }}>
       <div className="ws-scroll-lock-sticky">
         <div className="ws-equation-vis">
           {/* Stage title */}
