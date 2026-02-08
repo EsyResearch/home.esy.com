@@ -2,6 +2,12 @@
 
 > Planning and architecture documents for the Esy orchestration platform — from local CLI to web-based admin at app.esy.com.
 
+## Documents
+
+| File | Purpose |
+|------|---------|
+| [competitive-position.md](./competitive-position.md) | How Esy's orchestration architecture compares to standard AI apps — the moat, the matrix, honest limitations |
+
 ## Directories
 
 | Directory | Purpose | Status |
