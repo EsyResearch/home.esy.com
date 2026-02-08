@@ -18,6 +18,9 @@
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
     "@next/mdx": "^15.3.4",
+    "d3-geo": "^3.1.1",
+    "d3-interpolate": "^3.0.1",
+    "d3-scale": "^4.0.2",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.525.0",
     "mime-types": "^3.0.2",
@@ -33,7 +36,8 @@
     "remark": "^15.0.1",
     "remark-directive": "^4.0.0",
     "remark-gfm": "^4.0.1",
-    "remark-html": "^16.0.1"
+    "remark-html": "^16.0.1",
+    "topojson-client": "^3.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

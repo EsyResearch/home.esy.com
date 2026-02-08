@@ -1,0 +1,57 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-08T23:33:48.074Z",
+  "finished_at": "2026-02-08T23:35:51.372Z",
+  "agent": "citation-audit-agent",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CITATION-AUDIT.md",
+    "{artifact_path}/CITATION-AUDIT.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/inside-a-black-hole/research/CITATION-AUDIT.md",
+      "sha256": "87196fa49118d8dcb27a7e7dc9ff568b2eace81167295aa062946081c6efc850",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/CITATION-AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/CITATION-AUDIT.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Citation audit must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "pattern": "Citation Certification: Rejected",
+      "found": false,
+      "severity": "error",
+      "description": "Citation audit must not have Rejected certification",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

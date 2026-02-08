@@ -1,0 +1,39 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-08T10:11:49.290Z",
+  "finished_at": "2026-02-08T10:14:29.178Z",
+  "agent": "bibliography-orchestrator",
+  "prompt_sha256": "c238286fbc3c10435faf613d2bc13106cf338d4d6f7feca71503f5d4220828b7",
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+    "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-geography-of-water-scarcity/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "sha256": "d334c8be948bf2b3483f251d8d2502aa51db1bee0554efd77da736718f5b9bbf",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    }
+  ],
+  "failure_reason": null
+}

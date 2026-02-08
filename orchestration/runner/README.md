@@ -15,34 +15,64 @@ The runner produces two types of output for each workflow run:
 
 No installation required. Uses Node.js (already available in this project).
 
+## Standard Convention
+
+**Every essay lives in one directory:** `src/app/essays/{slug}/`
+
+```
+src/app/essays/{slug}/
+├── page.tsx                    ← Next.js route (/essays/{slug})
+├── {Name}Client.tsx|jsx        ← client component
+├── {slug}.css                  ← styles
+├── DESIGN-RESEARCH.md          ← design research (G4 output)
+├── G1-INTAKE.md                ← intake approval (G1 output)
+├── research/                   ← research package (G2 output)
+│   ├── CITATIONS.md
+│   ├── STATISTICS.md
+│   └── ...
+└── audits/                     ← audit reports (G6+ outputs)
+```
+
+The runner auto-derives the essay directory from `--slug`. No separate path args needed.
+
 ## Quick Start (CI Mode - Recommended)
 
 Run the complete visual-essay pipeline with human-in-the-loop execution:
 
 ```bash
 node orchestration/runner/cli.js run visual-essay \
-  --slug the-word-robot \
-  --artifact-path src/app/essays/etymology/the-word-robot \
+  --slug the-geography-of-water-scarcity \
   --depth standard
 ```
 
 The runner will:
-1. Initialize a run record with all 13 gates pre-populated
-2. For each gate (G1 → G2 → G3 → G4 → G4.1 → G4.5 → G5 → G5.2 → G5.5 → G6 → G7 → G8 → G9):
+1. Auto-derive essay dir: `src/app/essays/the-geography-of-water-scarcity/`
+2. Validate the directory follows the standard convention
+3. Initialize a run record with all 13 gates pre-populated
+4. For each gate (G1 → G2 → G3 → G4 → G4.1 → G4.5 → G5 → G5.2 → G5.5 → G6 → G7 → G8 → G9):
    - Generate a **Prompt Packet** with agent-specific instructions
    - Pause and wait for you to execute in Claude Code
    - Validate outputs against the gate contract
    - Hash all artifacts and record results
-3. Stop on failure or complete when all gates pass
+5. Stop on failure or complete when all gates pass
 
 ### With a Prompt File
 
 ```bash
 node orchestration/runner/cli.js run visual-essay \
   --slug the-word-robot \
-  --artifact-path src/app/essays/etymology/the-word-robot \
-  --depth standard \
   --prompt-file prompts/robot-topic.txt
+```
+
+### With Path Override
+
+If an essay directory doesn't follow the standard convention, override:
+
+```bash
+node orchestration/runner/cli.js run visual-essay \
+  --slug the-word-robot \
+  --artifact-path src/app/essays/etymology/the-word-robot \
+  --depth standard
 ```
 
 ## Quick Start (Manual Mode)
@@ -54,7 +84,6 @@ For fine-grained control, use individual commands:
 node orchestration/runner/cli.js run start \
   --workflow visual-essay \
   --slug the-word-robot \
-  --artifact-path src/app/essays/etymology/the-word-robot \
   --depth standard
 
 # 2. Start a gate
@@ -81,14 +110,14 @@ Run the complete visual-essay pipeline with human-in-the-loop execution.
 ```bash
 node orchestration/runner/cli.js run visual-essay \
   --slug <slug> \
-  --artifact-path <path> \
+  [--artifact-path <path>] \
   [--depth quick|standard|deep] \
   [--prompt-file <path>]
 ```
 
 **Options:**
-- `--slug` — Essay slug (REQUIRED)
-- `--artifact-path` — Repo-relative path to essay directory (REQUIRED)
+- `--slug` — Essay slug (REQUIRED). Auto-derives essay dir: `src/app/essays/{slug}`
+- `--artifact-path` — Override essay directory (default: `src/app/essays/{slug}`)
 - `--depth` — Research depth mode (default: `standard`)
 - `--prompt-file` — Path to topic/prompt file (optional)
 
@@ -105,14 +134,14 @@ Initialize a new workflow run (manual mode).
 node orchestration/runner/cli.js run start \
   --workflow <name> \
   --slug <slug> \
-  --artifact-path <path> \
+  [--artifact-path <path>] \
   [--depth quick|standard|deep]
 ```
 
 **Options:**
 - `--workflow` — Workflow name (e.g., `visual-essay`)
-- `--slug` — Essay or project slug (e.g., `the-word-robot`)
-- `--artifact-path` — Repo-relative path to essay directory
+- `--slug` — Essay or project slug (REQUIRED). Auto-derives essay dir: `src/app/essays/{slug}`
+- `--artifact-path` — Override essay directory (default: `src/app/essays/{slug}`)
 - `--depth` — Research depth mode (default: `standard`)
 
 **Output:**
@@ -213,7 +242,7 @@ node orchestration/runner/cli.js invocation record \
     "name": "visual-essay",
     "version": "local-dev",
     "slug": "the-word-robot",
-    "artifact_path": "src/app/essays/etymology/the-word-robot"
+    "artifact_path": "src/app/essays/the-word-robot"
   },
   "depth": "standard",
   "status": "RUNNING",
@@ -248,8 +277,7 @@ Each gate attempt creates a file at:
   "agent": "research-orchestrator",
   "invocation_ids": ["inv_1705673460000_abc1"],
   "required_outputs": [
-    "{artifact_path}/research/CITATIONS.md",
-    "{artifact_path}/research/FIGURES.md"
+    "{artifact_path}/research/CITATIONS.md"
   ],
   "artifacts": [
     {
@@ -276,7 +304,7 @@ Gate contracts are stored in `orchestration/gates/contracts/`:
 | Contract | Gate | Phase | Purpose |
 |----------|------|-------|---------|
 | `G1.contract.json` | Intake Approval | Intake | Validates intake documents exist |
-| `G2.contract.json` | Research Complete | Research | Validates research package (citations, figures, quotes, timeline, visuals) |
+| `G2.contract.json` | Research Complete | Research | Validates research substance: dir exists, CITATIONS.md present, min file count by depth |
 | `G3.contract.json` | Spec Approval | Spec Build | Validates 6-layer spec with all required layer headings |
 | `G4.contract.json` | Design Research | Production | Validates DESIGN-RESEARCH.md exists with color/typography/animation |
 | `G4.1.contract.json` | Design Research Reconciliation | Production | Validates no [UNRECONCILED] or [COLLISION] markers |
@@ -292,17 +320,39 @@ Gate contracts are stored in `orchestration/gates/contracts/`:
 ### Path Variables
 
 Contracts support path variables:
-- `{slug}` — The essay/project slug
-- `{artifact_path}` — The essay directory path
+- `{slug}` — The essay/project slug (e.g., `the-geography-of-water-scarcity`)
+- `{artifact_path}` — The essay directory (default: `src/app/essays/{slug}`)
+
+**Single-directory convention**: All essay files (implementation, research, design, audits) live together in `src/app/essays/{slug}/`. The runner auto-derives this from `--slug`.
 
 ### Validation Types
 
 | Type | Description |
 |------|-------------|
 | `file_exists` | Check that file exists |
-| `min_sources` | Count sources in CITATIONS.md |
+| `dir_exists` | Check that directory exists |
+| `min_file_count` | Count files matching a pattern in a directory (depth-based thresholds) |
+| `min_sources` | Count sources in a file using multi-heuristic detection |
+| `min_sources_any_of` | Like `min_sources` but checks multiple possible files, uses the best |
 | `contains_headings` | Check for required headings |
 | `not_contains` | Warn/fail if pattern found |
+
+### G2 Research Contract (Flexible, Dual-Profile)
+
+G2 validates **substance over form**. Two research profiles exist — the gate accepts either:
+
+| Check | Quick | Standard | Deep |
+|-------|-------|----------|------|
+| `research/` directory exists | ✅ | ✅ | ✅ |
+| `CITATIONS.md` OR `CLAIMS.md` exists | ✅ | ✅ | ✅ |
+| Min research files | 1 | 3 | 6 |
+| Min sources in source-tracking file | 3 | 8 | 15 |
+
+**Historical profile** (narrative essays): `CITATIONS.md` + FIGURES, QUOTES, TIMELINE, VISUALS, ERA-GUIDE
+**Conceptual profile** (explanatory essays): `CLAIMS.md` + CONCEPTS, SEQUENCE, DEFINITIONS, ANALOGIES, MISCONCEPTIONS
+**Data journalism extension** (adds to conceptual): DATASETS, STATISTICS, COMPARISONS, PROJECTIONS
+
+Agents choose the appropriate profile based on domain detection. See the contract's `recommended_files` section for the full menu.
 
 ## Integration with Agents
 

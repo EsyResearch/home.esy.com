@@ -1,0 +1,57 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-08T23:35:55.502Z",
+  "finished_at": "2026-02-08T23:36:50.144Z",
+  "agent": "scroll-certification-agent",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+    "{artifact_path}/SCROLL-CERTIFICATION.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/inside-a-black-hole/research/SCROLL-CERTIFICATION.md",
+      "sha256": "a1c690c680222f71694e6a7b365be4d2506c2b60bfe09837e5fee6b2188a6546",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/SCROLL-CERTIFICATION.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Scroll certification must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "pattern": "Overall Status: ❌",
+      "found": false,
+      "severity": "error",
+      "description": "Scroll certification must not report overall failure",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

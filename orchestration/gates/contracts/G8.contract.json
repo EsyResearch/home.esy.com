@@ -2,7 +2,7 @@
   "gate": "G8",
   "name": "Publication Certification",
   "blocking": true,
-  "description": "Validates that the Publish Artifact Orchestrator has run all domain audits and produced a GO or CONDITIONAL certification",
+  "description": "Validates that the Publish Artifact Orchestrator has run all domain audits (including design slop audit) and produced a GO or CONDITIONAL certification. NO-GO blocks publication.",
   "required_outputs": {
     "any_of": [
       {
@@ -24,7 +24,21 @@
       "type": "file_exists",
       "target": "any_of",
       "description": "Publication certification or approval report must exist"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "pattern": "status: FAIL",
+      "severity": "error",
+      "description": "Publication certification must not have FAIL status in frontmatter"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "pattern": "NO-GO",
+      "severity": "error",
+      "description": "Publication certification must not be NO-GO"
     }
   ],
-  "notes": "G8 validates the aggregate pre-publication audit. The Publish Artifact Orchestrator invokes: Bibliography Orchestrator (audit mode), Audit Orchestrator (quality domains), Social Media Meta Expert, SEO Audit Agent, and Gate Guard Auditor (G1-G7 verification). If issues are found, QA Remediation Orchestrator runs first. Certification status must be GO or CONDITIONAL to proceed to G9."
+  "notes": "G8 validates the aggregate pre-publication audit. The Publish Artifact Orchestrator invokes: Bibliography Orchestrator (audit mode), Audit Orchestrator (quality domains), Design Slop Auditor (distinctiveness check), Social Media Meta Expert, SEO Audit Agent, and Gate Guard Auditor (G1-G7 verification). If issues are found, QA Remediation Orchestrator runs first. Certification status must be GO or CONDITIONAL to proceed to G9. NO-GO blocks the pipeline. The design slop audit is mandatory at G8 per the Gate Accountability Standard."
 }

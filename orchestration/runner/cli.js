@@ -93,14 +93,15 @@ Usage:
 Commands:
   run visual-essay   Run the complete visual-essay pipeline (CI-style, human-in-the-loop)
     --slug <slug>           Essay/project slug (REQUIRED)
-    --artifact-path <path>  Repo-relative path to essay directory (REQUIRED)
+    --artifact-path <path>  Override essay dir (default: src/app/essays/{slug})
     --depth <mode>          Depth mode: quick|standard|deep (default: standard)
     --prompt-file <path>    Path to topic/prompt file (optional)
+    --start-from <Gx>       Skip gates before this one (auto-validate passing gates)
 
   run start     Initialize a new run (manual mode)
     --workflow <name>       Workflow name (e.g., visual-essay)
-    --slug <slug>           Essay/project slug
-    --artifact-path <path>  Repo-relative path to essay directory
+    --slug <slug>           Essay/project slug (REQUIRED)
+    --artifact-path <path>  Override essay dir (default: src/app/essays/{slug})
     --depth <mode>          Depth mode: quick|standard|deep (default: standard)
 
   run list      List all runs
@@ -133,14 +134,20 @@ Commands:
     --status <status>       SUCCESS|FAIL (default: SUCCESS)
 
 Examples:
-  # Run the full visual-essay pipeline (recommended)
-  node cli.js run visual-essay --slug the-word-robot --artifact-path src/app/essays/etymology/the-word-robot --depth standard
+  # Run the full visual-essay pipeline (recommended — slug auto-derives the path)
+  node cli.js run visual-essay --slug the-geography-of-water-scarcity --depth standard
+
+  # Run with explicit artifact path (override auto-derive)
+  node cli.js run visual-essay --slug the-word-robot --artifact-path src/app/essays/the-word-robot --depth standard
+
+  # Resume from a specific gate (auto-validates all prior gates)
+  node cli.js run visual-essay --slug the-geography-of-water-scarcity --depth deep --start-from G5.5
 
   # Run with a prompt file
-  node cli.js run visual-essay --slug the-word-robot --artifact-path src/app/essays/etymology/the-word-robot --prompt-file prompts/robot-topic.txt
+  node cli.js run visual-essay --slug the-word-robot --prompt-file prompts/robot-topic.txt
 
   # Manual mode: Start a new run
-  node cli.js run start --workflow visual-essay --slug the-word-robot --artifact-path src/app/essays/etymology/the-word-robot
+  node cli.js run start --workflow visual-essay --slug the-word-robot
 
   # Manual mode: Start G2 gate with research orchestrator
   node cli.js gate start --run run_20260119_the-word-robot_abc123 --gate G2 --agent research-orchestrator
@@ -151,15 +158,64 @@ Examples:
 }
 
 /**
+ * Standard convention: derive essay directory from slug
+ */
+const STANDARD_ESSAY_DIR = 'src/app/essays';
+
+/**
+ * Validate the essay directory follows standard convention.
+ * Warns if non-standard, errors if the path is outside src/.
+ */
+function validateConvention(slug, artifactPath) {
+  const expectedPath = `${STANDARD_ESSAY_DIR}/${slug}`;
+  
+  if (artifactPath === expectedPath) {
+    console.log(`✓ Convention check: standard path (${artifactPath})`);
+    return;
+  }
+  
+  // Non-standard but still in src/app/essays/ — warn but allow
+  if (artifactPath.startsWith(STANDARD_ESSAY_DIR + '/')) {
+    console.log(`⚠️  Convention warning: non-standard path`);
+    console.log(`   Expected: ${expectedPath}`);
+    console.log(`   Got:      ${artifactPath}`);
+    console.log(`   Proceeding with override...`);
+    return;
+  }
+  
+  // Outside src/app/essays/ entirely — hard error
+  if (!artifactPath.startsWith('src/')) {
+    console.error(`❌ Convention error: artifact path must be under src/app/essays/`);
+    console.error(`   Expected: ${expectedPath}`);
+    console.error(`   Got:      ${artifactPath}`);
+    console.error('');
+    console.error('   The standard convention is: src/app/essays/{slug}/');
+    console.error('   All essay files (implementation, research, design) live here.');
+    console.error('   Use --artifact-path only to override within src/app/essays/.');
+    process.exit(1);
+  }
+  
+  // In src/ but not in src/app/essays/ — warn
+  console.log(`⚠️  Convention warning: path is outside src/app/essays/`);
+  console.log(`   Expected: ${expectedPath}`);
+  console.log(`   Got:      ${artifactPath}`);
+  console.log(`   Proceeding with override...`);
+}
+
+/**
  * Run the visual-essay pipeline in CI-style with human-in-the-loop execution
  */
 async function runVisualEssayPipeline(options) {
-  const { slug, artifactPath, depth, promptFile } = options;
+  const { slug, artifactPath, depth, promptFile, startFrom } = options;
   
   console.log('');
   console.log('═══════════════════════════════════════════════════════════════════════════════');
   console.log('  VISUAL ESSAY PIPELINE - CI Mode (Human-in-the-Loop)');
   console.log('═══════════════════════════════════════════════════════════════════════════════');
+  console.log('');
+  
+  // Validate convention
+  validateConvention(slug, artifactPath);
   console.log('');
   
   // Read and hash prompt file if provided
@@ -177,7 +233,7 @@ async function runVisualEssayPipeline(options) {
     promptSha256 = hashString(originalPrompt);
   }
   
-  console.log(`📁 Artifact path: ${artifactPath}`);
+  console.log(`📁 Essay directory: ${artifactPath}`);
   console.log(`📊 Depth mode: ${depth}`);
   console.log('');
   
@@ -214,9 +270,49 @@ async function runVisualEssayPipeline(options) {
   // Save original prompt to logs
   saveOriginalPrompt(paths, originalPrompt);
   
+  // Determine if we're skipping gates (--start-from)
+  let reachedStartGate = !startFrom; // If no startFrom, process everything
+  
+  if (startFrom) {
+    const validGates = workflow.gates.map(g => g.gate);
+    if (!validGates.includes(startFrom)) {
+      console.error(`❌ Invalid --start-from gate: ${startFrom}`);
+      console.error(`   Valid gates: ${validGates.join(', ')}`);
+      process.exit(1);
+    }
+    console.log(`⏩ Resuming from gate ${startFrom} — auto-validating prior gates`);
+    console.log('');
+  }
+  
   // Process each gate
   for (const gateDef of workflow.gates) {
     const gateCode = gateDef.gate;
+    
+    // Check if we've reached the start gate
+    if (!reachedStartGate) {
+      if (gateCode === startFrom) {
+        reachedStartGate = true;
+      } else {
+        // Auto-validate: start gate, run validation, report result without pausing
+        console.log(`  ⏩ ${gateCode}: ${gateDef.name} — auto-validating...`);
+        
+        const packetSha256 = hashString(`auto-validate-${gateCode}`);
+        startGate(runId, gateCode, gateDef.agent, packetSha256);
+        const result = await finishGate(runId, gateCode);
+        
+        if (result.pass) {
+          console.log(`     ✅ PASS (artifacts exist from prior run)`);
+        } else {
+          console.log(`     ❌ FAIL — ${result.attempt.failure_reason}`);
+          console.log('');
+          console.log(`  Cannot resume from ${startFrom}: gate ${gateCode} does not pass.`);
+          console.log('  Run the full pipeline or fix the missing artifacts first.');
+          completeRun(runId, 'FAILED');
+          process.exit(1);
+        }
+        continue;
+      }
+    }
     
     console.log('───────────────────────────────────────────────────────────────────────────────');
     console.log(`  GATE ${gateCode}: ${gateDef.name}`);
@@ -320,7 +416,7 @@ async function runVisualEssayPipeline(options) {
       console.log('');
       console.log('To retry this gate:');
       console.log('  1. Fix the missing outputs');
-      console.log(`  2. Run: node orchestration/runner/cli.js run visual-essay --slug ${slug} --artifact-path ${artifactPath} --depth ${depth}`);
+      console.log(`  2. Run: node orchestration/runner/cli.js run visual-essay --slug ${slug} --depth ${depth}`);
       console.log('     (Or continue from the failed gate using manual mode)');
       console.log('');
       
@@ -366,24 +462,30 @@ async function main() {
     if (command === 'run') {
       // CI-style visual-essay pipeline
       if (subcommand === 'visual-essay') {
-        const { slug, 'artifact-path': artifactPath, depth = 'standard', 'prompt-file': promptFile } = args;
+        const { slug, 'artifact-path': artifactPathOverride, depth = 'standard', 'prompt-file': promptFile, 'start-from': startFrom } = args;
         
-        if (!slug || !artifactPath) {
-          console.error('Error: --slug and --artifact-path are required');
+        if (!slug) {
+          console.error('Error: --slug is required');
           process.exit(1);
         }
         
-        await runVisualEssayPipeline({ slug, artifactPath, depth, promptFile });
+        // Standard convention: src/app/essays/{slug}
+        const artifactPath = artifactPathOverride || `src/app/essays/${slug}`;
+        
+        await runVisualEssayPipeline({ slug, artifactPath, depth, promptFile, startFrom });
         return;
       }
       
       if (subcommand === 'start') {
-        const { workflow, slug, 'artifact-path': artifactPath, depth } = args;
+        const { workflow, slug, 'artifact-path': artifactPathOverride, depth } = args;
         
-        if (!workflow || !slug || !artifactPath) {
-          console.error('Error: --workflow, --slug, and --artifact-path are required');
+        if (!workflow || !slug) {
+          console.error('Error: --workflow and --slug are required');
           process.exit(1);
         }
+        
+        // Standard convention: src/app/essays/{slug}
+        const artifactPath = artifactPathOverride || `src/app/essays/${slug}`;
         
         const result = initRun({
           workflow,

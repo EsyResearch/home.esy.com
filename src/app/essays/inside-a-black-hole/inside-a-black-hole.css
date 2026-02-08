@@ -1,0 +1,721 @@
+/* ═══════════════════════════════════════════════════════════════
+   Inside a Black Hole — Visual Essay Stylesheet
+   Design System: Darkness as Medium
+   Subject-derived: EHT gold, lensing blue, quantum violet
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── CSS Custom Properties ─────────────────────────────────── */
+:root {
+  --bh-void: #050508;
+  --bh-void-elevated: #0a0a10;
+  --bh-text-primary: #e0dcd8;
+  --bh-text-secondary: #8a8580;
+  --bh-text-caption: #6a6560;
+  --bh-accretion-gold: #c4922a;
+  --bh-accretion-gold-dim: #8a6820;
+  --bh-lensing-blue: #3d7ec7;
+  --bh-lensing-blue-dim: #2a5a8f;
+  --bh-quantum-violet: #6b4fa0;
+  --bh-quantum-violet-dim: #4a3670;
+  --bh-horizon-teal: #1a9e8f;
+  --bh-danger-red: #b5382a;
+  --bh-danger-red-dim: #7a2820;
+  --bh-diagram-line: #4a4a5a;
+  --bh-diagram-line-hover: #7a7a8a;
+  --bh-singularity-white: #ffffff;
+  --bh-glow-gold: 0 0 20px rgba(196, 146, 42, 0.3);
+  --bh-glow-blue: 0 0 15px rgba(61, 126, 199, 0.25);
+  --bh-glow-violet: 0 0 15px rgba(107, 79, 160, 0.25);
+  --bh-glow-teal: 0 0 12px rgba(26, 158, 143, 0.2);
+}
+
+/* ─── Base ──────────────────────────────────────────────────── */
+.bh-essay {
+  background-color: var(--bh-void);
+  color: var(--bh-text-primary);
+  font-family: 'Newsreader', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+  line-height: 1.85;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── Typography ────────────────────────────────────────────── */
+.bh-title {
+  font-family: 'Newsreader', 'Source Serif Pro', Georgia, serif;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--bh-text-primary);
+  text-align: center;
+  margin: 0 0 0.5em;
+}
+
+.bh-subtitle {
+  font-family: 'Newsreader', 'Source Serif Pro', Georgia, serif;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--bh-text-secondary);
+  text-align: center;
+  margin: 0 0 3rem;
+}
+
+.bh-section-heading {
+  font-family: 'Newsreader', 'Source Serif Pro', Georgia, serif;
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--bh-text-primary);
+  margin: 0 0 1.5rem;
+}
+
+.bh-prose p {
+  margin: 0 0 1.5em;
+  max-width: 680px;
+}
+
+.bh-caption {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Fira Code', monospace;
+  font-size: clamp(0.7rem, 1.2vw, 0.8rem);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--bh-text-secondary);
+}
+
+.bh-citation {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--bh-text-caption);
+  opacity: 0.8;
+}
+
+.bh-pull-quote {
+  font-family: 'Newsreader', 'Source Serif Pro', Georgia, serif;
+  font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--bh-accretion-gold);
+  border-left: 3px solid var(--bh-accretion-gold-dim);
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  margin: 3rem 0;
+  max-width: 600px;
+}
+
+/* ─── Layout ────────────────────────────────────────────────── */
+.bh-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.bh-prose-container {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.bh-vis-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.bh-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 85vh;
+  padding: 4rem 24px;
+  text-align: center;
+  position: relative;
+}
+
+.bh-section {
+  padding: 100px 24px;
+  position: relative;
+}
+
+.bh-section--quantum {
+  /* Subtle shift for quantum sections 7-8 */
+  background: linear-gradient(180deg, var(--bh-void) 0%, #080510 50%, var(--bh-void) 100%);
+}
+
+/* ─── EHT Ring Visualization ───────────────────────────────── */
+.bh-eht-ring {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  margin: 3rem auto;
+}
+
+.bh-eht-ring__outer {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 35%, #1a1008 40%, #c4922a 45%, #d4a63a 50%, #c4922a 55%, #1a1008 60%, transparent 65%);
+  box-shadow: var(--bh-glow-gold), 0 0 60px rgba(196, 146, 42, 0.15);
+  animation: bh-ring-pulse 4s ease-in-out infinite;
+}
+
+.bh-eht-ring__shadow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 40%;
+  border-radius: 50%;
+  background: var(--bh-void);
+}
+
+.bh-eht-ring__asymmetry {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(212, 166, 58, 0.3) 0%, transparent 50%, rgba(212, 166, 58, 0) 100%);
+}
+
+@keyframes bh-ring-pulse {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 1; }
+}
+
+.bh-annotation {
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.bh-annotation--visible {
+  opacity: 1;
+}
+
+.bh-annotation__line {
+  width: 40px;
+  height: 1px;
+  background: var(--bh-diagram-line);
+  margin-top: 0.6em;
+  flex-shrink: 0;
+}
+
+.bh-annotation__text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--bh-text-secondary);
+  max-width: 180px;
+}
+
+.bh-annotation__label {
+  color: var(--bh-accretion-gold);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.2em;
+}
+
+/* ─── Observer Duality Split ───────────────────────────────── */
+.bh-observer-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  max-width: 900px;
+  margin: 3rem auto;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.bh-observer-panel {
+  background: var(--bh-void-elevated);
+  padding: 2rem;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: background-color 0.4s ease;
+}
+
+.bh-observer-panel--external {
+  border-right: 1px solid var(--bh-diagram-line);
+}
+
+.bh-observer-panel__title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bh-text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.bh-observer-panel__scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.bh-observer-panel__clock {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.5rem;
+  color: var(--bh-text-primary);
+  transition: all 0.3s ease;
+}
+
+.bh-observer-panel__clock--frozen {
+  color: var(--bh-danger-red);
+  opacity: 0.4;
+}
+
+.bh-observer-panel__description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--bh-text-secondary);
+}
+
+/* ─── Scroll Crossing ──────────────────────────────────────── */
+.bh-crossing {
+  position: relative;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bh-crossing__starfield {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.3s linear;
+}
+
+.bh-crossing__star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--bh-text-primary);
+  border-radius: 50%;
+  opacity: 0.6;
+  transition: all 0.5s ease;
+}
+
+.bh-crossing__horizon-line {
+  width: 100%;
+  height: 1px;
+  background: var(--bh-horizon-teal);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  position: absolute;
+  top: 50%;
+}
+
+.bh-crossing__horizon-line--flash {
+  opacity: 0.6;
+  box-shadow: var(--bh-glow-teal);
+}
+
+.bh-crossing__label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--bh-text-secondary);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Penrose Diagram ──────────────────────────────────────── */
+.bh-penrose {
+  max-width: 500px;
+  margin: 3rem auto;
+  position: relative;
+}
+
+.bh-penrose svg {
+  width: 100%;
+  height: auto;
+}
+
+.bh-penrose__diamond {
+  fill: none;
+  stroke: var(--bh-diagram-line);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.bh-penrose__horizon {
+  stroke: var(--bh-diagram-line);
+  stroke-width: 1.5;
+  stroke-dasharray: 8 4;
+}
+
+.bh-penrose__singularity {
+  stroke: var(--bh-singularity-white);
+  stroke-width: 2;
+  fill: none;
+}
+
+.bh-penrose__interior {
+  fill: rgba(61, 126, 199, 0.06);
+  transition: fill 0.4s ease;
+}
+
+.bh-penrose__lightcone {
+  fill: rgba(61, 126, 199, 0.12);
+  stroke: var(--bh-lensing-blue);
+  stroke-width: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.bh-penrose__lightcone--visible {
+  opacity: 1;
+}
+
+.bh-penrose__point {
+  fill: var(--bh-horizon-teal);
+  r: 4;
+  cursor: pointer;
+  transition: r 0.2s ease;
+}
+
+.bh-penrose__point:hover {
+  r: 6;
+  filter: drop-shadow(var(--bh-glow-teal));
+}
+
+.bh-penrose__label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  fill: var(--bh-text-secondary);
+  letter-spacing: 0.04em;
+}
+
+.bh-penrose__step-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--bh-lensing-blue);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* ─── Tidal Force Comparison ───────────────────────────────── */
+.bh-tidal-comparison {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 3rem auto;
+}
+
+.bh-tidal-card {
+  background: var(--bh-void-elevated);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border: 1px solid rgba(74, 74, 90, 0.2);
+  transition: border-color 0.3s ease;
+}
+
+.bh-tidal-card:hover {
+  border-color: rgba(74, 74, 90, 0.4);
+}
+
+.bh-tidal-card__name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bh-text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.bh-tidal-card__mass {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--bh-text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.bh-tidal-card__figure {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.bh-tidal-card__verdict {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--bh-text-secondary);
+}
+
+.bh-tidal-card__verdict--lethal {
+  color: var(--bh-danger-red);
+}
+
+.bh-tidal-card__verdict--safe {
+  color: var(--bh-horizon-teal);
+}
+
+/* ─── Information Flow ─────────────────────────────────────── */
+.bh-info-flow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
+  align-items: center;
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2rem;
+}
+
+.bh-info-flow__input {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bh-info-flow__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--bh-void-elevated);
+  border-radius: 8px;
+  border: 1px solid rgba(74, 74, 90, 0.3);
+}
+
+.bh-info-flow__item-icon {
+  font-size: 1.5rem;
+}
+
+.bh-info-flow__item-label {
+  font-size: 0.9rem;
+  color: var(--bh-text-primary);
+}
+
+.bh-info-flow__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bh-info-flow__hole {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--bh-void);
+  border: 2px solid var(--bh-diagram-line);
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+}
+
+.bh-info-flow__arrow {
+  color: var(--bh-diagram-line);
+  font-size: 1.5rem;
+}
+
+.bh-info-flow__output {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bh-info-flow__particle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--bh-void-elevated);
+  border-radius: 8px;
+  border: 1px solid rgba(74, 74, 90, 0.15);
+  opacity: 0.5;
+}
+
+.bh-info-flow__particle-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bh-quantum-violet-dim);
+}
+
+.bh-info-flow__particle-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--bh-text-caption);
+}
+
+.bh-info-flow__paradox {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 1.5rem;
+  border: 1px solid var(--bh-quantum-violet-dim);
+  border-radius: 8px;
+  background: rgba(107, 79, 160, 0.05);
+  margin-top: 1rem;
+}
+
+.bh-info-flow__paradox-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bh-quantum-violet);
+  margin-bottom: 0.5rem;
+}
+
+.bh-info-flow__paradox-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--bh-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ─── Sources Footer ───────────────────────────────────────── */
+.bh-sources {
+  border-top: 1px solid rgba(74, 74, 90, 0.2);
+  padding: 4rem 24px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.bh-sources__title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bh-text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.bh-sources__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bh-sources__item {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--bh-text-caption);
+}
+
+/* ─── Scroll Progress Indicator ────────────────────────────── */
+.bh-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  z-index: 100;
+  background: transparent;
+}
+
+.bh-progress__bar {
+  height: 100%;
+  background: var(--bh-accretion-gold);
+  transform-origin: left;
+  transition: transform 0.1s linear;
+}
+
+/* ─── Fade-in Animation ────────────────────────────────────── */
+.bh-fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1),
+              transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.bh-fade-in--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Responsive ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .bh-observer-split {
+    grid-template-columns: 1fr;
+  }
+
+  .bh-observer-panel--external {
+    border-right: none;
+    border-bottom: 1px solid var(--bh-diagram-line);
+  }
+
+  .bh-tidal-comparison {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+
+  .bh-info-flow {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .bh-info-flow__center {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .bh-section {
+    padding: 60px 20px;
+  }
+
+  .bh-hero {
+    min-height: 70vh;
+    padding: 3rem 20px;
+  }
+
+  .bh-pull-quote {
+    padding-left: 1rem;
+    margin: 2rem 0;
+  }
+
+  .bh-eht-ring {
+    width: 240px;
+    height: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bh-eht-ring {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* ─── Reduced Motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .bh-fade-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  @keyframes bh-ring-pulse {
+    0%, 100% { opacity: 1; }
+  }
+
+  .bh-crossing__star,
+  .bh-crossing__horizon-line,
+  .bh-observer-panel,
+  .bh-penrose__lightcone {
+    transition: none;
+  }
+}

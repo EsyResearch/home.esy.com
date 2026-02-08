@@ -1,0 +1,70 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-08T22:46:47.481Z",
+  "finished_at": "2026-02-08T23:11:24.045Z",
+  "agent": "research-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CITATIONS.md",
+    "{artifact_path}/research/CLAIMS.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CLAIMS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/inside-a-black-hole/research/CLAIMS.md",
+      "sha256": "7731e140d28e9e249b4a67e769524c1cde4fdd6d5f0b7768a5a46cbc4b2854ed",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/CITATIONS.md",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/research/CLAIMS.md",
+          "exists": true
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "dir_exists",
+      "path": "{artifact_path}/research",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/inside-a-black-hole/research",
+      "pass": true,
+      "description": "Research directory must exist"
+    },
+    {
+      "type": "min_file_count",
+      "path": "{artifact_path}/research",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/inside-a-black-hole/research",
+      "pattern": "*.md",
+      "count": 7,
+      "threshold": 6,
+      "depth": "deep",
+      "pass": true,
+      "description": "Research directory must contain minimum number of markdown files based on depth mode"
+    },
+    {
+      "type": "min_sources_any_of",
+      "checked": [
+        "{artifact_path}/research/CITATIONS.md",
+        "{artifact_path}/research/CLAIMS.md"
+      ],
+      "matched": "{artifact_path}/research/CLAIMS.md",
+      "count": 18,
+      "threshold": 15,
+      "depth": "deep",
+      "pass": true,
+      "description": "Source-tracking file (CITATIONS.md or CLAIMS.md) must contain minimum sources based on depth mode"
+    }
+  ],
+  "failure_reason": null
+}

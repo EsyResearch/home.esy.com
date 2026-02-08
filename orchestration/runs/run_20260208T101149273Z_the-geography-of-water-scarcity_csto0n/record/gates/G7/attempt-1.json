@@ -1,0 +1,39 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-08T10:16:08.505Z",
+  "finished_at": "2026-02-08T10:17:38.236Z",
+  "agent": "final-review-agent",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+    "{artifact_path}/SCROLL-CERTIFICATION.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-geography-of-water-scarcity/research/SCROLL-CERTIFICATION.md",
+      "sha256": "3d20de9652688b87bff50b2210110d4d37ea77543171dbe43d4a5025f81e7b5c",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/SCROLL-CERTIFICATION.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    }
+  ],
+  "failure_reason": null
+}

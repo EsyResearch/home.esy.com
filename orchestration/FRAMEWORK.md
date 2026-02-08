@@ -201,7 +201,7 @@ The Research Orchestrator coordinates the complete research pipeline, ensuring t
 | Image Research Expert | `research/image-research-licensing-expert.md` | G4.5: Visual asset sourcing, licensing |
 | Citation Audit Agent | `auditors/citation-audit-agent.md` | G6: Link verification, quote validation |
 | Design Research Reconciliation Agent | `auditors/design-research-reconciliation-agent.md` | G4.1: Thematic authenticity, cross-essay novelty |
-| Design Research Integration Agent | `auditors/design-research-integration-agent.md` | G5.2: CSS↔TSX binding verification |
+| Design Research Implementation Auditor | `auditors/design-research-implementation-auditor.md` | G5.2: Design fidelity audit (spec-to-code compliance) |
 | Regional Experts | `regional/*.md` | Domain-specific knowledge |
 | Historian Writer/Editor | `content/historian-*.md` | Historical methodology |
 
@@ -412,7 +412,7 @@ orchestration/agents/
 │   ├── hydration-audit-agent.md      # SSR/client mismatch detection
 │   ├── content-audit-agent.md        # Word count, depth, tone
 │   ├── design-research-reconciliation-agent.md  # G4.1 Design authenticity
-│   ├── design-research-integration-agent.md     # G5.2 CSS↔TSX binding
+│   ├── design-research-implementation-auditor.md # G5.2 Design fidelity audit
 │   └── data-accuracy-auditor.md                 # G6.1 Data-to-visual fidelity
 │
 ├── content/                 # 📚 Content creation
@@ -496,14 +496,17 @@ orchestration/agents/
 
 ### Directory Structure
 
-Every visual essay must have a `research/` directory. The structure maps to SKILL.md requirements:
+Every visual essay must have a `research/` directory. All files live together in a single essay directory:
 
 ```
-src/app/essays/visual/[essay-slug]/
-├── [Essay]Client.tsx
-├── [essay].css
-├── images.ts
-├── page.tsx
+src/app/essays/[essay-slug]/
+├── page.tsx                     # Next.js route (/essays/[essay-slug])
+├── [Essay]Client.tsx|jsx        # Client component
+├── [essay-slug].css             # Story-specific styles
+├── DESIGN-RESEARCH.md           # Design tokens (G4 output)
+├── G1-INTAKE.md                 # Intake approval (G1 output)
+├── images.ts                    # Image constants (optional)
+│
 └── research/                    ← REQUIRED
     ├── README.md                # Directory overview
     │
@@ -521,6 +524,8 @@ src/app/essays/visual/[essay-slug]/
     ├── GAPS.md                  # What cannot be verified (Deep only)
     └── CONFIDENCE-MATRIX.md     # Claim confidence (Deep only)
 ```
+
+> **Convention:** The runner auto-derives the essay directory from `--slug`: `src/app/essays/{slug}/`. All artifacts (implementation, research, design, audits) are colocated. See [`orchestration/runner/README.md`](./runner/README.md) for details.
 
 ### SKILL.md Alignment
 

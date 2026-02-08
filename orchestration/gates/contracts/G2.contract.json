@@ -2,59 +2,84 @@
   "gate": "G2",
   "name": "Research Complete",
   "blocking": true,
-  "description": "Validates that the research package is complete with all required artifacts",
+  "description": "Validates that the research package meets minimum quality standards for the given depth mode. Validates substance (directory exists, source tracking present, minimum file count) rather than rigid filenames. Accepts either CITATIONS.md (historical/visual essays) or CLAIMS.md (conceptual/data journalism essays) as the source-tracking file.",
   "required_outputs": {
-    "all_of": [
+    "any_of": [
       {
         "path": "{artifact_path}/research/CITATIONS.md",
-        "description": "All sources with verification status",
-        "required": true
+        "description": "Source tracking file for historical/visual essays — all sources with verification status"
       },
       {
-        "path": "{artifact_path}/research/SYNTHESIS.md",
-        "description": "Key findings synthesis",
-        "required_for_depth": ["standard", "deep"],
-        "optional_for_depth": ["quick"]
-      },
-      {
-        "path": "{artifact_path}/research/FIGURES.md",
-        "description": "5-15 figures with imagery availability",
-        "required": true
-      },
-      {
-        "path": "{artifact_path}/research/QUOTES.md",
-        "description": "10+ verified quotes with sources",
-        "required": true
-      },
-      {
-        "path": "{artifact_path}/research/TIMELINE.md",
-        "description": "Chronological events mapping",
-        "required": true
-      },
-      {
-        "path": "{artifact_path}/research/VISUALS.md",
-        "description": "Archive/visual sources identification",
-        "required": true
+        "path": "{artifact_path}/research/CLAIMS.md",
+        "description": "Source tracking file for conceptual/data journalism essays — verified facts with sources"
       }
     ]
   },
   "validations": [
     {
       "type": "file_exists",
-      "target": "all_required",
-      "description": "All required research artifacts must exist"
+      "target": "any_of",
+      "description": "Either CITATIONS.md or CLAIMS.md must exist in research/"
     },
     {
-      "type": "min_sources",
-      "target": "{artifact_path}/research/CITATIONS.md",
+      "type": "dir_exists",
+      "target": "{artifact_path}/research",
+      "description": "Research directory must exist"
+    },
+    {
+      "type": "min_file_count",
+      "target": "{artifact_path}/research",
+      "pattern": "*.md",
+      "thresholds": {
+        "quick": 1,
+        "standard": 3,
+        "deep": 6
+      },
+      "description": "Research directory must contain minimum number of markdown files based on depth mode"
+    },
+    {
+      "type": "min_sources_any_of",
+      "targets": [
+        "{artifact_path}/research/CITATIONS.md",
+        "{artifact_path}/research/CLAIMS.md"
+      ],
       "thresholds": {
         "quick": 3,
         "standard": 8,
         "deep": 15
       },
       "heuristic": "count_source_headings_or_urls",
-      "description": "CITATIONS.md must contain minimum sources based on depth mode"
+      "description": "Source-tracking file (CITATIONS.md or CLAIMS.md) must contain minimum sources based on depth mode"
     }
   ],
-  "notes": "G2 is the research quality gate. SYNTHESIS.md is required for standard/deep modes but optional for quick mode. Source count validation uses a simple heuristic: counting '### Source' headings or URLs."
+  "recommended_files": {
+    "description": "These files are NOT gate-blocking but are strongly recommended depending on essay type and research profile.",
+    "historical_profile": [
+      { "name": "FIGURES.md", "when": "people/figures with imagery + quotes" },
+      { "name": "QUOTES.md", "when": "historical quotes with attribution" },
+      { "name": "TIMELINE.md", "when": "chronological events mapping" },
+      { "name": "VISUALS.md", "when": "archive/image sources identification" },
+      { "name": "ERA-GUIDE.md", "when": "historical period treatments" },
+      { "name": "SYNTHESIS.md", "when": "standard/deep — key findings synthesis" }
+    ],
+    "conceptual_profile": [
+      { "name": "CONCEPTS.md", "when": "core concepts with definitions" },
+      { "name": "SEQUENCE.md", "when": "learning progression / prerequisite chain" },
+      { "name": "DEFINITIONS.md", "when": "key terms defined for audience" },
+      { "name": "ANALOGIES.md", "when": "abstract → concrete comparisons with limitations" },
+      { "name": "MISCONCEPTIONS.md", "when": "common errors to address" }
+    ],
+    "data_journalism_extension": [
+      { "name": "DATASETS.md", "when": "curated datasets with sources, methodology, licensing" },
+      { "name": "STATISTICS.md", "when": "key verified statistics with sources" },
+      { "name": "COMPARISONS.md", "when": "entity comparison data (country vs country, etc.)" },
+      { "name": "PROJECTIONS.md", "when": "future trend data with model attribution" }
+    ],
+    "general": [
+      { "name": "SYNTHESIS.md", "when": "standard/deep — key findings synthesis" },
+      { "name": "TECHNICAL-SPECS.md", "when": "engineering/how-it-works essays" },
+      { "name": "GLOSSARY.md", "when": "domain-specific vocabulary needed" }
+    ]
+  },
+  "notes": "G2 validates SUBSTANCE over FORM. Two research profiles exist: (1) Historical — source-tracking via CITATIONS.md, with FIGURES, TIMELINE, QUOTES, VISUALS. (2) Conceptual — source-tracking via CLAIMS.md, with CONCEPTS, SEQUENCE, DEFINITIONS, ANALOGIES, MISCONCEPTIONS. Data journalism extends the conceptual profile with DATASETS, STATISTICS, COMPARISONS, PROJECTIONS. The gate passes if: research/ exists, at least one source-tracking file is present with real sources, and enough files exist for the depth mode."
 }

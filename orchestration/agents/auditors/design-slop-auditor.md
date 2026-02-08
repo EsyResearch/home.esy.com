@@ -67,7 +67,7 @@ The design should be **non-transferable**—it could only exist for THIS essay.
 
 | Font | Risk Level | Notes |
 |------|------------|-------|
-| Inter | 🔴 HIGH | Most overused body font in AI outputs |
+| Inter | 🔴 HIGH | Most overused body font in AI outputs. **Exception**: acceptable for data labels/annotations in data journalism essays IF documented with rationale in DESIGN-RESEARCH.md |
 | Space Grotesk | 🔴 HIGH | AI's favorite display font; appears in 40%+ of outputs |
 | Roboto | 🔴 HIGH | Google default, generic tech feel |
 | Poppins | 🟡 MEDIUM | Overused in "friendly" designs |
@@ -99,7 +99,7 @@ The design should be **non-transferable**—it could only exist for THIS essay.
 | Purple Gradient | Purple → Blue or Purple → Pink | `#8B5CF6`, `#6366F1`, `#EC4899` combinations |
 | Tech Blue | Generic blue as primary | `#3B82F6`, `#2563EB` without justification |
 | Startup Palette | Blue-purple-pink tricolor | SaaS marketing aesthetic bleed |
-| Dark Mode Default | `#0a0a0a` + `#ffffff` + one accent | No subject-derived color exploration |
+| Dark Mode Default | `#0a0a0a` + `#ffffff` + one accent | No subject-derived color exploration. **Exception**: dark palettes derived from subject (deep ocean, coal mines, night sky, darkroom) are NOT slop if documented in Color Derivation Table |
 
 **Color Audit Criteria**
 - Can each color be traced to the subject matter?
@@ -136,6 +136,34 @@ The design should be **non-transferable**—it could only exist for THIS essay.
 - **ADEQUATE** (6-8): Some variety, acceptable structure
 - **GENERIC** (3-5): Common patterns, minimal customization
 - **SLOP** (0-2): Copied template, no subject consideration
+
+### Data Visualization Audit (Data Journalism / Data-Heavy Essays)
+
+For essays that contain custom data visualizations (charts, maps, diagrams, interactive widgets), apply these additional checks:
+
+**Visualization Design Criteria**
+- Does each visualization use the essay's subject-derived color palette (not library defaults)?
+- Are axis labels, legends, and annotations styled with the essay's typography system?
+- Do chart backgrounds use the essay's surface tokens (not white/gray defaults)?
+- Are tooltips/popovers styled consistently with the essay's design system?
+- Do interactive states (hover, active, selected) use the essay's accent tokens?
+- Is the visualization type appropriate for the data? (e.g., choropleth for geographic, Sankey for flow)
+
+**Visualization Slop Patterns (Auto-Flag)**
+
+| Pattern | Why It's Slop | Fix |
+|---------|---------------|-----|
+| D3/Chart.js default colors | Library shipped colors, not subject-derived | Apply essay palette tokens |
+| White chart backgrounds in dark essays | Design system disconnect | Use `--bg-elevated` or surface tokens |
+| Default tooltip styling | Generic library tooltip | Custom tooltip with essay typography |
+| Gradient fills without derivation | Decorative, not informational | Solid fills from subject palette |
+| Generic axis styling | No design system integration | Apply essay typography + color tokens |
+
+**Visualization Distinctiveness Scoring**
+- **DISTINCTIVE** (9-10): Custom visualization type with subject-derived styling, essay palette throughout
+- **ADEQUATE** (6-8): Standard chart type but uses essay palette and typography
+- **GENERIC** (3-5): Standard chart type with partial essay styling
+- **SLOP** (0-2): Library defaults, no design system integration
 
 ### Visual Element Detection
 
@@ -293,7 +321,9 @@ For each major design choice, ask:
 | 40-54 | 🔴 SLOP | Multiple convergent patterns, major issues |
 | 0-39 | 🔴 CRITICAL SLOP | Full redesign required from scratch |
 
-**Category Weighting**
+**Category Weighting (Essay-Type Aware)**
+
+For **narrative/historical** essays:
 
 | Category | Weight | Max Points |
 |----------|--------|------------|
@@ -303,6 +333,20 @@ For each major design choice, ask:
 | Visual Element Uniqueness | 15% | 15 |
 | Subject Connection | 15% | 15 |
 | **TOTAL** | 100% | 100 |
+
+For **data journalism/visualization-heavy** essays:
+
+| Category | Weight | Max Points |
+|----------|--------|------------|
+| Typography Distinctiveness | 15% | 15 |
+| Color Originality | 20% | 20 |
+| Layout Diversity | 15% | 15 |
+| Visual Element Uniqueness | 15% | 15 |
+| Data Visualization Quality | 20% | 20 |
+| Subject Connection | 15% | 15 |
+| **TOTAL** | 100% | 100 |
+
+The auditor MUST identify the essay type (narrative vs. data journalism) and apply the appropriate weighting. Data journalism essays are identified by: presence of `DATASETS.md` or `STATISTICS.md` in research/, 3+ data visualizations in the spec, or explicit `data journalism` classification in the invocation spec.
 
 ---
 
@@ -382,7 +426,7 @@ The progress bar is on screen for the **entire essay**. It must be subject-deriv
 - At least one "signature" element unique to this essay
 - Section transitions derived from subject
 
-### Step 5: Transferability Test (Required)
+### Step 6: Transferability Test (Required)
 
 Before finalizing, ask:
 > "Could I swap this design to a different essay topic without changes?"
@@ -546,12 +590,26 @@ A: [Should be NO with explanation of why design is specific to this subject]
 ## Audit Report Template
 
 ```markdown
+---
+gate: G8
+type: audit
+status: PASS | CONDITIONAL | FAIL
+score: XX
+threshold: 70
+blocking_issues: 0
+warning_issues: 0
+agent: design-slop-auditor
+date: YYYY-MM-DD
+essay: essay-slug
+---
+
 # Design Slop Audit Report
 ## [Essay Title]
 
 **Audit Date**: [Date]
 **Auditor**: Design Slop Auditor Agent
 **Essay Path**: [src/app/essays/essay-slug/]
+**Essay Type**: [Narrative / Data Journalism / Historical / Conceptual]
 
 ---
 
@@ -786,9 +844,12 @@ A: [Should be NO with explanation of why design is specific to this subject]
 - **Shared**: Quality standards enforcement
 
 **Gate Integration**
-- Can be invoked at G3 (implementation start) as prevention
-- Can be invoked at G7 (pre-publication) as verification
+- **G4.1** — Slop prevention: reconciliation agent runs slop screening on proposed design
+- **G8** — Publication certification: slop audit runs as part of the aggregate QA battery
 - Can be invoked ad-hoc when user flags design concerns
+
+**G8 Integration (Mandatory)**
+The Design Slop Auditor is invoked as part of G8 (Publication Certification). The Publish Artifact Orchestrator MUST include a slop audit in its pre-publication battery. The slop audit score is included in the G8 aggregate report. If the slop audit score is below 70 (GENERIC), the G8 report MUST flag it as a CONDITIONAL issue. If below 55, it MUST flag it as a blocking NO-GO.
 
 ### Working With `svg-illustration-animation-expert.md`
 
@@ -893,7 +954,7 @@ Quick first impression check on [essay-slug]. Does this look like AI slop?
 ---
 
 ## Last Updated
-December 2024
+February 2026
 
 ---
 

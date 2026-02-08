@@ -1331,8 +1331,8 @@ Run all three phases:
 - Color/typography collision with another essay (Phase 2 fail)
 - CSS doesn't implement design research tokens (Phase 3 fail)
 
-### Working With design-research-integration-agent.md
-**Role**: CSS-to-TSX binding verification for Gate 5.2
+### Working With design-research-implementation-auditor.md
+**Role**: Design fidelity audit for Gate 5.2
 
 **Division of Responsibilities**
 - **Visual Essay Orchestrator**: Pipeline management, Gate 5.2 approval
@@ -1341,8 +1341,8 @@ Run all three phases:
 
 **Invocation Protocol**
 ```
-Using @agents/auditors/design-research-integration-agent.md, verify
-CSS-to-TSX binding for visual essay at:
+Using @agents/auditors/design-research-implementation-auditor.md, run
+design fidelity audit for visual essay at:
 
 CSS: src/app/essays/[slug]/[slug].css
 TSX: src/app/essays/[slug]/page.tsx

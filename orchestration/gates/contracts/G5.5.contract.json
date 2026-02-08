@@ -2,7 +2,7 @@
   "gate": "G5.5",
   "name": "Bibliography Implementation",
   "blocking": true,
-  "description": "Validates that the essay includes a Works Cited section, Image Credits, and inline citations sync with the bibliography",
+  "description": "Validates that the essay includes a Works Cited section, Image Credits, and inline citations sync with the bibliography. Audit report must not indicate failure.",
   "required_outputs": {
     "any_of": [
       {
@@ -20,7 +20,21 @@
       "type": "file_exists",
       "target": "any_of",
       "description": "At least one bibliography audit artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "pattern": "status: FAIL",
+      "severity": "error",
+      "description": "Bibliography audit must not have FAIL status in frontmatter"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "pattern": "Overall Status: ❌",
+      "severity": "error",
+      "description": "Bibliography audit must not report overall failure"
     }
   ],
-  "notes": "G5.5 validates that the Bibliography Orchestrator has produced and audited the Works Cited, Image Credits, A/V Credits, and Data Sources sections. The audit report confirms inline↔bibliography synchronization. See BIBLIOGRAPHY_STRUCTURE_GUIDE.md and ARTIFACT_CITATION_PATTERNS_GUIDE.md for patterns."
+  "notes": "G5.5 validates that the Bibliography Orchestrator has produced and audited the Works Cited, Image Credits, A/V Credits, and Data Sources sections. The audit report confirms inline↔bibliography synchronization. The not_contains checks verify the audit didn't conclude with a failure status. See BIBLIOGRAPHY_STRUCTURE_GUIDE.md and ARTIFACT_CITATION_PATTERNS_GUIDE.md for patterns."
 }

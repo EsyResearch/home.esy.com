@@ -1,0 +1,39 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-08T23:21:24.090Z",
+  "finished_at": "2026-02-08T23:23:49.725Z",
+  "agent": "design-researcher",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/DESIGN-RESEARCH.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/inside-a-black-hole/DESIGN-RESEARCH.md",
+      "sha256": "43b4646aec09505bdd9c73c8f78b80f0e87ef5f1f73c1be10616231b60c4ea2d",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/inside-a-black-hole/DESIGN-RESEARCH.md",
+      "pass": true,
+      "description": "Subject-derived design research report with color palette, typography, animation philosophy"
+    },
+    {
+      "type": "contains_headings",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "missing": [],
+      "severity": "warning",
+      "description": "Design research should cover Color, Typography, and Animation (warning if missing)",
+      "pass": true,
+      "warning": false
+    }
+  ],
+  "failure_reason": null
+}

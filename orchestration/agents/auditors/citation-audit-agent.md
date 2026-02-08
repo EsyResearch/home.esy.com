@@ -149,9 +149,9 @@ This agent acts as a **citation quality guardian** that evaluates completed scro
 
 ### Phase 0: Research Directory Check
 1. Verify `research/` directory exists in essay folder
-2. Verify `research/CITATIONS.md` exists
-3. If missing: Flag as **BLOCKING** issue — must be created before audit can proceed
-4. If present: Load citation log for cross-reference during audit
+2. Identify source-tracking file: `research/CITATIONS.md` (historical essays) or `research/CLAIMS.md` (conceptual essays)
+3. If neither exists: Flag as **BLOCKING** issue — must be created before audit can proceed
+4. If present: Load source-tracking file for cross-reference during audit
 
 ### Phase 1: Content Extraction
 1. Read complete scrollytelling content
@@ -159,7 +159,7 @@ This agent acts as a **citation quality guardian** that evaluates completed scro
 3. Extract all quotes and attributions
 4. Extract Sources & Further Reading section
 5. Identify content type (general vs. children's)
-6. Cross-reference with CITATIONS.md for any discrepancies
+6. Cross-reference with source-tracking file (CITATIONS.md or CLAIMS.md) for any discrepancies
 
 ### Phase 2: Claim Inventory
 Create exhaustive list of verifiable claims:
@@ -676,24 +676,28 @@ After verification, assess long-term stability:
 
 ## Essay Research Directory Structure
 
-Every visual essay **MUST** have a `research/` directory containing a `CITATIONS.md` file that serves as the **single source of truth** for all citations.
+Every visual essay **MUST** have a `research/` directory containing a source-tracking file that serves as the **single source of truth** for all citations:
+
+- **Historical essays** → `CITATIONS.md` (sources with verification status)
+- **Conceptual essays** → `CLAIMS.md` (verified facts with sources + expert quotes)
 
 ### Directory Structure
 
 ```
-src/app/essays/visual/[essay-slug]/
+src/app/essays/[essay-slug]/
 ├── [EssayName]Client.tsx      # Main essay component
 ├── [essay-name].css           # Essay styles
 ├── images.ts                  # Image assets with licensing
 ├── page.tsx                   # Next.js page
 └── research/                  # ← REQUIRED
     ├── README.md              # Research directory overview
-    └── CITATIONS.md           # ← CITATION LOG (Single Source of Truth)
+    └── CITATIONS.md           # ← Historical essays: Citation Log
+    └── CLAIMS.md              # ← Conceptual essays: Claims + Sources
 ```
 
-### CITATIONS.md Requirements
+### Source-Tracking File Requirements
 
-The citation log MUST contain:
+The source-tracking file (CITATIONS.md or CLAIMS.md) MUST contain:
 
 1. **Sources Section Citations** — Every source in the essay's Sources section
    - Title, URL, Type, Tier classification
@@ -724,16 +728,18 @@ When auditing an essay, the Citation Audit Agent MUST:
 1. **Check for research directory existence**
    - If missing: Create it and flag as blocking issue
 
-2. **Verify CITATIONS.md is present and complete**
-   - All sources in essay must be logged
+2. **Identify and verify source-tracking file**
+   - Historical essays use `CITATIONS.md`, conceptual essays use `CLAIMS.md`
+   - If neither exists: Flag as blocking issue
+   - All sources in essay must be logged in the source-tracking file
    - All logged sources must appear in essay
 
-3. **Cross-reference essay against log**
-   - Sources in essay ↔ Sources in CITATIONS.md
+3. **Cross-reference essay against source-tracking file**
+   - Sources in essay ↔ Sources in CITATIONS.md or CLAIMS.md
    - Any mismatch is a critical issue
 
-4. **Update CITATIONS.md after fixes**
-   - All citation changes must be reflected in the log
+4. **Update source-tracking file after fixes**
+   - All citation changes must be reflected in the appropriate file
    - Update version history
 
 ### Citation Log Template
@@ -768,7 +774,7 @@ When auditing an essay, the Citation Audit Agent MUST:
 
 ### Red Lines for Citation Logs
 
-- ❌ **NEVER publish without a research/CITATIONS.md file**
+- ❌ **NEVER publish without a source-tracking file (research/CITATIONS.md or research/CLAIMS.md)**
 - ❌ **NEVER have sources in essay that aren't logged**
 - ❌ **NEVER have logged sources that aren't in essay**
 - ❌ **NEVER mark a quote as "verified" without primary source**
@@ -784,11 +790,11 @@ When working with this agent, reference the role by stating:
 ## Deliverables
 
 ### Standard Audit Output
-1. **Research Directory Check**: Verify `research/CITATIONS.md` exists and is complete
+1. **Research Directory Check**: Verify source-tracking file (CITATIONS.md or CLAIMS.md) exists and is complete
 2. **Claim Inventory**: Complete list of all factual claims with citation status
 3. **Source Tier Analysis**: Classification of all sources with distribution metrics
 4. **Link Status Report**: Accessibility status for all URLs
-5. **Citation Log Sync**: Verify essay sources match CITATIONS.md (bidirectional)
+5. **Source-Tracking Sync**: Verify essay sources match source-tracking file (bidirectional)
 6. **Gap Analysis**: Unsupported claims with suggested sources
 7. **Audit Report**: Full structured report with approval checkboxes
 8. **Certification Status**: Final approval/rejection with reasoning
@@ -912,13 +918,14 @@ orchestration/agents/CitationReports/CHANGELOG.md
 ---
 
 ## Last Updated
-December 11, 2024
+February 8, 2026
 
 ### Recent Changes
-- Added Essay Research Directory Structure requirement
-- All essays must have `research/CITATIONS.md` as single source of truth
-- Added Phase 0 (Research Directory Check) to audit process
-- Updated deliverables to include Citation Log Sync check
+- Updated to accept either `CITATIONS.md` (historical) or `CLAIMS.md` (conceptual) as source-tracking file
+- Updated directory structure to reflect single-directory standard (`src/app/essays/[slug]/`)
+- Phase 0 now detects which source-tracking file is present
+- Deliverables updated to reference "source-tracking file" generically
+- Previous: Added Essay Research Directory Structure requirement (Dec 2024)
 
 ---
 

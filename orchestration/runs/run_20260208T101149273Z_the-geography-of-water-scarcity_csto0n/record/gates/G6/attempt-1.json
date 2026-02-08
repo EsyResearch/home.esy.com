@@ -1,0 +1,39 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-08T10:14:36.318Z",
+  "finished_at": "2026-02-08T10:16:02.856Z",
+  "agent": "citation-audit-agent",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CITATION-AUDIT.md",
+    "{artifact_path}/CITATION-AUDIT.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-geography-of-water-scarcity/research/CITATION-AUDIT.md",
+      "sha256": "dfccf56ff507b2818ee97c177a992f08c317311e52cbbac29dcadac8a7e50bbe",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/CITATION-AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/CITATION-AUDIT.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    }
+  ],
+  "failure_reason": null
+}

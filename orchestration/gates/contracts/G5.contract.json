@@ -2,7 +2,7 @@
   "gate": "G5",
   "name": "Content Complete",
   "blocking": true,
-  "description": "Validates that all narrative content is written, visuals created, and components implemented",
+  "description": "Validates that all narrative content is written, visuals created, and components implemented. Checks that page.tsx has proper Next.js exports and metadata.",
   "required_outputs": {
     "all_of": [
       {
@@ -27,10 +27,18 @@
       "type": "contains_headings",
       "target": "{artifact_path}/page.tsx",
       "required_headings": [
-        "export"
+        "export default",
+        "metadata"
       ],
-      "description": "page.tsx must contain an export"
+      "description": "page.tsx must contain a default export and metadata definition"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/page.tsx",
+      "pattern": "TODO",
+      "severity": "warning",
+      "description": "page.tsx should not contain TODO markers (indicates incomplete implementation)"
     }
   ],
-  "notes": "G5 validates the core implementation files exist. The CSS file is not strictly required because some essays use Tailwind-only. The Client component naming varies (e.g., TheWordRobotClient.tsx, RockAndRollClient.tsx), so we validate page.tsx as the stable entry point. The validator checks for 'export' as a minimal code-presence heuristic."
+  "notes": "G5 validates the core implementation files exist and have real substance. Standard convention: artifact_path = src/app/essays/{slug}/ (same dir as research). The CSS file is not strictly required because some essays use Tailwind-only. The Client component naming varies (e.g., TheWordRobotClient.tsx, GeographyOfWaterScarcityClient.jsx), so we validate page.tsx as the stable entry point. The contains_headings check uses loose term matching — 'export default' confirms the page has a renderable component, 'metadata' confirms SEO/OG tags exist."
 }

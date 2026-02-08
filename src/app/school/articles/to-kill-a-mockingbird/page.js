@@ -85,10 +85,14 @@ export default function ToKillAMockingbirdArticle() {
   const author = {
     initials: 'ZU',
     name: 'Zev Uhuru',
-    role: 'Founder, Esy',
+    role: 'Applied AI Engineer, Esy',
     image: 'https://images.esy.com/essays/authors/zev-uhuru.1d0f7777ab.webp',
     bio: 'I design citation-first research workflows for essays and learning artifacts. Esy School documents how these workflows are built and used in practice.',
-    meta: '38 articles published · Joined February 2024'
+    meta: '38 articles published · Joined February 2024',
+    socials: [
+      { icon: 'linkedin', url: 'https://www.linkedin.com/in/zevuhuru/', label: 'LinkedIn' },
+      { icon: 'github', url: 'https://github.com/ZevUhuru', label: 'GitHub' },
+    ],
   };
 
   const theme = isDarkMode ? {
@@ -147,7 +151,7 @@ export default function ToKillAMockingbirdArticle() {
       category: 'Literary Analysis',
       title: 'AI-Powered Shakespeare: Analyzing The Tempest',
       author: 'Zev Uhuru',
-      authorRole: 'Founder, Esy',
+      authorRole: 'Applied AI Engineer, Esy',
       readTime: '12 min',
       link: '#'
     },
@@ -155,7 +159,7 @@ export default function ToKillAMockingbirdArticle() {
       category: 'Prompt Engineering',
       title: 'Deconstructing Modernist Poetry with GPT-4',
       author: 'Zev Uhuru',
-      authorRole: 'Founder, Esy',
+      authorRole: 'Applied AI Engineer, Esy',
       readTime: '10 min',
       link: '#'
     },
@@ -163,7 +167,7 @@ export default function ToKillAMockingbirdArticle() {
       category: 'Case Studies',
       title: 'From Text to Context: Historical Fiction Analysis',
       author: 'Zev Uhuru',
-      authorRole: 'Founder, Esy',
+      authorRole: 'Applied AI Engineer, Esy',
       readTime: '15 min',
       link: '#'
     }

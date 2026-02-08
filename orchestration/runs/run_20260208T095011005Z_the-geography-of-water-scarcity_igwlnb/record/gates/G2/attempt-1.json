@@ -1,0 +1,57 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-08T09:50:17.286Z",
+  "finished_at": "2026-02-08T09:50:17.317Z",
+  "agent": "research-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CITATIONS.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-geography-of-water-scarcity/research/CITATIONS.md",
+      "sha256": "c0867d675007e003d0ef43a655d5d6e2c4ebdc88b29d45220a96e6ebec47d612",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-geography-of-water-scarcity/research/CITATIONS.md",
+      "pass": true,
+      "description": "Source tracking file — all sources with verification status"
+    },
+    {
+      "type": "dir_exists",
+      "path": "{artifact_path}/research",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-geography-of-water-scarcity/research",
+      "pass": true,
+      "description": "Research directory must exist"
+    },
+    {
+      "type": "min_file_count",
+      "path": "{artifact_path}/research",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-geography-of-water-scarcity/research",
+      "pattern": "*.md",
+      "count": 12,
+      "threshold": 6,
+      "depth": "deep",
+      "pass": true,
+      "description": "Research directory must contain minimum number of markdown files based on depth mode"
+    },
+    {
+      "type": "min_sources",
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "count": 140,
+      "threshold": 15,
+      "depth": "deep",
+      "pass": true,
+      "description": "CITATIONS.md must contain minimum sources based on depth mode"
+    }
+  ],
+  "failure_reason": null
+}

@@ -1,0 +1,39 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-08T09:50:17.345Z",
+  "finished_at": "2026-02-08T09:50:17.379Z",
+  "agent": "design-researcher",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/DESIGN-RESEARCH.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-geography-of-water-scarcity/DESIGN-RESEARCH.md",
+      "sha256": "cc135f4e897e2976fb486ac985ff29517b5cc91fa45a2f18177a21697772c9b9",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-geography-of-water-scarcity/DESIGN-RESEARCH.md",
+      "pass": true,
+      "description": "Subject-derived design research report with color palette, typography, animation philosophy"
+    },
+    {
+      "type": "contains_headings",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "missing": [],
+      "severity": "warning",
+      "description": "Design research should cover Color, Typography, and Animation (warning if missing)",
+      "pass": true,
+      "warning": false
+    }
+  ],
+  "failure_reason": null
+}

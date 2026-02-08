@@ -60,7 +60,7 @@
     {
       "gate": "G5",
       "name": "Content Complete",
-      "agent": "scrollytelling-expert",
+      "agent": "production-orchestrator",
       "contract": "orchestration/gates/contracts/G5.contract.json",
       "prompt_template": "G5",
       "description": "All narrative written, visuals created, component implemented, fact-checked",
@@ -68,11 +68,11 @@
     },
     {
       "gate": "G5.2",
-      "name": "Design Research Integration",
-      "agent": "design-research-integration-agent",
+      "name": "Design Fidelity Audit",
+      "agent": "design-research-implementation-auditor",
       "contract": "orchestration/gates/contracts/G5.2.contract.json",
       "prompt_template": "G5.2",
-      "description": "Verifies CSS selectors bind to TSX classNames (≥95% coverage)",
+      "description": "Audits implementation against DESIGN-RESEARCH.md — CSS tokens, typography, colors, visualizations, interactions",
       "phase": "Production"
     },
     {

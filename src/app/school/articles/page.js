@@ -12,7 +12,7 @@ export default function ArticlesIndexPage() {
       title: 'Unlocking Literary Depth: Using Prompt Engineering to Analyze "To Kill a Mockingbird"',
       excerpt: 'Discover how strategic prompt engineering can transform your literary analysis, revealing insights that might otherwise remain hidden in classic texts.',
       author: 'Zev Uhuru',
-      authorRole: 'Founder, Esy',
+      authorRole: 'Applied AI Engineer, Esy',
       date: 'Mar 25, 2025',
       readTime: 15,
       slug: 'to-kill-a-mockingbird'

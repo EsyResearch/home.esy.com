@@ -5,6 +5,8 @@ import {
   AgentsTableOfContents, 
   AgentsPrevNext,
   AgentsRelatedTerms,
+  AgentsAuthorSection,
+  AgentsVideoSection,
 } from "@/components/agents";
 import { 
   getAgentBreadcrumbs, 
@@ -42,6 +44,15 @@ const jsonLd = {
   description: "Understand AI agents: definition, the agentic loop (perceive-reason-act-evaluate), autonomy spectrum, and how agents differ from chatbots and scripts.",
   url: `https://esy.com${pageHref}`,
   articleSection: "Agents Reference",
+  author: {
+    "@type": "Person",
+    name: "Zev Uhuru",
+    url: "https://www.linkedin.com/in/zevuhuru/",
+    sameAs: [
+      "https://www.linkedin.com/in/zevuhuru/",
+      "https://github.com/ZevUhuru",
+    ],
+  },
   publisher: {
     "@type": "Organization",
     name: "Esy",
@@ -83,6 +94,14 @@ export default function AIAgentsPage() {
             <h1>{content.title}</h1>
             <p className="agents-lede">{content.lede}</p>
           </header>
+
+          {/* Video Edition — optional companion content */}
+          <AgentsVideoSection
+            videoId="dQw4w9WgXcQ"
+            title="What are AI Agents? — Video Edition"
+            duration="12 min"
+            description="A visual walkthrough of the concepts covered in this reference entry."
+          />
 
           {/* Content sections */}
           {content.sections.map((section) => (
@@ -141,6 +160,25 @@ export default function AIAgentsPage() {
           {content.relatedTerms && (
             <AgentsRelatedTerms terms={content.relatedTerms} />
           )}
+
+          {/* Author */}
+          <AgentsAuthorSection
+            name="Zev Uhuru"
+            role="Applied AI Engineer at Esy"
+            image="/images/zev_uhuru.webp"
+            socials={[
+              {
+                platform: "linkedin",
+                url: "https://www.linkedin.com/in/zevuhuru/",
+                label: "LinkedIn",
+              },
+              {
+                platform: "github",
+                url: "https://github.com/ZevUhuru",
+                label: "GitHub",
+              },
+            ]}
+          />
 
           {/* Prev/Next Navigation */}
           <AgentsPrevNext prev={prev} next={next} />

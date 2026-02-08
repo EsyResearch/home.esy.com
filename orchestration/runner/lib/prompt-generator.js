@@ -58,7 +58,7 @@ Run ID:        ${runId}
 Gate:          ${gateCode} - ${gateDef.name}
 Attempt:       ${attemptNumber}
 Slug:          ${slug}
-Artifact Path: ${artifactPath}
+Essay Dir:     ${artifactPath}
 Depth:         ${depth}
 Agent:         ${gateDef.agent}
 Generated:     ${new Date().toISOString()}
@@ -145,7 +145,7 @@ The intake document should include:
 
 Using @orchestration/agents/orchestrators/research-orchestrator.md
 
-Execute the RESEARCH phase for this visual essay:
+Execute the RESEARCH phase for this essay:
 
 Topic/Slug: ${slug}
 Depth Mode: ${depth}
@@ -153,21 +153,30 @@ Target Directory: ${artifactPath}/research/
 
 Tasks:
 1. Invoke the Research Orchestrator for depth="${depth}"
-2. Produce the complete research package
+2. Detect the essay's domain and research profile
+3. Produce a research package appropriate to the profile and depth
 
-Required research artifacts (write to ${artifactPath}/research/):
-- CITATIONS.md    → All sources with verification status (min ${depth === 'quick' ? '3' : depth === 'standard' ? '8' : '15'} sources)
-- SYNTHESIS.md    → Key findings synthesis${depth === 'quick' ? ' (optional for quick)' : ''}
-- FIGURES.md      → 5-15 figures with imagery availability
-- QUOTES.md       → 10+ verified quotes with sources
-- TIMELINE.md     → Chronological events mapping
-- VISUALS.md      → Archive/visual sources identification
+Gate requirements (what the validator checks):
+- ✅ research/ directory must exist
+- ✅ CITATIONS.md OR CLAIMS.md must exist with min ${depth === 'quick' ? '3' : depth === 'standard' ? '8' : '15'} sources
+- ✅ At least ${depth === 'quick' ? '1' : depth === 'standard' ? '3' : '6'} markdown files in research/
+
+Two research profiles exist — choose based on domain detection:
+
+HISTORICAL PROFILE (narrative essays — history, biography, origin stories):
+  Source-tracking: CITATIONS.md (all sources with verification status)
+  Recommended: FIGURES.md, QUOTES.md, TIMELINE.md, VISUALS.md, ERA-GUIDE.md, SYNTHESIS.md
+
+CONCEPTUAL PROFILE (explanatory essays — science, data journalism, how-it-works):
+  Source-tracking: CLAIMS.md (verified facts with sources + expert quotes)
+  Recommended: CONCEPTS.md, SEQUENCE.md, DEFINITIONS.md, ANALOGIES.md, MISCONCEPTIONS.md
+  Data journalism extension: DATASETS.md, STATISTICS.md, COMPARISONS.md, PROJECTIONS.md
 
 Research methodology:
-1. Domain detection (History, Science, Culinary, etc.)
-2. Source discovery and evaluation (Tier 1-2 preferred)
+1. Domain detection — determines profile (historical vs conceptual)
+2. Source discovery and evaluation (Tier 1-2 preferred, ≥80%)
 3. Synthesis and gap analysis
-4. Package assembly`;
+4. Package assembly — produce the source-tracking file + domain-relevant files`;
 
     case 'G3':
       return `## G3: Spec Approval
@@ -279,12 +288,12 @@ NOTE: If this essay uses SVG-only illustrations (no external images), produce th
     case 'G5':
       return `## G5: Content Complete
 
-Using @orchestration/agents/orchestrators/visual-essay-orchestrator.md (production mode)
+Using @orchestration/agents/orchestrators/production-orchestrator.md
 
 Execute CONTENT PRODUCTION for this visual essay:
 
 Topic/Slug: ${slug}
-Artifact Path: ${artifactPath}
+Essay Directory: ${artifactPath}
 Spec: orchestration/skills/visual-essay-invocation/specs/${slug}.md
 Design Research: ${artifactPath}/DESIGN-RESEARCH.md
 Research: ${artifactPath}/research/
@@ -299,9 +308,9 @@ Tasks:
    - Immersive Experience Engineer → mobile-native implementation
 2. Produce the complete implementation
 
-Required outputs:
+Required outputs (write to essay directory):
 - ${artifactPath}/page.tsx (Next.js page with metadata)
-- ${artifactPath}/[Name]Client.tsx (main client component)
+- ${artifactPath}/[Name]Client.tsx or [Name]Client.jsx (main client component)
 - ${artifactPath}/${slug}.css (story-specific styles)
 
 The implementation must:
@@ -312,25 +321,38 @@ The implementation must:
 - Include Sources & Further Reading section`;
 
     case 'G5.2':
-      return `## G5.2: Design Research Integration
+      return `## G5.2: Design Fidelity Audit
 
-Using @orchestration/agents/auditors/design-research-integration-agent.md
+Using @orchestration/agents/auditors/design-research-implementation-auditor.md
 
-Execute DESIGN RESEARCH INTEGRATION audit for this visual essay:
+Execute DESIGN FIDELITY AUDIT for this visual essay:
 
 Topic/Slug: ${slug}
-Artifact Path: ${artifactPath}
-Design Research: ${artifactPath}/DESIGN-RESEARCH.md
+Essay Directory: ${artifactPath}
+Design Research (PRIMARY): ${artifactPath}/DESIGN-RESEARCH.md
+Invocation Spec (STRUCTURAL): orchestration/skills/visual-essay-invocation/specs/${slug}.md
 CSS File: ${artifactPath}/${slug}.css
 Implementation: ${artifactPath}/page.tsx
 
 Tasks:
-1. Read the DESIGN-RESEARCH.md for defined design tokens
-2. Read the CSS file for implemented custom properties
-3. Read the TSX file(s) for className usage
-4. Verify CSS selectors bind to TSX classNames (target: ≥95% coverage)
-5. Identify any convention mismatches
-6. Report findings
+1. Load DESIGN-RESEARCH.md as the PRIMARY design authority
+2. Load invocation spec as the STRUCTURAL authority (component requirements)
+3. Extract all design tokens from DESIGN-RESEARCH.md (colors, typography, spacing, animations)
+4. Extract all implemented values from CSS and TSX/JSX files
+5. Compare every token: spec value vs. implemented value
+6. For data journalism essays: verify visualization styling uses essay design tokens
+7. Classify all deviations (Critical, Major, Minor, Intentional Departure)
+8. Produce G5.2-DESIGN-FIDELITY-AUDIT.md with YAML frontmatter header
+
+Required output:
+- ${artifactPath}/research/G5.2-DESIGN-FIDELITY-AUDIT.md
+
+The audit report MUST include:
+- YAML frontmatter with gate, status, score, threshold (85), blocking_issues, warning_issues
+- Per-category compliance scores (Typography, Color, Spacing, Interactions, Components)
+- For data journalism: Data Visualization Fidelity score
+- All deviations with severity, location, and fix recommendation
+- Overall compliance percentage
 
 Pass criteria:
 - CSS custom properties implement design research tokens
@@ -356,7 +378,7 @@ Tasks:
    - A/V Credits — any audio/video sources (if applicable)
    - Data Sources — any datasets used (if applicable)
 2. Ensure inline citations sync with the bibliography
-3. Verify all sources from research/CITATIONS.md are represented
+3. Verify all sources from research/CITATIONS.md or research/CLAIMS.md are represented
 4. Produce the bibliography audit report
 
 Write to: ${artifactPath}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md
@@ -375,17 +397,22 @@ Topic/Slug: ${slug}
 Artifact Path: ${artifactPath}
 Research: ${artifactPath}/research/
 
+Source-tracking file: CITATIONS.md (historical essays) OR CLAIMS.md (conceptual essays)
+— Check which file exists in the research directory and use it as the source of truth.
+
 Tasks:
-1. Map every factual claim in the essay to a source in the research package
-2. Verify source tier distribution (must be 80%+ Tier 1-2)
-3. Authenticate all quotes (verify exact wording against sources)
-4. Check all URLs/links for health (functional or archived)
-5. Verify content matches research package (no orphan claims)
-6. Produce Citation Certification (Approved/Rejected)
+1. Identify the source-tracking file (CITATIONS.md or CLAIMS.md)
+2. Map every factual claim in the essay to a source in the research package
+3. Verify source tier distribution (must be 80%+ Tier 1-2)
+4. Authenticate all quotes (verify exact wording against sources)
+5. Check all URLs/links for health (functional or archived)
+6. Verify content matches research package (no orphan claims)
+7. Produce Citation Certification (Approved/Rejected)
 
 Write to: ${artifactPath}/research/CITATION-AUDIT.md
 
 The audit report must include:
+- Source-tracking file used (CITATIONS.md or CLAIMS.md)
 - Claim-citation mapping
 - Source tier analysis
 - Link integrity report
@@ -500,7 +527,11 @@ function getValidationDescription(contract, context) {
           break;
         case 'min_sources':
           const threshold = v.thresholds[context.depth] || v.thresholds['standard'];
-          descriptions.push(`- CITATIONS.md must contain at least ${threshold} sources (depth: ${context.depth})`);
+          descriptions.push(`- Source-tracking file (CITATIONS.md or CLAIMS.md) must contain at least ${threshold} sources (depth: ${context.depth})`);
+          break;
+        case 'min_sources_any_of':
+          const anyOfThreshold = v.thresholds[context.depth] || v.thresholds['standard'];
+          descriptions.push(`- CITATIONS.md or CLAIMS.md must contain at least ${anyOfThreshold} sources (depth: ${context.depth})`);
           break;
         case 'contains_headings':
           descriptions.push(`- Spec must contain layer headings: ${v.required_headings.join(', ')}`);

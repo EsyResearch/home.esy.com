@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { 
   Users,
@@ -10,6 +10,165 @@ import {
   Search,
   CheckCircle
 } from 'lucide-react';
+
+/* ─── Circuit Grid Animation — single subtle pulse ─── */
+interface Pulse {
+  x: number;
+  y: number;
+  dx: number;
+  dy: number;
+  speed: number;
+  life: number;
+  maxLife: number;
+  trail: { x: number; y: number; alpha: number }[];
+}
+
+function CircuitGrid() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const pulseRef = useRef<Pulse | null>(null);
+  const rafRef = useRef<number>(0);
+  const gridSize = 60;
+
+  const spawnPulse = useCallback((w: number, h: number): Pulse => {
+    const cols = Math.floor(w / gridSize);
+    const rows = Math.floor(h / gridSize);
+    const col = Math.floor(Math.random() * cols);
+    const row = Math.floor(Math.random() * rows);
+    const horizontal = Math.random() > 0.5;
+    const forward = Math.random() > 0.5 ? 1 : -1;
+    return {
+      x: col * gridSize,
+      y: row * gridSize,
+      dx: horizontal ? forward : 0,
+      dy: horizontal ? 0 : forward,
+      speed: 0.35 + Math.random() * 0.25,
+      life: 0,
+      maxLife: 500 + Math.random() * 400,
+      trail: [],
+    };
+  }, []);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const resize = () => {
+      const rect = canvas.parentElement!.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      canvas.style.width = `${rect.width}px`;
+      canvas.style.height = `${rect.height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    const rect = canvas.parentElement!.getBoundingClientRect();
+    pulseRef.current = spawnPulse(rect.width, rect.height);
+
+    const draw = () => {
+      const w = canvas.width / (window.devicePixelRatio || 1);
+      const h = canvas.height / (window.devicePixelRatio || 1);
+      ctx.clearRect(0, 0, w, h);
+
+      // ── Static grid ──
+      ctx.strokeStyle = 'rgba(0, 212, 170, 0.045)';
+      ctx.lineWidth = 0.5;
+      for (let x = 0; x <= w; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+      for (let y = 0; y <= h; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+
+      // ── Single pulse ──
+      const p = pulseRef.current!;
+      p.life++;
+
+      p.x += p.dx * p.speed;
+      p.y += p.dy * p.speed;
+
+      const lifeRatio = 1 - p.life / p.maxLife;
+      p.trail.push({ x: p.x, y: p.y, alpha: lifeRatio });
+      if (p.trail.length > 60) p.trail.shift();
+
+      // Turn at intersections occasionally
+      const atCol = Math.abs(p.x % gridSize) < p.speed + 0.5;
+      const atRow = Math.abs(p.y % gridSize) < p.speed + 0.5;
+      if (atCol && atRow && Math.random() < 0.25) {
+        if (p.dx !== 0) {
+          p.dx = 0;
+          p.dy = Math.random() > 0.5 ? 1 : -1;
+        } else {
+          p.dy = 0;
+          p.dx = Math.random() > 0.5 ? 1 : -1;
+        }
+      }
+
+      // Respawn when expired or off-screen
+      if (p.life >= p.maxLife || p.x < -20 || p.x > w + 20 || p.y < -20 || p.y > h + 20) {
+        pulseRef.current = spawnPulse(w, h);
+        rafRef.current = requestAnimationFrame(draw);
+        return;
+      }
+
+      // Draw trail — soft fade
+      for (let t = 0; t < p.trail.length; t++) {
+        const pt = p.trail[t];
+        const progress = t / p.trail.length;
+        const a = pt.alpha * progress * 0.35;
+        ctx.beginPath();
+        ctx.arc(pt.x, pt.y, 1 + progress * 0.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 212, 170, ${a})`;
+        ctx.fill();
+      }
+
+      // Draw head — gentle glow
+      const headAlpha = lifeRatio * 0.6;
+      ctx.save();
+      ctx.shadowColor = 'rgba(0, 212, 170, 0.5)';
+      ctx.shadowBlur = 8;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0, 212, 170, ${headAlpha})`;
+      ctx.fill();
+      ctx.restore();
+
+      rafRef.current = requestAnimationFrame(draw);
+    };
+
+    rafRef.current = requestAnimationFrame(draw);
+
+    return () => {
+      cancelAnimationFrame(rafRef.current);
+      window.removeEventListener('resize', resize);
+    };
+  }, [spawnPulse]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: 'absolute',
+        inset: 0,
+        pointerEvents: 'none',
+        zIndex: 0,
+        opacity: 0.8,
+        maskImage: 'radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%)',
+        WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%)',
+      }}
+    />
+  );
+}
 
 export default function AboutPage() {
   // Navy Calm Theme with Dark alternating sections
@@ -456,14 +615,17 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Who Esy is For - Dark Section */}
+      {/* Who Esy is For - Dark Section with Circuit Grid */}
       <section style={{
         padding: '5rem 2rem',
         backgroundColor: theme.dark.bg,
         borderTop: `1px solid ${theme.dark.border}`,
-        borderBottom: `1px solid ${theme.dark.border}`
+        borderBottom: `1px solid ${theme.dark.border}`,
+        position: 'relative',
+        overflow: 'hidden'
       }}>
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <CircuitGrid />
+        <div style={{ maxWidth: '800px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <h2 style={{
             fontSize: '2rem',
             fontWeight: 400,

@@ -2,16 +2,16 @@
   "gate": "G1",
   "name": "Intake Approval",
   "blocking": true,
-  "description": "Validates that intake/scope approval exists before research can begin",
+  "description": "Validates that intake/scope approval exists and has not been rejected before research can begin",
   "required_outputs": {
     "any_of": [
       {
-        "path": "orchestration/projects/{slug}/INTAKE-APPROVAL.md",
-        "description": "Project intake approval document"
+        "path": "{artifact_path}/G1-INTAKE.md",
+        "description": "Intake approval document"
       },
       {
         "path": "{artifact_path}/research/INTAKE.md",
-        "description": "Essay-local intake document"
+        "description": "Alternative intake location inside research/"
       }
     ]
   },
@@ -20,7 +20,21 @@
       "type": "file_exists",
       "target": "any_of",
       "description": "At least one intake approval artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/G1-INTAKE.md",
+      "pattern": "[REJECTED]",
+      "severity": "error",
+      "description": "Intake must not contain [REJECTED] marker"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/G1-INTAKE.md",
+      "pattern": "status: FAIL",
+      "severity": "error",
+      "description": "Intake must not have FAIL status in frontmatter"
     }
   ],
-  "notes": "G1 passes if EITHER the project-level INTAKE-APPROVAL.md OR the essay-level research/INTAKE.md exists. This flexibility supports both project-driven and essay-driven workflows."
+  "notes": "G1 passes if EITHER G1-INTAKE.md OR research/INTAKE.md exists in the essay directory AND does not contain rejection markers. Standard convention: artifact_path = src/app/essays/{slug}/."
 }

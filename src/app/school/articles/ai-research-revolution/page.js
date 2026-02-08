@@ -86,10 +86,14 @@ export default function AIResearchRevolutionArticle() {
   const author = {
     initials: 'ZU',
     name: 'Zev Uhuru',
-    role: 'Founder, Esy',
+    role: 'Applied AI Engineer, Esy',
     image: 'https://images.esy.com/essays/authors/zev-uhuru.1d0f7777ab.webp',
     bio: 'I design citation-first research workflows for essays and learning artifacts. Esy School documents how these workflows are built and used in practice.',
-    meta: '15 articles published · Joined January 2024'
+    meta: '15 articles published · Joined January 2024',
+    socials: [
+      { icon: 'linkedin', url: 'https://www.linkedin.com/in/zevuhuru/', label: 'LinkedIn' },
+      { icon: 'github', url: 'https://github.com/ZevUhuru', label: 'GitHub' },
+    ],
   };
 
   const tableOfContents = [
@@ -105,7 +109,7 @@ export default function AIResearchRevolutionArticle() {
       category: 'Technology',
       title: 'Understanding Large Language Models: From Theory to Practice',
       author: 'Zev Uhuru',
-      authorRole: 'Founder, Esy',
+      authorRole: 'Applied AI Engineer, Esy',
       readTime: '10 min',
       link: '/school/articles/understanding-llms'
     },
@@ -120,7 +124,7 @@ export default function AIResearchRevolutionArticle() {
       category: 'Research Methods',
       title: 'Integrating AI Tools into Your Research Workflow',
       author: 'Zev Uhuru',
-      authorRole: 'Founder, Esy',
+      authorRole: 'Applied AI Engineer, Esy',
       readTime: '12 min',
       link: '#'
     }

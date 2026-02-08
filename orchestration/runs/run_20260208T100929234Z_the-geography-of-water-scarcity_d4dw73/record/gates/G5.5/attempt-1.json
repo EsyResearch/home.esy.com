@@ -1,0 +1,32 @@
+{
+  "attempt": 1,
+  "status": "FAIL",
+  "started_at": "2026-02-08T10:09:29.250Z",
+  "finished_at": "2026-02-08T10:09:29.252Z",
+  "agent": "bibliography-orchestrator",
+  "prompt_sha256": "85f6bf14aa65c83cc8682d59c744bf599eb5f977873fc08825256bd664edacdc",
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+    "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md"
+  ],
+  "artifacts": [],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": false,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    }
+  ],
+  "failure_reason": "None of required files exist: {artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md, {artifact_path}/research/BIBLIOGRAPHY-AUDIT.md"
+}

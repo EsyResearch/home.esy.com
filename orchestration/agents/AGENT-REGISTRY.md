@@ -58,7 +58,7 @@ agents/
 | [Content Research Reconciliation Agent](./auditors/content-research-reconciliation-agent.md) | **Research→Spec Verification** | G2.5 | `auditors/` |
 | [Content Research Integration Agent](./auditors/content-research-integration-agent.md) | **Spec→Artifact Verification** | G5.1 | `auditors/` |
 | [Design Research Reconciliation Agent](./auditors/design-research-reconciliation-agent.md) | **Design Authenticity** | G4.1 | `auditors/` |
-| [Design Research Integration Agent](./auditors/design-research-integration-agent.md) | **CSS→TSX Binding** | G5.2 | `auditors/` |
+| [Design Research Implementation Auditor](./auditors/design-research-implementation-auditor.md) | **Design Fidelity Audit** | G5.2 | `auditors/` |
 | [Accuracy Audit Agent](./auditors/accuracy-audit-agent.md) | **Scientific Claims** | G6 (conceptual) | `auditors/` |
 | [Pedagogy Audit Agent](./auditors/pedagogy-audit-agent.md) | **Learning Effectiveness** | G6.5 (conceptual) | `auditors/` |
 | [Diagram Clarity Auditor](./auditors/diagram-clarity-auditor.md) | **Diagram Comprehension** | G7 (conceptual) | `auditors/` |

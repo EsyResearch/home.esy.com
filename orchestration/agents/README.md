@@ -48,7 +48,7 @@ agents/
 | [Content Research Reconciliation](#content-research-reconciliation-agent) | **Research→Spec gap detection (G2.5)** | `@agents/auditors/content-research-reconciliation-agent.md` |
 | [Content Research Integration](#content-research-integration-agent) | **Spec→Artifact gap detection (G5.1)** | `@agents/auditors/content-research-integration-agent.md` |
 | [Design Research Reconciliation](#design-research-reconciliation-agent) | **Design authenticity + novelty (G4.1)** | `@agents/auditors/design-research-reconciliation-agent.md` |
-| [Design Research Integration](#design-research-integration-agent) | **CSS→TSX binding verification (G5.2)** | `@agents/auditors/design-research-integration-agent.md` |
+| [Design Research Implementation Auditor](#design-research-implementation-auditor) | **Design fidelity audit (G5.2)** | `@agents/auditors/design-research-implementation-auditor.md` |
 | [Data Accuracy Auditor](#data-accuracy-auditor) | **Data-to-visual fidelity (G6.1)** | `@agents/auditors/data-accuracy-auditor.md` |
 
 **Reports:** `auditors/CitationReports/` · `auditors/VisualAuditReports/`

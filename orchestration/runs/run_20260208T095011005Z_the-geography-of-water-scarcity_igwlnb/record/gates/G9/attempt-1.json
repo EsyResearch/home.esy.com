@@ -1,0 +1,32 @@
+{
+  "attempt": 1,
+  "status": "FAIL",
+  "started_at": "2026-02-08T09:50:46.542Z",
+  "finished_at": "2026-02-08T09:50:46.571Z",
+  "agent": "director",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+    "{artifact_path}/PUBLICATION-APPROVAL.md"
+  ],
+  "artifacts": [],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": false,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/PUBLICATION-APPROVAL.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    }
+  ],
+  "failure_reason": "None of required files exist: {artifact_path}/research/PUBLICATION-APPROVAL.md, {artifact_path}/PUBLICATION-APPROVAL.md"
+}

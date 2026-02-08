@@ -39,16 +39,27 @@ Esy's about page says: *"Think of the difference between asking ChatGPT to 'make
 
 The same principle applies to the platform itself. Users never see agents, gates, or models. They see: template → intake → artifact. The multi-model layer is invisible infrastructure that makes each artifact better and cheaper to produce.
 
-## How to Continue This Conversation
+## Related: App Platform
 
-When resuming planning in a future session, share this directory as context:
+The web application architecture (routing, database, API, admin panel) is documented separately:
 
 ```
-@orchestration/planning/multi-model-platform/
+orchestration/planning/app-platform/
+```
+
+See [../app-platform/README.md](../app-platform/README.md) for the full app.esy.com spec including Supabase schema, API routes, admin observability, and build phases. The multi-model layer (this directory) plugs into the app-platform at the API level — when a run executes a gate, the API calls into the agent router and model adapters defined here.
+
+## How to Continue This Conversation
+
+When resuming planning in a future session, share both directories:
+
+```
+@orchestration/planning/
 ```
 
 The AI will have full context on:
 - What's already built (agents, gates, runner, workflows)
-- What's planned (three-layer architecture)
+- What's planned (three-layer architecture, web app, multi-model routing)
 - What's unresolved (open questions)
 - Cost/quality tradeoffs discussed so far
+- Database schema, API routes, and admin UI spec

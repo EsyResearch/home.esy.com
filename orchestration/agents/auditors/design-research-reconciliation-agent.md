@@ -101,7 +101,7 @@
 
 ## Quality Assurance Framework
 
-### Three-Phase Analysis
+### Five-Phase Analysis
 
 **Phase 1: Thematic Authenticity Audit**
 - [ ] DESIGN-RESEARCH.md has Visual Archaeology section
@@ -120,12 +120,34 @@
 - [ ] Animation metaphors differ from all other essays
 - [ ] Uniqueness Verification section present with NOT Like list
 
-**Phase 3: CSS Implementation Audit**
+**Phase 3: Document Completeness Audit (NEW — prevents implementation gaps)**
+- [ ] Every component listed in invocation spec has corresponding design tokens in DESIGN-RESEARCH.md
+- [ ] Every data visualization has implementation-ready specs (library, projection, interaction model, responsive behavior)
+- [ ] Layout patterns specified per section (not just "5 patterns" — which pattern for which section)
+- [ ] Progress indicator has detailed visual specification (shape, colors, position, behavior)
+- [ ] Color tokens defined for ALL states (default, hover, active, disabled, error) not just base palette
+- [ ] Typography tokens cover ALL elements (hero, h1-h3, body, caption, data labels, annotations)
+- [ ] Spacing scale is defined with named tokens (not just "use 8px grid")
+- [ ] Animation timings specified per interaction type (scroll, hover, entrance, exit)
+- [ ] Responsive breakpoints defined with specific adaptation rules per component
+- [ ] For data journalism essays: data representation specs (choropleth projection, chart types, axis scales)
+
+**Phase 4: Slop Prevention Screening (Pre-Production)**
+- [ ] No fonts from overused registry (Inter for body, Space Grotesk for display, Roboto)
+  - Exception: Inter MAY be used for data labels in data journalism essays IF documented with rationale
+- [ ] No purple gradient syndrome
+- [ ] No "Dark Mode Default" without subject derivation (dark palettes ARE acceptable when derived from subject — e.g., deep ocean, coal mines, night sky)
+- [ ] No generic SaaS layout patterns proposed
+- [ ] Progress indicator is subject-derived, not generic
+- [ ] Color palette cannot be transplanted to a different essay topic
+- [ ] At least one "signature" visual element is specified
+
+**Phase 5: CSS Implementation Audit** (if CSS exists at G4.1 time)
 - [ ] All DESIGN-RESEARCH.md colors appear in CSS
 - [ ] All DESIGN-RESEARCH.md fonts appear in CSS
 - [ ] No orphan CSS colors (not in design research)
 - [ ] No orphan CSS fonts (not in design research)
-- [ ] CSS variable names match DESIGN-RESEARCH.md token names
+- [ ] CSS variable names match DESIGN-RESEARCH.md token names (namespace prefixes like `--ws-` are acceptable conventions)
 
 ### Red Flags to Identify
 
@@ -212,7 +234,54 @@
 6. Output: Implementation Fidelity Score (0-100%)
 ```
 
-### Phase 4: Human Consultation
+### Phase 4: Document Completeness Verification
+
+```
+1. Load invocation spec: orchestration/skills/visual-essay-invocation/specs/[slug].md
+2. Extract all components and visualizations listed in spec
+3. For each component/visualization:
+   - Verify DESIGN-RESEARCH.md has corresponding design tokens
+   - Verify color palette covers all component states (default, hover, active, disabled)
+   - Verify typography tokens cover all text elements in component
+4. For each data visualization (if data journalism essay):
+   - Verify DESIGN-RESEARCH.md specifies: color scale, axis styling, label typography
+   - Verify responsive behavior documented per breakpoint
+   - Verify interaction model documented (hover, click, touch)
+5. Verify progress indicator has detailed visual specification:
+   - Shape description with subject derivation
+   - Fill colors from essay palette
+   - Position and responsive behavior
+6. Verify layout patterns specified per section (not just "5 patterns"):
+   - Map each narrative section to a layout pattern
+   - Verify variety requirement (no consecutive identical patterns)
+7. Output: Document Completeness Score (0-100%)
+   - 100% = Every spec component has implementation-ready design tokens
+   - <80% = Gaps that WILL cause design drift during implementation
+```
+
+### Phase 5: Slop Prevention Screening
+
+```
+1. Run abbreviated slop detection on DESIGN-RESEARCH.md BEFORE implementation:
+   a. Check font selections against overused registry
+      - Inter for body → flag (exception: data labels in data journalism)
+      - Space Grotesk for display → flag
+      - Roboto anywhere → flag
+   b. Check color palette for syndrome patterns
+      - Purple gradient syndrome → flag
+      - Dark mode default without subject derivation → flag
+      - But: subject-derived dark palettes ARE acceptable (document why)
+   c. Check progress indicator
+      - Generic horizontal/circular bar → BLOCKING flag
+      - Must have subject-derived shape documented
+   d. Check non-transferability
+      - Could this design work for 5+ different subjects? → flag
+2. Output: Slop Prevention Score (0-100%)
+   - Any BLOCKING flag = automatic FAIL at G4.1
+   - This prevents generic designs from reaching production
+```
+
+### Phase 6: Human Consultation
 
 ```
 For each Critical/High issue, present:
@@ -253,13 +322,33 @@ Await human decision before proceeding.
 
 ### Standard Output: Design Research Reconciliation Report
 
+The reconciliation report is saved to the essay directory:
+
+```
+src/app/essays/{essay-slug}/research/G4.1-DESIGN-RECONCILIATION.md
+```
+
 ```markdown
+---
+gate: G4.1
+type: audit
+status: PASS | CONDITIONAL | FAIL
+score: XX
+threshold: 80
+blocking_issues: 0
+warning_issues: 0
+agent: design-research-reconciliation-agent
+date: YYYY-MM-DD
+essay: essay-slug
+---
+
 # Design Research Reconciliation Report
 ## [Essay Name]
 
 **Audit Date:** [Date]
 **Design Research:** [Path to DESIGN-RESEARCH.md]
 **CSS File:** [Path to CSS file]
+**Invocation Spec:** [Path to spec, if loaded]
 **Essays Compared:** [Count]
 
 ---
@@ -270,7 +359,9 @@ Await human decision before proceeding.
 |-------|-------|--------|
 | Phase 1: Thematic Authenticity | [X]% | [PASS/FAIL] |
 | Phase 2: Novelty/Duplication | [X]% | [PASS/FAIL] |
-| Phase 3: CSS Implementation | [X]% | [PASS/FAIL] |
+| Phase 3: Document Completeness | [X]% | [PASS/FAIL] |
+| Phase 4: Slop Prevention | [X]% | [PASS/FAIL] |
+| Phase 5: CSS Implementation | [X]% | [PASS/FAIL] (if CSS exists) |
 | **Overall** | [X]% | [PASS/GAPS/CRITICAL] |
 
 ---
@@ -376,7 +467,9 @@ Await human decision before proceeding.
 
 - **Thematic Authenticity Score**: [X]% of design elements trace to subject
 - **Novelty Score**: [X]% unique (no collisions)
-- **Implementation Fidelity**: [X]% of design research implemented in CSS
+- **Document Completeness Score**: [X]% of spec components have design tokens
+- **Slop Prevention Score**: [X]% free of generic/convergent patterns
+- **Implementation Fidelity**: [X]% of design research implemented in CSS (if CSS exists at G4.1)
 
 ---
 
@@ -386,8 +479,8 @@ Await human decision before proceeding.
 
 - **Design Researcher** — Receives DESIGN-RESEARCH.md as input
 - **Visual Essay Orchestrator** — Reports at Gate 4.1
-- **Design Research Integration Agent** — Sibling agent for G5.2 (CSS→TSX binding)
-- **Design Slop Auditor** — Complementary audit for visual distinctiveness
+- **Design Research Implementation Auditor** — Downstream agent for G5.2 (post-production fidelity audit)
+- **Design Slop Auditor** — Complementary audit; slop screening is now embedded in Phase 5 of this agent
 - **Production Orchestrator** — May revise design based on findings
 
 ### Handoff Protocol
@@ -484,8 +577,8 @@ This essay would receive 95%+ across all three phases.
 ---
 
 ## Last Updated
-December 2024
+February 2026
 
 ---
 
-*This agent specializes in design research reconciliation, ensuring that DESIGN-RESEARCH.md documents produce authentic, subject-derived visual systems that are unique across the essay ecosystem. It operates at Gate 4.1 in the visual essay pipeline, blocking image sourcing until design authenticity, novelty, and implementation fidelity are verified. Ideal for preventing design slop where essays converge on generic aesthetics instead of deriving identity from their subject matter.*
+*This agent specializes in design research reconciliation, ensuring that DESIGN-RESEARCH.md documents produce authentic, subject-derived visual systems that are unique across the essay ecosystem. It operates at Gate 4.1 in the visual essay pipeline, blocking image sourcing until design authenticity, novelty, document completeness, and slop prevention are verified. The five-phase protocol covers: (1) thematic authenticity, (2) cross-essay novelty, (3) document completeness (every spec component has design tokens), (4) slop prevention (catches generic patterns pre-production), and (5) CSS implementation audit (if CSS exists). The reconciliation report includes a YAML frontmatter header per the Gate Accountability Standard. Ideal for preventing design slop where essays converge on generic aesthetics instead of deriving identity from their subject matter.*

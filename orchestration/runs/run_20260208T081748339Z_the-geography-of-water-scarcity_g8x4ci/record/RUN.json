@@ -8,7 +8,7 @@
   },
   "depth": "deep",
   "prompt": null,
-  "status": "RUNNING",
+  "status": "FAILED",
   "started_at": "2026-02-08T08:17:48.341Z",
   "finished_at": null,
   "gates": [
@@ -234,20 +234,154 @@
     {
       "gate": "G4.1",
       "name": "Design Research Reconciliation",
-      "status": "NOT_STARTED",
-      "attempts": []
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-08T08:26:34.785Z",
+          "finished_at": "2026-02-08T08:26:34.816Z",
+          "agent": "design-research-reconciliation-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/projects/the-geography-of-water-scarcity/DESIGN-RESEARCH.md",
+              "sha256": "cc135f4e897e2976fb486ac985ff29517b5cc91fa45a2f18177a21697772c9b9",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/projects/the-geography-of-water-scarcity/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Design research report (verified reconciled)"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "pattern": "[UNRECONCILED]",
+              "found": false,
+              "severity": "error",
+              "description": "Design research must not contain [UNRECONCILED] marker",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "pattern": "[COLLISION]",
+              "found": false,
+              "severity": "error",
+              "description": "Design research must not flag aesthetic collisions with other essays",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
     },
     {
       "gate": "G4.5",
       "name": "Image Sourcing",
-      "status": "NOT_STARTED",
-      "attempts": []
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-08T08:26:57.343Z",
+          "finished_at": "2026-02-08T08:26:57.375Z",
+          "agent": "image-research-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+            "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+            "{artifact_path}/images-migration.json",
+            "{artifact_path}/images.ts"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/projects/the-geography-of-water-scarcity/research/IMAGE_RESEARCH_AUDIT.md",
+              "sha256": "9a294648f67b024b8e9f139f754ebe754bd67f7ba33b9fa7b1bc0ff9e4ca470b",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/images-migration.json",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/images.ts",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
     },
     {
       "gate": "G5",
       "name": "Content Complete",
-      "status": "NOT_STARTED",
-      "attempts": []
+      "status": "FAIL",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-02-08T08:34:54.451Z",
+          "finished_at": "2026-02-08T08:34:54.481Z",
+          "agent": "data-journalist-writer-expert",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/page.tsx",
+            "{artifact_path}/{slug}.css"
+          ],
+          "artifacts": [],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/page.tsx",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/projects/the-geography-of-water-scarcity/page.tsx",
+              "pass": false,
+              "description": "Next.js page with metadata and default export"
+            },
+            {
+              "type": "contains_headings",
+              "path": "{artifact_path}/page.tsx",
+              "missing": [
+                "export"
+              ],
+              "severity": "error",
+              "description": "page.tsx must contain an export",
+              "pass": false
+            }
+          ],
+          "failure_reason": "Missing: {artifact_path}/page.tsx; Missing headings: export"
+        }
+      ]
     },
     {
       "gate": "G5.2",
@@ -292,7 +426,14 @@
       "path": "{artifact_path}/DESIGN-RESEARCH.md",
       "sha256": "cc135f4e897e2976fb486ac985ff29517b5cc91fa45a2f18177a21697772c9b9",
       "gate": "G4",
-      "recorded_at": "2026-02-08T08:18:00.412Z"
+      "recorded_at": "2026-02-08T08:18:00.412Z",
+      "updated_at": "2026-02-08T08:26:34.817Z"
+    },
+    {
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "sha256": "9a294648f67b024b8e9f139f754ebe754bd67f7ba33b9fa7b1bc0ff9e4ca470b",
+      "gate": "G4.5",
+      "recorded_at": "2026-02-08T08:26:57.375Z"
     }
   ],
   "validations": [],
@@ -361,6 +502,51 @@
       "gate": "G4",
       "attempt": 1,
       "message": "Gate G4 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-08T08:26:34.785Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.1",
+      "attempt": 1,
+      "agent": "design-research-reconciliation-agent",
+      "message": "Gate G4.1 attempt 1 started with agent design-research-reconciliation-agent"
+    },
+    {
+      "timestamp": "2026-02-08T08:26:34.817Z",
+      "type": "GATE_PASSED",
+      "gate": "G4.1",
+      "attempt": 1,
+      "message": "Gate G4.1 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-08T08:26:57.344Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "agent": "image-research-agent",
+      "message": "Gate G4.5 attempt 1 started with agent image-research-agent"
+    },
+    {
+      "timestamp": "2026-02-08T08:26:57.375Z",
+      "type": "GATE_PASSED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "message": "Gate G4.5 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-08T08:34:54.452Z",
+      "type": "GATE_STARTED",
+      "gate": "G5",
+      "attempt": 1,
+      "agent": "data-journalist-writer-expert",
+      "message": "Gate G5 attempt 1 started with agent data-journalist-writer-expert"
+    },
+    {
+      "timestamp": "2026-02-08T08:34:54.482Z",
+      "type": "GATE_FAILED",
+      "gate": "G5",
+      "attempt": 1,
+      "message": "Gate G5 failed: Missing: {artifact_path}/page.tsx; Missing headings: export"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "gate": "G9",
   "name": "Publication Approval",
   "blocking": true,
-  "description": "Validates director sign-off, visualEssays.ts updated, and deployment readiness",
+  "description": "Validates director sign-off, visualEssays.ts updated, and deployment readiness. Approval document must not contain rejection.",
   "required_outputs": {
     "any_of": [
       {
@@ -20,7 +20,21 @@
       "type": "file_exists",
       "target": "any_of",
       "description": "Publication approval document must exist"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "pattern": "REJECTED",
+      "severity": "error",
+      "description": "Publication approval must not contain REJECTED"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "pattern": "status: FAIL",
+      "severity": "error",
+      "description": "Publication approval must not have FAIL status in frontmatter"
     }
   ],
-  "notes": "G9 is the final human gate. The director reviews the complete package (all prior gates passed), confirms visualEssays.ts is updated with the new entry (isNew: true, isFeatured: true), and triggers deployment. This gate is always manually approved."
+  "notes": "G9 is the final human gate. The director reviews the complete package (all prior gates passed), confirms visualEssays.ts is updated with the new entry (isNew: true, isFeatured: true), and triggers deployment. This gate is always manually approved. The not_contains check ensures a rejected approval document doesn't accidentally pass."
 }

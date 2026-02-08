@@ -2,7 +2,7 @@
   "gate": "G6",
   "name": "Citation Audit",
   "blocking": true,
-  "description": "Validates that all sources are verified, quotes authenticated, no broken links, and content matches research",
+  "description": "Validates that all sources are verified, quotes authenticated, no broken links, and content matches research. Audit report must not indicate failure or rejection.",
   "required_outputs": {
     "any_of": [
       {
@@ -20,7 +20,21 @@
       "type": "file_exists",
       "target": "any_of",
       "description": "Citation audit report must exist"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/research/CITATION-AUDIT.md",
+      "pattern": "status: FAIL",
+      "severity": "error",
+      "description": "Citation audit must not have FAIL status in frontmatter"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/research/CITATION-AUDIT.md",
+      "pattern": "Citation Certification: Rejected",
+      "severity": "error",
+      "description": "Citation audit must not have Rejected certification"
     }
   ],
-  "notes": "G6 validates the Citation Audit Agent has verified all sources (80%+ Tier 1-2), authenticated quotes, checked link health, and confirmed content-research alignment. The audit file location varies by essay (some at root, some in research/). Citation Certification (Approved/Rejected) is recorded in the audit report."
+  "notes": "G6 validates the Citation Audit Agent has verified all sources (80%+ Tier 1-2), authenticated quotes, checked link health, and confirmed content-research alignment. The audit file location varies by essay (some at root, some in research/). The not_contains checks verify the audit didn't reject the citations. Citation Certification (Approved/Rejected) is recorded in the audit report."
 }

@@ -118,6 +118,11 @@ function getValidations(contract, context) {
       validation.resolvedTarget = resolvePath(validation.target, context);
     }
     
+    // Resolve targets array if present (for min_sources_any_of etc.)
+    if (validation.targets && Array.isArray(validation.targets)) {
+      validation.resolvedTargets = validation.targets.map(t => resolvePath(t, context));
+    }
+    
     return validation;
   });
 }

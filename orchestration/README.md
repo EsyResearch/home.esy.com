@@ -224,26 +224,22 @@ The system has three component types, each serving a distinct purpose:
 
 Orchestrators enforce **quality gates**—mandatory checkpoints that must pass before proceeding.
 
-### The Eight Gates (Visual Essay Pipeline)
+### The 13-Gate Visual Essay Pipeline
 
 ```
-G1 ──► G2 ──► G3 ──► G4 ──► G5 ──► G6 ──► G7 ──► G8
-Brief  Design Content Sources Citation Scroll  Mobile  Publish
-                              Audit    Cert    Verify
+G1 → G2 → G3 → G4 → G4.1 → G4.5 → G5 → G5.2 → G5.5 → G6 → G7 → G8 → G9
 ```
 
-| Gate | Owner | What's Verified |
-|------|-------|-----------------|
-| G1 | Director | Complete brief with scope |
-| G2 | Production Orchestrator | Unique visual identity |
-| G3 | Historian Editor | Facts verified |
-| G4 | Research Expert | Tier 1-2 sources |
-| G5 | Citation Audit | All claims supported |
-| G6 | Scrolling Auditor | 60fps, scroll-lock functional |
-| G7 | Director | Real device mobile verification |
-| G8 | Director | Final publication approval |
+| Phase | Gates | What's Verified |
+|-------|-------|-----------------|
+| **Intake** | G1 | Scope approval, topic intake |
+| **Research** | G2 | Research package complete (CITATIONS, FIGURES, QUOTES, etc.) |
+| **Spec** | G3 | 6-layer spec built from research, no orphan claims |
+| **Production** | G4 → G4.1 → G4.5 → G5 → G5.2 → G5.5 | Design research, reconciliation, images, implementation, CSS↔TSX binding, bibliography |
+| **Audit** | G6 → G7 | Citation audit, scroll certification |
+| **Publish** | G8 → G9 | Publication certification, director sign-off |
 
-**Deep Dive:** See [Quality Gates System](./agents/README.md#quality-gates-system) in Agents README.
+**Deep Dive:** See [FRAMEWORK.md](./FRAMEWORK.md) for full gate definitions and [orchestration/runner/README.md](./runner/README.md) for CLI-driven execution.
 
 ---
 

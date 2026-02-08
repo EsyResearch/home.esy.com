@@ -2,7 +2,7 @@
   "gate": "G4.5",
   "name": "Image Sourcing",
   "blocking": true,
-  "description": "Validates that all images are sourced, URLs extracted, and licenses verified",
+  "description": "Validates that all images are sourced, URLs extracted, licenses verified, and no unlicensed assets remain",
   "required_outputs": {
     "any_of": [
       {
@@ -28,7 +28,28 @@
       "type": "file_exists",
       "target": "any_of",
       "description": "At least one image sourcing artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "pattern": "[UNLICENSED]",
+      "severity": "error",
+      "description": "Image audit must not contain unlicensed assets"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "pattern": "[PENDING]",
+      "severity": "warning",
+      "description": "Image audit should not have pending sourcing tasks"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "pattern": "status: FAIL",
+      "severity": "error",
+      "description": "Image audit must not have FAIL status in frontmatter"
     }
   ],
-  "notes": "G4.5 is flexible because image sourcing artifacts vary by essay. Some essays use SVG-only illustrations (no external images), in which case this gate may be manually passed with a note. The any_of pattern accommodates the different formats that have been used historically."
+  "notes": "G4.5 is flexible because image sourcing artifacts vary by essay. Some essays use SVG-only illustrations (no external images), in which case the IMAGE_RESEARCH_AUDIT.md may document 'No External Images Required' and still pass. The any_of pattern accommodates different formats. [UNLICENSED] is a hard fail; [PENDING] is a warning."
 }

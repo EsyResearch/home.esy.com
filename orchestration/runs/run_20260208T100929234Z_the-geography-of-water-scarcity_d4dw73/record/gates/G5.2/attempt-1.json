@@ -1,0 +1,44 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-08T10:09:29.248Z",
+  "finished_at": "2026-02-08T10:09:29.249Z",
+  "agent": "design-research-integration-agent",
+  "prompt_sha256": "bce3162b1e47d02c58e5b2b51680532d636ae658edf26b80b1b5e5d2a7ae8312",
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/page.tsx",
+    "{artifact_path}/DESIGN-RESEARCH.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/page.tsx",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-geography-of-water-scarcity/page.tsx",
+      "sha256": "cc9e4ef4006ea723a807d758b6beddab6576e8e5ff8889ef9506def8c06238a6",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-geography-of-water-scarcity/DESIGN-RESEARCH.md",
+      "sha256": "cc135f4e897e2976fb486ac985ff29517b5cc91fa45a2f18177a21697772c9b9",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/page.tsx",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-geography-of-water-scarcity/page.tsx",
+      "pass": true,
+      "description": "page.tsx must exist (implementation target)"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-geography-of-water-scarcity/DESIGN-RESEARCH.md",
+      "pass": true,
+      "description": "DESIGN-RESEARCH.md must still exist (design source)"
+    }
+  ],
+  "failure_reason": null
+}

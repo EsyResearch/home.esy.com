@@ -7,6 +7,8 @@
 | File | Purpose |
 |------|---------|
 | [competitive-position.md](./competitive-position.md) | How Esy's orchestration architecture compares to standard AI apps — the moat, the matrix, honest limitations |
+| [architectural-lineage.md](./architectural-lineage.md) | Where the runner's patterns come from — Stage-Gate, Design by Contract, HITL, Runbooks, Durable Execution — and what's novel in the combination |
+| [../standards/gate-accountability.md](../standards/gate-accountability.md) | Gate Accountability Standard — three-layer QA model, structured artifact headers, contract requirements, scaling to web interface |
 
 ## Directories
 

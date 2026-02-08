@@ -750,7 +750,7 @@ Every infographic must include:
 // ─── Assemble Courses ──────────────────────────────────────
 const author = {
   name: 'Zev Uhuru',
-  role: 'Founder, Esy',
+  role: 'Applied AI Engineer, Esy',
   avatar: 'https://images.esy.com/essays/authors/zev-uhuru.1d0f7777ab.webp',
 };
 

@@ -199,9 +199,9 @@ When an agent serves multiple orchestrators with different behaviors (e.g., Desi
 Every agent includes a prominently formatted critical requirement statement within Usage Instructions:
 
 ```markdown
-**CRITICAL REQUIREMENT**: You must [PRIMARY BEHAVIORAL CONSTRAINT].
-Be [THOROUGHNESS STANDARD] in your [WORK TYPE].
-[OBJECTIVITY STANDARD] - base all [OUTPUTS] on [EVIDENCE TYPE],
+**CRITICAL REQUIREMENT**: You must [PRIMARY BEHAVIORAL CONSTRAINT]. 
+Be [THOROUGHNESS STANDARD] in your [WORK TYPE]. 
+[OBJECTIVITY STANDARD] - base all [OUTPUTS] on [EVIDENCE TYPE], 
 not [PROHIBITED BASIS]. [DOMAIN-SPECIFIC CONSTRAINT].
 ```
 
@@ -467,7 +467,7 @@ When creating a new agent, verify:
 > Created: [Month Day, Year]
 
 ## Role Definition
-**[Superlative] [domain] [role] with [years]+ years of [context] experience,
+**[Superlative] [domain] [role] with [years]+ years of [context] experience, 
 specializing in [specialization 1], [specialization 2], and [specialization 3]**
 
 ## Specialization
@@ -630,8 +630,8 @@ orchestration/audits/[essay-slug]/[REPORT-NAME].md
 When working with this agent, reference the role by stating:
 > "Using your assigned role as [FULL ROLE DEFINITION]..."
 
-**CRITICAL REQUIREMENT**: You must [primary constraint]. Be [thoroughness standard]
-in your [work type]. [Objectivity standard] - base all [outputs] on [evidence type],
+**CRITICAL REQUIREMENT**: You must [primary constraint]. Be [thoroughness standard] 
+in your [work type]. [Objectivity standard] - base all [outputs] on [evidence type], 
 not [prohibited basis]. [Domain-specific constraint].
 
 ### Invocation Examples
@@ -662,7 +662,7 @@ Using @agents/[category]/[agent-name].md, [action] for [subject].
 
 ---
 
-*This agent specializes in [domain and capabilities], with particular expertise
+*This agent specializes in [domain and capabilities], with particular expertise 
 in [key strengths]. Ideal for [use cases] within the Esy.com ecosystem.*
 ```
 

@@ -1,0 +1,48 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-08T10:09:29.245Z",
+  "finished_at": "2026-02-08T10:09:29.246Z",
+  "agent": "design-research-reconciliation-agent",
+  "prompt_sha256": "df98bbc109eb307c4d38f7c96ae7803193ee4e07d8c9b0186266d8a4e3ce98c3",
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/DESIGN-RESEARCH.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-geography-of-water-scarcity/DESIGN-RESEARCH.md",
+      "sha256": "cc135f4e897e2976fb486ac985ff29517b5cc91fa45a2f18177a21697772c9b9",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-geography-of-water-scarcity/DESIGN-RESEARCH.md",
+      "pass": true,
+      "description": "Design research report (verified reconciled)"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "pattern": "[UNRECONCILED]",
+      "found": false,
+      "severity": "error",
+      "description": "Design research must not contain [UNRECONCILED] marker",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "pattern": "[COLLISION]",
+      "found": false,
+      "severity": "error",
+      "description": "Design research must not flag aesthetic collisions with other essays",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

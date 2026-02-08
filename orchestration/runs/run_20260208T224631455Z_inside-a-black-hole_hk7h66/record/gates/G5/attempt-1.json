@@ -1,0 +1,56 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-08T23:25:57.048Z",
+  "finished_at": "2026-02-08T23:30:55.588Z",
+  "agent": "production-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/page.tsx",
+    "{artifact_path}/{slug}.css"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/page.tsx",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/inside-a-black-hole/page.tsx",
+      "sha256": "a7f764385cdf8f3dac1286bab19f40df5da51490da482950d99e2ddef09c8a93",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/{slug}.css",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/inside-a-black-hole/inside-a-black-hole.css",
+      "sha256": "a6b787d22d39b674e5a474778494a34b393fbcc89e15ccbb65c6bc8dc517c75e",
+      "exists": true,
+      "optional": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/page.tsx",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/inside-a-black-hole/page.tsx",
+      "pass": true,
+      "description": "Next.js page with metadata and default export"
+    },
+    {
+      "type": "contains_headings",
+      "path": "{artifact_path}/page.tsx",
+      "missing": [],
+      "severity": "error",
+      "description": "page.tsx must contain a default export and metadata definition",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/page.tsx",
+      "pattern": "TODO",
+      "found": false,
+      "severity": "warning",
+      "description": "page.tsx should not contain TODO markers (indicates incomplete implementation)",
+      "pass": true,
+      "warning": false
+    }
+  ],
+  "failure_reason": null
+}

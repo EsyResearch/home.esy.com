@@ -2,13 +2,23 @@
   "gate": "G4.1",
   "name": "Design Research Reconciliation",
   "blocking": true,
-  "description": "Validates that the design system is thematically authentic, has no cross-essay collisions, and CSS implements the design research",
+  "description": "Validates that the design system is thematically authentic, has no cross-essay collisions, is complete enough to guide implementation, and is not generic/derivative. Produces a reconciliation audit artifact with structured pass/fail.",
   "required_outputs": {
     "all_of": [
       {
         "path": "{artifact_path}/DESIGN-RESEARCH.md",
-        "description": "Design research report (verified reconciled)",
+        "description": "Design research report (must exist and be reconciled)",
         "required": true
+      }
+    ],
+    "any_of": [
+      {
+        "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+        "description": "Reconciliation audit report with structured header"
+      },
+      {
+        "path": "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+        "description": "Reconciliation audit report (essay root level)"
       }
     ]
   },
@@ -16,7 +26,7 @@
     {
       "type": "file_exists",
       "target": "all_required",
-      "description": "DESIGN-RESEARCH.md must still exist and be reconciled"
+      "description": "DESIGN-RESEARCH.md must exist"
     },
     {
       "type": "not_contains",
@@ -31,7 +41,19 @@
       "pattern": "[COLLISION]",
       "severity": "error",
       "description": "Design research must not flag aesthetic collisions with other essays"
+    },
+    {
+      "type": "file_exists",
+      "target": "any_of",
+      "description": "Reconciliation audit report must exist"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+      "pattern": "status: FAIL",
+      "severity": "error",
+      "description": "Reconciliation audit must not have FAIL status in frontmatter"
     }
   ],
-  "notes": "G4.1 is a reconciliation gate. The Design Research Reconciliation Agent verifies thematic authenticity, cross-essay novelty, and that CSS custom properties can implement the design research. It may annotate DESIGN-RESEARCH.md with [RECONCILED] or flag issues."
+  "notes": "G4.1 runs THREE audits on DESIGN-RESEARCH.md: (1) Thematic Authenticity — every color/font/animation traces to subject matter, (2) Cross-Essay Novelty — no collisions with other essays, (3) Document Completeness — every component in the invocation spec has corresponding design tokens, every visualization has implementation-ready specs. The reconciliation agent also performs a slop prevention check (originality screening) before the design gets built. The audit artifact must include a YAML frontmatter header per the Gate Accountability Standard. See orchestration/standards/gate-accountability.md."
 }

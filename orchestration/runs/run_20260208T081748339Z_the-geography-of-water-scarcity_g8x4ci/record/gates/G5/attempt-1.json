@@ -1,0 +1,34 @@
+{
+  "attempt": 1,
+  "status": "FAIL",
+  "started_at": "2026-02-08T08:34:54.451Z",
+  "finished_at": "2026-02-08T08:34:54.481Z",
+  "agent": "data-journalist-writer-expert",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/page.tsx",
+    "{artifact_path}/{slug}.css"
+  ],
+  "artifacts": [],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/page.tsx",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/projects/the-geography-of-water-scarcity/page.tsx",
+      "pass": false,
+      "description": "Next.js page with metadata and default export"
+    },
+    {
+      "type": "contains_headings",
+      "path": "{artifact_path}/page.tsx",
+      "missing": [
+        "export"
+      ],
+      "severity": "error",
+      "description": "page.tsx must contain an export",
+      "pass": false
+    }
+  ],
+  "failure_reason": "Missing: {artifact_path}/page.tsx; Missing headings: export"
+}

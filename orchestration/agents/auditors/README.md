@@ -23,7 +23,7 @@ Quality verification and certification agents that ensure content meets Esy stan
 | [Content Research Reconciliation Agent](./content-research-reconciliation-agent.md) | **Research→Spec Verification** | G2.5 | Gap Report, Remediation Options |
 | [Content Research Integration Agent](./content-research-integration-agent.md) | **Spec→Artifact Verification** | G5.1 | Integration Report, Implementation Hints |
 | [Design Research Reconciliation Agent](./design-research-reconciliation-agent.md) | **Design Authenticity Verification** | G4.1 | Reconciliation Report, Collision Detection |
-| [Design Research Integration Agent](./design-research-integration-agent.md) | **CSS→TSX Binding Verification** | G5.2 | Binding Report, Convention Analysis |
+| [Design Research Implementation Auditor](./design-research-implementation-auditor.md) | **Design Fidelity Audit** | G5.2 | Design Fidelity Audit Report, Compliance Scores |
 | [Accuracy Audit Agent](./accuracy-audit-agent.md) | **Scientific Claim Verification** | G6 (conceptual) | Accuracy Certification Report |
 | [Pedagogy Audit Agent](./pedagogy-audit-agent.md) | **Learning Effectiveness** | G6.5 (conceptual) | Pedagogy Certification Report |
 | [Diagram Clarity Auditor](./diagram-clarity-auditor.md) | **Diagram Comprehension** | G7 (conceptual) | Diagram Clarity Report |
@@ -275,7 +275,7 @@ Run all three phases:
 
 ```
 # CSS-to-TSX binding verification (G5.2)
-Using @agents/auditors/design-research-integration-agent.md, verify:
+Using @agents/auditors/design-research-implementation-auditor.md, verify:
 
 CSS: src/app/essays/history/the-nakba-visualized/the-nakba-visualized.css
 TSX: src/app/essays/history/the-nakba-visualized/page.tsx

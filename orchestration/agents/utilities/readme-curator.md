@@ -572,15 +572,36 @@ When invoking this agent:
 
 ### Essay Content Paths
 
-Essays are organized by topic category for discoverability and SEO:
+**Standard convention:** Every essay lives at `src/app/essays/{slug}/` which routes to `/essays/{slug}`. Some essays are organized into topic categories for SEO:
 
 | Path | Content Type | Examples |
 |------|--------------|----------|
-| `/essays/` | General essays (default) | Visual essays, interactive pieces |
-| `/essays/history/` | Historical narratives | Manhattan Project, Fentanyl Crisis |
-| `/essays/foundations/` | Writing instruction | How to Write a Hook, How to Write an Essay |
-| `/essays/visual/` | Visual-focused essays | Experimental visual formats |
-| `/essays/etymology/` | Word origin essays | The Word Robot, The Word Essay, Origin of Toy |
+| `/essays/{slug}` | Default (visual essays, interactive, general) | The Geography of Water Scarcity, Two Visions of Tomorrow |
+| `/essays/history/{slug}` | Historical narratives | Manhattan Project, Fentanyl Crisis |
+| `/essays/foundations/{slug}` | Writing instruction | How to Write a Hook, How to Write an Essay |
+| `/essays/etymology/{slug}` | Word origin essays | The Word Robot, The Word Essay, Origin of Toy |
+
+> **Note:** `/essays/visual/` is a **legacy path** that is being retired. New visual essays go to `/essays/{slug}` directly. Existing essays at `/essays/visual/` should be migrated to `/essays/{slug}/` with permanent redirects.
+
+### Standard Essay Directory Structure
+
+All essay assets (implementation, research, design, audits) are colocated in one directory:
+
+```
+src/app/essays/{slug}/
+├── page.tsx                    ← Next.js route
+├── {Name}Client.tsx|jsx        ← client component
+├── {slug}.css                  ← styles
+├── DESIGN-RESEARCH.md          ← design research (G4 output)
+├── G1-INTAKE.md                ← intake approval (G1 output)
+├── research/                   ← research package (G2 output)
+│   ├── CITATIONS.md
+│   ├── STATISTICS.md
+│   └── ...
+└── audits/                     ← audit reports (G6+ outputs)
+```
+
+The orchestration runner auto-derives the essay directory from `--slug`. See [`orchestration/runner/README.md`](../../runner/README.md).
 
 ### Etymology Path (`/essays/etymology/`)
 
@@ -673,9 +694,12 @@ Some agents produce research/documentation that must be implemented in code. Thi
 ---
 
 ## Last Updated
-December 2024
+February 2026
 
 ### Recent Changes
+- Updated Content Path Organization: `/essays/visual/` marked as legacy; standard convention is `/essays/{slug}/`
+- Added Standard Essay Directory Structure section documenting single-directory convention
+- Added runner cross-reference for auto-derived essay paths
 - Added `BIBLIOGRAPHY_STRUCTURE_GUIDE.md` to artifact patterns (Bibliography section structure, source categories, data sources, audio/video credits)
 - Added Bibliography Orchestrator to orchestrators (coordinates Citation Audit, Quotes Audit, Image Research agents; dual-mode: implementation + audit)
 - Added Artifact Patterns & Implementation Guides section documenting `docs/artifact-patterns-guide/` and agent→implementation handoff pattern

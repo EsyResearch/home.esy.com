@@ -100,7 +100,7 @@ const ArticleViewClient: React.FC<ArticleViewClientProps> = ({
     title: frontmatter.title,
     subtitle: frontmatter.subtitle || "A daily practice of sharing thoughts, experiments, and progress in AI",
     author: "Zev",
-    authorRole: "Founder, Esy",
+    authorRole: "Applied AI Engineer, Esy",
     date: frontmatter.date || "March 28, 2025",
     readTime: frontmatter.readTime || 8,
     category: type === 'experiment' ? 'Experiments' : 

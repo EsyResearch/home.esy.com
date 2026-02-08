@@ -168,12 +168,20 @@
 
 ## Audit Process
 
-### Phase 0: Spec Location & Loading
+### Phase 0: Document Location & Loading
 
-1. Locate spec file: `orchestration/skills/visual-essay-invocation/specs/{essay-slug}.md`
-2. Check for design research file: `{essay-slug}-design-research.md` (if exists)
-3. Load both files into analysis context
-4. If spec missing: **BLOCKING** — Cannot audit without spec
+1. Locate DESIGN-RESEARCH.md (**PRIMARY** design authority): `src/app/essays/{essay-slug}/DESIGN-RESEARCH.md`
+2. Locate invocation spec (**STRUCTURAL** authority): `orchestration/skills/visual-essay-invocation/specs/{essay-slug}.md`
+3. Locate implementation files:
+   - `src/app/essays/{essay-slug}/*Client.tsx` or `*Client.jsx` (main component)
+   - `src/app/essays/{essay-slug}/{essay-slug}.css` (styles)
+   - `src/app/essays/{essay-slug}/page.tsx` (Next.js page)
+4. If DESIGN-RESEARCH.md missing: **BLOCKING** — Cannot audit design fidelity without design authority
+5. If invocation spec missing: Proceed with DESIGN-RESEARCH.md only (reduced structural audit)
+
+**Two-Document Workflow**:
+- **DESIGN-RESEARCH.md** = HOW it should look (color tokens, typography, spacing, animations, layout patterns). This is the primary comparison target for visual fidelity.
+- **Invocation spec** = WHAT to build (narrative arc, visualizations, components, data requirements). This is the structural comparison target.
 
 ### Phase 1: Spec Parsing
 
@@ -257,6 +265,27 @@ For each spec requirement, verify implementation:
 | [behavior] | [spec] | [impl] | ✅/❌/⚠️ | [notes] |
 ```
 
+### Phase 3.5: Visualization Compliance (Data Journalism / Data-Heavy Essays)
+
+For essays with custom data visualizations, verify:
+
+1. **Palette compliance**: Every chart/map/diagram uses tokens from DESIGN-RESEARCH.md, not library defaults
+2. **Typography compliance**: All data labels, axis labels, legends, annotations use the essay's type system
+3. **Surface compliance**: Chart backgrounds, containers, and borders use essay surface tokens
+4. **Interaction compliance**: Hover states, tooltips, selected states use essay accent/interaction tokens
+5. **Responsive compliance**: Visualizations have mobile-specific adaptations per spec breakpoints
+6. **Accessibility compliance**: Colorblind-safe palettes, screen reader alt text, keyboard navigation
+
+**Visualization-specific checks:**
+
+| Visualization Type | Check | How to Verify |
+|--------------------|-------|---------------|
+| Choropleth/Map | Color scale uses essay tokens, not D3 defaults | Compare scale domain colors to DESIGN-RESEARCH.md |
+| Bar/Line Chart | Axis, grid, label colors match essay tokens | Grep CSS for chart-specific selectors |
+| Sankey/Flow | Stream colors derive from subject | Check fill values against Color Derivation Table |
+| Interactive Widget | Button/slider styling uses essay tokens | Compare interactive element styles to design system |
+| Data Ticker | Number animation uses essay accent color | Check countUp target color |
+
 ### Phase 4: Gap Analysis
 
 Categorize all findings:
@@ -266,25 +295,43 @@ Categorize all findings:
 3. **Major Deviation**: Noticeable difference requiring fix
 4. **Critical Deviation**: Fundamental mismatch, blocking issue
 5. **Unspecified**: Implementation choice not in spec (document rationale)
+6. **Intentional Departure**: Deviation documented with rationale — acceptable if the rationale is sound and the departure improves the essay. Flag for human review but do NOT auto-fail.
+
+**Intentional Departure Protocol**: If the implementation deviates from the spec in a way that appears deliberate and improves the output (e.g., spec says "bar chart" but implementation uses a more effective visualization), classify as "Intentional Departure" and document the rationale. The spec is authoritative but not infallible — sometimes the implementation discovers a better approach. The auditor flags it; the human decides.
 
 ### Phase 5: Report Generation
 
-Produce structured audit report with compliance score.
+Produce structured audit report with compliance score and YAML frontmatter header.
 
 ---
 
 ## Audit Report Template
 
 ```markdown
-# Design Implementation Audit Report
+---
+gate: G5.2
+type: audit
+status: PASS | CONDITIONAL | FAIL
+score: XX
+threshold: 85
+blocking_issues: 0
+warning_issues: 0
+agent: design-research-implementation-auditor
+date: YYYY-MM-DD
+essay: essay-slug
+---
+
+# Design Fidelity Audit Report
 
 ## Essay Audited
 - **Title**: [Essay name]
 - **Slug**: [essay-slug]
-- **Spec Path**: orchestration/skills/visual-essay-invocation/specs/[slug].md
+- **Design Research**: src/app/essays/[slug]/DESIGN-RESEARCH.md (PRIMARY)
+- **Invocation Spec**: orchestration/skills/visual-essay-invocation/specs/[slug].md (STRUCTURAL)
 - **Implementation Path**: src/app/essays/[slug]/
 - **Audit Date**: [Date]
 - **Auditor**: Design Research Implementation Audit Agent
+- **Essay Type**: [Narrative / Data Journalism / Historical / Conceptual]
 
 ## Executive Summary
 
@@ -299,6 +346,7 @@ Produce structured audit report with compliance score.
 | Spacing & Layout | X/10 | 🔴/🟡/🟢 |
 | Interactions & Animation | X/10 | 🔴/🟡/🟢 |
 | Component Structure | X/10 | 🔴/🟡/🟢 |
+| Data Visualization Fidelity | X/10 | 🔴/🟡/🟢 (data journalism only) |
 | **Overall Compliance** | **X%** | **Status** |
 
 ## Spec Requirement Summary
@@ -571,18 +619,51 @@ When working with this agent, reference the role by stating:
 
 ### Report Storage
 
-All design implementation audit reports are saved to:
+Design fidelity audit reports are saved to the essay directory:
 
 ```
-orchestration/audits/{essay-slug}-design-implementation-audit.md
+src/app/essays/{essay-slug}/research/G5.2-DESIGN-FIDELITY-AUDIT.md
 ```
+
+This follows the single-directory-per-essay standard. The report MUST include the YAML frontmatter header per the Gate Accountability Standard (`orchestration/standards/gate-accountability.md`).
+
+---
+
+## Gate Integration
+
+This agent is the assigned auditor for **G5.2: Design Fidelity Audit** in the visual essay pipeline.
+
+### Pipeline Position
+```
+G5 (Production) → G5.2 (THIS AGENT) → G5.5 (Bibliography) → G6 (Citations) → G7 (Scroll)
+```
+
+### G5.2 Contract Requirements
+- DESIGN-RESEARCH.md must exist (design source of truth)
+- `G5.2-DESIGN-FIDELITY-AUDIT.md` must be produced (audit report)
+- Audit report frontmatter must NOT contain `status: FAIL`
+- Threshold: 85% compliance score to pass
+
+### What This Gate Catches
+- CSS tokens that don't match DESIGN-RESEARCH.md specifications
+- Typography implementations that deviate from the type system
+- Color values that don't exist in the design palette
+- Missing responsive adaptations specified in the design research
+- Visualization implementations that don't follow the design system
+- Layout patterns that differ from what was specified
+
+### What This Gate Does NOT Catch (other gates handle)
+- Whether the design research itself is generic/derivative (G4.1 handles via reconciliation)
+- Whether the design is "AI slop" (G8 handles via slop audit)
+- Whether citations are correct (G6 handles)
+- Whether scroll interactions perform well (G7 handles)
 
 ---
 
 ## Last Updated
-December 2025
+February 2026
 
 ---
 
-*This agent specializes in systematic verification of visual essay implementations against their design specifications. It parses spec files to extract every typography, color, spacing, and interaction requirement, then compares each against the implemented code to identify deviations. Ideal for ensuring design research translates into production with 100% fidelity, maintaining design system consistency, and providing actionable fix recommendations when implementations diverge from spec. Works in the post-implementation phase before publication approval.*
+*This agent specializes in systematic verification of visual essay implementations against their design specifications. As the assigned auditor for G5.2 (Design Fidelity Audit), it compares every CSS token, typography setting, color value, spacing value, animation timing, and data visualization against DESIGN-RESEARCH.md (primary design authority) and the invocation spec (structural authority). For data journalism essays, it includes visualization compliance checks. The audit produces a structured report with YAML frontmatter per the Gate Accountability Standard. Works in the post-production QA phase, immediately after G5 (Content Complete).*
 

@@ -78,7 +78,7 @@ const HomePageClient: React.FC<HomePageClientProps> = ({
     title: "Building in public: Why I'm documenting everything",
     subtitle: "A daily practice of sharing thoughts, experiments, and progress in AI",
     author: "Zev Uhuru",
-    authorRole: "Founder, Esy",
+    authorRole: "Applied AI Engineer, Esy",
     date: "March 28, 2025",
     readTime: 5,
     category: "Journal",
