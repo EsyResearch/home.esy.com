@@ -16,6 +16,7 @@ Technical implementation agents for frontend development, design, and optimizati
 | [UI/UX Design](./ui-ux-design-expert.md) | Design | Interface design, typography, accessibility |
 | [Template Integration Engineer](./template-integration-engineer.md) | Integration | Raw templates → production Next.js pages |
 | [SEO Specialist](./seo-specialist-expert.md) | Search | Technical SEO, content optimization, SERP strategy |
+| [Data Visualization Architect](./data-visualization-architect-expert.md) | Data Viz | Choropleth maps, Sankey diagrams, interactive comparison widgets, D3/Recharts |
 
 ---
 
@@ -28,6 +29,7 @@ Technical implementation agents for frontend development, design, and optimizati
 | Styling | CSS Modules, Tailwind | UI/UX Design |
 | Animation | GSAP, CSS animations | Immersive Engineer, SVG Expert |
 | Graphics | Inline SVG | SVG Illustration |
+| Data Viz | D3, Recharts, TopoJSON | Data Visualization Architect |
 | SEO | Next.js Metadata, JSON-LD | SEO Specialist |
 
 ---
@@ -58,6 +60,7 @@ Technical implementation agents for frontend development, design, and optimizati
 | Design UI/UX | UI/UX Design |
 | Convert raw templates | Template Integration Engineer |
 | Optimize for search | SEO Specialist |
+| Architect data visualizations (choropleths, Sankey, etc.) | Data Visualization Architect |
 
 ---
 

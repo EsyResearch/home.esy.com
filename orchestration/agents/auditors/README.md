@@ -27,6 +27,7 @@ Quality verification and certification agents that ensure content meets Esy stan
 | [Accuracy Audit Agent](./accuracy-audit-agent.md) | **Scientific Claim Verification** | G6 (conceptual) | Accuracy Certification Report |
 | [Pedagogy Audit Agent](./pedagogy-audit-agent.md) | **Learning Effectiveness** | G6.5 (conceptual) | Pedagogy Certification Report |
 | [Diagram Clarity Auditor](./diagram-clarity-auditor.md) | **Diagram Comprehension** | G7 (conceptual) | Diagram Clarity Report |
+| [Data Accuracy Auditor](./data-accuracy-auditor.md) | **Data-to-Visual Fidelity** | G6.1 (data journalism) | Data Accuracy Report |
 
 ---
 
@@ -63,6 +64,7 @@ Quality verification and certification agents that ensure content meets Esy stan
 | **Verify scientific claims match sources** | Accuracy Audit Agent (G6 conceptual) |
 | **Verify learning sequence & misconceptions** | Pedagogy Audit Agent (G6.5 conceptual) |
 | **Verify diagram language consistency** | Diagram Clarity Auditor (G7 conceptual) |
+| **Verify data-to-visual fidelity** | Data Accuracy Auditor (G6.1 data journalism) |
 | **Comprehensive QA** | Use Meta Audit Orchestrator (orchestrators/) |
 
 ---

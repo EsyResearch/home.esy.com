@@ -12,11 +12,13 @@ Specialist agents focused on content creation, writing, and editorial work.
 | [Historian Editor](./historian-editor-expert.md) | Fact-Checking | Accuracy verification, Gate G3 |
 | [Essayist Expert](./essayist-expert.md) | Academic Writing | Essay structure & argumentation |
 | [Copywriter Marketing](./copywriter-marketing-expert.md) | Marketing Copy | Conversion-focused messaging |
+| [Data Journalist Writer](./data-journalist-writer-expert.md) | Data Journalism | Data-driven argumentative prose, visualization-integrated writing |
 
 ---
 
-## Content Pipeline
+## Content Pipelines
 
+### Historical/Etymology Pipeline
 ```
 Research & Citations (research/)
         │
@@ -34,6 +36,24 @@ Research & Citations (research/)
     Verified Content
 ```
 
+### Data Journalism Pipeline (Conceptual Orchestrator — Data Journalism Mode)
+```
+Research + DATASETS.md + STATISTICS.md
+        │
+        ▼
+┌────────────────────────────┐
+│  Data Journalist Writer   │ ← Data-driven argumentative prose
+└─────────┬──────────────────┘
+          │
+          ▼
+┌────────────────────────────┐
+│  Data Accuracy Auditor    │ ← G6.1: Data-to-visual fidelity
+└─────────┬──────────────────┘
+          │
+          ▼
+    Verified Data Essay
+```
+
 ---
 
 ## When to Use
@@ -44,12 +64,14 @@ Research & Citations (research/)
 | Fact-checking & verification | Historian Editor |
 | Academic essay guidance | Essayist Expert |
 | Marketing & conversion copy | Copywriter Marketing |
+| Data-driven argumentative essay | Data Journalist Writer |
 
 ---
 
 ## Collaboration
 
 - **Historian Writer + Editor** work as a pair (writer creates, editor verifies)
+- **Data Journalist Writer + Data Accuracy Auditor** work as a pair (writer creates data-integrated prose, auditor verifies data fidelity)
 - All content creators receive sources from **Research & Citations** (research/)
 
 ---

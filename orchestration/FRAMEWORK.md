@@ -412,14 +412,16 @@ orchestration/agents/
 │   ├── hydration-audit-agent.md      # SSR/client mismatch detection
 │   ├── content-audit-agent.md        # Word count, depth, tone
 │   ├── design-research-reconciliation-agent.md  # G4.1 Design authenticity
-│   └── design-research-integration-agent.md     # G5.2 CSS↔TSX binding
+│   ├── design-research-integration-agent.md     # G5.2 CSS↔TSX binding
+│   └── data-accuracy-auditor.md                 # G6.1 Data-to-visual fidelity
 │
 ├── content/                 # 📚 Content creation
 │   ├── historian-writer-expert.md
 │   ├── historian-editor-expert.md
 │   ├── childrens-books-writer-expert.md
 │   ├── essayist-expert.md
-│   └── copywriter-marketing-expert.md
+│   ├── copywriter-marketing-expert.md
+│   └── data-journalist-writer-expert.md   # Data journalism prose
 │
 ├── regional/                # 🌏 Regional specialists
 │   ├── burmese-historian-expert.md
@@ -429,6 +431,7 @@ orchestration/agents/
 │   ├── software-engineering-expert.md
 │   ├── immersive-experience-engineer.md
 │   ├── svg-illustration-animation-expert.md
+│   ├── data-visualization-architect-expert.md  # Choropleth, Sankey, data viz
 │   └── ... (additional agents)
 │
 └── utilities/               # 🔧 Support functions

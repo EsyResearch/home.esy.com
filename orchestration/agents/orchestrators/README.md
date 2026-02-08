@@ -22,7 +22,8 @@ Top-level agents that coordinate multiple specialist agents to produce complex d
 | Scenario | Agent |
 |----------|-------|
 | Historical/biographical visual essay | Visual Essay Orchestrator |
-| **Conceptual/educational visual essay** | Conceptual Essay Orchestrator |
+| **Conceptual/educational visual essay** | Conceptual Essay Orchestrator (default mode) |
+| **Data-driven argumentative essay** | Conceptual Essay Orchestrator (data journalism mode) |
 | Comprehensive quality audit | Meta Audit Orchestrator |
 | Fix issues found in audit (iterative) | QA Remediation Orchestrator |
 | New scrollytelling experience | Production Orchestrator |
@@ -46,7 +47,7 @@ Visual Essay Orchestrator (TOP)
     └── [Citation Audit, Scrolling Auditor, etc.]
 ```
 
-### Conceptual Essay Pipeline (Educational)
+### Conceptual Essay Pipeline (Educational — Default Mode)
 
 ```
 Conceptual Essay Orchestrator (TOP)
@@ -58,6 +59,25 @@ Conceptual Essay Orchestrator (TOP)
 │   └── [SVG Expert, Science Writer, etc.]
 └── Conceptual Audit Suite (Phase 6)
     ├── Accuracy Audit Agent (G6)
+    ├── Pedagogy Audit Agent (G6.5)
+    └── Diagram Clarity Auditor (G7)
+```
+
+### Conceptual Essay Pipeline (Data Journalism Mode)
+
+```
+Conceptual Essay Orchestrator (TOP) — mode: data_journalism
+├── Concept Research + Data Journalism Profile (Phase 2)
+│   └── CONCEPTS.md, CLAIMS.md + DATASETS.md, STATISTICS.md, COMPARISONS.md, PROJECTIONS.md
+├── Design Researcher (Phase 4 - Pedagogical Lens)
+│   └── Diagram language, data visualization blueprints
+├── Production Orchestrator (Phase 5)
+│   ├── Data Journalist Writer (prose)
+│   ├── Data Visualization Architect (choropleths, Sankey, comparisons)
+│   └── [SVG Expert, etc.]
+└── Conceptual Audit Suite (Phase 6)
+    ├── Accuracy Audit Agent (G6)
+    ├── Data Accuracy Auditor (G6.1) ← data-to-visual fidelity
     ├── Pedagogy Audit Agent (G6.5)
     └── Diagram Clarity Auditor (G7)
 ```

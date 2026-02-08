@@ -11,11 +11,11 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 ```
 agents/
 ├── orchestrators/     # 🎬 Top-level coordination (5 agents)
-├── auditors/          # 🔍 Quality verification (16 agents)
-├── content/           # 📚 Content creation (4 agents)
+├── auditors/          # 🔍 Quality verification (17 agents)
+├── content/           # 📚 Content creation (5 agents)
 ├── research/          # 🔬 Source discovery (4 agents)
 ├── regional/          # 🌏 Regional specialists (2 agents)
-├── engineering/       # ⚙️ Technical implementation (7 agents)
+├── engineering/       # ⚙️ Technical implementation (8 agents)
 └── utilities/         # 🔧 Support & enhancement (3 agents)
 ```
 
@@ -49,6 +49,7 @@ agents/
 | [Content Research Integration](#content-research-integration-agent) | **Spec→Artifact gap detection (G5.1)** | `@agents/auditors/content-research-integration-agent.md` |
 | [Design Research Reconciliation](#design-research-reconciliation-agent) | **Design authenticity + novelty (G4.1)** | `@agents/auditors/design-research-reconciliation-agent.md` |
 | [Design Research Integration](#design-research-integration-agent) | **CSS→TSX binding verification (G5.2)** | `@agents/auditors/design-research-integration-agent.md` |
+| [Data Accuracy Auditor](#data-accuracy-auditor) | **Data-to-visual fidelity (G6.1)** | `@agents/auditors/data-accuracy-auditor.md` |
 
 **Reports:** `auditors/CitationReports/` · `auditors/VisualAuditReports/`
 
@@ -59,6 +60,7 @@ agents/
 | [Historian Editor](#historian-editor-expert) | Fact-checking & verification | `@agents/content/historian-editor-expert.md` |
 | [Essayist](#essayist-expert) | Academic essay guidance | `@agents/content/essayist-expert.md` |
 | [Copywriter](#copywriter-marketing-expert) | Marketing & conversion copy | `@agents/content/copywriter-marketing-expert.md` |
+| [Data Journalist Writer](#data-journalist-writer-expert) | Data-driven argumentative prose | `@agents/content/data-journalist-writer-expert.md` |
 
 ### 🔬 Research
 | Agent | Best For | Invocation |
@@ -84,6 +86,7 @@ agents/
 | [UI/UX Designer](#uiux-design-expert) | Interface & experience design | `@agents/engineering/ui-ux-design-expert.md` |
 | [Template Integration](#template-integration-engineer) | Raw templates → Next.js pages | `@agents/engineering/template-integration-engineer.md` |
 | [SEO Specialist](#seo-specialist-expert) | Technical SEO, SERP strategy | `@agents/engineering/seo-specialist-expert.md` |
+| [Data Visualization Architect](#data-visualization-architect-expert) | Choropleth, Sankey, interactive data viz | `@agents/engineering/data-visualization-architect-expert.md` |
 
 ### 🔧 Utilities
 | Agent | Best For | Invocation |
@@ -1544,6 +1547,37 @@ CTA copy on this landing page for better conversion.
 
 ---
 
+### Data Journalist Writer Expert
+**File:** `content/data-journalist-writer-expert.md`
+
+**Role:** Expert data journalist and narrative nonfiction writer specializing in data-driven argumentative essays where prose and programmatic visualizations function as co-equal elements of a single argument.
+
+**Best For:**
+- Data-driven argumentative essays (water scarcity, climate, public health, economics)
+- Prose that integrates with interactive data visualizations
+- Statistical interpretation and systems decomposition
+- Inline citation with data source attribution
+- Visualization annotation prose (captions, insights, guided reading)
+
+**Collaboration:**
+- ← **Data Journalism Research Profile**: Receives DATASETS.md, STATISTICS.md, COMPARISONS.md
+- → **Data Visualization Architect**: Provides narrative context for visualizations
+- ← **Data Accuracy Auditor**: Verifies data claims in prose
+
+**Invocation Examples:**
+```
+# Write data journalism prose
+Using @agents/content/data-journalist-writer-expert.md, write the 
+narrative content for a visual essay about water scarcity, integrating 
+data from DATASETS.md and STATISTICS.md.
+
+# Write visualization annotations
+Using @agents/content/data-journalist-writer-expert.md, write guided 
+reading annotations for the choropleth map and Sankey diagram sections.
+```
+
+---
+
 ### SEO Specialist Expert
 **File:** `engineering/seo-specialist-expert.md`
 
@@ -1614,6 +1648,50 @@ and schema requirements.
 4. SERP analysis and feature capture strategies
 5. Link building strategy and opportunity lists
 6. Performance reports with actionable recommendations
+
+---
+
+### Data Visualization Architect Expert
+**File:** `engineering/data-visualization-architect-expert.md`
+
+**Role:** Expert data visualization engineer and architect specializing in translating complex datasets into interactive, programmatic visual representations within scroll-driven editorial experiences.
+
+**Best For:**
+- Choropleth map architecture (projections, TopoJSON, perceptually uniform color scales)
+- Sankey/alluvial flow diagram design and implementation
+- Interactive comparison widget architecture
+- Time-series visualizations with animated scrubbers
+- Scroll-locked data explainer sequences
+- Animated data tickers and statistics strips
+- D3.js and Recharts implementation within React
+- Data accuracy in visual encoding
+
+**Core Capabilities:**
+- **Geographic**: Map projections, TopoJSON rendering, spatial data encoding
+- **Flow**: Sankey diagrams, alluvial charts, proportional stream widths
+- **Comparison**: Side-by-side metric animation, country/entity selectors
+- **Temporal**: Time scrubbers, animated year transitions, projection overlays
+- **Annotation**: Chart legends, data labels, insight callouts
+- **Performance**: GPU-accelerated transitions, mobile-adaptive chart simplification
+
+**Collaboration:**
+- ← **Data Journalist Writer**: Receives narrative context for what each visualization must argue
+- ← **Conceptual Essay SKILL.md (Layer 4b)**: Receives visualization specs
+- → **Data Accuracy Auditor**: Provides implementations for verification
+- → **SVG Illustration & Animation Expert**: Coordinates on non-data visual elements
+
+**Invocation Examples:**
+```
+# Architect a choropleth map
+Using @agents/engineering/data-visualization-architect-expert.md, 
+architect an interactive choropleth map of global water stress with 
+time scrubber (2000-2040), hover details, and animated transitions.
+
+# Design a Sankey diagram
+Using @agents/engineering/data-visualization-architect-expert.md, 
+design a proportional flow diagram showing global freshwater allocation 
+(agriculture/industrial/domestic) with scroll-triggered progressive build.
+```
 
 ---
 
@@ -1876,6 +1954,43 @@ Essay: [essay-slug]
 - Integrates with `meta-audit-orchestrator.md` for comprehensive QA
 
 **Reference:** [auditors/README.md](./auditors/README.md) — Full pipeline diagram and gate details
+
+---
+
+### Data Accuracy Auditor
+**File:** `auditors/data-accuracy-auditor.md`
+
+**Role:** Expert data verification specialist ensuring that programmatic data visualizations faithfully represent their source datasets — verifying numeric accuracy, visual encoding integrity, and projection labeling.
+
+**🔢 DATA FIDELITY:** This agent verifies data-to-visual fidelity, distinct from text-claim verification (which is handled by the Accuracy Audit Agent). Owns **G6.1** in the Conceptual Essay Orchestrator's Data Journalism mode.
+
+**Key Capabilities:**
+- **Numeric Verification**: Source value → rendered value match for every data point
+- **Visual Encoding Integrity**: Color scales, bar heights, stream widths faithfully represent proportions
+- **Projection Verification**: Map projections don't distort perception (Mercator area bias, etc.)
+- **Color Scale Audit**: Perceptually uniform, colorblind-safe, no rainbow encoding
+- **Comparison Fairness**: Side-by-side comparisons use identical scales and baselines
+- **Time-Series Integrity**: Correct interpolation between data points, properly labeled projections vs. historical
+- **Annotation Accuracy**: Chart labels, legends, and callout statistics match underlying data
+
+**Gate Owned:** G6.1 (Data Integrity Audit) — Conceptual Essay Orchestrator, Data Journalism mode
+
+**Invocation Examples:**
+```
+# Full data accuracy audit
+Using @agents/auditors/data-accuracy-auditor.md, audit data-to-visual 
+fidelity for the water scarcity essay. Verify all choropleth values, 
+Sankey proportions, and comparison widget metrics against DATASETS.md.
+
+# Targeted chart audit
+Using @agents/auditors/data-accuracy-auditor.md, verify the color 
+scale encoding and projection accuracy for the water stress choropleth map.
+```
+
+**Collaboration:**
+- ← **Data Visualization Architect**: Provides implementations to verify
+- ← **Data Journalism Research Profile**: DATASETS.md, STATISTICS.md as source of truth
+- → **Conceptual Essay Orchestrator**: Reports G6.1 pass/fail
 
 ---
 
