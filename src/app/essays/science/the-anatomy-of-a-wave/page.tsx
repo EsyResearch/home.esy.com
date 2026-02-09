@@ -40,6 +40,7 @@ const ESSAY_META = {
     'Tonomura et al. (1989)',
     'Griffiths (2018)',
   ],
+  citationFirst: false,
 };
 
 export const metadata = createVisualEssayMetadata({

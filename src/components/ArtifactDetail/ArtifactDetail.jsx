@@ -41,6 +41,7 @@ import './artifact-detail.css';
  * @property {Array<{name: string, color: string}>} [palette]
  * @property {Array<{name: string, type: string}>} [visualizations]
  * @property {string[]} [keySources]
+ * @property {boolean} [citationFirst=false] - Whether the essay was written citation-first (all claims sourced before prose)
  */
 
 /* ─── Category Colors ────────────────────────────────────────── */
@@ -257,6 +258,16 @@ export default function ArtifactDetailWrapper({ meta, children }) {
               <div className="ad-spec__card">
                 <div className="ad-spec__card-label">Source Quality</div>
                 <div className="ad-spec__card-value">{meta.sourceCount} {meta.sourceTier}</div>
+              </div>
+              <div className="ad-spec__card">
+                <div className="ad-spec__card-label">Citation-First</div>
+                <div className="ad-spec__card-value ad-spec__card-value--bool">
+                  {meta.citationFirst ? (
+                    <span className="ad-spec__bool ad-spec__bool--yes">Yes</span>
+                  ) : (
+                    <span className="ad-spec__bool ad-spec__bool--no">No</span>
+                  )}
+                </div>
               </div>
             </div>
 

@@ -369,6 +369,23 @@
   color: var(--color-text, #ffffff);
 }
 
+.ad-spec__bool {
+  display: inline-block;
+  padding: 0.15em 0.55em;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.ad-spec__bool--yes {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10B981;
+}
+.ad-spec__bool--no {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.45);
+}
+
 /* Spec Sections */
 .ad-spec__section {
   margin-bottom: 16px;

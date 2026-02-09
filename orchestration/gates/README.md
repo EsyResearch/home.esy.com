@@ -33,6 +33,7 @@ Other paths are resolved relative to `artifact_path`.
 | `G4.5.contract.json` | Image Sourcing | Production | Validates image audit/sourcing artifact |
 | `G5.contract.json` | Content Complete | Production | Validates page.tsx and CSS implementation |
 | `G5.2.contract.json` | Design Research Integration | Production | Validates CSS↔TSX binding prerequisites |
+| `G5.3.contract.json` | Diagram-Code Reconciliation | Production | Validates `@diagram-contract` invariants match code behavior |
 | `G5.5.contract.json` | Bibliography Implementation | Production | Validates bibliography audit report |
 | `G6.contract.json` | Citation Audit | Audit | Validates citation audit report |
 | `G7.contract.json` | Scroll Certification | Audit | Validates scroll certification report |

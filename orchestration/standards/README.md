@@ -12,6 +12,7 @@
 | [pipeline-execution-standard.md](./pipeline-execution-standard.md) | How to run workflows. Defines three execution models (single-session, isolated, API-driven), phased maturity path, and the standard operating procedure. Includes gate sequence table and anti-patterns. | Active |
 | [visual-essay-engineering-standard.md](./visual-essay-engineering-standard.md) | Mandatory engineering patterns for shipping visual essays. Page structure (`page.tsx` + Client + CSS), `ArtifactDetailWrapper` requirement, `visualEssays.ts` registration, category-based routing, CSP for Three.js, OG image pipeline via R2. Born from "Inside a Black Hole" production corrections. | Active |
 | [visualization-quality-standard.md](./visualization-quality-standard.md) | Why every non-trivial visualization needs a research brief before production. Defines the two-phase audit model (research integrity + comprehension test), visualization taxonomy (Tier 1-4), structured deliverable format, anti-pattern blacklist, and pipeline integration for G4.V. Born from the "Inside a Black Hole" lesson. | Active |
+| [diagram-code-contract.md](./diagram-code-contract.md) | **Diagram-code reconciliation standard for visualizations.** Defines the `@diagram-contract` JSDoc annotation format for declaring diagram invariants (direction, labels, scale, domain rules). Requires every visualization function to carry a contract block. Audited at G5.3 by the Diagram-Code Reconciliation Auditor. Supports multiple domains (wave-mechanics, quantum-mechanics, economics, demographics, chronology). Born from the "Anatomy of a Wave" direction arrow bug. | Active |
 
 ## Philosophy
 
@@ -33,6 +34,7 @@ Standards are developed reactively — as problems surface during real pipeline 
 - All audit artifacts MUST use structured YAML frontmatter headers
 - All intake forms and G1 artifacts MUST comply with the Intake Quality Principles (5-signal maximum)
 - All non-trivial visualizations MUST have a research brief per the Visualization Quality Standard before production
+- All visualization functions MUST carry a `@diagram-contract` annotation per the [Diagram-Code Contract Standard](./diagram-code-contract.md). Missing contracts are an automatic G5.3 FAIL.
 - All templates MUST declare a source acquisition model per the Citation-First Source Standard
 - All visual essays MUST follow the [Visual Essay Engineering Standard](./visual-essay-engineering-standard.md) for page structure, wrappers, routing, and deployment
 - Compliance is verified at G8 (Publication Certification) for each run

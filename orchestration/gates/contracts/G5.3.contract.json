@@ -1,0 +1,66 @@
+{
+  "gate": "G5.3",
+  "name": "Diagram-Code Reconciliation",
+  "blocking": true,
+  "description": "Verifies that every visualization's annotations (labels, arrows, text) are semantically consistent with the code behavior (math formulas, animation direction, scale). Parses @diagram-contract blocks from the client component, applies domain-specific verification rules, and produces a per-invariant PASS/FAIL audit.",
+  "required_outputs": {
+    "all_of": [
+      {
+        "path": "{client_component}",
+        "description": "Client component must contain @diagram-contract blocks for every visualization function",
+        "required": true
+      }
+    ],
+    "any_of": [
+      {
+        "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+        "description": "Diagram-code reconciliation report with per-invariant results"
+      },
+      {
+        "path": "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+        "description": "Diagram-code reconciliation report (essay root level)"
+      }
+    ]
+  },
+  "validations": [
+    {
+      "type": "contract_coverage",
+      "description": "Every visualization function (D1, D2, ...) must have a corresponding @diagram-contract block"
+    },
+    {
+      "type": "file_exists",
+      "target": "any_of",
+      "description": "Diagram-code reconciliation report must exist"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "pattern": "status: FAIL",
+      "severity": "error",
+      "description": "Diagram-code reconciliation must not have FAIL status"
+    }
+  ],
+  "verification_rules": [
+    {
+      "rule": "direction_consistency",
+      "description": "For PROPAGATION_DIRECTION invariants: verify arrow geometry matches declared direction, and phase formula sign matches propagation direction (sin(kx - ωt) = +x, sin(kx + ωt) = -x)"
+    },
+    {
+      "rule": "amplitude_scale_consistency",
+      "description": "For AMPLITUDE_SYMMETRY invariants: verify labels span equilibrium→peak (not peak-to-peak), and crest/trough are symmetric about equilibrium"
+    },
+    {
+      "rule": "label_position_accuracy",
+      "description": "For LABEL_POSITION_ACCURACY invariants: verify crest labels at sin() max, trough labels at sin() min, node labels at zero displacement"
+    },
+    {
+      "rule": "longitudinal_phase",
+      "description": "For longitudinal waves: verify compression labels align with regions of maximum particle density, rarefaction with minimum density"
+    },
+    {
+      "rule": "probability_normalization",
+      "description": "For quantum-mechanics domain: verify probability density is non-negative (|ψ|² used, not raw ψ)"
+    }
+  ],
+  "notes": "G5.3 is the diagram-code reconciliation gate. It sits between Design Fidelity (G5.2) and Bibliography (G5.5). The Diagram-Code Reconciliation Auditor reads the client component code (not rendered output) and verifies annotations match behavior. See orchestration/standards/diagram-code-contract.md for the full specification."
+}

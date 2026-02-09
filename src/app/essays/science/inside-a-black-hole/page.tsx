@@ -40,6 +40,7 @@ const ESSAY_META = {
     'EHT Collaboration (2019)',
     'Schwarzschild (1916)',
   ],
+  citationFirst: false,
 };
 
 const jsonLd = {

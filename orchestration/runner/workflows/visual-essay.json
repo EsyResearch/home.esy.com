@@ -1,7 +1,7 @@
 {
   "workflow": "visual-essay",
   "version": "local-dev",
-  "description": "Visual Essay production pipeline — 13 gates from intake to publication",
+  "description": "Visual Essay production pipeline — 14 gates from intake to publication",
   "gates": [
     {
       "gate": "G1",
@@ -73,6 +73,15 @@
       "contract": "orchestration/gates/contracts/G5.2.contract.json",
       "prompt_template": "G5.2",
       "description": "Audits implementation against DESIGN-RESEARCH.md — CSS tokens, typography, colors, visualizations, interactions",
+      "phase": "Production"
+    },
+    {
+      "gate": "G5.3",
+      "name": "Diagram-Code Reconciliation",
+      "agent": "diagram-code-reconciliation-auditor",
+      "contract": "orchestration/gates/contracts/G5.3.contract.json",
+      "prompt_template": "G5.3",
+      "description": "Reconciles diagram annotations with code behavior — direction arrows, scale labels, math formulas",
       "phase": "Production"
     },
     {

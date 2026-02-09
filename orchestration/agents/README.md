@@ -50,6 +50,7 @@ agents/
 | [Content Research Integration](#content-research-integration-agent) | **Spec→Artifact gap detection (G5.1)** | `@agents/auditors/content-research-integration-agent.md` |
 | [Design Research Reconciliation](#design-research-reconciliation-agent) | **Design authenticity + novelty (G4.1)** | `@agents/auditors/design-research-reconciliation-agent.md` |
 | [Design Research Implementation Auditor](#design-research-implementation-auditor) | **Design fidelity audit (G5.2)** | `@agents/auditors/design-research-implementation-auditor.md` |
+| [Diagram-Code Reconciliation Auditor](#diagram-code-reconciliation-auditor) | **Diagram↔code reconciliation (G5.3)** | `@agents/auditors/diagram-code-reconciliation-auditor.md` |
 | [Spec Compliance Auditor](#spec-compliance-auditor) | **Spec vs output verification** | `@agents/auditors/spec-compliance-auditor.md` |
 | [Content Audit Agent](#content-audit-agent) | **Content quality, word count, tone** | `@agents/auditors/content-audit-agent.md` |
 | [Accuracy Audit Agent](#accuracy-audit-agent) | **Scientific claim verification (G6)** | `@agents/auditors/accuracy-audit-agent.md` |
@@ -2000,6 +2001,46 @@ scale encoding and projection accuracy for the water stress choropleth map.
 - ← **Data Visualization Architect**: Provides implementations to verify
 - ← **Data Journalism Research Profile**: DATASETS.md, STATISTICS.md as source of truth
 - → **Conceptual Essay Orchestrator**: Reports G6.1 pass/fail
+
+---
+
+### Diagram-Code Reconciliation Auditor
+**File:** `auditors/diagram-code-reconciliation-auditor.md`
+
+**Role:** Expert visualization semantics auditor verifying that diagram annotations (labels, arrows, text) are logically consistent with code behavior (math formulas, animation direction, scale).
+
+**🔬 DIAGRAM↔CODE RECONCILIATION:** This agent reads `@diagram-contract` JSDoc blocks on visualization functions and performs static code analysis to catch diagram-code mismatches — e.g., a direction arrow pointing right while the animation formula moves left. Owns **G5.3** in the production pipeline.
+
+**Key Capabilities:**
+- **Phase Formula Direction Analysis**: Verifies `sin(kx - ωt)` → rightward, `sin(kx + ωt)` → leftward
+- **Label Position Verification**: Crest/trough/node/antinode labels match mathematical extrema
+- **Scale/Symmetry Checks**: Amplitude annotations span equilibrium→peak, not peak-to-peak
+- **Superposition Verification**: Sum wave uses addition, not multiplication or max
+- **Quantum Domain Rules**: Probability density non-negative (|ψ|²)
+- **Cross-Domain Support**: Works for economics (trend arrows), demographics (bar charts), chronology (timelines), not just physics
+
+**Gate Owned:** G5.3 (Diagram-Code Reconciliation) — all essay pipelines with visualizations
+
+**Invocation Examples:**
+```
+# Standard G5.3 audit
+Using @agents/auditors/diagram-code-reconciliation-auditor.md, reconcile diagrams for:
+Client Component: src/app/essays/science/the-anatomy-of-a-wave/TheAnatomyOfAWaveClient.jsx
+Parse all @diagram-contract blocks and verify every invariant.
+
+# Post-hoc audit on existing essay
+Using @agents/auditors/diagram-code-reconciliation-auditor.md, reconcile diagrams for:
+Client Component: src/app/essays/science/inside-a-black-hole/InsideABlackHoleClient.jsx
+Note: May need to propose @diagram-contract blocks first.
+```
+
+**Collaboration:**
+- ← **Design Research Implementation Auditor** (G5.2): Runs before G5.3
+- → **Bibliography Orchestrator** (G5.5): Runs after G5.3
+- ← **Visualization Research Agent** (G4.V): Research informs invariant declarations
+- ← **SVG Illustration & Animation Expert**: May fix flagged issues
+
+**Origin:** Created after a diagram-code mismatch in "The Anatomy of a Wave" — direction arrow pointed right, but `sin(kx + ωt)` animated left.
 
 ---
 

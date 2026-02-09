@@ -44,6 +44,30 @@ function usePrefersReducedMotion() {
    D1 — Ocean Wave Anatomy (SVG)
    Interactive SVG showing amplitude, wavelength, crest, trough.
    ═══════════════════════════════════════════════════════════════ */
+/**
+ * @diagram-contract
+ * @diagram D1-ocean-wave-anatomy
+ * @domain wave-mechanics
+ *
+ * @invariant PROPAGATION_DIRECTION +x
+ *   arrow_label: "wave direction" points +x (rightward)
+ *   phase_formula: sin(kx - ωt) — phase subtracted for +x propagation
+ *   validation: as phase increments, crest x-position increases between frames
+ *
+ * @invariant AMPLITUDE_SYMMETRY
+ *   crest_y: midY - amp (above equilibrium)
+ *   trough_y: midY + amp (below equilibrium)
+ *   label: "amplitude" arrow spans equilibrium (midY) → crest (midY - amp)
+ *
+ * @invariant WAVELENGTH_SPAN
+ *   label: "λ (wavelength)" bracket spans x=0 to x=wl (one full cycle)
+ *   code: bracket endpoints at x1=0, x2=wl
+ *
+ * @invariant LABEL_POSITION_ACCURACY
+ *   "crest" circle + label at (wl/4, midY - amp) — sin() maximum
+ *   "trough" circle + label at (wl*0.75, midY + amp) — sin() minimum
+ *   "equilibrium" text at y=midY — zero displacement line
+ */
 function OceanWaveAnatomy({ visible }) {
   const svgRef = useRef(null);
   const animRef = useRef(null);
@@ -61,16 +85,33 @@ function OceanWaveAnatomy({ visible }) {
     if (!svg) return;
 
     let phase = 0;
+    let _devAsserted = false;
+    let _devPrevCrestX = null;
+
     const draw = () => {
       phase += 0.012;
       const wavePath = svg.querySelector('.wave-ocean-path');
       if (!wavePath) return;
       let d = `M 0 ${midY}`;
+      let crestX = 0, crestY = Infinity;
       for (let x = 0; x <= W; x += 2) {
-        const y = midY - amp * Math.sin((2 * Math.PI * x) / wl + phase);
+        const y = midY - amp * Math.sin((2 * Math.PI * x) / wl - phase);
         d += ` L ${x} ${y}`;
+        if (y < crestY) { crestY = y; crestX = x; }
       }
       wavePath.setAttribute('d', d);
+
+      /* ── Runtime diagram-contract assertion (D1, PROPAGATION_DIRECTION) ── */
+      if (process.env.NODE_ENV === 'development' && !_devAsserted && _devPrevCrestX !== null) {
+        const delta = crestX - _devPrevCrestX;
+        // Allow wrapping (crest exits right, re-enters left) — only flag if consistently negative
+        if (delta < -1 && crestX > 10 && _devPrevCrestX < W - 10) {
+          console.warn('[D1 Diagram Contract] PROPAGATION_DIRECTION violation: crest moved -x (left) but arrow indicates +x (right). Check phase formula sign.');
+        }
+        _devAsserted = true;
+      }
+      _devPrevCrestX = crestX;
+
       animRef.current = requestAnimationFrame(draw);
     };
     draw();
@@ -139,6 +180,28 @@ function OceanWaveAnatomy({ visible }) {
    D2 — Sound Pressure (SVG + animation)
    Longitudinal wave: compressions and rarefactions.
    ═══════════════════════════════════════════════════════════════ */
+/**
+ * @diagram-contract
+ * @diagram D2-sound-pressure
+ * @domain wave-mechanics
+ *
+ * @invariant LONGITUDINAL_MOTION
+ *   particle_oscillation: parallel to wave propagation direction (+x)
+ *   displacement_formula: ampX * sin(2π·i/20 - phase) — particles move along x-axis
+ *
+ * @invariant COMPRESSION_LABEL_ACCURACY
+ *   "compression" label placed at regions of maximum particle density
+ *   compression_condition: cos(2π·i/20 - phase) > 0 → particles bunched together
+ *
+ * @invariant RAREFACTION_LABEL_ACCURACY
+ *   "rarefaction" label placed at regions of minimum particle density
+ *   rarefaction_condition: cos(2π·i/20 - phase) < 0 → particles spread apart
+ *   rarefaction is half-cycle (10 indices) from compression
+ *
+ * @invariant DENSITY_VISUAL_ENCODING
+ *   particle_size: larger in compression regions (dotR + max(0, compression) * 2)
+ *   particle_opacity: brighter in compression regions (0.3 + 0.7 * max(0, compression))
+ */
 function SoundPressure({ visible }) {
   const canvasRef = useRef(null);
   const animRef = useRef(null);
@@ -217,6 +280,23 @@ function SoundPressure({ visible }) {
    D3 — Light Spectrum (CSS)
    Electromagnetic spectrum with wavelength labels.
    ═══════════════════════════════════════════════════════════════ */
+/**
+ * @diagram-contract
+ * @diagram D3-light-spectrum
+ * @domain electromagnetism
+ *
+ * @invariant WAVELENGTH_ORDER
+ *   spectrum ordered left-to-right: long wavelength (Radio) → short wavelength (Gamma)
+ *   visible band: Red (700nm) → Violet (380nm) left-to-right within visible range
+ *
+ * @invariant WAVELENGTH_VALUES
+ *   Red ≈ 700nm, Orange ≈ 600nm, Yellow ≈ 580nm, Green ≈ 520nm, Blue ≈ 470nm, Violet ≈ 380nm
+ *   all values within accepted physics ranges (±10nm)
+ *
+ * @invariant LABEL_POSITION_ACCURACY
+ *   band labels ordered by decreasing wavelength (Red first, Violet last)
+ *   each label positioned proportionally within the visible strip
+ */
 function LightSpectrum() {
   const bands = [
     { label: 'Radio', nm: '>1m', pos: '0%' },
@@ -255,6 +335,29 @@ function LightSpectrum() {
    D4 — Superposition Playground (Canvas)
    Two waves combine — adjust frequency & amplitude.
    ═══════════════════════════════════════════════════════════════ */
+/**
+ * @diagram-contract
+ * @diagram D4-superposition-playground
+ * @domain wave-mechanics
+ *
+ * @invariant SUPERPOSITION_PRINCIPLE
+ *   sum_wave: y_sum(x,t) = y_A(x,t) + y_B(x,t) at every x
+ *   code: thirdH*2.5 - (y1 + y2) where y1, y2 are individual displacements
+ *
+ * @invariant CONSTRUCTIVE_INTERFERENCE
+ *   when freq1 == freq2 and amp1 == amp2: sum amplitude ≈ 2 × individual amplitude
+ *
+ * @invariant WAVE_INDEPENDENCE
+ *   Wave A rendered independently in top third (thirdH * 0.5)
+ *   Wave B rendered independently in middle third (thirdH * 1.5)
+ *   Sum rendered in bottom third (thirdH * 2.5)
+ *   individual waves unaffected by each other's parameters
+ *
+ * @invariant SLIDER_LABEL_ACCURACY
+ *   "A freq" slider controls freq1 (Wave A frequency)
+ *   "B freq" slider controls freq2 (Wave B frequency)
+ *   displayed value matches state variable to 1 decimal
+ */
 function SuperpositionPlayground({ visible }) {
   const canvasRef = useRef(null);
   const animRef = useRef(null);
@@ -383,6 +486,30 @@ function SuperpositionPlayground({ visible }) {
    D5 — Ripple Tank (Canvas)
    Two-source interference pattern.
    ═══════════════════════════════════════════════════════════════ */
+/**
+ * @diagram-contract
+ * @diagram D5-ripple-tank
+ * @domain wave-mechanics
+ *
+ * @invariant TWO_SOURCE_INTERFERENCE
+ *   sum: v = v1 + v2 where v1, v2 are individual source contributions
+ *   constructive: bright where v1 + v2 > 0 (crests aligned)
+ *   destructive: dark where v1 + v2 ≈ 0 (crest meets trough)
+ *
+ * @invariant CIRCULAR_WAVEFRONTS
+ *   each source emits circular waves: distance = sqrt((px-sx)² + (py-sy)²)
+ *   phase determined by distance from source (not angle)
+ *
+ * @invariant SOURCE_LABEL_ACCURACY
+ *   "S1" label at source 1 position (W*0.35, H*0.5)
+ *   "S2" label at source 2 position (W*0.65, H*0.5)
+ *   both sources emit at identical frequency and phase
+ *
+ * @invariant COLOR_ENCODING
+ *   positive sum (constructive) → blue/bright
+ *   negative sum (destructive) → dark
+ *   zero sum → intermediate
+ */
 function RippleTank({ visible }) {
   const canvasRef = useRef(null);
   const animRef = useRef(null);
@@ -472,6 +599,38 @@ function RippleTank({ visible }) {
    D6 — Standing Wave Builder (SVG)
    Select harmonic number (1-6), nodes/antinodes labeled.
    ═══════════════════════════════════════════════════════════════ */
+/**
+ * @diagram-contract
+ * @diagram D6-standing-wave-builder
+ * @domain wave-mechanics
+ *
+ * @invariant NODE_COUNT
+ *   harmonic n has exactly (n + 1) nodes (including both fixed endpoints)
+ *   code: loop i = 0..harmonic → (harmonic + 1) nodes
+ *
+ * @invariant ANTINODE_COUNT
+ *   harmonic n has exactly n antinodes
+ *   code: loop i = 0..(harmonic-1) → harmonic antinodes
+ *
+ * @invariant NODE_POSITIONS
+ *   nodes at x = padX + (i/n) * strLen for i = 0..n
+ *   nodes are points of zero displacement: sin(nπ · i/n) = 0 ✓
+ *   "N" labels placed at node positions along equilibrium line (midY)
+ *
+ * @invariant ANTINODE_POSITIONS
+ *   antinodes at x = padX + ((i+0.5)/n) * strLen for i = 0..(n-1)
+ *   antinodes are points of maximum displacement: sin(nπ · (i+0.5)/n) = ±1
+ *   "A" labels placed at antinode positions above wave
+ *
+ * @invariant FIXED_ENDPOINTS
+ *   both endpoints (x=padX, x=padX+strLen) are nodes with zero displacement
+ *   visual: wall/bracket rectangles at both ends
+ *
+ * @invariant STANDING_WAVE_ENVELOPE
+ *   envelope: amplitude modulated by sin(ωt) — entire pattern oscillates in unison
+ *   spatial shape: sin(nπ · x/L) — unchanged between frames
+ *   no traveling component — pattern does not translate left or right
+ */
 function StandingWaveBuilder({ visible }) {
   const [harmonic, setHarmonic] = useState(1);
   const svgRef = useRef(null);
@@ -582,6 +741,34 @@ function StandingWaveBuilder({ visible }) {
    D7 — Double-Slit Experiment (Canvas)
    Scroll-triggered: shows single-electron buildup.
    ═══════════════════════════════════════════════════════════════ */
+/**
+ * @diagram-contract
+ * @diagram D7-double-slit-experiment
+ * @domain quantum-mechanics
+ *
+ * @invariant INTERFERENCE_PATTERN
+ *   probability: P(θ) ∝ cos²(πd·sinθ/λ) · sinc²(πa·sinθ/λ)
+ *   pattern: alternating bright/dark bands on detector screen
+ *   accumulation: pattern emerges statistically from many individual detections
+ *
+ * @invariant SINGLE_PARTICLE_DETECTION
+ *   each electron lands as a single point (particle behavior)
+ *   pattern only visible after many (>100) detections (wave behavior)
+ *   counter label "electrons: N" tracks accumulated detections
+ *
+ * @invariant BARRIER_GEOMETRY
+ *   two slits in barrier (not one, not three)
+ *   "slit 1" and "slit 2" labels positioned at slit openings
+ *   barrier blocks all paths except through the two slits
+ *
+ * @invariant PROBABILITY_NON_NEGATIVE
+ *   rejection sampling ensures all dot positions are physically valid
+ *   probability distribution P ≥ 0 everywhere (cos² · sinc² ≥ 0 ✓)
+ *
+ * @invariant DETECTOR_POSITION
+ *   "detector" label and detection dots on the right side of barrier
+ *   electrons travel left → right (source → barrier → detector)
+ */
 function DoubleSlit({ visible }) {
   const canvasRef = useRef(null);
   const animRef = useRef(null);

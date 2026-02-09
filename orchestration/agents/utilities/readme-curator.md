@@ -717,6 +717,11 @@ February 2026
 - Documented dual-role agent pattern (agents that handle both audit AND execution in one)
 - Added QA Remediation Orchestrator to documentation routing rules
 - Clarified multi-document update requirements for new orchestrators
+- Added G5.3 (Diagram-Code Reconciliation) to pipeline documentation — new gate, agent, standard, contract, checklist
+- Added `diagram-code-reconciliation-auditor.md` routing rules (auditors category, G5.3 ownership)
+- Added `diagram-code-contract.md` to standards index
+- Added `G5.3.contract.json` to gates index
+- Renamed from "Physics Coherence" to "Diagram-Code Reconciliation" for domain-agnosticism
 - Added creation date header
 - Updated Documentation Hierarchy to reflect current structure
 - Added FRAMEWORK.md and INVOCATION-GUIDE.md to system level

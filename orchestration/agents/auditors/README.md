@@ -24,6 +24,7 @@ Quality verification and certification agents that ensure content meets Esy stan
 | [Content Research Integration Agent](./content-research-integration-agent.md) | **Spec→Artifact Verification** | G5.1 | Integration Report, Implementation Hints |
 | [Design Research Reconciliation Agent](./design-research-reconciliation-agent.md) | **Design Authenticity Verification** | G4.1 | Reconciliation Report, Collision Detection |
 | [Design Research Implementation Auditor](./design-research-implementation-auditor.md) | **Design Fidelity Audit** | G5.2 | Design Fidelity Audit Report, Compliance Scores |
+| [Diagram-Code Reconciliation Auditor](./diagram-code-reconciliation-auditor.md) | **Diagram↔Code Reconciliation** | G5.3 | Diagram-Code Reconciliation Report |
 | [Accuracy Audit Agent](./accuracy-audit-agent.md) | **Scientific Claim Verification** | G6 (conceptual) | Accuracy Certification Report |
 | [Pedagogy Audit Agent](./pedagogy-audit-agent.md) | **Learning Effectiveness** | G6.5 (conceptual) | Pedagogy Certification Report |
 | [Diagram Clarity Auditor](./diagram-clarity-auditor.md) | **Diagram Comprehension** | G7 (conceptual) | Diagram Clarity Report |
@@ -62,6 +63,8 @@ Quality verification and certification agents that ensure content meets Esy stan
 | **Verify spec implemented in artifact** | Content Research Integration Agent (G5.1) |
 | **Verify design is authentic & novel** | Design Research Reconciliation Agent (G4.1) |
 | **Verify CSS binds to TSX classNames** | Design Research Integration Agent (G5.2) |
+| **Verify diagram annotations match code behavior** | Diagram-Code Reconciliation Auditor (G5.3) |
+| **Catch direction/label/formula diagram-code mismatches** | Diagram-Code Reconciliation Auditor (G5.3) |
 | **Verify scientific claims match sources** | Accuracy Audit Agent (G6 conceptual) |
 | **Verify learning sequence & misconceptions** | Pedagogy Audit Agent (G6.5 conceptual) |
 | **Verify diagram language consistency** | Diagram Clarity Auditor (G7 conceptual) |
@@ -139,6 +142,16 @@ Quality verification and certification agents that ensure content meets Esy stan
 └─────────────────────────────────────────────────────────────────┘
                               │
                               ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  G5.3: DIAGRAM-CODE RECONCILIATION (NEW)                         │
+│  ► Reconciles @diagram-contract annotations with code behavior   │
+│  ► Direction arrows match formula propagation direction          │
+│  ► Label positions match mathematical extrema                    │
+│  ► Scale/symmetry invariants verified from source code           │
+│  ► Catches wave-direction-style diagram-code mismatches          │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
 Meta Audit Orchestrator (Post-Implementation)
 ├── Bibliography Orchestrator (G5.5)
 ├── Scrolling Auditor (G6)
@@ -171,7 +184,8 @@ Meta Audit Orchestrator (Post-Implementation)
 | **G5 (Implementation)** | **G1, G2, G2.5, G3, G4, G4.1** ← Critical checkpoint |
 | **G5.1 (Content Integration)** | **G5** |
 | **G5.2 (Design Integration)** | **G5** ← CSS→TSX binding verification |
-| G5.5 (Bibliography) | G5, **G5.1, G5.2** |
+| **G5.3 (Diagram-Code Reconciliation)** | **G5.2** ← Diagram↔code consistency |
+| G5.5 (Bibliography) | G5, **G5.1, G5.2, G5.3** |
 | G6-G8 (Audits) | G5.5 |
 | G9 (Publication) | G1-G8 |
 
@@ -298,6 +312,18 @@ Using @agents/auditors/prose-auditor-agent.md, slop scan:
 Essay: src/app/essays/[slug]/[Component].jsx
 
 Quick check for AI generation artifacts only. Report density and instances.
+```
+
+```
+
+```
+# Diagram-code reconciliation (G5.3)
+Using @agents/auditors/diagram-code-reconciliation-auditor.md, reconcile diagrams for:
+
+Client Component: src/app/essays/science/[slug]/[Component].jsx
+
+Parse all @diagram-contract blocks and verify every invariant.
+Produce DIAGRAM-CODE-RECONCILIATION.md.
 ```
 
 ```

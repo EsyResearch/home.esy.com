@@ -52,7 +52,7 @@ The Esy orchestration framework is a multi-agent system designed to produce high
 │  Research   │ │  Spec Build │ │  Production │ │  Bibliog.   │ │  Audit      │ │  Publish    │
 │             │ │             │ │             │ │             │ │             │ │             │
 │  Owns G2    │ │ Builds spec │ │ G4→G4.1→G4.5│ │  Owns G5.5  │ │  G6, G7     │ │  Owns G8    │
-│             │ │ from res.   │ │ →G5→G5.2    │ │             │ │             │ │             │
+│             │ │ from res.   │ │→G5→G5.2→G5.3│ │             │ │             │ │             │
 └─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘
 ```
 
@@ -69,7 +69,7 @@ The Esy orchestration framework is a multi-agent system designed to produce high
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────────┐
 │                              VISUAL ESSAY ORCHESTRATOR                                   │
-│                                  (13 Gates Pipeline)                                     │
+│                                  (14 Gates Pipeline)                                     │
 └─────────────────────────────────────────────────────────────────────────────────────────┘
                                           │
   ┌─────────────┬─────────────┬───────────┼───────────┬─────────────┬─────────────┐
@@ -83,11 +83,12 @@ The Esy orchestration framework is a multi-agent system designed to produce high
 │   G1    │ │   G2    │ │   G3    │ │G4→G4.1  │ │ G6, G7  │ │ G8, G9  │
 │         │ │         │ │         │ │→G4.5→G5 │ │         │ │         │
 │         │ │         │ │         │ │→G5.2    │ │         │ │         │
+│         │ │         │ │         │ │→G5.3    │ │         │ │         │
 │         │ │         │ │         │ │→G5.5    │ │         │ │         │
 └─────────┘ └─────────┘ └─────────┘ └─────────┘ └─────────┘ └─────────┘
 
 Gate Flow:
-G1 ─► G2 ─► G3 ─► G4 ─► G4.1 ─► G4.5 ─► G5 ─► G5.2 ─► G5.5 ─► G6 ─► G7 ─► G8 ─► G9
+G1 ─► G2 ─► G3 ─► G4 ─► G4.1 ─► G4.5 ─► G5 ─► G5.2 ─► G5.3 ─► G5.5 ─► G6 ─► G7 ─► G8 ─► G9
 ```
 
 ### Phase Descriptions
@@ -97,7 +98,7 @@ G1 ─► G2 ─► G3 ─► G4 ─► G4.1 ─► G4.5 ─► G5 ─► G5.2 �
 | 1 | Intake | Visual Essay Orchestrator | G1 | Scope + SKILL.md research requirements |
 | 2 | Research | Research Orchestrator | G2 | `research/` package (maps to SKILL.md) |
 | 3 | Spec Construction | Visual Essay Invocation Agent | G3 | 6-layer spec (built from research) |
-| 4 | Production | Production Orchestrator | G4, G4.1, G4.5, G5, G5.2, G5.5 | Content, design, bibliography implementation |
+| 4 | Production | Production Orchestrator | G4, G4.1, G4.5, G5, G5.2, G5.3, G5.5 | Content, design, diagram-code reconciliation, bibliography implementation |
 | 5 | Audit | Audit Orchestrator | G6, G7 | Citation & scroll certification |
 | 6 | Publish | Publish Artifact Orchestrator + Visual Essay Orchestrator | G8, G9 | Publication certification + deployed essay |
 
@@ -202,6 +203,7 @@ The Research Orchestrator coordinates the complete research pipeline, ensuring t
 | Citation Audit Agent | `auditors/citation-audit-agent.md` | G6: Link verification, quote validation |
 | Design Research Reconciliation Agent | `auditors/design-research-reconciliation-agent.md` | G4.1: Thematic authenticity, cross-essay novelty |
 | Design Research Implementation Auditor | `auditors/design-research-implementation-auditor.md` | G5.2: Design fidelity audit (spec-to-code compliance) |
+| Diagram-Code Reconciliation Auditor | `auditors/diagram-code-reconciliation-auditor.md` | G5.3: Diagram-code reconciliation |
 | Regional Experts | `regional/*.md` | Domain-specific knowledge |
 | Historian Writer/Editor | `content/historian-*.md` | Historical methodology |
 
@@ -342,7 +344,8 @@ Research depth adapts to content type and complexity. Three modes are available:
 | **G4.1** | Design Research Reconciliation | 4 | Design Research Reconciliation Agent | G4.5 | Thematic authenticity verified, no cross-essay collisions, CSS implements design research |
 | **G4.5** | Image Sourcing | 4 | Image Research Licensing Expert | G5 | All images sourced, URLs extracted, licenses verified |
 | **G5** | Content Complete | 4→5 | Production Orchestrator | G5.2 | All sections drafted, fact-checked, uses research package |
-| **G5.2** | Design Research Integration | 4 | Design Research Integration Agent | G5.5 | CSS selectors bind to TSX classNames (≥95%), no convention mismatches |
+| **G5.2** | Design Research Integration | 4 | Design Research Integration Agent | G5.3 | CSS selectors bind to TSX classNames (≥95%), no convention mismatches |
+| **G5.3** | Diagram-Code Reconciliation | 4 | Diagram-Code Reconciliation Auditor | G5.5 | All `@diagram-contract` invariants pass — annotations match code behavior |
 | **G5.5** | Bibliography Implementation | 4 | Bibliography Orchestrator | G6 | Bibliography section complete (Works Cited, Image Credits, A/V, Data Sources) |
 | **G6** | Citation Audit | 5 | Citation Audit Agent | G7 | Citation certification achieved |
 | **G7** | Scroll Certification | 5 | Immersive Scrolling Auditor | G8 | 60fps, scroll-lock verified, score ≥8.0/10 |
@@ -413,6 +416,7 @@ orchestration/agents/
 │   ├── content-audit-agent.md        # Word count, depth, tone
 │   ├── design-research-reconciliation-agent.md  # G4.1 Design authenticity
 │   ├── design-research-implementation-auditor.md # G5.2 Design fidelity audit
+│   ├── diagram-code-reconciliation-auditor.md   # G5.3 Diagram-code reconciliation
 │   └── data-accuracy-auditor.md                 # G6.1 Data-to-visual fidelity
 │
 ├── content/                 # 📚 Content creation
@@ -620,6 +624,7 @@ Minimum sources: [number]
 
 | Version | Date | Changes |
 |---------|------|---------|
+| v1.3 | February 9, 2026 | **14-gate pipeline update**: Added G5.3 (Diagram-Code Reconciliation) between G5.2 and G5.5. New gate reconciles diagram annotations with code behavior (direction, scale, labels vs. math formulas). New agent: diagram-code-reconciliation-auditor. New standard: `orchestration/standards/diagram-code-contract.md`. New contract format: `@diagram-contract` JSDoc blocks on visualization functions. Origin: wave propagation direction bug in "The Anatomy of a Wave" (arrow pointed right, sin(kx+ωt) animated left). |
 | v1.2 | January 1, 2025 | **13-gate pipeline update**: Added G4.1 (Design Research Reconciliation), G4.5 (Image Sourcing), G5.2 (Design Research Integration), G5.5 (Bibliography Implementation). Changed G8 from "Mobile Verification" to "Publication Certification" (owned by Publish Artifact Orchestrator). Added new orchestrators: audit-orchestrator, bibliography-orchestrator, publish-artifact-orchestrator, qa-remediation-orchestrator, seo-orchestrator. Added new auditors: spec-compliance-auditor, hydration-audit-agent, content-audit-agent, design-research-reconciliation-agent, design-research-integration-agent. Updated Four Pillars → Six Pillars diagram. Updated Agent Ecosystem directory structure. |
 | v1.1 | December 11, 2024 | Research → Spec flow: SKILL.md now serves as research blueprint. Spec construction happens AFTER research, using verified data. Added Phase 3 (Spec Construction), renumbered to 6 phases. Added G3 (Spec Approval), G9 (Publication). Research package now includes SKILL.md-aligned files (FIGURES.md, QUOTES.md, TIMELINE.md, VISUALS.md, ERA-GUIDE.md). |
 | v1.0 | December 11, 2024 | Initial framework documentation |
