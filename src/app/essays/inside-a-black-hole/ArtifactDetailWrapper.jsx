@@ -31,6 +31,7 @@ const ESSAY_META = {
   visualizationCount: 7,
   designSystem: 'Subject-derived',
   published: 'February 8, 2026',
+  model: 'Claude Opus 4.6',
   template: 'Visual Essay',
   palette: [
     { name: 'EHT Gold', color: '#c4922a' },
@@ -85,15 +86,6 @@ function CollapseIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M5 2v4H1M11 2v4h4M11 14v-4h4M5 14v-4H1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function BookOpenIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M1 3c1.5-1 3.5-1 5 0l2 1.5 2-1.5c1.5-1 3.5-1 5 0v9c-1.5-1-3.5-1-5 0l-2 1.5-2-1.5c-1.5-1-3.5-1-5 0V3z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M8 4.5V14" stroke="currentColor" strokeWidth="1.2" />
     </svg>
   );
 }
@@ -175,9 +167,14 @@ export default function ArtifactDetailWrapper({ children }) {
       {/* ─── Artifact Hero ─── */}
       <section className="ad-hero">
         <div className="ad-hero__inner">
-          <div className="ad-hero__template-label">
-            <BookOpenIcon />
-            {ESSAY_META.template}
+          <div className="ad-hero__provenance">
+            <span className="ad-hero__provenance-line" aria-hidden="true" />
+            <span className="ad-hero__provenance-text">
+              <span className="ad-hero__provenance-type">Artifact</span>
+              <span className="ad-hero__provenance-sep" aria-hidden="true">·</span>
+              <span className="ad-hero__provenance-template">{ESSAY_META.template}</span>
+            </span>
+            <span className="ad-hero__provenance-line" aria-hidden="true" />
           </div>
           <h1 className="ad-hero__title">{ESSAY_META.title}</h1>
           <p className="ad-hero__subtitle">{ESSAY_META.subtitle}</p>
@@ -248,6 +245,10 @@ export default function ArtifactDetailWrapper({ children }) {
               <div className="ad-spec__card">
                 <div className="ad-spec__card-label">Published</div>
                 <div className="ad-spec__card-value">{ESSAY_META.published}</div>
+              </div>
+              <div className="ad-spec__card">
+                <div className="ad-spec__card-label">Model</div>
+                <div className="ad-spec__card-value">{ESSAY_META.model}</div>
               </div>
               <div className="ad-spec__card">
                 <div className="ad-spec__card-label">Source Quality</div>

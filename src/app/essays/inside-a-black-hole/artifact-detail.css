@@ -123,17 +123,58 @@
   position: relative;
 }
 
-.ad-hero__template-label {
-  display: inline-flex;
+/* ─── Provenance Line ────────────────────────────────────────── */
+/* Editorial treatment: thin rules flanking the artifact type.
+   Inspired by how journals mark article class — understated
+   typography, no borders, no pills, just careful spacing. */
+.ad-hero__provenance {
+  display: flex;
   align-items: center;
-  gap: 6px;
-  font-family: var(--font-inter, 'Inter', sans-serif);
+  gap: 16px;
+  margin-bottom: 28px;
+  justify-content: center;
+}
+
+.ad-hero__provenance-line {
+  flex: 1;
+  max-width: 64px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.18),
+    transparent
+  );
+}
+
+.ad-hero__provenance-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ad-hero__provenance-type {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 0.7rem;
   font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ad-hero__provenance-sep {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.ad-hero__provenance-template {
+  font-family: var(--font-inter, 'Inter', sans-serif);
+  font-size: 0.7rem;
+  font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-text-subtle, rgba(255, 255, 255, 0.5));
-  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .ad-hero__title {
