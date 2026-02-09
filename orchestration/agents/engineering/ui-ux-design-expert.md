@@ -24,6 +24,33 @@
 - **Progressive Disclosure**: Layer information — essential metadata visible immediately, full specs and sources available on demand. Never dump everything at once.
 - **Conversion Through Quality**: Premium design converts users. The gap between "this looks like a $9 template" and "this looks like a $90 artifact" is entirely in the details — spacing, typography, motion, hierarchy.
 
+### Brand Palette — Navy/Teal (Current)
+> **CRITICAL**: The platform brand transitioned from Violet/Purple to Navy/Teal. The canonical brand tokens are defined in `visual-essays.css` and the nav dropdown in `globals.css`. The file `src/styles/theme.css` is **legacy** and still contains old purple values (`#8b5cf6`). Never use `theme.css` purple tokens for new platform chrome — always use the Navy/Teal palette below.
+
+| Token | Value | Usage |
+|---|---|---|
+| **Navy (text/dark)** | `#0A2540` | Primary text, headings, dark surfaces |
+| **Teal (accent)** | `#00A896` | Primary accent, interactive elements, badges, CTAs |
+| **Teal Light** | `#00D4AA` | Hover states, accent highlights |
+| **Teal Muted** | `rgba(0, 168, 150, 0.08)` | Subtle backgrounds, focus rings |
+| **Teal Glow** | `rgba(0, 168, 150, 0.15)` | Glow effects, box shadows |
+| **Navy Border** | `rgba(10, 37, 64, 0.08)` | Light-mode borders |
+| **Navy Border Strong** | `rgba(10, 37, 64, 0.15)` | Emphasized borders |
+
+**Dark surfaces** (for artifact detail pages, essay chrome on dark backgrounds):
+| Token | Value | Usage |
+|---|---|---|
+| **Dark BG** | `#0a0a0f` | Page background |
+| **Dark Elevated** | `rgba(10, 10, 15, 0.92)` | Toolbar, sticky headers |
+| **Dark Border** | `rgba(255, 255, 255, 0.06)` | Subtle borders on dark |
+| **Dark Border Strong** | `rgba(255, 255, 255, 0.1)` | Emphasized borders on dark |
+| **Dark Text Muted** | `rgba(255, 255, 255, 0.7)` | Secondary text on dark |
+| **Dark Text Faint** | `rgba(255, 255, 255, 0.3)` | Captions, labels on dark |
+
+**Old Violet palette (DO NOT USE for new platform chrome):**
+- `#8b5cf6`, `#7c3aed`, `#a78bfa`, `#ec4899` — legacy, still in `theme.css`
+- Only acceptable in per-essay design systems where violet is subject-derived (e.g., a quantum physics essay)
+
 ### Design Standards
 - 8px spacing grid for all layout decisions
 - Maximum 3 font families per page (essay pages inherit their own typography system)
@@ -232,9 +259,9 @@ with styles in visual-essays.css.
 ## Codebase Reference
 
 ### Key Files
-- `src/styles/theme.css` — Platform design tokens (colors, spacing, typography, shadows, z-index)
-- `src/app/globals.css` — Global styles, font imports, base resets
-- `src/app/essays/visual-essays.css` — Index page styles (Navy Calm Light Theme)
+- `src/styles/theme.css` — **LEGACY** design tokens (still uses old violet palette — spacing, typography, shadows, z-index tokens are valid; **color tokens are outdated**)
+- `src/app/globals.css` — Global styles, font imports, base resets (nav dropdown already uses navy/teal; hero/CTA still violet — needs migration)
+- `src/app/essays/visual-essays.css` — **CANONICAL** brand tokens (Navy Calm Light Theme: `#0A2540` navy, `#00A896` teal)
 - `src/app/essays/VisualEssaysClient.tsx` — Index page component (carousels, hero, discovery)
 - `src/data/visualEssays.ts` — Essay metadata registry (VisualEssay interface)
 - `src/components/Essays/` — Shared essay components (EssayTemplate, EssayReader, etc.)
@@ -253,6 +280,7 @@ with styles in visual-essays.css.
 February 2026
 
 ### Recent Changes
+- **Brand Palette Documented**: Added explicit Navy/Teal (`#0A2540` / `#00A896`) brand palette as canonical. Flagged `theme.css` as legacy (old violet `#8b5cf6`). New platform chrome MUST use navy/teal, not purple.
 - **Full Rewrite**: Rebuilt from generic job description to Esy-specific expert agent
 - Added codebase reference with key files and architecture patterns
 - Added artifact paradigm as core design philosophy

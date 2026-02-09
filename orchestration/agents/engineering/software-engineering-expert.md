@@ -118,8 +118,8 @@
 
 ### CSS Architecture
 **Platform Level**
-- `src/styles/theme.css`: design tokens (CSS custom properties for colors, spacing, typography, shadows, z-index)
-- `src/app/globals.css`: Tailwind import, font-face declarations, base resets, global heading styles
+- `src/styles/theme.css`: **LEGACY** design tokens — spacing, typography, shadows, z-index tokens are valid; **color tokens are outdated** (still uses old violet `#8b5cf6`). Canonical brand colors are Navy `#0A2540` + Teal `#00A896`, defined in `visual-essays.css` and nav dropdown in `globals.css`.
+- `src/app/globals.css`: Tailwind import, font-face declarations, base resets, global heading styles (nav dropdown already migrated to navy/teal; hero/CTA still violet — needs migration)
 - Font loading: 5 families via `next/font/google` in root layout (Geist, Geist Mono, Newsreader, Inter, Literata)
 
 **Essay Level**
@@ -300,7 +300,7 @@ hydration mismatches.
 | `src/components/ConditionalNavigation.js` | Pathname-based nav visibility |
 | `src/components/ConditionalFooter.js` | Pathname-based footer visibility |
 | `src/components/Essays/` | Shared essay components |
-| `src/styles/theme.css` | Platform design tokens |
+| `src/styles/theme.css` | **LEGACY** design tokens (color values outdated — use navy/teal) |
 | `package.json` | Dependencies and build scripts |
 
 ### Dependency Map (Visualization Libraries)

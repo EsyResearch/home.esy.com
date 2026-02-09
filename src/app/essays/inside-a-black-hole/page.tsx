@@ -1,5 +1,6 @@
 import { createVisualEssayMetadata } from '@/lib/visual-essay-metadata';
 import InsideABlackHoleClient from './InsideABlackHoleClient';
+import ArtifactDetailWrapper from './ArtifactDetailWrapper';
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -102,7 +103,9 @@ export default function InsideABlackHolePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <InsideABlackHoleClient />
+      <ArtifactDetailWrapper>
+        <InsideABlackHoleClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }
