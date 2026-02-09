@@ -77,6 +77,16 @@ export default function Navigation({
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Lock body scroll when mobile nav is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isMobileMenuOpen]);
+
   // Theme detection
     useEffect(() => {
       const checkTheme = () => {
@@ -562,108 +572,89 @@ export default function Navigation({
         </div>
       </nav>
 
-      {/* Mobile Navigation Overlay */}
+      {/* Mobile Navigation — Full-Screen Editorial Takeover */}
       {isMobileMenuOpen && (
         <div 
-          className="mobile-nav-overlay"
-          onClick={() => setIsMobileMenuOpen(false)}
+          className={`mnav-overlay ${isLightMode ? 'mnav-overlay--light' : ''}`}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation menu"
         >
-          <div 
-            className={`mobile-nav-panel ${isLightMode ? 'light' : 'dark'}`}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Artifacts Section - Expandable */}
-              <div className="mobile-nav-section">
-              <button
-                className="mobile-nav-section-header"
-                onClick={() => setMobileArtifactsExpanded(!mobileArtifactsExpanded)}
-                aria-expanded={mobileArtifactsExpanded}
-              >
-                <span className="mobile-nav-section-title">Artifacts</span>
-                <ChevronRight 
-                  size={18} 
-                  className={`mobile-nav-chevron ${mobileArtifactsExpanded ? 'expanded' : ''}`}
-                />
-              </button>
-              
-              {mobileArtifactsExpanded && (
-                <div className="mobile-nav-subitems">
-                  <Link 
-                    href="/essays/" 
-                    className="mobile-nav-subitem"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <span className="mobile-nav-subitem-title">Essays</span>
-                    <span className="mobile-nav-subitem-desc">Visual research narratives</span>
-                  </Link>
-                </div>
-              )}
-                </div>
+          {/* Header row — logo + close */}
+          <div className="mnav-header">
+            <Link href="/" className="mnav-logo" onClick={() => setIsMobileMenuOpen(false)}>
+              <Logo
+                suffix=""
+                href=""
+                showText={false}
+                theme={isLightMode ? 'light' : 'dark'}
+                size={36}
+                priority
+              />
+            </Link>
+            <button 
+              className="mnav-close"
+              onClick={() => setIsMobileMenuOpen(false)}
+              aria-label="Close menu"
+            >
+              <X size={22} strokeWidth={1.5} />
+            </button>
+          </div>
 
-            {/* Templates */}
-                <div className="mobile-nav-section">
-              <Link 
-                href="/templates/" 
-                className="mobile-nav-link"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Templates
-                  </Link>
-                </div>
+          {/* Navigation links */}
+          <nav className="mnav-body">
+            <Link 
+              href="/essays/" 
+              className={`mnav-item ${normalizedPathForNav.startsWith('/essays') ? 'mnav-item--active' : ''}`}
+              onClick={() => setIsMobileMenuOpen(false)}
+              style={{ animationDelay: '0.06s' }}
+            >
+              <span className="mnav-item__label">Essays</span>
+              <span className="mnav-item__desc">Visual research narratives</span>
+            </Link>
 
-            {/* Learn Section - Expandable */}
-              <div className="mobile-nav-section">
-              <button
-                className="mobile-nav-section-header"
-                onClick={() => setMobileLearnExpanded(!mobileLearnExpanded)}
-                aria-expanded={mobileLearnExpanded}
-              >
-                <span className="mobile-nav-section-title">Learn</span>
-                <ChevronRight 
-                  size={18} 
-                  className={`mobile-nav-chevron ${mobileLearnExpanded ? 'expanded' : ''}`}
-                />
-              </button>
-              
-              {mobileLearnExpanded && (
-                <div className="mobile-nav-subitems">
-                  <Link 
-                    href="/courses/" 
-                    className="mobile-nav-subitem"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <span className="mobile-nav-subitem-title">Courses</span>
-                    <span className="mobile-nav-subitem-desc">Interactive video lessons</span>
-                  </Link>
-                  <Link 
-                    href="/school/" 
-                    className="mobile-nav-subitem"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <span className="mobile-nav-subitem-title">School</span>
-                    <span className="mobile-nav-subitem-desc">Research articles & guides</span>
-                  </Link>
-                </div>
-              )}
-                </div>
+            <Link 
+              href="/templates/" 
+              className={`mnav-item ${normalizedPathForNav.startsWith('/templates') ? 'mnav-item--active' : ''}`}
+              onClick={() => setIsMobileMenuOpen(false)}
+              style={{ animationDelay: '0.10s' }}
+            >
+              <span className="mnav-item__label">Templates</span>
+              <span className="mnav-item__desc">Production-ready research formats</span>
+            </Link>
 
-            {/* App CTA */}
-            <div className="mobile-nav-cta">
-                <a 
-                  href={ctaConfig.ctaHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mobile-nav-cta-button"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  style={{
-                    background: 'transparent',
-                    border: '1px solid rgba(255, 255, 255, 0.2)',
-                    color: 'rgba(255, 255, 255, 0.7)',
-                  }}
-                >
-                Open App
-                </a>
-              </div>
+            <Link 
+              href="/school/" 
+              className={`mnav-item ${normalizedPathForNav.startsWith('/school') ? 'mnav-item--active' : ''}`}
+              onClick={() => setIsMobileMenuOpen(false)}
+              style={{ animationDelay: '0.14s' }}
+            >
+              <span className="mnav-item__label">School</span>
+              <span className="mnav-item__desc">Research articles & guides</span>
+            </Link>
+
+            <Link 
+              href="/courses/" 
+              className={`mnav-item ${normalizedPathForNav.startsWith('/courses') ? 'mnav-item--active' : ''}`}
+              onClick={() => setIsMobileMenuOpen(false)}
+              style={{ animationDelay: '0.18s' }}
+            >
+              <span className="mnav-item__label">Courses</span>
+              <span className="mnav-item__desc">Interactive video lessons</span>
+            </Link>
+          </nav>
+
+          {/* Footer — CTA */}
+          <div className="mnav-footer" style={{ animationDelay: '0.24s' }}>
+            <a 
+              href={ctaConfig.ctaHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mnav-cta"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Open App
+            </a>
           </div>
         </div>
       )}
