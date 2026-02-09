@@ -528,6 +528,14 @@
 - Content accuracy final review
 - Publication-ready assessment
 
+**Artifact Wrapper Requirement (Mandatory)**
+- Every visual essay MUST be wrapped in `ArtifactDetailWrapper` from `@/components/ArtifactDetail`
+- The wrapper presents essays as produced artifacts with metadata, spec access, and immersive mode
+- Each essay's `page.tsx` must define an `ESSAY_META` object and pass it as the `meta` prop
+- Required meta fields: title, subtitle, category, readTime, sourceCount, sourceTier, sectionCount, visualizationCount, designSystem, published, model, template
+- Optional meta fields: subcategory, backLink, backLabel, palette, visualizations, keySources
+- See `src/components/ArtifactDetail/index.js` for the full interface and usage example
+
 ### Cross-Agent Orchestration
 **Production Orchestrator Coordination**
 - Brief handoff with complete specifications

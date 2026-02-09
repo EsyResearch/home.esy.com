@@ -1,11 +1,11 @@
 /* ═══════════════════════════════════════════════════════════════
-   Artifact Detail Page — Inside a Black Hole
+   Artifact Detail — Shared Component Styles
    
-   Chrome layer that presents the essay as a produced artifact
+   Chrome layer that presents any essay as a produced artifact
    with metadata, spec access, and immersive mode toggle.
    
    Brand: Navy/Teal palette (#0A2540 navy, #00A896 teal).
-   Essay content retains its own design system (bh-* classes).
+   Essay content retains its own design system.
    ═══════════════════════════════════════════════════════════════ */
 
 /* ─── Artifact Page Root ─────────────────────────────────────── */

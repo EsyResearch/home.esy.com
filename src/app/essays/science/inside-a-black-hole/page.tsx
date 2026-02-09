@@ -1,6 +1,46 @@
 import { createVisualEssayMetadata } from '@/lib/visual-essay-metadata';
 import InsideABlackHoleClient from './InsideABlackHoleClient';
-import ArtifactDetailWrapper from './ArtifactDetailWrapper';
+import ArtifactDetailWrapper from '@/components/ArtifactDetail';
+
+const ESSAY_META = {
+  title: 'Inside a Black Hole',
+  subtitle: 'What physics actually tells us about the most extreme object in the universe',
+  category: 'Science',
+  subcategory: 'Physics',
+  readTime: '25 min',
+  sourceCount: 16,
+  sourceTier: 'Tier-1',
+  sectionCount: 9,
+  visualizationCount: 7,
+  designSystem: 'Subject-derived',
+  published: 'February 8, 2026',
+  model: 'Claude Opus 4.6',
+  template: 'Visual Essay',
+  backLink: '/essays',
+  backLabel: 'Essays',
+  palette: [
+    { name: 'EHT Gold', color: '#c4922a' },
+    { name: 'Lensing Blue', color: '#3d7ec7' },
+    { name: 'Quantum Violet', color: '#6b4fa0' },
+    { name: 'Horizon Teal', color: '#1a9e8f' },
+    { name: 'Danger Red', color: '#b5382a' },
+  ],
+  visualizations: [
+    { name: 'EHT Ring', type: 'Annotated CSS' },
+    { name: 'Observer Duality', type: 'Split-screen' },
+    { name: 'Horizon Crossing', type: 'Scroll-triggered' },
+    { name: 'Spacetime Curvature', type: 'Three.js 3D' },
+    { name: 'Tidal Comparison', type: 'Data Cards + SVG' },
+    { name: 'Penrose Diagram', type: 'Interactive SVG' },
+    { name: 'Information Flow', type: 'Programmatic SVG' },
+  ],
+  keySources: [
+    'Penrose (1965)',
+    'Hawking (1975)',
+    'EHT Collaboration (2019)',
+    'Schwarzschild (1916)',
+  ],
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -105,7 +145,7 @@ export default function InsideABlackHolePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ArtifactDetailWrapper>
+      <ArtifactDetailWrapper meta={ESSAY_META}>
         <InsideABlackHoleClient />
       </ArtifactDetailWrapper>
     </>

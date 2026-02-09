@@ -318,7 +318,11 @@ The implementation must:
 - Use the design research color palette and typography
 - Include all sections from the spec
 - Be mobile-first and responsive
-- Include Sources & Further Reading section`;
+- Include Sources & Further Reading section
+- Wrap the essay in ArtifactDetailWrapper from @/components/ArtifactDetail
+  with an ESSAY_META object containing: title, subtitle, category, subcategory,
+  readTime, sourceCount, sourceTier, sectionCount, visualizationCount,
+  designSystem, published, model, template, palette, visualizations, keySources`;
 
     case 'G5.2':
       return `## G5.2: Design Fidelity Audit
@@ -492,8 +496,9 @@ Tasks:
    - New entry added with isNew: true
    - New story set as isFeatured: true
    - Previous featured story unfeatured
-3. Director sign-off
-4. Trigger deployment
+3. Verify page.tsx wraps essay in ArtifactDetailWrapper from @/components/ArtifactDetail
+4. Director sign-off
+5. Trigger deployment
 
 Write to: ${artifactPath}/research/PUBLICATION-APPROVAL.md
 

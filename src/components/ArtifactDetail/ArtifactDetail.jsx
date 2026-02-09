@@ -5,13 +5,15 @@ import Link from 'next/link';
 import './artifact-detail.css';
 
 /* ═══════════════════════════════════════════════════════════════
-   Artifact Detail Wrapper — Inside a Black Hole
+   Artifact Detail Wrapper — Shared Component
    
-   Presents the essay as an artifact with metadata, spec access,
-   and an immersive mode toggle. The default view is the artifact
-   detail page; immersive mode recreates the current chromeless
-   reading experience.
-   
+   Presents any essay as a produced artifact with metadata,
+   spec access, and an immersive mode toggle.
+
+   Props:
+   - meta: ArtifactMeta object (title, subtitle, category, etc.)
+   - children: The essay content to wrap
+
    Architecture:
    - Artifact Mode: Metadata hero + spec panel + framed essay + footer
    - Immersive Mode: Chromeless essay with floating exit button
@@ -19,42 +21,39 @@ import './artifact-detail.css';
    SSR Safety: All window/document access guarded with typeof checks.
    ═══════════════════════════════════════════════════════════════ */
 
-const ESSAY_META = {
-  title: 'Inside a Black Hole',
-  subtitle: 'What physics actually tells us about the most extreme object in the universe',
-  category: 'Science',
-  subcategory: 'Physics',
-  readTime: '25 min',
-  sourceCount: 16,
-  sourceTier: 'Tier-1',
-  sectionCount: 9,
-  visualizationCount: 7,
-  designSystem: 'Subject-derived',
-  published: 'February 8, 2026',
-  model: 'Claude Opus 4.6',
-  template: 'Visual Essay',
-  palette: [
-    { name: 'EHT Gold', color: '#c4922a' },
-    { name: 'Lensing Blue', color: '#3d7ec7' },
-    { name: 'Quantum Violet', color: '#6b4fa0' },
-    { name: 'Horizon Teal', color: '#1a9e8f' },
-    { name: 'Danger Red', color: '#b5382a' },
-  ],
-  visualizations: [
-    { name: 'EHT Ring', type: 'Annotated CSS' },
-    { name: 'Observer Duality', type: 'Split-screen' },
-    { name: 'Horizon Crossing', type: 'Scroll-triggered' },
-    { name: 'Spacetime Curvature', type: 'Three.js 3D' },
-    { name: 'Tidal Comparison', type: 'Data Cards + SVG' },
-    { name: 'Penrose Diagram', type: 'Interactive SVG' },
-    { name: 'Information Flow', type: 'Programmatic SVG' },
-  ],
-  keySources: [
-    'Penrose (1965)',
-    'Hawking (1975)',
-    'EHT Collaboration (2019)',
-    'Schwarzschild (1916)',
-  ],
+/**
+ * @typedef {Object} ArtifactMeta
+ * @property {string} title
+ * @property {string} subtitle
+ * @property {string} category
+ * @property {string} [subcategory]
+ * @property {string} readTime
+ * @property {number} sourceCount
+ * @property {string} sourceTier
+ * @property {number} sectionCount
+ * @property {number} visualizationCount
+ * @property {string} designSystem
+ * @property {string} published
+ * @property {string} model
+ * @property {string} template
+ * @property {string} [backLink='/essays'] - Where the back button navigates
+ * @property {string} [backLabel='Essays'] - Label for the back button
+ * @property {Array<{name: string, color: string}>} [palette]
+ * @property {Array<{name: string, type: string}>} [visualizations]
+ * @property {string[]} [keySources]
+ */
+
+/* ─── Category Colors ────────────────────────────────────────── */
+const CATEGORY_COLORS = {
+  'Science': '#10B981',
+  'History': '#F59E0B',
+  'Technology': '#3B82F6',
+  'Culture': '#EC4899',
+  'Space': '#8B5CF6',
+  'Nature': '#06B6D4',
+  'Education & Writing': '#14B8A6',
+  'Economics': '#22C55E',
+  'Etymology': '#F97316',
 };
 
 /* ─── SVG Icons ───────────────────────────────────────────────── */
@@ -74,14 +73,6 @@ function ExpandIcon() {
   );
 }
 
-function CloseIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M11 3L3 11M3 3l8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 function CollapseIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -91,9 +82,21 @@ function CollapseIcon() {
 }
 
 /* ─── Main Wrapper ────────────────────────────────────────────── */
-export default function ArtifactDetailWrapper({ children }) {
+/**
+ * ArtifactDetailWrapper
+ * 
+ * Wraps any visual essay in the Artifact Detail chrome layer:
+ * toolbar, hero, spec panel, content frame, and footer.
+ *
+ * @param {{ meta: ArtifactMeta, children: React.ReactNode }} props
+ */
+export default function ArtifactDetailWrapper({ meta, children }) {
   const [immersiveMode, setImmersiveMode] = useState(false);
   const [specExpanded, setSpecExpanded] = useState(false);
+
+  const backLink = meta.backLink || '/essays';
+  const backLabel = meta.backLabel || 'Essays';
+  const categoryColor = CATEGORY_COLORS[meta.category] || '#10B981';
 
   // Escape key exits immersive mode
   useEffect(() => {
@@ -110,7 +113,6 @@ export default function ArtifactDetailWrapper({ children }) {
   // Scroll to essay content when entering artifact mode from immersive
   useEffect(() => {
     if (!immersiveMode && typeof window !== 'undefined') {
-      // Small delay to allow DOM to settle
       const t = setTimeout(() => {
         const el = document.getElementById('artifact-essay-content');
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -142,17 +144,19 @@ export default function ArtifactDetailWrapper({ children }) {
     <div className="ad-page">
       {/* ─── Toolbar ─── */}
       <header className="ad-toolbar">
-        <Link href="/essays" className="ad-toolbar__back">
+        <Link href={backLink} className="ad-toolbar__back">
           <ChevronLeftIcon />
-          <span>Essays</span>
+          <span>{backLabel}</span>
         </Link>
         <div className="ad-toolbar__right">
-          <span className="ad-toolbar__badge" style={{ '--badge-color': '#10B981' }}>
-            {ESSAY_META.category}
+          <span className="ad-toolbar__badge" style={{ '--badge-color': categoryColor }}>
+            {meta.category}
           </span>
-          <span className="ad-toolbar__badge ad-toolbar__badge--sub">
-            {ESSAY_META.subcategory}
-          </span>
+          {meta.subcategory && (
+            <span className="ad-toolbar__badge ad-toolbar__badge--sub">
+              {meta.subcategory}
+            </span>
+          )}
           <button
             className="ad-toolbar__immersive"
             onClick={() => setImmersiveMode(true)}
@@ -172,30 +176,30 @@ export default function ArtifactDetailWrapper({ children }) {
             <span className="ad-hero__provenance-text">
               <span className="ad-hero__provenance-type">Artifact</span>
               <span className="ad-hero__provenance-sep" aria-hidden="true">·</span>
-              <span className="ad-hero__provenance-template">{ESSAY_META.template}</span>
+              <span className="ad-hero__provenance-template">{meta.template}</span>
             </span>
             <span className="ad-hero__provenance-line" aria-hidden="true" />
           </div>
-          <h1 className="ad-hero__title">{ESSAY_META.title}</h1>
-          <p className="ad-hero__subtitle">{ESSAY_META.subtitle}</p>
+          <h1 className="ad-hero__title">{meta.title}</h1>
+          <p className="ad-hero__subtitle">{meta.subtitle}</p>
           <div className="ad-hero__meta">
             <span className="ad-hero__meta-item">
-              <span className="ad-hero__meta-value">{ESSAY_META.readTime}</span>
+              <span className="ad-hero__meta-value">{meta.readTime}</span>
               <span className="ad-hero__meta-label">read</span>
             </span>
             <span className="ad-hero__meta-dot" aria-hidden="true" />
             <span className="ad-hero__meta-item">
-              <span className="ad-hero__meta-value">{ESSAY_META.sourceCount}</span>
-              <span className="ad-hero__meta-label">{ESSAY_META.sourceTier} sources</span>
+              <span className="ad-hero__meta-value">{meta.sourceCount}</span>
+              <span className="ad-hero__meta-label">{meta.sourceTier} sources</span>
             </span>
             <span className="ad-hero__meta-dot" aria-hidden="true" />
             <span className="ad-hero__meta-item">
-              <span className="ad-hero__meta-value">{ESSAY_META.sectionCount}</span>
+              <span className="ad-hero__meta-value">{meta.sectionCount}</span>
               <span className="ad-hero__meta-label">sections</span>
             </span>
             <span className="ad-hero__meta-dot" aria-hidden="true" />
             <span className="ad-hero__meta-item">
-              <span className="ad-hero__meta-value">{ESSAY_META.visualizationCount}</span>
+              <span className="ad-hero__meta-value">{meta.visualizationCount}</span>
               <span className="ad-hero__meta-label">visualizations</span>
             </span>
           </div>
@@ -236,65 +240,73 @@ export default function ArtifactDetailWrapper({ children }) {
             <div className="ad-spec__grid">
               <div className="ad-spec__card">
                 <div className="ad-spec__card-label">Template</div>
-                <div className="ad-spec__card-value">{ESSAY_META.template}</div>
+                <div className="ad-spec__card-value">{meta.template}</div>
               </div>
               <div className="ad-spec__card">
                 <div className="ad-spec__card-label">Design System</div>
-                <div className="ad-spec__card-value">{ESSAY_META.designSystem}</div>
+                <div className="ad-spec__card-value">{meta.designSystem}</div>
               </div>
               <div className="ad-spec__card">
                 <div className="ad-spec__card-label">Published</div>
-                <div className="ad-spec__card-value">{ESSAY_META.published}</div>
+                <div className="ad-spec__card-value">{meta.published}</div>
               </div>
               <div className="ad-spec__card">
                 <div className="ad-spec__card-label">Model</div>
-                <div className="ad-spec__card-value">{ESSAY_META.model}</div>
+                <div className="ad-spec__card-value">{meta.model}</div>
               </div>
               <div className="ad-spec__card">
                 <div className="ad-spec__card-label">Source Quality</div>
-                <div className="ad-spec__card-value">{ESSAY_META.sourceCount} {ESSAY_META.sourceTier}</div>
+                <div className="ad-spec__card-value">{meta.sourceCount} {meta.sourceTier}</div>
               </div>
             </div>
 
             {/* Palette */}
-            <div className="ad-spec__section">
-              <div className="ad-spec__section-label">Color Palette</div>
-              <div className="ad-spec__palette">
-                {ESSAY_META.palette.map(p => (
-                  <div key={p.name} className="ad-spec__palette-chip">
-                    <span className="ad-spec__palette-swatch" style={{ background: p.color }} />
-                    <span className="ad-spec__palette-name">{p.name}</span>
-                    <span className="ad-spec__palette-hex">{p.color}</span>
-                  </div>
-                ))}
+            {meta.palette && meta.palette.length > 0 && (
+              <div className="ad-spec__section">
+                <div className="ad-spec__section-label">Color Palette</div>
+                <div className="ad-spec__palette">
+                  {meta.palette.map(p => (
+                    <div key={p.name} className="ad-spec__palette-chip">
+                      <span className="ad-spec__palette-swatch" style={{ background: p.color }} />
+                      <span className="ad-spec__palette-name">{p.name}</span>
+                      <span className="ad-spec__palette-hex">{p.color}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Visualizations */}
-            <div className="ad-spec__section">
-              <div className="ad-spec__section-label">Visualizations</div>
-              <div className="ad-spec__viz-list">
-                {ESSAY_META.visualizations.map(v => (
-                  <div key={v.name} className="ad-spec__viz-item">
-                    <span className="ad-spec__viz-name">{v.name}</span>
-                    <span className="ad-spec__viz-type">{v.type}</span>
-                  </div>
-                ))}
+            {meta.visualizations && meta.visualizations.length > 0 && (
+              <div className="ad-spec__section">
+                <div className="ad-spec__section-label">Visualizations</div>
+                <div className="ad-spec__viz-list">
+                  {meta.visualizations.map(v => (
+                    <div key={v.name} className="ad-spec__viz-item">
+                      <span className="ad-spec__viz-name">{v.name}</span>
+                      <span className="ad-spec__viz-type">{v.type}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Key Sources */}
-            <div className="ad-spec__section">
-              <div className="ad-spec__section-label">Key Sources</div>
-              <div className="ad-spec__sources">
-                {ESSAY_META.keySources.map(s => (
-                  <span key={s} className="ad-spec__source-tag">{s}</span>
-                ))}
-                <span className="ad-spec__source-tag ad-spec__source-tag--more">
-                  +{ESSAY_META.sourceCount - ESSAY_META.keySources.length} more
-                </span>
+            {meta.keySources && meta.keySources.length > 0 && (
+              <div className="ad-spec__section">
+                <div className="ad-spec__section-label">Key Sources</div>
+                <div className="ad-spec__sources">
+                  {meta.keySources.map(s => (
+                    <span key={s} className="ad-spec__source-tag">{s}</span>
+                  ))}
+                  {meta.sourceCount > meta.keySources.length && (
+                    <span className="ad-spec__source-tag ad-spec__source-tag--more">
+                      +{meta.sourceCount - meta.keySources.length} more
+                    </span>
+                  )}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </section>
@@ -309,16 +321,16 @@ export default function ArtifactDetailWrapper({ children }) {
       {/* ─── Artifact Footer ─── */}
       <footer className="ad-footer">
         <div className="ad-footer__inner">
-          <Link href="/essays" className="ad-footer__link">
+          <Link href={backLink} className="ad-footer__link">
             <ChevronLeftIcon />
-            Back to Essays
+            Back to {backLabel}
           </Link>
           <div className="ad-footer__meta">
-            <span>{ESSAY_META.sourceCount} {ESSAY_META.sourceTier} sources</span>
+            <span>{meta.sourceCount} {meta.sourceTier} sources</span>
             <span className="ad-footer__dot">·</span>
-            <span>{ESSAY_META.template}</span>
+            <span>{meta.template}</span>
             <span className="ad-footer__dot">·</span>
-            <span>{ESSAY_META.published}</span>
+            <span>{meta.published}</span>
           </div>
           <button
             className="ad-footer__immersive"
