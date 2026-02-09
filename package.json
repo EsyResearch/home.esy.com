@@ -18,6 +18,7 @@
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
     "@next/mdx": "^15.3.4",
+    "@types/three": "^0.182.0",
     "d3-geo": "^3.1.1",
     "d3-interpolate": "^3.0.1",
     "d3-scale": "^4.0.2",
@@ -37,6 +38,7 @@
     "remark-directive": "^4.0.0",
     "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1",
+    "three": "^0.182.0",
     "topojson-client": "^3.1.0"
   },
   "devDependencies": {

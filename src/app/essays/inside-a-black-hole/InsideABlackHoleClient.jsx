@@ -1,7 +1,13 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import dynamic from 'next/dynamic';
 import './inside-a-black-hole.css';
+
+const SpacetimeVisualization = dynamic(
+  () => import('./SpacetimeVisualization'),
+  { ssr: false, loading: () => <div style={{ height: 500, background: '#050508' }} /> }
+);
 
 /* ═══════════════════════════════════════════════════════════════
    Inside a Black Hole — Interactive Visual Essay
@@ -236,134 +242,201 @@ function PenroseDiagram({ interactive = false }) {
     if (interactive && inView) setStep(5);
   }, [interactive, inView]);
 
-  // Diamond coordinates (SVG viewBox: 0 0 300 300)
-  const cx = 150, cy = 150, size = 120;
-  const top = { x: cx, y: cy - size };
-  const right = { x: cx + size, y: cy };
-  const bottom = { x: cx, y: cy + size };
-  const left = { x: cx - size, y: cy };
+  const vb = 440;
+  const cx = vb / 2, cy = vb / 2, s = 160;
+  const top = { x: cx, y: cy - s };
+  const right = { x: cx + s, y: cy };
+  const bottom = { x: cx, y: cy + s };
+  const left = { x: cx - s, y: cy };
 
-  // Singularity zig-zag at top of interior
-  const singularityY = cy - size * 0.4;
+  // Singularity wavy line at top of interior
+  const singY = cy - s * 0.42;
+  const singL = left.x + s * 0.22;
+  const singR = right.x - s * 0.22;
   const singularityPath = useMemo(() => {
-    let d = `M ${left.x + 20} ${singularityY}`;
-    const count = 12;
-    const width = (cx - left.x - 20) * 2;
-    const segWidth = width / count;
+    let d = `M ${singL} ${singY}`;
+    const count = 20;
+    const w = singR - singL;
+    const seg = w / count;
     for (let i = 1; i <= count; i++) {
-      const y = singularityY + (i % 2 === 1 ? -4 : 4);
-      d += ` L ${left.x + 20 + i * segWidth} ${y}`;
+      d += ` L ${singL + i * seg} ${singY + (i % 2 === 1 ? -5 : 5)}`;
     }
     return d;
-  }, [left.x, singularityY, cx]);
+  }, [singL, singR, singY]);
 
-  // Interior region (triangle: left, singularity-left, singularity-right, top-horizon)
-  const horizonMidpoint = { x: (top.x + right.x) / 2, y: (top.y + right.y) / 2 };
-  const interiorPath = `M ${left.x} ${left.y} L ${left.x + 20} ${singularityY} L ${right.x - 20} ${singularityY} L ${top.x} ${top.y} Z`;
+  // Conformal grid: curved coordinate lines showing spacetime warping
+  const conformalGrid = useMemo(() => {
+    const rCurves = [];
+    const tCurves = [];
+    // Constant-r curves: from i⁻ (bottom) to i⁺ (top), bowing toward i⁰ (right)
+    for (let i = 1; i <= 7; i++) {
+      const f = i / 8;
+      rCurves.push({
+        d: `M ${bottom.x} ${bottom.y} Q ${cx + s * f} ${cy} ${top.x} ${top.y}`,
+        o: 0.06 + f * 0.04,
+      });
+    }
+    // Constant-t curves: from left edge to right edge
+    for (let i = 1; i <= 5; i++) {
+      const f = (i / 6) * 2 - 1;
+      tCurves.push({
+        d: `M ${left.x} ${left.y} Q ${cx} ${cy - s * f * 0.35} ${right.x} ${right.y}`,
+        o: 0.06 + Math.abs(f) * 0.03,
+      });
+    }
+    return { rCurves, tCurves };
+  }, [bottom, top, left, right, cx, cy, s]);
+
+  const interiorPath = `M ${left.x} ${left.y} L ${singL} ${singY} L ${singR} ${singY} L ${top.x} ${top.y} Z`;
 
   const stepLabels = [
     '',
-    'Step 1: All of spacetime on one page',
-    'Step 2: Your future lies inside your light cone',
-    'Step 3: The event horizon divides inside from outside',
-    'Step 4: The singularity — at the TOP. Your future.',
-    'Step 5: Inside, every light cone points to the singularity',
+    'All of spacetime — past, present, future, infinity — compressed onto a single diamond.',
+    'Light always travels at 45°. Your future lies within your light cone.',
+    'The event horizon: a one-way causal boundary in spacetime.',
+    'The singularity sits at the top — it is your future, not a place in space.',
+    'Inside, every light cone tilts toward the singularity. There is no escape direction.',
   ];
 
   const interactivePoints = interactive ? [
-    { x: cx + 40, y: cy + 20, label: 'Outside', inside: false },
-    { x: cx - 20, y: cy - 20, label: 'Inside', inside: true },
-    { x: cx, y: cy + 60, label: 'Far outside', inside: false },
+    { x: cx + 55, y: cy + 25, label: 'Outside observer', inside: false },
+    { x: cx - 25, y: cy - 25, label: 'Fallen inside', inside: true },
+    { x: cx + 15, y: cy + 75, label: 'Distant observer', inside: false },
   ] : [];
 
   return (
-    <div ref={ref} className="bh-penrose" role="figure" aria-label="Penrose diagram for a Schwarzschild black hole showing causal structure.">
-      <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-        {/* Step 1: Diamond outline */}
+    <div ref={ref} className="bh-penrose" role="figure" aria-label="Penrose conformal diagram for a Schwarzschild black hole showing the causal structure of spacetime.">
+      <svg viewBox={`0 0 ${vb} ${vb}`} xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="penrose-glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+          <filter id="cone-glow" x="-15%" y="-15%" width="130%" height="130%">
+            <feGaussianBlur stdDeviation="2" result="blur" />
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+          <linearGradient id="interior-fill" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stopColor="rgba(61,126,199,0.01)" />
+            <stop offset="60%" stopColor="rgba(61,126,199,0.08)" />
+            <stop offset="100%" stopColor="rgba(181,56,42,0.12)" />
+          </linearGradient>
+          <linearGradient id="cone-fill-out" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stopColor="rgba(61,126,199,0.2)" />
+            <stop offset="100%" stopColor="rgba(61,126,199,0.02)" />
+          </linearGradient>
+          <linearGradient id="cone-fill-in" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stopColor="rgba(181,56,42,0.2)" />
+            <stop offset="100%" stopColor="rgba(181,56,42,0.02)" />
+          </linearGradient>
+        </defs>
+
+        {/* Conformal coordinate grid — shows spacetime curvature */}
+        {step >= 1 && (
+          <g className="bh-penrose__grid-group" style={{ opacity: step >= 1 ? 1 : 0, transition: 'opacity 0.8s ease' }}>
+            {conformalGrid.rCurves.map((c, i) => (
+              <path key={`r${i}`} d={c.d} fill="none" stroke="var(--bh-diagram-line)" strokeWidth="0.5" opacity={c.o} />
+            ))}
+            {conformalGrid.tCurves.map((c, i) => (
+              <path key={`t${i}`} d={c.d} fill="none" stroke="var(--bh-diagram-line)" strokeWidth="0.5" opacity={c.o} />
+            ))}
+            {/* 45° light ray reference diagonals */}
+            <line x1={bottom.x} y1={bottom.y} x2={right.x} y2={right.y} stroke="var(--bh-accretion-gold-dim)" strokeWidth="0.4" opacity="0.15" strokeDasharray="6 10" />
+            <line x1={bottom.x} y1={bottom.y} x2={left.x} y2={left.y} stroke="var(--bh-accretion-gold-dim)" strokeWidth="0.4" opacity="0.15" strokeDasharray="6 10" />
+          </g>
+        )}
+
+        {/* Diamond boundary */}
         {step >= 1 && (
           <path
             className="bh-penrose__diamond"
             d={`M ${top.x} ${top.y} L ${right.x} ${right.y} L ${bottom.x} ${bottom.y} L ${left.x} ${left.y} Z`}
-            style={{ opacity: step >= 1 ? 1 : 0, transition: 'opacity 0.6s ease' }}
           />
         )}
 
-        {/* Step 1 labels */}
+        {/* Infinity labels */}
         {step >= 1 && (
           <>
-            <text className="bh-penrose__label" x={top.x} y={top.y - 8} textAnchor="middle">future ∞</text>
-            <text className="bh-penrose__label" x={bottom.x} y={bottom.y + 16} textAnchor="middle">past ∞</text>
-            <text className="bh-penrose__label" x={right.x + 8} y={right.y} textAnchor="start">space ∞</text>
+            <text className="bh-penrose__label" x={top.x} y={top.y - 16} textAnchor="middle" style={{ fontWeight: 500 }}>i⁺</text>
+            <text className="bh-penrose__label bh-penrose__label--dim" x={top.x} y={top.y - 4} textAnchor="middle">future timelike ∞</text>
+            <text className="bh-penrose__label" x={bottom.x} y={bottom.y + 18} textAnchor="middle" style={{ fontWeight: 500 }}>i⁻</text>
+            <text className="bh-penrose__label bh-penrose__label--dim" x={bottom.x} y={bottom.y + 30} textAnchor="middle">past timelike ∞</text>
+            <text className="bh-penrose__label" x={right.x + 14} y={right.y + 4} textAnchor="start" style={{ fontWeight: 500 }}>i⁰</text>
+            <text className="bh-penrose__label bh-penrose__label--dim" x={right.x + 14} y={right.y + 16} textAnchor="start">spatial ∞</text>
+            <text className="bh-penrose__label--script" x={cx + s * 0.62} y={cy - s * 0.52} textAnchor="middle" transform={`rotate(-45,${cx + s * 0.62},${cy - s * 0.52})`}>𝒥⁺</text>
+            <text className="bh-penrose__label--script" x={cx + s * 0.62} y={cy + s * 0.52} textAnchor="middle" transform={`rotate(45,${cx + s * 0.62},${cy + s * 0.52})`}>𝒥⁻</text>
           </>
         )}
 
-        {/* Step 2: Light cone at a point */}
+        {/* Light cone at an exterior point */}
         {step >= 2 && (
-          <path
-            className={`bh-penrose__lightcone ${step >= 2 ? 'bh-penrose__lightcone--visible' : ''}`}
-            d={`M ${cx + 30} ${cy + 30} L ${cx + 30 + 30} ${cy + 30 - 30} L ${cx + 30 - 30} ${cy + 30 - 30} Z`}
-          />
+          <g filter="url(#cone-glow)">
+            <path
+              className="bh-penrose__lightcone bh-penrose__lightcone--visible"
+              d={`M ${cx + 55} ${cy + 40} L ${cx + 90} ${cy + 5} L ${cx + 20} ${cy + 5} Z`}
+              fill="url(#cone-fill-out)" stroke="var(--bh-lensing-blue)" strokeWidth="1"
+            />
+            <circle cx={cx + 55} cy={cy + 40} r="3.5" fill="var(--bh-lensing-blue)" />
+            <text className="bh-penrose__label" x={cx + 55} y={cy + 56} textAnchor="middle" style={{ fill: 'var(--bh-lensing-blue)', fontSize: '9px' }}>you are here</text>
+          </g>
         )}
 
-        {/* Step 3: Event horizon line */}
+        {/* Event horizon + interior region */}
         {step >= 3 && (
           <>
-            <line
-              className="bh-penrose__horizon"
-              x1={left.x} y1={left.y} x2={top.x} y2={top.y}
-              style={{ opacity: step >= 3 ? 0.8 : 0, transition: 'opacity 0.6s ease' }}
-            />
-            <path
-              className="bh-penrose__interior"
-              d={interiorPath}
-              style={{ opacity: step >= 3 ? 1 : 0, transition: 'opacity 0.6s ease' }}
-            />
-            <text className="bh-penrose__label" x={left.x + 15} y={cy - 45} textAnchor="start" style={{ fill: 'var(--bh-lensing-blue-dim, #2a5a8f)' }}>interior</text>
+            <path d={interiorPath} fill="url(#interior-fill)" style={{ opacity: step >= 3 ? 1 : 0, transition: 'opacity 0.6s ease' }} />
+            <line className="bh-penrose__horizon" x1={left.x} y1={left.y} x2={top.x} y2={top.y} />
+            <text className="bh-penrose__label" x={left.x + 24} y={cy - s * 0.18} textAnchor="start" style={{ fill: 'var(--bh-lensing-blue-dim)', fontSize: '10px', fontWeight: 500 }}>event horizon</text>
           </>
         )}
 
-        {/* Step 4: Singularity */}
+        {/* Singularity with glow */}
         {step >= 4 && (
-          <>
-            <path
-              className="bh-penrose__singularity"
-              d={singularityPath}
-              style={{ opacity: step >= 4 ? 1 : 0, transition: 'opacity 0.6s ease' }}
-            />
-            <text className="bh-penrose__label" x={cx} y={singularityY - 12} textAnchor="middle" style={{ fill: 'var(--bh-singularity-white, #fff)', fontWeight: 600 }}>SINGULARITY</text>
-          </>
+          <g filter="url(#penrose-glow)">
+            <path className="bh-penrose__singularity" d={singularityPath} />
+            <text x={cx} y={singY - 18} textAnchor="middle" style={{ fill: '#fff', fontWeight: 600, fontSize: '10px', letterSpacing: '0.2em', fontFamily: "'JetBrains Mono', monospace" }}>SINGULARITY</text>
+          </g>
         )}
 
-        {/* Step 5: Trapped light cones inside */}
+        {/* Trapped light cones inside the horizon */}
         {step >= 5 && !interactive && (
-          <>
-            <path
-              className={`bh-penrose__lightcone bh-penrose__lightcone--visible`}
-              d={`M ${cx - 15} ${cy - 10} L ${cx - 15 + 20} ${cy - 10 - 20} L ${cx - 15 - 20} ${cy - 10 - 20} Z`}
-            />
-            <path
-              className={`bh-penrose__lightcone bh-penrose__lightcone--visible`}
-              d={`M ${cx - 35} ${cy + 5} L ${cx - 35 + 20} ${cy + 5 - 20} L ${cx - 35 - 20} ${cy + 5 - 20} Z`}
-            />
-          </>
+          <g filter="url(#cone-glow)">
+            {[
+              { x: cx - 20, y: cy - 12 },
+              { x: cx - 50, y: cy + 10 },
+              { x: cx, y: cy - 45 },
+            ].map((p, i) => (
+              <g key={`trapped-${i}`}>
+                <path
+                  className="bh-penrose__lightcone bh-penrose__lightcone--visible"
+                  d={`M ${p.x} ${p.y} L ${p.x + 24} ${p.y - 24} L ${p.x - 24} ${p.y - 24} Z`}
+                  fill="url(#cone-fill-in)" stroke="var(--bh-danger-red)" strokeWidth="0.8"
+                />
+                <circle cx={p.x} cy={p.y} r="2.5" fill="var(--bh-danger-red)" opacity="0.8" />
+              </g>
+            ))}
+          </g>
         )}
 
-        {/* Interactive points */}
+        {/* Interactive clickable points */}
         {interactive && interactivePoints.map((p, i) => (
-          <g key={i}>
+          <g key={`ip-${i}`}>
             <circle
               className="bh-penrose__point"
-              cx={p.x} cy={p.y} r={4}
+              cx={p.x} cy={p.y} r={selectedPoint === i ? 6 : 4}
               onClick={() => setSelectedPoint(selectedPoint === i ? null : i)}
+              style={{ filter: selectedPoint === i ? 'drop-shadow(0 0 6px var(--bh-horizon-teal))' : 'none' }}
             />
             {selectedPoint === i && (
               <path
                 className="bh-penrose__lightcone bh-penrose__lightcone--visible"
-                d={`M ${p.x} ${p.y} L ${p.x + 25} ${p.y - 25} L ${p.x - 25} ${p.y - 25} Z`}
-                style={{ fill: p.inside ? 'rgba(181, 56, 42, 0.15)' : 'rgba(61, 126, 199, 0.15)' }}
+                d={`M ${p.x} ${p.y} L ${p.x + 30} ${p.y - 30} L ${p.x - 30} ${p.y - 30} Z`}
+                fill={p.inside ? 'url(#cone-fill-in)' : 'url(#cone-fill-out)'}
+                stroke={p.inside ? 'var(--bh-danger-red)' : 'var(--bh-lensing-blue)'}
+                strokeWidth="1" filter="url(#cone-glow)"
               />
             )}
-            <text className="bh-penrose__label" x={p.x + 10} y={p.y + 4} textAnchor="start" style={{ fontSize: '9px' }}>{p.label}</text>
+            <text className="bh-penrose__label" x={p.x + 12} y={p.y + 4} textAnchor="start" style={{ fontSize: '10px' }}>{p.label}</text>
           </g>
         ))}
       </svg>
@@ -371,7 +444,7 @@ function PenroseDiagram({ interactive = false }) {
         <div className="bh-penrose__step-label">{stepLabels[step]}</div>
       )}
       {interactive && (
-        <div className="bh-penrose__step-label">Tap a point to see its light cone — where its future can reach.</div>
+        <div className="bh-penrose__step-label">Tap any point to see its light cone — the region of spacetime its future can reach.</div>
       )}
     </div>
   );
@@ -384,25 +457,31 @@ function TidalComparison() {
   const cards = [
     {
       name: 'Stellar Black Hole',
-      mass: '10 solar masses',
+      mass: '10 M☉',
       radius: '~30 km',
-      figure: { stretch: 3.5, color: 'var(--bh-danger-red)' },
-      verdict: 'Torn apart before reaching the horizon.',
+      stretch: 3.5,
+      color: 'var(--bh-danger-red)',
+      rgb: '181,56,42',
+      verdict: 'Spaghettified before reaching the horizon.',
       lethal: true,
     },
     {
       name: 'Sagittarius A*',
-      mass: '4 million solar masses',
+      mass: '4 million M☉',
       radius: '~12 million km',
-      figure: { stretch: 1.3, color: 'var(--bh-accretion-gold)' },
+      stretch: 1.4,
+      color: 'var(--bh-accretion-gold)',
+      rgb: '196,146,42',
       verdict: 'Survive crossing. ~20 seconds inside.',
       lethal: false,
     },
     {
       name: 'TON 618',
-      mass: '66 billion solar masses',
+      mass: '66 billion M☉',
       radius: '~200 billion km',
-      figure: { stretch: 1, color: 'var(--bh-horizon-teal)' },
+      stretch: 1.05,
+      color: 'var(--bh-horizon-teal)',
+      rgb: '26,158,143',
       verdict: 'Cross in comfort. Hours to days inside.',
       lethal: false,
     },
@@ -410,36 +489,84 @@ function TidalComparison() {
 
   return (
     <div ref={ref} className="bh-tidal-comparison" role="figure" aria-label="Comparison of tidal forces at the event horizon for three black holes of different masses.">
-      {cards.map((c, i) => (
-        <div
-          key={c.name}
-          className={`bh-tidal-card bh-fade-in ${inView ? 'bh-fade-in--visible' : ''}`}
-          style={{ transitionDelay: `${i * 0.15}s` }}
-        >
-          <div className="bh-tidal-card__name">{c.name}</div>
-          <div className="bh-tidal-card__mass">{c.mass}</div>
-          <div className="bh-tidal-card__figure">
-            <svg viewBox="0 0 60 120" width="60" height="120">
-              {/* Simplified human figure — stretched by tidal factor */}
-              <ellipse
-                cx="30" cy={60 / c.figure.stretch}
-                rx={12 / c.figure.stretch} ry="8"
-                fill={c.figure.color} opacity="0.8"
-              />
-              <rect
-                x={30 - 6 / c.figure.stretch} y={60 / c.figure.stretch + 8}
-                width={12 / c.figure.stretch}
-                height={50 * c.figure.stretch}
-                rx="4"
-                fill={c.figure.color} opacity="0.6"
-              />
-            </svg>
+      {cards.map((c, i) => {
+        const baseR = 18;
+        const rx = baseR / Math.sqrt(c.stretch);
+        const ry = baseR * Math.sqrt(c.stretch);
+
+        return (
+          <div
+            key={c.name}
+            className={`bh-tidal-card bh-fade-in ${inView ? 'bh-fade-in--visible' : ''}`}
+            style={{ transitionDelay: `${i * 0.15}s` }}
+          >
+            <div className="bh-tidal-card__name">{c.name}</div>
+            <div className="bh-tidal-card__mass">{c.mass}</div>
+            <div className="bh-tidal-card__radius">{c.radius}</div>
+            <div className="bh-tidal-card__figure">
+              <svg viewBox="0 0 80 160" width="80" height="160">
+                <defs>
+                  <radialGradient id={`tfield-${i}`} cx="50%" cy="12%" r="90%">
+                    <stop offset="0%" stopColor={`rgba(${c.rgb},0.18)`} />
+                    <stop offset="100%" stopColor={`rgba(${c.rgb},0)`} />
+                  </radialGradient>
+                  <radialGradient id={`tbody-${i}`} cx="50%" cy="40%" r="60%">
+                    <stop offset="0%" stopColor={`rgba(${c.rgb},0.5)`} />
+                    <stop offset="100%" stopColor={`rgba(${c.rgb},0.15)`} />
+                  </radialGradient>
+                </defs>
+
+                {/* Tidal force field gradient */}
+                <rect x="0" y="0" width="80" height="160" fill={`url(#tfield-${i})`} />
+
+                {/* Black hole source at top */}
+                <circle cx="40" cy="14" r="9" fill="var(--bh-void)" stroke={c.color} strokeWidth="1.5" opacity="0.6" />
+                <circle cx="40" cy="14" r="4" fill="var(--bh-void)" />
+
+                {/* Force field lines radiating from hole */}
+                {[-0.7, -0.45, -0.2, 0.2, 0.45, 0.7].map((f, j) => (
+                  <line
+                    key={j}
+                    x1={40 + 22 * f} y1="24"
+                    x2={40 + 14 * f} y2="152"
+                    stroke={c.color} strokeWidth="0.5" opacity={0.12 + Math.abs(f) * 0.06}
+                  />
+                ))}
+
+                {/* Deformed body — sphere under tidal stress */}
+                <ellipse
+                  cx="40" cy="90" rx={rx} ry={Math.min(ry, 55)}
+                  fill={`url(#tbody-${i})`} stroke={c.color} strokeWidth="1" opacity="0.85"
+                />
+
+                {/* Stretch arrows for significant deformation */}
+                {c.stretch > 1.2 && (
+                  <>
+                    {/* Vertical stretch indicators */}
+                    <line x1="40" y1={90 - Math.min(ry, 55) - 10} x2="40" y2={90 - Math.min(ry, 55) - 3} stroke={c.color} strokeWidth="1" opacity="0.5" />
+                    <polygon points={`40,${90 - Math.min(ry, 55) - 14} 37,${90 - Math.min(ry, 55) - 8} 43,${90 - Math.min(ry, 55) - 8}`} fill={c.color} opacity="0.5" />
+                    <line x1="40" y1={90 + Math.min(ry, 55) + 3} x2="40" y2={90 + Math.min(ry, 55) + 10} stroke={c.color} strokeWidth="1" opacity="0.5" />
+                    <polygon points={`40,${90 + Math.min(ry, 55) + 14} 37,${90 + Math.min(ry, 55) + 8} 43,${90 + Math.min(ry, 55) + 8}`} fill={c.color} opacity="0.5" />
+                    {/* Horizontal compression indicators */}
+                    <line x1={40 - rx - 10} y1="90" x2={40 - rx - 3} y2="90" stroke={c.color} strokeWidth="0.8" opacity="0.35" />
+                    <polygon points={`${40 - rx - 2},90 ${40 - rx - 8},87.5 ${40 - rx - 8},92.5`} fill={c.color} opacity="0.35" />
+                    <line x1={40 + rx + 3} y1="90" x2={40 + rx + 10} y2="90" stroke={c.color} strokeWidth="0.8" opacity="0.35" />
+                    <polygon points={`${40 + rx + 2},90 ${40 + rx + 8},87.5 ${40 + rx + 8},92.5`} fill={c.color} opacity="0.35" />
+                  </>
+                )}
+
+                {/* Force magnitude label */}
+                <text x="40" y="155" textAnchor="middle" style={{ fontSize: '7px', fill: c.color, opacity: 0.6, fontFamily: "'JetBrains Mono', monospace" }}>
+                  {c.stretch > 2 ? '∝ 1/M² → extreme' : c.stretch > 1.2 ? '∝ 1/M² → mild' : '∝ 1/M² → negligible'}
+                </text>
+              </svg>
+            </div>
+            <div className={`bh-tidal-card__verdict ${c.lethal ? 'bh-tidal-card__verdict--lethal' : 'bh-tidal-card__verdict--safe'}`}>
+              {c.verdict}
+            </div>
           </div>
-          <div className={`bh-tidal-card__verdict ${c.lethal ? 'bh-tidal-card__verdict--lethal' : 'bh-tidal-card__verdict--safe'}`}>
-            {c.verdict}
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
@@ -448,38 +575,107 @@ function TidalComparison() {
 function InformationFlow() {
   const [ref, inView] = useInView({ threshold: 0.2 });
 
+  // Random thermal dots representing featureless Hawking radiation
+  const thermalDots = useMemo(() =>
+    Array.from({ length: 24 }, (_, i) => ({
+      x: 8 + Math.random() * 84,
+      y: 8 + Math.random() * 84,
+      r: 1 + Math.random() * 2.5,
+      o: 0.12 + Math.random() * 0.28,
+    })), []
+  );
+
+  // SVG icon components — replace system emojis with programmatic graphics
+  const StructuredIcons = [
+    // Grid = organized data structure
+    <svg key="grid" viewBox="0 0 32 32" width="28" height="28" className="bh-info-flow__svg-icon">
+      {[0, 1, 2].map(r => [0, 1, 2].map(c => (
+        <rect key={`${r}${c}`} x={3 + c * 9.5} y={3 + r * 9.5} width="7.5" height="7.5" rx="1"
+          fill="var(--bh-lensing-blue)" opacity={0.2 + (r + c) * 0.1} />
+      )))}
+    </svg>,
+    // Double helix = biological quantum state
+    <svg key="helix" viewBox="0 0 32 32" width="28" height="28" className="bh-info-flow__svg-icon">
+      <path d="M 10 2 Q 22 8, 10 16 Q 22 24, 10 30" fill="none" stroke="var(--bh-horizon-teal)" strokeWidth="1.5" opacity="0.5" />
+      <path d="M 22 2 Q 10 8, 22 16 Q 10 24, 22 30" fill="none" stroke="var(--bh-horizon-teal)" strokeWidth="1.5" opacity="0.5" />
+      {[6, 10, 14, 18, 22, 26].map((y, j) => (
+        <line key={j} x1="11" y1={y} x2="21" y2={y} stroke="var(--bh-horizon-teal)" strokeWidth="0.7" opacity="0.25" />
+      ))}
+    </svg>,
+    // Radial burst = stellar composition
+    <svg key="star" viewBox="0 0 32 32" width="28" height="28" className="bh-info-flow__svg-icon">
+      {[0, 45, 90, 135].map((angle, j) => {
+        const rad = (angle * Math.PI) / 180;
+        return (
+          <line key={j} x1={16 + Math.cos(rad) * 4} y1={16 + Math.sin(rad) * 4}
+            x2={16 + Math.cos(rad) * 13} y2={16 + Math.sin(rad) * 13}
+            stroke="var(--bh-accretion-gold)" strokeWidth="1.2" opacity={0.3 + j * 0.08} />
+        );
+      })}
+      <circle cx="16" cy="16" r="4" fill="var(--bh-accretion-gold)" opacity="0.35" />
+    </svg>,
+  ];
+
+  const items = [
+    { label: 'A book', sub: 'Organized content with meaning' },
+    { label: 'A person', sub: 'Complete quantum state' },
+    { label: 'A star', sub: 'Mass, composition, history' },
+  ];
+
   return (
     <div ref={ref} className={`bh-info-flow bh-fade-in ${inView ? 'bh-fade-in--visible' : ''}`}
-      role="figure" aria-label="Flow diagram illustrating the information paradox. Structured information falls in, only featureless thermal radiation comes out.">
+      role="figure" aria-label="The information paradox: structured information enters a black hole, only featureless thermal radiation exits.">
+
       <div className="bh-info-flow__input">
-        <div className="bh-info-flow__item">
-          <span className="bh-info-flow__item-icon">📖</span>
-          <span className="bh-info-flow__item-label">A book (structured information)</span>
-        </div>
-        <div className="bh-info-flow__item">
-          <span className="bh-info-flow__item-icon">🧬</span>
-          <span className="bh-info-flow__item-label">A person (quantum state)</span>
-        </div>
-        <div className="bh-info-flow__item">
-          <span className="bh-info-flow__item-icon">⭐</span>
-          <span className="bh-info-flow__item-label">A star (mass, composition, history)</span>
-        </div>
-        <div className="bh-info-flow__arrow">→</div>
+        <div className="bh-info-flow__column-label">Falls In</div>
+        {items.map((item, i) => (
+          <div key={i} className="bh-info-flow__item">
+            <span className="bh-info-flow__item-icon">{StructuredIcons[i]}</span>
+            <span className="bh-info-flow__item-text">
+              <span className="bh-info-flow__item-label">{item.label}</span>
+              <span className="bh-info-flow__item-sublabel">{item.sub}</span>
+            </span>
+          </div>
+        ))}
       </div>
 
       <div className="bh-info-flow__center">
-        <div className="bh-info-flow__hole" />
-        <span className="bh-caption">Black Hole</span>
+        {/* Converging arrows */}
+        <svg className="bh-info-flow__conv-arrows" viewBox="0 0 40 80" width="24" height="48">
+          <line x1="0" y1="15" x2="36" y2="40" stroke="var(--bh-diagram-line)" strokeWidth="1" opacity="0.35" />
+          <line x1="0" y1="40" x2="36" y2="40" stroke="var(--bh-diagram-line)" strokeWidth="1" opacity="0.45" />
+          <line x1="0" y1="65" x2="36" y2="40" stroke="var(--bh-diagram-line)" strokeWidth="1" opacity="0.35" />
+          <polygon points="37,40 30,36 30,44" fill="var(--bh-diagram-line)" opacity="0.4" />
+        </svg>
+
+        <div className="bh-info-flow__hole-wrap">
+          <div className="bh-info-flow__accretion-ring" />
+          <div className="bh-info-flow__hole" />
+        </div>
+
+        {/* Diverging dashed arrows */}
+        <svg className="bh-info-flow__div-arrows" viewBox="0 0 40 80" width="24" height="48">
+          <line x1="4" y1="40" x2="40" y2="15" stroke="var(--bh-quantum-violet-dim)" strokeWidth="1" opacity="0.25" strokeDasharray="3 4" />
+          <line x1="4" y1="40" x2="40" y2="40" stroke="var(--bh-quantum-violet-dim)" strokeWidth="1" opacity="0.35" strokeDasharray="3 4" />
+          <line x1="4" y1="40" x2="40" y2="65" stroke="var(--bh-quantum-violet-dim)" strokeWidth="1" opacity="0.25" strokeDasharray="3 4" />
+        </svg>
+
+        <span className="bh-info-flow__center-label bh-caption">Black Hole</span>
       </div>
 
       <div className="bh-info-flow__output">
-        <div className="bh-info-flow__arrow">→</div>
-        {[1, 2, 3].map(i => (
-          <div key={i} className="bh-info-flow__particle">
-            <span className="bh-info-flow__particle-dot" />
-            <span className="bh-info-flow__particle-label">thermal photon (random)</span>
-          </div>
-        ))}
+        <div className="bh-info-flow__column-label">Comes Out</div>
+        <div className="bh-info-flow__thermal-box">
+          <svg viewBox="0 0 100 100" width="100%" height="100%">
+            {thermalDots.map((d, i) => (
+              <circle key={i} cx={d.x} cy={d.y} r={d.r} fill="var(--bh-quantum-violet-dim)" opacity={d.o} />
+            ))}
+          </svg>
+        </div>
+        <div className="bh-info-flow__thermal-desc">
+          <span className="bh-info-flow__thermal-title">Thermal noise</span>
+          <span className="bh-info-flow__thermal-detail">Perfectly random. Featureless. No trace of what fell in.</span>
+        </div>
       </div>
 
       <div className="bh-info-flow__paradox">
@@ -667,8 +863,13 @@ export default function InsideABlackHoleClient() {
           </p>
         </div>
 
-        <div className="bh-vis-container">
-          <PenroseDiagram interactive={false} />
+        <div className="bh-vis-container bh-vis-container--3d">
+          <SpacetimeVisualization />
+          <p className="bh-vis-caption">
+            Spacetime curves so steeply inside the event horizon (teal ring) that every path — 
+            shown as light cones on the surface — tilts inward. The gold particles spiral in from all 
+            directions, demonstrating that no trajectory can escape. The singularity waits at the bottom.
+          </p>
         </div>
 
         <div className="bh-prose-container bh-prose">

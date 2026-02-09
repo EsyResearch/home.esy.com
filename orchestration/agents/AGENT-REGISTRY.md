@@ -89,6 +89,7 @@ agents/
 | [Image Research & Licensing](./research/image-research-licensing-expert.md) | Public Domain Images | — | `research/` |
 | [Design Researcher](./research/design-researcher.md) | Visual Identity Research | G4 | `research/` |
 | [Concept Research Agent](./research/concept-research-agent.md) | Concept Verification | G2 (conceptual) | `research/` |
+| [Visualization Research Agent](./research/visualization-research-agent.md) | Visualization Blueprints | G4.V | `research/` |
 
 > **Note**: Research agents are orchestrated by specialized orchestrators. The [Research Orchestrator](./orchestrators/research-orchestrator.md) owns G2 for historical essays. The [Concept Research Agent](./research/concept-research-agent.md) owns G2 for conceptual essays. Design Researcher supports both pipelines (with Archival or Pedagogical lens).
 
@@ -382,11 +383,11 @@ See [META-AGENT-FRAMEWORK.md](./META-AGENT-FRAMEWORK.md) for the complete agent 
 | 🎬 Orchestrators | 6 | Multi-agent coordination |
 | 🔍 Auditors | 20 | Quality verification |
 | 📚 Content | 5 | Content creation |
-| 🔬 Research | 5 | Source discovery |
+| 🔬 Research | 6 | Source discovery |
 | 🌏 Regional | 2 | Subject expertise |
 | ⚙️ Engineering | 9 | Technical implementation |
 | 🔧 Utilities | 5 | Support functions |
-| **Total** | **52** | |
+| **Total** | **53** | |
 
 ---
 
@@ -410,6 +411,7 @@ See [META-AGENT-FRAMEWORK.md](./META-AGENT-FRAMEWORK.md) for the complete agent 
 *Last Updated: February 2026*
 
 ### Recent Changes
+- Added **Visualization Research Agent** to research — domain-specific diagram research, reference exemplar curation, comprehension test design for G4.V
 - Added **Data Journalist Writer Expert** to content — publication-quality data journalism prose for Data Journalism mode
 - Added **Data Visualization Architect Expert** to engineering — programmatic data viz (choropleths, Sankey, comparison widgets) for Data Journalism mode
 - Added **Data Accuracy Auditor** to auditors — G6.1 data-to-visual fidelity verification for Data Journalism mode

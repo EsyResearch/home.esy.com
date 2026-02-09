@@ -13,6 +13,7 @@ Research and source discovery agents that ensure content is built on authoritati
 | [Image Research & Licensing](./image-research-licensing-expert.md) | Visual Assets | Public domain image sourcing & rights verification |
 | [Design Researcher](./design-researcher.md) | Visual Identity | Subject-derived design (Archival or Pedagogical lens) |
 | [Concept Research Agent](./concept-research-agent.md) | Concept Verification | Scientific claims, learning sequences, misconceptions |
+| [Visualization Research Agent](./visualization-research-agent.md) | Visualization Blueprints | Domain-specific diagram research, reference exemplars, comprehension tests |
 
 ---
 
@@ -69,6 +70,7 @@ Research Orchestrator (orchestrators/)
 | **Research concepts for educational essays** | Concept Research Agent (G2 conceptual) |
 | **Full historical research pipeline** | Use Research Orchestrator (orchestrators/) |
 | **Full conceptual research pipeline** | Use Conceptual Essay Orchestrator (orchestrators/) |
+| **Research how to visualize specific diagrams** | Visualization Research Agent (G4.V) |
 
 ---
 
@@ -101,6 +103,13 @@ research for educational essay about [TOPIC]. Produce CONCEPTS.md,
 SEQUENCE.md, DEFINITIONS.md, ANALOGIES.md, MISCONCEPTIONS.md, CLAIMS.md.
 ```
 
+**Visualization Research:**
+```
+Using @agents/research/visualization-research-agent.md, research the 
+visualizations specified for [SLUG]. Produce VISUALIZATION-RESEARCH.md 
+with structured briefs for all Tier 1-3 visualizations.
+```
+
 ---
 
 ## See Also
@@ -110,6 +119,7 @@ SEQUENCE.md, DEFINITIONS.md, ANALOGIES.md, MISCONCEPTIONS.md, CLAIMS.md.
 - [Visual Essay Orchestrator](../orchestrators/visual-essay-orchestrator.md) — Invokes Design Researcher for Gate 4
 - [Citation Audit Agent](../auditors/citation-audit-agent.md) — Verifies research quality
 - [Accuracy Audit Agent](../auditors/accuracy-audit-agent.md) — Verifies conceptual research accuracy
+- [Visualization Quality Standard](../../standards/visualization-quality-standard.md) — Defines research-before-rendering requirements
 - [Content Creators](../content/README.md) — Consumes research output
 - [Regional Experts](../regional/README.md) — Provides domain expertise
 

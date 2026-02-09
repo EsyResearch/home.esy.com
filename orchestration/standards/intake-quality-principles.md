@@ -60,15 +60,19 @@ Everything else — research depth, design direction, citation format, scroll be
 
 Esy is a **citation-first research workflow platform**. This has a direct implication for intake design: many templates exist specifically to do work ON user-provided sources. User-supplied citations are not over-prompting — they are the raw material the pipeline processes.
 
-**Three intake source models exist across templates:**
+**Five source acquisition models exist across templates** (see [Citation-First Source Standard](./citation-first-source-standard.md) for full definitions):
 
 | Model | When It Applies | Examples |
 |-------|----------------|---------|
-| **No sources required** | Pipeline discovers all sources during research | Visual essays, explainers, original reporting |
-| **Sources optional** | User CAN supply sources to guide research, but pipeline will discover more | Research papers, literature reviews |
-| **Sources required** | The template's entire purpose is to work ON user-supplied material | "Fix My Citations," "PDF → Annotated Summary," "Turn My Notes Into a Research Paper" |
+| **Template-assisted discovery** | Template searches APIs, user selects from results | Visual essays, explainers — user picks 3/5/7 papers |
+| **User-provided** | User supplies all sources, template does not search | "Turn My Notes Into a Research Paper" |
+| **Hybrid** | Template discovers + user uploads, user approves final set | Literature reviews, research summaries |
+| **Deep research fallback** | No sources provided, pipeline searches and retrieves | Topic-only visual essays, original reporting |
+| **Sources as constraints** | User limits pipeline to ONLY specified sources | Academic assignments with assigned readings |
 
 **Critical distinction**: User-supplied sources are **input material**, not prompt engineering. A student uploading 5 PDFs for "Literature Review Generator" is providing raw material for the pipeline to process — they're not telling the pipeline HOW to work. This is the same as a chef receiving ingredients vs. receiving a recipe.
+
+> **See also**: [Citation-First Source Standard](./citation-first-source-standard.md) — the foundational standard defining how sources enter the pipeline, the five source acquisition models, and the traceability chain from source document to published artifact. That standard governs what happens to sources AFTER intake; this document governs how they arrive.
 
 ```
 INPUT MATERIAL (legitimate)              OVER-PROMPTING (anti-pattern)
@@ -253,7 +257,7 @@ When tempted to add more to an intake document or form field, ask:
 
 ### Nuances to the Model
 
-3. **A fourth source model may emerge: sources as constraints.** Beyond none/optional/required, some users will want to *limit* the pipeline to only certain sources. "Write about X using ONLY these 3 assigned readings." That's a research boundary, not input material. Academic integrity contexts (students citing only assigned readings) will need this. It's architecturally distinct from the three models above.
+3. **~~A fourth source model may emerge: sources as constraints.~~** ✅ Resolved — the [Citation-First Source Standard](./citation-first-source-standard.md) now defines five source models, including "Sources as Constraints" for academic integrity contexts where the pipeline must use ONLY user-specified sources.
 
 4. **Editorial intent is not over-prompting.** The anti-pattern targets HOW instructions ("use purple gradients, parallax scroll, APA format"). But WHAT intent from an experienced author is legitimate: "the narrative arc should move from wonder to existential unease." The distinction is type, not length. A 15-line intake with strong editorial vision may produce a better essay than a generic 7-line one. The 10-line heuristic is a guard against over-prompting, not a ceiling on editorial voice.
 

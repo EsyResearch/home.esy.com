@@ -87,6 +87,7 @@ Every gate has three layers of quality assurance. The first layer is mandatory f
 | Production Gate | Produces | Audit Gate | Audits |
 |----------------|----------|------------|--------|
 | G4 Design Research | DESIGN-RESEARCH.md | G4.1 Reconciliation | Authenticity, novelty, completeness |
+| G4.V Visualization Research | VISUALIZATION-RESEARCH.md | G7 Diagram Clarity | Comprehension test evaluation |
 | G5 Content Complete | page.tsx, CSS, Client component | G5.2 Design Fidelity | Spec-to-code compliance |
 | G5 Content Complete | Narrative content | G6 Citation Audit | Source integrity |
 | G5 Content Complete | Scroll interactions | G7 Scroll Certification | Performance, UX |
@@ -244,6 +245,7 @@ Every workflow has four phases:
 In the Production phase, build steps and QA steps alternate:
 
 ```
+G4.V Visualization Research ← Research (briefs for complex diagrams)
 G4.5 Image Sourcing      ← Build
 G5   Content Complete     ← Build (THE BIG ONE)
 G5.2 Design Fidelity     ← QA (audits G5 against G4)

@@ -395,8 +395,8 @@ Agents created before the current framework version may be missing sections. To 
 
 | Agent | Lines | Missing |
 |-------|-------|---------|
-| `software-engineering-expert.md` | ~99 | Red Flags, Red Lines, Three-Tier Review, Collaboration Protocols |
-| `ui-ux-design-expert.md` | Legacy | Verify compliance |
+| `software-engineering-expert.md` | ~357 | ✅ Upgraded February 2026 |
+| `ui-ux-design-expert.md` | ~270 | ✅ Upgraded February 2026 |
 | `template-integration-engineer.md` | Legacy | Verify compliance |
 | `essayist-expert.md` | Legacy | Verify compliance |
 | `copywriter-marketing-expert.md` | Legacy | Verify compliance |

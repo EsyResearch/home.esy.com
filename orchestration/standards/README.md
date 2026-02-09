@@ -6,9 +6,11 @@
 
 | File | Purpose | Status |
 |------|---------|--------|
+| [citation-first-source-standard.md](./citation-first-source-standard.md) | **Foundational.** Defines the Citation-First brand promise: artifacts are built FROM sources, not decorated with them. Five source acquisition models (template-assisted, user-provided, hybrid, deep research, constraints). Source-to-artifact traceability chain. Decorative citation anti-pattern. Gate implications. Migration path from current state. | Active — Foundational |
 | [gate-accountability.md](./gate-accountability.md) | Three-layer QA model (contract enforcement, producer self-assessment, external audit), structured artifact headers, contract strength requirements, scaling to web interface | Active |
 | [intake-quality-principles.md](./intake-quality-principles.md) | Why simple inputs beat comprehensive prompts. Defines the 5-signal intake model, the over-prompting anti-pattern, and where intelligence should live (template design, not intake). Critical for web interface scaling. | Active |
 | [pipeline-execution-standard.md](./pipeline-execution-standard.md) | How to run workflows. Defines three execution models (single-session, isolated, API-driven), phased maturity path, and the standard operating procedure. Includes gate sequence table and anti-patterns. | Active |
+| [visualization-quality-standard.md](./visualization-quality-standard.md) | Why every non-trivial visualization needs a research brief before production. Defines the two-phase audit model (research integrity + comprehension test), visualization taxonomy (Tier 1-4), structured deliverable format, anti-pattern blacklist, and pipeline integration for G4.V. Born from the "Inside a Black Hole" lesson. | Active |
 
 ## Philosophy
 
@@ -24,8 +26,11 @@ Standards are developed reactively — as problems surface during real pipeline 
 
 ### Compliance
 
+- **All artifacts MUST be built from traceable sources** per the [Citation-First Source Standard](./citation-first-source-standard.md). No decorative citations.
 - All gate contracts MUST comply with the Gate Accountability Standard
 - All agent definitions MUST reference applicable standards
 - All audit artifacts MUST use structured YAML frontmatter headers
 - All intake forms and G1 artifacts MUST comply with the Intake Quality Principles (5-signal maximum)
+- All non-trivial visualizations MUST have a research brief per the Visualization Quality Standard before production
+- All templates MUST declare a source acquisition model per the Citation-First Source Standard
 - Compliance is verified at G8 (Publication Certification) for each run
