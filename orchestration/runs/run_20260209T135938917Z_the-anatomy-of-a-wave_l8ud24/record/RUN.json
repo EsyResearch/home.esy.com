@@ -1,0 +1,1337 @@
+{
+  "run_id": "run_20260209T135938917Z_the-anatomy-of-a-wave_l8ud24",
+  "workflow": {
+    "name": "visual-essay",
+    "version": "local-dev",
+    "slug": "the-anatomy-of-a-wave",
+    "artifact_path": "src/app/essays/science/the-anatomy-of-a-wave"
+  },
+  "depth": "standard",
+  "prompt": null,
+  "status": "PASSED",
+  "started_at": "2026-02-09T13:59:38.920Z",
+  "finished_at": "2026-02-09T14:22:08.788Z",
+  "gates": [
+    {
+      "gate": "G1",
+      "name": "Intake Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T13:59:46.926Z",
+          "finished_at": "2026-02-09T14:01:13.332Z",
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/G1-INTAKE.md",
+            "{artifact_path}/research/INTAKE.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/G1-INTAKE.md",
+              "sha256": "5e4deb092361f5819d09c193d62a1c9ee0e0ef69b338fc7532a0d5adbae01115",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/G1-INTAKE.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/INTAKE.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "pattern": "[REJECTED]",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not contain [REJECTED] marker",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G2",
+      "name": "Research Complete",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T14:01:22.082Z",
+          "finished_at": "2026-02-09T14:05:45.412Z",
+          "agent": "research-orchestrator",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CITATIONS.md",
+            "{artifact_path}/research/CLAIMS.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CLAIMS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/research/CLAIMS.md",
+              "sha256": "83351543b5d5c02d879cd36d7e6d154fa2fed0247f4ced2da218a41afc1f0c89",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CITATIONS.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/research/CLAIMS.md",
+                  "exists": true
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "dir_exists",
+              "path": "{artifact_path}/research",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/research",
+              "pass": true,
+              "description": "Research directory must exist"
+            },
+            {
+              "type": "min_file_count",
+              "path": "{artifact_path}/research",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/research",
+              "pattern": "*.md",
+              "count": 6,
+              "threshold": 3,
+              "depth": "standard",
+              "pass": true,
+              "description": "Research directory must contain minimum number of markdown files based on depth mode"
+            },
+            {
+              "type": "min_sources_any_of",
+              "checked": [
+                "{artifact_path}/research/CITATIONS.md",
+                "{artifact_path}/research/CLAIMS.md"
+              ],
+              "matched": "{artifact_path}/research/CLAIMS.md",
+              "count": 103,
+              "threshold": 8,
+              "depth": "standard",
+              "pass": true,
+              "description": "Source-tracking file (CITATIONS.md or CLAIMS.md) must contain minimum sources based on depth mode"
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G3",
+      "name": "Spec Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T14:05:55.373Z",
+          "finished_at": "2026-02-09T14:07:56.804Z",
+          "agent": "visual-essay-invocation-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "orchestration/skills/visual-essay-invocation/specs/{slug}.md"
+          ],
+          "artifacts": [
+            {
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-anatomy-of-a-wave.md",
+              "sha256": "ab6ec3fd1dd9f04da5aaace400469cce93a877cd5f88b0dcf7365065e97a0cf7",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-anatomy-of-a-wave.md",
+              "pass": true,
+              "description": "6-layer visual essay specification"
+            },
+            {
+              "type": "contains_headings",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "missing": [],
+              "severity": "error",
+              "description": "Spec must contain all 6 layer headings",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "pattern": "[DRAFT]",
+              "found": false,
+              "severity": "warning",
+              "description": "Spec should not contain [DRAFT] marker (configurable)",
+              "pass": true,
+              "warning": false
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4",
+      "name": "Design Research",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T14:08:06.856Z",
+          "finished_at": "2026-02-09T14:09:18.076Z",
+          "agent": "design-researcher",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/DESIGN-RESEARCH.md",
+              "sha256": "f1544fab781591d5019d257aff9ceaddf1f4826db8379d7ad567a217bced52af",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Subject-derived design research report with color palette, typography, animation philosophy"
+            },
+            {
+              "type": "contains_headings",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "missing": [],
+              "severity": "warning",
+              "description": "Design research should cover Color, Typography, and Animation (warning if missing)",
+              "pass": true,
+              "warning": false
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4.1",
+      "name": "Design Research Reconciliation",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-02-09T14:09:28.309Z",
+          "finished_at": "2026-02-09T14:09:39.823Z",
+          "agent": "design-research-reconciliation-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+            "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/DESIGN-RESEARCH.md",
+              "sha256": "f1544fab781591d5019d257aff9ceaddf1f4826db8379d7ad567a217bced52af",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": false,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Design research report (must exist and be reconciled)"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "pattern": "[UNRECONCILED]",
+              "found": false,
+              "severity": "error",
+              "description": "Design research must not contain [UNRECONCILED] marker",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "pattern": "[COLLISION]",
+              "found": false,
+              "severity": "error",
+              "description": "Design research must not flag aesthetic collisions with other essays",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Reconciliation audit must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": "None of required files exist: {artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md, {artifact_path}/G4.1-DESIGN-RECONCILIATION.md"
+        },
+        {
+          "attempt": 2,
+          "status": "PASS",
+          "started_at": "2026-02-09T14:10:18.604Z",
+          "finished_at": "2026-02-09T14:10:18.637Z",
+          "agent": "design-research-reconciliation-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+            "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/research/G4.1-DESIGN-RECONCILIATION.md",
+              "sha256": "fe4d1c1ea5eb2950ef8114b58e66d2b9ee2952a1cc087db2c86bf8de9f90f0f4",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/DESIGN-RESEARCH.md",
+              "sha256": "f1544fab781591d5019d257aff9ceaddf1f4826db8379d7ad567a217bced52af",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Design research report (must exist and be reconciled)"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "pattern": "[UNRECONCILED]",
+              "found": false,
+              "severity": "error",
+              "description": "Design research must not contain [UNRECONCILED] marker",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "pattern": "[COLLISION]",
+              "found": false,
+              "severity": "error",
+              "description": "Design research must not flag aesthetic collisions with other essays",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Reconciliation audit must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4.5",
+      "name": "Image Sourcing",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T14:10:27.568Z",
+          "finished_at": "2026-02-09T14:10:44.805Z",
+          "agent": "image-research-licensing-expert",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+            "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+            "{artifact_path}/images-migration.json",
+            "{artifact_path}/images.ts"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/research/IMAGE_RESEARCH_AUDIT.md",
+              "sha256": "75acbaa0bf2cb8a30ee401d66c4e90d7d08bc90dc216a3014f5961e0930af889",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/images-migration.json",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/images.ts",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "[UNLICENSED]",
+              "found": false,
+              "severity": "error",
+              "description": "Image audit must not contain unlicensed assets",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "[PENDING]",
+              "found": false,
+              "severity": "warning",
+              "description": "Image audit should not have pending sourcing tasks",
+              "pass": true,
+              "warning": false
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Image audit must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5",
+      "name": "Content Complete",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T14:10:56.537Z",
+          "finished_at": "2026-02-09T14:18:30.574Z",
+          "agent": "production-orchestrator",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/page.tsx",
+            "{artifact_path}/{slug}.css"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/page.tsx",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/page.tsx",
+              "sha256": "bd76125ab95656a0f5f94d0434f7be2b516c5b9c533958aabf41f431d1ea8837",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/{slug}.css",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/the-anatomy-of-a-wave.css",
+              "sha256": "752e9d32e8a149dfaf8e838da808df622c2d32c2fc51cebaceb98be11af26226",
+              "exists": true,
+              "optional": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/page.tsx",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/page.tsx",
+              "pass": true,
+              "description": "Next.js page with metadata and default export"
+            },
+            {
+              "type": "contains_headings",
+              "path": "{artifact_path}/page.tsx",
+              "missing": [],
+              "severity": "error",
+              "description": "page.tsx must contain a default export and metadata definition",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/page.tsx",
+              "pattern": "TODO",
+              "found": false,
+              "severity": "warning",
+              "description": "page.tsx should not contain TODO markers (indicates incomplete implementation)",
+              "pass": true,
+              "warning": false
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.2",
+      "name": "Design Fidelity Audit",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T14:18:40.461Z",
+          "finished_at": "2026-02-09T14:19:22.086Z",
+          "agent": "design-fidelity-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+            "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "sha256": "bb604e0fa4cf359d458f2c6414b7dc9ccad21894809626f0a15e63b53b4168bf",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/DESIGN-RESEARCH.md",
+              "sha256": "f1544fab781591d5019d257aff9ceaddf1f4826db8379d7ad567a217bced52af",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Design research must still exist (design source of truth)"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Design fidelity audit must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.5",
+      "name": "Bibliography Implementation",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-02-09T14:19:28.245Z",
+          "finished_at": "2026-02-09T14:19:38.197Z",
+          "agent": "bibliography-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+            "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md"
+          ],
+          "artifacts": [],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": false,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Bibliography audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "pattern": "Overall Status: ❌",
+              "found": false,
+              "severity": "error",
+              "description": "Bibliography audit must not report overall failure",
+              "pass": true
+            }
+          ],
+          "failure_reason": "None of required files exist: {artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md, {artifact_path}/research/BIBLIOGRAPHY-AUDIT.md"
+        },
+        {
+          "attempt": 2,
+          "status": "PASS",
+          "started_at": "2026-02-09T14:20:02.317Z",
+          "finished_at": "2026-02-09T14:20:02.349Z",
+          "agent": "bibliography-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+            "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/research/BIBLIOGRAPHY-AUDIT.md",
+              "sha256": "74cafd97ac4662cf92020a21136d0f467df09d6f8e64fc947302cd1b755c6c70",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+                  "exists": true
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Bibliography audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "pattern": "Overall Status: ❌",
+              "found": false,
+              "severity": "error",
+              "description": "Bibliography audit must not report overall failure",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G6",
+      "name": "Citation Audit",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T14:20:07.257Z",
+          "finished_at": "2026-02-09T14:20:26.908Z",
+          "agent": "citation-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CITATION-AUDIT.md",
+            "{artifact_path}/CITATION-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/research/CITATION-AUDIT.md",
+              "sha256": "3e389a7512af7fc7a388c135eb1eeec0fa9184a25f62007b25bd2a9d2dfd2aad",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CITATION-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/CITATION-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Citation audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "pattern": "Citation Certification: Rejected",
+              "found": false,
+              "severity": "error",
+              "description": "Citation audit must not have Rejected certification",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G7",
+      "name": "Scroll Certification",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T14:20:31.716Z",
+          "finished_at": "2026-02-09T14:20:53.232Z",
+          "agent": "scroll-qa-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+            "{artifact_path}/SCROLL-CERTIFICATION.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/research/SCROLL-CERTIFICATION.md",
+              "sha256": "51a67f54759ede0a2e6c3d9757e423f4a598b2da495b7ef2ecee9d7b690f081f",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/SCROLL-CERTIFICATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Scroll certification must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "pattern": "Overall Status: ❌",
+              "found": false,
+              "severity": "error",
+              "description": "Scroll certification must not report overall failure",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G8",
+      "name": "Publication Certification",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T14:20:58.115Z",
+          "finished_at": "2026-02-09T14:21:22.679Z",
+          "agent": "publication-certification-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+            "{artifact_path}/PUBLICATION-CERTIFICATION.md",
+            "{artifact_path}/research/PUBLICATION-APPROVAL.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/research/PUBLICATION-CERTIFICATION.md",
+              "sha256": "d39c041e4f8ab515b1fe5eabfb20bea2b9d633e66694a7469ccef1583e8713fc",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PUBLICATION-CERTIFICATION.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Publication certification must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "pattern": "NO-GO",
+              "found": false,
+              "severity": "error",
+              "description": "Publication certification must not be NO-GO",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G9",
+      "name": "Publication Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T14:21:28.961Z",
+          "finished_at": "2026-02-09T14:21:46.454Z",
+          "agent": "publication-approver",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+            "{artifact_path}/PUBLICATION-APPROVAL.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/research/PUBLICATION-APPROVAL.md",
+              "sha256": "c064b8bce99f974222bbe92baf09de2de9923c3d1ee1ac8e049ad9c4e831cd05",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PUBLICATION-APPROVAL.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "pattern": "REJECTED",
+              "found": false,
+              "severity": "error",
+              "description": "Publication approval must not contain REJECTED",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Publication approval must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    }
+  ],
+  "invocations": [],
+  "artifacts_index": [
+    {
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "sha256": "5e4deb092361f5819d09c193d62a1c9ee0e0ef69b338fc7532a0d5adbae01115",
+      "gate": "G1",
+      "recorded_at": "2026-02-09T14:01:13.333Z"
+    },
+    {
+      "path": "{artifact_path}/research/CLAIMS.md",
+      "sha256": "83351543b5d5c02d879cd36d7e6d154fa2fed0247f4ced2da218a41afc1f0c89",
+      "gate": "G2",
+      "recorded_at": "2026-02-09T14:05:45.413Z"
+    },
+    {
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "sha256": "ab6ec3fd1dd9f04da5aaace400469cce93a877cd5f88b0dcf7365065e97a0cf7",
+      "gate": "G3",
+      "recorded_at": "2026-02-09T14:07:56.805Z"
+    },
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "sha256": "f1544fab781591d5019d257aff9ceaddf1f4826db8379d7ad567a217bced52af",
+      "gate": "G4",
+      "recorded_at": "2026-02-09T14:09:18.076Z",
+      "updated_at": "2026-02-09T14:19:22.087Z"
+    },
+    {
+      "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+      "sha256": "fe4d1c1ea5eb2950ef8114b58e66d2b9ee2952a1cc087db2c86bf8de9f90f0f4",
+      "gate": "G4.1",
+      "recorded_at": "2026-02-09T14:10:18.638Z"
+    },
+    {
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "sha256": "75acbaa0bf2cb8a30ee401d66c4e90d7d08bc90dc216a3014f5961e0930af889",
+      "gate": "G4.5",
+      "recorded_at": "2026-02-09T14:10:44.806Z"
+    },
+    {
+      "path": "{artifact_path}/page.tsx",
+      "sha256": "bd76125ab95656a0f5f94d0434f7be2b516c5b9c533958aabf41f431d1ea8837",
+      "gate": "G5",
+      "recorded_at": "2026-02-09T14:18:30.575Z"
+    },
+    {
+      "path": "{artifact_path}/{slug}.css",
+      "sha256": "752e9d32e8a149dfaf8e838da808df622c2d32c2fc51cebaceb98be11af26226",
+      "gate": "G5",
+      "recorded_at": "2026-02-09T14:18:30.575Z"
+    },
+    {
+      "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "sha256": "bb604e0fa4cf359d458f2c6414b7dc9ccad21894809626f0a15e63b53b4168bf",
+      "gate": "G5.2",
+      "recorded_at": "2026-02-09T14:19:22.087Z"
+    },
+    {
+      "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+      "sha256": "74cafd97ac4662cf92020a21136d0f467df09d6f8e64fc947302cd1b755c6c70",
+      "gate": "G5.5",
+      "recorded_at": "2026-02-09T14:20:02.349Z"
+    },
+    {
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "sha256": "3e389a7512af7fc7a388c135eb1eeec0fa9184a25f62007b25bd2a9d2dfd2aad",
+      "gate": "G6",
+      "recorded_at": "2026-02-09T14:20:26.909Z"
+    },
+    {
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "sha256": "51a67f54759ede0a2e6c3d9757e423f4a598b2da495b7ef2ecee9d7b690f081f",
+      "gate": "G7",
+      "recorded_at": "2026-02-09T14:20:53.233Z"
+    },
+    {
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "sha256": "d39c041e4f8ab515b1fe5eabfb20bea2b9d633e66694a7469ccef1583e8713fc",
+      "gate": "G8",
+      "recorded_at": "2026-02-09T14:21:22.680Z"
+    },
+    {
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "sha256": "c064b8bce99f974222bbe92baf09de2de9923c3d1ee1ac8e049ad9c4e831cd05",
+      "gate": "G9",
+      "recorded_at": "2026-02-09T14:21:46.455Z"
+    }
+  ],
+  "validations": [],
+  "events": [
+    {
+      "timestamp": "2026-02-09T13:59:38.920Z",
+      "type": "RUN_STARTED",
+      "message": "Run initialized for visual-essay/the-anatomy-of-a-wave"
+    },
+    {
+      "timestamp": "2026-02-09T13:59:46.927Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 1,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 1 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-09T14:01:13.333Z",
+      "type": "GATE_PASSED",
+      "gate": "G1",
+      "attempt": 1,
+      "message": "Gate G1 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T14:01:22.083Z",
+      "type": "GATE_STARTED",
+      "gate": "G2",
+      "attempt": 1,
+      "agent": "research-orchestrator",
+      "message": "Gate G2 attempt 1 started with agent research-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-09T14:05:45.413Z",
+      "type": "GATE_PASSED",
+      "gate": "G2",
+      "attempt": 1,
+      "message": "Gate G2 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T14:05:55.374Z",
+      "type": "GATE_STARTED",
+      "gate": "G3",
+      "attempt": 1,
+      "agent": "visual-essay-invocation-agent",
+      "message": "Gate G3 attempt 1 started with agent visual-essay-invocation-agent"
+    },
+    {
+      "timestamp": "2026-02-09T14:07:56.805Z",
+      "type": "GATE_PASSED",
+      "gate": "G3",
+      "attempt": 1,
+      "message": "Gate G3 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T14:08:06.857Z",
+      "type": "GATE_STARTED",
+      "gate": "G4",
+      "attempt": 1,
+      "agent": "design-researcher",
+      "message": "Gate G4 attempt 1 started with agent design-researcher"
+    },
+    {
+      "timestamp": "2026-02-09T14:09:18.076Z",
+      "type": "GATE_PASSED",
+      "gate": "G4",
+      "attempt": 1,
+      "message": "Gate G4 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T14:09:28.309Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.1",
+      "attempt": 1,
+      "agent": "design-research-reconciliation-agent",
+      "message": "Gate G4.1 attempt 1 started with agent design-research-reconciliation-agent"
+    },
+    {
+      "timestamp": "2026-02-09T14:09:39.823Z",
+      "type": "GATE_FAILED",
+      "gate": "G4.1",
+      "attempt": 1,
+      "message": "Gate G4.1 failed: None of required files exist: {artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md, {artifact_path}/G4.1-DESIGN-RECONCILIATION.md"
+    },
+    {
+      "timestamp": "2026-02-09T14:10:18.605Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.1",
+      "attempt": 2,
+      "agent": "design-research-reconciliation-agent",
+      "message": "Gate G4.1 attempt 2 started with agent design-research-reconciliation-agent"
+    },
+    {
+      "timestamp": "2026-02-09T14:10:18.638Z",
+      "type": "GATE_PASSED",
+      "gate": "G4.1",
+      "attempt": 2,
+      "message": "Gate G4.1 passed on attempt 2"
+    },
+    {
+      "timestamp": "2026-02-09T14:10:27.568Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "agent": "image-research-licensing-expert",
+      "message": "Gate G4.5 attempt 1 started with agent image-research-licensing-expert"
+    },
+    {
+      "timestamp": "2026-02-09T14:10:44.806Z",
+      "type": "GATE_PASSED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "message": "Gate G4.5 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T14:10:56.538Z",
+      "type": "GATE_STARTED",
+      "gate": "G5",
+      "attempt": 1,
+      "agent": "production-orchestrator",
+      "message": "Gate G5 attempt 1 started with agent production-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-09T14:18:30.575Z",
+      "type": "GATE_PASSED",
+      "gate": "G5",
+      "attempt": 1,
+      "message": "Gate G5 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T14:18:40.462Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.2",
+      "attempt": 1,
+      "agent": "design-fidelity-auditor",
+      "message": "Gate G5.2 attempt 1 started with agent design-fidelity-auditor"
+    },
+    {
+      "timestamp": "2026-02-09T14:19:22.087Z",
+      "type": "GATE_PASSED",
+      "gate": "G5.2",
+      "attempt": 1,
+      "message": "Gate G5.2 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T14:19:28.245Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.5",
+      "attempt": 1,
+      "agent": "bibliography-agent",
+      "message": "Gate G5.5 attempt 1 started with agent bibliography-agent"
+    },
+    {
+      "timestamp": "2026-02-09T14:19:38.198Z",
+      "type": "GATE_FAILED",
+      "gate": "G5.5",
+      "attempt": 1,
+      "message": "Gate G5.5 failed: None of required files exist: {artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md, {artifact_path}/research/BIBLIOGRAPHY-AUDIT.md"
+    },
+    {
+      "timestamp": "2026-02-09T14:20:02.318Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.5",
+      "attempt": 2,
+      "agent": "bibliography-agent",
+      "message": "Gate G5.5 attempt 2 started with agent bibliography-agent"
+    },
+    {
+      "timestamp": "2026-02-09T14:20:02.349Z",
+      "type": "GATE_PASSED",
+      "gate": "G5.5",
+      "attempt": 2,
+      "message": "Gate G5.5 passed on attempt 2"
+    },
+    {
+      "timestamp": "2026-02-09T14:20:07.258Z",
+      "type": "GATE_STARTED",
+      "gate": "G6",
+      "attempt": 1,
+      "agent": "citation-auditor",
+      "message": "Gate G6 attempt 1 started with agent citation-auditor"
+    },
+    {
+      "timestamp": "2026-02-09T14:20:26.909Z",
+      "type": "GATE_PASSED",
+      "gate": "G6",
+      "attempt": 1,
+      "message": "Gate G6 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T14:20:31.717Z",
+      "type": "GATE_STARTED",
+      "gate": "G7",
+      "attempt": 1,
+      "agent": "scroll-qa-agent",
+      "message": "Gate G7 attempt 1 started with agent scroll-qa-agent"
+    },
+    {
+      "timestamp": "2026-02-09T14:20:53.233Z",
+      "type": "GATE_PASSED",
+      "gate": "G7",
+      "attempt": 1,
+      "message": "Gate G7 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T14:20:58.115Z",
+      "type": "GATE_STARTED",
+      "gate": "G8",
+      "attempt": 1,
+      "agent": "publication-certification-agent",
+      "message": "Gate G8 attempt 1 started with agent publication-certification-agent"
+    },
+    {
+      "timestamp": "2026-02-09T14:21:22.680Z",
+      "type": "GATE_PASSED",
+      "gate": "G8",
+      "attempt": 1,
+      "message": "Gate G8 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T14:21:28.962Z",
+      "type": "GATE_STARTED",
+      "gate": "G9",
+      "attempt": 1,
+      "agent": "publication-approver",
+      "message": "Gate G9 attempt 1 started with agent publication-approver"
+    },
+    {
+      "timestamp": "2026-02-09T14:21:46.455Z",
+      "type": "GATE_PASSED",
+      "gate": "G9",
+      "attempt": 1,
+      "message": "Gate G9 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T14:22:08.788Z",
+      "type": "RUN_COMPLETED",
+      "status": "PASSED",
+      "message": "Run completed with status: PASSED"
+    }
+  ]
+}

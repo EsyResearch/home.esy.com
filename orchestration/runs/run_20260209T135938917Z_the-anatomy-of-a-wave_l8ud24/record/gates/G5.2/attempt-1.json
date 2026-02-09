@@ -1,0 +1,62 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T14:18:40.461Z",
+  "finished_at": "2026-02-09T14:19:22.086Z",
+  "agent": "design-fidelity-auditor",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+    "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+    "{artifact_path}/DESIGN-RESEARCH.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "sha256": "bb604e0fa4cf359d458f2c6414b7dc9ccad21894809626f0a15e63b53b4168bf",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/DESIGN-RESEARCH.md",
+      "sha256": "f1544fab781591d5019d257aff9ceaddf1f4826db8379d7ad567a217bced52af",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/DESIGN-RESEARCH.md",
+      "pass": true,
+      "description": "Design research must still exist (design source of truth)"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Design fidelity audit must not have FAIL status in frontmatter",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

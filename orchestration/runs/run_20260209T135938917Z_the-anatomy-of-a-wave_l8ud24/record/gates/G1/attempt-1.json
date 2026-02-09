@@ -1,0 +1,57 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T13:59:46.926Z",
+  "finished_at": "2026-02-09T14:01:13.332Z",
+  "agent": "visual-essay-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/G1-INTAKE.md",
+    "{artifact_path}/research/INTAKE.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/G1-INTAKE.md",
+      "sha256": "5e4deb092361f5819d09c193d62a1c9ee0e0ef69b338fc7532a0d5adbae01115",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/G1-INTAKE.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/research/INTAKE.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "pattern": "[REJECTED]",
+      "found": false,
+      "severity": "error",
+      "description": "Intake must not contain [REJECTED] marker",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Intake must not have FAIL status in frontmatter",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

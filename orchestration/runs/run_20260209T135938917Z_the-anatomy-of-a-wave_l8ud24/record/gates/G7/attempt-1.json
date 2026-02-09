@@ -1,0 +1,57 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T14:20:31.716Z",
+  "finished_at": "2026-02-09T14:20:53.232Z",
+  "agent": "scroll-qa-agent",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+    "{artifact_path}/SCROLL-CERTIFICATION.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/research/SCROLL-CERTIFICATION.md",
+      "sha256": "51a67f54759ede0a2e6c3d9757e423f4a598b2da495b7ef2ecee9d7b690f081f",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/SCROLL-CERTIFICATION.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Scroll certification must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "pattern": "Overall Status: ❌",
+      "found": false,
+      "severity": "error",
+      "description": "Scroll certification must not report overall failure",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

@@ -1,0 +1,48 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T14:05:55.373Z",
+  "finished_at": "2026-02-09T14:07:56.804Z",
+  "agent": "visual-essay-invocation-agent",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "orchestration/skills/visual-essay-invocation/specs/{slug}.md"
+  ],
+  "artifacts": [
+    {
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-anatomy-of-a-wave.md",
+      "sha256": "ab6ec3fd1dd9f04da5aaace400469cce93a877cd5f88b0dcf7365065e97a0cf7",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-anatomy-of-a-wave.md",
+      "pass": true,
+      "description": "6-layer visual essay specification"
+    },
+    {
+      "type": "contains_headings",
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "missing": [],
+      "severity": "error",
+      "description": "Spec must contain all 6 layer headings",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "pattern": "[DRAFT]",
+      "found": false,
+      "severity": "warning",
+      "description": "Spec should not contain [DRAFT] marker (configurable)",
+      "pass": true,
+      "warning": false
+    }
+  ],
+  "failure_reason": null
+}

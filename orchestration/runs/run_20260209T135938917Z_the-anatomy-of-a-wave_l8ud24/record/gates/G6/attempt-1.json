@@ -1,0 +1,57 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T14:20:07.257Z",
+  "finished_at": "2026-02-09T14:20:26.908Z",
+  "agent": "citation-auditor",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CITATION-AUDIT.md",
+    "{artifact_path}/CITATION-AUDIT.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/research/CITATION-AUDIT.md",
+      "sha256": "3e389a7512af7fc7a388c135eb1eeec0fa9184a25f62007b25bd2a9d2dfd2aad",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/CITATION-AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/CITATION-AUDIT.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Citation audit must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "pattern": "Citation Certification: Rejected",
+      "found": false,
+      "severity": "error",
+      "description": "Citation audit must not have Rejected certification",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

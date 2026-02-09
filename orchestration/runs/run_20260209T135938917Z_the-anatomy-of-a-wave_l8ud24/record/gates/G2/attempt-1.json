@@ -1,0 +1,70 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T14:01:22.082Z",
+  "finished_at": "2026-02-09T14:05:45.412Z",
+  "agent": "research-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CITATIONS.md",
+    "{artifact_path}/research/CLAIMS.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CLAIMS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/research/CLAIMS.md",
+      "sha256": "83351543b5d5c02d879cd36d7e6d154fa2fed0247f4ced2da218a41afc1f0c89",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/CITATIONS.md",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/research/CLAIMS.md",
+          "exists": true
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "dir_exists",
+      "path": "{artifact_path}/research",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/research",
+      "pass": true,
+      "description": "Research directory must exist"
+    },
+    {
+      "type": "min_file_count",
+      "path": "{artifact_path}/research",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/research",
+      "pattern": "*.md",
+      "count": 6,
+      "threshold": 3,
+      "depth": "standard",
+      "pass": true,
+      "description": "Research directory must contain minimum number of markdown files based on depth mode"
+    },
+    {
+      "type": "min_sources_any_of",
+      "checked": [
+        "{artifact_path}/research/CITATIONS.md",
+        "{artifact_path}/research/CLAIMS.md"
+      ],
+      "matched": "{artifact_path}/research/CLAIMS.md",
+      "count": 103,
+      "threshold": 8,
+      "depth": "standard",
+      "pass": true,
+      "description": "Source-tracking file (CITATIONS.md or CLAIMS.md) must contain minimum sources based on depth mode"
+    }
+  ],
+  "failure_reason": null
+}

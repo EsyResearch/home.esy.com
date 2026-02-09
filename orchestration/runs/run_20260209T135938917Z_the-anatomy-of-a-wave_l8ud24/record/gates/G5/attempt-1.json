@@ -1,0 +1,56 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T14:10:56.537Z",
+  "finished_at": "2026-02-09T14:18:30.574Z",
+  "agent": "production-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/page.tsx",
+    "{artifact_path}/{slug}.css"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/page.tsx",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/page.tsx",
+      "sha256": "bd76125ab95656a0f5f94d0434f7be2b516c5b9c533958aabf41f431d1ea8837",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/{slug}.css",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/the-anatomy-of-a-wave.css",
+      "sha256": "752e9d32e8a149dfaf8e838da808df622c2d32c2fc51cebaceb98be11af26226",
+      "exists": true,
+      "optional": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/page.tsx",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/page.tsx",
+      "pass": true,
+      "description": "Next.js page with metadata and default export"
+    },
+    {
+      "type": "contains_headings",
+      "path": "{artifact_path}/page.tsx",
+      "missing": [],
+      "severity": "error",
+      "description": "page.tsx must contain a default export and metadata definition",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/page.tsx",
+      "pattern": "TODO",
+      "found": false,
+      "severity": "warning",
+      "description": "page.tsx should not contain TODO markers (indicates incomplete implementation)",
+      "pass": true,
+      "warning": false
+    }
+  ],
+  "failure_reason": null
+}

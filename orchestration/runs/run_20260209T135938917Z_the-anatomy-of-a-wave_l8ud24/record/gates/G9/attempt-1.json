@@ -1,0 +1,57 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T14:21:28.961Z",
+  "finished_at": "2026-02-09T14:21:46.454Z",
+  "agent": "publication-approver",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+    "{artifact_path}/PUBLICATION-APPROVAL.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/research/PUBLICATION-APPROVAL.md",
+      "sha256": "c064b8bce99f974222bbe92baf09de2de9923c3d1ee1ac8e049ad9c4e831cd05",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/PUBLICATION-APPROVAL.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "pattern": "REJECTED",
+      "found": false,
+      "severity": "error",
+      "description": "Publication approval must not contain REJECTED",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Publication approval must not have FAIL status in frontmatter",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

@@ -1,0 +1,57 @@
+{
+  "attempt": 2,
+  "status": "PASS",
+  "started_at": "2026-02-09T14:20:02.317Z",
+  "finished_at": "2026-02-09T14:20:02.349Z",
+  "agent": "bibliography-agent",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+    "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/the-anatomy-of-a-wave/research/BIBLIOGRAPHY-AUDIT.md",
+      "sha256": "74cafd97ac4662cf92020a21136d0f467df09d6f8e64fc947302cd1b755c6c70",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+          "exists": true
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Bibliography audit must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "pattern": "Overall Status: ❌",
+      "found": false,
+      "severity": "error",
+      "description": "Bibliography audit must not report overall failure",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}
