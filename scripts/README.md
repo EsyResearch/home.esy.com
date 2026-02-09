@@ -193,7 +193,7 @@ const IMAGES = {
 
 ### `r2-upload-single-image.mjs`
 
-Uploads a single local image file to R2. For manual one-off uploads.
+Uploads a single local image file to R2. **Auto-converts to WebP** by default (matching the migration scripts). Supports an `--og` flag to resize to 1200×630 OG standard.
 
 ```bash
 node scripts/r2-upload-single-image.mjs [options]
@@ -202,16 +202,34 @@ Options:
   --file=<path>        Local image file path (required)
   --essay=<slug>       Essay slug for R2 path (required)
   --name=<name>        Base name for the file (optional)
+  --og                 Resize to 1200×630 (OG image standard)
+  --no-webp            Skip WebP conversion, keep original format
   --dry                Preview without uploading
 ```
 
-**Example:**
+**Upload an OG image (recommended workflow):**
+```bash
+node scripts/r2-upload-single-image.mjs \
+  --file=public/og/my-essay.png \
+  --essay=my-essay \
+  --name=my-essay-og \
+  --og
+```
+
+**Upload a general image:**
 ```bash
 node scripts/r2-upload-single-image.mjs \
   --file=./downloads/trinity-tower.jpg \
   --essay=the-manhattan-project \
   --name=trinity-tower
 ```
+
+**Features:**
+- Auto-converts to WebP (85% quality, effort 6) — typically 50-95% smaller
+- `--og` flag resizes to 1200×630 with cover crop (centred)
+- Content-hash in filename for immutable caching
+- Skips conversion for SVG and GIF files
+- Logs original vs final size and savings percentage
 
 ---
 

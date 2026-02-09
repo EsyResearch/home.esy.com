@@ -2,6 +2,7 @@ import { createHash } from "crypto";
 import { readFileSync, existsSync } from "fs";
 import path from "path";
 import mime from "mime-types";
+import sharp from "sharp";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
 // Auto-load .env.local if it exists
@@ -44,7 +45,18 @@ function cf(url, opts) {
 
 // ---- CLI ----
 // Usage:
-// node r2-upload-single-image.mjs --file ./map.png --essay why-venezuela-matters --name venezuela-orinoco-oil-belt-map --dry
+//   node scripts/r2-upload-single-image.mjs --file=./map.png --essay=why-venezuela-matters --name=my-image
+//   node scripts/r2-upload-single-image.mjs --file=./screenshot.png --essay=inside-a-black-hole --name=og --og
+//   node scripts/r2-upload-single-image.mjs --file=./photo.jpg --essay=my-essay --name=hero --no-webp --dry
+//
+// Args:
+//   --file     (required) Path to the local file to upload
+//   --essay    (required) Essay slug for the R2 key path
+//   --name     (optional) Custom base name; defaults to original filename
+//   --og       (optional) Resize to 1200×630 (OG standard) before upload
+//   --no-webp  (optional) Skip WebP conversion, keep original format
+//   --dry      (optional) Print upload plan without actually uploading
+
 const args = Object.fromEntries(
   process.argv
     .slice(2)
@@ -56,30 +68,76 @@ const filePath = args.file;
 const essaySlug = slugify(String(args.essay || ""));
 const baseName = slugify(String(args.name || path.parse(filePath).name));
 const dryRun = args.dry === true || args.dry === "true";
+const ogMode = args.og === true || args.og === "true";
+const noWebp = args["no-webp"] === true || args["no-webp"] === "true";
 
 if (!filePath || !essaySlug || !baseName) {
   console.error(
-    "Missing args. Example:\nnode scripts/r2-upload-single-image.mjs --file=./map.png --essay=why-venezuela-matters --name=my-image"
+    "Missing args. Example:\n  node scripts/r2-upload-single-image.mjs --file=./map.png --essay=why-venezuela-matters --name=my-image\n\nFlags:\n  --og       Resize to 1200×630 for OG images\n  --no-webp  Skip WebP conversion\n  --dry      Dry run"
   );
   process.exit(1);
 }
 
-const buf = readFileSync(filePath);
+if (!existsSync(filePath)) {
+  console.error(`\n❌ File not found: ${filePath}`);
+  process.exit(1);
+}
+
+// ---- Image processing ----
+const originalExt = path.extname(filePath).toLowerCase();
+const skipConversion = [".svg", ".gif"].includes(originalExt);
+const convertToWebp = !noWebp && !skipConversion;
+
+let buf = readFileSync(filePath);
+let ext = originalExt;
+let contentType = mime.lookup(ext) || "application/octet-stream";
+
+// Get original dimensions for logging
+const originalMeta = skipConversion ? null : await sharp(buf).metadata();
+const originalSize = buf.length;
+
+// OG mode: resize to 1200×630
+if (ogMode && !skipConversion) {
+  buf = await sharp(buf)
+    .resize(1200, 630, { fit: "cover", position: "centre" })
+    .toBuffer();
+  console.log("\n📐 OG resize: 1200×630 (cover crop, centred)");
+}
+
+// Convert to WebP (default behavior, matching migration scripts)
+if (convertToWebp) {
+  buf = await sharp(buf)
+    .webp({ quality: 85, effort: 6 })
+    .toBuffer();
+  ext = ".webp";
+  contentType = "image/webp";
+  const savings = ((1 - buf.length / originalSize) * 100).toFixed(0);
+  console.log(`\n🔄 WebP conversion: ${(originalSize / 1024).toFixed(0)}KB → ${(buf.length / 1024).toFixed(0)}KB (${savings}% smaller)`);
+} else if (!skipConversion && ogMode) {
+  // If --no-webp but --og, still output resized original format
+  buf = await sharp(buf).toBuffer();
+}
+
 const hash = hashBytes(buf, 10);
-
-const ext = path.extname(filePath).toLowerCase(); // keep original ext
-const contentType = mime.lookup(ext) || "application/octet-stream";
-
 const key = buildKey({ essaySlug, baseName, hash, ext });
 const publicUrl = `https://images.esy.com/${key}`;
 
 console.log("\n=== R2 Upload Plan ===");
-console.log("File:", filePath);
-console.log("Essay:", essaySlug);
-console.log("Base:", baseName);
-console.log("Hash:", hash);
-console.log("Key :", key);
-console.log("URL :", publicUrl);
+console.log("File:        ", filePath);
+if (originalMeta) {
+  console.log("Original:    ", `${originalMeta.width}×${originalMeta.height}, ${(originalSize / 1024).toFixed(0)}KB`);
+}
+console.log("Essay:       ", essaySlug);
+console.log("Base:        ", baseName);
+console.log("Format:      ", ext.replace(".", "").toUpperCase());
+console.log("Size:        ", `${(buf.length / 1024).toFixed(0)}KB`);
+console.log("Hash:        ", hash);
+console.log("Key:         ", key);
+console.log("URL:         ", publicUrl);
+
+if (ogMode) {
+  console.log("OG dims:      1200×630 ✓");
+}
 
 // Cloudflare Image Resizing URLs (requires Pro plan @ $20/mo)
 // Uncomment when you upgrade to Pro:

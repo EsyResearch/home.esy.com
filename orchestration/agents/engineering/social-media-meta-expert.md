@@ -202,8 +202,8 @@ For rich results in search and enhanced sharing:
 3. **Avoid text in outer 10%** — may be cropped on some platforms
 4. **Test dark mode** — some platforms show images on dark backgrounds
 5. **Use high contrast** — small thumbnails need to be readable
-6. **Prefer JPEG for photos, PNG for graphics** with text
-7. **WebP with JPEG fallback** — for modern optimization
+6. **Always use WebP** — the upload script converts automatically; 50-95% smaller than PNG
+7. **Keep local PNG as fallback** — `public/og/{slug}.png` is the static fallback only
 8. **Always set explicit dimensions** in meta tags (width/height)
 9. **Use CDN URLs** — fast loading critical for preview generation
 10. **No redirects** — og:image URLs should resolve directly
@@ -212,13 +212,67 @@ For rich results in search and enhanced sharing:
 
 ```
 ✅ CORRECT:
-https://esy.com/images/essays/semiconductor-story-og.jpg
+https://images.esy.com/essays/my-essay/my-essay-og.822a747747.webp
 
 ❌ WRONG:
-/images/essays/semiconductor-story-og.jpg          (relative)
-http://esy.com/images/semiconductor-story-og.jpg  (not HTTPS)
-https://esy.com/api/og?id=123                      (dynamic, may timeout)
+/og/my-essay.png                                    (relative, local fallback only)
+http://esy.com/images/semiconductor-story-og.jpg    (not HTTPS)
+https://esy.com/api/og?id=123                       (dynamic, may timeout)
+https://esy.com/og/my-essay.png                     (local asset, not CDN)
 ```
+
+---
+
+## OG Image Pipeline (Required Workflow)
+
+**Every OG image MUST go through Cloudflare R2.** Do not use local `/public/og/` paths as the production OG URL. The local PNG serves only as a static fallback.
+
+### Step-by-Step
+
+```bash
+# 1. Place or screenshot your OG source image anywhere convenient
+
+# 2. Upload via the single-image script with --og flag
+#    This auto-resizes to 1200×630 AND converts to WebP
+node scripts/r2-upload-single-image.mjs \
+  --file=public/og/my-essay.png \
+  --essay=my-essay \
+  --name=my-essay-og \
+  --og
+
+# 3. Copy the output URL and set it in page.tsx:
+export const metadata = createVisualEssayMetadata({
+  slug: 'my-essay',
+  ogImage: 'https://images.esy.com/essays/my-essay/my-essay-og.HASH.webp',
+  // ...
+});
+
+# 4. Also update JSON-LD "image" field if present
+```
+
+### What the Script Does Automatically
+
+| Step | Detail |
+|------|--------|
+| **Resize** | `--og` → 1200×630 cover crop (centred) |
+| **Convert** | PNG/JPG → **WebP** (quality 85, effort 6) |
+| **Hash** | SHA-256 content hash in filename → immutable CDN caching |
+| **Upload** | Cloudflare R2 → `https://images.esy.com/essays/{slug}/...` |
+
+### Standards
+
+- **Format**: WebP (always, unless `--no-webp` for SVG/GIF)
+- **Dimensions**: 1200×630 for OG images (`--og` flag)
+- **URL pattern**: `https://images.esy.com/essays/{slug}/{name}.{hash}.webp`
+- **Metadata helper**: Pass CDN URL via the `ogImage` property in `createVisualEssayMetadata()`
+- **JSON-LD**: Update the `"image"` field to match the CDN URL
+- **Local fallback**: Keep a copy at `public/og/{slug}.png` — it's the default if `ogImage` is omitted
+
+### Red Lines
+
+- ❌ **NEVER use a local `/og/*.png` path as the production OG URL** — always upload to R2 first
+- ❌ **NEVER upload PNG/JPG to R2 without WebP conversion** — the script does this by default
+- ❌ **NEVER skip the `--og` flag for OG images** — raw screenshots are wrong dimensions
 
 ---
 
