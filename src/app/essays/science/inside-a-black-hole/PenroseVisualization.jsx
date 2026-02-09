@@ -57,18 +57,32 @@ const SING_MID_X = (SING_LEFT_X + SING_RIGHT_X) / 2;
 
 // ─── Camera poses for different views ────────────────────────
 const CAM = {
-  home: { pos: [0.2, 3.2, 10.5], look: [0, -0.1, 0] },
-  obs0: { pos: [2.0, 2.5, 9.5], look: [1.8, -0.5, 0] },
-  obs1: { pos: [-0.2, 5.0, 7.5], look: [-0.8, 0.8, INTERIOR_DEPTH * 0.4] },
-  obs2: { pos: [2.5, 2.0, 11.0], look: [2.5, -2.0, 0] },
+  home: { pos: [0.0, 0.4, 8.8], look: [0, 0.0, 0] },
+  obs0: { pos: [2.0, 2.5, 7.5], look: [1.8, -0.5, 0] },
+  obs1: { pos: [-0.2, 4.0, 6.5], look: [-0.8, 0.8, INTERIOR_DEPTH * 0.4] },
+  obs2: { pos: [2.0, 1.5, 8.5], look: [1.6, -2.6, 0] },
 };
 
 // ─── Observer definitions ────────────────────────────────────
 const OBSERVERS = [
   { px: 1.8, py: -0.5, pz: 0.15, label: 'Outside observer', inside: false },
   { px: -0.8, py: 0.8, pz: INTERIOR_DEPTH + 0.15, label: 'Fallen inside', inside: true },
-  { px: 2.5, py: -2.0, pz: 0.15, label: 'Distant observer', inside: false },
+  { px: 1.6, py: -2.6, pz: 0.15, label: 'Distant observer', inside: false },
 ];
+
+// ─── Label definitions for tooltips ──────────────────────────
+const LABEL_DEFS = {
+  'event horizon': 'The boundary beyond which nothing — not even light — can escape. Once you cross, all paths lead to the singularity.',
+  'SINGULARITY': 'Where spacetime curvature becomes infinite. Not a place in space — it is a moment in your future that you cannot avoid.',
+  'i⁺': 'Future timelike infinity — the ultimate destination of all massive objects that survive forever without falling in.',
+  'i⁻': 'Past timelike infinity — where all worldlines originated, infinitely far back in time.',
+  'i⁰': 'Spatial infinity — infinitely far away in space at any given moment. The "edge" of the universe on this map.',
+  '𝒥⁺': 'Future null infinity (scri-plus) — where outgoing light rays end up. If your signal reaches here, you escaped the black hole.',
+  '𝒥⁻': 'Past null infinity (scri-minus) — where all incoming light originated, from the infinite past.',
+  'Outside observer': 'Safely outside the event horizon. Their future light cone reaches infinity — signals can still escape.',
+  'Fallen inside': 'Past the point of no return. Their entire light cone tilts toward the singularity — no escape direction exists.',
+  'Distant observer': 'Far from the black hole. They see infalling objects freeze, dim, and redshift at the horizon — never quite crossing.',
+};
 
 // ─── Utility ─────────────────────────────────────────────────
 function smoothstep(edge0, edge1, x) {
@@ -79,19 +93,31 @@ function smoothstep(edge0, edge1, x) {
 function createTextSprite(text, color = '#888888', size = 0.25, bold = false) {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
-  canvas.width = 256;
-  canvas.height = 64;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.font = `${bold ? '600' : '400'} ${bold ? 28 : 24}px "JetBrains Mono", "Fira Code", monospace`;
+  // Canvas: 1024×96 so text fills ~65% of height → readable at reasonable sprite scales
+  canvas.width = 1024;
+  canvas.height = 96;
+  ctx.clearRect(0, 0, 1024, 96);
+  const fontSize = bold ? 64 : 54;
+  ctx.font = `${bold ? '700' : '500'} ${fontSize}px "JetBrains Mono", "Fira Code", monospace`;
+  // Dark shadow for contrast against any background
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.95)';
+  ctx.shadowBlur = 10;
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = 2;
   ctx.fillStyle = color;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  ctx.fillText(text, 128, 32);
+  ctx.fillText(text, 512, 48);
+  // Second pass without shadow for crisp text
+  ctx.shadowBlur = 0;
+  ctx.shadowColor = 'transparent';
+  ctx.fillText(text, 512, 48);
   const texture = new THREE.CanvasTexture(canvas);
   texture.needsUpdate = true;
   const mat = new THREE.SpriteMaterial({ map: texture, transparent: true, depthTest: false, opacity: 0 });
   const sprite = new THREE.Sprite(mat);
-  sprite.scale.set(size * 4, size, 1);
+  // aspect = 1024/96 ≈ 10.67
+  sprite.scale.set(size * 10.67, size, 1);
   return sprite;
 }
 
@@ -135,6 +161,8 @@ export default function PenroseVisualization({ className = '' }) {
   const [selectedPoint, setSelectedPoint] = useState(-1);
   const [hovered, setHovered] = useState(false);
   const [initFailed, setInitFailed] = useState(false);
+  const [tooltip, setTooltip] = useState(null);
+  const tooltipTargetsRef = useRef([]);
   const initRef = useRef(false);
 
   // Camera animation targets
@@ -146,10 +174,11 @@ export default function PenroseVisualization({ className = '' }) {
   const buildScene = useCallback(() => {
     if (!containerRef.current || initRef.current) return;
     initRef.current = true;
+    tooltipTargetsRef.current = [];
 
     const container = containerRef.current;
     const width = container.clientWidth;
-    const height = Math.min(width * 0.85, 560);
+    const height = Math.min(width * 0.95, 860);
 
     // CSP guard — Three.js shader compilation uses new Function()
     try { new Function('return true')(); }
@@ -164,7 +193,7 @@ export default function PenroseVisualization({ className = '' }) {
     sceneRef.current = scene;
 
       // ─── Camera (tilted perspective reveals depth) ─────
-      const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
+      const camera = new THREE.PerspectiveCamera(55, width / height, 0.1, 100);
       camera.position.set(...CAM.home.pos);
       camera.lookAt(...CAM.home.look);
     cameraRef.current = camera;
@@ -291,9 +320,12 @@ export default function PenroseVisualization({ className = '' }) {
     scene.add(horizonGlow);
 
     // Horizon label
-    const horizonLabel = createTextSprite('event horizon', '#1a9e8f', 0.22, true);
-      horizonLabel.position.set(LEFT.x + 1.5, (LEFT.y + TOP.y) / 2 + 0.2, 0.3);
+    const horizonLabel = createTextSprite('event horizon', '#2dd4bf', 0.45, true);
+      horizonLabel.position.set(LEFT.x + 1.2, (LEFT.y + TOP.y) / 2 + 0.8, 0.3);
+      horizonLabel.userData.label = 'event horizon';
+      horizonLabel.userData.tooltip = LABEL_DEFS['event horizon'];
     scene.add(horizonLabel);
+      tooltipTargetsRef.current.push(horizonLabel);
 
       // ═══════════════════════════════════════════════════
       //  SINGULARITY
@@ -321,9 +353,12 @@ export default function PenroseVisualization({ className = '' }) {
       scene.add(singGlow2);
 
       // Label
-    const singLabel = createTextSprite('SINGULARITY', '#b5382a', 0.2, true);
-      singLabel.position.set(SING_MID_X, SING_Y + 0.4, INTERIOR_DEPTH + 0.2);
+    const singLabel = createTextSprite('SINGULARITY', '#e05a4a', 0.45, true);
+      singLabel.position.set(SING_MID_X + 1.0, SING_Y + 0.55, INTERIOR_DEPTH + 0.2);
+      singLabel.userData.label = 'SINGULARITY';
+      singLabel.userData.tooltip = LABEL_DEFS['SINGULARITY'];
     scene.add(singLabel);
+      tooltipTargetsRef.current.push(singLabel);
 
       // ─── Absorption particles ─────────────────────────
       const singPCount = 35;
@@ -354,15 +389,18 @@ export default function PenroseVisualization({ className = '' }) {
       const addLabel = (text, color, sz, bold, pos) => {
         const s = createTextSprite(text, color, sz, bold);
         s.position.set(...pos);
+        s.userData.label = text;
+        s.userData.tooltip = LABEL_DEFS[text] || '';
         scene.add(s);
         labels.push(s);
+        if (LABEL_DEFS[text]) tooltipTargetsRef.current.push(s);
         return s;
       };
-      addLabel('i\u207A  future timelike \u221E', '#666666', 0.2, true, [TOP.x, TOP.y + 0.4, 0]);
-      addLabel('i\u207B  past timelike \u221E', '#666666', 0.2, true, [BOTTOM.x, BOTTOM.y - 0.4, 0]);
-      addLabel('i\u2070  spatial \u221E', '#666666', 0.2, true, [RIGHT.x + 0.7, RIGHT.y, 0]);
-      addLabel('\uD835\uDCA5\u207A', '#555555', 0.22, false, [DS * 0.62, DS * 0.52, 0]);
-      addLabel('\uD835\uDCA5\u207B', '#555555', 0.22, false, [DS * 0.62, -DS * 0.52, 0]);
+      addLabel('i\u207A', '#c8d8e8', 0.5, true, [TOP.x, TOP.y + 0.55, 0]);
+      addLabel('i\u207B', '#c8d8e8', 0.5, true, [BOTTOM.x, BOTTOM.y - 0.55, 0]);
+      addLabel('i\u2070', '#c8d8e8', 0.5, true, [RIGHT.x + 0.5, RIGHT.y, 0]);
+      addLabel('\uD835\uDCA5\u207A', '#b0c0d8', 0.45, false, [DS * 0.65, DS * 0.55, 0]);
+      addLabel('\uD835\uDCA5\u207B', '#b0c0d8', 0.45, false, [DS * 0.65, -DS * 0.55, 0]);
 
       // ═══════════════════════════════════════════════════
       //  INTERACTIVE OBSERVER POINTS
@@ -384,11 +422,12 @@ export default function PenroseVisualization({ className = '' }) {
         glow.userData = { role: 'obsGlow' };
       interactionGroup.add(glow);
 
-      // Label
-        const lbl = createTextSprite(obs.label, '#c4922a', 0.16);
-        lbl.position.set(obs.px + 0.6, obs.py - 0.3, obs.pz + 0.05);
-        lbl.userData = { role: 'obsLabel' };
+      // Label (gold — readable but not dominant)
+        const lbl = createTextSprite(obs.label, '#f0d060', 0.38);
+        lbl.position.set(obs.px + 0.8, obs.py - 0.35, obs.pz + 0.05);
+        lbl.userData = { role: 'obsLabel', label: obs.label, tooltip: LABEL_DEFS[obs.label] || '' };
         interactionGroup.add(lbl);
+        if (LABEL_DEFS[obs.label]) tooltipTargetsRef.current.push(lbl);
     });
     clickablesRef.current = clickables;
 
@@ -721,6 +760,39 @@ export default function PenroseVisualization({ className = '' }) {
     lightConesRef.current.push(grp);
   }, [selectedPoint]);
 
+  // ─── Find nearest label by screen-space bounding box ───────
+  const findNearestLabel = useCallback((clientX, clientY, extraPad = 0) => {
+    if (!rendererRef.current || !cameraRef.current || tooltipTargetsRef.current.length === 0) return null;
+    const rect = rendererRef.current.domElement.getBoundingClientRect();
+    const mx = clientX - rect.left;
+    const my = clientY - rect.top;
+    let closest = null;
+    let closestDist = Infinity;
+    const cam = cameraRef.current;
+    tooltipTargetsRef.current.forEach(sprite => {
+      const v = sprite.position.clone();
+      v.project(cam);
+      const sx = (v.x * 0.5 + 0.5) * rect.width;
+      const sy = (-v.y * 0.5 + 0.5) * rect.height;
+      // Estimate sprite screen-space size for a generous hit box
+      const spriteW = sprite.scale.x;
+      const dist3D = sprite.position.distanceTo(cam.position);
+      const screenH = (sprite.scale.y / (2 * dist3D * Math.tan(cam.fov * Math.PI / 360))) * rect.height;
+      const screenW = screenH * (spriteW / sprite.scale.y);
+      const hitW = Math.max(screenW * 0.6, 50) + extraPad;
+      const hitH = Math.max(screenH * 0.8, 30) + extraPad;
+      // Rectangular hit test
+      if (Math.abs(mx - sx) < hitW && Math.abs(my - sy) < hitH) {
+        const dist = Math.hypot(mx - sx, my - sy);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closest = { x: sx + rect.left, y: sy + rect.top, label: sprite.userData.label, definition: sprite.userData.tooltip };
+        }
+      }
+    });
+    return closest;
+  }, []);
+
   // ─── Click handler ────────────────────────────────────────
   const handleClick = useCallback((e) => {
     if (!rendererRef.current || !cameraRef.current) return;
@@ -728,6 +800,15 @@ export default function PenroseVisualization({ className = '' }) {
     mouseRef.current.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
     mouseRef.current.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
     raycasterRef.current.setFromCamera(mouseRef.current, cameraRef.current);
+
+    // Check labels first (mobile tap-to-learn, extra padding for touch)
+    const label = findNearestLabel(e.clientX, e.clientY, 10);
+    if (label) {
+      setTooltip(prev => prev && prev.label === label.label ? null : label);
+      return;
+    }
+
+    // Check observer points
     const hits = raycasterRef.current.intersectObjects(clickablesRef.current);
     if (hits.length > 0) {
       const idx = hits[0].object.userData.observerIndex;
@@ -738,17 +819,28 @@ export default function PenroseVisualization({ className = '' }) {
       selectedRef.current = -1;
       setSelectedPoint(-1);
     }
-  }, []);
+    setTooltip(null);
+  }, [findNearestLabel]);
 
-  // ─── Mouse move (cursor) ──────────────────────────────────
+  // ─── Mouse move (cursor + tooltip) ────────────────────────
   const handleMouseMove = useCallback((e) => {
     if (!rendererRef.current || !cameraRef.current) return;
     const rect = rendererRef.current.domElement.getBoundingClientRect();
     mouseRef.current.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
     mouseRef.current.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
     raycasterRef.current.setFromCamera(mouseRef.current, cameraRef.current);
+
+    // Check labels for hover tooltip
+    const label = findNearestLabel(e.clientX, e.clientY);
+    if (label) {
+      setTooltip(label);
+      setHovered(true);
+      return;
+    }
+
+    setTooltip(null);
     setHovered(raycasterRef.current.intersectObjects(clickablesRef.current).length > 0);
-  }, []);
+  }, [findNearestLabel]);
 
   // ─── Lazy init via IntersectionObserver ────────────────────
   useEffect(() => {
@@ -786,7 +878,7 @@ export default function PenroseVisualization({ className = '' }) {
     const onResize = () => {
       if (!containerRef.current || !rendererRef.current || !cameraRef.current) return;
       const w = containerRef.current.clientWidth;
-      const h = Math.min(w * 0.85, 560);
+      const h = Math.min(w * 0.95, 860);
       rendererRef.current.setSize(w, h);
       cameraRef.current.aspect = w / h;
       cameraRef.current.updateProjectionMatrix();
@@ -829,8 +921,21 @@ export default function PenroseVisualization({ className = '' }) {
         className="bh-penrose-3d__canvas"
         style={{ cursor: hovered ? 'pointer' : 'default' }}
         role="figure"
-        aria-label="Interactive 3D Penrose conformal diagram for a Schwarzschild black hole. Tap observer points to see their light cones."
+        aria-label="Interactive 3D Penrose conformal diagram for a Schwarzschild black hole. Tap observer points to see their light cones. Hover or tap labels for definitions."
       />
+      {tooltip && (
+        <div
+          className="bh-penrose-tooltip"
+          style={{
+            left: Math.max(150, Math.min(tooltip.x, (typeof window !== 'undefined' ? window.innerWidth : 1280) - 150)),
+            top: Math.max(80, tooltip.y),
+          }}
+          role="tooltip"
+        >
+          <div className="bh-penrose-tooltip__label">{tooltip.label}</div>
+          <div className="bh-penrose-tooltip__def">{tooltip.definition}</div>
+        </div>
+      )}
       <div className="bh-penrose-3d__hint">
         {selectedPoint >= 0
           ? `${OBSERVERS[selectedPoint].label} — ${
@@ -838,7 +943,7 @@ export default function PenroseVisualization({ className = '' }) {
                 ? 'Light cone points toward singularity. No escape direction exists.'
                 : 'Light cone reaches future infinity. Signals can escape.'
             }`
-          : 'Tap any gold point to see its light cone — the region of spacetime its future can reach.'}
+          : 'Hover or tap any label for its definition · Tap gold points for light cones'}
       </div>
     </div>
   );
