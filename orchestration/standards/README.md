@@ -10,6 +10,7 @@
 | [gate-accountability.md](./gate-accountability.md) | Three-layer QA model (contract enforcement, producer self-assessment, external audit), structured artifact headers, contract strength requirements, scaling to web interface | Active |
 | [intake-quality-principles.md](./intake-quality-principles.md) | Why simple inputs beat comprehensive prompts. Defines the 5-signal intake model, the over-prompting anti-pattern, and where intelligence should live (template design, not intake). Critical for web interface scaling. | Active |
 | [pipeline-execution-standard.md](./pipeline-execution-standard.md) | How to run workflows. Defines three execution models (single-session, isolated, API-driven), phased maturity path, and the standard operating procedure. Includes gate sequence table and anti-patterns. | Active |
+| [visual-essay-engineering-standard.md](./visual-essay-engineering-standard.md) | Mandatory engineering patterns for shipping visual essays. Page structure (`page.tsx` + Client + CSS), `ArtifactDetailWrapper` requirement, `visualEssays.ts` registration, category-based routing, CSP for Three.js, OG image pipeline via R2. Born from "Inside a Black Hole" production corrections. | Active |
 | [visualization-quality-standard.md](./visualization-quality-standard.md) | Why every non-trivial visualization needs a research brief before production. Defines the two-phase audit model (research integrity + comprehension test), visualization taxonomy (Tier 1-4), structured deliverable format, anti-pattern blacklist, and pipeline integration for G4.V. Born from the "Inside a Black Hole" lesson. | Active |
 
 ## Philosophy
@@ -33,4 +34,5 @@ Standards are developed reactively — as problems surface during real pipeline 
 - All intake forms and G1 artifacts MUST comply with the Intake Quality Principles (5-signal maximum)
 - All non-trivial visualizations MUST have a research brief per the Visualization Quality Standard before production
 - All templates MUST declare a source acquisition model per the Citation-First Source Standard
+- All visual essays MUST follow the [Visual Essay Engineering Standard](./visual-essay-engineering-standard.md) for page structure, wrappers, routing, and deployment
 - Compliance is verified at G8 (Publication Certification) for each run
