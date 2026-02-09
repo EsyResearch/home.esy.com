@@ -27,7 +27,7 @@ import * as THREE from 'three';
 const COLORS = {
   void: 0x050508,
   diamondEdge: 0x3d7ec7,
-  gridLine: 0x2a5a94,
+  gridLine: 0x4a7ab8,
   horizon: 0x1a9e8f,
   horizonGlow: 0x2fd4c0,
   singularity: 0xb5382a,
@@ -210,7 +210,7 @@ export default function PenroseVisualization({ className = '' }) {
         const pts = curve.getPoints(40);
         const geom = new THREE.BufferGeometry().setFromPoints(pts);
         const mat = new THREE.LineBasicMaterial({ color: COLORS.gridLine, transparent: true, opacity: 0 });
-        mat.userData = { baseOpacity: 0.06 + f * 0.04 };
+        mat.userData = { baseOpacity: 0.18 + f * 0.12 };
       gridGroup.add(new THREE.Line(geom, mat));
     }
 
@@ -221,7 +221,7 @@ export default function PenroseVisualization({ className = '' }) {
         const pts = curve.getPoints(40);
         const geom = new THREE.BufferGeometry().setFromPoints(pts);
         const mat = new THREE.LineBasicMaterial({ color: COLORS.gridLine, transparent: true, opacity: 0 });
-        mat.userData = { baseOpacity: 0.05 + Math.abs(f) * 0.04 };
+        mat.userData = { baseOpacity: 0.15 + Math.abs(f) * 0.12 };
       gridGroup.add(new THREE.Line(geom, mat));
     }
 
