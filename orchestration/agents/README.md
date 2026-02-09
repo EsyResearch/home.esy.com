@@ -10,13 +10,13 @@ This directory contains specialized AI agents for the Esy.com ecosystem. Each ag
 
 ```
 agents/
-├── orchestrators/     # 🎬 Top-level coordination (5 agents)
-├── auditors/          # 🔍 Quality verification (17 agents)
+├── orchestrators/     # 🎬 Top-level coordination (6 agents)
+├── auditors/          # 🔍 Quality verification (21 agents)
 ├── content/           # 📚 Content creation (5 agents)
-├── research/          # 🔬 Source discovery (4 agents)
+├── research/          # 🔬 Source discovery (6 agents)
 ├── regional/          # 🌏 Regional specialists (2 agents)
-├── engineering/       # ⚙️ Technical implementation (8 agents)
-└── utilities/         # 🔧 Support & enhancement (3 agents)
+├── engineering/       # ⚙️ Technical implementation (9 agents)
+└── utilities/         # 🔧 Support & enhancement (5 agents)
 ```
 
 ---
@@ -31,6 +31,7 @@ agents/
 | [Meta Audit Orchestrator](#meta-audit-orchestrator) | Multi-domain audit coordination | `@agents/orchestrators/meta-audit-orchestrator.md` |
 | [QA Remediation Orchestrator](#qa-remediation-orchestrator) | **Iterative fix loop** (audit→fix→reaudit) | `@agents/orchestrators/qa-remediation-orchestrator.md` |
 | [Production Orchestrator](#production-orchestrator) | Immersive scroll-based stories | `@agents/orchestrators/production-orchestrator.md` |
+| [Conceptual Essay Orchestrator](#conceptual-essay-orchestrator) | **Conceptual/educational essays** | `@agents/orchestrators/conceptual-essay-orchestrator.md` |
 
 ### 🔍 Auditors
 | Agent | Best For | Invocation |
@@ -49,7 +50,13 @@ agents/
 | [Content Research Integration](#content-research-integration-agent) | **Spec→Artifact gap detection (G5.1)** | `@agents/auditors/content-research-integration-agent.md` |
 | [Design Research Reconciliation](#design-research-reconciliation-agent) | **Design authenticity + novelty (G4.1)** | `@agents/auditors/design-research-reconciliation-agent.md` |
 | [Design Research Implementation Auditor](#design-research-implementation-auditor) | **Design fidelity audit (G5.2)** | `@agents/auditors/design-research-implementation-auditor.md` |
+| [Spec Compliance Auditor](#spec-compliance-auditor) | **Spec vs output verification** | `@agents/auditors/spec-compliance-auditor.md` |
+| [Content Audit Agent](#content-audit-agent) | **Content quality, word count, tone** | `@agents/auditors/content-audit-agent.md` |
+| [Accuracy Audit Agent](#accuracy-audit-agent) | **Scientific claim verification (G6)** | `@agents/auditors/accuracy-audit-agent.md` |
+| [Pedagogy Audit Agent](#pedagogy-audit-agent) | **Learning effectiveness & framework consistency (G6.5)** | `@agents/auditors/pedagogy-audit-agent.md` |
+| [Diagram Clarity Auditor](#diagram-clarity-auditor) | **Diagram comprehension (G7)** | `@agents/auditors/diagram-clarity-auditor.md` |
 | [Data Accuracy Auditor](#data-accuracy-auditor) | **Data-to-visual fidelity (G6.1)** | `@agents/auditors/data-accuracy-auditor.md` |
+| [Prose Auditor Agent](#prose-auditor-agent) | **Writing craft & AI slop detection (G6.6)** | `@agents/auditors/prose-auditor-agent.md` |
 
 **Reports:** `auditors/CitationReports/` · `auditors/VisualAuditReports/`
 
@@ -69,6 +76,8 @@ agents/
 | [Research & Citations](#research--citations-expert) | Authoritative source discovery | `@agents/research/research-citations-expert.md` |
 | [Image Research & Licensing](#image-research--licensing-expert) | Archive image sourcing & rights | `@agents/research/image-research-licensing-expert.md` |
 | [Design Researcher](#design-researcher) | Subject-derived visual identity research | `@agents/research/design-researcher.md` |
+| [Concept Research Agent](#concept-research-agent) | **Concept verification (G2 conceptual)** | `@agents/research/concept-research-agent.md` |
+| [Visualization Research Agent](#visualization-research-agent) | **Visualization blueprints (G4.V)** | `@agents/research/visualization-research-agent.md` |
 
 ### 🌏 Regional Experts
 | Agent | Best For | Invocation |
@@ -1991,6 +2000,47 @@ scale encoding and projection accuracy for the water stress choropleth map.
 - ← **Data Visualization Architect**: Provides implementations to verify
 - ← **Data Journalism Research Profile**: DATASETS.md, STATISTICS.md as source of truth
 - → **Conceptual Essay Orchestrator**: Reports G6.1 pass/fail
+
+---
+
+### Prose Auditor Agent
+**File:** `auditors/prose-auditor-agent.md`
+
+**Role:** Elite literary editor and prose quality analyst with 20+ years of experience at premier publications, specializing in AI-generated text detection, voice consistency auditing, transition craft evaluation, and writing quality certification.
+
+**✍️ PROSE QUALITY:** This agent detects AI slop patterns (false profundity, hedging, vocabulary inflation, empty transitions), audits voice consistency across sections, evaluates transition craft, and certifies writing quality. Owns **G6.6** in the audit pipeline.
+
+**Key Capabilities:**
+- **AI Slop Detection**: 6 categories, 25+ patterns — false profundity, hedging overuse, empty transitions, symmetrical sentences, vocabulary inflation, filler phrases
+- **Voice Consistency**: Extracts voice profile from opening paragraphs, scans all sections for register drift or tonal whiplash
+- **Transition Quality**: Section-to-section and paragraph-to-paragraph connection evaluation
+- **Sentence Craft**: Variety, active:passive ratio, opening/closing quality
+- **Remediation Examples**: Before/after rewrites for every critical issue found
+
+**Gate Owned:** G6.6 (Prose Quality) — all essay pipelines
+
+**Operating Modes:**
+- **Full Audit**: Voice + slop + transitions + craft + certification (blocking)
+- **Slop Scan**: Quick AI generation artifact check (advisory)
+- **Voice Check**: Voice consistency only (advisory)
+
+**Invocation Examples:**
+```
+# Full prose audit
+Using @agents/auditors/prose-auditor-agent.md, audit prose quality for:
+Essay: src/app/essays/inside-a-black-hole/
+Produce Prose Quality Certification Report.
+
+# Quick AI slop scan
+Using @agents/auditors/prose-auditor-agent.md, slop scan:
+Essay: src/app/essays/inside-a-black-hole/InsideABlackHoleClient.jsx
+Report density and instances.
+```
+
+**Collaboration:**
+- ↔ **Pedagogy Audit Agent**: Pedagogy checks conceptual consistency; Prose checks writing craft. Shared concern: section transitions.
+- ↔ **Content Audit Agent**: Content checks completeness/compliance; Prose checks quality/craft.
+- ↔ **Design Slop Auditor**: Design Slop handles visual patterns; Prose handles text patterns.
 
 ---
 

@@ -14,7 +14,7 @@ agents/
 ├── META-AGENT-FRAMEWORK.md      # Agent creation template
 │
 ├── orchestrators/               # 🎬 Top-level coordination (6)
-├── auditors/                    # 🔍 Quality verification (20)
+├── auditors/                    # 🔍 Quality verification (21)
 ├── content/                     # 📚 Content creation (5)
 ├── research/                    # 🔬 Source discovery (5)
 ├── regional/                    # 🌏 Regional specialists (2)
@@ -63,6 +63,7 @@ agents/
 | [Pedagogy Audit Agent](./auditors/pedagogy-audit-agent.md) | **Learning Effectiveness** | G6.5 (conceptual) | `auditors/` |
 | [Diagram Clarity Auditor](./auditors/diagram-clarity-auditor.md) | **Diagram Comprehension** | G7 (conceptual) | `auditors/` |
 | [Data Accuracy Auditor](./auditors/data-accuracy-auditor.md) | **Data-to-Visual Fidelity** | G6.1 (data journalism) | `auditors/` |
+| [Prose Auditor Agent](./auditors/prose-auditor-agent.md) | **Writing Craft & AI Slop Detection** | G6.6 | `auditors/` |
 
 **Report Storage:**
 - Citation Reports: `auditors/CitationReports/`
@@ -381,13 +382,13 @@ See [META-AGENT-FRAMEWORK.md](./META-AGENT-FRAMEWORK.md) for the complete agent 
 | Category | Count | Key Responsibility |
 |----------|-------|-------------------|
 | 🎬 Orchestrators | 6 | Multi-agent coordination |
-| 🔍 Auditors | 20 | Quality verification |
+| 🔍 Auditors | 21 | Quality verification |
 | 📚 Content | 5 | Content creation |
 | 🔬 Research | 6 | Source discovery |
 | 🌏 Regional | 2 | Subject expertise |
 | ⚙️ Engineering | 9 | Technical implementation |
 | 🔧 Utilities | 5 | Support functions |
-| **Total** | **53** | |
+| **Total** | **54** | |
 
 ---
 
@@ -411,6 +412,9 @@ See [META-AGENT-FRAMEWORK.md](./META-AGENT-FRAMEWORK.md) for the complete agent 
 *Last Updated: February 2026*
 
 ### Recent Changes
+- Added **Prose Auditor Agent** to auditors — AI slop detection, voice consistency auditing, transition quality, writing craft certification for G6.6
+- Upgraded **Pedagogy Audit Agent** — added internal framework consistency checking (paradigm regression detection), operating modes, misconception introduction detection
+- Updated category statistics (Auditors: 20→21, Total: 53→54)
 - Added **Visualization Research Agent** to research — domain-specific diagram research, reference exemplar curation, comprehension test design for G4.V
 - Added **Data Journalist Writer Expert** to content — publication-quality data journalism prose for Data Journalism mode
 - Added **Data Visualization Architect Expert** to engineering — programmatic data viz (choropleths, Sankey, comparison widgets) for Data Journalism mode

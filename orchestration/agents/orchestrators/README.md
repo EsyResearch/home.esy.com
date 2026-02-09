@@ -60,6 +60,7 @@ Conceptual Essay Orchestrator (TOP)
 └── Conceptual Audit Suite (Phase 6)
     ├── Accuracy Audit Agent (G6)
     ├── Pedagogy Audit Agent (G6.5)
+    ├── Prose Auditor Agent (G6.6)
     └── Diagram Clarity Auditor (G7)
 ```
 
@@ -79,6 +80,7 @@ Conceptual Essay Orchestrator (TOP) — mode: data_journalism
     ├── Accuracy Audit Agent (G6)
     ├── Data Accuracy Auditor (G6.1) ← data-to-visual fidelity
     ├── Pedagogy Audit Agent (G6.5)
+    ├── Prose Auditor Agent (G6.6)
     └── Diagram Clarity Auditor (G7)
 ```
 

@@ -210,7 +210,8 @@ At G1 (Intake), the orchestrator determines mode based on:
 | **G5.5: Bibliography Implementation** | Post-Production | Sources section complete, all claims attributed, further reading included | **Bibliography Orchestrator** | ✅ Yes |
 | **G6: Accuracy Audit** | Audit | All claims verified against sources, no errors or speculation | **Accuracy Audit Agent** | ✅ Yes |
 | **G6.1: Data Integrity Audit** ★ | Audit | All data visualizations truthfully represent source data (scales, proportions, projections) | **Data Accuracy Auditor** | ✅ Yes |
-| **G6.5: Pedagogy Audit** | Audit | Learning effectiveness verified, sequence flows, misconceptions addressed | **Pedagogy Audit Agent** | ✅ Yes |
+| **G6.5: Pedagogy Audit** | Audit | Learning effectiveness verified, framework consistency, misconceptions addressed | **Pedagogy Audit Agent** | ✅ Yes |
+| **G6.6: Prose Quality** | Audit | AI slop ≤2%, voice consistency ≥85%, transitions certified | **Prose Auditor Agent** | ✅ Yes |
 | **G7: Diagram Clarity Audit** | Audit | Diagrams comprehensible, consistent language, accessibility verified | **Diagram Clarity Auditor** | ✅ Yes |
 | **G7.5: Scroll Certification** | Audit | Immersive experience certified (≥8.0/10) | Scrolling Auditor | ✅ Yes |
 | **G8: Publication Certification** | Pre-Publish | All audits pass, SEO verified, GO/CONDITIONAL certification | **Publish Artifact Orchestrator** | ✅ Yes |
@@ -528,6 +529,25 @@ Produce Pedagogy Certification Report.
 
 **Gate 6.5 Status**: ⏳ Pending / ✅ Certified / ❌ Rejected
 
+#### Step 2.5: Invoke Prose Auditor Agent (Gate 6.6)
+
+```
+Using @agents/auditors/prose-auditor-agent.md:
+
+Essay: src/app/essays/[slug]/
+
+Audit:
+- AI slop density (target: ≤2%)
+- Voice consistency across sections (target: ≥85%)
+- Section-to-section transition quality
+- Sentence craft variety and active:passive ratio
+- No false profundity, hedging overuse, or vocabulary inflation
+
+Produce Prose Quality Certification Report.
+```
+
+**Gate 6.6 Status**: ⏳ Pending / ✅ Certified / ❌ Rejected
+
 #### Step 3: Invoke Diagram Clarity Auditor (Gate 7)
 
 ```
@@ -601,6 +621,7 @@ Produce publication certification report.
 | G6: Accuracy Audit | ✅ |
 | G6.1: Data Integrity Audit ★ | ✅ |
 | G6.5: Pedagogy Audit | ✅ |
+| G6.6: Prose Quality | ✅ |
 | G7: Diagram Clarity Audit | ✅ |
 | G7.5: Scroll Certification | ✅ |
 | G8: Publication Certification | ✅ |
@@ -712,6 +733,10 @@ Produce: Pedagogical Design Research Report
 ### Working With pedagogy-audit-agent.md
 
 **Role**: Learning effectiveness for G6.5
+
+### Working With prose-auditor-agent.md
+
+**Role**: Writing craft certification for G6.6. Detects AI slop, audits voice consistency, evaluates transitions. Runs after Pedagogy (G6.5) — pedagogy verifies *what* is taught; prose verifies *how* it's written.
 
 ### Working With diagram-clarity-auditor.md
 

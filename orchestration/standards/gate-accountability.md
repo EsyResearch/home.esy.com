@@ -91,6 +91,8 @@ Every gate has three layers of quality assurance. The first layer is mandatory f
 | G5 Content Complete | page.tsx, CSS, Client component | G5.2 Design Fidelity | Spec-to-code compliance |
 | G5 Content Complete | Narrative content | G6 Citation Audit | Source integrity |
 | G5 Content Complete | Scroll interactions | G7 Scroll Certification | Performance, UX |
+| G5 Content Complete | Learning sequence, analogies | G6.5 Pedagogy Audit | Framework consistency, misconception addressing |
+| G5 Content Complete | Prose quality, voice | G6.6 Prose Quality Audit | AI slop, voice consistency, transitions |
 | G5.5 Bibliography | Works Cited section | G6 Citation Audit | Bibliography accuracy |
 
 **For web interface scaling**: Audit scores are the primary quality signal shown to customers. Audits above threshold proceed automatically; audits below threshold pause for human review.
@@ -156,7 +158,7 @@ Every gate contract MUST include:
 
 ### Audit Gate Contracts
 
-Audit gates (G4.1, G5.2, G6, G7, G8) MUST additionally include:
+Audit gates (G4.1, G5.2, G6, G6.5, G6.6, G7, G8) MUST additionally include:
 
 1. **Required audit artifact** — the report file the auditor produces
 2. **`not_contains` validation for `[FAIL]`** — the contract checks the audit artifact doesn't contain a failure marker
@@ -194,8 +196,10 @@ G2 guarantees research substance
     → G5 guarantees implementation completeness (builds on G4 design)
       → G5.2 guarantees design fidelity (verifies G5 matches G4)
         → G6 guarantees citation integrity (verifies G5 matches G2)
-          → G7 guarantees interaction quality
-            → G8 aggregates all quality signals
+          → G6.5 guarantees pedagogical consistency (verifies learning sequence)
+            → G6.6 guarantees prose quality (verifies writing craft, no AI slop)
+              → G7 guarantees interaction quality
+                → G8 aggregates all quality signals
 ```
 
 A gate MAY assume all prior gates have passed. A gate MUST NOT re-validate prior gates' concerns (that's G8's job as the aggregator).
@@ -251,6 +255,8 @@ G5   Content Complete     ← Build (THE BIG ONE)
 G5.2 Design Fidelity     ← QA (audits G5 against G4)
 G5.5 Bibliography         ← Build
 G6   Citation Audit       ← QA (audits G5+G5.5 against G2)
+G6.5 Pedagogy Audit       ← QA (audits learning sequence, framework consistency)
+G6.6 Prose Quality         ← QA (audits writing craft, AI slop, voice)
 G7   Scroll Certification ← QA (audits G5 interactions)
 ```
 
@@ -433,6 +439,7 @@ The architecture already supports this. The `{artifact_path}` and `{slug}` varia
 |---------|------|--------|
 | 1.0 | 2026-02-08 | Initial standard — three-layer accountability model, structured headers, contract requirements |
 | 1.1 | 2026-02-08 | Strengthened all 13 gate contracts to comply with minimum viable contract standard. Added template scalability architecture section. |
+| 1.2 | 2026-02-09 | Added G6.5 (Pedagogy Audit) and G6.6 (Prose Quality) to audit pairings, production+QA interleaving, progressive quality chain, and audit gate contract list. |
 
 ---
 

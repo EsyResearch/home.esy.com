@@ -28,6 +28,7 @@ Quality verification and certification agents that ensure content meets Esy stan
 | [Pedagogy Audit Agent](./pedagogy-audit-agent.md) | **Learning Effectiveness** | G6.5 (conceptual) | Pedagogy Certification Report |
 | [Diagram Clarity Auditor](./diagram-clarity-auditor.md) | **Diagram Comprehension** | G7 (conceptual) | Diagram Clarity Report |
 | [Data Accuracy Auditor](./data-accuracy-auditor.md) | **Data-to-Visual Fidelity** | G6.1 (data journalism) | Data Accuracy Report |
+| [Prose Auditor Agent](./prose-auditor-agent.md) | **Writing Craft & AI Slop Detection** | G6.6 | Prose Quality Certification Report |
 
 ---
 
@@ -65,6 +66,9 @@ Quality verification and certification agents that ensure content meets Esy stan
 | **Verify learning sequence & misconceptions** | Pedagogy Audit Agent (G6.5 conceptual) |
 | **Verify diagram language consistency** | Diagram Clarity Auditor (G7 conceptual) |
 | **Verify data-to-visual fidelity** | Data Accuracy Auditor (G6.1 data journalism) |
+| **Detect AI slop in prose** | Prose Auditor Agent (G6.6) |
+| **Audit voice/tone consistency** | Prose Auditor Agent (G6.6) |
+| **Evaluate transition quality** | Prose Auditor Agent (G6.6) |
 | **Comprehensive QA** | Use Meta Audit Orchestrator (orchestrators/) |
 
 ---
@@ -147,6 +151,7 @@ Meta Audit Orchestrator (Post-Implementation)
 ├── Hydration Audit (verifies SSR/client consistency)
 ├── Design Slop Auditor (enforces distinctive, subject-derived design)
 ├── Content Audit Agent (verifies word count, depth, tone, sensitivity)
+├── Prose Auditor Agent (G6.6) (AI slop, voice consistency, transitions)
 └── Gate Guard Auditor (G9) ← Final checkpoint before publication
         │
         ▼
@@ -271,6 +276,28 @@ Run all three phases:
 - Phase 1: Thematic Authenticity (colors trace to artifacts)
 - Phase 2: Novelty/Duplication (no cross-essay collisions)
 - Phase 3: CSS Implementation (CSS matches design research)
+```
+
+```
+
+```
+# Prose quality audit (G6.6)
+Using @agents/auditors/prose-auditor-agent.md, audit prose quality for:
+
+Essay: src/app/essays/[slug]/
+
+Run full audit: voice consistency, AI slop detection, transition quality,
+sentence craft, opening/closing assessment.
+Produce Prose Quality Certification Report.
+```
+
+```
+# Quick AI slop scan
+Using @agents/auditors/prose-auditor-agent.md, slop scan:
+
+Essay: src/app/essays/[slug]/[Component].jsx
+
+Quick check for AI generation artifacts only. Report density and instances.
 ```
 
 ```

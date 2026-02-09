@@ -182,6 +182,8 @@
 | **G5.2: Design Research Integration** | Post-Content | CSS selectors bind to TSX classNames (≥95%), no convention mismatches | **Design Research Integration Agent** | ✅ Yes |
 | **G5.5: Bibliography Implementation** | Post-Production | Bibliography section complete (Works Cited, Image Credits, A/V, Data Sources) | **Bibliography Orchestrator** | ✅ Yes |
 | **G6: Citation Audit** | Audit | Citation Certification achieved (content vs. research match) | Citation Audit Agent | ✅ Yes |
+| **G6.5: Pedagogy Audit** | Audit | Learning effectiveness verified, framework consistency, misconceptions addressed | **Pedagogy Audit Agent** | ✅ Yes |
+| **G6.6: Prose Quality** | Audit | AI slop ≤2%, voice consistency ≥85%, transitions certified | **Prose Auditor Agent** | ✅ Yes |
 | **G7: Scroll Certification** | Audit | Immersive Scrolling Auditor certification (≥8.0/10) | Scrolling Auditor | ✅ Yes |
 | **G8: Publication Certification** | Pre-Publish | Pre-publication certification (GO/CONDITIONAL) from all domain audits | **Publish Artifact Orchestrator** | ✅ Yes |
 | **G9: Publication Approval** | Publish | Director sign-off on complete package | Visual Essay Orchestrator | ✅ Yes |
@@ -360,6 +362,26 @@
           └────────────────┬────────────────┘
                            │
           ┌────────────────▼────────────────┐
+          │           G6.5                  │
+          │       PEDAGOGY AUDIT            │
+          │  ───────────────────────────    │
+          │  • Learning sequence verified   │
+          │  • Framework consistency        │
+          │  • Misconceptions addressed     │
+          │  • No paradigm regression       │
+          └────────────────┬────────────────┘
+                           │
+          ┌────────────────▼────────────────┐
+          │           G6.6                  │
+          │       PROSE QUALITY             │
+          │  ───────────────────────────    │
+          │  • AI slop density ≤ 2%        │
+          │  • Voice consistency ≥ 85%     │
+          │  • Transitions certified        │
+          │  • No false profundity          │
+          └────────────────┬────────────────┘
+                           │
+          ┌────────────────▼────────────────┐
           │    Immersive Scrolling Auditor  │
           │  ───────────────────────────    │
           │  • Scroll-lock behavior         │
@@ -474,6 +496,8 @@
 | G5.2 | Design Research Integration | Design Research Integration Agent |
 | G5.5 | Bibliography Implementation | Bibliography Orchestrator |
 | G6 | Citation Audit | Citation Audit Agent |
+| G6.5 | Pedagogy Audit | Pedagogy Audit Agent |
+| G6.6 | Prose Quality | Prose Auditor Agent |
 | G7 | Scroll Certification | Immersive Scrolling Auditor |
 | G8 | Publication Certification | Publish Artifact Orchestrator |
 | G9 | Publication Approval | Visual Essay Orchestrator |
@@ -1046,8 +1070,10 @@ The Publish Artifact Orchestrator will:
 
 **Content Quality**
 - [ ] All quality gates (G1-G7) passed
-- [ ] Citation Certification achieved
-- [ ] Scroll Certification achieved
+- [ ] Citation Certification achieved (G6)
+- [ ] Pedagogy Audit certified (G6.5)
+- [ ] Prose Quality certified (G6.6)
+- [ ] Scroll Certification achieved (G7)
 - [ ] Bibliography complete and compliant
 - [ ] No critical issues outstanding
 - [ ] Design research uniqueness confirmed
@@ -1103,6 +1129,8 @@ The Publish Artifact Orchestrator will:
 | G5.2: Design Research Integration | ✅ |
 | G5.5: Bibliography Implementation | ✅ |
 | G6: Citation Audit | ✅ |
+| G6.5: Pedagogy Audit | ✅ |
+| G6.6: Prose Quality | ✅ |
 | G7: Scroll Certification | ✅ |
 | G8: Publication Certification | ✅ |
 | G9: Publication Approval | ✅ |
