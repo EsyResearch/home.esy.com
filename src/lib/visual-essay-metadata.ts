@@ -99,7 +99,7 @@ export interface VisualEssayMetadataConfig {
   author?: string;
 
   /** Base path for the essay (defaults to 'essays', use 'essays/etymology' for word origin essays) */
-  basePath?: 'essays' | 'essays/etymology';
+  basePath?: 'essays' | 'essays/etymology' | 'essays/science';
 }
 
 /**

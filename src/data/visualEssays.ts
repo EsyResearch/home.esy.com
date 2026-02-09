@@ -994,7 +994,7 @@ export const visualEssays: VisualEssay[] = [
     description: "An interactive visual essay exploring what happens inside a black hole — from crossing the event horizon to the singularity, with Penrose diagrams, 3D spacetime visualization, observer duality, and the information paradox. Built on 16 Tier-1 peer-reviewed sources.",
     category: "Science",
     readTime: "25 min",
-    href: "/essays/inside-a-black-hole",
+    href: "/essays/science/inside-a-black-hole",
     isNew: true,
     tags: ["black hole", "event horizon", "singularity", "Penrose diagram", "information paradox", "Hawking radiation", "general relativity", "Three.js", "interactive"],
     visualStyle: "illustrated",

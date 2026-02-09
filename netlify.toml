@@ -34,11 +34,25 @@
   status = 301
   force = true
 
+# ─── Essay Path Redirects ──────────────────────────────────────
+# Moved /essays/inside-a-black-hole → /essays/science/inside-a-black-hole (Feb 2026)
+[[redirects]]
+  from = "/essays/inside-a-black-hole/*"
+  to = "/essays/science/inside-a-black-hole/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/essays/inside-a-black-hole"
+  to = "/essays/science/inside-a-black-hole/"
+  status = 301
+  force = true
+
 # ─── CSP Headers ───────────────────────────────────────────────
 # Three.js (used by the black hole essay) requires 'unsafe-eval' for WebGL
 # shader compilation. Allow it on essay pages that use Three.js.
 [[headers]]
-  for = "/essays/inside-a-black-hole/*"
+  for = "/essays/science/inside-a-black-hole/*"
   [headers.values]
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://www.clarity.ms https://region1.google-analytics.com; frame-src 'self'"
 

@@ -7,11 +7,11 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Article",
-      "@id": "https://esy.com/essays/inside-a-black-hole/#article",
+      "@id": "https://esy.com/essays/science/inside-a-black-hole/#article",
       "headline": "Inside a Black Hole: What Physics Actually Tells Us",
       "alternativeHeadline": "A Journey Into the Most Extreme Object in the Universe",
       "description": "An interactive visual essay exploring what happens inside a black hole — from crossing the event horizon to the singularity, Penrose diagrams, Hawking radiation, and the information paradox. Built entirely on peer-reviewed physics with 22 Tier-1 sources.",
-      "url": "https://esy.com/essays/inside-a-black-hole/",
+      "url": "https://esy.com/essays/science/inside-a-black-hole/",
       "datePublished": "2026-02-08",
       "dateModified": "2026-02-08",
       "author": { "@type": "Organization", "name": "Esy", "url": "https://esy.com" },
@@ -30,7 +30,8 @@ const jsonLd = {
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://esy.com" },
         { "@type": "ListItem", "position": 2, "name": "Essays", "item": "https://esy.com/essays/" },
-        { "@type": "ListItem", "position": 3, "name": "Inside a Black Hole", "item": "https://esy.com/essays/inside-a-black-hole/" }
+        { "@type": "ListItem", "position": 3, "name": "Science", "item": "https://esy.com/essays/science/" },
+        { "@type": "ListItem", "position": 4, "name": "Inside a Black Hole", "item": "https://esy.com/essays/science/inside-a-black-hole/" }
       ]
     },
     {
@@ -75,7 +76,7 @@ const jsonLd = {
 
 export const metadata = createVisualEssayMetadata({
   slug: 'inside-a-black-hole',
-  basePath: 'essays',
+  basePath: 'essays/science',
   title: 'Inside a Black Hole: What Physics Actually Tells Us | Esy',
   description: 'An interactive visual essay exploring what happens inside a black hole — event horizons, Penrose diagrams, Hawking radiation, and the information paradox. Built on 22 peer-reviewed sources.',
   ogTitle: 'Inside a Black Hole',
