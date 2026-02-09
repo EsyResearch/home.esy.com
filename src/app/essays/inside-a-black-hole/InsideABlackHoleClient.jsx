@@ -116,31 +116,78 @@ function useScrollProgress() {
 /* ─── EHT Ring Component ─────────────────────────────────────── */
 function EHTRing() {
   const [ref, inView] = useInView({ threshold: 0.3 });
+  const vis = inView ? 'bh-eht-diagram--visible' : '';
 
-  const annotations = [
-    { key: 'shadow', label: 'The Shadow', text: 'Light that crossed the event horizon and never returned.', style: { top: '50%', left: '-60%', transform: 'translateY(-50%)' } },
-    { key: 'ring', label: 'Photon Ring', text: 'Superheated gas orbiting near the photon sphere.', style: { top: '-15%', left: '50%', transform: 'translateX(-50%)' } },
-    { key: 'doppler', label: 'Doppler Beaming', text: 'Brighter side = gas moving toward us.', style: { bottom: '-15%', right: '-40%' } },
-    { key: 'lensing', label: 'Gravitational Lensing', text: 'Light from behind, bent around the hole.', style: { top: '50%', right: '-60%', transform: 'translateY(-50%)' } },
+  /* Leader lines: [featureAnchor → ... → nearLabel]
+     700×500 viewBox. Ring center = (350, 250). Ring element = 46% of 700 = 322px.
+     Radial gradient puts ring band at ~40-55% of element radius (64–89px from center).
+     Shadow (dark center) fills ~0-35% (0–56px). Outer glow fades at ~65% (105px).
+
+     Feature anchors (gold dots) sit ON the actual feature:
+       Shadow:  inside the dark center, near its left boundary   → (300, 250)
+       Disk:    on the bright ring band at the top               → (370, 170)
+       Lensing: at the outer glow edge, right side               → (456, 248)
+       Doppler: on the brighter (bottom) side of the ring band   → (375, 332)   */
+  const leaders = [
+    { id: 'shadow',  pts: '300,250 140,250',    delay: 0.3 },   // dark center → left to label
+    { id: 'disk',    pts: '370,170 435,75',     delay: 0.5 },   // ring top → upper-right to label
+    { id: 'lensing', pts: '456,248 565,248',    delay: 0.7 },   // outer glow right → right to label
+    { id: 'doppler', pts: '375,332 465,430',    delay: 0.9 },   // ring bottom bright → lower-right to label
+  ];
+
+  const labels = [
+    { id: 'shadow',  label: 'The Shadow',            text: 'Light that crossed the event horizon and never returned.',               x: '1%',  y: '44%', align: 'left',  delay: 0.3 },
+    { id: 'disk',    label: 'Accretion Disk',         text: 'Superheated gas spiraling inward, glowing at billions of degrees.',      x: '63%', y: '3%',  align: 'left',  delay: 0.5 },
+    { id: 'lensing', label: 'Gravitational Lensing',  text: 'Light from behind, bent around the hole.',                              x: '82%', y: '42%', align: 'left',  delay: 0.7 },
+    { id: 'doppler', label: 'Doppler Beaming',        text: 'Brighter side = gas moving toward us.',                                 x: '68%', y: '83%', align: 'left',  delay: 0.9 },
   ];
 
   return (
-    <div ref={ref} className="bh-eht-ring" role="img" aria-label="Annotated diagram of a black hole image inspired by the Event Horizon Telescope photograph of M87*. A bright orange ring of superheated gas surrounds a dark central shadow.">
-      <div className="bh-eht-ring__outer">
-        <div className="bh-eht-ring__asymmetry" />
+    <div ref={ref} className={`bh-eht-diagram ${vis}`} role="img" aria-label="Annotated diagram of a black hole image inspired by the Event Horizon Telescope photograph of M87*. A bright orange ring of superheated gas surrounds a dark central shadow.">
+      {/* Ring visual */}
+      <div className="bh-eht-diagram__ring">
+        <div className="bh-eht-ring__outer">
+          <div className="bh-eht-ring__asymmetry" />
+        </div>
+        <div className="bh-eht-ring__shadow" />
       </div>
-      <div className="bh-eht-ring__shadow" />
-      {annotations.map((a, i) => (
+
+      {/* SVG leader lines from features to labels */}
+      <svg className="bh-eht-diagram__svg" viewBox="0 0 700 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        {leaders.map(l => (
+          <g key={l.id}>
+            <polyline
+              points={l.pts}
+              className={`bh-eht-diagram__leader ${vis ? 'bh-eht-diagram__leader--visible' : ''}`}
+              style={{ transitionDelay: `${l.delay}s` }}
+              stroke="var(--bh-diagram-line, rgba(74,74,90,0.5))"
+              strokeWidth="1"
+              fill="none"
+            />
+            {/* Dot at feature anchor — dark outline ensures visibility on the gold ring */}
+            <circle
+              cx={l.pts.split(' ')[0].split(',')[0]}
+              cy={l.pts.split(' ')[0].split(',')[1]}
+              r="4"
+              fill="var(--bh-accretion-gold, #c4922a)"
+              stroke="rgba(0,0,0,0.6)"
+              strokeWidth="1.5"
+              className={`bh-eht-diagram__dot ${vis ? 'bh-eht-diagram__dot--visible' : ''}`}
+              style={{ transitionDelay: `${l.delay}s` }}
+            />
+          </g>
+        ))}
+      </svg>
+
+      {/* Labels */}
+      {labels.map(lb => (
         <div
-          key={a.key}
-          className={`bh-annotation ${inView ? 'bh-annotation--visible' : ''}`}
-          style={{ ...a.style, transitionDelay: `${0.3 + i * 0.2}s` }}
+          key={lb.id}
+          className={`bh-eht-diagram__label ${vis ? 'bh-eht-diagram__label--visible' : ''}`}
+          style={{ left: lb.x, top: lb.y, textAlign: lb.align, transitionDelay: `${lb.delay}s` }}
         >
-          <span className="bh-annotation__line" />
-          <span className="bh-annotation__text">
-            <span className="bh-annotation__label">{a.label}</span>
-            {a.text}
-          </span>
+          <span className="bh-eht-diagram__label-title">{lb.label}</span>
+          <span className="bh-eht-diagram__label-desc">{lb.text}</span>
         </div>
       ))}
     </div>

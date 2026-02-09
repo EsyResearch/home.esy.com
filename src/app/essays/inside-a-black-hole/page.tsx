@@ -21,7 +21,7 @@ const jsonLd = {
         "url": "https://esy.com",
         "logo": { "@type": "ImageObject", "url": "https://esy.com/esy-logo.png" }
       },
-      "image": "https://esy.com/og/inside-a-black-hole.png",
+      "image": "https://images.esy.com/essays/inside-a-black-hole/inside-a-black-hole-og.822a747747.webp",
       "articleSection": "Physics",
       "inLanguage": "en-US"
     },
@@ -80,6 +80,7 @@ export const metadata = createVisualEssayMetadata({
   description: 'An interactive visual essay exploring what happens inside a black hole — event horizons, Penrose diagrams, Hawking radiation, and the information paradox. Built on 22 peer-reviewed sources.',
   ogTitle: 'Inside a Black Hole',
   ogDescription: 'What physics actually tells us about the interior of black holes. An interactive visual essay with Penrose diagrams, observer duality, and the information paradox.',
+  ogImage: 'https://images.esy.com/essays/inside-a-black-hole/inside-a-black-hole-og.822a747747.webp',
   keywords: [
     'black hole',
     'event horizon',

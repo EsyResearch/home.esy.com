@@ -210,12 +210,26 @@
   background: linear-gradient(180deg, var(--bh-void) 0%, #080510 50%, var(--bh-void) 100%);
 }
 
-/* ─── EHT Ring Visualization ───────────────────────────────── */
-.bh-eht-ring {
+/* ─── EHT Ring Diagram ─────────────────────────────────────── */
+/* Wrapper: holds ring + SVG leader lines + labels.
+   Aspect ratio ~7:5, matching the SVG viewBox (700×500). */
+.bh-eht-diagram {
   position: relative;
-  width: 320px;
-  height: 320px;
+  width: 100%;
+  max-width: 700px;
+  aspect-ratio: 7 / 5;
   margin: 3rem auto;
+}
+
+/* The ring visual — centered inside the diagram wrapper.
+   Sized at ~46% of the wrapper width (≈320px at max-width 700). */
+.bh-eht-diagram__ring {
+  position: absolute;
+  width: 46%;
+  aspect-ratio: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .bh-eht-ring__outer {
@@ -238,52 +252,135 @@
   background: var(--bh-void);
 }
 
+/* Doppler asymmetry: bottom side is brighter, matching M87* where
+   the approaching side of the accretion disk faces south.
+   Subtly breathes in intensity to reinforce "gas moving toward us." */
 .bh-eht-ring__asymmetry {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(212, 166, 58, 0.3) 0%, transparent 50%, rgba(212, 166, 58, 0) 100%);
+  background: linear-gradient(0deg, rgba(212, 166, 58, 0.35) 0%, transparent 55%);
+  animation: bh-doppler-breathe 6s ease-in-out infinite;
 }
 
+/* Orbiting hotspot — a subtle bright patch that travels along
+   the ring band, implying the accretion disk gas is in motion.
+   Separate from the static Doppler asymmetry so annotations stay valid.
+   The conic gradient creates a ~15° bright wedge at very low opacity. */
+.bh-eht-diagram__ring::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 340deg,
+    rgba(212, 166, 58, 0.08) 348deg,
+    rgba(255, 210, 100, 0.14) 355deg,
+    rgba(212, 166, 58, 0.08) 358deg,
+    transparent 360deg
+  );
+  mask-image: radial-gradient(circle, transparent 36%, black 42%, black 58%, transparent 64%);
+  -webkit-mask-image: radial-gradient(circle, transparent 36%, black 42%, black 58%, transparent 64%);
+  animation: bh-ring-orbit 90s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Gentle luminosity pulse on the ring */
 @keyframes bh-ring-pulse {
   0%, 100% { opacity: 0.9; }
   50% { opacity: 1; }
 }
 
-.bh-annotation {
-  position: absolute;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  opacity: 0;
-  transition: opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+/* Slow orbital hotspot — gas traveling along the ring band.
+   90s/rev is barely perceptible; you notice it subconsciously. */
+@keyframes bh-ring-orbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
-.bh-annotation--visible {
+/* Doppler asymmetry breathes — the brighter side subtly
+   fluctuates in intensity, hinting at approaching gas. */
+@keyframes bh-doppler-breathe {
+  0%, 100% { opacity: 0.8; }
+  50%      { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bh-eht-ring__outer {
+    animation: none;
+  }
+  .bh-eht-ring__asymmetry {
+    animation: none;
+  }
+  .bh-eht-diagram__ring::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* SVG overlay for leader lines — z-index 2 ensures dots and lines
+   render above the ring visual and its ::after orbiting hotspot. */
+.bh-eht-diagram__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.bh-eht-diagram__leader {
+  opacity: 0;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  transition: opacity 0.4s ease, stroke-dashoffset 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.bh-eht-diagram__leader--visible {
+  opacity: 1;
+  stroke-dashoffset: 0;
+}
+
+.bh-eht-diagram__dot {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.bh-eht-diagram__dot--visible {
+  opacity: 0.8;
+}
+
+/* Labels — absolutely positioned within the diagram wrapper */
+.bh-eht-diagram__label {
+  position: absolute;
+  max-width: 200px;
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+  z-index: 3;
+}
+
+.bh-eht-diagram__label--visible {
   opacity: 1;
 }
 
-.bh-annotation__line {
-  width: 40px;
-  height: 1px;
-  background: var(--bh-diagram-line);
-  margin-top: 0.6em;
-  flex-shrink: 0;
-}
-
-.bh-annotation__text {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  line-height: 1.4;
-  color: var(--bh-text-secondary);
-  max-width: 180px;
-}
-
-.bh-annotation__label {
-  color: var(--bh-accretion-gold);
-  font-weight: 500;
+.bh-eht-diagram__label-title {
   display: block;
-  margin-bottom: 0.2em;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--bh-accretion-gold);
+  margin-bottom: 0.25em;
+}
+
+.bh-eht-diagram__label-desc {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--bh-text-secondary);
 }
 
 /* ─── Observer Duality Split ───────────────────────────────── */
@@ -938,16 +1035,38 @@
     margin: 2rem 0;
   }
 
-  .bh-eht-ring {
-    width: 240px;
-    height: 240px;
+  .bh-eht-diagram {
+    max-width: 500px;
+  }
+
+  .bh-eht-diagram__label {
+    max-width: 150px;
+  }
+
+  .bh-eht-diagram__label-title {
+    font-size: 0.7rem;
+  }
+
+  .bh-eht-diagram__label-desc {
+    font-size: 0.65rem;
   }
 }
 
 @media (max-width: 480px) {
-  .bh-eht-ring {
-    width: 200px;
-    height: 200px;
+  .bh-eht-diagram {
+    max-width: 360px;
+  }
+
+  .bh-eht-diagram__label {
+    max-width: 110px;
+  }
+
+  .bh-eht-diagram__label-title {
+    font-size: 0.65rem;
+  }
+
+  .bh-eht-diagram__label-desc {
+    font-size: 0.6rem;
   }
 }
 
