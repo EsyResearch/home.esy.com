@@ -517,8 +517,8 @@ function InformationFlow() {
     Array.from({ length: 24 }, (_, i) => ({
       x: 8 + Math.random() * 84,
       y: 8 + Math.random() * 84,
-      r: 1 + Math.random() * 2.5,
-      o: 0.12 + Math.random() * 0.28,
+      r: 1.5 + Math.random() * 3,
+      o: 0.35 + Math.random() * 0.45,
     })), []
   );
 
@@ -655,7 +655,7 @@ function InformationFlow() {
         <div className="bh-info-flow__thermal-box">
           <svg viewBox="0 0 100 100" width="100%" height="100%">
             {thermalDots.map((d, i) => (
-              <circle key={i} cx={d.x} cy={d.y} r={d.r} fill="var(--bh-quantum-violet-dim)" opacity={d.o} />
+              <circle key={i} cx={d.x} cy={d.y} r={d.r} fill="var(--bh-quantum-violet-bright)" opacity={d.o} />
             ))}
           </svg>
         </div>
