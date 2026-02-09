@@ -15,6 +15,7 @@ Each file follows the format:
 | File | Problem |
 |---|---|
 | [window-not-defined-in-nextjs-ssr.md](./window-not-defined-in-nextjs-ssr.md) | `ReferenceError: window is not defined` during Next.js static build |
+| [csp-blocks-eval-threejs-page-blank.md](./csp-blocks-eval-threejs-page-blank.md) | CSP blocks `eval` — Three.js page renders completely blank in production |
 
 ---
 

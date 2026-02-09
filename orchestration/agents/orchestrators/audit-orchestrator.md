@@ -64,6 +64,8 @@
 | `spec-compliance-auditor.md` | **Spec Compliance** | Output matches invocation spec | Score < 70% or missing elements |
 | `hydration-audit-agent.md` | **Hydration** | SSR/client mismatches, first-load integrity | Any Tier 1 failure (hero corruption) |
 | `content-audit-agent.md` | **Content Quality** | Word count, depth, tone, spec content compliance | Score < 70% or tone violations |
+| `prose-auditor-agent.md` | **Prose Quality** | Voice consistency, AI slop, transitions, sentence craft | Slop density >25% or register break |
+| `pedagogy-audit-agent.md` | **Pedagogy** | Framework coherence, sequence, prerequisites, cognitive load | Paradigm regression or critical sequence violation |
 
 ### Audit Dependencies
 
@@ -97,6 +99,8 @@
 - **Spec Compliance Audit** (compares spec vs output)
 - **Hydration Audit** (SSR/client mismatch detection)
 - **Content Audit** (word count, depth, tone, sensitivity)
+- **Prose Audit** (voice, AI slop, transitions, craft) — REQUIRED for conceptual/narrative essays
+- **Pedagogy Audit** (framework coherence, sequence, prerequisites) — REQUIRED for conceptual/educational essays
 
 **Sequential Dependencies:**
 - Experience Audit → Scroll Audit (incorporates scroll findings)
@@ -222,6 +226,8 @@ Produce comprehensive audit report:
 | **Spec Compliance** | Spec Compliance Auditor | 70% | Missing chapters or core elements |
 | **Hydration** | Hydration Audit Agent | Pass/Fail | Hero corruption or Tier 1 failures |
 | **Content** | Content Audit Agent | 70% | Word count <50% of spec, tone violations for sensitive content |
+| **Prose** | Prose Auditor Agent | CERTIFIED | Slop density >25%, register break, or empty transitions |
+| **Pedagogy** | Pedagogy Audit Agent | CERTIFIED | Paradigm regression, critical sequence violation, or framework contradiction |
 
 ### Aggregate Certification Thresholds
 
@@ -254,6 +260,8 @@ Produce comprehensive audit report:
 | **First-load corruption** | Hydration + Experience + Scroll | IntersectionObserver race conditions, useState mismatches |
 | **Content deficiency** | Content + Spec Compliance + Citations | Thin content, missing depth, unsubstantiated claims |
 | **Tone violations** | Content + Citations + Experience | Inappropriate tone for sensitive subjects (genocide, trauma) |
+| **Paradigm regression** | Pedagogy + Prose + Content | Essay contradicts its own established conceptual framework |
+| **Voice/slop drift** | Prose + Content + Experience | AI-generated filler, inconsistent register, empty transitions |
 
 ---
 
@@ -820,7 +828,7 @@ orchestration/agents/CitationReports/CHANGELOG.md
 ---
 
 ## Last Updated
-December 30, 2024
+February 8, 2026
 
 ### Recent Changes
 - Added **Content Audit Agent** to audit domain registry — word count, content depth, tone compliance, genocide/atrocity sensitivity
@@ -835,6 +843,9 @@ December 30, 2024
 - Updated comprehensive audit report template with hydration domain
 - Added **Spec Path as required input** — spec is source of truth
 - Added **Spec Compliance Auditor** to audit domain registry
+- Added **Prose Auditor Agent** to audit domain registry — voice consistency, AI slop detection, transition quality (G6.6)
+- Added **Pedagogy Audit Agent** to audit domain registry — framework coherence, sequence, prerequisites, cognitive load (G6.5)
+- Added prose + pedagogy to certification matrix, parallel dispatch, and blocking criteria
 - See [INVOCATION-EXAMPLES.md](./INVOCATION-EXAMPLES.md) for invocation patterns
 
 ---

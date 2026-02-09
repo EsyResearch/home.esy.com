@@ -60,6 +60,7 @@ export default function SpacetimeVisualization({ className = '' }) {
   const timeRef = useRef(0);
   const [isVisible, setIsVisible] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [initFailed, setInitFailed] = useState(false);
 
   // Cleanup
   const cleanup = useCallback(() => {
@@ -95,8 +96,22 @@ export default function SpacetimeVisualization({ className = '' }) {
     const height = Math.min(width * 0.85, 600);
     container.style.height = `${height}px`;
 
+    // Guard: Three.js shader compilation may use new Function() which CSP can block.
+    // Test eval availability before initializing WebGL to fail gracefully.
+    try {
+      new Function('return true')();
+    } catch {
+      console.warn('[SpacetimeVisualization] CSP blocks eval — showing fallback.');
+      setInitFailed(true);
+      return;
+    }
+
     // ─── Scene setup ───
-    const scene = new THREE.Scene();
+    let scene = null;
+    let renderer = null;
+    try {
+
+    scene = new THREE.Scene();
     scene.background = new THREE.Color(COLORS.void);
     scene.fog = new THREE.FogExp2(COLORS.void, 0.04);
     sceneRef.current = scene;
@@ -108,7 +123,7 @@ export default function SpacetimeVisualization({ className = '' }) {
     cameraRef.current = camera;
 
     // ─── Renderer ───
-    const renderer = new THREE.WebGLRenderer({
+    renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: false,
       powerPreference: 'default',
@@ -481,7 +496,92 @@ export default function SpacetimeVisualization({ className = '' }) {
         container.removeChild(renderer.domElement);
       }
     };
+
+    } catch (err) {
+      // Three.js init failed (CSP, WebGL unavailable, etc.) — degrade gracefully
+      console.warn('[SpacetimeVisualization] Three.js initialization failed:', err);
+      setInitFailed(true);
+      // Clean up any partial renderer
+      if (renderer) {
+        try { renderer.dispose(); renderer.forceContextLoss(); } catch {}
+        try {
+          if (container.contains(renderer.domElement)) {
+            container.removeChild(renderer.domElement);
+          }
+        } catch {}
+      }
+      return undefined; // no cleanup needed
+    }
   }, [isVisible, cleanup]);
+
+  // ─── Static SVG fallback when Three.js cannot initialize ───
+  if (initFailed) {
+    return (
+      <div className={`bh-spacetime-viz ${className}`}
+        role="figure"
+        aria-label="Diagram of spacetime curvature around a black hole. All paths inside the event horizon lead to the singularity."
+        style={{ height: 500, background: '#050508', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+      >
+        <svg viewBox="0 0 400 360" width="380" height="340" xmlns="http://www.w3.org/2000/svg" style={{ maxWidth: '100%' }}>
+          {/* Funnel shape representing curved spacetime */}
+          <defs>
+            <radialGradient id="sv-glow" cx="50%" cy="45%" r="50%">
+              <stop offset="0%" stopColor="#1a9e8f" stopOpacity="0.25" />
+              <stop offset="100%" stopColor="#050508" stopOpacity="0" />
+            </radialGradient>
+            <linearGradient id="sv-funnel" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#3d7ec7" stopOpacity="0.3" />
+              <stop offset="60%" stopColor="#1a9e8f" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#b5382a" stopOpacity="0.3" />
+            </linearGradient>
+          </defs>
+          <ellipse cx="200" cy="100" rx="160" ry="40" fill="none" stroke="#3d7ec7" strokeWidth="0.8" opacity="0.2" />
+          <ellipse cx="200" cy="100" rx="120" ry="30" fill="none" stroke="#3d7ec7" strokeWidth="0.8" opacity="0.15" />
+          {/* Event horizon ring */}
+          <ellipse cx="200" cy="160" rx="80" ry="20" fill="none" stroke="#1a9e8f" strokeWidth="2" opacity="0.8" />
+          {/* Funnel walls */}
+          <path d="M 120 160 Q 140 240, 190 310" fill="none" stroke="url(#sv-funnel)" strokeWidth="1.5" />
+          <path d="M 280 160 Q 260 240, 210 310" fill="none" stroke="url(#sv-funnel)" strokeWidth="1.5" />
+          {/* Inner grid lines */}
+          {[0.3, 0.5, 0.7].map((f, i) => (
+            <ellipse key={i} cx="200" cy={160 + f * 120} rx={80 - f * 60} ry={20 - f * 15}
+              fill="none" stroke="#b5382a" strokeWidth="0.6" opacity={0.15 + i * 0.05} />
+          ))}
+          {/* Glow at center */}
+          <circle cx="200" cy="170" r="80" fill="url(#sv-glow)" />
+          {/* Singularity */}
+          <circle cx="200" cy="315" r="4" fill="#fff" opacity="0.6" />
+          <circle cx="200" cy="315" r="8" fill="#c4922a" opacity="0.15" />
+          {/* Light cones */}
+          <g opacity="0.5">
+            <path d="M 310 120 L 330 95 L 290 95 Z" fill="none" stroke="#3d7ec7" strokeWidth="1" />
+            <circle cx="310" cy="120" r="2.5" fill="#3d7ec7" />
+          </g>
+          <g opacity="0.5">
+            <path d="M 170 200 L 185 178 L 155 178 Z" fill="none" stroke="#b5382a" strokeWidth="1" />
+            <circle cx="170" cy="200" r="2.5" fill="#b5382a" />
+          </g>
+          {/* Labels */}
+          <text x="200" y="340" textAnchor="middle" fill="#8a8580" fontSize="9" fontFamily="'JetBrains Mono', monospace" letterSpacing="0.15em">SINGULARITY</text>
+          <text x="200" y="148" textAnchor="middle" fill="#1a9e8f" fontSize="9" fontFamily="'JetBrains Mono', monospace" opacity="0.7">EVENT HORIZON</text>
+        </svg>
+        <div className="bh-spacetime-viz__labels">
+          <div className="bh-spacetime-viz__label bh-spacetime-viz__label--horizon">
+            <span className="bh-spacetime-viz__label-dot" style={{ background: 'var(--bh-horizon-teal)' }} />
+            Event horizon
+          </div>
+          <div className="bh-spacetime-viz__label bh-spacetime-viz__label--outside">
+            <span className="bh-spacetime-viz__label-dot" style={{ background: 'var(--bh-lensing-blue)' }} />
+            Light cones outside — paths can go anywhere
+          </div>
+          <div className="bh-spacetime-viz__label bh-spacetime-viz__label--inside">
+            <span className="bh-spacetime-viz__label-dot" style={{ background: 'var(--bh-danger-red)' }} />
+            Light cones inside — all paths lead down
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`bh-spacetime-viz ${className}`} ref={containerRef}

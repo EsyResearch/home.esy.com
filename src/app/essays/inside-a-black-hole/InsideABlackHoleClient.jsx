@@ -1,11 +1,40 @@
 'use client';
 
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo, Component } from 'react';
 import dynamic from 'next/dynamic';
 import './inside-a-black-hole.css';
 
 const SpacetimeVisualization = dynamic(
   () => import('./SpacetimeVisualization'),
+  { ssr: false, loading: () => <div style={{ height: 500, background: '#050508' }} /> }
+);
+
+/* ─── Error Boundary for Three.js visualization ────────────── */
+class VisualizationErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(error, info) {
+    console.warn('[VisualizationErrorBoundary] Caught render error:', error, info);
+  }
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback || (
+        <div style={{ height: 500, background: '#050508', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#8a8580', fontFamily: "'JetBrains Mono', monospace", fontSize: 12 }}>
+          <span>3D visualization unavailable</span>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+const PenroseVisualization = dynamic(
+  () => import('./PenroseVisualization'),
   { ssr: false, loading: () => <div style={{ height: 500, background: '#050508' }} /> }
 );
 
@@ -222,235 +251,14 @@ function HorizonCrossing() {
   );
 }
 
-/* ─── Penrose Diagram Component ──────────────────────────────── */
-function PenroseDiagram({ interactive = false }) {
-  const [ref, inView] = useInView({ threshold: 0.2 });
-  const [step, setStep] = useState(0);
-  const [selectedPoint, setSelectedPoint] = useState(null);
-
-  useEffect(() => {
-    if (!inView || interactive) return;
-    const maxStep = 5;
-    const timers = [];
-    for (let i = 1; i <= maxStep; i++) {
-      timers.push(setTimeout(() => setStep(i), i * 1200));
-    }
-    return () => timers.forEach(clearTimeout);
-  }, [inView, interactive]);
-
-  useEffect(() => {
-    if (interactive && inView) setStep(5);
-  }, [interactive, inView]);
-
-  const vb = 440;
-  const cx = vb / 2, cy = vb / 2, s = 160;
-  const top = { x: cx, y: cy - s };
-  const right = { x: cx + s, y: cy };
-  const bottom = { x: cx, y: cy + s };
-  const left = { x: cx - s, y: cy };
-
-  // Singularity wavy line at top of interior
-  const singY = cy - s * 0.42;
-  const singL = left.x + s * 0.22;
-  const singR = right.x - s * 0.22;
-  const singularityPath = useMemo(() => {
-    let d = `M ${singL} ${singY}`;
-    const count = 20;
-    const w = singR - singL;
-    const seg = w / count;
-    for (let i = 1; i <= count; i++) {
-      d += ` L ${singL + i * seg} ${singY + (i % 2 === 1 ? -5 : 5)}`;
-    }
-    return d;
-  }, [singL, singR, singY]);
-
-  // Conformal grid: curved coordinate lines showing spacetime warping
-  const conformalGrid = useMemo(() => {
-    const rCurves = [];
-    const tCurves = [];
-    // Constant-r curves: from i⁻ (bottom) to i⁺ (top), bowing toward i⁰ (right)
-    for (let i = 1; i <= 7; i++) {
-      const f = i / 8;
-      rCurves.push({
-        d: `M ${bottom.x} ${bottom.y} Q ${cx + s * f} ${cy} ${top.x} ${top.y}`,
-        o: 0.06 + f * 0.04,
-      });
-    }
-    // Constant-t curves: from left edge to right edge
-    for (let i = 1; i <= 5; i++) {
-      const f = (i / 6) * 2 - 1;
-      tCurves.push({
-        d: `M ${left.x} ${left.y} Q ${cx} ${cy - s * f * 0.35} ${right.x} ${right.y}`,
-        o: 0.06 + Math.abs(f) * 0.03,
-      });
-    }
-    return { rCurves, tCurves };
-  }, [bottom, top, left, right, cx, cy, s]);
-
-  const interiorPath = `M ${left.x} ${left.y} L ${singL} ${singY} L ${singR} ${singY} L ${top.x} ${top.y} Z`;
-
-  const stepLabels = [
-    '',
-    'All of spacetime — past, present, future, infinity — compressed onto a single diamond.',
-    'Light always travels at 45°. Your future lies within your light cone.',
-    'The event horizon: a one-way causal boundary in spacetime.',
-    'The singularity sits at the top — it is your future, not a place in space.',
-    'Inside, every light cone tilts toward the singularity. There is no escape direction.',
-  ];
-
-  const interactivePoints = interactive ? [
-    { x: cx + 55, y: cy + 25, label: 'Outside observer', inside: false },
-    { x: cx - 25, y: cy - 25, label: 'Fallen inside', inside: true },
-    { x: cx + 15, y: cy + 75, label: 'Distant observer', inside: false },
-  ] : [];
-
-  return (
-    <div ref={ref} className="bh-penrose" role="figure" aria-label="Penrose conformal diagram for a Schwarzschild black hole showing the causal structure of spacetime.">
-      <svg viewBox={`0 0 ${vb} ${vb}`} xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="penrose-glow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
-            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-          </filter>
-          <filter id="cone-glow" x="-15%" y="-15%" width="130%" height="130%">
-            <feGaussianBlur stdDeviation="2" result="blur" />
-            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-          </filter>
-          <linearGradient id="interior-fill" x1="0" y1="1" x2="0" y2="0">
-            <stop offset="0%" stopColor="rgba(61,126,199,0.01)" />
-            <stop offset="60%" stopColor="rgba(61,126,199,0.08)" />
-            <stop offset="100%" stopColor="rgba(181,56,42,0.12)" />
-          </linearGradient>
-          <linearGradient id="cone-fill-out" x1="0" y1="1" x2="0" y2="0">
-            <stop offset="0%" stopColor="rgba(61,126,199,0.2)" />
-            <stop offset="100%" stopColor="rgba(61,126,199,0.02)" />
-          </linearGradient>
-          <linearGradient id="cone-fill-in" x1="0" y1="1" x2="0" y2="0">
-            <stop offset="0%" stopColor="rgba(181,56,42,0.2)" />
-            <stop offset="100%" stopColor="rgba(181,56,42,0.02)" />
-          </linearGradient>
-        </defs>
-
-        {/* Conformal coordinate grid — shows spacetime curvature */}
-        {step >= 1 && (
-          <g className="bh-penrose__grid-group" style={{ opacity: step >= 1 ? 1 : 0, transition: 'opacity 0.8s ease' }}>
-            {conformalGrid.rCurves.map((c, i) => (
-              <path key={`r${i}`} d={c.d} fill="none" stroke="var(--bh-diagram-line)" strokeWidth="0.5" opacity={c.o} />
-            ))}
-            {conformalGrid.tCurves.map((c, i) => (
-              <path key={`t${i}`} d={c.d} fill="none" stroke="var(--bh-diagram-line)" strokeWidth="0.5" opacity={c.o} />
-            ))}
-            {/* 45° light ray reference diagonals */}
-            <line x1={bottom.x} y1={bottom.y} x2={right.x} y2={right.y} stroke="var(--bh-accretion-gold-dim)" strokeWidth="0.4" opacity="0.15" strokeDasharray="6 10" />
-            <line x1={bottom.x} y1={bottom.y} x2={left.x} y2={left.y} stroke="var(--bh-accretion-gold-dim)" strokeWidth="0.4" opacity="0.15" strokeDasharray="6 10" />
-          </g>
-        )}
-
-        {/* Diamond boundary */}
-        {step >= 1 && (
-          <path
-            className="bh-penrose__diamond"
-            d={`M ${top.x} ${top.y} L ${right.x} ${right.y} L ${bottom.x} ${bottom.y} L ${left.x} ${left.y} Z`}
-          />
-        )}
-
-        {/* Infinity labels */}
-        {step >= 1 && (
-          <>
-            <text className="bh-penrose__label" x={top.x} y={top.y - 16} textAnchor="middle" style={{ fontWeight: 500 }}>i⁺</text>
-            <text className="bh-penrose__label bh-penrose__label--dim" x={top.x} y={top.y - 4} textAnchor="middle">future timelike ∞</text>
-            <text className="bh-penrose__label" x={bottom.x} y={bottom.y + 18} textAnchor="middle" style={{ fontWeight: 500 }}>i⁻</text>
-            <text className="bh-penrose__label bh-penrose__label--dim" x={bottom.x} y={bottom.y + 30} textAnchor="middle">past timelike ∞</text>
-            <text className="bh-penrose__label" x={right.x + 14} y={right.y + 4} textAnchor="start" style={{ fontWeight: 500 }}>i⁰</text>
-            <text className="bh-penrose__label bh-penrose__label--dim" x={right.x + 14} y={right.y + 16} textAnchor="start">spatial ∞</text>
-            <text className="bh-penrose__label--script" x={cx + s * 0.62} y={cy - s * 0.52} textAnchor="middle" transform={`rotate(-45,${cx + s * 0.62},${cy - s * 0.52})`}>𝒥⁺</text>
-            <text className="bh-penrose__label--script" x={cx + s * 0.62} y={cy + s * 0.52} textAnchor="middle" transform={`rotate(45,${cx + s * 0.62},${cy + s * 0.52})`}>𝒥⁻</text>
-          </>
-        )}
-
-        {/* Light cone at an exterior point */}
-        {step >= 2 && (
-          <g filter="url(#cone-glow)">
-            <path
-              className="bh-penrose__lightcone bh-penrose__lightcone--visible"
-              d={`M ${cx + 55} ${cy + 40} L ${cx + 90} ${cy + 5} L ${cx + 20} ${cy + 5} Z`}
-              fill="url(#cone-fill-out)" stroke="var(--bh-lensing-blue)" strokeWidth="1"
-            />
-            <circle cx={cx + 55} cy={cy + 40} r="3.5" fill="var(--bh-lensing-blue)" />
-            <text className="bh-penrose__label" x={cx + 55} y={cy + 56} textAnchor="middle" style={{ fill: 'var(--bh-lensing-blue)', fontSize: '9px' }}>you are here</text>
-          </g>
-        )}
-
-        {/* Event horizon + interior region */}
-        {step >= 3 && (
-          <>
-            <path d={interiorPath} fill="url(#interior-fill)" style={{ opacity: step >= 3 ? 1 : 0, transition: 'opacity 0.6s ease' }} />
-            <line className="bh-penrose__horizon" x1={left.x} y1={left.y} x2={top.x} y2={top.y} />
-            <text className="bh-penrose__label" x={left.x + 24} y={cy - s * 0.18} textAnchor="start" style={{ fill: 'var(--bh-lensing-blue-dim)', fontSize: '10px', fontWeight: 500 }}>event horizon</text>
-          </>
-        )}
-
-        {/* Singularity with glow */}
-        {step >= 4 && (
-          <g filter="url(#penrose-glow)">
-            <path className="bh-penrose__singularity" d={singularityPath} />
-            <text x={cx} y={singY - 18} textAnchor="middle" style={{ fill: '#fff', fontWeight: 600, fontSize: '10px', letterSpacing: '0.2em', fontFamily: "'JetBrains Mono', monospace" }}>SINGULARITY</text>
-          </g>
-        )}
-
-        {/* Trapped light cones inside the horizon */}
-        {step >= 5 && !interactive && (
-          <g filter="url(#cone-glow)">
-            {[
-              { x: cx - 20, y: cy - 12 },
-              { x: cx - 50, y: cy + 10 },
-              { x: cx, y: cy - 45 },
-            ].map((p, i) => (
-              <g key={`trapped-${i}`}>
-                <path
-                  className="bh-penrose__lightcone bh-penrose__lightcone--visible"
-                  d={`M ${p.x} ${p.y} L ${p.x + 24} ${p.y - 24} L ${p.x - 24} ${p.y - 24} Z`}
-                  fill="url(#cone-fill-in)" stroke="var(--bh-danger-red)" strokeWidth="0.8"
-                />
-                <circle cx={p.x} cy={p.y} r="2.5" fill="var(--bh-danger-red)" opacity="0.8" />
-              </g>
-            ))}
-          </g>
-        )}
-
-        {/* Interactive clickable points */}
-        {interactive && interactivePoints.map((p, i) => (
-          <g key={`ip-${i}`}>
-            <circle
-              className="bh-penrose__point"
-              cx={p.x} cy={p.y} r={selectedPoint === i ? 6 : 4}
-              onClick={() => setSelectedPoint(selectedPoint === i ? null : i)}
-              style={{ filter: selectedPoint === i ? 'drop-shadow(0 0 6px var(--bh-horizon-teal))' : 'none' }}
-            />
-            {selectedPoint === i && (
-              <path
-                className="bh-penrose__lightcone bh-penrose__lightcone--visible"
-                d={`M ${p.x} ${p.y} L ${p.x + 30} ${p.y - 30} L ${p.x - 30} ${p.y - 30} Z`}
-                fill={p.inside ? 'url(#cone-fill-in)' : 'url(#cone-fill-out)'}
-                stroke={p.inside ? 'var(--bh-danger-red)' : 'var(--bh-lensing-blue)'}
-                strokeWidth="1" filter="url(#cone-glow)"
-              />
-            )}
-            <text className="bh-penrose__label" x={p.x + 12} y={p.y + 4} textAnchor="start" style={{ fontSize: '10px' }}>{p.label}</text>
-          </g>
-        ))}
-      </svg>
-      {!interactive && step > 0 && (
-        <div className="bh-penrose__step-label">{stepLabels[step]}</div>
-      )}
-      {interactive && (
-        <div className="bh-penrose__step-label">Tap any point to see its light cone — the region of spacetime its future can reach.</div>
-      )}
-    </div>
-  );
-}
 
 /* ─── Tidal Force Comparison Component ───────────────────────── */
+/* Shows a recognizable HUMAN FIGURE being deformed by tidal forces.
+   The stretch factor controls how dramatically the silhouette elongates
+   vertically and compresses horizontally — spaghettification made visible.
+   Card 1 (stellar): figure is almost thread-thin, unmistakably lethal.
+   Card 2 (Sgr A*): figure is noticeably elongated but recognizable.
+   Card 3 (TON 618): figure is nearly normal — you'd barely notice. */
 function TidalComparison() {
   const [ref, inView] = useInView({ threshold: 0.2 });
 
@@ -464,6 +272,7 @@ function TidalComparison() {
       rgb: '181,56,42',
       verdict: 'Spaghettified before reaching the horizon.',
       lethal: true,
+      forceLabel: 'extreme',
     },
     {
       name: 'Sagittarius A*',
@@ -474,6 +283,7 @@ function TidalComparison() {
       rgb: '196,146,42',
       verdict: 'Survive crossing. ~20 seconds inside.',
       lethal: false,
+      forceLabel: 'mild',
     },
     {
       name: 'TON 618',
@@ -484,15 +294,52 @@ function TidalComparison() {
       rgb: '26,158,143',
       verdict: 'Cross in comfort. Hours to days inside.',
       lethal: false,
+      forceLabel: 'negligible',
     },
   ];
 
   return (
     <div ref={ref} className="bh-tidal-comparison" role="figure" aria-label="Comparison of tidal forces at the event horizon for three black holes of different masses.">
       {cards.map((c, i) => {
-        const baseR = 18;
-        const rx = baseR / Math.sqrt(c.stretch);
-        const ry = baseR * Math.sqrt(c.stretch);
+        const cx = 60;
+
+        // ── Visual amplification ──────────────────────────────
+        // Raw stretch values (1.05, 1.4, 3.5) cluster near 1.0.
+        // We remap to a wider visual range so the DIFFERENCE between
+        // "mild" and "negligible" is obvious to the eye:
+        //   1.05 → ~1.15  (barely any deformation — normal person)
+        //   1.40 → ~2.15  (clearly elongated — visibly uncomfortable)
+        //   3.50 → ~5.2   (extreme — spaghetti noodle)
+        const s = 1 + Math.pow(c.stretch - 1, 0.7) * 2.2;
+
+        // ── Figure geometry: parameterized by amplified stretch ──
+        // As s ↑: figure elongates vertically, compresses horizontally
+        const headRx = Math.max(3, 7 / Math.pow(s, 0.35));
+        const headRy = Math.max(4, 7 * Math.pow(s, 0.15));
+        const neckH = Math.min(8, 4 * Math.pow(s, 0.25));
+        const shoulderW = Math.max(3, 24 / Math.pow(s, 0.6));
+        const torsoH = Math.min(58, 26 * Math.pow(s, 0.5));
+        const torsoW = shoulderW * 0.85;
+        const waistW = Math.max(1.5, torsoW * 0.65);
+        const armLen = Math.min(40, 20 * Math.pow(s, 0.25));
+        const armSpread = Math.max(0, 7 / Math.pow(s, 0.65) - 0.5);
+        const legH = Math.min(50, 30 * Math.pow(s, 0.4));
+        const legSpread = Math.max(0, 8 / Math.pow(s, 0.6) - 0.5);
+        const strokeW = Math.max(0.7, 1.8 / Math.pow(s, 0.4));
+
+        // Center figure vertically in available space (y: 32 → 182)
+        const totalH = headRy * 2 + neckH + torsoH + legH;
+        const offsetY = 32 + (150 - totalH) / 2;
+        const headCy = offsetY + headRy;
+        const shoulderY = headCy + headRy + neckH;
+        const waistY = shoulderY + torsoH;
+        const legBottom = waistY + legH;
+
+        // Arrow sizing (proportional to deformation severity)
+        const arrowScale = Math.min(1, (s - 1) * 0.45);
+        const vArrowLen = Math.min(18, (s - 1) * 8);
+        const hArrowLen = Math.min(14, (s - 1) * 6);
+        const showArrows = s > 1.15;
 
         return (
           <div
@@ -504,60 +351,103 @@ function TidalComparison() {
             <div className="bh-tidal-card__mass">{c.mass}</div>
             <div className="bh-tidal-card__radius">{c.radius}</div>
             <div className="bh-tidal-card__figure">
-              <svg viewBox="0 0 80 160" width="80" height="160">
+              <svg viewBox="0 0 120 200" width="120" height="200">
                 <defs>
-                  <radialGradient id={`tfield-${i}`} cx="50%" cy="12%" r="90%">
+                  <radialGradient id={`tfield-${i}`} cx="50%" cy="8%" r="80%">
                     <stop offset="0%" stopColor={`rgba(${c.rgb},0.18)`} />
                     <stop offset="100%" stopColor={`rgba(${c.rgb},0)`} />
                   </radialGradient>
-                  <radialGradient id={`tbody-${i}`} cx="50%" cy="40%" r="60%">
-                    <stop offset="0%" stopColor={`rgba(${c.rgb},0.5)`} />
-                    <stop offset="100%" stopColor={`rgba(${c.rgb},0.15)`} />
-                  </radialGradient>
                 </defs>
 
-                {/* Tidal force field gradient */}
-                <rect x="0" y="0" width="80" height="160" fill={`url(#tfield-${i})`} />
+                {/* Force field gradient background */}
+                <rect x="0" y="0" width="120" height="200" fill={`url(#tfield-${i})`} />
 
-                {/* Black hole source at top */}
-                <circle cx="40" cy="14" r="9" fill="var(--bh-void)" stroke={c.color} strokeWidth="1.5" opacity="0.6" />
-                <circle cx="40" cy="14" r="4" fill="var(--bh-void)" />
+                {/* Black hole (gravitational source) */}
+                <circle cx={cx} cy="16" r="13" fill="#050508" stroke={c.color} strokeWidth="1.5" opacity="0.6" />
+                <circle cx={cx} cy="16" r="5.5" fill="#050508" />
 
-                {/* Force field lines radiating from hole */}
-                {[-0.7, -0.45, -0.2, 0.2, 0.45, 0.7].map((f, j) => (
-                  <line
-                    key={j}
-                    x1={40 + 22 * f} y1="24"
-                    x2={40 + 14 * f} y2="152"
-                    stroke={c.color} strokeWidth="0.5" opacity={0.12 + Math.abs(f) * 0.06}
+                {/* Force field lines converging toward the hole */}
+                {[-0.55, -0.3, -0.1, 0.1, 0.3, 0.55].map((f, j) => (
+                  <line key={j}
+                    x1={cx + 38 * f} y1="30"
+                    x2={cx + 16 * f} y2="195"
+                    stroke={c.color} strokeWidth="0.5" opacity={0.06 + Math.abs(f) * 0.05}
                   />
                 ))}
 
-                {/* Deformed body — sphere under tidal stress */}
-                <ellipse
-                  cx="40" cy="90" rx={rx} ry={Math.min(ry, 55)}
-                  fill={`url(#tbody-${i})`} stroke={c.color} strokeWidth="1" opacity="0.85"
-                />
+                {/* ── Human figure silhouette ── */}
 
-                {/* Stretch arrows for significant deformation */}
-                {c.stretch > 1.2 && (
+                {/* Head */}
+                <ellipse cx={cx} cy={headCy} rx={headRx} ry={headRy}
+                  fill={`rgba(${c.rgb},0.3)`} stroke={c.color} strokeWidth={strokeW} opacity="0.7" />
+
+                {/* Neck */}
+                <line x1={cx} y1={headCy + headRy} x2={cx} y2={shoulderY}
+                  stroke={c.color} strokeWidth={strokeW * 0.8} opacity="0.45" />
+
+                {/* Shoulders */}
+                <line x1={cx - shoulderW / 2} y1={shoulderY} x2={cx + shoulderW / 2} y2={shoulderY}
+                  stroke={c.color} strokeWidth={strokeW} opacity="0.5" strokeLinecap="round" />
+
+                {/* Torso (trapezoid: wider at shoulders, narrower at waist) */}
+                <path
+                  d={`M ${cx - torsoW / 2} ${shoulderY} L ${cx - waistW / 2} ${waistY} L ${cx + waistW / 2} ${waistY} L ${cx + torsoW / 2} ${shoulderY} Z`}
+                  fill={`rgba(${c.rgb},0.1)`} stroke={c.color} strokeWidth={strokeW * 0.8}
+                  opacity="0.45" strokeLinejoin="round" />
+
+                {/* Arms (hang from shoulders — compress inward with stretch) */}
+                <path
+                  d={`M ${cx - shoulderW / 2} ${shoulderY} Q ${cx - shoulderW / 2 - armSpread} ${shoulderY + armLen * 0.45} ${cx - shoulderW / 2 - armSpread + 0.5} ${shoulderY + armLen}`}
+                  fill="none" stroke={c.color} strokeWidth={strokeW * 0.7} opacity="0.35" strokeLinecap="round" />
+                <path
+                  d={`M ${cx + shoulderW / 2} ${shoulderY} Q ${cx + shoulderW / 2 + armSpread} ${shoulderY + armLen * 0.45} ${cx + shoulderW / 2 + armSpread - 0.5} ${shoulderY + armLen}`}
+                  fill="none" stroke={c.color} strokeWidth={strokeW * 0.7} opacity="0.35" strokeLinecap="round" />
+
+                {/* Legs */}
+                <line x1={cx - waistW * 0.3} y1={waistY} x2={cx - legSpread} y2={legBottom}
+                  stroke={c.color} strokeWidth={strokeW} opacity="0.5" strokeLinecap="round" />
+                <line x1={cx + waistW * 0.3} y1={waistY} x2={cx + legSpread} y2={legBottom}
+                  stroke={c.color} strokeWidth={strokeW} opacity="0.5" strokeLinecap="round" />
+
+                {/* ── Tidal force arrows ── */}
+                {showArrows && (
                   <>
-                    {/* Vertical stretch indicators */}
-                    <line x1="40" y1={90 - Math.min(ry, 55) - 10} x2="40" y2={90 - Math.min(ry, 55) - 3} stroke={c.color} strokeWidth="1" opacity="0.5" />
-                    <polygon points={`40,${90 - Math.min(ry, 55) - 14} 37,${90 - Math.min(ry, 55) - 8} 43,${90 - Math.min(ry, 55) - 8}`} fill={c.color} opacity="0.5" />
-                    <line x1="40" y1={90 + Math.min(ry, 55) + 3} x2="40" y2={90 + Math.min(ry, 55) + 10} stroke={c.color} strokeWidth="1" opacity="0.5" />
-                    <polygon points={`40,${90 + Math.min(ry, 55) + 14} 37,${90 + Math.min(ry, 55) + 8} 43,${90 + Math.min(ry, 55) + 8}`} fill={c.color} opacity="0.5" />
-                    {/* Horizontal compression indicators */}
-                    <line x1={40 - rx - 10} y1="90" x2={40 - rx - 3} y2="90" stroke={c.color} strokeWidth="0.8" opacity="0.35" />
-                    <polygon points={`${40 - rx - 2},90 ${40 - rx - 8},87.5 ${40 - rx - 8},92.5`} fill={c.color} opacity="0.35" />
-                    <line x1={40 + rx + 3} y1="90" x2={40 + rx + 10} y2="90" stroke={c.color} strokeWidth="0.8" opacity="0.35" />
-                    <polygon points={`${40 + rx + 2},90 ${40 + rx + 8},87.5 ${40 + rx + 8},92.5`} fill={c.color} opacity="0.35" />
+                    {/* Vertical stretch: upward arrow above head */}
+                    <line x1={cx} y1={headCy - headRy - 4 - vArrowLen} x2={cx} y2={headCy - headRy - 4}
+                      stroke={c.color} strokeWidth="1.5" opacity={arrowScale * 0.55} />
+                    <polygon
+                      points={`${cx},${headCy - headRy - 4 - vArrowLen - 5} ${cx - 4},${headCy - headRy - 4 - vArrowLen + 1} ${cx + 4},${headCy - headRy - 4 - vArrowLen + 1}`}
+                      fill={c.color} opacity={arrowScale * 0.55} />
+
+                    {/* Vertical stretch: downward arrow below feet */}
+                    <line x1={cx} y1={legBottom + 4} x2={cx} y2={legBottom + 4 + vArrowLen}
+                      stroke={c.color} strokeWidth="1.5" opacity={arrowScale * 0.55} />
+                    <polygon
+                      points={`${cx},${legBottom + 4 + vArrowLen + 5} ${cx - 4},${legBottom + 4 + vArrowLen - 1} ${cx + 4},${legBottom + 4 + vArrowLen - 1}`}
+                      fill={c.color} opacity={arrowScale * 0.55} />
+
+                    {/* Horizontal compression: left inward arrow */}
+                    <line x1={cx - shoulderW / 2 - armSpread - 6 - hArrowLen} y1={shoulderY + torsoH * 0.4}
+                      x2={cx - shoulderW / 2 - armSpread - 6} y2={shoulderY + torsoH * 0.4}
+                      stroke={c.color} strokeWidth="1.2" opacity={arrowScale * 0.4} />
+                    <polygon
+                      points={`${cx - shoulderW / 2 - armSpread - 4},${shoulderY + torsoH * 0.4} ${cx - shoulderW / 2 - armSpread - 10},${shoulderY + torsoH * 0.4 - 3.5} ${cx - shoulderW / 2 - armSpread - 10},${shoulderY + torsoH * 0.4 + 3.5}`}
+                      fill={c.color} opacity={arrowScale * 0.4} />
+
+                    {/* Horizontal compression: right inward arrow */}
+                    <line x1={cx + shoulderW / 2 + armSpread + 6} y1={shoulderY + torsoH * 0.4}
+                      x2={cx + shoulderW / 2 + armSpread + 6 + hArrowLen} y2={shoulderY + torsoH * 0.4}
+                      stroke={c.color} strokeWidth="1.2" opacity={arrowScale * 0.4} />
+                    <polygon
+                      points={`${cx + shoulderW / 2 + armSpread + 4},${shoulderY + torsoH * 0.4} ${cx + shoulderW / 2 + armSpread + 10},${shoulderY + torsoH * 0.4 - 3.5} ${cx + shoulderW / 2 + armSpread + 10},${shoulderY + torsoH * 0.4 + 3.5}`}
+                      fill={c.color} opacity={arrowScale * 0.4} />
                   </>
                 )}
 
                 {/* Force magnitude label */}
-                <text x="40" y="155" textAnchor="middle" style={{ fontSize: '7px', fill: c.color, opacity: 0.6, fontFamily: "'JetBrains Mono', monospace" }}>
-                  {c.stretch > 2 ? '∝ 1/M² → extreme' : c.stretch > 1.2 ? '∝ 1/M² → mild' : '∝ 1/M² → negligible'}
+                <text x="60" y="195" textAnchor="middle"
+                  style={{ fontSize: '9px', fill: c.color, opacity: 0.5, fontFamily: "'JetBrains Mono', monospace" }}>
+                  ∝ 1/M² → {c.forceLabel}
                 </text>
               </svg>
             </div>
@@ -585,34 +475,82 @@ function InformationFlow() {
     })), []
   );
 
-  // SVG icon components — replace system emojis with programmatic graphics
+  // Bespoke SVG illustrations — each conveys the RICHNESS of the information it represents.
+  // The visual character of each icon contrasts with the featureless thermal noise on the right.
   const StructuredIcons = [
-    // Grid = organized data structure
-    <svg key="grid" viewBox="0 0 32 32" width="28" height="28" className="bh-info-flow__svg-icon">
-      {[0, 1, 2].map(r => [0, 1, 2].map(c => (
-        <rect key={`${r}${c}`} x={3 + c * 9.5} y={3 + r * 9.5} width="7.5" height="7.5" rx="1"
-          fill="var(--bh-lensing-blue)" opacity={0.2 + (r + c) * 0.1} />
-      )))}
+    // ── Open book — organized information, structure, meaning ──
+    <svg key="book" viewBox="0 0 40 40" width="36" height="36" className="bh-info-flow__svg-icon">
+      {/* Left page — slight curve at spine suggests binding */}
+      <path d="M 20 7 C 15 7, 6 8.5, 4 10 L 4 33 C 6 32, 15 31, 20 31.5 Z"
+        fill="rgba(61,126,199,0.08)" stroke="#3d7ec7" strokeWidth="1" strokeLinejoin="round" opacity="0.55" />
+      {/* Right page */}
+      <path d="M 20 7 C 25 7, 34 8.5, 36 10 L 36 33 C 34 32, 25 31, 20 31.5 Z"
+        fill="rgba(61,126,199,0.05)" stroke="#3d7ec7" strokeWidth="1" strokeLinejoin="round" opacity="0.55" />
+      {/* Spine */}
+      <line x1="20" y1="7" x2="20" y2="31.5" stroke="#3d7ec7" strokeWidth="0.6" opacity="0.35" />
+      {/* Text lines — the content with meaning */}
+      <line x1="8" y1="15" x2="17" y2="14.5" stroke="#3d7ec7" strokeWidth="0.6" opacity="0.28" />
+      <line x1="8" y1="19" x2="16" y2="18.5" stroke="#3d7ec7" strokeWidth="0.6" opacity="0.2" />
+      <line x1="8" y1="23" x2="17" y2="22.5" stroke="#3d7ec7" strokeWidth="0.6" opacity="0.28" />
+      <line x1="8" y1="27" x2="14" y2="26.7" stroke="#3d7ec7" strokeWidth="0.6" opacity="0.15" />
+      <line x1="23" y1="14.5" x2="32" y2="15" stroke="#3d7ec7" strokeWidth="0.6" opacity="0.28" />
+      <line x1="23" y1="18.5" x2="31" y2="19" stroke="#3d7ec7" strokeWidth="0.6" opacity="0.2" />
+      <line x1="23" y1="22.5" x2="32" y2="23" stroke="#3d7ec7" strokeWidth="0.6" opacity="0.28" />
     </svg>,
-    // Double helix = biological quantum state
-    <svg key="helix" viewBox="0 0 32 32" width="28" height="28" className="bh-info-flow__svg-icon">
-      <path d="M 10 2 Q 22 8, 10 16 Q 22 24, 10 30" fill="none" stroke="var(--bh-horizon-teal)" strokeWidth="1.5" opacity="0.5" />
-      <path d="M 22 2 Q 10 8, 22 16 Q 10 24, 22 30" fill="none" stroke="var(--bh-horizon-teal)" strokeWidth="1.5" opacity="0.5" />
-      {[6, 10, 14, 18, 22, 26].map((y, j) => (
-        <line key={j} x1="11" y1={y} x2="21" y2={y} stroke="var(--bh-horizon-teal)" strokeWidth="0.7" opacity="0.25" />
-      ))}
+
+    // ── Human figure with internal quantum-state constellation ──
+    // A person is not just a shape — it's an irreducible network of quantum states.
+    // The body outline gives recognition; the internal nodes convey complexity.
+    <svg key="person" viewBox="0 0 40 40" width="36" height="36" className="bh-info-flow__svg-icon">
+      {/* Head */}
+      <circle cx="20" cy="8" r="4" fill="rgba(26,158,143,0.06)" stroke="#1a9e8f" strokeWidth="0.9" opacity="0.5" />
+      {/* Body — shoulders to waist silhouette */}
+      <path d="M 12 17 C 14 14, 18 12.5, 20 12.5 C 22 12.5, 26 14, 28 17 L 26 30 C 24 32, 22 33, 20 33 C 18 33, 16 32, 14 30 Z"
+        fill="rgba(26,158,143,0.04)" stroke="#1a9e8f" strokeWidth="0.9" opacity="0.4" />
+      {/* Internal quantum-state nodes — the information that defines this person */}
+      <circle cx="17" cy="20" r="1" fill="#1a9e8f" opacity="0.5" />
+      <circle cx="23" cy="20" r="1" fill="#1a9e8f" opacity="0.5" />
+      <circle cx="20" cy="17" r="0.7" fill="#1a9e8f" opacity="0.4" />
+      <circle cx="20" cy="24" r="0.9" fill="#1a9e8f" opacity="0.4" />
+      <circle cx="16" cy="27" r="0.6" fill="#1a9e8f" opacity="0.3" />
+      <circle cx="24" cy="27" r="0.6" fill="#1a9e8f" opacity="0.3" />
+      <circle cx="20" cy="30" r="0.5" fill="#1a9e8f" opacity="0.25" />
+      {/* Quantum connections — entangled states that make this person unique */}
+      <line x1="17" y1="20" x2="23" y2="20" stroke="#1a9e8f" strokeWidth="0.4" opacity="0.2" />
+      <line x1="17" y1="20" x2="20" y2="24" stroke="#1a9e8f" strokeWidth="0.4" opacity="0.15" />
+      <line x1="23" y1="20" x2="20" y2="24" stroke="#1a9e8f" strokeWidth="0.4" opacity="0.15" />
+      <line x1="20" y1="17" x2="17" y2="20" stroke="#1a9e8f" strokeWidth="0.3" opacity="0.12" />
+      <line x1="20" y1="17" x2="23" y2="20" stroke="#1a9e8f" strokeWidth="0.3" opacity="0.12" />
+      <line x1="16" y1="27" x2="20" y2="30" stroke="#1a9e8f" strokeWidth="0.3" opacity="0.1" />
+      <line x1="24" y1="27" x2="20" y2="30" stroke="#1a9e8f" strokeWidth="0.3" opacity="0.1" />
+      {/* Mind — subtle glow in the head */}
+      <circle cx="20" cy="8" r="1.8" fill="#1a9e8f" opacity="0.06" />
     </svg>,
-    // Radial burst = stellar composition
-    <svg key="star" viewBox="0 0 32 32" width="28" height="28" className="bh-info-flow__svg-icon">
-      {[0, 45, 90, 135].map((angle, j) => {
+
+    // ── Stellar body — layered structure with corona ──
+    // A star is concentric layers: core → radiative zone → convective zone → photosphere → corona.
+    // Each layer carries information about mass, composition, history.
+    <svg key="stellar" viewBox="0 0 40 40" width="36" height="36" className="bh-info-flow__svg-icon">
+      {/* Outer corona */}
+      <circle cx="20" cy="20" r="17" fill="none" stroke="#c4922a" strokeWidth="0.4" opacity="0.12" />
+      {/* Chromosphere */}
+      <circle cx="20" cy="20" r="13" fill="none" stroke="#c4922a" strokeWidth="0.5" opacity="0.18" />
+      {/* Photosphere (visible surface) */}
+      <circle cx="20" cy="20" r="9" fill="rgba(196,146,42,0.06)" stroke="#c4922a" strokeWidth="0.9" opacity="0.4" />
+      {/* Radiative zone */}
+      <circle cx="20" cy="20" r="5.5" fill="rgba(196,146,42,0.1)" stroke="#c4922a" strokeWidth="0.6" opacity="0.35" />
+      {/* Core — where fusion happens */}
+      <circle cx="20" cy="20" r="2.5" fill="rgba(196,146,42,0.25)" opacity="0.6" />
+      {/* Corona emission rays */}
+      {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, j) => {
         const rad = (angle * Math.PI) / 180;
         return (
-          <line key={j} x1={16 + Math.cos(rad) * 4} y1={16 + Math.sin(rad) * 4}
-            x2={16 + Math.cos(rad) * 13} y2={16 + Math.sin(rad) * 13}
-            stroke="var(--bh-accretion-gold)" strokeWidth="1.2" opacity={0.3 + j * 0.08} />
+          <line key={j}
+            x1={20 + Math.cos(rad) * 10} y1={20 + Math.sin(rad) * 10}
+            x2={20 + Math.cos(rad) * 16} y2={20 + Math.sin(rad) * 16}
+            stroke="#c4922a" strokeWidth="0.5" opacity={0.1 + (j % 2) * 0.08} />
         );
       })}
-      <circle cx="16" cy="16" r="4" fill="var(--bh-accretion-gold)" opacity="0.35" />
     </svg>,
   ];
 
@@ -622,15 +560,17 @@ function InformationFlow() {
     { label: 'A star', sub: 'Mass, composition, history' },
   ];
 
+  const iconTypes = ['book', 'person', 'star'];
+
   return (
-    <div ref={ref} className={`bh-info-flow bh-fade-in ${inView ? 'bh-fade-in--visible' : ''}`}
+    <div ref={ref} className={`bh-info-flow ${inView ? 'bh-info-flow--active' : ''}`}
       role="figure" aria-label="The information paradox: structured information enters a black hole, only featureless thermal radiation exits.">
 
       <div className="bh-info-flow__input">
         <div className="bh-info-flow__column-label">Falls In</div>
         {items.map((item, i) => (
-          <div key={i} className="bh-info-flow__item">
-            <span className="bh-info-flow__item-icon">{StructuredIcons[i]}</span>
+          <div key={i} className={`bh-info-flow__item bh-info-flow__item--${iconTypes[i]}`}>
+            <span className={`bh-info-flow__item-icon bh-info-flow__icon--${iconTypes[i]}`}>{StructuredIcons[i]}</span>
             <span className="bh-info-flow__item-text">
               <span className="bh-info-flow__item-label">{item.label}</span>
               <span className="bh-info-flow__item-sublabel">{item.sub}</span>
@@ -864,7 +804,9 @@ export default function InsideABlackHoleClient() {
         </div>
 
         <div className="bh-vis-container bh-vis-container--3d">
-          <SpacetimeVisualization />
+          <VisualizationErrorBoundary>
+            <SpacetimeVisualization />
+          </VisualizationErrorBoundary>
           <p className="bh-vis-caption">
             Spacetime curves so steeply inside the event horizon (teal ring) that every path — 
             shown as light cones on the surface — tilts inward. The gold particles spiral in from all 
@@ -905,10 +847,10 @@ export default function InsideABlackHoleClient() {
         <div className="bh-prose-container bh-prose">
           <h2 className="bh-section-heading">The Stretch</h2>
           <p>
-            As you fall toward the moment you cannot avoid, the tidal forces grow. Gravity pulls
-            harder on the side of your body closer to the singularity than the side farther away.
-            You are stretched vertically and compressed horizontally — spaghettified, in the word
-            Stephen Hawking coined.
+            As you fall toward the moment you cannot avoid, the tidal forces grow. The curvature
+            of spacetime is steeper on the side of your body closer to the singularity than the side
+            farther away — what physicists call tidal forces. The result: you are stretched vertically
+            and compressed horizontally — spaghettified, in the word Stephen Hawking coined.
           </p>
           <p>
             But the severity of spaghettification depends entirely on the black hole's mass. The
@@ -957,8 +899,8 @@ export default function InsideABlackHoleClient() {
           </p>
         </div>
 
-        <div className="bh-vis-container">
-          <PenroseDiagram interactive={true} />
+        <div className="bh-vis-container bh-vis-container--penrose3d">
+          <PenroseVisualization />
         </div>
 
         <div className="bh-prose-container bh-prose">
@@ -1049,7 +991,8 @@ export default function InsideABlackHoleClient() {
             In 2012, four physicists — Ahmed Almheiri, Donald Marolf, Joseph Polchinski, and James
             Sully — published a paper that sharpened the information paradox into a razor. They showed
             that three individually reasonable assumptions about black holes are mutually contradictory.
-            At least one must be wrong.
+            At least one must be wrong. Several proposed resolutions exist — none proven, each with
+            radical implications for our understanding of spacetime.
             <span className="bh-citation"> [Almheiri et al., 2013]</span>
           </p>
           <p>
@@ -1113,8 +1056,9 @@ export default function InsideABlackHoleClient() {
           <p>
             Black holes are not just the universe's most extreme objects. They are its most
             <em>revealing</em>. The event horizon is where general relativity and quantum mechanics
-            collide. The singularity is where general relativity breaks down and confesses its own
-            incompleteness. The information paradox is where the deepest principles of physics
+            collide. The singularity is where general relativity predicts infinite density — not as a
+            physical reality, but as an admission that the theory has reached its limit and something
+            deeper must take over. The information paradox is where the deepest principles of physics
             contradict each other.
           </p>
           <p>

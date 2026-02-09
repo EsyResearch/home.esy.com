@@ -79,6 +79,8 @@
 │  │    CSS/layout bug          →  Software Engineering Expert           │   │
 │  │    Citation link dead      →  Manual flag (content decision)        │   │
 │  │    Build/runtime error     →  Software Engineering Expert           │   │
+│  │    Prose slop / voice drift →  Essayist Expert (rewrite)           │   │
+│  │    Framework regression    →  Essayist Expert (with auditor notes) │   │
 │  └─────────────────────────────────────────────────────────────────────┘   │
 │                                    │                                        │
 │                                    ▼                                        │
@@ -200,6 +202,13 @@
 | **Spec** | Progress bar concept mismatch | Immersive Experience Engineer | `engineering/` |
 | **Spec** | Design system deviation | Software Engineering Expert | `engineering/` |
 | **Spec** | Visual asset missing | Image Research & Licensing Expert | `research/` |
+| **Prose** | AI slop / filler phrases detected | Essayist Expert (rewrite) | `engineering/` |
+| **Prose** | Voice drift / register break | Essayist Expert (rewrite) | `engineering/` |
+| **Prose** | Empty or weak transitions | Essayist Expert (rewrite) | `engineering/` |
+| **Pedagogy** | Paradigm regression (contradicts established framework) | Essayist Expert (with auditor notes) | `engineering/` |
+| **Pedagogy** | Sequence violation (concept used before introduced) | Essayist Expert (with auditor notes) | `engineering/` |
+| **Pedagogy** | Unaddressed misconception | Essayist Expert (with research context) | `engineering/` |
+| **Pedagogy** | Cognitive overload (>5 new concepts per section) | Essayist Expert (restructure) | `engineering/` |
 
 ### Routing Decision Tree
 
@@ -435,6 +444,8 @@ Produce QA Remediation Report:
 | `visual-auditor-agent.md` | SVG, images | `@agents/auditors/visual-auditor-agent.md` |
 | `citation-audit-agent.md` | Sources, links | `@agents/auditors/citation-audit-agent.md` |
 | `spec-compliance-auditor.md` | **Spec vs output verification** | `@agents/auditors/spec-compliance-auditor.md` |
+| `prose-auditor-agent.md` | **Prose quality, voice, AI slop** | `@agents/auditors/prose-auditor-agent.md` |
+| `pedagogy-audit-agent.md` | **Framework coherence, sequence, prerequisites** | `@agents/auditors/pedagogy-audit-agent.md` |
 
 ### Fixer Agents (Output)
 
@@ -642,7 +653,7 @@ When invoking this agent:
 ---
 
 ## Last Updated
-December 11, 2025
+February 8, 2026
 
 ### Recent Changes
 - Added **Spec Path as required input** — spec is source of truth
@@ -650,6 +661,9 @@ December 11, 2025
 - Added **Spec deviation issue types** to routing matrix
 - Updated routing to pass **spec context to fixer agents**
 - Updated invocation examples with spec paths
+- Added **Prose Auditor Agent** to auditor agents — prose slop, voice drift, transition quality (G6.6)
+- Added **Pedagogy Audit Agent** to auditor agents — framework regression, sequence violation, misconception gaps (G6.5)
+- Added prose + pedagogy issue types to routing matrix → Essayist Expert / Content restructuring
 - See [INVOCATION-EXAMPLES.md](./INVOCATION-EXAMPLES.md) for more patterns
 
 ---
