@@ -2,7 +2,28 @@
 
 import React, { useState, useEffect, useRef, useCallback, useMemo, Component } from 'react';
 import dynamic from 'next/dynamic';
+import { Newsreader, JetBrains_Mono } from 'next/font/google';
 import './inside-a-black-hole.css';
+
+// =============================================================================
+// SELF-HOSTED FONTS (next/font)
+// Eliminates external Google Fonts request, auto-subsets, improves LCP
+// =============================================================================
+
+const newsreader = Newsreader({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--bh-font-body',
+  display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--bh-font-mono',
+  display: 'swap',
+});
 
 const SpacetimeVisualization = dynamic(
   () => import('./SpacetimeVisualization'),
@@ -24,7 +45,7 @@ class VisualizationErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return this.props.fallback || (
-        <div style={{ height: 500, background: '#050508', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#8a8580', fontFamily: "'JetBrains Mono', monospace", fontSize: 12 }}>
+        <div style={{ height: 500, background: '#050508', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#8a8580', fontFamily: "var(--bh-font-mono), monospace", fontSize: 12 }}>
           <span>3D visualization unavailable</span>
         </div>
       );
@@ -493,7 +514,7 @@ function TidalComparison() {
 
                 {/* Force magnitude label */}
                 <text x="60" y="195" textAnchor="middle"
-                  style={{ fontSize: '9px', fill: c.color, opacity: 0.5, fontFamily: "'JetBrains Mono', monospace" }}>
+                  style={{ fontSize: '9px', fill: c.color, opacity: 0.5, fontFamily: "var(--bh-font-mono), monospace" }}>
                   ∝ 1/M² → {c.forceLabel}
                 </text>
               </svg>
@@ -696,7 +717,7 @@ export default function InsideABlackHoleClient() {
   const scrollProgress = useScrollProgress();
 
   return (
-    <article className="bh-essay">
+    <article className={`bh-essay ${newsreader.variable} ${jetbrainsMono.variable}`}>
       {/* Progress bar */}
       <div className="bh-progress">
         <div className="bh-progress__bar" style={{ transform: `scaleX(${scrollProgress})` }} />
@@ -947,7 +968,9 @@ export default function InsideABlackHoleClient() {
         </div>
 
         <div className="bh-vis-container bh-vis-container--penrose3d">
-          <PenroseVisualization />
+          <VisualizationErrorBoundary>
+            <PenroseVisualization />
+          </VisualizationErrorBoundary>
         </div>
 
         <div className="bh-prose-container bh-prose">

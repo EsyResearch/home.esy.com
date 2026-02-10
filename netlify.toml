@@ -48,14 +48,6 @@
   status = 301
   force = true
 
-# ─── CSP Headers ───────────────────────────────────────────────
-# Three.js (used by the black hole essay) requires 'unsafe-eval' for WebGL
-# shader compilation. Allow it on essay pages that use Three.js.
-[[headers]]
-  for = "/essays/science/inside-a-black-hole/*"
-  [headers.values]
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://www.clarity.ms https://region1.google-analytics.com; frame-src 'self'"
-
 # Proxy /guide section to a separate Netlify site
 # This allows the guide to be maintained and deployed independently
 # while appearing as part of the main esy.com domain

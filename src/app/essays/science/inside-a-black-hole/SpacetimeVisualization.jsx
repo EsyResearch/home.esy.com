@@ -562,8 +562,8 @@ export default function SpacetimeVisualization({ className = '' }) {
             <circle cx="170" cy="200" r="2.5" fill="#b5382a" />
           </g>
           {/* Labels */}
-          <text x="200" y="340" textAnchor="middle" fill="#8a8580" fontSize="9" fontFamily="'JetBrains Mono', monospace" letterSpacing="0.15em">SINGULARITY</text>
-          <text x="200" y="148" textAnchor="middle" fill="#1a9e8f" fontSize="9" fontFamily="'JetBrains Mono', monospace" opacity="0.7">EVENT HORIZON</text>
+          <text x="200" y="340" textAnchor="middle" fill="#8a8580" fontSize="9" fontFamily="var(--bh-font-mono), monospace" letterSpacing="0.15em">SINGULARITY</text>
+          <text x="200" y="148" textAnchor="middle" fill="#1a9e8f" fontSize="9" fontFamily="var(--bh-font-mono), monospace" opacity="0.7">EVENT HORIZON</text>
         </svg>
         <div className="bh-spacetime-viz__labels">
           <div className="bh-spacetime-viz__label bh-spacetime-viz__label--horizon">
