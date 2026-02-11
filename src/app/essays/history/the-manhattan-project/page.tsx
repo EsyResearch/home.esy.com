@@ -1,5 +1,49 @@
 import type { Metadata } from "next";
+import ArtifactDetailWrapper from "@/components/ArtifactDetail";
 import ManhattanProjectClient from "./ManhattanProjectClient";
+
+const ESSAY_META = {
+  title: "Now I Am Become Death",
+  subtitle: "The Making of the Atomic Bomb",
+  category: "History",
+  subcategory: "Science",
+  readTime: "35 min",
+  sourceCount: 13,
+  sourceTier: "Tier-1",
+  sectionCount: 12,
+  visualizationCount: 7,
+  designSystem: "Subject-derived",
+  published: "December 2025",
+  model: "Claude",
+  template: "Visual Essay",
+  backLink: "/essays",
+  backLabel: "Essays",
+  palette: [
+    { name: "Deep Black", color: "#0D0D0D" },
+    { name: "Aged Gold", color: "#C9B037" },
+    { name: "Dark Red", color: "#8B0000" },
+    { name: "Warm White", color: "#E8E8E8" },
+    { name: "Searing Flash", color: "#FFFEF0" },
+    { name: "Document Cream", color: "#D4C5A9" },
+  ],
+  visualizations: [
+    { name: "Chain Reaction Progress Bar", type: "Scroll-driven Indicator" },
+    { name: "Trinity Countdown", type: "Scroll-Lock Animation" },
+    { name: "Ken Burns Photo Treatment", type: "Parallax Depth" },
+    { name: "Cinematic Reveals", type: "Intersection Animations" },
+    { name: "Scientist Profiles", type: "Portrait Cards" },
+    { name: "Before/After Slider", type: "Interactive Comparison" },
+    { name: "Declassified Documents", type: "Archival Treatment" },
+  ],
+  keySources: [
+    "Richard Rhodes, The Making of the Atomic Bomb (1986)",
+    "Kai Bird & Martin Sherwin, American Prometheus (2005)",
+    "John Hersey, Hiroshima (1946)",
+    "Los Alamos National Laboratory Digital Archives",
+    "National Archives and Records Administration",
+    "Atomic Heritage Foundation",
+  ],
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -147,7 +191,9 @@ export default function TheManhattanProjectPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ManhattanProjectClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <ManhattanProjectClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }

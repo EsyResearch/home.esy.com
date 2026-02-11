@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import ArtifactDetailWrapper from "@/components/ArtifactDetail";
 import OriginOfDickClient from "./OriginOfDickClient";
 
 /**
@@ -12,6 +13,44 @@ import OriginOfDickClient from "./OriginOfDickClient";
  *
  * This is a scholarly etymology study—educational, not sensational.
  */
+
+const ESSAY_META = {
+  title: "The Origin of the Word Dick",
+  subtitle: "600 Years of Linguistic Transformation",
+  category: "Etymology",
+  readTime: "18 min",
+  sourceCount: 12,
+  sourceTier: "Tier-1",
+  sectionCount: 6,
+  visualizationCount: 5,
+  designSystem: "Subject-derived",
+  published: "December 2025",
+  model: "Claude",
+  template: "Visual Essay",
+  backLink: "/essays",
+  backLabel: "Essays",
+  palette: [
+    { name: "Medieval Ink", color: "#1A1A2E" },
+    { name: "Royal Gold", color: "#C9A84C" },
+    { name: "Detective Grey", color: "#4A5568" },
+    { name: "Military Green", color: "#3D4F2F" },
+    { name: "Modern Slate", color: "#334155" },
+  ],
+  visualizations: [
+    { name: "Rhyming Slang Chain", type: "Animated Sequence" },
+    { name: "Semantic Timeline", type: "Interactive Timeline" },
+    { name: "Era Typography Shifts", type: "Visual Morphing" },
+    { name: "Name Frequency Graph", type: "Data Visualization" },
+    { name: "Cultural Context Cards", type: "Interactive Cards" },
+  ],
+  keySources: [
+    "Oxford English Dictionary, historical entries",
+    "Eric Partridge, A Dictionary of Slang",
+    "Medieval naming records",
+    "Social Security Administration name statistics",
+    "Jonathon Green, Cassell's Dictionary of Slang",
+  ],
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -146,7 +185,9 @@ export default function OriginOfDickPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <OriginOfDickClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <OriginOfDickClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }

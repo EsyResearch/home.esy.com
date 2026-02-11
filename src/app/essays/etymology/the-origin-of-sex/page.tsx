@@ -1,5 +1,44 @@
 import { Metadata } from 'next';
+import ArtifactDetailWrapper from '@/components/ArtifactDetail';
 import OriginOfSexClient from './OriginOfSexClient';
+
+const ESSAY_META = {
+  title: 'The Word That Divided Everything',
+  subtitle: 'An Etymology of Sex — 2,000 Years of Semantic Transformation',
+  category: 'Etymology',
+  readTime: '22 min',
+  sourceCount: 14,
+  sourceTier: 'Tier-1',
+  sectionCount: 7,
+  visualizationCount: 5,
+  designSystem: 'Subject-derived',
+  published: 'December 2025',
+  model: 'Claude',
+  template: 'Visual Essay',
+  backLink: '/essays',
+  backLabel: 'Essays',
+  palette: [
+    { name: 'Latin Stone', color: '#8B8272' },
+    { name: 'Scientific White', color: '#F8F8F8' },
+    { name: 'Linnaeus Green', color: '#2D5A4A' },
+    { name: 'Freud Burgundy', color: '#722F37' },
+    { name: 'Modern Rose', color: '#9F1239' },
+  ],
+  visualizations: [
+    { name: 'Etymology Chain', type: 'Animated Sequence' },
+    { name: 'Semantic Evolution Timeline', type: 'Interactive Timeline' },
+    { name: 'Era Typography Shifts', type: 'Visual Morphing' },
+    { name: 'Scientific Classification', type: 'Diagram Display' },
+    { name: 'Cultural Context Cards', type: 'Interactive Cards' },
+  ],
+  keySources: [
+    "Oxford English Dictionary, 'sex' entry",
+    'Carl Linnaeus, Systema Naturae (1735)',
+    'Sigmund Freud, Three Essays on Sexuality (1905)',
+    'D.H. Lawrence, Pansies (1929)',
+    'Judith Butler, Gender Trouble (1990)',
+  ],
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -145,7 +184,9 @@ export default function OriginOfSexPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <OriginOfSexClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <OriginOfSexClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }

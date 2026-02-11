@@ -9,7 +9,46 @@
  * @see /orchestration/skills/visual-essay-invocation/specs/the-word-pussy.md
  */
 import { createVisualEssayMetadata } from "@/lib/visual-essay-metadata";
+import ArtifactDetailWrapper from "@/components/ArtifactDetail";
 import TheWordPussyClient from "./TheWordPussyClient";
+
+const ESSAY_META = {
+  title: "Words Have Histories: The Curious Journey of 'Pussy'",
+  subtitle: "500 Years of Etymology from Pet-Name to Taboo",
+  category: "Etymology",
+  readTime: "20 min",
+  sourceCount: 14,
+  sourceTier: "Tier-1",
+  sectionCount: 6,
+  visualizationCount: 5,
+  designSystem: "Subject-derived",
+  published: "December 2025",
+  model: "Claude",
+  template: "Visual Essay",
+  backLink: "/essays",
+  backLabel: "Essays",
+  palette: [
+    { name: "Cat Grey", color: "#6B7280" },
+    { name: "Nursery Pink", color: "#F9A8D4" },
+    { name: "Victorian Plum", color: "#581C87" },
+    { name: "Taboo Red", color: "#991B1B" },
+    { name: "Modern Slate", color: "#334155" },
+  ],
+  visualizations: [
+    { name: "Semantic Drift Timeline", type: "Interactive Timeline" },
+    { name: "Euphemism Treadmill", type: "Animated Sequence" },
+    { name: "Era Typography Shifts", type: "Visual Morphing" },
+    { name: "Dictionary Entry Evolution", type: "Gradual Reveals" },
+    { name: "Cultural Context Cards", type: "Interactive Cards" },
+  ],
+  keySources: [
+    "Oxford English Dictionary, historical entries",
+    "Samuel Johnson, A Dictionary of the English Language (1755)",
+    "Steven Pinker, The Stuff of Thought",
+    "Keith Allan & Kate Burridge, Forbidden Words",
+    "Historical nursery rhyme collections",
+  ],
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -133,7 +172,9 @@ export default function TheWordPussyPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <TheWordPussyClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <TheWordPussyClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }

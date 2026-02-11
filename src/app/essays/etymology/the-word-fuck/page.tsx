@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import ArtifactDetailWrapper from "@/components/ArtifactDetail";
 import TheWordFuckClient from "./TheWordFuckClient";
 
 /**
@@ -16,6 +17,46 @@ import TheWordFuckClient from "./TheWordFuckClient";
  * - Counterculture (1960-1990): Typewriter, punk zine
  * - Digital (1990-present): Clean sans-serif, platform UI
  */
+
+const ESSAY_META = {
+  title: "F*ck: A Linguistic Biography",
+  subtitle: "From Medieval Manuscripts to Digital Ubiquity",
+  category: "Etymology",
+  readTime: "25 min",
+  sourceCount: 16,
+  sourceTier: "Tier-1",
+  sectionCount: 7,
+  visualizationCount: 6,
+  designSystem: "Subject-derived",
+  published: "December 2025",
+  model: "Claude",
+  template: "Visual Essay",
+  backLink: "/essays",
+  backLabel: "Essays",
+  palette: [
+    { name: "Blackletter Ink", color: "#1A1A1A" },
+    { name: "Manuscript Cream", color: "#F0E6D3" },
+    { name: "Censorship Red", color: "#CC0000" },
+    { name: "Typewriter Grey", color: "#4A4A4A" },
+    { name: "Digital Blue", color: "#2563EB" },
+  ],
+  visualizations: [
+    { name: "5-Era Typography Shifts", type: "Visual Morphing" },
+    { name: "Censorship Timeline", type: "Interactive Timeline" },
+    { name: "Etymology Chain", type: "Animated Sequence" },
+    { name: "Redaction Effects", type: "Scroll Animation" },
+    { name: "Court Case Cards", type: "Interactive Cards" },
+    { name: "Dictionary Entry Evolution", type: "Gradual Reveals" },
+  ],
+  keySources: [
+    "Oxford English Dictionary, historical entries",
+    "Dr. Paul Booth, Chester County Court records (1310)",
+    "Cohen v. California (1971)",
+    "FCC v. Pacifica Foundation (1978)",
+    "Jesse Sheidlower, The F-Word",
+    "Geoffrey Hughes, An Encyclopedia of Swearing",
+  ],
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -158,7 +199,9 @@ export default function TheWordFuckPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <TheWordFuckClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <TheWordFuckClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ArtifactDetailWrapper from "@/components/ArtifactDetail";
 import OriginOfToyClient from "./OriginOfToyClient";
 
 /**
@@ -12,6 +13,46 @@ import OriginOfToyClient from "./OriginOfToyClient";
  * Research Package: ./research/
  * Fixes Documentation: ./Fixes/
  */
+
+const ESSAY_META = {
+  title: "The Etymology of Play",
+  subtitle: "How 'Toy' Traveled from Sin to Innocence",
+  category: "Etymology",
+  readTime: "18 min",
+  sourceCount: 18,
+  sourceTier: "Tier-1",
+  sectionCount: 7,
+  visualizationCount: 6,
+  designSystem: "Subject-derived",
+  published: "December 2025",
+  model: "Claude",
+  template: "Visual Essay",
+  backLink: "/essays",
+  backLabel: "Essays",
+  palette: [
+    { name: "Aged Cream", color: "#F5F0E8" },
+    { name: "Scholarly Brown", color: "#5C4033" },
+    { name: "Illuminated Gold", color: "#C9A84C" },
+    { name: "Terracotta Wood", color: "#B5651D" },
+    { name: "Parchment", color: "#E8DCC8" },
+  ],
+  visualizations: [
+    { name: "Building Blocks Progress", type: "Stacking Letters T-O-Y-S" },
+    { name: "Word Transformation Hero", type: "Scroll-Lock Animation" },
+    { name: "Era Treatments", type: "Visual Morphing" },
+    { name: "Etymology Timeline", type: "Interactive Timeline" },
+    { name: "Chapter Image Gallery", type: "Archival Photography" },
+    { name: "Dictionary Archaeology", type: "Gradual Reveals" },
+  ],
+  keySources: [
+    "Middle English Dictionary, University of Michigan",
+    "Samuel Johnson's Dictionary (1755)",
+    "Folger Shakespeare Library",
+    "Huizinga, Homo Ludens (1950)",
+    "V&A Museum Toy Collections",
+    "Ariès, Centuries of Childhood",
+  ],
+};
 
 // JSON-LD structured data for rich results
 const jsonLd = {
@@ -162,7 +203,9 @@ export default function OriginOfToyPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <OriginOfToyClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <OriginOfToyClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }

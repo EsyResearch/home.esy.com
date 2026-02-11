@@ -6,7 +6,47 @@
  * @see /docs/VISUAL_ESSAY_METADATA_PATTERN.md
  */
 import { createVisualEssayMetadata } from "@/lib/visual-essay-metadata";
+import ArtifactDetailWrapper from "@/components/ArtifactDetail";
 import TheWordSlangClient from "./TheWordSlangClient";
+
+const ESSAY_META = {
+  title: "SLANG — The Word That Named the Unnameable",
+  subtitle: "A 270-Year Journey from London's Criminal Underworld to TikTok",
+  category: "Etymology",
+  readTime: "22 min",
+  sourceCount: 16,
+  sourceTier: "Tier-1",
+  sectionCount: 7,
+  visualizationCount: 5,
+  designSystem: "Subject-derived",
+  published: "January 2026",
+  model: "Claude",
+  template: "Visual Essay",
+  backLink: "/essays",
+  backLabel: "Essays",
+  palette: [
+    { name: "Underworld Black", color: "#1A1A1A" },
+    { name: "Cant Red", color: "#8B2500" },
+    { name: "Grose Cream", color: "#F0E6D3" },
+    { name: "Ink Blue", color: "#2C3E50" },
+    { name: "TikTok Neon", color: "#00F2EA" },
+  ],
+  visualizations: [
+    { name: "Era Typography Shifts", type: "Visual Morphing" },
+    { name: "Word Origin Map", type: "Animated Sequence" },
+    { name: "Slang Timeline", type: "Interactive Timeline" },
+    { name: "Dictionary Evolution", type: "Scroll Animation" },
+    { name: "Key Figures Gallery", type: "Portrait Cards" },
+  ],
+  keySources: [
+    "Francis Grose, A Classical Dictionary of the Vulgar Tongue (1785)",
+    "Eric Partridge, Slang To-Day and Yesterday (1933)",
+    "Jonathon Green, Green's Dictionary of Slang",
+    "H.L. Mencken, The American Language",
+    "Gretchen McCulloch, Because Internet (2019)",
+    "Oxford English Dictionary",
+  ],
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -130,7 +170,9 @@ export default function TheWordSlangPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <TheWordSlangClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <TheWordSlangClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }

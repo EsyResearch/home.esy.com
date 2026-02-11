@@ -1,5 +1,44 @@
 import { createVisualEssayMetadata } from '@/lib/visual-essay-metadata';
+import ArtifactDetailWrapper from '@/components/ArtifactDetail';
 import TheWordEssayClient from './TheWordEssayClient';
+
+const ESSAY_META = {
+  title: 'Essay — A History of Attempting to Think',
+  subtitle: 'How a French Word Meaning "To Try" Became the Form That Thinks Out Loud',
+  category: 'Etymology',
+  readTime: '20 min',
+  sourceCount: 14,
+  sourceTier: 'Tier-1',
+  sectionCount: 6,
+  visualizationCount: 5,
+  designSystem: 'Subject-derived',
+  published: 'December 2025',
+  model: 'Claude',
+  template: 'Visual Essay',
+  backLink: '/essays',
+  backLabel: 'Essays',
+  palette: [
+    { name: 'Garamond Ink', color: '#1A1A2E' },
+    { name: 'Parchment Cream', color: '#F5F0E1' },
+    { name: 'Montaigne Gold', color: '#C9A84C' },
+    { name: 'Bacon Brown', color: '#5C4033' },
+    { name: 'Modern Slate', color: '#4A5568' },
+  ],
+  visualizations: [
+    { name: 'Era-Evolving Typefaces', type: 'Typography Morphing' },
+    { name: 'Essayist Timeline', type: 'Interactive Timeline' },
+    { name: 'Word Etymology Chain', type: 'Animated Sequence' },
+    { name: 'Chapter Transitions', type: 'Scroll Animation' },
+    { name: 'Key Figures Gallery', type: 'Portrait Cards' },
+  ],
+  keySources: [
+    'Michel de Montaigne, Essais (1580)',
+    'Francis Bacon, Essayes (1597)',
+    'Virginia Woolf, The Common Reader',
+    'Phillip Lopate, The Art of the Personal Essay',
+    'Oxford English Dictionary',
+  ],
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -121,7 +160,9 @@ export default function TheWordEssayPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <TheWordEssayClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <TheWordEssayClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }

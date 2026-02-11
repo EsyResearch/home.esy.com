@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import ArtifactDetailWrapper from "@/components/ArtifactDetail";
 import WordAnimalClient from "./WordAnimalClient";
 
 /**
@@ -17,6 +18,44 @@ import WordAnimalClient from "./WordAnimalClient";
  * Research Package: ./research/
  * Invocation Spec: ./specs/invocation-spec.md
  */
+
+const ESSAY_META = {
+  title: "ANIMUS — The Living Word",
+  subtitle: "How Seven Letters Named Every Creature That Breathes",
+  category: "Etymology",
+  readTime: "22 min",
+  sourceCount: 14,
+  sourceTier: "Tier-1",
+  sectionCount: 6,
+  visualizationCount: 5,
+  designSystem: "Subject-derived",
+  published: "December 2025",
+  model: "Claude",
+  template: "Visual Essay",
+  backLink: "/essays",
+  backLabel: "Essays",
+  palette: [
+    { name: "Ancient Stone", color: "#8B8272" },
+    { name: "Breath Gold", color: "#C9A84C" },
+    { name: "Bestiary Red", color: "#8B2500" },
+    { name: "Linnaeus Green", color: "#2D5A4A" },
+    { name: "Darwin Brown", color: "#5C4033" },
+  ],
+  visualizations: [
+    { name: "PIE Root Tree", type: "Animated Etymology" },
+    { name: "Bestiary Gallery", type: "Photorealistic Cards" },
+    { name: "Classification Timeline", type: "Interactive Timeline" },
+    { name: "Era Typography Shifts", type: "Visual Morphing" },
+    { name: "Key Figures Gallery", type: "Portrait Cards" },
+  ],
+  keySources: [
+    "Aristotle, De Anima (On the Soul)",
+    "Carl Linnaeus, Systema Naturae (1735)",
+    "Charles Darwin, On the Origin of Species (1859)",
+    "Oxford English Dictionary, 'animal' entry",
+    "Jane Goodall, In the Shadow of Man",
+  ],
+};
 
 // JSON-LD structured data
 const jsonLd = {
@@ -131,7 +170,9 @@ export default function WordAnimalPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <WordAnimalClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <WordAnimalClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import ArtifactDetailWrapper from "@/components/ArtifactDetail";
 import TheWordDickClient from "./TheWordDickClient";
 
 /**
@@ -14,6 +15,45 @@ import TheWordDickClient from "./TheWordDickClient";
  * - 6 distinct era typography treatments
  * - Scroll-lock sequences drive typographic metamorphosis
  */
+
+const ESSAY_META = {
+  title: "The Word Dick: From Royal Nickname to Modern Taboo",
+  subtitle: "800 Years of Semantic Transformation",
+  category: "Etymology",
+  readTime: "20 min",
+  sourceCount: 14,
+  sourceTier: "Tier-1",
+  sectionCount: 6,
+  visualizationCount: 6,
+  designSystem: "Subject-derived",
+  published: "December 2025",
+  model: "Claude",
+  template: "Visual Essay",
+  backLink: "/essays",
+  backLabel: "Essays",
+  palette: [
+    { name: "Medieval Ink", color: "#1A1A2E" },
+    { name: "Royal Gold", color: "#C9A84C" },
+    { name: "Victorian Plum", color: "#581C87" },
+    { name: "Detective Grey", color: "#4A5568" },
+    { name: "Modern Slate", color: "#334155" },
+  ],
+  visualizations: [
+    { name: "6-Era Typography Shifts", type: "Visual Morphing" },
+    { name: "Rhyming Slang Chain", type: "Animated Sequence" },
+    { name: "Semantic Evolution Timeline", type: "Interactive Timeline" },
+    { name: "Name Popularity Graph", type: "Data Visualization" },
+    { name: "Scroll-Lock Sequences", type: "Typographic Metamorphosis" },
+    { name: "Cultural Context Cards", type: "Interactive Cards" },
+  ],
+  keySources: [
+    "Oxford English Dictionary, historical entries",
+    "Eric Partridge, A Dictionary of Slang",
+    "Chronicle of Robert of Gloucester (c. 1300)",
+    "Social Security Administration name statistics",
+    "Jonathon Green, Cassell's Dictionary of Slang",
+  ],
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -149,7 +189,9 @@ export default function TheWordDickPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <TheWordDickClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <TheWordDickClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }

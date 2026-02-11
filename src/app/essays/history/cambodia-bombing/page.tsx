@@ -1,5 +1,48 @@
 import type { Metadata } from 'next';
+import ArtifactDetailWrapper from '@/components/ArtifactDetail';
 import { CambodiaBombingClient } from './CambodiaBombingClient';
+
+const ESSAY_META = {
+  title: 'Cambodia Bombed (1965–1973)',
+  subtitle: 'The Air War You Weren\'t Meant to See',
+  category: 'History',
+  readTime: '35 min',
+  sourceCount: 26,
+  sourceTier: 'Tier-1',
+  sectionCount: 10,
+  visualizationCount: 6,
+  designSystem: 'Subject-derived',
+  published: 'February 2026',
+  model: 'Claude',
+  template: 'Visual Essay',
+  backLink: '/essays',
+  backLabel: 'Essays',
+  palette: [
+    { name: 'Laterite Earth', color: '#8B4513' },
+    { name: 'Monsoon Slate', color: '#2F4F4F' },
+    { name: 'Palm-Leaf Green', color: '#228B22' },
+    { name: 'Document Cream', color: '#F5F5DC' },
+    { name: 'Redaction Black', color: '#1A1A1A' },
+    { name: 'Blood Rust', color: '#8B0000' },
+    { name: 'Archive Yellow', color: '#DAA520' },
+  ],
+  visualizations: [
+    { name: 'Declassification Reveals', type: 'Scroll Animation' },
+    { name: 'Bomb Tonnage Counters', type: 'Animated Numerics' },
+    { name: 'Sortie Data Visualization', type: 'Data Visualization' },
+    { name: 'Archival Photography', type: 'Documentary Treatment' },
+    { name: 'Chapter Timeline', type: 'Interactive Timeline' },
+    { name: 'Scroll-Lock Sequences', type: 'Immersive Narrative' },
+  ],
+  keySources: [
+    'Foreign Relations of the United States, 1969-1976, Vol. VI',
+    'National Security Archive, Kissinger Telcons Collection',
+    'Ben Kiernan & Taylor Owen, "Bombs Over Cambodia" (2006)',
+    'William Shawcross, Sideshow: Kissinger, Nixon, and the Destruction of Cambodia',
+    'Yale Genocide Studies Program, CGEO Database',
+    'Senate Armed Services Committee, "Bombing in Cambodia" Hearings (1973)',
+  ],
+};
 
 export const metadata: Metadata = {
   title: 'Cambodia Bombed (1965–1973): The Air War You Weren\'t Meant to See | Esy',
@@ -47,5 +90,9 @@ export const metadata: Metadata = {
 };
 
 export default function CambodiaBombingPage() {
-  return <CambodiaBombingClient />;
+  return (
+    <ArtifactDetailWrapper meta={ESSAY_META}>
+      <CambodiaBombingClient />
+    </ArtifactDetailWrapper>
+  );
 }

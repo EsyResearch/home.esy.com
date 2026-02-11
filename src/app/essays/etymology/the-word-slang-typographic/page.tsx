@@ -1,9 +1,48 @@
 import type { Metadata } from 'next';
+import ArtifactDetailWrapper from '@/components/ArtifactDetail';
 import TheWordSlangTypographicClient from './TheWordSlangTypographicClient';
 
 // OG Image: 1200x630 recommended, absolute HTTPS URL required
 const OG_IMAGE_URL = 'https://esy.com/og/the-word-slang-typographic.png';
 const CANONICAL_URL = 'https://esy.com/essays/etymology/the-word-slang-typographic';
+
+const ESSAY_META = {
+  title: 'SLANG: The Rogue Archive',
+  subtitle: 'A Typographic Etymology — No Photographs, Only Type, Pattern, and Power',
+  category: 'Etymology',
+  readTime: '20 min',
+  sourceCount: 14,
+  sourceTier: 'Tier-1',
+  sectionCount: 6,
+  visualizationCount: 5,
+  designSystem: 'Subject-derived',
+  published: 'January 2026',
+  model: 'Claude',
+  template: 'Visual Essay',
+  backLink: '/essays',
+  backLabel: 'Essays',
+  palette: [
+    { name: 'Cant Black', color: '#0D0D0D' },
+    { name: 'Underworld Red', color: '#8B2500' },
+    { name: 'Lexicon Cream', color: '#F0E6D3' },
+    { name: 'Editorial Blue', color: '#1E3A5F' },
+    { name: 'Type Grey', color: '#6B7280' },
+  ],
+  visualizations: [
+    { name: 'Typography-Led Narrative', type: 'Typographic Display' },
+    { name: 'Era Pattern Shifts', type: 'Visual Morphing' },
+    { name: 'Word Migration Timeline', type: 'Interactive Timeline' },
+    { name: 'Letter Compositions', type: 'Typographic Art' },
+    { name: 'Dictionary Evolution', type: 'Gradual Reveals' },
+  ],
+  keySources: [
+    'Francis Grose, A Classical Dictionary of the Vulgar Tongue (1785)',
+    'H.L. Mencken, The American Language',
+    'Eric Partridge, Slang To-Day and Yesterday',
+    'Jonathon Green, Language! 500 Years of the Vulgar Tongue',
+    'Oxford English Dictionary',
+  ],
+};
 
 export const metadata: Metadata = {
   title: 'SLANG: The Rogue Archive | A Typographic Etymology | Esy',
@@ -103,7 +142,9 @@ export default function TheWordSlangTypographicPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <TheWordSlangTypographicClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <TheWordSlangTypographicClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }

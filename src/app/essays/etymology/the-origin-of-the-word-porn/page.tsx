@@ -1,5 +1,44 @@
 import type { Metadata } from 'next';
+import ArtifactDetailWrapper from '@/components/ArtifactDetail';
 import OriginOfPornClient from './OriginOfPornClient';
+
+const ESSAY_META = {
+  title: 'Πόρνη: The Etymology of a Forbidden Word',
+  subtitle: 'From Ancient Greek Slave Markets to Modern Digital Discourse',
+  category: 'Etymology',
+  readTime: '22 min',
+  sourceCount: 14,
+  sourceTier: 'Tier-1',
+  sectionCount: 6,
+  visualizationCount: 5,
+  designSystem: 'Subject-derived',
+  published: 'December 2025',
+  model: 'Claude',
+  template: 'Visual Essay',
+  backLink: '/essays',
+  backLabel: 'Essays',
+  palette: [
+    { name: 'Greek Marble', color: '#E8E0D0' },
+    { name: 'Attic Red', color: '#A0522D' },
+    { name: 'Victorian Black', color: '#1A1A1A' },
+    { name: 'Pompeii Terracotta', color: '#CC5500' },
+    { name: 'Digital Grey', color: '#4A5568' },
+  ],
+  visualizations: [
+    { name: 'Etymology Chain', type: 'Animated Sequence' },
+    { name: 'Historical Timeline', type: 'Interactive Timeline' },
+    { name: 'Era Typography Shifts', type: 'Visual Morphing' },
+    { name: 'Legal Milestones', type: 'Interactive Cards' },
+    { name: 'Semantic Evolution', type: 'Gradual Reveals' },
+  ],
+  keySources: [
+    "Oxford English Dictionary, 'pornography' entry",
+    'Ancient Greek lexicons',
+    'Pompeii archaeological records (1850s)',
+    'Miller v. California (1973)',
+    'Walter Kendrick, The Secret Museum',
+  ],
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -135,7 +174,9 @@ export default function OriginOfPornPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <OriginOfPornClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <OriginOfPornClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }

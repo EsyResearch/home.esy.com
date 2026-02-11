@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import ArtifactDetailWrapper from "@/components/ArtifactDetail";
 import AnimalEtymologyClient from "./AnimalEtymologyClient";
 
 /**
@@ -9,6 +10,44 @@ import AnimalEtymologyClient from "./AnimalEtymologyClient";
  * From Latin "anima" (breath, soul) to modern zoological classification—
  * tracing 2,500 years of the word that defined life itself.
  */
+
+const ESSAY_META = {
+  title: "ANIMA — The Origin of the Word Animal",
+  subtitle: "The Breath That Named the Living",
+  category: "Etymology",
+  readTime: "20 min",
+  sourceCount: 12,
+  sourceTier: "Tier-1",
+  sectionCount: 5,
+  visualizationCount: 5,
+  designSystem: "Subject-derived",
+  published: "December 2025",
+  model: "Claude",
+  template: "Visual Essay",
+  backLink: "/essays",
+  backLabel: "Essays",
+  palette: [
+    { name: "Ancient Stone", color: "#8B8272" },
+    { name: "Breath Gold", color: "#C9A84C" },
+    { name: "Bestiary Red", color: "#8B2500" },
+    { name: "Taxonomy Green", color: "#2D5A4A" },
+    { name: "Manuscript Cream", color: "#F5F0E1" },
+  ],
+  visualizations: [
+    { name: "Etymology Root Tree", type: "Animated Etymology" },
+    { name: "Bestiary Gallery", type: "Photorealistic Cards" },
+    { name: "Classification Timeline", type: "Interactive Timeline" },
+    { name: "Era Typography Shifts", type: "Visual Morphing" },
+    { name: "Key Figures Gallery", type: "Portrait Cards" },
+  ],
+  keySources: [
+    "Aristotle, De Anima",
+    "Carl Linnaeus, Systema Naturae (1735)",
+    "Medieval bestiary manuscripts",
+    "Oxford English Dictionary, 'animal' entry",
+    "Charles Darwin, On the Origin of Species",
+  ],
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -155,7 +194,9 @@ export default function AnimalEtymologyPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <AnimalEtymologyClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <AnimalEtymologyClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }

@@ -1,5 +1,45 @@
 import { createVisualEssayMetadata } from '@/lib/visual-essay-metadata';
+import ArtifactDetailWrapper from '@/components/ArtifactDetail';
 import TheWordNiggerClient from './TheWordNiggerClient';
+
+const ESSAY_META = {
+  title: 'The Weight of a Word',
+  subtitle: 'A History of the N-Word in America',
+  category: 'Etymology',
+  readTime: '30 min',
+  sourceCount: 18,
+  sourceTier: 'Tier-1',
+  sectionCount: 8,
+  visualizationCount: 5,
+  designSystem: 'Subject-derived',
+  published: 'December 2025',
+  model: 'Claude',
+  template: 'Visual Essay',
+  backLink: '/essays',
+  backLabel: 'Essays',
+  palette: [
+    { name: 'Archive Black', color: '#0D0D0D' },
+    { name: 'Document Cream', color: '#E8DCC8' },
+    { name: 'Resistance Gold', color: '#C9A84C' },
+    { name: 'Jim Crow Sepia', color: '#704214' },
+    { name: 'Freedom Blue', color: '#1E3A5F' },
+  ],
+  visualizations: [
+    { name: 'Etymology Chain', type: 'Animated Sequence' },
+    { name: 'Archival Photography', type: 'Documentary Treatment' },
+    { name: 'Historical Timeline', type: 'Interactive Timeline' },
+    { name: 'Era Typography Shifts', type: 'Visual Morphing' },
+    { name: 'Key Figures Gallery', type: 'Portrait Cards' },
+  ],
+  keySources: [
+    'Randall Kennedy, Nigger: The Strange Career of a Troublesome Word',
+    'Oxford English Dictionary',
+    'Frederick Douglass, Narrative (1845)',
+    'James Baldwin, The Fire Next Time',
+    'Ida B. Wells, Southern Horrors',
+    'W.E.B. Du Bois, The Souls of Black Folk',
+  ],
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -117,7 +157,9 @@ export default function TheWordNiggerPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <TheWordNiggerClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <TheWordNiggerClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }

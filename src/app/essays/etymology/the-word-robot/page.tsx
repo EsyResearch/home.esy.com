@@ -6,7 +6,47 @@
  * @see /docs/VISUAL_ESSAY_METADATA_PATTERN.md
  */
 import { createVisualEssayMetadata } from "@/lib/visual-essay-metadata";
+import ArtifactDetailWrapper from "@/components/ArtifactDetail";
 import TheWordRobotClient from "./TheWordRobotClient";
+
+const ESSAY_META = {
+  title: "ROBOT — Grand Machina",
+  subtitle: "The Word That Built Our Future, and Now Shares Our Bed",
+  category: "Etymology",
+  readTime: "25 min",
+  sourceCount: 16,
+  sourceTier: "Tier-1",
+  sectionCount: 7,
+  visualizationCount: 6,
+  designSystem: "Subject-derived",
+  published: "December 2025",
+  model: "Claude",
+  template: "Visual Essay",
+  backLink: "/essays",
+  backLabel: "Essays",
+  palette: [
+    { name: "Czech Steel", color: "#4A5568" },
+    { name: "Factory Orange", color: "#D97706" },
+    { name: "Asimov Blue", color: "#1E40AF" },
+    { name: "Terminator Red", color: "#DC2626" },
+    { name: "Digital White", color: "#F8F8F8" },
+  ],
+  visualizations: [
+    { name: "Etymology Chain", type: "Animated Sequence" },
+    { name: "Robot Evolution Timeline", type: "Interactive Timeline" },
+    { name: "Uncanny Valley Graph", type: "Data Visualization" },
+    { name: "Era Typography Shifts", type: "Visual Morphing" },
+    { name: "Key Figures Gallery", type: "Portrait Cards" },
+    { name: "Cultural Milestones", type: "Interactive Cards" },
+  ],
+  keySources: [
+    "Karel Čapek, R.U.R. (1920)",
+    "Isaac Asimov, I, Robot (1950)",
+    "Masahiro Mori, The Uncanny Valley (1970)",
+    "Oxford English Dictionary, 'robot' entry",
+    "George Devol, Unimate patent (1954)",
+  ],
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -137,7 +177,9 @@ export default function TheWordRobotPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <TheWordRobotClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <TheWordRobotClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }

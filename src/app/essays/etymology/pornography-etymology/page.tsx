@@ -1,5 +1,44 @@
 import type { Metadata } from 'next';
+import ArtifactDetailWrapper from '@/components/ArtifactDetail';
 import SoldClient from './SoldClient';
+
+const ESSAY_META = {
+  title: 'SOLD: The Etymology of Pornography',
+  subtitle: 'From Ancient Greek Slave Markets to Modern Search Bars',
+  category: 'Etymology',
+  readTime: '22 min',
+  sourceCount: 14,
+  sourceTier: 'Tier-1',
+  sectionCount: 6,
+  visualizationCount: 5,
+  designSystem: 'Subject-derived',
+  published: 'December 2025',
+  model: 'Claude',
+  template: 'Visual Essay',
+  backLink: '/essays',
+  backLabel: 'Essays',
+  palette: [
+    { name: 'Market Stone', color: '#8B8272' },
+    { name: 'Slave Red', color: '#8B0000' },
+    { name: 'Victorian Black', color: '#1A1A1A' },
+    { name: 'Legal Blue', color: '#1E3A5F' },
+    { name: 'Digital White', color: '#F8F8F8' },
+  ],
+  visualizations: [
+    { name: 'Etymology Chain', type: 'Animated Sequence' },
+    { name: 'Historical Timeline', type: 'Interactive Timeline' },
+    { name: 'Commerce Thread', type: 'Thematic Visualization' },
+    { name: 'Legal Milestones', type: 'Interactive Cards' },
+    { name: 'Era Typography Shifts', type: 'Visual Morphing' },
+  ],
+  keySources: [
+    'Ancient Greek lexicons, πόρνη / pernemi entries',
+    'Pompeii archaeological records',
+    'Roth v. United States (1957)',
+    'Miller v. California (1973)',
+    'Walter Kendrick, The Secret Museum',
+  ],
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -135,7 +174,9 @@ export default function SoldPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <SoldClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <SoldClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }

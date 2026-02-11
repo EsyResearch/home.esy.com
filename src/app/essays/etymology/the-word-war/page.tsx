@@ -6,7 +6,46 @@
  * @see /docs/VISUAL_ESSAY_METADATA_PATTERN.md
  */
 import { createVisualEssayMetadata } from "@/lib/visual-essay-metadata";
+import ArtifactDetailWrapper from "@/components/ArtifactDetail";
 import TheWordWarClient from "./TheWordWarClient";
+
+const ESSAY_META = {
+  title: "WAR — The Conquered Word",
+  subtitle: "How a Germanic Word for Confusion Became English Through Conquest",
+  category: "Etymology",
+  readTime: "25 min",
+  sourceCount: 18,
+  sourceTier: "Tier-1",
+  sectionCount: 8,
+  visualizationCount: 5,
+  designSystem: "Subject-derived",
+  published: "January 2026",
+  model: "Claude",
+  template: "Visual Essay",
+  backLink: "/essays",
+  backLabel: "Essays",
+  palette: [
+    { name: "Conquest Iron", color: "#2C2C2C" },
+    { name: "Norman Gold", color: "#C9A84C" },
+    { name: "Blood Red", color: "#8B0000" },
+    { name: "Parchment", color: "#E8DCC8" },
+    { name: "Battlefield Green", color: "#3D4F2F" },
+  ],
+  visualizations: [
+    { name: "PIE Root Tree", type: "Animated Etymology" },
+    { name: "Language Migration Map", type: "Interactive Map" },
+    { name: "War Words Timeline", type: "Interactive Timeline" },
+    { name: "Cross-Language Comparison", type: "Parallel Display" },
+    { name: "Era Typography Shifts", type: "Visual Morphing" },
+  ],
+  keySources: [
+    "Oxford English Dictionary, 'war' entry",
+    "Peterborough Chronicle (c. 1121)",
+    "Calvert Watkins, American Heritage Dictionary of IE Roots",
+    "Albert Baugh, A History of the English Language",
+    "Time Magazine, 'World War' coinage (1939)",
+  ],
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -168,7 +207,9 @@ export default function TheWordWarPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <TheWordWarClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <TheWordWarClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }

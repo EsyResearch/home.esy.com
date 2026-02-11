@@ -1,5 +1,43 @@
 import type { Metadata } from 'next';
+import ArtifactDetailWrapper from '@/components/ArtifactDetail';
 import TheWordEtymologyClient from './TheWordEtymologyClient';
+
+const ESSAY_META = {
+  title: 'Etymology: The Word That Dug Up Words',
+  subtitle: 'A 2,500-Year Journey from Ancient Greek Philosophy to Digital Dictionaries',
+  category: 'Etymology',
+  readTime: '20 min',
+  sourceCount: 12,
+  sourceTier: 'Tier-1',
+  sectionCount: 6,
+  visualizationCount: 4,
+  designSystem: 'Subject-derived',
+  published: 'December 2025',
+  model: 'Claude',
+  template: 'Visual Essay',
+  backLink: '/essays',
+  backLabel: 'Essays',
+  palette: [
+    { name: 'Root Brown', color: '#5C4033' },
+    { name: 'Manuscript Cream', color: '#F5F0E1' },
+    { name: 'Greek Gold', color: '#C9A84C' },
+    { name: 'Dictionary Blue', color: '#2C3E50' },
+    { name: 'Digital White', color: '#F8F8F8' },
+  ],
+  visualizations: [
+    { name: 'Root Tree Diagram', type: 'Animated Etymology' },
+    { name: 'Historical Timeline', type: 'Interactive Timeline' },
+    { name: 'Era Typography Shifts', type: 'Visual Morphing' },
+    { name: 'Word Archaeology', type: 'Gradual Reveals' },
+  ],
+  keySources: [
+    "Plato, Cratylus",
+    "Isidore of Seville, Etymologiae",
+    "Jacob Grimm, Grimm's Law",
+    "Oxford English Dictionary",
+    "Calvert Watkins, American Heritage Dictionary of IE Roots",
+  ],
+};
 
 export const metadata: Metadata = {
   title: 'Etymology: The Word That Dug Up Words | Esy',
@@ -47,5 +85,9 @@ export const metadata: Metadata = {
 };
 
 export default function TheWordEtymologyPage() {
-  return <TheWordEtymologyClient />;
+  return (
+    <ArtifactDetailWrapper meta={ESSAY_META}>
+      <TheWordEtymologyClient />
+    </ArtifactDetailWrapper>
+  );
 }

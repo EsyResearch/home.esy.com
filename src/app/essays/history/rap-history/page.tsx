@@ -1,5 +1,50 @@
 import { Metadata } from "next";
+import ArtifactDetailWrapper from "@/components/ArtifactDetail";
 import RapHistoryClient from "./RapHistoryClient";
+
+const ESSAY_META = {
+  title: "RAP: The World's Loudest Archive",
+  subtitle: "A Visual History of Hip-Hop's Most Powerful Art Form",
+  category: "History",
+  subcategory: "Music",
+  readTime: "45 min",
+  sourceCount: 32,
+  sourceTier: "Tier-1",
+  sectionCount: 16,
+  visualizationCount: 7,
+  designSystem: "Subject-derived",
+  published: "December 2024",
+  model: "Claude",
+  template: "Visual Essay",
+  backLink: "/essays",
+  backLabel: "Essays",
+  palette: [
+    { name: "Neon Playground", color: "#39FF14" },
+    { name: "Boombox Black", color: "#1A1A2E" },
+    { name: "Chrome Heat", color: "#C0C0C0" },
+    { name: "Casefile Noir", color: "#2C2C2C" },
+    { name: "Trap Architecture", color: "#8B0000" },
+    { name: "Algorithm Glitch", color: "#00D4FF" },
+    { name: "Global Patchwork", color: "#F59E0B" },
+  ],
+  visualizations: [
+    { name: "Vinyl Progress Bar", type: "Scroll-driven Indicator" },
+    { name: "12 Era Design Skins", type: "Visual Morphing" },
+    { name: "Scroll-Lock Hero", type: "Pinned Animation" },
+    { name: "Chapter Timelines", type: "Interactive Timeline" },
+    { name: "Key Figures Gallery", type: "Portrait Cards" },
+    { name: "Sources & Glossary", type: "Categorized Reference" },
+    { name: "Image Credits System", type: "Attribution Grid" },
+  ],
+  keySources: [
+    "Jeff Chang, Can't Stop Won't Stop (2005)",
+    "Tricia Rose, Black Noise (1994)",
+    "Dan Charnas, The Big Payback (2010)",
+    "Cornell University Hip-Hop Collection",
+    "Smithsonian NMAAHC",
+    "Adam Bradley, Book of Rhymes (2009)",
+  ],
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -152,7 +197,9 @@ export default function RapHistoryPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <RapHistoryClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <RapHistoryClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }

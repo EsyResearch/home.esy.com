@@ -1,5 +1,48 @@
 import type { Metadata } from 'next'
+import ArtifactDetailWrapper from '@/components/ArtifactDetail'
 import SodaHistoryClient from './SodaHistoryClient'
+
+const ESSAY_META = {
+  title: 'The Complete History of Soda',
+  subtitle: 'From Scientific Discovery to Global Cultural Phenomenon',
+  category: 'History',
+  readTime: '30 min',
+  sourceCount: 27,
+  sourceTier: 'Tier-1',
+  sectionCount: 7,
+  visualizationCount: 6,
+  designSystem: 'Subject-derived',
+  published: 'January 2026',
+  model: 'Claude',
+  template: 'Visual Essay',
+  backLink: '/essays',
+  backLabel: 'Essays',
+  palette: [
+    { name: 'Copper Flame', color: '#B87333' },
+    { name: 'Georgian Green', color: '#2D5A4A' },
+    { name: 'Apothecary Gold', color: '#C5A04F' },
+    { name: 'Chrome Silver', color: '#7B8B8C' },
+    { name: 'Olive Drab', color: '#556B2F' },
+    { name: 'Cola Red', color: '#8B0000' },
+    { name: 'Pepsi Blue', color: '#1E3A8A' },
+  ],
+  visualizations: [
+    { name: 'Era Progress Bar', type: 'Scroll-driven Indicator' },
+    { name: 'Archive Drawer Reveals', type: 'Scroll Animation' },
+    { name: 'Ledger Counters', type: 'Animated Numerics' },
+    { name: 'Archive Timeline', type: 'Interactive Timeline' },
+    { name: 'Key Figures Gallery', type: 'Portrait Cards' },
+    { name: 'Era Crossfade', type: 'Color Transitions' },
+  ],
+  keySources: [
+    'Priestley, Impregnating Water with Fixed Air (1772)',
+    'Mark Pendergrast, For God, Country and Coca-Cola',
+    'Library of Congress, Prints & Photographs Division',
+    'National Museum of American History',
+    'Donovan, Fizz: How Soda Shook Up the World',
+    'Frederick Allen, Secret Formula',
+  ],
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -169,7 +212,9 @@ export default function TheCompleteHistoryOfSodaPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <SodaHistoryClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <SodaHistoryClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }

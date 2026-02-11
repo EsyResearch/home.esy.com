@@ -6,7 +6,46 @@
  * @see /orchestration/skills/visual-essay-invocation/specs/the-word-han.md
  */
 import { createVisualEssayMetadata } from "@/lib/visual-essay-metadata";
+import ArtifactDetailWrapper from "@/components/ArtifactDetail";
 import TheWordHanClient from "./TheWordHanClient";
+
+const ESSAY_META = {
+  title: "漢 / 韓 — How One Word Shaped East Asia",
+  subtitle: "The 2,200-Year Journey of the Word 'Han' Through Four Civilizations",
+  category: "Etymology",
+  readTime: "25 min",
+  sourceCount: 16,
+  sourceTier: "Tier-1",
+  sectionCount: 7,
+  visualizationCount: 5,
+  designSystem: "Subject-derived",
+  published: "December 2025",
+  model: "Claude",
+  template: "Visual Essay",
+  backLink: "/essays",
+  backLabel: "Essays",
+  palette: [
+    { name: "Imperial Red", color: "#8B0000" },
+    { name: "Bronze Gold", color: "#C9A84C" },
+    { name: "Jade Green", color: "#00695C" },
+    { name: "Ink Black", color: "#1A1A1A" },
+    { name: "Silk White", color: "#FAF7F0" },
+  ],
+  visualizations: [
+    { name: "Character Evolution", type: "Animated Calligraphy" },
+    { name: "Civilization Map", type: "Interactive Map" },
+    { name: "Dynasty Timeline", type: "Interactive Timeline" },
+    { name: "Cross-Language Comparison", type: "Parallel Display" },
+    { name: "Key Figures Gallery", type: "Portrait Cards" },
+  ],
+  keySources: [
+    "Records of the Grand Historian (Sima Qian)",
+    "King Sejong, Hunminjeongeum (1443)",
+    "Oxford English Dictionary",
+    "Victor Mair, The Columbia History of Chinese Literature",
+    "Cambridge History of China",
+  ],
+};
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -140,7 +179,9 @@ export default function TheWordHanPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <TheWordHanClient />
+      <ArtifactDetailWrapper meta={ESSAY_META}>
+        <TheWordHanClient />
+      </ArtifactDetailWrapper>
     </>
   );
 }
