@@ -122,20 +122,36 @@ export default function ArtifactDetailWrapper({ meta, children }) {
     }
   }, [immersiveMode]);
 
-  /* ─── Immersive Mode ─── */
+  /* ─── Immersive Mode (Lite Chrome) ─── */
   if (immersiveMode) {
     return (
       <div className="ad-immersive">
-        <button
-          className="ad-immersive__exit"
-          onClick={() => setImmersiveMode(false)}
-          aria-label="Exit immersive mode"
-          title="Exit immersive mode (Esc)"
-        >
-          <CollapseIcon />
-          <span className="ad-immersive__exit-text">Exit</span>
-        </button>
-        {children}
+        {/* ─── Lite Toolbar ─── */}
+        <header className="ad-immersive__toolbar">
+          <Link href={backLink} className="ad-toolbar__back">
+            <ChevronLeftIcon />
+            <span>{backLabel}</span>
+          </Link>
+          <div className="ad-toolbar__right">
+            <span className="ad-toolbar__badge" style={{ '--badge-color': categoryColor }}>
+              {meta.category}
+            </span>
+            <button
+              className="ad-toolbar__immersive ad-toolbar__immersive--exit"
+              onClick={() => setImmersiveMode(false)}
+              aria-label="Exit immersive mode"
+              title="Exit immersive mode (Esc)"
+            >
+              <CollapseIcon />
+              <span className="ad-toolbar__immersive-label">Exit</span>
+            </button>
+          </div>
+        </header>
+
+        {/* ─── Essay Content ─── */}
+        <div className="ad-immersive__content">
+          {children}
+        </div>
       </div>
     );
   }

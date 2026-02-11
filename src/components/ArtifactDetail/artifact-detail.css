@@ -508,6 +508,14 @@
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4),
               0 0 0 1px rgba(255, 255, 255, 0.02) inset;
   position: relative;
+
+  /* Creates a containing block for fixed-position descendants.
+     Essay fixed headers/overlays (progress bars, scan lines, etc.)
+     become scoped to the frame rather than the viewport.
+     This prevents overlap with the Artifact toolbar in detail mode.
+     In immersive mode essays render outside this frame, so their
+     position:fixed elements work at full viewport as designed. */
+  transform: translateZ(0);
 }
 
 /* Override essay's min-height when framed */
@@ -583,44 +591,58 @@
   border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* ─── Immersive Mode ─────────────────────────────────────────── */
+/* ─── Immersive Mode (Lite Chrome) ──────────────────────────── */
 .ad-immersive {
   position: relative;
+  min-height: 100vh;
+  background: var(--color-bg, #0a0a0f);
 }
 
-.ad-immersive__exit {
+/* Lite Toolbar — mirrors .ad-toolbar but fixed + max z-index
+   so essay content can never overlap it. */
+.ad-immersive__toolbar {
   position: fixed;
-  top: 16px;
-  left: 16px;
-  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2147483647;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(10, 10, 15, 0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: rgba(255, 255, 255, 0.5);
-  font-family: var(--font-inter, 'Inter', sans-serif);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  opacity: 0.4;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 52px;
+  background: rgba(10, 10, 15, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.ad-immersive__exit:hover {
-  opacity: 1;
-  background: rgba(10, 10, 15, 0.95);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.9);
+/* Content sits below lite toolbar.
+   isolation: isolate creates a stacking-context fence so ALL essay
+   z-indices (scan lines at 1000, progress bars at 100, etc.)
+   are contained within this layer — but crucially does NOT
+   create a containing block for position:fixed, so essays
+   keep their full viewport-fixed behavior in immersive mode.
+   --ad-toolbar-height is exposed so essay fixed headers can
+   offset themselves below the lite toolbar via:
+     top: var(--ad-toolbar-height, 0);                         */
+.ad-immersive__content {
+  padding-top: 52px;
+  isolation: isolate;
+  --ad-toolbar-height: 52px;
 }
 
-.ad-immersive__exit-text {
-  display: inline;
+/* Exit variant — subtle red tint to distinguish from "enter" */
+.ad-toolbar__immersive--exit {
+  border-color: rgba(255, 80, 80, 0.25);
+  background: rgba(255, 80, 80, 0.08);
+  color: #ff6b6b;
+}
+
+.ad-toolbar__immersive--exit:hover {
+  background: rgba(255, 80, 80, 0.15);
+  border-color: rgba(255, 80, 80, 0.4);
+  color: #ff8a8a;
 }
 
 /* ─── Responsive ─────────────────────────────────────────────── */
@@ -712,14 +734,14 @@
     justify-content: center;
   }
 
-  .ad-immersive__exit {
-    top: 12px;
-    left: 12px;
-    padding: 6px 10px;
+  .ad-immersive__toolbar {
+    padding: 0 16px;
+    height: 48px;
   }
 
-  .ad-immersive__exit-text {
-    display: none;
+  .ad-immersive__content {
+    padding-top: 48px;
+    --ad-toolbar-height: 48px;
   }
 }
 
@@ -745,10 +767,6 @@
   }
 
   .ad-spec__toggle-icon {
-    transition: none;
-  }
-
-  .ad-immersive__exit {
     transition: none;
   }
 
