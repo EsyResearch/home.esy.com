@@ -524,72 +524,6 @@
   border-radius: 16px;
 }
 
-/* ─── Artifact Footer ────────────────────────────────────────── */
-.ad-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 24px;
-  background: rgba(255, 255, 255, 0.01);
-}
-
-.ad-footer__inner {
-  max-width: 960px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.ad-footer__link {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-inter, 'Inter', sans-serif);
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--color-text-muted, rgba(255, 255, 255, 0.7));
-  text-decoration: none;
-  transition: color 0.15s ease;
-}
-
-.ad-footer__link:hover {
-  color: var(--color-text, #ffffff);
-}
-
-.ad-footer__meta {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
-  color: var(--color-text-faint, rgba(255, 255, 255, 0.3));
-  letter-spacing: 0.02em;
-}
-
-.ad-footer__dot {
-  color: var(--color-text-faint, rgba(255, 255, 255, 0.15));
-}
-
-.ad-footer__immersive {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: transparent;
-  color: var(--color-text-muted, rgba(255, 255, 255, 0.7));
-  font-family: var(--font-inter, 'Inter', sans-serif);
-  font-size: 0.75rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.ad-footer__immersive:hover {
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--color-text, #ffffff);
-  border-color: rgba(255, 255, 255, 0.15);
-}
 
 /* ─── Immersive Mode (Lite Chrome) ──────────────────────────── */
 .ad-immersive {
@@ -723,17 +657,6 @@
     border-radius: 0;
   }
 
-  .ad-footer__inner {
-    flex-direction: column;
-    gap: 16px;
-    text-align: center;
-  }
-
-  .ad-footer__meta {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
   .ad-immersive__toolbar {
     padding: 0 16px;
     height: 48px;
@@ -771,8 +694,7 @@
   }
 
   .ad-toolbar__immersive,
-  .ad-hero__cta,
-  .ad-footer__immersive {
+  .ad-hero__cta {
     transition: none;
   }
 }

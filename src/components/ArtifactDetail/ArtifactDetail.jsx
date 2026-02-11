@@ -15,7 +15,7 @@ import './artifact-detail.css';
    - children: The essay content to wrap
 
    Architecture:
-   - Artifact Mode: Metadata hero + spec panel + framed essay + footer
+   - Artifact Mode: Metadata hero + spec panel + framed essay
    - Immersive Mode: Chromeless essay with floating exit button
    
    SSR Safety: All window/document access guarded with typeof checks.
@@ -87,7 +87,7 @@ function CollapseIcon() {
  * ArtifactDetailWrapper
  * 
  * Wraps any visual essay in the Artifact Detail chrome layer:
- * toolbar, hero, spec panel, content frame, and footer.
+ * toolbar, hero, spec panel, and content frame.
  *
  * @param {{ meta: ArtifactMeta, children: React.ReactNode }} props
  */
@@ -345,29 +345,6 @@ export default function ArtifactDetailWrapper({ meta, children }) {
         </div>
       </section>
 
-      {/* ─── Artifact Footer ─── */}
-      <footer className="ad-footer">
-        <div className="ad-footer__inner">
-          <Link href={backLink} className="ad-footer__link">
-            <ChevronLeftIcon />
-            Back to {backLabel}
-          </Link>
-          <div className="ad-footer__meta">
-            <span>{meta.sourceCount} {meta.sourceTier} sources</span>
-            <span className="ad-footer__dot">·</span>
-            <span>{meta.template}</span>
-            <span className="ad-footer__dot">·</span>
-            <span>{meta.published}</span>
-          </div>
-          <button
-            className="ad-footer__immersive"
-            onClick={() => setImmersiveMode(true)}
-          >
-            <ExpandIcon />
-            Immersive Mode
-          </button>
-        </div>
-      </footer>
     </div>
   );
 }
