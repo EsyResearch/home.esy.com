@@ -632,17 +632,17 @@
   --ad-toolbar-height: 52px;
 }
 
-/* Exit variant — subtle red tint to distinguish from "enter" */
+/* Exit variant — teal to match brand accent */
 .ad-toolbar__immersive--exit {
-  border-color: rgba(255, 80, 80, 0.25);
-  background: rgba(255, 80, 80, 0.08);
-  color: #ff6b6b;
+  border-color: rgba(0, 168, 150, 0.25);
+  background: rgba(0, 168, 150, 0.08);
+  color: #00D4AA;
 }
 
 .ad-toolbar__immersive--exit:hover {
-  background: rgba(255, 80, 80, 0.15);
-  border-color: rgba(255, 80, 80, 0.4);
-  color: #ff8a8a;
+  background: rgba(0, 168, 150, 0.15);
+  border-color: rgba(0, 168, 150, 0.4);
+  color: #00E8BB;
 }
 
 /* ─── Responsive ─────────────────────────────────────────────── */
