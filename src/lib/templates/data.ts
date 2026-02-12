@@ -75,7 +75,7 @@ export const templateCategories: TemplateCategoryInfo[] = [
     name: 'Templates',
     slug: 'templates',
     description: 'Structured writing templates and frameworks',
-    count: 5,
+    count: 8,
     isComingSoon: false,
     subcategories: [
       {
@@ -86,24 +86,10 @@ export const templateCategories: TemplateCategoryInfo[] = [
         count: 1,
       },
       {
-        id: 'essay-college-application',
-        slug: 'essay-college-application',
-        name: 'College Application Essay',
-        description: 'Personal statement and college essay templates',
-        count: 1,
-      },
-      {
-        id: 'essay-research',
-        slug: 'essay-research',
-        name: 'Research Essay',
-        description: 'Academic research paper templates and outlines',
-        count: 1,
-      },
-      {
-        id: 'essay-mla-format',
-        slug: 'essay-mla-format',
-        name: 'MLA Format Essay',
-        description: 'MLA citation and formatting templates',
+        id: 'essay-analytical',
+        slug: 'essay-analytical',
+        name: 'Analytical Essay',
+        description: 'Templates for analytical, literary analysis, and critical review essays',
         count: 1,
       },
       {
@@ -111,6 +97,34 @@ export const templateCategories: TemplateCategoryInfo[] = [
         slug: 'essay-expository',
         name: 'Expository Essay',
         description: 'Informative and explanatory essay templates',
+        count: 1,
+      },
+      {
+        id: 'essay-narrative',
+        slug: 'essay-narrative',
+        name: 'Narrative Essay',
+        description: 'Templates for narrative, descriptive, and reflective essays',
+        count: 1,
+      },
+      {
+        id: 'essay-research',
+        slug: 'essay-research',
+        name: 'Research Essay',
+        description: 'Academic research paper templates and outlines',
+        count: 2,
+      },
+      {
+        id: 'essay-college-application',
+        slug: 'essay-college-application',
+        name: 'College Application Essay',
+        description: 'Personal statement and college essay templates',
+        count: 1,
+      },
+      {
+        id: 'essay-mla-format',
+        slug: 'essay-mla-format',
+        name: 'MLA Format Essay',
+        description: 'MLA citation and formatting templates',
         count: 1,
       },
     ],
@@ -2609,6 +2623,465 @@ Develop master argument framework:
       },
     ],
   },
+
+  // ─── Argumentative Essay ────────────────────────────────────
+  {
+    id: 'wf-2',
+    slug: 'argumentative-essay',
+    title: 'Argumentative Essay',
+    shortDescription:
+      'Build a thesis-driven essay with evidence, counterarguments, and a compelling conclusion.',
+    description:
+      'Provide your topic and stance, and Esy researches supporting evidence, maps counterarguments, and drafts a fully cited argumentative essay. Covers argumentative, persuasive, and synthesis essay formats.',
+    category: 'template',
+    subcategory: 'essay-argumentative',
+    tags: [
+      'essay',
+      'argumentative',
+      'persuasive',
+      'synthesis',
+      'thesis',
+      'debate',
+      'evidence',
+      'academic',
+      'workflow',
+    ],
+    difficulty: 'intermediate',
+    isNew: true,
+    isFeatured: true,
+    content: '',
+    variables: [],
+    expectedOutput:
+      'A fully structured argumentative essay with thesis, evidence paragraphs, counterargument section, and conclusion — exported as DOCX or PDF.',
+    useCases: [
+      'College coursework assignments',
+      'Debate preparation',
+      'Policy position papers',
+      'Op-ed drafts',
+      'Standardized test essay practice',
+    ],
+    relatedSlugs: [
+      'analytical-essay',
+      'expository-essay',
+      'narrative-essay',
+      'research-paper',
+      'college-application-essay',
+    ],
+    model: 'Claude',
+    pricing: { type: 'premium', price: 1.49 },
+    isWorkflow: true,
+    engine: 'Claude',
+    estimatedTime: '~3 min',
+    outputFormats: ['DOCX', 'PDF'],
+    inputRequirements: [
+      'Topic or question',
+      'Your position or stance',
+      'Target audience (optional)',
+      'Required sources (optional)',
+    ],
+    workflowStages: [
+      { id: 'intake', label: 'Intake', sublabel: 'Topic & stance' },
+      { id: 'research', label: 'Research', sublabel: 'Evidence & counterargs' },
+      { id: 'outline', label: 'Outline', sublabel: 'Thesis & evidence map' },
+      { id: 'draft', label: 'Draft', sublabel: 'Argument composition' },
+      { id: 'cite', label: 'Cite & Format', sublabel: 'APA/MLA + counterarg check' },
+      { id: 'artifact', label: 'Artifact', sublabel: 'DOCX · PDF', isFinal: true },
+    ],
+    sampleArtifacts: [
+      {
+        title: 'Should Universities Abolish Standardized Testing?',
+        description:
+          'A five-paragraph argument examining equity, predictive validity, and institutional incentives, with APA citations.',
+      },
+      {
+        title: 'The Case for Universal Basic Income',
+        description:
+          'A synthesis essay weaving economic research, pilot program data, and philosophical arguments into a cohesive position.',
+      },
+    ],
+  },
+
+  // ─── Analytical Essay ───────────────────────────────────────
+  {
+    id: 'wf-3',
+    slug: 'analytical-essay',
+    title: 'Analytical Essay',
+    shortDescription:
+      'Deconstruct a text, event, or concept through a critical analytical framework.',
+    description:
+      'Provide your source material and analytical lens, and Esy performs close reading, identifies patterns and themes, and produces a structured analytical essay with textual evidence. Covers analytical, literary analysis, and critical review formats.',
+    category: 'template',
+    subcategory: 'essay-analytical',
+    tags: [
+      'essay',
+      'analytical',
+      'literary analysis',
+      'critical review',
+      'interpretation',
+      'close reading',
+      'academic',
+      'workflow',
+    ],
+    difficulty: 'intermediate',
+    isNew: true,
+    isFeatured: false,
+    content: '',
+    variables: [],
+    expectedOutput:
+      'A structured analytical essay with thesis, close-reading evidence, interpretive framework, and textual citations — exported as DOCX or PDF.',
+    useCases: [
+      'Literature course assignments',
+      'Film or media analysis',
+      'Historical document analysis',
+      'Art criticism',
+      'Peer review responses',
+    ],
+    relatedSlugs: [
+      'argumentative-essay',
+      'expository-essay',
+      'narrative-essay',
+      'research-paper',
+      'college-application-essay',
+    ],
+    model: 'Claude',
+    pricing: { type: 'premium', price: 1.49 },
+    isWorkflow: true,
+    engine: 'Claude',
+    estimatedTime: '~3 min',
+    outputFormats: ['DOCX', 'PDF'],
+    inputRequirements: [
+      'Source text or subject',
+      'Analytical lens or framework',
+      'Specific focus or question',
+    ],
+    workflowStages: [
+      { id: 'intake', label: 'Intake', sublabel: 'Text & lens' },
+      { id: 'research', label: 'Research', sublabel: 'Source close-reading' },
+      { id: 'outline', label: 'Outline', sublabel: 'Framework & sections' },
+      { id: 'draft', label: 'Draft', sublabel: 'Interpretive analysis' },
+      { id: 'cite', label: 'Cite & Format', sublabel: 'Textual citations' },
+      { id: 'artifact', label: 'Artifact', sublabel: 'DOCX · PDF', isFinal: true },
+    ],
+    sampleArtifacts: [
+      {
+        title: 'Symbolism in Toni Morrison\'s Beloved',
+        description:
+          'A close-reading analysis tracing the motif of water, trees, and color through the novel\'s key passages.',
+      },
+      {
+        title: 'Power Dynamics in Orwell\'s 1984',
+        description:
+          'A Foucauldian analysis of surveillance, language control, and institutional power in the dystopian narrative.',
+      },
+    ],
+  },
+
+  // ─── Expository Essay ───────────────────────────────────────
+  {
+    id: 'wf-4',
+    slug: 'expository-essay',
+    title: 'Expository Essay',
+    shortDescription:
+      'Explain a topic clearly and objectively with facts, data, and logical structure.',
+    description:
+      'Provide your topic and scope, and Esy researches the subject, selects the appropriate organizational pattern, and produces a clear, well-sourced expository essay. Covers expository, cause and effect, compare and contrast, definition, and process essay formats.',
+    category: 'template',
+    subcategory: 'essay-expository',
+    tags: [
+      'essay',
+      'expository',
+      'cause and effect',
+      'compare and contrast',
+      'definition',
+      'process',
+      'informative',
+      'academic',
+      'workflow',
+    ],
+    difficulty: 'beginner',
+    isNew: true,
+    isFeatured: false,
+    content: '',
+    variables: [],
+    expectedOutput:
+      'A clearly structured expository essay with topic sentences, factual evidence, logical transitions, and source attributions — exported as DOCX or PDF.',
+    useCases: [
+      'Introductory course assignments',
+      'Textbook chapter summaries',
+      'How-to guides and explainers',
+      'Science and technology overviews',
+      'Comparative analyses',
+    ],
+    relatedSlugs: [
+      'argumentative-essay',
+      'analytical-essay',
+      'narrative-essay',
+      'research-paper',
+      'college-application-essay',
+    ],
+    model: 'Claude',
+    pricing: { type: 'premium', price: 1.49 },
+    isWorkflow: true,
+    engine: 'Claude',
+    estimatedTime: '~3 min',
+    outputFormats: ['DOCX', 'PDF'],
+    inputRequirements: [
+      'Topic or concept',
+      'Essay subtype (compare/contrast, cause/effect, definition, process)',
+      'Scope and depth level',
+    ],
+    workflowStages: [
+      { id: 'intake', label: 'Intake', sublabel: 'Topic & scope' },
+      { id: 'research', label: 'Research', sublabel: 'Facts & data' },
+      { id: 'outline', label: 'Outline', sublabel: 'Logic structure' },
+      { id: 'draft', label: 'Draft', sublabel: 'Explanatory prose' },
+      { id: 'cite', label: 'Cite & Format', sublabel: 'Source attribution' },
+      { id: 'artifact', label: 'Artifact', sublabel: 'DOCX · PDF', isFinal: true },
+    ],
+    sampleArtifacts: [
+      {
+        title: 'How CRISPR Gene Editing Works',
+        description:
+          'A process essay explaining the mechanism, applications, and ethical considerations of CRISPR-Cas9 technology.',
+      },
+      {
+        title: 'Comparing Keynesian and Austrian Economics',
+        description:
+          'A compare-and-contrast essay examining fiscal policy, market intervention, and business cycle theories across two schools of thought.',
+      },
+    ],
+  },
+
+  // ─── Narrative Essay ────────────────────────────────────────
+  {
+    id: 'wf-5',
+    slug: 'narrative-essay',
+    title: 'Narrative Essay',
+    shortDescription:
+      'Tell a compelling story grounded in personal experience, research, and vivid detail.',
+    description:
+      'Provide your theme and perspective, and Esy researches contextual background, structures a narrative arc, and crafts a polished essay with sensory detail and reflection. Covers narrative, descriptive, and reflective essay formats.',
+    category: 'template',
+    subcategory: 'essay-narrative',
+    tags: [
+      'essay',
+      'narrative',
+      'descriptive',
+      'reflective',
+      'personal',
+      'storytelling',
+      'creative nonfiction',
+      'academic',
+      'workflow',
+    ],
+    difficulty: 'beginner',
+    isNew: true,
+    isFeatured: false,
+    content: '',
+    variables: [],
+    expectedOutput:
+      'A polished narrative essay with story arc, sensory detail, dialogue (if applicable), and reflective conclusion — exported as DOCX or PDF.',
+    useCases: [
+      'Creative writing courses',
+      'Personal essay portfolios',
+      'Memoir excerpts',
+      'Journalism and longform features',
+      'Scholarship applications',
+    ],
+    relatedSlugs: [
+      'argumentative-essay',
+      'analytical-essay',
+      'expository-essay',
+      'research-paper',
+      'college-application-essay',
+    ],
+    model: 'Claude',
+    pricing: { type: 'premium', price: 1.49 },
+    isWorkflow: true,
+    engine: 'Claude',
+    estimatedTime: '~3 min',
+    outputFormats: ['DOCX', 'PDF'],
+    inputRequirements: [
+      'Theme or experience',
+      'Narrative perspective (first-person, third-person)',
+      'Tone or mood preference (optional)',
+    ],
+    workflowStages: [
+      { id: 'intake', label: 'Intake', sublabel: 'Theme & voice' },
+      { id: 'research', label: 'Research', sublabel: 'Context & setting' },
+      { id: 'outline', label: 'Outline', sublabel: 'Story arc & scenes' },
+      { id: 'draft', label: 'Draft', sublabel: 'Scene writing' },
+      { id: 'cite', label: 'Cite & Format', sublabel: 'Style & voice polish' },
+      { id: 'artifact', label: 'Artifact', sublabel: 'DOCX · PDF', isFinal: true },
+    ],
+    sampleArtifacts: [
+      {
+        title: 'The Summer That Changed Everything',
+        description:
+          'A reflective narrative tracing a pivotal summer experience through vivid scenes and personal growth.',
+      },
+      {
+        title: 'Finding Home in a Foreign Language',
+        description:
+          'A descriptive essay exploring identity and belonging through the lens of language acquisition and cultural immersion.',
+      },
+    ],
+  },
+
+  // ─── Research Paper ─────────────────────────────────────────
+  {
+    id: 'wf-6',
+    slug: 'research-paper',
+    title: 'Research Paper',
+    shortDescription:
+      'Produce a fully cited academic research paper with literature review, methodology, and findings.',
+    description:
+      'Provide your research question and field, and Esy conducts a literature review, designs a methodology section, drafts findings and discussion, and formats the full paper with your chosen citation style. Covers research papers in MLA, APA, and Chicago formats.',
+    category: 'template',
+    subcategory: 'essay-research',
+    tags: [
+      'essay',
+      'research paper',
+      'MLA',
+      'APA',
+      'Chicago',
+      'literature review',
+      'methodology',
+      'citations',
+      'thesis',
+      'academic',
+      'workflow',
+    ],
+    difficulty: 'advanced',
+    isNew: true,
+    isFeatured: true,
+    content: '',
+    variables: [],
+    expectedOutput:
+      'A complete research paper with abstract, literature review, methodology, findings, discussion, and bibliography — exported as DOCX or PDF.',
+    useCases: [
+      'Graduate-level coursework',
+      'Undergraduate capstone projects',
+      'Conference paper submissions',
+      'Journal article drafts',
+      'Grant proposal literature reviews',
+    ],
+    relatedSlugs: [
+      'argumentative-essay',
+      'analytical-essay',
+      'expository-essay',
+      'narrative-essay',
+      'college-application-essay',
+    ],
+    model: 'Claude',
+    pricing: { type: 'premium', price: 1.49 },
+    isWorkflow: true,
+    engine: 'Claude',
+    estimatedTime: '~5 min',
+    outputFormats: ['DOCX', 'PDF'],
+    inputRequirements: [
+      'Research question',
+      'Academic field or discipline',
+      'Citation format (MLA, APA, or Chicago)',
+      'Key sources (optional)',
+    ],
+    workflowStages: [
+      { id: 'intake', label: 'Intake', sublabel: 'Question & field' },
+      { id: 'research', label: 'Research', sublabel: 'Literature review' },
+      { id: 'outline', label: 'Outline', sublabel: 'Methodology design' },
+      { id: 'draft', label: 'Draft', sublabel: 'Findings & discussion' },
+      { id: 'cite', label: 'Cite & Format', sublabel: 'Full bibliography' },
+      { id: 'artifact', label: 'Artifact', sublabel: 'DOCX · PDF', isFinal: true },
+    ],
+    sampleArtifacts: [
+      {
+        title: 'The Impact of Social Media on Adolescent Mental Health',
+        description:
+          'A psychology research paper reviewing 30+ studies on screen time, social comparison, and anxiety in teens aged 13–18.',
+      },
+      {
+        title: 'Renewable Energy Adoption in Developing Nations',
+        description:
+          'An economics research paper analyzing policy frameworks, investment trends, and infrastructure barriers across sub-Saharan Africa.',
+      },
+    ],
+  },
+
+  // ─── College Application Essay ──────────────────────────────
+  {
+    id: 'wf-7',
+    slug: 'college-application-essay',
+    title: 'College Application Essay',
+    shortDescription:
+      'Craft a standout personal statement or supplemental essay for college admissions.',
+    description:
+      'Provide the essay prompt, target schools, and your key experiences, and Esy researches program fit, structures a compelling narrative arc, and drafts a polished personal essay that meets word count and tone requirements. Covers Common App essays, supplementals, and personal statements.',
+    category: 'template',
+    subcategory: 'essay-college-application',
+    tags: [
+      'essay',
+      'college application',
+      'personal statement',
+      'supplemental',
+      'admissions',
+      'Common App',
+      'academic',
+      'workflow',
+    ],
+    difficulty: 'intermediate',
+    isNew: true,
+    isFeatured: true,
+    content: '',
+    variables: [],
+    expectedOutput:
+      'A polished college application essay meeting the prompt requirements, word count, and authentic personal voice — exported as DOCX or PDF.',
+    useCases: [
+      'Common App main essay',
+      'University-specific supplemental essays',
+      'Scholarship personal statements',
+      'Graduate school statements of purpose',
+      'Transfer application essays',
+    ],
+    relatedSlugs: [
+      'argumentative-essay',
+      'analytical-essay',
+      'expository-essay',
+      'narrative-essay',
+      'research-paper',
+    ],
+    model: 'Claude',
+    pricing: { type: 'premium', price: 1.49 },
+    isWorkflow: true,
+    engine: 'Claude',
+    estimatedTime: '~3 min',
+    outputFormats: ['DOCX', 'PDF'],
+    inputRequirements: [
+      'Essay prompt or question',
+      'Target school(s)',
+      'Word count limit',
+      'Key experiences or themes to highlight',
+    ],
+    workflowStages: [
+      { id: 'intake', label: 'Intake', sublabel: 'Prompt & goals' },
+      { id: 'research', label: 'Research', sublabel: 'Program research' },
+      { id: 'outline', label: 'Outline', sublabel: 'Narrative arc' },
+      { id: 'draft', label: 'Draft', sublabel: 'Personal narrative' },
+      { id: 'cite', label: 'Cite & Format', sublabel: 'Word count & tone' },
+      { id: 'artifact', label: 'Artifact', sublabel: 'DOCX · PDF', isFinal: true },
+    ],
+    sampleArtifacts: [
+      {
+        title: 'Why This University: Engineering at MIT',
+        description:
+          'A supplemental essay connecting specific MIT labs, faculty research, and the applicant\'s robotics experience.',
+      },
+      {
+        title: 'Overcoming Adversity: A First-Generation Story',
+        description:
+          'A Common App personal statement weaving family history, academic perseverance, and community impact into a cohesive narrative.',
+      },
+    ],
+  },
 ];
 
 // Utility functions for data access
@@ -2631,6 +3104,16 @@ export function getTemplatesBySubcategory(subcategory: string): Template[] {
 
 export function getFeaturedTemplates(): Template[] {
   return templates.filter((t) => t.isFeatured);
+}
+
+export function getWorkflowTemplates(): Template[] {
+  return templates.filter((t) => t.isWorkflow);
+}
+
+export function getWorkflowTemplatesByTag(tag: string): Template[] {
+  return templates.filter(
+    (t) => t.isWorkflow && t.tags.some((tg) => tg.toLowerCase() === tag.toLowerCase())
+  );
 }
 
 export function getNewTemplates(): Template[] {

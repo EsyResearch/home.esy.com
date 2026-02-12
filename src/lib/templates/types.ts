@@ -163,6 +163,14 @@ export const SUBCATEGORY_CATEGORY_MAP: Record<string, ModelCategoryInfo> = {
     label: 'Expository Essay',
     href: '/templates/essay/expository',
   },
+  'essay-analytical': {
+    label: 'Analytical Essay',
+    href: '/templates/essay/analytical',
+  },
+  'essay-narrative': {
+    label: 'Narrative Essay',
+    href: '/templates/essay/narrative',
+  },
 };
 
 /**

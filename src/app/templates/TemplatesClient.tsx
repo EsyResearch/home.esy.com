@@ -7,7 +7,6 @@ import {
   FileText,
   Clock,
   BarChart3,
-  BookOpen,
   Sparkles,
   Layers,
   Zap,
@@ -16,19 +15,9 @@ import {
 import { useRouter } from 'next/navigation';
 import { useScrollHeaderSearch } from '@/hooks/useScrollHeaderSearch';
 import {
-  templateCategories,
-  getAllTemplates,
-  getTemplatesByCategory,
-  getFeaturedTemplates,
+  getWorkflowTemplates,
   searchTemplates,
-  getAllSubcategories,
 } from '@/lib/templates';
-import { TemplateDifficulty } from '@/lib/templates/types';
-import {
-  TemplateGrid,
-  TemplateCategoryNav,
-  TemplateFilters,
-} from '@/components/templates';
 import SearchBar from '@/components/SearchBar/SearchBar';
 
 // Navy Calm Light Theme
@@ -54,7 +43,7 @@ const creationPaths = [
     title: 'Visual Essays',
     tagline: 'Scroll-driven narratives',
     description: 'Research + writing + visuals in immersive, explorable stories',
-    href: '/templates?category=visual-essay',
+    href: '/templates/visual-essays',
     icon: FileText,
     category: 'visual-essay',
     count: 12,
@@ -74,7 +63,7 @@ const creationPaths = [
     title: 'Infographics',
     tagline: 'Data-driven visuals',
     description: 'Complex information distilled into clear visual summaries',
-    href: '/templates?category=infographic',
+    href: '/templates/infographics',
     icon: BarChart3,
     category: 'infographic',
     count: 6,
@@ -84,10 +73,10 @@ const creationPaths = [
     title: 'Academic Essays',
     tagline: 'Scholarly writing',
     description: 'Research-backed essays with proper structure, citations, and academic rigor',
-    href: '/templates?category=academic-essay',
+    href: '/templates/academic-essays',
     icon: GraduationCap,
-    category: 'academic-essay',
-    count: 15,
+    category: 'template',
+    count: 6,
   },
   // {
   //   id: 'explainers',
@@ -123,35 +112,25 @@ const valueProps = [
 export default function TemplatesClient() {
   const router = useRouter();
   const searchBarRef = useRef<HTMLDivElement>(null);
-  const [activeCategory, setActiveCategory] = useState<string>('all');
-  const [activeSubcategory, setActiveSubcategory] = useState<string | null>(null);
-  const [activeDifficulty, setActiveDifficulty] = useState<TemplateDifficulty | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [showFilters, setShowFilters] = useState(true);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [hoveredPath, setHoveredPath] = useState<string | null>(null);
 
   useScrollHeaderSearch(searchBarRef);
 
-  const subcategories = useMemo(() => {
-    if (activeCategory === 'all') return getAllSubcategories();
-    const category = templateCategories.find((c) => c.id === activeCategory);
-    return category?.subcategories || [];
-  }, [activeCategory]);
-
-  // Convert templates to SearchBar format
+  // Search only workflow templates (not legacy prompt pages)
   const searchResults = useMemo(() => {
     if (!searchQuery.trim()) {
       return [];
     }
-    const templates = searchTemplates(searchQuery);
-    return templates.slice(0, 8).map((template) => ({
+    const results = searchTemplates(searchQuery).filter((t) => t.isWorkflow);
+    return results.slice(0, 8).map((template) => ({
       id: template.id,
       title: template.title,
       description: template.shortDescription,
       category: template.subcategory,
       slug: `/templates/${template.slug}`,
-      type: 'prompt' as const,
+      type: 'category' as const,
       isPro: template.isPro || false,
       metadata: {
         difficulty: template.difficulty,
@@ -161,22 +140,6 @@ export default function TemplatesClient() {
     }));
   }, [searchQuery]);
 
-  const filteredTemplates = useMemo(() => {
-    let templates = searchQuery
-      ? searchTemplates(searchQuery)
-      : activeCategory === 'all'
-      ? getAllTemplates()
-      : getTemplatesByCategory(activeCategory);
-
-    if (activeSubcategory) {
-      templates = templates.filter((t) => t.subcategory === activeSubcategory);
-    }
-    if (activeDifficulty) {
-      templates = templates.filter((t) => t.difficulty === activeDifficulty);
-    }
-    return templates;
-  }, [activeCategory, activeSubcategory, activeDifficulty, searchQuery]);
-
   const handleResultSelect = (result: { slug?: string; href?: string }) => {
     const href = result.slug || result.href;
     if (href) {
@@ -184,27 +147,10 @@ export default function TemplatesClient() {
     }
   };
 
-  const featuredTemplates = getFeaturedTemplates().slice(0, 3);
+  const workflowTemplates = getWorkflowTemplates();
 
-  const handleCategoryChange = (category: string) => {
-    setActiveCategory(category);
-    setActiveSubcategory(null);
-    setTimeout(() => {
-      document.getElementById('browse-templates')?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
-  };
-
-  const handleClearFilters = () => {
-    setActiveSubcategory(null);
-    setActiveDifficulty(null);
-  };
-
-  const handlePathClick = (category: string) => {
-    setActiveCategory(category);
-    setActiveSubcategory(null);
-    setTimeout(() => {
-      document.getElementById('browse-templates')?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+  const handlePathClick = (href: string) => {
+    router.push(href);
   };
 
   return (
@@ -389,7 +335,7 @@ export default function TemplatesClient() {
             return (
               <button
                 key={path.id}
-                onClick={() => handlePathClick(path.category)}
+                onClick={() => handlePathClick(path.href)}
                 onMouseEnter={() => setHoveredPath(path.id)}
                 onMouseLeave={() => setHoveredPath(null)}
                 style={{
@@ -462,8 +408,9 @@ export default function TemplatesClient() {
         </div>
       </section>
 
-      {/* Featured Templates */}
+      {/* Workflow Templates — Primary Showcase */}
       <section
+        id="workflow-templates"
         style={{
           background: theme.elevated,
           borderTop: `1px solid ${theme.divider}`,
@@ -477,7 +424,7 @@ export default function TemplatesClient() {
             padding: 'clamp(4rem, 8vh, 6rem) clamp(1.5rem, 5vw, 3rem)',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1rem' }}>
             <div>
               <h2
                 style={{
@@ -489,39 +436,24 @@ export default function TemplatesClient() {
                   marginBottom: '0.5rem',
                 }}
               >
-                Popular templates
+                Templates
               </h2>
-              <p style={{ fontSize: '1rem', color: theme.subtle, margin: 0 }}>
-                Good starting points for your first project
+              <p style={{ fontSize: '1rem', color: theme.subtle, margin: 0, maxWidth: '520px' }}>
+                Each workflow runs research, outlining, drafting, and formatting — producing a polished artifact.
               </p>
             </div>
-            <Link
-              href="#browse-templates"
-              onClick={() => setActiveCategory('all')}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                fontSize: '0.875rem',
-                fontWeight: 500,
-                color: theme.accent,
-                textDecoration: 'none',
-              }}
-            >
-              View all
-              <ArrowRight size={16} />
-            </Link>
           </div>
 
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
               gap: '1.25rem',
             }}
           >
-            {featuredTemplates.map((template) => {
+            {workflowTemplates.map((template) => {
               const isHovered = hoveredCard === template.id;
+              const stageCount = template.workflowStages?.length || 0;
               return (
                 <Link
                   key={template.id}
@@ -536,32 +468,69 @@ export default function TemplatesClient() {
                       border: `1px solid ${isHovered ? theme.accentBorder : theme.border}`,
                       borderRadius: '16px',
                       padding: '1.75rem',
-                      transition: 'all 0.25s ease',
-                      boxShadow: isHovered ? '0 12px 32px rgba(10, 37, 64, 0.1)' : '0 2px 8px rgba(10, 37, 64, 0.04)',
+                      transition: 'all 0.3s ease',
+                      boxShadow: isHovered
+                        ? '0 16px 40px rgba(10, 37, 64, 0.1)'
+                        : '0 2px 8px rgba(10, 37, 64, 0.04)',
                       transform: isHovered ? 'translateY(-4px)' : 'translateY(0)',
                       height: '100%',
                       display: 'flex',
                       flexDirection: 'column',
                     }}
                   >
-                    {/* Category */}
-                    <span
+                    {/* Top row: badges */}
+                    <div
                       style={{
-                        display: 'inline-block',
-                        padding: '0.25rem 0.625rem',
-                        background: theme.accentLight,
-                        color: theme.accent,
-                        borderRadius: '6px',
-                        fontSize: '0.6875rem',
-                        fontWeight: 600,
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.05em',
+                        display: 'flex',
+                        alignItems: 'center',
+                        flexWrap: 'wrap',
+                        gap: '0.5rem',
                         marginBottom: '1rem',
-                        alignSelf: 'flex-start',
                       }}
                     >
-                      {template.category}
-                    </span>
+                      <span
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '0.25rem',
+                          padding: '0.2rem 0.5rem',
+                          background: theme.accentLight,
+                          color: theme.accent,
+                          borderRadius: '6px',
+                          fontSize: '0.6875rem',
+                          fontWeight: 600,
+                          letterSpacing: '0.03em',
+                        }}
+                      >
+                        Workflow
+                      </span>
+                      {template.engine && (
+                        <span
+                          style={{
+                            padding: '0.2rem 0.5rem',
+                            background: 'rgba(10, 37, 64, 0.04)',
+                            color: theme.subtle,
+                            borderRadius: '6px',
+                            fontSize: '0.6875rem',
+                            fontWeight: 500,
+                          }}
+                        >
+                          {template.engine}
+                        </span>
+                      )}
+                      {template.difficulty && (
+                        <span
+                          style={{
+                            padding: '0.2rem 0.5rem',
+                            color: template.difficulty === 'advanced' ? '#EF4444' : template.difficulty === 'intermediate' ? '#F59E0B' : '#2A9D8F',
+                            fontSize: '0.6875rem',
+                            fontWeight: 500,
+                          }}
+                        >
+                          {template.difficulty}
+                        </span>
+                      )}
+                    </div>
 
                     {/* Title */}
                     <h3
@@ -571,7 +540,7 @@ export default function TemplatesClient() {
                         fontWeight: 400,
                         letterSpacing: '-0.01em',
                         lineHeight: 1.3,
-                        marginBottom: '0.75rem',
+                        marginBottom: '0.5rem',
                         color: theme.text,
                       }}
                     >
@@ -584,32 +553,97 @@ export default function TemplatesClient() {
                         fontSize: '0.9375rem',
                         color: theme.muted,
                         lineHeight: 1.6,
-                        marginBottom: '1.5rem',
+                        marginBottom: '1.25rem',
                         flexGrow: 1,
                       }}
                     >
-                      {template.description}
+                      {template.shortDescription}
                     </p>
 
-                    {/* CTA */}
+                    {/* Workflow stage dots */}
+                    {stageCount > 0 && (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', marginBottom: '1rem' }}>
+                        {template.workflowStages!.map((stage, i) => (
+                          <React.Fragment key={stage.id}>
+                            <div
+                              style={{
+                                width: stage.isFinal ? '10px' : '8px',
+                                height: stage.isFinal ? '10px' : '8px',
+                                borderRadius: '50%',
+                                background: stage.isFinal ? theme.accent : isHovered ? theme.accent : `rgba(10, 37, 64, 0.15)`,
+                                transition: 'all 0.3s ease',
+                                transitionDelay: isHovered ? `${i * 60}ms` : '0ms',
+                                boxShadow: stage.isFinal ? `0 0 8px ${theme.accent}40` : 'none',
+                              }}
+                              title={stage.label}
+                            />
+                            {i < stageCount - 1 && (
+                              <div
+                                style={{
+                                  width: '16px',
+                                  height: '1px',
+                                  background: isHovered ? `rgba(0, 168, 150, 0.4)` : `rgba(10, 37, 64, 0.1)`,
+                                  transition: 'all 0.3s ease',
+                                  transitionDelay: isHovered ? `${i * 60}ms` : '0ms',
+                                }}
+                              />
+                            )}
+                          </React.Fragment>
+                        ))}
+                        <span
+                          style={{
+                            fontSize: '0.6875rem',
+                            color: theme.faint,
+                            marginLeft: '0.5rem',
+                          }}
+                        >
+                          {stageCount} stages
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Meta row */}
                     <div
                       style={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: '0.5rem',
-                        color: theme.accent,
-                        fontSize: '0.875rem',
-                        fontWeight: 500,
+                        justifyContent: 'space-between',
+                        paddingTop: '0.75rem',
+                        borderTop: `1px solid ${theme.divider}`,
                       }}
                     >
-                      Use template
-                      <ArrowRight
-                        size={16}
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                        {template.estimatedTime && (
+                          <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.8125rem', color: theme.subtle }}>
+                            <Clock size={13} />
+                            {template.estimatedTime}
+                          </span>
+                        )}
+                        {template.outputFormats && (
+                          <span style={{ fontSize: '0.8125rem', color: theme.faint }}>
+                            {template.outputFormats.join(' · ')}
+                          </span>
+                        )}
+                      </div>
+                      <div
                         style={{
-                          transform: isHovered ? 'translateX(4px)' : 'translateX(0)',
-                          transition: 'transform 0.2s ease',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.375rem',
+                          color: theme.accent,
+                          fontSize: '0.8125rem',
+                          fontWeight: 500,
                         }}
-                      />
+                      >
+                        View
+                        <ArrowRight
+                          size={14}
+                          style={{
+                            transform: isHovered ? 'translateX(3px)' : 'translateX(0)',
+                            transition: 'transform 0.2s ease',
+                          }}
+                        />
+                      </div>
                     </div>
                   </article>
                 </Link>
@@ -618,108 +652,6 @@ export default function TemplatesClient() {
           </div>
         </div>
       </section>
-
-      {/* Browse All Templates */}
-      {/* 
-      <section
-        id="browse-templates"
-        style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: 'clamp(4rem, 8vh, 6rem) clamp(1.5rem, 5vw, 3rem)',
-        }}
-      >
-        <div style={{ marginBottom: '2rem' }}>
-          <h2
-            style={{
-              fontFamily: 'var(--font-literata)',
-              fontSize: 'clamp(1.5rem, 4vw, 2rem)',
-              fontWeight: 300,
-              letterSpacing: '-0.02em',
-              color: theme.text,
-              marginBottom: '0.5rem',
-            }}
-          >
-            All templates
-          </h2>
-          <p style={{ fontSize: '1rem', color: theme.subtle }}>
-            Browse the full collection or filter by category
-          </p>
-        </div>
-
-        <TemplateCategoryNav
-          categories={templateCategories}
-          activeCategory={activeCategory}
-          onCategoryChange={handleCategoryChange}
-        />
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: showFilters ? '220px 1fr' : '1fr',
-            gap: '2.5rem',
-            marginTop: '2rem',
-          }}
-        >
-          {showFilters && (
-            <div style={{ position: 'sticky', top: '100px', alignSelf: 'start' }}>
-              <TemplateFilters
-                subcategories={subcategories}
-                activeSubcategory={activeSubcategory}
-                activeDifficulty={activeDifficulty}
-                onSubcategoryChange={setActiveSubcategory}
-                onDifficultyChange={setActiveDifficulty}
-                onClearFilters={handleClearFilters}
-              />
-            </div>
-          )}
-
-          <div>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                marginBottom: '1.5rem',
-                paddingBottom: '1rem',
-                borderBottom: `1px solid ${theme.divider}`,
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.75rem' }}>
-                <h3
-                  style={{
-                    fontSize: '1rem',
-                    fontWeight: 500,
-                    color: theme.text,
-                    margin: 0,
-                  }}
-                >
-                  {searchQuery
-                    ? 'Search Results'
-                    : activeCategory === 'all'
-                      ? 'All Templates'
-                      : templateCategories.find((c) => c.id === activeCategory)?.name || 'Templates'}
-                </h3>
-                <span style={{ fontSize: '0.875rem', color: theme.subtle }}>
-                  {filteredTemplates.length} {filteredTemplates.length === 1 ? 'template' : 'templates'}
-                </span>
-              </div>
-            </div>
-
-            <TemplateGrid
-              templates={filteredTemplates}
-              showCategory={activeCategory === 'all'}
-              columns={showFilters ? 2 : 3}
-              emptyMessage={
-                searchQuery
-                  ? `No results found for "${searchQuery}"`
-                  : 'No templates found with the current filters.'
-              }
-            />
-          </div>
-        </div>
-      </section>
-      */}
 
       {/* CTA Section - Clean, Minimal */}
       <section

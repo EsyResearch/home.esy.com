@@ -8,7 +8,6 @@ import {
   FileText,
   Upload,
   Download,
-  Sparkles,
   Cpu,
   ChevronRight,
 } from 'lucide-react';
@@ -71,7 +70,6 @@ export default function ArtifactDetailTemplate({
           {/* Badges */}
           <div className="adt-hero-badges">
             <span className="adt-badge adt-badge--category">
-              <Sparkles size={12} />
               Workflow
             </span>
             {engine && (
@@ -105,7 +103,6 @@ export default function ArtifactDetailTemplate({
               rel="noopener noreferrer"
               className="adt-cta-primary"
             >
-              <Sparkles size={16} />
               Run in Esy
               <ArrowRight size={16} />
             </a>

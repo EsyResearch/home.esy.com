@@ -7,4 +7,6 @@ export { default as TemplateFilters } from './TemplateFilters';
 export { default as TemplatePreview } from './TemplatePreview';
 export { default as TemplateCTA } from './TemplateCTA';
 export { default as TemplateSearch } from './TemplateSearch';
+export { default as BrowseAllTemplates } from './BrowseAllTemplates';
+export { default as WorkflowCategoryPage } from './WorkflowCategoryPage';
 
