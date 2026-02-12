@@ -2518,6 +2518,97 @@ Develop master argument framework:
     ],
     relatedSlugs: ['argumentative-essay-builder', 'chatgpt-argument-analysis-prompt'],
   },
+
+  // ═══════════════════════════════════════════════════════════
+  // WORKFLOW TEMPLATES
+  // ═══════════════════════════════════════════════════════════
+
+  {
+    id: 'wf-1',
+    slug: 'research-infographic',
+    title: 'Research Infographic',
+    shortDescription:
+      'Turn a citation, DOI, or research concept into a publication-ready infographic.',
+    description:
+      'Provide a research citation, DOI, or topic description and Esy produces a structured, data-driven infographic. The workflow extracts key findings, selects appropriate visualizations, generates the layout, and exports in multiple formats — all without prompting.',
+    category: 'template',
+    subcategory: 'essay-research',
+    tags: [
+      'infographic',
+      'research',
+      'data visualization',
+      'workflow',
+      'nano banana',
+      'visual artifact',
+    ],
+    difficulty: 'beginner',
+    isNew: true,
+    isFeatured: true,
+    content: '',
+    variables: [],
+    expectedOutput:
+      'A publication-ready infographic exported as PNG (2x retina), SVG (web embed), and PDF (print 300 DPI).',
+    useCases: [
+      'Academic conference posters',
+      'Research paper supplementary visuals',
+      'Grant proposal figures',
+      'Social media research summaries',
+      'Classroom educational materials',
+    ],
+    relatedSlugs: ['research-paper-builder'],
+    model: 'Gemini',
+    pricing: { type: 'premium', price: 2.99 },
+    // Workflow-specific fields
+    isWorkflow: true,
+    engine: 'Nano Banana Pro',
+    estimatedTime: '~2 min',
+    outputFormats: ['PNG', 'SVG', 'PDF'],
+    inputRequirements: [
+      'Citation, DOI, or topic description',
+      'Data or statistics (optional — auto-extracted if not provided)',
+      'Brand palette preference (optional)',
+    ],
+    workflowStages: [
+      {
+        id: 'intake',
+        label: 'Intake',
+        sublabel: 'Citation or topic',
+      },
+      {
+        id: 'research',
+        label: 'Research',
+        sublabel: 'Extract key findings',
+      },
+      {
+        id: 'design',
+        label: 'Design',
+        sublabel: 'Layout & viz selection',
+      },
+      {
+        id: 'render',
+        label: 'Render',
+        sublabel: 'Generate visual',
+      },
+      {
+        id: 'artifact',
+        label: 'Artifact',
+        sublabel: 'PNG · SVG · PDF',
+        isFinal: true,
+      },
+    ],
+    sampleArtifacts: [
+      {
+        title: 'The Rise of Remote Work 2020–2024',
+        description:
+          'Adoption rates by industry, year-over-year growth trends, and employee satisfaction data synthesized into a single infographic.',
+      },
+      {
+        title: 'Global Water Scarcity Indicators',
+        description:
+          'Geospatial data mapped with consumption trends and projected shortages by region.',
+      },
+    ],
+  },
 ];
 
 // Utility functions for data access

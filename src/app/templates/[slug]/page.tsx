@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import TemplateDetailClient from './TemplateDetailClient';
+import { ArtifactDetailTemplate } from '@/components/ArtifactDetailTemplate';
 import {
   getAllTemplates,
   getTemplateBySlug,
@@ -68,6 +69,23 @@ export default async function TemplateDetailPage({ params }: Props) {
   
   // Generate JSON-LD breadcrumb structured data
   const breadcrumbJsonLd = getTemplateBreadcrumbJsonLd(template);
+
+  // Workflow templates use ArtifactDetailTemplate; prompt templates use legacy TemplateDetailClient
+  if (template.isWorkflow) {
+    return (
+      <>
+        <Script
+          id="breadcrumb-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        />
+        <ArtifactDetailTemplate
+          template={template}
+          relatedTemplates={relatedTemplates}
+        />
+      </>
+    );
+  }
 
   return (
     <>

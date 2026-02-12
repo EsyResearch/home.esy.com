@@ -7,6 +7,14 @@ export type TemplateDifficulty = 'beginner' | 'intermediate' | 'advanced';
 // AI Model targeting for SEO
 export type AIModel = 'ChatGPT' | 'Claude' | 'Gemini' | null;
 
+// Workflow pipeline stage definition
+export interface WorkflowStage {
+  id: string;
+  label: string;
+  sublabel?: string;
+  isFinal?: boolean;
+}
+
 // Pricing for premium prompts
 export interface TemplatePricing {
   type: 'free' | 'premium';
@@ -42,6 +50,14 @@ export interface Template {
   modelSubFamily?: string; // e.g., 'Opus'
   modelVersion?: string; // e.g., '4.6', '5.2'
   agentRole?: string; // e.g., 'planning', 'synthesis', 'code-generation'
+  // Workflow template fields
+  isWorkflow?: boolean;
+  workflowStages?: WorkflowStage[];
+  outputFormats?: string[]; // e.g., ['PNG', 'SVG', 'PDF']
+  estimatedTime?: string; // e.g., '~2 min'
+  inputRequirements?: string[]; // e.g., ['Citation or DOI', 'Data (optional)']
+  sampleArtifacts?: { title: string; description: string }[];
+  engine?: string; // e.g., 'Nano Banana Pro', 'Claude Opus'
 }
 
 export interface TemplateSubcategory {
