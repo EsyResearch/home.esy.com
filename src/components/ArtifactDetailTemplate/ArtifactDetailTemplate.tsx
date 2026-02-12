@@ -51,79 +51,82 @@ export default function ArtifactDetailTemplate({
 
   return (
     <div className="adt-page">
-      {/* ═══ Breadcrumb ═══════════════════════════════════════ */}
-      <nav className="adt-breadcrumb" aria-label="Breadcrumb">
-        <Link href="/templates">Templates</Link>
-        <span className="adt-breadcrumb-sep" aria-hidden="true">
-          <ChevronRight size={12} />
-        </span>
-        <Link href="/templates">{categoryLabel}</Link>
-        <span className="adt-breadcrumb-sep" aria-hidden="true">
-          <ChevronRight size={12} />
-        </span>
-        <span className="adt-breadcrumb-current">{title}</span>
-      </nav>
+      {/* ═══ Hero Wrapper (grid bg covers breadcrumb + hero) ══ */}
+      <div className="adt-hero-wrapper">
+        {/* ═══ Breadcrumb ═══════════════════════════════════════ */}
+        <nav className="adt-breadcrumb" aria-label="Breadcrumb">
+          <Link href="/templates">Templates</Link>
+          <span className="adt-breadcrumb-sep" aria-hidden="true">
+            <ChevronRight size={12} />
+          </span>
+          <Link href="/templates">{categoryLabel}</Link>
+          <span className="adt-breadcrumb-sep" aria-hidden="true">
+            <ChevronRight size={12} />
+          </span>
+          <span className="adt-breadcrumb-current">{title}</span>
+        </nav>
 
-      {/* ═══ Hero ═════════════════════════════════════════════ */}
-      <section className="adt-hero">
-        <div className="adt-hero-text">
-          {/* Badges */}
-          <div className="adt-hero-badges">
-            <span className="adt-badge adt-badge--category">
-              Workflow
-            </span>
-            {engine && (
-              <span className="adt-badge adt-badge--engine">
-                <Cpu size={12} />
-                {engine}
+        {/* ═══ Hero ═════════════════════════════════════════════ */}
+        <section className="adt-hero">
+          <div className="adt-hero-text">
+            {/* Badges */}
+            <div className="adt-hero-badges">
+              <span className="adt-badge adt-badge--category">
+                Workflow
               </span>
-            )}
-            {estimatedTime && (
-              <span className="adt-badge adt-badge--time">
-                <Clock size={12} />
-                {estimatedTime}
-              </span>
-            )}
-            {outputFormats && outputFormats.length > 0 && (
-              <span className="adt-badge adt-badge--format">
-                <FileText size={12} />
-                {outputFormats.join(' / ')}
-              </span>
-            )}
-          </div>
+              {engine && (
+                <span className="adt-badge adt-badge--engine">
+                  <Cpu size={12} />
+                  {engine}
+                </span>
+              )}
+              {estimatedTime && (
+                <span className="adt-badge adt-badge--time">
+                  <Clock size={12} />
+                  {estimatedTime}
+                </span>
+              )}
+              {outputFormats && outputFormats.length > 0 && (
+                <span className="adt-badge adt-badge--format">
+                  <FileText size={12} />
+                  {outputFormats.join(' / ')}
+                </span>
+              )}
+            </div>
 
-          <h1 className="adt-hero-title">{title}</h1>
-          <p className="adt-hero-description">{description}</p>
+            <h1 className="adt-hero-title">{title}</h1>
+            <p className="adt-hero-description">{description}</p>
 
-          {/* CTAs */}
-          <div className="adt-ctas">
-            <a
-              href={esyEditorUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="adt-cta-primary"
-            >
-              Run in Esy
-              <ArrowRight size={16} />
-            </a>
-            <Link href="/essays" className="adt-cta-secondary">
-              Explore Artifacts
-            </Link>
-          </div>
-        </div>
-
-        {/* Side card (pricing) */}
-        {pricing && pricing.price && (
-          <div className="adt-hero-side">
-            <div className="adt-pricing-card">
-              <p className="adt-pricing-value">
-                ${pricing.price.toFixed(2)}
-              </p>
-              <p className="adt-pricing-label">per run</p>
+            {/* CTAs */}
+            <div className="adt-ctas">
+              <a
+                href={esyEditorUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="adt-cta-primary"
+              >
+                Run in Esy
+                <ArrowRight size={16} />
+              </a>
+              <Link href="/essays" className="adt-cta-secondary">
+                Explore Artifacts
+              </Link>
             </div>
           </div>
-        )}
-      </section>
+
+          {/* Side card (pricing) */}
+          {pricing && pricing.price && (
+            <div className="adt-hero-side">
+              <div className="adt-pricing-card">
+                <p className="adt-pricing-value">
+                  ${pricing.price.toFixed(2)}
+                </p>
+                <p className="adt-pricing-label">per run</p>
+              </div>
+            </div>
+          )}
+        </section>
+      </div>
 
       {/* ═══ Workflow Visualization ═══════════════════════════ */}
       {workflowStages && workflowStages.length > 0 && (

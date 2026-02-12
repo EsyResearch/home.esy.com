@@ -28,8 +28,6 @@ const colors = {
   ballColor: '#00A896',
   glowColor: 'rgba(0, 168, 150, 0.25)',
   checkColor: '#2A9D8F',
-  gridColor: '#0A2540',
-  gridOpacity: 0.025,
 };
 
 // ─── Layout Constants ────────────────────────────────────────────
@@ -269,32 +267,6 @@ const WorkflowCircuit: React.FC<WorkflowCircuitProps> = ({ stages, className = '
             </linearGradient>
           )}
         </defs>
-
-        {/* Background grid */}
-        <g opacity={colors.gridOpacity}>
-          {Array.from({ length: Math.ceil(svgH / 26) + 1 }, (_, i) => (
-            <line
-              key={`h${i}`}
-              x1={0}
-              y1={i * 26}
-              x2={svgW}
-              y2={i * 26}
-              stroke={colors.gridColor}
-              strokeWidth="0.5"
-            />
-          ))}
-          {Array.from({ length: Math.ceil(svgW / 26) + 1 }, (_, i) => (
-            <line
-              key={`v${i}`}
-              x1={i * 26}
-              y1={0}
-              x2={i * 26}
-              y2={svgH}
-              stroke={colors.gridColor}
-              strokeWidth="0.5"
-            />
-          ))}
-        </g>
 
         {/* Trace lines between nodes */}
         {nodePositions.map((pos, i) => {

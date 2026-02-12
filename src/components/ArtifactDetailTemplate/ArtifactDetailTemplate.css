@@ -13,8 +13,29 @@
   -webkit-font-smoothing: antialiased;
 }
 
+/* ─── Hero Wrapper (breadcrumb + hero share grid bg) ─────── */
+.adt-hero-wrapper {
+  position: relative;
+}
+
+.adt-hero-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(10, 37, 64, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 37, 64, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* ─── Breadcrumb ──────────────────────────────────────────── */
 .adt-breadcrumb {
+  position: relative;
+  z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
   padding: clamp(6rem, 14vh, 8rem) 24px 0;
@@ -49,6 +70,8 @@
 
 /* ─── Hero ─────────────────────────────────────────────────── */
 .adt-hero {
+  position: relative;
+  z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
   padding: 48px 24px 56px;
