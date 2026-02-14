@@ -1,0 +1,56 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:23:57.565Z",
+  "finished_at": "2026-02-09T20:29:04.626Z",
+  "agent": "visual-essay-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/page.tsx",
+    "{artifact_path}/{slug}.css"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/page.tsx",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/page.tsx",
+      "sha256": "122890498c1f3dc3c30b209fd8a9396456eab9fd92c6884275f10888995987cf",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/{slug}.css",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/silk.css",
+      "sha256": "daf416e542e9cf47556c93a788668df40899b129d559bb07073d800cd3f66b24",
+      "exists": true,
+      "optional": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/page.tsx",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/page.tsx",
+      "pass": true,
+      "description": "Next.js page with metadata and default export"
+    },
+    {
+      "type": "contains_headings",
+      "path": "{artifact_path}/page.tsx",
+      "missing": [],
+      "severity": "error",
+      "description": "page.tsx must contain a default export and metadata definition",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/page.tsx",
+      "pattern": "TODO",
+      "found": false,
+      "severity": "warning",
+      "description": "page.tsx should not contain TODO markers (indicates incomplete implementation)",
+      "pass": true,
+      "warning": false
+    }
+  ],
+  "failure_reason": null
+}

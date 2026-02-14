@@ -1,0 +1,88 @@
+{
+  "attempt": 1,
+  "status": "FAIL",
+  "started_at": "2026-02-10T05:03:23.794Z",
+  "finished_at": "2026-02-10T05:06:20.922Z",
+  "agent": "visualization-architect-auditor",
+  "prompt_sha256": "e38a6c072a7aa425338cfd2e4051e0f2e4d757a388883f389689849303ffa971",
+  "invocation_ids": [
+    "inv_1770699980913_37ko"
+  ],
+  "required_outputs": [
+    "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G5.4-VIZ-AMBITION-AUDIT.md",
+      "sha256": "508529a7668cd32bc293054192c4d56a97eac7753700e826ca813063252c4495",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G5.4-VIZ-AMBITION-AUDIT.md",
+      "pass": true,
+      "description": "Per-visualization technology audit with scores"
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G5.4-VIZ-AMBITION-AUDIT.md",
+      "checks": {
+        "status": "PASS"
+      },
+      "fields": {
+        "status": "FAIL",
+        "gate": "G5.4",
+        "date": "2025-01-03",
+        "average_ambition": 2.125
+      },
+      "failures": [
+        "status: expected \"PASS\", got \"FAIL\""
+      ],
+      "severity": "error",
+      "pass": false
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G5.4-VIZ-AMBITION-AUDIT.md",
+      "patterns": [
+        "Average Score",
+        "Technology Tier"
+      ],
+      "missing": [
+        "Average Score",
+        "Technology Tier"
+      ],
+      "severity": "error",
+      "pass": false
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/TheSwordClient.tsx",
+      "regex": "import .*(d3|three|recharts|Canvas|useRef.*canvas|getContext)",
+      "must_not_match": false,
+      "matched": false,
+      "severity": "error",
+      "description": "Client component or its visualization imports must reference at least one visualization library or Canvas API",
+      "pass": false
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/TheSwordClient.tsx",
+      "regex": "width:\\s*[`'\"]\\$\\{.*\\}%[`'\"]",
+      "must_not_match": true,
+      "matched": false,
+      "severity": "error",
+      "description": "No div-width-percentage bar charts in data-encoding visualizations",
+      "pass": true
+    }
+  ],
+  "failure_reason": "; ; Client component or its visualization imports must reference at least one visualization library or Canvas API"
+}

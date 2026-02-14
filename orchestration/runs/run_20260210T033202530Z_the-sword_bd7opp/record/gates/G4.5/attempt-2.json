@@ -1,0 +1,94 @@
+{
+  "attempt": 2,
+  "status": "PASS",
+  "started_at": "2026-02-10T04:54:35.103Z",
+  "finished_at": "2026-02-10T05:00:23.836Z",
+  "agent": "image-research-licensing-expert",
+  "prompt_sha256": "71f1d6f225b733d6ce649dbdf5dfdccfe6df22bb7ac26c6b7e0c2dfefb777189",
+  "invocation_ids": [
+    "inv_1770699623830_m42k"
+  ],
+  "required_outputs": [
+    "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+    "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+    "{artifact_path}/images-migration.json",
+    "{artifact_path}/images.ts"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/IMAGE_RESEARCH_AUDIT.md",
+      "sha256": "caaad2b85c195140996f4233ef627aa4c59fbcef31fe42b7f4f3cbf80e1179e2",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/IMAGE-DOCUMENTATION.md",
+      "sha256": "a61683414da01c7f2f03939f74b240c4a14eb33cd1cbaeae41e48f692efa90e8",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/images-migration.json",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/images-migration.json",
+      "sha256": "fc17e4f315db3fe91063677dcd0246bb4edf55c219e3c444250bf2b9723e2a14",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/images-migration.json",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/images.ts",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/IMAGE_RESEARCH_AUDIT.md",
+      "pattern": "[UNLICENSED]",
+      "found": false,
+      "severity": "error",
+      "description": "Image audit must not contain unlicensed assets",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/IMAGE_RESEARCH_AUDIT.md",
+      "pattern": "[PENDING]",
+      "found": false,
+      "severity": "warning",
+      "description": "Image audit should not have pending sourcing tasks",
+      "pass": true,
+      "warning": false
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/IMAGE_RESEARCH_AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Image audit must not have FAIL status in frontmatter",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

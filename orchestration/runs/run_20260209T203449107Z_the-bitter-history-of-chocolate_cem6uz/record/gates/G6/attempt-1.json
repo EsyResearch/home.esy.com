@@ -1,0 +1,57 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:34:49.131Z",
+  "finished_at": "2026-02-09T20:34:49.132Z",
+  "agent": "citation-audit-agent",
+  "prompt_sha256": "1d68bb1cf9a573d1cecbc096ef3c51e6c6d44aab4d3021f9b8d8d87ed9ae0208",
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CITATION-AUDIT.md",
+    "{artifact_path}/CITATION-AUDIT.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/research/CITATION-AUDIT.md",
+      "sha256": "d83e728088b73677ff0c8625706af49ba19d35583e8a603a25a52e6437dcef4d",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/CITATION-AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/CITATION-AUDIT.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Citation audit must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "pattern": "Citation Certification: Rejected",
+      "found": false,
+      "severity": "error",
+      "description": "Citation audit must not have Rejected certification",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

@@ -1,0 +1,77 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:08:47.694Z",
+  "finished_at": "2026-02-09T20:09:02.710Z",
+  "agent": "image-sourcing-agent",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+    "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+    "{artifact_path}/images-migration.json",
+    "{artifact_path}/images.ts"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-speed-of-everything/research/IMAGE_RESEARCH_AUDIT.md",
+      "sha256": "ab84a383612823173421ebfd3c4cb90b6be273ccd01b0ff3419d835045007bca",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/images-migration.json",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/images.ts",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "pattern": "[UNLICENSED]",
+      "found": false,
+      "severity": "error",
+      "description": "Image audit must not contain unlicensed assets",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "pattern": "[PENDING]",
+      "found": false,
+      "severity": "warning",
+      "description": "Image audit should not have pending sourcing tasks",
+      "pass": true,
+      "warning": false
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Image audit must not have FAIL status in frontmatter",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

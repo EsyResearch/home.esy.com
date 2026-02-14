@@ -38,6 +38,7 @@ const {
 } = require('./lib/prompt-generator');
 
 const readline = require('readline');
+const path = require('path');
 
 function parseArgs(args) {
   const parsed = { _: [] };
@@ -132,6 +133,19 @@ Commands:
     --gate <Gx>             Gate code
     --agent <name>          Agent name
     --status <status>       SUCCESS|FAIL (default: SUCCESS)
+
+  agent execute       Execute a single gate using Claude API (agents-runtime)
+    --run <run-id>          Run ID (gate context is loaded from the run)
+    --gate <Gx>             Gate code to execute
+
+  agent run-workflow  Execute entire workflow automatically via Claude API
+    --slug <slug>           Essay slug (REQUIRED)
+    --workflow <name>       Workflow name (default: visual-essay)
+    --artifact-path <path>  Override essay dir
+    --depth <mode>          Depth mode: quick|standard|deep
+
+  agent list-agents   List all available agents
+  agent config        Show routing table (or --gate <Gx> for one gate)
 
 Examples:
   # Run the full visual-essay pipeline (recommended — slug auto-derives the path)
@@ -642,6 +656,273 @@ async function main() {
         const result = failGate(runId, gateCode, reason);
         console.log(`❌ Gate ${gateCode} marked as FAILED`);
         console.log(`  Reason: ${reason}`);
+        
+        return;
+      }
+    }
+    
+    // AGENT commands (agents-runtime integration)
+    if (command === 'agent') {
+      if (subcommand === 'execute') {
+        const { gate: gateCode, run: runId, slug: agentSlug } = args;
+        
+        if (!runId || !gateCode) {
+          console.error('Error: --run and --gate are required');
+          console.error('Usage: node cli.js agent execute --run <run-id> --gate <Gx>');
+          process.exit(1);
+        }
+        
+        // Load run to get context
+        const { runRecord } = loadRun(runId);
+        const slug = agentSlug || runRecord.workflow.slug;
+        const artifactPath = runRecord.workflow.artifact_path;
+        
+        // Find gate definition from workflow
+        const workflow = loadWorkflow(runRecord.workflow.name);
+        const gateDef = workflow.gates.find(g => g.gate === gateCode);
+        
+        if (!gateDef) {
+          console.error(`Gate ${gateCode} not found in workflow ${runRecord.workflow.name}`);
+          process.exit(1);
+        }
+        
+        // Load agents-runtime
+        const { executeGate } = require('../agents-runtime');
+        const { loadContract, getRequiredOutputs } = require('./lib/contract-loader');
+        
+        // Load contract for required outputs
+        let requiredOutputs = [];
+        try {
+          const contract = loadContract(gateCode);
+          const context = { slug, artifact_path: artifactPath };
+          const outputs = getRequiredOutputs(contract, context);
+          requiredOutputs = outputs.map(o => o.pathTemplate);
+        } catch (e) {
+          console.log(`Warning: Could not load contract for ${gateCode}: ${e.message}`);
+        }
+        
+        // Start gate in run record
+        const packetSha256 = hashString(`agent-execute-${gateCode}-${Date.now()}`);
+        startGate(runId, gateCode, gateDef.agent, packetSha256);
+        
+        console.log('');
+        console.log('═══════════════════════════════════════════════════════════════════════════════');
+        console.log(`  AGENT EXECUTION: ${gateCode} — ${gateDef.name}`);
+        console.log('═══════════════════════════════════════════════════════════════════════════════');
+        console.log('');
+        console.log(`  Agent:    ${gateDef.agent}`);
+        console.log(`  Slug:     ${slug}`);
+        console.log(`  Path:     ${artifactPath}`);
+        console.log('');
+        
+        const projectRoot = path.resolve(__dirname, '..', '..');
+        
+        // Execute gate with real-time event logging
+        const result = await executeGate({
+          gateCode,
+          gateName: gateDef.name,
+          agentName: gateDef.agent,
+          slug,
+          artifactPath,
+          projectRoot,
+          requiredOutputs,
+          onEvent: (event) => {
+            switch (event.type) {
+              case 'gate:config':
+                console.log(`  Model:    ${event.model}`);
+                console.log(`  Rounds:   max ${event.maxToolRounds}`);
+                console.log('');
+                break;
+              case 'round:start':
+                process.stdout.write(`  Round ${event.round}/${event.maxRounds}...`);
+                break;
+              case 'round:response':
+                console.log(` ${event.stopReason} (in: ${event.inputTokens}, out: ${event.outputTokens})`);
+                break;
+              case 'tool:call':
+                console.log(`    → ${event.tool}(${event.input.path || ''})`);
+                break;
+              case 'tool:result':
+                if (!event.success) {
+                  console.log(`    ✗ ${event.error}`);
+                }
+                break;
+              case 'round:error':
+                console.log(` ❌ ERROR: ${event.error}`);
+                break;
+              case 'budget:exceeded':
+                console.log(`  ⚠️  Budget exceeded: ${event.metric} (${event.used}/${event.limit})`);
+                break;
+              case 'gate:complete':
+                console.log('');
+                console.log(`  ────────────────────────────────────────`);
+                console.log(`  Status:      ${event.stopReason}`);
+                console.log(`  Input:       ${event.totalInput.toLocaleString()} tokens`);
+                console.log(`  Output:      ${event.totalOutput.toLocaleString()} tokens`);
+                console.log(`  Rounds:      ${event.rounds}`);
+                console.log(`  Files:       ${event.filesWritten} written`);
+                console.log(`  Duration:    ${(event.durationMs / 1000).toFixed(1)}s`);
+                break;
+              case 'gate:error':
+                console.error(`  ❌ Error: ${event.error}`);
+                break;
+            }
+          }
+        });
+        
+        // Record invocation in run record
+        recordInvocation(runId, {
+          gate: gateCode,
+          agent: gateDef.agent,
+          model: result.model,
+          started_at: new Date(Date.now() - result.durationMs).toISOString(),
+          finished_at: new Date().toISOString(),
+          duration_ms: result.durationMs,
+          status: result.completed ? 'SUCCESS' : 'FAIL',
+          input_refs: [],
+          output_refs: result.filesWritten.map(f => f.path)
+        });
+        
+        // Run contract validations
+        console.log('');
+        console.log('  🔍 Running contract validations...');
+        const validationResult = await finishGate(runId, gateCode);
+        
+        if (validationResult.pass) {
+          console.log(`  ✅ Gate ${gateCode} PASSED`);
+        } else {
+          console.log(`  ❌ Gate ${gateCode} FAILED`);
+          console.log(`     ${validationResult.attempt.failure_reason}`);
+        }
+        
+        console.log('');
+        for (const v of validationResult.results) {
+          const icon = v.pass ? '✓' : '✗';
+          console.log(`  ${icon} ${v.type}: ${v.description || v.path || ''}`);
+        }
+        
+        return;
+      }
+      
+      if (subcommand === 'run-workflow') {
+        const { workflow: wfName, slug: wfSlug, 'artifact-path': wfArtifactPath, depth: wfDepth } = args;
+        
+        if (!wfSlug) {
+          console.error('Error: --slug is required');
+          console.error('Usage: node cli.js agent run-workflow --slug <slug> [--workflow visual-essay]');
+          process.exit(1);
+        }
+        
+        const workflowName = wfName || 'visual-essay';
+        const artifactPath = wfArtifactPath || `${STANDARD_ESSAY_DIR}/${wfSlug}`;
+        const depth = wfDepth || 'standard';
+        const projectRoot = path.resolve(__dirname, '..', '..');
+        
+        // Load agents-runtime
+        const { executeWorkflow } = require('../agents-runtime');
+        
+        console.log('');
+        console.log('═══════════════════════════════════════════════════════════════════════════════');
+        console.log('  AUTOMATED WORKFLOW EXECUTION');
+        console.log('═══════════════════════════════════════════════════════════════════════════════');
+        console.log('');
+        console.log(`  Workflow:  ${workflowName}`);
+        console.log(`  Slug:      ${wfSlug}`);
+        console.log(`  Path:      ${artifactPath}`);
+        console.log(`  Depth:     ${depth}`);
+        console.log('');
+        
+        const workflowResult = await executeWorkflow({
+          workflowName,
+          slug: wfSlug,
+          artifactPath,
+          projectRoot,
+          onEvent: (event) => {
+            switch (event.type) {
+              case 'workflow:start':
+                console.log(`  Starting ${event.gates} gates...`);
+                console.log('');
+                break;
+              case 'workflow:gate_queued':
+                console.log(`  ┌── ${event.gate}: ${event.name}`);
+                break;
+              case 'gate:config':
+                console.log(`  │   Model: ${event.model}`);
+                break;
+              case 'round:start':
+                process.stdout.write(`  │   Round ${event.round}...`);
+                break;
+              case 'round:response':
+                console.log(` ${event.stopReason} (${event.outputTokens} tokens)`);
+                break;
+              case 'tool:call':
+                console.log(`  │   → ${event.tool}(${event.input.path || ''})`);
+                break;
+              case 'gate:complete':
+                console.log(`  └── ${event.stopReason} (${event.rounds} rounds, ${(event.durationMs / 1000).toFixed(1)}s)`);
+                console.log('');
+                break;
+              case 'workflow:complete':
+                console.log('  ════════════════════════════════════════');
+                console.log(`  Workflow complete: ${event.gatesCompleted}/${event.gatesTotal} gates`);
+                console.log(`  Total input:  ${event.totalInput.toLocaleString()} tokens`);
+                console.log(`  Total output: ${event.totalOutput.toLocaleString()} tokens`);
+                console.log(`  Duration:     ${(event.durationMs / 1000).toFixed(0)}s`);
+                break;
+              case 'workflow:aborted':
+                console.log(`  ⚠️  Workflow aborted at ${event.gate}: ${event.reason}`);
+                break;
+            }
+          },
+          onGateComplete: (gate, result) => {
+            if (!result.completed) {
+              console.log(`  ⚠️  Gate ${gate} did not complete: ${result.stopReason}`);
+              // Continue anyway — let the validator catch it
+            }
+            return true;
+          }
+        });
+        
+        return;
+      }
+      
+      if (subcommand === 'list-agents') {
+        const { listAgents } = require('../agents-runtime');
+        const agents = listAgents();
+        
+        console.log('Available agents:');
+        console.log('');
+        
+        const categories = {};
+        for (const agent of agents) {
+          if (!categories[agent.category]) categories[agent.category] = [];
+          categories[agent.category].push(agent);
+        }
+        
+        for (const [category, categoryAgents] of Object.entries(categories)) {
+          console.log(`  ${category}/`);
+          for (const agent of categoryAgents) {
+            console.log(`    - ${agent.name}`);
+          }
+        }
+        
+        return;
+      }
+      
+      if (subcommand === 'config') {
+        const { gate: gateCode } = args;
+        const { getGateConfig } = require('../agents-runtime');
+        
+        if (gateCode) {
+          const config = getGateConfig(gateCode);
+          console.log(`Gate ${gateCode} configuration:`);
+          console.log(JSON.stringify(config, null, 2));
+        } else {
+          const { loadRoutingTable } = require('../agents-runtime');
+          const table = loadRoutingTable();
+          console.log('Routing table:');
+          console.log(JSON.stringify(table, null, 2));
+        }
         
         return;
       }

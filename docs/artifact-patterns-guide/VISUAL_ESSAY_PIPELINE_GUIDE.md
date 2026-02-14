@@ -174,6 +174,9 @@ G1 → G2 → G3 → G4 → G4.1 → G4.5 → G5 → G5.2 → G5.5 → G6 → G7
           │  • ≥95% className coverage      │
           │  • No convention mismatches     │
           │  • Styling properly applied     │
+          │  • Markup rendering integrity   │
+          │  • No raw Unicode escapes in    │
+          │    JSX text content             │
           └────────────────┬────────────────┘
                            │
           ┌────────────────▼────────────────┐
@@ -346,7 +349,7 @@ G1 → G2 → G3 → G4 → G4.1 → G4.5 → G5 → G5.2 → G5.5 → G6 → G7
 | **G4.1** | Thematic authenticity verified, no cross-essay collisions, CSS implements design research | G4.5 |
 | **G4.5** | All images sourced, URLs extracted, licenses verified | G5 |
 | **G5** | All sections drafted, fact-checked, uses research package | G5.2 |
-| **G5.2** | CSS selectors bind to TSX classNames (≥95%), no convention mismatches | G5.5 |
+| **G5.2** | CSS selectors bind to TSX classNames (≥95%), no convention mismatches, markup rendering integrity passes (no raw Unicode escapes in JSX text) | G5.5 |
 | **G5.5** | Bibliography section complete (Works Cited, Image Credits, A/V, Data Sources) | G6 |
 | **G6** | Citation Certification achieved (content vs. research match) | G7 |
 | **G7** | Immersive Scrolling Auditor certification (≥8.0/10, 60fps, mobile verified) | G8 |
@@ -427,10 +430,11 @@ Content Complete → Integration Agent → Bibliography Orchestrator
                          │                    │
                          ▼                    ▼
                    G5.2: CSS↔TSX        G5.5: Works Cited
-                   binding verified      Image Credits
+                   binding verified           Image Credits
+                   + markup integrity
 ```
 
-**Critical**: CSS must properly bind to TSX classNames (≥95% coverage) before bibliography implementation.
+**Critical**: CSS must properly bind to TSX classNames (≥95% coverage) and markup rendering integrity must pass (no raw Unicode escapes in JSX text content) before bibliography implementation.
 
 ### Bibliography Flow (G5.5)
 
@@ -510,6 +514,48 @@ The Visual Essay Orchestrator must verify spec is research-backed:
 
 ---
 
+## Known Anti-Patterns
+
+### Automated Validation
+
+The following anti-patterns are caught by automated contract validations at their respective gates:
+
+| Anti-Pattern | Gate | Contract | Severity | Detection |
+|-------------|------|----------|----------|-----------|
+| Emoji characters in client component | G5 | `G5.contract.json` | Error | Regex: Unicode emoji ranges |
+| Raw `\uXXXX` escapes in JSX text content | G5 | `G5.contract.json` | Error | Regex: `>([^{<"]*\\u[0-9a-fA-F]{4})` |
+| CSS↔TSX naming convention mismatch | G5.2 | Design Research Integration Agent | Error | Binding analysis |
+
+### JSX Unicode Escape Anti-Pattern
+
+**Problem**: Unicode escape sequences (`\u0113`, `\u2014`, `\u03c6\u03c9\u03bd\u03ae`, etc.) placed directly in JSX text content render as literal text in the browser, not as the intended characters.
+
+**Root Cause**: JSX text content between tags is treated as raw text, not as a JavaScript string literal. JavaScript string escape processing only occurs inside `{}` expression containers or in attribute values.
+
+**Example (Bug)**:
+```tsx
+{/* BAD — renders as literal "phon\u0113" */}
+<div className="hero-transliteration">phon\u0113</div>
+```
+
+**Example (Fix — preferred)**:
+```tsx
+{/* GOOD — renders as "phonē" using actual UTF-8 character */}
+<div className="hero-transliteration">phonē</div>
+```
+
+**Example (Fix — alternative)**:
+```tsx
+{/* GOOD — renders as "phonē" using JS expression container */}
+<div className="hero-transliteration">{"phon\u0113"}</div>
+```
+
+**Caught At**: G5 (contract validation) and G5.2 (Design Research Integration Agent — Markup Rendering Integrity check).
+
+**Origin**: Discovered during the "Phonē: From Voice to Device" essay (February 2026), where 40+ instances of Unicode escapes for macron-accented Latin characters, Greek text, and typographic dashes rendered as literal escape sequences in the browser.
+
+---
+
 ## Related Documents
 
 ### Orchestration Agents
@@ -546,9 +592,13 @@ The Visual Essay Orchestrator must verify spec is research-backed:
 ---
 
 ## Last Updated
-January 18, 2026
+February 13, 2026
 
 ### Recent Changes
+- Added Known Anti-Patterns section documenting automated validations
+- Documented JSX Unicode escape anti-pattern (discovered in Phone essay)
+- Updated G5.2 gate to include Markup Rendering Integrity verification
+- Updated G5.2 pass criteria to require markup integrity check
 - Added missing auditor agents to Specialist Agents table:
   - Design Slop Auditor (AI pattern detection)
   - Content Research Reconciliation Agent (research→spec gaps)

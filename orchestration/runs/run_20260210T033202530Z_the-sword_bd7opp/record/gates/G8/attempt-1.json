@@ -1,0 +1,80 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-10T05:30:31.876Z",
+  "finished_at": "2026-02-10T05:32:42.188Z",
+  "agent": "publish-artifact-orchestrator",
+  "prompt_sha256": "0be565056a92b4308f8000e3cb8ae7be74ba4d6d01a40a6da9e6e0ad1428cb7d",
+  "invocation_ids": [
+    "inv_1770701562182_v7l0"
+  ],
+  "required_outputs": [
+    "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+    "{artifact_path}/PUBLICATION-CERTIFICATION.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PUBLICATION-CERTIFICATION.md",
+      "sha256": "8a055e78c241b33bd8e2a6393e2f3e604fbd1a7083a3e8a522180ddad922136b",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/PUBLICATION-CERTIFICATION.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PUBLICATION-CERTIFICATION.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Publication certification must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PUBLICATION-CERTIFICATION.md",
+      "pattern": "NO-GO",
+      "found": false,
+      "severity": "error",
+      "description": "Publication certification must not be NO-GO",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PUBLICATION-CERTIFICATION.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "fields": {
+        "status": "CONDITIONAL",
+        "gate": "G8",
+        "date": "2025-01-03"
+      },
+      "failures": [],
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

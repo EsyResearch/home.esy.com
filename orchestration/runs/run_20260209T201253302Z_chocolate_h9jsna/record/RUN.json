@@ -1,0 +1,132 @@
+{
+  "run_id": "run_20260209T201253302Z_chocolate_h9jsna",
+  "workflow": {
+    "name": "visual-essay",
+    "version": "local-dev",
+    "slug": "chocolate",
+    "artifact_path": "src/app/essays/chocolate"
+  },
+  "depth": "standard",
+  "prompt": null,
+  "status": "RUNNING",
+  "started_at": "2026-02-09T20:12:53.304Z",
+  "finished_at": null,
+  "gates": [
+    {
+      "gate": "G1",
+      "name": "Intake Approval",
+      "status": "RUNNING",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "RUNNING",
+          "started_at": "2026-02-09T20:12:53.305Z",
+          "finished_at": null,
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": "f48b9054863fb95135c8e8307741d8ac508d64bed6b677e3a5dd0491f146456e",
+          "invocation_ids": [],
+          "required_outputs": [],
+          "artifacts": [],
+          "validations": [],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G2",
+      "name": "Research Complete",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G3",
+      "name": "Spec Approval",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G4",
+      "name": "Design Research",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G4.1",
+      "name": "Design Research Reconciliation",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G4.5",
+      "name": "Image Sourcing",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G5",
+      "name": "Content Complete",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G5.2",
+      "name": "Design Fidelity Audit",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G5.3",
+      "name": "Diagram-Code Reconciliation",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G5.5",
+      "name": "Bibliography Implementation",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G6",
+      "name": "Citation Audit",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G7",
+      "name": "Scroll Certification",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G8",
+      "name": "Publication Certification",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G9",
+      "name": "Publication Approval",
+      "status": "NOT_STARTED",
+      "attempts": []
+    }
+  ],
+  "invocations": [],
+  "artifacts_index": [],
+  "validations": [],
+  "events": [
+    {
+      "timestamp": "2026-02-09T20:12:53.304Z",
+      "type": "RUN_STARTED",
+      "message": "Run initialized for visual-essay/chocolate"
+    },
+    {
+      "timestamp": "2026-02-09T20:12:53.305Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 1,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 1 started with agent visual-essay-orchestrator"
+    }
+  ]
+}

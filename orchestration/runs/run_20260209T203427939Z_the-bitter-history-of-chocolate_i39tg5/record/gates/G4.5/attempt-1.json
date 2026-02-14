@@ -1,0 +1,77 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:34:27.951Z",
+  "finished_at": "2026-02-09T20:34:27.952Z",
+  "agent": "image-research-licensing-expert",
+  "prompt_sha256": "bb8050fef5df5fa08b670a3e4e3ffcb392d0c0bc340245a34f7f54772481c695",
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+    "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+    "{artifact_path}/images-migration.json",
+    "{artifact_path}/images.ts"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/research/IMAGE_RESEARCH_AUDIT.md",
+      "sha256": "aead5904ccb82cd6a86c3b1031947cd0920071d9fac3aa65a3c8a563c677da28",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/images-migration.json",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/images.ts",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "pattern": "[UNLICENSED]",
+      "found": false,
+      "severity": "error",
+      "description": "Image audit must not contain unlicensed assets",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "pattern": "[PENDING]",
+      "found": false,
+      "severity": "warning",
+      "description": "Image audit should not have pending sourcing tasks",
+      "pass": true,
+      "warning": false
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Image audit must not have FAIL status in frontmatter",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

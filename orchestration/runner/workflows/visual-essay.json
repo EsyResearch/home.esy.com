@@ -58,12 +58,30 @@
       "phase": "Production"
     },
     {
+      "gate": "G4.6",
+      "name": "Visualization Technology Decision",
+      "agent": "visualization-architect",
+      "contract": "orchestration/gates/contracts/G4.6.contract.json",
+      "prompt_template": "G4.6",
+      "description": "Maps each visualization to a minimum technology tier (CSS/SVG/D3/Canvas/Three.js). Prevents CSS-only data visualizations.",
+      "phase": "Production"
+    },
+    {
       "gate": "G5",
       "name": "Content Complete",
       "agent": "production-orchestrator",
       "contract": "orchestration/gates/contracts/G5.contract.json",
       "prompt_template": "G5",
       "description": "All narrative written, visuals created, component implemented, fact-checked",
+      "phase": "Production"
+    },
+    {
+      "gate": "G5.4",
+      "name": "Visualization Ambition Audit",
+      "agent": "visualization-architect-auditor",
+      "contract": "orchestration/gates/contracts/G5.4.contract.json",
+      "prompt_template": "G5.4",
+      "description": "Audits each visualization's implementation against its G4.6 technology tier assignment. Minimum average ambition score 3.5/5.",
       "phase": "Production"
     },
     {
@@ -100,6 +118,15 @@
       "contract": "orchestration/gates/contracts/G6.contract.json",
       "prompt_template": "G6",
       "description": "Verifies all sources, authenticates quotes, checks link health, content-research alignment",
+      "phase": "Audit"
+    },
+    {
+      "gate": "G6.6",
+      "name": "Prose Quality Audit",
+      "agent": "prose-quality-auditor",
+      "contract": "orchestration/gates/contracts/G6.6.contract.json",
+      "prompt_template": "G6.6",
+      "description": "Anti-slop gate: evaluates writing craft, voice consistency, transition quality, specificity",
       "phase": "Audit"
     },
     {

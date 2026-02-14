@@ -1,0 +1,100 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-10T05:06:20.998Z",
+  "finished_at": "2026-02-10T05:12:08.122Z",
+  "agent": "design-research-implementation-auditor",
+  "prompt_sha256": "a3296a4348b82e8f9258da2b24c0a1bfa1d73f6cc9d8b97a12fc88408b2d73dc",
+  "invocation_ids": [
+    "inv_1770700328117_9gvi"
+  ],
+  "required_outputs": [
+    "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+    "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+    "{artifact_path}/DESIGN-RESEARCH.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "sha256": "2a04f08c77d60ca3f77eb446f14b330cb1bce844960733c848f1c4856e8767db",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "sha256": "2a04f08c77d60ca3f77eb446f14b330cb1bce844960733c848f1c4856e8767db",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/DESIGN-RESEARCH.md",
+      "sha256": "936c5c8217fe834ea3de953e6830fb07f2f8889d39b90307343ab9499cb28ea0",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+          "exists": true
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/DESIGN-RESEARCH.md",
+      "pass": true,
+      "description": "Design research must still exist (design source of truth)"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Design fidelity audit must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        },
+        "blocking_issues": {
+          "min": 0
+        }
+      },
+      "fields": {
+        "gate": "G5.2",
+        "type": "audit",
+        "status": "PASS",
+        "score": 92,
+        "threshold": 85,
+        "blocking_issues": 0,
+        "warning_issues": 3,
+        "agent": "design-research-implementation-auditor",
+        "date": "2025-01-03",
+        "essay": "the-sword"
+      },
+      "failures": [],
+      "severity": "error",
+      "description": "Frontmatter must indicate non-FAIL status with zero blocking issues",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

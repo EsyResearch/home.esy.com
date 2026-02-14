@@ -1,0 +1,80 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:22:08.138Z",
+  "finished_at": "2026-02-09T20:22:42.068Z",
+  "agent": "design-researcher",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+    "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+    "{artifact_path}/DESIGN-RESEARCH.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/research/G4.1-DESIGN-RECONCILIATION.md",
+      "sha256": "5d8e4d3d36980c7bba37e5000bdbdc4ddb592402c1a35cb94e44c3bdd828c499",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/DESIGN-RESEARCH.md",
+      "sha256": "a2507078fff09f4fcd4264ca0e5ca615ceda8ab655be4f0af36172f6912705b3",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/DESIGN-RESEARCH.md",
+      "pass": true,
+      "description": "Design research report (must exist and be reconciled)"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "pattern": "[UNRECONCILED]",
+      "found": false,
+      "severity": "error",
+      "description": "Design research must not contain [UNRECONCILED] marker",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "pattern": "[COLLISION]",
+      "found": false,
+      "severity": "error",
+      "description": "Design research must not flag aesthetic collisions with other essays",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Reconciliation audit must not have FAIL status in frontmatter",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

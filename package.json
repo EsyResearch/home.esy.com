@@ -11,9 +11,14 @@
     "build:static": "NODE_ENV=production next build",
     "start": "next start",
     "start:static": "npx serve@latest out",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "node --test orchestration/runner/__tests__/*.test.js",
+    "test:validator": "node --test orchestration/runner/__tests__/validator.test.js",
+    "test:contracts": "node --test orchestration/runner/__tests__/contracts.test.js",
+    "test:regression": "node --test orchestration/runner/__tests__/regression.test.js"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.74.0",
     "@aws-sdk/client-s3": "^3.978.0",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",

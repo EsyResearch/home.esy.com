@@ -1,0 +1,82 @@
+{
+  "attempt": 1,
+  "status": "FAIL",
+  "started_at": "2026-02-10T05:13:23.365Z",
+  "finished_at": "2026-02-10T05:19:03.262Z",
+  "agent": "bibliography-orchestrator",
+  "prompt_sha256": "b8ce9484027a8ac0feb17dc894c7d466ef58b7802ec456ed9c27d278246fa4d0",
+  "invocation_ids": [
+    "inv_1770700743256_uczd"
+  ],
+  "required_outputs": [
+    "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+    "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "sha256": "470df310b959d17accb61f126d2bfc3eaf17d9222b7c072bbbb50184adc2808c",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/BIBLIOGRAPHY-AUDIT.md",
+      "sha256": "7d044349b4ec0e4dbd825a5b66771f34fe83346c0207933da6266afefa0c7092",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+          "exists": true
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Bibliography audit must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "pattern": "Overall Status: ❌",
+      "found": false,
+      "severity": "error",
+      "description": "Bibliography audit must not report overall failure",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "fields": {},
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL",
+      "reason": "File not found or no YAML frontmatter: /Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "pass": false
+    }
+  ],
+  "failure_reason": "Frontmatter status must not be FAIL"
+}

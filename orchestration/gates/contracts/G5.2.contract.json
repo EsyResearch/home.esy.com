@@ -39,6 +39,20 @@
       "pattern": "status: FAIL",
       "severity": "error",
       "description": "Design fidelity audit must not have FAIL status in frontmatter"
+    },
+    {
+      "type": "frontmatter_status",
+      "target": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        },
+        "blocking_issues": {
+          "min": 0
+        }
+      },
+      "severity": "error",
+      "description": "Frontmatter must indicate non-FAIL status with zero blocking issues"
     }
   ],
   "notes": "G5.2 is the post-production design quality gate. The Design Research Implementation Auditor compares every CSS token, typography setting, color value, spacing value, animation timing, and data visualization against DESIGN-RESEARCH.md and the invocation spec. For data journalism essays, it also verifies visualization implementations (projections, interactivity, responsive behavior). The audit artifact must include a YAML frontmatter header per the Gate Accountability Standard. See orchestration/standards/gate-accountability.md."

@@ -1,0 +1,62 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:34:38.937Z",
+  "finished_at": "2026-02-09T20:34:38.938Z",
+  "agent": "design-research-implementation-auditor",
+  "prompt_sha256": "bce3162b1e47d02c58e5b2b51680532d636ae658edf26b80b1b5e5d2a7ae8312",
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+    "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+    "{artifact_path}/DESIGN-RESEARCH.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "sha256": "3590cfc9e7e288b93a05ca52ca4085f65a37a7fc47fadc6d8d293a6e6addf77d",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/DESIGN-RESEARCH.md",
+      "sha256": "29e98c6d73e6483093baf7cddb7a95096dcd13dbc4ff28c8ee37ab82200b0364",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+          "exists": true
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/DESIGN-RESEARCH.md",
+      "pass": true,
+      "description": "Design research must still exist (design source of truth)"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Design fidelity audit must not have FAIL status in frontmatter",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

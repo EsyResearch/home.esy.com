@@ -1,0 +1,57 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:00:41.564Z",
+  "finished_at": "2026-02-09T20:02:06.741Z",
+  "agent": "visual-essay-orchestrator",
+  "prompt_sha256": "d12ab171eac4ecfa6730343e4869133967554e58b18e0f29e97382a1b3574c90",
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/G1-INTAKE.md",
+    "{artifact_path}/research/INTAKE.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-speed-of-everything/G1-INTAKE.md",
+      "sha256": "86e34ec2a7802bc91531b725faf6d3866a398c5517469842af7af84be4c28e36",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/G1-INTAKE.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/research/INTAKE.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "pattern": "[REJECTED]",
+      "found": false,
+      "severity": "error",
+      "description": "Intake must not contain [REJECTED] marker",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Intake must not have FAIL status in frontmatter",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

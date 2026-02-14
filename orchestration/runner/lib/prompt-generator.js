@@ -259,6 +259,50 @@ Pass criteria:
 - No [COLLISION] markers remain
 - Design is demonstrably unique to this subject`;
 
+    case 'G4.6':
+      return `## G4.6: Visualization Technology Decision
+
+Using @orchestration/standards/visualization-quality-standard.md
+
+Execute VISUALIZATION TECHNOLOGY DECISION for this visual essay:
+
+Topic/Slug: ${slug}
+Artifact Path: ${artifactPath}
+Design Research: ${artifactPath}/DESIGN-RESEARCH.md
+Spec: orchestration/skills/visual-essay-invocation/specs/${slug}.md
+
+Tasks:
+1. Read the DESIGN-RESEARCH.md and spec to identify all planned visualizations
+2. For EACH visualization, assign a minimum technology tier:
+   - Tier 0 (CSS): ONLY for progress bars, hover states, micro-interactions
+   - Tier 1 (SVG): Annotated diagrams, small data (< 20 points), process flows
+   - Tier 2 (D3+SVG): Data visualizations, animated transitions, geographic
+   - Tier 3 (Canvas): High-volume elements, particle systems, scroll-linked rendering
+   - Tier 4 (Three.js): 3D scenes, spatial simulations
+3. Reference the Subject-to-Technology Mapping in the standard
+4. Specify required imports/libraries for each visualization
+5. Flag any visualization > 80 lines that needs its own component file
+
+Write to: ${artifactPath}/VIZ-TECH-DECISIONS.md
+
+CRITICAL RULES:
+- Any visualization encoding data (speeds, quantities, comparisons) MUST be Tier 2+
+- A <div> with width: X% is NOT a chart — it is a colored rectangle
+- Every visualization must justify its tier assignment
+- If the design research specifies "animated race" or "interactive chart", Tier 2+ is mandatory
+
+The VIZ-TECH-DECISIONS.md MUST include:
+- YAML frontmatter with status: APPROVED
+- ## Technology Assignments section
+- Per-visualization: name, purpose, assigned tier, Justification, required imports, estimated lines
+
+Available libraries (zero cost to use — already installed):
+- three (Three.js for 3D/WebGL)
+- d3-scale, d3-geo, d3-interpolate (D3 for data → visual mapping)
+- recharts (declarative React charts)
+- lucide-react (SVG icons)
+- Canvas API (native, no install needed)`;
+
     case 'G4.5':
       return `## G4.5: Image Sourcing
 
@@ -323,6 +367,49 @@ The implementation must:
   with an ESSAY_META object containing: title, subtitle, category, subcategory,
   readTime, sourceCount, sourceTier, sectionCount, visualizationCount,
   designSystem, published, model, template, palette, visualizations, keySources`;
+
+    case 'G5.4':
+      return `## G5.4: Visualization Ambition Audit
+
+Using @orchestration/standards/visualization-quality-standard.md
+
+Execute VISUALIZATION AMBITION AUDIT for this visual essay:
+
+Topic/Slug: ${slug}
+Artifact Path: ${artifactPath}
+VIZ-TECH-DECISIONS: ${artifactPath}/VIZ-TECH-DECISIONS.md
+Client Component: ${artifactPath}/[Name]Client.tsx (auto-discovered)
+
+CRITICAL: This is an AUDIT gate — must run in a SEPARATE session from G5 producer.
+
+Tasks:
+1. Load VIZ-TECH-DECISIONS.md from G4.6 (the assigned technology tiers)
+2. Read the client component and any visualization component files
+3. For each visualization, score on the 1-5 Ambition Rubric:
+   - 1: CSS-styled div (width: X%, border, background-color)
+   - 2: CSS with animation (keyframes, transitions)
+   - 3: SVG with data binding (D3-computed positions, SVG paths)
+   - 4: Canvas/D3 with interaction (requestAnimationFrame, scroll-linked, stateful)
+   - 5: Three.js / immersive (WebGL, 3D scene, camera)
+4. Verify each score meets or exceeds its G4.6 assigned tier
+5. Check component decomposition (> 80 lines → separate file required)
+6. Verify appropriate library imports are present
+
+Write to: ${artifactPath}/G5.4-VIZ-AMBITION-AUDIT.md
+
+The audit report MUST include:
+- YAML frontmatter with gate, status, score (average), threshold (3.5)
+- ## Visualization Scores section with per-viz breakdown
+- Technology Tier verification (assigned vs actual)
+- Average Score calculation
+- Component decomposition check
+- Library import verification
+
+Pass criteria:
+- Average ambition score ≥ 3.5
+- No data-encoding visualization scores ≤ 2
+- Technology tier matches or exceeds G4.6 assignment
+- Complex visualizations (> 80 lines) in separate files`;
 
     case 'G5.2':
       return `## G5.2: Design Fidelity Audit
@@ -423,6 +510,48 @@ The audit report must include:
 - Quote verification status
 - Gap analysis (uncited claims)
 - Citation Certification status`;
+
+    case 'G6.6':
+      return `## G6.6: Prose Quality Audit
+
+Using @orchestration/agents/auditors/prose-quality-auditor.md
+
+Execute PROSE QUALITY AUDIT for this visual essay:
+
+Topic/Slug: ${slug}
+Artifact Path: ${artifactPath}
+Client Component: ${artifactPath}/[Name]Client.tsx (auto-discovered)
+
+CRITICAL: This audit MUST be performed in a SEPARATE session from the G5 content producer.
+The auditor must evaluate the prose with fresh eyes, no knowledge of production shortcuts.
+
+Tasks:
+1. Read the client component — all prose, headings, transitions, captions
+2. Evaluate on five weighted dimensions:
+   - Voice Consistency (20%) — consistent tone, no jarring shifts
+   - AI Slop Detection (30%) — no filler phrases, empty transitions, generic patterns
+   - Transition Quality (20%) — section transitions are earned and specific
+   - Specificity (15%) — claims backed by numbers, names, dates
+   - Rhythm & Pacing (15%) — sentence length varies, not monotonous
+3. Flag all AI slop anti-patterns found:
+   "Let's dive into", "In today's world", "It's important to note",
+   "delve", "tapestry", "In conclusion", "fascinating journey",
+   "unlock the secrets", "the world of", "When it comes to"
+4. Produce the audit report with YAML frontmatter and per-dimension scores
+
+Write to: ${artifactPath}/research/PROSE-QUALITY-AUDIT.md
+
+The audit report MUST include:
+- YAML frontmatter with gate, status, score, threshold (75), blocking_issues, warning_issues
+- Per-dimension scores (0-100) with weighted aggregate
+- All flagged slop patterns with line references
+- Specific prose samples that are exemplary or problematic
+- PASS (score ≥ 75) or FAIL (score < 75) determination
+
+Pass criteria:
+- Aggregate weighted score ≥ 75
+- Zero blocking issues (no section is entirely AI slop)
+- AI Slop Detection dimension score ≥ 60`;
 
     case 'G7':
       return `## G7: Scroll Certification
@@ -546,6 +675,25 @@ function getValidationDescription(contract, context) {
             descriptions.push(`- Warning if contains: ${v.pattern}`);
           } else {
             descriptions.push(`- Must NOT contain: ${v.pattern}`);
+          }
+          break;
+        case 'contains_text':
+          const patterns = v.patterns || [v.pattern];
+          descriptions.push(`- Must contain: ${patterns.join(', ')}`);
+          break;
+        case 'frontmatter_status':
+          const checks = Object.entries(v.checks || {}).map(([k, val]) => {
+            if (typeof val === 'object' && val.not) return `${k} ≠ ${val.not}`;
+            if (typeof val === 'object' && val.min !== undefined) return `${k} ≥ ${val.min}`;
+            return `${k} = ${val}`;
+          });
+          descriptions.push(`- Frontmatter checks: ${checks.join(', ')}`);
+          break;
+        case 'regex_match':
+          if (v.must_not_match) {
+            descriptions.push(`- Must NOT match pattern: ${v.regex} (${v.description || ''})`);
+          } else {
+            descriptions.push(`- Must match pattern: ${v.regex}`);
           }
           break;
       }

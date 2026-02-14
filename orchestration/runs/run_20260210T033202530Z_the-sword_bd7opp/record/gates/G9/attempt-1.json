@@ -1,0 +1,98 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-10T05:32:42.330Z",
+  "finished_at": "2026-02-10T05:33:58.156Z",
+  "agent": "visual-essay-orchestrator",
+  "prompt_sha256": "c1e63411aa5c2d13cdcdf32fdb399459c7de21b2cad84d9adc3b6c6aadf4f683",
+  "invocation_ids": [
+    "inv_1770701638150_2xd5"
+  ],
+  "required_outputs": [
+    "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+    "{artifact_path}/PUBLICATION-APPROVAL.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PUBLICATION-APPROVAL.md",
+      "sha256": "22f9886e3a0b1c242ee59cdb25b16069c288e959b3cf84fd2a2d3ff1cff7e8a2",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/PUBLICATION-APPROVAL.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/PUBLICATION-APPROVAL.md",
+      "sha256": "3c778568a498673057642e29f9f72d1fcb22b981386e0eed982419ed3735a690",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/PUBLICATION-APPROVAL.md",
+          "exists": true
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PUBLICATION-APPROVAL.md",
+      "pattern": "REJECTED",
+      "found": false,
+      "severity": "error",
+      "description": "Publication approval must not contain REJECTED",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PUBLICATION-APPROVAL.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Publication approval must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/page.tsx",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/page.tsx",
+      "patterns": [
+        "ArtifactDetailWrapper"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "Final verification: page.tsx MUST use ArtifactDetailWrapper at publication time (visual-essay-engineering-standard.md §Red Lines)",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PUBLICATION-APPROVAL.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "fields": {
+        "status": "PASS",
+        "gate": "G9",
+        "date": "2025-01-04"
+      },
+      "failures": [],
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

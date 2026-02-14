@@ -1,0 +1,57 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:16:53.608Z",
+  "finished_at": "2026-02-09T20:16:53.615Z",
+  "agent": "visual-essay-orchestrator",
+  "prompt_sha256": "03d71fdd8a410b73067d8f50e2869c6e6ee3af630b79a55ba015c75a38e03277",
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/G1-INTAKE.md",
+    "{artifact_path}/research/INTAKE.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/G1-INTAKE.md",
+      "sha256": "a4779cd7708de79873aa720303a1110d9f7b98f5e86972c8294ded65779c03b0",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/G1-INTAKE.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/research/INTAKE.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "pattern": "[REJECTED]",
+      "found": false,
+      "severity": "error",
+      "description": "Intake must not contain [REJECTED] marker",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Intake must not have FAIL status in frontmatter",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

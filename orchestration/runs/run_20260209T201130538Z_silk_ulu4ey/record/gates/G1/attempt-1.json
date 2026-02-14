@@ -1,0 +1,57 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:11:30.548Z",
+  "finished_at": "2026-02-09T20:12:29.594Z",
+  "agent": "visual-essay-orchestrator",
+  "prompt_sha256": "cd6e119beb3e6257a523bb4d41c12fc8904cd48a77caa3bfed79ba1b244dad3a",
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/G1-INTAKE.md",
+    "{artifact_path}/research/INTAKE.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/G1-INTAKE.md",
+      "sha256": "98bd023a37feec16e3270c632e44bf619e1d19e4e126526cdabecc5162b98219",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/G1-INTAKE.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/research/INTAKE.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "pattern": "[REJECTED]",
+      "found": false,
+      "severity": "error",
+      "description": "Intake must not contain [REJECTED] marker",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Intake must not have FAIL status in frontmatter",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

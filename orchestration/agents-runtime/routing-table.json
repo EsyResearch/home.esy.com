@@ -1,0 +1,165 @@
+{
+  "_version": "1.1.0",
+  "_description": "Model assignment and budget caps per gate. Budgets are CUMULATIVE input/output across all rounds (each round resends the full conversation). See orchestration/standards/agent-budget-analysis.md",
+  "_models": {
+    "opus": "claude-opus-4-6",
+    "sonnet": "claude-sonnet-4-5",
+    "haiku": "claude-haiku-4-5"
+  },
+  "_budget_note": "System prompt from agent .md is ~20K tokens. Each round resends everything. An 8-round gate with 20K system prompt accumulates ~200K+ cumulative input. Budgets below reflect this reality.",
+
+  "defaults": {
+    "model": "claude-sonnet-4-5",
+    "max_input_tokens": 500000,
+    "max_output_tokens": 100000,
+    "max_tool_rounds": 10,
+    "temperature": 0.7,
+    "tools": ["read_file", "write_file", "list_directory"]
+  },
+
+  "gates": {
+    "G1": {
+      "model": "claude-sonnet-4-5",
+      "max_input_tokens": 300000,
+      "max_output_tokens": 50000,
+      "max_tool_rounds": 10,
+      "temperature": 0.5,
+      "rationale": "Intake. Haiku was too exploratory — spent rounds reading instead of writing. Sonnet is more directive."
+    },
+    "G2": {
+      "model": "claude-sonnet-4-5",
+      "max_input_tokens": 800000,
+      "max_output_tokens": 150000,
+      "max_tool_rounds": 20,
+      "temperature": 0.7,
+      "rationale": "Research synthesis — deepest reading phase, many tool calls to write multiple research files"
+    },
+    "G3": {
+      "model": "claude-sonnet-4-5",
+      "max_input_tokens": 600000,
+      "max_output_tokens": 100000,
+      "max_tool_rounds": 15,
+      "temperature": 0.7,
+      "rationale": "Spec generation — reads research package, writes 6-layer spec"
+    },
+    "G4": {
+      "model": "claude-opus-4-6",
+      "max_input_tokens": 500000,
+      "max_output_tokens": 80000,
+      "max_tool_rounds": 12,
+      "temperature": 0.8,
+      "rationale": "Design research — creative vision, color theory, typography"
+    },
+    "G4.1": {
+      "model": "claude-sonnet-4-5",
+      "max_input_tokens": 400000,
+      "max_output_tokens": 60000,
+      "max_tool_rounds": 10,
+      "temperature": 0.5,
+      "rationale": "Design reconciliation audit"
+    },
+    "G4.5": {
+      "model": "claude-sonnet-4-5",
+      "max_input_tokens": 400000,
+      "max_output_tokens": 60000,
+      "max_tool_rounds": 10,
+      "temperature": 0.5,
+      "rationale": "Image sourcing — procedural"
+    },
+    "G4.6": {
+      "model": "claude-sonnet-4-5",
+      "max_input_tokens": 400000,
+      "max_output_tokens": 50000,
+      "max_tool_rounds": 10,
+      "temperature": 0.7,
+      "rationale": "Viz tech decisions — Sonnet is sufficient for reading code and writing an audit report"
+    },
+    "G5": {
+      "model": "claude-opus-4-6",
+      "max_input_tokens": 2000000,
+      "max_output_tokens": 300000,
+      "max_tool_rounds": 30,
+      "temperature": 0.7,
+      "rationale": "THE production gate. Writes entire essay — code, prose, visualizations. Quality ceiling."
+    },
+    "G5.2": {
+      "model": "claude-sonnet-4-5",
+      "max_input_tokens": 500000,
+      "max_output_tokens": 60000,
+      "max_tool_rounds": 10,
+      "temperature": 0.5,
+      "rationale": "Design fidelity audit"
+    },
+    "G5.3": {
+      "model": "claude-sonnet-4-5",
+      "max_input_tokens": 400000,
+      "max_output_tokens": 50000,
+      "max_tool_rounds": 8,
+      "temperature": 0.5,
+      "rationale": "Diagram-code reconciliation"
+    },
+    "G5.4": {
+      "model": "claude-sonnet-4-5",
+      "max_input_tokens": 500000,
+      "max_output_tokens": 60000,
+      "max_tool_rounds": 10,
+      "temperature": 0.5,
+      "rationale": "Viz ambition audit"
+    },
+    "G5.5": {
+      "model": "claude-sonnet-4-5",
+      "max_input_tokens": 400000,
+      "max_output_tokens": 60000,
+      "max_tool_rounds": 10,
+      "temperature": 0.5,
+      "rationale": "Bibliography — procedural"
+    },
+    "G6": {
+      "model": "claude-sonnet-4-5",
+      "max_input_tokens": 500000,
+      "max_output_tokens": 80000,
+      "max_tool_rounds": 10,
+      "temperature": 0.5,
+      "rationale": "Citation audit"
+    },
+    "G6.6": {
+      "model": "claude-sonnet-4-5",
+      "max_input_tokens": 400000,
+      "max_output_tokens": 60000,
+      "max_tool_rounds": 8,
+      "temperature": 0.7,
+      "rationale": "Prose quality audit — Sonnet can assess quality patterns via regex and structured checks"
+    },
+    "G7": {
+      "model": "claude-sonnet-4-5",
+      "max_input_tokens": 400000,
+      "max_output_tokens": 50000,
+      "max_tool_rounds": 8,
+      "temperature": 0.5,
+      "rationale": "Scroll certification"
+    },
+    "G8": {
+      "model": "claude-sonnet-4-5",
+      "max_input_tokens": 400000,
+      "max_output_tokens": 50000,
+      "max_tool_rounds": 8,
+      "temperature": 0.5,
+      "rationale": "Publication certification — aggregates audits"
+    },
+    "G9": {
+      "model": "claude-haiku-4-5",
+      "max_input_tokens": 300000,
+      "max_output_tokens": 40000,
+      "max_tool_rounds": 10,
+      "temperature": 0.3,
+      "rationale": "Final checklist, visualEssays.ts update"
+    }
+  },
+
+  "budget": {
+    "max_run_input_tokens": 8000000,
+    "max_run_output_tokens": 1500000,
+    "max_run_tool_rounds": 200,
+    "abort_on_budget_exceeded": true
+  }
+}

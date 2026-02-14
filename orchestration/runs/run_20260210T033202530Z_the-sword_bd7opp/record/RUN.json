@@ -1,0 +1,2987 @@
+{
+  "run_id": "run_20260210T033202530Z_the-sword_bd7opp",
+  "workflow": {
+    "name": "visual-essay",
+    "version": "local-dev",
+    "slug": "the-sword",
+    "artifact_path": "src/app/essays/the-sword"
+  },
+  "depth": "standard",
+  "prompt": null,
+  "status": "RUNNING",
+  "started_at": "2026-02-10T03:32:02.532Z",
+  "finished_at": null,
+  "gates": [
+    {
+      "gate": "G1",
+      "name": "Intake Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-02-10T03:32:10.913Z",
+          "finished_at": "2026-02-10T03:32:12.344Z",
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": "f8e8e2a73c8737eba3c572e3a4f6deb103b462483be21d81165d2f6e2c878587",
+          "invocation_ids": [
+            "inv_1770694332343_ezhe"
+          ],
+          "required_outputs": [
+            "{artifact_path}/G1-INTAKE.md",
+            "{artifact_path}/research/INTAKE.md"
+          ],
+          "artifacts": [],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": false,
+              "checked": [
+                {
+                  "path": "{artifact_path}/G1-INTAKE.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/research/INTAKE.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G1-INTAKE.md",
+              "pattern": "[REJECTED]",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not contain [REJECTED] marker",
+              "reason": "File not found — cannot verify content (use missing_ok: true to skip)",
+              "pass": false
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G1-INTAKE.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not have FAIL status in frontmatter",
+              "reason": "File not found — cannot verify content (use missing_ok: true to skip)",
+              "pass": false
+            }
+          ],
+          "failure_reason": "None of required files exist: {artifact_path}/G1-INTAKE.md, {artifact_path}/research/INTAKE.md; Found forbidden pattern: [REJECTED]; Found forbidden pattern: status: FAIL"
+        },
+        {
+          "attempt": 2,
+          "status": "FAIL",
+          "started_at": "2026-02-10T03:32:47.128Z",
+          "finished_at": "2026-02-10T03:32:53.628Z",
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": "eb0f4da458c99e6114b95680071e02f62f3304570071746933b44f971af64dcb",
+          "invocation_ids": [
+            "inv_1770694373627_4mh8"
+          ],
+          "required_outputs": [
+            "{artifact_path}/G1-INTAKE.md",
+            "{artifact_path}/research/INTAKE.md"
+          ],
+          "artifacts": [],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": false,
+              "checked": [
+                {
+                  "path": "{artifact_path}/G1-INTAKE.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/research/INTAKE.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G1-INTAKE.md",
+              "pattern": "[REJECTED]",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not contain [REJECTED] marker",
+              "reason": "File not found — cannot verify content (use missing_ok: true to skip)",
+              "pass": false
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G1-INTAKE.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not have FAIL status in frontmatter",
+              "reason": "File not found — cannot verify content (use missing_ok: true to skip)",
+              "pass": false
+            }
+          ],
+          "failure_reason": "None of required files exist: {artifact_path}/G1-INTAKE.md, {artifact_path}/research/INTAKE.md; Found forbidden pattern: [REJECTED]; Found forbidden pattern: status: FAIL"
+        },
+        {
+          "attempt": 3,
+          "status": "FAIL",
+          "started_at": "2026-02-10T03:33:41.477Z",
+          "finished_at": "2026-02-10T03:33:50.343Z",
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": "7ed8c8713df802ea43509de0f353552b108d9b73d0a8ee5bb0ebabdfa7ebb277",
+          "invocation_ids": [
+            "inv_1770694430342_ehln"
+          ],
+          "required_outputs": [
+            "{artifact_path}/G1-INTAKE.md",
+            "{artifact_path}/research/INTAKE.md"
+          ],
+          "artifacts": [],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": false,
+              "checked": [
+                {
+                  "path": "{artifact_path}/G1-INTAKE.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/research/INTAKE.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G1-INTAKE.md",
+              "pattern": "[REJECTED]",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not contain [REJECTED] marker",
+              "reason": "File not found — cannot verify content (use missing_ok: true to skip)",
+              "pass": false
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G1-INTAKE.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not have FAIL status in frontmatter",
+              "reason": "File not found — cannot verify content (use missing_ok: true to skip)",
+              "pass": false
+            }
+          ],
+          "failure_reason": "None of required files exist: {artifact_path}/G1-INTAKE.md, {artifact_path}/research/INTAKE.md; Found forbidden pattern: [REJECTED]; Found forbidden pattern: status: FAIL"
+        },
+        {
+          "attempt": 4,
+          "status": "FAIL",
+          "started_at": "2026-02-10T03:34:37.559Z",
+          "finished_at": "2026-02-10T03:34:45.664Z",
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": "8d0ed10cea220676a5d6cb2641c70c82c869fca234c2ba57128747c8dcb8a557",
+          "invocation_ids": [
+            "inv_1770694485663_b3sj"
+          ],
+          "required_outputs": [
+            "{artifact_path}/G1-INTAKE.md",
+            "{artifact_path}/research/INTAKE.md"
+          ],
+          "artifacts": [],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": false,
+              "checked": [
+                {
+                  "path": "{artifact_path}/G1-INTAKE.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/research/INTAKE.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G1-INTAKE.md",
+              "pattern": "[REJECTED]",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not contain [REJECTED] marker",
+              "reason": "File not found — cannot verify content (use missing_ok: true to skip)",
+              "pass": false
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G1-INTAKE.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not have FAIL status in frontmatter",
+              "reason": "File not found — cannot verify content (use missing_ok: true to skip)",
+              "pass": false
+            }
+          ],
+          "failure_reason": "None of required files exist: {artifact_path}/G1-INTAKE.md, {artifact_path}/research/INTAKE.md; Found forbidden pattern: [REJECTED]; Found forbidden pattern: status: FAIL"
+        },
+        {
+          "attempt": 5,
+          "status": "FAIL",
+          "started_at": "2026-02-10T03:35:18.123Z",
+          "finished_at": "2026-02-10T03:35:33.787Z",
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": "2c9806344bef4e5a82ca4383d9cb652f9a74129c38479a28c55c4fdc143ac23c",
+          "invocation_ids": [
+            "inv_1770694533786_43pr"
+          ],
+          "required_outputs": [
+            "{artifact_path}/G1-INTAKE.md",
+            "{artifact_path}/research/INTAKE.md"
+          ],
+          "artifacts": [],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": false,
+              "checked": [
+                {
+                  "path": "{artifact_path}/G1-INTAKE.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/research/INTAKE.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G1-INTAKE.md",
+              "pattern": "[REJECTED]",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not contain [REJECTED] marker",
+              "reason": "File not found — cannot verify content (use missing_ok: true to skip)",
+              "pass": false
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G1-INTAKE.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not have FAIL status in frontmatter",
+              "reason": "File not found — cannot verify content (use missing_ok: true to skip)",
+              "pass": false
+            }
+          ],
+          "failure_reason": "None of required files exist: {artifact_path}/G1-INTAKE.md, {artifact_path}/research/INTAKE.md; Found forbidden pattern: [REJECTED]; Found forbidden pattern: status: FAIL"
+        },
+        {
+          "attempt": 6,
+          "status": "RUNNING",
+          "started_at": "2026-02-10T03:37:21.334Z",
+          "finished_at": null,
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": "f5f255a319e592913d91bd36d4a81af44d6fdd019399631fa5b105dfad994605",
+          "invocation_ids": [],
+          "required_outputs": [],
+          "artifacts": [],
+          "validations": [],
+          "failure_reason": null
+        },
+        {
+          "attempt": 7,
+          "status": "PASS",
+          "started_at": "2026-02-10T03:39:23.241Z",
+          "finished_at": "2026-02-10T03:42:16.344Z",
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": "321fd9567eb727dcec074e5f49e8448ee660ec2117f43dc506929eeb1a4299f1",
+          "invocation_ids": [
+            "inv_1770694936341_tqxo"
+          ],
+          "required_outputs": [
+            "{artifact_path}/G1-INTAKE.md",
+            "{artifact_path}/research/INTAKE.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G1-INTAKE.md",
+              "sha256": "fc008a5600b24d8d97f73642d3ac56d10b519f1c79b9ba57d1edb1084128f640",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/INTAKE.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/INTAKE.md",
+              "sha256": "9290acb2683d9d64b70b7e69e336095a65c49e22ca310ef7aa1c86625c535f80",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/G1-INTAKE.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/INTAKE.md",
+                  "exists": true
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G1-INTAKE.md",
+              "pattern": "[REJECTED]",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not contain [REJECTED] marker",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G1-INTAKE.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G2",
+      "name": "Research Complete",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-10T03:44:21.851Z",
+          "finished_at": "2026-02-10T03:58:33.191Z",
+          "agent": "research-orchestrator",
+          "prompt_sha256": "865c5db6ec8e6e76c161dafc6db7d42cd35d0dea14cfeaec867498bf4f791962",
+          "invocation_ids": [
+            "inv_1770695913182_snzq"
+          ],
+          "required_outputs": [
+            "{artifact_path}/research/CITATIONS.md",
+            "{artifact_path}/research/CLAIMS.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CITATIONS.md",
+              "sha256": "1e69361ae29417cef91f59604bb25622b5450dd6cb90069ecbb74c1fac4e37ac",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/CLAIMS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CLAIMS.md",
+              "sha256": "44b17c160588ee13e39637632f1a89b0c3816934b7eb7670358ed54cf4ff361d",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CITATIONS.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/CLAIMS.md",
+                  "exists": true
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "dir_exists",
+              "path": "{artifact_path}/research",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research",
+              "pass": true,
+              "description": "Research directory must exist"
+            },
+            {
+              "type": "min_file_count",
+              "path": "{artifact_path}/research",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research",
+              "pattern": "*.md",
+              "count": 8,
+              "threshold": 3,
+              "depth": "standard",
+              "pass": true,
+              "description": "Research directory must contain minimum number of markdown files based on depth mode"
+            },
+            {
+              "type": "min_sources_any_of",
+              "checked": [
+                "{artifact_path}/research/CITATIONS.md",
+                "{artifact_path}/research/CLAIMS.md"
+              ],
+              "matched": "{artifact_path}/research/CITATIONS.md",
+              "count": 55,
+              "threshold": 8,
+              "depth": "standard",
+              "pass": true,
+              "description": "Source-tracking file (CITATIONS.md or CLAIMS.md) must contain minimum sources based on depth mode"
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G3",
+      "name": "Spec Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-10T04:00:29.421Z",
+          "finished_at": "2026-02-10T04:11:00.370Z",
+          "agent": "visual-essay-invocation-agent",
+          "prompt_sha256": "de1fb0575078c467b82fe60d41acd20c29b85d39508b34794635af5fcb5242c0",
+          "invocation_ids": [
+            "inv_1770696436137_nj62"
+          ],
+          "required_outputs": [
+            "orchestration/skills/visual-essay-invocation/specs/{slug}.md"
+          ],
+          "artifacts": [
+            {
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-sword.md",
+              "sha256": "6a6b175c25fd877c9e792ead231e46ea6e57a6a3cb0432c25aae3602db56ed9d",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-sword.md",
+              "pass": true,
+              "description": "6-layer visual essay specification"
+            },
+            {
+              "type": "contains_headings",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "missing": [],
+              "severity": "error",
+              "description": "Spec must contain all 6 layer headings",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-sword.md",
+              "pattern": "[DRAFT]",
+              "found": false,
+              "severity": "warning",
+              "description": "Spec should not contain [DRAFT] marker (configurable)",
+              "pass": true,
+              "warning": false
+            }
+          ],
+          "failure_reason": "Missing headings: ## Layer 1, ## Layer 2, ## Layer 3, ## Layer 4, ## Layer 5, ## Layer 6"
+        }
+      ]
+    },
+    {
+      "gate": "G4",
+      "name": "Design Research",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-10T04:11:14.853Z",
+          "finished_at": "2026-02-10T04:15:41.979Z",
+          "agent": "design-researcher",
+          "prompt_sha256": "b5076b904ccd523d2bed05160bde3c67cbc7931fc77927a388cb4ec1b286455a",
+          "invocation_ids": [
+            "inv_1770696941976_bf6y"
+          ],
+          "required_outputs": [
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/DESIGN-RESEARCH.md",
+              "sha256": "936c5c8217fe834ea3de953e6830fb07f2f8889d39b90307343ab9499cb28ea0",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Subject-derived design research report with color palette, typography, animation philosophy"
+            },
+            {
+              "type": "contains_headings",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "missing": [],
+              "severity": "warning",
+              "description": "Design research should cover Color, Typography, and Animation (warning if missing)",
+              "pass": true,
+              "warning": false
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4.1",
+      "name": "Design Research Reconciliation",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-10T04:41:06.772Z",
+          "finished_at": "2026-02-10T04:48:01.278Z",
+          "agent": "design-research-reconciliation-agent",
+          "prompt_sha256": "91b03e2f8eb8569d8098721af594b8651f623240efbf87a06fda46dc2f0185ee",
+          "invocation_ids": [
+            "inv_1770698881270_1n9s"
+          ],
+          "required_outputs": [
+            "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+            "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/G4.1-DESIGN-RECONCILIATION.md",
+              "sha256": "6b352d090f3ecf64e02438f8be52aea6d1f31b47a33c91aad05861cfdca4304d",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G4.1-DESIGN-RECONCILIATION.md",
+              "sha256": "6b352d090f3ecf64e02438f8be52aea6d1f31b47a33c91aad05861cfdca4304d",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/DESIGN-RESEARCH.md",
+              "sha256": "936c5c8217fe834ea3de953e6830fb07f2f8889d39b90307343ab9499cb28ea0",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+                  "exists": true
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Design research report (must exist and be reconciled)"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/DESIGN-RESEARCH.md",
+              "pattern": "[UNRECONCILED]",
+              "found": false,
+              "severity": "error",
+              "description": "Design research must not contain [UNRECONCILED] marker",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/DESIGN-RESEARCH.md",
+              "pattern": "[COLLISION]",
+              "found": false,
+              "severity": "error",
+              "description": "Design research must not flag aesthetic collisions with other essays",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/G4.1-DESIGN-RECONCILIATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Reconciliation audit must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4.5",
+      "name": "Image Sourcing",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-02-10T04:48:01.359Z",
+          "finished_at": "2026-02-10T04:48:28.950Z",
+          "agent": "image-research-licensing-expert",
+          "prompt_sha256": "ff04072a9739038be0628471a61f62c23bd19d1e83302cd7859ba03393cf8332",
+          "invocation_ids": [
+            "inv_1770698908944_4wqr"
+          ],
+          "required_outputs": [
+            "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+            "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+            "{artifact_path}/images-migration.json",
+            "{artifact_path}/images.ts"
+          ],
+          "artifacts": [],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": false,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/images-migration.json",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/images.ts",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "[UNLICENSED]",
+              "found": false,
+              "severity": "error",
+              "description": "Image audit must not contain unlicensed assets",
+              "reason": "File not found — cannot verify content (use missing_ok: true to skip)",
+              "pass": false
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "[PENDING]",
+              "found": false,
+              "severity": "warning",
+              "description": "Image audit should not have pending sourcing tasks",
+              "reason": "File not found — cannot verify content (use missing_ok: true to skip)",
+              "pass": true,
+              "warning": false
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Image audit must not have FAIL status in frontmatter",
+              "reason": "File not found — cannot verify content (use missing_ok: true to skip)",
+              "pass": false
+            }
+          ],
+          "failure_reason": "None of required files exist: {artifact_path}/research/IMAGE_RESEARCH_AUDIT.md, {artifact_path}/research/IMAGE-DOCUMENTATION.md, {artifact_path}/images-migration.json, {artifact_path}/images.ts; Found forbidden pattern: [UNLICENSED]; Found forbidden pattern: status: FAIL"
+        },
+        {
+          "attempt": 2,
+          "status": "PASS",
+          "started_at": "2026-02-10T04:54:35.103Z",
+          "finished_at": "2026-02-10T05:00:23.836Z",
+          "agent": "image-research-licensing-expert",
+          "prompt_sha256": "71f1d6f225b733d6ce649dbdf5dfdccfe6df22bb7ac26c6b7e0c2dfefb777189",
+          "invocation_ids": [
+            "inv_1770699623830_m42k"
+          ],
+          "required_outputs": [
+            "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+            "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+            "{artifact_path}/images-migration.json",
+            "{artifact_path}/images.ts"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/IMAGE_RESEARCH_AUDIT.md",
+              "sha256": "caaad2b85c195140996f4233ef627aa4c59fbcef31fe42b7f4f3cbf80e1179e2",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/IMAGE-DOCUMENTATION.md",
+              "sha256": "a61683414da01c7f2f03939f74b240c4a14eb33cd1cbaeae41e48f692efa90e8",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/images-migration.json",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/images-migration.json",
+              "sha256": "fc17e4f315db3fe91063677dcd0246bb4edf55c219e3c444250bf2b9723e2a14",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/images-migration.json",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/images.ts",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "[UNLICENSED]",
+              "found": false,
+              "severity": "error",
+              "description": "Image audit must not contain unlicensed assets",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "[PENDING]",
+              "found": false,
+              "severity": "warning",
+              "description": "Image audit should not have pending sourcing tasks",
+              "pass": true,
+              "warning": false
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Image audit must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4.6",
+      "name": "Visualization Technology Decision",
+      "status": "FAIL",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "RUNNING",
+          "started_at": "2026-02-10T04:48:29.020Z",
+          "finished_at": null,
+          "agent": "visualization-architect",
+          "prompt_sha256": "cad3d2302c249cea36c2298d3533ac5aebe88d1ac1ec83f633901cb3aaf96882",
+          "invocation_ids": [],
+          "required_outputs": [],
+          "artifacts": [],
+          "validations": [],
+          "failure_reason": null
+        },
+        {
+          "attempt": 2,
+          "status": "FAIL",
+          "started_at": "2026-02-10T05:00:23.921Z",
+          "finished_at": "2026-02-10T05:03:23.692Z",
+          "agent": "visualization-architect",
+          "prompt_sha256": "2a1b2b6dc0632336bbebc356081d6625dd8a99d338c189e1c1bf97a8b218beb8",
+          "invocation_ids": [
+            "inv_1770699803683_nj3f"
+          ],
+          "required_outputs": [
+            "{artifact_path}/VIZ-TECH-DECISIONS.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/VIZ-TECH-DECISIONS.md",
+              "sha256": "62b84cca8cd52d6ee8e29feee72fff6bd60f5e7d0ecb5fb07ce8c31b72dde91b",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/VIZ-TECH-DECISIONS.md",
+              "pass": true,
+              "description": "Technology tier assignment for each planned visualization"
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/VIZ-TECH-DECISIONS.md",
+              "patterns": [
+                "## Technology Assignments",
+                "Tier",
+                "Justification"
+              ],
+              "missing": [
+                "## Technology Assignments",
+                "Justification"
+              ],
+              "severity": "error",
+              "pass": false
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/VIZ-TECH-DECISIONS.md",
+              "checks": {
+                "status": "APPROVED"
+              },
+              "fields": {
+                "status": "PASS",
+                "gate": "G4.6",
+                "date": "2025-01-03",
+                "essay": "the-sword"
+              },
+              "failures": [
+                "status: expected \"APPROVED\", got \"PASS\""
+              ],
+              "severity": "error",
+              "pass": false
+            },
+            {
+              "type": "regex_match",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/VIZ-TECH-DECISIONS.md",
+              "regex": "Tier [1-4]",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "At least one visualization must be assigned Tier 1 or higher",
+              "pass": true
+            }
+          ],
+          "failure_reason": "; "
+        }
+      ]
+    },
+    {
+      "gate": "G5",
+      "name": "Content Complete",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-10T04:16:48.322Z",
+          "finished_at": "2026-02-10T04:24:14.120Z",
+          "agent": "production-orchestrator",
+          "prompt_sha256": "e8cedf7342833115e0eb1ff8684b7b9b2047041df6143b6cb3f14511c4ae2c23",
+          "invocation_ids": [
+            "inv_1770697454115_4o2t"
+          ],
+          "required_outputs": [
+            "{artifact_path}/page.tsx",
+            "{artifact_path}/{slug}.css"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/page.tsx",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/page.tsx",
+              "sha256": "d5b2a6370e7e688f326af86d72b5bce041f6f58301208d5d2e5d375e70a0b4dd",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/{slug}.css",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/the-sword.css",
+              "sha256": "10ede71fa2e072a9e4bff648041ff0a1f93235532459a8bbeaef881bbcf4621f",
+              "exists": true,
+              "optional": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/page.tsx",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/page.tsx",
+              "pass": true,
+              "description": "Next.js page with metadata, ArtifactDetailWrapper, and default export"
+            },
+            {
+              "type": "contains_headings",
+              "path": "{artifact_path}/page.tsx",
+              "missing": [],
+              "severity": "error",
+              "description": "page.tsx must contain a default export and metadata definition",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/page.tsx",
+              "patterns": [
+                "ArtifactDetailWrapper",
+                "ESSAY_META"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "page.tsx MUST import and use ArtifactDetailWrapper with ESSAY_META (visual-essay-engineering-standard.md §2, Red Lines)",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/page.tsx",
+              "patterns": [
+                "@/components/ArtifactDetail"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "page.tsx MUST import ArtifactDetailWrapper from @/components/ArtifactDetail",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/page.tsx",
+              "pattern": "TODO",
+              "found": false,
+              "severity": "warning",
+              "description": "page.tsx should not contain TODO markers (indicates incomplete implementation)",
+              "pass": true,
+              "warning": false
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/TheSwordClient.tsx",
+              "regex": "[\\u{1F300}-\\u{1F9FF}\\u{2600}-\\u{26FF}\\u{2700}-\\u{27BF}]",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "Client component must NOT contain emoji characters — use SVG icons or CSS shapes instead",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.4",
+      "name": "Visualization Ambition Audit",
+      "status": "FAIL",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-02-10T05:03:23.794Z",
+          "finished_at": "2026-02-10T05:06:20.922Z",
+          "agent": "visualization-architect-auditor",
+          "prompt_sha256": "e38a6c072a7aa425338cfd2e4051e0f2e4d757a388883f389689849303ffa971",
+          "invocation_ids": [
+            "inv_1770699980913_37ko"
+          ],
+          "required_outputs": [
+            "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G5.4-VIZ-AMBITION-AUDIT.md",
+              "sha256": "508529a7668cd32bc293054192c4d56a97eac7753700e826ca813063252c4495",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G5.4-VIZ-AMBITION-AUDIT.md",
+              "pass": true,
+              "description": "Per-visualization technology audit with scores"
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G5.4-VIZ-AMBITION-AUDIT.md",
+              "checks": {
+                "status": "PASS"
+              },
+              "fields": {
+                "status": "FAIL",
+                "gate": "G5.4",
+                "date": "2025-01-03",
+                "average_ambition": 2.125
+              },
+              "failures": [
+                "status: expected \"PASS\", got \"FAIL\""
+              ],
+              "severity": "error",
+              "pass": false
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G5.4-VIZ-AMBITION-AUDIT.md",
+              "patterns": [
+                "Average Score",
+                "Technology Tier"
+              ],
+              "missing": [
+                "Average Score",
+                "Technology Tier"
+              ],
+              "severity": "error",
+              "pass": false
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/TheSwordClient.tsx",
+              "regex": "import .*(d3|three|recharts|Canvas|useRef.*canvas|getContext)",
+              "must_not_match": false,
+              "matched": false,
+              "severity": "error",
+              "description": "Client component or its visualization imports must reference at least one visualization library or Canvas API",
+              "pass": false
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/TheSwordClient.tsx",
+              "regex": "width:\\s*[`'\"]\\$\\{.*\\}%[`'\"]",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "No div-width-percentage bar charts in data-encoding visualizations",
+              "pass": true
+            }
+          ],
+          "failure_reason": "; ; Client component or its visualization imports must reference at least one visualization library or Canvas API"
+        }
+      ]
+    },
+    {
+      "gate": "G5.2",
+      "name": "Design Fidelity Audit",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-10T05:06:20.998Z",
+          "finished_at": "2026-02-10T05:12:08.122Z",
+          "agent": "design-research-implementation-auditor",
+          "prompt_sha256": "a3296a4348b82e8f9258da2b24c0a1bfa1d73f6cc9d8b97a12fc88408b2d73dc",
+          "invocation_ids": [
+            "inv_1770700328117_9gvi"
+          ],
+          "required_outputs": [
+            "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+            "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "sha256": "2a04f08c77d60ca3f77eb446f14b330cb1bce844960733c848f1c4856e8767db",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "sha256": "2a04f08c77d60ca3f77eb446f14b330cb1bce844960733c848f1c4856e8767db",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/DESIGN-RESEARCH.md",
+              "sha256": "936c5c8217fe834ea3de953e6830fb07f2f8889d39b90307343ab9499cb28ea0",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+                  "exists": true
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Design research must still exist (design source of truth)"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Design fidelity audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                },
+                "blocking_issues": {
+                  "min": 0
+                }
+              },
+              "fields": {
+                "gate": "G5.2",
+                "type": "audit",
+                "status": "PASS",
+                "score": 92,
+                "threshold": 85,
+                "blocking_issues": 0,
+                "warning_issues": 3,
+                "agent": "design-research-implementation-auditor",
+                "date": "2025-01-03",
+                "essay": "the-sword"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter must indicate non-FAIL status with zero blocking issues",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.3",
+      "name": "Diagram-Code Reconciliation",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-10T05:12:08.219Z",
+          "finished_at": "2026-02-10T05:13:23.278Z",
+          "agent": "diagram-code-reconciliation-auditor",
+          "prompt_sha256": "3224e3e648045ba9ab992e6884741e3d59d5a240afbfca9a27fe5c1e90c0fa65",
+          "invocation_ids": [
+            "inv_1770700403272_a90i"
+          ],
+          "required_outputs": [
+            "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+            "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+            "{client_component}"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "sha256": "c63091eda19773b11ed3f05b60f706ed3756060a3125ddaa9b3b4230bc5bab4a",
+              "exists": true
+            },
+            {
+              "path": "{client_component}",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/TheSwordClient.tsx",
+              "sha256": "848eb11a4c37d9085995e4736b13b863296ee48bee4fc93df95b049c23ca7d58",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{client_component}",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/TheSwordClient.tsx",
+              "pass": true,
+              "description": "Client component must contain @diagram-contract blocks for every visualization function"
+            },
+            {
+              "type": "contains_text",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/TheSwordClient.tsx",
+              "patterns": [
+                "@diagram-contract"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Client component MUST contain at least one @diagram-contract block per diagram-code-contract.md standard",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Diagram-code reconciliation must not have FAIL status",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "gate": "G5.3",
+                "type": "Diagram-Code Reconciliation",
+                "status": "PASS",
+                "date": "2025-01-03",
+                "auditor": "diagram-code-reconciliation-auditor",
+                "essay": "the-sword",
+                "contract_count": 1,
+                "invariant_count": 2,
+                "pass_count": 2,
+                "fail_count": 0
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Diagram-code reconciliation frontmatter status must not be FAIL",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.5",
+      "name": "Bibliography Implementation",
+      "status": "FAIL",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-02-10T05:13:23.365Z",
+          "finished_at": "2026-02-10T05:19:03.262Z",
+          "agent": "bibliography-orchestrator",
+          "prompt_sha256": "b8ce9484027a8ac0feb17dc894c7d466ef58b7802ec456ed9c27d278246fa4d0",
+          "invocation_ids": [
+            "inv_1770700743256_uczd"
+          ],
+          "required_outputs": [
+            "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+            "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "sha256": "470df310b959d17accb61f126d2bfc3eaf17d9222b7c072bbbb50184adc2808c",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/BIBLIOGRAPHY-AUDIT.md",
+              "sha256": "7d044349b4ec0e4dbd825a5b66771f34fe83346c0207933da6266afefa0c7092",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+                  "exists": true
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Bibliography audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "pattern": "Overall Status: ❌",
+              "found": false,
+              "severity": "error",
+              "description": "Bibliography audit must not report overall failure",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {},
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL",
+              "reason": "File not found or no YAML frontmatter: /Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "pass": false
+            }
+          ],
+          "failure_reason": "Frontmatter status must not be FAIL"
+        }
+      ]
+    },
+    {
+      "gate": "G6",
+      "name": "Citation Audit",
+      "status": "FAIL",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-02-10T05:19:03.377Z",
+          "finished_at": "2026-02-10T05:23:26.657Z",
+          "agent": "citation-audit-agent",
+          "prompt_sha256": "94857341cfa439e56ba7bceae4f51e231da7880e8518747ec1c5a663afdb88f5",
+          "invocation_ids": [
+            "inv_1770701006648_hwbi"
+          ],
+          "required_outputs": [
+            "{artifact_path}/research/CITATION-AUDIT.md",
+            "{artifact_path}/CITATION-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CITATION-AUDIT.md",
+              "sha256": "12802eccccd1cec85fd9236c546f23a8ae5b5fd6325d95842cf2106adc1ff94a",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/CITATION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/CITATION-AUDIT.md",
+              "sha256": "79f01ac98edbcb62a26bc44c96ffe3dc7ac445ccafab7c6cf3c80ecc9abc4a85",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CITATION-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/CITATION-AUDIT.md",
+                  "exists": true
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CITATION-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Citation audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CITATION-AUDIT.md",
+              "pattern": "Citation Certification: Rejected",
+              "found": false,
+              "severity": "error",
+              "description": "Citation audit must not have Rejected certification",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CITATION-AUDIT.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {},
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML, not string match)",
+              "reason": "File not found or no YAML frontmatter: /Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CITATION-AUDIT.md",
+              "pass": false
+            }
+          ],
+          "failure_reason": "Frontmatter status must not be FAIL (parsed from YAML, not string match)"
+        }
+      ]
+    },
+    {
+      "gate": "G6.6",
+      "name": "Prose Quality Audit",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-10T05:23:26.741Z",
+          "finished_at": "2026-02-10T05:26:54.480Z",
+          "agent": "prose-quality-auditor",
+          "prompt_sha256": "b820c80508d5e3ecbb594a9454440d0230f6cbe5a117b16b80eedcec926ad474",
+          "invocation_ids": [
+            "inv_1770701214473_d429"
+          ],
+          "required_outputs": [
+            "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+            "{artifact_path}/PROSE-QUALITY-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PROSE-QUALITY-AUDIT.md",
+              "sha256": "7b3bc3c996813e530acd200afd25e7d9c757542c08b48662ad85a52d8c62ea9e",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/PROSE-QUALITY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/PROSE-QUALITY-AUDIT.md",
+              "sha256": "f423227b07707a8cb8bf357b172f7717fb033636e79c886305311ef231af2e55",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PROSE-QUALITY-AUDIT.md",
+                  "exists": true
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PROSE-QUALITY-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Prose quality audit must not have FAIL status",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PROSE-QUALITY-AUDIT.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "status": "PASS",
+                "gate": "G6.6",
+                "date": "2026-02-10",
+                "prose_score": "9/10",
+                "auditor": "Prose Quality Auditor Agent (isolated instance)",
+                "essay": "the-sword"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/TheSwordClient.tsx",
+              "regex": "(\\bdelve\\b|\\btapestry\\b|\\bunlock the secrets\\b|\\bin today's world\\b|\\blet's dive\\b|\\bfascinating journey\\b|\\bit's important to note\\b|\\bIn conclusion\\b)",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "warning",
+              "description": "Client component should not contain common AI slop phrases (delve, tapestry, unlock the secrets, etc.)",
+              "pass": true,
+              "warning": false
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/TheSwordClient.tsx",
+              "regex": "[\\u{1F300}-\\u{1F9FF}\\u{2600}-\\u{26FF}\\u{2700}-\\u{27BF}]",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "Client component must NOT contain emoji characters",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G7",
+      "name": "Scroll Certification",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-10T05:26:54.562Z",
+          "finished_at": "2026-02-10T05:30:31.781Z",
+          "agent": "immersive-scrolling-auditor",
+          "prompt_sha256": "7ede39bfdf02ce271c174f75d4efe8281ec5e73b6f022485ce660ec54e1e1505",
+          "invocation_ids": [
+            "inv_1770701431775_j214"
+          ],
+          "required_outputs": [
+            "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+            "{artifact_path}/SCROLL-CERTIFICATION.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/SCROLL-CERTIFICATION.md",
+              "sha256": "9c4a646f71039abcf7a633c1522f15bd6b75547ccf04009260a11d9af740990a",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/SCROLL-CERTIFICATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/SCROLL-CERTIFICATION.md",
+              "sha256": "6fb2bdc5d7d466db77da1c2d415dca2aab1ef4101a241c415e4028367086eb5a",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/SCROLL-CERTIFICATION.md",
+                  "exists": true
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/SCROLL-CERTIFICATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Scroll certification must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/SCROLL-CERTIFICATION.md",
+              "pattern": "Overall Status: ❌",
+              "found": false,
+              "severity": "error",
+              "description": "Scroll certification must not report overall failure",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/SCROLL-CERTIFICATION.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "status": "PASS",
+                "gate": "G7",
+                "date": "2025-01-03"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G8",
+      "name": "Publication Certification",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-10T05:30:31.876Z",
+          "finished_at": "2026-02-10T05:32:42.188Z",
+          "agent": "publish-artifact-orchestrator",
+          "prompt_sha256": "0be565056a92b4308f8000e3cb8ae7be74ba4d6d01a40a6da9e6e0ad1428cb7d",
+          "invocation_ids": [
+            "inv_1770701562182_v7l0"
+          ],
+          "required_outputs": [
+            "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+            "{artifact_path}/PUBLICATION-CERTIFICATION.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PUBLICATION-CERTIFICATION.md",
+              "sha256": "8a055e78c241b33bd8e2a6393e2f3e604fbd1a7083a3e8a522180ddad922136b",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PUBLICATION-CERTIFICATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PUBLICATION-CERTIFICATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Publication certification must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PUBLICATION-CERTIFICATION.md",
+              "pattern": "NO-GO",
+              "found": false,
+              "severity": "error",
+              "description": "Publication certification must not be NO-GO",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PUBLICATION-CERTIFICATION.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "status": "CONDITIONAL",
+                "gate": "G8",
+                "date": "2025-01-03"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G9",
+      "name": "Publication Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-10T05:32:42.330Z",
+          "finished_at": "2026-02-10T05:33:58.156Z",
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": "c1e63411aa5c2d13cdcdf32fdb399459c7de21b2cad84d9adc3b6c6aadf4f683",
+          "invocation_ids": [
+            "inv_1770701638150_2xd5"
+          ],
+          "required_outputs": [
+            "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+            "{artifact_path}/PUBLICATION-APPROVAL.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PUBLICATION-APPROVAL.md",
+              "sha256": "22f9886e3a0b1c242ee59cdb25b16069c288e959b3cf84fd2a2d3ff1cff7e8a2",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/PUBLICATION-APPROVAL.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/PUBLICATION-APPROVAL.md",
+              "sha256": "3c778568a498673057642e29f9f72d1fcb22b981386e0eed982419ed3735a690",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PUBLICATION-APPROVAL.md",
+                  "exists": true
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PUBLICATION-APPROVAL.md",
+              "pattern": "REJECTED",
+              "found": false,
+              "severity": "error",
+              "description": "Publication approval must not contain REJECTED",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PUBLICATION-APPROVAL.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Publication approval must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/page.tsx",
+              "patterns": [
+                "ArtifactDetailWrapper"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Final verification: page.tsx MUST use ArtifactDetailWrapper at publication time (visual-essay-engineering-standard.md §Red Lines)",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PUBLICATION-APPROVAL.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "status": "PASS",
+                "gate": "G9",
+                "date": "2025-01-04"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    }
+  ],
+  "invocations": [
+    {
+      "invocation_id": "inv_1770694332343_ezhe",
+      "gate": "G1",
+      "agent": "visual-essay-orchestrator",
+      "model": "claude-haiku-4-5",
+      "started_at": "2026-02-10T03:32:10.949Z",
+      "finished_at": "2026-02-10T03:32:12.343Z",
+      "duration_ms": 1394,
+      "status": "FAIL",
+      "input_refs": [],
+      "output_refs": []
+    },
+    {
+      "invocation_id": "inv_1770694373627_4mh8",
+      "gate": "G1",
+      "agent": "visual-essay-orchestrator",
+      "model": "claude-haiku-4-5",
+      "started_at": "2026-02-10T03:32:47.138Z",
+      "finished_at": "2026-02-10T03:32:53.627Z",
+      "duration_ms": 6489,
+      "status": "FAIL",
+      "input_refs": [],
+      "output_refs": []
+    },
+    {
+      "invocation_id": "inv_1770694430342_ehln",
+      "gate": "G1",
+      "agent": "visual-essay-orchestrator",
+      "model": "claude-haiku-4-5",
+      "started_at": "2026-02-10T03:33:41.492Z",
+      "finished_at": "2026-02-10T03:33:50.342Z",
+      "duration_ms": 8850,
+      "status": "FAIL",
+      "input_refs": [],
+      "output_refs": []
+    },
+    {
+      "invocation_id": "inv_1770694485663_b3sj",
+      "gate": "G1",
+      "agent": "visual-essay-orchestrator",
+      "model": "claude-haiku-4-5",
+      "started_at": "2026-02-10T03:34:37.574Z",
+      "finished_at": "2026-02-10T03:34:45.662Z",
+      "duration_ms": 8088,
+      "status": "FAIL",
+      "input_refs": [],
+      "output_refs": []
+    },
+    {
+      "invocation_id": "inv_1770694533786_43pr",
+      "gate": "G1",
+      "agent": "visual-essay-orchestrator",
+      "model": "claude-haiku-4-5",
+      "started_at": "2026-02-10T03:35:18.132Z",
+      "finished_at": "2026-02-10T03:35:33.785Z",
+      "duration_ms": 15653,
+      "status": "FAIL",
+      "input_refs": [],
+      "output_refs": []
+    },
+    {
+      "invocation_id": "inv_1770694936341_tqxo",
+      "gate": "G1",
+      "agent": "visual-essay-orchestrator",
+      "model": "claude-sonnet-4-5",
+      "started_at": "2026-02-10T03:39:23.249Z",
+      "finished_at": "2026-02-10T03:42:16.341Z",
+      "duration_ms": 173092,
+      "status": "SUCCESS",
+      "input_refs": [],
+      "output_refs": [
+        "src/app/essays/the-sword/G1-INTAKE.md",
+        "src/app/essays/the-sword/research/INTAKE.md"
+      ]
+    },
+    {
+      "invocation_id": "inv_1770695913182_snzq",
+      "gate": "G2",
+      "agent": "research-orchestrator",
+      "model": "claude-sonnet-4-5",
+      "started_at": "2026-02-10T03:44:21.859Z",
+      "finished_at": "2026-02-10T03:58:33.182Z",
+      "duration_ms": 851323,
+      "status": "FAIL",
+      "input_refs": [],
+      "output_refs": [
+        "src/app/essays/the-sword/research/CITATIONS.md",
+        "src/app/essays/the-sword/research/CLAIMS.md",
+        "src/app/essays/the-sword/research/FIGURES.md",
+        "src/app/essays/the-sword/research/TIMELINE.md",
+        "src/app/essays/the-sword/research/SYNTHESIS.md",
+        "src/app/essays/the-sword/research/README.md",
+        "src/app/essays/the-sword/research/GAPS.md",
+        "src/app/essays/the-sword/G2-RESEARCH-COMPLETE.md"
+      ]
+    },
+    {
+      "invocation_id": "inv_1770696436137_nj62",
+      "gate": "G3",
+      "agent": "visual-essay-invocation-agent",
+      "model": "claude-sonnet-4-5",
+      "started_at": "2026-02-10T04:00:29.429Z",
+      "finished_at": "2026-02-10T04:07:16.136Z",
+      "duration_ms": 406707,
+      "status": "SUCCESS",
+      "input_refs": [],
+      "output_refs": [
+        "orchestration/skills/visual-essay-invocation/specs/the-sword.md"
+      ]
+    },
+    {
+      "invocation_id": "inv_1770696941976_bf6y",
+      "gate": "G4",
+      "agent": "design-researcher",
+      "model": "claude-opus-4-6",
+      "started_at": "2026-02-10T04:11:14.866Z",
+      "finished_at": "2026-02-10T04:15:41.975Z",
+      "duration_ms": 267109,
+      "status": "SUCCESS",
+      "input_refs": [],
+      "output_refs": [
+        "src/app/essays/the-sword/DESIGN-RESEARCH.md"
+      ]
+    },
+    {
+      "invocation_id": "inv_1770697454115_4o2t",
+      "gate": "G5",
+      "agent": "production-orchestrator",
+      "model": "claude-opus-4-6",
+      "started_at": "2026-02-10T04:16:48.329Z",
+      "finished_at": "2026-02-10T04:24:14.114Z",
+      "duration_ms": 445785,
+      "status": "SUCCESS",
+      "input_refs": [],
+      "output_refs": [
+        "src/app/essays/the-sword/page.tsx",
+        "src/app/essays/the-sword/the-sword.css",
+        "src/app/essays/the-sword/TheSwordClient.tsx"
+      ]
+    },
+    {
+      "invocation_id": "inv_1770698881270_1n9s",
+      "gate": "G4.1",
+      "agent": "design-research-reconciliation-agent",
+      "model": "claude-sonnet-4-5",
+      "started_at": "2026-02-10T04:41:06.781Z",
+      "finished_at": "2026-02-10T04:48:01.269Z",
+      "duration_ms": 414488,
+      "status": "SUCCESS",
+      "input_refs": [],
+      "output_refs": [
+        "src/app/essays/the-sword/research/G4.1-DESIGN-RECONCILIATION.md",
+        "src/app/essays/the-sword/G4.1-DESIGN-RECONCILIATION.md"
+      ]
+    },
+    {
+      "invocation_id": "inv_1770698908944_4wqr",
+      "gate": "G4.5",
+      "agent": "image-research-licensing-expert",
+      "model": "claude-sonnet-4-5",
+      "started_at": "2026-02-10T04:48:01.367Z",
+      "finished_at": "2026-02-10T04:48:28.944Z",
+      "duration_ms": 27577,
+      "status": "FAIL",
+      "input_refs": [],
+      "output_refs": []
+    },
+    {
+      "invocation_id": "inv_1770699623830_m42k",
+      "gate": "G4.5",
+      "agent": "image-research-licensing-expert",
+      "model": "claude-sonnet-4-5",
+      "started_at": "2026-02-10T04:54:35.113Z",
+      "finished_at": "2026-02-10T05:00:23.829Z",
+      "duration_ms": 348716,
+      "status": "FAIL",
+      "input_refs": [],
+      "output_refs": [
+        "src/app/essays/the-sword/research/IMAGE_RESEARCH_AUDIT.md",
+        "src/app/essays/the-sword/research/IMAGE-DOCUMENTATION.md",
+        "src/app/essays/the-sword/images-migration.json"
+      ]
+    },
+    {
+      "invocation_id": "inv_1770699803683_nj3f",
+      "gate": "G4.6",
+      "agent": "visualization-architect",
+      "model": "claude-sonnet-4-5",
+      "started_at": "2026-02-10T05:00:23.930Z",
+      "finished_at": "2026-02-10T05:03:23.681Z",
+      "duration_ms": 179751,
+      "status": "SUCCESS",
+      "input_refs": [],
+      "output_refs": [
+        "src/app/essays/the-sword/VIZ-TECH-DECISIONS.md"
+      ]
+    },
+    {
+      "invocation_id": "inv_1770699980913_37ko",
+      "gate": "G5.4",
+      "agent": "visualization-architect-auditor",
+      "model": "claude-sonnet-4-5",
+      "started_at": "2026-02-10T05:03:23.804Z",
+      "finished_at": "2026-02-10T05:06:20.912Z",
+      "duration_ms": 177108,
+      "status": "SUCCESS",
+      "input_refs": [],
+      "output_refs": [
+        "src/app/essays/the-sword/G5.4-VIZ-AMBITION-AUDIT.md"
+      ]
+    },
+    {
+      "invocation_id": "inv_1770700328117_9gvi",
+      "gate": "G5.2",
+      "agent": "design-research-implementation-auditor",
+      "model": "claude-sonnet-4-5",
+      "started_at": "2026-02-10T05:06:21.008Z",
+      "finished_at": "2026-02-10T05:12:08.116Z",
+      "duration_ms": 347108,
+      "status": "SUCCESS",
+      "input_refs": [],
+      "output_refs": [
+        "src/app/essays/the-sword/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+        "src/app/essays/the-sword/G5.2-DESIGN-FIDELITY-AUDIT.md"
+      ]
+    },
+    {
+      "invocation_id": "inv_1770700403272_a90i",
+      "gate": "G5.3",
+      "agent": "diagram-code-reconciliation-auditor",
+      "model": "claude-sonnet-4-5",
+      "started_at": "2026-02-10T05:12:08.228Z",
+      "finished_at": "2026-02-10T05:13:23.271Z",
+      "duration_ms": 75043,
+      "status": "FAIL",
+      "input_refs": [],
+      "output_refs": [
+        "src/app/essays/the-sword/research/DIAGRAM-CODE-RECONCILIATION.md"
+      ]
+    },
+    {
+      "invocation_id": "inv_1770700743256_uczd",
+      "gate": "G5.5",
+      "agent": "bibliography-orchestrator",
+      "model": "claude-sonnet-4-5",
+      "started_at": "2026-02-10T05:13:23.374Z",
+      "finished_at": "2026-02-10T05:19:03.255Z",
+      "duration_ms": 339881,
+      "status": "SUCCESS",
+      "input_refs": [],
+      "output_refs": [
+        "src/app/essays/the-sword/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+        "src/app/essays/the-sword/research/BIBLIOGRAPHY-AUDIT.md"
+      ]
+    },
+    {
+      "invocation_id": "inv_1770701006648_hwbi",
+      "gate": "G6",
+      "agent": "citation-audit-agent",
+      "model": "claude-sonnet-4-5",
+      "started_at": "2026-02-10T05:19:03.389Z",
+      "finished_at": "2026-02-10T05:23:26.647Z",
+      "duration_ms": 263258,
+      "status": "SUCCESS",
+      "input_refs": [],
+      "output_refs": [
+        "src/app/essays/the-sword/research/CITATION-AUDIT.md",
+        "src/app/essays/the-sword/CITATION-AUDIT.md"
+      ]
+    },
+    {
+      "invocation_id": "inv_1770701214473_d429",
+      "gate": "G6.6",
+      "agent": "prose-quality-auditor",
+      "model": "claude-sonnet-4-5",
+      "started_at": "2026-02-10T05:23:26.749Z",
+      "finished_at": "2026-02-10T05:26:54.472Z",
+      "duration_ms": 207723,
+      "status": "FAIL",
+      "input_refs": [],
+      "output_refs": [
+        "src/app/essays/the-sword/research/PROSE-QUALITY-AUDIT.md",
+        "src/app/essays/the-sword/PROSE-QUALITY-AUDIT.md"
+      ]
+    },
+    {
+      "invocation_id": "inv_1770701431775_j214",
+      "gate": "G7",
+      "agent": "immersive-scrolling-auditor",
+      "model": "claude-sonnet-4-5",
+      "started_at": "2026-02-10T05:26:54.575Z",
+      "finished_at": "2026-02-10T05:30:31.774Z",
+      "duration_ms": 217199,
+      "status": "SUCCESS",
+      "input_refs": [],
+      "output_refs": [
+        "src/app/essays/the-sword/research/SCROLL-CERTIFICATION.md",
+        "src/app/essays/the-sword/SCROLL-CERTIFICATION.md"
+      ]
+    },
+    {
+      "invocation_id": "inv_1770701562182_v7l0",
+      "gate": "G8",
+      "agent": "publish-artifact-orchestrator",
+      "model": "claude-sonnet-4-5",
+      "started_at": "2026-02-10T05:30:31.885Z",
+      "finished_at": "2026-02-10T05:32:42.180Z",
+      "duration_ms": 130295,
+      "status": "FAIL",
+      "input_refs": [],
+      "output_refs": [
+        "src/app/essays/the-sword/research/PUBLICATION-CERTIFICATION.md"
+      ]
+    },
+    {
+      "invocation_id": "inv_1770701638150_2xd5",
+      "gate": "G9",
+      "agent": "visual-essay-orchestrator",
+      "model": "claude-haiku-4-5",
+      "started_at": "2026-02-10T05:32:42.340Z",
+      "finished_at": "2026-02-10T05:33:58.149Z",
+      "duration_ms": 75809,
+      "status": "SUCCESS",
+      "input_refs": [],
+      "output_refs": [
+        "src/app/essays/the-sword/research/PUBLICATION-APPROVAL.md",
+        "src/app/essays/the-sword/PUBLICATION-APPROVAL.md"
+      ]
+    }
+  ],
+  "artifacts_index": [
+    {
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "sha256": "fc008a5600b24d8d97f73642d3ac56d10b519f1c79b9ba57d1edb1084128f640",
+      "gate": "G1",
+      "recorded_at": "2026-02-10T03:42:16.344Z"
+    },
+    {
+      "path": "{artifact_path}/research/INTAKE.md",
+      "sha256": "9290acb2683d9d64b70b7e69e336095a65c49e22ca310ef7aa1c86625c535f80",
+      "gate": "G1",
+      "recorded_at": "2026-02-10T03:42:16.344Z"
+    },
+    {
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "sha256": "1e69361ae29417cef91f59604bb25622b5450dd6cb90069ecbb74c1fac4e37ac",
+      "gate": "G2",
+      "recorded_at": "2026-02-10T03:58:33.191Z"
+    },
+    {
+      "path": "{artifact_path}/research/CLAIMS.md",
+      "sha256": "44b17c160588ee13e39637632f1a89b0c3816934b7eb7670358ed54cf4ff361d",
+      "gate": "G2",
+      "recorded_at": "2026-02-10T03:58:33.191Z"
+    },
+    {
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "sha256": "6a6b175c25fd877c9e792ead231e46ea6e57a6a3cb0432c25aae3602db56ed9d",
+      "gate": "G3",
+      "recorded_at": "2026-02-10T04:07:16.140Z",
+      "updated_at": "2026-02-10T04:11:00.370Z"
+    },
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "sha256": "936c5c8217fe834ea3de953e6830fb07f2f8889d39b90307343ab9499cb28ea0",
+      "gate": "G4",
+      "recorded_at": "2026-02-10T04:15:41.979Z",
+      "updated_at": "2026-02-10T05:12:08.122Z"
+    },
+    {
+      "path": "{artifact_path}/page.tsx",
+      "sha256": "d5b2a6370e7e688f326af86d72b5bce041f6f58301208d5d2e5d375e70a0b4dd",
+      "gate": "G5",
+      "recorded_at": "2026-02-10T04:24:14.120Z"
+    },
+    {
+      "path": "{artifact_path}/{slug}.css",
+      "sha256": "10ede71fa2e072a9e4bff648041ff0a1f93235532459a8bbeaef881bbcf4621f",
+      "gate": "G5",
+      "recorded_at": "2026-02-10T04:24:14.120Z"
+    },
+    {
+      "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+      "sha256": "6b352d090f3ecf64e02438f8be52aea6d1f31b47a33c91aad05861cfdca4304d",
+      "gate": "G4.1",
+      "recorded_at": "2026-02-10T04:48:01.278Z"
+    },
+    {
+      "path": "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+      "sha256": "6b352d090f3ecf64e02438f8be52aea6d1f31b47a33c91aad05861cfdca4304d",
+      "gate": "G4.1",
+      "recorded_at": "2026-02-10T04:48:01.278Z"
+    },
+    {
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "sha256": "caaad2b85c195140996f4233ef627aa4c59fbcef31fe42b7f4f3cbf80e1179e2",
+      "gate": "G4.5",
+      "recorded_at": "2026-02-10T05:00:23.837Z"
+    },
+    {
+      "path": "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+      "sha256": "a61683414da01c7f2f03939f74b240c4a14eb33cd1cbaeae41e48f692efa90e8",
+      "gate": "G4.5",
+      "recorded_at": "2026-02-10T05:00:23.837Z"
+    },
+    {
+      "path": "{artifact_path}/images-migration.json",
+      "sha256": "fc17e4f315db3fe91063677dcd0246bb4edf55c219e3c444250bf2b9723e2a14",
+      "gate": "G4.5",
+      "recorded_at": "2026-02-10T05:00:23.837Z"
+    },
+    {
+      "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "sha256": "62b84cca8cd52d6ee8e29feee72fff6bd60f5e7d0ecb5fb07ce8c31b72dde91b",
+      "gate": "G4.6",
+      "recorded_at": "2026-02-10T05:03:23.692Z"
+    },
+    {
+      "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+      "sha256": "508529a7668cd32bc293054192c4d56a97eac7753700e826ca813063252c4495",
+      "gate": "G5.4",
+      "recorded_at": "2026-02-10T05:06:20.922Z"
+    },
+    {
+      "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "sha256": "2a04f08c77d60ca3f77eb446f14b330cb1bce844960733c848f1c4856e8767db",
+      "gate": "G5.2",
+      "recorded_at": "2026-02-10T05:12:08.122Z"
+    },
+    {
+      "path": "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "sha256": "2a04f08c77d60ca3f77eb446f14b330cb1bce844960733c848f1c4856e8767db",
+      "gate": "G5.2",
+      "recorded_at": "2026-02-10T05:12:08.122Z"
+    },
+    {
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "sha256": "c63091eda19773b11ed3f05b60f706ed3756060a3125ddaa9b3b4230bc5bab4a",
+      "gate": "G5.3",
+      "recorded_at": "2026-02-10T05:13:23.278Z"
+    },
+    {
+      "path": "{client_component}",
+      "sha256": "848eb11a4c37d9085995e4736b13b863296ee48bee4fc93df95b049c23ca7d58",
+      "gate": "G5.3",
+      "recorded_at": "2026-02-10T05:13:23.278Z"
+    },
+    {
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "sha256": "470df310b959d17accb61f126d2bfc3eaf17d9222b7c072bbbb50184adc2808c",
+      "gate": "G5.5",
+      "recorded_at": "2026-02-10T05:19:03.262Z"
+    },
+    {
+      "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+      "sha256": "7d044349b4ec0e4dbd825a5b66771f34fe83346c0207933da6266afefa0c7092",
+      "gate": "G5.5",
+      "recorded_at": "2026-02-10T05:19:03.262Z"
+    },
+    {
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "sha256": "12802eccccd1cec85fd9236c546f23a8ae5b5fd6325d95842cf2106adc1ff94a",
+      "gate": "G6",
+      "recorded_at": "2026-02-10T05:23:26.657Z"
+    },
+    {
+      "path": "{artifact_path}/CITATION-AUDIT.md",
+      "sha256": "79f01ac98edbcb62a26bc44c96ffe3dc7ac445ccafab7c6cf3c80ecc9abc4a85",
+      "gate": "G6",
+      "recorded_at": "2026-02-10T05:23:26.657Z"
+    },
+    {
+      "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+      "sha256": "7b3bc3c996813e530acd200afd25e7d9c757542c08b48662ad85a52d8c62ea9e",
+      "gate": "G6.6",
+      "recorded_at": "2026-02-10T05:26:54.480Z"
+    },
+    {
+      "path": "{artifact_path}/PROSE-QUALITY-AUDIT.md",
+      "sha256": "f423227b07707a8cb8bf357b172f7717fb033636e79c886305311ef231af2e55",
+      "gate": "G6.6",
+      "recorded_at": "2026-02-10T05:26:54.480Z"
+    },
+    {
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "sha256": "9c4a646f71039abcf7a633c1522f15bd6b75547ccf04009260a11d9af740990a",
+      "gate": "G7",
+      "recorded_at": "2026-02-10T05:30:31.781Z"
+    },
+    {
+      "path": "{artifact_path}/SCROLL-CERTIFICATION.md",
+      "sha256": "6fb2bdc5d7d466db77da1c2d415dca2aab1ef4101a241c415e4028367086eb5a",
+      "gate": "G7",
+      "recorded_at": "2026-02-10T05:30:31.781Z"
+    },
+    {
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "sha256": "8a055e78c241b33bd8e2a6393e2f3e604fbd1a7083a3e8a522180ddad922136b",
+      "gate": "G8",
+      "recorded_at": "2026-02-10T05:32:42.188Z"
+    },
+    {
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "sha256": "22f9886e3a0b1c242ee59cdb25b16069c288e959b3cf84fd2a2d3ff1cff7e8a2",
+      "gate": "G9",
+      "recorded_at": "2026-02-10T05:33:58.156Z"
+    },
+    {
+      "path": "{artifact_path}/PUBLICATION-APPROVAL.md",
+      "sha256": "3c778568a498673057642e29f9f72d1fcb22b981386e0eed982419ed3735a690",
+      "gate": "G9",
+      "recorded_at": "2026-02-10T05:33:58.156Z"
+    }
+  ],
+  "validations": [],
+  "events": [
+    {
+      "timestamp": "2026-02-10T03:32:02.532Z",
+      "type": "RUN_STARTED",
+      "message": "Run initialized for visual-essay/the-sword"
+    },
+    {
+      "timestamp": "2026-02-10T03:32:10.914Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 1,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 1 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T03:32:12.343Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770694332343_ezhe",
+      "gate": "G1",
+      "agent": "visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T03:32:12.344Z",
+      "type": "GATE_FAILED",
+      "gate": "G1",
+      "attempt": 1,
+      "message": "Gate G1 failed: None of required files exist: {artifact_path}/G1-INTAKE.md, {artifact_path}/research/INTAKE.md; Found forbidden pattern: [REJECTED]; Found forbidden pattern: status: FAIL"
+    },
+    {
+      "timestamp": "2026-02-10T03:32:47.129Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 2,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 2 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T03:32:53.627Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770694373627_4mh8",
+      "gate": "G1",
+      "agent": "visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T03:32:53.628Z",
+      "type": "GATE_FAILED",
+      "gate": "G1",
+      "attempt": 2,
+      "message": "Gate G1 failed: None of required files exist: {artifact_path}/G1-INTAKE.md, {artifact_path}/research/INTAKE.md; Found forbidden pattern: [REJECTED]; Found forbidden pattern: status: FAIL"
+    },
+    {
+      "timestamp": "2026-02-10T03:33:41.477Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 3,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 3 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T03:33:50.342Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770694430342_ehln",
+      "gate": "G1",
+      "agent": "visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T03:33:50.343Z",
+      "type": "GATE_FAILED",
+      "gate": "G1",
+      "attempt": 3,
+      "message": "Gate G1 failed: None of required files exist: {artifact_path}/G1-INTAKE.md, {artifact_path}/research/INTAKE.md; Found forbidden pattern: [REJECTED]; Found forbidden pattern: status: FAIL"
+    },
+    {
+      "timestamp": "2026-02-10T03:34:37.560Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 4,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 4 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T03:34:45.663Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770694485663_b3sj",
+      "gate": "G1",
+      "agent": "visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T03:34:45.664Z",
+      "type": "GATE_FAILED",
+      "gate": "G1",
+      "attempt": 4,
+      "message": "Gate G1 failed: None of required files exist: {artifact_path}/G1-INTAKE.md, {artifact_path}/research/INTAKE.md; Found forbidden pattern: [REJECTED]; Found forbidden pattern: status: FAIL"
+    },
+    {
+      "timestamp": "2026-02-10T03:35:18.124Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 5,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 5 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T03:35:33.786Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770694533786_43pr",
+      "gate": "G1",
+      "agent": "visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T03:35:33.787Z",
+      "type": "GATE_FAILED",
+      "gate": "G1",
+      "attempt": 5,
+      "message": "Gate G1 failed: None of required files exist: {artifact_path}/G1-INTAKE.md, {artifact_path}/research/INTAKE.md; Found forbidden pattern: [REJECTED]; Found forbidden pattern: status: FAIL"
+    },
+    {
+      "timestamp": "2026-02-10T03:37:21.335Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 6,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 6 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T03:39:23.241Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 7,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 7 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T03:42:16.341Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770694936341_tqxo",
+      "gate": "G1",
+      "agent": "visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T03:42:16.344Z",
+      "type": "GATE_PASSED",
+      "gate": "G1",
+      "attempt": 7,
+      "message": "Gate G1 passed on attempt 7"
+    },
+    {
+      "timestamp": "2026-02-10T03:44:21.851Z",
+      "type": "GATE_STARTED",
+      "gate": "G2",
+      "attempt": 1,
+      "agent": "research-orchestrator",
+      "message": "Gate G2 attempt 1 started with agent research-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T03:58:33.183Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770695913182_snzq",
+      "gate": "G2",
+      "agent": "research-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T03:58:33.191Z",
+      "type": "GATE_PASSED",
+      "gate": "G2",
+      "attempt": 1,
+      "message": "Gate G2 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-10T04:00:29.421Z",
+      "type": "GATE_STARTED",
+      "gate": "G3",
+      "attempt": 1,
+      "agent": "visual-essay-invocation-agent",
+      "message": "Gate G3 attempt 1 started with agent visual-essay-invocation-agent"
+    },
+    {
+      "timestamp": "2026-02-10T04:07:16.137Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770696436137_nj62",
+      "gate": "G3",
+      "agent": "visual-essay-invocation-agent"
+    },
+    {
+      "timestamp": "2026-02-10T04:07:16.140Z",
+      "type": "GATE_FAILED",
+      "gate": "G3",
+      "attempt": 1,
+      "message": "Gate G3 failed: Missing headings: ## Layer 1, ## Layer 2, ## Layer 3, ## Layer 4, ## Layer 5, ## Layer 6"
+    },
+    {
+      "timestamp": "2026-02-10T04:11:00.370Z",
+      "type": "GATE_PASSED",
+      "gate": "G3",
+      "attempt": 1,
+      "message": "Gate G3 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-10T04:11:14.853Z",
+      "type": "GATE_STARTED",
+      "gate": "G4",
+      "attempt": 1,
+      "agent": "design-researcher",
+      "message": "Gate G4 attempt 1 started with agent design-researcher"
+    },
+    {
+      "timestamp": "2026-02-10T04:15:41.976Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770696941976_bf6y",
+      "gate": "G4",
+      "agent": "design-researcher"
+    },
+    {
+      "timestamp": "2026-02-10T04:15:41.979Z",
+      "type": "GATE_PASSED",
+      "gate": "G4",
+      "attempt": 1,
+      "message": "Gate G4 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-10T04:16:48.322Z",
+      "type": "GATE_STARTED",
+      "gate": "G5",
+      "attempt": 1,
+      "agent": "production-orchestrator",
+      "message": "Gate G5 attempt 1 started with agent production-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T04:24:14.115Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770697454115_4o2t",
+      "gate": "G5",
+      "agent": "production-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T04:24:14.120Z",
+      "type": "GATE_PASSED",
+      "gate": "G5",
+      "attempt": 1,
+      "message": "Gate G5 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-10T04:41:06.772Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.1",
+      "attempt": 1,
+      "agent": "design-research-reconciliation-agent",
+      "message": "Gate G4.1 attempt 1 started with agent design-research-reconciliation-agent"
+    },
+    {
+      "timestamp": "2026-02-10T04:48:01.270Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770698881270_1n9s",
+      "gate": "G4.1",
+      "agent": "design-research-reconciliation-agent"
+    },
+    {
+      "timestamp": "2026-02-10T04:48:01.278Z",
+      "type": "GATE_PASSED",
+      "gate": "G4.1",
+      "attempt": 1,
+      "message": "Gate G4.1 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-10T04:48:01.359Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "agent": "image-research-licensing-expert",
+      "message": "Gate G4.5 attempt 1 started with agent image-research-licensing-expert"
+    },
+    {
+      "timestamp": "2026-02-10T04:48:28.945Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770698908944_4wqr",
+      "gate": "G4.5",
+      "agent": "image-research-licensing-expert"
+    },
+    {
+      "timestamp": "2026-02-10T04:48:28.950Z",
+      "type": "GATE_FAILED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "message": "Gate G4.5 failed: None of required files exist: {artifact_path}/research/IMAGE_RESEARCH_AUDIT.md, {artifact_path}/research/IMAGE-DOCUMENTATION.md, {artifact_path}/images-migration.json, {artifact_path}/images.ts; Found forbidden pattern: [UNLICENSED]; Found forbidden pattern: status: FAIL"
+    },
+    {
+      "timestamp": "2026-02-10T04:48:29.020Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.6",
+      "attempt": 1,
+      "agent": "visualization-architect",
+      "message": "Gate G4.6 attempt 1 started with agent visualization-architect"
+    },
+    {
+      "timestamp": "2026-02-10T04:54:35.104Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.5",
+      "attempt": 2,
+      "agent": "image-research-licensing-expert",
+      "message": "Gate G4.5 attempt 2 started with agent image-research-licensing-expert"
+    },
+    {
+      "timestamp": "2026-02-10T05:00:23.830Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770699623830_m42k",
+      "gate": "G4.5",
+      "agent": "image-research-licensing-expert"
+    },
+    {
+      "timestamp": "2026-02-10T05:00:23.837Z",
+      "type": "GATE_PASSED",
+      "gate": "G4.5",
+      "attempt": 2,
+      "message": "Gate G4.5 passed on attempt 2"
+    },
+    {
+      "timestamp": "2026-02-10T05:00:23.921Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.6",
+      "attempt": 2,
+      "agent": "visualization-architect",
+      "message": "Gate G4.6 attempt 2 started with agent visualization-architect"
+    },
+    {
+      "timestamp": "2026-02-10T05:03:23.683Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770699803683_nj3f",
+      "gate": "G4.6",
+      "agent": "visualization-architect"
+    },
+    {
+      "timestamp": "2026-02-10T05:03:23.692Z",
+      "type": "GATE_FAILED",
+      "gate": "G4.6",
+      "attempt": 2,
+      "message": "Gate G4.6 failed: ; "
+    },
+    {
+      "timestamp": "2026-02-10T05:03:23.795Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.4",
+      "attempt": 1,
+      "agent": "visualization-architect-auditor",
+      "message": "Gate G5.4 attempt 1 started with agent visualization-architect-auditor"
+    },
+    {
+      "timestamp": "2026-02-10T05:06:20.913Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770699980913_37ko",
+      "gate": "G5.4",
+      "agent": "visualization-architect-auditor"
+    },
+    {
+      "timestamp": "2026-02-10T05:06:20.922Z",
+      "type": "GATE_FAILED",
+      "gate": "G5.4",
+      "attempt": 1,
+      "message": "Gate G5.4 failed: ; ; Client component or its visualization imports must reference at least one visualization library or Canvas API"
+    },
+    {
+      "timestamp": "2026-02-10T05:06:20.998Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.2",
+      "attempt": 1,
+      "agent": "design-research-implementation-auditor",
+      "message": "Gate G5.2 attempt 1 started with agent design-research-implementation-auditor"
+    },
+    {
+      "timestamp": "2026-02-10T05:12:08.117Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770700328117_9gvi",
+      "gate": "G5.2",
+      "agent": "design-research-implementation-auditor"
+    },
+    {
+      "timestamp": "2026-02-10T05:12:08.122Z",
+      "type": "GATE_PASSED",
+      "gate": "G5.2",
+      "attempt": 1,
+      "message": "Gate G5.2 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-10T05:12:08.220Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.3",
+      "attempt": 1,
+      "agent": "diagram-code-reconciliation-auditor",
+      "message": "Gate G5.3 attempt 1 started with agent diagram-code-reconciliation-auditor"
+    },
+    {
+      "timestamp": "2026-02-10T05:13:23.272Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770700403272_a90i",
+      "gate": "G5.3",
+      "agent": "diagram-code-reconciliation-auditor"
+    },
+    {
+      "timestamp": "2026-02-10T05:13:23.278Z",
+      "type": "GATE_PASSED",
+      "gate": "G5.3",
+      "attempt": 1,
+      "message": "Gate G5.3 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-10T05:13:23.365Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.5",
+      "attempt": 1,
+      "agent": "bibliography-orchestrator",
+      "message": "Gate G5.5 attempt 1 started with agent bibliography-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T05:19:03.256Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770700743256_uczd",
+      "gate": "G5.5",
+      "agent": "bibliography-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T05:19:03.262Z",
+      "type": "GATE_FAILED",
+      "gate": "G5.5",
+      "attempt": 1,
+      "message": "Gate G5.5 failed: Frontmatter status must not be FAIL"
+    },
+    {
+      "timestamp": "2026-02-10T05:19:03.378Z",
+      "type": "GATE_STARTED",
+      "gate": "G6",
+      "attempt": 1,
+      "agent": "citation-audit-agent",
+      "message": "Gate G6 attempt 1 started with agent citation-audit-agent"
+    },
+    {
+      "timestamp": "2026-02-10T05:23:26.649Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770701006648_hwbi",
+      "gate": "G6",
+      "agent": "citation-audit-agent"
+    },
+    {
+      "timestamp": "2026-02-10T05:23:26.657Z",
+      "type": "GATE_FAILED",
+      "gate": "G6",
+      "attempt": 1,
+      "message": "Gate G6 failed: Frontmatter status must not be FAIL (parsed from YAML, not string match)"
+    },
+    {
+      "timestamp": "2026-02-10T05:23:26.742Z",
+      "type": "GATE_STARTED",
+      "gate": "G6.6",
+      "attempt": 1,
+      "agent": "prose-quality-auditor",
+      "message": "Gate G6.6 attempt 1 started with agent prose-quality-auditor"
+    },
+    {
+      "timestamp": "2026-02-10T05:26:54.473Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770701214473_d429",
+      "gate": "G6.6",
+      "agent": "prose-quality-auditor"
+    },
+    {
+      "timestamp": "2026-02-10T05:26:54.480Z",
+      "type": "GATE_PASSED",
+      "gate": "G6.6",
+      "attempt": 1,
+      "message": "Gate G6.6 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-10T05:26:54.562Z",
+      "type": "GATE_STARTED",
+      "gate": "G7",
+      "attempt": 1,
+      "agent": "immersive-scrolling-auditor",
+      "message": "Gate G7 attempt 1 started with agent immersive-scrolling-auditor"
+    },
+    {
+      "timestamp": "2026-02-10T05:30:31.775Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770701431775_j214",
+      "gate": "G7",
+      "agent": "immersive-scrolling-auditor"
+    },
+    {
+      "timestamp": "2026-02-10T05:30:31.781Z",
+      "type": "GATE_PASSED",
+      "gate": "G7",
+      "attempt": 1,
+      "message": "Gate G7 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-10T05:30:31.876Z",
+      "type": "GATE_STARTED",
+      "gate": "G8",
+      "attempt": 1,
+      "agent": "publish-artifact-orchestrator",
+      "message": "Gate G8 attempt 1 started with agent publish-artifact-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T05:32:42.182Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770701562182_v7l0",
+      "gate": "G8",
+      "agent": "publish-artifact-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T05:32:42.188Z",
+      "type": "GATE_PASSED",
+      "gate": "G8",
+      "attempt": 1,
+      "message": "Gate G8 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-10T05:32:42.331Z",
+      "type": "GATE_STARTED",
+      "gate": "G9",
+      "attempt": 1,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G9 attempt 1 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T05:33:58.150Z",
+      "type": "INVOCATION_RECORDED",
+      "invocation_id": "inv_1770701638150_2xd5",
+      "gate": "G9",
+      "agent": "visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-10T05:33:58.156Z",
+      "type": "GATE_PASSED",
+      "gate": "G9",
+      "attempt": 1,
+      "message": "Gate G9 passed on attempt 1"
+    }
+  ]
+}

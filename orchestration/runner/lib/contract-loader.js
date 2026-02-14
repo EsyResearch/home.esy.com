@@ -41,6 +41,17 @@ function resolvePath(pathTemplate, context) {
     resolved = resolved.replace(/\{artifact_path\}/g, context.artifact_path);
   }
   
+  // Auto-discover {client_component} — find *Client.tsx or *Client.jsx in artifact_path
+  if (resolved.includes('{client_component}') && context.artifact_path) {
+    const artifactAbsPath = path.join(REPO_ROOT, context.artifact_path);
+    const clientFile = discoverClientComponent(artifactAbsPath);
+    if (clientFile) {
+      // Replace variable with the relative path from repo root
+      const relPath = path.relative(REPO_ROOT, clientFile);
+      resolved = resolved.replace(/\{client_component\}/g, relPath);
+    }
+  }
+  
   // If path starts with orchestration/, resolve from repo root
   // Otherwise it's already an artifact-relative path that got resolved via artifact_path
   if (resolved.startsWith('orchestration/') || resolved.startsWith('src/')) {
@@ -49,6 +60,24 @@ function resolvePath(pathTemplate, context) {
   
   // For paths that don't start with known prefixes, assume already resolved
   return path.join(REPO_ROOT, resolved);
+}
+
+/**
+ * Auto-discover the client component file (*Client.tsx or *Client.jsx) in an artifact directory
+ * @param {string} artifactAbsPath - Absolute path to the essay artifact directory
+ * @returns {string|null} Absolute path to the client component, or null
+ */
+function discoverClientComponent(artifactAbsPath) {
+  try {
+    const files = fs.readdirSync(artifactAbsPath);
+    const clientFile = files.find(f => /Client\.(tsx|jsx)$/.test(f));
+    if (clientFile) {
+      return path.join(artifactAbsPath, clientFile);
+    }
+  } catch {
+    // Directory doesn't exist or isn't readable
+  }
+  return null;
 }
 
 /**

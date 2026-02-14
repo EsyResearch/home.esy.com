@@ -1,0 +1,78 @@
+{
+  "attempt": 2,
+  "status": "FAIL",
+  "started_at": "2026-02-10T05:00:23.921Z",
+  "finished_at": "2026-02-10T05:03:23.692Z",
+  "agent": "visualization-architect",
+  "prompt_sha256": "2a1b2b6dc0632336bbebc356081d6625dd8a99d338c189e1c1bf97a8b218beb8",
+  "invocation_ids": [
+    "inv_1770699803683_nj3f"
+  ],
+  "required_outputs": [
+    "{artifact_path}/VIZ-TECH-DECISIONS.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/VIZ-TECH-DECISIONS.md",
+      "sha256": "62b84cca8cd52d6ee8e29feee72fff6bd60f5e7d0ecb5fb07ce8c31b72dde91b",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/VIZ-TECH-DECISIONS.md",
+      "pass": true,
+      "description": "Technology tier assignment for each planned visualization"
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/VIZ-TECH-DECISIONS.md",
+      "patterns": [
+        "## Technology Assignments",
+        "Tier",
+        "Justification"
+      ],
+      "missing": [
+        "## Technology Assignments",
+        "Justification"
+      ],
+      "severity": "error",
+      "pass": false
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/VIZ-TECH-DECISIONS.md",
+      "checks": {
+        "status": "APPROVED"
+      },
+      "fields": {
+        "status": "PASS",
+        "gate": "G4.6",
+        "date": "2025-01-03",
+        "essay": "the-sword"
+      },
+      "failures": [
+        "status: expected \"APPROVED\", got \"PASS\""
+      ],
+      "severity": "error",
+      "pass": false
+    },
+    {
+      "type": "regex_match",
+      "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/VIZ-TECH-DECISIONS.md",
+      "regex": "Tier [1-4]",
+      "must_not_match": false,
+      "matched": true,
+      "severity": "error",
+      "description": "At least one visualization must be assigned Tier 1 or higher",
+      "pass": true
+    }
+  ],
+  "failure_reason": "; "
+}

@@ -14,6 +14,7 @@
 - Naming convention mismatch detection (hyphen vs underscore, BEM violations)
 - Orphan selector identification (CSS with no HTML binding)
 - Unstyled element identification (HTML with no CSS binding)
+- Markup rendering integrity verification (Unicode escapes, JSX text encoding)
 - Human-in-the-loop remediation guidance
 
 ---
@@ -89,6 +90,47 @@
 - BEM element delimiter: `__` vs `-` vs `_`
 - BEM modifier delimiter: `--` vs `-` vs `_`
 
+### Markup Rendering Integrity
+
+**Problem Domain**
+
+JSX text content (text between tags) does NOT process JavaScript string escape sequences. A Unicode escape like `\u0113` placed in JSX text renders as the literal characters `\`, `u`, `0`, `1`, `1`, `3` — not as the intended `ē` character. This is invisible in source code review but causes visible rendering defects in the browser.
+
+**Affected Contexts**
+- JSX text nodes: `<div>phonē</div>` works, `<div>phon\u0113</div>` does NOT
+- SVG `<title>` and `<desc>` elements: same JSX text rules apply
+- `<span>`, `<p>`, `<h1>`–`<h6>`, `<figcaption>`, `<li>` text content
+- Any text between opening and closing tags that is not inside `{""}`
+
+**Safe Contexts (no action needed)**
+- JSX attribute strings: `aria-label="phon\u0113"` — correctly processed
+- JavaScript expression containers: `{"phon\u0113"}` — correctly processed
+- JavaScript object literals: `{ word: "phon\u0113" }` — correctly processed
+- `dangerouslySetInnerHTML` content — processed as HTML, not JSX
+
+**Detection Pattern**
+```
+Scan for: >([^{<"]*\\u[0-9a-fA-F]{4})
+```
+Any match indicates a raw Unicode escape in JSX text content that will render as literal text.
+
+**Common Characters Affected in Etymology Essays**
+| Escape | Character | Name | Usage |
+|--------|-----------|------|-------|
+| `\u0113` | ē | e with macron | Transliterated Greek (phonē) |
+| `\u014d` | ō | o with macron | Transliterated Greek/Latin (vōx) |
+| `\u0101` | ā | a with macron | Transliterated Latin (diālis) |
+| `\u00e9` | é | e with acute | French (téléphone) |
+| `\u00e7` | ç | c with cedilla | French (François) |
+| `\u2013` | – | en dash | Date ranges (1876–1922) |
+| `\u2014` | — | em dash | Parenthetical breaks |
+| `\u03c6\u03c9\u03bd\u03ae` | φωνή | Greek word | Greek text in etymology essays |
+
+**Remediation**
+1. **Preferred**: Use actual UTF-8 characters directly: `<div>phonē</div>`
+2. **Alternative**: Wrap in JS expression: `<div>{"phon\u0113"}</div>`
+3. **Never**: Leave raw escapes in JSX text content
+
 ### Mismatch Classification
 
 **Severity Levels**
@@ -115,6 +157,7 @@
 - [ ] Cross-reference performed with exact match
 - [ ] Overall binding percentage calculated
 - [ ] Convention consistency verified
+- [ ] No raw Unicode escapes in JSX text content (markup rendering integrity)
 
 **Tier 2: Mismatch Investigation (Should Verify)**
 - [ ] Unbound selectors categorized by likely cause
@@ -135,6 +178,7 @@
 - Multiple naming conventions mixed in same file
 - TSX uses utility classes (e.g., Tailwind) but essay has custom CSS (potential conflict)
 - CSS Modules used but className extracted as string literal
+- Raw `\uXXXX` escape sequences in JSX text content (renders as literal text, not characters)
 
 ### Red Lines (Never Cross)
 
@@ -143,6 +187,7 @@
 - Never auto-modify code without explicit remediation decision
 - Never skip convention consistency check
 - Never treat typo mismatches as acceptable
+- Never pass an essay with raw `\uXXXX` escapes in JSX text content — these are rendering bugs, not style choices
 
 ---
 
@@ -223,7 +268,42 @@
    }
 ```
 
-### Phase 4: Human Consultation
+### Phase 4: Markup Rendering Integrity
+
+```
+1. Scan all TSX/JSX files for raw Unicode escape sequences in text content:
+   - Match pattern: >([^{<"]*\\u[0-9a-fA-F]{4})
+   - This catches text between > and < that contains \uXXXX outside of {"..."} expressions
+2. For each match:
+   - Record: file path, line number, surrounding context
+   - Identify the intended character (e.g., \u0113 → ē)
+   - Classify the context:
+     a. JSX text content → BUG (will render literally)
+     b. SVG <title>/<desc> text → BUG (will render literally)
+     c. JS expression container → SAFE (will process correctly)
+     d. JSX attribute value → SAFE (will process correctly)
+3. Generate findings:
+   {
+     rawEscapes: [
+       {
+         file: "TheWordPhoneClient.tsx",
+         line: 142,
+         context: "<div className=\"hero-transliteration\">phon\\u0113</div>",
+         escape: "\\u0113",
+         intended: "ē",
+         status: "BUG"
+       }
+     ],
+     bugCount: N,
+     safeCount: N
+   }
+4. Remediation:
+   - Replace raw escapes with UTF-8 characters (preferred)
+   - Or wrap in JS expression containers: {"phon\u0113"}
+5. Output: Append Markup Integrity section to Integration Report
+```
+
+### Phase 5: Human Consultation
 
 ```
 For each Critical/High issue, present:
@@ -353,6 +433,17 @@ This means [N] CSS rules are not being applied.
 
 ---
 
+## Markup Rendering Integrity
+
+| Status | File | Line | Context | Escape | Intended Character |
+|--------|------|------|---------|--------|--------------------|
+| BUG | [file] | [N] | [surrounding text] | [\\uXXXX] | [character] |
+
+**Raw Escape Count:** [N] bugs / [N] safe
+**Markup Integrity:** [PASS / FAIL]
+
+---
+
 ## Remediation Plan
 
 ### Convention Standardization (if applicable)
@@ -386,6 +477,7 @@ This means [N] CSS rules are not being applied.
 - [ ] No typo mismatches remaining
 - [ ] Orphan selectors resolved or documented
 - [ ] Unstyled elements resolved or documented
+- [ ] No raw Unicode escapes in JSX text content (markup rendering integrity PASS)
 ```
 
 ### Quality Indicators
@@ -435,7 +527,7 @@ When invoking this agent:
 
 > "Using your role as an expert CSS-to-HTML binding analyst responsible for verifying that CSS selectors correctly bind to TSX classNames, analyze [essay path] and identify any binding failures, convention mismatches, or orphan selectors."
 
-**CRITICAL REQUIREMENT**: You must verify that EVERY CSS selector binds to a TSX className. Be exhaustive in your extraction—parse all compound selectors, template literals, and conditional class applications. Present all mismatches with full context, edit distances for typos, and remediation options. NEVER auto-modify code; always defer to human judgment. The purpose is to ensure CSS design systems are actually rendered, not just written.
+**CRITICAL REQUIREMENT**: You must verify that EVERY CSS selector binds to a TSX className AND that no raw Unicode escape sequences exist in JSX text content. Be exhaustive in your extraction—parse all compound selectors, template literals, and conditional class applications. Scan all JSX text nodes for `\uXXXX` patterns that will render as literal text. Present all mismatches and markup integrity issues with full context, edit distances for typos, and remediation options. NEVER auto-modify code; always defer to human judgment. The purpose is to ensure CSS design systems are actually rendered, not just written, and that all text content renders as intended.
 
 ---
 
@@ -525,8 +617,8 @@ By running this agent at G5.2, the convention mismatch would be caught **before*
 ---
 
 ## Last Updated
-December 2024
+February 2026
 
 ---
 
-*This agent specializes in CSS-to-TSX binding verification, ensuring that CSS class selectors correctly bind to TSX className attributes so design systems are actually rendered. It operates at Gate 5.2 in the visual essay pipeline, blocking citation audit until binding percentage reaches ≥95%. Ideal for catching the Nakba-style failure where CSS naming convention mismatches caused 100% of styles to be unapplied, resulting in a visually broken essay that passed all other gates.*
+*This agent specializes in CSS-to-TSX binding verification and markup rendering integrity, ensuring that (1) CSS class selectors correctly bind to TSX className attributes so design systems are actually rendered, and (2) all text content renders as intended with no raw Unicode escape sequences in JSX text nodes. It operates at Gate 5.2 in the visual essay pipeline, blocking citation audit until binding percentage reaches ≥95% and markup integrity passes. Ideal for catching the Nakba-style failure (CSS convention mismatch) and the Phone-style failure (Unicode escapes rendering as literal text).*

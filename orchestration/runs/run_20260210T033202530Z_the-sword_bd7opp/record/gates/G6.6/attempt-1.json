@@ -1,0 +1,102 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-10T05:23:26.741Z",
+  "finished_at": "2026-02-10T05:26:54.480Z",
+  "agent": "prose-quality-auditor",
+  "prompt_sha256": "b820c80508d5e3ecbb594a9454440d0230f6cbe5a117b16b80eedcec926ad474",
+  "invocation_ids": [
+    "inv_1770701214473_d429"
+  ],
+  "required_outputs": [
+    "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+    "{artifact_path}/PROSE-QUALITY-AUDIT.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PROSE-QUALITY-AUDIT.md",
+      "sha256": "7b3bc3c996813e530acd200afd25e7d9c757542c08b48662ad85a52d8c62ea9e",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/PROSE-QUALITY-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/PROSE-QUALITY-AUDIT.md",
+      "sha256": "f423227b07707a8cb8bf357b172f7717fb033636e79c886305311ef231af2e55",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/PROSE-QUALITY-AUDIT.md",
+          "exists": true
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PROSE-QUALITY-AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Prose quality audit must not have FAIL status",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/PROSE-QUALITY-AUDIT.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "fields": {
+        "status": "PASS",
+        "gate": "G6.6",
+        "date": "2026-02-10",
+        "prose_score": "9/10",
+        "auditor": "Prose Quality Auditor Agent (isolated instance)",
+        "essay": "the-sword"
+      },
+      "failures": [],
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL",
+      "pass": true
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/TheSwordClient.tsx",
+      "regex": "(\\bdelve\\b|\\btapestry\\b|\\bunlock the secrets\\b|\\bin today's world\\b|\\blet's dive\\b|\\bfascinating journey\\b|\\bit's important to note\\b|\\bIn conclusion\\b)",
+      "must_not_match": true,
+      "matched": false,
+      "severity": "warning",
+      "description": "Client component should not contain common AI slop phrases (delve, tapestry, unlock the secrets, etc.)",
+      "pass": true,
+      "warning": false
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/TheSwordClient.tsx",
+      "regex": "[\\u{1F300}-\\u{1F9FF}\\u{2600}-\\u{26FF}\\u{2700}-\\u{27BF}]",
+      "must_not_match": true,
+      "matched": false,
+      "severity": "error",
+      "description": "Client component must NOT contain emoji characters",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

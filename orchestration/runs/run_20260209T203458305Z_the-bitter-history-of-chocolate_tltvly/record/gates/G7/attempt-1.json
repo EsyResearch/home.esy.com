@@ -1,0 +1,57 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:34:58.335Z",
+  "finished_at": "2026-02-09T20:34:58.341Z",
+  "agent": "immersive-scrolling-auditor",
+  "prompt_sha256": "d43ba0693e7095f8c1869e13abc6c76647bcc0208d16d1eb13fc4edab5b63120",
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+    "{artifact_path}/SCROLL-CERTIFICATION.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/research/SCROLL-CERTIFICATION.md",
+      "sha256": "89e225dd728029d6a90e7e9e6989557ccdc68c87dba445b68f96bb6aed337db0",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/SCROLL-CERTIFICATION.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Scroll certification must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "pattern": "Overall Status: ❌",
+      "found": false,
+      "severity": "error",
+      "description": "Scroll certification must not report overall failure",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

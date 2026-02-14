@@ -1,0 +1,46 @@
+{
+  "gate": "G5.4",
+  "name": "Visualization Ambition Audit",
+  "description": "Verifies that each visualization's implementation matches or exceeds its assigned technology tier from G4.6. Checks for proper library usage, component decomposition, and minimum ambition scores.",
+  "agent": "visualization-architect-auditor",
+  "required_outputs": {
+    "all_of": [
+      {
+        "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+        "description": "Per-visualization technology audit with scores"
+      }
+    ]
+  },
+  "validations": [
+    {
+      "type": "file_exists",
+      "target": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md"
+    },
+    {
+      "type": "frontmatter_status",
+      "target": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+      "checks": {
+        "status": "PASS"
+      }
+    },
+    {
+      "type": "contains_text",
+      "target": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+      "patterns": ["Average Score", "Technology Tier"]
+    },
+    {
+      "type": "regex_match",
+      "target": "{client_component}",
+      "regex": "import .*(d3|three|recharts|Canvas|useRef.*canvas|getContext)",
+      "description": "Client component or its visualization imports must reference at least one visualization library or Canvas API"
+    },
+    {
+      "type": "regex_match",
+      "target": "{client_component}",
+      "regex": "width:\\s*[`'\"]\\$\\{.*\\}%[`'\"]",
+      "must_not_match": true,
+      "description": "No div-width-percentage bar charts in data-encoding visualizations"
+    }
+  ],
+  "notes": "This is an audit gate — it must run in a separate session from the G5 producer. Average visualization ambition score must be >= 3.5 on the 1-5 rubric defined in visualization-quality-standard.md."
+}

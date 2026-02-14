@@ -1,0 +1,39 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:07:08.951Z",
+  "finished_at": "2026-02-09T20:08:05.004Z",
+  "agent": "design-researcher",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/DESIGN-RESEARCH.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-speed-of-everything/DESIGN-RESEARCH.md",
+      "sha256": "08a0d76b7fa2321a7635299f839319a389034f415aceebcec55c51a63e37d7e8",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-speed-of-everything/DESIGN-RESEARCH.md",
+      "pass": true,
+      "description": "Subject-derived design research report with color palette, typography, animation philosophy"
+    },
+    {
+      "type": "contains_headings",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "missing": [],
+      "severity": "warning",
+      "description": "Design research should cover Color, Typography, and Animation (warning if missing)",
+      "pass": true,
+      "warning": false
+    }
+  ],
+  "failure_reason": null
+}

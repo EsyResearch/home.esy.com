@@ -1,0 +1,78 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-10T03:44:21.851Z",
+  "finished_at": "2026-02-10T03:58:33.191Z",
+  "agent": "research-orchestrator",
+  "prompt_sha256": "865c5db6ec8e6e76c161dafc6db7d42cd35d0dea14cfeaec867498bf4f791962",
+  "invocation_ids": [
+    "inv_1770695913182_snzq"
+  ],
+  "required_outputs": [
+    "{artifact_path}/research/CITATIONS.md",
+    "{artifact_path}/research/CLAIMS.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CITATIONS.md",
+      "sha256": "1e69361ae29417cef91f59604bb25622b5450dd6cb90069ecbb74c1fac4e37ac",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/CLAIMS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CLAIMS.md",
+      "sha256": "44b17c160588ee13e39637632f1a89b0c3816934b7eb7670358ed54cf4ff361d",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/CITATIONS.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/research/CLAIMS.md",
+          "exists": true
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "dir_exists",
+      "path": "{artifact_path}/research",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research",
+      "pass": true,
+      "description": "Research directory must exist"
+    },
+    {
+      "type": "min_file_count",
+      "path": "{artifact_path}/research",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research",
+      "pattern": "*.md",
+      "count": 8,
+      "threshold": 3,
+      "depth": "standard",
+      "pass": true,
+      "description": "Research directory must contain minimum number of markdown files based on depth mode"
+    },
+    {
+      "type": "min_sources_any_of",
+      "checked": [
+        "{artifact_path}/research/CITATIONS.md",
+        "{artifact_path}/research/CLAIMS.md"
+      ],
+      "matched": "{artifact_path}/research/CITATIONS.md",
+      "count": 55,
+      "threshold": 8,
+      "depth": "standard",
+      "pass": true,
+      "description": "Source-tracking file (CITATIONS.md or CLAIMS.md) must contain minimum sources based on depth mode"
+    }
+  ],
+  "failure_reason": null
+}

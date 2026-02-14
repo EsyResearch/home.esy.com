@@ -108,15 +108,34 @@ A page-specific header allows `'unsafe-eval'` only on the Three.js essay page:
 | 4 | Build a static SVG fallback for `initFailed` state | Component render |
 | 5 | Wrap the dynamic import with `VisualizationErrorBoundary` | Parent component |
 
+## CSP Whitelist Completeness (Critical!)
+
+When adding a page-specific CSP, every other page has **NO CSP at all**, so all external scripts load freely. A page-specific CSP must whitelist ALL external scripts the site uses:
+
+| Script | Domain | Purpose |
+|---|---|---|
+| Google Tag Manager | `https://www.googletagmanager.com` | Tag management |
+| Google Analytics | `https://www.google-analytics.com` | Analytics |
+| GA Region | `https://region1.google-analytics.com` | GA endpoint |
+| Microsoft Clarity | `https://www.clarity.ms` AND `https://scripts.clarity.ms` | Session replay |
+| Cloudflare Insights | `https://static.cloudflareinsights.com` | Web analytics |
+| FullStory | `https://edge.fullstory.com` | Session replay |
+| Ahrefs | `https://analytics.ahrefs.com` | SEO analytics |
+| Cloudflare Challenges | `https://challenges.cloudflare.com` | Bot protection |
+
+**Failure mode**: Missing any of these causes `Refused to load script` errors in console. If Cloudflare's challenge platform is blocked, bot-challenged users see a blank/stuck page.
+
 ## Files Changed
 
-- `src/app/essays/inside-a-black-hole/SpacetimeVisualization.jsx` — CSP guard, try-catch, SVG fallback
-- `src/app/essays/inside-a-black-hole/InsideABlackHoleClient.jsx` — Error boundary class + wrapping
-- `netlify.toml` — Page-specific CSP header with `'unsafe-eval'`
+- `src/app/essays/science/inside-a-black-hole/SpacetimeVisualization.jsx` — CSP guard, try-catch, SVG fallback
+- `src/app/essays/science/inside-a-black-hole/InsideABlackHoleClient.jsx` — Error boundary class + wrapping (both Three.js visualizations)
+- `src/app/essays/science/inside-a-black-hole/PenroseVisualization.jsx` — CSP guard, try-catch, SVG fallback
+- `netlify.toml` — Page-specific CSP header with `'unsafe-eval'` and full domain whitelist
 
 ## First Encountered
 
 - **Date**: 2026-02-08
-- **Page**: `/essays/inside-a-black-hole/`
-- **Environment**: Production (Netlify)
+- **Page**: `/essays/inside-a-black-hole/` (later moved to `/essays/science/inside-a-black-hole/`)
+- **Environment**: Production (Netlify + Cloudflare)
 - **Library**: Three.js `^0.182.0`
+- **Recurrence**: 2026-02-10 — CSP whitelist was incomplete, blocking Cloudflare/analytics scripts

@@ -1,0 +1,39 @@
+{
+  "gate": "G4.6",
+  "name": "Visualization Technology Decision",
+  "description": "Maps each visualization in the DESIGN-RESEARCH to a minimum technology tier and produces VIZ-TECH-DECISIONS.md. Ensures no data-encoding visualization defaults to CSS-only rendering.",
+  "agent": "visualization-architect",
+  "required_outputs": {
+    "all_of": [
+      {
+        "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+        "description": "Technology tier assignment for each planned visualization"
+      }
+    ]
+  },
+  "validations": [
+    {
+      "type": "file_exists",
+      "target": "{artifact_path}/VIZ-TECH-DECISIONS.md"
+    },
+    {
+      "type": "contains_text",
+      "target": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "patterns": ["Tier", "Minimum Tier"]
+    },
+    {
+      "type": "frontmatter_status",
+      "target": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "checks": {
+        "status": "PASS"
+      }
+    },
+    {
+      "type": "regex_match",
+      "target": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "regex": "Tier [1-4]",
+      "description": "At least one visualization must be assigned Tier 1 or higher"
+    }
+  ],
+  "notes": "This gate bridges design research (G4) and content production (G5). The technology decisions here constrain what the producing agent may implement. Any data-encoding visualization assigned to Tier 0 is a contract violation. See orchestration/standards/visualization-quality-standard.md for the full technology ladder and subject-to-technology mapping."
+}

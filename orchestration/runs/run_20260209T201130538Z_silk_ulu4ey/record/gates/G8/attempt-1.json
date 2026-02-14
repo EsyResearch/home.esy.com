@@ -1,0 +1,68 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:32:51.450Z",
+  "finished_at": "2026-02-09T20:32:51.486Z",
+  "agent": "publish-artifact-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+    "{artifact_path}/PUBLICATION-CERTIFICATION.md",
+    "{artifact_path}/research/PUBLICATION-APPROVAL.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/research/PUBLICATION-CERTIFICATION.md",
+      "sha256": "e13c3998e9db3796a7885ef5089ece208b475a364450ef762c75134fb8eae2a1",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/research/PUBLICATION-APPROVAL.md",
+      "sha256": "bf2e655bf81c69972d67a952a917e65dd0bf19bbd0b4cc696af8d634125b0212",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/PUBLICATION-CERTIFICATION.md",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+          "exists": true
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Publication certification must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "pattern": "NO-GO",
+      "found": false,
+      "severity": "error",
+      "description": "Publication certification must not be NO-GO",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

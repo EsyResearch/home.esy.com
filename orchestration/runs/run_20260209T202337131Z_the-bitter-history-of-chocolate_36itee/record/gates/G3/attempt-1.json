@@ -1,0 +1,48 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:23:37.139Z",
+  "finished_at": "2026-02-09T20:23:37.142Z",
+  "agent": "visual-essay-invocation-agent",
+  "prompt_sha256": "2842b6b706acba4915608e8d4247143036e118c05369b9aa8d21b6740fd99d97",
+  "invocation_ids": [],
+  "required_outputs": [
+    "orchestration/skills/visual-essay-invocation/specs/{slug}.md"
+  ],
+  "artifacts": [
+    {
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-bitter-history-of-chocolate.md",
+      "sha256": "1cb2730b97dd1192887c8999586020eb2ba868a6ac758adb56a74fc7dd92316c",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-bitter-history-of-chocolate.md",
+      "pass": true,
+      "description": "6-layer visual essay specification"
+    },
+    {
+      "type": "contains_headings",
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "missing": [],
+      "severity": "error",
+      "description": "Spec must contain all 6 layer headings",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "pattern": "[DRAFT]",
+      "found": false,
+      "severity": "warning",
+      "description": "Spec should not contain [DRAFT] marker (configurable)",
+      "pass": true,
+      "warning": false
+    }
+  ],
+  "failure_reason": null
+}

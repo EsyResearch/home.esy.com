@@ -12,10 +12,6 @@
       {
         "path": "{artifact_path}/PUBLICATION-CERTIFICATION.md",
         "description": "Publication certification report (essay root level)"
-      },
-      {
-        "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
-        "description": "Publication approval (legacy naming)"
       }
     ]
   },
@@ -38,7 +34,18 @@
       "pattern": "NO-GO",
       "severity": "error",
       "description": "Publication certification must not be NO-GO"
+    },
+    {
+      "type": "frontmatter_status",
+      "target": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL (parsed from YAML)"
     }
   ],
-  "notes": "G8 validates the aggregate pre-publication audit. The Publish Artifact Orchestrator invokes: Bibliography Orchestrator (audit mode), Audit Orchestrator (quality domains), Design Slop Auditor (distinctiveness check), Social Media Meta Expert, SEO Audit Agent, and Gate Guard Auditor (G1-G7 verification). If issues are found, QA Remediation Orchestrator runs first. Certification status must be GO or CONDITIONAL to proceed to G9. NO-GO blocks the pipeline. The design slop audit is mandatory at G8 per the Gate Accountability Standard."
+  "notes": "G8 validates the aggregate pre-publication audit. The Publish Artifact Orchestrator invokes: Bibliography Orchestrator (audit mode), Audit Orchestrator (quality domains), Design Slop Auditor (distinctiveness check), Social Media Meta Expert, SEO Audit Agent, and Gate Guard Auditor (G1-G7 verification). If issues are found, QA Remediation Orchestrator runs first. Certification status must be GO or CONDITIONAL to proceed to G9. NO-GO blocks the pipeline. The not_contains validations now resolve to the actual existing any_of file path, preventing silent bypass."
 }

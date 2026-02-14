@@ -34,7 +34,18 @@
       "pattern": "Citation Certification: Rejected",
       "severity": "error",
       "description": "Citation audit must not have Rejected certification"
+    },
+    {
+      "type": "frontmatter_status",
+      "target": "{artifact_path}/research/CITATION-AUDIT.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL (parsed from YAML, not string match)"
     }
   ],
-  "notes": "G6 validates the Citation Audit Agent has verified all sources (80%+ Tier 1-2), authenticated quotes, checked link health, and confirmed content-research alignment. The audit file location varies by essay (some at root, some in research/). The not_contains checks verify the audit didn't reject the citations. Citation Certification (Approved/Rejected) is recorded in the audit report."
+  "notes": "G6 validates the Citation Audit Agent has verified all sources (80%+ Tier 1-2), authenticated quotes, checked link health, and confirmed content-research alignment. The audit file location varies by essay (some at root, some in research/). The not_contains and frontmatter_status checks both verify the audit didn't reject the citations. Citation Certification (Approved/Rejected) is recorded in the audit report. The not_contains validation now resolves to the actual existing any_of file path."
 }

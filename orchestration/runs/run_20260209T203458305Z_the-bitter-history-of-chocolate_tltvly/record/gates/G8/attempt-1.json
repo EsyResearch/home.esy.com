@@ -1,0 +1,68 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:34:58.343Z",
+  "finished_at": "2026-02-09T20:34:58.345Z",
+  "agent": "publish-artifact-orchestrator",
+  "prompt_sha256": "cab85a6b5c2bde872a471ca7a768ebd2e5bbac89324d053392bfbca7742b25fb",
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+    "{artifact_path}/PUBLICATION-CERTIFICATION.md",
+    "{artifact_path}/research/PUBLICATION-APPROVAL.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/research/PUBLICATION-CERTIFICATION.md",
+      "sha256": "503e437bba450bb743cf72d47bffc5a3b1f643dbcfcb6a051c65f193e0da5e87",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/research/PUBLICATION-APPROVAL.md",
+      "sha256": "3cbdbcba3dc2a8018c71c4650f49a7516a60ebc7820b3e7f0bc435c1aebd8cb2",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/PUBLICATION-CERTIFICATION.md",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+          "exists": true
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Publication certification must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "pattern": "NO-GO",
+      "found": false,
+      "severity": "error",
+      "description": "Publication certification must not be NO-GO",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

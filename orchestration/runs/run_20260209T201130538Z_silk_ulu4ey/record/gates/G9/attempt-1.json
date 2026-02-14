@@ -1,0 +1,57 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:32:55.801Z",
+  "finished_at": "2026-02-09T20:32:55.838Z",
+  "agent": "director",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+    "{artifact_path}/PUBLICATION-APPROVAL.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/research/PUBLICATION-APPROVAL.md",
+      "sha256": "bf2e655bf81c69972d67a952a917e65dd0bf19bbd0b4cc696af8d634125b0212",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/PUBLICATION-APPROVAL.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "pattern": "REJECTED",
+      "found": false,
+      "severity": "error",
+      "description": "Publication approval must not contain REJECTED",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Publication approval must not have FAIL status in frontmatter",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

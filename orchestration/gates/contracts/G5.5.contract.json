@@ -34,7 +34,18 @@
       "pattern": "Overall Status: ❌",
       "severity": "error",
       "description": "Bibliography audit must not report overall failure"
+    },
+    {
+      "type": "frontmatter_status",
+      "target": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL"
     }
   ],
-  "notes": "G5.5 validates that the Bibliography Orchestrator has produced and audited the Works Cited, Image Credits, A/V Credits, and Data Sources sections. The audit report confirms inline↔bibliography synchronization. The not_contains checks verify the audit didn't conclude with a failure status. See BIBLIOGRAPHY_STRUCTURE_GUIDE.md and ARTIFACT_CITATION_PATTERNS_GUIDE.md for patterns."
+  "notes": "G5.5 validates that the Bibliography Orchestrator has produced and audited the Works Cited, Image Credits, A/V Credits, and Data Sources sections. The audit report confirms inline↔bibliography synchronization. The frontmatter_status check provides robust YAML parsing instead of string matching alone. See BIBLIOGRAPHY_STRUCTURE_GUIDE.md and ARTIFACT_CITATION_PATTERNS_GUIDE.md for patterns."
 }

@@ -34,7 +34,18 @@
       "pattern": "Overall Status: ❌",
       "severity": "error",
       "description": "Scroll certification must not report overall failure"
+    },
+    {
+      "type": "frontmatter_status",
+      "target": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL (parsed from YAML)"
     }
   ],
-  "notes": "G7 validates that the Immersive Scrolling Auditor has tested scroll-lock behavior, animation performance (60fps target), mobile Safari compatibility, and real device testing. The certification score (≥8.0/10 to pass) and any Tier 1 failures are recorded in the report. No Tier 1 failures are allowed. The not_contains checks verify the certification didn't fail."
+  "notes": "G7 validates that the Immersive Scrolling Auditor has tested scroll-lock behavior, animation performance (60fps target), mobile Safari compatibility, and real device testing. The certification score (≥8.0/10 to pass) and any Tier 1 failures are recorded in the report. No Tier 1 failures are allowed. The not_contains checks now resolve to the actual existing any_of file, preventing silent bypass when the report is at a different path."
 }

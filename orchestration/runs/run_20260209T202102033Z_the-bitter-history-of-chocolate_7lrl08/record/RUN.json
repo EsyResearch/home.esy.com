@@ -1,0 +1,304 @@
+{
+  "run_id": "run_20260209T202102033Z_the-bitter-history-of-chocolate_7lrl08",
+  "workflow": {
+    "name": "visual-essay",
+    "version": "local-dev",
+    "slug": "the-bitter-history-of-chocolate",
+    "artifact_path": "src/app/essays/the-bitter-history-of-chocolate"
+  },
+  "depth": "standard",
+  "prompt": null,
+  "status": "RUNNING",
+  "started_at": "2026-02-09T20:21:02.034Z",
+  "finished_at": null,
+  "gates": [
+    {
+      "gate": "G1",
+      "name": "Intake Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T20:21:02.036Z",
+          "finished_at": "2026-02-09T20:21:02.039Z",
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": "769a452f4f347f45377d85d9beb0dae2d43ec297beffae830937ac2d31775da9",
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/G1-INTAKE.md",
+            "{artifact_path}/research/INTAKE.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/G1-INTAKE.md",
+              "sha256": "a4779cd7708de79873aa720303a1110d9f7b98f5e86972c8294ded65779c03b0",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/G1-INTAKE.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/INTAKE.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "pattern": "[REJECTED]",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not contain [REJECTED] marker",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G2",
+      "name": "Research Complete",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T20:21:02.040Z",
+          "finished_at": "2026-02-09T20:21:02.045Z",
+          "agent": "research-orchestrator",
+          "prompt_sha256": "cf5f46950376b0d4785c9ee604dca95e932cc04a9ae56ecabae33b3067de4392",
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CITATIONS.md",
+            "{artifact_path}/research/CLAIMS.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/research/CITATIONS.md",
+              "sha256": "aab743c673f5b3189f173f3f1d14ca17cc0240477a39c8236b9a5a3c8f140abc",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CITATIONS.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/CLAIMS.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "dir_exists",
+              "path": "{artifact_path}/research",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/research",
+              "pass": true,
+              "description": "Research directory must exist"
+            },
+            {
+              "type": "min_file_count",
+              "path": "{artifact_path}/research",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/research",
+              "pattern": "*.md",
+              "count": 7,
+              "threshold": 3,
+              "depth": "standard",
+              "pass": true,
+              "description": "Research directory must contain minimum number of markdown files based on depth mode"
+            },
+            {
+              "type": "min_sources_any_of",
+              "checked": [
+                "{artifact_path}/research/CITATIONS.md",
+                "{artifact_path}/research/CLAIMS.md"
+              ],
+              "matched": "{artifact_path}/research/CITATIONS.md",
+              "count": 96,
+              "threshold": 8,
+              "depth": "standard",
+              "pass": true,
+              "description": "Source-tracking file (CITATIONS.md or CLAIMS.md) must contain minimum sources based on depth mode"
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G3",
+      "name": "Spec Approval",
+      "status": "RUNNING",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "RUNNING",
+          "started_at": "2026-02-09T20:21:02.046Z",
+          "finished_at": null,
+          "agent": "visual-essay-invocation-agent",
+          "prompt_sha256": "f8987ebcf4a4f3ce683c1cef9552fa5fc2767549a97f98aea8abd56acc51e3e1",
+          "invocation_ids": [],
+          "required_outputs": [],
+          "artifacts": [],
+          "validations": [],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4",
+      "name": "Design Research",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G4.1",
+      "name": "Design Research Reconciliation",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G4.5",
+      "name": "Image Sourcing",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G5",
+      "name": "Content Complete",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G5.2",
+      "name": "Design Fidelity Audit",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G5.3",
+      "name": "Diagram-Code Reconciliation",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G5.5",
+      "name": "Bibliography Implementation",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G6",
+      "name": "Citation Audit",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G7",
+      "name": "Scroll Certification",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G8",
+      "name": "Publication Certification",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G9",
+      "name": "Publication Approval",
+      "status": "NOT_STARTED",
+      "attempts": []
+    }
+  ],
+  "invocations": [],
+  "artifacts_index": [
+    {
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "sha256": "a4779cd7708de79873aa720303a1110d9f7b98f5e86972c8294ded65779c03b0",
+      "gate": "G1",
+      "recorded_at": "2026-02-09T20:21:02.039Z"
+    },
+    {
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "sha256": "aab743c673f5b3189f173f3f1d14ca17cc0240477a39c8236b9a5a3c8f140abc",
+      "gate": "G2",
+      "recorded_at": "2026-02-09T20:21:02.045Z"
+    }
+  ],
+  "validations": [],
+  "events": [
+    {
+      "timestamp": "2026-02-09T20:21:02.034Z",
+      "type": "RUN_STARTED",
+      "message": "Run initialized for visual-essay/the-bitter-history-of-chocolate"
+    },
+    {
+      "timestamp": "2026-02-09T20:21:02.036Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 1,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 1 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-09T20:21:02.039Z",
+      "type": "GATE_PASSED",
+      "gate": "G1",
+      "attempt": 1,
+      "message": "Gate G1 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T20:21:02.040Z",
+      "type": "GATE_STARTED",
+      "gate": "G2",
+      "attempt": 1,
+      "agent": "research-orchestrator",
+      "message": "Gate G2 attempt 1 started with agent research-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-09T20:21:02.045Z",
+      "type": "GATE_PASSED",
+      "gate": "G2",
+      "attempt": 1,
+      "message": "Gate G2 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T20:21:02.046Z",
+      "type": "GATE_STARTED",
+      "gate": "G3",
+      "attempt": 1,
+      "agent": "visual-essay-invocation-agent",
+      "message": "Gate G3 attempt 1 started with agent visual-essay-invocation-agent"
+    }
+  ]
+}

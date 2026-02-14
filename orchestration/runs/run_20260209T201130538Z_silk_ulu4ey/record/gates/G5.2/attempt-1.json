@@ -1,0 +1,62 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:32:24.487Z",
+  "finished_at": "2026-02-09T20:32:28.337Z",
+  "agent": "design-fidelity-auditor",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+    "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+    "{artifact_path}/DESIGN-RESEARCH.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "sha256": "f1024476409fe407e8ac2efdf43bc5cf4646411b35039091846159b6773ab47d",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/DESIGN-RESEARCH.md",
+      "sha256": "a2507078fff09f4fcd4264ca0e5ca615ceda8ab655be4f0af36172f6912705b3",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/DESIGN-RESEARCH.md",
+      "pass": true,
+      "description": "Design research must still exist (design source of truth)"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Design fidelity audit must not have FAIL status in frontmatter",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

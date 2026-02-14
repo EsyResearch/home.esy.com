@@ -1,0 +1,212 @@
+{
+  "run_id": "run_20260209T201653599Z_the-bitter-history-of-chocolate_q578sz",
+  "workflow": {
+    "name": "visual-essay",
+    "version": "local-dev",
+    "slug": "the-bitter-history-of-chocolate",
+    "artifact_path": "src/app/essays/the-bitter-history-of-chocolate"
+  },
+  "depth": "standard",
+  "prompt": null,
+  "status": "RUNNING",
+  "started_at": "2026-02-09T20:16:53.607Z",
+  "finished_at": null,
+  "gates": [
+    {
+      "gate": "G1",
+      "name": "Intake Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T20:16:53.608Z",
+          "finished_at": "2026-02-09T20:16:53.615Z",
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": "03d71fdd8a410b73067d8f50e2869c6e6ee3af630b79a55ba015c75a38e03277",
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/G1-INTAKE.md",
+            "{artifact_path}/research/INTAKE.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/G1-INTAKE.md",
+              "sha256": "a4779cd7708de79873aa720303a1110d9f7b98f5e86972c8294ded65779c03b0",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/G1-INTAKE.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/INTAKE.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "pattern": "[REJECTED]",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not contain [REJECTED] marker",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G2",
+      "name": "Research Complete",
+      "status": "RUNNING",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "RUNNING",
+          "started_at": "2026-02-09T20:16:53.616Z",
+          "finished_at": null,
+          "agent": "research-orchestrator",
+          "prompt_sha256": "f06db302686f72b569fa93c72ba5950e454b0ca779909a80402cb1bf93437c24",
+          "invocation_ids": [],
+          "required_outputs": [],
+          "artifacts": [],
+          "validations": [],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G3",
+      "name": "Spec Approval",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G4",
+      "name": "Design Research",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G4.1",
+      "name": "Design Research Reconciliation",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G4.5",
+      "name": "Image Sourcing",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G5",
+      "name": "Content Complete",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G5.2",
+      "name": "Design Fidelity Audit",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G5.3",
+      "name": "Diagram-Code Reconciliation",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G5.5",
+      "name": "Bibliography Implementation",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G6",
+      "name": "Citation Audit",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G7",
+      "name": "Scroll Certification",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G8",
+      "name": "Publication Certification",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G9",
+      "name": "Publication Approval",
+      "status": "NOT_STARTED",
+      "attempts": []
+    }
+  ],
+  "invocations": [],
+  "artifacts_index": [
+    {
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "sha256": "a4779cd7708de79873aa720303a1110d9f7b98f5e86972c8294ded65779c03b0",
+      "gate": "G1",
+      "recorded_at": "2026-02-09T20:16:53.615Z"
+    }
+  ],
+  "validations": [],
+  "events": [
+    {
+      "timestamp": "2026-02-09T20:16:53.607Z",
+      "type": "RUN_STARTED",
+      "message": "Run initialized for visual-essay/the-bitter-history-of-chocolate"
+    },
+    {
+      "timestamp": "2026-02-09T20:16:53.608Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 1,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 1 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-09T20:16:53.615Z",
+      "type": "GATE_PASSED",
+      "gate": "G1",
+      "attempt": 1,
+      "message": "Gate G1 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T20:16:53.616Z",
+      "type": "GATE_STARTED",
+      "gate": "G2",
+      "attempt": 1,
+      "agent": "research-orchestrator",
+      "message": "Gate G2 attempt 1 started with agent research-orchestrator"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-10T04:16:48.322Z",
+  "finished_at": "2026-02-10T04:24:14.120Z",
+  "agent": "production-orchestrator",
+  "prompt_sha256": "e8cedf7342833115e0eb1ff8684b7b9b2047041df6143b6cb3f14511c4ae2c23",
+  "invocation_ids": [
+    "inv_1770697454115_4o2t"
+  ],
+  "required_outputs": [
+    "{artifact_path}/page.tsx",
+    "{artifact_path}/{slug}.css"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/page.tsx",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/page.tsx",
+      "sha256": "d5b2a6370e7e688f326af86d72b5bce041f6f58301208d5d2e5d375e70a0b4dd",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/{slug}.css",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/the-sword.css",
+      "sha256": "10ede71fa2e072a9e4bff648041ff0a1f93235532459a8bbeaef881bbcf4621f",
+      "exists": true,
+      "optional": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/page.tsx",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/page.tsx",
+      "pass": true,
+      "description": "Next.js page with metadata, ArtifactDetailWrapper, and default export"
+    },
+    {
+      "type": "contains_headings",
+      "path": "{artifact_path}/page.tsx",
+      "missing": [],
+      "severity": "error",
+      "description": "page.tsx must contain a default export and metadata definition",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/page.tsx",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/page.tsx",
+      "patterns": [
+        "ArtifactDetailWrapper",
+        "ESSAY_META"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "page.tsx MUST import and use ArtifactDetailWrapper with ESSAY_META (visual-essay-engineering-standard.md §2, Red Lines)",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/page.tsx",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/page.tsx",
+      "patterns": [
+        "@/components/ArtifactDetail"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "page.tsx MUST import ArtifactDetailWrapper from @/components/ArtifactDetail",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/page.tsx",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/page.tsx",
+      "pattern": "TODO",
+      "found": false,
+      "severity": "warning",
+      "description": "page.tsx should not contain TODO markers (indicates incomplete implementation)",
+      "pass": true,
+      "warning": false
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/TheSwordClient.tsx",
+      "regex": "[\\u{1F300}-\\u{1F9FF}\\u{2600}-\\u{26FF}\\u{2700}-\\u{27BF}]",
+      "must_not_match": true,
+      "matched": false,
+      "severity": "error",
+      "description": "Client component must NOT contain emoji characters — use SVG icons or CSS shapes instead",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

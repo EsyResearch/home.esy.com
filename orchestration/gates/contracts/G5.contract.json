@@ -2,12 +2,12 @@
   "gate": "G5",
   "name": "Content Complete",
   "blocking": true,
-  "description": "Validates that all narrative content is written, visuals created, and components implemented. Checks that page.tsx has proper Next.js exports and metadata.",
+  "description": "Validates that all narrative content is written, visuals created, and components implemented. Checks page structure (ArtifactDetailWrapper, metadata, client component), CSS existence, and anti-patterns.",
   "required_outputs": {
     "all_of": [
       {
         "path": "{artifact_path}/page.tsx",
-        "description": "Next.js page with metadata and default export",
+        "description": "Next.js page with metadata, ArtifactDetailWrapper, and default export",
         "required": true
       },
       {
@@ -33,12 +33,48 @@
       "description": "page.tsx must contain a default export and metadata definition"
     },
     {
+      "type": "contains_text",
+      "target": "{artifact_path}/page.tsx",
+      "patterns": [
+        "ArtifactDetailWrapper",
+        "ESSAY_META"
+      ],
+      "severity": "error",
+      "description": "page.tsx MUST import and use ArtifactDetailWrapper with ESSAY_META (visual-essay-engineering-standard.md §2, Red Lines)"
+    },
+    {
+      "type": "contains_text",
+      "target": "{artifact_path}/page.tsx",
+      "patterns": [
+        "@/components/ArtifactDetail"
+      ],
+      "severity": "error",
+      "description": "page.tsx MUST import ArtifactDetailWrapper from @/components/ArtifactDetail"
+    },
+    {
       "type": "not_contains",
       "target": "{artifact_path}/page.tsx",
       "pattern": "TODO",
       "severity": "warning",
+      "missing_ok": true,
       "description": "page.tsx should not contain TODO markers (indicates incomplete implementation)"
+    },
+    {
+      "type": "regex_match",
+      "target": "{client_component}",
+      "regex": "[\\u{1F300}-\\u{1F9FF}\\u{2600}-\\u{26FF}\\u{2700}-\\u{27BF}]",
+      "must_not_match": true,
+      "severity": "error",
+      "description": "Client component must NOT contain emoji characters — use SVG icons or CSS shapes instead"
+    },
+    {
+      "type": "regex_match",
+      "target": "{client_component}",
+      "regex": ">([^{<\"]*\\\\u[0-9a-fA-F]{4})",
+      "must_not_match": true,
+      "severity": "error",
+      "description": "Client component must NOT contain raw Unicode escape sequences (\\uXXXX) in JSX text content — they render as literal text, not as the intended character. Wrap in JavaScript expressions ({\"\\u0113\"}) or use actual UTF-8 characters (ē) instead. See: JSX text nodes do not process JS string escape sequences."
     }
   ],
-  "notes": "G5 validates the core implementation files exist and have real substance. Standard convention: artifact_path = src/app/essays/{slug}/ (same dir as research). The CSS file is not strictly required because some essays use Tailwind-only. The Client component naming varies (e.g., TheWordRobotClient.tsx, GeographyOfWaterScarcityClient.jsx), so we validate page.tsx as the stable entry point. The contains_headings check uses loose term matching — 'export default' confirms the page has a renderable component, 'metadata' confirms SEO/OG tags exist."
+  "notes": "G5 validates the core implementation files exist and have real substance. Standard convention: artifact_path = src/app/essays/{slug}/ (same dir as research). The CSS file is not strictly required because some essays use Tailwind-only. The Client component naming varies (e.g., TheWordRobotClient.tsx, GeographyOfWaterScarcityClient.jsx), so we validate page.tsx as the stable entry point. The contains_text checks enforce the ArtifactDetailWrapper requirement from visual-essay-engineering-standard.md. The regex_match check catches emoji usage, which is an anti-pattern for production visual essays. The JSX Unicode escape check catches a common bug where \\uXXXX sequences are placed in JSX text content (between tags) instead of inside JavaScript expression containers ({\"...\"}). In JSX text, \\u0113 renders as the literal string '\\u0113' rather than the intended 'ē' character."
 }

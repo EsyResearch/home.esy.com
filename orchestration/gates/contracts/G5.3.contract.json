@@ -2,7 +2,7 @@
   "gate": "G5.3",
   "name": "Diagram-Code Reconciliation",
   "blocking": true,
-  "description": "Verifies that every visualization's annotations (labels, arrows, text) are semantically consistent with the code behavior (math formulas, animation direction, scale). Parses @diagram-contract blocks from the client component, applies domain-specific verification rules, and produces a per-invariant PASS/FAIL audit.",
+  "description": "Verifies that every visualization's annotations (labels, arrows, text) are semantically consistent with the code behavior (math formulas, animation direction, scale). Checks for @diagram-contract blocks in client component and produces a per-invariant PASS/FAIL audit.",
   "required_outputs": {
     "all_of": [
       {
@@ -24,13 +24,18 @@
   },
   "validations": [
     {
-      "type": "contract_coverage",
-      "description": "Every visualization function (D1, D2, ...) must have a corresponding @diagram-contract block"
-    },
-    {
       "type": "file_exists",
       "target": "any_of",
       "description": "Diagram-code reconciliation report must exist"
+    },
+    {
+      "type": "contains_text",
+      "target": "{client_component}",
+      "patterns": [
+        "@diagram-contract"
+      ],
+      "severity": "error",
+      "description": "Client component MUST contain at least one @diagram-contract block per diagram-code-contract.md standard"
     },
     {
       "type": "not_contains",
@@ -38,6 +43,17 @@
       "pattern": "status: FAIL",
       "severity": "error",
       "description": "Diagram-code reconciliation must not have FAIL status"
+    },
+    {
+      "type": "frontmatter_status",
+      "target": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "severity": "error",
+      "description": "Diagram-code reconciliation frontmatter status must not be FAIL"
     }
   ],
   "verification_rules": [
@@ -62,5 +78,5 @@
       "description": "For quantum-mechanics domain: verify probability density is non-negative (|ψ|² used, not raw ψ)"
     }
   ],
-  "notes": "G5.3 is the diagram-code reconciliation gate. It sits between Design Fidelity (G5.2) and Bibliography (G5.5). The Diagram-Code Reconciliation Auditor reads the client component code (not rendered output) and verifies annotations match behavior. See orchestration/standards/diagram-code-contract.md for the full specification."
+  "notes": "G5.3 is the diagram-code reconciliation gate. It sits between Design Fidelity (G5.2) and Bibliography (G5.5). The Diagram-Code Reconciliation Auditor reads the client component code (not rendered output) and verifies annotations match behavior. The contains_text check for @diagram-contract replaces the previous unimplemented contract_coverage type. See orchestration/standards/diagram-code-contract.md for the full specification."
 }

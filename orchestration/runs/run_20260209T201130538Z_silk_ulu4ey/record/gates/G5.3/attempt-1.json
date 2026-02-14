@@ -1,0 +1,62 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:32:33.669Z",
+  "finished_at": "2026-02-09T20:32:33.712Z",
+  "agent": "diagram-code-reconciliation-auditor",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+    "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+    "{client_component}"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "sha256": "3232b38283e665d8b2fc318485a0ed648b201307fcf087fbeaf86574fde6bfe2",
+      "exists": true
+    },
+    {
+      "path": "{client_component}",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/SilkClient.tsx",
+      "sha256": "26f0a9e909da6b8f089822bfa38f4d3b28284af2c6d70a398cd6f0c0f084ae67",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "file_exists",
+      "path": "{client_component}",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/SilkClient.tsx",
+      "pass": true,
+      "description": "Client component must contain @diagram-contract blocks for every visualization function"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Diagram-code reconciliation must not have FAIL status",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

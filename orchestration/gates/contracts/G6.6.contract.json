@@ -1,0 +1,96 @@
+{
+  "gate": "G6.6",
+  "name": "Prose Quality Audit",
+  "blocking": true,
+  "description": "Validates writing craft, detects AI slop patterns, checks voice consistency, and evaluates transition quality. This is the primary anti-slop gate. The Prose Quality Auditor reads the client component and evaluates prose independently from the producing agent.",
+  "required_outputs": {
+    "any_of": [
+      {
+        "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+        "description": "Prose quality audit report with structured YAML frontmatter"
+      },
+      {
+        "path": "{artifact_path}/PROSE-QUALITY-AUDIT.md",
+        "description": "Prose quality audit report (essay root level)"
+      }
+    ]
+  },
+  "validations": [
+    {
+      "type": "file_exists",
+      "target": "any_of",
+      "description": "Prose quality audit report must exist"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+      "pattern": "status: FAIL",
+      "severity": "error",
+      "description": "Prose quality audit must not have FAIL status"
+    },
+    {
+      "type": "frontmatter_status",
+      "target": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL"
+    },
+    {
+      "type": "regex_match",
+      "target": "{client_component}",
+      "regex": "(\\bdelve\\b|\\btapestry\\b|\\bunlock the secrets\\b|\\bin today's world\\b|\\blet's dive\\b|\\bfascinating journey\\b|\\bit's important to note\\b|\\bIn conclusion\\b)",
+      "must_not_match": true,
+      "severity": "warning",
+      "description": "Client component should not contain common AI slop phrases (delve, tapestry, unlock the secrets, etc.)"
+    },
+    {
+      "type": "regex_match",
+      "target": "{client_component}",
+      "regex": "[\\u{1F300}-\\u{1F9FF}\\u{2600}-\\u{26FF}\\u{2700}-\\u{27BF}]",
+      "must_not_match": true,
+      "severity": "error",
+      "description": "Client component must NOT contain emoji characters"
+    }
+  ],
+  "audit_criteria": {
+    "voice_consistency": {
+      "description": "Prose maintains a consistent voice throughout — no jarring shifts between sections",
+      "weight": 20
+    },
+    "ai_slop_detection": {
+      "description": "No filler phrases, empty transitions, or generic AI patterns. Every sentence earns its place.",
+      "weight": 30,
+      "anti_patterns": [
+        "Let's dive into",
+        "In today's world",
+        "It's important to note",
+        "delve",
+        "tapestry",
+        "In conclusion",
+        "fascinating journey",
+        "unlock the secrets",
+        "the world of",
+        "When it comes to",
+        "At the end of the day",
+        "It goes without saying"
+      ]
+    },
+    "transition_quality": {
+      "description": "Section transitions are earned and specific, not generic bridge sentences",
+      "weight": 20
+    },
+    "specificity": {
+      "description": "Claims are backed by specific numbers, names, dates — not vague generalities",
+      "weight": 15
+    },
+    "rhythm_and_pacing": {
+      "description": "Sentence length varies. Short sentences for impact. Longer sentences for explanation. Never monotonous.",
+      "weight": 15
+    }
+  },
+  "notes": "G6.6 is the prose quality gate — the primary defense against AI slop. It sits between Citation Audit (G6) and Scroll Certification (G7). The Prose Quality Auditor MUST be a different agent/session than the content producer (G5). The audit evaluates writing craft on five dimensions with weighted scoring. The regex_match validations catch obvious slop patterns in the contract enforcement layer, but the full audit report provides the detailed evaluation. Created per Gate Accountability Standard §Production+QA Interleaving."
+}

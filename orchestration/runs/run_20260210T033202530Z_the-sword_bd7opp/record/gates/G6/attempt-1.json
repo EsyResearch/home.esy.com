@@ -1,0 +1,82 @@
+{
+  "attempt": 1,
+  "status": "FAIL",
+  "started_at": "2026-02-10T05:19:03.377Z",
+  "finished_at": "2026-02-10T05:23:26.657Z",
+  "agent": "citation-audit-agent",
+  "prompt_sha256": "94857341cfa439e56ba7bceae4f51e231da7880e8518747ec1c5a663afdb88f5",
+  "invocation_ids": [
+    "inv_1770701006648_hwbi"
+  ],
+  "required_outputs": [
+    "{artifact_path}/research/CITATION-AUDIT.md",
+    "{artifact_path}/CITATION-AUDIT.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CITATION-AUDIT.md",
+      "sha256": "12802eccccd1cec85fd9236c546f23a8ae5b5fd6325d95842cf2106adc1ff94a",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/CITATION-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/CITATION-AUDIT.md",
+      "sha256": "79f01ac98edbcb62a26bc44c96ffe3dc7ac445ccafab7c6cf3c80ecc9abc4a85",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/CITATION-AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/CITATION-AUDIT.md",
+          "exists": true
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CITATION-AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Citation audit must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CITATION-AUDIT.md",
+      "pattern": "Citation Certification: Rejected",
+      "found": false,
+      "severity": "error",
+      "description": "Citation audit must not have Rejected certification",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CITATION-AUDIT.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "fields": {},
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL (parsed from YAML, not string match)",
+      "reason": "File not found or no YAML frontmatter: /Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/CITATION-AUDIT.md",
+      "pass": false
+    }
+  ],
+  "failure_reason": "Frontmatter status must not be FAIL (parsed from YAML, not string match)"
+}

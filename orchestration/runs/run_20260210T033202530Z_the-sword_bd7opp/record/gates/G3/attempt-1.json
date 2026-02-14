@@ -1,0 +1,51 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-10T04:00:29.421Z",
+  "finished_at": "2026-02-10T04:11:00.370Z",
+  "agent": "visual-essay-invocation-agent",
+  "prompt_sha256": "de1fb0575078c467b82fe60d41acd20c29b85d39508b34794635af5fcb5242c0",
+  "invocation_ids": [
+    "inv_1770696436137_nj62"
+  ],
+  "required_outputs": [
+    "orchestration/skills/visual-essay-invocation/specs/{slug}.md"
+  ],
+  "artifacts": [
+    {
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-sword.md",
+      "sha256": "6a6b175c25fd877c9e792ead231e46ea6e57a6a3cb0432c25aae3602db56ed9d",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-sword.md",
+      "pass": true,
+      "description": "6-layer visual essay specification"
+    },
+    {
+      "type": "contains_headings",
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "missing": [],
+      "severity": "error",
+      "description": "Spec must contain all 6 layer headings",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-sword.md",
+      "pattern": "[DRAFT]",
+      "found": false,
+      "severity": "warning",
+      "description": "Spec should not contain [DRAFT] marker (configurable)",
+      "pass": true,
+      "warning": false
+    }
+  ],
+  "failure_reason": "Missing headings: ## Layer 1, ## Layer 2, ## Layer 3, ## Layer 4, ## Layer 5, ## Layer 6"
+}

@@ -1,0 +1,103 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-10T05:12:08.219Z",
+  "finished_at": "2026-02-10T05:13:23.278Z",
+  "agent": "diagram-code-reconciliation-auditor",
+  "prompt_sha256": "3224e3e648045ba9ab992e6884741e3d59d5a240afbfca9a27fe5c1e90c0fa65",
+  "invocation_ids": [
+    "inv_1770700403272_a90i"
+  ],
+  "required_outputs": [
+    "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+    "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+    "{client_component}"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "sha256": "c63091eda19773b11ed3f05b60f706ed3756060a3125ddaa9b3b4230bc5bab4a",
+      "exists": true
+    },
+    {
+      "path": "{client_component}",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/TheSwordClient.tsx",
+      "sha256": "848eb11a4c37d9085995e4736b13b863296ee48bee4fc93df95b049c23ca7d58",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "file_exists",
+      "path": "{client_component}",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/TheSwordClient.tsx",
+      "pass": true,
+      "description": "Client component must contain @diagram-contract blocks for every visualization function"
+    },
+    {
+      "type": "contains_text",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/TheSwordClient.tsx",
+      "patterns": [
+        "@diagram-contract"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "Client component MUST contain at least one @diagram-contract block per diagram-code-contract.md standard",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Diagram-code reconciliation must not have FAIL status",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "fields": {
+        "gate": "G5.3",
+        "type": "Diagram-Code Reconciliation",
+        "status": "PASS",
+        "date": "2025-01-03",
+        "auditor": "diagram-code-reconciliation-auditor",
+        "essay": "the-sword",
+        "contract_count": 1,
+        "invariant_count": 2,
+        "pass_count": 2,
+        "fail_count": 0
+      },
+      "failures": [],
+      "severity": "error",
+      "description": "Diagram-code reconciliation frontmatter status must not be FAIL",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

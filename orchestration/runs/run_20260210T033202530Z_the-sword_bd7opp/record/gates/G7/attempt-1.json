@@ -1,0 +1,86 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-10T05:26:54.562Z",
+  "finished_at": "2026-02-10T05:30:31.781Z",
+  "agent": "immersive-scrolling-auditor",
+  "prompt_sha256": "7ede39bfdf02ce271c174f75d4efe8281ec5e73b6f022485ce660ec54e1e1505",
+  "invocation_ids": [
+    "inv_1770701431775_j214"
+  ],
+  "required_outputs": [
+    "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+    "{artifact_path}/SCROLL-CERTIFICATION.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/SCROLL-CERTIFICATION.md",
+      "sha256": "9c4a646f71039abcf7a633c1522f15bd6b75547ccf04009260a11d9af740990a",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/SCROLL-CERTIFICATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/SCROLL-CERTIFICATION.md",
+      "sha256": "6fb2bdc5d7d466db77da1c2d415dca2aab1ef4101a241c415e4028367086eb5a",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/SCROLL-CERTIFICATION.md",
+          "exists": true
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/SCROLL-CERTIFICATION.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Scroll certification must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/SCROLL-CERTIFICATION.md",
+      "pattern": "Overall Status: ❌",
+      "found": false,
+      "severity": "error",
+      "description": "Scroll certification must not report overall failure",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/SCROLL-CERTIFICATION.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "fields": {
+        "status": "PASS",
+        "gate": "G7",
+        "date": "2025-01-03"
+      },
+      "failures": [],
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

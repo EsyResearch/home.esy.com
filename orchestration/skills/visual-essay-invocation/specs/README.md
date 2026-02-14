@@ -104,6 +104,4 @@ The agent will:
 - **[Examples](../examples/)** — Format reference (not production specs)
 - **[Visual Essay Orchestrator](../../../agents/visual-essay-orchestrator.md)** — Uses specs for production
 
----
-
-*Last Updated: December 2024*
+---*Last Updated: December 2024*

@@ -1,0 +1,56 @@
+{
+  "attempt": 1,
+  "status": "FAIL",
+  "started_at": "2026-02-09T20:13:57.131Z",
+  "finished_at": "2026-02-09T20:14:28.911Z",
+  "agent": "diagram-code-reconciliation-auditor",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+    "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+    "{client_component}"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-speed-of-everything/DIAGRAM-CODE-RECONCILIATION.md",
+      "sha256": "981281afe8aad9d9675ec2301f41d7a8f8d222bd7625542646a331b312d810e2",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+          "exists": true
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "file_exists",
+      "path": "{client_component}",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/{client_component}",
+      "pass": false,
+      "description": "Client component must contain @diagram-contract blocks for every visualization function"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Diagram-code reconciliation must not have FAIL status",
+      "pass": true
+    }
+  ],
+  "failure_reason": "Missing: {client_component}"
+}

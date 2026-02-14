@@ -1,0 +1,78 @@
+{
+  "attempt": 1,
+  "status": "FAIL",
+  "started_at": "2026-02-10T04:48:01.359Z",
+  "finished_at": "2026-02-10T04:48:28.950Z",
+  "agent": "image-research-licensing-expert",
+  "prompt_sha256": "ff04072a9739038be0628471a61f62c23bd19d1e83302cd7859ba03393cf8332",
+  "invocation_ids": [
+    "inv_1770698908944_4wqr"
+  ],
+  "required_outputs": [
+    "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+    "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+    "{artifact_path}/images-migration.json",
+    "{artifact_path}/images.ts"
+  ],
+  "artifacts": [],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": false,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/images-migration.json",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/images.ts",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/IMAGE_RESEARCH_AUDIT.md",
+      "pattern": "[UNLICENSED]",
+      "found": false,
+      "severity": "error",
+      "description": "Image audit must not contain unlicensed assets",
+      "reason": "File not found — cannot verify content (use missing_ok: true to skip)",
+      "pass": false
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/IMAGE_RESEARCH_AUDIT.md",
+      "pattern": "[PENDING]",
+      "found": false,
+      "severity": "warning",
+      "description": "Image audit should not have pending sourcing tasks",
+      "reason": "File not found — cannot verify content (use missing_ok: true to skip)",
+      "pass": true,
+      "warning": false
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/IMAGE_RESEARCH_AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Image audit must not have FAIL status in frontmatter",
+      "reason": "File not found — cannot verify content (use missing_ok: true to skip)",
+      "pass": false
+    }
+  ],
+  "failure_reason": "None of required files exist: {artifact_path}/research/IMAGE_RESEARCH_AUDIT.md, {artifact_path}/research/IMAGE-DOCUMENTATION.md, {artifact_path}/images-migration.json, {artifact_path}/images.ts; Found forbidden pattern: [UNLICENSED]; Found forbidden pattern: status: FAIL"
+}

@@ -1,0 +1,56 @@
+{
+  "attempt": 3,
+  "status": "FAIL",
+  "started_at": "2026-02-10T03:33:41.477Z",
+  "finished_at": "2026-02-10T03:33:50.343Z",
+  "agent": "visual-essay-orchestrator",
+  "prompt_sha256": "7ed8c8713df802ea43509de0f353552b108d9b73d0a8ee5bb0ebabdfa7ebb277",
+  "invocation_ids": [
+    "inv_1770694430342_ehln"
+  ],
+  "required_outputs": [
+    "{artifact_path}/G1-INTAKE.md",
+    "{artifact_path}/research/INTAKE.md"
+  ],
+  "artifacts": [],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": false,
+      "checked": [
+        {
+          "path": "{artifact_path}/G1-INTAKE.md",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/research/INTAKE.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G1-INTAKE.md",
+      "pattern": "[REJECTED]",
+      "found": false,
+      "severity": "error",
+      "description": "Intake must not contain [REJECTED] marker",
+      "reason": "File not found — cannot verify content (use missing_ok: true to skip)",
+      "pass": false
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G1-INTAKE.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Intake must not have FAIL status in frontmatter",
+      "reason": "File not found — cannot verify content (use missing_ok: true to skip)",
+      "pass": false
+    }
+  ],
+  "failure_reason": "None of required files exist: {artifact_path}/G1-INTAKE.md, {artifact_path}/research/INTAKE.md; Found forbidden pattern: [REJECTED]; Found forbidden pattern: status: FAIL"
+}

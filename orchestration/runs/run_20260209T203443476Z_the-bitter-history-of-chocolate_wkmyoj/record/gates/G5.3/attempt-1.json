@@ -1,0 +1,62 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:34:43.494Z",
+  "finished_at": "2026-02-09T20:34:43.495Z",
+  "agent": "diagram-code-reconciliation-auditor",
+  "prompt_sha256": "36af679792ec7541e87a8c1c10d72dddcf0875519850cc23e6d4bb04ce17fc70",
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+    "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+    "{client_component}"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/DIAGRAM-CODE-RECONCILIATION.md",
+      "sha256": "c636b8c7413d2b2f72ff7212f66f70acf225089bedf2db3d6deb1e790cc895a5",
+      "exists": true
+    },
+    {
+      "path": "{client_component}",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/TheBitterHistoryOfChocolateClient.tsx",
+      "sha256": "dcbd399924fee0afef1325ac12d5512d401071a0e17c4809b87ef3ce3490634a",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+          "exists": true
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "file_exists",
+      "path": "{client_component}",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/TheBitterHistoryOfChocolateClient.tsx",
+      "pass": true,
+      "description": "Client component must contain @diagram-contract blocks for every visualization function"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Diagram-code reconciliation must not have FAIL status",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

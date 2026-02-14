@@ -1,0 +1,39 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:34:54.252Z",
+  "finished_at": "2026-02-09T20:34:54.253Z",
+  "agent": "design-researcher",
+  "prompt_sha256": "3f0c2f30ba11509c61c73abc343c7f729cc18142e3b173e6eb5838a983861ff9",
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/DESIGN-RESEARCH.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/DESIGN-RESEARCH.md",
+      "sha256": "29e98c6d73e6483093baf7cddb7a95096dcd13dbc4ff28c8ee37ab82200b0364",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/DESIGN-RESEARCH.md",
+      "pass": true,
+      "description": "Subject-derived design research report with color palette, typography, animation philosophy"
+    },
+    {
+      "type": "contains_headings",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "missing": [],
+      "severity": "warning",
+      "description": "Design research should cover Color, Typography, and Animation (warning if missing)",
+      "pass": true,
+      "warning": false
+    }
+  ],
+  "failure_reason": null
+}

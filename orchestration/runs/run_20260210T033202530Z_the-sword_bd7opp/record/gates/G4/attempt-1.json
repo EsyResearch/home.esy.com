@@ -1,0 +1,41 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-10T04:11:14.853Z",
+  "finished_at": "2026-02-10T04:15:41.979Z",
+  "agent": "design-researcher",
+  "prompt_sha256": "b5076b904ccd523d2bed05160bde3c67cbc7931fc77927a388cb4ec1b286455a",
+  "invocation_ids": [
+    "inv_1770696941976_bf6y"
+  ],
+  "required_outputs": [
+    "{artifact_path}/DESIGN-RESEARCH.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/DESIGN-RESEARCH.md",
+      "sha256": "936c5c8217fe834ea3de953e6830fb07f2f8889d39b90307343ab9499cb28ea0",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/DESIGN-RESEARCH.md",
+      "pass": true,
+      "description": "Subject-derived design research report with color palette, typography, animation philosophy"
+    },
+    {
+      "type": "contains_headings",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "missing": [],
+      "severity": "warning",
+      "description": "Design research should cover Color, Typography, and Animation (warning if missing)",
+      "pass": true,
+      "warning": false
+    }
+  ],
+  "failure_reason": null
+}

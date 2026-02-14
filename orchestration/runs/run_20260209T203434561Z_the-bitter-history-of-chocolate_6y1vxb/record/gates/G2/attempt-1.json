@@ -1,0 +1,70 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:34:34.566Z",
+  "finished_at": "2026-02-09T20:34:34.568Z",
+  "agent": "research-orchestrator",
+  "prompt_sha256": "4d31cfc8d7ba22fb199326a3525e8ab7c1eaa946cb91bd217f9b7f84b0dfc23e",
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CITATIONS.md",
+    "{artifact_path}/research/CLAIMS.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/research/CITATIONS.md",
+      "sha256": "aab743c673f5b3189f173f3f1d14ca17cc0240477a39c8236b9a5a3c8f140abc",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/CITATIONS.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/research/CLAIMS.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "dir_exists",
+      "path": "{artifact_path}/research",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/research",
+      "pass": true,
+      "description": "Research directory must exist"
+    },
+    {
+      "type": "min_file_count",
+      "path": "{artifact_path}/research",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-bitter-history-of-chocolate/research",
+      "pattern": "*.md",
+      "count": 13,
+      "threshold": 3,
+      "depth": "standard",
+      "pass": true,
+      "description": "Research directory must contain minimum number of markdown files based on depth mode"
+    },
+    {
+      "type": "min_sources_any_of",
+      "checked": [
+        "{artifact_path}/research/CITATIONS.md",
+        "{artifact_path}/research/CLAIMS.md"
+      ],
+      "matched": "{artifact_path}/research/CITATIONS.md",
+      "count": 96,
+      "threshold": 8,
+      "depth": "standard",
+      "pass": true,
+      "description": "Source-tracking file (CITATIONS.md or CLAIMS.md) must contain minimum sources based on depth mode"
+    }
+  ],
+  "failure_reason": null
+}

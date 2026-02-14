@@ -1,0 +1,48 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-09T20:05:08.203Z",
+  "finished_at": "2026-02-09T20:07:00.613Z",
+  "agent": "visual-essay-invocation-agent",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "orchestration/skills/visual-essay-invocation/specs/{slug}.md"
+  ],
+  "artifacts": [
+    {
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-speed-of-everything.md",
+      "sha256": "86d95e1db65884006c206a4a4740f936e879f573b359fa64ae6e315caaaf7e4f",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/the-speed-of-everything.md",
+      "pass": true,
+      "description": "6-layer visual essay specification"
+    },
+    {
+      "type": "contains_headings",
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "missing": [],
+      "severity": "error",
+      "description": "Spec must contain all 6 layer headings",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "pattern": "[DRAFT]",
+      "found": false,
+      "severity": "warning",
+      "description": "Spec should not contain [DRAFT] marker (configurable)",
+      "pass": true,
+      "warning": false
+    }
+  ],
+  "failure_reason": null
+}

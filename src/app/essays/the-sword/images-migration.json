@@ -1,0 +1,117 @@
+{
+  "essaySlug": "the-sword",
+  "images": [
+    {
+      "key": "bronzeAgeSword",
+      "filename": "bronze-age-sword.jpg",
+      "sourceUrl": "https://images.metmuseum.org/CRDImages/gr/original/DP145531.jpg",
+      "description": "Bronze sword from Mycenaean Greece, Late Bronze Age (circa 1600-1200 BCE), showing the early development of blade technology before iron metallurgy.",
+      "credit": "Metropolitan Museum of Art, CC0",
+      "license": "CC0"
+    },
+    {
+      "key": "patternWeldedBlade",
+      "filename": "pattern-welded-blade.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Sword_blade_pattern_welded_British_Museum.jpg",
+      "description": "Close-up detail of Viking Age pattern-welded sword blade showing the characteristic flowing layered structure created by forge-welding rods of iron and steel with different carbon contents.",
+      "credit": "British Museum, via Wikimedia Commons, Public Domain",
+      "license": "Public Domain"
+    },
+    {
+      "key": "ulfberhtSword",
+      "filename": "ulfberht-sword.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Ulfberht_sword_British_Museum.jpg",
+      "description": "Viking Age sword with +VLFBERH+T inscription, one of approximately 170 known Ulfberht swords. Metallurgical analysis reveals crucible steel composition exceeding typical European capabilities of the era.",
+      "credit": "British Museum, Public Domain",
+      "license": "Public Domain"
+    },
+    {
+      "key": "katanaKamakura",
+      "filename": "katana-kamakura.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/73/Katana_Kamakura_period.jpg",
+      "description": "Japanese tachi (katana) from the Kamakura period (13th-14th century), showing the characteristic curvature, hamon temper line, and refined proportions of Japan's Golden Age of sword-making.",
+      "credit": "Tokyo National Museum, via Wikimedia Commons, Public Domain",
+      "license": "Public Domain"
+    },
+    {
+      "key": "hamonCloseup",
+      "filename": "hamon-closeup.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Hamon_detail_Japanese_sword.jpg",
+      "description": "Extreme close-up of hamon (temper line) on a Japanese blade, showing the milky crystalline boundary between the hard martensitic edge and softer pearlitic spine created during differential quenching.",
+      "credit": "Via Wikimedia Commons, Public Domain",
+      "license": "Public Domain"
+    },
+    {
+      "key": "miyamotoMusashi",
+      "filename": "miyamoto-musashi.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Miyamoto_Musashi_portrait.jpg",
+      "description": "Traditional portrait of Miyamoto Musashi (1584-1645), legendary Japanese swordsman and author of 'The Book of Five Rings,' depicted in Edo period artistic style.",
+      "credit": "Unknown artist, via Wikimedia Commons, Public Domain",
+      "license": "Public Domain"
+    },
+    {
+      "key": "europeanLongsword",
+      "filename": "european-longsword.jpg",
+      "sourceUrl": "https://images.metmuseum.org/CRDImages/aa/original/DP146931.jpg",
+      "description": "European longsword from the 14th-15th century, showing the characteristic straight double-edged blade, cruciform hilt, and proportions typical of medieval combat weapons designed for both cutting and thrusting.",
+      "credit": "Metropolitan Museum of Art, CC0",
+      "license": "CC0"
+    },
+    {
+      "key": "middleEasternScimitar",
+      "filename": "middle-eastern-scimitar.jpg",
+      "sourceUrl": "https://images.metmuseum.org/CRDImages/is/original/DP240063.jpg",
+      "description": "Islamic shamshir (scimitar) from the 17th-18th century, showing the characteristic curved single-edged blade optimized for mounted combat and draw-cutting techniques.",
+      "credit": "Metropolitan Museum of Art, CC0",
+      "license": "CC0"
+    },
+    {
+      "key": "damascusPattern",
+      "filename": "damascus-pattern.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Damascus_steel_pattern_detail.jpg",
+      "description": "Close-up of Damascus steel pattern showing the characteristic 'watered silk' appearance created by carbide banding in hypereutectoid crucible steel (wootz), demonstrating the metallurgical sophistication of Islamic blade-making tradition.",
+      "credit": "Via Wikimedia Commons, Public Domain",
+      "license": "Public Domain"
+    },
+    {
+      "key": "fioreDiBattaglia",
+      "filename": "fiore-di-battaglia.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Fiore_dei_Liberi_Fior_di_Battaglia_longsword.jpg",
+      "description": "Page from Fiore dei Liberi's 'Fior di Battaglia' (1410), showing illustrated longsword combat techniques including guards, strikes, and grappling methods, demonstrating the sophisticated martial science of medieval European swordsmanship.",
+      "credit": "Getty Museum, MS Ludwig XV 13, Public Domain",
+      "license": "Public Domain"
+    },
+    {
+      "key": "renaissanceRapier",
+      "filename": "renaissance-rapier.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Rapier_Wallace_Collection.jpg",
+      "description": "Renaissance rapier from the late 16th or early 17th century, showing the complex swept hilt designed to protect the hand in dueling combat, representing the sword's transformation from battlefield weapon to instrument of social theater.",
+      "credit": "Wallace Collection, via Wikimedia Commons, Public Domain",
+      "license": "Public Domain"
+    },
+    {
+      "key": "samuraiArmor",
+      "filename": "samurai-armor.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Samurai_armor_Edo_period_TNM.jpg",
+      "description": "Samurai armor from the Edo period (17th-18th century) displaying the daisho sword pair (katana and wakizashi), representing the samurai class's exclusive right to wear two swords during Japan's long peace under the Tokugawa shogunate.",
+      "credit": "Tokyo National Museum, via Wikimedia Commons, Public Domain",
+      "license": "Public Domain"
+    },
+    {
+      "key": "modernForge",
+      "filename": "modern-forge.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Japanese_sword_forge_modern.jpg",
+      "description": "Contemporary photograph of a traditional Japanese sword forge, showing the continuation of centuries-old techniques by modern master smiths who maintain the living tradition of tamahagane steel production and blade-making.",
+      "credit": "Via Wikimedia Commons, CC BY-SA 4.0",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "key": "museumDisplay",
+      "filename": "museum-display.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Met_Museum_sword_gallery.jpg",
+      "description": "Museum gallery display showing sword collection under controlled lighting and preservation conditions, representing the sword's transformation from weapon to cultural artifact and object of scholarly study.",
+      "credit": "Via Wikimedia Commons, CC0",
+      "license": "CC0"
+    }
+  ]
+}

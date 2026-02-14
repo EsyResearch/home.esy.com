@@ -1,0 +1,1286 @@
+{
+  "run_id": "run_20260209T201130538Z_silk_ulu4ey",
+  "workflow": {
+    "name": "visual-essay",
+    "version": "local-dev",
+    "slug": "silk",
+    "artifact_path": "src/app/essays/silk"
+  },
+  "depth": "deep",
+  "prompt": null,
+  "status": "PASSED",
+  "started_at": "2026-02-09T20:11:30.547Z",
+  "finished_at": "2026-02-09T20:33:13.678Z",
+  "gates": [
+    {
+      "gate": "G1",
+      "name": "Intake Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T20:11:30.548Z",
+          "finished_at": "2026-02-09T20:12:29.594Z",
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": "cd6e119beb3e6257a523bb4d41c12fc8904cd48a77caa3bfed79ba1b244dad3a",
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/G1-INTAKE.md",
+            "{artifact_path}/research/INTAKE.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/G1-INTAKE.md",
+              "sha256": "98bd023a37feec16e3270c632e44bf619e1d19e4e126526cdabecc5162b98219",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/G1-INTAKE.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/INTAKE.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "pattern": "[REJECTED]",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not contain [REJECTED] marker",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G2",
+      "name": "Research Complete",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T20:12:41.575Z",
+          "finished_at": "2026-02-09T20:17:26.256Z",
+          "agent": "research-orchestrator",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CITATIONS.md",
+            "{artifact_path}/research/CLAIMS.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/research/CITATIONS.md",
+              "sha256": "1eedf9e1aa85f3bf3575febb184837d606f4f84dde722f3bfa51e8199580ed8d",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CITATIONS.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/CLAIMS.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "dir_exists",
+              "path": "{artifact_path}/research",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/research",
+              "pass": true,
+              "description": "Research directory must exist"
+            },
+            {
+              "type": "min_file_count",
+              "path": "{artifact_path}/research",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/research",
+              "pattern": "*.md",
+              "count": 8,
+              "threshold": 6,
+              "depth": "deep",
+              "pass": true,
+              "description": "Research directory must contain minimum number of markdown files based on depth mode"
+            },
+            {
+              "type": "min_sources_any_of",
+              "checked": [
+                "{artifact_path}/research/CITATIONS.md",
+                "{artifact_path}/research/CLAIMS.md"
+              ],
+              "matched": "{artifact_path}/research/CITATIONS.md",
+              "count": 113,
+              "threshold": 15,
+              "depth": "deep",
+              "pass": true,
+              "description": "Source-tracking file (CITATIONS.md or CLAIMS.md) must contain minimum sources based on depth mode"
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G3",
+      "name": "Spec Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T20:17:34.381Z",
+          "finished_at": "2026-02-09T20:20:30.164Z",
+          "agent": "visual-essay-invocation-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "orchestration/skills/visual-essay-invocation/specs/{slug}.md"
+          ],
+          "artifacts": [
+            {
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/silk.md",
+              "sha256": "8d0fa08604eb9ec85ba0a0dc19445ba6edb909726c367933d31e93a1881acf31",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/silk.md",
+              "pass": true,
+              "description": "6-layer visual essay specification"
+            },
+            {
+              "type": "contains_headings",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "missing": [],
+              "severity": "error",
+              "description": "Spec must contain all 6 layer headings",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "pattern": "[DRAFT]",
+              "found": false,
+              "severity": "warning",
+              "description": "Spec should not contain [DRAFT] marker (configurable)",
+              "pass": true,
+              "warning": false
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4",
+      "name": "Design Research",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T20:20:38.170Z",
+          "finished_at": "2026-02-09T20:22:00.710Z",
+          "agent": "design-researcher",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/DESIGN-RESEARCH.md",
+              "sha256": "a2507078fff09f4fcd4264ca0e5ca615ceda8ab655be4f0af36172f6912705b3",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Subject-derived design research report with color palette, typography, animation philosophy"
+            },
+            {
+              "type": "contains_headings",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "missing": [],
+              "severity": "warning",
+              "description": "Design research should cover Color, Typography, and Animation (warning if missing)",
+              "pass": true,
+              "warning": false
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4.1",
+      "name": "Design Research Reconciliation",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T20:22:08.138Z",
+          "finished_at": "2026-02-09T20:22:42.068Z",
+          "agent": "design-researcher",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+            "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/research/G4.1-DESIGN-RECONCILIATION.md",
+              "sha256": "5d8e4d3d36980c7bba37e5000bdbdc4ddb592402c1a35cb94e44c3bdd828c499",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/DESIGN-RESEARCH.md",
+              "sha256": "a2507078fff09f4fcd4264ca0e5ca615ceda8ab655be4f0af36172f6912705b3",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Design research report (must exist and be reconciled)"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "pattern": "[UNRECONCILED]",
+              "found": false,
+              "severity": "error",
+              "description": "Design research must not contain [UNRECONCILED] marker",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "pattern": "[COLLISION]",
+              "found": false,
+              "severity": "error",
+              "description": "Design research must not flag aesthetic collisions with other essays",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Reconciliation audit must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4.5",
+      "name": "Image Sourcing",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T20:22:49.715Z",
+          "finished_at": "2026-02-09T20:23:48.000Z",
+          "agent": "image-sourcing-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+            "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+            "{artifact_path}/images-migration.json",
+            "{artifact_path}/images.ts"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/research/IMAGE_RESEARCH_AUDIT.md",
+              "sha256": "87b3ce799b89ad43e3ae4139b0e04c6a6d1fcb4f44bf8a217a928bc86dd08c84",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/images-migration.json",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/images.ts",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "[UNLICENSED]",
+              "found": false,
+              "severity": "error",
+              "description": "Image audit must not contain unlicensed assets",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "[PENDING]",
+              "found": false,
+              "severity": "warning",
+              "description": "Image audit should not have pending sourcing tasks",
+              "pass": true,
+              "warning": false
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Image audit must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5",
+      "name": "Content Complete",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T20:23:57.565Z",
+          "finished_at": "2026-02-09T20:29:04.626Z",
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/page.tsx",
+            "{artifact_path}/{slug}.css"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/page.tsx",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/page.tsx",
+              "sha256": "122890498c1f3dc3c30b209fd8a9396456eab9fd92c6884275f10888995987cf",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/{slug}.css",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/silk.css",
+              "sha256": "daf416e542e9cf47556c93a788668df40899b129d559bb07073d800cd3f66b24",
+              "exists": true,
+              "optional": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/page.tsx",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/page.tsx",
+              "pass": true,
+              "description": "Next.js page with metadata and default export"
+            },
+            {
+              "type": "contains_headings",
+              "path": "{artifact_path}/page.tsx",
+              "missing": [],
+              "severity": "error",
+              "description": "page.tsx must contain a default export and metadata definition",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/page.tsx",
+              "pattern": "TODO",
+              "found": false,
+              "severity": "warning",
+              "description": "page.tsx should not contain TODO markers (indicates incomplete implementation)",
+              "pass": true,
+              "warning": false
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.2",
+      "name": "Design Fidelity Audit",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T20:32:24.487Z",
+          "finished_at": "2026-02-09T20:32:28.337Z",
+          "agent": "design-fidelity-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+            "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "sha256": "f1024476409fe407e8ac2efdf43bc5cf4646411b35039091846159b6773ab47d",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/DESIGN-RESEARCH.md",
+              "sha256": "a2507078fff09f4fcd4264ca0e5ca615ceda8ab655be4f0af36172f6912705b3",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Design research must still exist (design source of truth)"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Design fidelity audit must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.3",
+      "name": "Diagram-Code Reconciliation",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T20:32:33.669Z",
+          "finished_at": "2026-02-09T20:32:33.712Z",
+          "agent": "diagram-code-reconciliation-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+            "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+            "{client_component}"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "sha256": "3232b38283e665d8b2fc318485a0ed648b201307fcf087fbeaf86574fde6bfe2",
+              "exists": true
+            },
+            {
+              "path": "{client_component}",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/SilkClient.tsx",
+              "sha256": "26f0a9e909da6b8f089822bfa38f4d3b28284af2c6d70a398cd6f0c0f084ae67",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{client_component}",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/SilkClient.tsx",
+              "pass": true,
+              "description": "Client component must contain @diagram-contract blocks for every visualization function"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Diagram-code reconciliation must not have FAIL status",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.5",
+      "name": "Bibliography Implementation",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T20:32:37.937Z",
+          "finished_at": "2026-02-09T20:32:37.970Z",
+          "agent": "bibliography-orchestrator",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+            "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "sha256": "6eb7c08b574c9900079785d07c00e91f93eee0204acf36fc380ab450d95755c5",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Bibliography audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "pattern": "Overall Status: ❌",
+              "found": false,
+              "severity": "error",
+              "description": "Bibliography audit must not report overall failure",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G6",
+      "name": "Citation Audit",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T20:32:42.356Z",
+          "finished_at": "2026-02-09T20:32:42.392Z",
+          "agent": "citation-audit-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CITATION-AUDIT.md",
+            "{artifact_path}/CITATION-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/research/CITATION-AUDIT.md",
+              "sha256": "42b6984cb8ea125e7d0180d54907806ac9eef1b31ae5db9dde468e37b0639f36",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CITATION-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/CITATION-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Citation audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "pattern": "Citation Certification: Rejected",
+              "found": false,
+              "severity": "error",
+              "description": "Citation audit must not have Rejected certification",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G7",
+      "name": "Scroll Certification",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T20:32:46.760Z",
+          "finished_at": "2026-02-09T20:32:46.803Z",
+          "agent": "immersive-scrolling-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+            "{artifact_path}/SCROLL-CERTIFICATION.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/research/SCROLL-CERTIFICATION.md",
+              "sha256": "07b0a0794a05376e5ce18f713f4a5aa9b3ece32015f540c2e64fd1cc862e7e37",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/SCROLL-CERTIFICATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Scroll certification must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "pattern": "Overall Status: ❌",
+              "found": false,
+              "severity": "error",
+              "description": "Scroll certification must not report overall failure",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G8",
+      "name": "Publication Certification",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T20:32:51.450Z",
+          "finished_at": "2026-02-09T20:32:51.486Z",
+          "agent": "publish-artifact-orchestrator",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+            "{artifact_path}/PUBLICATION-CERTIFICATION.md",
+            "{artifact_path}/research/PUBLICATION-APPROVAL.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/research/PUBLICATION-CERTIFICATION.md",
+              "sha256": "e13c3998e9db3796a7885ef5089ece208b475a364450ef762c75134fb8eae2a1",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/research/PUBLICATION-APPROVAL.md",
+              "sha256": "bf2e655bf81c69972d67a952a917e65dd0bf19bbd0b4cc696af8d634125b0212",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PUBLICATION-CERTIFICATION.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+                  "exists": true
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Publication certification must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "pattern": "NO-GO",
+              "found": false,
+              "severity": "error",
+              "description": "Publication certification must not be NO-GO",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G9",
+      "name": "Publication Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-09T20:32:55.801Z",
+          "finished_at": "2026-02-09T20:32:55.838Z",
+          "agent": "director",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+            "{artifact_path}/PUBLICATION-APPROVAL.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/silk/research/PUBLICATION-APPROVAL.md",
+              "sha256": "bf2e655bf81c69972d67a952a917e65dd0bf19bbd0b4cc696af8d634125b0212",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PUBLICATION-APPROVAL.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "pattern": "REJECTED",
+              "found": false,
+              "severity": "error",
+              "description": "Publication approval must not contain REJECTED",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Publication approval must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    }
+  ],
+  "invocations": [],
+  "artifacts_index": [
+    {
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "sha256": "98bd023a37feec16e3270c632e44bf619e1d19e4e126526cdabecc5162b98219",
+      "gate": "G1",
+      "recorded_at": "2026-02-09T20:12:29.595Z"
+    },
+    {
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "sha256": "1eedf9e1aa85f3bf3575febb184837d606f4f84dde722f3bfa51e8199580ed8d",
+      "gate": "G2",
+      "recorded_at": "2026-02-09T20:17:26.261Z"
+    },
+    {
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "sha256": "8d0fa08604eb9ec85ba0a0dc19445ba6edb909726c367933d31e93a1881acf31",
+      "gate": "G3",
+      "recorded_at": "2026-02-09T20:20:30.168Z"
+    },
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "sha256": "a2507078fff09f4fcd4264ca0e5ca615ceda8ab655be4f0af36172f6912705b3",
+      "gate": "G4",
+      "recorded_at": "2026-02-09T20:22:00.714Z",
+      "updated_at": "2026-02-09T20:32:28.337Z"
+    },
+    {
+      "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+      "sha256": "5d8e4d3d36980c7bba37e5000bdbdc4ddb592402c1a35cb94e44c3bdd828c499",
+      "gate": "G4.1",
+      "recorded_at": "2026-02-09T20:22:42.069Z"
+    },
+    {
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "sha256": "87b3ce799b89ad43e3ae4139b0e04c6a6d1fcb4f44bf8a217a928bc86dd08c84",
+      "gate": "G4.5",
+      "recorded_at": "2026-02-09T20:23:48.001Z"
+    },
+    {
+      "path": "{artifact_path}/page.tsx",
+      "sha256": "122890498c1f3dc3c30b209fd8a9396456eab9fd92c6884275f10888995987cf",
+      "gate": "G5",
+      "recorded_at": "2026-02-09T20:29:04.626Z"
+    },
+    {
+      "path": "{artifact_path}/{slug}.css",
+      "sha256": "daf416e542e9cf47556c93a788668df40899b129d559bb07073d800cd3f66b24",
+      "gate": "G5",
+      "recorded_at": "2026-02-09T20:29:04.626Z"
+    },
+    {
+      "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "sha256": "f1024476409fe407e8ac2efdf43bc5cf4646411b35039091846159b6773ab47d",
+      "gate": "G5.2",
+      "recorded_at": "2026-02-09T20:32:28.337Z"
+    },
+    {
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "sha256": "3232b38283e665d8b2fc318485a0ed648b201307fcf087fbeaf86574fde6bfe2",
+      "gate": "G5.3",
+      "recorded_at": "2026-02-09T20:32:33.713Z"
+    },
+    {
+      "path": "{client_component}",
+      "sha256": "26f0a9e909da6b8f089822bfa38f4d3b28284af2c6d70a398cd6f0c0f084ae67",
+      "gate": "G5.3",
+      "recorded_at": "2026-02-09T20:32:33.713Z"
+    },
+    {
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "sha256": "6eb7c08b574c9900079785d07c00e91f93eee0204acf36fc380ab450d95755c5",
+      "gate": "G5.5",
+      "recorded_at": "2026-02-09T20:32:37.971Z"
+    },
+    {
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "sha256": "42b6984cb8ea125e7d0180d54907806ac9eef1b31ae5db9dde468e37b0639f36",
+      "gate": "G6",
+      "recorded_at": "2026-02-09T20:32:42.393Z"
+    },
+    {
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "sha256": "07b0a0794a05376e5ce18f713f4a5aa9b3ece32015f540c2e64fd1cc862e7e37",
+      "gate": "G7",
+      "recorded_at": "2026-02-09T20:32:46.803Z"
+    },
+    {
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "sha256": "e13c3998e9db3796a7885ef5089ece208b475a364450ef762c75134fb8eae2a1",
+      "gate": "G8",
+      "recorded_at": "2026-02-09T20:32:51.487Z"
+    },
+    {
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "sha256": "bf2e655bf81c69972d67a952a917e65dd0bf19bbd0b4cc696af8d634125b0212",
+      "gate": "G8",
+      "recorded_at": "2026-02-09T20:32:51.487Z",
+      "updated_at": "2026-02-09T20:32:55.839Z"
+    }
+  ],
+  "validations": [],
+  "events": [
+    {
+      "timestamp": "2026-02-09T20:11:30.547Z",
+      "type": "RUN_STARTED",
+      "message": "Run initialized for visual-essay/silk"
+    },
+    {
+      "timestamp": "2026-02-09T20:11:30.548Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 1,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 1 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-09T20:12:29.595Z",
+      "type": "GATE_PASSED",
+      "gate": "G1",
+      "attempt": 1,
+      "message": "Gate G1 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T20:12:41.576Z",
+      "type": "GATE_STARTED",
+      "gate": "G2",
+      "attempt": 1,
+      "agent": "research-orchestrator",
+      "message": "Gate G2 attempt 1 started with agent research-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-09T20:17:26.261Z",
+      "type": "GATE_PASSED",
+      "gate": "G2",
+      "attempt": 1,
+      "message": "Gate G2 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T20:17:34.381Z",
+      "type": "GATE_STARTED",
+      "gate": "G3",
+      "attempt": 1,
+      "agent": "visual-essay-invocation-agent",
+      "message": "Gate G3 attempt 1 started with agent visual-essay-invocation-agent"
+    },
+    {
+      "timestamp": "2026-02-09T20:20:30.168Z",
+      "type": "GATE_PASSED",
+      "gate": "G3",
+      "attempt": 1,
+      "message": "Gate G3 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T20:20:38.171Z",
+      "type": "GATE_STARTED",
+      "gate": "G4",
+      "attempt": 1,
+      "agent": "design-researcher",
+      "message": "Gate G4 attempt 1 started with agent design-researcher"
+    },
+    {
+      "timestamp": "2026-02-09T20:22:00.714Z",
+      "type": "GATE_PASSED",
+      "gate": "G4",
+      "attempt": 1,
+      "message": "Gate G4 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T20:22:08.138Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.1",
+      "attempt": 1,
+      "agent": "design-researcher",
+      "message": "Gate G4.1 attempt 1 started with agent design-researcher"
+    },
+    {
+      "timestamp": "2026-02-09T20:22:42.069Z",
+      "type": "GATE_PASSED",
+      "gate": "G4.1",
+      "attempt": 1,
+      "message": "Gate G4.1 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T20:22:49.716Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "agent": "image-sourcing-agent",
+      "message": "Gate G4.5 attempt 1 started with agent image-sourcing-agent"
+    },
+    {
+      "timestamp": "2026-02-09T20:23:48.001Z",
+      "type": "GATE_PASSED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "message": "Gate G4.5 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T20:23:57.565Z",
+      "type": "GATE_STARTED",
+      "gate": "G5",
+      "attempt": 1,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G5 attempt 1 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-09T20:29:04.626Z",
+      "type": "GATE_PASSED",
+      "gate": "G5",
+      "attempt": 1,
+      "message": "Gate G5 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T20:32:24.487Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.2",
+      "attempt": 1,
+      "agent": "design-fidelity-auditor",
+      "message": "Gate G5.2 attempt 1 started with agent design-fidelity-auditor"
+    },
+    {
+      "timestamp": "2026-02-09T20:32:28.337Z",
+      "type": "GATE_PASSED",
+      "gate": "G5.2",
+      "attempt": 1,
+      "message": "Gate G5.2 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T20:32:33.669Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.3",
+      "attempt": 1,
+      "agent": "diagram-code-reconciliation-auditor",
+      "message": "Gate G5.3 attempt 1 started with agent diagram-code-reconciliation-auditor"
+    },
+    {
+      "timestamp": "2026-02-09T20:32:33.713Z",
+      "type": "GATE_PASSED",
+      "gate": "G5.3",
+      "attempt": 1,
+      "message": "Gate G5.3 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T20:32:37.938Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.5",
+      "attempt": 1,
+      "agent": "bibliography-orchestrator",
+      "message": "Gate G5.5 attempt 1 started with agent bibliography-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-09T20:32:37.971Z",
+      "type": "GATE_PASSED",
+      "gate": "G5.5",
+      "attempt": 1,
+      "message": "Gate G5.5 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T20:32:42.357Z",
+      "type": "GATE_STARTED",
+      "gate": "G6",
+      "attempt": 1,
+      "agent": "citation-audit-agent",
+      "message": "Gate G6 attempt 1 started with agent citation-audit-agent"
+    },
+    {
+      "timestamp": "2026-02-09T20:32:42.393Z",
+      "type": "GATE_PASSED",
+      "gate": "G6",
+      "attempt": 1,
+      "message": "Gate G6 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T20:32:46.761Z",
+      "type": "GATE_STARTED",
+      "gate": "G7",
+      "attempt": 1,
+      "agent": "immersive-scrolling-auditor",
+      "message": "Gate G7 attempt 1 started with agent immersive-scrolling-auditor"
+    },
+    {
+      "timestamp": "2026-02-09T20:32:46.803Z",
+      "type": "GATE_PASSED",
+      "gate": "G7",
+      "attempt": 1,
+      "message": "Gate G7 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T20:32:51.451Z",
+      "type": "GATE_STARTED",
+      "gate": "G8",
+      "attempt": 1,
+      "agent": "publish-artifact-orchestrator",
+      "message": "Gate G8 attempt 1 started with agent publish-artifact-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-09T20:32:51.487Z",
+      "type": "GATE_PASSED",
+      "gate": "G8",
+      "attempt": 1,
+      "message": "Gate G8 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T20:32:55.802Z",
+      "type": "GATE_STARTED",
+      "gate": "G9",
+      "attempt": 1,
+      "agent": "director",
+      "message": "Gate G9 attempt 1 started with agent director"
+    },
+    {
+      "timestamp": "2026-02-09T20:32:55.839Z",
+      "type": "GATE_PASSED",
+      "gate": "G9",
+      "attempt": 1,
+      "message": "Gate G9 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-09T20:33:13.678Z",
+      "type": "RUN_COMPLETED",
+      "status": "PASSED",
+      "message": "Run completed with status: PASSED"
+    }
+  ]
+}

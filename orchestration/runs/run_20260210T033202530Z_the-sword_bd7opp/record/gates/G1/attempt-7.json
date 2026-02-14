@@ -1,0 +1,67 @@
+{
+  "attempt": 7,
+  "status": "PASS",
+  "started_at": "2026-02-10T03:39:23.241Z",
+  "finished_at": "2026-02-10T03:42:16.344Z",
+  "agent": "visual-essay-orchestrator",
+  "prompt_sha256": "321fd9567eb727dcec074e5f49e8448ee660ec2117f43dc506929eeb1a4299f1",
+  "invocation_ids": [
+    "inv_1770694936341_tqxo"
+  ],
+  "required_outputs": [
+    "{artifact_path}/G1-INTAKE.md",
+    "{artifact_path}/research/INTAKE.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G1-INTAKE.md",
+      "sha256": "fc008a5600b24d8d97f73642d3ac56d10b519f1c79b9ba57d1edb1084128f640",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/research/INTAKE.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/research/INTAKE.md",
+      "sha256": "9290acb2683d9d64b70b7e69e336095a65c49e22ca310ef7aa1c86625c535f80",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/G1-INTAKE.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/research/INTAKE.md",
+          "exists": true
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G1-INTAKE.md",
+      "pattern": "[REJECTED]",
+      "found": false,
+      "severity": "error",
+      "description": "Intake must not contain [REJECTED] marker",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/the-sword/G1-INTAKE.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Intake must not have FAIL status in frontmatter",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

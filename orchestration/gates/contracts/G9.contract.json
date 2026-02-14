@@ -2,7 +2,7 @@
   "gate": "G9",
   "name": "Publication Approval",
   "blocking": true,
-  "description": "Validates director sign-off, visualEssays.ts updated, and deployment readiness. Approval document must not contain rejection.",
+  "description": "Validates director sign-off, visualEssays.ts updated, ArtifactDetailWrapper verified, and deployment readiness. Approval document must not contain rejection.",
   "required_outputs": {
     "any_of": [
       {
@@ -34,7 +34,27 @@
       "pattern": "status: FAIL",
       "severity": "error",
       "description": "Publication approval must not have FAIL status in frontmatter"
+    },
+    {
+      "type": "contains_text",
+      "target": "{artifact_path}/page.tsx",
+      "patterns": [
+        "ArtifactDetailWrapper"
+      ],
+      "severity": "error",
+      "description": "Final verification: page.tsx MUST use ArtifactDetailWrapper at publication time (visual-essay-engineering-standard.md §Red Lines)"
+    },
+    {
+      "type": "frontmatter_status",
+      "target": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL (parsed from YAML)"
     }
   ],
-  "notes": "G9 is the final human gate. The director reviews the complete package (all prior gates passed), confirms visualEssays.ts is updated with the new entry (isNew: true, isFeatured: true), and triggers deployment. This gate is always manually approved. The not_contains check ensures a rejected approval document doesn't accidentally pass."
+  "notes": "G9 is the final human gate. The director reviews the complete package (all prior gates passed), confirms visualEssays.ts is updated with the new entry (isNew: true, isFeatured: true), verifies ArtifactDetailWrapper is in page.tsx, and triggers deployment. This gate is always manually approved. The contains_text check for ArtifactDetailWrapper provides a final safety net. The not_contains and frontmatter_status checks ensure rejected approvals don't pass."
 }
