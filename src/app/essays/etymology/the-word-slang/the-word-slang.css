@@ -154,7 +154,7 @@
    ============================================ */
 .dictionary-progress {
   position: fixed;
-  top: calc(var(--ad-toolbar-height, 0px) + var(--space-lg));
+  top: calc(var(--artifact-detail-toolbar-height, 0px) + var(--space-lg));
   right: var(--space-lg);
   z-index: 1000;
   pointer-events: none;
@@ -212,7 +212,7 @@
    ============================================ */
 .slang-nav {
   position: fixed;
-  top: calc(var(--ad-toolbar-height, 0px) + var(--space-lg));
+  top: calc(var(--artifact-detail-toolbar-height, 0px) + var(--space-lg));
   left: var(--space-lg);
   right: 120px;
   display: flex;

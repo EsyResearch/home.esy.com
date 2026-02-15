@@ -125,31 +125,31 @@ export default function ArtifactDetailWrapper({ meta, children }) {
   /* ─── Immersive Mode (Lite Chrome) ─── */
   if (immersiveMode) {
     return (
-      <div className="ad-immersive">
+      <div className="artifact-detail-immersive">
         {/* ─── Lite Toolbar ─── */}
-        <header className="ad-immersive__toolbar">
-          <Link href={backLink} className="ad-toolbar__back">
+        <header className="artifact-detail-immersive__toolbar">
+          <Link href={backLink} className="artifact-detail-toolbar__back">
             <ChevronLeftIcon />
             <span>{backLabel}</span>
           </Link>
-          <div className="ad-toolbar__right">
-            <span className="ad-toolbar__badge" style={{ '--badge-color': categoryColor }}>
+          <div className="artifact-detail-toolbar__right">
+            <span className="artifact-detail-toolbar__badge" style={{ '--badge-color': categoryColor }}>
               {meta.category}
             </span>
             <button
-              className="ad-toolbar__immersive ad-toolbar__immersive--exit"
+              className="artifact-detail-toolbar__immersive artifact-detail-toolbar__immersive--exit"
               onClick={() => setImmersiveMode(false)}
               aria-label="Exit immersive mode"
               title="Exit immersive mode (Esc)"
             >
               <CollapseIcon />
-              <span className="ad-toolbar__immersive-label">Exit</span>
+              <span className="artifact-detail-toolbar__immersive-label">Exit</span>
             </button>
           </div>
         </header>
 
         {/* ─── Essay Content ─── */}
-        <div className="ad-immersive__content">
+        <div className="artifact-detail-immersive__content">
           {children}
         </div>
       </div>
@@ -158,74 +158,74 @@ export default function ArtifactDetailWrapper({ meta, children }) {
 
   /* ─── Artifact Detail Mode ─── */
   return (
-    <div className="ad-page">
+    <div className="artifact-detail-page">
       {/* ─── Toolbar ─── */}
-      <header className="ad-toolbar">
-        <Link href={backLink} className="ad-toolbar__back">
+      <header className="artifact-detail-toolbar">
+        <Link href={backLink} className="artifact-detail-toolbar__back">
           <ChevronLeftIcon />
           <span>{backLabel}</span>
         </Link>
-        <div className="ad-toolbar__right">
-          <span className="ad-toolbar__badge" style={{ '--badge-color': categoryColor }}>
+        <div className="artifact-detail-toolbar__right">
+          <span className="artifact-detail-toolbar__badge" style={{ '--badge-color': categoryColor }}>
             {meta.category}
           </span>
           {meta.subcategory && (
-            <span className="ad-toolbar__badge ad-toolbar__badge--sub">
+            <span className="artifact-detail-toolbar__badge artifact-detail-toolbar__badge--sub">
               {meta.subcategory}
             </span>
           )}
           <button
-            className="ad-toolbar__immersive"
+            className="artifact-detail-toolbar__immersive"
             onClick={() => setImmersiveMode(true)}
             aria-label="Enter immersive reading mode"
           >
             <ExpandIcon />
-            <span className="ad-toolbar__immersive-label">Immersive Mode</span>
+            <span className="artifact-detail-toolbar__immersive-label">Immersive Mode</span>
           </button>
         </div>
       </header>
 
       {/* ─── Artifact Hero ─── */}
-      <section className="ad-hero">
-        <div className="ad-hero__inner">
-          <div className="ad-hero__provenance">
-            <span className="ad-hero__provenance-line" aria-hidden="true" />
-            <span className="ad-hero__provenance-text">
-              <span className="ad-hero__provenance-type">Artifact</span>
-              <span className="ad-hero__provenance-sep" aria-hidden="true">·</span>
-              <span className="ad-hero__provenance-template">{meta.template}</span>
+      <section className="artifact-detail-hero">
+        <div className="artifact-detail-hero__inner">
+          <div className="artifact-detail-hero__provenance">
+            <span className="artifact-detail-hero__provenance-line" aria-hidden="true" />
+            <span className="artifact-detail-hero__provenance-text">
+              <span className="artifact-detail-hero__provenance-type">Artifact</span>
+              <span className="artifact-detail-hero__provenance-sep" aria-hidden="true">·</span>
+              <span className="artifact-detail-hero__provenance-template">{meta.template}</span>
             </span>
-            <span className="ad-hero__provenance-line" aria-hidden="true" />
+            <span className="artifact-detail-hero__provenance-line" aria-hidden="true" />
           </div>
-          <h1 className="ad-hero__title">{meta.title}</h1>
-          <p className="ad-hero__subtitle">{meta.subtitle}</p>
-          <div className="ad-hero__meta">
-            <span className="ad-hero__meta-item">
-              <span className="ad-hero__meta-value">{meta.readTime}</span>
-              <span className="ad-hero__meta-label">read</span>
+          <h1 className="artifact-detail-hero__title">{meta.title}</h1>
+          <p className="artifact-detail-hero__subtitle">{meta.subtitle}</p>
+          <div className="artifact-detail-hero__meta">
+            <span className="artifact-detail-hero__meta-item">
+              <span className="artifact-detail-hero__meta-value">{meta.readTime}</span>
+              <span className="artifact-detail-hero__meta-label">read</span>
             </span>
-            <span className="ad-hero__meta-dot" aria-hidden="true" />
-            <span className="ad-hero__meta-item">
-              <span className="ad-hero__meta-value">{meta.sourceCount}</span>
-              <span className="ad-hero__meta-label">{meta.sourceTier} sources</span>
+            <span className="artifact-detail-hero__meta-dot" aria-hidden="true" />
+            <span className="artifact-detail-hero__meta-item">
+              <span className="artifact-detail-hero__meta-value">{meta.sourceCount}</span>
+              <span className="artifact-detail-hero__meta-label">{meta.sourceTier} sources</span>
             </span>
-            <span className="ad-hero__meta-dot" aria-hidden="true" />
-            <span className="ad-hero__meta-item">
-              <span className="ad-hero__meta-value">{meta.sectionCount}</span>
-              <span className="ad-hero__meta-label">sections</span>
+            <span className="artifact-detail-hero__meta-dot" aria-hidden="true" />
+            <span className="artifact-detail-hero__meta-item">
+              <span className="artifact-detail-hero__meta-value">{meta.sectionCount}</span>
+              <span className="artifact-detail-hero__meta-label">sections</span>
             </span>
-            <span className="ad-hero__meta-dot" aria-hidden="true" />
-            <span className="ad-hero__meta-item">
-              <span className="ad-hero__meta-value">{meta.visualizationCount}</span>
-              <span className="ad-hero__meta-label">visualizations</span>
+            <span className="artifact-detail-hero__meta-dot" aria-hidden="true" />
+            <span className="artifact-detail-hero__meta-item">
+              <span className="artifact-detail-hero__meta-value">{meta.visualizationCount}</span>
+              <span className="artifact-detail-hero__meta-label">visualizations</span>
             </span>
           </div>
-          <div className="ad-hero__actions">
-            <a href="#artifact-essay-content" className="ad-hero__cta ad-hero__cta--primary">
+          <div className="artifact-detail-hero__actions">
+            <a href="#artifact-essay-content" className="artifact-detail-hero__cta artifact-detail-hero__cta--primary">
               Read Essay
             </a>
             <button
-              className="ad-hero__cta ad-hero__cta--secondary"
+              className="artifact-detail-hero__cta artifact-detail-hero__cta--secondary"
               onClick={() => setImmersiveMode(true)}
             >
               <ExpandIcon />
@@ -236,52 +236,52 @@ export default function ArtifactDetailWrapper({ meta, children }) {
       </section>
 
       {/* ─── Spec Panel ─── */}
-      <section className="ad-spec">
-        <div className="ad-spec__inner">
+      <section className="artifact-detail-spec">
+        <div className="artifact-detail-spec__inner">
           <button
-            className="ad-spec__toggle"
+            className="artifact-detail-spec__toggle"
             onClick={() => setSpecExpanded(!specExpanded)}
             aria-expanded={specExpanded}
           >
-            <span className="ad-spec__toggle-label">Artifact Spec</span>
+            <span className="artifact-detail-spec__toggle-label">Artifact Spec</span>
             <svg
-              className={`ad-spec__toggle-icon ${specExpanded ? 'ad-spec__toggle-icon--open' : ''}`}
+              className={`artifact-detail-spec__toggle-icon ${specExpanded ? 'artifact-detail-spec__toggle-icon--open' : ''}`}
               width="12" height="12" viewBox="0 0 12 12" fill="none"
             >
               <path d="M3 5l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
 
-          <div className={`ad-spec__content ${specExpanded ? 'ad-spec__content--open' : ''}`}>
+          <div className={`artifact-detail-spec__content ${specExpanded ? 'artifact-detail-spec__content--open' : ''}`}>
             {/* Metadata Grid */}
-            <div className="ad-spec__grid">
-              <div className="ad-spec__card">
-                <div className="ad-spec__card-label">Template</div>
-                <div className="ad-spec__card-value">{meta.template}</div>
+            <div className="artifact-detail-spec__grid">
+              <div className="artifact-detail-spec__card">
+                <div className="artifact-detail-spec__card-label">Template</div>
+                <div className="artifact-detail-spec__card-value">{meta.template}</div>
               </div>
-              <div className="ad-spec__card">
-                <div className="ad-spec__card-label">Design System</div>
-                <div className="ad-spec__card-value">{meta.designSystem}</div>
+              <div className="artifact-detail-spec__card">
+                <div className="artifact-detail-spec__card-label">Design System</div>
+                <div className="artifact-detail-spec__card-value">{meta.designSystem}</div>
               </div>
-              <div className="ad-spec__card">
-                <div className="ad-spec__card-label">Published</div>
-                <div className="ad-spec__card-value">{meta.published}</div>
+              <div className="artifact-detail-spec__card">
+                <div className="artifact-detail-spec__card-label">Published</div>
+                <div className="artifact-detail-spec__card-value">{meta.published}</div>
               </div>
-              <div className="ad-spec__card">
-                <div className="ad-spec__card-label">Model</div>
-                <div className="ad-spec__card-value">{meta.model}</div>
+              <div className="artifact-detail-spec__card">
+                <div className="artifact-detail-spec__card-label">Model</div>
+                <div className="artifact-detail-spec__card-value">{meta.model}</div>
               </div>
-              <div className="ad-spec__card">
-                <div className="ad-spec__card-label">Source Quality</div>
-                <div className="ad-spec__card-value">{meta.sourceCount} {meta.sourceTier}</div>
+              <div className="artifact-detail-spec__card">
+                <div className="artifact-detail-spec__card-label">Source Quality</div>
+                <div className="artifact-detail-spec__card-value">{meta.sourceCount} {meta.sourceTier}</div>
               </div>
-              <div className="ad-spec__card">
-                <div className="ad-spec__card-label">Citation-First</div>
-                <div className="ad-spec__card-value ad-spec__card-value--bool">
+              <div className="artifact-detail-spec__card">
+                <div className="artifact-detail-spec__card-label">Citation-First</div>
+                <div className="artifact-detail-spec__card-value artifact-detail-spec__card-value--bool">
                   {meta.citationFirst ? (
-                    <span className="ad-spec__bool ad-spec__bool--yes">Yes</span>
+                    <span className="artifact-detail-spec__bool artifact-detail-spec__bool--yes">Yes</span>
                   ) : (
-                    <span className="ad-spec__bool ad-spec__bool--no">No</span>
+                    <span className="artifact-detail-spec__bool artifact-detail-spec__bool--no">No</span>
                   )}
                 </div>
               </div>
@@ -289,14 +289,14 @@ export default function ArtifactDetailWrapper({ meta, children }) {
 
             {/* Palette */}
             {meta.palette && meta.palette.length > 0 && (
-              <div className="ad-spec__section">
-                <div className="ad-spec__section-label">Color Palette</div>
-                <div className="ad-spec__palette">
+              <div className="artifact-detail-spec__section">
+                <div className="artifact-detail-spec__section-label">Color Palette</div>
+                <div className="artifact-detail-spec__palette">
                   {meta.palette.map(p => (
-                    <div key={p.name} className="ad-spec__palette-chip">
-                      <span className="ad-spec__palette-swatch" style={{ background: p.color }} />
-                      <span className="ad-spec__palette-name">{p.name}</span>
-                      <span className="ad-spec__palette-hex">{p.color}</span>
+                    <div key={p.name} className="artifact-detail-spec__palette-chip">
+                      <span className="artifact-detail-spec__palette-swatch" style={{ background: p.color }} />
+                      <span className="artifact-detail-spec__palette-name">{p.name}</span>
+                      <span className="artifact-detail-spec__palette-hex">{p.color}</span>
                     </div>
                   ))}
                 </div>
@@ -305,13 +305,13 @@ export default function ArtifactDetailWrapper({ meta, children }) {
 
             {/* Visualizations */}
             {meta.visualizations && meta.visualizations.length > 0 && (
-              <div className="ad-spec__section">
-                <div className="ad-spec__section-label">Visualizations</div>
-                <div className="ad-spec__viz-list">
+              <div className="artifact-detail-spec__section">
+                <div className="artifact-detail-spec__section-label">Visualizations</div>
+                <div className="artifact-detail-spec__viz-list">
                   {meta.visualizations.map(v => (
-                    <div key={v.name} className="ad-spec__viz-item">
-                      <span className="ad-spec__viz-name">{v.name}</span>
-                      <span className="ad-spec__viz-type">{v.type}</span>
+                    <div key={v.name} className="artifact-detail-spec__viz-item">
+                      <span className="artifact-detail-spec__viz-name">{v.name}</span>
+                      <span className="artifact-detail-spec__viz-type">{v.type}</span>
                     </div>
                   ))}
                 </div>
@@ -320,14 +320,14 @@ export default function ArtifactDetailWrapper({ meta, children }) {
 
             {/* Key Sources */}
             {meta.keySources && meta.keySources.length > 0 && (
-              <div className="ad-spec__section">
-                <div className="ad-spec__section-label">Key Sources</div>
-                <div className="ad-spec__sources">
+              <div className="artifact-detail-spec__section">
+                <div className="artifact-detail-spec__section-label">Key Sources</div>
+                <div className="artifact-detail-spec__sources">
                   {meta.keySources.map(s => (
-                    <span key={s} className="ad-spec__source-tag">{s}</span>
+                    <span key={s} className="artifact-detail-spec__source-tag">{s}</span>
                   ))}
                   {meta.sourceCount > meta.keySources.length && (
-                    <span className="ad-spec__source-tag ad-spec__source-tag--more">
+                    <span className="artifact-detail-spec__source-tag artifact-detail-spec__source-tag--more">
                       +{meta.sourceCount - meta.keySources.length} more
                     </span>
                   )}
@@ -339,8 +339,8 @@ export default function ArtifactDetailWrapper({ meta, children }) {
       </section>
 
       {/* ─── Essay Content ─── */}
-      <section className="ad-content" id="artifact-essay-content">
-        <div className="ad-content__frame">
+      <section className="artifact-detail-content" id="artifact-essay-content">
+        <div className="artifact-detail-content__frame">
           {children}
         </div>
       </section>

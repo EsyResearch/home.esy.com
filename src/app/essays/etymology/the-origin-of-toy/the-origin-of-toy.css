@@ -85,7 +85,7 @@
 
 .essay-header {
   position: fixed;
-  top: var(--ad-toolbar-height, 0);
+  top: var(--artifact-detail-toolbar-height, 0);
   left: 0;
   right: 0;
   z-index: 100;

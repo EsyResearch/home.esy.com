@@ -9,14 +9,14 @@
    ═══════════════════════════════════════════════════════════════ */
 
 /* ─── Artifact Page Root ─────────────────────────────────────── */
-.ad-page {
+.artifact-detail-page {
   background: var(--color-bg, #0a0a0f);
   min-height: 100vh;
   color: var(--color-text, #ffffff);
 }
 
 /* ─── Toolbar ────────────────────────────────────────────────── */
-.ad-toolbar {
+.artifact-detail-toolbar {
   position: sticky;
   top: 0;
   z-index: 50;
@@ -31,7 +31,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.ad-toolbar__back {
+.artifact-detail-toolbar__back {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -44,17 +44,17 @@
   letter-spacing: 0.01em;
 }
 
-.ad-toolbar__back:hover {
+.artifact-detail-toolbar__back:hover {
   color: var(--color-text, #ffffff);
 }
 
-.ad-toolbar__right {
+.artifact-detail-toolbar__right {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.ad-toolbar__badge {
+.artifact-detail-toolbar__badge {
   font-family: var(--font-inter, 'Inter', sans-serif);
   font-size: 0.65rem;
   font-weight: 600;
@@ -67,14 +67,14 @@
   border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
-.ad-toolbar__badge--sub {
+.artifact-detail-toolbar__badge--sub {
   background: rgba(255, 255, 255, 0.04);
   color: var(--color-text-subtle, rgba(255, 255, 255, 0.5));
   border: 1px solid rgba(255, 255, 255, 0.08);
   --badge-color: rgba(255, 255, 255, 0.5);
 }
 
-.ad-toolbar__immersive {
+.artifact-detail-toolbar__immersive {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -91,21 +91,21 @@
   transition: all 0.2s ease;
 }
 
-.ad-toolbar__immersive:hover {
+.artifact-detail-toolbar__immersive:hover {
   background: rgba(0, 168, 150, 0.15);
   border-color: rgba(0, 168, 150, 0.4);
   color: #2EECC8;
 }
 
 /* ─── Artifact Hero ──────────────────────────────────────────── */
-.ad-hero {
+.artifact-detail-hero {
   padding: 80px 24px 48px;
   text-align: center;
   position: relative;
   overflow: hidden;
 }
 
-.ad-hero::before {
+.artifact-detail-hero::before {
   content: '';
   position: absolute;
   top: 0;
@@ -117,7 +117,7 @@
   pointer-events: none;
 }
 
-.ad-hero__inner {
+.artifact-detail-hero__inner {
   max-width: 680px;
   margin: 0 auto;
   position: relative;
@@ -127,7 +127,7 @@
 /* Editorial treatment: thin rules flanking the artifact type.
    Inspired by how journals mark article class — understated
    typography, no borders, no pills, just careful spacing. */
-.ad-hero__provenance {
+.artifact-detail-hero__provenance {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -135,7 +135,7 @@
   justify-content: center;
 }
 
-.ad-hero__provenance-line {
+.artifact-detail-hero__provenance-line {
   flex: 1;
   max-width: 64px;
   height: 1px;
@@ -147,13 +147,13 @@
   );
 }
 
-.ad-hero__provenance-text {
+.artifact-detail-hero__provenance-text {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.ad-hero__provenance-type {
+.artifact-detail-hero__provenance-type {
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 0.7rem;
   font-weight: 500;
@@ -162,13 +162,13 @@
   color: rgba(255, 255, 255, 0.7);
 }
 
-.ad-hero__provenance-sep {
+.artifact-detail-hero__provenance-sep {
   color: rgba(255, 255, 255, 0.2);
   font-size: 0.75rem;
   line-height: 1;
 }
 
-.ad-hero__provenance-template {
+.artifact-detail-hero__provenance-template {
   font-family: var(--font-inter, 'Inter', sans-serif);
   font-size: 0.7rem;
   font-weight: 400;
@@ -177,7 +177,7 @@
   color: rgba(255, 255, 255, 0.4);
 }
 
-.ad-hero__title {
+.artifact-detail-hero__title {
   font-family: var(--font-literata, 'Literata', Georgia, serif);
   font-size: clamp(2rem, 4.5vw, 3rem);
   font-weight: 700;
@@ -187,7 +187,7 @@
   margin: 0 0 12px;
 }
 
-.ad-hero__subtitle {
+.artifact-detail-hero__subtitle {
   font-family: var(--font-inter, 'Inter', sans-serif);
   font-size: clamp(0.95rem, 1.8vw, 1.1rem);
   font-weight: 400;
@@ -196,7 +196,7 @@
   margin: 0 0 28px;
 }
 
-.ad-hero__meta {
+.artifact-detail-hero__meta {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -205,26 +205,26 @@
   margin-bottom: 32px;
 }
 
-.ad-hero__meta-item {
+.artifact-detail-hero__meta-item {
   display: flex;
   align-items: baseline;
   gap: 4px;
 }
 
-.ad-hero__meta-value {
+.artifact-detail-hero__meta-value {
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--color-text, #ffffff);
 }
 
-.ad-hero__meta-label {
+.artifact-detail-hero__meta-label {
   font-family: var(--font-inter, 'Inter', sans-serif);
   font-size: 0.75rem;
   color: var(--color-text-subtle, rgba(255, 255, 255, 0.5));
 }
 
-.ad-hero__meta-dot {
+.artifact-detail-hero__meta-dot {
   width: 3px;
   height: 3px;
   border-radius: 50%;
@@ -232,14 +232,14 @@
   flex-shrink: 0;
 }
 
-.ad-hero__actions {
+.artifact-detail-hero__actions {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
 }
 
-.ad-hero__cta {
+.artifact-detail-hero__cta {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -255,43 +255,43 @@
   border: none;
 }
 
-.ad-hero__cta--primary {
+.artifact-detail-hero__cta--primary {
   background: #00A896;
   color: #ffffff;
 }
 
-.ad-hero__cta--primary:hover {
+.artifact-detail-hero__cta--primary:hover {
   background: #009485;
   box-shadow: 0 4px 16px rgba(0, 168, 150, 0.3);
 }
 
-.ad-hero__cta--secondary {
+.artifact-detail-hero__cta--secondary {
   background: rgba(255, 255, 255, 0.04);
   color: var(--color-text-muted, rgba(255, 255, 255, 0.7));
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.ad-hero__cta--secondary:hover {
+.artifact-detail-hero__cta--secondary:hover {
   background: rgba(255, 255, 255, 0.08);
   color: var(--color-text, #ffffff);
   border-color: rgba(255, 255, 255, 0.18);
 }
 
 /* ─── Spec Panel ─────────────────────────────────────────────── */
-.ad-spec {
+.artifact-detail-spec {
   padding: 0 24px;
   max-width: 960px;
   margin: 0 auto 48px;
 }
 
-.ad-spec__inner {
+.artifact-detail-spec__inner {
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.02);
   overflow: hidden;
 }
 
-.ad-spec__toggle {
+.artifact-detail-spec__toggle {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -304,11 +304,11 @@
   transition: color 0.15s ease;
 }
 
-.ad-spec__toggle:hover {
+.artifact-detail-spec__toggle:hover {
   color: var(--color-text, #ffffff);
 }
 
-.ad-spec__toggle-label {
+.artifact-detail-spec__toggle-label {
   font-family: var(--font-inter, 'Inter', sans-serif);
   font-size: 0.7rem;
   font-weight: 600;
@@ -316,15 +316,15 @@
   text-transform: uppercase;
 }
 
-.ad-spec__toggle-icon {
+.artifact-detail-spec__toggle-icon {
   transition: transform 0.25s ease;
 }
 
-.ad-spec__toggle-icon--open {
+.artifact-detail-spec__toggle-icon--open {
   transform: rotate(180deg);
 }
 
-.ad-spec__content {
+.artifact-detail-spec__content {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s cubic-bezier(0.25, 0.1, 0.25, 1),
@@ -332,27 +332,27 @@
   padding: 0 20px;
 }
 
-.ad-spec__content--open {
+.artifact-detail-spec__content--open {
   max-height: 800px;
   padding: 0 20px 24px;
 }
 
 /* Spec Grid */
-.ad-spec__grid {
+.artifact-detail-spec__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   margin-bottom: 20px;
 }
 
-.ad-spec__card {
+.artifact-detail-spec__card {
   padding: 14px 16px;
   background: rgba(255, 255, 255, 0.03);
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.ad-spec__card-label {
+.artifact-detail-spec__card-label {
   font-family: var(--font-inter, 'Inter', sans-serif);
   font-size: 0.6rem;
   font-weight: 500;
@@ -362,14 +362,14 @@
   margin-bottom: 6px;
 }
 
-.ad-spec__card-value {
+.artifact-detail-spec__card-value {
   font-family: var(--font-inter, 'Inter', sans-serif);
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--color-text, #ffffff);
 }
 
-.ad-spec__bool {
+.artifact-detail-spec__bool {
   display: inline-block;
   padding: 0.15em 0.55em;
   border-radius: 4px;
@@ -377,25 +377,25 @@
   font-weight: 600;
   letter-spacing: 0.02em;
 }
-.ad-spec__bool--yes {
+.artifact-detail-spec__bool--yes {
   background: rgba(16, 185, 129, 0.15);
   color: #10B981;
 }
-.ad-spec__bool--no {
+.artifact-detail-spec__bool--no {
   background: rgba(255, 255, 255, 0.06);
   color: rgba(255, 255, 255, 0.45);
 }
 
 /* Spec Sections */
-.ad-spec__section {
+.artifact-detail-spec__section {
   margin-bottom: 16px;
 }
 
-.ad-spec__section:last-child {
+.artifact-detail-spec__section:last-child {
   margin-bottom: 0;
 }
 
-.ad-spec__section-label {
+.artifact-detail-spec__section-label {
   font-family: var(--font-inter, 'Inter', sans-serif);
   font-size: 0.6rem;
   font-weight: 500;
@@ -406,13 +406,13 @@
 }
 
 /* Palette */
-.ad-spec__palette {
+.artifact-detail-spec__palette {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-.ad-spec__palette-chip {
+.artifact-detail-spec__palette-chip {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -422,33 +422,33 @@
   border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.ad-spec__palette-swatch {
+.artifact-detail-spec__palette-swatch {
   width: 12px;
   height: 12px;
   border-radius: 3px;
   flex-shrink: 0;
 }
 
-.ad-spec__palette-name {
+.artifact-detail-spec__palette-name {
   font-family: var(--font-inter, 'Inter', sans-serif);
   font-size: 0.75rem;
   color: var(--color-text-muted, rgba(255, 255, 255, 0.7));
 }
 
-.ad-spec__palette-hex {
+.artifact-detail-spec__palette-hex {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.65rem;
   color: var(--color-text-faint, rgba(255, 255, 255, 0.3));
 }
 
 /* Visualizations */
-.ad-spec__viz-list {
+.artifact-detail-spec__viz-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 6px;
 }
 
-.ad-spec__viz-item {
+.artifact-detail-spec__viz-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -458,13 +458,13 @@
   border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
-.ad-spec__viz-name {
+.artifact-detail-spec__viz-name {
   font-family: var(--font-inter, 'Inter', sans-serif);
   font-size: 0.78rem;
   color: var(--color-text-muted, rgba(255, 255, 255, 0.7));
 }
 
-.ad-spec__viz-type {
+.artifact-detail-spec__viz-type {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.6rem;
   color: var(--color-text-faint, rgba(255, 255, 255, 0.3));
@@ -472,13 +472,13 @@
 }
 
 /* Sources */
-.ad-spec__sources {
+.artifact-detail-spec__sources {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
 }
 
-.ad-spec__source-tag {
+.artifact-detail-spec__source-tag {
   font-family: var(--font-inter, 'Inter', sans-serif);
   font-size: 0.72rem;
   padding: 4px 10px;
@@ -488,20 +488,20 @@
   color: #00D4AA;
 }
 
-.ad-spec__source-tag--more {
+.artifact-detail-spec__source-tag--more {
   background: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.06);
   color: var(--color-text-subtle, rgba(255, 255, 255, 0.5));
 }
 
 /* ─── Essay Content Frame ────────────────────────────────────── */
-.ad-content {
+.artifact-detail-content {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px 64px;
 }
 
-.ad-content__frame {
+.artifact-detail-content__frame {
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -519,22 +519,22 @@
 }
 
 /* Override essay's min-height when framed */
-.ad-content__frame .bh-essay {
+.artifact-detail-content__frame .bh-essay {
   min-height: auto;
   border-radius: 16px;
 }
 
 
 /* ─── Immersive Mode (Lite Chrome) ──────────────────────────── */
-.ad-immersive {
+.artifact-detail-immersive {
   position: relative;
   min-height: 100vh;
   background: var(--color-bg, #0a0a0f);
 }
 
-/* Lite Toolbar — mirrors .ad-toolbar but fixed + max z-index
+/* Lite Toolbar — mirrors .artifact-detail-toolbar but fixed + max z-index
    so essay content can never overlap it. */
-.ad-immersive__toolbar {
+.artifact-detail-immersive__toolbar {
   position: fixed;
   top: 0;
   left: 0;
@@ -557,23 +557,23 @@
    are contained within this layer — but crucially does NOT
    create a containing block for position:fixed, so essays
    keep their full viewport-fixed behavior in immersive mode.
-   --ad-toolbar-height is exposed so essay fixed headers can
+   --artifact-detail-toolbar-height is exposed so essay fixed headers can
    offset themselves below the lite toolbar via:
-     top: var(--ad-toolbar-height, 0);                         */
-.ad-immersive__content {
+     top: var(--artifact-detail-toolbar-height, 0);                         */
+.artifact-detail-immersive__content {
   padding-top: 52px;
   isolation: isolate;
-  --ad-toolbar-height: 52px;
+  --artifact-detail-toolbar-height: 52px;
 }
 
 /* Exit variant — teal to match brand accent */
-.ad-toolbar__immersive--exit {
+.artifact-detail-toolbar__immersive--exit {
   border-color: rgba(0, 168, 150, 0.25);
   background: rgba(0, 168, 150, 0.08);
   color: #00D4AA;
 }
 
-.ad-toolbar__immersive--exit:hover {
+.artifact-detail-toolbar__immersive--exit:hover {
   background: rgba(0, 168, 150, 0.15);
   border-color: rgba(0, 168, 150, 0.4);
   color: #00E8BB;
@@ -583,118 +583,118 @@
 
 /* Tablet */
 @media (max-width: 1023px) {
-  .ad-spec__grid {
+  .artifact-detail-spec__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .ad-spec__viz-list {
+  .artifact-detail-spec__viz-list {
     grid-template-columns: 1fr;
   }
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-  .ad-toolbar {
+  .artifact-detail-toolbar {
     padding: 0 16px;
     height: 48px;
   }
 
-  .ad-toolbar__immersive-label {
+  .artifact-detail-toolbar__immersive-label {
     display: none;
   }
 
-  .ad-toolbar__badge--sub {
+  .artifact-detail-toolbar__badge--sub {
     display: none;
   }
 
-  .ad-hero {
+  .artifact-detail-hero {
     padding: 48px 16px 36px;
   }
 
-  .ad-hero__meta {
+  .artifact-detail-hero__meta {
     gap: 6px;
   }
 
-  .ad-hero__actions {
+  .artifact-detail-hero__actions {
     flex-direction: column;
     gap: 10px;
   }
 
-  .ad-hero__cta {
+  .artifact-detail-hero__cta {
     width: 100%;
     justify-content: center;
   }
 
-  .ad-spec {
+  .artifact-detail-spec {
     padding: 0 16px;
     margin-bottom: 32px;
   }
 
-  .ad-spec__grid {
+  .artifact-detail-spec__grid {
     grid-template-columns: 1fr 1fr;
     gap: 8px;
   }
 
-  .ad-spec__palette {
+  .artifact-detail-spec__palette {
     gap: 6px;
   }
 
-  .ad-spec__palette-hex {
+  .artifact-detail-spec__palette-hex {
     display: none;
   }
 
-  .ad-content {
+  .artifact-detail-content {
     padding: 0 0 48px;
   }
 
-  .ad-content__frame {
+  .artifact-detail-content__frame {
     border-radius: 0;
     border-left: none;
     border-right: none;
   }
 
-  .ad-content__frame .bh-essay {
+  .artifact-detail-content__frame .bh-essay {
     border-radius: 0;
   }
 
-  .ad-immersive__toolbar {
+  .artifact-detail-immersive__toolbar {
     padding: 0 16px;
     height: 48px;
   }
 
-  .ad-immersive__content {
+  .artifact-detail-immersive__content {
     padding-top: 48px;
-    --ad-toolbar-height: 48px;
+    --artifact-detail-toolbar-height: 48px;
   }
 }
 
 /* Small Mobile */
 @media (max-width: 480px) {
-  .ad-hero__title {
+  .artifact-detail-hero__title {
     font-size: 1.75rem;
   }
 
-  .ad-hero__subtitle {
+  .artifact-detail-hero__subtitle {
     font-size: 0.9rem;
   }
 
-  .ad-spec__grid {
+  .artifact-detail-spec__grid {
     grid-template-columns: 1fr;
   }
 }
 
 /* ─── Reduced Motion ─────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .ad-spec__content {
+  .artifact-detail-spec__content {
     transition: none;
   }
 
-  .ad-spec__toggle-icon {
+  .artifact-detail-spec__toggle-icon {
     transition: none;
   }
 
-  .ad-toolbar__immersive,
-  .ad-hero__cta {
+  .artifact-detail-toolbar__immersive,
+  .artifact-detail-hero__cta {
     transition: none;
   }
 }
