@@ -22,6 +22,7 @@ import SearchBar from '@/components/SearchBar/SearchBar';
 import SchoolNewsletter from '@/components/School/SchoolNewsletter';
 import { useSchoolSearch } from '@/hooks/useSchoolSearch';
 import { useScrollHeaderSearch } from '@/hooks/useScrollHeaderSearch';
+import { useNewsletterSubscribe } from '@/hooks/useNewsletterSubscribe';
 
 const EsySchool = () => {
   const router = useRouter();
@@ -32,9 +33,12 @@ const EsySchool = () => {
 
   useScrollHeaderSearch(searchBarRef);
 
+  const { subscribe, status: newsletterStatus, errorMessage: newsletterError, reset: resetNewsletter } = useNewsletterSubscribe();
+
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
-    console.log('Newsletter subscription:', emailInputRef.current?.value);
+    const email = emailInputRef.current?.value;
+    subscribe(email || '');
   };
   
   const [isMobile, setIsMobile] = useState(false);
@@ -769,9 +773,12 @@ const EsySchool = () => {
       <SchoolNewsletter 
         emailInputRef={emailInputRef}
         handleNewsletterSubmit={handleNewsletterSubmit}
+        onInputChange={resetNewsletter}
         isMobile={isMobile}
         isTablet={isTablet}
         isDarkMode={false}
+        subscribeStatus={newsletterStatus}
+        errorMessage={newsletterError}
       />
     </div>
   );

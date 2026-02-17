@@ -13,6 +13,7 @@ import SchoolNewsletter from '@/components/School/SchoolNewsletter';
 import { articleContentStyles as styles } from '@/components/SchoolArticle/articleStyles';
 import { navyCalmDarkTheme } from '@/lib/theme';
 import { lightTheme } from '@/lib/lightTheme';
+import { useNewsletterSubscribe } from '@/hooks/useNewsletterSubscribe';
 
 export default function UnderstandingLLMsArticle() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -48,11 +49,12 @@ export default function UnderstandingLLMsArticle() {
     window.dispatchEvent(new Event('themechange'));
   }, [isDarkMode]);
   const emailInputRef = useRef(null);
+  const { subscribe, status: newsletterStatus, errorMessage: newsletterError, reset: resetNewsletter } = useNewsletterSubscribe();
 
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
-    // Handle newsletter subscription
-    console.log('Newsletter subscription:', emailInputRef.current?.value);
+    const email = emailInputRef.current?.value;
+    subscribe(email || '');
   };
 
   useEffect(() => {
@@ -517,10 +519,10 @@ Token IDs: [8100, 5646, 27140, 16101, 318, 13899, 0]`}
           showEmailCapture={true}
           emailCaptureTitle="Master Esy Workflows"
           emailCaptureDescription="Get tutorials and guides on using AI research tools to create publishable artifacts"
-          onEmailSubmit={(email) => {
-            console.log('Email submitted:', email);
-            // Handle email submission
-          }}
+          onEmailSubmit={(email) => subscribe(email)}
+          onEmailInputChange={resetNewsletter}
+          subscribeStatus={newsletterStatus}
+          subscribeErrorMessage={newsletterError}
           isDarkMode={isDarkMode}
         />
       )}
@@ -536,10 +538,13 @@ Token IDs: [8100, 5646, 27140, 16101, 318, 13899, 0]`}
       <SchoolNewsletter 
         emailInputRef={emailInputRef}
         handleNewsletterSubmit={handleNewsletterSubmit}
+        onInputChange={resetNewsletter}
         isMobile={false}
         isTablet={false}
         theme={theme}
         isDarkMode={isDarkMode}
+        subscribeStatus={newsletterStatus}
+        errorMessage={newsletterError}
       />
     </ArticleLayout>
     </>

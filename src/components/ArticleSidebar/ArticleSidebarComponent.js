@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Hash, BookOpen, Clock, Check } from 'lucide-react';
+import { Hash, BookOpen, Clock, Check, CheckCircle2 } from 'lucide-react';
 
 const ArticleSidebarComponent = ({ 
   tableOfContents = [], 
@@ -10,13 +10,19 @@ const ArticleSidebarComponent = ({
   emailCaptureTitle = "Stay Updated",
   emailCaptureDescription = "Get the latest articles delivered to your inbox",
   onEmailSubmit = () => {},
+  onEmailInputChange,
+  subscribeStatus = 'idle',
+  subscribeErrorMessage = null,
   currentTheme = null,
   isDarkMode = false
 }) => {
   const [activeSection, setActiveSection] = useState(null);
   const [email, setEmail] = useState('');
-  const [isSubscribed, setIsSubscribed] = useState(false);
   const sidebarRef = useRef(null);
+
+  const isError = subscribeStatus === 'error';
+  const isSuccess = subscribeStatus === 'success';
+  const isLoading = subscribeStatus === 'loading';
 
   // Default theme if not provided - Navy Calm
   const theme = currentTheme || {
@@ -43,7 +49,6 @@ const ArticleSidebarComponent = ({
 
       const scrollPosition = window.scrollY + window.innerHeight / 3;
       
-      // Check if we're near the bottom of the page
       const isNearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
       
       if (isNearBottom && sections.length > 0) {
@@ -51,7 +56,6 @@ const ArticleSidebarComponent = ({
         return;
       }
 
-      // Find the current section
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
         if (section.element.offsetTop <= scrollPosition) {
@@ -60,7 +64,6 @@ const ArticleSidebarComponent = ({
         }
       }
       
-      // If no section is active, activate the first one
       if (sections.length > 0) {
         setActiveSection(sections[0].id);
       }
@@ -74,7 +77,7 @@ const ArticleSidebarComponent = ({
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 120; // Offset for fixed header
+      const offset = 120;
       const elementPosition = element.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementPosition - offset;
       
@@ -87,13 +90,13 @@ const ArticleSidebarComponent = ({
 
   const handleEmailSubmit = (e) => {
     e.preventDefault();
-    if (email) {
-      onEmailSubmit(email);
-      setIsSubscribed(true);
-      setTimeout(() => {
-        setIsSubscribed(false);
-        setEmail('');
-      }, 3000);
+    onEmailSubmit(email);
+  };
+
+  const handleInputChange = (e) => {
+    setEmail(e.target.value);
+    if (onEmailInputChange) {
+      onEmailInputChange();
     }
   };
 
@@ -299,101 +302,151 @@ const ArticleSidebarComponent = ({
           position: 'relative',
           overflow: 'hidden'
         }}>
-          {/* Title */}
-          <h4 style={{
-            fontSize: '1rem',
-            fontWeight: '600',
-            marginBottom: '0.5rem',
-            color: theme.text,
-            fontFamily: 'var(--font-literata), serif',
-            letterSpacing: '-0.01em',
-            lineHeight: 1.2
-          }}>
-            {emailCaptureTitle}
-          </h4>
-
-          {/* Description */}
-          <p style={{
-            fontSize: '0.8125rem',
-            color: theme.muted,
-            marginBottom: '1.5rem',
-            lineHeight: 1.5,
-            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
-          }}>
-            {emailCaptureDescription}
-          </p>
-
-          {/* Email Form */}
-          <form onSubmit={handleEmailSubmit}>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              style={{
-                width: '100%',
-                padding: '0.75rem 1rem',
-                backgroundColor: theme.card,
-                border: `1px solid ${theme.border}`,
-                borderRadius: '12px',
-                color: theme.text,
-                fontSize: '0.875rem',
-                marginBottom: '1rem',
-                outline: 'none',
-                transition: 'all 0.2s ease'
-              }}
-              onFocus={(e) => {
-                e.target.style.borderColor = theme.accent;
-                e.target.style.boxShadow = `0 0 0 3px ${theme.accent}15`;
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = theme.border;
-                e.target.style.boxShadow = 'none';
-              }}
-            />
-            
-            <button
-              type="submit"
-              disabled={isSubscribed}
-              style={{
-                width: '100%',
-                padding: '0.75rem 1.5rem',
-                background: isSubscribed 
-                  ? `linear-gradient(135deg, #10b981 0%, #059669 100%)`
-                  : `linear-gradient(135deg, ${theme.accent} 0%, #00D4AA 100%)`,
-                color: '#ffffff',
-                border: 'none',
-                borderRadius: '12px',
-                fontSize: '0.875rem',
+          {isSuccess ? (
+            /* Success state */
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              textAlign: 'center',
+              padding: '0.5rem 0'
+            }}>
+              <CheckCircle2 
+                size={32} 
+                color="#10b981" 
+                strokeWidth={1.5} 
+                style={{ marginBottom: '0.75rem' }}
+              />
+              <h4 style={{
+                fontSize: '1rem',
                 fontWeight: '600',
-                cursor: isSubscribed ? 'default' : 'pointer',
-                transition: 'all 0.3s ease',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '0.5rem'
-              }}
-              onMouseEnter={(e) => {
-                if (!isSubscribed) {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = `0 8px 20px ${theme.accent}30`;
-                }
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            >
-              {isSubscribed ? (
-                <>
-                  <Check size={16} />
-                  Subscribed!
-                </>
-              ) : (
-                'Subscribe'
-              )}
-            </button>
-          </form>
+                marginBottom: '0.5rem',
+                color: theme.text,
+                fontFamily: 'var(--font-literata), serif',
+                letterSpacing: '-0.01em'
+              }}>
+                Subscribed!
+              </h4>
+              <p style={{
+                fontSize: '0.75rem',
+                color: theme.muted,
+                lineHeight: 1.5
+              }}>
+                Check your inbox for a welcome email.
+              </p>
+            </div>
+          ) : (
+            /* Form state */
+            <>
+              {/* Title */}
+              <h4 style={{
+                fontSize: '1rem',
+                fontWeight: '600',
+                marginBottom: '0.5rem',
+                color: theme.text,
+                fontFamily: 'var(--font-literata), serif',
+                letterSpacing: '-0.01em',
+                lineHeight: 1.2
+              }}>
+                {emailCaptureTitle}
+              </h4>
+
+              {/* Description */}
+              <p style={{
+                fontSize: '0.8125rem',
+                color: theme.muted,
+                marginBottom: '1rem',
+                lineHeight: 1.5,
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+              }}>
+                {emailCaptureDescription}
+              </p>
+
+              {/* Email Form */}
+              <form onSubmit={handleEmailSubmit}>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={handleInputChange}
+                  placeholder="Enter your email"
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem 1rem',
+                    backgroundColor: theme.card,
+                    border: isError 
+                      ? '1px solid #ef4444' 
+                      : `1px solid ${theme.border}`,
+                    borderRadius: '12px',
+                    color: theme.text,
+                    fontSize: '0.875rem',
+                    marginBottom: isError ? '0.5rem' : '0.75rem',
+                    outline: 'none',
+                    transition: 'all 0.2s ease',
+                    boxShadow: isError ? '0 0 0 3px rgba(239, 68, 68, 0.08)' : 'none'
+                  }}
+                  onFocus={(e) => {
+                    if (!isError) {
+                      e.target.style.borderColor = theme.accent;
+                      e.target.style.boxShadow = `0 0 0 3px ${theme.accent}15`;
+                    }
+                  }}
+                  onBlur={(e) => {
+                    if (!isError) {
+                      e.target.style.borderColor = theme.border;
+                      e.target.style.boxShadow = 'none';
+                    }
+                  }}
+                />
+
+                {/* Error message */}
+                {isError && subscribeErrorMessage && (
+                  <p style={{
+                    fontSize: '0.75rem',
+                    color: '#ef4444',
+                    lineHeight: 1.4,
+                    marginBottom: '0.75rem'
+                  }}>
+                    {subscribeErrorMessage}
+                  </p>
+                )}
+                
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem 1.5rem',
+                    background: `linear-gradient(135deg, ${theme.accent} 0%, #00D4AA 100%)`,
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '12px',
+                    fontSize: '0.875rem',
+                    fontWeight: '600',
+                    cursor: isLoading ? 'default' : 'pointer',
+                    transition: 'all 0.3s ease',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.5rem',
+                    opacity: isLoading ? 0.7 : 1,
+                    minHeight: '44px'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isLoading) {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.boxShadow = `0 8px 20px ${theme.accent}30`;
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
+                >
+                  {isLoading ? 'Subscribing...' : 'Subscribe'}
+                </button>
+              </form>
+            </>
+          )}
         </div>
       )}
 

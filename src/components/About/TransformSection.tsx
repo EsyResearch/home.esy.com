@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ArrowRight, Play, Mail } from 'lucide-react';
+import { useNewsletterSubscribe } from '@/hooks/useNewsletterSubscribe';
 
 interface TransformSectionProps {
   currentTheme: {
@@ -13,13 +14,13 @@ interface TransformSectionProps {
 
 const TransformSection: React.FC<TransformSectionProps> = ({ currentTheme }) => {
   const [email, setEmail] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const { subscribe, status } = useNewsletterSubscribe();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle email submission
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    if (email) {
+      subscribe(email);
+    }
   };
 
   return (
@@ -173,8 +174,8 @@ const TransformSection: React.FC<TransformSectionProps> = ({ currentTheme }) => 
                 e.currentTarget.style.boxShadow = `0 4px 20px ${currentTheme.accent}40`;
               }}
               >
-                {isSubmitted ? 'Added! ✓' : 'Request Access'}
-                {!isSubmitted && <ArrowRight size={20} strokeWidth={2.5} />}
+                {status === 'loading' ? 'Submitting...' : status === 'success' ? 'Added! ✓' : 'Request Access'}
+                {status !== 'success' && status !== 'loading' && <ArrowRight size={20} strokeWidth={2.5} />}
               </button>
             </div>
           </form>
