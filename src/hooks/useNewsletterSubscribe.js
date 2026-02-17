@@ -59,7 +59,17 @@ export function useNewsletterSubscribe({ errorResetMs = 5000 } = {}) {
         body: JSON.stringify({ email: email.trim() }),
       });
 
-      const data = await res.json();
+      let data = {};
+      try {
+        const text = await res.text();
+        if (text) {
+          data = JSON.parse(text);
+        }
+      } catch {
+        if (!res.ok) {
+          throw new Error('Subscription failed. Please try again.');
+        }
+      }
 
       if (!res.ok) {
         throw new Error(data.error || 'Subscription failed.');

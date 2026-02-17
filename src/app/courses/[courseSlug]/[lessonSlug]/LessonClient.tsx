@@ -28,7 +28,7 @@ import {
   PanelLeftClose, PanelLeftOpen,
   Maximize2, Minimize2, ChevronLeft, ChevronRight, ChevronDown, Menu,
   User, Calendar, Clock, FileText,
-  Sun, Moon
+  Sun, Moon, CheckCircle2, Mail,
 } from 'lucide-react';
 
 import VideoPlayer, { type VideoPlayerHandle } from '@/components/learn/VideoPlayer';
@@ -41,6 +41,7 @@ import { getAdjacentLessons } from '@/lib/learn/mockData';
 import { navyCalmDarkTheme } from '@/lib/theme';
 import { lightTheme } from '@/lib/lightTheme';
 import Link from 'next/link';
+import { useNewsletterSubscribe } from '@/hooks/useNewsletterSubscribe';
 
 import './lesson.css';
 
@@ -110,6 +111,10 @@ export default function LessonClient({ course, lesson, chapterTitle }: LessonCli
   // Responsive
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
+
+  // Newsletter
+  const [nlEmail, setNlEmail] = useState('');
+  const { subscribe, status: nlStatus, errorMessage: nlError, reset: nlReset } = useNewsletterSubscribe();
 
   useEffect(() => {
     const check = () => {
@@ -447,6 +452,143 @@ export default function LessonClient({ course, lesson, chapterTitle }: LessonCli
           {/* ─── Commentary (inline below video) ─── */}
           <div className="lesson-commentary-section">
                 <CommentaryPanel commentary={lesson.commentary} onSeek={handleSeek} isDark={isDark} />
+          </div>
+
+          {/* ─── Newsletter Capture ─── */}
+          <div style={{
+            maxWidth: '960px', width: '100%', margin: '0 auto',
+            padding: '0 1rem 3rem',
+            boxSizing: 'border-box' as const,
+          }}>
+            <div style={{
+              borderTop: `1px solid ${borderColor}`,
+              paddingTop: '2rem',
+            }}>
+              {nlStatus === 'success' ? (
+                <div style={{
+                  display: 'flex', alignItems: 'center', gap: '0.75rem',
+                  padding: '1rem 1.25rem',
+                  borderRadius: '12px',
+                  backgroundColor: isDark ? 'rgba(0,212,170,0.06)' : 'rgba(0,168,150,0.04)',
+                  border: `1px solid ${isDark ? 'rgba(0,212,170,0.12)' : 'rgba(0,168,150,0.1)'}`,
+                }}>
+                  <CheckCircle2 size={18} color={accent} strokeWidth={1.5} />
+                  <div>
+                    <span style={{
+                      fontSize: '0.875rem', fontWeight: 600, color: textColor,
+                      display: 'block', lineHeight: 1.3,
+                    }}>
+                      Subscribed
+                    </span>
+                    <span style={{
+                      fontSize: '0.75rem', color: mutedColor, lineHeight: 1.4,
+                    }}>
+                      You&apos;ll get new courses, tutorials, and workflow guides in your inbox.
+                    </span>
+                  </div>
+                </div>
+              ) : (
+                <div style={{
+                  display: 'flex',
+                  flexDirection: isMobile ? 'column' : 'row',
+                  alignItems: isMobile ? 'stretch' : 'center',
+                  gap: isMobile ? '1rem' : '2rem',
+                  padding: '1.25rem 1.5rem',
+                  borderRadius: '12px',
+                  backgroundColor: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.015)',
+                  border: `1px solid ${borderColor}`,
+                }}>
+                  <div style={{ flex: '1 1 auto', minWidth: 0 }}>
+                    <div style={{
+                      display: 'flex', alignItems: 'center', gap: '0.5rem',
+                      marginBottom: '0.25rem',
+                    }}>
+                      <Mail size={14} color={accent} />
+                      <span style={{
+                        fontSize: '0.875rem', fontWeight: 600, color: textColor,
+                      }}>
+                        Enjoying this course?
+                      </span>
+                    </div>
+                    <p style={{
+                      fontSize: '0.75rem', color: mutedColor, lineHeight: 1.5,
+                      margin: 0,
+                    }}>
+                      Get notified about new courses and weekly workflow guides.
+                    </p>
+                  </div>
+                  <form
+                    onSubmit={(e) => { e.preventDefault(); subscribe(nlEmail); }}
+                    style={{
+                      display: 'flex', gap: '0.375rem',
+                      flexShrink: 0,
+                      width: isMobile ? '100%' : 'auto',
+                    }}
+                  >
+                    <input
+                      type="email"
+                      placeholder="you@example.com"
+                      value={nlEmail}
+                      onChange={(e) => { setNlEmail(e.target.value); if (nlStatus === 'error') nlReset(); }}
+                      style={{
+                        width: isMobile ? '100%' : '200px',
+                        padding: '0.5rem 0.75rem',
+                        borderRadius: '6px',
+                        border: nlStatus === 'error'
+                          ? '1.5px solid #ef4444'
+                          : `1.5px solid ${borderColor}`,
+                        backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#FFFFFF',
+                        color: textColor,
+                        fontSize: '0.75rem',
+                        outline: 'none',
+                        transition: 'border-color 0.2s',
+                        boxShadow: nlStatus === 'error' ? '0 0 0 2px rgba(239,68,68,0.1)' : 'none',
+                      }}
+                      onFocus={(e) => {
+                        if (nlStatus !== 'error') {
+                          e.currentTarget.style.borderColor = isDark ? 'rgba(0,212,170,0.4)' : 'rgba(0,168,150,0.4)';
+                        }
+                      }}
+                      onBlur={(e) => {
+                        if (nlStatus !== 'error') {
+                          e.currentTarget.style.borderColor = borderColor;
+                        }
+                      }}
+                    />
+                    <button
+                      type="submit"
+                      disabled={nlStatus === 'loading'}
+                      style={{
+                        padding: '0.5rem 1rem',
+                        backgroundColor: accent,
+                        color: '#FFFFFF',
+                        borderRadius: '6px',
+                        border: 'none',
+                        fontWeight: 600,
+                        fontSize: '0.75rem',
+                        cursor: nlStatus === 'loading' ? 'default' : 'pointer',
+                        opacity: nlStatus === 'loading' ? 0.7 : 1,
+                        transition: 'all 0.2s',
+                        whiteSpace: 'nowrap' as const,
+                      }}
+                    >
+                      {nlStatus === 'loading' ? '...' : 'Subscribe'}
+                    </button>
+                  </form>
+                  {nlStatus === 'error' && nlError && (
+                    <p style={{
+                      fontSize: '0.688rem',
+                      color: '#ef4444',
+                      lineHeight: 1.3,
+                      margin: isMobile ? '0' : '0',
+                      position: isMobile ? 'static' : 'absolute',
+                    }}>
+                      {nlError}
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
 
         </div>

@@ -5,11 +5,13 @@ import Link from 'next/link';
 import {
   PlayCircle, Clock, BookOpen, ChevronRight,
   Sparkles, Users, Award, ArrowRight, Play, Sun, Moon,
+  CheckCircle2, Mail,
 } from 'lucide-react';
 import { courses } from '@/lib/learn/mockData';
 import { getAllLessonsFlat } from '@/lib/learn/mockData';
 import { navyCalmDarkTheme } from '@/lib/theme';
 import { lightTheme } from '@/lib/lightTheme';
+import { useNewsletterSubscribe } from '@/hooks/useNewsletterSubscribe';
 
 /* ─────────────────────────────────────────────
    Courses Index — Premium Landing Page
@@ -28,6 +30,8 @@ export default function CoursesListClient() {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [nlEmail, setNlEmail] = useState('');
+  const { subscribe, status: nlStatus, errorMessage: nlError, reset: nlReset } = useNewsletterSubscribe();
 
   useEffect(() => {
     const stored = localStorage.getItem('theme-school');
@@ -424,7 +428,7 @@ export default function CoursesListClient() {
         </div>
       </section>
 
-      {/* ═══ BOTTOM CTA ═══ */}
+      {/* ═══ BOTTOM CTA — Newsletter ═══ */}
       <section style={{
         position: 'relative',
         overflow: 'hidden',
@@ -441,36 +445,127 @@ export default function CoursesListClient() {
         }} />
         <div style={{
           position: 'relative', zIndex: 1,
-          maxWidth: '600px', margin: '0 auto', textAlign: 'center',
+          maxWidth: '520px', margin: '0 auto', textAlign: 'center',
         }}>
-          <h2 style={{
-            fontFamily: 'var(--font-literata)',
-            fontSize: isMobile ? '1.75rem' : '2.25rem',
-            fontWeight: 300, color: '#FFFFFF',
-            margin: '0 0 0.75rem',
-            letterSpacing: '-0.01em',
-          }}>
-            Start Learning Today
-          </h2>
-          <p style={{
-            fontSize: '0.938rem', color: 'rgba(255,255,255,0.7)',
-            lineHeight: 1.7, marginBottom: '2rem',
-          }}>
-            All courses are free during our beta. Dive into AI research workflows
-            with interactive video lessons built for serious learners.
-          </p>
-          <Link href={`/courses/${courses[0].slug}`} style={{
-            display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-            padding: '0.875rem 2rem',
-            backgroundColor: '#00A896', color: '#FFFFFF',
-            borderRadius: '8px', textDecoration: 'none',
-            fontWeight: 600, fontSize: '0.938rem',
-            transition: 'all 0.2s',
-            boxShadow: '0 4px 16px rgba(0,212,170,0.25)',
-          }}>
-            Browse Courses <ArrowRight size={16} />
-          </Link>
-      </div>
+          {nlStatus === 'success' ? (
+            <>
+              <div style={{
+                width: '48px', height: '48px', borderRadius: '50%',
+                backgroundColor: 'rgba(0, 212, 170, 0.12)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                margin: '0 auto 1.25rem',
+              }}>
+                <CheckCircle2 size={24} color="#00D4AA" strokeWidth={1.5} />
+              </div>
+              <h2 style={{
+                fontFamily: 'var(--font-literata)',
+                fontSize: isMobile ? '1.75rem' : '2.25rem',
+                fontWeight: 300, color: '#FFFFFF',
+                margin: '0 0 0.75rem',
+                letterSpacing: '-0.01em',
+              }}>
+                You&apos;re in
+              </h2>
+              <p style={{
+                fontSize: '0.938rem', color: 'rgba(255,255,255,0.7)',
+                lineHeight: 1.7, margin: '0',
+              }}>
+                We&apos;ll notify you when new courses and tutorials are released.
+                Check your inbox for a welcome email.
+              </p>
+            </>
+          ) : (
+            <>
+              <h2 style={{
+                fontFamily: 'var(--font-literata)',
+                fontSize: isMobile ? '1.75rem' : '2.25rem',
+                fontWeight: 300, color: '#FFFFFF',
+                margin: '0 0 0.75rem',
+                letterSpacing: '-0.01em',
+              }}>
+                Never miss a new course
+              </h2>
+              <p style={{
+                fontSize: '0.938rem', color: 'rgba(255,255,255,0.7)',
+                lineHeight: 1.7, marginBottom: '2rem',
+              }}>
+                Get notified about new courses, tutorials, and AI research workflows
+                delivered to your inbox.
+              </p>
+              <form
+                onSubmit={(e) => { e.preventDefault(); subscribe(nlEmail); }}
+                style={{
+                  display: 'flex', gap: '0.5rem',
+                  maxWidth: '440px', margin: '0 auto',
+                  flexDirection: isMobile ? 'column' : 'row',
+                }}
+              >
+                <input
+                  type="email"
+                  placeholder="you@example.com"
+                  value={nlEmail}
+                  onChange={(e) => { setNlEmail(e.target.value); if (nlStatus === 'error') nlReset(); }}
+                  style={{
+                    flex: 1,
+                    padding: '0.75rem 1rem',
+                    borderRadius: '8px',
+                    border: nlStatus === 'error'
+                      ? '1.5px solid #ef4444'
+                      : '1.5px solid rgba(255,255,255,0.12)',
+                    backgroundColor: 'rgba(255,255,255,0.06)',
+                    color: '#FFFFFF',
+                    fontSize: '0.875rem',
+                    outline: 'none',
+                    transition: 'border-color 0.2s, box-shadow 0.2s',
+                    boxShadow: nlStatus === 'error' ? '0 0 0 3px rgba(239,68,68,0.15)' : 'none',
+                  }}
+                  onFocus={(e) => {
+                    if (nlStatus !== 'error') {
+                      e.currentTarget.style.borderColor = 'rgba(0,212,170,0.5)';
+                      e.currentTarget.style.boxShadow = '0 0 0 3px rgba(0,212,170,0.1)';
+                    }
+                  }}
+                  onBlur={(e) => {
+                    if (nlStatus !== 'error') {
+                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)';
+                      e.currentTarget.style.boxShadow = 'none';
+                    }
+                  }}
+                />
+                <button
+                  type="submit"
+                  disabled={nlStatus === 'loading'}
+                  style={{
+                    padding: '0.75rem 1.5rem',
+                    backgroundColor: '#00A896',
+                    color: '#FFFFFF',
+                    borderRadius: '8px',
+                    border: 'none',
+                    fontWeight: 600,
+                    fontSize: '0.875rem',
+                    cursor: nlStatus === 'loading' ? 'default' : 'pointer',
+                    opacity: nlStatus === 'loading' ? 0.7 : 1,
+                    transition: 'all 0.2s',
+                    boxShadow: '0 4px 16px rgba(0,212,170,0.25)',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {nlStatus === 'loading' ? 'Subscribing...' : 'Subscribe'}
+                </button>
+              </form>
+              {nlStatus === 'error' && nlError && (
+                <p style={{
+                  marginTop: '0.75rem',
+                  fontSize: '0.8125rem',
+                  color: '#ef4444',
+                  lineHeight: 1.4,
+                }}>
+                  {nlError}
+                </p>
+              )}
+            </>
+          )}
+        </div>
       </section>
     </div>
   );

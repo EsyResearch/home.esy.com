@@ -6,12 +6,13 @@ import {
   Play, Clock, BookOpen, ChevronRight, ChevronDown, ChevronUp,
   Users, Award, Share2, ArrowRight, Check, Sun, Moon,
   GraduationCap, Zap, Download, ExternalLink, FileText, Github,
-  PlayCircle,
+  PlayCircle, CheckCircle2, Mail,
 } from 'lucide-react';
 import { Course, Lesson, Chapter } from '@/lib/learn/types';
 import { getAllLessonsFlat } from '@/lib/learn/mockData';
 import { navyCalmDarkTheme } from '@/lib/theme';
 import { lightTheme } from '@/lib/lightTheme';
+import { useNewsletterSubscribe } from '@/hooks/useNewsletterSubscribe';
 
 /* ─────────────────────────────────────────────
    Course Detail — Premium Landing Page
@@ -36,6 +37,8 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
   const [isTablet, setIsTablet] = useState(false);
   const [expandedChapters, setExpandedChapters] = useState<Set<number>>(new Set([0]));
   const [shared, setShared] = useState(false);
+  const [nlEmail, setNlEmail] = useState('');
+  const { subscribe, status: nlStatus, errorMessage: nlError, reset: nlReset } = useNewsletterSubscribe();
 
   const firstLesson = getAllLessonsFlat(course)[0];
   const allLessons = getAllLessonsFlat(course);
@@ -579,6 +582,125 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
               </div>
             </div>
           )}
+
+          {/* ─── Newsletter Capture ─── */}
+          <div style={{
+            backgroundColor: surface,
+            border: `1px solid ${surfaceBorder}`,
+            borderRadius: '16px',
+            padding: isMobile ? '1.5rem' : '2rem',
+          }}>
+            {nlStatus === 'success' ? (
+              <div style={{ textAlign: 'center', padding: '0.5rem 0' }}>
+                <div style={{
+                  width: '40px', height: '40px', borderRadius: '50%',
+                  backgroundColor: `${accent}15`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  margin: '0 auto 1rem',
+                }}>
+                  <CheckCircle2 size={20} color={accent} strokeWidth={1.5} />
+                </div>
+                <h3 style={{
+                  fontFamily: "'Cormorant Garamond', Georgia, serif",
+                  fontSize: '1.25rem', fontWeight: 700, color: text,
+                  margin: '0 0 0.5rem',
+                }}>
+                  You&apos;re subscribed
+                </h3>
+                <p style={{
+                  fontSize: '0.813rem', color: muted, lineHeight: 1.6,
+                  margin: 0,
+                }}>
+                  We&apos;ll send you new courses, tutorials, and workflow guides.
+                </p>
+              </div>
+            ) : (
+              <>
+                <h3 style={{
+                  fontFamily: "'Cormorant Garamond', Georgia, serif",
+                  fontSize: '1.25rem', fontWeight: 700, color: text,
+                  margin: '0 0 0.5rem',
+                  display: 'flex', alignItems: 'center', gap: '0.5rem',
+                }}>
+                  <Mail size={18} color={accent} /> Stay updated
+                </h3>
+                <p style={{
+                  fontSize: '0.813rem', color: muted, lineHeight: 1.6,
+                  margin: '0 0 1rem',
+                }}>
+                  New courses, tutorials, and AI research workflow guides — delivered to your inbox.
+                </p>
+                <form
+                  onSubmit={(e) => { e.preventDefault(); subscribe(nlEmail); }}
+                  style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
+                >
+                  <input
+                    type="email"
+                    placeholder="you@example.com"
+                    value={nlEmail}
+                    onChange={(e) => { setNlEmail(e.target.value); if (nlStatus === 'error') nlReset(); }}
+                    style={{
+                      width: '100%',
+                      padding: '0.625rem 0.875rem',
+                      borderRadius: '8px',
+                      border: nlStatus === 'error'
+                        ? `1.5px solid #ef4444`
+                        : `1.5px solid ${surfaceBorder}`,
+                      backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : '#F8FAFB',
+                      color: text,
+                      fontSize: '0.813rem',
+                      outline: 'none',
+                      transition: 'border-color 0.2s, box-shadow 0.2s',
+                      boxSizing: 'border-box' as const,
+                      boxShadow: nlStatus === 'error' ? '0 0 0 3px rgba(239,68,68,0.1)' : 'none',
+                    }}
+                    onFocus={(e) => {
+                      if (nlStatus !== 'error') {
+                        e.currentTarget.style.borderColor = isDark ? 'rgba(0,212,170,0.4)' : 'rgba(0,168,150,0.4)';
+                        e.currentTarget.style.boxShadow = '0 0 0 3px rgba(0,212,170,0.08)';
+                      }
+                    }}
+                    onBlur={(e) => {
+                      if (nlStatus !== 'error') {
+                        e.currentTarget.style.borderColor = surfaceBorder;
+                        e.currentTarget.style.boxShadow = 'none';
+                      }
+                    }}
+                  />
+                  <button
+                    type="submit"
+                    disabled={nlStatus === 'loading'}
+                    style={{
+                      width: '100%',
+                      padding: '0.625rem',
+                      backgroundColor: accent,
+                      color: '#FFFFFF',
+                      borderRadius: '8px',
+                      border: 'none',
+                      fontWeight: 600,
+                      fontSize: '0.813rem',
+                      cursor: nlStatus === 'loading' ? 'default' : 'pointer',
+                      opacity: nlStatus === 'loading' ? 0.7 : 1,
+                      transition: 'all 0.2s',
+                    }}
+                  >
+                    {nlStatus === 'loading' ? 'Subscribing...' : 'Subscribe'}
+                  </button>
+                </form>
+                {nlStatus === 'error' && nlError && (
+                  <p style={{
+                    marginTop: '0.5rem',
+                    fontSize: '0.75rem',
+                    color: '#ef4444',
+                    lineHeight: 1.4,
+                    margin: '0.5rem 0 0',
+                  }}>
+                    {nlError}
+                  </p>
+                )}
+              </>
+            )}
+          </div>
         </div>
 
         {/* ─── Right Column: Course Content ─── */}
