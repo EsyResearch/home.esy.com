@@ -128,7 +128,7 @@ const NewsletterSection = () => {
               ...styles.newsletterDescription,
               marginBottom: '0'
             }}>
-              Check your inbox for a welcome email. We&apos;ll send you the latest articles, tutorials, and AI writing insights every week.
+              Check your inbox for a welcome email. If you don&apos;t see it, check your spam or promotions folder and mark us as safe.
             </p>
           </div>
         ) : (

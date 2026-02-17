@@ -236,7 +236,7 @@ export default function SchoolNewsletter({
                   lineHeight: '1.6'
                 }}>
                   {isSuccess 
-                    ? 'Check your inbox for a welcome email. We\u2019ll send you tutorials, workflow templates, and guides every week.'
+                    ? 'Check your inbox for a welcome email. If you don\u2019t see it, check your spam or promotions folder and mark us as safe.'
                     : 'Get tutorials, workflow templates, and practical guides on using Esy\u2019s AI research tools to create publishable artifacts faster.'
                   }
                 </p>

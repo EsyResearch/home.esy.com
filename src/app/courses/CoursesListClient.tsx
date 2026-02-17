@@ -471,7 +471,7 @@ export default function CoursesListClient() {
                 lineHeight: 1.7, margin: '0',
               }}>
                 We&apos;ll notify you when new courses and tutorials are released.
-                Check your inbox for a welcome email.
+                Check your inbox for a welcome email — if you don&apos;t see it, check your spam or promotions folder.
               </p>
             </>
           ) : (

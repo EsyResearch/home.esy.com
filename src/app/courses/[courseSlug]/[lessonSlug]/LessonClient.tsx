@@ -483,7 +483,7 @@ export default function LessonClient({ course, lesson, chapterTitle }: LessonCli
                     <span style={{
                       fontSize: '0.75rem', color: mutedColor, lineHeight: 1.4,
                     }}>
-                      You&apos;ll get new courses, tutorials, and workflow guides in your inbox.
+                      We&apos;ll send you new courses and guides. Check spam if you don&apos;t see the welcome email.
                     </span>
                   </div>
                 </div>

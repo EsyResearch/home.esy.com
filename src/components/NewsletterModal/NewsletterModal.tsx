@@ -416,7 +416,7 @@ const NewsletterModal: React.FC<NewsletterModalProps> = ({ isOpen, onClose, sour
               </h2>
               <p style={{ ...styles.subtitle, marginBottom: 0, textAlign: 'center' }}>
                 Welcome to a community of forward-thinking writers.
-                Check your inbox for your first exclusive insights.
+                Check your inbox for a welcome email — if you don&apos;t see it, check spam or promotions.
               </p>
             </div>
           )}

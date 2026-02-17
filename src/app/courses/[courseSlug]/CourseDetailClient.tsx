@@ -611,7 +611,7 @@ export default function CourseDetailClient({ course }: CourseDetailClientProps) 
                   fontSize: '0.813rem', color: muted, lineHeight: 1.6,
                   margin: 0,
                 }}>
-                  We&apos;ll send you new courses, tutorials, and workflow guides.
+                  We&apos;ll send you new courses, tutorials, and workflow guides. Check spam or promotions if you don&apos;t see the welcome email.
                 </p>
               </div>
             ) : (

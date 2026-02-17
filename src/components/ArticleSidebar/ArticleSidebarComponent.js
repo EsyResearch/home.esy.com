@@ -332,7 +332,7 @@ const ArticleSidebarComponent = ({
                 color: theme.muted,
                 lineHeight: 1.5
               }}>
-                Check your inbox for a welcome email.
+                Check your inbox for a welcome email. If you don&apos;t see it, check spam or promotions.
               </p>
             </div>
           ) : (
