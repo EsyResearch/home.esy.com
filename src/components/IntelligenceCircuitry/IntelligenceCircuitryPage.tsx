@@ -264,10 +264,8 @@ const IntelligenceCircuitryPage: React.FC = () => {
 
               {/* CTAs */}
               <div className="ic-hero-ctas">
-                <a 
-                  href="https://app.esy.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                <Link 
+                  href="/templates"
                   style={{ 
                     display: 'inline-flex', 
                     alignItems: 'center', 
@@ -288,7 +286,7 @@ const IntelligenceCircuitryPage: React.FC = () => {
                 >
                   <span>Start with a Template</span>
                   <ArrowRight size={18} />
-                </a>
+                </Link>
                 <Link href="/essays/" style={{ 
                   display: 'inline-flex', 
                   alignItems: 'center', 
@@ -347,11 +345,9 @@ const IntelligenceCircuitryPage: React.FC = () => {
 
           <div className="ic-templates-grid">
             {templates.map((template) => (
-              <a
+              <Link
                 key={template.id}
-                href="https://app.esy.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/templates"
                 className={`ic-template-card ic-template-card--${template.accent}`}
               >
                 <div className="ic-template-header">
@@ -375,7 +371,7 @@ const IntelligenceCircuitryPage: React.FC = () => {
                   <span>Use Template</span>
                   <ArrowRight size={14} />
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -477,15 +473,13 @@ const IntelligenceCircuitryPage: React.FC = () => {
             Start with a template. Add your sources. Let Esy handle the rigor.
           </p>
           <div className="ic-final-cta-buttons">
-            <a 
-              href="https://app.esy.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
+            <Link 
+              href="/templates"
               className="ic-cta-primary ic-cta-primary--large"
             >
               <span>Start with a Template</span>
               <ArrowRight size={20} />
-            </a>
+            </Link>
             <Link href="/essays/" className="ic-cta-secondary">
               <span>Explore Artifacts</span>
             </Link>
