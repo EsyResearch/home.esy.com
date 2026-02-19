@@ -1,0 +1,180 @@
+1:"$Sreact.fragment"
+3:I[54316,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+4:I[54316,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"GoogleTagManagerBody"]
+5:I[75916,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"HeaderSearchProvider"]
+6:I[70657,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+7:I[87555,[],""]
+8:I[31295,[],""]
+9:I[32613,["6874","static/chunks/6874-afd988d2bc94ea0d.js","6916","static/chunks/6916-747d211cba2b4316.js","4345","static/chunks/app/not-found-c251fa891f6a060f.js"],"default"]
+a:I[20675,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+b:I[14454,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+c:I[83487,["6874","static/chunks/6874-afd988d2bc94ea0d.js","4276","static/chunks/4276-21d77b56d7b60dec.js","4807","static/chunks/app/templates/essay/expository/page-6706f852d6a707be.js"],"default"]
+10:I[59665,[],"OutletBoundary"]
+13:I[59665,[],"ViewportBoundary"]
+15:I[59665,[],"MetadataBoundary"]
+17:I[26614,[],""]
+:HL["/_next/static/media/4cf2300e9c8272f7-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/5611c55482296524-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/93f479601ee12b01-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/bf0b6634f251496a-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/e4af272ccee01ff0-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/98f15a659630e498.css","style"]
+:HL["/_next/static/css/40809c9b3b649a94.css","style"]
+:HL["/_next/static/css/9148b966be57ff93.css","style"]
+:HL["/_next/static/css/ef74f1a05183f8b1.css","style"]
+2:T4b6,
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            
+            // Check for existing cookie consent
+            const consent = localStorage.getItem('esy-cookie-consent');
+            const consentData = consent ? JSON.parse(consent) : null;
+            
+            // Default consent state - deny all until user gives consent
+            gtag('consent', 'default', {
+              analytics_storage: 'denied',
+              functionality_storage: 'denied',
+              personalization_storage: 'denied'
+            });
+            
+            // If user has given consent, update accordingly
+            if (consentData) {
+              gtag('consent', 'update', {
+                analytics_storage: consentData.analytics ? 'granted' : 'denied',
+                functionality_storage: consentData.functional ? 'granted' : 'denied',
+                personalization_storage: consentData.personalization ? 'granted' : 'denied'
+              });
+            }
+            
+            gtag('config', 'G-FHDZHEDVL2', {
+              page_path: window.location.pathname,
+            });
+          d:T483,You are an expert in expository writing and educational content. Help me break down my topic and develop a clear thesis.
+
+**My Topic:**
+[TOPIC]
+
+**My Audience:**
+[AUDIENCE]
+(Who needs to understand this? What do they already know?)
+
+**Target Essay Length:**
+[ESSAY_LENGTH]
+
+Please help me:
+
+1. **Topic Analysis**
+   - What are the key components of this topic?
+   - What does someone need to understand to grasp this fully?
+   - What are common misconceptions?
+   - What's the most logical order to explain things?
+
+2. **Thesis Development**
+   Provide 3 thesis options that:
+   - State the topic clearly
+   - Preview the main points of explanation
+   - Set up a logical essay structure
+
+3. **Essay Structure**
+   For the recommended thesis, outline:
+   - What each body paragraph should cover
+   - Logical order of points
+   - How points build on each other
+
+4. **Opening Strategies**
+   Suggest 3 hooks that could open this essay:
+   - A surprising fact
+   - A relatable scenario
+   - A thought-provoking question
+
+5. **Key Terms to Define**
+   - Terms the audience might not know
+   - Concepts that need explanation
+   - Where definitions should appeare:T495,You are an expert expository writer. Help me develop a clear, informative body paragraph.
+
+**My Thesis:**
+[THESIS]
+
+**This Paragraph Should Explain:**
+[PARAGRAPH_TOPIC]
+
+**Facts, Examples, or Information I Have:**
+[FACTS_OR_EXAMPLES]
+
+Please write a complete body paragraph (150-200 words) that:
+
+1. **Starts with a Clear Topic Sentence**
+   - States what this paragraph will explain
+   - Connects to the thesis
+   - Signals the paragraph's purpose
+
+2. **Provides Clear Explanation**
+   - Breaks down the concept logically
+   - Uses accessible language
+   - Defines any technical terms
+   - Builds understanding step by step
+
+3. **Includes Strong Evidence/Examples**
+   - Uses the information I provided effectively
+   - Adds concrete examples to illustrate points
+   - Cites sources if needed
+
+4. **Analyzes the Information**
+   - Explains WHY this information matters
+   - Shows HOW it connects to the thesis
+   - Helps readers understand significance
+
+5. **Transitions Smoothly**
+   - Ends with a bridge to the next paragraph
+
+Also provide:
+- Notes on what makes this explanation effective
+- Alternative examples or evidence to consider
+- Tips for making it even clearerf:T4a9,You are an expert editor specializing in clear, accessible expository writing. Help me revise my draft for maximum clarity.
+
+**My Draft:**
+[DRAFT_TEXT]
+
+**My Target Audience:**
+[TARGET_AUDIENCE]
+
+Please provide:
+
+1. **Clarity Assessment**
+   - What's explained well?
+   - What's confusing or unclear?
+   - What assumptions might not land with the audience?
+   - Where do I need more/less explanation?
+
+2. **Jargon & Complexity Check**
+   - Technical terms that need definition
+   - Sentences that are too complex
+   - Areas where language could be simpler
+   - Concepts that need examples
+
+3. **Structure Analysis**
+   - Is information in logical order?
+   - Do paragraphs flow naturally?
+   - Are transitions smooth?
+   - Does each paragraph have a clear purpose?
+
+4. **Evidence Review**
+   - Are claims supported with facts/examples?
+   - Is there good variety in evidence types?
+   - Where is more support needed?
+
+5. **Revised Version**
+   - Rewrite the text for maximum clarity
+   - Simplify complex sentences
+   - Add explanations where needed
+   - Improve transitions
+
+6. **Readability Tips**
+   - Sentence length variety
+   - Paragraph length balance
+   - Use of examples and analogies0:{"P":null,"b":"DotzffwX_U2JhpG3lfBhC","p":"","c":["","templates","essay","expository",""],"i":false,"f":[[["",{"children":["templates",{"children":["essay",{"children":["expository",{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/98f15a659630e498.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/40809c9b3b649a94.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/css/9148b966be57ff93.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":[["$","head",null,{"children":[[["$","script",null,{"async":true,"src":"https://www.googletagmanager.com/gtag/js?id=G-FHDZHEDVL2"}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$2"}}]],["$","$L3",null,{}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"\n          (function(c,l,a,r,i,t,y){\n            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};\n            t=l.createElement(r);t.async=1;t.src=\"https://www.clarity.ms/tag/\"+i;\n            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);\n          })(window, document, \"clarity\", \"script\", \"ulfblwfzmy\");\n        "}}]]}],["$","body",null,{"className":"__variable_188709 __variable_9a8899 __variable_64b714 __variable_f367f3 __variable_1b1c3c antialiased","children":[["$","$L4",null,{}],["$","$L5",null,{"children":[["$","$L6",null,{}],["$","main",null,{"children":["$","$L7",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","$L9",null,{}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$La",null,{}]]}],["$","$Lb",null,{}]]}]]}]]}],{"children":["templates",["$","$1","c",{"children":[null,["$","$L7",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["essay",["$","$1","c",{"children":[null,["$","$L7",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["expository",["$","$1","c",{"children":[null,["$","$L7",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$Lc",null,{"data":{"slug":"expository","title":"Expository Essay","subtitle":"Explain complex topics clearly with logical organization, factual evidence, and accessible language.","description":"The expository essay is a foundational form of academic writing. It requires you to explain a topic thoroughly and objectively, without arguing for a particular position.","icon":["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":20,"height":20,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-file-text","aria-hidden":"true","children":[["$","path","1rqfz7",{"d":"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"}],["$","path","tnqrlb",{"d":"M14 2v4a2 2 0 0 0 2 2h4"}],["$","path","b1mrlr",{"d":"M10 9H8"}],["$","path","t4e002",{"d":"M16 13H8"}],["$","path","z1uh3a",{"d":"M16 17H8"}],"$undefined"]}],"accentColor":"#22c55e","seoIntro":"\n    <p>\n      <strong>Expository writing</strong> is about explanation, not persuasion. Your goal is to help \n      readers understand a topic clearly, presenting information in a logical, well-organized manner. \n      This is one of the most commonly assigned essay types in high school and introductory college courses.\n    </p>\n    <p style=\"margin-top: 1rem;\">\n      Unlike argumentative essays that take a stance, expository essays inform and explain. You'll \n      present facts, definitions, examples, and analysis—but the aim is clarity and understanding, \n      not convincing readers of your opinion.\n    </p>\n  ","outline":[{"title":"I. Introduction","wordCount":"75-100 words","content":"Hook: Open with an interesting fact, question, or scenario that relates to your topic. Create curiosity.\n\nContext: Provide background information the reader needs to understand the topic.\n\nThesis Statement: State the main idea of your essay clearly. In expository writing, your thesis previews what you'll explain.\n\nExample thesis formats:\n• \"[Topic] can be understood through examining [aspect 1], [aspect 2], and [aspect 3].\"\n• \"Understanding [topic] requires knowledge of [key component 1], [key component 2], and [key component 3].\"\n\nYour thesis should map the structure of your essay."},{"title":"II. Body Paragraph 1 — First Main Point","wordCount":"125-175 words","content":"Topic Sentence: Introduce the first main aspect or component of your explanation.\n\nExplanation: Define terms, provide context, and explain the concept clearly.\n\nEvidence/Examples: Support your explanation with:\n• Facts and statistics\n• Concrete examples\n• Expert explanations\n• Real-world applications\n\nAnalysis: Explain WHY this information matters and how it connects to your overall thesis.\n\nTransition: Lead into your next point.\n\nTip: Use clear, straightforward language. If you must use technical terms, define them."},{"title":"III. Body Paragraph 2 — Second Main Point","wordCount":"125-175 words","content":"Topic Sentence: Introduce your second main point, connecting it to the first.\n\nExplanation: Continue building the reader's understanding systematically.\n\nEvidence/Examples: Provide different types of evidence than paragraph 1 for variety:\n• If you used statistics before, try an example here\n• If you used an example, try an expert quote\n\nAnalysis: Show how this point builds on the previous one and contributes to the whole.\n\nTransition: Connect to your third point.\n\nRemember: You're building understanding step by step."},{"title":"IV. Body Paragraph 3 — Third Main Point","wordCount":"125-175 words","content":"Topic Sentence: Introduce your third and often most complex point.\n\nExplanation: This paragraph often addresses:\n• A more nuanced aspect of the topic\n• Common misconceptions\n• Complications or exceptions\n• Real-world implications\n\nEvidence/Examples: Use your strongest or most memorable example here.\n\nAnalysis: Tie everything together—show how this point completes the picture.\n\nTransition: Signal that you're moving toward conclusion.\n\nBy now, your reader should have a comprehensive understanding of the topic."},{"title":"V. Conclusion","wordCount":"75-100 words","content":"Thesis Restatement: Rephrase your thesis to remind readers of the main idea—don't just copy it.\n\nSummary: Briefly synthesize your main points. Show how they work together to create understanding.\n\nSignificance: Explain why this topic matters. What should readers take away?\n\nClosing Thought: End with:\n• A thought-provoking question\n• A connection to the reader's life\n• Future implications\n• A call to learn more\n\nDon't introduce new information in the conclusion."}],"structuralBreakdown":[{"title":"Clear Explanation","description":"Expository writing succeeds when readers understand the topic clearly. This requires breaking complex ideas into manageable parts.","tips":["Define unfamiliar terms when you first use them","Use concrete examples to illustrate abstract concepts","Move from simple to complex—build understanding gradually","Use analogies to connect new ideas to familiar ones"]},{"title":"Objective Tone","description":"Unlike argumentative essays, expository essays present information without taking a position. Your job is to inform, not persuade.","tips":["Avoid first person (\"I think...\") and opinion language","Present multiple perspectives when relevant","Use evidence to explain, not to prove a point","Let facts speak for themselves"]},{"title":"Logical Organization","description":"Information should flow in a logical sequence that helps readers build understanding step by step.","tips":["Organize chronologically, spatially, or by importance","Use clear topic sentences that signal each paragraph's purpose","Create smooth transitions between paragraphs","Each paragraph should follow logically from the previous one"]},{"title":"Evidence & Examples","description":"Expository essays rely on factual evidence and concrete examples to support explanations. Variety keeps readers engaged.","tips":["Use facts, statistics, and expert information","Include specific examples that illustrate concepts","Cite sources when using researched information","Balance general explanations with specific details"]}],"prompts":[{"id":"expo-topic","title":"Topic Breakdown & Thesis Developer","description":"Break your topic into explainable components and develop a strong thesis","variables":["TOPIC","AUDIENCE","ESSAY_LENGTH"],"prompt":"$d","expectedOutput":"Topic breakdown with thesis options, essay structure, and opening strategies."},{"id":"expo-paragraph","title":"Expository Paragraph Builder","description":"Develop a clear, informative body paragraph that explains your point effectively","variables":["THESIS","PARAGRAPH_TOPIC","FACTS_OR_EXAMPLES"],"prompt":"$e","expectedOutput":"A complete expository paragraph with clear explanation, evidence, and analysis."},{"id":"expo-clarity","title":"Clarity & Readability Enhancer","description":"Revise your expository writing for maximum clarity and understanding","variables":["DRAFT_TEXT","TARGET_AUDIENCE"],"prompt":"$f","expectedOutput":"Clarity assessment with a revised version optimized for reader understanding."}]}}],"$undefined",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/ef74f1a05183f8b1.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","$L10",null,{"children":["$L11","$L12",null]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","lx00MdLHS_PWBijqyfqLX",{"children":[["$","$L13",null,{"children":"$L14"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],["$","$L15",null,{"children":"$L16"}]]}],false]],"m":"$undefined","G":["$17","$undefined"],"s":false,"S":true}
+14:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"}]]
+11:null
+12:null
+16:[["$","title","0",{"children":"Expository Essay Template & Outline | Informative Writing Structure | Esy | Esy"}],["$","meta","1",{"name":"description","content":"Free expository essay template with outline, paragraph structure, and AI prompts. Learn how to write clear, informative essays that explain topics effectively."}],["$","meta","2",{"name":"keywords","content":"expository essay template,expository essay outline,how to write an expository essay,expository essay structure,informative essay template,explanatory essay outline,expository writing examples,expository essay topics"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","link","4",{"rel":"canonical","href":"https://esy.com/"}],["$","meta","5",{"property":"og:title","content":"Expository Essay Template & Outline | Esy"}],["$","meta","6",{"property":"og:description","content":"Free expository essay template with informative writing structure and AI prompts."}],["$","meta","7",{"property":"og:url","content":"https://esy.com/templates/essay/expository/"}],["$","meta","8",{"property":"og:type","content":"website"}],["$","meta","9",{"name":"twitter:card","content":"summary"}],["$","meta","10",{"name":"twitter:title","content":"Expository Essay Template & Outline | Esy"}],["$","meta","11",{"name":"twitter:description","content":"Free expository essay template with informative writing structure and AI prompts."}],["$","link","12",{"rel":"icon","href":"/favicon.ico","type":"image/x-icon","sizes":"16x16"}]]

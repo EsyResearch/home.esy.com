@@ -1,0 +1,96 @@
+1:"$Sreact.fragment"
+3:I[54316,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+4:I[54316,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"GoogleTagManagerBody"]
+5:I[75916,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"HeaderSearchProvider"]
+6:I[70657,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+7:I[87555,[],""]
+8:I[31295,[],""]
+9:I[32613,["6874","static/chunks/6874-afd988d2bc94ea0d.js","6916","static/chunks/6916-747d211cba2b4316.js","4345","static/chunks/app/not-found-c251fa891f6a060f.js"],"default"]
+a:I[20675,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+b:I[14454,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+d:I[59665,[],"OutletBoundary"]
+10:I[59665,[],"ViewportBoundary"]
+12:I[59665,[],"MetadataBoundary"]
+14:I[26614,[],""]
+:HL["/_next/static/media/4cf2300e9c8272f7-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/5611c55482296524-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/93f479601ee12b01-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/bf0b6634f251496a-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/e4af272ccee01ff0-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/98f15a659630e498.css","style"]
+:HL["/_next/static/css/40809c9b3b649a94.css","style"]
+:HL["/_next/static/css/9148b966be57ff93.css","style"]
+:HL["/_next/static/css/86ccc7688f5d8968.css","style"]
+2:T4b6,
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            
+            // Check for existing cookie consent
+            const consent = localStorage.getItem('esy-cookie-consent');
+            const consentData = consent ? JSON.parse(consent) : null;
+            
+            // Default consent state - deny all until user gives consent
+            gtag('consent', 'default', {
+              analytics_storage: 'denied',
+              functionality_storage: 'denied',
+              personalization_storage: 'denied'
+            });
+            
+            // If user has given consent, update accordingly
+            if (consentData) {
+              gtag('consent', 'update', {
+                analytics_storage: consentData.analytics ? 'granted' : 'denied',
+                functionality_storage: consentData.functional ? 'granted' : 'denied',
+                personalization_storage: consentData.personalization ? 'granted' : 'denied'
+              });
+            }
+            
+            gtag('config', 'G-FHDZHEDVL2', {
+              page_path: window.location.pathname,
+            });
+          0:{"P":null,"b":"DotzffwX_U2JhpG3lfBhC","p":"","c":["","templates","executive-summary-generator",""],"i":false,"f":[[["",{"children":["templates",{"children":[["slug","executive-summary-generator","d"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/98f15a659630e498.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/40809c9b3b649a94.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/css/9148b966be57ff93.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":[["$","head",null,{"children":[[["$","script",null,{"async":true,"src":"https://www.googletagmanager.com/gtag/js?id=G-FHDZHEDVL2"}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$2"}}]],["$","$L3",null,{}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"\n          (function(c,l,a,r,i,t,y){\n            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};\n            t=l.createElement(r);t.async=1;t.src=\"https://www.clarity.ms/tag/\"+i;\n            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);\n          })(window, document, \"clarity\", \"script\", \"ulfblwfzmy\");\n        "}}]]}],["$","body",null,{"className":"__variable_188709 __variable_9a8899 __variable_64b714 __variable_f367f3 __variable_1b1c3c antialiased","children":[["$","$L4",null,{}],["$","$L5",null,{"children":[["$","$L6",null,{}],["$","main",null,{"children":["$","$L7",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","$L9",null,{}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$La",null,{}]]}],["$","$Lb",null,{}]]}]]}]]}],{"children":["templates",["$","$1","c",{"children":[null,["$","$L7",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","executive-summary-generator","d"],["$","$1","c",{"children":[null,["$","$L7",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$Lc","$undefined",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/86ccc7688f5d8968.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","$Ld",null,{"children":["$Le","$Lf",null]}]]}],{},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","1L7ZZvLj5gC-bd9WHkCO1",{"children":[["$","$L10",null,{"children":"$L11"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],["$","$L12",null,{"children":"$L13"}]]}],false]],"m":"$undefined","G":["$14","$undefined"],"s":false,"S":true}
+15:I[69243,["6874","static/chunks/6874-afd988d2bc94ea0d.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","1870","static/chunks/1870-32ea210843e66649.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","7143","static/chunks/7143-192917238be1dd70.js","7350","static/chunks/app/templates/%5Bslug%5D/page-da10fa4d42a67e94.js"],""]
+16:I[39221,["6874","static/chunks/6874-afd988d2bc94ea0d.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","1870","static/chunks/1870-32ea210843e66649.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","7143","static/chunks/7143-192917238be1dd70.js","7350","static/chunks/app/templates/%5Bslug%5D/page-da10fa4d42a67e94.js"],"default"]
+17:T407,You are a business communication expert specializing in executive communications. Help me create an executive summary.
+
+**Document Type:** [DOCUMENT_TYPE] (report, proposal, analysis, etc.)
+
+**Full Content to Summarize:** [FULL_CONTENT]
+
+**Target Audience:** [TARGET_AUDIENCE]
+
+**Desired Reader Action:** [DESIRED_ACTION]
+
+Please create:
+
+1. **Executive Summary** (1 page max)
+   - Opening hook with key insight
+   - Problem/opportunity statement
+   - Solution/findings overview
+   - Key recommendations
+   - Call to action
+
+2. **Key Takeaways Box**
+   - 3-5 bullet points
+   - Most critical data points
+   - Bottom-line message
+
+3. **At-a-Glance Elements**
+   - Suggested header
+   - Key metrics to highlight
+   - Visual element recommendations
+
+4. **Tone Calibration**
+   - Adjust formality for audience
+   - Action-oriented language
+   - Confidence level appropriate to findings
+
+5. **Alternative Versions**
+   - 50-word version (email subject + first line)
+   - 100-word version (slack/email)
+   - 250-word version (brief memo)c:[["$","$L15",null,{"id":"breadcrumb-jsonld","type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Templates\",\"item\":\"https://esy.com/templates\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Prompts\",\"item\":\"https://esy.com/templates\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Executive Summary Generator\",\"item\":\"https://esy.com/templates/executive-summary-generator\"}]}"}}],["$","$L16",null,{"template":{"id":"9","slug":"executive-summary-generator","title":"Executive Summary Generator","shortDescription":"Create concise, impactful executive summaries for reports and proposals.","description":"This prompt helps you distill complex information into clear, actionable executive summaries that busy stakeholders can quickly understand and act upon.","category":"prompt","subcategory":"professional","tags":["business","executive summary","professional","reports"],"difficulty":"intermediate","isPro":true,"variables":["DOCUMENT_TYPE","FULL_CONTENT","TARGET_AUDIENCE","DESIRED_ACTION"],"content":"$17","expectedOutput":"A polished executive summary with key takeaways, multiple length versions, and tone-appropriate language.","useCases":["Board presentations","Investor updates","Project proposals","Research report summaries"],"relatedSlugs":["professional-email-crafter","presentation-outline-builder"]},"relatedTemplates":[{"id":"10","slug":"professional-email-crafter","title":"Professional Email Crafter","shortDescription":"Write clear, professional emails that get results.","description":"This prompt helps you compose effective professional emails for various business situations, ensuring clarity, appropriate tone, and actionable outcomes.","category":"prompt","subcategory":"professional","tags":["email","business","communication","professional"],"difficulty":"beginner","isNew":true,"variables":["EMAIL_PURPOSE","RECIPIENT","KEY_MESSAGE","DESIRED_OUTCOME"],"content":"You are a business communication expert. Help me craft an effective professional email.\n\n**Email Purpose:** [EMAIL_PURPOSE]\n\n**Recipient:** [RECIPIENT] (role, relationship, context)\n\n**Key Message:** [KEY_MESSAGE]\n\n**Desired Outcome:** [DESIRED_OUTCOME]\n\nPlease provide:\n\n1. **Subject Line Options**\n   - 3 clear, action-oriented subject lines\n   - Open rate optimization tips\n\n2. **Email Body**\n   - Professional greeting\n   - Opening that establishes context\n   - Clear main message\n   - Specific ask or call to action\n   - Professional closing\n\n3. **Tone Variations**\n   - Formal version\n   - Conversational version\n   - Urgent version (if applicable)\n\n4. **Structure Analysis**\n   - Paragraph breakdown\n   - Readability check\n   - Mobile-friendly formatting\n\n5. **Response Facilitation**\n   - Easy-to-answer questions\n   - Clear next steps\n   - Deadline handling\n\n6. **Common Pitfalls Avoided**\n   - Passive language removed\n   - Ambiguity eliminated\n   - Appropriate length maintained","expectedOutput":"Complete professional email with subject lines, multiple tone versions, and structure optimized for response.","useCases":["Client communication","Internal requests","Follow-up emails","Difficult conversations"],"relatedSlugs":["executive-summary-generator","presentation-outline-builder"]}],"categoryInfo":{"id":"prompt","name":"Prompts","slug":"prompts","description":"Ready-to-use AI prompts for academic writing, research, and creative projects","count":35,"subcategories":[{"id":"essay-writing","slug":"essay-writing","name":"Essay Writing","description":"Prompts for structuring and writing academic essays","count":3},{"id":"research","slug":"research","name":"Research & Analysis","description":"Prompts for conducting research and analysis","count":3},{"id":"creative-writing","slug":"creative-writing","name":"Creative Writing","description":"Prompts for fiction, storytelling, and creative projects","count":2},{"id":"professional","slug":"professional","name":"Professional Writing","description":"Prompts for business and professional communication","count":2},{"id":"chatgpt","slug":"chatgpt","name":"ChatGPT Prompts","description":"Optimized prompts for OpenAI ChatGPT models","count":6},{"id":"claude","slug":"claude","name":"Claude Prompts","description":"Optimized prompts for Anthropic Claude models","count":6},{"id":"gemini","slug":"gemini","name":"Gemini Prompts","description":"Optimized prompts for Google Gemini models","count":6},{"id":"seo","slug":"seo","name":"SEO Writing","description":"Prompts for search engine optimized content","count":6}]},"subcategoryInfo":"$c:1:props:categoryInfo:subcategories:3"}]]
+11:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"}]]
+e:null
+f:null
+13:[["$","title","0",{"children":"Executive Summary Generator - AI Prompt | Esy Templates | Esy"}],["$","meta","1",{"name":"description","content":"This prompt helps you distill complex information into clear, actionable executive summaries that busy stakeholders can quickly understand and act upon."}],["$","meta","2",{"name":"keywords","content":"business,executive summary,professional,reports"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","link","4",{"rel":"canonical","href":"https://esy.com/"}],["$","meta","5",{"property":"og:title","content":"Executive Summary Generator | Esy Templates"}],["$","meta","6",{"property":"og:description","content":"Create concise, impactful executive summaries for reports and proposals."}],["$","meta","7",{"property":"og:url","content":"https://esy.com/templates/executive-summary-generator/"}],["$","meta","8",{"property":"og:type","content":"article"}],["$","meta","9",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","10",{"name":"twitter:title","content":"Executive Summary Generator | Esy Templates"}],["$","meta","11",{"name":"twitter:description","content":"Create concise, impactful executive summaries for reports and proposals."}],["$","link","12",{"rel":"icon","href":"/favicon.ico","type":"image/x-icon","sizes":"16x16"}]]

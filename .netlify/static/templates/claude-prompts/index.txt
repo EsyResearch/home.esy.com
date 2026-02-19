@@ -1,0 +1,346 @@
+1:"$Sreact.fragment"
+3:I[54316,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+4:I[54316,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"GoogleTagManagerBody"]
+5:I[75916,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"HeaderSearchProvider"]
+6:I[70657,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+7:I[87555,[],""]
+8:I[31295,[],""]
+9:I[32613,["6874","static/chunks/6874-afd988d2bc94ea0d.js","6916","static/chunks/6916-747d211cba2b4316.js","4345","static/chunks/app/not-found-c251fa891f6a060f.js"],"default"]
+a:I[20675,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+b:I[14454,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+c:I[84243,["6874","static/chunks/6874-afd988d2bc94ea0d.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","7143","static/chunks/7143-192917238be1dd70.js","9845","static/chunks/9845-b29cf66472ba6a31.js","4275","static/chunks/app/templates/claude-prompts/page-23203cfea991d28d.js"],"default"]
+14:I[59665,[],"OutletBoundary"]
+17:I[59665,[],"ViewportBoundary"]
+19:I[59665,[],"MetadataBoundary"]
+1b:I[26614,[],""]
+:HL["/_next/static/media/4cf2300e9c8272f7-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/5611c55482296524-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/93f479601ee12b01-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/bf0b6634f251496a-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/e4af272ccee01ff0-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/98f15a659630e498.css","style"]
+:HL["/_next/static/css/40809c9b3b649a94.css","style"]
+:HL["/_next/static/css/9148b966be57ff93.css","style"]
+2:T4b6,
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            
+            // Check for existing cookie consent
+            const consent = localStorage.getItem('esy-cookie-consent');
+            const consentData = consent ? JSON.parse(consent) : null;
+            
+            // Default consent state - deny all until user gives consent
+            gtag('consent', 'default', {
+              analytics_storage: 'denied',
+              functionality_storage: 'denied',
+              personalization_storage: 'denied'
+            });
+            
+            // If user has given consent, update accordingly
+            if (consentData) {
+              gtag('consent', 'update', {
+                analytics_storage: consentData.analytics ? 'granted' : 'denied',
+                functionality_storage: consentData.functional ? 'granted' : 'denied',
+                personalization_storage: consentData.personalization ? 'granted' : 'denied'
+              });
+            }
+            
+            gtag('config', 'G-FHDZHEDVL2', {
+              page_path: window.location.pathname,
+            });
+          d:T498,
+<p>
+  <strong>Claude prompts for academic research</strong> take advantage of Anthropic's Claude model's exceptional 
+  ability to handle nuanced, complex analysis. Claude excels at tasks requiring careful reasoning, perspective 
+  taking, and balanced evaluation—making it ideal for sophisticated academic work.
+</p>
+<p style="margin-top: 1rem;">
+  Our <strong>Claude academic prompts</strong> are specifically designed to leverage the model's strengths in 
+  multi-source literature reviews, bias detection, academic debate simulation, and evidence-based writing enhancement. 
+  These prompts help you produce work that demonstrates the depth of analysis expected at graduate and professional levels.
+</p>
+<p style="margin-top: 1rem;">
+  Whether you're conducting comprehensive literature reviews, analyzing texts for hidden biases, preparing for 
+  thesis defenses, or strengthening your evidence integration, these <strong>Claude research prompts</strong> 
+  provide structured frameworks that yield consistent, high-quality results. Each prompt has been refined through 
+  extensive testing to maximize Claude's analytical capabilities for academic applications.
+</p>
+e:T461,You are a senior research advisor with expertise in research design and methodology. Provide high-level guidance for this research project.
+
+**Research Area:** [RESEARCH_AREA]
+
+**Current Stage:** [CURRENT_STAGE]
+
+**Key Challenges:** [CHALLENGES]
+
+**Research Goals:** [GOALS]
+
+Provide strategic guidance on:
+
+1. **Research Design Assessment**
+   - Evaluate current approach
+   - Identify methodological strengths
+   - Flag potential weaknesses
+   - Suggest design refinements
+
+2. **Strategic Direction**
+   - Prioritize research activities
+   - Identify critical path items
+   - Suggest resource allocation
+   - Timeline recommendations
+
+3. **Methodological Recommendations**
+   - Appropriate methods for questions
+   - Data collection strategies
+   - Analysis approach options
+   - Validity and reliability considerations
+
+4. **Risk Mitigation**
+   - Anticipate potential problems
+   - Suggest contingency plans
+   - Identify ethical considerations
+   - Address feasibility concerns
+
+5. **Quality Assurance**
+   - Standards to meet
+   - Peer review preparation
+   - Documentation requirements
+   - Publication positioningf:T47b,You are an expert in systematic literature review methodology. Help construct a comprehensive literature review.
+
+**Topic:** [TOPIC]
+
+**Source Types to Include:** [SOURCE_TYPES]
+
+**Review Scope:** [REVIEW_SCOPE]
+
+**Analytical Focus:** [ANALYTICAL_FOCUS]
+
+Guide the review construction:
+
+1. **Systematic Framework**
+   - Search strategy recommendations
+   - Inclusion/exclusion criteria
+   - Quality assessment approach
+   - Documentation standards
+
+2. **Source Organization**
+   - Chronological evolution of field
+   - Thematic clustering
+   - Methodological groupings
+   - Theoretical frameworks
+
+3. **Critical Analysis Structure**
+   - Evaluate evidence quality
+   - Assess methodological rigor
+   - Identify bias patterns
+   - Note limitations systematically
+
+4. **Synthesis Strategy**
+   - Connect disparate findings
+   - Resolve contradictions
+   - Identify consensus areas
+   - Map disagreements
+
+5. **Gap Identification**
+   - Underexplored questions
+   - Methodological gaps
+   - Population gaps
+   - Theoretical gaps
+
+6. **Narrative Development**
+   - Compelling structure
+   - Logical flow
+   - Clear argumentation
+   - Strong conclusion10:T495,You are an expert in critical discourse analysis and bias detection. Analyze this text for biases and perspectives.
+
+**Text to Analyze:** [TEXT_TO_ANALYZE]
+
+**Context:** [CONTEXT]
+
+**Analysis Depth:** [ANALYSIS_DEPTH]
+
+Conduct thorough analysis:
+
+1. **Perspective Identification**
+   - Author's apparent viewpoint
+   - Disciplinary lens
+   - Cultural/historical context
+   - Stakeholder alignment
+
+2. **Assumption Mapping**
+   - Explicit assumptions
+   - Implicit assumptions
+   - Foundational premises
+   - Unquestioned beliefs
+
+3. **Bias Detection**
+   - Selection bias (what's included/excluded)
+   - Framing bias (how issues are presented)
+   - Language bias (loaded terms)
+   - Confirmation bias indicators
+
+4. **Missing Perspectives**
+   - Voices not represented
+   - Alternative interpretations
+   - Counterarguments not addressed
+   - Stakeholders ignored
+
+5. **Impact Assessment**
+   - How biases affect conclusions
+   - Validity implications
+   - Generalizability limits
+   - Practical consequences
+
+6. **Balanced Interpretation**
+   - How to read the text critically
+   - Valid insights despite biases
+   - Complementary sources needed
+   - Appropriate use cases11:T41d,You are a skilled academic debater and argumentation expert. Simulate a rigorous academic debate on this topic.
+
+**Your Position:** [YOUR_POSITION]
+
+**Topic:** [TOPIC]
+
+**Debate Context:** [DEBATE_CONTEXT]
+
+**Known Opposing View:** [OPPOSING_VIEW]
+
+Conduct the debate simulation:
+
+1. **Position Strengthening**
+   - Best arguments for your position
+   - Strongest evidence available
+   - Most compelling framing
+   - Rhetorical strategies
+
+2. **Opposition Construction**
+   - Strongest counterarguments
+   - Evidence against your position
+   - Logical challenges
+   - Alternative interpretations
+
+3. **Cross-Examination**
+   - Questions opponents would ask
+   - Weak points they'd target
+   - Evidence they'd demand
+   - Logical gaps they'd exploit
+
+4. **Rebuttal Development**
+   - Responses to key objections
+   - Evidence to address concerns
+   - Concessions to make strategically
+   - Ground to defend firmly
+
+5. **Synthesis**
+   - Common ground identification
+   - Nuanced final position
+   - Acknowledged limitations
+   - Stronger revised argument12:T479,You are an expert in academic writing and evidence integration. Help strengthen this text with better evidence use.
+
+**Draft Text:** [DRAFT_TEXT]
+
+**Available Sources:** [AVAILABLE_SOURCES]
+
+**Citation Style:** [CITATION_STYLE]
+
+Enhance evidence integration:
+
+1. **Claim Audit**
+   - Identify all claims made
+   - Categorize by evidence needs
+   - Flag unsupported assertions
+   - Note over-reliance on any source
+
+2. **Evidence Mapping**
+   - Match claims to available evidence
+   - Identify gaps in support
+   - Suggest additional evidence needed
+   - Recommend source types
+
+3. **Integration Improvement**
+   - Better quote integration
+   - Paraphrase suggestions
+   - Signal phrase variety
+   - Analysis after evidence
+
+4. **Citation Enhancement**
+   - Proper citation format
+   - Strategic citation placement
+   - Attribution clarity
+   - Avoiding over-citation
+
+5. **Balance Assessment**
+   - Source diversity check
+   - Perspective balance
+   - Primary vs. secondary sources
+   - Recent vs. foundational sources
+
+6. **Revised Version**
+   - Provide enhanced text
+   - Explain improvements
+   - Note remaining needs
+   - Citation checklist13:T598,You are a senior research analyst specializing in complex synthesis across disciplines. Provide deep research synthesis.
+
+**Research Sources:** [RESEARCH_SOURCES]
+
+**Synthesis Objective:** [SYNTHESIS_OBJECTIVE]
+
+**Desired Output Format:** [OUTPUT_FORMAT]
+
+**Primary Stakeholder:** [STAKEHOLDER]
+
+Conduct deep synthesis:
+
+1. **Source Deconstruction**
+   - Extract key findings
+   - Identify methodologies
+   - Map theoretical bases
+   - Note limitations
+   - Assess evidence quality
+
+2. **Cross-Source Analysis**
+   - Convergence identification
+   - Divergence mapping
+   - Contradiction resolution
+   - Complementarity assessment
+   - Integration opportunities
+
+3. **Pattern Recognition**
+   - Emergent themes
+   - Trend identification
+   - Causal relationships
+   - Correlation patterns
+   - Anomaly detection
+
+4. **Framework Development**
+   - Integrative model creation
+   - Relationship visualization
+   - Hierarchy establishment
+   - Process mapping
+   - Decision framework
+
+5. **Insight Generation**
+   - Novel connections
+   - Practical implications
+   - Strategic recommendations
+   - Risk identification
+   - Opportunity mapping
+
+6. **Stakeholder Translation**
+   - Executive summary
+   - Technical details
+   - Action items
+   - Implementation roadmap
+   - Success metrics
+
+7. **Future Directions**
+   - Research gaps
+   - Investigation priorities
+   - Resource requirements
+   - Timeline estimates
+   - Success indicators0:{"P":null,"b":"DotzffwX_U2JhpG3lfBhC","p":"","c":["","templates","claude-prompts",""],"i":false,"f":[[["",{"children":["templates",{"children":["claude-prompts",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/98f15a659630e498.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/40809c9b3b649a94.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/css/9148b966be57ff93.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":[["$","head",null,{"children":[[["$","script",null,{"async":true,"src":"https://www.googletagmanager.com/gtag/js?id=G-FHDZHEDVL2"}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$2"}}]],["$","$L3",null,{}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"\n          (function(c,l,a,r,i,t,y){\n            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};\n            t=l.createElement(r);t.async=1;t.src=\"https://www.clarity.ms/tag/\"+i;\n            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);\n          })(window, document, \"clarity\", \"script\", \"ulfblwfzmy\");\n        "}}]]}],["$","body",null,{"className":"__variable_188709 __variable_9a8899 __variable_64b714 __variable_f367f3 __variable_1b1c3c antialiased","children":[["$","$L4",null,{}],["$","$L5",null,{"children":[["$","$L6",null,{}],["$","main",null,{"children":["$","$L7",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","$L9",null,{}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$La",null,{}]]}],["$","$Lb",null,{}]]}]]}]]}],{"children":["templates",["$","$1","c",{"children":[null,["$","$L7",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["claude-prompts",["$","$1","c",{"children":[null,["$","$L7",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$Lc",null,{"title":"Claude Prompts","subtitle":"Harness Claude's nuanced reasoning for deep research analysis and sophisticated academic writing.","description":"$d","subcategory":"claude","templates":[{"id":"16","slug":"claude-high-level-research-assistant","title":"Claude High-Level Research Assistant","shortDescription":"Leverage Claude's nuanced reasoning for sophisticated research guidance.","description":"This prompt harnesses Claude's strength in nuanced analysis and careful reasoning to provide high-level research guidance, methodology recommendations, and strategic research planning.","category":"prompt","subcategory":"claude","tags":["claude","research","methodology","academic","planning"],"difficulty":"advanced","isNew":true,"model":"Claude","pricing":{"type":"free"},"variables":["RESEARCH_AREA","CURRENT_STAGE","CHALLENGES","GOALS"],"content":"$e","expectedOutput":"Strategic research guidance with methodology recommendations and risk mitigation strategies.","useCases":["Dissertation planning","Grant proposal development","Research project management","Methodology consultation"],"relatedSlugs":["research-question-refiner","claude-multi-source-literature-review-prompt"]},{"id":"17","slug":"claude-multi-source-literature-review-prompt","title":"Claude Multi-Source Literature Review Prompt","shortDescription":"Construct comprehensive literature reviews with Claude's analytical depth.","description":"Use Claude's capacity for handling complex, nuanced information to build thorough literature reviews that synthesize diverse sources while maintaining critical perspective.","category":"prompt","subcategory":"claude","tags":["claude","literature review","research","synthesis","academic"],"difficulty":"advanced","model":"Claude","pricing":{"type":"free"},"variables":["TOPIC","SOURCE_TYPES","REVIEW_SCOPE","ANALYTICAL_FOCUS"],"content":"$f","expectedOutput":"Comprehensive literature review framework with systematic organization and critical analysis.","useCases":["Thesis literature chapters","Systematic reviews","Research proposals","Academic publications"],"relatedSlugs":["literature-review-assistant","claude-high-level-research-assistant"]},{"id":"18","slug":"claude-bias-perspective-analyzer","title":"Claude Bias & Perspective Analyzer","shortDescription":"Identify biases, assumptions, and perspectives in texts with Claude's nuanced analysis.","description":"Leverage Claude's sophisticated reasoning to uncover hidden biases, unstated assumptions, and perspective limitations in academic and professional texts.","category":"prompt","subcategory":"claude","tags":["claude","bias","analysis","critical thinking","perspective"],"difficulty":"intermediate","model":"Claude","pricing":{"type":"free"},"variables":["TEXT_TO_ANALYZE","CONTEXT","ANALYSIS_DEPTH"],"content":"$10","expectedOutput":"Detailed bias and perspective analysis with practical guidance for critical interpretation.","useCases":["Source evaluation","Media literacy","Academic criticism","Research assessment"],"relatedSlugs":["source-evaluation-framework","claude-academic-debate-simulator"]},{"id":"19","slug":"claude-academic-debate-simulator","title":"Claude Academic Debate Simulator","shortDescription":"Simulate rigorous academic debates to strengthen arguments and anticipate objections.","description":"Use Claude to simulate scholarly debate, generating strong counterarguments, testing your positions, and developing more robust academic arguments.","category":"prompt","subcategory":"claude","tags":["claude","debate","argumentation","academic","critical thinking"],"difficulty":"advanced","model":"Claude","pricing":{"type":"free"},"variables":["YOUR_POSITION","TOPIC","DEBATE_CONTEXT","OPPOSING_VIEW"],"content":"$11","expectedOutput":"Comprehensive debate simulation with counterarguments, rebuttals, and strengthened position.","useCases":["Thesis defense preparation","Paper strengthening","Peer review preparation","Academic presentations"],"relatedSlugs":["chatgpt-argument-analysis-prompt","claude-evidence-based-writing-enhancer"]},{"id":"20","slug":"claude-evidence-based-writing-enhancer","title":"Claude Evidence-Based Writing Enhancer","shortDescription":"Strengthen academic writing with better evidence integration and citation practices.","description":"Use Claude to improve how you integrate evidence into your writing, ensuring claims are well-supported, citations are properly used, and arguments are substantiated.","category":"prompt","subcategory":"claude","tags":["claude","evidence","citations","academic writing","research"],"difficulty":"intermediate","isNew":true,"model":"Claude","pricing":{"type":"free"},"variables":["DRAFT_TEXT","AVAILABLE_SOURCES","CITATION_STYLE"],"content":"$12","expectedOutput":"Enhanced text with improved evidence integration, proper citations, and well-supported claims.","useCases":["Draft revision","Citation improvement","Argument strengthening","Academic editing"],"relatedSlugs":["claude-bias-perspective-analyzer","source-evaluation-framework"]},{"id":"33","slug":"claude-deep-research-synthesizer","title":"Claude Deep Research Synthesizer","shortDescription":"Synthesize complex research into actionable insights with Claude's analytical depth.","description":"This premium prompt leverages Claude's sophisticated reasoning to synthesize complex, multi-disciplinary research into coherent frameworks and actionable insights.","category":"prompt","subcategory":"claude","tags":["claude","research","synthesis","premium","analysis"],"difficulty":"advanced","isPro":true,"model":"Claude","pricing":{"type":"premium","price":9},"variables":["RESEARCH_SOURCES","SYNTHESIS_OBJECTIVE","OUTPUT_FORMAT","STAKEHOLDER"],"content":"$13","expectedOutput":"Deep research synthesis with integrative framework, actionable insights, and stakeholder-ready outputs.","useCases":["Strategic planning","Policy development","Investment decisions","Innovation research"],"relatedSlugs":["chatgpt-research-synthesis-prompt","claude-high-level-research-assistant"]}],"icon":["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":16,"height":16,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-brain","aria-hidden":"true","children":[["$","path","l5xja",{"d":"M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"}],["$","path","ep3f8r",{"d":"M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"}],["$","path","1p4c4q",{"d":"M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"}],["$","path","tmeiqw",{"d":"M17.599 6.5a3 3 0 0 0 .399-1.375"}],["$","path","105sqy",{"d":"M6.003 5.125A3 3 0 0 0 6.401 6.5"}],["$","path","ql3yin",{"d":"M3.477 10.896a4 4 0 0 1 .585-.396"}],["$","path","1qfode",{"d":"M19.938 10.5a4 4 0 0 1 .585.396"}],["$","path","2e4loj",{"d":"M6 18a4 4 0 0 1-1.967-.516"}],["$","path","159ez6",{"d":"M19.967 17.484A4 4 0 0 1 18 18"}],"$undefined"]}],"modelName":"Anthropic Claude","accentColor":"#d97706"}],"$undefined",null,["$","$L14",null,{"children":["$L15","$L16",null]}]]}],{},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","nIjkH-UVWPuGHua_mhmaX",{"children":[["$","$L17",null,{"children":"$L18"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],["$","$L19",null,{"children":"$L1a"}]]}],false]],"m":"$undefined","G":["$1b","$undefined"],"s":false,"S":true}
+18:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"}]]
+15:null
+16:null
+1a:[["$","title","0",{"children":"Claude Prompts for Research & Analysis | Esy Templates | Esy"}],["$","meta","1",{"name":"description","content":"Discover Claude prompts for nuanced research assistance, literature reviews, bias analysis, and evidence-based writing. Harness Claude's analytical depth for academic excellence."}],["$","meta","2",{"name":"keywords","content":"Claude prompts, Anthropic Claude prompts, Claude for research, academic Claude prompts, literature review prompts, bias analysis prompts, Claude academic writing"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","link","4",{"rel":"canonical","href":"https://esy.com/"}],["$","meta","5",{"property":"og:title","content":"Claude Prompts for Research & Analysis | Esy"}],["$","meta","6",{"property":"og:description","content":"Anthropic Claude prompts for sophisticated research analysis and academic writing."}],["$","meta","7",{"property":"og:url","content":"https://esy.com/templates/claude-prompts/"}],["$","meta","8",{"property":"og:type","content":"website"}],["$","meta","9",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","10",{"name":"twitter:title","content":"Claude Prompts for Research & Analysis | Esy"}],["$","meta","11",{"name":"twitter:description","content":"Anthropic Claude prompts for sophisticated research analysis and academic writing."}],["$","link","12",{"rel":"icon","href":"/favicon.ico","type":"image/x-icon","sizes":"16x16"}]]

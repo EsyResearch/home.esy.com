@@ -3,7 +3,7 @@ title: "Understanding Large Language Models: From Theory to Practice"
 category: "LLM Basics"
 author:
   name: "Zev Uhuru"
-  title: "Applied AI Engineer, Esy"
+  title: "Workflow Designer, Esy"
   avatar: "https://ui-avatars.com/api/?name=Zev+Uhuru&background=6366f1&color=fff"
   bio: "Leading expert in natural language processing and deep learning."
 date: "Mar 20, 2025"

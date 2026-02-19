@@ -1,0 +1,151 @@
+1:"$Sreact.fragment"
+3:I[54316,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+4:I[54316,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"GoogleTagManagerBody"]
+5:I[75916,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"HeaderSearchProvider"]
+6:I[70657,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+7:I[87555,[],""]
+8:I[31295,[],""]
+9:I[32613,["6874","static/chunks/6874-afd988d2bc94ea0d.js","6916","static/chunks/6916-747d211cba2b4316.js","4345","static/chunks/app/not-found-c251fa891f6a060f.js"],"default"]
+a:I[20675,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+b:I[14454,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+d:I[59665,[],"OutletBoundary"]
+10:I[59665,[],"ViewportBoundary"]
+12:I[59665,[],"MetadataBoundary"]
+14:I[26614,[],""]
+:HL["/_next/static/media/4cf2300e9c8272f7-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/5611c55482296524-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/93f479601ee12b01-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/bf0b6634f251496a-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/e4af272ccee01ff0-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/98f15a659630e498.css","style"]
+:HL["/_next/static/css/40809c9b3b649a94.css","style"]
+:HL["/_next/static/css/9148b966be57ff93.css","style"]
+:HL["/_next/static/css/86ccc7688f5d8968.css","style"]
+2:T4b6,
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            
+            // Check for existing cookie consent
+            const consent = localStorage.getItem('esy-cookie-consent');
+            const consentData = consent ? JSON.parse(consent) : null;
+            
+            // Default consent state - deny all until user gives consent
+            gtag('consent', 'default', {
+              analytics_storage: 'denied',
+              functionality_storage: 'denied',
+              personalization_storage: 'denied'
+            });
+            
+            // If user has given consent, update accordingly
+            if (consentData) {
+              gtag('consent', 'update', {
+                analytics_storage: consentData.analytics ? 'granted' : 'denied',
+                functionality_storage: consentData.functional ? 'granted' : 'denied',
+                personalization_storage: consentData.personalization ? 'granted' : 'denied'
+              });
+            }
+            
+            gtag('config', 'G-FHDZHEDVL2', {
+              page_path: window.location.pathname,
+            });
+          0:{"P":null,"b":"DotzffwX_U2JhpG3lfBhC","p":"","c":["","templates","thesis-statement-generator",""],"i":false,"f":[[["",{"children":["templates",{"children":[["slug","thesis-statement-generator","d"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/98f15a659630e498.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/40809c9b3b649a94.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/css/9148b966be57ff93.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":[["$","head",null,{"children":[[["$","script",null,{"async":true,"src":"https://www.googletagmanager.com/gtag/js?id=G-FHDZHEDVL2"}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$2"}}]],["$","$L3",null,{}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"\n          (function(c,l,a,r,i,t,y){\n            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};\n            t=l.createElement(r);t.async=1;t.src=\"https://www.clarity.ms/tag/\"+i;\n            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);\n          })(window, document, \"clarity\", \"script\", \"ulfblwfzmy\");\n        "}}]]}],["$","body",null,{"className":"__variable_188709 __variable_9a8899 __variable_64b714 __variable_f367f3 __variable_1b1c3c antialiased","children":[["$","$L4",null,{}],["$","$L5",null,{"children":[["$","$L6",null,{}],["$","main",null,{"children":["$","$L7",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","$L9",null,{}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$La",null,{}]]}],["$","$Lb",null,{}]]}]]}]]}],{"children":["templates",["$","$1","c",{"children":[null,["$","$L7",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","thesis-statement-generator","d"],["$","$1","c",{"children":[null,["$","$L7",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$Lc","$undefined",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/86ccc7688f5d8968.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","$Ld",null,{"children":["$Le","$Lf",null]}]]}],{},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","hL6KTIlcGtUS-6HxTzHpc",{"children":[["$","$L10",null,{"children":"$L11"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],["$","$L12",null,{"children":"$L13"}]]}],false]],"m":"$undefined","G":["$14","$undefined"],"s":false,"S":true}
+15:I[69243,["6874","static/chunks/6874-afd988d2bc94ea0d.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","1870","static/chunks/1870-32ea210843e66649.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","7143","static/chunks/7143-192917238be1dd70.js","7350","static/chunks/app/templates/%5Bslug%5D/page-da10fa4d42a67e94.js"],""]
+16:I[39221,["6874","static/chunks/6874-afd988d2bc94ea0d.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","1870","static/chunks/1870-32ea210843e66649.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","7143","static/chunks/7143-192917238be1dd70.js","7350","static/chunks/app/templates/%5Bslug%5D/page-da10fa4d42a67e94.js"],"default"]
+17:T409,You are an expert academic writing assistant. Help me write a compelling argumentative essay on the following topic:
+
+**Topic:** [TOPIC]
+
+**My Thesis Statement:** [THESIS_STATEMENT]
+
+**Target Audience:** [TARGET_AUDIENCE]
+
+**Desired Length:** [WORD_COUNT] words
+
+Please help me structure this essay with:
+
+1. **Introduction**
+   - Hook to grab reader attention
+   - Background context on the topic
+   - Clear thesis statement positioned at the end
+
+2. **Body Paragraphs** (3-4 paragraphs)
+   - Topic sentence for each paragraph
+   - Supporting evidence with citations
+   - Analysis connecting evidence to thesis
+   - Smooth transitions between paragraphs
+
+3. **Counterargument Section**
+   - Acknowledge opposing viewpoints fairly
+   - Refute with logical reasoning and evidence
+   - Strengthen original position
+
+4. **Conclusion**
+   - Restate thesis in new words
+   - Summarize key arguments
+   - End with call to action or thought-provoking statement
+
+Please provide specific, well-researched content rather than placeholder text.18:T583,You are a master academic argumentation coach with expertise across disciplines. Provide comprehensive argument development guidance.
+
+**Argument Topic:** [ARGUMENT_TOPIC]
+
+**Discipline:** [DISCIPLINE]
+
+**Target Audience:** [AUDIENCE]
+
+**Complexity Level:** [COMPLEXITY_LEVEL]
+
+Develop master argument framework:
+
+1. **Argument Architecture**
+   - Claim taxonomy (main, supporting, subsidiary)
+   - Evidence hierarchy
+   - Warrant structure
+   - Backing requirements
+   - Qualifier placement
+
+2. **Logic Framework**
+   - Deductive structure
+   - Inductive reasoning
+   - Abductive elements
+   - Analogical arguments
+   - Causal claims
+
+3. **Evidence Strategy**
+   - Evidence type selection
+   - Source credibility matrix
+   - Data integration
+   - Expert testimony use
+   - Case study deployment
+
+4. **Counterargument Mastery**
+   - Strongest objections
+   - Steel man construction
+   - Rebuttal development
+   - Concession strategy
+   - Synthesis moves
+
+5. **Rhetorical Enhancement**
+   - Ethos establishment
+   - Pathos integration
+   - Logos reinforcement
+   - Kairos awareness
+   - Style optimization
+
+6. **Discipline-Specific Conventions**
+   - Field expectations
+   - Methodology norms
+   - Citation practices
+   - Discourse patterns
+   - Evaluation criteria
+
+7. **Defense Preparation**
+   - Weakness anticipation
+   - Q&A preparation
+   - Pivot strategies
+   - Confidence building
+   - Response templatesc:[["$","$L15",null,{"id":"breadcrumb-jsonld","type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Templates\",\"item\":\"https://esy.com/templates\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Prompts\",\"item\":\"https://esy.com/templates\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Thesis Statement Generator\",\"item\":\"https://esy.com/templates/thesis-statement-generator\"}]}"}}],["$","$L16",null,{"template":{"id":"2","slug":"thesis-statement-generator","title":"Thesis Statement Generator","shortDescription":"Generate strong, arguable thesis statements for any essay type.","description":"This prompt helps you craft clear, specific, and arguable thesis statements. It provides multiple options based on your topic and guides you in selecting the strongest approach for your essay.","category":"prompt","subcategory":"essay-writing","tags":["thesis","essay","academic","writing"],"difficulty":"beginner","isFeatured":true,"variables":["TOPIC","ESSAY_TYPE","STANCE"],"content":"You are an expert academic writing coach specializing in thesis development. Help me create a strong thesis statement.\n\n**Topic:** [TOPIC]\n\n**Essay Type:** [ESSAY_TYPE] (argumentative, expository, analytical, compare/contrast)\n\n**My Initial Stance/Angle:** [STANCE]\n\nPlease provide:\n\n1. **3 Different Thesis Statement Options**\n   - Each should be specific, arguable, and appropriately scoped\n   - Vary the approach (cause/effect, comparison, evaluation, etc.)\n\n2. **For Each Thesis:**\n   - Explain why it works\n   - Identify potential body paragraph topics\n   - Note any weaknesses to address\n\n3. **Thesis Refinement Tips**\n   - How to make each thesis more specific\n   - Common pitfalls to avoid\n   - Questions to test thesis strength\n\n4. **Recommended Thesis**\n   - Which option is strongest and why\n   - Final polished version","expectedOutput":"Three thesis statement options with analysis, recommendations, and a final polished thesis.","useCases":["Starting any academic essay","Refining unclear thesis statements","Brainstorming essay directions","Academic writing workshops"],"relatedSlugs":["argumentative-essay-builder","essay-outline-creator"]},"relatedTemplates":[{"id":"1","slug":"argumentative-essay-builder","title":"Argumentative Essay Builder","shortDescription":"Craft compelling argumentative essays with clear thesis statements and supporting evidence.","description":"This comprehensive prompt helps you structure and write persuasive argumentative essays. It guides you through developing a clear thesis, organizing supporting arguments, addressing counterarguments, and creating a compelling conclusion.","category":"prompt","subcategory":"essay-writing","tags":["essay","argumentative","thesis","academic"],"difficulty":"intermediate","isNew":true,"isFeatured":true,"variables":["TOPIC","THESIS_STATEMENT","TARGET_AUDIENCE","WORD_COUNT"],"content":"$17","expectedOutput":"A structured argumentative essay outline with detailed content for each section, including specific examples and evidence.","useCases":["Academic essays for courses","Opinion pieces and editorials","Debate preparation","Policy position papers"],"relatedSlugs":["thesis-statement-generator","essay-outline-creator"]},{"id":"3","slug":"essay-outline-creator","title":"Essay Outline Creator","shortDescription":"Create detailed essay outlines with logical structure and flow.","description":"Generate comprehensive essay outlines that organize your ideas logically. This prompt creates hierarchical outlines with main points, subpoints, and transitions.","category":"prompt","subcategory":"essay-writing","tags":["outline","structure","organization","essay"],"difficulty":"beginner","variables":["THESIS","MAIN_POINTS","ESSAY_LENGTH"],"content":"You are an expert essay structure consultant. Help me create a detailed outline for my essay.\n\n**Thesis Statement:** [THESIS]\n\n**Main Points/Arguments:** [MAIN_POINTS]\n\n**Target Length:** [ESSAY_LENGTH]\n\nPlease create:\n\n1. **Hierarchical Outline**\n   - Roman numerals for main sections\n   - Capital letters for main points\n   - Numbers for supporting details\n   - Lowercase letters for examples/evidence\n\n2. **For Each Section:**\n   - Clear topic sentence\n   - 2-3 supporting points\n   - Suggested evidence or examples\n   - Transition phrases to next section\n\n3. **Introduction Blueprint**\n   - Hook options (3 choices)\n   - Context/background points\n   - Thesis placement\n\n4. **Conclusion Framework**\n   - Thesis restatement approach\n   - Summary strategy\n   - Closing impact options\n\n5. **Paragraph-Level Guidance**\n   - Estimated word count per section\n   - Key vocabulary to incorporate\n   - Potential challenges and solutions","expectedOutput":"A detailed hierarchical outline with all sections mapped, transitions planned, and writing guidance included.","useCases":["Planning any essay type","Organizing complex arguments","Preparing for timed writing","Research paper structure"],"relatedSlugs":["argumentative-essay-builder","thesis-statement-generator"]},{"id":"35","slug":"academic-argument-master-prompt","title":"Academic Argument Master Prompt","shortDescription":"Master the art of academic argumentation with this comprehensive framework.","description":"This premium prompt provides expert-level guidance on constructing, analyzing, and defending sophisticated academic arguments across any discipline.","category":"prompt","subcategory":"essay-writing","tags":["academic","argument","premium","master","advanced"],"difficulty":"advanced","isPro":true,"isFeatured":true,"model":null,"pricing":{"type":"premium","price":9},"variables":["ARGUMENT_TOPIC","DISCIPLINE","AUDIENCE","COMPLEXITY_LEVEL"],"content":"$18","expectedOutput":"Comprehensive argument master framework with logic, evidence, rhetoric, and defense preparation.","useCases":["High-stakes essays","Dissertation arguments","Academic debates","Publication submissions"],"relatedSlugs":["argumentative-essay-builder","chatgpt-argument-analysis-prompt"]}],"categoryInfo":{"id":"prompt","name":"Prompts","slug":"prompts","description":"Ready-to-use AI prompts for academic writing, research, and creative projects","count":35,"subcategories":[{"id":"essay-writing","slug":"essay-writing","name":"Essay Writing","description":"Prompts for structuring and writing academic essays","count":3},{"id":"research","slug":"research","name":"Research & Analysis","description":"Prompts for conducting research and analysis","count":3},{"id":"creative-writing","slug":"creative-writing","name":"Creative Writing","description":"Prompts for fiction, storytelling, and creative projects","count":2},{"id":"professional","slug":"professional","name":"Professional Writing","description":"Prompts for business and professional communication","count":2},{"id":"chatgpt","slug":"chatgpt","name":"ChatGPT Prompts","description":"Optimized prompts for OpenAI ChatGPT models","count":6},{"id":"claude","slug":"claude","name":"Claude Prompts","description":"Optimized prompts for Anthropic Claude models","count":6},{"id":"gemini","slug":"gemini","name":"Gemini Prompts","description":"Optimized prompts for Google Gemini models","count":6},{"id":"seo","slug":"seo","name":"SEO Writing","description":"Prompts for search engine optimized content","count":6}]},"subcategoryInfo":"$c:1:props:categoryInfo:subcategories:0"}]]
+11:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"}]]
+e:null
+f:null
+13:[["$","title","0",{"children":"Thesis Statement Generator - AI Prompt | Esy Templates | Esy"}],["$","meta","1",{"name":"description","content":"This prompt helps you craft clear, specific, and arguable thesis statements. It provides multiple options based on your topic and guides you in selecting the strongest approach for your essay."}],["$","meta","2",{"name":"keywords","content":"thesis,essay,academic,writing"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","link","4",{"rel":"canonical","href":"https://esy.com/"}],["$","meta","5",{"property":"og:title","content":"Thesis Statement Generator | Esy Templates"}],["$","meta","6",{"property":"og:description","content":"Generate strong, arguable thesis statements for any essay type."}],["$","meta","7",{"property":"og:url","content":"https://esy.com/templates/thesis-statement-generator/"}],["$","meta","8",{"property":"og:type","content":"article"}],["$","meta","9",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","10",{"name":"twitter:title","content":"Thesis Statement Generator | Esy Templates"}],["$","meta","11",{"name":"twitter:description","content":"Generate strong, arguable thesis statements for any essay type."}],["$","link","12",{"rel":"icon","href":"/favicon.ico","type":"image/x-icon","sizes":"16x16"}]]

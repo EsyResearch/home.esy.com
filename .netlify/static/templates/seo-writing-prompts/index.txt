@@ -1,0 +1,382 @@
+1:"$Sreact.fragment"
+3:I[54316,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+4:I[54316,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"GoogleTagManagerBody"]
+5:I[75916,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"HeaderSearchProvider"]
+6:I[70657,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+7:I[87555,[],""]
+8:I[31295,[],""]
+9:I[32613,["6874","static/chunks/6874-afd988d2bc94ea0d.js","6916","static/chunks/6916-747d211cba2b4316.js","4345","static/chunks/app/not-found-c251fa891f6a060f.js"],"default"]
+a:I[20675,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+b:I[14454,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+c:I[84243,["6874","static/chunks/6874-afd988d2bc94ea0d.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","7143","static/chunks/7143-192917238be1dd70.js","9845","static/chunks/9845-b29cf66472ba6a31.js","9087","static/chunks/app/templates/seo-writing-prompts/page-eaa7b6ad0a3a73a7.js"],"default"]
+14:I[59665,[],"OutletBoundary"]
+17:I[59665,[],"ViewportBoundary"]
+19:I[59665,[],"MetadataBoundary"]
+1b:I[26614,[],""]
+:HL["/_next/static/media/4cf2300e9c8272f7-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/5611c55482296524-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/93f479601ee12b01-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/bf0b6634f251496a-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/e4af272ccee01ff0-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/98f15a659630e498.css","style"]
+:HL["/_next/static/css/40809c9b3b649a94.css","style"]
+:HL["/_next/static/css/9148b966be57ff93.css","style"]
+2:T4b6,
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            
+            // Check for existing cookie consent
+            const consent = localStorage.getItem('esy-cookie-consent');
+            const consentData = consent ? JSON.parse(consent) : null;
+            
+            // Default consent state - deny all until user gives consent
+            gtag('consent', 'default', {
+              analytics_storage: 'denied',
+              functionality_storage: 'denied',
+              personalization_storage: 'denied'
+            });
+            
+            // If user has given consent, update accordingly
+            if (consentData) {
+              gtag('consent', 'update', {
+                analytics_storage: consentData.analytics ? 'granted' : 'denied',
+                functionality_storage: consentData.functional ? 'granted' : 'denied',
+                personalization_storage: consentData.personalization ? 'granted' : 'denied'
+              });
+            }
+            
+            gtag('config', 'G-FHDZHEDVL2', {
+              page_path: window.location.pathname,
+            });
+          d:T48c,
+<p>
+  <strong>SEO writing prompts</strong> bridge the gap between quality content and search engine visibility. 
+  Our collection provides structured frameworks for creating content that ranks well while genuinely serving 
+  your audience's needs. These aren't shortcuts—they're systematic approaches to content excellence.
+</p>
+<p style="margin-top: 1rem;">
+  From <strong>SEO blog outline generators</strong> to keyword expansion frameworks, each prompt is designed 
+  to help you create comprehensive, authoritative content that search engines reward. Whether you're building 
+  pillar pages, crafting landing pages, or optimizing existing content, these prompts provide the strategic 
+  structure you need.
+</p>
+<p style="margin-top: 1rem;">
+  Our <strong>SEO content prompts</strong> cover the full content creation workflow: keyword research and 
+  clustering, competitive analysis, content structuring, featured snippet optimization, and meta description 
+  crafting. These are the same frameworks used by professional content marketers and SEO specialists to 
+  consistently produce content that drives organic traffic and achieves business goals.
+</p>
+e:T499,You are an SEO content strategist. Create an optimized blog outline.
+
+**Primary Keyword:** [PRIMARY_KEYWORD]
+
+**Secondary Keywords:** [SECONDARY_KEYWORDS]
+
+**Target Audience:** [TARGET_AUDIENCE]
+
+**Target Word Count:** [WORD_COUNT]
+
+Create SEO-optimized outline:
+
+1. **Title Options** (5 variations)
+   - Include primary keyword
+   - Optimize for CTR
+   - Power words inclusion
+   - Length optimization (50-60 chars)
+
+2. **Meta Description**
+   - Include primary keyword
+   - Compelling hook
+   - Call to action
+   - 150-160 characters
+
+3. **Header Structure (H1-H4)**
+   - H1: Title with keyword
+   - H2s: Major sections with secondary keywords
+   - H3s: Subsections with related terms
+   - Natural keyword distribution
+
+4. **Content Sections**
+   - Introduction (hook + keyword)
+   - Each H2 section:
+     - Key points to cover
+     - Keywords to include
+     - Word count target
+     - Internal link opportunities
+
+5. **Featured Snippet Optimization**
+   - Definition paragraph
+   - Listicle section
+   - How-to steps
+   - FAQ section
+
+6. **Engagement Elements**
+   - Visual placement suggestions
+   - Quote/stat opportunities
+   - CTA positions
+   - Internal/external linksf:T4bb,You are an SEO keyword research expert. Expand this seed keyword into a comprehensive strategy.
+
+**Seed Keyword:** [SEED_KEYWORD]
+
+**Industry:** [INDUSTRY]
+
+**Content Goals:** [CONTENT_GOALS]
+
+**Competitor Reference:** [COMPETITOR_URLS]
+
+Generate keyword expansion:
+
+1. **Core Keyword Cluster**
+   - Primary keyword variations (10)
+   - Synonyms and related terms (10)
+   - Industry-specific variations (5)
+   - Brand-safe alternatives (5)
+
+2. **Long-Tail Expansion**
+   - Question-based keywords (10)
+   - Comparison keywords (5)
+   - "Best" and "top" keywords (5)
+   - Location-based (if relevant) (5)
+
+3. **Search Intent Mapping**
+   - Informational keywords
+   - Navigational keywords
+   - Commercial keywords
+   - Transactional keywords
+
+4. **Content Mapping**
+   - Blog post topics
+   - Landing page keywords
+   - Product/service page keywords
+   - FAQ content keywords
+
+5. **Difficulty Assessment**
+   - Low competition opportunities
+   - Medium competition targets
+   - High competition aspirational
+   - Quick win suggestions
+
+6. **Implementation Priority**
+   - Immediate targets (high value, lower difficulty)
+   - Medium-term goals
+   - Long-term authority building
+   - Content calendar suggestions10:T519,You are an SEO content strategist specializing in competitive content. Help create content that outranks competitors.
+
+**Target Keyword:** [TARGET_KEYWORD]
+
+**Competitor Content to Beat:** [COMPETITOR_CONTENT]
+
+**Your Unique Angle:** [YOUR_UNIQUE_ANGLE]
+
+**Available Resources:** [RESOURCES]
+
+Create outranking strategy:
+
+1. **Competitor Analysis**
+   - Content structure breakdown
+   - Keyword usage mapping
+   - Strengths to match
+   - Weaknesses to exploit
+   - Missing information
+
+2. **Content Gap Identification**
+   - Topics not covered
+   - Questions not answered
+   - Depth lacking
+   - Freshness issues
+   - User intent gaps
+
+3. **Superior Content Framework**
+   - More comprehensive outline
+   - Better structure
+   - Enhanced depth
+   - Unique value additions
+   - Expert insights to include
+
+4. **Differentiation Strategy**
+   - Original research opportunities
+   - Case studies to add
+   - Expert quotes to include
+   - Visual content improvements
+   - Interactive elements
+
+5. **Technical SEO Improvements**
+   - Better header structure
+   - Schema markup opportunities
+   - Page speed considerations
+   - Mobile optimization
+   - Featured snippet targeting
+
+6. **Promotion Strategy**
+   - Link building opportunities
+   - Social amplification
+   - Community engagement
+   - Update schedule11:T515,You are a conversion rate optimization and SEO expert. Create a high-converting, SEO-optimized landing page.
+
+**Target Keyword:** [TARGET_KEYWORD]
+
+**Product/Service:** [PRODUCT_SERVICE]
+
+**Value Proposition:** [VALUE_PROPOSITION]
+
+**Target Audience:** [TARGET_AUDIENCE]
+
+Design landing page framework:
+
+1. **Above the Fold**
+   - Headline (keyword + benefit)
+   - Subheadline (value prop)
+   - Hero image/video concept
+   - Primary CTA
+   - Trust indicators
+
+2. **SEO Content Section**
+   - H2 with secondary keyword
+   - Problem/solution narrative
+   - Feature-benefit matrix
+   - Keyword-rich descriptions
+   - Internal link anchor text
+
+3. **Social Proof Section**
+   - Testimonial structure
+   - Case study summaries
+   - Trust badges
+   - Stats and numbers
+   - Client logos
+
+4. **Feature Breakdown**
+   - Feature sections with H3s
+   - Benefit-focused copy
+   - Visual representations
+   - Comparison elements
+
+5. **FAQ Section (Schema)**
+   - 5-7 keyword-rich questions
+   - Comprehensive answers
+   - FAQ schema markup
+   - Related search coverage
+
+6. **Conversion Elements**
+   - Multiple CTAs
+   - Form optimization
+   - Urgency elements
+   - Risk reversal
+   - Contact options
+
+7. **Technical Requirements**
+   - Page speed targets
+   - Mobile layout
+   - Schema markup list
+   - Meta tags12:T45b,You are an SEO specialist focused on SERP optimization. Create meta descriptions and snippet content.
+
+**Page Title:** [PAGE_TITLE]
+
+**Content Summary:** [PAGE_CONTENT_SUMMARY]
+
+**Target Keyword:** [TARGET_KEYWORD]
+
+**Page Type:** [PAGE_TYPE]
+
+Generate optimized elements:
+
+1. **Meta Description Options** (5 variations)
+   - Include target keyword naturally
+   - Compelling hook/benefit
+   - Call to action
+   - 150-160 characters each
+   - Different emotional angles
+
+2. **Title Tag Variations** (3 options)
+   - Primary keyword near start
+   - Brand inclusion
+   - 50-60 characters
+   - Click-worthy format
+
+3. **Featured Snippet Content**
+   - Definition paragraph (40-50 words)
+   - List format (5-7 items)
+   - Table format (if applicable)
+   - Step-by-step format
+
+4. **FAQ Schema Content**
+   - 5 relevant questions
+   - Concise, complete answers
+   - Keyword integration
+   - User intent focused
+
+5. **Rich Snippet Data**
+   - Relevant schema type
+   - Key properties
+   - Implementation notes
+
+6. **Social Meta Tags**
+   - Open Graph title
+   - OG description
+   - Twitter card content
+   - Image alt text13:T62f,You are a senior content strategist specializing in authority-building long-form content. Create a comprehensive article blueprint.
+
+**Topic Cluster:** [TOPIC_CLUSTER]
+
+**Primary Keyword:** [PRIMARY_KEYWORD]
+
+**Word Count Target:** [WORD_COUNT_TARGET]
+
+**Business Goal:** [BUSINESS_GOAL]
+
+Generate comprehensive blueprint:
+
+1. **Keyword Architecture**
+   - Primary keyword placement strategy
+   - Secondary keywords (15-20)
+   - Long-tail variations (20-30)
+   - Semantic keywords (15-20)
+   - Question keywords (10-15)
+
+2. **Content Structure**
+   - Title variations (10 options)
+   - Meta description (5 versions)
+   - Header hierarchy (H1-H4)
+   - Section word counts
+   - Internal linking map
+
+3. **Section-by-Section Guide**
+   For each major section:
+   - Key points to cover
+   - Keywords to include
+   - Expert quotes to seek
+   - Data/stats to include
+   - Internal link opportunities
+   - External link suggestions
+
+4. **Featured Snippet Optimization**
+   - Definition snippets
+   - List snippets
+   - Table snippets
+   - Process snippets
+   - Comparison snippets
+
+5. **Multimedia Integration**
+   - Image concepts
+   - Infographic outlines
+   - Video opportunities
+   - Interactive elements
+   - Downloadable resources
+
+6. **Link Building Strategy**
+   - Linkable asset identification
+   - Outreach angle development
+   - Resource page targets
+   - Expert contributor strategy
+   - Original research opportunities
+
+7. **Update and Maintenance**
+   - Freshness indicators
+   - Update schedule
+   - Expansion opportunities
+   - Competitor monitoring
+   - Performance metrics0:{"P":null,"b":"DotzffwX_U2JhpG3lfBhC","p":"","c":["","templates","seo-writing-prompts",""],"i":false,"f":[[["",{"children":["templates",{"children":["seo-writing-prompts",{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/98f15a659630e498.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/40809c9b3b649a94.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/css/9148b966be57ff93.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":[["$","head",null,{"children":[[["$","script",null,{"async":true,"src":"https://www.googletagmanager.com/gtag/js?id=G-FHDZHEDVL2"}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$2"}}]],["$","$L3",null,{}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"\n          (function(c,l,a,r,i,t,y){\n            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};\n            t=l.createElement(r);t.async=1;t.src=\"https://www.clarity.ms/tag/\"+i;\n            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);\n          })(window, document, \"clarity\", \"script\", \"ulfblwfzmy\");\n        "}}]]}],["$","body",null,{"className":"__variable_188709 __variable_9a8899 __variable_64b714 __variable_f367f3 __variable_1b1c3c antialiased","children":[["$","$L4",null,{}],["$","$L5",null,{"children":[["$","$L6",null,{}],["$","main",null,{"children":["$","$L7",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","$L9",null,{}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$La",null,{}]]}],["$","$Lb",null,{}]]}]]}]]}],{"children":["templates",["$","$1","c",{"children":[null,["$","$L7",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["seo-writing-prompts",["$","$1","c",{"children":[null,["$","$L7",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$Lc",null,{"title":"SEO Writing Prompts","subtitle":"Create search-optimized content that ranks and converts with professional SEO frameworks.","description":"$d","subcategory":"seo","templates":[{"id":"26","slug":"seo-blog-outline-generator","title":"SEO Blog Outline Generator","shortDescription":"Create SEO-optimized blog post outlines that rank and engage readers.","description":"Generate comprehensive blog post outlines optimized for search engines while maintaining reader engagement and value delivery.","category":"prompt","subcategory":"seo","tags":["seo","blog","content","outline","marketing"],"difficulty":"intermediate","isNew":true,"model":null,"pricing":{"type":"free"},"variables":["PRIMARY_KEYWORD","SECONDARY_KEYWORDS","TARGET_AUDIENCE","WORD_COUNT"],"content":"$e","expectedOutput":"Complete SEO-optimized blog outline with headers, keywords, and engagement elements.","useCases":["Blog content planning","Content marketing","SEO campaigns","Editorial calendars"],"relatedSlugs":["seo-keyword-expansion-prompt","seo-high-intent-landing-page-prompt"]},{"id":"27","slug":"seo-keyword-expansion-prompt","title":"SEO Keyword Expansion Prompt","shortDescription":"Expand seed keywords into comprehensive keyword clusters for content strategy.","description":"Transform a seed keyword into a complete keyword strategy with long-tail variations, related terms, questions, and content mapping.","category":"prompt","subcategory":"seo","tags":["seo","keywords","content strategy","research","marketing"],"difficulty":"intermediate","model":null,"pricing":{"type":"free"},"variables":["SEED_KEYWORD","INDUSTRY","CONTENT_GOALS","COMPETITOR_URLS"],"content":"$f","expectedOutput":"Comprehensive keyword strategy with clusters, intent mapping, and implementation priority.","useCases":["SEO campaigns","Content planning","PPC research","Competitive analysis"],"relatedSlugs":["seo-blog-outline-generator","seo-competitor-rewrite-prompt"]},{"id":"28","slug":"seo-competitor-rewrite-prompt","title":"SEO Competitor Rewrite Prompt","shortDescription":"Create superior content that outranks competitor articles.","description":"Analyze competitor content and create a framework for writing superior, more comprehensive content that can outrank existing top results.","category":"prompt","subcategory":"seo","tags":["seo","competitor analysis","content","ranking","marketing"],"difficulty":"advanced","model":null,"pricing":{"type":"free"},"variables":["TARGET_KEYWORD","COMPETITOR_CONTENT","YOUR_UNIQUE_ANGLE","RESOURCES"],"content":"$10","expectedOutput":"Complete strategy for creating content that outranks competitor articles.","useCases":["Competitive SEO","Content refreshes","Market entry","Traffic recovery"],"relatedSlugs":["seo-blog-outline-generator","seo-keyword-expansion-prompt"]},{"id":"29","slug":"seo-high-intent-landing-page-prompt","title":"SEO High-Intent Landing Page Prompt","shortDescription":"Create conversion-optimized landing pages that rank for commercial keywords.","description":"Design landing pages that satisfy both search engine requirements and conversion optimization best practices for high-intent commercial queries.","category":"prompt","subcategory":"seo","tags":["seo","landing page","conversion","commercial","marketing"],"difficulty":"advanced","model":null,"pricing":{"type":"free"},"variables":["TARGET_KEYWORD","PRODUCT_SERVICE","VALUE_PROPOSITION","TARGET_AUDIENCE"],"content":"$11","expectedOutput":"Complete landing page framework optimized for both SEO and conversions.","useCases":["Product launches","Service pages","Lead generation","Sales pages"],"relatedSlugs":["seo-meta-description-snippet-prompt","seo-blog-outline-generator"]},{"id":"30","slug":"seo-meta-description-snippet-prompt","title":"SEO Meta Description & Snippet Set Prompt","shortDescription":"Generate optimized meta descriptions and rich snippet content for better CTR.","description":"Create compelling meta descriptions and structured data content that improves click-through rates from search engine results pages.","category":"prompt","subcategory":"seo","tags":["seo","meta description","snippets","ctr","serp"],"difficulty":"beginner","model":null,"pricing":{"type":"free"},"variables":["PAGE_TITLE","PAGE_CONTENT_SUMMARY","TARGET_KEYWORD","PAGE_TYPE"],"content":"$12","expectedOutput":"Complete set of meta descriptions, titles, and structured snippet content.","useCases":["Page optimization","CTR improvement","SERP appearance","Content updates"],"relatedSlugs":["seo-blog-outline-generator","seo-high-intent-landing-page-prompt"]},{"id":"34","slug":"seo-long-form-article-blueprint","title":"SEO Long-Form Article Blueprint","shortDescription":"Create comprehensive, authority-building long-form content that dominates search.","description":"This premium prompt provides a complete framework for creating pillar content that establishes topical authority, ranks for multiple keywords, and drives sustained organic traffic.","category":"prompt","subcategory":"seo","tags":["seo","long-form","pillar content","premium","authority"],"difficulty":"advanced","isPro":true,"model":null,"pricing":{"type":"premium","price":5},"variables":["TOPIC_CLUSTER","PRIMARY_KEYWORD","WORD_COUNT_TARGET","BUSINESS_GOAL"],"content":"$13","expectedOutput":"Complete long-form content blueprint with keyword architecture, section guides, and promotion strategy.","useCases":["Pillar pages","Ultimate guides","Resource centers","Authority building"],"relatedSlugs":["seo-blog-outline-generator","seo-competitor-rewrite-prompt"]}],"icon":["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":16,"height":16,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-search","aria-hidden":"true","children":[["$","path","14j7rj",{"d":"m21 21-4.34-4.34"}],["$","circle","4ej97u",{"cx":"11","cy":"11","r":"8"}],"$undefined"]}],"modelName":"SEO Content","accentColor":"#059669"}],"$undefined",null,["$","$L14",null,{"children":["$L15","$L16",null]}]]}],{},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","nAbvxSIASVHnEgf4pQu_U",{"children":[["$","$L17",null,{"children":"$L18"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],["$","$L19",null,{"children":"$L1a"}]]}],false]],"m":"$undefined","G":["$1b","$undefined"],"s":false,"S":true}
+18:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"}]]
+15:null
+16:null
+1a:[["$","title","0",{"children":"SEO Writing Prompts & Content Templates | Esy Templates | Esy"}],["$","meta","1",{"name":"description","content":"Professional SEO writing prompts for blog outlines, keyword expansion, competitor analysis, landing pages, and meta descriptions. Create content that ranks and converts."}],["$","meta","2",{"name":"keywords","content":"SEO writing prompts, SEO content prompts, blog outline generator, keyword research prompts, SEO copywriting, content marketing prompts, SEO templates"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","link","4",{"rel":"canonical","href":"https://esy.com/"}],["$","meta","5",{"property":"og:title","content":"SEO Writing Prompts & Content Templates | Esy"}],["$","meta","6",{"property":"og:description","content":"Professional SEO writing prompts for content that ranks and converts."}],["$","meta","7",{"property":"og:url","content":"https://esy.com/templates/seo-writing-prompts/"}],["$","meta","8",{"property":"og:type","content":"website"}],["$","meta","9",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","10",{"name":"twitter:title","content":"SEO Writing Prompts & Content Templates | Esy"}],["$","meta","11",{"name":"twitter:description","content":"Professional SEO writing prompts for content that ranks and converts."}],["$","link","12",{"rel":"icon","href":"/favicon.ico","type":"image/x-icon","sizes":"16x16"}]]

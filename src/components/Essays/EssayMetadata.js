@@ -38,7 +38,7 @@ const EssayMetadata = ({
           <div className={styles.authorItem}>
             <h4 className={authorNameClass}>Zev Uhuru</h4>
             <p className={authorBioClass}>
-              Applied AI Engineer, Esy. Specializes in the 
+              Workflow Designer, Esy. Specializes in the 
               intersection of renewable energy technology and international relations, with a focus on 
               Asia-Pacific energy markets.
             </p>

@@ -1,0 +1,180 @@
+1:"$Sreact.fragment"
+3:I[54316,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+4:I[54316,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"GoogleTagManagerBody"]
+5:I[75916,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"HeaderSearchProvider"]
+6:I[70657,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+7:I[87555,[],""]
+8:I[31295,[],""]
+9:I[32613,["6874","static/chunks/6874-afd988d2bc94ea0d.js","6916","static/chunks/6916-747d211cba2b4316.js","4345","static/chunks/app/not-found-c251fa891f6a060f.js"],"default"]
+a:I[20675,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+b:I[14454,["6874","static/chunks/6874-afd988d2bc94ea0d.js","3063","static/chunks/3063-9cd2284588f7d6b8.js","4321","static/chunks/4321-7783cf2ede52dcb0.js","9504","static/chunks/9504-0aec4927b6860904.js","6916","static/chunks/6916-747d211cba2b4316.js","1433","static/chunks/1433-ed05e22baf5ac1f0.js","2642","static/chunks/2642-c85f75f88d8adcc6.js","5949","static/chunks/5949-143f117b56eb5fe2.js","2291","static/chunks/2291-b8d723879a199030.js","7177","static/chunks/app/layout-1f11935a4e856c25.js"],"default"]
+d:I[59665,[],"OutletBoundary"]
+10:I[59665,[],"ViewportBoundary"]
+12:I[59665,[],"MetadataBoundary"]
+14:I[26614,[],""]
+:HL["/_next/static/media/4cf2300e9c8272f7-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/5611c55482296524-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/93f479601ee12b01-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/bf0b6634f251496a-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/e4af272ccee01ff0-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/98f15a659630e498.css","style"]
+:HL["/_next/static/css/40809c9b3b649a94.css","style"]
+:HL["/_next/static/css/9148b966be57ff93.css","style"]
+2:T4b6,
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            
+            // Check for existing cookie consent
+            const consent = localStorage.getItem('esy-cookie-consent');
+            const consentData = consent ? JSON.parse(consent) : null;
+            
+            // Default consent state - deny all until user gives consent
+            gtag('consent', 'default', {
+              analytics_storage: 'denied',
+              functionality_storage: 'denied',
+              personalization_storage: 'denied'
+            });
+            
+            // If user has given consent, update accordingly
+            if (consentData) {
+              gtag('consent', 'update', {
+                analytics_storage: consentData.analytics ? 'granted' : 'denied',
+                functionality_storage: consentData.functional ? 'granted' : 'denied',
+                personalization_storage: consentData.personalization ? 'granted' : 'denied'
+              });
+            }
+            
+            gtag('config', 'G-FHDZHEDVL2', {
+              page_path: window.location.pathname,
+            });
+          0:{"P":null,"b":"DotzffwX_U2JhpG3lfBhC","p":"","c":["","prompt-library","grant-proposal-architecture",""],"i":false,"f":[[["",{"children":["prompt-library",{"children":[["slug","grant-proposal-architecture","d"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/98f15a659630e498.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/css/40809c9b3b649a94.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/css/9148b966be57ff93.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":[["$","head",null,{"children":[[["$","script",null,{"async":true,"src":"https://www.googletagmanager.com/gtag/js?id=G-FHDZHEDVL2"}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$2"}}]],["$","$L3",null,{}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"\n          (function(c,l,a,r,i,t,y){\n            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};\n            t=l.createElement(r);t.async=1;t.src=\"https://www.clarity.ms/tag/\"+i;\n            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);\n          })(window, document, \"clarity\", \"script\", \"ulfblwfzmy\");\n        "}}]]}],["$","body",null,{"className":"__variable_188709 __variable_9a8899 __variable_64b714 __variable_f367f3 __variable_1b1c3c antialiased","children":[["$","$L4",null,{}],["$","$L5",null,{"children":[["$","$L6",null,{}],["$","main",null,{"children":["$","$L7",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","$L9",null,{}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$La",null,{}]]}],["$","$Lb",null,{}]]}]]}]]}],{"children":["prompt-library",["$","$1","c",{"children":[null,["$","$L7",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","grant-proposal-architecture","d"],["$","$1","c",{"children":[null,["$","$L7",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L8",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$Lc","$undefined",null,["$","$Ld",null,{"children":["$Le","$Lf",null]}]]}],{},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","yfeqfmLYx4-bdXKMUPn2N",{"children":[["$","$L10",null,{"children":"$L11"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],["$","$L12",null,{"children":"$L13"}]]}],false]],"m":"$undefined","G":["$14","$undefined"],"s":false,"S":true}
+15:I[33205,["6874","static/chunks/6874-afd988d2bc94ea0d.js","2740","static/chunks/2740-f03e769403e75f50.js","5949","static/chunks/5949-143f117b56eb5fe2.js","1613","static/chunks/app/prompt-library/%5Bslug%5D/page-f35235ad58eff502.js"],"default"]
+16:T495,Develop a compelling grant proposal for [FUNDING_AGENCY] supporting [RESEARCH_PROJECT]:
+
+**Project Significance:**
+- Problem importance and urgency demonstration
+- Gap in current knowledge identification
+- Potential impact and beneficiaries
+- Alignment with funder priorities and mission
+
+**Innovation and Approach:**
+- Novel methodological or theoretical contributions
+- Feasibility demonstration with preliminary data
+- Risk assessment and mitigation strategies
+- Timeline and milestone specification
+
+**Research Team:**
+- Principal investigator qualifications and track record
+- Team member expertise and role justification
+- Institutional support and resources
+- Collaboration and partnership benefits
+
+**Budget Justification:**
+- Detailed cost breakdown and rationale
+- Cost-effectiveness demonstration
+- Indirect cost negotiation
+- Multi-year funding sustainability
+
+**Dissemination Plan:**
+- Academic publication strategy
+- Community engagement and outreach
+- Policy implications and recommendations
+- Knowledge translation and implementation
+
+Create a proposal that demonstrates both scientific rigor and practical impact while meeting specific funder requirements.17:T46b,Conduct a comprehensive literature review on [RESEARCH_TOPIC] within [DISCIPLINE] using this structured approach:
+
+**Source Evaluation Matrix:**
+- Categorize sources by methodology, theoretical framework, and conclusions
+- Identify geographical, temporal, and demographic scope of studies
+- Assess sample sizes, limitations, and potential biases
+
+**Theoretical Landscape Mapping:**
+- Major schools of thought and their key proponents
+- Evolution of understanding over the past decade
+- Competing theories and points of contention
+
+**Gap Analysis:**
+- Understudied populations or contexts
+- Methodological limitations across the field
+- Contradictory findings requiring further investigation
+
+**Synthesis Structure:**
+- Chronological development of key concepts
+- Thematic clustering of related findings
+- Critical evaluation of methodological approaches
+
+**Research Questions Generation:**
+- Three specific, answerable questions based on identified gaps
+- Potential methodological approaches for each question
+- Expected contributions to the field
+
+Present findings in academic format with proper citations and clear argumentation.18:T4e6,Design a comprehensive methodology for investigating [RESEARCH_QUESTION] using [STUDY_TYPE] approach:
+
+**Research Design Foundation:**
+- Epistemological and ontological positioning
+- Justification for chosen methodological approach
+- Integration of theoretical framework with methods
+- Ethical considerations and approval requirements
+
+**Data Collection Strategy:**
+- Participant selection criteria and recruitment methods
+- Sample size justification and power analysis
+- Data collection instruments and validation
+- Timeline and logistics planning
+
+**Quality Assurance:**
+- Validity and reliability measures
+- Bias reduction strategies
+- Triangulation methods for data verification
+- Researcher reflexivity and positionality
+
+**Analysis Framework:**
+- Data analysis software and techniques
+- Coding schemes and categorization systems
+- Statistical or thematic analysis procedures
+- Interpretation and meaning-making processes
+
+**Limitations and Considerations:**
+- Anticipated challenges and mitigation strategies
+- Generalizability and transferability assessment
+- Resource requirements and constraints
+- Alternative approaches consideration
+
+Create a methodology that demonstrates scholarly rigor while remaining feasible within practical constraints.19:T540,Analyze [SOURCE_TYPE] from [TIME_PERIOD] using systematic historical methodology:
+
+**Source Contextualization:**
+- Author's position, biases, and intended audience
+- Historical moment and its influence on content
+- Genre conventions and their impact on presentation
+- Cultural and social context affecting interpretation
+
+**Content Analysis Layers:**
+- Explicit arguments and stated positions
+- Implicit assumptions and unstated beliefs
+- Rhetorical strategies and persuasive techniques
+- Symbolic language and metaphorical content
+
+**Corroboration Strategy:**
+- Cross-reference with contemporary sources
+- Identify confirming and contradicting evidence
+- Assess representativeness within historical context
+- Compare with secondary scholarship
+
+**Critical Interpretation:**
+- What the source reveals about its time period
+- Limitations and silences in the documentation
+- How the source fits within broader historical narratives
+- Multiple possible interpretations consideration
+
+**Modern Relevance:**
+- Connections to contemporary issues or debates
+- Methodological lessons for current research
+- Ethical considerations in interpretation and use
+- Historiographical significance and contribution
+
+Provide specific examples and quotations to support your analysis, maintaining scholarly objectivity while acknowledging interpretive frameworks.c:["$","$L15",null,{"prompt":{"id":21,"slug":"grant-proposal-architecture","category":"research","title":"Grant Proposal Architecture","description":"Crafting competitive funding applications","shortDescription":"Design proposals that secure research funding","variables":["FUNDING_AGENCY","RESEARCH_PROJECT"],"prompt":"$16","isPro":false},"category":{"id":"research","slug":"academic-research","name":"Academic Research","description":"Comprehensive frameworks for academic research, literature reviews, and scholarly analysis","count":15},"relatedPrompts":[{"id":13,"slug":"literature-review-synthesis-framework","category":"research","title":"Literature Review Synthesis Framework","description":"Systematic approach to synthesizing scholarly sources","shortDescription":"Comprehensive methodology for academic literature reviews","variables":["RESEARCH_TOPIC","DISCIPLINE"],"prompt":"$17","isPro":false},{"id":14,"slug":"methodology-design-blueprint","category":"research","title":"Methodology Design Blueprint","description":"Creating robust research methodologies","shortDescription":"Design rigorous methods for academic investigation","variables":["RESEARCH_QUESTION","STUDY_TYPE"],"prompt":"$18","isPro":true},{"id":15,"slug":"primary-source-analysis-protocol","category":"research","title":"Primary Source Analysis Protocol","description":"Rigorous methodology for analyzing historical and archival materials","shortDescription":"Systematic framework for primary source interpretation","variables":["SOURCE_TYPE","TIME_PERIOD"],"prompt":"$19","isPro":false}]}]
+11:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"}]]
+e:null
+f:null
+13:[["$","title","0",{"children":"Grant Proposal Architecture - AI Prompt Template | Esy | Esy"}],["$","meta","1",{"name":"description","content":"Design proposals that secure research funding"}],["$","meta","2",{"name":"keywords","content":"funding_agency,research_project,Academic Research,AI prompt,prompt template,grant proposal architecture"}],["$","link","3",{"rel":"canonical","href":"https://esy.com/"}],["$","meta","4",{"property":"og:title","content":"Grant Proposal Architecture"}],["$","meta","5",{"property":"og:description","content":"Design proposals that secure research funding"}],["$","meta","6",{"property":"og:type","content":"article"}],["$","meta","7",{"property":"article:author","content":"Esy AI"}],["$","meta","8",{"property":"article:tag","content":"Academic Research"}],["$","meta","9",{"property":"article:tag","content":"FUNDING_AGENCY"}],["$","meta","10",{"property":"article:tag","content":"RESEARCH_PROJECT"}],["$","meta","11",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","12",{"name":"twitter:title","content":"Grant Proposal Architecture"}],["$","meta","13",{"name":"twitter:description","content":"Design proposals that secure research funding"}],["$","link","14",{"rel":"icon","href":"/favicon.ico","type":"image/x-icon","sizes":"16x16"}]]

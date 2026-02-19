@@ -1,0 +1,1261 @@
+redirectsOrigin = "inline"
+headersOrigin = "inline"
+
+[images]
+remote_images = ["^(?:http(?:s)?:\\/\\/images\\.unsplash\\.com(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$", "^(?:http(?:s)?:\\/\\/upload\\.wikimedia\\.org(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$", "^(?:http(?:s)?:\\/\\/images\\.metmuseum\\.org(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$", "^(?:http(?:s)?:\\/\\/images\\.esy\\.com(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$"]
+
+[functions]
+
+[functions."*"]
+
+[[plugins]]
+origin = "config"
+package = "@netlify/plugin-nextjs"
+
+[plugins.inputs]
+
+[build]
+publish = "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/out"
+publishOrigin = "config"
+commandOrigin = "config"
+base = "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com"
+command = "npm run build:static"
+
+[build.environment]
+NODE_VERSION = "18"
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
+
+[[headers]]
+for = "/_next/static/*"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[redirects]]
+from = "/scrollytelling/honey-never-spoils"
+to = "/essays/honey-never-spoils"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/honey-never-spoils/"
+to = "/essays/honey-never-spoils/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/mammary-gland-evolution"
+to = "/essays/mammary-gland-evolution"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/mammary-gland-evolution/"
+to = "/essays/mammary-gland-evolution/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/evolution-of-mammary-glands"
+to = "/essays/evolution-of-mammary-glands"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/evolution-of-mammary-glands/"
+to = "/essays/evolution-of-mammary-glands/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/eternal-honey"
+to = "/essays/eternal-honey"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/eternal-honey/"
+to = "/essays/eternal-honey/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-dna-helix"
+to = "/essays/the-dna-helix"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-dna-helix/"
+to = "/essays/the-dna-helix/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-skyscraper"
+to = "/essays/the-skyscraper"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-skyscraper/"
+to = "/essays/the-skyscraper/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-firearm"
+to = "/essays/the-firearm"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-firearm/"
+to = "/essays/the-firearm/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-train"
+to = "/essays/the-train"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-train/"
+to = "/essays/the-train/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-invention-of-the-car"
+to = "/essays/the-invention-of-the-car"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-invention-of-the-car/"
+to = "/essays/the-invention-of-the-car/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-invention-of-wine"
+to = "/essays/the-invention-of-wine"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-invention-of-wine/"
+to = "/essays/the-invention-of-wine/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-pale-blue-dot"
+to = "/essays/the-pale-blue-dot"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-pale-blue-dot/"
+to = "/essays/the-pale-blue-dot/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-deep-ocean"
+to = "/essays/the-deep-ocean"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-deep-ocean/"
+to = "/essays/the-deep-ocean/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/language-death"
+to = "/essays/language-death"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/language-death/"
+to = "/essays/language-death/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/who-invented-the-mirror"
+to = "/essays/who-invented-the-mirror"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/who-invented-the-mirror/"
+to = "/essays/who-invented-the-mirror/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/who-invented-soda"
+to = "/essays/who-invented-soda"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/who-invented-soda/"
+to = "/essays/who-invented-soda/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/who-invented-the-sneaker"
+to = "/essays/who-invented-the-sneaker"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/who-invented-the-sneaker/"
+to = "/essays/who-invented-the-sneaker/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/who-invented-high-heels"
+to = "/essays/who-invented-high-heels"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/who-invented-high-heels/"
+to = "/essays/who-invented-high-heels/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/who-invented-the-bicycle"
+to = "/essays/who-invented-the-bicycle"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/who-invented-the-bicycle/"
+to = "/essays/who-invented-the-bicycle/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/who-invented-the-spoon"
+to = "/essays/who-invented-the-spoon"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/who-invented-the-spoon/"
+to = "/essays/who-invented-the-spoon/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/who-invented-basketball"
+to = "/essays/who-invented-basketball"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/who-invented-basketball/"
+to = "/essays/who-invented-basketball/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/who-invented-the-fork"
+to = "/essays/who-invented-the-fork"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/who-invented-the-fork/"
+to = "/essays/who-invented-the-fork/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/how-to-write-an-essay"
+to = "/essays/foundations/how-to-write-an-essay"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/how-to-write-an-essay/"
+to = "/essays/foundations/how-to-write-an-essay/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-night-the-stars-fell"
+to = "/essays/the-night-the-stars-fell"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-night-the-stars-fell/"
+to = "/essays/the-night-the-stars-fell/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-monster-under-my-bed"
+to = "/essays/the-monster-under-my-bed"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/the-monster-under-my-bed/"
+to = "/essays/the-monster-under-my-bed/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/mia-mouse-mystery-m"
+to = "/essays/mia-mouse-mystery-m"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/mia-mouse-mystery-m/"
+to = "/essays/mia-mouse-mystery-m/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/alphabet-adventure-train"
+to = "/essays/alphabet-adventure-train"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/alphabet-adventure-train/"
+to = "/essays/alphabet-adventure-train/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/sammy-snail-super-speed"
+to = "/essays/sammy-snail-super-speed"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/sammy-snail-super-speed/"
+to = "/essays/sammy-snail-super-speed/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/flavors-of-the-east"
+to = "/essays/flavors-of-the-east"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/scrollytelling/flavors-of-the-east/"
+to = "/essays/flavors-of-the-east/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-word-essay"
+to = "/essays/etymology/the-word-essay"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-word-essay/"
+to = "/essays/etymology/the-word-essay/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-word-robot"
+to = "/essays/etymology/the-word-robot"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-word-robot/"
+to = "/essays/etymology/the-word-robot/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-word-dick"
+to = "/essays/etymology/the-word-dick"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-word-dick/"
+to = "/essays/etymology/the-word-dick/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-word-pussy"
+to = "/essays/etymology/the-word-pussy"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-word-pussy/"
+to = "/essays/etymology/the-word-pussy/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-word-han"
+to = "/essays/etymology/the-word-han"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-word-han/"
+to = "/essays/etymology/the-word-han/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-word-animal"
+to = "/essays/etymology/the-word-animal"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-word-animal/"
+to = "/essays/etymology/the-word-animal/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-origin-of-animal"
+to = "/essays/etymology/the-origin-of-animal"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-origin-of-animal/"
+to = "/essays/etymology/the-origin-of-animal/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-origin-of-sex"
+to = "/essays/etymology/the-origin-of-sex"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-origin-of-sex/"
+to = "/essays/etymology/the-origin-of-sex/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-origin-of-toy"
+to = "/essays/etymology/the-origin-of-toy"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-origin-of-toy/"
+to = "/essays/etymology/the-origin-of-toy/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-origin-of-the-word-dick"
+to = "/essays/etymology/the-origin-of-the-word-dick"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-origin-of-the-word-dick/"
+to = "/essays/etymology/the-origin-of-the-word-dick/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-origin-of-the-word-porn"
+to = "/essays/etymology/the-origin-of-the-word-porn"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-origin-of-the-word-porn/"
+to = "/essays/etymology/the-origin-of-the-word-porn/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/pornography-etymology"
+to = "/essays/etymology/pornography-etymology"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/pornography-etymology/"
+to = "/essays/etymology/pornography-etymology/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/visual/the-word-dick"
+to = "/essays/etymology/the-word-dick"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/visual/the-word-dick/"
+to = "/essays/etymology/the-word-dick/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/visual/the-origin-of-the-word-dick"
+to = "/essays/etymology/the-origin-of-the-word-dick"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/visual/the-origin-of-the-word-dick/"
+to = "/essays/etymology/the-origin-of-the-word-dick/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-manhattan-project"
+to = "/essays/history/the-manhattan-project"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/the-manhattan-project/"
+to = "/essays/history/the-manhattan-project/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/how-to-write-a-hook"
+to = "/essays/foundations/how-to-write-a-hook"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/how-to-write-a-hook/"
+to = "/essays/foundations/how-to-write-a-hook/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/guides/how-to-write-an-essay"
+to = "/essays/foundations/how-to-write-an-essay"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/guides/how-to-write-an-essay/"
+to = "/essays/foundations/how-to-write-an-essay/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/fentanyl-timeline"
+to = "/essays/history/fentanyl-crisis-timeline"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/fentanyl-timeline/"
+to = "/essays/history/fentanyl-crisis-timeline/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/fentanyl-crisis-timeline"
+to = "/essays/history/fentanyl-crisis-timeline"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/fentanyl-crisis-timeline/"
+to = "/essays/history/fentanyl-crisis-timeline/"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/visual/*"
+to = "/essays/:splat"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/cities/*"
+to = "/"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/inside-a-black-hole/*"
+to = "/essays/science/inside-a-black-hole/:splat"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/essays/inside-a-black-hole"
+to = "/essays/science/inside-a-black-hole/"
+status = 301.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/guide/*"
+to = "https://esy-guide.netlify.app/:splat"
+status = 200.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/_next/image/"
+to = "/.netlify/images?url=:url&w=:width&q=:quality"
+status = 200.0
+force = false
+
+[redirects.query]
+url = ":url"
+w = ":width"
+q = ":quality"
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/_ipx/*"
+to = "/.netlify/images?url=:url&w=:width&q=:quality"
+status = 200.0
+force = false
+
+[redirects.query]
+url = ":url"
+w = ":width"
+q = ":quality"
+
+[redirects.conditions]
+
+[redirects.headers]

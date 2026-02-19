@@ -1,0 +1,15 @@
+User-Agent: *
+Allow: /
+Disallow: /api/
+Disallow: /private/
+
+User-Agent: GPTBot
+Disallow: /
+
+User-Agent: CCBot
+Disallow: /
+
+User-Agent: Google-Extended
+Disallow: /
+
+Sitemap: https://esy.com/sitemap.xml
