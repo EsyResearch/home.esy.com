@@ -162,9 +162,9 @@ const components = {
   callToAction: ({ title, description, buttonText, buttonLink }) => <CallToAction title={title} description={description} buttonText={buttonText} buttonLink={buttonLink} />,
 };
 
-const EnhancedMarkdownRenderer = ({ content }) => {
+const EnhancedMarkdownRenderer = ({ content, light = false }) => {
   return (
-    <div className={styles.markdownContainer}>
+    <div className={`${styles.markdownContainer} ${light ? styles.markdownContainerLight : ''}`}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkDirective, directivePlugin]}
         rehypePlugins={[rehypeHighlight, rehypeRaw]}

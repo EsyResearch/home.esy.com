@@ -99,7 +99,7 @@ export default function Navigation({
         const isHomepage = normalizedPath === '/' || normalizedPath === '';
         const isEssaysPage = normalizedPath === '/essays' || normalizedPath.startsWith('/essays/');
         const isAboutPage = normalizedPath === '/about';
-        const isSchoolPage = normalizedPath === '/school';
+        const isSchoolPage = normalizedPath === '/school' || normalizedPath.startsWith('/school/');
         const isSchoolArticle = normalizedPath.includes('/school/articles/');
         const isCoursesPage = normalizedPath === '/courses' || normalizedPath.startsWith('/courses/');
         const isBlogArticle = normalizedPath.includes('/blog/') && normalizedPath !== '/blog';
@@ -216,7 +216,8 @@ export default function Navigation({
           isNavyDarkMode = isSchoolOrCoursesSection; // Use Navy Dark for school pages
         }
           } else {
-        isLight = false; // Pages without toggle always dark
+        isLight = false;
+        isNavyDarkMode = true;
       }
       
       setIsLightMode(isLight);

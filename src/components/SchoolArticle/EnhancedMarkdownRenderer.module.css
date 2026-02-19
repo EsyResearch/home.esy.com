@@ -661,4 +661,223 @@
   .cardGroupContent {
     gap: 1rem;
   }
-} 
+}
+
+/* =============================================
+   LIGHT VARIANT — for pages using navyCalmLightTheme
+   Must appear AFTER dark theme rules to win cascade
+   ============================================= */
+
+.markdownContainerLight {
+  background: transparent !important;
+  color: #334155 !important;
+  font-size: 1rem !important;
+  line-height: 1.75 !important;
+  padding: 0 !important;
+}
+
+.markdownContainerLight h1 {
+  background: linear-gradient(to right, #00A896, #00D4AA) no-repeat bottom left / 100% 2px !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  background-clip: unset !important;
+  color: #0A2540 !important;
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  margin: 2rem 0 1rem 0 !important;
+  padding-bottom: 0.75rem !important;
+  font-family: var(--font-literata) !important;
+}
+
+.markdownContainerLight h2 {
+  color: #0A2540 !important;
+  font-size: 1.375rem !important;
+  font-weight: 600 !important;
+  margin: 2rem 0 0.75rem 0 !important;
+  border-left: none !important;
+  border-bottom: none !important;
+  padding-left: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0.25rem !important;
+  background: none !important;
+  border-radius: 0 !important;
+  font-family: var(--font-literata) !important;
+}
+
+.markdownContainerLight h3 {
+  color: #0A2540 !important;
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+  margin: 1.25rem 0 0.5rem 0 !important;
+  font-family: var(--font-inter) !important;
+}
+
+.markdownContainerLight h4 {
+  color: #0A2540 !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  margin: 1rem 0 0.5rem 0 !important;
+}
+
+.markdownContainerLight p {
+  color: #475569 !important;
+  font-size: 1rem !important;
+  line-height: 1.75 !important;
+  margin: 0.75rem 0 !important;
+}
+
+.markdownContainerLight strong {
+  color: #0A2540 !important;
+}
+
+.markdownContainerLight a {
+  color: #00A896 !important;
+  text-decoration: none !important;
+  transition: color 0.2s, text-decoration 0.2s;
+}
+
+.markdownContainerLight a:hover {
+  color: #00D4AA !important;
+  text-decoration: underline !important;
+}
+
+.markdownContainerLight ul,
+.markdownContainerLight ol {
+  margin: 0.75rem 0 0.75rem 1.5rem !important;
+  padding: 0 0 0 0.5rem !important;
+}
+
+.markdownContainerLight li {
+  color: #475569 !important;
+  font-size: 1rem !important;
+  margin: 0.35rem 0 !important;
+  line-height: 1.75 !important;
+}
+
+.markdownContainerLight ul li {
+  list-style-type: disc !important;
+  list-style-image: none !important;
+}
+
+.markdownContainerLight ul li::marker {
+  color: #00A896 !important;
+}
+
+.markdownContainerLight ol li {
+  list-style-type: decimal !important;
+}
+
+.markdownContainerLight blockquote {
+  background: rgba(0, 168, 150, 0.04) !important;
+  border-left: 3px solid #00A896 !important;
+  border-radius: 8px !important;
+  color: #475569 !important;
+  padding: 1rem 1.5rem !important;
+  margin: 1.25rem 0 !important;
+  font-style: italic !important;
+}
+
+.markdownContainerLight code {
+  background: #f1f5f9 !important;
+  color: #0A2540 !important;
+  padding: 0.2em 0.4em !important;
+  border-radius: 6px !important;
+  font-size: 0.9em !important;
+}
+
+.markdownContainerLight pre {
+  background: #f8fafc !important;
+  border: 1px solid rgba(10, 37, 64, 0.08) !important;
+  border-radius: 10px !important;
+  padding: 1rem 1.5rem !important;
+  margin: 1.25rem 0 !important;
+}
+
+.markdownContainerLight pre code {
+  background: none !important;
+  color: #334155 !important;
+  padding: 0 !important;
+}
+
+.markdownContainerLight table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  border: 1px solid rgba(10, 37, 64, 0.08) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  margin: 1.25rem 0 !important;
+}
+
+.markdownContainerLight th,
+.markdownContainerLight td {
+  border: 1px solid rgba(10, 37, 64, 0.08) !important;
+  padding: 0.75rem 1rem !important;
+  text-align: left !important;
+}
+
+.markdownContainerLight th {
+  background: #f8fafc !important;
+  color: #0A2540 !important;
+  font-weight: 600 !important;
+}
+
+.markdownContainerLight td {
+  color: #475569 !important;
+}
+
+.markdownContainerLight tr:nth-child(even) td {
+  background: rgba(248, 250, 252, 0.8) !important;
+}
+
+.markdownContainerLight img {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 12px !important;
+  margin: 1.5rem 0 !important;
+  box-shadow: 0 2px 12px rgba(10, 37, 64, 0.08) !important;
+}
+
+.markdownContainerLight hr {
+  border: none !important;
+  height: 4px !important;
+  margin: 2rem 0 !important;
+  background: transparent !important;
+  background-image: radial-gradient(circle, #00A896 2px, transparent 2px) !important;
+  background-size: 12px 4px !important;
+  background-position: center !important;
+  background-repeat: repeat-x !important;
+}
+
+@media (max-width: 640px) {
+  .markdownContainerLight {
+    font-size: 0.9375rem !important;
+    line-height: 1.65 !important;
+  }
+  .markdownContainerLight h1 {
+    font-size: 1.375rem !important;
+    margin: 1.5rem 0 0.75rem 0 !important;
+  }
+  .markdownContainerLight h2 {
+    font-size: 1.125rem !important;
+    margin: 1.5rem 0 0.5rem 0 !important;
+  }
+  .markdownContainerLight h3 {
+    font-size: 1rem !important;
+    margin: 1rem 0 0.4rem 0 !important;
+  }
+  .markdownContainerLight h4 {
+    font-size: 0.9375rem !important;
+  }
+  .markdownContainerLight p {
+    font-size: 0.9375rem !important;
+    margin: 0.5rem 0 !important;
+  }
+  .markdownContainerLight ul,
+  .markdownContainerLight ol {
+    margin: 0.5rem 0 0.5rem 1.25rem !important;
+  }
+  .markdownContainerLight img {
+    margin: 1rem 0 !important;
+  }
+}

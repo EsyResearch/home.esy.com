@@ -48,7 +48,7 @@ export default function Footer () {
         const isHomepage = normalizedPath === '/' || normalizedPath === '';
         const isEssaysPage = normalizedPath === '/essays' || normalizedPath.startsWith('/essays/');
         const isAboutPage = normalizedPath === '/about';
-        const isSchoolPage = normalizedPath === '/school';
+        const isSchoolPage = normalizedPath === '/school' || normalizedPath.startsWith('/school/');
         const isSchoolArticle = normalizedPath.includes('/school/articles/');
         const isCoursesPage = normalizedPath === '/courses' || normalizedPath.startsWith('/courses/');
         const isTemplatesPage = normalizedPath === '/templates' || normalizedPath.startsWith('/templates/');
@@ -162,7 +162,7 @@ export default function Footer () {
           }
         } else {
           setIsLightMode(false);
-          setIsNavyDark(false);
+          setIsNavyDark(true);
         }
       };
 

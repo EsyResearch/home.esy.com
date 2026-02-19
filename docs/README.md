@@ -17,7 +17,8 @@ This directory contains technical documentation for the Esy.com project.
 ### Proposals & Analysis
 - `ABOUT_PAGE_REDESIGN_PROPOSAL.md` - About page redesign documentation
 - `ELEVATED_DARK_THEME_PROPOSAL.md` - Dark theme enhancement proposal
-- `SCHOOL_ARTICLES_DESIGN_PROPOSAL.md` - School section design proposal
+- `SCHOOL_ARTICLES_DESIGN_PROPOSAL.md` - School section design proposal (archived — articles)
+- `SCHOOL_VIDEO_PAGES_DESIGN.md` - **School video-first pages design system** ⭐
 - `LIGHT_THEME_ANALYSIS.md` - Light theme analysis and recommendations
 - `HEADER_LIGHT_MODE_ASSESSMENT.md` - Header light mode evaluation
 - `FOOTER_DESIGN_ASSESSMENT.md` - Footer design analysis
