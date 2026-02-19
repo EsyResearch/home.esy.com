@@ -162,6 +162,7 @@ function SidebarNewsletter() {
 function WorkflowPipeline({ stages, isMobile }: { stages: WorkflowStage[]; isMobile: boolean }) {
   return (
     <div
+      className="workflow-pipeline-scroll"
       style={{
         display: "flex",
         alignItems: "stretch",
@@ -169,6 +170,8 @@ function WorkflowPipeline({ stages, isMobile }: { stages: WorkflowStage[]; isMob
         overflowX: "auto",
         WebkitOverflowScrolling: "touch",
         padding: isMobile ? "0 0 8px" : 0,
+        scrollbarWidth: "thin",
+        scrollbarColor: "rgba(0, 168, 150, 0.25) transparent",
       }}
     >
       {stages.map((stage, i) => (
@@ -265,6 +268,7 @@ export default function VideoPageClient({ video, related }: VideoPageClientProps
         backgroundColor: theme.bg,
         fontFamily: "var(--font-inter)",
         paddingTop: isMobile ? 72 : 96,
+        width: "100%",
       }}
     >
       {/* Breadcrumbs */}
@@ -286,7 +290,7 @@ export default function VideoPageClient({ video, related }: VideoPageClientProps
             items={[
               { label: "Home", href: "/" },
               { label: "School", href: "/school" },
-              { label: video.title, isCurrent: true },
+              { label: isMobile && video.title.length > 30 ? video.title.slice(0, 30) + "…" : video.title, isCurrent: true },
             ]}
           />
         </div>
@@ -320,7 +324,7 @@ export default function VideoPageClient({ video, related }: VideoPageClientProps
       <SchoolNewsletterBar />
 
       {/* Content area */}
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: isMobile ? "1.5rem 1rem" : isTablet ? "2rem 1.5rem" : "2.5rem 2rem" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: isMobile ? "1.5rem 1rem" : isTablet ? "2rem 1.5rem" : "2.5rem 2rem", boxSizing: "border-box" as const }}>
         <div
           style={{
             display: isCompact ? "flex" : "grid",
@@ -330,7 +334,7 @@ export default function VideoPageClient({ video, related }: VideoPageClientProps
           }}
         >
           {/* Main content */}
-          <div style={{ minWidth: 0, alignSelf: "start" }}>
+          <div style={{ minWidth: 0, alignSelf: isCompact ? "stretch" : "start", overflowWrap: "break-word" as const }}>
             <h2
               style={{
                 fontFamily: "var(--font-literata)",
@@ -434,10 +438,11 @@ export default function VideoPageClient({ video, related }: VideoPageClientProps
             {video.description && (
               <p
                 style={{
-                  marginTop: "1.5rem",
+                  marginTop: isMobile ? "1rem" : "1.5rem",
                   fontSize: isMobile ? "0.875rem" : "0.9375rem",
-                  lineHeight: 1.7,
+                  lineHeight: 1.65,
                   color: theme.textSecondary,
+                  wordBreak: "break-word" as const,
                 }}
               >
                 {video.description}
@@ -447,11 +452,14 @@ export default function VideoPageClient({ video, related }: VideoPageClientProps
             {video.stages && video.stages.length > 0 && (
               <div
                 style={{
-                  marginTop: "2rem",
-                  padding: isMobile ? "1.25rem 1rem" : "1.5rem 1.5rem",
+                  marginTop: "1.5rem",
+                  padding: isMobile ? "1rem 0.75rem" : "1.5rem 1.5rem",
                   borderRadius: 12,
                   border: `1px solid ${theme.border}`,
                   backgroundColor: theme.surfaceElevated,
+                  maxWidth: "100%",
+                  overflow: "hidden",
+                  boxSizing: "border-box" as const,
                 }}
               >
                 <div

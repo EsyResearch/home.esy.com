@@ -125,7 +125,7 @@ export function RelatedVideos({ videos }: RelatedVideosProps) {
               </div>
 
               {/* Info */}
-              <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ flex: 1, minWidth: 0, overflow: "hidden" }}>
                 <h4
                   style={{
                     fontSize: "0.8125rem",

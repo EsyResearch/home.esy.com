@@ -146,8 +146,33 @@ const components = {
     </a>
   ),
   
+  // Handle images with Next.js Image for optimization
+  img: ({ src, alt }) => (
+    <Image
+      src={src}
+      alt={alt || ''}
+      width={800}
+      height={450}
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 70vw, 660px"
+      loading="lazy"
+      style={{
+        display: 'block',
+        width: '100%',
+        maxWidth: '100%',
+        height: 'auto',
+        borderRadius: '12px',
+        margin: '1.5rem 0',
+        boxShadow: '0 2px 12px rgba(10, 37, 64, 0.08)',
+      }}
+    />
+  ),
+
   // Handle paragraphs with better spacing
-  p: ({ children }) => <p className={styles.paragraph}>{children}</p>,
+  p: ({ children, node }) => {
+    const hasImg = node?.children?.some(child => child.tagName === 'img');
+    if (hasImg) return <>{children}</>;
+    return <p className={styles.paragraph}>{children}</p>;
+  },
   
   // Handle tables with better styling
   table: ({ children }) => <table className={styles.table}>{children}</table>,

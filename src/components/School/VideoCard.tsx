@@ -40,7 +40,7 @@ export function VideoCard({
     : null;
 
   return (
-    <Link href={`/school/${slug}`} style={{ textDecoration: "none", color: "inherit" }}>
+    <Link href={`/school/${slug}`} style={{ textDecoration: "none", color: "inherit", minWidth: 0 }}>
       <div
         style={{
           borderRadius: "16px",
@@ -52,6 +52,7 @@ export function VideoCard({
           height: "100%",
           display: "flex",
           flexDirection: "column",
+          maxWidth: "100%",
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.borderColor = theme.accentBorder;

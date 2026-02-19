@@ -483,51 +483,21 @@ export default function Navigation({
               </Link>
             )}
 
-            {/* Learn Dropdown */}
-            <div 
-              className="nav-dropdown-container"
-              ref={learnDropdownRef}
-            >
-              <button 
-                className={`nav-dropdown-trigger ${isLearnOpen ? 'active' : ''}`}
-                aria-expanded={isLearnOpen}
-                aria-haspopup="true"
-                onClick={toggleLearn}
+            {/* School (hidden on mobile, available in hamburger menu) */}
+            {!isMobile && (
+              <Link
+                href="/school/"
+                className={`nav-link nav-link-school ${pathname?.startsWith('/school') ? 'active' : ''}`}
                 style={{
-                  color: isLightMode ? '#475569' : 'rgba(255, 255, 255, 0.85)',
+                  color: isLightMode ? 'rgba(10, 37, 64, 0.7)' : 'rgba(255, 255, 255, 0.85)',
+                  textShadow: 'none',
                 }}
               >
-                <span>Learn</span>
-              </button>
+                School
+              </Link>
+            )}
 
-              <div 
-                className={`nav-artifacts-dropdown ${isLearnOpen ? 'open' : ''}`}
-                role="menu"
-              >
-                <div className="nav-artifacts-list">
-                  <Link 
-                    href="/school/" 
-                    className="nav-artifact-item"
-                    onClick={() => setIsLearnOpen(false)}
-                  >
-                    <div className="nav-artifact-content">
-                      <span className="nav-artifact-title">School</span>
-                      <span className="nav-artifact-desc">Research articles & guides</span>
-                    </div>
-                  </Link>
-                  <Link 
-                    href="/courses/" 
-                    className="nav-artifact-item"
-                    onClick={() => setIsLearnOpen(false)}
-                  >
-                    <div className="nav-artifact-content">
-                      <span className="nav-artifact-title">Courses</span>
-                      <span className="nav-artifact-desc">Interactive video lessons</span>
-                    </div>
-                  </Link>
-                </div>
-              </div>
-            </div>
+            {/* Learn Dropdown removed — was here, restore from git if needed */}
 
             {/* App CTA (hidden on mobile, available in hamburger menu) */}
             {!isMobile && (

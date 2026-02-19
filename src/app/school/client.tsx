@@ -70,6 +70,8 @@ export default function SchoolVideosClient() {
         color: theme.text,
         fontFamily: "var(--font-inter)",
         paddingTop: isMobile ? 72 : 96,
+        overflowX: "hidden",
+        width: "100%",
       }}
     >
       {/* Hero */}
@@ -168,8 +170,9 @@ export default function SchoolVideosClient() {
               <div
                 style={{
                   position: "relative",
-                  minHeight: isMobile ? 200 : isTablet ? 260 : 340,
+                  minHeight: isMobile ? 180 : isTablet ? 260 : 340,
                   overflow: "hidden",
+                  width: "100%",
                 }}
               >
                 {featuredThumb ? (
