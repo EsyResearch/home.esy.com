@@ -1,46 +1,49 @@
-import React from 'react';
-import { notFound } from 'next/navigation';
-import ArticleViewClient from '@/components/research/ResearchArticleViewClient';
-import { getResearchArticleBySlug, getAllResearchArticleSlugs } from '@/lib/research/mdx';
+import { notFound } from "next/navigation";
+import {
+  getResearchVideoBySlug,
+  getRelatedResearchVideos,
+  getPublishedResearchVideos,
+} from "@/data/research-videos";
+import ResearchVideoPageClient from "./client";
+import type { Metadata } from "next";
 
-export async function generateStaticParams() {
-  const slugs = getAllResearchArticleSlugs();
-  return slugs.map((slug) => ({ slug }));
-}
-
-type ArticleType = 'experiment' | 'build' | 'research' | 'analysis' | string;
-
-type ArticlePageProps = {
+type Props = {
   params: Promise<{ slug: string }>;
 };
 
-const ResearchArticlePage = async ({ params }: ArticlePageProps) => {
+export async function generateStaticParams() {
+  return getPublishedResearchVideos().map((v) => ({ slug: v.slug }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  
-  let article;
-  try {
-    article = await getResearchArticleBySlug(slug);
-  } catch (err) {
-    console.error('Failed to load research article:', slug, err);
-    return notFound();
-  }
-  
-  const { frontmatter, content } = article;
-  
-  const type: ArticleType = frontmatter.tags?.includes('experiment') ? 'experiment' :
-               frontmatter.tags?.includes('build') ? 'build' :
-               frontmatter.tags?.includes('analysis') ? 'analysis' :
-               frontmatter.tags?.includes('research') ? 'research' : 'research';
+  const video = getResearchVideoBySlug(slug);
 
-  return (
-    <ArticleViewClient 
-      frontmatter={frontmatter}
-      content={content}
-      slug={slug}
-      type={type}
-    />
-  );
-};
+  if (!video) return {};
 
-export default ResearchArticlePage;
+  const ogImage = video.muxPlaybackId
+    ? `https://image.mux.com/${video.muxPlaybackId}/thumbnail.jpg?time=0`
+    : undefined;
 
+  return {
+    title: `${video.title} — Esy Research`,
+    description: video.description.slice(0, 160),
+    openGraph: {
+      title: video.title,
+      description: video.description.slice(0, 160),
+      type: "video.other",
+      images: ogImage ? [ogImage] : [],
+    },
+  };
+}
+
+export default async function ResearchVideoPage({ params }: Props) {
+  const { slug } = await params;
+  const video = getResearchVideoBySlug(slug);
+
+  if (!video) notFound();
+
+  const related = getRelatedResearchVideos(video.slug, video.relatedSlugs);
+
+  return <ResearchVideoPageClient video={video} related={related} />;
+}

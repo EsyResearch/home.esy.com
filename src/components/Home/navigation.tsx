@@ -111,6 +111,7 @@ export default function Navigation({
         const isTermsPage = normalizedPath === '/terms';
         const isPrivacyPage = normalizedPath === '/privacy';
         const isGlossaryPage = normalizedPath === '/glossary' || normalizedPath.startsWith('/glossary/');
+        const isResearchPage = normalizedPath === '/research' || normalizedPath.startsWith('/research/');
         // Check for 404 page - Next.js uses various paths
         // Also check body classes as fallback since pathname might not be reliable
         const hasNotFoundBodyClass = typeof window !== 'undefined' && (
@@ -125,7 +126,7 @@ export default function Navigation({
         const isSchoolOrCoursesSection = isSchoolArticle || isCoursesPage;
         
         // Pages that always use light theme (Navy Calm)
-        const isAlwaysLightPage = isEssaysPage || isAboutPage || isSchoolPage || isTemplatesPage || isDocsPage || isAgentsPage || isContactPage || isTermsPage || isPrivacyPage || isGlossaryPage;
+        const isAlwaysLightPage = isEssaysPage || isAboutPage || isSchoolPage || isTemplatesPage || isDocsPage || isAgentsPage || isContactPage || isTermsPage || isPrivacyPage || isGlossaryPage || isResearchPage;
         
         // Check for homepage themes
         if (isHomepage) {

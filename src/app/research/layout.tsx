@@ -1,10 +1,21 @@
 import type { Metadata } from "next";
-import './article-styles.css';
 
 export const metadata: Metadata = {
-  title: "Esy Research - AI and Machine Learning Insights",
-  description: "Exploring AI, machine learning, and the future of academic research through experiments, analysis, and insights.",
-  keywords: ["AI research", "machine learning", "academic research", "prompt engineering", "LLM evaluation", "peer review"],
+  title: "Esy Research — AI Coding Tools & Workflow Architecture",
+  description:
+    "Engineering deep dives on building agentic workflows, AI coding tool breakdowns, and the architecture behind Esy's research pipeline. Video-first content with full transcripts.",
+  keywords: [
+    "AI coding tools",
+    "Claude Code",
+    "Cursor",
+    "agentic workflows",
+    "multi-agent architecture",
+    "LLM orchestration",
+    "workflow engine",
+    "research pipeline",
+    "Next.js",
+    "MUX video",
+  ],
 };
 
 export default function ResearchLayout({
@@ -14,4 +25,3 @@ export default function ResearchLayout({
 }>) {
   return <>{children}</>;
 }
-
