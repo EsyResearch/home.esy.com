@@ -224,7 +224,7 @@ export default function SchoolNewsletter({
                   fontFamily: 'Literata, Georgia, serif',
                   color: isDarkMode ? '#ffffff' : '#0f172a'
                 }}>
-                  {isSuccess ? "You\u2019re in!" : 'Master Esy Workflows'}
+                  {isSuccess ? "You\u2019re in!" : 'Esy School'}
                 </h3>
 
                 {/* Subtitle */}
@@ -237,7 +237,7 @@ export default function SchoolNewsletter({
                 }}>
                   {isSuccess 
                     ? 'Check your inbox for a welcome email. If you don\u2019t see it, check your spam or promotions folder and mark us as safe.'
-                    : 'Get tutorials, workflow templates, and practical guides on using Esy\u2019s AI research tools to create publishable artifacts faster.'
+                    : 'New tutorials, workflow templates, and AI tool guides \u2014 delivered weekly.'
                   }
                 </p>
 
@@ -268,7 +268,7 @@ export default function SchoolNewsletter({
                       color: isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(15, 23, 42, 0.7)',
                       fontWeight: '500'
                     }}>
-                      Free tutorials weekly
+                      Free every week
                     </span>
                     <span style={{ 
                       display: 'flex', 
@@ -383,7 +383,7 @@ export default function SchoolNewsletter({
                         target.style.transform = 'translateY(0)';
                         target.style.boxShadow = isDarkMode ? '0 6px 20px rgba(0, 168, 150, 0.25)' : 'none';
                       }}>
-                      {isLoading ? 'Subscribing...' : 'Get Free Tutorials'}
+                      {isLoading ? 'Subscribing...' : 'Subscribe to Esy School'}
                     </button>
                   </div>
 

@@ -1,15 +1,15 @@
 import SchoolVideosClient from "./client";
 
 export const metadata = {
-  title: "Esy School — Video Tutorials for Every Workflow",
+  title: "Esy School — Learn Research Workflows & AI Tools",
   description:
-    "Watch step-by-step tutorials on Esy's workflow templates. Learn to create argumentative essays, research papers, infographics, and more — all in minutes.",
+    "Step-by-step tutorials and courses on using Esy's workflow templates and the latest AI tools. Learn to research anything without prompt engineering.",
   keywords:
-    "Esy workflows, video tutorials, argumentative essay, analytical essay, research paper, infographic, college application essay",
+    "Esy School, workflow tutorials, AI tools, research workflows, Claude, ChatGPT, infographics, academic writing, essay writing",
   openGraph: {
-    title: "Esy School — Video Tutorials",
+    title: "Esy School — Learn Research Workflows & AI Tools",
     description:
-      "Step-by-step video guides for every Esy workflow template.",
+      "Tutorials and courses on using Esy's workflow templates and the latest AI tools.",
     type: "website",
   },
 };
