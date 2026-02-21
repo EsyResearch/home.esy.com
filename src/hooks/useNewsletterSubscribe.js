@@ -5,18 +5,15 @@ import { useState, useCallback, useRef } from 'react';
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /**
- * Reusable hook for newsletter subscription via the /api/newsletter/subscribe endpoint.
+ * Reusable hook for newsletter subscription.
+ *
+ * @param {Object} opts
+ * @param {string} [opts.endpoint='/api/newsletter/subscribe'] - API endpoint to POST to
+ * @param {number} [opts.errorResetMs=5000] - ms before auto-resetting error state
  *
  * Returns { subscribe, status, errorMessage, reset }
- *   - subscribe(email): call to submit an email
- *   - status: 'idle' | 'loading' | 'success' | 'error'
- *   - errorMessage: string | null
- *   - reset(): manually reset to idle (e.g. when user starts typing)
- *
- * On error, status auto-resets to 'idle' after errorResetMs (default 5000ms).
- * On success, status persists until manually reset or the component unmounts.
  */
-export function useNewsletterSubscribe({ errorResetMs = 5000 } = {}) {
+export function useNewsletterSubscribe({ endpoint = '/api/newsletter/subscribe', errorResetMs = 5000 } = {}) {
   const [status, setStatus] = useState('idle');
   const [errorMessage, setErrorMessage] = useState(null);
   const errorTimerRef = useRef(null);
@@ -53,7 +50,7 @@ export function useNewsletterSubscribe({ errorResetMs = 5000 } = {}) {
     setErrorMessage(null);
 
     try {
-      const res = await fetch('/api/newsletter/subscribe', {
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email.trim() }),
@@ -87,7 +84,7 @@ export function useNewsletterSubscribe({ errorResetMs = 5000 } = {}) {
         }, errorResetMs);
       }
     }
-  }, [errorResetMs]);
+  }, [endpoint, errorResetMs]);
 
   return { subscribe, status, errorMessage, reset };
 }

@@ -45,7 +45,7 @@ export default function ResearchClient() {
     status: newsletterStatus,
     errorMessage: newsletterError,
     reset: resetNewsletter,
-  } = useNewsletterSubscribe();
+  } = useNewsletterSubscribe({ endpoint: '/api/newsletter/research/subscribe' });
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();

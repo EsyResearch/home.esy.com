@@ -41,7 +41,7 @@ export function ResearchNewsletterBar() {
     setMessage("");
 
     try {
-      const res = await fetch("/api/newsletter/subscribe", {
+      const res = await fetch("/api/newsletter/research/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: trimmed }),
