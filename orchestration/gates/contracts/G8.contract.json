@@ -45,7 +45,45 @@
       },
       "severity": "error",
       "description": "Frontmatter status must not be FAIL (parsed from YAML)"
+    },
+    {
+      "type": "contains_text",
+      "target": "{client_component}",
+      "patterns": ["SOURCES", "IMAGE_CREDITS"],
+      "severity": "error",
+      "description": "PUBLICATION GATE: Client component must import SOURCES and IMAGE_CREDITS — bibliography and image attribution must be present in the shipped code"
+    },
+    {
+      "type": "min_regex_count",
+      "target": "{client_component}",
+      "regex": "src=\\{IMAGES\\.",
+      "min_count": 5,
+      "severity": "error",
+      "description": "PUBLICATION GATE: Client component must reference at least 5 images from the IMAGES constant — photorealistic essays require substantial photography"
+    },
+    {
+      "type": "contains_text",
+      "target": "{artifact_path}/images.ts",
+      "patterns": ["images.esy.com"],
+      "severity": "error",
+      "description": "PUBLICATION GATE: images.ts must contain R2-hosted URLs (images.esy.com) — hotlinking external URLs is prohibited"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/images.ts",
+      "pattern": "upload.wikimedia.org",
+      "severity": "error",
+      "description": "PUBLICATION GATE: images.ts must not contain hotlinked Wikimedia URLs — all images must be self-hosted on R2"
+    },
+    {
+      "type": "url_reachable",
+      "target": "{artifact_path}/images.ts",
+      "url_pattern": "https://images\\.esy\\.com/[^\"']+",
+      "max_failures": 0,
+      "sample_size": 5,
+      "severity": "error",
+      "description": "PUBLICATION GATE: Spot-check that R2 image URLs are reachable (HTTP 2xx) — final defense against broken images shipping to production"
     }
   ],
-  "notes": "G8 validates the aggregate pre-publication audit. The Publish Artifact Orchestrator invokes: Bibliography Orchestrator (audit mode), Audit Orchestrator (quality domains), Design Slop Auditor (distinctiveness check), Social Media Meta Expert, SEO Audit Agent, and Gate Guard Auditor (G1-G7 verification). If issues are found, QA Remediation Orchestrator runs first. Certification status must be GO or CONDITIONAL to proceed to G9. NO-GO blocks the pipeline. The not_contains validations now resolve to the actual existing any_of file path, preventing silent bypass."
+  "notes": "G8 is the FINAL automated quality gate before human publication approval (G9). It validates both the audit report AND the actual source code. Critical lesson: audit documents can pass while the implementation is broken (e.g., 404 image URLs, missing bibliography section) when the same agent writes both code and audits. G8 now cross-checks the client component directly for SOURCES, IMAGE_CREDITS, and minimum image count from the IMAGES constant. It enforces that images.ts contains only R2-hosted URLs (images.esy.com) — hotlinking external URLs is prohibited since G4.7 migrates all images to R2. These source-code validations cannot be fooled by a self-certifying audit document."
 }

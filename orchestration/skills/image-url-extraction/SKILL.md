@@ -1,8 +1,8 @@
-# Image URL Extraction Skill
+# Image URL Extraction & R2 Upload Skill
 
 ## Purpose
 
-Reliably extract direct image URLs from archive HTML pages for download or embedding in visual essays. This skill solves the common problem where an agent lands on a file description page (HTML) but needs the actual image file URL.
+Reliably extract direct image URLs from archive HTML pages and upload them to Cloudflare R2 (`images.esy.com`) for self-hosted delivery. This skill solves two problems: (1) extracting actual image file URLs from archive description pages, and (2) ensuring all images are self-hosted on R2 rather than hotlinked from external sources.
 
 ---
 
@@ -73,19 +73,43 @@ curl -sI "{extracted_url}" | grep -i "content-type"
 curl -sI "{extracted_url}" | grep -i "content-length"
 ```
 
-### Step 4: Download or Reference
+### Step 4: Write to `images.ts` (Staging)
 
-Once verified, either:
+Once verified, write the extracted URLs into `images.ts` as a flat URL map:
 
-**Download locally:**
-```bash
-curl -L -o /path/to/public/images/{filename} "{verified_url}"
-```
-
-**Or reference directly in code:**
 ```typescript
-src: "{verified_url}",
+export const IMAGES = {
+  keyName: "{verified_url}",
+  // ...
+} as const;
 ```
+
+These are **staging URLs** — they will be migrated to R2 in the next step.
+
+### Step 5: Upload to R2 (Self-Hosting)
+
+**All images MUST be uploaded to Cloudflare R2 before shipping.** Hotlinking external URLs in production is prohibited. See `references/r2-upload.md` for the full procedure.
+
+**Quick procedure:**
+```bash
+# 1. Generate migration config from images.ts
+node scripts/scan-hotlinked-images.mjs --write
+
+# 2. Upload to R2 and rewrite images.ts in-place
+node scripts/r2-migrate-flat-url-map.mjs \
+  --config={artifact_path}/images-migration.json \
+  --update
+
+# 3. Verify rewrite
+grep "images.esy.com" {artifact_path}/images.ts
+
+# 4. Clean up ephemeral config
+rm {artifact_path}/images-migration.json
+```
+
+After this step, `images.ts` should contain only `https://images.esy.com/essays/{slug}/...` URLs.
+
+**Requires:** R2 credentials in `.env.local` (`R2_BUCKET`, `R2_ENDPOINT`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`).
 
 ---
 
@@ -123,20 +147,32 @@ src: "{verified_url}",
 └──────┬──────┘   │  │ Use fallback.md │
   Yes  │  No      │  └─────────────────┘
    ▼   │   ▼      │
-┌─────┐│┌────────┐│
-│ USE ││ │ RETRY  ││
-└─────┘│└────────┘│
+┌──────┐│┌────────┐│
+│STAGE ││ │ RETRY  ││ Write to images.ts
+└──┬───┘│└────────┘│ (external URLs)
+   ▼    │          │
+┌──────────────────┐
+│ R2 Upload        │ scan-hotlinked-images.mjs
+│ (Step 5)         │ r2-migrate-flat-url-map.mjs
+└────────┬─────────┘
+         ▼
+┌──────────────────┐
+│ images.ts now    │
+│ images.esy.com/* │ DONE
+└──────────────────┘
 ```
 
 ---
 
 ## Red Lines (Never Do These)
 
+- ❌ **NEVER ship hotlinked URLs to production** — all images must be hosted on `images.esy.com` via R2
 - ❌ **NEVER guess URL hash structures** — always extract from page
 - ❌ **NEVER use thumbnail URLs for final assets** — look for "Original file" links
 - ❌ **NEVER skip verification** — always check Content-Type before using
 - ❌ **NEVER assume URL structure is consistent** — different files may have different hashes
 - ❌ **NEVER download without checking file size** — tiny files are usually error pages
+- ❌ **NEVER skip the R2 upload step** — `images.ts` with external URLs is a staging artifact only
 
 ---
 
@@ -180,6 +216,18 @@ curl -s "{item_url}" | grep -oE 'https://tile\.loc\.gov/[^"]+\.(jpg|tif)' | head
 curl -s "{page_url}" | grep -oE 'https?://[^"]+\.(jpg|jpeg|png|gif|webp)' | grep -v thumb | grep -v icon | head -5
 ```
 
+### R2 Migration (after all URLs sourced)
+```bash
+node scripts/scan-hotlinked-images.mjs --write
+node scripts/r2-migrate-flat-url-map.mjs --config={artifact_path}/images-migration.json --update
+```
+
+### Verify R2 Upload
+```bash
+curl -sI "https://images.esy.com/essays/{slug}/{filename}.webp" | grep -i "content-type"
+# Expected: content-type: image/webp
+```
+
 ---
 
 ## Integration with Agents
@@ -221,10 +269,11 @@ When the image research agent needs to extract a URL, it should:
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.0 | February 2026 | Added R2 upload phase (Step 5), `references/r2-upload.md`, hotlinking prohibition |
 | 1.1 | December 2024 | Added Wikipedia fair use detection section |
 | 1.0 | December 2024 | Initial skill definition |
 
 ---
 
-*This skill ensures reliable image URL extraction from major archives, eliminating the guesswork that leads to broken images in visual essays.*
+*This skill ensures reliable image URL extraction from major archives and self-hosted delivery via Cloudflare R2, eliminating both broken images and hotlinking in visual essays.*
 

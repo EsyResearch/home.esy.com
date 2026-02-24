@@ -2,7 +2,7 @@
   "gate": "G4.5",
   "name": "Image Sourcing",
   "blocking": true,
-  "description": "Validates that all images are sourced, URLs extracted, licenses verified, and no unlicensed assets remain",
+  "description": "Validates that all images are sourced, URLs extracted and verified, licenses confirmed, and image data is ready for implementation. Checks both audit documentation AND the actual images.ts implementation file.",
   "required_outputs": {
     "any_of": [
       {
@@ -49,7 +49,52 @@
       "pattern": "status: FAIL",
       "severity": "error",
       "description": "Image audit must not have FAIL status in frontmatter"
+    },
+    {
+      "type": "contains_text",
+      "target": "{artifact_path}/images.ts",
+      "patterns": ["upload.wikimedia.org/wikipedia/commons/", "as const"],
+      "severity": "error",
+      "description": "images.ts must exist with verified Wikimedia Commons direct URLs (not file page URLs)"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/images.ts",
+      "pattern": "/commons/thumb/",
+      "severity": "error",
+      "description": "images.ts must NOT contain thumbnail URLs (/commons/thumb/) — use direct image URLs only"
+    },
+    {
+      "type": "regex_match",
+      "target": "{artifact_path}/images.ts",
+      "regex": "https://upload\\.wikimedia\\.org/wikipedia/commons/[a-f0-9]/[a-f0-9]{2}/[^\"]+\\.(jpg|jpeg|png|gif|svg)",
+      "description": "images.ts must contain at least one properly-hashed Wikimedia Commons direct URL (format: /commons/{hash1}/{hash2}/filename.ext)"
+    },
+    {
+      "type": "min_regex_count",
+      "target": "{artifact_path}/images.ts",
+      "regex": "https://upload\\.wikimedia\\.org/wikipedia/commons/[a-f0-9]/[a-f0-9]{2}/",
+      "min_count": 5,
+      "severity": "error",
+      "description": "images.ts must contain at least 5 verified direct image URLs (photorealistic essays require substantial photography)"
+    },
+    {
+      "type": "url_reachable",
+      "target": "{artifact_path}/images.ts",
+      "url_pattern": "https://upload\\.wikimedia\\.org/wikipedia/commons/[a-f0-9]/[a-f0-9]{2}/[^\"]+",
+      "max_failures": 0,
+      "sample_size": 10,
+      "severity": "error",
+      "description": "All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML"
     }
   ],
-  "notes": "G4.5 is flexible because image sourcing artifacts vary by essay. Some essays use SVG-only illustrations (no external images), in which case the IMAGE_RESEARCH_AUDIT.md may document 'No External Images Required' and still pass. The any_of pattern accommodates different formats. [UNLICENSED] is a hard fail; [PENDING] is a warning."
+  "required_skills": [
+    {
+      "path": "orchestration/skills/image-url-extraction",
+      "name": "Image URL Extraction",
+      "reason": "Agent MUST follow the extraction procedure in SKILL.md to obtain direct image URLs. Never guess Wikimedia hash paths — always extract from the file page using curl + grep or the Wikimedia API.",
+      "inject": ["SKILL.md", "references/wikimedia-commons.md"]
+    }
+  ],
+  "notes": "G4.5 validates both the audit documentation AND the actual images.ts implementation file. The images.ts file must contain direct Wikimedia Commons URLs (with proper MD5 hash paths like /a/a1/), NOT thumbnail URLs (/commons/thumb/) which may 404. The min_regex_count check ensures a minimum viable set of images. SVG-only essays may set images.ts to export an empty IMAGES object and document 'No External Images Required' in the audit. [UNLICENSED] is a hard fail; [PENDING] is a warning."
 }

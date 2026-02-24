@@ -1,0 +1,59 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-24T14:42:25.864Z",
+  "finished_at": "2026-02-24T14:43:18.132Z",
+  "agent": "visual-essay-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/G1-INTAKE.md",
+    "{artifact_path}/research/INTAKE.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/G1-INTAKE.md",
+      "sha256": "d4bc4ae975caead6b67e0aa0e6923007897f4f62162fcb9a746410eecd670a37",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/G1-INTAKE.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/research/INTAKE.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/G1-INTAKE.md",
+      "pattern": "[REJECTED]",
+      "found": false,
+      "severity": "error",
+      "description": "Intake must not contain [REJECTED] marker",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/G1-INTAKE.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Intake must not have FAIL status in frontmatter",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

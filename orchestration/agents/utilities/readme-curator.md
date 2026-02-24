@@ -49,6 +49,29 @@ orchestration/
 │   • Common workflows
 │   • Examples and patterns
 │
+├── standards/
+│   ├── README.md                 ← STANDARDS INDEX
+│   │   • All mandatory standards
+│   │   • Compliance requirements
+│   │
+│   ├── gate-validation-standard.md  ← VALIDATION PHILOSOPHY
+│   │   • Source-code vs audit validation
+│   │   • Layered defense model
+│   │   • Skill injection system
+│   │   • Contract authoring rules
+│   │
+│   └── [other standards]         ← Domain-specific standards
+│
+├── gates/
+│   ├── contracts/                ← GATE CONTRACTS
+│   │   └── Gx.contract.json     • Per-gate validation rules
+│   │
+│   └── VALIDATION-REFERENCE.md  ← VALIDATION API REFERENCE
+│       • Per-type contract schema
+│       • Usage examples
+│       • Template variables
+│       • Extension guide
+│
 ├── agents/
 │   ├── README.md                 ← AGENT CATALOG
 │   │   • Quick reference tables by category
@@ -168,6 +191,10 @@ When documentation needs updating, use this decision tree to determine which doc
 | `orchestration/README.md` | Entry point, quick start, overview | Rarely |
 | `orchestration/FRAMEWORK.md` | Core architecture, pipeline diagrams | **Very rarely** |
 | `orchestration/INVOCATION-GUIDE.md` | How to use agents, examples | Occasionally |
+| `standards/gate-validation-standard.md` | Validation philosophy, skill injection, layered defense | When validation types or skill injection changes |
+| `standards/gate-accountability.md` | Three-layer QA model, validation types table | When validation types change |
+| `gates/VALIDATION-REFERENCE.md` | Per-type contract schema, examples, extension guide | When validation types change |
+| `runner/README.md` | CLI usage, validation types table, required_skills | When runner or validation changes |
 | `agents/README.md` | Agent catalog, quick reference | When agents change |
 | `agents/AGENT-REGISTRY.md` | Master index, statistics, relationships | When agents change |
 | `agents/META-AGENT-FRAMEWORK.md` | Agent creation blueprint | Rarely |
@@ -187,7 +214,10 @@ When documentation needs updating, use this decision tree to determine which doc
 | New agent category | `AGENT-REGISTRY.md` + new `[category]/README.md` | Category system |
 | Agent moved between categories | `AGENT-REGISTRY.md` + both category READMEs | Category change |
 | New quality gate | `FRAMEWORK.md` + `AGENT-REGISTRY.md` | Cross-cutting |
-| New skill added | `skills/README.md` | Skill catalog |
+| New validation type | `validator.js` + `VALIDATION-REFERENCE.md` + 3 type tables | See Procedure 5b |
+| Gate contract updated | Specific `Gx.contract.json` | Contract-specific |
+| Skill injection added | `Gx.contract.json` + `gate-validation-standard.md` | See Procedure 5c |
+| New skill added | `skills/README.md` + consuming agent + consuming contract | Skill catalog |
 | Skill procedure updated | Specific skill's `SKILL.md` | Skill-specific |
 | New spec added | `skills/[skill]/specs/README.md` | Spec catalog |
 | New orchestrator | `FRAMEWORK.md` + `agents/README.md` + `orchestrators/README.md` | Major addition |
@@ -213,6 +243,10 @@ Some changes require updates to multiple documents:
 | **Citation report** | `auditors/CitationReports/README.md` (if new essay) |
 | **Visual audit report** | `auditors/VisualAuditReports/README.md` (if new essay) |
 | **Image citation pattern** | `docs/artifact-patterns-guide/` + `agents/research/image-research-licensing-expert.md` |
+| **New validation type** | `runner/lib/validator.js` + `gates/VALIDATION-REFERENCE.md` + `standards/gate-validation-standard.md` (type table) + `runner/README.md` (type table) + `standards/gate-accountability.md` (type table) |
+| **Gate contract change** | Specific `gates/contracts/Gx.contract.json` + `gates/VALIDATION-REFERENCE.md` (if new pattern) |
+| **Skill injection added** | `gates/contracts/Gx.contract.json` (`required_skills`) + `standards/gate-validation-standard.md` (skills table) |
+| **New skill** | `skills/[name]/SKILL.md` + `skills/README.md` + consuming agent + consuming contract (`required_skills`) |
 | **Social media audit report** | `engineering/SocialMediaAuditReports/README.md` + `[essay]/` |
 | **Hydration audit report** | `audits/hydration/` + `audits/CHANGELOG.md` |
 
@@ -317,6 +351,25 @@ When adding a new agent, you must update:
    - Quality Gate Ownership table
 3. **Update gate owner agent file**
 4. **Update orchestrator(s)** that enforce the gate
+
+### Procedure 5b: Adding a New Validation Type
+
+1. **Implement** in `orchestration/runner/lib/validator.js`
+2. **Wire into** `runValidations()` with standard severity/warning pattern
+3. **Add CLI output** in `orchestration/runner/cli.js`
+4. **Document** in `orchestration/gates/VALIDATION-REFERENCE.md` (per-type schema)
+5. **Update** `orchestration/standards/gate-validation-standard.md` (type table)
+6. **Update** `orchestration/standards/gate-accountability.md` (type table)
+7. **Update** `orchestration/runner/README.md` (type table)
+8. **Update** header comment in `validator.js`
+9. **Add unit tests** per Pipeline Testing Standard
+
+### Procedure 5c: Adding Skill Injection to a Gate
+
+1. **Add `required_skills`** to the gate contract (`orchestration/gates/contracts/Gx.contract.json`)
+2. **Specify `inject` files** — which skill files to embed in the prompt packet
+3. **Update** `orchestration/standards/gate-validation-standard.md` (skills table)
+4. **If new skill:** Follow Procedure 3 (Adding a New Skill) first
 
 ### Procedure 6: Completing an Audit
 
@@ -697,6 +750,12 @@ Some agents produce research/documentation that must be implemented in code. Thi
 February 2026
 
 ### Recent Changes
+- Added validation system documentation to hierarchy (`standards/gate-validation-standard.md`, `gates/VALIDATION-REFERENCE.md`)
+- Added Procedure 5b: Adding a New Validation Type (9-step cross-document update)
+- Added Procedure 5c: Adding Skill Injection to a Gate
+- Added routing rules for validation type changes, gate contract updates, and skill injection
+- Added Document Purpose Matrix entries for gate-validation-standard, gate-accountability, VALIDATION-REFERENCE, runner README
+- Added multi-document update rules for validation types, contracts, and skill injection
 - Updated Content Path Organization: `/essays/visual/` marked as legacy; standard convention is `/essays/{slug}/`
 - Added Standard Essay Directory Structure section documenting single-directory convention
 - Added runner cross-reference for auto-derived essay paths

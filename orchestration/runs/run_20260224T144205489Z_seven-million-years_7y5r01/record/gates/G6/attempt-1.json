@@ -1,0 +1,85 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-24T15:14:11.217Z",
+  "finished_at": "2026-02-24T15:15:38.029Z",
+  "agent": "citation-audit-agent",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CITATION-AUDIT.md",
+    "{artifact_path}/CITATION-AUDIT.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research/CITATION-AUDIT.md",
+      "sha256": "60225ddd07d778ea9591304b5ed8819d3e3e7e500e0188c38bbc8bc4263f97d6",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/CITATION-AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/CITATION-AUDIT.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research/CITATION-AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Citation audit must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research/CITATION-AUDIT.md",
+      "pattern": "Citation Certification: Rejected",
+      "found": false,
+      "severity": "error",
+      "description": "Citation audit must not have Rejected certification",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research/CITATION-AUDIT.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "fields": {
+        "gate": "G6",
+        "status": "PASS",
+        "slug": "seven-million-years",
+        "auditor": "citation-audit-agent",
+        "date": "2026-02-24",
+        "sources_verified": 23,
+        "sources_total": 23,
+        "tier_1_2_pct": 100,
+        "quotes_authenticated": 8,
+        "quotes_total": 12
+      },
+      "failures": [],
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL (parsed from YAML, not string match)",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

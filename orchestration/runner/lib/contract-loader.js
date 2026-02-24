@@ -156,11 +156,49 @@ function getValidations(contract, context) {
   });
 }
 
+/**
+ * Get required skills from a contract.
+ * Skills are loaded from orchestration/skills/ and their content is injected
+ * into prompt packets so the executing agent has the procedure in context.
+ * @param {object} contract - Contract object
+ * @returns {Array<{path: string, name: string, reason: string, inject: string[]}>}
+ */
+function getRequiredSkills(contract) {
+  if (!contract.required_skills) return [];
+
+  return contract.required_skills.map(skill => {
+    const skillDir = path.join(REPO_ROOT, skill.path);
+    const files = [];
+
+    if (skill.inject && Array.isArray(skill.inject)) {
+      for (const relFile of skill.inject) {
+        const absPath = path.join(skillDir, relFile);
+        if (fs.existsSync(absPath)) {
+          files.push({
+            relative: relFile,
+            absolute: absPath,
+            content: fs.readFileSync(absPath, 'utf8')
+          });
+        }
+      }
+    }
+
+    return {
+      path: skill.path,
+      name: skill.name || path.basename(skill.path),
+      reason: skill.reason || '',
+      inject: skill.inject || [],
+      files
+    };
+  });
+}
+
 module.exports = {
   loadContract,
   resolvePath,
   getRequiredOutputs,
   getValidations,
+  getRequiredSkills,
   REPO_ROOT,
   CONTRACTS_DIR
 };

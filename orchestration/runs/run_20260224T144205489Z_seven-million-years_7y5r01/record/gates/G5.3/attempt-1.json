@@ -1,0 +1,99 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-24T15:11:56.222Z",
+  "finished_at": "2026-02-24T15:13:16.786Z",
+  "agent": "diagram-code-reconciliation-auditor",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+    "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+    "{client_component}"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "sha256": "efd3e24a2f18501a658c1eaf060c38a0331b1be6e5c58cf72e268519676230fd",
+      "exists": true
+    },
+    {
+      "path": "{client_component}",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/SevenMillionYearsClient.tsx",
+      "sha256": "b0fe239b3d5e454a2a89279de62f978aa8768a0d9149a74db6f08b37d02aa5e4",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "file_exists",
+      "path": "{client_component}",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/SevenMillionYearsClient.tsx",
+      "pass": true,
+      "description": "Client component must contain @diagram-contract blocks for every visualization function"
+    },
+    {
+      "type": "contains_text",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/SevenMillionYearsClient.tsx",
+      "patterns": [
+        "@diagram-contract"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "Client component MUST contain at least one @diagram-contract block per diagram-code-contract.md standard",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Diagram-code reconciliation must not have FAIL status",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "fields": {
+        "gate": "G5.3",
+        "status": "PASS",
+        "slug": "seven-million-years",
+        "auditor": "diagram-code-reconciliation-auditor",
+        "date": "2026-02-24",
+        "diagrams_audited": 3,
+        "invariants_checked": 8,
+        "invariants_passed": 8
+      },
+      "failures": [],
+      "severity": "error",
+      "description": "Diagram-code reconciliation frontmatter status must not be FAIL",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

@@ -1,0 +1,81 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-24T15:14:11.278Z",
+  "finished_at": "2026-02-24T15:15:38.107Z",
+  "agent": "immersive-scrolling-auditor",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+    "{artifact_path}/SCROLL-CERTIFICATION.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research/SCROLL-CERTIFICATION.md",
+      "sha256": "993ba3cfc1bdc879b08f3af60bed93bc06d56be08f88a08eab3eb3e920307bc7",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/SCROLL-CERTIFICATION.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research/SCROLL-CERTIFICATION.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Scroll certification must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research/SCROLL-CERTIFICATION.md",
+      "pattern": "Overall Status: ❌",
+      "found": false,
+      "severity": "error",
+      "description": "Scroll certification must not report overall failure",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research/SCROLL-CERTIFICATION.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "fields": {
+        "gate": "G7",
+        "status": "PASS",
+        "slug": "seven-million-years",
+        "auditor": "immersive-scrolling-auditor",
+        "date": "2026-02-24",
+        "overall_score": 8.5
+      },
+      "failures": [],
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

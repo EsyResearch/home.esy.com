@@ -67,6 +67,15 @@
       "phase": "Production"
     },
     {
+      "gate": "G4.7",
+      "name": "R2 Image Upload",
+      "agent": "image-research-licensing-expert",
+      "contract": "orchestration/gates/contracts/G4.7.contract.json",
+      "prompt_template": "G4.7",
+      "description": "Uploads sourced images to Cloudflare R2 CDN, rewrites images.ts from external URLs to images.esy.com",
+      "phase": "Production"
+    },
+    {
       "gate": "G5",
       "name": "Content Complete",
       "agent": "production-orchestrator",

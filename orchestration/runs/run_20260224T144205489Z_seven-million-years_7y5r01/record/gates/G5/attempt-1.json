@@ -1,0 +1,104 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-24T15:02:05.414Z",
+  "finished_at": "2026-02-24T15:10:55.591Z",
+  "agent": "production-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/page.tsx",
+    "{artifact_path}/{slug}.css"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/page.tsx",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/page.tsx",
+      "sha256": "f592ed4ae565a7755d0dbdfed5f5fa6f8167e883ca82fef2739a9320f015cc55",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/{slug}.css",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/seven-million-years.css",
+      "sha256": "555b6d1ebabbba6031a8aa2f44902b2f7e68b8c6af9ebb0ba7279441a17cecff",
+      "exists": true,
+      "optional": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/page.tsx",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/page.tsx",
+      "pass": true,
+      "description": "Next.js page with metadata, ArtifactDetailWrapper, and default export"
+    },
+    {
+      "type": "contains_headings",
+      "path": "{artifact_path}/page.tsx",
+      "missing": [],
+      "severity": "error",
+      "description": "page.tsx must contain a default export and metadata definition",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/page.tsx",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/page.tsx",
+      "patterns": [
+        "ArtifactDetailWrapper",
+        "ESSAY_META"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "page.tsx MUST import and use ArtifactDetailWrapper with ESSAY_META (visual-essay-engineering-standard.md §2, Red Lines)",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/page.tsx",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/page.tsx",
+      "patterns": [
+        "@/components/ArtifactDetail"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "page.tsx MUST import ArtifactDetailWrapper from @/components/ArtifactDetail",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/page.tsx",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/page.tsx",
+      "pattern": "TODO",
+      "found": false,
+      "severity": "warning",
+      "description": "page.tsx should not contain TODO markers (indicates incomplete implementation)",
+      "pass": true,
+      "warning": false
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/SevenMillionYearsClient.tsx",
+      "regex": "[\\u{1F300}-\\u{1F9FF}\\u{2600}-\\u{26FF}\\u{2700}-\\u{27BF}]",
+      "must_not_match": true,
+      "matched": false,
+      "severity": "error",
+      "description": "Client component must NOT contain emoji characters — use SVG icons or CSS shapes instead",
+      "pass": true
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/SevenMillionYearsClient.tsx",
+      "regex": ">([^{<\"]*\\\\u[0-9a-fA-F]{4})",
+      "must_not_match": true,
+      "matched": false,
+      "severity": "error",
+      "description": "Client component must NOT contain raw Unicode escape sequences (\\uXXXX) in JSX text content — they render as literal text, not as the intended character. Wrap in JavaScript expressions ({\"\\u0113\"}) or use actual UTF-8 characters (ē) instead. See: JSX text nodes do not process JS string escape sequences.",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

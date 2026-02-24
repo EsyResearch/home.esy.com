@@ -5,7 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 const { hashString } = require('./hasher');
-const { loadContract, getRequiredOutputs, REPO_ROOT } = require('./contract-loader');
+const { loadContract, getRequiredOutputs, getRequiredSkills, REPO_ROOT } = require('./contract-loader');
 
 const WORKFLOWS_DIR = path.join(__dirname, '..', 'workflows');
 
@@ -50,6 +50,10 @@ function generatePromptPacket(options) {
   // Generate gate-specific instructions
   const gateInstructions = getGateInstructions(gateCode, gateDef, { slug, artifactPath, depth });
   
+  // Load required skills
+  const requiredSkills = getRequiredSkills(contract);
+  const skillsSection = formatSkillsSection(requiredSkills);
+  
   const promptPacket = `================================================================================
 ORCHESTRATION PROMPT PACKET
 ================================================================================
@@ -74,7 +78,7 @@ GATE INSTRUCTIONS
 ================================================================================
 
 ${gateInstructions}
-
+${skillsSection}
 ================================================================================
 REQUIRED OUTPUTS (Contract: ${contract.gate})
 ================================================================================
@@ -89,7 +93,7 @@ HOW TO EXECUTE
 
 1. Copy this entire prompt packet
 2. Paste into Claude Code
-3. Follow the gate instructions above
+3. Follow the gate instructions above${requiredSkills.length > 0 ? '\n4. CRITICAL: Follow the required skill procedures listed above' : ''}
 4. Ensure all required outputs are written to the correct paths
 5. When complete, return to the runner terminal and press Enter
 
@@ -105,6 +109,42 @@ END PROMPT PACKET
 `;
 
   return promptPacket;
+}
+
+/**
+ * Format required skills into a prompt section.
+ * When skills have injected files, their full content is included in the prompt
+ * so the executing agent has the procedure in context without needing to load files.
+ */
+function formatSkillsSection(requiredSkills) {
+  if (!requiredSkills || requiredSkills.length === 0) return '';
+
+  let section = `
+================================================================================
+REQUIRED SKILLS — READ BEFORE EXECUTING
+================================================================================
+
+The following skills MUST be followed during this gate. Their procedures are
+included below so you have them in context. Do NOT skip these procedures.
+
+`;
+
+  for (const skill of requiredSkills) {
+    section += `--- SKILL: ${skill.name} ---\n`;
+    section += `Path: ${skill.path}\n`;
+    if (skill.reason) {
+      section += `Why: ${skill.reason}\n`;
+    }
+    section += '\n';
+
+    for (const file of skill.files) {
+      section += `──── ${file.relative} ────\n`;
+      section += file.content;
+      section += '\n\n';
+    }
+  }
+
+  return section;
 }
 
 /**
@@ -362,7 +402,9 @@ The implementation must:
 - Use the design research color palette and typography
 - Include all sections from the spec
 - Be mobile-first and responsive
-- Include Sources & Further Reading section
+- Include Sources & Further Reading section at the conclusion (rendering SOURCES and IMAGE_CREDITS)
+- Import images from ./images (images.ts) — NEVER hardcode external image URLs inline
+- Use \`src={IMAGES.keyName}\` for all <img> tags, with loading="lazy"
 - Wrap the essay in ArtifactDetailWrapper from @/components/ArtifactDetail
   with an ESSAY_META object containing: title, subtitle, category, subcategory,
   readTime, sourceCount, sourceTier, sectionCount, visualizationCount,

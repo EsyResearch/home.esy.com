@@ -1,0 +1,83 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-24T14:59:24.923Z",
+  "finished_at": "2026-02-24T15:00:09.197Z",
+  "agent": "design-research-reconciliation-agent",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+    "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+    "{artifact_path}/DESIGN-RESEARCH.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research/G4.1-DESIGN-RECONCILIATION.md",
+      "sha256": "9e61435555bd0e99fd2b2b9c387470ac7e7e10fae76ff20237d0582a5fc9d7fa",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/DESIGN-RESEARCH.md",
+      "sha256": "12d3d31bdac5b5bf369864c2e9b5ad2c6fabfc9c98770a97adf91c3ec6a917cb",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/DESIGN-RESEARCH.md",
+      "pass": true,
+      "description": "Design research report (must exist and be reconciled)"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/DESIGN-RESEARCH.md",
+      "pattern": "[UNRECONCILED]",
+      "found": false,
+      "severity": "error",
+      "description": "Design research must not contain [UNRECONCILED] marker",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/DESIGN-RESEARCH.md",
+      "pattern": "[COLLISION]",
+      "found": false,
+      "severity": "error",
+      "description": "Design research must not flag aesthetic collisions with other essays",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research/G4.1-DESIGN-RECONCILIATION.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Reconciliation audit must not have FAIL status in frontmatter",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

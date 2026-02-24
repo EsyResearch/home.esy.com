@@ -48,8 +48,15 @@ Every gate has three layers of quality assurance. The first layer is mandatory f
 | `min_sources` | Research has substance | ≥8 sources in CITATIONS.md |
 | `min_sources_any_of` | Flexible source tracking | CITATIONS.md or CLAIMS.md has ≥8 sources |
 | `contains_headings` | Document has required structure | Spec contains layer headings |
-| `not_contains` | No forbidden markers | No `[UNRECONCILED]`, `[FAIL]`, `[CRITICAL]` |
+| `contains_text` | Required text patterns present | `SOURCES` and `IMAGE_CREDITS` in component |
+| `not_contains` | No forbidden markers | No `[UNRECONCILED]`, `[FAIL]`, `/commons/thumb/` |
 | `frontmatter_status` | Structured pass/fail check | YAML frontmatter `status` ≠ `FAIL` |
+| `regex_match` | Pattern match/anti-match | Import from `./images`, no emoji |
+| `min_regex_count` | Minimum pattern occurrences | At least 3 `<img>` tags in component |
+| `url_reachable` | URLs return HTTP 2xx | Image URLs in `images.ts` are not 404 |
+
+For complete per-type schema: [VALIDATION-REFERENCE.md](../gates/VALIDATION-REFERENCE.md)
+For design philosophy: [Gate Validation Standard](./gate-validation-standard.md)
 
 **For web interface scaling**: Contract checks execute instantly (milliseconds) and produce structured pass/fail results. These are displayed as real-time status indicators in the UI.
 

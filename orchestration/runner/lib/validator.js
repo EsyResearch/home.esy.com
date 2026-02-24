@@ -12,10 +12,14 @@
  *   not_contains       — file must NOT contain a pattern (fails on missing file by default)
  *   frontmatter_status — parse YAML frontmatter, enforce status field value
  *   regex_match        — file content must match (or must NOT match) a regex pattern
+ *   min_regex_count    — file must contain at least N occurrences of a regex pattern
+ *   url_reachable      — extract URLs from a file and verify they return HTTP 2xx
  */
 
 const fs = require('fs');
 const path = require('path');
+const http = require('http');
+const https = require('https');
 const { hashFile } = require('./hasher');
 
 /**
@@ -281,6 +285,119 @@ function regexMatch(filePath, regexStr, options = {}) {
     return { pass: !matched, matched };
   }
   return { pass: matched, matched };
+}
+
+/**
+ * Count occurrences of a regex pattern in a file
+ * @param {string} filePath - Path to file
+ * @param {string} regexStr - Regex pattern string
+ * @param {number} minCount - Minimum number of matches required
+ * @returns {{pass: boolean, count: number, reason?: string}}
+ */
+function minRegexCount(filePath, regexStr, minCount) {
+  if (!fileExists(filePath)) {
+    return { pass: false, count: 0, reason: 'File not found' };
+  }
+
+  const content = fs.readFileSync(filePath, 'utf8');
+  const flags = regexStr.includes('\\u{') ? 'gmu' : 'gm';
+  const regex = new RegExp(regexStr, flags);
+  const matches = content.match(regex) || [];
+
+  return {
+    pass: matches.length >= minCount,
+    count: matches.length
+  };
+}
+
+/**
+ * Make an HTTP HEAD request and return the status code.
+ * Follows up to 5 redirects. Times out after 10 seconds.
+ * @param {string} url - URL to check
+ * @returns {Promise<{status: number, ok: boolean, error?: string}>}
+ */
+function headRequest(url, redirectCount = 0) {
+  return new Promise((resolve) => {
+    if (redirectCount > 5) {
+      resolve({ status: 0, ok: false, error: 'Too many redirects' });
+      return;
+    }
+
+    const proto = url.startsWith('https') ? https : http;
+    const req = proto.request(url, {
+      method: 'HEAD',
+      timeout: 10000,
+      headers: { 'User-Agent': 'EsyOrchestratorBot/1.0 (gate-validator; +https://esy.com)' }
+    }, (res) => {
+      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+        resolve(headRequest(res.headers.location, redirectCount + 1));
+        return;
+      }
+      resolve({ status: res.statusCode, ok: res.statusCode >= 200 && res.statusCode < 300 });
+    });
+
+    req.on('timeout', () => {
+      req.destroy();
+      resolve({ status: 0, ok: false, error: 'Timeout (10s)' });
+    });
+    req.on('error', (err) => {
+      resolve({ status: 0, ok: false, error: err.message });
+    });
+    req.end();
+  });
+}
+
+/**
+ * Extract URLs from a file matching a regex, then verify each returns HTTP 2xx.
+ * @param {string} filePath - Path to file containing URLs
+ * @param {string} urlPattern - Regex to extract URLs (must capture full URL). If omitted, extracts all https:// URLs.
+ * @param {object} [options]
+ * @param {number} [options.max_failures=0] - Maximum allowed failures before the check fails
+ * @param {number} [options.sample_size] - If set, only check this many URLs (random sample for large sets)
+ * @returns {Promise<{pass: boolean, total: number, checked: number, ok: number, failed: Array<{url: string, status: number, error?: string}>}>}
+ */
+async function urlReachable(filePath, urlPattern, options = {}) {
+  if (!fileExists(filePath)) {
+    return { pass: false, total: 0, checked: 0, ok: 0, failed: [], reason: 'File not found' };
+  }
+
+  const content = fs.readFileSync(filePath, 'utf8');
+  const pattern = urlPattern || 'https?://[^\\s"\'\\)>]+';
+  const regex = new RegExp(pattern, 'gm');
+  const urls = [...new Set(content.match(regex) || [])];
+
+  if (urls.length === 0) {
+    return { pass: false, total: 0, checked: 0, ok: 0, failed: [], reason: 'No URLs found matching pattern' };
+  }
+
+  let toCheck = urls;
+  if (options.sample_size && options.sample_size < urls.length) {
+    const shuffled = [...urls].sort(() => Math.random() - 0.5);
+    toCheck = shuffled.slice(0, options.sample_size);
+  }
+
+  const maxFailures = options.max_failures || 0;
+  const failed = [];
+
+  const results = await Promise.all(
+    toCheck.map(async (url) => {
+      const result = await headRequest(url);
+      if (!result.ok) {
+        failed.push({ url, status: result.status, error: result.error });
+      }
+      return result;
+    })
+  );
+
+  const okCount = results.filter(r => r.ok).length;
+
+  return {
+    pass: failed.length <= maxFailures,
+    total: urls.length,
+    checked: toCheck.length,
+    ok: okCount,
+    failed
+  };
 }
 
 /**
@@ -675,6 +792,85 @@ async function runValidations(contract, outputs, validations, context) {
       
       results.push(validationResult);
     }
+    
+    if (validation.type === 'min_regex_count') {
+      let targetPath = validation.resolvedTarget;
+      if (targetPath) {
+        targetPath = resolveAnyOfTarget(targetPath, anyOfOutputs);
+      }
+      
+      const minCount = validation.min_count || 1;
+      const result = minRegexCount(targetPath, validation.regex, minCount);
+      
+      const validationResult = {
+        type: 'min_regex_count',
+        path: validation.target,
+        resolved_path: targetPath,
+        regex: validation.regex,
+        min_count: minCount,
+        actual_count: result.count,
+        severity: validation.severity || 'error',
+        description: validation.description
+      };
+      
+      if (result.reason) {
+        validationResult.reason = result.reason;
+      }
+      
+      if (validation.severity === 'warning') {
+        validationResult.pass = true;
+        validationResult.warning = !result.pass;
+      } else {
+        validationResult.pass = result.pass;
+        if (!result.pass) {
+          allPass = false;
+        }
+      }
+      
+      results.push(validationResult);
+    }
+    
+    if (validation.type === 'url_reachable') {
+      let targetPath = validation.resolvedTarget;
+      if (targetPath) {
+        targetPath = resolveAnyOfTarget(targetPath, anyOfOutputs);
+      }
+      
+      const urlPattern = validation.url_pattern || null;
+      const result = await urlReachable(targetPath, urlPattern, {
+        max_failures: validation.max_failures || 0,
+        sample_size: validation.sample_size
+      });
+      
+      const validationResult = {
+        type: 'url_reachable',
+        path: validation.target,
+        resolved_path: targetPath,
+        total_urls: result.total,
+        checked: result.checked,
+        ok: result.ok,
+        failed: result.failed,
+        max_failures: validation.max_failures || 0,
+        severity: validation.severity || 'error',
+        description: validation.description
+      };
+      
+      if (result.reason) {
+        validationResult.reason = result.reason;
+      }
+      
+      if (validation.severity === 'warning') {
+        validationResult.pass = true;
+        validationResult.warning = !result.pass;
+      } else {
+        validationResult.pass = result.pass;
+        if (!result.pass) {
+          allPass = false;
+        }
+      }
+      
+      results.push(validationResult);
+    }
   }
   
   return {
@@ -695,6 +891,9 @@ module.exports = {
   frontmatterStatus,
   parseFrontmatter,
   regexMatch,
+  minRegexCount,
+  urlReachable,
+  headRequest,
   resolveAnyOfTarget,
   runValidations
 };

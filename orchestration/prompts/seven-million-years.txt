@@ -1,0 +1,96 @@
+TOPIC: Seven Million Years — The Complete Visual History of Our Kind
+
+A visual essay, expository in nature with extensive photography, that explores the full breadth and depth of the hominid lineage through ancient history until the present day.
+
+SCOPE & CONTENT REQUIREMENTS:
+
+1. ALL KNOWN HOMINIDS THROUGH TIME
+   - Sahelanthropus tchadensis (~7 MYA) — the earliest known candidate
+   - Orrorin tugenensis (~6 MYA)
+   - Ardipithecus kadabba and Ardipithecus ramidus (~5.8–4.4 MYA)
+   - Australopithecus anamensis, A. afarensis (Lucy), A. africanus, A. garhi, A. sediba
+   - Paranthropus aethiopicus, P. boisei, P. robustus — the robust lineage
+   - Homo habilis, Homo rudolfensis — the first toolmakers
+   - Homo erectus / Homo ergaster — the first global traveler
+   - Homo heidelbergensis — the common ancestor of Neanderthals and sapiens
+   - Homo naledi — the surprising late survivor
+   - Homo floresiensis ("the Hobbit") — island dwarfism
+   - Homo luzonensis — the Philippines mystery
+   - Homo longi ("Dragon Man") — the Harbin cranium
+   - Denisovans — known mostly from DNA
+   - Homo neanderthalensis — our closest kin
+   - Homo sapiens — us
+
+2. THE ERAS THEY LIVED IN
+   - Miocene context (where the story begins)
+   - Pliocene — the rise of bipedalism
+   - Early Pleistocene — the first tool technologies
+   - Middle Pleistocene — brain expansion, fire mastery
+   - Late Pleistocene — the cognitive revolution, art, symbolic thought
+   - Holocene — the aftermath
+
+3. CHALLENGES EACH SPECIES FACED
+   - Climate oscillations (glacial/interglacial cycles)
+   - Habitat fragmentation
+   - Competition between species
+   - Dietary pressures and adaptations
+   - Predation
+   - Disease and parasites
+
+4. THEORETICAL CAUSES OF DECLINE FOR EACH NON-SURVIVING SPECIES
+   - Climate-driven extinction
+   - Competitive exclusion by Homo sapiens
+   - Hybrid absorption / genetic swamping
+   - Ecological niche collapse
+   - Island isolation effects
+
+5. THE RISE OF HOMO SAPIENS
+   - African origins (~300,000 YA)
+   - The "cognitive revolution" debate
+   - The role of language
+   - Social complexity and cooperation
+   - Technological innovation rates
+
+6. THEORIES ON WHY SAPIENS SURVIVED
+   - Superior social networks (Dunbar, etc.)
+   - Language and abstract thought
+   - Dietary flexibility / generalist strategy
+   - Higher reproductive rates
+   - Technological adaptability
+   - Long-distance trade networks
+   - Cultural cumulation (ratchet effect)
+   - Sheer luck and timing
+
+VISUAL & INTERACTIVE REQUIREMENTS:
+
+- EXTENSIVE PHOTOGRAPHY: Museum specimens, fossil reconstructions, archaeological sites, landscapes that represent ancient environments. Use high-quality Wikimedia Commons, museum collections, and public domain imagery.
+
+- CHARTS AND GRAPHICS (must be high quality — NO shitty SVG animations, NO cheap-looking charts):
+  - Hominid family tree / phylogenetic diagram (interactive if possible)
+  - Timeline showing all species' temporal ranges with overlap visualization
+  - Brain volume chart across species and time
+  - Body size comparison across species
+  - Tool technology progression (Oldowan → Acheulean → Mousterian → Upper Paleolithic)
+  - Climate curve overlaid with species ranges
+  - Geographic range maps for key species
+
+- STRONG COMPARISONS BETWEEN GROUPS:
+  - Side-by-side anatomical comparisons (skull shape, pelvis, teeth, hands)
+  - Behavioral comparisons (tool use, fire use, burial practices, art)
+  - Ecological niche comparisons
+  - Brain-to-body ratio comparisons
+
+- INTUITIVE ANIMATIONS AND MIGRATION VISUALIZATIONS:
+  - Animated world map showing the spread of different hominid species over time
+  - Migration routes out of Africa (multiple waves)
+  - Interactive timeline that users can scrub through
+  - Population density shifts over time
+
+- TONE: Scientific but accessible. Not dumbed down — the reader should feel they've learned something substantial. Think longform New York Times or National Geographic visual feature.
+
+DESIGN DIRECTION:
+- Do NOT copy any existing essay in the codebase. This needs its own unique visual identity.
+- The design should be derived from the subject matter: earth tones, geological strata, bone, stone, ochre, cave-dark backgrounds
+- Photography-forward — this essay should feel like walking through a natural history museum
+- Charts must be beautiful and publication-quality — think Nature journal or Scientific American
+- Animations should be smooth, purposeful, and elegant — not gratuitous

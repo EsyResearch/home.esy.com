@@ -2,7 +2,7 @@
   "gate": "G5.5",
   "name": "Bibliography Implementation",
   "blocking": true,
-  "description": "Validates that the essay includes a Works Cited section, Image Credits, and inline citations sync with the bibliography. Audit report must not indicate failure.",
+  "description": "Validates that the essay includes a Works Cited section, Image Credits, and inline citations sync with the bibliography. Checks both the audit report AND the actual client component for rendered bibliography content.",
   "required_outputs": {
     "any_of": [
       {
@@ -45,7 +45,27 @@
       },
       "severity": "error",
       "description": "Frontmatter status must not be FAIL"
+    },
+    {
+      "type": "contains_text",
+      "target": "{client_component}",
+      "patterns": ["SOURCES"],
+      "severity": "error",
+      "description": "Client component must import and render the SOURCES data — the bibliography section must exist in the actual rendered output, not just the audit document"
+    },
+    {
+      "type": "contains_text",
+      "target": "{client_component}",
+      "patterns": ["IMAGE_CREDITS"],
+      "severity": "error",
+      "description": "Client component must import and render IMAGE_CREDITS data — image attribution must appear in the actual rendered output"
+    },
+    {
+      "type": "regex_match",
+      "target": "{client_component}",
+      "regex": "sources|bibliography|works.cited|further.reading",
+      "description": "Client component must contain bibliography-related section markers (sources, bibliography, works cited, or further reading)"
     }
   ],
-  "notes": "G5.5 validates that the Bibliography Orchestrator has produced and audited the Works Cited, Image Credits, A/V Credits, and Data Sources sections. The audit report confirms inline↔bibliography synchronization. The frontmatter_status check provides robust YAML parsing instead of string matching alone. See BIBLIOGRAPHY_STRUCTURE_GUIDE.md and ARTIFACT_CITATION_PATTERNS_GUIDE.md for patterns."
+  "notes": "G5.5 validates both the audit documentation AND the actual client component. The critical fix: previous versions only checked if the audit .md file existed and didn't say FAIL — but the audit was self-certified by the same agent that wrote the code, creating a trust gap. Now G5.5 additionally inspects the client component for SOURCES and IMAGE_CREDITS imports/renders, ensuring the bibliography section actually exists in the shipped code. See BIBLIOGRAPHY_STRUCTURE_GUIDE.md and ARTIFACT_CITATION_PATTERNS_GUIDE.md for patterns."
 }

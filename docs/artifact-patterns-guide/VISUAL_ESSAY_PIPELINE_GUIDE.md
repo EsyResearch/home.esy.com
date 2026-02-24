@@ -11,7 +11,7 @@ This guide documents the complete Visual Essay production pipeline, including al
 
 ## Pipeline Overview
 
-The Visual Essay Pipeline consists of **6 phases** and **13 quality gates** (G1-G9, plus G4.1, G4.5, G5.2, and G5.5). Every visual essay must pass through all applicable gates before publication.
+The Visual Essay Pipeline consists of **6 phases** and **14+ quality gates** (G1-G9, plus G4.1, G4.5, G4.6, G4.7, G5.2, G5.3, G5.4, and G5.5). Every visual essay must pass through all applicable gates before publication.
 
 ### Phase Distribution
 
@@ -27,7 +27,7 @@ The Visual Essay Pipeline consists of **6 phases** and **13 quality gates** (G1-
 ### Gate Flow
 
 ```
-G1 → G2 → G3 → G4 → G4.1 → G4.5 → G5 → G5.2 → G5.5 → G6 → G7 → G8 → G9
+G1 → G2 → G3 → G4 → G4.1 → G4.5 → G4.6 → G4.7 → G5 → G5.4 → G5.2 → G5.3 → G5.5 → G6 → G6.6 → G7 → G8 → G9
 ```
 
 ---
@@ -154,6 +154,17 @@ G1 → G2 → G3 → G4 → G4.1 → G4.5 → G5 → G5.2 → G5.5 → G6 → G7
           │  • Licenses verified            │
           │  • URLs extracted               │
           │  • Attribution data ready       │
+          └────────────────┬────────────────┘
+                           │
+          ┌────────────────▼────────────────┐
+          │            G4.7                 │
+          │      R2 IMAGE UPLOAD            │
+          │  ───────────────────────────    │
+          │  • Images uploaded to R2 CDN    │
+          │  • images.ts rewritten to       │
+          │    images.esy.com URLs          │
+          │  • No hotlinked URLs remain     │
+          │  • R2 URLs verified reachable   │
           └────────────────┬────────────────┘
                            │
           ┌────────────────▼────────────────┐
@@ -330,6 +341,7 @@ G1 → G2 → G3 → G4 → G4.1 → G4.5 → G5 → G5.2 → G5.5 → G6 → G7
 | G4 | Design Research | Design Researcher | Production |
 | G4.1 | Design Research Reconciliation | Design Research Reconciliation Agent | Production |
 | G4.5 | Image Sourcing | Image Research Licensing Expert | Production |
+| G4.7 | R2 Image Upload | Image Research Licensing Expert | Production |
 | G5 | Content Complete | Production Orchestrator | Production |
 | G5.2 | Design Research Integration | Design Research Integration Agent | Production |
 | G5.5 | Bibliography Implementation | Bibliography Orchestrator | Production |
@@ -347,7 +359,8 @@ G1 → G2 → G3 → G4 → G4.1 → G4.5 → G5 → G5.2 → G5.5 → G6 → G7
 | **G3** | 6-layer spec complete, all content research-backed, no orphan claims | G4 |
 | **G4** | Unique visual identity derived from subject matter, DESIGN-RESEARCH.md complete | G4.1 |
 | **G4.1** | Thematic authenticity verified, no cross-essay collisions, CSS implements design research | G4.5 |
-| **G4.5** | All images sourced, URLs extracted, licenses verified | G5 |
+| **G4.5** | All images sourced, URLs extracted, licenses verified | G4.7 |
+| **G4.7** | All images uploaded to R2, images.ts rewritten to images.esy.com, no hotlinks remain | G5 |
 | **G5** | All sections drafted, fact-checked, uses research package | G5.2 |
 | **G5.2** | CSS selectors bind to TSX classNames (≥95%), no convention mismatches, markup rendering integrity passes (no raw Unicode escapes in JSX text) | G5.5 |
 | **G5.5** | Bibliography section complete (Works Cited, Image Credits, A/V, Data Sources) | G6 |
@@ -554,6 +567,37 @@ The following anti-patterns are caught by automated contract validations at thei
 
 **Origin**: Discovered during the "Phonē: From Voice to Device" essay (February 2026), where 40+ instances of Unicode escapes for macron-accented Latin characters, Greek text, and typographic dashes rendered as literal escape sequences in the browser.
 
+### Anti-Pattern 3: Self-Certified Audits (Broken Images / Missing Bibliography)
+
+**Problem**: Gate contracts validated only audit documents (`IMAGE_RESEARCH_AUDIT.md`, `CONTENT-BIBLIOGRAPHY-AUDIT.md`), not the actual source code. The same agent that produced the code also wrote the audit reports — self-certifying them as passing. Images used Wikimedia thumbnail URLs (`/commons/thumb/`) which return 404, and the bibliography section was entirely absent.
+
+**Contract Validation**:
+- `url_reachable` on `images.ts` — verifies image URLs return HTTP 2xx (G4.5, G8)
+- `not_contains` for `/commons/thumb/` — catches thumbnail URLs (G4.5, G8)
+- `min_regex_count` for `<img>` tags — catches missing photography (G5)
+- `regex_match` for `from './images'` import — catches hardcoded URLs (G5)
+- `contains_text` for `SOURCES` and `IMAGE_CREDITS` — catches missing bibliography (G5.5, G8)
+- `required_skills` with `image-url-extraction` skill injected into prompt — ensures agent has correct URL extraction procedure in context (G4.5, G5)
+
+**Caught At**: G4.5 (`url_reachable`, `not_contains`), G5 (`regex_match`, `min_regex_count`, `contains_text`), G5.5 (`contains_text`), G8 (`url_reachable` spot-check).
+
+**Origin**: Discovered during the "Seven Million Years" essay (February 2026). All 17 images returned 404 because the skill for extracting correct Wikimedia URLs was never loaded into agent context, and no contract checked the actual URLs. See: [Gate Validation Standard](../../orchestration/standards/gate-validation-standard.md).
+
+### Anti-Pattern 4: Hotlinking External Images
+
+**Problem**: Images referenced directly from external archives (Wikimedia, LOC, etc.) via `images.ts`. Hotlinking creates reliability risks (external 404s, rate limiting, CORS issues), bandwidth theft, and violates best practices for production image delivery.
+
+**Contract Validation**:
+- G4.7 `not_contains` for `upload.wikimedia.org` — catches any remaining hotlinked URLs
+- G4.7 `url_reachable` on `images.esy.com` URLs — verifies R2 upload succeeded
+- G8 `not_contains` for `upload.wikimedia.org` — final defense against hotlinks reintroduced after G4.7
+- G8 `url_reachable` on `images.esy.com` URLs — confirms R2 URLs are still live at publication time
+- G4.7 `required_skills` injects R2 upload procedure — ensures agent knows `scan-hotlinked-images.mjs` + `r2-migrate-flat-url-map.mjs` workflow
+
+**Caught At**: G4.7 (R2 Image Upload), G8 (Publication Certification).
+
+**Origin**: Discovered during the "Seven Million Years" postmortem (February 2026). The `image-url-extraction` skill had no R2 upload phase, and no contract validated for `images.esy.com`. Images were served directly from Wikimedia, creating a dependency on external infrastructure. Fixed by adding G4.7 gate and updating the skill with R2 upload procedure.
+
 ---
 
 ## Related Documents
@@ -585,6 +629,11 @@ The following anti-patterns are caught by automated contract validations at thei
 - [Artifact Citation Patterns Guide](./ARTIFACT_CITATION_PATTERNS_GUIDE.md)
 - [CSS TSX Binding Patterns Guide](./CSS_TSX_BINDING_PATTERNS_GUIDE.md)
 
+### Validation & Contract System
+- [Gate Validation Standard](../../orchestration/standards/gate-validation-standard.md) — Source-code validation, layered defense, skill injection
+- [VALIDATION-REFERENCE.md](../../orchestration/gates/VALIDATION-REFERENCE.md) — Per-type contract schema and examples
+- [Runner README](../../orchestration/runner/README.md) — CLI usage, validation types, required_skills
+
 ### Framework Documentation
 - [FRAMEWORK.md](../../orchestration/FRAMEWORK.md)
 - [META-AGENT-FRAMEWORK.md](../../orchestration/agents/META-AGENT-FRAMEWORK.md)
@@ -592,9 +641,13 @@ The following anti-patterns are caught by automated contract validations at thei
 ---
 
 ## Last Updated
-February 13, 2026
+February 24, 2026
 
 ### Recent Changes
+- Added G4.7 (R2 Image Upload) gate to pipeline — eliminates hotlinking, enforces images.esy.com
+- Added Anti-Pattern 4: Hotlinking External Images
+- Added Anti-Pattern 3: Self-Certified Audits (broken images / missing bibliography from "Seven Million Years")
+- Added Validation & Contract System to Related Documents (Gate Validation Standard, VALIDATION-REFERENCE, Runner README)
 - Added Known Anti-Patterns section documenting automated validations
 - Documented JSX Unicode escape anti-pattern (discovered in Phone essay)
 - Updated G5.2 gate to include Markup Rendering Integrity verification

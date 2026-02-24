@@ -45,6 +45,20 @@
       },
       "severity": "error",
       "description": "Frontmatter status must not be FAIL (parsed from YAML)"
+    },
+    {
+      "type": "min_regex_count",
+      "target": "{client_component}",
+      "regex": "src=\\{IMAGES\\.",
+      "min_count": 3,
+      "severity": "error",
+      "description": "Client component must reference at least 3 images from the IMAGES constant — scroll certification requires visual content actually renders"
+    },
+    {
+      "type": "regex_match",
+      "target": "{client_component}",
+      "regex": "loading=[\"']lazy[\"']",
+      "description": "Client component must use lazy loading on images (loading='lazy') for scroll performance"
     }
   ],
   "notes": "G7 validates that the Immersive Scrolling Auditor has tested scroll-lock behavior, animation performance (60fps target), mobile Safari compatibility, and real device testing. The certification score (≥8.0/10 to pass) and any Tier 1 failures are recorded in the report. No Tier 1 failures are allowed. The not_contains checks now resolve to the actual existing any_of file, preventing silent bypass when the report is at a different path."

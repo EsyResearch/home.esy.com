@@ -1,0 +1,68 @@
+{
+  "gate": "G4.7",
+  "name": "R2 Image Upload",
+  "blocking": true,
+  "description": "Uploads all sourced images to Cloudflare R2 CDN and rewrites images.ts from external URLs to images.esy.com. Hotlinking external image URLs in production is prohibited.",
+  "required_outputs": {
+    "all_of": [
+      {
+        "path": "{artifact_path}/images.ts",
+        "description": "TypeScript image data with all URLs pointing to images.esy.com"
+      }
+    ]
+  },
+  "validations": [
+    {
+      "type": "file_exists",
+      "target": "{artifact_path}/images.ts",
+      "description": "images.ts must exist with R2-hosted URLs"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/images.ts",
+      "pattern": "upload.wikimedia.org",
+      "severity": "error",
+      "description": "No hotlinked Wikimedia URLs — all images must be on images.esy.com"
+    },
+    {
+      "type": "not_contains",
+      "target": "{artifact_path}/images.ts",
+      "pattern": "tile.loc.gov",
+      "severity": "error",
+      "description": "No hotlinked Library of Congress URLs — all images must be on images.esy.com"
+    },
+    {
+      "type": "contains_text",
+      "target": "{artifact_path}/images.ts",
+      "patterns": ["images.esy.com", "as const"],
+      "severity": "error",
+      "description": "images.ts must contain R2-hosted URLs (images.esy.com) and be typed as const"
+    },
+    {
+      "type": "min_regex_count",
+      "target": "{artifact_path}/images.ts",
+      "regex": "https://images\\.esy\\.com/essays/",
+      "min_count": 5,
+      "severity": "error",
+      "description": "At least 5 R2-hosted image URLs must be present (photorealistic essays require substantial photography)"
+    },
+    {
+      "type": "url_reachable",
+      "target": "{artifact_path}/images.ts",
+      "url_pattern": "https://images\\.esy\\.com/[^\"']+",
+      "max_failures": 0,
+      "sample_size": 10,
+      "severity": "error",
+      "description": "All R2-hosted image URLs must return HTTP 2xx — verifies upload completed successfully"
+    }
+  ],
+  "required_skills": [
+    {
+      "path": "orchestration/skills/image-url-extraction",
+      "name": "Image URL Extraction & R2 Upload",
+      "reason": "Agent MUST follow the R2 upload procedure in SKILL.md Step 5 and references/r2-upload.md. Run scan-hotlinked-images.mjs to generate config, then r2-migrate-flat-url-map.mjs to upload and rewrite URLs.",
+      "inject": ["SKILL.md", "references/r2-upload.md"]
+    }
+  ],
+  "notes": "G4.7 runs after G4.5 (Image Sourcing). G4.5 validates that external URLs are correct and reachable; G4.7 then migrates them to R2 and validates that no external URLs remain. The not_contains checks cover Wikimedia, LOC, and other common archive sources. The url_reachable check verifies the R2 URLs are live. If images-migration.json still exists after this gate, it should be deleted (ephemeral artifact)."
+}

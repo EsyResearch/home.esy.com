@@ -1,0 +1,70 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-24T14:43:22.796Z",
+  "finished_at": "2026-02-24T14:54:57.674Z",
+  "agent": "research-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CITATIONS.md",
+    "{artifact_path}/research/CLAIMS.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research/CITATIONS.md",
+      "sha256": "03f16a02e3680b93964732391896703667b8073fc09de9407787060526434b91",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/CITATIONS.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/research/CLAIMS.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "dir_exists",
+      "path": "{artifact_path}/research",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research",
+      "pass": true,
+      "description": "Research directory must exist"
+    },
+    {
+      "type": "min_file_count",
+      "path": "{artifact_path}/research",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research",
+      "pattern": "*.md",
+      "count": 9,
+      "threshold": 6,
+      "depth": "deep",
+      "pass": true,
+      "description": "Research directory must contain minimum number of markdown files based on depth mode"
+    },
+    {
+      "type": "min_sources_any_of",
+      "checked": [
+        "{artifact_path}/research/CITATIONS.md",
+        "{artifact_path}/research/CLAIMS.md"
+      ],
+      "matched": "{artifact_path}/research/CITATIONS.md",
+      "count": 160,
+      "threshold": 15,
+      "depth": "deep",
+      "pass": true,
+      "description": "Source-tracking file (CITATIONS.md or CLAIMS.md) must contain minimum sources based on depth mode"
+    }
+  ],
+  "failure_reason": null
+}

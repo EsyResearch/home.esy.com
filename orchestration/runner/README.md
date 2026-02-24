@@ -309,6 +309,7 @@ Gate contracts are stored in `orchestration/gates/contracts/`:
 | `G4.contract.json` | Design Research | Production | Validates DESIGN-RESEARCH.md exists with color/typography/animation |
 | `G4.1.contract.json` | Design Research Reconciliation | Production | Validates no [UNRECONCILED] or [COLLISION] markers |
 | `G4.5.contract.json` | Image Sourcing | Production | Validates image audit/migration/TS exists |
+| `G4.7.contract.json` | R2 Image Upload | Production | Validates images uploaded to R2, images.ts rewritten to images.esy.com |
 | `G5.contract.json` | Content Complete | Production | Validates page.tsx and CSS implementation exist |
 | `G5.2.contract.json` | Design Research Integration | Production | Validates both implementation and design research files exist |
 | `G5.5.contract.json` | Bibliography Implementation | Production | Validates bibliography audit report exists |
@@ -322,8 +323,28 @@ Gate contracts are stored in `orchestration/gates/contracts/`:
 Contracts support path variables:
 - `{slug}` — The essay/project slug (e.g., `the-geography-of-water-scarcity`)
 - `{artifact_path}` — The essay directory (default: `src/app/essays/{slug}`)
+- `{client_component}` — Auto-discovered `*Client.tsx` or `*Client.jsx` in the artifact directory
 
 **Single-directory convention**: All essay files (implementation, research, design, audits) live together in `src/app/essays/{slug}/`. The runner auto-derives this from `--slug`.
+
+### Required Skills
+
+Contracts can declare skill dependencies via `required_skills`. When present, the prompt generator loads the skill files and injects their full content into the prompt packet. This ensures the executing agent has procedures in context.
+
+```json
+{
+  "required_skills": [
+    {
+      "path": "orchestration/skills/image-url-extraction",
+      "name": "Image URL Extraction",
+      "reason": "Agent MUST follow extraction procedure for direct image URLs.",
+      "inject": ["SKILL.md", "references/wikimedia-commons.md"]
+    }
+  ]
+}
+```
+
+See: [Gate Validation Standard](../standards/gate-validation-standard.md) for the design rationale.
 
 ### Validation Types
 
@@ -335,7 +356,18 @@ Contracts support path variables:
 | `min_sources` | Count sources in a file using multi-heuristic detection |
 | `min_sources_any_of` | Like `min_sources` but checks multiple possible files, uses the best |
 | `contains_headings` | Check for required headings |
+| `contains_text` | Check for required text patterns (AND logic across multiple patterns) |
 | `not_contains` | Warn/fail if pattern found |
+| `frontmatter_status` | Parse YAML frontmatter and check field values (equality, negation, threshold) |
+| `regex_match` | File content must match (or must NOT match) a regex pattern |
+| `min_regex_count` | File must contain at least N occurrences of a regex pattern |
+| `url_reachable` | Extract URLs from file via regex, verify each returns HTTP 2xx |
+
+For complete per-type schema, contract examples, and extension guide, see:
+[VALIDATION-REFERENCE.md](../gates/VALIDATION-REFERENCE.md)
+
+For the design philosophy behind these types (layered defense, source-code validation, skill injection), see:
+[Gate Validation Standard](../standards/gate-validation-standard.md)
 
 ### G2 Research Contract (Flexible, Dual-Profile)
 
@@ -396,6 +428,7 @@ orchestration/
 │   │   ├── G4.contract.json        Design Research
 │   │   ├── G4.1.contract.json      Design Research Reconciliation
 │   │   ├── G4.5.contract.json      Image Sourcing
+│   │   ├── G4.7.contract.json      R2 Image Upload
 │   │   ├── G5.contract.json        Content Complete
 │   │   ├── G5.2.contract.json      Design Research Integration
 │   │   ├── G5.5.contract.json      Bibliography Implementation
@@ -403,15 +436,16 @@ orchestration/
 │   │   ├── G7.contract.json        Scroll Certification
 │   │   ├── G8.contract.json        Publication Certification
 │   │   └── G9.contract.json        Publication Approval
+│   ├── VALIDATION-REFERENCE.md     Per-type contract schema and examples
 │   └── README.md
 ├── runner/
 │   ├── cli.js                      Main CLI entry point
 │   ├── lib/
-│   │   ├── contract-loader.js      Contract loading and path resolution
+│   │   ├── contract-loader.js      Contract loading, path resolution, skill loading
 │   │   ├── hasher.js               SHA256 hashing utilities
-│   │   ├── prompt-generator.js     Prompt packet generation for each gate
+│   │   ├── prompt-generator.js     Prompt packet generation with skill injection
 │   │   ├── run-manager.js          Run record CRUD and gate lifecycle
-│   │   └── validator.js            Validation logic for gate contracts
+│   │   └── validator.js            12-type validation library (see VALIDATION-REFERENCE.md)
 │   ├── workflows/
 │   │   └── visual-essay.json       13-gate workflow definition
 │   └── README.md

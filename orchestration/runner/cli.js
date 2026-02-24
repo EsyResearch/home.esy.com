@@ -402,8 +402,25 @@ async function runVisualEssayPipeline(options) {
       if (v.type === 'min_sources' && !v.pass) {
         console.log(`    Found ${v.count} sources, need ${v.threshold} for depth=${v.depth}`);
       }
+      if (v.type === 'min_regex_count' && !v.pass) {
+        console.log(`    Found ${v.actual_count} occurrences, need at least ${v.min_count}`);
+      }
+      if (v.type === 'url_reachable') {
+        console.log(`    URLs: ${v.ok}/${v.checked} reachable (${v.total_urls} total)`);
+        if (v.failed && v.failed.length > 0) {
+          for (const f of v.failed.slice(0, 5)) {
+            console.log(`    ✗ ${f.status || 'ERR'} ${f.url}${f.error ? ' (' + f.error + ')' : ''}`);
+          }
+          if (v.failed.length > 5) {
+            console.log(`    ... and ${v.failed.length - 5} more`);
+          }
+        }
+      }
       if (v.type === 'contains_headings' && v.missing?.length > 0) {
         console.log(`    Missing terms: ${v.missing.join(', ')}`);
+      }
+      if (v.type === 'contains_text' && v.missing?.length > 0) {
+        console.log(`    Missing: ${v.missing.join(', ')}`);
       }
       if (v.type === 'file_exists_any_of') {
         for (const c of (v.checked || [])) {

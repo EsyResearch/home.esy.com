@@ -1,0 +1,83 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-24T15:11:56.278Z",
+  "finished_at": "2026-02-24T15:13:16.816Z",
+  "agent": "bibliography-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+    "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "sha256": "178b18d156e321be6d36cb67da2ad1f27ac16259ba9b0d4453ba4de7250cbcd4",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Bibliography audit must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "pattern": "Overall Status: ❌",
+      "found": false,
+      "severity": "error",
+      "description": "Bibliography audit must not report overall failure",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/seven-million-years/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "fields": {
+        "gate": "G5.5",
+        "status": "PASS",
+        "slug": "seven-million-years",
+        "auditor": "bibliography-orchestrator",
+        "date": "2026-02-24",
+        "works_cited_count": 23,
+        "image_credits_count": 18,
+        "data_sources_count": 7
+      },
+      "failures": [],
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}
