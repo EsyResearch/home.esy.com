@@ -1,0 +1,8 @@
+{
+  "description": "No page.tsx at all — core artifact file is completely absent.",
+  "extends": "baseline",
+  "exclude": ["page.tsx"],
+  "assertions": [
+    { "gate": "G5", "expect": "fail", "reason": "file_exists check fails for page.tsx" }
+  ]
+}

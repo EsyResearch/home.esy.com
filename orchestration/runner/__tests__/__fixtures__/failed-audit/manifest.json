@@ -1,0 +1,7 @@
+{
+  "description": "Design fidelity audit report has status: FAIL with score 35 and 5 blocking issues.",
+  "extends": "baseline",
+  "assertions": [
+    { "gate": "G5.2", "expect": "fail", "reason": "frontmatter_status detects FAIL in audit report" }
+  ]
+}

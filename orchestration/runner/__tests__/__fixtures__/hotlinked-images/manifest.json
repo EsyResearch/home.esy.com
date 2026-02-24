@@ -1,0 +1,8 @@
+{
+  "description": "images.ts still has upload.wikimedia.org URLs instead of R2-hosted images.esy.com URLs.",
+  "extends": "baseline",
+  "assertions": [
+    { "gate": "G4.7", "expect": "fail", "reason": "not_contains catches upload.wikimedia.org, contains_text fails on images.esy.com" },
+    { "gate": "G8", "expect": "fail", "reason": "Publication gate catches remaining hotlinks in images.ts" }
+  ]
+}

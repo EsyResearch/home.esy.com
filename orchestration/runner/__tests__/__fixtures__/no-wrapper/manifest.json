@@ -1,0 +1,8 @@
+{
+  "description": "Missing ArtifactDetailWrapper in page.tsx — the exact bug from the-speed-of-everything incident.",
+  "extends": "baseline",
+  "assertions": [
+    { "gate": "G5", "expect": "fail", "reason": "page.tsx lacks ArtifactDetailWrapper" },
+    { "gate": "G9", "expect": "fail", "reason": "G9 also requires ArtifactDetailWrapper as final safety net" }
+  ]
+}

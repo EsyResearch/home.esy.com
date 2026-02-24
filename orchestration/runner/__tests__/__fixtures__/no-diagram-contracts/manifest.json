@@ -1,0 +1,7 @@
+{
+  "description": "Client component has no @diagram-contract blocks — raw implementation without invariant documentation.",
+  "extends": "baseline",
+  "assertions": [
+    { "gate": "G5.3", "expect": "fail", "reason": "G5.3 requires @diagram-contract blocks in client component" }
+  ]
+}

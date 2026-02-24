@@ -1,0 +1,8 @@
+{
+  "description": "Client component contains emoji characters (rocket, lightning) instead of SVG icons.",
+  "extends": "baseline",
+  "assertions": [
+    { "gate": "G5", "expect": "fail", "reason": "Emoji regex detects U+1F680 and U+26A1 in JSX" },
+    { "gate": "G6.6", "expect": "fail", "reason": "G6.6 also rejects emoji in client component" }
+  ]
+}

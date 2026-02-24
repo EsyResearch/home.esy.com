@@ -1,0 +1,8 @@
+{
+  "description": "Client component has no Sources or SOURCES section — bibliography attribution missing from rendered output.",
+  "extends": "baseline",
+  "assertions": [
+    { "gate": "G5", "expect": "fail", "reason": "contains_text check fails for Sources/SOURCES" },
+    { "gate": "G8", "expect": "fail", "reason": "Publication gate requires SOURCES and IMAGE_CREDITS in client" }
+  ]
+}

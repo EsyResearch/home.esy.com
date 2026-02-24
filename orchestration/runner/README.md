@@ -401,6 +401,45 @@ node orchestration/runner/cli.js gate start --run $RUN_ID --gate G2 --agent rese
 node orchestration/runner/cli.js gate finish --run $RUN_ID --gate G2
 ```
 
+## Testing
+
+The pipeline has a three-layer test suite:
+
+| Layer | File | What it tests | Run with |
+|-------|------|---------------|----------|
+| Unit | `__tests__/validator.test.js` | Individual validation functions in isolation | `npm run test:validator` |
+| Schema | `__tests__/contracts.test.js` | All `.contract.json` files are structurally valid | `npm run test:contracts` |
+| Regression | `__tests__/regression.test.js` | Persistent fixtures run through real gate contracts | `npm run test:regression` |
+| Smoke | `__tests__/smoke.test.js` | Real HTTP calls to images.esy.com | `npm run test:smoke` |
+
+Run all tests (excluding smoke): `npm test`
+
+### Persistent Fixtures
+
+Regression tests use persistent fixture directories in `__tests__/__fixtures__/`. Each fixture is a directory containing real essay files and a `manifest.json`:
+
+```json
+{
+  "description": "Essay with hotlinked Wikimedia images",
+  "extends": "baseline",
+  "assertions": [
+    { "gate": "G4.7", "expect": "fail", "reason": "images.ts has upload.wikimedia.org URLs" }
+  ]
+}
+```
+
+- **`extends`**: copies all files from that fixture first, then overlays this fixture's files
+- **`exclude`**: array of files to delete after copying (e.g., to test missing page.tsx)
+- **`assertions`**: gate/expect pairs — `"pass"`, `"fail"`, or `"warn"`
+
+To add a new test case: create a folder in `__fixtures__/`, add `manifest.json`, drop in the broken file(s). No code changes needed.
+
+### Pre-commit Hook
+
+Install: `npm run test:install-hook`
+
+Automatically runs `npm test` when files in `orchestration/` are staged. Blocks the commit if tests fail.
+
 ## Non-Goals
 
 This runner does NOT:
@@ -448,6 +487,17 @@ orchestration/
 │   │   └── validator.js            12-type validation library (see VALIDATION-REFERENCE.md)
 │   ├── workflows/
 │   │   └── visual-essay.json       13-gate workflow definition
+│   ├── __tests__/
+│   │   ├── __fixtures__/            Persistent test fixtures (baseline + failure scenarios)
+│   │   │   ├── baseline/            Known-good essay (passes all gates)
+│   │   │   ├── no-wrapper/          Missing ArtifactDetailWrapper
+│   │   │   ├── emoji-in-client/     Emoji in client component
+│   │   │   ├── hotlinked-images/    upload.wikimedia.org URLs in images.ts
+│   │   │   └── ...
+│   │   ├── validator.test.js        Unit tests
+│   │   ├── contracts.test.js        Schema tests
+│   │   ├── regression.test.js       Fixture-based regression tests
+│   │   └── smoke.test.js            Network smoke tests
 │   └── README.md
 └── runs/
     └── <run-id>/

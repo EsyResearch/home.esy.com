@@ -10,6 +10,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
+const http = require('http');
 const {
   fileExists,
   dirExists,
@@ -21,6 +22,8 @@ const {
   frontmatterStatus,
   parseFrontmatter,
   regexMatch,
+  minRegexCount,
+  urlReachable,
   resolveAnyOfTarget,
 } = require('../lib/validator');
 
@@ -400,6 +403,123 @@ describe('regexMatch', () => {
 
   it('fails when file does not exist', () => {
     const result = regexMatch(path.join(tmpDir, 'nope.tsx'), 'anything');
+    assert.equal(result.pass, false);
+  });
+});
+
+// --- minRegexCount ---
+
+describe('minRegexCount', () => {
+  beforeEach(setup);
+  afterEach(teardown);
+
+  it('passes when count meets minimum', () => {
+    const content = [
+      'url1: "https://images.esy.com/essays/test/a.webp",',
+      'url2: "https://images.esy.com/essays/test/b.webp",',
+      'url3: "https://images.esy.com/essays/test/c.webp",',
+      'url4: "https://images.esy.com/essays/test/d.webp",',
+      'url5: "https://images.esy.com/essays/test/e.webp",',
+    ].join('\n');
+    const p = writeTemp('images.ts', content);
+    const result = minRegexCount(p, 'https://images\\.esy\\.com/essays/', 3);
+    assert.equal(result.pass, true);
+    assert.equal(result.count, 5);
+  });
+
+  it('fails when count is below minimum', () => {
+    const p = writeTemp('images.ts', 'url: "https://images.esy.com/essays/test/a.webp"');
+    const result = minRegexCount(p, 'https://images\\.esy\\.com/essays/', 3);
+    assert.equal(result.pass, false);
+    assert.equal(result.count, 1);
+  });
+
+  it('fails with zero matches', () => {
+    const p = writeTemp('images.ts', 'no urls here at all');
+    const result = minRegexCount(p, 'https://images\\.esy\\.com/', 1);
+    assert.equal(result.pass, false);
+    assert.equal(result.count, 0);
+  });
+
+  it('passes at exact threshold', () => {
+    const content = [
+      '"https://images.esy.com/a.webp"',
+      '"https://images.esy.com/b.webp"',
+      '"https://images.esy.com/c.webp"',
+    ].join('\n');
+    const p = writeTemp('images.ts', content);
+    const result = minRegexCount(p, 'https://images\\.esy\\.com/', 3);
+    assert.equal(result.pass, true);
+    assert.equal(result.count, 3);
+  });
+
+  it('fails when file does not exist', () => {
+    const result = minRegexCount(path.join(tmpDir, 'nope.ts'), 'pattern', 1);
+    assert.equal(result.pass, false);
+  });
+});
+
+// --- urlReachable ---
+
+describe('urlReachable', () => {
+  let server;
+  let port;
+
+  beforeEach(async () => {
+    setup();
+    await new Promise((resolve) => {
+      server = http.createServer((req, res) => {
+        if (req.url === '/ok.webp') {
+          res.writeHead(200, { 'content-type': 'image/webp' });
+          res.end();
+        } else {
+          res.writeHead(404);
+          res.end();
+        }
+      });
+      server.listen(0, () => {
+        port = server.address().port;
+        resolve();
+      });
+    });
+  });
+
+  afterEach(async () => {
+    teardown();
+    await new Promise((resolve) => server.close(resolve));
+  });
+
+  it('passes when all URLs are reachable', async () => {
+    const content = [
+      `img1: "http://localhost:${port}/ok.webp",`,
+      `img2: "http://localhost:${port}/ok.webp",`,
+    ].join('\n');
+    const p = writeTemp('images.ts', content);
+    const result = await urlReachable(p, `http://localhost:${port}/[^"]+`);
+    assert.equal(result.pass, true);
+    assert.equal(result.ok, result.checked);
+  });
+
+  it('fails when URLs return 404', async () => {
+    const content = `img: "http://localhost:${port}/missing.jpg"`;
+    const p = writeTemp('images.ts', content);
+    const result = await urlReachable(p, `http://localhost:${port}/[^"]+`);
+    assert.equal(result.pass, false);
+    assert.ok(result.failed.length > 0);
+  });
+
+  it('passes with max_failures tolerance', async () => {
+    const content = [
+      `ok: "http://localhost:${port}/ok.webp",`,
+      `bad: "http://localhost:${port}/missing.jpg",`,
+    ].join('\n');
+    const p = writeTemp('images.ts', content);
+    const result = await urlReachable(p, `http://localhost:${port}/[^"]+`, { max_failures: 1 });
+    assert.equal(result.pass, true);
+  });
+
+  it('fails when file does not exist', async () => {
+    const result = await urlReachable(path.join(tmpDir, 'nope.ts'));
     assert.equal(result.pass, false);
   });
 });

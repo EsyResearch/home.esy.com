@@ -1,0 +1,7 @@
+{
+  "description": "Client component contains AI slop phrases: 'delve', 'tapestry', 'fascinating journey'.",
+  "extends": "baseline",
+  "assertions": [
+    { "gate": "G6.6", "expect": "warn", "reason": "AI slop regex matches but severity is warning, gate still passes" }
+  ]
+}

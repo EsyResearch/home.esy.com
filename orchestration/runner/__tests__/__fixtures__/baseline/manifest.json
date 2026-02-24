@@ -1,0 +1,12 @@
+{
+  "description": "Known-good essay that passes all gates. Used as the base for most failure fixtures via 'extends'.",
+  "assertions": [
+    { "gate": "G5", "expect": "pass" },
+    { "gate": "G5.2", "expect": "pass" },
+    { "gate": "G5.3", "expect": "pass" },
+    { "gate": "G6.6", "expect": "pass" },
+    { "gate": "G4.7", "expect": "pass" },
+    { "gate": "G8", "expect": "pass" },
+    { "gate": "G9", "expect": "pass" }
+  ]
+}

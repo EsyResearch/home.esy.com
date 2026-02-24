@@ -1,7 +1,8 @@
 # Pipeline Testing Standard: Proving Gates Do What They Say
 
-> Version: 1.0
+> Version: 1.1
 > Created: February 9, 2026
+> Updated: February 24, 2026
 > Status: Active
 
 ## Purpose
@@ -66,6 +67,8 @@ These are fast, isolated, and use temp files. Every validation type in `validato
 - `notContains` — forbidden patterns, **including the critical missing-file behavior**
 - `frontmatterStatus` — YAML parsing with equality, negation, and threshold checks
 - `regexMatch` — pattern matching with Unicode support and `must_not_match` mode
+- `minRegexCount` — minimum occurrence counting with regex patterns
+- `urlReachable` — HTTP HEAD requests with local server mock (pass, 404, max_failures tolerance, missing file)
 - `resolveAnyOfTarget` — fallback resolution for `any_of` outputs
 
 **The critical test**: `notContains` on a missing file MUST FAIL by default. This was the silent bypass that let fabricated audits through. The test for this behavior is a regression guardrail — if anyone changes `notContains` to pass on missing files again, the test breaks immediately.
@@ -100,6 +103,9 @@ These tests load every contract file and verify structural correctness. They are
 | `contains_text` validations have patterns | Empty pattern arrays that always pass |
 | `frontmatter_status` validations have checks | Missing check definitions |
 | `regex_match` patterns compile without error | Invalid regex that would crash at runtime |
+| `min_regex_count` has valid regex + min_count > 0 | Malformed counting validations |
+| `url_reachable` url_pattern is valid regex | Invalid URL patterns that crash extraction |
+| `required_skills` paths exist on disk | Contracts referencing skills that don't exist |
 
 **The critical test**: Validation type existence. If a contract declares `"type": "contract_coverage"` and the validator doesn't implement it, this test fails. This is how we prevent the exact class of bug that let `@diagram-contract` enforcement silently disappear.
 
@@ -113,30 +119,40 @@ These tests load every contract file and verify structural correctness. They are
 
 > "Does the full contract → validator chain catch real failures?"
 
-These tests are the most important. They create synthetic essay fixtures (a temporary directory with real files), run actual gate contracts against them, and verify the correct pass/fail outcome.
+These tests are the most important. They use **persistent fixture directories** — real essay files committed to the repo — and run actual gate contracts against them to verify the correct pass/fail outcome.
 
 **What's tested:**
 
-| Scenario | Expected Result | Why It Matters |
-|----------|----------------|----------------|
-| Known-good essay with all artifacts | All gates PASS | Proves contracts don't have false positives |
-| Missing `ArtifactDetailWrapper` | G5 and G9 FAIL | The speed-of-everything bug |
-| Emoji in client component | G5 and G6.6 FAIL | Anti-pattern enforcement |
-| AI slop phrases in prose | G6.6 warns | Prose quality gate detects patterns |
-| Missing `@diagram-contract` blocks | G5.3 FAILS | Diagram contract enforcement |
-| Audit report with `status: FAIL` | G5.2 FAILS | Failed audits block pipeline |
-| Missing `page.tsx` entirely | G5 FAILS | Core artifact enforcement |
-| Rejected publication (`REJECTED`) | G9 FAILS | Rejection marker enforcement |
-| Missing audit file (all paths) | Gate FAILS | RC-3 fix: `not_contains` on missing files |
-| All three original bugs at once | G5, G5.3, G6.6, G9 all FAIL | Compound regression |
+| Fixture | Expected Result | Why It Matters |
+|---------|----------------|----------------|
+| `baseline` (known-good essay) | All tested gates PASS | Proves contracts don't have false positives |
+| `no-wrapper` | G5 and G9 FAIL | The speed-of-everything bug |
+| `emoji-in-client` | G5 and G6.6 FAIL | Anti-pattern enforcement |
+| `ai-slop` | G6.6 warns | Prose quality gate detects patterns |
+| `no-diagram-contracts` | G5.3 FAILS | Diagram contract enforcement |
+| `failed-audit` | G5.2 FAILS | Failed audits block pipeline |
+| `missing-page` | G5 FAILS | Core artifact enforcement |
+| `rejected-publication` | G9 FAILS | Rejection marker enforcement |
+| `hotlinked-images` | G4.7 and G8 FAIL | R2 enforcement (no Wikimedia hotlinks) |
+| `missing-bibliography` | G5 and G8 FAIL | Sources/bibliography required |
 
-**The critical test**: "The original speed-of-everything failures." This test recreates the exact combination of bugs from the incident — missing wrapper, emoji, no diagram-contracts — in a single fixture and verifies that MULTIPLE gates independently catch the problems. If the pipeline is ever weakened to the point where this essay could pass, this test screams.
+**Fixture strategy**: Persistent directories in `__tests__/__fixtures__/`. Each fixture has a `manifest.json` declaring which gates to test and expected outcomes. The test runner auto-discovers all fixtures — adding a test case is creating a directory, not writing code. See "Persistent Fixture System" below.
 
-**Fixture strategy**: Tests create temporary essay directories inside the real repo (needed for `contract-loader.js` path resolution to work), run contracts, then clean up. No persistent fixture files committed. Every test is self-contained.
-
-**Coverage rule**: Every known failure mode from a postmortem MUST become a regression test. The test name should reference the root cause ID (e.g., "RC-3 fix: not_contains on missing files").
+**Coverage rule**: Every known failure mode from a postmortem MUST become a fixture. The manifest description should reference the incident.
 
 **File**: `orchestration/runner/__tests__/regression.test.js`
+
+### Layer 4: Smoke Tests
+
+> "Are R2 image URLs actually live in production?"
+
+Smoke tests make real HTTP HEAD requests to `images.esy.com` URLs found across all published essays. They verify that images uploaded to R2 are reachable. These are NOT run in `npm test` — they require network access and hit production infrastructure.
+
+**Run**: `npm run test:smoke`
+
+**When to use**: After an R2 migration, before publication, or as a periodic health check.
+
+**File**: `orchestration/runner/__tests__/smoke.test.js`
 
 ---
 
@@ -212,35 +228,87 @@ Every regression test is an application of this principle. The known-bad fixture
 
 ---
 
-## Fixture Design Principles
+## Persistent Fixture System
 
-### Known-Good Fixtures
+Regression tests use persistent fixture directories committed to the repo at `orchestration/runner/__tests__/__fixtures__/`. Each fixture is a directory containing real essay files and a `manifest.json`.
 
-A known-good fixture is a synthetic essay that satisfies ALL contracts for the tested gates. It serves as the baseline — if a known-good fixture starts failing, something broke in the pipeline itself.
+### Directory Structure
 
-**Requirements:**
-- `page.tsx` with `ArtifactDetailWrapper`, `ESSAY_META`, and `@/components/ArtifactDetail` import
-- Client component with `@diagram-contract` blocks, NO emoji, NO AI slop phrases
-- CSS file with design tokens
-- All required audit reports with `status: PASS` frontmatter
-- CITATIONS.md with ≥ 8 sources
-- All gate-specific artifacts (DESIGN-RESEARCH.md, reconciliation reports, etc.)
+```
+__fixtures__/
+  baseline/                         Known-good essay (passes all gates)
+    manifest.json
+    page.tsx
+    TestEssayClient.tsx
+    images.ts
+    test-fixture.css
+    G1-INTAKE.md
+    DESIGN-RESEARCH.md
+    ...audit markdown files...
+    research/
+      CITATIONS.md
+      PROSE-QUALITY-AUDIT.md
+      PUBLICATION-CERTIFICATION.md
+      ...
+  no-wrapper/                       Bad: missing ArtifactDetailWrapper
+    manifest.json
+    page.tsx                        The one broken file
+  hotlinked-images/                 Bad: Wikimedia URLs in images.ts
+    manifest.json
+    images.ts                       The one broken file
+```
 
-### Known-Bad Fixtures
+### manifest.json
 
-A known-bad fixture intentionally violates a specific contract requirement. Each known-bad fixture should test exactly ONE failure mode (though compound tests are also valuable).
+```json
+{
+  "description": "Essay with hotlinked Wikimedia images instead of R2 URLs",
+  "extends": "baseline",
+  "exclude": [],
+  "assertions": [
+    { "gate": "G4.7", "expect": "fail", "reason": "images.ts has upload.wikimedia.org URLs" },
+    { "gate": "G8", "expect": "fail", "reason": "Publication gate catches remaining hotlinks" }
+  ]
+}
+```
 
-**Design rules:**
-- Start from the known-good fixture and break exactly one thing
-- The fixture name should describe what's broken (e.g., `createBadEssay_NoWrapper`)
-- The test should assert the SPECIFIC validation that catches the failure, not just `result.pass === false`
-- If the failure should be caught by multiple gates, test all of them
+- **`description`**: Why this fixture exists and what it tests.
+- **`extends`**: (optional) Name of another fixture to copy as the base. Most bad fixtures extend `baseline`.
+- **`exclude`**: (optional) Files to delete after copying the base (e.g., to test a missing `page.tsx`).
+- **`assertions`**: Gate/expect pairs. `"pass"`, `"fail"`, or `"warn"`.
+
+### How the Test Runner Works
+
+1. Scans `__fixtures__/` for directories containing `manifest.json`
+2. For each fixture, reads the manifest
+3. If `extends` is set, copies the base fixture into a temp dir, then overlays this fixture's files
+4. If `exclude` is set, deletes those files
+5. Runs each assertion's gate against the temp dir
+6. Asserts pass/fail matches the expectation
+7. Cleans up the temp dir
+
+`url_reachable` validations are filtered out in regression tests — those require real network calls and are covered by the smoke test layer.
+
+### Adding a New Test Case
+
+1. Create a directory in `__fixtures__/` with a descriptive name
+2. Add a `manifest.json` with `extends: "baseline"` and assertions
+3. Drop in the broken file(s) that override the baseline
+4. Run `npm run test:regression` — the new test should be auto-discovered
+
+No code changes to `regression.test.js` needed.
+
+### Fixture Design Rules
+
+- Each fixture should test ONE failure mode (or a documented compound scenario)
+- Bad fixtures should `extends: "baseline"` and override only the broken file(s)
+- The fixture directory name should describe what's wrong (`hotlinked-images`, `no-wrapper`)
+- The `manifest.json` description should reference the incident or postmortem that motivated it
+- If a failure should be caught by multiple gates, add assertions for all of them
 
 ### Fixture Lifecycle
 
-Tests create temporary directories inside the repo at `src/app/essays/__test-essay-{timestamp}/`. This is necessary because `contract-loader.js` resolves paths relative to the repo root. Tests MUST clean up after themselves in `afterEach`.
-
-**Never commit fixture files.** All fixtures are created programmatically in tests.
+At runtime, the test runner copies fixture files into a temporary essay directory at `src/app/essays/__test-fixture-{timestamp}/` (needed for `contract-loader.js` path resolution). Tests clean up automatically in `afterEach`.
 
 ---
 
@@ -274,10 +342,11 @@ The pipeline uses Node.js built-in test runner (`node:test`) — zero dependenci
 
 | Command | Scope | When to Use |
 |---------|-------|-------------|
-| `npm test` | All test files | Before any merge, after any pipeline change |
+| `npm test` | Validator + contracts + regression | Before any merge, after any pipeline change |
 | `npm run test:validator` | `validator.test.js` | After modifying `validator.js` |
 | `npm run test:contracts` | `contracts.test.js` | After modifying any `.contract.json` or `visual-essay.json` |
 | `npm run test:regression` | `regression.test.js` | After modifying contracts or validators, after postmortems |
+| `npm run test:smoke` | `smoke.test.js` | After R2 migrations, before publication (requires network) |
 
 ### Test Output
 
@@ -294,6 +363,18 @@ Any non-zero fail count means the pipeline has a leak.
 
 ---
 
+## Pre-Commit Enforcement
+
+A git pre-commit hook runs `npm test` whenever files in `orchestration/` are staged. If any test fails, the commit is blocked.
+
+**Install**: `npm run test:install-hook`
+
+This ensures that pipeline infrastructure changes are always tested before they hit the repo. The hook only triggers for `orchestration/` changes — frontend, content, and other files are unaffected.
+
+To bypass in emergencies: `git commit --no-verify` (not recommended).
+
+---
+
 ## Anti-Patterns
 
 | Anti-Pattern | Why It's Dangerous | Do This Instead |
@@ -301,7 +382,7 @@ Any non-zero fail count means the pipeline has a leak.
 | Modifying `validator.js` without running tests | Regression risk on all validation types | Run `npm run test:validator` after every change |
 | Adding a validation type to a contract without checking it's implemented | Phantom type silently skipped | `npm run test:contracts` catches this |
 | Writing a postmortem without a regression test | The same leak can recur | Write the test in the same session as the fix |
-| Committing fixture files | Pollutes the repo, fixtures drift | Create fixtures programmatically in tests |
+| Adding test scenarios by editing regression.test.js | Couples test data to test code | Create a fixture directory with manifest.json instead |
 | Testing only happy paths | Leaky gates pass happy paths by definition | Every known-bad fixture is a sad-path test |
 | Skipping `npm test` before essay production | Building on a broken pipeline | Always verify the pipeline before using it |
 | Fixing a validator bug without understanding WHY it was wrong | Superficial fix may not cover all cases | Write the unit test first, understand the edge case |
@@ -361,6 +442,7 @@ Tests do NOT prove the architecture is correct. They prove the architecture is f
 | Version | Date | Change |
 |---------|------|--------|
 | 1.0 | 2026-02-09 | Initial standard — testing pyramid, fixture strategy, coverage requirements, TDD for pipeline changes, leaky gate anti-pattern. Born from the "Speed of Everything" postmortem: 10 root causes, 3 caused by untested infrastructure. |
+| 1.1 | 2026-02-24 | Persistent fixture system replaces programmatic fixtures. Added Layer 4 (smoke tests) for `url_reachable` with real network calls. Added `min_regex_count`, `url_reachable`, `required_skills` to schema tests. Added pre-commit hook enforcement. Added 2 new fixture scenarios: `hotlinked-images` (G4.7/G8) and `missing-bibliography` (G5/G8). |
 
 ---
 

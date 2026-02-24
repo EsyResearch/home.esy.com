@@ -1,0 +1,7 @@
+{
+  "description": "Publication approval is REJECTED — director sign-off denied.",
+  "extends": "baseline",
+  "assertions": [
+    { "gate": "G9", "expect": "fail", "reason": "not_contains catches REJECTED, frontmatter_status catches FAIL" }
+  ]
+}

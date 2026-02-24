@@ -32,6 +32,8 @@ const IMPLEMENTED_VALIDATION_TYPES = new Set([
   'not_contains',
   'frontmatter_status',
   'regex_match',
+  'min_regex_count',
+  'url_reachable',
 ]);
 
 // Valid path template variables
@@ -260,6 +262,101 @@ describe('frontmatter_status validations have checks', () => {
           `${file} has frontmatter_status validation without checks`
         );
       });
+    }
+  }
+});
+
+describe('min_regex_count validations have regex and min_count', () => {
+  const contracts = loadAllContracts();
+  
+  for (const { file, contract } of contracts) {
+    if (!contract.validations) continue;
+    
+    const mrcValidations = contract.validations.filter(v => v.type === 'min_regex_count');
+    
+    for (const v of mrcValidations) {
+      it(`${file} min_regex_count has regex defined`, () => {
+        assert.ok(v.regex, `${file} has min_regex_count validation without regex field`);
+      });
+
+      it(`${file} min_regex_count regex "${v.regex}" is valid`, () => {
+        assert.doesNotThrow(() => {
+          new RegExp(v.regex, 'gm');
+        }, `${file} regex "${v.regex}" is not a valid regular expression`);
+      });
+
+      it(`${file} min_regex_count has min_count > 0`, () => {
+        assert.ok(typeof v.min_count === 'number' && v.min_count > 0,
+          `${file} has min_regex_count without a valid min_count (got ${v.min_count})`);
+      });
+    }
+  }
+});
+
+describe('url_reachable validations have valid config', () => {
+  const contracts = loadAllContracts();
+  
+  for (const { file, contract } of contracts) {
+    if (!contract.validations) continue;
+    
+    const urValidations = contract.validations.filter(v => v.type === 'url_reachable');
+    
+    for (const v of urValidations) {
+      if (v.url_pattern) {
+        it(`${file} url_reachable url_pattern "${v.url_pattern}" is a valid regex`, () => {
+          assert.doesNotThrow(() => {
+            new RegExp(v.url_pattern, 'g');
+          }, `${file} url_pattern "${v.url_pattern}" is not a valid regular expression`);
+        });
+      }
+
+      if (v.max_failures !== undefined) {
+        it(`${file} url_reachable max_failures is a non-negative number`, () => {
+          assert.ok(typeof v.max_failures === 'number' && v.max_failures >= 0,
+            `${file} url_reachable max_failures must be >= 0 (got ${v.max_failures})`);
+        });
+      }
+
+      if (v.sample_size !== undefined) {
+        it(`${file} url_reachable sample_size is a positive number`, () => {
+          assert.ok(typeof v.sample_size === 'number' && v.sample_size > 0,
+            `${file} url_reachable sample_size must be > 0 (got ${v.sample_size})`);
+        });
+      }
+    }
+  }
+});
+
+describe('required_skills have valid structure', () => {
+  const contracts = loadAllContracts();
+  
+  for (const { file, contract } of contracts) {
+    if (!contract.required_skills) continue;
+    
+    for (const skill of contract.required_skills) {
+      it(`${file} required_skill has path`, () => {
+        assert.ok(typeof skill.path === 'string' && skill.path.length > 0,
+          `${file} required_skill missing "path" field`);
+      });
+
+      it(`${file} required_skill has inject array`, () => {
+        assert.ok(Array.isArray(skill.inject) && skill.inject.length > 0,
+          `${file} required_skill missing or empty "inject" array`);
+      });
+
+      it(`${file} required_skill path "${skill.path}" exists on disk`, () => {
+        const skillDir = path.join(REPO_ROOT, skill.path);
+        assert.ok(fs.existsSync(skillDir),
+          `${file} required_skill path "${skill.path}" does not exist`);
+      });
+
+      for (const injectFile of skill.inject) {
+        it(`${file} required_skill inject file "${injectFile}" exists`, () => {
+          const filePath = path.join(REPO_ROOT, skill.path, injectFile);
+          assert.ok(fs.existsSync(filePath),
+            `${file} inject file "${skill.path}/${injectFile}" does not exist`);
+        });
+      }
     }
   }
 });
