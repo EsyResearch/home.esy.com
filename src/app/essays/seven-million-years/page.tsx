@@ -56,6 +56,8 @@ export const metadata = createVisualEssayMetadata({
   ogTitle: 'Seven Million Years: The Complete Visual History of Our Kind',
   ogDescription:
     'A comprehensive visual essay tracing 7 million years of hominin evolution -- from the earliest bipedal apes to the sole surviving species.',
+  ogImage:
+    'https://images.esy.com/essays/seven-million-years/seven-million-years-og.f9e61cbb59.webp',
   keywords: [
     'human evolution',
     'hominid',
