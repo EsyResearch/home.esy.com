@@ -48,7 +48,7 @@ const ESSAY_META = {
 };
 
 export const metadata = createVisualEssayMetadata({
-  slug: 'seven-million-years',
+  slug: 'science/seven-million-years',
   basePath: 'essays',
   title: 'Seven Million Years: The Complete Visual History of Our Kind | Esy',
   description:
@@ -77,11 +77,11 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Article",
-      "@id": "https://esy.com/essays/seven-million-years/#article",
+      "@id": "https://esy.com/essays/science/seven-million-years/#article",
       "headline": "Seven Million Years: The Complete Visual History of Our Kind",
       "description":
         "A comprehensive visual essay tracing 7 million years of hominin evolution -- from the earliest bipedal apes to the sole surviving species. Featuring interactive migration maps, species comparisons, and the story of why we're the last ones standing.",
-      "url": "https://esy.com/essays/seven-million-years/",
+      "url": "https://esy.com/essays/science/seven-million-years/",
       "datePublished": "2026-02-24",
       "dateModified": "2026-02-24",
       "author": {
@@ -96,7 +96,7 @@ const jsonLd = {
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://esy.com/essays/seven-million-years/",
+        "@id": "https://esy.com/essays/science/seven-million-years/",
       },
       "keywords":
         "human evolution, hominid, paleoanthropology, Homo sapiens, Neanderthal, fossil record, deep time, migration",
@@ -123,7 +123,7 @@ const jsonLd = {
           "@type": "ListItem",
           "position": 3,
           "name": "Seven Million Years",
-          "item": "https://esy.com/essays/seven-million-years/",
+          "item": "https://esy.com/essays/science/seven-million-years/",
         },
       ],
     },

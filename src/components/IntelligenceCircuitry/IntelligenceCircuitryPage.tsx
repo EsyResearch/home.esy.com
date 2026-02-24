@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, FileText, Layers, BarChart3, FileSpreadsheet, Clock, Sun, Moon } from 'lucide-react';
 import CircuitCanvas from './CircuitCanvas';
-import { publishedVisualEssays, CATEGORY_COLORS, type VisualEssay } from '@/data/visualEssays';
+import { publishedVisualEssays, CATEGORY_COLORS, isNewEssay, type VisualEssay } from '@/data/visualEssays';
 import './IntelligenceCircuitryPage.css';
 
 /**
@@ -426,7 +426,7 @@ const IntelligenceCircuitryPage: React.FC = () => {
                       {essay.category}
                     </span>
                     <span className="ic-artifact-badge">Artifact</span>
-                    {essay.isNew && <span className="ic-artifact-new">New</span>}
+                    {isNewEssay(essay) && <span className="ic-artifact-new">New</span>}
                   </div>
                   <h3 className="ic-artifact-title">{essay.title}</h3>
                   <p className="ic-artifact-subtitle">{essay.subtitle}</p>

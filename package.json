@@ -27,6 +27,7 @@
     "@mux/mux-player-react": "^3.11.4",
     "@next/mdx": "^15.3.4",
     "@types/three": "^0.182.0",
+    "d3": "^7.9.0",
     "d3-axis": "^3.0.0",
     "d3-geo": "^3.1.1",
     "d3-hierarchy": "^3.1.2",
@@ -57,6 +58,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/d3": "^7.4.3",
     "@types/node": "^22.14.0",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.1",

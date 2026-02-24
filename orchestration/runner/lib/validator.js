@@ -316,7 +316,7 @@ function minRegexCount(filePath, regexStr, minCount) {
  * @param {string} url - URL to check
  * @returns {Promise<{status: number, ok: boolean, error?: string}>}
  */
-function headRequest(url, redirectCount = 0) {
+function headRequest(url, redirectCount = 0, retryCount = 0) {
   return new Promise((resolve) => {
     if (redirectCount > 5) {
       resolve({ status: 0, ok: false, error: 'Too many redirects' });
@@ -327,10 +327,15 @@ function headRequest(url, redirectCount = 0) {
     const req = proto.request(url, {
       method: 'HEAD',
       timeout: 10000,
-      headers: { 'User-Agent': 'EsyOrchestratorBot/1.0 (gate-validator; +https://esy.com)' }
+      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; EsyBot/1.0; +https://esy.com)' }
     }, (res) => {
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-        resolve(headRequest(res.headers.location, redirectCount + 1));
+        resolve(headRequest(res.headers.location, redirectCount + 1, 0));
+        return;
+      }
+      if (res.statusCode === 429 && retryCount < 3) {
+        const delay = (retryCount + 1) * 2000;
+        setTimeout(() => resolve(headRequest(url, redirectCount, retryCount + 1)), delay);
         return;
       }
       resolve({ status: res.statusCode, ok: res.statusCode >= 200 && res.statusCode < 300 });
@@ -379,15 +384,17 @@ async function urlReachable(filePath, urlPattern, options = {}) {
   const maxFailures = options.max_failures || 0;
   const failed = [];
 
-  const results = await Promise.all(
-    toCheck.map(async (url) => {
-      const result = await headRequest(url);
-      if (!result.ok) {
-        failed.push({ url, status: result.status, error: result.error });
-      }
-      return result;
-    })
-  );
+  const results = [];
+  for (const url of toCheck) {
+    const result = await headRequest(url);
+    if (!result.ok) {
+      failed.push({ url, status: result.status, error: result.error });
+    }
+    results.push(result);
+    if (toCheck.indexOf(url) < toCheck.length - 1) {
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
+  }
 
   const okCount = results.filter(r => r.ok).length;
 

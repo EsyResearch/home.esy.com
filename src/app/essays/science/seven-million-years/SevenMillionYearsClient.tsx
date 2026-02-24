@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { ScatterChart, Scatter, BarChart, Bar, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, Cell } from 'recharts';
 import { IMAGES, IMAGE_CREDITS, SOURCES } from './images';
 
@@ -418,7 +419,7 @@ export default function SevenMillionYearsClient() {
           </div>
 
           <p>
-            The most celebrated of them is Lucy&mdash;AL 288-1&mdash;a
+            The most celebrated of them is <Link href="/essays/science/lucy" className="smy-narrative__link">Lucy</Link>&mdash;AL 288-1&mdash;a
             3.2-million-year-old partial skeleton of{' '}
             <em className="smy-narrative__species-name">Australopithecus afarensis</em>{' '}
             found at Hadar, Ethiopia, in 1974 by Donald Johanson and Tom Gray.
@@ -1351,6 +1352,21 @@ export default function SevenMillionYearsClient() {
             estimates adapted from the frameworks of Finlayson (2004), Stringer
             (2012), and Wynn &amp; Coolidge (2012).
           </p>
+
+          <div className="smy-sources__further-reading">
+            <h3 className="smy-sources__credits-title">Further Reading</h3>
+            <ul className="smy-sources__credits-list">
+              <li className="smy-sources__credits-item">
+                <Link href="/essays/science/lucy" className="smy-narrative__link">
+                  Lucy: Before the Genus Homo
+                </Link>
+                {' \u2014 '}
+                A deep-dive visual essay on AL 288-1, the 3.2-million-year-old{' '}
+                <em>Australopithecus afarensis</em> skeleton that transformed our
+                understanding of bipedalism and human origins.
+              </li>
+            </ul>
+          </div>
         </div>
       </Section>
     </article>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, Brain, Sparkles } from "lucide-react";
+import { isNewEssay } from "@/data/visualEssays";
 
 export const metadata: Metadata = {
   title: "Intelligence Essays - How the Mind Works | Esy",
@@ -40,7 +41,7 @@ const essays = [
     description:
       "Your brain doesn't react to the world — it predicts it. Understand predictive processing through clear diagrams.",
     readTime: "12 min",
-    isNew: true,
+    publishedDate: "2026-02-01",
     tags: ["Neuroscience", "Perception", "Learning"],
   },
   // Future essays will be added here
@@ -184,7 +185,7 @@ export default function IntelligenceEssaysPage() {
                 >
                   {essay.title}
                 </h2>
-                {essay.isNew && (
+                {isNewEssay(essay as any) && (
                   <span
                     style={{
                       display: "inline-flex",

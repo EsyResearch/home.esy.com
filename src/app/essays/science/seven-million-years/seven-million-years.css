@@ -227,6 +227,18 @@
   white-space: nowrap;
 }
 
+.smy-narrative__link {
+  color: var(--smy-yellow-ochre);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.2s ease;
+}
+
+.smy-narrative__link:hover {
+  color: var(--smy-ochre-red);
+}
+
 /* ── Quote ── */
 
 .smy-quote {

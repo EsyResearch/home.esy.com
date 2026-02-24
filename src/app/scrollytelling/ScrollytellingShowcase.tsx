@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Play, Sparkles } from "lucide-react";
-import { publishedVisualEssays, CATEGORY_COLORS, type VisualEssay } from "@/data/visualEssays";
+import { publishedVisualEssays, CATEGORY_COLORS, isNewEssay, type VisualEssay } from "@/data/visualEssays";
 import './scrollytelling-showcase.css';
 
 /*
@@ -176,7 +176,7 @@ const StoryCard: React.FC<StoryCardProps> = ({ story }) => {
           >
             {story.category}
           </span>
-          {story.isNew && <span className="story-new-badge">New</span>}
+          {isNewEssay(story) && <span className="story-new-badge">New</span>}
         </div>
         
         <h3 className="story-title">{story.title}</h3>

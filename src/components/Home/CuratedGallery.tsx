@@ -7,6 +7,7 @@ import { Clock, ArrowRight } from 'lucide-react';
 import { 
   publishedVisualEssays, 
   CATEGORY_COLORS,
+  isNewEssay,
   type VisualEssay 
 } from '@/data/visualEssays';
 import { cdnImageSrc } from '@/lib/imageCdn';
@@ -114,7 +115,7 @@ const EssayCard: React.FC<EssayCardProps> = ({ essay }) => (
         >
           {essay.category}
         </span>
-        {essay.isNew && <span className="essay-new-badge">New</span>}
+        {isNewEssay(essay) && <span className="essay-new-badge">New</span>}
       </div>
       
       <h3 className="essay-title">{essay.title}</h3>
@@ -151,7 +152,7 @@ const FeaturedCard: React.FC<FeaturedCardProps> = ({ essay, variant = 'dark' }) 
     <div className="featured-meta">
       <Clock aria-hidden="true" />
       <span>{essay.readTime} read</span>
-      {essay.isNew && <span className="new-badge">New</span>}
+      {isNewEssay(essay) && <span className="new-badge">New</span>}
     </div>
 
     <span className="featured-cta">

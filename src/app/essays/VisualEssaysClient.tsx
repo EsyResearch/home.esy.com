@@ -10,6 +10,7 @@ import {
   nonFeaturedEssays,
   totalReadTime,
   CATEGORY_COLORS,
+  isNewEssay,
   type EssayCategory,
   type VisualEssay
 } from "@/data/visualEssays";
@@ -182,7 +183,7 @@ const EditorialHero: React.FC = () => {
           <span className="hero-fullbleed-divider">·</span>
           <Clock size={14} />
           <span>{featuredEssay.readTime}</span>
-          {featuredEssay.isNew && <span className="hero-fullbleed-new">New</span>}
+          {isNewEssay(featuredEssay) && <span className="hero-fullbleed-new">New</span>}
         </div>
 
         <span className="hero-fullbleed-cta">
@@ -367,7 +368,7 @@ const EssayCard: React.FC<{ essay: VisualEssay; priority?: boolean }> = ({ essay
             {essay.category}
           </span>
           <span className="essay-card-artifact-badge">Artifact</span>
-          {essay.isNew && <span className="essay-card-new">New</span>}
+          {isNewEssay(essay) && <span className="essay-card-new">New</span>}
         </div>
         <h3 className="essay-card-title">{essay.title}</h3>
         <p className="essay-card-subtitle">{essay.subtitle}</p>

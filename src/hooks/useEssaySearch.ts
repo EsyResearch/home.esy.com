@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import type { SearchResult } from '@/components/SearchBar/SearchBar';
-import { searchVisualEssays, CATEGORY_COLORS, type VisualEssay } from '@/data/visualEssays';
+import { searchVisualEssays, CATEGORY_COLORS, isNewEssay, type VisualEssay } from '@/data/visualEssays';
 
 interface Essay {
   id: string;
@@ -95,7 +95,7 @@ export const useEssaySearch = ({
         category: `Visual Essay · ${essay.category}`,
         slug: essay.href,
         type: 'article' as const,
-        isPro: essay.isNew || false,
+        isPro: isNewEssay(essay),
         metadata: {
           tags: essay.tags,
           readTime: essay.readTime,

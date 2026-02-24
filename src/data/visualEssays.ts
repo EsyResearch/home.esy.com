@@ -31,11 +31,21 @@ export interface VisualEssay {
   category: EssayCategory;
   readTime: string;
   href: string;
-  isNew?: boolean;
+  publishedDate?: string; // ISO date (YYYY-MM-DD). "New" badge shown for NEW_THRESHOLD_DAYS after this date.
   draft?: boolean;
   tags?: string[];
   visualStyle?: VisualStyle;  // 'photorealistic' for photo essays, 'illustrated' for SVG-based
   heroImage?: string;  // URL or path to hero/thumbnail image for cards
+}
+
+const NEW_THRESHOLD_DAYS = 3;
+
+export function isNewEssay(essay: VisualEssay): boolean {
+  if (!essay.publishedDate) return false;
+  const published = new Date(essay.publishedDate);
+  const now = new Date();
+  const diffMs = now.getTime() - published.getTime();
+  return diffMs >= 0 && diffMs < NEW_THRESHOLD_DAYS * 24 * 60 * 60 * 1000;
 }
 
 export const CATEGORY_COLORS: Record<EssayCategory, string> = {
@@ -761,7 +771,6 @@ export const visualEssays: VisualEssay[] = [
     category: "History",
     readTime: "22 min",
     href: "/essays/the-printing-press",
-    isNew: true,
     draft: true,
     tags: ["printing press", "Gutenberg", "Johannes Gutenberg", "Bi Sheng", "movable type", "Diamond Sutra", "Jikji", "printing history", "Martin Luther", "Reformation", "history of books", "timeline", "visual essay"],
     visualStyle: "photorealistic",
@@ -828,7 +837,6 @@ export const visualEssays: VisualEssay[] = [
     category: "History",
     readTime: "30 min",
     href: "/essays/etymology/the-word-nigger",
-    isNew: true,
     tags: ["N-word history", "etymology", "racial language", "Frederick Douglass", "James Baldwin", "Ida B. Wells", "W.E.B. Du Bois", "Jim Crow", "Civil Rights", "American history", "linguistics", "visual essay"],
     visualStyle: "photorealistic",
     heroImage: "https://upload.wikimedia.org/wikipedia/commons/c/c5/Frederick_Douglass_%28circa_1879%29.jpg",
@@ -842,7 +850,6 @@ export const visualEssays: VisualEssay[] = [
     category: "History",
     readTime: "35 min",
     href: "/essays/history/hip-hop-history",
-    isNew: true,
     tags: ["Hip-Hop", "Hip-Hop history", "DJ Kool Herc", "Grandmaster Flash", "Tupac", "Notorious B.I.G.", "Bronx", "rap music", "breaking", "graffiti", "golden age", "music history", "cultural history", "visual essay"],
     visualStyle: "photorealistic",
     heroImage: "/og/hip-hop-history.png",
@@ -856,7 +863,6 @@ export const visualEssays: VisualEssay[] = [
     category: "History",
     readTime: "30 min",
     href: "/essays/history/the-blues-history",
-    isNew: true,
     tags: ["blues history", "delta blues", "chicago blues", "african american music", "muddy waters", "bessie smith", "robert johnson", "charley patton", "ma rainey", "great migration", "race records", "music history", "visual essay"],
     visualStyle: "photorealistic",
     heroImage: "/og/the-blues-history.png",
@@ -870,7 +876,6 @@ export const visualEssays: VisualEssay[] = [
     category: "History",
     readTime: "35 min",
     href: "/essays/rock-and-roll",
-    isNew: true,
     draft: true,
     tags: ["rock and roll", "rock history", "Sister Rosetta Tharpe", "Chuck Berry", "Little Richard", "Elvis Presley", "British Invasion", "Beatles", "music history", "race and music", "appropriation", "electric guitar", "Sun Records", "Chess Records", "visual essay"],
     visualStyle: "photorealistic",
@@ -898,7 +903,6 @@ export const visualEssays: VisualEssay[] = [
     category: "History",
     readTime: "35 min",
     href: "/essays/history/kpop-history",
-    isNew: true,
     tags: ["K-pop", "K-pop history", "Seo Taiji", "BTS", "BLACKPINK", "SM Entertainment", "YG Entertainment", "JYP Entertainment", "HYBE", "Korean Wave", "Hallyu", "idol system", "trainee system", "ARMY", "music history", "visual essay"],
     visualStyle: "photorealistic",
     heroImage: "/og/kpop-history.png",
@@ -912,7 +916,6 @@ export const visualEssays: VisualEssay[] = [
     category: "History",
     readTime: "30 min",
     href: "/essays/history/rnb-history",
-    isNew: true,
     tags: ["R&B", "rhythm and blues", "soul music", "Motown", "Stax", "Atlantic Records", "Aretha Franklin", "Stevie Wonder", "Marvin Gaye", "funk", "new jack swing", "music history", "visual essay"],
     visualStyle: "photorealistic",
     heroImage: "/og/rnb-history.png",
@@ -926,7 +929,6 @@ export const visualEssays: VisualEssay[] = [
     category: "History",
     readTime: "35 min",
     href: "/essays/history/cambodia-bombing",
-    isNew: true,
     tags: ["Cambodia bombing", "Operation Menu", "Operation Freedom Deal", "secret bombing", "Nixon", "Kissinger", "Vietnam War", "UXO", "unexploded ordnance", "War Powers Resolution", "declassified", "visual essay"],
     visualStyle: "photorealistic",
     heroImage: "/og/B-52D-dropping-bombs-over-vietnam.jpg",
@@ -940,7 +942,6 @@ export const visualEssays: VisualEssay[] = [
     category: "History",
     readTime: "30 min",
     href: "/essays/history/the-khmer-rouge-genocide",
-    isNew: true,
     tags: ["Khmer Rouge", "Cambodia genocide", "Pol Pot", "Year Zero", "Tuol Sleng", "Killing Fields", "visual essay"],
     visualStyle: "photorealistic",
     heroImage: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Angkor_Wat_at_sunrise_3.jpg",
@@ -967,7 +968,6 @@ export const visualEssays: VisualEssay[] = [
     category: "History",
     readTime: "22 min",
     href: "/essays/why-venezuela-matters",
-    isNew: true,
     tags: ["Venezuela", "oil", "geopolitics", "Operation Absolute Resolve", "Maduro", "heavy crude", "Gulf Coast", "Monroe Doctrine", "international law", "current events"],
     visualStyle: "illustrated",
     heroImage: "https://upload.wikimedia.org/wikipedia/commons/d/da/Orinoco_Oil_Belt.png",
@@ -982,7 +982,6 @@ export const visualEssays: VisualEssay[] = [
     readTime: "22 min",
     href: "/essays/etymology/the-word-war",
     heroImage: "/og/the-word-war.png",
-    isNew: true,
     tags: ["war etymology", "werra", "frankish", "norman conquest", "middle english", "etymology", "word origin", "guerre", "guerra", "cross-linguistic", "PIE", "visual essay", "military interface", "targeting"],
     visualStyle: "illustrated",
   },
@@ -995,7 +994,6 @@ export const visualEssays: VisualEssay[] = [
     category: "History",
     readTime: "25 min",
     href: "/essays/silk",
-    isNew: true,
     draft: true,
     tags: ["silk", "silk road", "sericulture", "chinese history", "byzantine", "jacquard loom", "textile history", "cultural exchange", "trade routes", "visual essay", "photography"],
     visualStyle: "photorealistic",
@@ -1009,7 +1007,6 @@ export const visualEssays: VisualEssay[] = [
     category: "History",
     readTime: "28 min",
     href: "/essays/the-sword",
-    isNew: true,
     draft: true,
     tags: ["sword", "katana", "Damascus steel", "medieval", "samurai", "Masamune", "Ulfberht", "metallurgy", "Crusades", "history", "interactive"],
     visualStyle: "mixed",
@@ -1023,7 +1020,6 @@ export const visualEssays: VisualEssay[] = [
     category: "History",
     readTime: "18 min",
     href: "/essays/the-bitter-history-of-chocolate",
-    isNew: true,
     draft: true,
     tags: ["chocolate", "cacao", "history", "Mesoamerica", "child labor", "cocoa", "food history", "colonial history", "interactive"],
     visualStyle: "illustrated",
@@ -1037,7 +1033,6 @@ export const visualEssays: VisualEssay[] = [
     category: "Science",
     readTime: "12 min",
     href: "/essays/the-speed-of-everything",
-    isNew: true,
     draft: true,
     tags: ["speed", "velocity", "logarithmic scale", "speed of light", "continental drift", "relative motion", "physics", "interactive"],
     visualStyle: "illustrated",
@@ -1051,7 +1046,6 @@ export const visualEssays: VisualEssay[] = [
     category: "Science",
     readTime: "20 min",
     href: "/essays/science/the-anatomy-of-a-wave",
-    isNew: false,
     draft: true,
     tags: ["wave physics", "superposition", "interference", "standing waves", "double slit", "quantum", "interactive"],
     visualStyle: "illustrated",
@@ -1065,7 +1059,6 @@ export const visualEssays: VisualEssay[] = [
     category: "Science",
     readTime: "25 min",
     href: "/essays/science/inside-a-black-hole",
-    isNew: true,
     tags: ["black hole", "event horizon", "singularity", "Penrose diagram", "information paradox", "Hawking radiation", "general relativity", "Three.js", "interactive"],
     visualStyle: "illustrated",
     heroImage: "/og/inside-a-black-hole.png",
@@ -1079,7 +1072,6 @@ export const visualEssays: VisualEssay[] = [
     category: "Education & Writing",
     readTime: "20 min",
     href: "/essays/etymology/the-word-slang-typographic",
-    isNew: true,
     tags: ["slang etymology", "slang origin", "typographic essay", "typography design", "visual etymology", "Francis Grose", "H.L. Mencken", "cant", "argot", "lexicography", "visual essay", "editorial design"],
     visualStyle: "illustrated",
     heroImage: "/og/the-word-slang-typographic.png",
@@ -1154,10 +1146,24 @@ export const visualEssays: VisualEssay[] = [
     description: "A comprehensive visual journey through 7 million years of hominin evolution \u2014 from the earliest bipedal apes to the sole surviving species. Featuring interactive species comparisons, brain volume charts, and the story of why we're the last ones standing.",
     category: "Science",
     readTime: "40 min",
-    href: "/essays/seven-million-years",
+    href: "/essays/science/seven-million-years",
     heroImage: "https://images.esy.com/essays/seven-million-years/seven-million-years-og.f9e61cbb59.webp",
-    isNew: true,
+    publishedDate: "2026-02-24",
     tags: ["evolution", "paleoanthropology", "hominid", "human origins", "Neanderthal", "migration", "fossil record", "deep time"],
+    visualStyle: "photorealistic",
+  },
+  {
+    id: "lucy",
+    number: "94",
+    title: "Lucy: Before the Genus Homo",
+    subtitle: "The Fossil That Rewrote the Story of Walking Upright",
+    description: "A deep-dive visual essay on AL 288-1, the 3.2-million-year-old Australopithecus afarensis skeleton that transformed our understanding of bipedalism, hominin diversity, and the origins of the human lineage. Featuring interactive anatomical comparisons, isotopic diet analysis, and three competing phylogenetic models.",
+    category: "Science",
+    readTime: "35 min",
+    href: "/essays/science/lucy",
+    heroImage: "https://images.esy.com/essays/lucy/lucy-og.8b2a30ed17.webp",
+    publishedDate: "2026-02-24",
+    tags: ["Lucy", "Australopithecus afarensis", "bipedalism", "paleoanthropology", "human evolution", "Hadar", "Ethiopia", "fossil", "Pliocene"],
     visualStyle: "photorealistic",
   },
   {
