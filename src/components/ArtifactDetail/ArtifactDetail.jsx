@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { resolveModelLabel } from '@/lib/models/registry';
 import './artifact-detail.css';
 
 /* ═══════════════════════════════════════════════════════════════
@@ -269,7 +270,7 @@ export default function ArtifactDetailWrapper({ meta, children }) {
               </div>
               <div className="artifact-detail-spec__card">
                 <div className="artifact-detail-spec__card-label">Model</div>
-                <div className="artifact-detail-spec__card-value">{meta.model}</div>
+                <div className="artifact-detail-spec__card-value">{resolveModelLabel(meta.model)}</div>
               </div>
               <div className="artifact-detail-spec__card">
                 <div className="artifact-detail-spec__card-label">Source Quality</div>

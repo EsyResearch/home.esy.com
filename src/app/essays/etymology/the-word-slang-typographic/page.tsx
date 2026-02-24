@@ -17,7 +17,7 @@ const ESSAY_META = {
   visualizationCount: 5,
   designSystem: 'Subject-derived',
   published: 'January 2026',
-  model: 'Claude',
+  model: 'claude-opus-4.6',
   template: 'Visual Essay',
   backLink: '/essays',
   backLabel: 'Essays',

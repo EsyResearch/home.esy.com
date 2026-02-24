@@ -20,7 +20,7 @@ const ESSAY_META = {
   visualizationCount: 6,
   designSystem: "Subject-derived",
   published: "February 2026",
-  model: "Claude",
+  model: "claude-opus-4.6",
   template: "Visual Essay",
   backLink: "/essays",
   backLabel: "Essays",

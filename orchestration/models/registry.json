@@ -1,0 +1,76 @@
+{
+  "models": {
+    "claude-opus-4.6": {
+      "label": "Claude Opus 4.6",
+      "vendor": "Anthropic",
+      "family": "Claude",
+      "subfamily": "Opus",
+      "version": "4.6",
+      "status": "recommended"
+    },
+    "claude-opus-4.5": {
+      "label": "Claude Opus 4.5",
+      "vendor": "Anthropic",
+      "family": "Claude",
+      "subfamily": "Opus",
+      "version": "4.5",
+      "status": "supported"
+    },
+    "claude-opus-4.0": {
+      "label": "Claude Opus 4.0",
+      "vendor": "Anthropic",
+      "family": "Claude",
+      "subfamily": "Opus",
+      "version": "4.0",
+      "status": "legacy"
+    },
+    "claude-sonnet-4.5": {
+      "label": "Claude Sonnet 4.5",
+      "vendor": "Anthropic",
+      "family": "Claude",
+      "subfamily": "Sonnet",
+      "version": "4.5",
+      "status": "supported"
+    },
+    "claude-sonnet-4.0": {
+      "label": "Claude Sonnet 4.0",
+      "vendor": "Anthropic",
+      "family": "Claude",
+      "subfamily": "Sonnet",
+      "version": "4.0",
+      "status": "legacy"
+    },
+    "claude-haiku-3.5": {
+      "label": "Claude Haiku 3.5",
+      "vendor": "Anthropic",
+      "family": "Claude",
+      "subfamily": "Haiku",
+      "version": "3.5",
+      "status": "supported"
+    },
+    "gpt-5.2": {
+      "label": "GPT 5.2",
+      "vendor": "OpenAI",
+      "family": "GPT",
+      "subfamily": null,
+      "version": "5.2",
+      "status": "recommended"
+    },
+    "gpt-5.1": {
+      "label": "GPT 5.1",
+      "vendor": "OpenAI",
+      "family": "GPT",
+      "subfamily": null,
+      "version": "5.1",
+      "status": "supported"
+    },
+    "gpt-4-turbo": {
+      "label": "GPT 4 Turbo",
+      "vendor": "OpenAI",
+      "family": "GPT",
+      "subfamily": null,
+      "version": "4-turbo",
+      "status": "legacy"
+    }
+  }
+}
