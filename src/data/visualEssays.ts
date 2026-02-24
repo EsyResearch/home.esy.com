@@ -1155,6 +1155,7 @@ export const visualEssays: VisualEssay[] = [
     category: "Science",
     readTime: "40 min",
     href: "/essays/seven-million-years",
+    heroImage: "https://images.esy.com/essays/seven-million-years/seven-million-years-og.f9e61cbb59.webp",
     isNew: true,
     tags: ["evolution", "paleoanthropology", "hominid", "human origins", "Neanderthal", "migration", "fossil record", "deep time"],
     visualStyle: "photorealistic",
