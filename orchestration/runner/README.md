@@ -200,13 +200,14 @@ node orchestration/runner/cli.js gate finish \
 
 **What happens:**
 1. Loads gate contract from `orchestration/gates/contracts/<Gx>.contract.json`
-2. Resolves required output paths
-3. Validates file existence
-4. Runs additional validations (min_sources, contains_headings, etc.)
-5. Computes SHA256 hashes for all existing outputs
-6. Updates `RUN.json` with results
-7. Creates `record/gates/<Gx>/attempt-<n>.json`
-8. Returns PASS or FAIL
+2. Runs any `pre_scripts` declared in the contract (e.g., `register-essay.mjs` at G9)
+3. Resolves required output paths
+4. Validates file existence
+5. Runs additional validations (min_sources, contains_headings, etc.)
+6. Computes SHA256 hashes for all existing outputs
+7. Updates `RUN.json` with results
+8. Creates `record/gates/<Gx>/attempt-<n>.json`
+9. Returns PASS or FAIL
 
 #### `gate fail`
 Manually fail a gate with a reason.
@@ -316,7 +317,7 @@ Gate contracts are stored in `orchestration/gates/contracts/`:
 | `G6.contract.json` | Citation Audit | Audit | Validates citation audit report exists |
 | `G7.contract.json` | Scroll Certification | Audit | Validates scroll certification report exists |
 | `G8.contract.json` | Publication Certification | Publication | Validates publication certification report exists |
-| `G9.contract.json` | Publication Approval | Publication | Validates director sign-off document exists |
+| `G9.contract.json` | Publication Approval | Publication | Runs `register-essay.mjs` pre-script, validates director sign-off and essay registered in `visualEssays.ts` |
 
 ### Path Variables
 
@@ -345,6 +346,34 @@ Contracts can declare skill dependencies via `required_skills`. When present, th
 ```
 
 See: [Gate Validation Standard](../standards/gate-validation-standard.md) for the design rationale.
+
+### Pre-Validation Scripts
+
+Contracts can declare `pre_scripts` — idempotent scripts the runner executes before validation. This enables automated setup steps that must succeed before contract checks run.
+
+```json
+{
+  "pre_scripts": [
+    {
+      "path": "scripts/register-essay.mjs",
+      "args": ["--slug", "{slug}", "--artifact-path", "{artifact_path}"]
+    }
+  ]
+}
+```
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `path` | string | yes | Script path relative to repo root |
+| `args` | string[] | no | Arguments (supports `{slug}` and `{artifact_path}` variable substitution) |
+
+**Behavior:**
+- Executed by `finishGate()` in `run-manager.js` before any validations run
+- Scripts run with `cwd` set to repo root, 30s timeout, `stdio: inherit`
+- A failing pre-script logs a warning but does not block validation (the contract's own checks catch any missing output)
+- Works in both CI mode (`run visual-essay`) and manual mode (`gate finish`)
+
+**Current usage:** G9 runs `register-essay.mjs` to insert the essay into `src/data/visualEssays.ts` before validating the slug is present.
 
 ### Validation Types
 

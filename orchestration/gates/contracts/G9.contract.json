@@ -2,7 +2,13 @@
   "gate": "G9",
   "name": "Publication Approval",
   "blocking": true,
-  "description": "Validates director sign-off, visualEssays.ts updated, ArtifactDetailWrapper verified, and deployment readiness. Approval document must not contain rejection.",
+  "description": "Validates director sign-off, visualEssays.ts updated, ArtifactDetailWrapper verified, and deployment readiness. Approval document must not contain rejection. Pre-script auto-registers the essay in the central index.",
+  "pre_scripts": [
+    {
+      "path": "scripts/register-essay.mjs",
+      "args": ["--slug", "{slug}", "--artifact-path", "{artifact_path}"]
+    }
+  ],
   "required_outputs": {
     "any_of": [
       {
@@ -45,6 +51,15 @@
       "description": "Final verification: page.tsx MUST use ArtifactDetailWrapper at publication time (visual-essay-engineering-standard.md §Red Lines)"
     },
     {
+      "type": "contains_text",
+      "target": "src/data/visualEssays.ts",
+      "patterns": [
+        "{slug}"
+      ],
+      "severity": "error",
+      "description": "Essay must be registered in the central visualEssays.ts index (auto-registered by pre-script)"
+    },
+    {
       "type": "frontmatter_status",
       "target": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
       "checks": {
@@ -56,5 +71,5 @@
       "description": "Frontmatter status must not be FAIL (parsed from YAML)"
     }
   ],
-  "notes": "G9 is the final human gate. The director reviews the complete package (all prior gates passed), confirms visualEssays.ts is updated with the new entry (isNew: true, isFeatured: true), verifies ArtifactDetailWrapper is in page.tsx, and triggers deployment. This gate is always manually approved. The contains_text check for ArtifactDetailWrapper provides a final safety net. The not_contains and frontmatter_status checks ensure rejected approvals don't pass."
+  "notes": "G9 is the final human gate. The pre_scripts array runs register-essay.mjs before validation, which idempotently inserts the essay into src/data/visualEssays.ts. The contains_text check then verifies the slug is present. This ensures every published essay is indexed. The director reviews the complete package, verifies ArtifactDetailWrapper, and triggers deployment."
 }

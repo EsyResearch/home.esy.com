@@ -1,0 +1,135 @@
+{
+  "essaySlug": "homo-naledi",
+  "images": [
+    {
+      "key": "skeletalSpecimens",
+      "filename": "homo-naledi-skeletal-specimens.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Homo_naledi_skeletal_specimens.jpg"
+    },
+    {
+      "key": "facialReconstruction",
+      "filename": "homo-naledi-facial-reconstruction.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/28/Homo_naledi_facial_reconstruction.jpg"
+    },
+    {
+      "key": "facialReconstructionMUSE",
+      "filename": "homo-naledi-facial-reconstruction.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/90/Homo_Naledi_-_Facial_reconstruction.jpg"
+    },
+    {
+      "key": "caveExploration",
+      "filename": "rising-star-cave-exploration-14054047275-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/39/Rising_star_cave_exploration_%2814054047275%29.jpg"
+    },
+    {
+      "key": "caveCrossSection",
+      "filename": "cross-section-of-the-rising-star-cave-system-dinaledi-chamber.svg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Cross-section_of_the_Rising_Star_Cave_system_Dinaledi_Chamber.svg"
+    },
+    {
+      "key": "caveSystemMap",
+      "filename": "rising-star-cave-system-marking-the-dinaledi-and-lesedi-chambers.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/27/Rising_Star_Cave_system_marking_the_Dinaledi_and_Lesedi_Chambers.jpg"
+    },
+    {
+      "key": "handDorsal",
+      "filename": "homo-naledi-right-hand-dorsal.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/65/Homo_naledi_right_hand_dorsal.jpg"
+    },
+    {
+      "key": "handComplete",
+      "filename": "homo-naledi-hand-1-adult-right-hand.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/22/Homo_naledi_Hand_1_adult_right_hand.jpg"
+    },
+    {
+      "key": "handWristBones",
+      "filename": "homo-naledi-hand-1-wrist-bones.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Homo_naledi_Hand_1_wrist_bones.jpg"
+    },
+    {
+      "key": "handMetacarpals",
+      "filename": "homo-naledi-metacarpals.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Homo_naledi_metacarpals.jpg"
+    },
+    {
+      "key": "handPollicalMc1",
+      "filename": "homo-naledi-pollical-metacarpal-mc1-morphology.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Homo_naledi_pollical_metacarpal_%28Mc1%29_morphology.jpg"
+    },
+    {
+      "key": "phalangealCurvature",
+      "filename": "phalangeal-curvature-in-homo-naledi.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Phalangeal_curvature_in_Homo_naledi.jpg"
+    },
+    {
+      "key": "foot",
+      "filename": "homo-naledi-foot.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Homo_naledi_foot.jpg"
+    },
+    {
+      "key": "footAdultRight",
+      "filename": "homo-naledi-foot-adult-right.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/75/Homo_naledi_foot-_adult_right.jpg"
+    },
+    {
+      "key": "footDigitalReconstruction",
+      "filename": "digital-reconstruction-of-the-foot-of-homo-naledi.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/Digital_reconstruction_of_the_foot_of_Homo_naledi.jpg"
+    },
+    {
+      "key": "tali",
+      "filename": "homo-naledi-tali-from-dinaledi-chamber.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Homo_naledi_tali_from_Dinaledi_Chamber.jpg"
+    },
+    {
+      "key": "mandible",
+      "filename": "homo-naledi-mandible-2.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Homo_naledi_mandible_2.jpg"
+    },
+    {
+      "key": "dentalComparison",
+      "filename": "elife-24232-fig10-v1-mandibular-and-dental-anatomy-in-homo-naledi-compared-to-other-species-of-homo.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Elife-24232-fig10-v1_Mandibular_and_dental_anatomy_in_Homo_naledi_compared_to_other_species_of_Homo.jpg"
+    },
+    {
+      "key": "dh7Skull",
+      "filename": "dh7-homo-naledi.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bd/DH7_Homo_naledi.png"
+    },
+    {
+      "key": "secondMetacarpal",
+      "filename": "homo-naledi-second-metacarpal-uw-101-1474.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Homo_naledi_second_metacarpal_UW_101-1474.jpg"
+    },
+    {
+      "key": "museumReconstruction",
+      "filename": "em-homo-naledi-1.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/34/Em_-_Homo_naledi_-_1.jpg"
+    },
+    {
+      "key": "marinaElliott",
+      "filename": "marina-elliott.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Marina_Elliott.jpg"
+    },
+    {
+      "key": "beccaPeixotto",
+      "filename": "becca-peixotto.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Becca_Peixotto.png"
+    },
+    {
+      "key": "peixottoAndElliott",
+      "filename": "becca-peixotto-and-marina-elliott-14050842062-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/Becca_Peixotto_and_Marina_Elliott_%2814050842062%29.jpg"
+    },
+    {
+      "key": "gautengMap",
+      "filename": "south-africa-gauteng-location-map.svg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a5/South_Africa_Gauteng_location_map.svg"
+    },
+    {
+      "key": "handNonPollicalMc",
+      "filename": "homo-naledi-hand-1-non-pollical-metacarpals.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Homo_naledi_Hand_1_non-pollical_metacarpals.jpg"
+    }
+  ]
+}

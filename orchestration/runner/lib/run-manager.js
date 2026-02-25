@@ -4,6 +4,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execFileSync } = require('child_process');
 const { loadContract, getRequiredOutputs, getValidations, REPO_ROOT } = require('./contract-loader');
 const { runValidations } = require('./validator');
 
@@ -258,6 +259,27 @@ async function finishGate(runId, gateCode) {
     artifact_path: runRecord.workflow.artifact_path,
     depth: runRecord.depth
   };
+
+  // Run pre-validation scripts (idempotent setup before contract checks)
+  if (Array.isArray(contract.pre_scripts)) {
+    for (const script of contract.pre_scripts) {
+      const scriptPath = path.resolve(REPO_ROOT, script.path);
+      const scriptArgs = (script.args || []).map(a =>
+        a.replace(/\{slug\}/g, context.slug)
+         .replace(/\{artifact_path\}/g, context.artifact_path)
+      );
+      try {
+        console.log(`  Running pre-script: ${script.path} ${scriptArgs.join(' ')}`);
+        execFileSync('node', [scriptPath, ...scriptArgs], {
+          cwd: REPO_ROOT,
+          stdio: 'inherit',
+          timeout: 30_000,
+        });
+      } catch (e) {
+        console.warn(`  Warning: pre-script failed (${e.message}). Continuing with validation.`);
+      }
+    }
+  }
   
   const outputs = getRequiredOutputs(contract, context);
   const validations = getValidations(contract, context);

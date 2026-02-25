@@ -1,0 +1,50 @@
+{
+  "essaySlug": "orwells-1984",
+  "images": [
+    {
+      "key": "bbc1943",
+      "filename": "george-orwell-bbc.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7a/George-orwell-BBC.jpg"
+    },
+    {
+      "key": "spanishWar1937",
+      "filename": "george-orwell.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2e/George_Orwell.jpg"
+    },
+    {
+      "key": "passport",
+      "filename": "george-orwell-press-photo.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7e/George_Orwell_press_photo.jpg"
+    },
+    {
+      "key": "stalin1945",
+      "filename": "stalin-1945.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Stalin_1945.jpg"
+    },
+    {
+      "key": "nikolaiYezhovWithStalinAndMolotovAlongTheVolgaE28093donCanal2cOrignal",
+      "filename": "nikolai-yezhov-with-stalin-and-molotov-along-the-volga-don-canal-orignal.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/09/Nikolai_Yezhov_with_Stalin_and_Molotov_along_the_Volga%E2%80%93Don_Canal%2C_orignal.jpg"
+    },
+    {
+      "key": "stalinAndMolotovAlongTheVolgaE28093donCanal2cNikolaiYezhovRemoved",
+      "filename": "stalin-and-molotov-along-the-volga-don-canal-nikolai-yezhov-removed.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/be/Stalin_and_Molotov_along_the_Volga%E2%80%93Don_Canal%2C_Nikolai_Yezhov_removed.jpg"
+    },
+    {
+      "key": "bundesarchivBild183200603295022cNC3Bcrnberg2cReichsparteitag2cAdolfHitlerVorLichtdom",
+      "filename": "bundesarchiv-bild-183-2006-0329-502-n-rnberg-reichsparteitag-adolf-hitler-vor-lichtdom.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/94/Bundesarchiv_Bild_183-2006-0329-502%2C_N%C3%BCrnberg%2C_Reichsparteitag%2C_Adolf_Hitler_vor_Lichtdom.jpg"
+    },
+    {
+      "key": "1984FirstEditionCover",
+      "filename": "1984-first-edition-cover.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/51/1984_first_edition_cover.jpg"
+    },
+    {
+      "key": "senateHouseUol",
+      "filename": "senate-house-uol.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/98/Senate_House_UoL.jpg"
+    }
+  ]
+}

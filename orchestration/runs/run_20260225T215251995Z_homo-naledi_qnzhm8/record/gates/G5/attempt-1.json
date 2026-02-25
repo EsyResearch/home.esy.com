@@ -1,0 +1,139 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-25T22:28:42.550Z",
+  "finished_at": "2026-02-25T22:28:42.587Z",
+  "agent": "production-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/page.tsx",
+    "{artifact_path}/{slug}.css"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/page.tsx",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/page.tsx",
+      "sha256": "9c5a4e3a71db7f849ce2b1a6d9612b34eb5eaa14d96764a54eb8a56d33fdaf7a",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/{slug}.css",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/homo-naledi.css",
+      "sha256": "20922cea65e8f7cc0fd3cb3a0ff9d75d652e543fa4ddbc47acc238840135ab87",
+      "exists": true,
+      "optional": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/page.tsx",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/page.tsx",
+      "pass": true,
+      "description": "Next.js page with metadata, ArtifactDetailWrapper, and default export"
+    },
+    {
+      "type": "contains_headings",
+      "path": "{artifact_path}/page.tsx",
+      "missing": [],
+      "severity": "error",
+      "description": "page.tsx must contain a default export and metadata definition",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/page.tsx",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/page.tsx",
+      "patterns": [
+        "ArtifactDetailWrapper",
+        "ESSAY_META"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "page.tsx MUST import and use ArtifactDetailWrapper with ESSAY_META (visual-essay-engineering-standard.md §2, Red Lines)",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/page.tsx",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/page.tsx",
+      "patterns": [
+        "@/components/ArtifactDetail"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "page.tsx MUST import ArtifactDetailWrapper from @/components/ArtifactDetail",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/page.tsx",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/page.tsx",
+      "pattern": "TODO",
+      "found": false,
+      "severity": "warning",
+      "description": "page.tsx should not contain TODO markers (indicates incomplete implementation)",
+      "pass": true,
+      "warning": false
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+      "regex": "[\\u{1F300}-\\u{1F9FF}\\u{2600}-\\u{26FF}\\u{2700}-\\u{27BF}]",
+      "must_not_match": true,
+      "matched": false,
+      "severity": "error",
+      "description": "Client component must NOT contain emoji characters — use SVG icons or CSS shapes instead",
+      "pass": true
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+      "regex": ">([^{<\"]*\\\\u[0-9a-fA-F]{4})",
+      "must_not_match": true,
+      "matched": false,
+      "severity": "error",
+      "description": "Client component must NOT contain raw Unicode escape sequences (\\uXXXX) in JSX text content — they render as literal text, not as the intended character. Wrap in JavaScript expressions ({\"\\u0113\"}) or use actual UTF-8 characters (ē) instead. See: JSX text nodes do not process JS string escape sequences.",
+      "pass": true
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+      "regex": "from ['\"]\\./images['\"]",
+      "must_not_match": false,
+      "matched": true,
+      "severity": "error",
+      "description": "Client component must import from ./images (images.ts) — all external image URLs must be centralized in the images file, not hardcoded inline",
+      "pass": true
+    },
+    {
+      "type": "min_regex_count",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+      "regex": "<img[\\s\\n]",
+      "min_count": 3,
+      "actual_count": 13,
+      "severity": "error",
+      "description": "Client component must contain at least 3 <img> elements — photorealistic essays require substantial photography",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+      "patterns": [
+        "Sources",
+        "SOURCES"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "Client component must contain a Sources/Bibliography section — every essay requires source attribution at the conclusion",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

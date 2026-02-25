@@ -1,0 +1,2980 @@
+{
+  "run_id": "run_20260224T194855014Z_lucy_w55i7k",
+  "workflow": {
+    "name": "visual-essay",
+    "version": "local-dev",
+    "slug": "lucy",
+    "artifact_path": "src/app/essays/science/lucy"
+  },
+  "depth": "deep",
+  "prompt": null,
+  "status": "RUNNING",
+  "started_at": "2026-02-24T19:48:55.015Z",
+  "finished_at": null,
+  "gates": [
+    {
+      "gate": "G1",
+      "name": "Intake Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-24T19:49:00.762Z",
+          "finished_at": "2026-02-24T19:49:00.792Z",
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/G1-INTAKE.md",
+            "{artifact_path}/research/INTAKE.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/G1-INTAKE.md",
+              "sha256": "277d6fa3960c4ffbdcebe584b471bd0f0d5af8ba8e62851d4a13ba36978c8882",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/G1-INTAKE.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/INTAKE.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/G1-INTAKE.md",
+              "pattern": "[REJECTED]",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not contain [REJECTED] marker",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/G1-INTAKE.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G2",
+      "name": "Research Complete",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-24T19:50:39.565Z",
+          "finished_at": "2026-02-24T20:22:28.876Z",
+          "agent": "research-orchestrator",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CITATIONS.md",
+            "{artifact_path}/research/CLAIMS.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/CITATIONS.md",
+              "sha256": "6274e68e13431b708ec14fe50c0156843d746f4df3ec77391bea2e59cae52f72",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CITATIONS.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/CLAIMS.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "dir_exists",
+              "path": "{artifact_path}/research",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research",
+              "pass": true,
+              "description": "Research directory must exist"
+            },
+            {
+              "type": "min_file_count",
+              "path": "{artifact_path}/research",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research",
+              "pattern": "*.md",
+              "count": 8,
+              "threshold": 6,
+              "depth": "deep",
+              "pass": true,
+              "description": "Research directory must contain minimum number of markdown files based on depth mode"
+            },
+            {
+              "type": "min_sources_any_of",
+              "checked": [
+                "{artifact_path}/research/CITATIONS.md",
+                "{artifact_path}/research/CLAIMS.md"
+              ],
+              "matched": "{artifact_path}/research/CITATIONS.md",
+              "count": 150,
+              "threshold": 15,
+              "depth": "deep",
+              "pass": true,
+              "description": "Source-tracking file (CITATIONS.md or CLAIMS.md) must contain minimum sources based on depth mode"
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G3",
+      "name": "Spec Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-24T20:26:27.208Z",
+          "finished_at": "2026-02-24T20:33:06.996Z",
+          "agent": "visual-essay-invocation-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "orchestration/skills/visual-essay-invocation/specs/{slug}.md"
+          ],
+          "artifacts": [
+            {
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/lucy.md",
+              "sha256": "e603af5b9349b3fd65ef5b529d0772880ec8bcee4c32a159de785288a978e349",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/lucy.md",
+              "pass": true,
+              "description": "6-layer visual essay specification"
+            },
+            {
+              "type": "contains_headings",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "missing": [],
+              "severity": "error",
+              "description": "Spec must contain all 6 layer headings",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/lucy.md",
+              "pattern": "[DRAFT]",
+              "found": false,
+              "severity": "warning",
+              "description": "Spec should not contain [DRAFT] marker (configurable)",
+              "pass": true,
+              "warning": false
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4",
+      "name": "Design Research",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-24T20:34:06.230Z",
+          "finished_at": "2026-02-24T20:38:18.192Z",
+          "agent": "design-researcher",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/DESIGN-RESEARCH.md",
+              "sha256": "792355ba25c64e0189de02975f1c360302414092190c6dfaf4b2042c3923bbdd",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Subject-derived design research report with color palette, typography, animation philosophy"
+            },
+            {
+              "type": "contains_headings",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "missing": [],
+              "severity": "warning",
+              "description": "Design research should cover Color, Typography, and Animation (warning if missing)",
+              "pass": true,
+              "warning": false
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4.1",
+      "name": "Design Research Reconciliation",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-24T20:38:26.609Z",
+          "finished_at": "2026-02-24T20:40:17.841Z",
+          "agent": "design-reconciliation-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+            "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/G4.1-DESIGN-RECONCILIATION.md",
+              "sha256": "464ef6b09212e487d0718b1f2868ba08045201a369ae44c736109d44a8517bec",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/DESIGN-RESEARCH.md",
+              "sha256": "792355ba25c64e0189de02975f1c360302414092190c6dfaf4b2042c3923bbdd",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Design research report (must exist and be reconciled)"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/DESIGN-RESEARCH.md",
+              "pattern": "[UNRECONCILED]",
+              "found": false,
+              "severity": "error",
+              "description": "Design research must not contain [UNRECONCILED] marker",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/DESIGN-RESEARCH.md",
+              "pattern": "[COLLISION]",
+              "found": false,
+              "severity": "error",
+              "description": "Design research must not flag aesthetic collisions with other essays",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/G4.1-DESIGN-RECONCILIATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Reconciliation audit must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4.5",
+      "name": "Image Sourcing",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-02-24T20:38:26.636Z",
+          "finished_at": "2026-02-24T20:46:02.842Z",
+          "agent": "image-research-expert",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+            "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+            "{artifact_path}/images-migration.json",
+            "{artifact_path}/images.ts"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/IMAGE_RESEARCH_AUDIT.md",
+              "sha256": "caed786b184a43ecef110f4f1287a729d071bd70e0711e595512f40e9cd1ddd8",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/images.ts",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "sha256": "c47410077466b06592028dec73178d0422f055d0ef5452b49b4404c97fb5a0f9",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/images-migration.json",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/images.ts",
+                  "exists": true
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "[UNLICENSED]",
+              "found": false,
+              "severity": "error",
+              "description": "Image audit must not contain unlicensed assets",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "[PENDING]",
+              "found": false,
+              "severity": "warning",
+              "description": "Image audit should not have pending sourcing tasks",
+              "pass": true,
+              "warning": false
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Image audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "patterns": [
+                "upload.wikimedia.org/wikipedia/commons/",
+                "as const"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "images.ts must exist with verified Wikimedia Commons direct URLs (not file page URLs)",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "pattern": "/commons/thumb/",
+              "found": false,
+              "severity": "error",
+              "description": "images.ts must NOT contain thumbnail URLs (/commons/thumb/) — use direct image URLs only",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "regex": "https://upload\\.wikimedia\\.org/wikipedia/commons/[a-f0-9]/[a-f0-9]{2}/[^\"]+\\.(jpg|jpeg|png|gif|svg)",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "images.ts must contain at least one properly-hashed Wikimedia Commons direct URL (format: /commons/{hash1}/{hash2}/filename.ext)",
+              "pass": true
+            },
+            {
+              "type": "min_regex_count",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "regex": "https://upload\\.wikimedia\\.org/wikipedia/commons/[a-f0-9]/[a-f0-9]{2}/",
+              "min_count": 5,
+              "actual_count": 14,
+              "severity": "error",
+              "description": "images.ts must contain at least 5 verified direct image URLs (photorealistic essays require substantial photography)",
+              "pass": true
+            },
+            {
+              "type": "url_reachable",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "total_urls": 1,
+              "checked": 1,
+              "ok": 0,
+              "failed": [
+                {
+                  "url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Lucy_Mexico.jpg',\n  lucySkeleton:\n    'https://upload.wikimedia.org/wikipedia/commons/d/da/Lucy_Skeleton.jpg',\n  lucyBlackBg:\n    'https://upload.wikimedia.org/wikipedia/commons/3/31/Lucy_blackbg.jpg',\n  lucyReconstruction:\n    'https://upload.wikimedia.org/wikipedia/commons/e/e0/Reconstruction_of_the_fossil_skeleton_of_%22Lucy%22_the_Australopithecus_afarensis.jpg',\n  afarensisSkull:\n    'https://upload.wikimedia.org/wikipedia/commons/6/60/Australopithecus_afarensis_skull_-_Naturmuseum_Senckenberg_-_DSC02102.JPG',\n  afarensisReconstruction:\n    'https://upload.wikimedia.org/wikipedia/commons/9/93/Australopithecus_afarensis_reconstruction.JPG',\n  laetoliFootprints:\n    'https://upload.wikimedia.org/wikipedia/commons/6/61/Laetoli_footprints_replica.jpg',\n  taungChild:\n    'https://upload.wikimedia.org/wikipedia/commons/a/a8/Taung_child.jpg',\n  paranthropusBoisei:\n    'https://upload.wikimedia.org/wikipedia/commons/f/f6/Paranthropus_boisei_skull.jpg',\n  hadar:\n    'https://upload.wikimedia.org/wikipedia/commons/9/97/Hadar.jpg',\n  afarTriangleMap:\n    'https://upload.wikimedia.org/wikipedia/commons/9/9b/Afar_Triangle_%28political_map%29.png',\n  afarDepression:\n    'https://upload.wikimedia.org/wikipedia/commons/d/d4/Afar_Depression_%28ASTER%29.jpg',\n  dallolLandscape:\n    'https://upload.wikimedia.org/wikipedia/commons/3/35/ET_Afar_asv2018-01_img36_Dallol.jpg',\n  afarLakeKarum:\n    'https://upload.wikimedia.org/wikipedia/commons/5/58/ET_Afar_asv2018-01_img11_Lake_Karum_area.jpg',\n} as const;\n",
+                  "status": 404
+                }
+              ],
+              "max_failures": 0,
+              "severity": "error",
+              "description": "All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML",
+              "pass": false
+            }
+          ],
+          "failure_reason": "All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML"
+        },
+        {
+          "attempt": 2,
+          "status": "FAIL",
+          "started_at": "2026-02-24T20:46:42.056Z",
+          "finished_at": "2026-02-24T20:47:17.343Z",
+          "agent": "image-research-expert",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+            "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+            "{artifact_path}/images-migration.json",
+            "{artifact_path}/images.ts"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/IMAGE_RESEARCH_AUDIT.md",
+              "sha256": "caed786b184a43ecef110f4f1287a729d071bd70e0711e595512f40e9cd1ddd8",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/images.ts",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "sha256": "c47410077466b06592028dec73178d0422f055d0ef5452b49b4404c97fb5a0f9",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/images-migration.json",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/images.ts",
+                  "exists": true
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "[UNLICENSED]",
+              "found": false,
+              "severity": "error",
+              "description": "Image audit must not contain unlicensed assets",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "[PENDING]",
+              "found": false,
+              "severity": "warning",
+              "description": "Image audit should not have pending sourcing tasks",
+              "pass": true,
+              "warning": false
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Image audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "patterns": [
+                "upload.wikimedia.org/wikipedia/commons/",
+                "as const"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "images.ts must exist with verified Wikimedia Commons direct URLs (not file page URLs)",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "pattern": "/commons/thumb/",
+              "found": false,
+              "severity": "error",
+              "description": "images.ts must NOT contain thumbnail URLs (/commons/thumb/) — use direct image URLs only",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "regex": "https://upload\\.wikimedia\\.org/wikipedia/commons/[a-f0-9]/[a-f0-9]{2}/[^\"]+\\.(jpg|jpeg|png|gif|svg)",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "images.ts must contain at least one properly-hashed Wikimedia Commons direct URL (format: /commons/{hash1}/{hash2}/filename.ext)",
+              "pass": true
+            },
+            {
+              "type": "min_regex_count",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "regex": "https://upload\\.wikimedia\\.org/wikipedia/commons/[a-f0-9]/[a-f0-9]{2}/",
+              "min_count": 5,
+              "actual_count": 14,
+              "severity": "error",
+              "description": "images.ts must contain at least 5 verified direct image URLs (photorealistic essays require substantial photography)",
+              "pass": true
+            },
+            {
+              "type": "url_reachable",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "total_urls": 1,
+              "checked": 1,
+              "ok": 0,
+              "failed": [
+                {
+                  "url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Lucy_Mexico.jpg',\n  lucySkeleton:\n    'https://upload.wikimedia.org/wikipedia/commons/d/da/Lucy_Skeleton.jpg',\n  lucyBlackBg:\n    'https://upload.wikimedia.org/wikipedia/commons/3/31/Lucy_blackbg.jpg',\n  lucyReconstruction:\n    'https://upload.wikimedia.org/wikipedia/commons/e/e0/Reconstruction_of_the_fossil_skeleton_of_%22Lucy%22_the_Australopithecus_afarensis.jpg',\n  afarensisSkull:\n    'https://upload.wikimedia.org/wikipedia/commons/6/60/Australopithecus_afarensis_skull_-_Naturmuseum_Senckenberg_-_DSC02102.JPG',\n  afarensisReconstruction:\n    'https://upload.wikimedia.org/wikipedia/commons/9/93/Australopithecus_afarensis_reconstruction.JPG',\n  laetoliFootprints:\n    'https://upload.wikimedia.org/wikipedia/commons/6/61/Laetoli_footprints_replica.jpg',\n  taungChild:\n    'https://upload.wikimedia.org/wikipedia/commons/a/a8/Taung_child.jpg',\n  paranthropusBoisei:\n    'https://upload.wikimedia.org/wikipedia/commons/f/f6/Paranthropus_boisei_skull.jpg',\n  hadar:\n    'https://upload.wikimedia.org/wikipedia/commons/9/97/Hadar.jpg',\n  afarTriangleMap:\n    'https://upload.wikimedia.org/wikipedia/commons/9/9b/Afar_Triangle_%28political_map%29.png',\n  afarDepression:\n    'https://upload.wikimedia.org/wikipedia/commons/d/d4/Afar_Depression_%28ASTER%29.jpg',\n  dallolLandscape:\n    'https://upload.wikimedia.org/wikipedia/commons/3/35/ET_Afar_asv2018-01_img36_Dallol.jpg',\n  afarLakeKarum:\n    'https://upload.wikimedia.org/wikipedia/commons/5/58/ET_Afar_asv2018-01_img11_Lake_Karum_area.jpg',\n} as const;\n",
+                  "status": 404
+                }
+              ],
+              "max_failures": 0,
+              "severity": "error",
+              "description": "All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML",
+              "pass": false
+            }
+          ],
+          "failure_reason": "All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML"
+        },
+        {
+          "attempt": 3,
+          "status": "PASS",
+          "started_at": "2026-02-24T20:47:59.853Z",
+          "finished_at": "2026-02-24T20:48:21.001Z",
+          "agent": "image-research-expert",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+            "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+            "{artifact_path}/images-migration.json",
+            "{artifact_path}/images.ts"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/IMAGE_RESEARCH_AUDIT.md",
+              "sha256": "caed786b184a43ecef110f4f1287a729d071bd70e0711e595512f40e9cd1ddd8",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/images.ts",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "sha256": "c353c361976244106a26f7f5f71cb7ede2d2c965d05993e58d562b9bdfc97cf6",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/images-migration.json",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/images.ts",
+                  "exists": true
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "[UNLICENSED]",
+              "found": false,
+              "severity": "error",
+              "description": "Image audit must not contain unlicensed assets",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "[PENDING]",
+              "found": false,
+              "severity": "warning",
+              "description": "Image audit should not have pending sourcing tasks",
+              "pass": true,
+              "warning": false
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Image audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "patterns": [
+                "upload.wikimedia.org/wikipedia/commons/",
+                "as const"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "images.ts must exist with verified Wikimedia Commons direct URLs (not file page URLs)",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "pattern": "/commons/thumb/",
+              "found": false,
+              "severity": "error",
+              "description": "images.ts must NOT contain thumbnail URLs (/commons/thumb/) — use direct image URLs only",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "regex": "https://upload\\.wikimedia\\.org/wikipedia/commons/[a-f0-9]/[a-f0-9]{2}/[^\"]+\\.(jpg|jpeg|png|gif|svg)",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "images.ts must contain at least one properly-hashed Wikimedia Commons direct URL (format: /commons/{hash1}/{hash2}/filename.ext)",
+              "pass": true
+            },
+            {
+              "type": "min_regex_count",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "regex": "https://upload\\.wikimedia\\.org/wikipedia/commons/[a-f0-9]/[a-f0-9]{2}/",
+              "min_count": 5,
+              "actual_count": 14,
+              "severity": "error",
+              "description": "images.ts must contain at least 5 verified direct image URLs (photorealistic essays require substantial photography)",
+              "pass": true
+            },
+            {
+              "type": "url_reachable",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "total_urls": 14,
+              "checked": 10,
+              "ok": 10,
+              "failed": [],
+              "max_failures": 0,
+              "severity": "error",
+              "description": "All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4.6",
+      "name": "Visualization Technology Decision",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-24T20:34:06.257Z",
+          "finished_at": "2026-02-24T20:38:18.221Z",
+          "agent": "visualization-architect",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/VIZ-TECH-DECISIONS.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/VIZ-TECH-DECISIONS.md",
+              "sha256": "db58ef9e8fae45e8043b8d08306b0b551a339a13fe1f3444ee3273504fe6a5b9",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/VIZ-TECH-DECISIONS.md",
+              "pass": true,
+              "description": "Technology tier assignment for each planned visualization"
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/VIZ-TECH-DECISIONS.md",
+              "patterns": [
+                "Tier",
+                "Minimum Tier"
+              ],
+              "missing": [],
+              "severity": "error",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/VIZ-TECH-DECISIONS.md",
+              "checks": {
+                "status": "PASS"
+              },
+              "fields": {
+                "gate": "G4.6",
+                "status": "PASS",
+                "essay": "lucy",
+                "date": "2026-02-24"
+              },
+              "failures": [],
+              "severity": "error",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/VIZ-TECH-DECISIONS.md",
+              "regex": "Tier [1-4]",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "At least one visualization must be assigned Tier 1 or higher",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4.7",
+      "name": "R2 Image Upload",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-24T20:48:51.001Z",
+          "finished_at": "2026-02-24T20:51:16.078Z",
+          "agent": "r2-upload-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/images.ts"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/images.ts",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "sha256": "bb94fe7d494ad34079cc3f797a680e8a96717811186a69f2bf96f07d425449db",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/images.ts",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "pass": true,
+              "description": "TypeScript image data with all URLs pointing to images.esy.com"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "pattern": "upload.wikimedia.org",
+              "found": false,
+              "severity": "error",
+              "description": "No hotlinked Wikimedia URLs — all images must be on images.esy.com",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "pattern": "tile.loc.gov",
+              "found": false,
+              "severity": "error",
+              "description": "No hotlinked Library of Congress URLs — all images must be on images.esy.com",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "patterns": [
+                "images.esy.com",
+                "as const"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "images.ts must contain R2-hosted URLs (images.esy.com) and be typed as const",
+              "pass": true
+            },
+            {
+              "type": "min_regex_count",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "regex": "https://images\\.esy\\.com/essays/",
+              "min_count": 5,
+              "actual_count": 14,
+              "severity": "error",
+              "description": "At least 5 R2-hosted image URLs must be present (photorealistic essays require substantial photography)",
+              "pass": true
+            },
+            {
+              "type": "url_reachable",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "total_urls": 14,
+              "checked": 10,
+              "ok": 10,
+              "failed": [],
+              "max_failures": 0,
+              "severity": "error",
+              "description": "All R2-hosted image URLs must return HTTP 2xx — verifies upload completed successfully",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5",
+      "name": "Content Complete",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-24T20:52:03.187Z",
+          "finished_at": "2026-02-24T21:49:26.578Z",
+          "agent": "content-producer",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/page.tsx",
+            "{artifact_path}/{slug}.css"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/page.tsx",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/page.tsx",
+              "sha256": "e0be394e4e97349e696f16d25f5165e4fe5fd7eee978e780d41b78460c168e7c",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/{slug}.css",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/lucy.css",
+              "sha256": "13fd2ad4a440e25480028ccd7d4be12f80291eb21316d9c89e62be20da204488",
+              "exists": true,
+              "optional": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/page.tsx",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/page.tsx",
+              "pass": true,
+              "description": "Next.js page with metadata, ArtifactDetailWrapper, and default export"
+            },
+            {
+              "type": "contains_headings",
+              "path": "{artifact_path}/page.tsx",
+              "missing": [],
+              "severity": "error",
+              "description": "page.tsx must contain a default export and metadata definition",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/page.tsx",
+              "patterns": [
+                "ArtifactDetailWrapper",
+                "ESSAY_META"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "page.tsx MUST import and use ArtifactDetailWrapper with ESSAY_META (visual-essay-engineering-standard.md §2, Red Lines)",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/page.tsx",
+              "patterns": [
+                "@/components/ArtifactDetail"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "page.tsx MUST import ArtifactDetailWrapper from @/components/ArtifactDetail",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/page.tsx",
+              "pattern": "TODO",
+              "found": false,
+              "severity": "warning",
+              "description": "page.tsx should not contain TODO markers (indicates incomplete implementation)",
+              "pass": true,
+              "warning": false
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "regex": "[\\u{1F300}-\\u{1F9FF}\\u{2600}-\\u{26FF}\\u{2700}-\\u{27BF}]",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "Client component must NOT contain emoji characters — use SVG icons or CSS shapes instead",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "regex": ">([^{<\"]*\\\\u[0-9a-fA-F]{4})",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "Client component must NOT contain raw Unicode escape sequences (\\uXXXX) in JSX text content — they render as literal text, not as the intended character. Wrap in JavaScript expressions ({\"\\u0113\"}) or use actual UTF-8 characters (ē) instead. See: JSX text nodes do not process JS string escape sequences.",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "regex": "from ['\"]\\./images['\"]",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "Client component must import from ./images (images.ts) — all external image URLs must be centralized in the images file, not hardcoded inline",
+              "pass": true
+            },
+            {
+              "type": "min_regex_count",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "regex": "<img[\\s\\n]",
+              "min_count": 3,
+              "actual_count": 14,
+              "severity": "error",
+              "description": "Client component must contain at least 3 <img> elements — photorealistic essays require substantial photography",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "patterns": [
+                "Sources",
+                "SOURCES"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Client component must contain a Sources/Bibliography section — every essay requires source attribution at the conclusion",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.4",
+      "name": "Visualization Ambition Audit",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-02-24T21:49:39.358Z",
+          "finished_at": "2026-02-24T21:51:07.808Z",
+          "agent": "viz-ambition-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/G5.4-VIZ-AMBITION-AUDIT.md",
+              "sha256": "290d438c41019c8f01054c59a9c0ffba967557661c0090c6da162c273cc739c4",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/G5.4-VIZ-AMBITION-AUDIT.md",
+              "pass": true,
+              "description": "Per-visualization technology audit with scores"
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/G5.4-VIZ-AMBITION-AUDIT.md",
+              "checks": {
+                "status": "PASS"
+              },
+              "fields": {
+                "gate": "G5.4",
+                "essay": "lucy",
+                "auditor": "visualization-architect-auditor",
+                "status": "PASS",
+                "average_score": 3.7,
+                "date": "2026-02-24"
+              },
+              "failures": [],
+              "severity": "error",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/G5.4-VIZ-AMBITION-AUDIT.md",
+              "patterns": [
+                "Average Score",
+                "Technology Tier"
+              ],
+              "missing": [],
+              "severity": "error",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "regex": "import .*(d3|three|recharts|Canvas|useRef.*canvas|getContext)",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "Client component or its visualization imports must reference at least one visualization library or Canvas API",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "regex": "width:\\s*[`'\"]\\$\\{.*\\}%[`'\"]",
+              "must_not_match": true,
+              "matched": true,
+              "severity": "error",
+              "description": "No div-width-percentage bar charts in data-encoding visualizations",
+              "pass": false
+            }
+          ],
+          "failure_reason": "No div-width-percentage bar charts in data-encoding visualizations"
+        },
+        {
+          "attempt": 2,
+          "status": "PASS",
+          "started_at": "2026-02-24T21:51:31.033Z",
+          "finished_at": "2026-02-24T21:51:31.068Z",
+          "agent": "viz-ambition-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/G5.4-VIZ-AMBITION-AUDIT.md",
+              "sha256": "290d438c41019c8f01054c59a9c0ffba967557661c0090c6da162c273cc739c4",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/G5.4-VIZ-AMBITION-AUDIT.md",
+              "pass": true,
+              "description": "Per-visualization technology audit with scores"
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/G5.4-VIZ-AMBITION-AUDIT.md",
+              "checks": {
+                "status": "PASS"
+              },
+              "fields": {
+                "gate": "G5.4",
+                "essay": "lucy",
+                "auditor": "visualization-architect-auditor",
+                "status": "PASS",
+                "average_score": 3.7,
+                "date": "2026-02-24"
+              },
+              "failures": [],
+              "severity": "error",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/G5.4-VIZ-AMBITION-AUDIT.md",
+              "patterns": [
+                "Average Score",
+                "Technology Tier"
+              ],
+              "missing": [],
+              "severity": "error",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "regex": "import .*(d3|three|recharts|Canvas|useRef.*canvas|getContext)",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "Client component or its visualization imports must reference at least one visualization library or Canvas API",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "regex": "width:\\s*[`'\"]\\$\\{.*\\}%[`'\"]",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "No div-width-percentage bar charts in data-encoding visualizations",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.2",
+      "name": "Design Fidelity Audit",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-24T21:49:39.294Z",
+          "finished_at": "2026-02-24T21:51:07.738Z",
+          "agent": "design-fidelity-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+            "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "sha256": "538ad51d09fd531391e601b5b459808bdc9ee6cf98231bcdec56607df56b5363",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/DESIGN-RESEARCH.md",
+              "sha256": "792355ba25c64e0189de02975f1c360302414092190c6dfaf4b2042c3923bbdd",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Design research must still exist (design source of truth)"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Design fidelity audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                },
+                "blocking_issues": {
+                  "min": 0
+                }
+              },
+              "fields": {
+                "gate": "G5.2",
+                "essay": "lucy",
+                "auditor": "design-fidelity-auditor",
+                "status": "PASS",
+                "blocking_issues": 0,
+                "date": "2026-02-24"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter must indicate non-FAIL status with zero blocking issues",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.3",
+      "name": "Diagram-Code Reconciliation",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-24T21:49:39.326Z",
+          "finished_at": "2026-02-24T21:51:07.774Z",
+          "agent": "diagram-code-reconciler",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+            "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+            "{client_component}"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "sha256": "a4678ed4f32a400300e6229975da9f831f613eb3d54d051a3435bf2af87ca578",
+              "exists": true
+            },
+            {
+              "path": "{client_component}",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "sha256": "ec1557d823cabbfdc7bb1d663396811808f573e7893dabeb4d730c1463ed8164",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{client_component}",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "pass": true,
+              "description": "Client component must contain @diagram-contract blocks for every visualization function"
+            },
+            {
+              "type": "contains_text",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "patterns": [
+                "@diagram-contract"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Client component MUST contain at least one @diagram-contract block per diagram-code-contract.md standard",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Diagram-code reconciliation must not have FAIL status",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "gate": "G5.3",
+                "essay": "lucy",
+                "auditor": "diagram-code-reconciler",
+                "status": "PASS",
+                "invariants_checked": 25,
+                "invariants_passed": 25,
+                "invariants_failed": 0,
+                "date": "2026-02-24"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Diagram-code reconciliation frontmatter status must not be FAIL",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.5",
+      "name": "Bibliography Implementation",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-24T21:49:39.392Z",
+          "finished_at": "2026-02-24T21:51:07.844Z",
+          "agent": "bibliography-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+            "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "sha256": "fff2960e243d32848643e0fc9220bebfeaea1c77dd38d85730db39b35eb36fc5",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Bibliography audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "pattern": "Overall Status: ❌",
+              "found": false,
+              "severity": "error",
+              "description": "Bibliography audit must not report overall failure",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "gate": "G5.5",
+                "essay": "lucy",
+                "auditor": "bibliography-auditor",
+                "status": "PASS",
+                "blocking_issues": 0,
+                "date": "2026-02-24"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "patterns": [
+                "SOURCES"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Client component must import and render the SOURCES data — the bibliography section must exist in the actual rendered output, not just the audit document",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "patterns": [
+                "IMAGE_CREDITS"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Client component must import and render IMAGE_CREDITS data — image attribution must appear in the actual rendered output",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "regex": "sources|bibliography|works.cited|further.reading",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "Client component must contain bibliography-related section markers (sources, bibliography, works cited, or further reading)",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G6",
+      "name": "Citation Audit",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-02-24T21:52:41.139Z",
+          "finished_at": "2026-02-24T21:52:41.275Z",
+          "agent": "citation-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CITATION-AUDIT.md",
+            "{artifact_path}/CITATION-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/CITATION-AUDIT.md",
+              "sha256": "d30187477f4268ae94ac41311a1a97581517e0e5b037c461e4d1c4256622f1c5",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CITATION-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/CITATION-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/CITATION-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Citation audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/CITATION-AUDIT.md",
+              "pattern": "Citation Certification: Rejected",
+              "found": false,
+              "severity": "error",
+              "description": "Citation audit must not have Rejected certification",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/CITATION-AUDIT.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {},
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML, not string match)",
+              "reason": "File not found or no YAML frontmatter: /Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/CITATION-AUDIT.md",
+              "pass": false
+            }
+          ],
+          "failure_reason": "Frontmatter status must not be FAIL (parsed from YAML, not string match)"
+        },
+        {
+          "attempt": 2,
+          "status": "PASS",
+          "started_at": "2026-02-24T21:53:15.398Z",
+          "finished_at": "2026-02-24T21:53:15.435Z",
+          "agent": "citation-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CITATION-AUDIT.md",
+            "{artifact_path}/CITATION-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/CITATION-AUDIT.md",
+              "sha256": "8dd1063476b48907793eb5666aeaa2b5c8e7d1c70ba7657ceb739121b1667f96",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CITATION-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/CITATION-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/CITATION-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Citation audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/CITATION-AUDIT.md",
+              "pattern": "Citation Certification: Rejected",
+              "found": false,
+              "severity": "error",
+              "description": "Citation audit must not have Rejected certification",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/CITATION-AUDIT.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "gate": "G6",
+                "essay": "lucy",
+                "auditor": "citation-audit-agent",
+                "status": "PASS",
+                "tier_1_pct": 87.5,
+                "sources_verified": 24,
+                "sources_total": 24,
+                "date": "2026-02-24"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML, not string match)",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G6.6",
+      "name": "Prose Quality Audit",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-02-24T21:52:41.174Z",
+          "finished_at": "2026-02-24T21:52:41.311Z",
+          "agent": "prose-quality-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+            "{artifact_path}/PROSE-QUALITY-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/PROSE-QUALITY-AUDIT.md",
+              "sha256": "a2a268e44e614515f9ebd700273169f4d06d1e7a1e1859a847753dc730c647d7",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PROSE-QUALITY-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/PROSE-QUALITY-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Prose quality audit must not have FAIL status",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/PROSE-QUALITY-AUDIT.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {},
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL",
+              "reason": "File not found or no YAML frontmatter: /Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/PROSE-QUALITY-AUDIT.md",
+              "pass": false
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "regex": "(\\bdelve\\b|\\btapestry\\b|\\bunlock the secrets\\b|\\bin today's world\\b|\\blet's dive\\b|\\bfascinating journey\\b|\\bit's important to note\\b|\\bIn conclusion\\b)",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "warning",
+              "description": "Client component should not contain common AI slop phrases (delve, tapestry, unlock the secrets, etc.)",
+              "pass": true,
+              "warning": false
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "regex": "[\\u{1F300}-\\u{1F9FF}\\u{2600}-\\u{26FF}\\u{2700}-\\u{27BF}]",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "Client component must NOT contain emoji characters",
+              "pass": true
+            }
+          ],
+          "failure_reason": "Frontmatter status must not be FAIL"
+        },
+        {
+          "attempt": 2,
+          "status": "PASS",
+          "started_at": "2026-02-24T21:53:15.468Z",
+          "finished_at": "2026-02-24T21:53:15.505Z",
+          "agent": "prose-quality-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+            "{artifact_path}/PROSE-QUALITY-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/PROSE-QUALITY-AUDIT.md",
+              "sha256": "cc7e6875f6bdea22285287c7362e04e1f7895a4551695d67ad82c7049749055f",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PROSE-QUALITY-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/PROSE-QUALITY-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Prose quality audit must not have FAIL status",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/PROSE-QUALITY-AUDIT.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "gate": "G6.6",
+                "essay": "lucy",
+                "auditor": "prose-quality-auditor",
+                "status": "PASS",
+                "overall_score": 8.2,
+                "date": "2026-02-24"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "regex": "(\\bdelve\\b|\\btapestry\\b|\\bunlock the secrets\\b|\\bin today's world\\b|\\blet's dive\\b|\\bfascinating journey\\b|\\bit's important to note\\b|\\bIn conclusion\\b)",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "warning",
+              "description": "Client component should not contain common AI slop phrases (delve, tapestry, unlock the secrets, etc.)",
+              "pass": true,
+              "warning": false
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "regex": "[\\u{1F300}-\\u{1F9FF}\\u{2600}-\\u{26FF}\\u{2700}-\\u{27BF}]",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "Client component must NOT contain emoji characters",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G7",
+      "name": "Scroll Certification",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-02-24T21:52:41.208Z",
+          "finished_at": "2026-02-24T21:52:41.347Z",
+          "agent": "scroll-certifier",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+            "{artifact_path}/SCROLL-CERTIFICATION.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/SCROLL-CERTIFICATION.md",
+              "sha256": "1350456fa4da8b971696fef56e3153ea7ffb5ba78596ad730afe990d52d16940",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/SCROLL-CERTIFICATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/SCROLL-CERTIFICATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Scroll certification must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/SCROLL-CERTIFICATION.md",
+              "pattern": "Overall Status: ❌",
+              "found": false,
+              "severity": "error",
+              "description": "Scroll certification must not report overall failure",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/SCROLL-CERTIFICATION.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {},
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+              "reason": "File not found or no YAML frontmatter: /Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/SCROLL-CERTIFICATION.md",
+              "pass": false
+            },
+            {
+              "type": "min_regex_count",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "regex": "src=\\{IMAGES\\.",
+              "min_count": 3,
+              "actual_count": 14,
+              "severity": "error",
+              "description": "Client component must reference at least 3 images from the IMAGES constant — scroll certification requires visual content actually renders",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "regex": "loading=[\"']lazy[\"']",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "Client component must use lazy loading on images (loading='lazy') for scroll performance",
+              "pass": true
+            }
+          ],
+          "failure_reason": "Frontmatter status must not be FAIL (parsed from YAML)"
+        },
+        {
+          "attempt": 2,
+          "status": "PASS",
+          "started_at": "2026-02-24T21:53:15.539Z",
+          "finished_at": "2026-02-24T21:53:15.582Z",
+          "agent": "scroll-certifier",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+            "{artifact_path}/SCROLL-CERTIFICATION.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/SCROLL-CERTIFICATION.md",
+              "sha256": "6fd8e663e5a6866eab2f4edbe8c2fe0ff173dd1f0d5607c9e435452918864b4a",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/SCROLL-CERTIFICATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/SCROLL-CERTIFICATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Scroll certification must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/SCROLL-CERTIFICATION.md",
+              "pattern": "Overall Status: ❌",
+              "found": false,
+              "severity": "error",
+              "description": "Scroll certification must not report overall failure",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/SCROLL-CERTIFICATION.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "gate": "G7",
+                "essay": "lucy",
+                "auditor": "scroll-certification-agent",
+                "status": "PASS",
+                "scroll_score": 8.5,
+                "date": "2026-02-24"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+              "pass": true
+            },
+            {
+              "type": "min_regex_count",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "regex": "src=\\{IMAGES\\.",
+              "min_count": 3,
+              "actual_count": 14,
+              "severity": "error",
+              "description": "Client component must reference at least 3 images from the IMAGES constant — scroll certification requires visual content actually renders",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "regex": "loading=[\"']lazy[\"']",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "Client component must use lazy loading on images (loading='lazy') for scroll performance",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G8",
+      "name": "Publication Certification",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "RUNNING",
+          "started_at": "2026-02-24T21:52:41.239Z",
+          "finished_at": null,
+          "agent": "publication-certifier",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [],
+          "artifacts": [],
+          "validations": [],
+          "failure_reason": null
+        },
+        {
+          "attempt": 2,
+          "status": "PASS",
+          "started_at": "2026-02-24T21:53:20.931Z",
+          "finished_at": "2026-02-24T21:53:33.836Z",
+          "agent": "publication-certifier",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+            "{artifact_path}/PUBLICATION-CERTIFICATION.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/PUBLICATION-CERTIFICATION.md",
+              "sha256": "4e6a99c1ed5e438057c680f9e95365cab8857843fa0c4c4b06e0b768266136e0",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PUBLICATION-CERTIFICATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/PUBLICATION-CERTIFICATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Publication certification must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/PUBLICATION-CERTIFICATION.md",
+              "pattern": "NO-GO",
+              "found": false,
+              "severity": "error",
+              "description": "Publication certification must not be NO-GO",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/PUBLICATION-CERTIFICATION.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "gate": "G8",
+                "essay": "lucy",
+                "auditor": "publication-certifier",
+                "status": "PASS",
+                "certification": "GO",
+                "date": "2026-02-24"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "patterns": [
+                "SOURCES",
+                "IMAGE_CREDITS"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "PUBLICATION GATE: Client component must import SOURCES and IMAGE_CREDITS — bibliography and image attribution must be present in the shipped code",
+              "pass": true
+            },
+            {
+              "type": "min_regex_count",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+              "regex": "src=\\{IMAGES\\.",
+              "min_count": 5,
+              "actual_count": 14,
+              "severity": "error",
+              "description": "PUBLICATION GATE: Client component must reference at least 5 images from the IMAGES constant — photorealistic essays require substantial photography",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "patterns": [
+                "images.esy.com"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "PUBLICATION GATE: images.ts must contain R2-hosted URLs (images.esy.com) — hotlinking external URLs is prohibited",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "pattern": "upload.wikimedia.org",
+              "found": false,
+              "severity": "error",
+              "description": "PUBLICATION GATE: images.ts must not contain hotlinked Wikimedia URLs — all images must be self-hosted on R2",
+              "pass": true
+            },
+            {
+              "type": "url_reachable",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+              "total_urls": 14,
+              "checked": 5,
+              "ok": 5,
+              "failed": [],
+              "max_failures": 0,
+              "severity": "error",
+              "description": "PUBLICATION GATE: Spot-check that R2 image URLs are reachable (HTTP 2xx) — final defense against broken images shipping to production",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G9",
+      "name": "Publication Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-24T21:54:01.049Z",
+          "finished_at": "2026-02-24T21:54:01.086Z",
+          "agent": "director",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+            "{artifact_path}/PUBLICATION-APPROVAL.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/PUBLICATION-APPROVAL.md",
+              "sha256": "b57013c8854d90e984a2d36568ef1c0e39f3846f98875473dc0bac1b2c2bdcc9",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PUBLICATION-APPROVAL.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/PUBLICATION-APPROVAL.md",
+              "pattern": "REJECTED",
+              "found": false,
+              "severity": "error",
+              "description": "Publication approval must not contain REJECTED",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/PUBLICATION-APPROVAL.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Publication approval must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/page.tsx",
+              "patterns": [
+                "ArtifactDetailWrapper"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Final verification: page.tsx MUST use ArtifactDetailWrapper at publication time (visual-essay-engineering-standard.md §Red Lines)",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/PUBLICATION-APPROVAL.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "gate": "G9",
+                "essay": "lucy",
+                "auditor": "director",
+                "status": "PASS",
+                "approval": "APPROVED",
+                "date": "2026-02-24"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    }
+  ],
+  "invocations": [],
+  "artifacts_index": [
+    {
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "sha256": "277d6fa3960c4ffbdcebe584b471bd0f0d5af8ba8e62851d4a13ba36978c8882",
+      "gate": "G1",
+      "recorded_at": "2026-02-24T19:49:00.793Z"
+    },
+    {
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "sha256": "6274e68e13431b708ec14fe50c0156843d746f4df3ec77391bea2e59cae52f72",
+      "gate": "G2",
+      "recorded_at": "2026-02-24T20:22:28.877Z"
+    },
+    {
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "sha256": "e603af5b9349b3fd65ef5b529d0772880ec8bcee4c32a159de785288a978e349",
+      "gate": "G3",
+      "recorded_at": "2026-02-24T20:33:06.996Z"
+    },
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "sha256": "792355ba25c64e0189de02975f1c360302414092190c6dfaf4b2042c3923bbdd",
+      "gate": "G4",
+      "recorded_at": "2026-02-24T20:38:18.192Z",
+      "updated_at": "2026-02-24T21:51:07.739Z"
+    },
+    {
+      "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "sha256": "db58ef9e8fae45e8043b8d08306b0b551a339a13fe1f3444ee3273504fe6a5b9",
+      "gate": "G4.6",
+      "recorded_at": "2026-02-24T20:38:18.222Z"
+    },
+    {
+      "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+      "sha256": "464ef6b09212e487d0718b1f2868ba08045201a369ae44c736109d44a8517bec",
+      "gate": "G4.1",
+      "recorded_at": "2026-02-24T20:40:17.841Z"
+    },
+    {
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "sha256": "caed786b184a43ecef110f4f1287a729d071bd70e0711e595512f40e9cd1ddd8",
+      "gate": "G4.5",
+      "recorded_at": "2026-02-24T20:40:18.224Z",
+      "updated_at": "2026-02-24T20:48:21.005Z"
+    },
+    {
+      "path": "{artifact_path}/images.ts",
+      "sha256": "bb94fe7d494ad34079cc3f797a680e8a96717811186a69f2bf96f07d425449db",
+      "gate": "G4.5",
+      "recorded_at": "2026-02-24T20:40:18.224Z",
+      "updated_at": "2026-02-24T20:51:16.079Z"
+    },
+    {
+      "path": "{artifact_path}/page.tsx",
+      "sha256": "e0be394e4e97349e696f16d25f5165e4fe5fd7eee978e780d41b78460c168e7c",
+      "gate": "G5",
+      "recorded_at": "2026-02-24T21:49:26.579Z"
+    },
+    {
+      "path": "{artifact_path}/{slug}.css",
+      "sha256": "13fd2ad4a440e25480028ccd7d4be12f80291eb21316d9c89e62be20da204488",
+      "gate": "G5",
+      "recorded_at": "2026-02-24T21:49:26.579Z"
+    },
+    {
+      "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "sha256": "538ad51d09fd531391e601b5b459808bdc9ee6cf98231bcdec56607df56b5363",
+      "gate": "G5.2",
+      "recorded_at": "2026-02-24T21:51:07.739Z"
+    },
+    {
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "sha256": "a4678ed4f32a400300e6229975da9f831f613eb3d54d051a3435bf2af87ca578",
+      "gate": "G5.3",
+      "recorded_at": "2026-02-24T21:51:07.774Z"
+    },
+    {
+      "path": "{client_component}",
+      "sha256": "ec1557d823cabbfdc7bb1d663396811808f573e7893dabeb4d730c1463ed8164",
+      "gate": "G5.3",
+      "recorded_at": "2026-02-24T21:51:07.774Z"
+    },
+    {
+      "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+      "sha256": "290d438c41019c8f01054c59a9c0ffba967557661c0090c6da162c273cc739c4",
+      "gate": "G5.4",
+      "recorded_at": "2026-02-24T21:51:07.809Z",
+      "updated_at": "2026-02-24T21:51:31.069Z"
+    },
+    {
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "sha256": "fff2960e243d32848643e0fc9220bebfeaea1c77dd38d85730db39b35eb36fc5",
+      "gate": "G5.5",
+      "recorded_at": "2026-02-24T21:51:07.845Z"
+    },
+    {
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "sha256": "8dd1063476b48907793eb5666aeaa2b5c8e7d1c70ba7657ceb739121b1667f96",
+      "gate": "G6",
+      "recorded_at": "2026-02-24T21:52:41.276Z",
+      "updated_at": "2026-02-24T21:53:15.436Z"
+    },
+    {
+      "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+      "sha256": "cc7e6875f6bdea22285287c7362e04e1f7895a4551695d67ad82c7049749055f",
+      "gate": "G6.6",
+      "recorded_at": "2026-02-24T21:52:41.312Z",
+      "updated_at": "2026-02-24T21:53:15.506Z"
+    },
+    {
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "sha256": "6fd8e663e5a6866eab2f4edbe8c2fe0ff173dd1f0d5607c9e435452918864b4a",
+      "gate": "G7",
+      "recorded_at": "2026-02-24T21:52:41.348Z",
+      "updated_at": "2026-02-24T21:53:15.583Z"
+    },
+    {
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "sha256": "4e6a99c1ed5e438057c680f9e95365cab8857843fa0c4c4b06e0b768266136e0",
+      "gate": "G8",
+      "recorded_at": "2026-02-24T21:53:33.837Z"
+    },
+    {
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "sha256": "b57013c8854d90e984a2d36568ef1c0e39f3846f98875473dc0bac1b2c2bdcc9",
+      "gate": "G9",
+      "recorded_at": "2026-02-24T21:54:01.087Z"
+    }
+  ],
+  "validations": [],
+  "events": [
+    {
+      "timestamp": "2026-02-24T19:48:55.015Z",
+      "type": "RUN_STARTED",
+      "message": "Run initialized for visual-essay/lucy"
+    },
+    {
+      "timestamp": "2026-02-24T19:49:00.763Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 1,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 1 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-24T19:49:00.793Z",
+      "type": "GATE_PASSED",
+      "gate": "G1",
+      "attempt": 1,
+      "message": "Gate G1 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-24T19:50:39.565Z",
+      "type": "GATE_STARTED",
+      "gate": "G2",
+      "attempt": 1,
+      "agent": "research-orchestrator",
+      "message": "Gate G2 attempt 1 started with agent research-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-24T20:22:28.877Z",
+      "type": "GATE_PASSED",
+      "gate": "G2",
+      "attempt": 1,
+      "message": "Gate G2 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-24T20:26:27.209Z",
+      "type": "GATE_STARTED",
+      "gate": "G3",
+      "attempt": 1,
+      "agent": "visual-essay-invocation-agent",
+      "message": "Gate G3 attempt 1 started with agent visual-essay-invocation-agent"
+    },
+    {
+      "timestamp": "2026-02-24T20:33:06.996Z",
+      "type": "GATE_PASSED",
+      "gate": "G3",
+      "attempt": 1,
+      "message": "Gate G3 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-24T20:34:06.230Z",
+      "type": "GATE_STARTED",
+      "gate": "G4",
+      "attempt": 1,
+      "agent": "design-researcher",
+      "message": "Gate G4 attempt 1 started with agent design-researcher"
+    },
+    {
+      "timestamp": "2026-02-24T20:34:06.257Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.6",
+      "attempt": 1,
+      "agent": "visualization-architect",
+      "message": "Gate G4.6 attempt 1 started with agent visualization-architect"
+    },
+    {
+      "timestamp": "2026-02-24T20:38:18.192Z",
+      "type": "GATE_PASSED",
+      "gate": "G4",
+      "attempt": 1,
+      "message": "Gate G4 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-24T20:38:18.222Z",
+      "type": "GATE_PASSED",
+      "gate": "G4.6",
+      "attempt": 1,
+      "message": "Gate G4.6 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-24T20:38:26.610Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.1",
+      "attempt": 1,
+      "agent": "design-reconciliation-auditor",
+      "message": "Gate G4.1 attempt 1 started with agent design-reconciliation-auditor"
+    },
+    {
+      "timestamp": "2026-02-24T20:38:26.637Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "agent": "image-research-expert",
+      "message": "Gate G4.5 attempt 1 started with agent image-research-expert"
+    },
+    {
+      "timestamp": "2026-02-24T20:40:17.841Z",
+      "type": "GATE_PASSED",
+      "gate": "G4.1",
+      "attempt": 1,
+      "message": "Gate G4.1 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-24T20:40:18.224Z",
+      "type": "GATE_FAILED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "message": "Gate G4.5 failed: All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML"
+    },
+    {
+      "timestamp": "2026-02-24T20:41:14.274Z",
+      "type": "GATE_FAILED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "message": "Gate G4.5 failed: All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML"
+    },
+    {
+      "timestamp": "2026-02-24T20:41:48.647Z",
+      "type": "GATE_FAILED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "message": "Gate G4.5 failed: All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML"
+    },
+    {
+      "timestamp": "2026-02-24T20:42:59.316Z",
+      "type": "GATE_FAILED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "message": "Gate G4.5 failed: All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML"
+    },
+    {
+      "timestamp": "2026-02-24T20:44:02.800Z",
+      "type": "GATE_FAILED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "message": "Gate G4.5 failed: All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML"
+    },
+    {
+      "timestamp": "2026-02-24T20:44:58.615Z",
+      "type": "GATE_FAILED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "message": "Gate G4.5 failed: All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML"
+    },
+    {
+      "timestamp": "2026-02-24T20:46:02.842Z",
+      "type": "GATE_FAILED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "message": "Gate G4.5 failed: All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML"
+    },
+    {
+      "timestamp": "2026-02-24T20:46:42.057Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.5",
+      "attempt": 2,
+      "agent": "image-research-expert",
+      "message": "Gate G4.5 attempt 2 started with agent image-research-expert"
+    },
+    {
+      "timestamp": "2026-02-24T20:47:17.344Z",
+      "type": "GATE_FAILED",
+      "gate": "G4.5",
+      "attempt": 2,
+      "message": "Gate G4.5 failed: All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML"
+    },
+    {
+      "timestamp": "2026-02-24T20:47:59.854Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.5",
+      "attempt": 3,
+      "agent": "image-research-expert",
+      "message": "Gate G4.5 attempt 3 started with agent image-research-expert"
+    },
+    {
+      "timestamp": "2026-02-24T20:48:21.005Z",
+      "type": "GATE_PASSED",
+      "gate": "G4.5",
+      "attempt": 3,
+      "message": "Gate G4.5 passed on attempt 3"
+    },
+    {
+      "timestamp": "2026-02-24T20:48:51.002Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.7",
+      "attempt": 1,
+      "agent": "r2-upload-agent",
+      "message": "Gate G4.7 attempt 1 started with agent r2-upload-agent"
+    },
+    {
+      "timestamp": "2026-02-24T20:51:16.079Z",
+      "type": "GATE_PASSED",
+      "gate": "G4.7",
+      "attempt": 1,
+      "message": "Gate G4.7 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-24T20:52:03.188Z",
+      "type": "GATE_STARTED",
+      "gate": "G5",
+      "attempt": 1,
+      "agent": "content-producer",
+      "message": "Gate G5 attempt 1 started with agent content-producer"
+    },
+    {
+      "timestamp": "2026-02-24T21:49:26.579Z",
+      "type": "GATE_PASSED",
+      "gate": "G5",
+      "attempt": 1,
+      "message": "Gate G5 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-24T21:49:39.294Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.2",
+      "attempt": 1,
+      "agent": "design-fidelity-auditor",
+      "message": "Gate G5.2 attempt 1 started with agent design-fidelity-auditor"
+    },
+    {
+      "timestamp": "2026-02-24T21:49:39.326Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.3",
+      "attempt": 1,
+      "agent": "diagram-code-reconciler",
+      "message": "Gate G5.3 attempt 1 started with agent diagram-code-reconciler"
+    },
+    {
+      "timestamp": "2026-02-24T21:49:39.359Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.4",
+      "attempt": 1,
+      "agent": "viz-ambition-auditor",
+      "message": "Gate G5.4 attempt 1 started with agent viz-ambition-auditor"
+    },
+    {
+      "timestamp": "2026-02-24T21:49:39.392Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.5",
+      "attempt": 1,
+      "agent": "bibliography-auditor",
+      "message": "Gate G5.5 attempt 1 started with agent bibliography-auditor"
+    },
+    {
+      "timestamp": "2026-02-24T21:51:07.739Z",
+      "type": "GATE_PASSED",
+      "gate": "G5.2",
+      "attempt": 1,
+      "message": "Gate G5.2 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-24T21:51:07.774Z",
+      "type": "GATE_PASSED",
+      "gate": "G5.3",
+      "attempt": 1,
+      "message": "Gate G5.3 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-24T21:51:07.809Z",
+      "type": "GATE_FAILED",
+      "gate": "G5.4",
+      "attempt": 1,
+      "message": "Gate G5.4 failed: No div-width-percentage bar charts in data-encoding visualizations"
+    },
+    {
+      "timestamp": "2026-02-24T21:51:07.845Z",
+      "type": "GATE_PASSED",
+      "gate": "G5.5",
+      "attempt": 1,
+      "message": "Gate G5.5 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-24T21:51:31.034Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.4",
+      "attempt": 2,
+      "agent": "viz-ambition-auditor",
+      "message": "Gate G5.4 attempt 2 started with agent viz-ambition-auditor"
+    },
+    {
+      "timestamp": "2026-02-24T21:51:31.069Z",
+      "type": "GATE_PASSED",
+      "gate": "G5.4",
+      "attempt": 2,
+      "message": "Gate G5.4 passed on attempt 2"
+    },
+    {
+      "timestamp": "2026-02-24T21:52:41.140Z",
+      "type": "GATE_STARTED",
+      "gate": "G6",
+      "attempt": 1,
+      "agent": "citation-auditor",
+      "message": "Gate G6 attempt 1 started with agent citation-auditor"
+    },
+    {
+      "timestamp": "2026-02-24T21:52:41.174Z",
+      "type": "GATE_STARTED",
+      "gate": "G6.6",
+      "attempt": 1,
+      "agent": "prose-quality-auditor",
+      "message": "Gate G6.6 attempt 1 started with agent prose-quality-auditor"
+    },
+    {
+      "timestamp": "2026-02-24T21:52:41.208Z",
+      "type": "GATE_STARTED",
+      "gate": "G7",
+      "attempt": 1,
+      "agent": "scroll-certifier",
+      "message": "Gate G7 attempt 1 started with agent scroll-certifier"
+    },
+    {
+      "timestamp": "2026-02-24T21:52:41.240Z",
+      "type": "GATE_STARTED",
+      "gate": "G8",
+      "attempt": 1,
+      "agent": "publication-certifier",
+      "message": "Gate G8 attempt 1 started with agent publication-certifier"
+    },
+    {
+      "timestamp": "2026-02-24T21:52:41.276Z",
+      "type": "GATE_FAILED",
+      "gate": "G6",
+      "attempt": 1,
+      "message": "Gate G6 failed: Frontmatter status must not be FAIL (parsed from YAML, not string match)"
+    },
+    {
+      "timestamp": "2026-02-24T21:52:41.312Z",
+      "type": "GATE_FAILED",
+      "gate": "G6.6",
+      "attempt": 1,
+      "message": "Gate G6.6 failed: Frontmatter status must not be FAIL"
+    },
+    {
+      "timestamp": "2026-02-24T21:52:41.348Z",
+      "type": "GATE_FAILED",
+      "gate": "G7",
+      "attempt": 1,
+      "message": "Gate G7 failed: Frontmatter status must not be FAIL (parsed from YAML)"
+    },
+    {
+      "timestamp": "2026-02-24T21:53:15.399Z",
+      "type": "GATE_STARTED",
+      "gate": "G6",
+      "attempt": 2,
+      "agent": "citation-auditor",
+      "message": "Gate G6 attempt 2 started with agent citation-auditor"
+    },
+    {
+      "timestamp": "2026-02-24T21:53:15.436Z",
+      "type": "GATE_PASSED",
+      "gate": "G6",
+      "attempt": 2,
+      "message": "Gate G6 passed on attempt 2"
+    },
+    {
+      "timestamp": "2026-02-24T21:53:15.469Z",
+      "type": "GATE_STARTED",
+      "gate": "G6.6",
+      "attempt": 2,
+      "agent": "prose-quality-auditor",
+      "message": "Gate G6.6 attempt 2 started with agent prose-quality-auditor"
+    },
+    {
+      "timestamp": "2026-02-24T21:53:15.506Z",
+      "type": "GATE_PASSED",
+      "gate": "G6.6",
+      "attempt": 2,
+      "message": "Gate G6.6 passed on attempt 2"
+    },
+    {
+      "timestamp": "2026-02-24T21:53:15.541Z",
+      "type": "GATE_STARTED",
+      "gate": "G7",
+      "attempt": 2,
+      "agent": "scroll-certifier",
+      "message": "Gate G7 attempt 2 started with agent scroll-certifier"
+    },
+    {
+      "timestamp": "2026-02-24T21:53:15.583Z",
+      "type": "GATE_PASSED",
+      "gate": "G7",
+      "attempt": 2,
+      "message": "Gate G7 passed on attempt 2"
+    },
+    {
+      "timestamp": "2026-02-24T21:53:20.932Z",
+      "type": "GATE_STARTED",
+      "gate": "G8",
+      "attempt": 2,
+      "agent": "publication-certifier",
+      "message": "Gate G8 attempt 2 started with agent publication-certifier"
+    },
+    {
+      "timestamp": "2026-02-24T21:53:33.837Z",
+      "type": "GATE_PASSED",
+      "gate": "G8",
+      "attempt": 2,
+      "message": "Gate G8 passed on attempt 2"
+    },
+    {
+      "timestamp": "2026-02-24T21:54:01.050Z",
+      "type": "GATE_STARTED",
+      "gate": "G9",
+      "attempt": 1,
+      "agent": "director",
+      "message": "Gate G9 attempt 1 started with agent director"
+    },
+    {
+      "timestamp": "2026-02-24T21:54:01.087Z",
+      "type": "GATE_PASSED",
+      "gate": "G9",
+      "attempt": 1,
+      "message": "Gate G9 passed on attempt 1"
+    }
+  ]
+}

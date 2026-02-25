@@ -1,0 +1,96 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-25T22:29:58.648Z",
+  "finished_at": "2026-02-25T22:29:58.684Z",
+  "agent": "diagram-code-reconciliation-auditor",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+    "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+    "{client_component}"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "sha256": "56fba8e6482532f0d80b2322a0bdee168e99f76f4e5449a89028f389df055fc0",
+      "exists": true
+    },
+    {
+      "path": "{client_component}",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+      "sha256": "9b97574cbefdc5e5ab88c7def3b40f379d203c429dc828d0e4e1aae82e996b01",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "file_exists",
+      "path": "{client_component}",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+      "pass": true,
+      "description": "Client component must contain @diagram-contract blocks for every visualization function"
+    },
+    {
+      "type": "contains_text",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+      "patterns": [
+        "@diagram-contract"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "Client component MUST contain at least one @diagram-contract block per diagram-code-contract.md standard",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Diagram-code reconciliation must not have FAIL status",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "fields": {
+        "gate": "G5.3",
+        "artifact": "DIAGRAM-CODE-RECONCILIATION",
+        "status": "PASS",
+        "date": "2026-02-25",
+        "auditor": "diagram-code-reconciliation-auditor"
+      },
+      "failures": [],
+      "severity": "error",
+      "description": "Diagram-code reconciliation frontmatter status must not be FAIL",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

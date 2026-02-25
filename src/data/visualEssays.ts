@@ -1178,6 +1178,20 @@ export const visualEssays: VisualEssay[] = [
     draft: true,
     tags: ["children", "adventure", "snail", "speed", "friendship"],
   },
+  {
+    id: "homo-naledi",
+    number: "95",
+    title: "Homo naledi: The Small-Brained Species That Buried Its Dead",
+    subtitle: "1,500 Bones, 560 Cubic Centimetres, and the Question of What Makes Us Human",
+    description: "A comprehensive visual essay on Homo naledi, the small-brained hominin from the Rising Star Cave system that may have practiced deliberate body disposal 300,000 years ago.",
+    category: "Science",
+    readTime: "38 min",
+    href: "/essays/science/homo-naledi",
+    heroImage: "https://images.esy.com/essays/homo-naledi/homo-naledi-skeletal-specimens.1151e1c05c.webp",
+    publishedDate: "2026-02-25",
+    tags: ["Homo naledi", "Rising Star Cave", "paleoanthropology", "human evolution", "Dinaledi Chamber", "Lee Berger", "deliberate body disposal", "South Africa", "Cradle of Humankind", "visual essay"],
+    visualStyle: "photorealistic",
+  },
 ];
 
 // ==================== DERIVED DATA ====================

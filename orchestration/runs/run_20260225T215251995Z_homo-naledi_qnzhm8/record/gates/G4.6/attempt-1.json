@@ -1,0 +1,72 @@
+{
+  "attempt": 1,
+  "status": "FAIL",
+  "started_at": "2026-02-25T21:57:36.766Z",
+  "finished_at": "2026-02-25T21:57:36.803Z",
+  "agent": "visualization-architect",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/VIZ-TECH-DECISIONS.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/VIZ-TECH-DECISIONS.md",
+      "sha256": "c7ce043599ee3c96a1863ad477039d368db8f47f38447c33fde256c67b2f8f63",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/VIZ-TECH-DECISIONS.md",
+      "pass": true,
+      "description": "Technology tier assignment for each planned visualization"
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/VIZ-TECH-DECISIONS.md",
+      "patterns": [
+        "Tier",
+        "Minimum Tier"
+      ],
+      "missing": [],
+      "severity": "error",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/VIZ-TECH-DECISIONS.md",
+      "checks": {
+        "status": "PASS"
+      },
+      "fields": {
+        "gate": "G4",
+        "artifact": "VIZ-TECH-DECISIONS",
+        "status": "VERIFIED",
+        "date": "2026-02-25"
+      },
+      "failures": [
+        "status: expected \"PASS\", got \"VERIFIED\""
+      ],
+      "severity": "error",
+      "pass": false
+    },
+    {
+      "type": "regex_match",
+      "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/VIZ-TECH-DECISIONS.md",
+      "regex": "Tier [1-4]",
+      "must_not_match": false,
+      "matched": true,
+      "severity": "error",
+      "description": "At least one visualization must be assigned Tier 1 or higher",
+      "pass": true
+    }
+  ],
+  "failure_reason": ""
+}

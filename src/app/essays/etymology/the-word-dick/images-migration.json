@@ -1,0 +1,35 @@
+{
+  "essaySlug": "the-word-dick",
+  "images": [
+    {
+      "key": "churchOfFontevraudAbbeyRichardIEffigy",
+      "filename": "church-of-fontevraud-abbey-richard-i-effigy.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Church_of_Fontevraud_Abbey_Richard_I_effigy.jpg"
+    },
+    {
+      "key": "captainFrancisaGrose2cFsa",
+      "filename": "captain-francisa-grose-fsa.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/Captain_Francisa_Grose%2C_FSA.jpg"
+    },
+    {
+      "key": "johnSFarmerSpiritualist28cropped29",
+      "filename": "john-s.-farmer-spiritualist-cropped-.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b2/John_S._Farmer_spiritualist_%28cropped%29.png"
+    },
+    {
+      "key": "richardNixonPresidentialPortrait28129",
+      "filename": "richard-nixon-presidential-portrait-1-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Richard_Nixon_presidential_portrait_%281%29.jpg"
+    },
+    {
+      "key": "ericPartridge1971a",
+      "filename": "eric-partridge-1971a.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Eric_Partridge_1971A.png"
+    },
+    {
+      "key": "dickVanDykeMaryTylerMooreDickVanDykeShow1961",
+      "filename": "dick-van-dyke-mary-tyler-moore-dick-van-dyke-show-1961.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Dick_Van_Dyke_Mary_Tyler_Moore_Dick_Van_Dyke_Show_1961.JPG"
+    }
+  ]
+}

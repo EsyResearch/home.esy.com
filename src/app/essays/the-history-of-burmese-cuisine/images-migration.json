@@ -1,0 +1,320 @@
+{
+  "essaySlug": "the-history-of-burmese-cuisine",
+  "images": [
+    {
+      "key": "mandalayPalaceHluttaw1886",
+      "filename": "mandalay-palace-hluttaw-1886.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Mandalay_Palace_Hluttaw_1886.jpg"
+    },
+    {
+      "key": "kingMindonMin",
+      "filename": "king-mindon-min.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a6/King_Mindon_Min.jpg"
+    },
+    {
+      "key": "queenSupayalat",
+      "filename": "queen-supayalat.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/91/Queen_Supayalat.jpg"
+    },
+    {
+      "key": "kingThibawAndQueenSupayalat",
+      "filename": "king-thibaw-and-queen-supayalat.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/49/King_Thibaw_and_Queen_SupayaLat.jpg"
+    },
+    {
+      "key": "georgeOrwell2cC1940284192818038129",
+      "filename": "george-orwell-c.-1940-41928180381-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/82/George_Orwell%2C_c._1940_%2841928180381%29.jpg"
+    },
+    {
+      "key": "2013MyanmarLuytenDeHauwereBagan019GupyaukgyiMyinkabaTempleMural",
+      "filename": "2013-myanmar-luyten-de-hauwere-bagan-019-gupyaukgyi-myinkaba-temple-mural.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/2013_Myanmar_Luyten-De-Hauwere_Bagan_019_gupyaukgyi_myinkaba_temple_mural.jpg"
+    },
+    {
+      "key": "somingyiInteriorMural2814323929",
+      "filename": "somingyi-interior-mural-143239-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Somingyi_interior_mural_%28143239%29.jpg"
+    },
+    {
+      "key": "bagan2cMyanmar2cAnandaTempleAsSeenFromThatbyinnyuTempleInBaganPlains",
+      "filename": "bagan-myanmar-ananda-temple-as-seen-from-thatbyinnyu-temple-in-bagan-plains.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Bagan%2C_Myanmar%2C_Ananda_Temple_as_seen_from_Thatbyinnyu_Temple_in_Bagan_plains.jpg"
+    },
+    {
+      "key": "dsc010MyanmarYangonPayaShwC3A9dagonPagodaMainGoldenStupa28718192309029",
+      "filename": "dsc010-myanmar-yangon-paya-shw-dagon-pagoda-main-golden-stupa-7181923090-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/14/DSC010_Myanmar_Yangon_Paya_Shw%C3%A9dagon_Pagoda_Main_Golden_Stupa_%287181923090%29.jpg"
+    },
+    {
+      "key": "yangon2cColonialTownCore2cStrandRoad2cMyanmar",
+      "filename": "yangon-colonial-town-core-strand-road-myanmar.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Yangon%2C_Colonial_town_core%2C_Strand_Road%2C_Myanmar.jpg"
+    },
+    {
+      "key": "burmeseLadyInTraditionalCostumeInThe1890s",
+      "filename": "burmese-lady-in-traditional-costume-in-the-1890s.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/67/Burmese_lady_in_traditional_costume_in_the_1890s.jpg"
+    },
+    {
+      "key": "myanmarE28099sTraditionalFoodMohinga",
+      "filename": "myanmar-s-traditional-food-mohinga.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/40/Myanmar%E2%80%99s_Traditional_Food_-_Mohinga.jpg"
+    },
+    {
+      "key": "mohingaStall2cMandalay2cMyanmar",
+      "filename": "mohinga-stall-mandalay-myanmar.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Mohinga_stall%2C_Mandalay%2C_Myanmar.JPG"
+    },
+    {
+      "key": "mohingaSoupAndTeaLeafSaladANyarTar",
+      "filename": "mohinga-soup-and-tea-leaf-salad-a-nyar-tar.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Mohinga_soup_and_tea_leaf_salad_A_Nyar_Tar.jpg"
+    },
+    {
+      "key": "burmeseMeal",
+      "filename": "burmese-meal.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Burmese_meal.JPG"
+    },
+    {
+      "key": "myanmaCuisine28cropped29",
+      "filename": "myanma-cuisine-cropped-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Myanma_cuisine_%28cropped%29.jpg"
+    },
+    {
+      "key": "myanmarTeaHouseFood",
+      "filename": "myanmar-tea-house-food.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/64/Myanmar_Tea_House_Food.jpg"
+    },
+    {
+      "key": "plateOfHnapyanGyaw28hpaungdawUPagoda2cInleLake2cShanStates2cMyanmar29",
+      "filename": "plate-of-hnapyan-gyaw-hpaungdaw-u-pagoda-inle-lake-shan-states-myanmar-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Plate_of_Hnapyan_Gyaw_%28Hpaungdaw_U_Pagoda%2C_Inle_Lake%2C_Shan_States%2C_Myanmar%29.JPG"
+    },
+    {
+      "key": "imgShanhkaukswC3A8",
+      "filename": "img-shanhkauksw-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/IMG_Shanhkauksw%C3%A8.JPG"
+    },
+    {
+      "key": "ohnNoKhaoSwC3A8",
+      "filename": "ohn-no-khao-sw-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/64/Ohn_No_Khao_Sw%C3%A8.jpg"
+    },
+    {
+      "key": "tofuSalad",
+      "filename": "tofu-salad.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Tofu_salad.JPG"
+    },
+    {
+      "key": "oldBagan2cMyanmar2cDriedRedChili28chilli29Pepper",
+      "filename": "old-bagan-myanmar-dried-red-chili-chilli-pepper.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Old_Bagan%2C_Myanmar%2C_Dried_red_chili_%28chilli%29_pepper.jpg"
+    },
+    {
+      "key": "turmericmyanmar3",
+      "filename": "turmericmyanmar3.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3a/TurmericMyanmar3.jpg"
+    },
+    {
+      "key": "myanmarJaggery",
+      "filename": "myanmar-jaggery.jpeg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Myanmar_Jaggery.jpeg"
+    },
+    {
+      "key": "burmeseStyleSamusa",
+      "filename": "burmese-style-samusa.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Burmese_style_samusa.jpg"
+    },
+    {
+      "key": "makingHtaMaNae",
+      "filename": "making-hta-ma-nae.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Making_Hta_Ma_Nae.jpg"
+    },
+    {
+      "key": "burmeseOiledGlutinousRice",
+      "filename": "burmese-oiled-glutinous-rice.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Burmese_Oiled_Glutinous_Rice.jpg"
+    },
+    {
+      "key": "paungDin",
+      "filename": "paung-din.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Paung_din.JPG"
+    },
+    {
+      "key": "myanmarFriedSnack",
+      "filename": "myanmar-fried-snack.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Myanmar_Fried_Snack.jpg"
+    },
+    {
+      "key": "naanByaWithMuttonSoup",
+      "filename": "naan-bya-with-mutton-soup.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/01/Naan_bya_with_mutton_soup.JPG"
+    },
+    {
+      "key": "samosaIndianPopularSnack",
+      "filename": "samosa-indian-popular-snack.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Samosa-Indian-popular-snack.jpg"
+    },
+    {
+      "key": "tandoorFlatbreadInsideTheTandoorOven",
+      "filename": "tandoor-flatbread-inside-the-tandoor-oven.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Tandoor-flatbread-inside-the-tandoor-oven.jpg"
+    },
+    {
+      "key": "myanmarFood",
+      "filename": "myanmar-food.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Myanmar_food.jpg"
+    },
+    {
+      "key": "yangonTeahouse28839508489229",
+      "filename": "yangon-teahouse-8395084892-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Yangon_Teahouse_%288395084892%29.jpg"
+    },
+    {
+      "key": "bogyokeAungSanMarketInside",
+      "filename": "bogyoke-aung-san-market-inside.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/98/Bogyoke_Aung_San_Market_inside.jpg"
+    },
+    {
+      "key": "fishMarketSceneSittweRakhaing28arakan29StateMyanmar28burma29281223191320329",
+      "filename": "fish-market-scene-sittwe-rakhaing-arakan-state-myanmar-burma-12231913203-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/62/Fish_Market_Scene_-_Sittwe_-_Rakhaing_%28Arakan%29_State_-_Myanmar_%28Burma%29_%2812231913203%29.jpg"
+    },
+    {
+      "key": "driedFishForSaleSittweRakhaing28arakan29StateMyanmar28burma29281223201190429",
+      "filename": "dried-fish-for-sale-sittwe-rakhaing-arakan-state-myanmar-burma-12232011904-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Dried_Fish_for_Sale_-_Sittwe_-_Rakhaing_%28Arakan%29_State_-_Myanmar_%28Burma%29_%2812232011904%29.jpg"
+    },
+    {
+      "key": "streetFoodVendorInYangon",
+      "filename": "street-food-vendor-in-yangon.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/66/Street_food_vendor_in_Yangon.jpg"
+    },
+    {
+      "key": "inleFloatingMarket",
+      "filename": "inle-floating-market.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Inle_Floating_market.jpg"
+    },
+    {
+      "key": "myanmarTraditionalStove",
+      "filename": "myanmar-traditional-stove.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Myanmar_traditional_stove.jpg"
+    },
+    {
+      "key": "inleLake2cFisherman2cMyanmar",
+      "filename": "inle-lake-fisherman-myanmar.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Inle_Lake%2C_Fisherman%2C_Myanmar.jpg"
+    },
+    {
+      "key": "mandalayNightMarket",
+      "filename": "mandalay-night-market.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/22/Mandalay_--_Night_Market.JPG"
+    },
+    {
+      "key": "pangetkon2cShanHills2cMyanmar2cVillageKitchenInRuralRemoteAreaOfShanHillsNearKalaw",
+      "filename": "pangetkon-shan-hills-myanmar-village-kitchen-in-rural-remote-area-of-shan-hills-near-kalaw.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/69/Pangetkon%2C_Shan_Hills%2C_Myanmar%2C_Village_kitchen_in_rural_remote_area_of_Shan_Hills_near_Kalaw.jpg"
+    },
+    {
+      "key": "andrewBay2cRakhineState",
+      "filename": "andrew-bay-rakhine-state.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Andrew_Bay%2C_Rakhine_State.jpg"
+    },
+    {
+      "key": "viewOfIrrawaddyRiver",
+      "filename": "view-of-irrawaddy-river.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cf/View_of_Irrawaddy_River.jpg"
+    },
+    {
+      "key": "baganLacquerwareFactoryWorkers",
+      "filename": "bagan-lacquerware-factory-workers.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Bagan-Lacquerware-Factory-Workers.JPG"
+    },
+    {
+      "key": "burmeseLacquerware",
+      "filename": "burmese-lacquerware.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Burmese_lacquerware.JPG"
+    },
+    {
+      "key": "thanakaCosmeticPaste",
+      "filename": "thanaka-cosmetic-paste.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Thanaka_cosmetic_paste.jpg"
+    },
+    {
+      "key": "almsgiving2cNyaungshwe2cMyanmar",
+      "filename": "almsgiving-nyaungshwe-myanmar.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/40/Almsgiving%2C_Nyaungshwe%2C_Myanmar.jpg"
+    },
+    {
+      "key": "myanmarWaterClayPot",
+      "filename": "myanmar-water-clay-pot.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/81/Myanmar_water_clay_pot.jpg"
+    },
+    {
+      "key": "kachinWomenInTraditionalDress",
+      "filename": "kachin-women-in-traditional-dress.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Kachin_women_in_traditional_dress.jpg"
+    },
+    {
+      "key": "shanHills2cMyanmar2cRicePaddiesInRuralMyanmarBetweenInleLakeAndKalawMountainRange",
+      "filename": "shan-hills-myanmar-rice-paddies-in-rural-myanmar-between-inle-lake-and-kalaw-mountain-range.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Shan_Hills%2C_Myanmar%2C_Rice_paddies_in_rural_Myanmar_between_Inle_lake_and_Kalaw_mountain_range.jpg"
+    },
+    {
+      "key": "ricePaddy2cChinState2cMyanmar",
+      "filename": "rice-paddy-chin-state-myanmar.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Rice_paddy%2C_Chin_State%2C_Myanmar.jpg"
+    },
+    {
+      "key": "malikhaRiver2cNorthernKachinState",
+      "filename": "malikha-river-northern-kachin-state..jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/90/Malikha_River%2C_Northern_Kachin_State..JPG"
+    },
+    {
+      "key": "rakhineMontTiStreetVendor",
+      "filename": "rakhine-mont-ti-street-vendor.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Rakhine_mont_ti_street_vendor.jpg"
+    },
+    {
+      "key": "ruralFarmerMarketTraditionalRetailYwamaInleLakeMyanmar",
+      "filename": "rural-farmer-market-traditional-retail-ywama-inle-lake-myanmar.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/17/Rural_farmer_market_traditional_retail_Ywama_Inle_Lake_Myanmar.jpg"
+    },
+    {
+      "key": "vegetableMarketNearTheRiver281489648990129",
+      "filename": "vegetable-market-near-the-river.-14896489901-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/93/Vegetable_market_near_the_river._%2814896489901%29.jpg"
+    },
+    {
+      "key": "goldenRockKyaiktiyoPagoda",
+      "filename": "golden-rock-kyaiktiyo-pagoda.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Golden_rock_Kyaiktiyo_Pagoda.JPG"
+    },
+    {
+      "key": "uBeinBridge284244833440529",
+      "filename": "u-bein-bridge-42448334405-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/U-Bein_Bridge_%2842448334405%29.jpg"
+    },
+    {
+      "key": "paOhWomen28myanmar201329281177283955329",
+      "filename": "pa-oh-women-myanmar-2013-11772839553-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Pa-Oh_women_%28Myanmar_2013%29_%2811772839553%29.jpg"
+    },
+    {
+      "key": "shanHills2cMyanmar2cGreenFieldsAndForest2cVeryRemoteLocationInBurmaInWesternKarenHills28shanHills29",
+      "filename": "shan-hills-myanmar-green-fields-and-forest-very-remote-location-in-burma-in-western-karen-hills-shan-hills-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Shan_Hills%2C_Myanmar%2C_Green_fields_and_forest%2C_very_remote_location_in_Burma_in_western_Karen_Hills_%28Shan_Hills%29.jpg"
+    },
+    {
+      "key": "burmeseInFestivalDressIn1907",
+      "filename": "burmese-in-festival-dress-in-1907.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/49/Burmese_in_festival_dress_in_1907.jpg"
+    },
+    {
+      "key": "hsipaw2cShanState2cMyanmar",
+      "filename": "hsipaw-shan-state-myanmar.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Hsipaw%2C_Shan_State%2C_Myanmar.jpg"
+    }
+  ]
+}

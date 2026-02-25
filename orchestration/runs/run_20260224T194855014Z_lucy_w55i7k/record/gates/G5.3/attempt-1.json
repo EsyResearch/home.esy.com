@@ -1,0 +1,99 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-24T21:49:39.326Z",
+  "finished_at": "2026-02-24T21:51:07.774Z",
+  "agent": "diagram-code-reconciler",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+    "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+    "{client_component}"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "sha256": "a4678ed4f32a400300e6229975da9f831f613eb3d54d051a3435bf2af87ca578",
+      "exists": true
+    },
+    {
+      "path": "{client_component}",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+      "sha256": "ec1557d823cabbfdc7bb1d663396811808f573e7893dabeb4d730c1463ed8164",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "file_exists",
+      "path": "{client_component}",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+      "pass": true,
+      "description": "Client component must contain @diagram-contract blocks for every visualization function"
+    },
+    {
+      "type": "contains_text",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/LucyClient.tsx",
+      "patterns": [
+        "@diagram-contract"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "Client component MUST contain at least one @diagram-contract block per diagram-code-contract.md standard",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Diagram-code reconciliation must not have FAIL status",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "fields": {
+        "gate": "G5.3",
+        "essay": "lucy",
+        "auditor": "diagram-code-reconciler",
+        "status": "PASS",
+        "invariants_checked": 25,
+        "invariants_passed": 25,
+        "invariants_failed": 0,
+        "date": "2026-02-24"
+      },
+      "failures": [],
+      "severity": "error",
+      "description": "Diagram-code reconciliation frontmatter status must not be FAIL",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

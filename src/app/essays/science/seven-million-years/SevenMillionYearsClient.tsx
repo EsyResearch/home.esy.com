@@ -1078,10 +1078,11 @@ export default function SevenMillionYearsClient() {
             finger bones and teeth in a Siberian cave, inhabited a vast arc from
             the Altai Mountains to Southeast Asia. <em>Homo floresiensis</em>,
             the &ldquo;Hobbit,&rdquo; persisted on the island of Flores until
-            at least 60,000 years ago. And <em>Homo naledi</em>, with its small
-            brain and surprisingly modern hands and feet, was depositing its dead
+            at least 60,000 years ago. And{' '}
+            <Link href="/essays/science/homo-naledi" className="smy-narrative__link"><em>Homo naledi</em></Link>,
+            with its small brain and surprisingly modern hands and feet, was depositing its dead
             in the Rising Star cave system of South Africa as recently as 236,000
-            years             ago.
+            years ago.
           </p>
 
           <div className="smy-specimen smy-specimen--pair">
@@ -1364,6 +1365,15 @@ export default function SevenMillionYearsClient() {
                 A deep-dive visual essay on AL 288-1, the 3.2-million-year-old{' '}
                 <em>Australopithecus afarensis</em> skeleton that transformed our
                 understanding of bipedalism and human origins.
+              </li>
+              <li className="smy-sources__credits-item">
+                <Link href="/essays/science/homo-naledi" className="smy-narrative__link">
+                  Homo naledi: The Small-Brained Species That Buried Its Dead
+                </Link>
+                {' \u2014 '}
+                1,500 bones, 560 cubic centimetres, and the question of what makes
+                us human. A visual essay on the Rising Star Cave discovery that
+                challenges the link between brain size and behavioural complexity.
               </li>
             </ul>
           </div>

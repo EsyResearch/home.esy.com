@@ -1,0 +1,87 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-25T21:59:47.107Z",
+  "finished_at": "2026-02-25T21:59:53.941Z",
+  "agent": "image-research-licensing-expert",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/images.ts"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/images.ts",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+      "sha256": "3684e180968ae064257a2bedcb59f4ebe8f7fa6438bcb4b681eb9b9e1eecc574",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/images.ts",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+      "pass": true,
+      "description": "TypeScript image data with all URLs pointing to images.esy.com"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/images.ts",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+      "pattern": "upload.wikimedia.org",
+      "found": false,
+      "severity": "error",
+      "description": "No hotlinked Wikimedia URLs — all images must be on images.esy.com",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/images.ts",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+      "pattern": "tile.loc.gov",
+      "found": false,
+      "severity": "error",
+      "description": "No hotlinked Library of Congress URLs — all images must be on images.esy.com",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/images.ts",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+      "patterns": [
+        "images.esy.com",
+        "as const"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "images.ts must contain R2-hosted URLs (images.esy.com) and be typed as const",
+      "pass": true
+    },
+    {
+      "type": "min_regex_count",
+      "path": "{artifact_path}/images.ts",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+      "regex": "https://images\\.esy\\.com/essays/",
+      "min_count": 5,
+      "actual_count": 26,
+      "severity": "error",
+      "description": "At least 5 R2-hosted image URLs must be present (photorealistic essays require substantial photography)",
+      "pass": true
+    },
+    {
+      "type": "url_reachable",
+      "path": "{artifact_path}/images.ts",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+      "total_urls": 26,
+      "checked": 10,
+      "ok": 10,
+      "failed": [],
+      "max_failures": 0,
+      "severity": "error",
+      "description": "All R2-hosted image URLs must return HTTP 2xx — verifies upload completed successfully",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

@@ -1,0 +1,115 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-25T22:29:58.717Z",
+  "finished_at": "2026-02-25T22:29:58.752Z",
+  "agent": "bibliography-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+    "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "sha256": "500a7061a28c4c890e5adf74814255250d7f2e59b9fafd6468e2c2415c6f6d83",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Bibliography audit must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "pattern": "Overall Status: ❌",
+      "found": false,
+      "severity": "error",
+      "description": "Bibliography audit must not report overall failure",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "fields": {
+        "gate": "G5.5",
+        "artifact": "CONTENT-BIBLIOGRAPHY-AUDIT",
+        "status": "PASS",
+        "date": "2026-02-25",
+        "auditor": "bibliography-orchestrator"
+      },
+      "failures": [],
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+      "patterns": [
+        "SOURCES"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "Client component must import and render the SOURCES data — the bibliography section must exist in the actual rendered output, not just the audit document",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+      "patterns": [
+        "IMAGE_CREDITS"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "Client component must import and render IMAGE_CREDITS data — image attribution must appear in the actual rendered output",
+      "pass": true
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+      "regex": "sources|bibliography|works.cited|further.reading",
+      "must_not_match": false,
+      "matched": true,
+      "severity": "error",
+      "description": "Client component must contain bibliography-related section markers (sources, bibliography, works cited, or further reading)",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

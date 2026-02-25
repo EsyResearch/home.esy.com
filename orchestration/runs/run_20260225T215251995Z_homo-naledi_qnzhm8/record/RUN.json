@@ -1,0 +1,2365 @@
+{
+  "run_id": "run_20260225T215251995Z_homo-naledi_qnzhm8",
+  "workflow": {
+    "name": "visual-essay",
+    "version": "local-dev",
+    "slug": "homo-naledi",
+    "artifact_path": "src/app/essays/science/homo-naledi"
+  },
+  "depth": "deep",
+  "prompt": null,
+  "status": "PASSED",
+  "started_at": "2026-02-25T21:52:51.996Z",
+  "finished_at": "2026-02-25T22:31:44.863Z",
+  "gates": [
+    {
+      "gate": "G1",
+      "name": "Intake Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-25T21:53:00.418Z",
+          "finished_at": "2026-02-25T21:53:00.453Z",
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/G1-INTAKE.md",
+            "{artifact_path}/research/INTAKE.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/G1-INTAKE.md",
+              "sha256": "4977c35322cc763c612a5b0c5511c7674c55009c6d844e1d60459c0cf3dea0ac",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/G1-INTAKE.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/INTAKE.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/G1-INTAKE.md",
+              "pattern": "[REJECTED]",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not contain [REJECTED] marker",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/G1-INTAKE.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G2",
+      "name": "Research Complete",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-25T21:53:05.208Z",
+          "finished_at": "2026-02-25T21:53:05.252Z",
+          "agent": "research-orchestrator",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CITATIONS.md",
+            "{artifact_path}/research/CLAIMS.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/CITATIONS.md",
+              "sha256": "bce9990618da3137edb344da272d0339ceb1dc7024e961dce28c51678814b0df",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CITATIONS.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/CLAIMS.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "dir_exists",
+              "path": "{artifact_path}/research",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research",
+              "pass": true,
+              "description": "Research directory must exist"
+            },
+            {
+              "type": "min_file_count",
+              "path": "{artifact_path}/research",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research",
+              "pattern": "*.md",
+              "count": 8,
+              "threshold": 6,
+              "depth": "deep",
+              "pass": true,
+              "description": "Research directory must contain minimum number of markdown files based on depth mode"
+            },
+            {
+              "type": "min_sources_any_of",
+              "checked": [
+                "{artifact_path}/research/CITATIONS.md",
+                "{artifact_path}/research/CLAIMS.md"
+              ],
+              "matched": "{artifact_path}/research/CITATIONS.md",
+              "count": 205,
+              "threshold": 15,
+              "depth": "deep",
+              "pass": true,
+              "description": "Source-tracking file (CITATIONS.md or CLAIMS.md) must contain minimum sources based on depth mode"
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G3",
+      "name": "Spec Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-25T21:53:09.651Z",
+          "finished_at": "2026-02-25T21:53:09.687Z",
+          "agent": "visual-essay-invocation-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "orchestration/skills/visual-essay-invocation/specs/{slug}.md"
+          ],
+          "artifacts": [
+            {
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/homo-naledi.md",
+              "sha256": "2c9ed7f39f458b70806f725acdd8cb84a7810e6b2fff456ff8442aa8d458e8c2",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/homo-naledi.md",
+              "pass": true,
+              "description": "6-layer visual essay specification"
+            },
+            {
+              "type": "contains_headings",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "missing": [],
+              "severity": "error",
+              "description": "Spec must contain all 6 layer headings",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/homo-naledi.md",
+              "pattern": "[DRAFT]",
+              "found": false,
+              "severity": "warning",
+              "description": "Spec should not contain [DRAFT] marker (configurable)",
+              "pass": true,
+              "warning": false
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4",
+      "name": "Design Research",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-25T21:53:15.386Z",
+          "finished_at": "2026-02-25T21:53:15.473Z",
+          "agent": "design-researcher",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/DESIGN-RESEARCH.md",
+              "sha256": "a5a74d2e13ea92dd3e788d419082280ff2413a2edcc81f7d8e31f555240ff141",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Subject-derived design research report with color palette, typography, animation philosophy"
+            },
+            {
+              "type": "contains_headings",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "missing": [],
+              "severity": "warning",
+              "description": "Design research should cover Color, Typography, and Animation (warning if missing)",
+              "pass": true,
+              "warning": false
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4.1",
+      "name": "Design Research Reconciliation",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-02-25T21:53:15.515Z",
+          "finished_at": "2026-02-25T21:53:15.569Z",
+          "agent": "design-research-reconciliation-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+            "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/DESIGN-RESEARCH.md",
+              "sha256": "a5a74d2e13ea92dd3e788d419082280ff2413a2edcc81f7d8e31f555240ff141",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": false,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Design research report (must exist and be reconciled)"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/DESIGN-RESEARCH.md",
+              "pattern": "[UNRECONCILED]",
+              "found": false,
+              "severity": "error",
+              "description": "Design research must not contain [UNRECONCILED] marker",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/DESIGN-RESEARCH.md",
+              "pattern": "[COLLISION]",
+              "found": false,
+              "severity": "error",
+              "description": "Design research must not flag aesthetic collisions with other essays",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/G4.1-DESIGN-RECONCILIATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Reconciliation audit must not have FAIL status in frontmatter",
+              "reason": "File not found — cannot verify content (use missing_ok: true to skip)",
+              "pass": false
+            }
+          ],
+          "failure_reason": "None of required files exist: {artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md, {artifact_path}/G4.1-DESIGN-RECONCILIATION.md; Found forbidden pattern: status: FAIL"
+        },
+        {
+          "attempt": 2,
+          "status": "PASS",
+          "started_at": "2026-02-25T21:53:53.344Z",
+          "finished_at": "2026-02-25T21:53:53.381Z",
+          "agent": "design-research-reconciliation-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+            "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/G4.1-DESIGN-RECONCILIATION.md",
+              "sha256": "67675365ac361eac6642dd8d57909977196311433a33d12cb29a4844ad71cee4",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/DESIGN-RESEARCH.md",
+              "sha256": "a5a74d2e13ea92dd3e788d419082280ff2413a2edcc81f7d8e31f555240ff141",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Design research report (must exist and be reconciled)"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/DESIGN-RESEARCH.md",
+              "pattern": "[UNRECONCILED]",
+              "found": false,
+              "severity": "error",
+              "description": "Design research must not contain [UNRECONCILED] marker",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/DESIGN-RESEARCH.md",
+              "pattern": "[COLLISION]",
+              "found": false,
+              "severity": "error",
+              "description": "Design research must not flag aesthetic collisions with other essays",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/G4.1-DESIGN-RECONCILIATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Reconciliation audit must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4.5",
+      "name": "Image Sourcing",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-25T21:57:13.005Z",
+          "finished_at": "2026-02-25T21:57:19.313Z",
+          "agent": "image-research-licensing-expert",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+            "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+            "{artifact_path}/images-migration.json",
+            "{artifact_path}/images.ts"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/IMAGE_RESEARCH_AUDIT.md",
+              "sha256": "7ea7e442dcea9795a6b688dc53aec6509084fc6d2f949d93d17df82095e33875",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/images.ts",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+              "sha256": "136aab99305d1ca73b42363f77258cc2cf8d57c483dfa06b062906fc69ff726b",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/images-migration.json",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/images.ts",
+                  "exists": true
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "[UNLICENSED]",
+              "found": false,
+              "severity": "error",
+              "description": "Image audit must not contain unlicensed assets",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "[PENDING]",
+              "found": false,
+              "severity": "warning",
+              "description": "Image audit should not have pending sourcing tasks",
+              "pass": true,
+              "warning": false
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Image audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+              "patterns": [
+                "upload.wikimedia.org/wikipedia/commons/",
+                "as const"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "images.ts must exist with verified Wikimedia Commons direct URLs (not file page URLs)",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+              "pattern": "/commons/thumb/",
+              "found": false,
+              "severity": "error",
+              "description": "images.ts must NOT contain thumbnail URLs (/commons/thumb/) — use direct image URLs only",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+              "regex": "https://upload\\.wikimedia\\.org/wikipedia/commons/[a-f0-9]/[a-f0-9]{2}/[^\"]+\\.(jpg|jpeg|png|gif|svg)",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "images.ts must contain at least one properly-hashed Wikimedia Commons direct URL (format: /commons/{hash1}/{hash2}/filename.ext)",
+              "pass": true
+            },
+            {
+              "type": "min_regex_count",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+              "regex": "https://upload\\.wikimedia\\.org/wikipedia/commons/[a-f0-9]/[a-f0-9]{2}/",
+              "min_count": 5,
+              "actual_count": 27,
+              "severity": "error",
+              "description": "images.ts must contain at least 5 verified direct image URLs (photorealistic essays require substantial photography)",
+              "pass": true
+            },
+            {
+              "type": "url_reachable",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+              "total_urls": 27,
+              "checked": 10,
+              "ok": 10,
+              "failed": [],
+              "max_failures": 0,
+              "severity": "error",
+              "description": "All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4.6",
+      "name": "Visualization Technology Decision",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-02-25T21:57:36.766Z",
+          "finished_at": "2026-02-25T21:57:36.803Z",
+          "agent": "visualization-architect",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/VIZ-TECH-DECISIONS.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/VIZ-TECH-DECISIONS.md",
+              "sha256": "c7ce043599ee3c96a1863ad477039d368db8f47f38447c33fde256c67b2f8f63",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/VIZ-TECH-DECISIONS.md",
+              "pass": true,
+              "description": "Technology tier assignment for each planned visualization"
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/VIZ-TECH-DECISIONS.md",
+              "patterns": [
+                "Tier",
+                "Minimum Tier"
+              ],
+              "missing": [],
+              "severity": "error",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/VIZ-TECH-DECISIONS.md",
+              "checks": {
+                "status": "PASS"
+              },
+              "fields": {
+                "gate": "G4",
+                "artifact": "VIZ-TECH-DECISIONS",
+                "status": "VERIFIED",
+                "date": "2026-02-25"
+              },
+              "failures": [
+                "status: expected \"PASS\", got \"VERIFIED\""
+              ],
+              "severity": "error",
+              "pass": false
+            },
+            {
+              "type": "regex_match",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/VIZ-TECH-DECISIONS.md",
+              "regex": "Tier [1-4]",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "At least one visualization must be assigned Tier 1 or higher",
+              "pass": true
+            }
+          ],
+          "failure_reason": ""
+        },
+        {
+          "attempt": 2,
+          "status": "PASS",
+          "started_at": "2026-02-25T21:57:52.017Z",
+          "finished_at": "2026-02-25T21:57:52.054Z",
+          "agent": "visualization-architect",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/VIZ-TECH-DECISIONS.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/VIZ-TECH-DECISIONS.md",
+              "sha256": "dd77ef84ff856fb95d6b5441c465b727e7a27ee0fea6f78e85ff807f94050250",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/VIZ-TECH-DECISIONS.md",
+              "pass": true,
+              "description": "Technology tier assignment for each planned visualization"
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/VIZ-TECH-DECISIONS.md",
+              "patterns": [
+                "Tier",
+                "Minimum Tier"
+              ],
+              "missing": [],
+              "severity": "error",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/VIZ-TECH-DECISIONS.md",
+              "checks": {
+                "status": "PASS"
+              },
+              "fields": {
+                "gate": "G4",
+                "artifact": "VIZ-TECH-DECISIONS",
+                "status": "PASS",
+                "date": "2026-02-25"
+              },
+              "failures": [],
+              "severity": "error",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/VIZ-TECH-DECISIONS.md",
+              "regex": "Tier [1-4]",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "At least one visualization must be assigned Tier 1 or higher",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4.7",
+      "name": "R2 Image Upload",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-25T21:59:47.107Z",
+          "finished_at": "2026-02-25T21:59:53.941Z",
+          "agent": "image-research-licensing-expert",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/images.ts"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/images.ts",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+              "sha256": "3684e180968ae064257a2bedcb59f4ebe8f7fa6438bcb4b681eb9b9e1eecc574",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/images.ts",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+              "pass": true,
+              "description": "TypeScript image data with all URLs pointing to images.esy.com"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+              "pattern": "upload.wikimedia.org",
+              "found": false,
+              "severity": "error",
+              "description": "No hotlinked Wikimedia URLs — all images must be on images.esy.com",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+              "pattern": "tile.loc.gov",
+              "found": false,
+              "severity": "error",
+              "description": "No hotlinked Library of Congress URLs — all images must be on images.esy.com",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+              "patterns": [
+                "images.esy.com",
+                "as const"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "images.ts must contain R2-hosted URLs (images.esy.com) and be typed as const",
+              "pass": true
+            },
+            {
+              "type": "min_regex_count",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+              "regex": "https://images\\.esy\\.com/essays/",
+              "min_count": 5,
+              "actual_count": 26,
+              "severity": "error",
+              "description": "At least 5 R2-hosted image URLs must be present (photorealistic essays require substantial photography)",
+              "pass": true
+            },
+            {
+              "type": "url_reachable",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+              "total_urls": 26,
+              "checked": 10,
+              "ok": 10,
+              "failed": [],
+              "max_failures": 0,
+              "severity": "error",
+              "description": "All R2-hosted image URLs must return HTTP 2xx — verifies upload completed successfully",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5",
+      "name": "Content Complete",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-25T22:28:42.550Z",
+          "finished_at": "2026-02-25T22:28:42.587Z",
+          "agent": "production-orchestrator",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/page.tsx",
+            "{artifact_path}/{slug}.css"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/page.tsx",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/page.tsx",
+              "sha256": "9c5a4e3a71db7f849ce2b1a6d9612b34eb5eaa14d96764a54eb8a56d33fdaf7a",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/{slug}.css",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/homo-naledi.css",
+              "sha256": "20922cea65e8f7cc0fd3cb3a0ff9d75d652e543fa4ddbc47acc238840135ab87",
+              "exists": true,
+              "optional": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/page.tsx",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/page.tsx",
+              "pass": true,
+              "description": "Next.js page with metadata, ArtifactDetailWrapper, and default export"
+            },
+            {
+              "type": "contains_headings",
+              "path": "{artifact_path}/page.tsx",
+              "missing": [],
+              "severity": "error",
+              "description": "page.tsx must contain a default export and metadata definition",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/page.tsx",
+              "patterns": [
+                "ArtifactDetailWrapper",
+                "ESSAY_META"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "page.tsx MUST import and use ArtifactDetailWrapper with ESSAY_META (visual-essay-engineering-standard.md §2, Red Lines)",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/page.tsx",
+              "patterns": [
+                "@/components/ArtifactDetail"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "page.tsx MUST import ArtifactDetailWrapper from @/components/ArtifactDetail",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/page.tsx",
+              "pattern": "TODO",
+              "found": false,
+              "severity": "warning",
+              "description": "page.tsx should not contain TODO markers (indicates incomplete implementation)",
+              "pass": true,
+              "warning": false
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+              "regex": "[\\u{1F300}-\\u{1F9FF}\\u{2600}-\\u{26FF}\\u{2700}-\\u{27BF}]",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "Client component must NOT contain emoji characters — use SVG icons or CSS shapes instead",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+              "regex": ">([^{<\"]*\\\\u[0-9a-fA-F]{4})",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "Client component must NOT contain raw Unicode escape sequences (\\uXXXX) in JSX text content — they render as literal text, not as the intended character. Wrap in JavaScript expressions ({\"\\u0113\"}) or use actual UTF-8 characters (ē) instead. See: JSX text nodes do not process JS string escape sequences.",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+              "regex": "from ['\"]\\./images['\"]",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "Client component must import from ./images (images.ts) — all external image URLs must be centralized in the images file, not hardcoded inline",
+              "pass": true
+            },
+            {
+              "type": "min_regex_count",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+              "regex": "<img[\\s\\n]",
+              "min_count": 3,
+              "actual_count": 13,
+              "severity": "error",
+              "description": "Client component must contain at least 3 <img> elements — photorealistic essays require substantial photography",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+              "patterns": [
+                "Sources",
+                "SOURCES"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Client component must contain a Sources/Bibliography section — every essay requires source attribution at the conclusion",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.4",
+      "name": "Visualization Ambition Audit",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-25T22:29:51.256Z",
+          "finished_at": "2026-02-25T22:29:51.292Z",
+          "agent": "visualization-architect-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/G5.4-VIZ-AMBITION-AUDIT.md",
+              "sha256": "4a7492c3ef19a0f819f4d936f00d13011ff107f9536541ccf46d98a80a2b74d3",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/G5.4-VIZ-AMBITION-AUDIT.md",
+              "pass": true,
+              "description": "Per-visualization technology audit with scores"
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/G5.4-VIZ-AMBITION-AUDIT.md",
+              "checks": {
+                "status": "PASS"
+              },
+              "fields": {
+                "gate": "G5.4",
+                "artifact": "VIZ-AMBITION-AUDIT",
+                "status": "PASS",
+                "date": "2026-02-25",
+                "auditor": "visualization-architect-auditor"
+              },
+              "failures": [],
+              "severity": "error",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/G5.4-VIZ-AMBITION-AUDIT.md",
+              "patterns": [
+                "Average Score",
+                "Technology Tier"
+              ],
+              "missing": [],
+              "severity": "error",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+              "regex": "import .*(d3|three|recharts|Canvas|useRef.*canvas|getContext)",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "Client component or its visualization imports must reference at least one visualization library or Canvas API",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+              "regex": "width:\\s*[`'\"]\\$\\{.*\\}%[`'\"]",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "No div-width-percentage bar charts in data-encoding visualizations",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.2",
+      "name": "Design Fidelity Audit",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-25T22:29:58.577Z",
+          "finished_at": "2026-02-25T22:29:58.614Z",
+          "agent": "design-research-implementation-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+            "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "sha256": "bcd705df9bf53e68339214aa14dc073c2176d5decbe774c5566a2c0fb1d03d52",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/DESIGN-RESEARCH.md",
+              "sha256": "a5a74d2e13ea92dd3e788d419082280ff2413a2edcc81f7d8e31f555240ff141",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+                  "exists": true
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Design research must still exist (design source of truth)"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Design fidelity audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                },
+                "blocking_issues": {
+                  "min": 0
+                }
+              },
+              "fields": {
+                "gate": "G5.2",
+                "artifact": "DESIGN-FIDELITY-AUDIT",
+                "status": "PASS",
+                "date": "2026-02-25",
+                "auditor": "design-research-implementation-auditor",
+                "blocking_issues": 0
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter must indicate non-FAIL status with zero blocking issues",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.3",
+      "name": "Diagram-Code Reconciliation",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-25T22:29:58.648Z",
+          "finished_at": "2026-02-25T22:29:58.684Z",
+          "agent": "diagram-code-reconciliation-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+            "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+            "{client_component}"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "sha256": "56fba8e6482532f0d80b2322a0bdee168e99f76f4e5449a89028f389df055fc0",
+              "exists": true
+            },
+            {
+              "path": "{client_component}",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+              "sha256": "9b97574cbefdc5e5ab88c7def3b40f379d203c429dc828d0e4e1aae82e996b01",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{client_component}",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+              "pass": true,
+              "description": "Client component must contain @diagram-contract blocks for every visualization function"
+            },
+            {
+              "type": "contains_text",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+              "patterns": [
+                "@diagram-contract"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Client component MUST contain at least one @diagram-contract block per diagram-code-contract.md standard",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Diagram-code reconciliation must not have FAIL status",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "gate": "G5.3",
+                "artifact": "DIAGRAM-CODE-RECONCILIATION",
+                "status": "PASS",
+                "date": "2026-02-25",
+                "auditor": "diagram-code-reconciliation-auditor"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Diagram-code reconciliation frontmatter status must not be FAIL",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.5",
+      "name": "Bibliography Implementation",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-25T22:29:58.717Z",
+          "finished_at": "2026-02-25T22:29:58.752Z",
+          "agent": "bibliography-orchestrator",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+            "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "sha256": "500a7061a28c4c890e5adf74814255250d7f2e59b9fafd6468e2c2415c6f6d83",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Bibliography audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "pattern": "Overall Status: ❌",
+              "found": false,
+              "severity": "error",
+              "description": "Bibliography audit must not report overall failure",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "gate": "G5.5",
+                "artifact": "CONTENT-BIBLIOGRAPHY-AUDIT",
+                "status": "PASS",
+                "date": "2026-02-25",
+                "auditor": "bibliography-orchestrator"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+              "patterns": [
+                "SOURCES"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Client component must import and render the SOURCES data — the bibliography section must exist in the actual rendered output, not just the audit document",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+              "patterns": [
+                "IMAGE_CREDITS"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Client component must import and render IMAGE_CREDITS data — image attribution must appear in the actual rendered output",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+              "regex": "sources|bibliography|works.cited|further.reading",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "Client component must contain bibliography-related section markers (sources, bibliography, works cited, or further reading)",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G6",
+      "name": "Citation Audit",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-25T22:31:00.542Z",
+          "finished_at": "2026-02-25T22:31:00.576Z",
+          "agent": "citation-audit-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CITATION-AUDIT.md",
+            "{artifact_path}/CITATION-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/CITATION-AUDIT.md",
+              "sha256": "62fb5b41702772c2ce83fd6ce4f615ecb8c91ee4d89ea61cfe6c707ad5a2a392",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CITATION-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/CITATION-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/CITATION-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Citation audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/CITATION-AUDIT.md",
+              "pattern": "Citation Certification: Rejected",
+              "found": false,
+              "severity": "error",
+              "description": "Citation audit must not have Rejected certification",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/CITATION-AUDIT.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "gate": "G6",
+                "artifact": "CITATION-AUDIT",
+                "status": "PASS",
+                "date": "2026-02-25",
+                "auditor": "citation-audit-agent",
+                "total_sources": 24,
+                "verified": 24,
+                "broken_links": 0
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML, not string match)",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G6.6",
+      "name": "Prose Quality Audit",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-25T22:31:00.606Z",
+          "finished_at": "2026-02-25T22:31:00.641Z",
+          "agent": "prose-quality-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+            "{artifact_path}/PROSE-QUALITY-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/PROSE-QUALITY-AUDIT.md",
+              "sha256": "5af68a984d794efc7cb3f3b7795af05e6456146ecb7e11c3a1e5f68c6108c659",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PROSE-QUALITY-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/PROSE-QUALITY-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Prose quality audit must not have FAIL status",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/PROSE-QUALITY-AUDIT.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "gate": "G6.6",
+                "artifact": "PROSE-QUALITY-AUDIT",
+                "status": "PASS",
+                "date": "2026-02-25",
+                "auditor": "prose-quality-auditor",
+                "overall_score": 7.8
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+              "regex": "(\\bdelve\\b|\\btapestry\\b|\\bunlock the secrets\\b|\\bin today's world\\b|\\blet's dive\\b|\\bfascinating journey\\b|\\bit's important to note\\b|\\bIn conclusion\\b)",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "warning",
+              "description": "Client component should not contain common AI slop phrases (delve, tapestry, unlock the secrets, etc.)",
+              "pass": true,
+              "warning": false
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+              "regex": "[\\u{1F300}-\\u{1F9FF}\\u{2600}-\\u{26FF}\\u{2700}-\\u{27BF}]",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "Client component must NOT contain emoji characters",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G7",
+      "name": "Scroll Certification",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-25T22:31:00.673Z",
+          "finished_at": "2026-02-25T22:31:00.708Z",
+          "agent": "immersive-scrolling-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+            "{artifact_path}/SCROLL-CERTIFICATION.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/SCROLL-CERTIFICATION.md",
+              "sha256": "dab1d2813ed8560521d2fd9f3a8d8a8fee03c8d52178c59f556afac1f078e6ac",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/SCROLL-CERTIFICATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/SCROLL-CERTIFICATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Scroll certification must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/SCROLL-CERTIFICATION.md",
+              "pattern": "Overall Status: ❌",
+              "found": false,
+              "severity": "error",
+              "description": "Scroll certification must not report overall failure",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/SCROLL-CERTIFICATION.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "gate": "G7",
+                "artifact": "SCROLL-CERTIFICATION",
+                "status": "PASS",
+                "date": "2026-02-25",
+                "auditor": "immersive-scrolling-auditor"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+              "pass": true
+            },
+            {
+              "type": "min_regex_count",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+              "regex": "src=\\{IMAGES\\.",
+              "min_count": 3,
+              "actual_count": 13,
+              "severity": "error",
+              "description": "Client component must reference at least 3 images from the IMAGES constant — scroll certification requires visual content actually renders",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+              "regex": "loading=[\"']lazy[\"']",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "Client component must use lazy loading on images (loading='lazy') for scroll performance",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G8",
+      "name": "Publication Certification",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-25T22:31:31.626Z",
+          "finished_at": "2026-02-25T22:31:34.713Z",
+          "agent": "publish-artifact-orchestrator",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+            "{artifact_path}/PUBLICATION-CERTIFICATION.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/PUBLICATION-CERTIFICATION.md",
+              "sha256": "04158952bc0c703c93ef368f3fda7d1851dad456147ed44ef3cdb15bb8b736dc",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PUBLICATION-CERTIFICATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/PUBLICATION-CERTIFICATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Publication certification must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/PUBLICATION-CERTIFICATION.md",
+              "pattern": "NO-GO",
+              "found": false,
+              "severity": "error",
+              "description": "Publication certification must not be NO-GO",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/PUBLICATION-CERTIFICATION.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "gate": "G8",
+                "artifact": "PUBLICATION-CERTIFICATION",
+                "status": "PASS",
+                "date": "2026-02-25",
+                "auditor": "publish-artifact-orchestrator",
+                "recommendation": "GO"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+              "patterns": [
+                "SOURCES",
+                "IMAGE_CREDITS"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "PUBLICATION GATE: Client component must import SOURCES and IMAGE_CREDITS — bibliography and image attribution must be present in the shipped code",
+              "pass": true
+            },
+            {
+              "type": "min_regex_count",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+              "regex": "src=\\{IMAGES\\.",
+              "min_count": 5,
+              "actual_count": 13,
+              "severity": "error",
+              "description": "PUBLICATION GATE: Client component must reference at least 5 images from the IMAGES constant — photorealistic essays require substantial photography",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+              "patterns": [
+                "images.esy.com"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "PUBLICATION GATE: images.ts must contain R2-hosted URLs (images.esy.com) — hotlinking external URLs is prohibited",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+              "pattern": "upload.wikimedia.org",
+              "found": false,
+              "severity": "error",
+              "description": "PUBLICATION GATE: images.ts must not contain hotlinked Wikimedia URLs — all images must be self-hosted on R2",
+              "pass": true
+            },
+            {
+              "type": "url_reachable",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+              "total_urls": 26,
+              "checked": 5,
+              "ok": 5,
+              "failed": [],
+              "max_failures": 0,
+              "severity": "error",
+              "description": "PUBLICATION GATE: Spot-check that R2 image URLs are reachable (HTTP 2xx) — final defense against broken images shipping to production",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G9",
+      "name": "Publication Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-02-25T22:31:44.788Z",
+          "finished_at": "2026-02-25T22:31:44.830Z",
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+            "{artifact_path}/PUBLICATION-APPROVAL.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/PUBLICATION-APPROVAL.md",
+              "sha256": "401db8a4ea805045f5207748fc7f48107474c2964be74a182908a208267ca105",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PUBLICATION-APPROVAL.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/PUBLICATION-APPROVAL.md",
+              "pattern": "REJECTED",
+              "found": false,
+              "severity": "error",
+              "description": "Publication approval must not contain REJECTED",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/PUBLICATION-APPROVAL.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Publication approval must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/page.tsx",
+              "patterns": [
+                "ArtifactDetailWrapper"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Final verification: page.tsx MUST use ArtifactDetailWrapper at publication time (visual-essay-engineering-standard.md §Red Lines)",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/PUBLICATION-APPROVAL.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "gate": "G9",
+                "artifact": "PUBLICATION-APPROVAL",
+                "status": "PASS",
+                "date": "2026-02-25",
+                "auditor": "visual-essay-orchestrator",
+                "decision": "APPROVED"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    }
+  ],
+  "invocations": [],
+  "artifacts_index": [
+    {
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "sha256": "4977c35322cc763c612a5b0c5511c7674c55009c6d844e1d60459c0cf3dea0ac",
+      "gate": "G1",
+      "recorded_at": "2026-02-25T21:53:00.454Z"
+    },
+    {
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "sha256": "bce9990618da3137edb344da272d0339ceb1dc7024e961dce28c51678814b0df",
+      "gate": "G2",
+      "recorded_at": "2026-02-25T21:53:05.252Z"
+    },
+    {
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "sha256": "2c9ed7f39f458b70806f725acdd8cb84a7810e6b2fff456ff8442aa8d458e8c2",
+      "gate": "G3",
+      "recorded_at": "2026-02-25T21:53:09.688Z"
+    },
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "sha256": "a5a74d2e13ea92dd3e788d419082280ff2413a2edcc81f7d8e31f555240ff141",
+      "gate": "G4",
+      "recorded_at": "2026-02-25T21:53:15.478Z",
+      "updated_at": "2026-02-25T22:29:58.615Z"
+    },
+    {
+      "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+      "sha256": "67675365ac361eac6642dd8d57909977196311433a33d12cb29a4844ad71cee4",
+      "gate": "G4.1",
+      "recorded_at": "2026-02-25T21:53:53.382Z"
+    },
+    {
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "sha256": "7ea7e442dcea9795a6b688dc53aec6509084fc6d2f949d93d17df82095e33875",
+      "gate": "G4.5",
+      "recorded_at": "2026-02-25T21:57:19.314Z"
+    },
+    {
+      "path": "{artifact_path}/images.ts",
+      "sha256": "3684e180968ae064257a2bedcb59f4ebe8f7fa6438bcb4b681eb9b9e1eecc574",
+      "gate": "G4.5",
+      "recorded_at": "2026-02-25T21:57:19.314Z",
+      "updated_at": "2026-02-25T21:59:53.942Z"
+    },
+    {
+      "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "sha256": "dd77ef84ff856fb95d6b5441c465b727e7a27ee0fea6f78e85ff807f94050250",
+      "gate": "G4.6",
+      "recorded_at": "2026-02-25T21:57:36.803Z",
+      "updated_at": "2026-02-25T21:57:52.054Z"
+    },
+    {
+      "path": "{artifact_path}/page.tsx",
+      "sha256": "9c5a4e3a71db7f849ce2b1a6d9612b34eb5eaa14d96764a54eb8a56d33fdaf7a",
+      "gate": "G5",
+      "recorded_at": "2026-02-25T22:28:42.588Z"
+    },
+    {
+      "path": "{artifact_path}/{slug}.css",
+      "sha256": "20922cea65e8f7cc0fd3cb3a0ff9d75d652e543fa4ddbc47acc238840135ab87",
+      "gate": "G5",
+      "recorded_at": "2026-02-25T22:28:42.588Z"
+    },
+    {
+      "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+      "sha256": "4a7492c3ef19a0f819f4d936f00d13011ff107f9536541ccf46d98a80a2b74d3",
+      "gate": "G5.4",
+      "recorded_at": "2026-02-25T22:29:51.293Z"
+    },
+    {
+      "path": "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "sha256": "bcd705df9bf53e68339214aa14dc073c2176d5decbe774c5566a2c0fb1d03d52",
+      "gate": "G5.2",
+      "recorded_at": "2026-02-25T22:29:58.615Z"
+    },
+    {
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "sha256": "56fba8e6482532f0d80b2322a0bdee168e99f76f4e5449a89028f389df055fc0",
+      "gate": "G5.3",
+      "recorded_at": "2026-02-25T22:29:58.685Z"
+    },
+    {
+      "path": "{client_component}",
+      "sha256": "9b97574cbefdc5e5ab88c7def3b40f379d203c429dc828d0e4e1aae82e996b01",
+      "gate": "G5.3",
+      "recorded_at": "2026-02-25T22:29:58.685Z"
+    },
+    {
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "sha256": "500a7061a28c4c890e5adf74814255250d7f2e59b9fafd6468e2c2415c6f6d83",
+      "gate": "G5.5",
+      "recorded_at": "2026-02-25T22:29:58.753Z"
+    },
+    {
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "sha256": "62fb5b41702772c2ce83fd6ce4f615ecb8c91ee4d89ea61cfe6c707ad5a2a392",
+      "gate": "G6",
+      "recorded_at": "2026-02-25T22:31:00.576Z"
+    },
+    {
+      "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+      "sha256": "5af68a984d794efc7cb3f3b7795af05e6456146ecb7e11c3a1e5f68c6108c659",
+      "gate": "G6.6",
+      "recorded_at": "2026-02-25T22:31:00.642Z"
+    },
+    {
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "sha256": "dab1d2813ed8560521d2fd9f3a8d8a8fee03c8d52178c59f556afac1f078e6ac",
+      "gate": "G7",
+      "recorded_at": "2026-02-25T22:31:00.708Z"
+    },
+    {
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "sha256": "04158952bc0c703c93ef368f3fda7d1851dad456147ed44ef3cdb15bb8b736dc",
+      "gate": "G8",
+      "recorded_at": "2026-02-25T22:31:34.714Z"
+    },
+    {
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "sha256": "401db8a4ea805045f5207748fc7f48107474c2964be74a182908a208267ca105",
+      "gate": "G9",
+      "recorded_at": "2026-02-25T22:31:44.831Z"
+    }
+  ],
+  "validations": [],
+  "events": [
+    {
+      "timestamp": "2026-02-25T21:52:51.996Z",
+      "type": "RUN_STARTED",
+      "message": "Run initialized for visual-essay/homo-naledi"
+    },
+    {
+      "timestamp": "2026-02-25T21:53:00.419Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 1,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 1 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-25T21:53:00.454Z",
+      "type": "GATE_PASSED",
+      "gate": "G1",
+      "attempt": 1,
+      "message": "Gate G1 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-25T21:53:05.210Z",
+      "type": "GATE_STARTED",
+      "gate": "G2",
+      "attempt": 1,
+      "agent": "research-orchestrator",
+      "message": "Gate G2 attempt 1 started with agent research-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-25T21:53:05.252Z",
+      "type": "GATE_PASSED",
+      "gate": "G2",
+      "attempt": 1,
+      "message": "Gate G2 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-25T21:53:09.652Z",
+      "type": "GATE_STARTED",
+      "gate": "G3",
+      "attempt": 1,
+      "agent": "visual-essay-invocation-agent",
+      "message": "Gate G3 attempt 1 started with agent visual-essay-invocation-agent"
+    },
+    {
+      "timestamp": "2026-02-25T21:53:09.688Z",
+      "type": "GATE_PASSED",
+      "gate": "G3",
+      "attempt": 1,
+      "message": "Gate G3 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-25T21:53:15.390Z",
+      "type": "GATE_STARTED",
+      "gate": "G4",
+      "attempt": 1,
+      "agent": "design-researcher",
+      "message": "Gate G4 attempt 1 started with agent design-researcher"
+    },
+    {
+      "timestamp": "2026-02-25T21:53:15.478Z",
+      "type": "GATE_PASSED",
+      "gate": "G4",
+      "attempt": 1,
+      "message": "Gate G4 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-25T21:53:15.516Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.1",
+      "attempt": 1,
+      "agent": "design-research-reconciliation-agent",
+      "message": "Gate G4.1 attempt 1 started with agent design-research-reconciliation-agent"
+    },
+    {
+      "timestamp": "2026-02-25T21:53:15.571Z",
+      "type": "GATE_FAILED",
+      "gate": "G4.1",
+      "attempt": 1,
+      "message": "Gate G4.1 failed: None of required files exist: {artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md, {artifact_path}/G4.1-DESIGN-RECONCILIATION.md; Found forbidden pattern: status: FAIL"
+    },
+    {
+      "timestamp": "2026-02-25T21:53:53.344Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.1",
+      "attempt": 2,
+      "agent": "design-research-reconciliation-agent",
+      "message": "Gate G4.1 attempt 2 started with agent design-research-reconciliation-agent"
+    },
+    {
+      "timestamp": "2026-02-25T21:53:53.382Z",
+      "type": "GATE_PASSED",
+      "gate": "G4.1",
+      "attempt": 2,
+      "message": "Gate G4.1 passed on attempt 2"
+    },
+    {
+      "timestamp": "2026-02-25T21:57:13.006Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "agent": "image-research-licensing-expert",
+      "message": "Gate G4.5 attempt 1 started with agent image-research-licensing-expert"
+    },
+    {
+      "timestamp": "2026-02-25T21:57:19.314Z",
+      "type": "GATE_PASSED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "message": "Gate G4.5 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-25T21:57:36.766Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.6",
+      "attempt": 1,
+      "agent": "visualization-architect",
+      "message": "Gate G4.6 attempt 1 started with agent visualization-architect"
+    },
+    {
+      "timestamp": "2026-02-25T21:57:36.803Z",
+      "type": "GATE_FAILED",
+      "gate": "G4.6",
+      "attempt": 1,
+      "message": "Gate G4.6 failed: "
+    },
+    {
+      "timestamp": "2026-02-25T21:57:52.017Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.6",
+      "attempt": 2,
+      "agent": "visualization-architect",
+      "message": "Gate G4.6 attempt 2 started with agent visualization-architect"
+    },
+    {
+      "timestamp": "2026-02-25T21:57:52.054Z",
+      "type": "GATE_PASSED",
+      "gate": "G4.6",
+      "attempt": 2,
+      "message": "Gate G4.6 passed on attempt 2"
+    },
+    {
+      "timestamp": "2026-02-25T21:59:47.108Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.7",
+      "attempt": 1,
+      "agent": "image-research-licensing-expert",
+      "message": "Gate G4.7 attempt 1 started with agent image-research-licensing-expert"
+    },
+    {
+      "timestamp": "2026-02-25T21:59:53.942Z",
+      "type": "GATE_PASSED",
+      "gate": "G4.7",
+      "attempt": 1,
+      "message": "Gate G4.7 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-25T22:28:42.550Z",
+      "type": "GATE_STARTED",
+      "gate": "G5",
+      "attempt": 1,
+      "agent": "production-orchestrator",
+      "message": "Gate G5 attempt 1 started with agent production-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-25T22:28:42.588Z",
+      "type": "GATE_PASSED",
+      "gate": "G5",
+      "attempt": 1,
+      "message": "Gate G5 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-25T22:29:51.257Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.4",
+      "attempt": 1,
+      "agent": "visualization-architect-auditor",
+      "message": "Gate G5.4 attempt 1 started with agent visualization-architect-auditor"
+    },
+    {
+      "timestamp": "2026-02-25T22:29:51.293Z",
+      "type": "GATE_PASSED",
+      "gate": "G5.4",
+      "attempt": 1,
+      "message": "Gate G5.4 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-25T22:29:58.578Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.2",
+      "attempt": 1,
+      "agent": "design-research-implementation-auditor",
+      "message": "Gate G5.2 attempt 1 started with agent design-research-implementation-auditor"
+    },
+    {
+      "timestamp": "2026-02-25T22:29:58.615Z",
+      "type": "GATE_PASSED",
+      "gate": "G5.2",
+      "attempt": 1,
+      "message": "Gate G5.2 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-25T22:29:58.648Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.3",
+      "attempt": 1,
+      "agent": "diagram-code-reconciliation-auditor",
+      "message": "Gate G5.3 attempt 1 started with agent diagram-code-reconciliation-auditor"
+    },
+    {
+      "timestamp": "2026-02-25T22:29:58.685Z",
+      "type": "GATE_PASSED",
+      "gate": "G5.3",
+      "attempt": 1,
+      "message": "Gate G5.3 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-25T22:29:58.717Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.5",
+      "attempt": 1,
+      "agent": "bibliography-orchestrator",
+      "message": "Gate G5.5 attempt 1 started with agent bibliography-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-25T22:29:58.753Z",
+      "type": "GATE_PASSED",
+      "gate": "G5.5",
+      "attempt": 1,
+      "message": "Gate G5.5 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-25T22:31:00.542Z",
+      "type": "GATE_STARTED",
+      "gate": "G6",
+      "attempt": 1,
+      "agent": "citation-audit-agent",
+      "message": "Gate G6 attempt 1 started with agent citation-audit-agent"
+    },
+    {
+      "timestamp": "2026-02-25T22:31:00.576Z",
+      "type": "GATE_PASSED",
+      "gate": "G6",
+      "attempt": 1,
+      "message": "Gate G6 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-25T22:31:00.607Z",
+      "type": "GATE_STARTED",
+      "gate": "G6.6",
+      "attempt": 1,
+      "agent": "prose-quality-auditor",
+      "message": "Gate G6.6 attempt 1 started with agent prose-quality-auditor"
+    },
+    {
+      "timestamp": "2026-02-25T22:31:00.642Z",
+      "type": "GATE_PASSED",
+      "gate": "G6.6",
+      "attempt": 1,
+      "message": "Gate G6.6 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-25T22:31:00.673Z",
+      "type": "GATE_STARTED",
+      "gate": "G7",
+      "attempt": 1,
+      "agent": "immersive-scrolling-auditor",
+      "message": "Gate G7 attempt 1 started with agent immersive-scrolling-auditor"
+    },
+    {
+      "timestamp": "2026-02-25T22:31:00.708Z",
+      "type": "GATE_PASSED",
+      "gate": "G7",
+      "attempt": 1,
+      "message": "Gate G7 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-25T22:31:31.626Z",
+      "type": "GATE_STARTED",
+      "gate": "G8",
+      "attempt": 1,
+      "agent": "publish-artifact-orchestrator",
+      "message": "Gate G8 attempt 1 started with agent publish-artifact-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-25T22:31:34.714Z",
+      "type": "GATE_PASSED",
+      "gate": "G8",
+      "attempt": 1,
+      "message": "Gate G8 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-25T22:31:44.789Z",
+      "type": "GATE_STARTED",
+      "gate": "G9",
+      "attempt": 1,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G9 attempt 1 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-02-25T22:31:44.831Z",
+      "type": "GATE_PASSED",
+      "gate": "G9",
+      "attempt": 1,
+      "message": "Gate G9 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-02-25T22:31:44.863Z",
+      "type": "RUN_COMPLETED",
+      "status": "PASSED",
+      "message": "Run completed with status: PASSED"
+    }
+  ]
+}

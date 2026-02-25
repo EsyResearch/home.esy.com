@@ -1,0 +1,105 @@
+{
+  "essaySlug": "the-word-animal",
+  "images": [
+    {
+      "key": "main",
+      "filename": "canis-lupus-laying-in-grass.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/69/Canis_lupus_laying_in_grass.jpg"
+    },
+    {
+      "key": "aristotleAltempsInv8575",
+      "filename": "aristotle-altemps-inv8575.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Aristotle_Altemps_Inv8575.jpg"
+    },
+    {
+      "key": "templeOfHephaestusInAthens",
+      "filename": "temple-of-hephaestus-in-athens.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Temple_of_Hephaestus_in_Athens.jpg"
+    },
+    {
+      "key": "caveCanemManNapoliInv110666",
+      "filename": "cave-canem-man-napoli-inv110666.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Cave_canem_MAN_Napoli_Inv110666.jpg"
+    },
+    {
+      "key": "dt738",
+      "filename": "dt738.jpg",
+      "sourceUrl": "https://images.metmuseum.org/CRDImages/rl/original/DT738.jpg"
+    },
+    {
+      "key": "escribano",
+      "filename": "escribano.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/0/00/Escribano.jpg"
+    },
+    {
+      "key": "histoiresDeTroyesNemeianLion28cognac29",
+      "filename": "histoires-de-troyes-nemeian-lion-cognac-.jpeg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/13/Histoires_de_Troyes_-_Nemeian_Lion_%28Cognac%29.jpeg"
+    },
+    {
+      "key": "vesaliusFabricaP174",
+      "filename": "vesalius-fabrica-p174.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/35/Vesalius_Fabrica_p174.jpg"
+    },
+    {
+      "key": "museiWormianiHistoria",
+      "filename": "musei-wormiani-historia.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Musei_Wormiani_Historia.jpg"
+    },
+    {
+      "key": "gessnerConrad15161565",
+      "filename": "gessner-conrad-1516-1565.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Gessner_Conrad_1516-1565.jpg"
+    },
+    {
+      "key": "linnaeus1758TitlePage",
+      "filename": "linnaeus1758-title-page.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Linnaeus1758-title-page.jpg"
+    },
+    {
+      "key": "carolusLinnaeus",
+      "filename": "carolus-linnaeus.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Carolus_Linnaeus.jpg"
+    },
+    {
+      "key": "ritrattomuseoferranteimperato",
+      "filename": "ritrattomuseoferranteimperato.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f3/RitrattoMuseoFerranteImperato.jpg"
+    },
+    {
+      "key": "charlesDarwinPhotographByJuliaMargaretCameron2c1868",
+      "filename": "charles-darwin-photograph-by-julia-margaret-cameron-1868.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Charles_Darwin_photograph_by_Julia_Margaret_Cameron%2C_1868.jpg"
+    },
+    {
+      "key": "darwin27sFinches",
+      "filename": "darwin-s-finches.jpeg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/97/Darwin%27s_finches.jpeg"
+    },
+    {
+      "key": "darwinTree1837",
+      "filename": "darwin-tree-1837.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/10/Darwin_Tree_1837.png"
+    },
+    {
+      "key": "elrathiaKingiiGrowthSeries",
+      "filename": "elrathia-kingii-growth-series.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/19/Elrathia_kingii_growth_series.jpg"
+    },
+    {
+      "key": "dnaStructure2bkey2blabelledPnNobb",
+      "filename": "dna-structure-key-labelled.pn-nobb.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4c/DNA_Structure%2BKey%2BLabelled.pn_NoBB.png"
+    },
+    {
+      "key": "panTroglodytesSerengetiParkHodenhagen10",
+      "filename": "pan-troglodytes-serengeti-park-hodenhagen-10.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/Pan_troglodytes_-_Serengeti-Park_Hodenhagen_10.jpg"
+    },
+    {
+      "key": "anim1754FlickrNoaaPhotoLibrary",
+      "filename": "anim1754-flickr-noaa-photo-library.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg"
+    }
+  ]
+}

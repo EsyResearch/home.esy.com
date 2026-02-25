@@ -1,0 +1,93 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-24T21:54:01.049Z",
+  "finished_at": "2026-02-24T21:54:01.086Z",
+  "agent": "director",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+    "{artifact_path}/PUBLICATION-APPROVAL.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/PUBLICATION-APPROVAL.md",
+      "sha256": "b57013c8854d90e984a2d36568ef1c0e39f3846f98875473dc0bac1b2c2bdcc9",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/PUBLICATION-APPROVAL.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/PUBLICATION-APPROVAL.md",
+      "pattern": "REJECTED",
+      "found": false,
+      "severity": "error",
+      "description": "Publication approval must not contain REJECTED",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/PUBLICATION-APPROVAL.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Publication approval must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/page.tsx",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/page.tsx",
+      "patterns": [
+        "ArtifactDetailWrapper"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "Final verification: page.tsx MUST use ArtifactDetailWrapper at publication time (visual-essay-engineering-standard.md §Red Lines)",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/PUBLICATION-APPROVAL.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "fields": {
+        "gate": "G9",
+        "essay": "lucy",
+        "auditor": "director",
+        "status": "PASS",
+        "approval": "APPROVED",
+        "date": "2026-02-24"
+      },
+      "failures": [],
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

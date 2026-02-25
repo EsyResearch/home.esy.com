@@ -23,6 +23,7 @@ These scripts handle migrating hotlinked images from external sources (Wikimedia
 | `r2-migrate-flat-url-map.mjs` | Migrate flat `{ key: "url" }` structures | Essays with `const IMAGES = { hero: "url" }` |
 | `r2-migrate-nested-src-objects.mjs` | Migrate nested `{ key: { src } }` structures | Essays with `{ hero: { src: "url", alt } }` |
 | `r2-upload-single-image.mjs` | Upload a single local image | Manual one-off uploads |
+| `register-essay.mjs` | Register a published essay in `visualEssays.ts` | Automatically at G9; can also run manually |
 
 ---
 
@@ -321,6 +322,34 @@ The source URL is broken or the file was moved. Find an alternative source manua
 
 ### "Could not find file with IMAGES constant"
 The `--update` flag only works with essays that have a flat `{ key: "url" }` structure. For nested `{ key: { src } }` structures, use `r2-migrate-nested-src-objects.mjs` instead.
+
+---
+
+## Essay Registration
+
+### `register-essay.mjs`
+
+Registers a published visual essay in the central index at `src/data/visualEssays.ts`. Called automatically by the orchestration runner at G9 (Publication Approval) via the `pre_scripts` contract feature.
+
+```bash
+node scripts/register-essay.mjs --slug homo-naledi --artifact-path src/app/essays/science/homo-naledi
+```
+
+**Options:**
+- `--slug` — Essay slug / id (REQUIRED)
+- `--artifact-path` — Essay directory (default: `src/app/essays/{slug}`)
+
+**What it does:**
+1. Extracts metadata from `page.tsx` (title, subtitle, category, readTime, description, tags)
+2. Reads first R2 image URL from `images.ts` for `heroImage`
+3. Derives `href` from `artifact-path` (strips `src/app/` prefix)
+4. Finds the highest `number` in the registry, increments by 1
+5. Inserts the new entry at the end of the `visualEssays` array
+6. Sets `publishedDate` to today's date
+
+**Idempotent**: If the slug already exists in the registry, the script exits cleanly with no changes.
+
+**Pipeline integration**: The G9 contract (`orchestration/gates/contracts/G9.contract.json`) declares this script as a `pre_script`. The runner executes it before G9 validation, then a `contains_text` validation confirms the slug is present in `visualEssays.ts`.
 
 ---
 

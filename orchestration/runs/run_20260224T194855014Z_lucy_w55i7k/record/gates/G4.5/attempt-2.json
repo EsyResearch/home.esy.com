@@ -1,0 +1,149 @@
+{
+  "attempt": 2,
+  "status": "FAIL",
+  "started_at": "2026-02-24T20:46:42.056Z",
+  "finished_at": "2026-02-24T20:47:17.343Z",
+  "agent": "image-research-expert",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+    "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+    "{artifact_path}/images-migration.json",
+    "{artifact_path}/images.ts"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/IMAGE_RESEARCH_AUDIT.md",
+      "sha256": "caed786b184a43ecef110f4f1287a729d071bd70e0711e595512f40e9cd1ddd8",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/images.ts",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+      "sha256": "c47410077466b06592028dec73178d0422f055d0ef5452b49b4404c97fb5a0f9",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/images-migration.json",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/images.ts",
+          "exists": true
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/IMAGE_RESEARCH_AUDIT.md",
+      "pattern": "[UNLICENSED]",
+      "found": false,
+      "severity": "error",
+      "description": "Image audit must not contain unlicensed assets",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/IMAGE_RESEARCH_AUDIT.md",
+      "pattern": "[PENDING]",
+      "found": false,
+      "severity": "warning",
+      "description": "Image audit should not have pending sourcing tasks",
+      "pass": true,
+      "warning": false
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/research/IMAGE_RESEARCH_AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Image audit must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/images.ts",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+      "patterns": [
+        "upload.wikimedia.org/wikipedia/commons/",
+        "as const"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "images.ts must exist with verified Wikimedia Commons direct URLs (not file page URLs)",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/images.ts",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+      "pattern": "/commons/thumb/",
+      "found": false,
+      "severity": "error",
+      "description": "images.ts must NOT contain thumbnail URLs (/commons/thumb/) — use direct image URLs only",
+      "pass": true
+    },
+    {
+      "type": "regex_match",
+      "path": "{artifact_path}/images.ts",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+      "regex": "https://upload\\.wikimedia\\.org/wikipedia/commons/[a-f0-9]/[a-f0-9]{2}/[^\"]+\\.(jpg|jpeg|png|gif|svg)",
+      "must_not_match": false,
+      "matched": true,
+      "severity": "error",
+      "description": "images.ts must contain at least one properly-hashed Wikimedia Commons direct URL (format: /commons/{hash1}/{hash2}/filename.ext)",
+      "pass": true
+    },
+    {
+      "type": "min_regex_count",
+      "path": "{artifact_path}/images.ts",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+      "regex": "https://upload\\.wikimedia\\.org/wikipedia/commons/[a-f0-9]/[a-f0-9]{2}/",
+      "min_count": 5,
+      "actual_count": 14,
+      "severity": "error",
+      "description": "images.ts must contain at least 5 verified direct image URLs (photorealistic essays require substantial photography)",
+      "pass": true
+    },
+    {
+      "type": "url_reachable",
+      "path": "{artifact_path}/images.ts",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/lucy/images.ts",
+      "total_urls": 1,
+      "checked": 1,
+      "ok": 0,
+      "failed": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Lucy_Mexico.jpg',\n  lucySkeleton:\n    'https://upload.wikimedia.org/wikipedia/commons/d/da/Lucy_Skeleton.jpg',\n  lucyBlackBg:\n    'https://upload.wikimedia.org/wikipedia/commons/3/31/Lucy_blackbg.jpg',\n  lucyReconstruction:\n    'https://upload.wikimedia.org/wikipedia/commons/e/e0/Reconstruction_of_the_fossil_skeleton_of_%22Lucy%22_the_Australopithecus_afarensis.jpg',\n  afarensisSkull:\n    'https://upload.wikimedia.org/wikipedia/commons/6/60/Australopithecus_afarensis_skull_-_Naturmuseum_Senckenberg_-_DSC02102.JPG',\n  afarensisReconstruction:\n    'https://upload.wikimedia.org/wikipedia/commons/9/93/Australopithecus_afarensis_reconstruction.JPG',\n  laetoliFootprints:\n    'https://upload.wikimedia.org/wikipedia/commons/6/61/Laetoli_footprints_replica.jpg',\n  taungChild:\n    'https://upload.wikimedia.org/wikipedia/commons/a/a8/Taung_child.jpg',\n  paranthropusBoisei:\n    'https://upload.wikimedia.org/wikipedia/commons/f/f6/Paranthropus_boisei_skull.jpg',\n  hadar:\n    'https://upload.wikimedia.org/wikipedia/commons/9/97/Hadar.jpg',\n  afarTriangleMap:\n    'https://upload.wikimedia.org/wikipedia/commons/9/9b/Afar_Triangle_%28political_map%29.png',\n  afarDepression:\n    'https://upload.wikimedia.org/wikipedia/commons/d/d4/Afar_Depression_%28ASTER%29.jpg',\n  dallolLandscape:\n    'https://upload.wikimedia.org/wikipedia/commons/3/35/ET_Afar_asv2018-01_img36_Dallol.jpg',\n  afarLakeKarum:\n    'https://upload.wikimedia.org/wikipedia/commons/5/58/ET_Afar_asv2018-01_img11_Lake_Karum_area.jpg',\n} as const;\n",
+          "status": 404
+        }
+      ],
+      "max_failures": 0,
+      "severity": "error",
+      "description": "All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML",
+      "pass": false
+    }
+  ],
+  "failure_reason": "All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML"
+}

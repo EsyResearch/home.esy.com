@@ -1,0 +1,102 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-25T22:31:00.673Z",
+  "finished_at": "2026-02-25T22:31:00.708Z",
+  "agent": "immersive-scrolling-auditor",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+    "{artifact_path}/SCROLL-CERTIFICATION.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/SCROLL-CERTIFICATION.md",
+      "sha256": "dab1d2813ed8560521d2fd9f3a8d8a8fee03c8d52178c59f556afac1f078e6ac",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/SCROLL-CERTIFICATION.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/SCROLL-CERTIFICATION.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Scroll certification must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/SCROLL-CERTIFICATION.md",
+      "pattern": "Overall Status: ❌",
+      "found": false,
+      "severity": "error",
+      "description": "Scroll certification must not report overall failure",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/SCROLL-CERTIFICATION.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "fields": {
+        "gate": "G7",
+        "artifact": "SCROLL-CERTIFICATION",
+        "status": "PASS",
+        "date": "2026-02-25",
+        "auditor": "immersive-scrolling-auditor"
+      },
+      "failures": [],
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+      "pass": true
+    },
+    {
+      "type": "min_regex_count",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+      "regex": "src=\\{IMAGES\\.",
+      "min_count": 3,
+      "actual_count": 13,
+      "severity": "error",
+      "description": "Client component must reference at least 3 images from the IMAGES constant — scroll certification requires visual content actually renders",
+      "pass": true
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+      "regex": "loading=[\"']lazy[\"']",
+      "must_not_match": false,
+      "matched": true,
+      "severity": "error",
+      "description": "Client component must use lazy loading on images (loading='lazy') for scroll performance",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

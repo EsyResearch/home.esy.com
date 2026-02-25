@@ -20,6 +20,7 @@ Every contract is a JSON file with this shape:
   "name": "Content Complete",
   "blocking": true,
   "description": "Human-readable description of what this gate validates",
+  "pre_scripts": [ ... ],
   "required_outputs": {
     "all_of": [ ... ],
     "any_of": [ ... ]
@@ -67,6 +68,37 @@ Contracts can declare skill dependencies via `required_skills`. When present, th
 4. The executing agent receives the skill procedure in-context, not as a path to load
 
 **Design intent:** Skills are advisory documentation. Without injection, agents may not load them (especially in CI mode where context is the prompt packet alone). By injecting skill content directly into the prompt, the procedure becomes part of the execution context — not an optional reference.
+
+### Pre-validation scripts
+
+Contracts can declare `pre_scripts` — idempotent scripts the runner executes *before* validation. Use this for automated setup steps that produce or modify files the contract then validates.
+
+```json
+{
+  "pre_scripts": [
+    {
+      "path": "scripts/register-essay.mjs",
+      "args": ["--slug", "{slug}", "--artifact-path", "{artifact_path}"]
+    }
+  ]
+}
+```
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `path` | string | yes | Script path relative to repo root |
+| `args` | string[] | no | CLI arguments (supports `{slug}` and `{artifact_path}` substitution) |
+
+**How it works:**
+1. `finishGate()` in `run-manager.js` reads `contract.pre_scripts`
+2. Each script is executed via `execFileSync('node', [scriptPath, ...args])` with `cwd` at repo root
+3. Variable substitution replaces `{slug}` and `{artifact_path}` in args
+4. Timeout: 30 seconds. stdio: inherit (output visible in terminal)
+5. A failing script logs a warning but does not block — the contract's own validations catch missing output
+
+**Design intent:** Pre-scripts separate *generation* from *validation*. The contract stays declarative (what must be true), while the pre-script handles imperative setup (make it true). Scripts must be idempotent — safe to run multiple times with no side effects on repeated invocations.
+
+**Current usage:** G9 runs `scripts/register-essay.mjs` to insert the essay into `src/data/visualEssays.ts`, then validates the slug is present via `contains_text`.
 
 ### Template variables
 

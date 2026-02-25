@@ -1,0 +1,94 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-25T22:31:00.606Z",
+  "finished_at": "2026-02-25T22:31:00.641Z",
+  "agent": "prose-quality-auditor",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+    "{artifact_path}/PROSE-QUALITY-AUDIT.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/PROSE-QUALITY-AUDIT.md",
+      "sha256": "5af68a984d794efc7cb3f3b7795af05e6456146ecb7e11c3a1e5f68c6108c659",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/PROSE-QUALITY-AUDIT.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/PROSE-QUALITY-AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Prose quality audit must not have FAIL status",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/PROSE-QUALITY-AUDIT.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "fields": {
+        "gate": "G6.6",
+        "artifact": "PROSE-QUALITY-AUDIT",
+        "status": "PASS",
+        "date": "2026-02-25",
+        "auditor": "prose-quality-auditor",
+        "overall_score": 7.8
+      },
+      "failures": [],
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL",
+      "pass": true
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+      "regex": "(\\bdelve\\b|\\btapestry\\b|\\bunlock the secrets\\b|\\bin today's world\\b|\\blet's dive\\b|\\bfascinating journey\\b|\\bit's important to note\\b|\\bIn conclusion\\b)",
+      "must_not_match": true,
+      "matched": false,
+      "severity": "warning",
+      "description": "Client component should not contain common AI slop phrases (delve, tapestry, unlock the secrets, etc.)",
+      "pass": true,
+      "warning": false
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+      "regex": "[\\u{1F300}-\\u{1F9FF}\\u{2600}-\\u{26FF}\\u{2700}-\\u{27BF}]",
+      "must_not_match": true,
+      "matched": false,
+      "severity": "error",
+      "description": "Client component must NOT contain emoji characters",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

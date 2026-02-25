@@ -1,0 +1,35 @@
+{
+  "essaySlug": "hip-hop-history",
+  "images": [
+    {
+      "key": "heroBackground",
+      "filename": "1520sedgwick-avenue.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f4/1520Sedgwick_Avenue.jpg"
+    },
+    {
+      "key": "djKoolHerc",
+      "filename": "herc-on-the-wheels-of-steel.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/91/Herc_on_the_Wheels_of_Steel.JPG"
+    },
+    {
+      "key": "djKoolHercAlt",
+      "filename": "dj-kool-herc.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/d/df/Dj_Kool_Herc.jpg"
+    },
+    {
+      "key": "afrikaBambaataa",
+      "filename": "afrika-bambaatta-national-portrait-gallery-1983.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/66/Afrika_Bambaatta_National_Portrait_Gallery_1983.jpg"
+    },
+    {
+      "key": "bBoyBreaking",
+      "filename": "b-boy-breakdancing.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fc/B-boy_breakdancing.jpg"
+    },
+    {
+      "key": "nycGraffitiTrain",
+      "filename": "graffiti-and-train-in-tunnel-new-york-city-2013.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/3/30/Graffiti_and_train_in_tunnel_-_New_York_City_2013.png"
+    }
+  ]
+}

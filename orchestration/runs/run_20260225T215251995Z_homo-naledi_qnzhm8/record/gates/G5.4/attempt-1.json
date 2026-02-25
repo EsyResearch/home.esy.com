@@ -1,0 +1,82 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-25T22:29:51.256Z",
+  "finished_at": "2026-02-25T22:29:51.292Z",
+  "agent": "visualization-architect-auditor",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/G5.4-VIZ-AMBITION-AUDIT.md",
+      "sha256": "4a7492c3ef19a0f819f4d936f00d13011ff107f9536541ccf46d98a80a2b74d3",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/G5.4-VIZ-AMBITION-AUDIT.md",
+      "pass": true,
+      "description": "Per-visualization technology audit with scores"
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/G5.4-VIZ-AMBITION-AUDIT.md",
+      "checks": {
+        "status": "PASS"
+      },
+      "fields": {
+        "gate": "G5.4",
+        "artifact": "VIZ-AMBITION-AUDIT",
+        "status": "PASS",
+        "date": "2026-02-25",
+        "auditor": "visualization-architect-auditor"
+      },
+      "failures": [],
+      "severity": "error",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/G5.4-VIZ-AMBITION-AUDIT.md",
+      "patterns": [
+        "Average Score",
+        "Technology Tier"
+      ],
+      "missing": [],
+      "severity": "error",
+      "pass": true
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+      "regex": "import .*(d3|three|recharts|Canvas|useRef.*canvas|getContext)",
+      "must_not_match": false,
+      "matched": true,
+      "severity": "error",
+      "description": "Client component or its visualization imports must reference at least one visualization library or Canvas API",
+      "pass": true
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+      "regex": "width:\\s*[`'\"]\\$\\{.*\\}%[`'\"]",
+      "must_not_match": true,
+      "matched": false,
+      "severity": "error",
+      "description": "No div-width-percentage bar charts in data-encoding visualizations",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

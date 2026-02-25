@@ -316,7 +316,9 @@ G1 → G2 → G3 → G4 → G4.1 → G4.5 → G4.6 → G4.7 → G5 → G5.4 → 
           │     PUBLICATION APPROVAL      │
           │  ─────────────────────────    │
           │  • Director sign-off          │
-          │  • visualEssays.ts updated    │
+          │  • register-essay.mjs runs    │
+          │    (auto-updates index)       │
+          │  • visualEssays.ts validated  │
           │  • Deployment triggered       │
           └───────────────┬───────────────┘
                           │
@@ -367,7 +369,7 @@ G1 → G2 → G3 → G4 → G4.1 → G4.5 → G4.6 → G4.7 → G5 → G5.4 → 
 | **G6** | Citation Certification achieved (content vs. research match) | G7 |
 | **G7** | Immersive Scrolling Auditor certification (≥8.0/10, 60fps, mobile verified) | G8 |
 | **G8** | Pre-publication certification (GO/CONDITIONAL) from all domain audits | G9 |
-| **G9** | Director sign-off on complete package | Deploy |
+| **G9** | Director sign-off; `register-essay.mjs` auto-inserts entry into `visualEssays.ts` | Deploy |
 
 ---
 
@@ -641,9 +643,10 @@ The following anti-patterns are caught by automated contract validations at thei
 ---
 
 ## Last Updated
-February 24, 2026
+February 25, 2026
 
 ### Recent Changes
+- **G9 automated essay registration**: `scripts/register-essay.mjs` now runs as a `pre_script` before G9 validation, extracting metadata from `page.tsx` and idempotently inserting the essay into `src/data/visualEssays.ts`. G9 contract now validates the slug is present in the index. See `G9.contract.json` for the full contract.
 - Added G4.7 (R2 Image Upload) gate to pipeline — eliminates hotlinking, enforces images.esy.com
 - Added Anti-Pattern 4: Hotlinking External Images
 - Added Anti-Pattern 3: Self-Certified Audits (broken images / missing bibliography from "Seven Million Years")

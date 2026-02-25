@@ -1,0 +1,80 @@
+{
+  "essaySlug": "the-silicon-revolution",
+  "images": [
+    {
+      "key": "wafer2ZollBis8Zoll",
+      "filename": "wafer-2-zoll-bis-8-zoll.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Wafer_2_Zoll_bis_8_Zoll.jpg"
+    },
+    {
+      "key": "replicaOfFirstTransistor",
+      "filename": "replica-of-first-transistor.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Replica-of-first-transistor.jpg"
+    },
+    {
+      "key": "bardeenShockleyBrattain1948",
+      "filename": "bardeen-shockley-brattain-1948.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Bardeen_Shockley_Brattain_1948.JPG"
+    },
+    {
+      "key": "bellLabsHolmdel",
+      "filename": "bell-labs-holmdel.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Bell_Labs_Holmdel.jpg"
+    },
+    {
+      "key": "bardeen",
+      "filename": "bardeen.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Bardeen.jpg"
+    },
+    {
+      "key": "brattain",
+      "filename": "brattain.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Brattain.jpg"
+    },
+    {
+      "key": "williamShockley2cStanfordUniversity",
+      "filename": "william-shockley-stanford-university.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/William_Shockley%2C_Stanford_University.jpg"
+    },
+    {
+      "key": "robertNoyceWithMotherboard1959",
+      "filename": "robert-noyce-with-motherboard-1959.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/8/82/Robert_Noyce_with_Motherboard_1959.png"
+    },
+    {
+      "key": "gordonMoore197828cropped29",
+      "filename": "gordon-moore-1978-cropped-.png",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Gordon_Moore_1978_%28cropped%29.png"
+    },
+    {
+      "key": "formerIntelCeoAndyGroveIn2003",
+      "filename": "former-intel-ceo-andy-grove-in-2003.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Former_Intel_CEO_Andy_Grove_in_2003.jpg"
+    },
+    {
+      "key": "morrisChang2021apec",
+      "filename": "morris-chang-2021apec.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/Morris_Chang_2021APEC.jpg"
+    },
+    {
+      "key": "2311051TsmcFab21Construction",
+      "filename": "231105-1-tsmc-fab-21-construction.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/94/231105-1_TSMC_Fab_21_construction.jpg"
+    },
+    {
+      "key": "amdCeoLisaSu20130415Cropped",
+      "filename": "amd-ceo-lisa-su-20130415-cropped.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/6/65/AMD_CEO_Lisa_Su_20130415_cropped.jpg"
+    },
+    {
+      "key": "jensenHuang28cropped29",
+      "filename": "jensen-huang-cropped-.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Jensen_Huang_%28cropped%29.jpg"
+    },
+    {
+      "key": "intelC4004",
+      "filename": "intel-c4004.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/55/Intel_C4004.jpg"
+    }
+  ]
+}

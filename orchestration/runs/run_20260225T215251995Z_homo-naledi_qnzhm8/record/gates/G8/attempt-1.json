@@ -1,0 +1,140 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-02-25T22:31:31.626Z",
+  "finished_at": "2026-02-25T22:31:34.713Z",
+  "agent": "publish-artifact-orchestrator",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+    "{artifact_path}/PUBLICATION-CERTIFICATION.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/PUBLICATION-CERTIFICATION.md",
+      "sha256": "04158952bc0c703c93ef368f3fda7d1851dad456147ed44ef3cdb15bb8b736dc",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/PUBLICATION-CERTIFICATION.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/PUBLICATION-CERTIFICATION.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Publication certification must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/PUBLICATION-CERTIFICATION.md",
+      "pattern": "NO-GO",
+      "found": false,
+      "severity": "error",
+      "description": "Publication certification must not be NO-GO",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/research/PUBLICATION-CERTIFICATION.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "fields": {
+        "gate": "G8",
+        "artifact": "PUBLICATION-CERTIFICATION",
+        "status": "PASS",
+        "date": "2026-02-25",
+        "auditor": "publish-artifact-orchestrator",
+        "recommendation": "GO"
+      },
+      "failures": [],
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+      "patterns": [
+        "SOURCES",
+        "IMAGE_CREDITS"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "PUBLICATION GATE: Client component must import SOURCES and IMAGE_CREDITS — bibliography and image attribution must be present in the shipped code",
+      "pass": true
+    },
+    {
+      "type": "min_regex_count",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/HomoNalediClient.tsx",
+      "regex": "src=\\{IMAGES\\.",
+      "min_count": 5,
+      "actual_count": 13,
+      "severity": "error",
+      "description": "PUBLICATION GATE: Client component must reference at least 5 images from the IMAGES constant — photorealistic essays require substantial photography",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/images.ts",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+      "patterns": [
+        "images.esy.com"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "PUBLICATION GATE: images.ts must contain R2-hosted URLs (images.esy.com) — hotlinking external URLs is prohibited",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/images.ts",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+      "pattern": "upload.wikimedia.org",
+      "found": false,
+      "severity": "error",
+      "description": "PUBLICATION GATE: images.ts must not contain hotlinked Wikimedia URLs — all images must be self-hosted on R2",
+      "pass": true
+    },
+    {
+      "type": "url_reachable",
+      "path": "{artifact_path}/images.ts",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/homo-naledi/images.ts",
+      "total_urls": 26,
+      "checked": 5,
+      "ok": 5,
+      "failed": [],
+      "max_failures": 0,
+      "severity": "error",
+      "description": "PUBLICATION GATE: Spot-check that R2 image URLs are reachable (HTTP 2xx) — final defense against broken images shipping to production",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

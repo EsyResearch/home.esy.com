@@ -1,0 +1,156 @@
+{
+  "run_id": "run_20260224T194721337Z_lucy_3hcgjy",
+  "workflow": {
+    "name": "visual-essay",
+    "version": "local-dev",
+    "slug": "lucy",
+    "artifact_path": "src/app/essays/lucy"
+  },
+  "depth": "deep",
+  "prompt": null,
+  "status": "RUNNING",
+  "started_at": "2026-02-24T19:47:21.338Z",
+  "finished_at": null,
+  "gates": [
+    {
+      "gate": "G1",
+      "name": "Intake Approval",
+      "status": "RUNNING",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "RUNNING",
+          "started_at": "2026-02-24T19:47:21.339Z",
+          "finished_at": null,
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": "5ba55fcfbfcf272d9e76cdcc49e28e450b82cd6b2eba90be869b7795d0c26320",
+          "invocation_ids": [],
+          "required_outputs": [],
+          "artifacts": [],
+          "validations": [],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G2",
+      "name": "Research Complete",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G3",
+      "name": "Spec Approval",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G4",
+      "name": "Design Research",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G4.1",
+      "name": "Design Research Reconciliation",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G4.5",
+      "name": "Image Sourcing",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G4.6",
+      "name": "Visualization Technology Decision",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G4.7",
+      "name": "R2 Image Upload",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G5",
+      "name": "Content Complete",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G5.4",
+      "name": "Visualization Ambition Audit",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G5.2",
+      "name": "Design Fidelity Audit",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G5.3",
+      "name": "Diagram-Code Reconciliation",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G5.5",
+      "name": "Bibliography Implementation",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G6",
+      "name": "Citation Audit",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G6.6",
+      "name": "Prose Quality Audit",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G7",
+      "name": "Scroll Certification",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G8",
+      "name": "Publication Certification",
+      "status": "NOT_STARTED",
+      "attempts": []
+    },
+    {
+      "gate": "G9",
+      "name": "Publication Approval",
+      "status": "NOT_STARTED",
+      "attempts": []
+    }
+  ],
+  "invocations": [],
+  "artifacts_index": [],
+  "validations": [],
+  "events": [
+    {
+      "timestamp": "2026-02-24T19:47:21.338Z",
+      "type": "RUN_STARTED",
+      "message": "Run initialized for visual-essay/lucy"
+    },
+    {
+      "timestamp": "2026-02-24T19:47:21.339Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 1,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 1 started with agent visual-essay-orchestrator"
+    }
+  ]
+}
