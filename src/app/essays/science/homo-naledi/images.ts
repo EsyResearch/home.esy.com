@@ -25,6 +25,8 @@ export const IMAGES = {
   peixottoAndElliott: "https://images.esy.com/essays/homo-naledi/becca-peixotto-and-marina-elliott-14050842062.7a8cd4a2a0.webp",
   gautengMap: "https://images.esy.com/essays/homo-naledi/south-africa-gauteng-location-map.082a596cf3.svg",
   handNonPollicalMc: "https://images.esy.com/essays/homo-naledi/homo-naledi-hand-1-non-pollical-metacarpals.7e119b2bba.webp",
+  skullMeshGlb: "https://images.esy.com/essays/homo-naledi/naledi-skull-reconstruction.671937f078.glb",
+  handMeshGlb: "https://images.esy.com/essays/homo-naledi/naledi-hand-composite.f1fa651da6.glb",
 } as const;
 
 export const IMAGE_CREDITS = [
@@ -55,6 +57,8 @@ export const IMAGE_CREDITS = [
   { subject: "Mrs Ples (Sts 5) Australopithecus africanus skull", attribution: "Didier Descouens, CC-BY-SA 4.0", url: "https://commons.wikimedia.org/wiki/File:Mrs_Ples.jpg" },
   { subject: "South Africa Gauteng province location map", attribution: "NordNordWest, CC-BY-SA 3.0", url: "https://commons.wikimedia.org/wiki/File:South_Africa_Gauteng_location_map.svg" },
   { subject: "Homo naledi Hand 1 non-pollical metacarpals", attribution: "Kivell et al. 2015, Nature Communications (CC-BY 4.0)", url: "https://commons.wikimedia.org/wiki/File:Homo_naledi_Hand_1_non-pollical_metacarpals.jpg" },
+  { subject: "3D skull and mandible reconstruction (DH1/DH3 composite)", attribution: "Peter Schmid/Berger et al. 2015, MorphoSource (Open Download), Rising Star Project", url: "https://www.morphosource.org/concern/media/000008170" },
+  { subject: "3D Hand-1 composite laser scan", attribution: "Bolter/Berger et al. 2015, MorphoSource (Open Download), Rising Star Project", url: "https://www.morphosource.org/concern/media/000014606" },
 ] as const;
 
 export const SOURCES = [
