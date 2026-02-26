@@ -1187,7 +1187,7 @@ export const visualEssays: VisualEssay[] = [
     category: "Science",
     readTime: "38 min",
     href: "/essays/science/homo-naledi",
-    heroImage: "https://images.esy.com/essays/homo-naledi/homo-naledi-skeletal-specimens.1151e1c05c.webp",
+    heroImage: "https://images.esy.com/essays/homo-naledi/homo-naledi-facial-reconstruction.e82db47297.webp",
     publishedDate: "2026-02-25",
     tags: ["Homo naledi", "Rising Star Cave", "paleoanthropology", "human evolution", "Dinaledi Chamber", "Lee Berger", "deliberate body disposal", "South Africa", "Cradle of Humankind", "visual essay"],
     visualStyle: "photorealistic",
