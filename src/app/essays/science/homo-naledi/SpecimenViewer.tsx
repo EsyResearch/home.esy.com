@@ -1,7 +1,7 @@
 'use client';
 
-import React, { Suspense, useRef, useState, useEffect, Component, type ReactNode } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import React, { Suspense, useRef, useState, useEffect, useCallback, Component, type ReactNode } from 'react';
+import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -35,7 +35,7 @@ function devProxyUrl(url: string): string {
   return url;
 }
 
-function Specimen({ url }: { url: string }) {
+function Specimen({ url, onLoaded }: { url: string; onLoaded?: () => void }) {
   const gltf = useGLTF(devProxyUrl(url));
   const groupRef = useRef<THREE.Group>(null);
 
@@ -67,7 +67,9 @@ function Specimen({ url }: { url: string }) {
       scene.scale.setScalar(scale);
       scene.position.set(-center.x * scale, -center.y * scale, -center.z * scale);
     }
-  }, [gltf]);
+
+    onLoaded?.();
+  }, [gltf, onLoaded]);
 
   return (
     <group ref={groupRef}>
@@ -76,28 +78,40 @@ function Specimen({ url }: { url: string }) {
   );
 }
 
-function LoadingIndicator() {
-  const ref = useRef<THREE.Mesh>(null);
-  useFrame((_, delta) => {
-    if (ref.current) ref.current.rotation.y += delta * 0.8;
-  });
+function EsyBrandedLoader({ visible }: { visible: boolean }) {
   return (
-    <mesh ref={ref}>
-      <torusGeometry args={[0.3, 0.04, 16, 32]} />
-      <meshBasicMaterial color={SIGNAL_AMBER} />
-    </mesh>
+    <div
+      className="naledi-3d-loader"
+      style={{ opacity: visible ? 1 : 0, pointerEvents: 'none' }}
+    >
+      <img
+        className="naledi-3d-loader__mark"
+        src="/esy-logos/logo-files/for-web/svg/white-logo-no-bg.svg"
+        alt="esy"
+        draggable={false}
+      />
+      <span className="naledi-3d-loader__text">Loading 3D specimen&hellip;</span>
+    </div>
   );
 }
 
-function Scene({ meshUrl, autoRotate }: { meshUrl: string; autoRotate: boolean }) {
+function Scene({
+  meshUrl,
+  autoRotate,
+  onLoaded,
+}: {
+  meshUrl: string;
+  autoRotate: boolean;
+  onLoaded: () => void;
+}) {
   return (
     <>
       <ambientLight intensity={0.5} />
       <directionalLight position={[5, 5, 5]} intensity={0.8} />
       <directionalLight position={[-3, 2, -2]} intensity={0.3} />
       <Environment preset="warehouse" />
-      <Suspense fallback={<LoadingIndicator />}>
-        <Specimen url={meshUrl} />
+      <Suspense fallback={null}>
+        <Specimen url={meshUrl} onLoaded={onLoaded} />
       </Suspense>
       <OrbitControls
         autoRotate={autoRotate}
@@ -150,8 +164,19 @@ export default function SpecimenViewer({
   autoRotate = true,
 }: SpecimenViewerProps) {
   const [webglFailed, setWebglFailed] = useState(false);
+  const [loading, setLoading] = useState(true);
   const isMobile = useIsMobile();
   const { ref: viewRef, visible } = useInView('200px');
+
+  const mountTime = useRef(Date.now());
+  useEffect(() => { if (!visible) mountTime.current = Date.now(); }, [visible]);
+
+  const handleLoaded = useCallback(() => {
+    const MIN_DISPLAY_MS = 1800;
+    const elapsed = Date.now() - mountTime.current;
+    const remaining = Math.max(0, MIN_DISPLAY_MS - elapsed);
+    setTimeout(() => setLoading(false), remaining);
+  }, []);
 
   const showFallback = webglFailed || isMobile || !visible;
 
@@ -165,6 +190,7 @@ export default function SpecimenViewer({
         </div>
       ) : (
         <div className="naledi-3d-viewer__canvas-wrap">
+          <EsyBrandedLoader visible={loading} />
           <GLBErrorBoundary onError={() => setWebglFailed(true)}>
             <Canvas
               camera={{ position: [0, 0, 2.4], fov: 45, near: 0.1, far: 100 }}
@@ -176,7 +202,7 @@ export default function SpecimenViewer({
               }}
               onError={() => setWebglFailed(true)}
             >
-              <Scene meshUrl={meshUrl} autoRotate={autoRotate} />
+              <Scene meshUrl={meshUrl} autoRotate={autoRotate} onLoaded={handleLoaded} />
             </Canvas>
           </GLBErrorBoundary>
           <div className="naledi-3d-viewer__controls-hint">
