@@ -52,6 +52,9 @@ function Specimen({ url }: { url: string }) {
       }
     });
 
+    scene.scale.setScalar(1);
+    scene.position.set(0, 0, 0);
+
     const box = new THREE.Box3().setFromObject(scene);
     const size = new THREE.Vector3();
     const center = new THREE.Vector3();
@@ -120,6 +123,24 @@ function useIsMobile() {
   return mobile;
 }
 
+function useInView(margin = '200px') {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { rootMargin: margin },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [margin]);
+
+  return { ref, visible };
+}
+
 export default function SpecimenViewer({
   meshUrl,
   fallbackImage,
@@ -130,41 +151,39 @@ export default function SpecimenViewer({
 }: SpecimenViewerProps) {
   const [webglFailed, setWebglFailed] = useState(false);
   const isMobile = useIsMobile();
+  const { ref: viewRef, visible } = useInView('200px');
 
-  if (webglFailed || isMobile) {
-    return (
-      <div className="naledi-3d-viewer">
-        <div className="naledi-3d-viewer__label">{label}</div>
+  const showFallback = webglFailed || isMobile || !visible;
+
+  return (
+    <div ref={viewRef} className={`naledi-3d-viewer${showFallback ? '' : ' naledi-3d-viewer--live'}`}>
+      <div className="naledi-3d-viewer__label">{label}</div>
+      {showFallback ? (
         <div className="naledi-3d-viewer__fallback">
           <img src={fallbackImage} alt={fallbackAlt} loading="lazy" />
           <p>{fallbackCaption}</p>
         </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="naledi-3d-viewer naledi-3d-viewer--live">
-      <div className="naledi-3d-viewer__label">{label}</div>
-      <div className="naledi-3d-viewer__canvas-wrap">
-        <GLBErrorBoundary onError={() => setWebglFailed(true)}>
-          <Canvas
-            camera={{ position: [0, 0, 2.4], fov: 45, near: 0.1, far: 100 }}
-            gl={{ antialias: true, alpha: false, preserveDrawingBuffer: true }}
-            onCreated={({ gl }) => {
-              gl.setClearColor(new THREE.Color(CAVE_CHARCOAL), 1);
-              gl.toneMapping = THREE.ACESFilmicToneMapping;
-              gl.toneMappingExposure = 1.2;
-            }}
-            onError={() => setWebglFailed(true)}
-          >
-            <Scene meshUrl={meshUrl} autoRotate={autoRotate} />
-          </Canvas>
-        </GLBErrorBoundary>
-        <div className="naledi-3d-viewer__controls-hint">
-          Drag to rotate &middot; Scroll to zoom
+      ) : (
+        <div className="naledi-3d-viewer__canvas-wrap">
+          <GLBErrorBoundary onError={() => setWebglFailed(true)}>
+            <Canvas
+              camera={{ position: [0, 0, 2.4], fov: 45, near: 0.1, far: 100 }}
+              gl={{ antialias: true, alpha: false, preserveDrawingBuffer: true }}
+              onCreated={({ gl }) => {
+                gl.setClearColor(new THREE.Color(CAVE_CHARCOAL), 1);
+                gl.toneMapping = THREE.ACESFilmicToneMapping;
+                gl.toneMappingExposure = 1.2;
+              }}
+              onError={() => setWebglFailed(true)}
+            >
+              <Scene meshUrl={meshUrl} autoRotate={autoRotate} />
+            </Canvas>
+          </GLBErrorBoundary>
+          <div className="naledi-3d-viewer__controls-hint">
+            Drag to rotate &middot; Scroll to zoom
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

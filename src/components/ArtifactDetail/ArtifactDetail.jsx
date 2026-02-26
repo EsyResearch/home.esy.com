@@ -1,9 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import { resolveModelLabel } from '@/lib/models/registry';
 import './artifact-detail.css';
+import './image-zoom.css';
 
 /* ═══════════════════════════════════════════════════════════════
    Artifact Detail Wrapper — Shared Component
@@ -83,6 +85,66 @@ function CollapseIcon() {
   );
 }
 
+/* ─── Image Zoom (Medium-style) ──────────────────────────────── */
+
+function useImageZoom(containerRef) {
+  const [zoomed, setZoomed] = useState(null); // { src, alt, rect }
+  const overlayRef = useRef(null);
+
+  const open = useCallback((img) => {
+    const rect = img.getBoundingClientRect();
+    setZoomed({ src: img.currentSrc || img.src, alt: img.alt || '', rect });
+  }, []);
+
+  const close = useCallback(() => setZoomed(null), []);
+
+  // Click delegation on container
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const handleClick = (e) => {
+      const img = e.target.closest('img');
+      if (!img || img.closest('.naledi-3d-viewer') || img.closest('[data-no-zoom]')) return;
+      e.preventDefault();
+      e.stopPropagation();
+      window.getSelection()?.removeAllRanges();
+      img.blur();
+      open(img);
+    };
+    el.addEventListener('click', handleClick);
+    return () => el.removeEventListener('click', handleClick);
+  }, [containerRef, open]);
+
+  // Escape + scroll to close
+  useEffect(() => {
+    if (!zoomed) return;
+    const handleKey = (e) => { if (e.key === 'Escape') close(); };
+    const handleScroll = () => close();
+    window.addEventListener('keydown', handleKey);
+    window.addEventListener('scroll', handleScroll, { once: true });
+    return () => {
+      window.removeEventListener('keydown', handleKey);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [zoomed, close]);
+
+  const overlay = zoomed && typeof document !== 'undefined' ? createPortal(
+    <div className="img-zoom-overlay" onClick={close} ref={overlayRef}>
+      <img
+        className="img-zoom-overlay__img"
+        src={zoomed.src}
+        alt={zoomed.alt}
+      />
+      {zoomed.alt && (
+        <p className="img-zoom-overlay__caption">{zoomed.alt}</p>
+      )}
+    </div>,
+    document.body
+  ) : null;
+
+  return overlay;
+}
+
 /* ─── Main Wrapper ────────────────────────────────────────────── */
 /**
  * ArtifactDetailWrapper
@@ -95,6 +157,8 @@ function CollapseIcon() {
 export default function ArtifactDetailWrapper({ meta, children }) {
   const [immersiveMode, setImmersiveMode] = useState(false);
   const [specExpanded, setSpecExpanded] = useState(false);
+  const contentRef = useRef(null);
+  const zoomOverlay = useImageZoom(contentRef);
 
   const backLink = meta.backLink || '/essays';
   const backLabel = meta.backLabel || 'Essays';
@@ -150,9 +214,10 @@ export default function ArtifactDetailWrapper({ meta, children }) {
         </header>
 
         {/* ─── Essay Content ─── */}
-        <div className="artifact-detail-immersive__content">
+        <div className="artifact-detail-immersive__content" ref={contentRef}>
           {children}
         </div>
+        {zoomOverlay}
       </div>
     );
   }
@@ -341,11 +406,11 @@ export default function ArtifactDetailWrapper({ meta, children }) {
 
       {/* ─── Essay Content ─── */}
       <section className="artifact-detail-content" id="artifact-essay-content">
-        <div className="artifact-detail-content__frame">
+        <div className="artifact-detail-content__frame" ref={contentRef}>
           {children}
         </div>
       </section>
-
+      {zoomOverlay}
     </div>
   );
 }

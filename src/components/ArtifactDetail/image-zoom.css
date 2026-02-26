@@ -1,0 +1,95 @@
+/* ═══════════════════════════════════════════════════════════════
+   Image Zoom Overlay — Medium-style expand-in-place
+   
+   Click any <img> inside an essay to zoom. Click backdrop or
+   scroll to dismiss. Escape key also closes.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Make essay images hint that they're clickable */
+.artifact-detail-content__frame img,
+.artifact-detail-immersive__content img {
+  cursor: zoom-in;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  outline: none !important;
+  border: none;
+}
+
+.artifact-detail-content__frame img:focus,
+.artifact-detail-content__frame img:active,
+.artifact-detail-content__frame img::selection,
+.artifact-detail-immersive__content img:focus,
+.artifact-detail-immersive__content img:active,
+.artifact-detail-immersive__content img::selection {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Overlay backdrop */
+.img-zoom-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.88);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  animation: img-zoom-fade-in 0.2s ease-out;
+  padding: 2rem;
+}
+
+/* Zoomed image */
+.img-zoom-overlay__img {
+  max-width: min(90vw, 1400px);
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 2px;
+  animation: img-zoom-fade-in 0.2s ease-out;
+  pointer-events: none;
+}
+
+/* Caption below image */
+.img-zoom-overlay__caption {
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  max-width: 680px;
+  text-align: center;
+  animation: img-zoom-fade-in 0.3s ease-out 0.1s both;
+}
+
+@keyframes img-zoom-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Mobile: tighter padding, larger tap target, smaller caption */
+@media (max-width: 768px) {
+  .img-zoom-overlay {
+    padding: 1rem;
+  }
+
+  .img-zoom-overlay__img {
+    max-width: 96vw;
+    max-height: 80vh;
+  }
+
+  .img-zoom-overlay__caption {
+    font-size: 0.7rem;
+    padding: 0 0.5rem;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .img-zoom-overlay,
+  .img-zoom-overlay__img,
+  .img-zoom-overlay__caption {
+    animation: none;
+  }
+}
