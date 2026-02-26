@@ -69,7 +69,7 @@ export const metadata = createVisualEssayMetadata({
   ogDescription:
     '1,500 bones, 560 cubic centimetres, and the question of what makes us human. An in-depth visual exploration of the most paradoxical species in paleoanthropology.',
   ogImage:
-    'https://images.esy.com/essays/homo-naledi/homo-naledi-skeletal-specimens.1151e1c05c.webp',
+    'https://images.esy.com/essays/homo-naledi/homo-naledi-facial-reconstruction.e82db47297.webp',
   keywords: [
     'Homo naledi',
     'Rising Star Cave',
@@ -94,7 +94,7 @@ const jsonLd = {
       "headline": "Homo naledi: The Small-Brained Species That Buried Its Dead",
       "description":
         "A comprehensive visual essay on Homo naledi, the small-brained hominin from the Rising Star Cave system that may have practiced deliberate body disposal 300,000 years ago.",
-      "image": "https://images.esy.com/essays/homo-naledi/homo-naledi-skeletal-specimens.1151e1c05c.webp",
+      "image": "https://images.esy.com/essays/homo-naledi/homo-naledi-facial-reconstruction.e82db47297.webp",
       "url": "https://esy.com/essays/science/homo-naledi/",
       "datePublished": "2026-02-25",
       "dateModified": "2026-02-25",
