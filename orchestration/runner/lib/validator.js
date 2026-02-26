@@ -14,6 +14,7 @@
  *   regex_match        — file content must match (or must NOT match) a regex pattern
  *   min_regex_count    — file must contain at least N occurrences of a regex pattern
  *   url_reachable      — extract URLs from a file and verify they return HTTP 2xx
+ *   viz_tech_match     — cross-check ESSAY_META.visualizations[].type against actual imports
  */
 
 const fs = require('fs');
@@ -404,6 +405,101 @@ async function urlReachable(filePath, urlPattern, options = {}) {
     checked: toCheck.length,
     ok: okCount,
     failed
+  };
+}
+
+/**
+ * Known visualization technology keywords and the import patterns that prove they're actually used.
+ * Keys are matched case-insensitively against ESSAY_META.visualizations[].type values.
+ * A type matches if any key appears as a substring (e.g., "D3 Scatter + Voronoi" matches "D3").
+ * Technologies with no specific import requirement (pure CSS/SVG/JSX) are omitted.
+ */
+const VIZ_TECH_IMPORT_MAP = {
+  'React Three Fiber': /@react-three\/(fiber|drei)/,
+  'Three.js':          /from\s+['"]three['"]/,
+  'WebGL':             /@react-three\/(fiber|drei)|from\s+['"]three['"]/,
+  'D3':                /from\s+['"]d3['"]/,
+  'Recharts':          /from\s+['"]recharts['"]/,
+  'Mapbox':            /mapbox-gl|react-map-gl/,
+  'Leaflet':           /from\s+['"]leaflet/,
+  'TopoJSON':          /topojson/,
+};
+
+/**
+ * Cross-check ESSAY_META.visualizations[].type claims against actual imports in the
+ * client component AND co-located source files (handles code-split via next/dynamic).
+ *
+ * Scans the client component first, then all .tsx/.jsx/.ts files in the same directory
+ * to catch imports in dynamically-loaded sub-components (e.g., SpecimenViewer.tsx).
+ *
+ * @param {string} metadataPath - Path to page.tsx containing ESSAY_META
+ * @param {string} clientPath - Path to the client component file
+ * @returns {{pass: boolean, claims: Array<{name: string, type: string, techKey: string, found: boolean}>, unmatched: string[], reason?: string}}
+ */
+function vizTechMatch(metadataPath, clientPath) {
+  if (!fileExists(metadataPath)) {
+    return { pass: false, claims: [], unmatched: [], reason: 'Metadata file not found: ' + metadataPath };
+  }
+  if (!fileExists(clientPath)) {
+    return { pass: false, claims: [], unmatched: [], reason: 'Client component not found: ' + clientPath };
+  }
+
+  const metaContent = fs.readFileSync(metadataPath, 'utf8');
+
+  // Build combined source from client component + all co-located .tsx/.jsx/.ts files
+  const artifactDir = path.dirname(clientPath);
+  let combinedSource = fs.readFileSync(clientPath, 'utf8');
+  try {
+    const siblings = fs.readdirSync(artifactDir);
+    for (const f of siblings) {
+      if (/\.(tsx|jsx|ts)$/.test(f)) {
+        const full = path.join(artifactDir, f);
+        if (full !== clientPath && full !== metadataPath) {
+          combinedSource += '\n' + fs.readFileSync(full, 'utf8');
+        }
+      }
+    }
+  } catch { /* directory read failure is non-fatal */ }
+
+  // Extract visualization entries: { name: '...', type: '...' }
+  const vizRegex = /\{\s*name:\s*['"]([^'"]+)['"]\s*,\s*type:\s*['"]([^'"]+)['"]\s*\}/g;
+  const claims = [];
+  let m;
+  while ((m = vizRegex.exec(metaContent)) !== null) {
+    claims.push({ name: m[1], type: m[2] });
+  }
+
+  if (claims.length === 0) {
+    return { pass: true, claims: [], unmatched: [], reason: 'No visualizations declared in ESSAY_META' };
+  }
+
+  const unmatched = [];
+
+  for (const claim of claims) {
+    const typeLower = claim.type.toLowerCase();
+    let matched = false;
+    let techKey = null;
+
+    for (const [key, pattern] of Object.entries(VIZ_TECH_IMPORT_MAP)) {
+      if (typeLower.includes(key.toLowerCase())) {
+        techKey = key;
+        matched = pattern.test(combinedSource);
+        break;
+      }
+    }
+
+    claim.techKey = techKey;
+    claim.found = techKey === null ? true : matched;
+
+    if (techKey && !matched) {
+      unmatched.push(`"${claim.name}" claims "${claim.type}" but no ${techKey} import found`);
+    }
+  }
+
+  return {
+    pass: unmatched.length === 0,
+    claims,
+    unmatched,
   };
 }
 
@@ -837,6 +933,42 @@ async function runValidations(contract, outputs, validations, context) {
       results.push(validationResult);
     }
     
+    if (validation.type === 'viz_tech_match') {
+      const metaPath = validation.resolvedMetadataSource;
+      let implPath = validation.resolvedImplementationTarget;
+      if (implPath) {
+        implPath = resolveAnyOfTarget(implPath, anyOfOutputs);
+      }
+
+      const result = vizTechMatch(metaPath, implPath);
+
+      const validationResult = {
+        type: 'viz_tech_match',
+        metadata_source: validation.metadata_source,
+        implementation_target: validation.implementation_target,
+        claims_count: result.claims.length,
+        unmatched: result.unmatched,
+        severity: validation.severity || 'error',
+        description: validation.description
+      };
+
+      if (result.reason) {
+        validationResult.reason = result.reason;
+      }
+
+      if (validation.severity === 'warning') {
+        validationResult.pass = true;
+        validationResult.warning = !result.pass;
+      } else {
+        validationResult.pass = result.pass;
+        if (!result.pass) {
+          allPass = false;
+        }
+      }
+
+      results.push(validationResult);
+    }
+
     if (validation.type === 'url_reachable') {
       let targetPath = validation.resolvedTarget;
       if (targetPath) {
@@ -901,6 +1033,7 @@ module.exports = {
   minRegexCount,
   urlReachable,
   headRequest,
+  vizTechMatch,
   resolveAnyOfTarget,
   runValidations
 };

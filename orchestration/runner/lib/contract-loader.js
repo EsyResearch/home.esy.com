@@ -151,6 +151,14 @@ function getValidations(contract, context) {
     if (validation.targets && Array.isArray(validation.targets)) {
       validation.resolvedTargets = validation.targets.map(t => resolvePath(t, context));
     }
+
+    // Resolve viz_tech_match fields
+    if (validation.metadata_source) {
+      validation.resolvedMetadataSource = resolvePath(validation.metadata_source, context);
+    }
+    if (validation.implementation_target) {
+      validation.resolvedImplementationTarget = resolvePath(validation.implementation_target, context);
+    }
     
     return validation;
   });

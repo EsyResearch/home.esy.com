@@ -397,6 +397,51 @@ Parses YAML frontmatter (`---` delimited) from a markdown file and checks field 
 
 ---
 
+### `viz_tech_match`
+
+Cross-checks visualization technology claims in `ESSAY_META.visualizations[].type` against actual imports in the client component. Prevents the spec/implementation gap where metadata says "React Three Fiber" but the code ships static image fallbacks.
+
+```json
+{
+  "type": "viz_tech_match",
+  "metadata_source": "{artifact_path}/page.tsx",
+  "implementation_target": "{client_component}",
+  "severity": "error",
+  "description": "Visualization tech claims must match actual imports"
+}
+```
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `metadata_source` | string | yes | Path to page.tsx containing `ESSAY_META.visualizations` |
+| `implementation_target` | string | yes | Path to client component (also scans all co-located `.tsx`/`.jsx`/`.ts` files in the same directory to catch code-split sub-components like `SpecimenViewer.tsx` loaded via `next/dynamic`) |
+
+**Known technology keywords and required import patterns:**
+
+| Keyword in `type` | Required import pattern |
+|--------------------|----------------------|
+| `React Three Fiber` | `@react-three/fiber` or `@react-three/drei` |
+| `Three.js` | `from 'three'` |
+| `WebGL` | `@react-three/*` or `three` |
+| `D3` | `from 'd3'` |
+| `Recharts` | `from 'recharts'` |
+| `Mapbox` | `mapbox-gl` or `react-map-gl` |
+| `Leaflet` | `from 'leaflet'` |
+| `TopoJSON` | `topojson` |
+
+Visualization types that don't match any keyword (e.g., "Custom SVG + React State", "Annotated SVG") pass automatically — they require no specific library import.
+
+**CLI output:**
+
+```
+  ✗ viz_tech_match: Visualization tech claims must match actual imports
+    Checked 14 visualization(s)
+    ✗ "DH1 Cranium 3D Viewer" claims "React Three Fiber" but no React Three Fiber import found
+    ✗ "Naledi Hand 3D Viewer" claims "React Three Fiber" but no React Three Fiber import found
+```
+
+---
+
 ## Target Resolution
 
 Validation targets go through a resolution pipeline:

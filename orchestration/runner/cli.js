@@ -422,6 +422,14 @@ async function runVisualEssayPipeline(options) {
       if (v.type === 'contains_text' && v.missing?.length > 0) {
         console.log(`    Missing: ${v.missing.join(', ')}`);
       }
+      if (v.type === 'viz_tech_match') {
+        console.log(`    Checked ${v.claims_count} visualization(s)`);
+        if (v.unmatched?.length > 0) {
+          for (const u of v.unmatched) {
+            console.log(`    ✗ ${u}`);
+          }
+        }
+      }
       if (v.type === 'file_exists_any_of') {
         for (const c of (v.checked || [])) {
           console.log(`    ${c.exists ? '✓' : '✗'} ${c.path}`);
