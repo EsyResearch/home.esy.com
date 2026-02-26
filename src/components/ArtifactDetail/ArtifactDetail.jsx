@@ -87,7 +87,9 @@ function CollapseIcon() {
 
 /* ─── Image Zoom (Medium-style) ──────────────────────────────── */
 
-function useImageZoom(containerRef) {
+// rerenderKey (e.g. immersiveMode) forces the click-listener effect to
+// re-attach after the container DOM node swaps between layout modes.
+function useImageZoom(containerRef, rerenderKey) {
   const [zoomed, setZoomed] = useState(null); // { src, alt, rect }
   const overlayRef = useRef(null);
 
@@ -98,7 +100,7 @@ function useImageZoom(containerRef) {
 
   const close = useCallback(() => setZoomed(null), []);
 
-  // Click delegation on container
+  // Click delegation on container — re-attaches when rerenderKey changes
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -113,7 +115,7 @@ function useImageZoom(containerRef) {
     };
     el.addEventListener('click', handleClick);
     return () => el.removeEventListener('click', handleClick);
-  }, [containerRef, open]);
+  }, [containerRef, open, rerenderKey]);
 
   // Escape + scroll to close
   useEffect(() => {
@@ -158,7 +160,7 @@ export default function ArtifactDetailWrapper({ meta, children }) {
   const [immersiveMode, setImmersiveMode] = useState(false);
   const [specExpanded, setSpecExpanded] = useState(false);
   const contentRef = useRef(null);
-  const zoomOverlay = useImageZoom(contentRef);
+  const zoomOverlay = useImageZoom(contentRef, immersiveMode);
 
   const backLink = meta.backLink || '/essays';
   const backLabel = meta.backLabel || 'Essays';
