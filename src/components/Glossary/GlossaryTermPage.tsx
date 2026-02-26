@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { FileText, Brain, Globe, Lightbulb, Code, ArrowRight } from 'lucide-react';
+import { FileText, Brain, Globe, Lightbulb, Code, ArrowRight, type LucideIcon } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import styles from './GlossaryTermPage.module.css';
 
@@ -22,7 +22,7 @@ interface GlossaryTermPageProps {
   term: GlossaryTermData;
 }
 
-const categoryConfig: Record<string, { name: string; icon: React.ElementType; color: string }> = {
+const categoryConfig: Record<string, { name: string; icon: LucideIcon; color: string }> = {
   writing: { name: 'Writing', icon: FileText, color: '#00A896' },
   structure: { name: 'Structure', icon: Brain, color: '#0A2540' },
   research: { name: 'Research', icon: Globe, color: '#2A9D8F' },

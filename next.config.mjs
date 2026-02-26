@@ -24,6 +24,15 @@ const nextConfig = {
   experimental: {
     mdxRs: true,
   },
+  // Proxy CDN assets through dev server to avoid CORS issues with varying localhost ports
+  async rewrites() {
+    return [
+      {
+        source: '/cdn-proxy/:path*',
+        destination: 'https://images.esy.com/:path*',
+      },
+    ];
+  },
   // Redirect legacy paths to /essays/
   async redirects() {
     return [

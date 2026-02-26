@@ -744,12 +744,6 @@ export default function HomoNalediClient() {
       fallbackCaption="Phalangeal curvature in H. naledi — the spatial paradox of primitive fingers and a modern thumb."
       label="D14 — Naledi Hand Composite · MorphoSource CC-BY"
       autoRotate
-      cameraPosition={[0, 0, 0.35]}
-      hotspots={[
-        { position: [0.015, 0.02, 0.01], label: 'Curved phalanges', detail: 'Strongly curved proximal phalanges indicate arboreal climbing capability, resembling Australopithecus.' },
-        { position: [-0.01, -0.01, 0.015], label: 'Robust thumb (MC1)', detail: 'Long, robust pollical metacarpal with human-like proportions enabling precision grip.' },
-        { position: [0.005, 0.03, -0.005], label: 'Wrist morphology', detail: 'Derived wrist bones (scaphoid, capitate) are more Homo-like, supporting tool manufacture.' },
-      ]}
     />
   </div>
 </Section>
@@ -806,12 +800,6 @@ export default function HomoNalediClient() {
       fallbackCaption="DH1/DH3 composite cranium of H. naledi — approximately 560 cc endocranial volume."
       label="D13 — DH1 Cranium Reconstruction · MorphoSource CC-BY"
       autoRotate
-      cameraPosition={[0, 0, 0.4]}
-      hotspots={[
-        { position: [0.02, 0.04, 0.02], label: 'Small braincase', detail: 'Endocranial volume ~465–560 cc, comparable to australopiths but with Homo-like frontal lobe organization.' },
-        { position: [0, -0.02, 0.035], label: 'Derived face', detail: 'Small, gracile face with reduced brow ridges resembling later Homo rather than early hominins.' },
-        { position: [-0.03, 0.01, 0.01], label: 'Temporal fossa', detail: 'Moderate temporal muscle attachment area, consistent with reduced jaw power vs. australopiths.' },
-      ]}
     />
 
     <p>

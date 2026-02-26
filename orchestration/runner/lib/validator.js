@@ -409,20 +409,48 @@ async function urlReachable(filePath, urlPattern, options = {}) {
 }
 
 /**
- * Known visualization technology keywords and the import patterns that prove they're actually used.
- * Keys are matched case-insensitively against ESSAY_META.visualizations[].type values.
- * A type matches if any key appears as a substring (e.g., "D3 Scatter + Voronoi" matches "D3").
- * Technologies with no specific import requirement (pure CSS/SVG/JSX) are omitted.
+ * Two-layer verification for visualization technology claims.
+ *
+ * Layer 1 (import): proves the library is pulled in.
+ * Layer 2 (usage):  proves the library actually renders — e.g. a <Canvas> element
+ *                   from R3F, a d3.select() call, a <ResponsiveContainer> from Recharts, etc.
+ *
+ * Both layers must pass for a claim to be considered fulfilled.
+ * Technologies with no specific requirement (pure CSS/SVG/JSX) are omitted.
  */
-const VIZ_TECH_IMPORT_MAP = {
-  'React Three Fiber': /@react-three\/(fiber|drei)/,
-  'Three.js':          /from\s+['"]three['"]/,
-  'WebGL':             /@react-three\/(fiber|drei)|from\s+['"]three['"]/,
-  'D3':                /from\s+['"]d3['"]/,
-  'Recharts':          /from\s+['"]recharts['"]/,
-  'Mapbox':            /mapbox-gl|react-map-gl/,
-  'Leaflet':           /from\s+['"]leaflet/,
-  'TopoJSON':          /topojson/,
+const VIZ_TECH_CHECKS = {
+  'React Three Fiber': {
+    import: /@react-three\/(fiber|drei)/,
+    usage:  /<Canvas[\s>]|from\s+['"]@react-three\/fiber['"]\s*;?\s*.*<Canvas/s,
+  },
+  'Three.js': {
+    import: /from\s+['"]three['"]/,
+    usage:  /new\s+THREE\.\w+|new\s+(Scene|WebGLRenderer|PerspectiveCamera|Mesh)\b|<Canvas[\s>]/,
+  },
+  'WebGL': {
+    import: /@react-three\/(fiber|drei)|from\s+['"]three['"]/,
+    usage:  /<Canvas[\s>]|getContext\(\s*['"]webgl/,
+  },
+  'D3': {
+    import: /from\s+['"]d3['"]/,
+    usage:  /d3\.\w+\(|select\(|selectAll\(|<svg[\s>]/,
+  },
+  'Recharts': {
+    import: /from\s+['"]recharts['"]/,
+    usage:  /<(ResponsiveContainer|BarChart|LineChart|AreaChart|PieChart|RadarChart|ComposedChart|ScatterChart)[\s>]/,
+  },
+  'Mapbox': {
+    import: /mapbox-gl|react-map-gl/,
+    usage:  /<Map[\s>]|new\s+mapboxgl\.Map/,
+  },
+  'Leaflet': {
+    import: /from\s+['"]leaflet/,
+    usage:  /<MapContainer[\s>]|L\.map\(|new\s+L\.\w+/,
+  },
+  'TopoJSON': {
+    import: /topojson/,
+    usage:  /topojson\.\w+\(|feature\(|mesh\(/,
+  },
 };
 
 /**
@@ -477,22 +505,28 @@ function vizTechMatch(metadataPath, clientPath) {
 
   for (const claim of claims) {
     const typeLower = claim.type.toLowerCase();
-    let matched = false;
     let techKey = null;
+    let importFound = false;
+    let usageFound = false;
 
-    for (const [key, pattern] of Object.entries(VIZ_TECH_IMPORT_MAP)) {
+    for (const [key, checks] of Object.entries(VIZ_TECH_CHECKS)) {
       if (typeLower.includes(key.toLowerCase())) {
         techKey = key;
-        matched = pattern.test(combinedSource);
+        importFound = checks.import.test(combinedSource);
+        usageFound = checks.usage.test(combinedSource);
         break;
       }
     }
 
     claim.techKey = techKey;
-    claim.found = techKey === null ? true : matched;
+    claim.importFound = techKey === null ? true : importFound;
+    claim.usageFound = techKey === null ? true : usageFound;
+    claim.found = claim.importFound && claim.usageFound;
 
-    if (techKey && !matched) {
+    if (techKey && !importFound) {
       unmatched.push(`"${claim.name}" claims "${claim.type}" but no ${techKey} import found`);
+    } else if (techKey && !usageFound) {
+      unmatched.push(`"${claim.name}" claims "${claim.type}" — import exists but no rendered element found (e.g. <Canvas>, d3.select, <BarChart>)`);
     }
   }
 

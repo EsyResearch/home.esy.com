@@ -25,7 +25,8 @@ import {
   ArrowRight,
   CheckCircle,
   TrendingUp,
-  Award
+  Award,
+  type LucideIcon
 } from 'lucide-react';
 
 interface EssayTopic {
@@ -33,7 +34,7 @@ interface EssayTopic {
   title: string;
   category: string;
   difficulty: 'Easy' | 'Medium' | 'Advanced';
-  icon: React.ElementType;
+  icon: LucideIcon;
 }
 
 interface EssayGeneratorInputProps {

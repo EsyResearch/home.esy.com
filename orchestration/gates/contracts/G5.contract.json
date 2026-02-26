@@ -102,7 +102,7 @@
       "metadata_source": "{artifact_path}/page.tsx",
       "implementation_target": "{client_component}",
       "severity": "error",
-      "description": "Visualization tech claims in ESSAY_META.visualizations[].type must match actual imports in client component — if metadata says 'React Three Fiber', the client must import @react-three/fiber"
+      "description": "Visualization tech claims in ESSAY_META.visualizations[].type must match actual imports AND rendered elements — if metadata says 'React Three Fiber', the code must both import @react-three/fiber and render a <Canvas> element"
     }
   ],
   "required_skills": [

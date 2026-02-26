@@ -36,7 +36,8 @@ import {
   Mail,
   Eye,
   EyeOff,
-  X
+  X,
+  type LucideIcon
 } from 'lucide-react';
 
 // Prompt library types
@@ -49,7 +50,7 @@ interface Prompt {
   rating: number;
   isPro?: boolean;
   tags: string[];
-  icon?: React.ElementType;
+  icon?: LucideIcon;
 }
 
 interface EssayOptions {

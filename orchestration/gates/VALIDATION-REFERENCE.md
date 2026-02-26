@@ -399,7 +399,10 @@ Parses YAML frontmatter (`---` delimited) from a markdown file and checks field 
 
 ### `viz_tech_match`
 
-Cross-checks visualization technology claims in `ESSAY_META.visualizations[].type` against actual imports in the client component. Prevents the spec/implementation gap where metadata says "React Three Fiber" but the code ships static image fallbacks.
+Two-layer verification of visualization technology claims in `ESSAY_META.visualizations[].type`. Checks **both** that the library is imported **and** that a corresponding rendered element exists in the source. This prevents two classes of bugs:
+
+1. **Missing import** — metadata says "React Three Fiber" but the library isn't even imported.
+2. **Import without render** — the library is imported but only a static fallback is rendered (the exact bug that shipped with the Homo naledi 3D viewers).
 
 ```json
 {
@@ -407,7 +410,7 @@ Cross-checks visualization technology claims in `ESSAY_META.visualizations[].typ
   "metadata_source": "{artifact_path}/page.tsx",
   "implementation_target": "{client_component}",
   "severity": "error",
-  "description": "Visualization tech claims must match actual imports"
+  "description": "Visualization tech claims must match actual imports and rendered elements"
 }
 ```
 
@@ -416,28 +419,33 @@ Cross-checks visualization technology claims in `ESSAY_META.visualizations[].typ
 | `metadata_source` | string | yes | Path to page.tsx containing `ESSAY_META.visualizations` |
 | `implementation_target` | string | yes | Path to client component (also scans all co-located `.tsx`/`.jsx`/`.ts` files in the same directory to catch code-split sub-components like `SpecimenViewer.tsx` loaded via `next/dynamic`) |
 
-**Known technology keywords and required import patterns:**
+**Known technology keywords, required imports, and required rendered elements:**
 
-| Keyword in `type` | Required import pattern |
-|--------------------|----------------------|
-| `React Three Fiber` | `@react-three/fiber` or `@react-three/drei` |
-| `Three.js` | `from 'three'` |
-| `WebGL` | `@react-three/*` or `three` |
-| `D3` | `from 'd3'` |
-| `Recharts` | `from 'recharts'` |
-| `Mapbox` | `mapbox-gl` or `react-map-gl` |
-| `Leaflet` | `from 'leaflet'` |
-| `TopoJSON` | `topojson` |
+| Keyword in `type` | Layer 1: Required import | Layer 2: Required rendered element |
+|--------------------|----------------------|-------------------------------|
+| `React Three Fiber` | `@react-three/fiber` or `@react-three/drei` | `<Canvas>` |
+| `Three.js` | `from 'three'` | `new THREE.*`, `new Scene`, `new Mesh`, or `<Canvas>` |
+| `WebGL` | `@react-three/*` or `three` | `<Canvas>` or `getContext('webgl')` |
+| `D3` | `from 'd3'` | `d3.*()`, `select()`, `selectAll()`, or `<svg>` |
+| `Recharts` | `from 'recharts'` | `<ResponsiveContainer>`, `<BarChart>`, `<LineChart>`, `<AreaChart>`, `<PieChart>`, etc. |
+| `Mapbox` | `mapbox-gl` or `react-map-gl` | `<Map>` or `new mapboxgl.Map` |
+| `Leaflet` | `from 'leaflet'` | `<MapContainer>`, `L.map()`, or `new L.*` |
+| `TopoJSON` | `topojson` | `topojson.*()`, `feature()`, or `mesh()` |
 
-Visualization types that don't match any keyword (e.g., "Custom SVG + React State", "Annotated SVG") pass automatically — they require no specific library import.
+Visualization types that don't match any keyword (e.g., "Custom SVG + React State", "Annotated SVG") pass automatically — they require no specific library.
 
-**CLI output:**
+**CLI output examples:**
 
 ```
-  ✗ viz_tech_match: Visualization tech claims must match actual imports
+  ✗ viz_tech_match: Visualization tech claims must match actual imports and rendered elements
     Checked 14 visualization(s)
     ✗ "DH1 Cranium 3D Viewer" claims "React Three Fiber" but no React Three Fiber import found
-    ✗ "Naledi Hand 3D Viewer" claims "React Three Fiber" but no React Three Fiber import found
+```
+
+```
+  ✗ viz_tech_match: Visualization tech claims must match actual imports and rendered elements
+    Checked 14 visualization(s)
+    ✗ "DH1 Cranium 3D Viewer" claims "React Three Fiber" — import exists but no rendered element found (e.g. <Canvas>, d3.select, <BarChart>)
 ```
 
 ---

@@ -16,12 +16,13 @@ import {
   TrendingUp,
   Award,
   ChevronRight,
-  ArrowUpRight
+  ArrowUpRight,
+  type LucideIcon
 } from 'lucide-react';
 
 interface FeatureCard {
   id: string;
-  icon: React.ElementType;
+  icon: LucideIcon;
   title: string;
   description: string;
   stat?: string;

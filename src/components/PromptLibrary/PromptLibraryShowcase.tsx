@@ -13,7 +13,8 @@ import {
   Brain,
   FileText,
   Award,
-  ChevronRight
+  ChevronRight,
+  type LucideIcon
 } from 'lucide-react';
 
 interface PromptExample {
@@ -23,7 +24,7 @@ interface PromptExample {
   description: string;
   example: string;
   result: string;
-  icon: React.ElementType;
+  icon: LucideIcon;
   color: string;
 }
 
