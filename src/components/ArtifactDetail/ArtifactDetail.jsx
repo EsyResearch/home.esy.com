@@ -37,8 +37,9 @@ import './image-zoom.css';
  * @property {number} visualizationCount
  * @property {string} designSystem
  * @property {string} published
- * @property {string} model
+ * @property {string} model - AI model ID (legacy; prefer authorship.model)
  * @property {string} template
+ * @property {{ mode: 'human'|'ai-assisted'|'ai-directed', author?: { name: string, role?: string }, model?: string, aiContributions?: string[] }} [authorship] - Authorship provenance. Falls back to { mode: 'ai-directed', model: meta.model } when absent.
  * @property {string} [backLink='/essays'] - Where the back button navigates
  * @property {string} [backLabel='Essays'] - Label for the back button
  * @property {Array<{name: string, color: string}>} [palette]
@@ -46,6 +47,83 @@ import './image-zoom.css';
  * @property {string[]} [keySources]
  * @property {boolean} [citationFirst=false] - Whether the essay was written citation-first (all claims sourced before prose)
  */
+
+/* ─── Authorship Resolution ──────────────────────────────────── */
+
+const AI_CONTRIBUTION_LABELS = {
+  'research': 'Research',
+  'code': 'Code',
+  'editing': 'Editing',
+  'fact-checking': 'Fact-checking',
+  'visualization': 'Visualization',
+};
+
+function resolveAuthorship(meta) {
+  if (meta.authorship) return meta.authorship;
+  return { mode: 'ai-directed', model: meta.model };
+}
+
+function formatAiContributions(contributions) {
+  if (!contributions || contributions.length === 0) return null;
+  return contributions.map(c => AI_CONTRIBUTION_LABELS[c] || c).join(', ');
+}
+
+const AUTHORSHIP_MODE_LABELS = {
+  'human': 'Human',
+  'ai-assisted': 'AI-Assisted',
+  'ai-directed': 'AI-Directed',
+};
+
+function AuthorshipCards({ authorship }) {
+  const { mode, author, model, aiContributions } = authorship;
+  const contributionsLabel = formatAiContributions(aiContributions);
+
+  if (mode === 'human') {
+    return (
+      <div className="artifact-detail-spec__card">
+        <div className="artifact-detail-spec__card-label">Author</div>
+        <div className="artifact-detail-spec__card-value">
+          {author?.name || 'Unknown'}
+          {author?.role && (
+            <span className="artifact-detail-spec__card-secondary"> · {author.role}</span>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  if (mode === 'ai-assisted') {
+    return (
+      <>
+        <div className="artifact-detail-spec__card">
+          <div className="artifact-detail-spec__card-label">Author</div>
+          <div className="artifact-detail-spec__card-value">
+            {author?.name || 'Unknown'}
+            {author?.role && (
+              <span className="artifact-detail-spec__card-secondary"> · {author.role}</span>
+            )}
+          </div>
+        </div>
+        <div className="artifact-detail-spec__card">
+          <div className="artifact-detail-spec__card-label">AI Assist</div>
+          <div className="artifact-detail-spec__card-value">
+            {model ? resolveModelLabel(model) : 'AI'}
+            {contributionsLabel && (
+              <span className="artifact-detail-spec__card-secondary"> · {contributionsLabel}</span>
+            )}
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  return (
+    <div className="artifact-detail-spec__card">
+      <div className="artifact-detail-spec__card-label">Model</div>
+      <div className="artifact-detail-spec__card-value">{model ? resolveModelLabel(model) : '—'}</div>
+    </div>
+  );
+}
 
 /* ─── Category Colors ────────────────────────────────────────── */
 const CATEGORY_COLORS = {
@@ -335,10 +413,7 @@ export default function ArtifactDetailWrapper({ meta, children }) {
                 <div className="artifact-detail-spec__card-label">Published</div>
                 <div className="artifact-detail-spec__card-value">{meta.published}</div>
               </div>
-              <div className="artifact-detail-spec__card">
-                <div className="artifact-detail-spec__card-label">Model</div>
-                <div className="artifact-detail-spec__card-value">{resolveModelLabel(meta.model)}</div>
-              </div>
+              <AuthorshipCards authorship={resolveAuthorship(meta)} />
               <div className="artifact-detail-spec__card">
                 <div className="artifact-detail-spec__card-label">Source Quality</div>
                 <div className="artifact-detail-spec__card-value">{meta.sourceCount} {meta.sourceTier}</div>

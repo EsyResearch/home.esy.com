@@ -10,6 +10,27 @@ export interface ArtifactVisualization {
   type: string;
 }
 
+export type AuthorshipMode = 'human' | 'ai-assisted' | 'ai-directed';
+
+export type AiContribution =
+  | 'research'
+  | 'code'
+  | 'editing'
+  | 'fact-checking'
+  | 'visualization';
+
+export interface ArtifactAuthor {
+  name: string;
+  role?: string;
+}
+
+export interface ArtifactAuthorship {
+  mode: AuthorshipMode;
+  author?: ArtifactAuthor;
+  model?: ModelId | string;
+  aiContributions?: AiContribution[];
+}
+
 export interface ArtifactMeta {
   title: string;
   subtitle: string;
@@ -24,6 +45,7 @@ export interface ArtifactMeta {
   published: string;
   model: ModelId | string;
   template: string;
+  authorship?: ArtifactAuthorship;
   backLink?: string;
   backLabel?: string;
   palette?: ArtifactPalette[];

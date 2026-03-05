@@ -1,0 +1,114 @@
+TOPIC: Turkana Boy — The First Modern Body
+
+A visual essay exploring KNM-WT 15000, the most complete early Homo skeleton ever found — a boy who died at age 8–11 near Lake Turkana, Kenya, 1.53 million years ago. His body was the first built like ours: tall, narrow, long-limbed, designed for distance in open equatorial landscape. He is the blueprint.
+
+NARRATIVE STRUCTURE: "The Forensic Unspooling"
+
+This essay begins with death and reverse-engineers a life. The opening is the dental abscess — a molar infected, bone resorbing, fever. An 8-year-old boy lies down near a marsh. He doesn't get up. From that single pathology, the essay systematically unpacks everything the skeleton reveals, expanding outward from tooth to jaw to skeleton to body plan to locomotion to tools to migration to legacy.
+
+Each section is driven by a forensic question that the bones answer. The answer to each question raises the next question, creating a chain of revelation that pulls the reader forward.
+
+SECTION ARCHITECTURE (12 sections):
+
+1. THE ABSCESS — "A molar that swallowed a boy."
+   How he died: the infected deciduous molar, bone resorption, septicemia hypothesis. Open on the pathology. Establish the stakes — a child's death 1.6 million years ago.
+
+2. THE AGE — "Older than his teeth, younger than his bones."
+   How old was he? The dental vs. skeletal age discrepancy. His teeth say 8; his bones say 11. He was 5'3" — taller than most adult hominins before him. The growth pattern question.
+
+3. THE GROWTH — "Faster than any child alive."
+   How fast was he growing? Growth curve comparison: Turkana Boy vs. modern human vs. chimpanzee. Was Homo ergaster the first species with extended childhood? Or was this boy growing faster than we do? The developmental biology.
+
+4. THE BODY — "Built for a world without shade."
+   What was his body built for? The first modern body plan: long legs, narrow trunk, barrel chest. Allen's Rule — limb proportions maximize heat dissipation. Thermoregulation modeling. This is the body that replaced every body plan before it.
+
+5. THE LEGS — "The first stride that could cross a continent."
+   What could this body do? Biomechanics of long-distance locomotion. Valgus angle, femoral length, pelvic architecture. Compare to Lucy's compromise locomotion and naledi's mosaic. This body was built for distance — and distance changed everything.
+
+6. THE BRAIN — "Eight hundred and eighty cubic centimeters."
+   What could 880cc do? Endocranial volume analysis, projected adult capacity (~909cc). Where this sits in the hominin trajectory. The cognitive threshold question — enough for Acheulean symmetry, enough for social coordination, maybe not enough for language.
+
+7. THE VOICE — "Eighteen millimeters of silence."
+   Could he speak? The thoracic vertebral canal is narrower than modern humans — possibly limiting fine breath control needed for speech. The evidence is ambiguous. What the vertebrae tell us, and what they refuse to say.
+
+8. THE TOOLS — "The first technology that required a plan."
+   What did his species carry? Acheulean tool technology — the handaxe, the cleaver, the biface. Bilateral symmetry in stone: the first artifact that proves forward planning. 1.76 Ma to ~200 Ka — the longest-running technology in history.
+
+9. THE WALK — "Six thousand miles from Nariokotome to Dmanisi."
+   Where did his species go? Homo ergaster/erectus as the first hominin to leave Africa. Dmanisi (Georgia, 1.8 Ma), Java (1.5 Ma), Lantian (1.6 Ma). The out-of-Africa migration map. The body that could walk out of Africa — and did.
+
+10. THE FINDER — "The greatest fossil hunter you've never heard of."
+    Kamoya Kimeu: born in rural Kenya, no university education, self-taught, became the most prolific hominin fossil finder in history. August 1984: he spots a skull fragment on an eroded slope at Nariokotome III, western shore of Lake Turkana. Five seasons of excavation follow. 108 bones recovered. The most complete early Homo skeleton.
+
+11. THE EXCAVATION — "Five seasons in the Turkana badlands."
+    Richard Leakey's team, the Nariokotome site, the stratigraphic context. KBS Tuff and Okote Tuff: 40Ar/39Ar dating brackets the skeleton at ~1.53 Ma. The painstaking recovery. What it means to excavate for five years in equatorial heat for one boy's bones.
+
+12. THE INHERITANCE — "The body plan that survived to you."
+    Synthesis. When you look at KNM-WT 15000, you are looking at the first draft of your own body. His proportions, his stature projection, his locomotor design — they persist in every living human. The cluster connection: from Lucy's bipedal compromise (3.2 Ma) to naledi's mosaic paradox (~250 Ka) to Turkana Boy's modern template (1.53 Ma). He is the bridge.
+
+CLUSTER CONTEXT:
+
+This essay is part of the paleoanthropology cluster:
+- Seven Million Years (cluster parent — the big sweep)
+- Lucy (3.2 Ma — bipedalism before brain expansion)
+- Homo naledi (~250 Ka — small brain, complex behavior)
+- Turkana Boy (1.53 Ma — the first modern body plan)
+
+Cross-reference the other essays where natural connections arise.
+
+VISUAL & INTERACTIVE REQUIREMENTS:
+
+EXTENSIVE PHOTOGRAPHY: Museum specimens of KNM-WT 15000 (National Museums of Kenya), cast replicas in major museums, Lake Turkana landscape, Nariokotome site, Kamoya Kimeu portraits, Acheulean tool assemblages. Source from Wikimedia Commons, open-access publications (Walker & Leakey 1993), museum archives.
+
+CHARTS AND VISUALIZATIONS (12–14 total, high quality, publication-grade):
+
+Tier 2 — Recharts:
+- Brain volume comparison bar chart (ergaster in context of full hominin trajectory)
+- Body proportion grouped bar chart (intermembral, crural, brachial indices across 5–6 species)
+- Stature comparison horizontal bar chart (Lucy → naledi → Turkana Boy projected → modern human)
+
+Tier 3 — D3 + SVG:
+- Skeletal completeness overlay (HERO VISUALIZATION): Interactive SVG skeleton silhouette. 108 recovered bones highlighted; missing bones as ghost outline. Tap/hover for bone identification and significance.
+- Growth curve comparison: D3 line chart with three curves (modern human, chimpanzee, Turkana Boy) against dental/skeletal age discrepancy. Shaded confidence regions.
+- Thermoregulation model: Body surface area-to-mass ratio scatter across species. Allen's Rule visualized with annotated body silhouettes and heat-loss arrows.
+- Nariokotome site map: D3-Geo focused on Lake Turkana basin. Western shore at Nariokotome III, nearby sites (Koobi Fora, Lothagam). Animated zoom from continental view to site level.
+- Vertebral canal cross-section: Comparative SVG cross-sections — Turkana Boy (narrowed) vs. modern human vs. chimpanzee. Interactive toggle between specimens.
+- Acheulean tool timeline: D3 stepped timeline from Oldowan (~2.6 Ma) through Late Acheulean. Tool silhouettes with increasing symmetry. Turkana Boy's temporal position marked.
+- Dental pathology diagram: Annotated SVG mandible showing infected molar, abscess cavity, bone resorption. Toggle healthy vs. pathological comparison.
+- Out-of-Africa migration map: D3-Geo world map with animated migration routes. Africa → Dmanisi → Java → China. Time markers along paths.
+- Stratigraphic column: Lake Turkana basin stratigraphy. KBS Tuff, Okote Tuff, Turkana Boy's position dated by 40Ar/39Ar.
+
+Tier 5 — React Three Fiber (if 3D scans available):
+- KNM-WT 15000 cranium 3D viewer: Following the SpecimenViewer pattern from homo-naledi. OrbitControls, annotation hotspots (brow ridge, cranial vault, sagittal keel, dental arcade). Mobile fallback to high-res photo. Source mesh from MorphoSource or AfricanFossils.org.
+- Acheulean handaxe 3D viewer (stretch goal): Symmetrical biface in 3D. Annotations for bilateral symmetry, edge refinement, platform preparation.
+
+DATA SOURCES:
+- Walker & Leakey 1993, "The Nariokotome Homo erectus Skeleton" (primary monograph)
+- Dean & Smith 2009, dental development studies
+- Ruff 2010, Holliday 2012 — postcranial morphometrics
+- Wheeler 1991, 1993 — thermoregulation models
+- Holloway et al. 2004 — endocast studies
+- Brown et al. 1985, McDougall et al. 2012 — 40Ar/39Ar dating
+- Antón 2003 — Homo erectus dispersal
+- Lordkipanidze et al. 2007 — Dmanisi
+- Lepre et al. 2011, Beyene et al. 2013 — Acheulean technology
+- MorphoSource (Duke University) — 3D specimen scans
+- AfricanFossils.org (National Museums of Kenya) — specimen imagery and scans
+
+DESIGN DIRECTION:
+- Subject-derived palette: Lake Turkana landscape — volcanic tuff, alkaline blue-green water, bleached sediment, equatorial heat. NOT cave darkness (that's naledi's territory). NOT warm earth (that's Lucy's). This essay is open sky, dry heat, bright bone on eroded ground.
+- Suggested palette direction: deep strata dark, tuff charcoal, bone ivory, alkaline blue, ochre heat, sediment grey
+- Typography: Source Serif 4 / JetBrains Mono (consistent with cluster)
+- Photography-forward with forensic precision — this essay should feel like a pathologist's report that becomes a love letter
+- Section markers: clinical label + poetic tagline (e.g., THE ABSCESS / "A molar that swallowed a boy.")
+- Charts must be publication-quality — think Nature journal, not dashboard widgets
+- Animations: purposeful and restrained. Scroll-triggered reveals. Respect prefers-reduced-motion.
+
+TONE:
+Forensic, precise, and ultimately moving. The essay begins clinical and ends personal. The reader should feel the weight of 1.6 million years compressed into 108 bones. Every measurement is a clue; every clue is a story. By the end, the reader looks at their own body differently.
+
+ESTIMATED SCOPE:
+- Read time: 28–35 minutes
+- Visualizations: 12–14
+- Sources: 20+
+- Depth: deep

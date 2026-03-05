@@ -11,23 +11,15 @@ import {
 } from "@/lib/docs-navigation";
 import {
   Home,
-  Sparkles,
-  BookOpen,
-  PenLine,
   Workflow,
   ChevronDown,
   ChevronRight,
   X,
   Menu,
-  FileText,
   Search,
-  Edit3,
-  LayoutTemplate,
   FileCode,
-  ShieldCheck,
   Layers,
   UserCog,
-  Lock,
 } from "lucide-react";
 
 // Navy Calm Light Theme
@@ -44,18 +36,10 @@ const theme = {
 
 const iconMap: Record<string, React.ReactNode> = {
   home: <Home className="w-4 h-4" />,
-  sparkles: <Sparkles className="w-4 h-4" />,
-  book: <BookOpen className="w-4 h-4" />,
-  pencil: <PenLine className="w-4 h-4" />,
   workflow: <Workflow className="w-4 h-4" />,
-  prompt: <FileText className="w-4 h-4" />,
-  essay: <Edit3 className="w-4 h-4" />,
-  template: <LayoutTemplate className="w-4 h-4" />,
   spec: <FileCode className="w-4 h-4" />,
-  quality: <ShieldCheck className="w-4 h-4" />,
   layers: <Layers className="w-4 h-4" />,
   'user-cog': <UserCog className="w-4 h-4" />,
-  lock: <Lock className="w-4 h-4" />,
 };
 
 function NavItemComponent({ item, isActive }: { item: NavItem; isActive: boolean }) {
@@ -350,8 +334,7 @@ export function DocsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
             {[
               { label: 'Core Model', href: '/docs/core-model' },
               { label: 'Roles', href: '/docs/roles' },
-              { label: 'Workflows', href: '/docs/workflows' },
-              { label: 'Templates', href: '/docs/templates' }
+              { label: 'Specs', href: '/docs/specs' },
             ].map((link) => (
               <Link
                 key={link.label}

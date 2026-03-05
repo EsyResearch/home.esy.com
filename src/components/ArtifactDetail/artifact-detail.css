@@ -369,6 +369,12 @@
   color: var(--color-text, #ffffff);
 }
 
+.artifact-detail-spec__card-secondary {
+  font-weight: 400;
+  color: var(--color-text-faint, rgba(255, 255, 255, 0.4));
+  font-size: 0.78rem;
+}
+
 .artifact-detail-spec__bool {
   display: inline-block;
   padding: 0.15em 0.55em;

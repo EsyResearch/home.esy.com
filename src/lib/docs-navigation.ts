@@ -5,7 +5,7 @@ export interface NavItem {
   title: string;
   href: string;
   description?: string;
-  icon?: 'home' | 'sparkles' | 'book' | 'pencil' | 'workflow' | 'prompt' | 'essay' | 'template' | 'spec' | 'quality' | 'layers' | 'user-cog' | 'lock';
+  icon?: 'home' | 'workflow' | 'spec' | 'layers' | 'user-cog';
   isNew?: boolean;
   children?: NavItem[];
 }
@@ -17,32 +17,30 @@ export interface NavSection {
 
 export const docsNavigation: NavSection[] = [
   {
-    title: "Getting Started",
+    title: "How We Build",
     items: [
       {
-        title: "Documentation",
+        title: "Overview",
         href: "/docs",
-        description: "Welcome to Esy documentation",
+        description: "How Esy artifacts are made",
         icon: "home",
       },
     ],
   },
   {
-    title: "Architecture",
+    title: "System",
     items: [
       {
         title: "Core Model",
         href: "/docs/core-model",
         description: "Execution architecture and philosophy",
         icon: "layers",
-        isNew: true,
       },
       {
         title: "Roles",
         href: "/docs/roles",
         description: "Agent contracts and behavior definitions",
         icon: "user-cog",
-        isNew: true,
       },
       {
         title: "Workflows",
@@ -53,113 +51,19 @@ export const docsNavigation: NavSection[] = [
     ],
   },
   {
-    title: "Visual Essays",
+    title: "Artifacts",
     items: [
-      {
-        title: "Designing Visual Essays",
-        href: "/docs/designing-visual-essays",
-        description: "Design doctrine for cinematic, scroll-driven experiences",
-        icon: "layers",
-        isNew: true,
-      },
-    ],
-  },
-  {
-    title: "Canonical References",
-    items: [
-      {
-        title: "Templates Overview",
-        href: "/docs/templates",
-        description: "Pre-designed research systems",
-        icon: "template",
-      },
       {
         title: "Artifact Specifications",
         href: "/docs/specs",
-        description: "Structure, metadata, and provenance",
+        description: "Structure, metadata, authorship, and provenance",
         icon: "spec",
       },
       {
-        title: "Quality Assurance & Evals",
-        href: "/docs/quality",
-        description: "Validation, refinement, and evaluation",
-        icon: "quality",
-      },
-    ],
-  },
-  {
-    title: "Prompts & Techniques",
-    items: [
-      {
-        title: "Prompt Engineering Guide",
-        href: "/docs/prompt-engineering",
-        description: "Techniques for effective AI prompting",
-        icon: "sparkles",
-      },
-      {
-        title: "ChatGPT Prompts for Academic Writing",
-        href: "/docs/chatgpt-prompts-for-academic-writing",
-        description: "50+ ready-to-use academic prompts",
-        icon: "prompt",
-      },
-      {
-        title: "Write Better Essays with AI",
-        href: "/docs/how-to-write-better-essays-with-ai",
-        description: "AI assistance throughout writing",
-        icon: "pencil",
-      },
-      {
-        title: "Agent Workflows",
-        href: "/docs/agent-workflows",
-        description: "Build no-code research automation",
-        icon: "workflow",
-      },
-    ],
-  },
-  {
-    title: "Essay Writing Guides",
-    items: [
-      {
-        title: "How to Write an Essay",
-        href: "/docs/how-to-write-an-essay",
-        description: "Complete essay writing guide",
-        icon: "book",
-      },
-      {
-        title: "How to Write a Thesis Statement",
-        href: "/docs/how-to-write-a-thesis-statement",
-        description: "Craft strong thesis statements",
-        icon: "essay",
-      },
-      {
-        title: "How to Write an Introduction",
-        href: "/docs/how-to-write-an-essay-introduction",
-        description: "Hook readers from the start",
-        icon: "essay",
-      },
-      {
-        title: "How to Write a Conclusion",
-        href: "/docs/how-to-write-an-essay-conclusion",
-        description: "End with lasting impact",
-        icon: "essay",
-      },
-      {
-        title: "How to Write an Argumentative Essay",
-        href: "/docs/how-to-write-an-argumentative-essay",
-        description: "Build persuasive arguments",
-        icon: "essay",
-      },
-      {
-        title: "How to Write an Expository Essay",
-        href: "/docs/how-to-write-an-expository-essay",
-        description: "Explain topics clearly",
-        icon: "essay",
-      },
-      {
-        title: "How to Write an Informative Essay",
-        href: "/docs/how-to-write-an-informative-essay",
-        description: "Present factual information",
-        icon: "essay",
+        title: "Designing Visual Essays",
+        href: "/docs/designing-visual-essays",
+        description: "Design doctrine and interaction patterns",
+        icon: "layers",
       },
     ],
   },
