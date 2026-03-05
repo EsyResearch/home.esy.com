@@ -30,6 +30,17 @@ function loadContract(gateCode) {
  * @param {object} context - Variable values { slug, artifact_path }
  * @returns {string} Resolved absolute path
  */
+/**
+ * Resolve template variables in a string without path resolution.
+ * Used for search patterns where the result is text, not a file path.
+ */
+function resolveVars(template, context) {
+  let resolved = template;
+  if (context.slug) resolved = resolved.replace(/\{slug\}/g, context.slug);
+  if (context.artifact_path) resolved = resolved.replace(/\{artifact_path\}/g, context.artifact_path);
+  return resolved;
+}
+
 function resolvePath(pathTemplate, context) {
   let resolved = pathTemplate;
   
@@ -150,6 +161,14 @@ function getValidations(contract, context) {
     // Resolve targets array if present (for min_sources_any_of etc.)
     if (validation.targets && Array.isArray(validation.targets)) {
       validation.resolvedTargets = validation.targets.map(t => resolvePath(t, context));
+    }
+
+    // Resolve template variables in patterns (without path resolution)
+    if (validation.patterns && Array.isArray(validation.patterns)) {
+      validation.patterns = validation.patterns.map(p => resolveVars(p, context));
+    }
+    if (validation.pattern && typeof validation.pattern === 'string') {
+      validation.pattern = resolveVars(validation.pattern, context);
     }
 
     // Resolve viz_tech_match fields

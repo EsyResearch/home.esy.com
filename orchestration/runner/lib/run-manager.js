@@ -39,9 +39,9 @@ function getRunPaths(runId) {
  * Initialize a new run
  */
 function initRun(options) {
-  const { workflow, slug, artifactPath, depth = 'standard', promptFile = null, promptSha256 = null } = options;
+  const { workflow, slug, artifactPath, depth = 'standard', promptFile = null, promptSha256 = null, variant = null, buildModel = null } = options;
   
-  const runId = generateRunId(slug);
+  const runId = generateRunId(variant ? `${slug}--${variant}` : slug);
   const paths = getRunPaths(runId);
   
   // Create directory structure
@@ -51,14 +51,19 @@ function initRun(options) {
   fs.mkdirSync(paths.invocationsLogsDir, { recursive: true });
   
   // Initialize RUN.json
+  const workflowRecord = {
+    name: workflow,
+    version: 'local-dev',
+    slug,
+    artifact_path: artifactPath
+  };
+  if (variant) workflowRecord.variant = variant;
+  if (buildModel) workflowRecord.build_model = buildModel;
+  if (variant) workflowRecord.spec_ref = `orchestration/skills/visual-essay-invocation/specs/${slug}.md`;
+
   const runRecord = {
     run_id: runId,
-    workflow: {
-      name: workflow,
-      version: 'local-dev',
-      slug,
-      artifact_path: artifactPath
-    },
+    workflow: workflowRecord,
     depth,
     prompt: promptFile ? {
       file: promptFile,

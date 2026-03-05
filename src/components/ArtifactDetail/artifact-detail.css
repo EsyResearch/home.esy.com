@@ -286,7 +286,6 @@
 
 .artifact-detail-spec__inner {
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
   background: rgba(255, 255, 255, 0.02);
   overflow: hidden;
 }
@@ -508,7 +507,6 @@
 }
 
 .artifact-detail-content__frame {
-  border-radius: 16px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4),
@@ -527,7 +525,6 @@
 /* Override essay's min-height when framed */
 .artifact-detail-content__frame .bh-essay {
   min-height: auto;
-  border-radius: 16px;
 }
 
 

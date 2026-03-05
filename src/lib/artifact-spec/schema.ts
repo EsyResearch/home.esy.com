@@ -52,4 +52,10 @@ export interface ArtifactMeta {
   visualizations?: ArtifactVisualization[];
   keySources?: string[];
   citationFirst?: boolean;
+  /** Shared spec slug linking all builds of the same essay concept */
+  spec?: string;
+  /** Model shorthand for non-canonical builds (undefined = canonical) */
+  variant?: string;
+  /** For variants: href to the canonical build for comparison navigation */
+  canonicalHref?: string;
 }

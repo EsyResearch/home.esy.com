@@ -36,6 +36,14 @@ export interface VisualEssay {
   tags?: string[];
   visualStyle?: VisualStyle;  // 'photorealistic' for photo essays, 'illustrated' for SVG-based
   heroImage?: string;  // URL or path to hero/thumbnail image for cards
+  /** Shared spec slug -- groups all model builds of the same concept */
+  spec?: string;
+  /** Model shorthand for non-canonical builds (undefined = canonical) */
+  variant?: string;
+  /** Model ID that built this essay (matches registry.json key) */
+  buildModel?: string;
+  /** Which /v/ directory the base URL currently renders (spec-level, on canonical entry only) */
+  canonicalBuild?: string;
 }
 
 const NEW_THRESHOLD_DAYS = 3;
@@ -46,6 +54,16 @@ export function isNewEssay(essay: VisualEssay): boolean {
   const now = new Date();
   const diffMs = now.getTime() - published.getTime();
   return diffMs >= 0 && diffMs < NEW_THRESHOLD_DAYS * 24 * 60 * 60 * 1000;
+}
+
+/** Returns all model builds (canonical + variants) for a given spec slug */
+export function getVariantGroup(specSlug: string): VisualEssay[] {
+  return visualEssays.filter(e => e.spec === specSlug);
+}
+
+/** Returns the canonical (non-variant) build for a spec, if it exists */
+export function getCanonicalBuild(specSlug: string): VisualEssay | undefined {
+  return visualEssays.find(e => e.spec === specSlug && !e.variant);
 }
 
 export const CATEGORY_COLORS: Record<EssayCategory, string> = {
@@ -1192,14 +1210,52 @@ export const visualEssays: VisualEssay[] = [
     tags: ["Homo naledi", "Rising Star Cave", "paleoanthropology", "human evolution", "Dinaledi Chamber", "Lee Berger", "deliberate body disposal", "South Africa", "Cradle of Humankind", "visual essay"],
     visualStyle: "photorealistic",
   },
+  {
+    id: "turkana-boy",
+    number: "96",
+    title: "Turkana Boy: The First Modern Body",
+    subtitle: "108 bones, one damaged jaw, and the child who made distance human",
+    description: "A visual essay on KNM-WT 15000, the most complete early Homo skeleton ever found, and the anatomy that made long-range human movement possible.",
+    category: "Science",
+    readTime: "30 min",
+    href: "/essays/science/turkana-boy",
+    heroImage: "https://images.esy.com/essays/turkana-boy/homo-erectus-turkana-boy-ausschnitt-fundort-nariokotome-kenia-rekonstruktion-im-neanderthal-museum.c38e9d9266.webp",
+    publishedDate: "2026-03-05",
+    tags: ["Turkana Boy", "KNM-WT 15000", "Homo ergaster", "Homo erectus", "paleoanthropology", "human evolution", "Lake Turkana", "Nariokotome", "body plan"],
+    visualStyle: "photorealistic",
+    spec: "turkana-boy",
+    buildModel: "claude-opus-4.6",
+    canonicalBuild: "claude-opus-4-6",
+  },
+  {
+    id: "turkana-boy--gpt-5-4",
+    number: "97",
+    title: "Turkana Boy: The First Modern Body",
+    subtitle: "108 bones, one damaged jaw, and the child who made distance human",
+    description: "A visual essay on KNM-WT 15000, built by GPT 5.4. Fresh research, independent prose, and distinct design sensibility — same spec, different model.",
+    category: "Science",
+    readTime: "32 min",
+    href: "/essays/science/turkana-boy/v/gpt-5-4",
+    heroImage: "https://images.esy.com/essays/turkana-boy/homo-erectus-turkana-boy-ausschnitt-fundort-nariokotome-kenia-rekonstruktion-im-neanderthal-museum.c38e9d9266.webp",
+    publishedDate: "2026-03-05",
+    tags: ["Turkana Boy", "KNM-WT 15000", "Homo ergaster", "Homo erectus", "paleoanthropology", "human evolution", "Lake Turkana", "Nariokotome", "body plan"],
+    visualStyle: "photorealistic",
+    spec: "turkana-boy",
+    variant: "gpt-5-4",
+    buildModel: "gpt-5.4",
+  },
 ];
 
 // ==================== DERIVED DATA ====================
 
-// Published essays only (non-draft), sorted by number descending (newest first)
-export const publishedVisualEssays = visualEssays
+// All published essays including variants (for search, comparison, etc.)
+export const allPublishedEssays = visualEssays
   .filter(essay => !essay.draft)
   .sort((a, b) => parseInt(b.number) - parseInt(a.number));
+
+// Published essays for the index — excludes variants (one card per essay concept)
+export const publishedVisualEssays = allPublishedEssays
+  .filter(essay => !essay.variant);
 
 // Featured essay: Always the latest (first in sorted array)
 export const featuredEssay = publishedVisualEssays[0];

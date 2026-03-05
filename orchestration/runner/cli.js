@@ -98,6 +98,8 @@ Commands:
     --depth <mode>          Depth mode: quick|standard|deep (default: standard)
     --prompt-file <path>    Path to topic/prompt file (optional)
     --start-from <Gx>       Skip gates before this one (auto-validate passing gates)
+    --variant <model-short>  Model build variant (e.g., claude-opus-4-6). Auto-sets artifact-path to {slug}/v/{variant}
+    --build-model <model-id> Model ID for this build (e.g., claude-opus-4.6)
 
   run start     Initialize a new run (manual mode)
     --workflow <name>       Workflow name (e.g., visual-essay)
@@ -160,6 +162,9 @@ Examples:
   # Run with a prompt file
   node cli.js run visual-essay --slug the-word-robot --prompt-file prompts/robot-topic.txt
 
+  # Run a model build variant (rebuilds same spec with a different model)
+  node cli.js run visual-essay --slug turkana-boy --variant claude-opus-4-6 --build-model claude-opus-4.6 --artifact-path src/app/essays/science/turkana-boy/v/claude-opus-4-6
+
   # Manual mode: Start a new run
   node cli.js run start --workflow visual-essay --slug the-word-robot
 
@@ -220,7 +225,7 @@ function validateConvention(slug, artifactPath) {
  * Run the visual-essay pipeline in CI-style with human-in-the-loop execution
  */
 async function runVisualEssayPipeline(options) {
-  const { slug, artifactPath, depth, promptFile, startFrom } = options;
+  const { slug, artifactPath, depth, promptFile, startFrom, variant, buildModel } = options;
   
   console.log('');
   console.log('═══════════════════════════════════════════════════════════════════════════════');
@@ -249,6 +254,7 @@ async function runVisualEssayPipeline(options) {
   
   console.log(`📁 Essay directory: ${artifactPath}`);
   console.log(`📊 Depth mode: ${depth}`);
+  if (variant) console.log(`🔀 Variant: ${variant} (build model: ${buildModel || 'not specified'})`);
   console.log('');
   
   // Load workflow definition
@@ -274,7 +280,9 @@ async function runVisualEssayPipeline(options) {
     artifactPath,
     depth,
     promptFile: promptFile || null,
-    promptSha256
+    promptSha256,
+    variant: variant || null,
+    buildModel: buildModel || null
   });
   
   console.log(`✓ Run initialized: ${runId}`);
@@ -501,22 +509,35 @@ async function main() {
     if (command === 'run') {
       // CI-style visual-essay pipeline
       if (subcommand === 'visual-essay') {
-        const { slug, 'artifact-path': artifactPathOverride, depth = 'standard', 'prompt-file': promptFile, 'start-from': startFrom } = args;
+        const { slug, 'artifact-path': artifactPathOverride, depth = 'standard', 'prompt-file': promptFile, 'start-from': startFrom, variant, 'build-model': buildModel } = args;
         
         if (!slug) {
           console.error('Error: --slug is required');
           process.exit(1);
         }
         
-        // Standard convention: src/app/essays/{slug}
-        const artifactPath = artifactPathOverride || `src/app/essays/${slug}`;
+        // For variants, auto-derive artifact path as {slug}/v/{variant} if not overridden
+        let artifactPath;
+        if (variant && !artifactPathOverride) {
+          const canonicalPath = `src/app/essays/${slug}`;
+          const fs = require('fs');
+          if (fs.existsSync(canonicalPath)) {
+            artifactPath = `${canonicalPath}/v/${variant}`;
+          } else {
+            console.error(`Error: Cannot auto-derive variant path. Canonical essay not found at ${canonicalPath}`);
+            console.error('Use --artifact-path to specify the variant directory explicitly.');
+            process.exit(1);
+          }
+        } else {
+          artifactPath = artifactPathOverride || `src/app/essays/${slug}`;
+        }
         
-        await runVisualEssayPipeline({ slug, artifactPath, depth, promptFile, startFrom });
+        await runVisualEssayPipeline({ slug, artifactPath, depth, promptFile, startFrom, variant, buildModel });
         return;
       }
       
       if (subcommand === 'start') {
-        const { workflow, slug, 'artifact-path': artifactPathOverride, depth } = args;
+        const { workflow, slug, 'artifact-path': artifactPathOverride, depth, variant, 'build-model': buildModel } = args;
         
         if (!workflow || !slug) {
           console.error('Error: --workflow and --slug are required');
@@ -530,7 +551,9 @@ async function main() {
           workflow,
           slug,
           artifactPath,
-          depth: depth || 'standard'
+          depth: depth || 'standard',
+          variant: variant || null,
+          buildModel: buildModel || null
         });
         
         console.log('✓ Run initialized');

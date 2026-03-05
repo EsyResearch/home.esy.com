@@ -30,6 +30,9 @@ function findPageFiles(dir: string, baseDir: string = dir): string[] {
         // Skip dynamic routes (containing [])
         if (route.includes('[')) continue
         
+        // Skip variant build directories (/v/ under essays)
+        if (route.includes('/v/')) continue
+        
         results.push(route || '/')
       }
     }

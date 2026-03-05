@@ -4,8 +4,10 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import { resolveModelLabel } from '@/lib/models/registry';
+import ModelVariantSwitcher from './ModelVariantSwitcher';
 import './artifact-detail.css';
 import './image-zoom.css';
+import './model-variant-switcher.css';
 
 /* ═══════════════════════════════════════════════════════════════
    Artifact Detail Wrapper — Shared Component
@@ -414,6 +416,7 @@ export default function ArtifactDetailWrapper({ meta, children }) {
                 <div className="artifact-detail-spec__card-value">{meta.published}</div>
               </div>
               <AuthorshipCards authorship={resolveAuthorship(meta)} />
+              <ModelVariantSwitcher spec={meta.spec} />
               <div className="artifact-detail-spec__card">
                 <div className="artifact-detail-spec__card-label">Source Quality</div>
                 <div className="artifact-detail-spec__card-value">{meta.sourceCount} {meta.sourceTier}</div>

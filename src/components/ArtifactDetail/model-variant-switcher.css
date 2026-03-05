@@ -1,0 +1,77 @@
+/* ═══════════════════════════════════════════════════════════════
+   Artifact Version Switcher
+   Sits inside the spec panel grid as a full-width card.
+   ═══════════════════════════════════════════════════════════════ */
+
+.artifact-detail-spec__card--builds {
+  grid-column: 1 / -1;
+}
+
+.model-switcher-compact {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.model-switcher-compact__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255 255 255 / 0.08);
+  background: rgba(255 255 255 / 0.03);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.model-switcher-compact__pill:hover {
+  background: rgba(255 255 255 / 0.07);
+  border-color: rgba(255 255 255 / 0.15);
+}
+
+.model-switcher-compact__pill--active {
+  background: rgba(255 255 255 / 0.08);
+  border-color: rgba(255 255 255 / 0.2);
+}
+
+.model-switcher-compact__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--dot-color, #888);
+  flex-shrink: 0;
+}
+
+.model-switcher-compact__pill--active .model-switcher-compact__dot {
+  box-shadow: 0 0 5px var(--dot-color, #888);
+}
+
+.model-switcher-compact__label {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255 255 255 / 0.6);
+  white-space: nowrap;
+}
+
+.model-switcher-compact__pill--active .model-switcher-compact__label {
+  color: rgba(255 255 255 / 0.9);
+}
+
+.model-switcher-compact__canonical {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(255 255 255 / 0.3);
+  padding: 1px 5px;
+  border: 1px solid rgba(255 255 255 / 0.08);
+  border-radius: 4px;
+}
+
+.model-switcher-compact__pill--active .model-switcher-compact__canonical {
+  color: rgba(255 255 255 / 0.5);
+  border-color: rgba(255 255 255 / 0.15);
+}

@@ -48,13 +48,21 @@
       "version": "3.5",
       "status": "supported"
     },
+    "gpt-5.4": {
+      "label": "OpenAI GPT 5.4",
+      "vendor": "OpenAI",
+      "family": "GPT",
+      "subfamily": null,
+      "version": "5.4",
+      "status": "recommended"
+    },
     "gpt-5.2": {
       "label": "GPT 5.2",
       "vendor": "OpenAI",
       "family": "GPT",
       "subfamily": null,
       "version": "5.2",
-      "status": "recommended"
+      "status": "supported"
     },
     "gpt-5.1": {
       "label": "GPT 5.1",

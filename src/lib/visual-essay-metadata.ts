@@ -100,6 +100,9 @@ export interface VisualEssayMetadataConfig {
 
   /** Base path for the essay (defaults to 'essays', use 'essays/etymology' for word origin essays) */
   basePath?: 'essays' | 'essays/etymology' | 'essays/science';
+
+  /** Override the canonical URL path (e.g., '/essays/science/turkana-boy' for variant builds) */
+  canonicalOverride?: string;
 }
 
 /**
@@ -155,7 +158,9 @@ export function createVisualEssayMetadata(config: VisualEssayMetadataConfig): Me
   const basePath = config.basePath || 'essays';
 
   // Canonical URL (with trailing slash to match Next.js trailingSlash: true config)
-  const canonicalUrl = `${SITE_URL}/${basePath}/${config.slug}/`;
+  const canonicalUrl = config.canonicalOverride
+    ? `${SITE_URL}${config.canonicalOverride}/`
+    : `${SITE_URL}/${basePath}/${config.slug}/`;
   
   // Build the metadata object
   const metadata: Metadata = {
