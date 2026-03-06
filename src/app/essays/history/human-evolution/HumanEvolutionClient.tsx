@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import Link from "next/link";
 import "./styles/human-evolution.css";
 import { chapters, type Chapter } from "./data/chapters";
 import { species } from "./data/species";
@@ -21,6 +22,7 @@ interface EvidenceCardProps {
   imageUrl?: string;
   imageAlt?: string;
   imageCaption?: string;
+  link?: string;
 }
 
 interface QuoteCardProps {
@@ -112,6 +114,7 @@ function EvidenceCard({
   imageUrl,
   imageAlt,
   imageCaption,
+  link,
 }: EvidenceCardProps) {
   return (
     <article className="human-evolution__evidence-card">
@@ -139,7 +142,9 @@ function EvidenceCard({
       </div>
       <div className="human-evolution__evidence-card-body">
         <span className="human-evolution__evidence-card-type">{type}</span>
-        <h4 className="human-evolution__evidence-card-title">{title}</h4>
+        <h4 className="human-evolution__evidence-card-title">
+          {link ? <Link href={link} style={{ color: "inherit", textDecoration: "underline", textDecorationColor: "var(--color-accent)", textUnderlineOffset: "3px" }}>{title}</Link> : title}
+        </h4>
         {subtitle && (
           <p style={{ fontSize: "0.875rem", fontStyle: "italic", marginBottom: "0.5rem" }}>
             {subtitle}
@@ -808,6 +813,48 @@ function SourcesSection() {
             ))}
           </ul>
         </div>
+
+        <div>
+          <h4 style={{
+            fontFamily: "var(--font-ui)",
+            fontSize: "0.875rem",
+            textTransform: "uppercase",
+            letterSpacing: "0.05em",
+            color: "var(--color-stone)",
+            marginBottom: "var(--space-md)",
+          }}>
+            Further Reading on Esy
+          </h4>
+          <ul style={{
+            listStyle: "none",
+            padding: 0,
+            margin: 0,
+            fontSize: "0.875rem",
+            color: "var(--color-earth)",
+          }}>
+            <li style={{ marginBottom: "var(--space-md)" }}>
+              <Link href="/essays/science/turkana-boy" style={{ color: "var(--color-accent)" }}>
+                Turkana Boy: The Skeleton That Redefined Human Evolution
+              </Link>
+              {" — "}
+              KNM-WT 15000, the most complete early human skeleton ever found. An interactive visual essay with 3D fossil specimens.
+            </li>
+            <li style={{ marginBottom: "var(--space-md)" }}>
+              <Link href="/essays/science/homo-naledi" style={{ color: "var(--color-accent)" }}>
+                Homo naledi: The Small-Brained Species That Buried Its Dead
+              </Link>
+              {" — "}
+              The Rising Star Cave discovery that challenges the link between brain size and behavioural complexity.
+            </li>
+            <li style={{ marginBottom: "var(--space-md)" }}>
+              <Link href="/essays/science/seven-million-years" style={{ color: "var(--color-accent)" }}>
+                Seven Million Years: A Visual Journey Through Human Evolution
+              </Link>
+              {" — "}
+              From Sahelanthropus to Homo sapiens — the complete arc of hominin evolution in one visual essay.
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
   );
@@ -1257,6 +1304,7 @@ function ChapterGenusHomo() {
             imageUrl={specimenImages.turkanaBoy.src}
             imageAlt={specimenImages.turkanaBoy.alt}
             imageCaption={specimenImages.turkanaBoy.caption}
+            link="/essays/science/turkana-boy"
           />
         </div>
 

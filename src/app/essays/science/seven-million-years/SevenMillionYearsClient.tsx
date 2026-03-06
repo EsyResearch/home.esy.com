@@ -583,8 +583,9 @@ export default function SevenMillionYearsClient() {
             in Africa by 1.9 million years ago, <em>H. erectus</em> was a
             genuine departure: tall, long-legged, narrow-hipped, with a brain
             ranging from 600 to over 1,000 cubic centimetres across its
-            1.5-million-year tenure as a species. The skeleton known as Turkana
-            Boy (KNM-WT 15000), discovered by Kamoya Kimeu at Nariokotome,
+            1.5-million-year tenure as a species. The skeleton known as{' '}
+            <Link href="/essays/science/turkana-boy" className="smy-narrative__link">Turkana
+            Boy</Link> (KNM-WT 15000), discovered by Kamoya Kimeu at Nariokotome,
             Kenya, in 1984, died at roughly eight to eleven years of age and
             already stood 1.6 metres. Had he reached adulthood, he might have
             exceeded 1.85 metres. His body proportions are essentially
@@ -1365,6 +1366,16 @@ export default function SevenMillionYearsClient() {
                 A deep-dive visual essay on AL 288-1, the 3.2-million-year-old{' '}
                 <em>Australopithecus afarensis</em> skeleton that transformed our
                 understanding of bipedalism and human origins.
+              </li>
+              <li className="smy-sources__credits-item">
+                <Link href="/essays/science/turkana-boy" className="smy-narrative__link">
+                  Turkana Boy: The Skeleton That Redefined Human Evolution
+                </Link>
+                {' \u2014 '}
+                KNM-WT 15000, the most complete early human skeleton ever found.
+                A visual essay on the 1.5-million-year-old <em>Homo erectus</em> youth
+                who revealed the modern body plan and Africa&rsquo;s role in the
+                origin of long-distance locomotion.
               </li>
               <li className="smy-sources__credits-item">
                 <Link href="/essays/science/homo-naledi" className="smy-narrative__link">

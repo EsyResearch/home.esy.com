@@ -1169,6 +1169,15 @@ export default function HomoNalediClient() {
         place in the wider story.
       </li>
       <li className="naledi-sources__credits-item">
+        <Link href="/essays/science/turkana-boy" className="naledi-link">
+          Turkana Boy: The Skeleton That Redefined Human Evolution
+        </Link>
+        {' \u2014 '}
+        KNM-WT 15000, the most complete early human skeleton ever found. An interactive
+        visual essay on the 1.5-million-year-old <em>Homo erectus</em> youth with 3D
+        fossil specimens from the Turkana Basin.
+      </li>
+      <li className="naledi-sources__credits-item">
         <Link href="/essays/science/lucy" className="naledi-link">
           Lucy: Before the Genus Homo
         </Link>

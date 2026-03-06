@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
+import Link from 'next/link';
 import {
   ScatterChart, Scatter, BarChart, Bar, RadarChart, Radar,
   PolarGrid, PolarAngleAxis, PolarRadiusAxis,
@@ -2671,6 +2672,36 @@ export default function LucyClient() {
     All images sourced from Wikimedia Commons under Creative Commons or Public Domain
     licenses. Anatomical and isotopic data drawn from cited primary literature.
   </p>
+
+  <h3 className="lucy-sources__credits-title">Further Reading</h3>
+  <ul className="lucy-sources__credits-list">
+    <li className="lucy-sources__credits-item">
+      <Link href="/essays/science/turkana-boy">
+        Turkana Boy: The Skeleton That Redefined Human Evolution
+      </Link>
+      {' \u2014 '}
+      KNM-WT 15000, the most complete early human skeleton ever found. An interactive
+      visual essay on the 1.5-million-year-old <em>Homo erectus</em> youth with 3D
+      fossil specimens from the Turkana Basin.
+    </li>
+    <li className="lucy-sources__credits-item">
+      <Link href="/essays/science/homo-naledi">
+        Homo naledi: The Small-Brained Species That Buried Its Dead
+      </Link>
+      {' \u2014 '}
+      1,500 bones, 560 cubic centimetres, and the question of what makes us human.
+      The Rising Star Cave discovery that challenges the link between brain size
+      and behavioural complexity.
+    </li>
+    <li className="lucy-sources__credits-item">
+      <Link href="/essays/science/seven-million-years">
+        Seven Million Years: The Complete Visual History of Our Kind
+      </Link>
+      {' \u2014 '}
+      From <em>Sahelanthropus</em> to <em>Homo sapiens</em> &mdash; the complete
+      arc of hominin evolution in one visual essay.
+    </li>
+  </ul>
 </div>
 
     </article>
