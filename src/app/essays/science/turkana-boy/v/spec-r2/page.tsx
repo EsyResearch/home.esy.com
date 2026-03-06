@@ -9,7 +9,6 @@ export const metadata = createVisualEssayMetadata({
   slug: 'turkana-boy',
   description:
     'KNM-WT 15000 is the most complete early Homo skeleton and the clearest window into when our body plan truly emerged. From a mandibular abscess to Out-of-Africa migration, this essay traces the first draft of the modern human body through 108 bones, 14 visualizations, and 1.53 million years of evidence.',
-  ogImageSlug: 'turkana-boy',
 });
 
 export default function TurkanaBoySpecR2Page() {
