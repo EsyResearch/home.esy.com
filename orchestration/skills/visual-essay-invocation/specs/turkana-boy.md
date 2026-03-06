@@ -1,8 +1,10 @@
 # Visual Essay Invocation Spec: Turkana Boy — The First Modern Body
 
-**Status**: ✅ APPROVED
-**Date**: March 5, 2026
+**Status**: ✅ APPROVED (Revision 2)
+**Date**: March 6, 2026
+**Revision**: 2 (supersedes March 5 spec)
 **Research Package**: `src/app/essays/science/turkana-boy/research/`
+**G1 Intake**: `src/app/essays/science/turkana-boy/G1-INTAKE-v2.md`
 **Mode**: Historical Essay (Deep)
 **Cluster Parent**: `seven-million-years`
 
@@ -60,11 +62,12 @@ scope:
     - "Overconfident medical reconstruction of exact cause of death"
     - "Claims that the body is fully identical to recent Homo sapiens in every anatomical respect"
 
-estimated_read_time: "28-35 minutes"
-visualization_count: 12
-word_count: "6,500-8,500"
-photography_count: "16-24"
-code_lines: "4,000+"
+estimated_read_time: "computed (target 35-45 minutes)"
+visualization_count: 14
+word_count: "8,000-10,000"
+photography_count: "30-35"
+code_lines: "2,500+"
+three_d_models: "0-1 (conditional on MorphoSource scan availability)"
 ```
 
 ---
@@ -80,11 +83,13 @@ timeline_file: "TIMELINE.md"
 visuals_file: "VISUALS.md"
 era_guide_file: "ERA-GUIDE.md"
 comparisons_file: "COMPARISONS.md"
+datasets_file: "DATASETS.md"
+quotes_file: "QUOTES.md"
 synthesis_file: "SYNTHESIS.md"
 
 source_requirements:
-  minimum_total: 15
-  actual_total: 16
+  minimum_total: 20
+  actual_total: 20
   tier_1_and_2_majority: true
   research_profile: "historical deep"
 
@@ -138,16 +143,18 @@ photography:
     - "Wikimedia Commons"
     - "Museum and archival photography where licensing permits"
   treatment: "Bright landscape paired with clean clinical bone photography; no cave-dark mood, no decorative historical clutter"
-  minimum_images: 16
+  minimum_images: 30
   categories:
     - name: "Core specimen"
-      count: "6-8"
+      count: "10"
     - name: "Landscape/site"
-      count: "3-4"
+      count: "6"
     - name: "Discovery/people"
-      count: "2-3"
+      count: "5"
     - name: "Comparative anatomy"
-      count: "4-6"
+      count: "8"
+    - name: "Tools/technology"
+      count: "3"
 
 scroll_system:
   type: "native scroll + selective scroll-lock"
@@ -160,18 +167,22 @@ scroll_system:
   progress_indicator: "A vertical stride line that lengthens as the reader advances, with milestones marking the 12 sections"
 
 visualization_suite:
-  total: 12
+  total: 14
   target_mix:
-    - "1 hero skeletal completeness piece"
-    - "3 comparative anatomy/body charts"
-    - "1 growth trajectory visualization"
-    - "1 thermoregulation / body-form explanation graphic"
-    - "1 migration map"
-    - "1 technology/timeline visual"
-    - "1 excavation/discovery visual"
-    - "1 brain-size comparison"
-    - "1 speech-debate explainer"
-    - "1 optional 3D specimen viewer if scan quality is sufficient"
+    - "D1: Skeletal Completeness (Tier 3, D3 SVG) — hero, animated bone assembly to 108"
+    - "D2: Age Dispute (Tier 3, D3) — dental vs skeletal age split-panel"
+    - "D3: Growth Trajectory (Tier 2, Recharts) — projected adult stature with confidence bands"
+    - "D4: Body Proportion Comparison (Tier 3, D3 SVG) — Lucy / Turkana Boy / modern silhouettes"
+    - "D5: Thermoregulation Explainer (Tier 3, Interactive SVG) — Allen's Rule, heat dissipation"
+    - "D6: Locomotion Biomechanics (Tier 3, D3) — stride length and leg geometry"
+    - "D7: Brain Volume Timeline (Tier 2, Recharts) — ECV across species"
+    - "D8: Speech Debate (Tier 3, D3) — two-column MacLarnon vs Meyer & Haeusler"
+    - "D9: Acheulean Technology Timeline (Tier 3, D3) — Oldowan to Acheulean transition"
+    - "D10: Migration Map (Tier 3, D3-Geo) — Out-of-Africa with Dmanisi"
+    - "D11: Excavation Timeline (Tier 2, Recharts) — 1984-1989 bone count accumulation"
+    - "D12: Comparative Datasets Dashboard (Tier 3, D3) — 8 species, 8+ metrics"
+    - "D13: Cluster Context (Tier 2, Recharts) — Turkana Boy in the paleoanthropology cluster"
+    - "D14: KNM-WT 15000 3D Viewer (Tier 5, conditional) — cranium if scan available"
 
 performance:
   lcp_target: "< 3s"
@@ -505,9 +516,14 @@ The progress bar is a **stride line**: a vertical rule with subtle footfall mark
 
 ### Deliverables Checklist
 
-- 12-section visual essay implementation
-- 12 publication-grade visualizations/interactives
+- 12-section visual essay implementation (2,500+ lines of client code)
+- 14 publication-grade visualizations/interactives (8 Tier 3, 4 Tier 2, 1 Tier 5 conditional, 1 dashboard)
+- 32 images across 5 categories (specimen, landscape, people, comparative, tools)
+- 8,000-10,000 words of prose
+- DATASETS.md with quantitative tables backing every visualization
+- QUOTES.md with attributed primary source quotes
+- Expanded COMPARISONS.md (8 species, 10+ metrics)
 - Comparative cluster links to `lucy`, `homo-naledi`, and `seven-million-years`
-- Specimen and landscape image package
-- Optional 3D viewer only if asset quality passes threshold
+- Optional 3D viewer if MorphoSource scan quality passes threshold
+- Computed readTime (not fabricated)
 - Final artifact should make one claim vividly: this is the first body in the cluster built for range

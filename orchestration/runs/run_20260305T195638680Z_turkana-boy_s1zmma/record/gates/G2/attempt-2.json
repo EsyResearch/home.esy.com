@@ -1,0 +1,65 @@
+{
+  "attempt": 2,
+  "status": "FAIL",
+  "started_at": "2026-03-05T19:58:12.437Z",
+  "finished_at": "2026-03-05T19:58:21.221Z",
+  "agent": "research-orchestrator",
+  "prompt_sha256": "20ba61bb365942b236d5b70367d77d456471bd2860a04750fdb17020b7b75162",
+  "invocation_ids": [
+    "inv_1772740701220_8l2m"
+  ],
+  "required_outputs": [
+    "{artifact_path}/research/CITATIONS.md",
+    "{artifact_path}/research/CLAIMS.md"
+  ],
+  "artifacts": [],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": false,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/CITATIONS.md",
+          "exists": false
+        },
+        {
+          "path": "{artifact_path}/research/CLAIMS.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "dir_exists",
+      "path": "{artifact_path}/research",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy/research",
+      "pass": false,
+      "description": "Research directory must exist"
+    },
+    {
+      "type": "min_file_count",
+      "path": "{artifact_path}/research",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy/research",
+      "pattern": "*.md",
+      "count": 0,
+      "threshold": 6,
+      "depth": "deep",
+      "pass": false,
+      "description": "Research directory must contain minimum number of markdown files based on depth mode"
+    },
+    {
+      "type": "min_sources_any_of",
+      "checked": [
+        "{artifact_path}/research/CITATIONS.md",
+        "{artifact_path}/research/CLAIMS.md"
+      ],
+      "matched": null,
+      "count": 0,
+      "threshold": 15,
+      "depth": "deep",
+      "pass": false,
+      "description": "Source-tracking file (CITATIONS.md or CLAIMS.md) must contain minimum sources based on depth mode"
+    }
+  ],
+  "failure_reason": "None of required files exist: {artifact_path}/research/CITATIONS.md, {artifact_path}/research/CLAIMS.md; Research directory must exist; Research directory must contain minimum number of markdown files based on depth mode; Source-tracking file (CITATIONS.md or CLAIMS.md) must contain minimum sources based on depth mode"
+}

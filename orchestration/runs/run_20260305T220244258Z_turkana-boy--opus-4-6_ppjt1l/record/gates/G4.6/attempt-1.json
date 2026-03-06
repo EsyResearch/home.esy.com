@@ -1,0 +1,65 @@
+{
+  "attempt": 1,
+  "status": "FAIL",
+  "started_at": "2026-03-05T22:12:00.736Z",
+  "finished_at": "2026-03-05T22:12:00.772Z",
+  "agent": "visualization-technology-agent",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/VIZ-TECH-DECISIONS.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/VIZ-TECH-DECISIONS.md",
+      "sha256": "38d161f321980fcd6d6b51e773f4c74902753fa7e89e255a3d766e0e8ee3d797",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/VIZ-TECH-DECISIONS.md",
+      "pass": true,
+      "description": "Technology tier assignment for each planned visualization"
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/VIZ-TECH-DECISIONS.md",
+      "patterns": [
+        "Tier",
+        "Minimum Tier"
+      ],
+      "missing": [],
+      "severity": "error",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/VIZ-TECH-DECISIONS.md",
+      "checks": {
+        "status": "PASS"
+      },
+      "fields": {},
+      "severity": "error",
+      "reason": "File not found or no YAML frontmatter: /Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/VIZ-TECH-DECISIONS.md",
+      "pass": false
+    },
+    {
+      "type": "regex_match",
+      "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/VIZ-TECH-DECISIONS.md",
+      "regex": "Tier [1-4]",
+      "must_not_match": false,
+      "matched": true,
+      "severity": "error",
+      "description": "At least one visualization must be assigned Tier 1 or higher",
+      "pass": true
+    }
+  ],
+  "failure_reason": ""
+}

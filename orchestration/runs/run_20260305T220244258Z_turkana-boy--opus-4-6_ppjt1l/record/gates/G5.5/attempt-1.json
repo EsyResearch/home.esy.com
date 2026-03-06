@@ -1,0 +1,113 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-03-05T22:19:15.383Z",
+  "finished_at": "2026-03-05T22:19:15.421Z",
+  "agent": "bibliography-auditor",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+    "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "sha256": "475d4b8b9ee775ab7f0f96c92cdb32100b1391513a2e11bec6f8275659b15bd2",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Bibliography audit must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "pattern": "Overall Status: ❌",
+      "found": false,
+      "severity": "error",
+      "description": "Bibliography audit must not report overall failure",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        }
+      },
+      "fields": {
+        "status": "PASS",
+        "date": "2026-03-05",
+        "build": "opus-4-6"
+      },
+      "failures": [],
+      "severity": "error",
+      "description": "Frontmatter status must not be FAIL",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+      "patterns": [
+        "SOURCES"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "Client component must import and render the SOURCES data — the bibliography section must exist in the actual rendered output, not just the audit document",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+      "patterns": [
+        "IMAGE_CREDITS"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "Client component must import and render IMAGE_CREDITS data — image attribution must appear in the actual rendered output",
+      "pass": true
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+      "regex": "sources|bibliography|works.cited|further.reading",
+      "must_not_match": false,
+      "matched": true,
+      "severity": "error",
+      "description": "Client component must contain bibliography-related section markers (sources, bibliography, works cited, or further reading)",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

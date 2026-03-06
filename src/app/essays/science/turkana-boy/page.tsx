@@ -1,20 +1,20 @@
 import ArtifactDetailWrapper from '@/components/ArtifactDetail';
 import { createVisualEssayMetadata } from '@/lib/visual-essay-metadata';
-import TurkanaBoyClient from './v/claude-opus-4-6/TurkanaBoyClient';
-import { IMAGES } from './v/claude-opus-4-6/images';
-import { ESSAY_META } from './v/claude-opus-4-6/meta';
-import './v/claude-opus-4-6/turkana-boy.css';
+import TurkanaBoyClient from './v/spec-r2/TurkanaBoyV2Client';
+import { IMAGES } from './v/spec-r2/images';
+import { ESSAY_META } from './v/spec-r2/meta';
+import './v/spec-r2/turkana-boy-v2.css';
 
 export const metadata = createVisualEssayMetadata({
   slug: 'science/turkana-boy',
   basePath: 'essays',
   title: 'Turkana Boy: The First Modern Body | Esy',
   description:
-    'A visual essay on KNM-WT 15000, the most complete early Homo skeleton ever found, and the anatomy that made long-range human movement possible.',
+    'KNM-WT 15000 is the most complete early Homo skeleton and the clearest window into when our body plan truly emerged. From a mandibular abscess to Out-of-Africa migration, this essay traces the first draft of the modern human body through 108 bones, 14 visualizations, and 1.53 million years of evidence.',
   ogTitle: 'Turkana Boy: The First Modern Body',
   ogDescription:
-    '108 bones, one jaw lesion, and the first body in our lineage built for range.',
-  ogImage: IMAGES.turkanaBoyReconstruction,
+    '108 bones, a hole in the jaw, and the child who carried our body plan into the open world.',
+  ogImage: IMAGES.fullSkeletonFront,
   keywords: [
     'Turkana Boy',
     'KNM-WT 15000',
@@ -27,7 +27,7 @@ export const metadata = createVisualEssayMetadata({
     'body plan',
     'visual essay',
   ],
-  publishedTime: '2026-03-05T00:00:00.000Z',
+  publishedTime: '2026-03-06T00:00:00.000Z',
 });
 
 const jsonLd = {
@@ -38,11 +38,11 @@ const jsonLd = {
       '@id': 'https://esy.com/essays/science/turkana-boy/#article',
       headline: 'Turkana Boy: The First Modern Body',
       description:
-        'A visual essay on KNM-WT 15000, the most complete early Homo skeleton ever found, and the anatomy that made long-range human movement possible.',
-      image: IMAGES.turkanaBoyReconstruction,
+        'KNM-WT 15000 is the most complete early Homo skeleton and the clearest window into when our body plan truly emerged.',
+      image: IMAGES.fullSkeletonFront,
       url: 'https://esy.com/essays/science/turkana-boy/',
-      datePublished: '2026-03-05',
-      dateModified: '2026-03-05',
+      datePublished: '2026-03-06',
+      dateModified: '2026-03-06',
       author: {
         '@type': 'Organization',
         name: 'Esy',

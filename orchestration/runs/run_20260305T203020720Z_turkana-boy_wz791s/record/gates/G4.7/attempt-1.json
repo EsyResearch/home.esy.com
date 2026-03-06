@@ -1,0 +1,87 @@
+{
+  "attempt": 1,
+  "status": "PASS",
+  "started_at": "2026-03-05T20:51:01.116Z",
+  "finished_at": "2026-03-05T20:51:05.574Z",
+  "agent": "image-research-licensing-expert",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/images.ts"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/images.ts",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy/images.ts",
+      "sha256": "0c2784fe6bce813aefe470864c006222597ee1dfca0f7d8d961d0266888f6d19",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/images.ts",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy/images.ts",
+      "pass": true,
+      "description": "TypeScript image data with all URLs pointing to images.esy.com"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/images.ts",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy/images.ts",
+      "pattern": "upload.wikimedia.org",
+      "found": false,
+      "severity": "error",
+      "description": "No hotlinked Wikimedia URLs — all images must be on images.esy.com",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/images.ts",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy/images.ts",
+      "pattern": "tile.loc.gov",
+      "found": false,
+      "severity": "error",
+      "description": "No hotlinked Library of Congress URLs — all images must be on images.esy.com",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/images.ts",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy/images.ts",
+      "patterns": [
+        "images.esy.com",
+        "as const"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "images.ts must contain R2-hosted URLs (images.esy.com) and be typed as const",
+      "pass": true
+    },
+    {
+      "type": "min_regex_count",
+      "path": "{artifact_path}/images.ts",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy/images.ts",
+      "regex": "https://images\\.esy\\.com/essays/",
+      "min_count": 5,
+      "actual_count": 7,
+      "severity": "error",
+      "description": "At least 5 R2-hosted image URLs must be present (photorealistic essays require substantial photography)",
+      "pass": true
+    },
+    {
+      "type": "url_reachable",
+      "path": "{artifact_path}/images.ts",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy/images.ts",
+      "total_urls": 7,
+      "checked": 7,
+      "ok": 7,
+      "failed": [],
+      "max_failures": 0,
+      "severity": "error",
+      "description": "All R2-hosted image URLs must return HTTP 2xx — verifies upload completed successfully",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

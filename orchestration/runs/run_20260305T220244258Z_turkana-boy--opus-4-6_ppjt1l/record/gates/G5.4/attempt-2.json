@@ -1,0 +1,84 @@
+{
+  "attempt": 2,
+  "status": "FAIL",
+  "started_at": "2026-03-05T22:19:52.385Z",
+  "finished_at": "2026-03-05T22:19:52.421Z",
+  "agent": "viz-ambition-auditor",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/G5.4-VIZ-AMBITION-AUDIT.md",
+      "sha256": "8ef213346d857e0294168dc64bec442fac918844c3621d29eb9d424da719c451",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/G5.4-VIZ-AMBITION-AUDIT.md",
+      "pass": true,
+      "description": "Per-visualization technology audit with scores"
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/G5.4-VIZ-AMBITION-AUDIT.md",
+      "checks": {
+        "status": "PASS"
+      },
+      "fields": {
+        "status": "PASS",
+        "average_score": 3.7,
+        "date": "2026-03-05",
+        "build": "opus-4-6"
+      },
+      "failures": [],
+      "severity": "error",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/G5.4-VIZ-AMBITION-AUDIT.md",
+      "patterns": [
+        "Average Score",
+        "Technology Tier"
+      ],
+      "missing": [
+        "Average Score",
+        "Technology Tier"
+      ],
+      "severity": "error",
+      "pass": false
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+      "regex": "import .*(d3|three|recharts|Canvas|useRef.*canvas|getContext)",
+      "must_not_match": false,
+      "matched": true,
+      "severity": "error",
+      "description": "Client component or its visualization imports must reference at least one visualization library or Canvas API",
+      "pass": true
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+      "regex": "width:\\s*[`'\"]\\$\\{.*\\}%[`'\"]",
+      "must_not_match": true,
+      "matched": false,
+      "severity": "error",
+      "description": "No div-width-percentage bar charts in data-encoding visualizations",
+      "pass": true
+    }
+  ],
+  "failure_reason": ""
+}

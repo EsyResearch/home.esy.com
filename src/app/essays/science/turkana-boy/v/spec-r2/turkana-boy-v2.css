@@ -1,0 +1,812 @@
+.turkana-v2-essay {
+  --strata-dark: #111317;
+  --fossil-lab: #1A1D24;
+  --bone-ivory: #E8DCC8;
+  --sediment-sand: #C4A97D;
+  --turkana-blue: #3A8F9C;
+  --heat-ochre: #D4883A;
+  --basin-earth: #8B7355;
+  --clinical-white: #F0ECE4;
+
+  background: var(--strata-dark);
+  color: var(--bone-ivory);
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.7;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════════ */
+
+.turkana-v2-hero {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.5rem;
+  text-align: center;
+}
+
+.turkana-v2-hero__image {
+  max-width: 380px;
+  width: 70%;
+  border-radius: 4px;
+  margin-bottom: 2.5rem;
+}
+
+.turkana-v2-hero__title {
+  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+  font-weight: 600;
+  color: var(--clinical-white);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  max-width: 700px;
+  margin: 0;
+}
+
+.turkana-v2-hero__subtitle {
+  font-size: clamp(0.85rem, 1.6vw, 1.1rem);
+  color: var(--sediment-sand);
+  line-height: 1.5;
+  max-width: 540px;
+  margin-top: 0.75rem;
+}
+
+.turkana-v2-hero__meta {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--turkana-blue);
+  opacity: 0.85;
+}
+
+@media (max-width: 640px) {
+  .turkana-v2-hero__meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTIONS
+   ═══════════════════════════════════════════════════ */
+
+.turkana-v2-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  border-bottom: 1px solid rgba(200, 180, 140, 0.08);
+}
+
+.turkana-v2-section:last-of-type {
+  border-bottom: none;
+}
+
+.turkana-v2-section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.turkana-v2-section-number {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 0.75rem;
+  color: var(--heat-ochre);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  min-width: 2rem;
+}
+
+.turkana-v2-section-header h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--clinical-white);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.turkana-v2-epigraph {
+  font-style: italic;
+  color: var(--sediment-sand);
+  border-left: 3px solid var(--heat-ochre);
+  padding: 0.5rem 0 0.5rem 1.25rem;
+  margin: 0 0 2rem 0;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.turkana-v2-content {
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.turkana-v2-content p {
+  margin-bottom: 1.25rem;
+  color: var(--bone-ivory);
+}
+
+.turkana-v2-content p:first-of-type::first-letter {
+  font-size: 3em;
+  float: left;
+  line-height: 0.8;
+  margin: 0.05em 0.1em 0 0;
+  color: var(--heat-ochre);
+  font-weight: 700;
+}
+
+.turkana-v2-figure {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.turkana-v2-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid rgba(200, 180, 140, 0.1);
+}
+
+.turkana-v2-figure figcaption {
+  font-size: 0.85rem;
+  color: var(--basin-earth);
+  margin-top: 0.75rem;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.turkana-v2-figure-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.turkana-v2-figure-row .turkana-v2-figure {
+  margin: 0;
+}
+
+.turkana-v2-viz-container {
+  margin: 2.5rem 0;
+  padding: 1.5rem;
+  background: var(--fossil-lab);
+  border-radius: 8px;
+  border: 1px solid rgba(200, 180, 140, 0.08);
+}
+
+.turkana-v2-viz-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(200, 180, 140, 0.08);
+}
+
+.turkana-v2-viz-label h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--clinical-white);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.turkana-v2-viz-source {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--basin-earth);
+}
+
+.turkana-v2-quote {
+  margin: 2rem 0;
+  padding: 1.25rem 1.5rem;
+  background: rgba(212, 136, 58, 0.05);
+  border-left: 3px solid var(--heat-ochre);
+  border-radius: 0 4px 4px 0;
+}
+
+.turkana-v2-quote p {
+  font-style: italic;
+  color: var(--sediment-sand);
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.turkana-v2-quote cite {
+  font-style: normal;
+  font-size: 0.85rem;
+  color: var(--basin-earth);
+  display: block;
+}
+
+/* D8: Speech Debate two-column layout */
+.turkana-v2-debate {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 640px) {
+  .turkana-v2-debate {
+    grid-template-columns: 1fr;
+  }
+}
+
+.turkana-v2-debate-column {
+  padding: 1.25rem;
+  border-radius: 6px;
+  border: 1px solid rgba(200, 180, 140, 0.1);
+}
+
+.turkana-v2-debate-left {
+  background: rgba(58, 143, 156, 0.08);
+  border-color: rgba(58, 143, 156, 0.2);
+}
+
+.turkana-v2-debate-right {
+  background: rgba(212, 136, 58, 0.08);
+  border-color: rgba(212, 136, 58, 0.2);
+}
+
+.turkana-v2-debate-column h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--clinical-white);
+  margin: 0 0 0.75rem 0;
+}
+
+.turkana-v2-debate-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.turkana-v2-debate-column li {
+  padding: 0.35rem 0;
+  font-size: 0.9rem;
+  color: var(--bone-ivory);
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.turkana-v2-debate-column li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--basin-earth);
+}
+
+/* D9: Acheulean Timeline */
+.turkana-v2-timeline {
+  position: relative;
+  padding-left: 2rem;
+  margin: 1.5rem 0;
+}
+
+.turkana-v2-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--basin-earth), var(--heat-ochre), var(--basin-earth));
+}
+
+.turkana-v2-timeline-entry {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  align-items: baseline;
+  position: relative;
+}
+
+.turkana-v2-timeline-entry::before {
+  content: '';
+  position: absolute;
+  left: -1.65rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--basin-earth);
+  border: 2px solid var(--fossil-lab);
+}
+
+.turkana-v2-highlight::before {
+  background: var(--heat-ochre);
+  width: 10px;
+  height: 10px;
+  box-shadow: 0 0 8px rgba(212, 136, 58, 0.4);
+}
+
+.turkana-v2-timeline-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--heat-ochre);
+  min-width: 5rem;
+  flex-shrink: 0;
+}
+
+.turkana-v2-timeline-site {
+  font-size: 0.9rem;
+  color: var(--clinical-white);
+  font-weight: 500;
+  flex: 1;
+}
+
+.turkana-v2-timeline-type {
+  font-size: 0.8rem;
+  color: var(--basin-earth);
+  font-style: italic;
+}
+
+/* D10: Migration Map */
+.turkana-v2-migration-map {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  .turkana-v2-migration-map {
+    flex-direction: column;
+  }
+  .turkana-v2-map-route {
+    transform: rotate(90deg);
+  }
+}
+
+.turkana-v2-map-site {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  flex: 1;
+}
+
+.turkana-v2-map-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--turkana-blue);
+  border: 2px solid var(--clinical-white);
+}
+
+.turkana-v2-map-origin .turkana-v2-map-dot {
+  background: var(--heat-ochre);
+  width: 18px;
+  height: 18px;
+  box-shadow: 0 0 12px rgba(212, 136, 58, 0.4);
+}
+
+.turkana-v2-map-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.turkana-v2-map-label strong {
+  font-size: 0.9rem;
+  color: var(--clinical-white);
+}
+
+.turkana-v2-map-label span {
+  font-size: 0.75rem;
+  color: var(--basin-earth);
+}
+
+.turkana-v2-map-route {
+  font-size: 1.5rem;
+  color: var(--turkana-blue);
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+/* D12: Comparative Dashboard */
+.turkana-v2-dashboard {
+  margin: 1.5rem 0;
+}
+
+.turkana-v2-dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.turkana-v2-dashboard-table th {
+  text-align: left;
+  padding: 0.75rem 0.5rem;
+  color: var(--heat-ochre);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid rgba(200, 180, 140, 0.15);
+  white-space: nowrap;
+}
+
+.turkana-v2-dashboard-table td {
+  padding: 0.6rem 0.5rem;
+  border-bottom: 1px solid rgba(200, 180, 140, 0.06);
+  color: var(--bone-ivory);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+}
+
+.turkana-v2-dashboard-table td:first-child {
+  font-family: inherit;
+  font-style: italic;
+  color: var(--sediment-sand);
+}
+
+.turkana-v2-dashboard-table tr.turkana-v2-highlight-row td {
+  background: rgba(212, 136, 58, 0.08);
+  color: var(--clinical-white);
+  font-weight: 500;
+}
+
+/* D14: 3D Viewer placeholder */
+.turkana-v2-3d-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  background: rgba(17, 19, 23, 0.8);
+  border: 1px dashed rgba(200, 180, 140, 0.15);
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  padding: 2rem;
+  text-align: center;
+}
+
+.turkana-v2-3d-placeholder h4 {
+  font-size: 1rem;
+  color: var(--clinical-white);
+  margin: 0 0 0.5rem 0;
+}
+
+.turkana-v2-3d-placeholder p {
+  font-size: 0.85rem;
+  color: var(--basin-earth);
+  margin: 0;
+}
+
+/* Sources & Credits */
+.turkana-v2-sources,
+.turkana-v2-credits {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.turkana-v2-sources h2,
+.turkana-v2-credits h2 {
+  font-size: 1.25rem;
+  color: var(--clinical-white);
+  margin-bottom: 1.5rem;
+}
+
+.turkana-v2-sources-list {
+  padding-left: 1.5rem;
+}
+
+.turkana-v2-sources-list li {
+  font-size: 0.85rem;
+  color: var(--bone-ivory);
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+.turkana-v2-credits-list {
+  list-style: none;
+  padding: 0;
+}
+
+.turkana-v2-credits-list li {
+  font-size: 0.85rem;
+  color: var(--bone-ivory);
+  margin-bottom: 0.5rem;
+  opacity: 0.75;
+}
+
+/* Cluster Navigation */
+.turkana-v2-cluster-nav {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+  border-top: 1px solid rgba(200, 180, 140, 0.08);
+}
+
+.turkana-v2-cluster-nav h3 {
+  font-size: 0.85rem;
+  color: var(--basin-earth);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.turkana-v2-cluster-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .turkana-v2-cluster-links {
+    grid-template-columns: 1fr;
+  }
+}
+
+.turkana-v2-cluster-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem;
+  background: var(--fossil-lab);
+  border: 1px solid rgba(200, 180, 140, 0.08);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.turkana-v2-cluster-link:hover {
+  border-color: var(--heat-ochre);
+  background: rgba(26, 29, 36, 0.8);
+}
+
+.turkana-v2-cluster-label {
+  font-size: 0.7rem;
+  color: var(--basin-earth);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.turkana-v2-cluster-title {
+  font-size: 0.9rem;
+  color: var(--clinical-white);
+  font-weight: 500;
+}
+
+/* Recharts overrides */
+.turkana-v2-viz-container .recharts-cartesian-grid-horizontal line,
+.turkana-v2-viz-container .recharts-cartesian-grid-vertical line {
+  stroke: rgba(200, 180, 140, 0.06);
+}
+
+.turkana-v2-viz-container .recharts-text {
+  fill: var(--bone-ivory);
+  font-size: 11px;
+}
+
+.turkana-v2-viz-container .recharts-legend-item-text {
+  color: var(--bone-ivory) !important;
+  font-size: 11px;
+}
+
+/* ═══════════════════════════════════════════════════
+   3D SPECIMEN CABINET
+   ═══════════════════════════════════════════════════ */
+
+.turkana-3d-cabinet {
+  margin: 3rem 0;
+  background: var(--strata-dark);
+  border-radius: 4px;
+  border: 1px solid var(--basin-earth);
+  overflow: hidden;
+}
+
+.turkana-3d-cabinet__viewport {
+  aspect-ratio: 4 / 3;
+  position: relative;
+  background: var(--strata-dark);
+}
+
+.turkana-3d-cabinet__canvas-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.turkana-3d-cabinet__canvas-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  cursor: grab;
+}
+
+.turkana-3d-cabinet__canvas-wrap canvas:active {
+  cursor: grabbing;
+}
+
+.turkana-3d-loader {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: var(--strata-dark);
+  transition: opacity 0.4s ease;
+}
+
+.turkana-3d-loader__mark {
+  width: 80px;
+  height: auto;
+  animation: turkana-loader-pulse 2s ease-in-out infinite;
+}
+
+@keyframes turkana-loader-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.turkana-3d-loader__text {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sediment-sand);
+}
+
+.turkana-3d-cabinet__controls-hint {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  color: var(--basin-earth);
+  pointer-events: none;
+}
+
+.turkana-3d-cabinet__fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem;
+  color: var(--sediment-sand);
+  text-align: center;
+}
+
+.turkana-3d-cabinet__fallback img {
+  max-width: 100%;
+  max-height: 60vh;
+  display: block;
+  margin: 0 auto 1rem;
+  border-radius: 4px;
+}
+
+.turkana-3d-cabinet__fallback p {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--basin-earth);
+}
+
+/* Info bar */
+
+.turkana-3d-cabinet__info {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid rgba(139, 115, 85, 0.2);
+  background: var(--fossil-lab);
+}
+
+.turkana-3d-cabinet__info-label {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--turkana-blue);
+}
+
+.turkana-3d-cabinet__info-detail {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  color: var(--sediment-sand);
+  opacity: 0.8;
+}
+
+/* Specimen switcher tabs */
+
+.turkana-3d-cabinet__switcher {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid rgba(139, 115, 85, 0.2);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.turkana-3d-cabinet__tab {
+  flex: 1;
+  min-width: 0;
+  padding: 0.6rem 0.75rem;
+  background: transparent;
+  border: none;
+  border-right: 1px solid rgba(139, 115, 85, 0.15);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.turkana-3d-cabinet__tab:last-child {
+  border-right: none;
+}
+
+.turkana-3d-cabinet__tab:hover:not(:disabled) {
+  background: rgba(58, 143, 156, 0.08);
+}
+
+.turkana-3d-cabinet__tab--active {
+  background: rgba(58, 143, 156, 0.12);
+}
+
+.turkana-3d-cabinet__tab--disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.turkana-3d-cabinet__tab-id {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--turkana-blue);
+}
+
+.turkana-3d-cabinet__tab--active .turkana-3d-cabinet__tab-id {
+  color: var(--clinical-white);
+}
+
+.turkana-3d-cabinet__tab-label {
+  font-size: 0.6rem;
+  color: var(--sediment-sand);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  .turkana-3d-cabinet__viewport {
+    aspect-ratio: 1 / 1;
+  }
+
+  .turkana-3d-cabinet__info {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .turkana-3d-cabinet__tab {
+    min-width: 80px;
+  }
+}

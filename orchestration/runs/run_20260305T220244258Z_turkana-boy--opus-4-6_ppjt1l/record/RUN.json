@@ -1,0 +1,3121 @@
+{
+  "run_id": "run_20260305T220244258Z_turkana-boy--opus-4-6_ppjt1l",
+  "workflow": {
+    "name": "visual-essay",
+    "version": "local-dev",
+    "slug": "turkana-boy",
+    "artifact_path": "src/app/essays/science/turkana-boy--opus-4-6",
+    "variant": "opus-4-6",
+    "build_model": "claude-opus-4.6",
+    "spec_ref": "orchestration/skills/visual-essay-invocation/specs/turkana-boy.md"
+  },
+  "depth": "standard",
+  "prompt": {
+    "file": "orchestration/prompts/turkana-boy.txt",
+    "sha256": "872e792dd6a1d4627675e243fb162ca3ac43a2c1fd2f2bd266ce0c6d31a16060"
+  },
+  "status": "PASSED",
+  "started_at": "2026-03-05T22:02:44.259Z",
+  "finished_at": "2026-03-05T22:28:10.193Z",
+  "gates": [
+    {
+      "gate": "G1",
+      "name": "Intake Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-03-05T22:02:44.262Z",
+          "finished_at": "2026-03-05T22:03:48.304Z",
+          "agent": "visual-essay-orchestrator",
+          "prompt_sha256": "86ef5b3c1283d981a5d24c90dd1d9e36bb4ef71c8f79247883ceb4fa9b95c6be",
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/G1-INTAKE.md",
+            "{artifact_path}/research/INTAKE.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/G1-INTAKE.md",
+              "sha256": "50f4407e9370cadc9e583bddcc679d5c1d9a3623d42dce444f82bd0aaec2a75a",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/G1-INTAKE.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/INTAKE.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/G1-INTAKE.md",
+              "pattern": "[REJECTED]",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not contain [REJECTED] marker",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/G1-INTAKE.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/G1-INTAKE.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Intake must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G2",
+      "name": "Research Complete",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-03-05T22:07:43.669Z",
+          "finished_at": "2026-03-05T22:07:47.555Z",
+          "agent": "concept-research-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CITATIONS.md",
+            "{artifact_path}/research/CLAIMS.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CITATIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/CITATIONS.md",
+              "sha256": "ff71a7b3bfb799b471faf9dbf8c5a74b9439f218ac59e65cd85500aeda3b4701",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CITATIONS.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/CLAIMS.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "dir_exists",
+              "path": "{artifact_path}/research",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research",
+              "pass": true,
+              "description": "Research directory must exist"
+            },
+            {
+              "type": "min_file_count",
+              "path": "{artifact_path}/research",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research",
+              "pattern": "*.md",
+              "count": 6,
+              "threshold": 3,
+              "depth": "standard",
+              "pass": true,
+              "description": "Research directory must contain minimum number of markdown files based on depth mode"
+            },
+            {
+              "type": "min_sources_any_of",
+              "checked": [
+                "{artifact_path}/research/CITATIONS.md",
+                "{artifact_path}/research/CLAIMS.md"
+              ],
+              "matched": "{artifact_path}/research/CITATIONS.md",
+              "count": 22,
+              "threshold": 8,
+              "depth": "standard",
+              "pass": true,
+              "description": "Source-tracking file (CITATIONS.md or CLAIMS.md) must contain minimum sources based on depth mode"
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G3",
+      "name": "Spec Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-03-05T22:07:58.697Z",
+          "finished_at": "2026-03-05T22:07:58.734Z",
+          "agent": "spec-construction-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "orchestration/skills/visual-essay-invocation/specs/{slug}.md"
+          ],
+          "artifacts": [
+            {
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/turkana-boy.md",
+              "sha256": "a08b925f311fc71fafca032dc8fe0e55dc853291a67ca57999cc823c2fb1e1ea",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/turkana-boy.md",
+              "pass": true,
+              "description": "6-layer visual essay specification"
+            },
+            {
+              "type": "contains_headings",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "missing": [],
+              "severity": "error",
+              "description": "Spec must contain all 6 layer headings",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/orchestration/skills/visual-essay-invocation/specs/turkana-boy.md",
+              "pattern": "[DRAFT]",
+              "found": false,
+              "severity": "warning",
+              "description": "Spec should not contain [DRAFT] marker (configurable)",
+              "pass": true,
+              "warning": false
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4",
+      "name": "Design Research",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-03-05T22:08:54.865Z",
+          "finished_at": "2026-03-05T22:08:54.902Z",
+          "agent": "design-research-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/DESIGN-RESEARCH.md",
+              "sha256": "732822d06dbdbc5d1e9c7c17c23e564350a8e621c1e5d2699d8cacbd404de1a0",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Subject-derived design research report with color palette, typography, animation philosophy"
+            },
+            {
+              "type": "contains_headings",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "missing": [],
+              "severity": "warning",
+              "description": "Design research should cover Color, Typography, and Animation (warning if missing)",
+              "pass": true,
+              "warning": false
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4.1",
+      "name": "Design Research Reconciliation",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-03-05T22:09:13.884Z",
+          "finished_at": "2026-03-05T22:09:13.925Z",
+          "agent": "design-reconciliation-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+            "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/G4.1-DESIGN-RECONCILIATION.md",
+              "sha256": "1354c11923ebeb399cae52e48563aec1ed95e8c3706f704a0d91591207f75542",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/DESIGN-RESEARCH.md",
+              "sha256": "732822d06dbdbc5d1e9c7c17c23e564350a8e621c1e5d2699d8cacbd404de1a0",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/G4.1-DESIGN-RECONCILIATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Design research report (must exist and be reconciled)"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/DESIGN-RESEARCH.md",
+              "pattern": "[UNRECONCILED]",
+              "found": false,
+              "severity": "error",
+              "description": "Design research must not contain [UNRECONCILED] marker",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/DESIGN-RESEARCH.md",
+              "pattern": "[COLLISION]",
+              "found": false,
+              "severity": "error",
+              "description": "Design research must not flag aesthetic collisions with other essays",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/G4.1-DESIGN-RECONCILIATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Reconciliation audit must not have FAIL status in frontmatter",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4.5",
+      "name": "Image Sourcing",
+      "status": "FAIL",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-03-05T22:10:04.645Z",
+          "finished_at": "2026-03-05T22:10:09.204Z",
+          "agent": "image-research-licensing-expert",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+            "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+            "{artifact_path}/images-migration.json",
+            "{artifact_path}/images.ts"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/IMAGE_RESEARCH_AUDIT.md",
+              "sha256": "87c7cc4a06e3d437c3b400d913485a7cc92548d758525b0dcd1a8eda77e5e94d",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/images.ts",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/images.ts",
+              "sha256": "9e857db818897e25808efca585b1b6eeae2c9a6f37f19d1b2ec3df849547e6da",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/IMAGE-DOCUMENTATION.md",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/images-migration.json",
+                  "exists": false
+                },
+                {
+                  "path": "{artifact_path}/images.ts",
+                  "exists": true
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "[UNLICENSED]",
+              "found": false,
+              "severity": "error",
+              "description": "Image audit must not contain unlicensed assets",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "[PENDING]",
+              "found": false,
+              "severity": "warning",
+              "description": "Image audit should not have pending sourcing tasks",
+              "pass": true,
+              "warning": false
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/IMAGE_RESEARCH_AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Image audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/images.ts",
+              "patterns": [
+                "upload.wikimedia.org/wikipedia/commons/",
+                "as const"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "images.ts must exist with verified Wikimedia Commons direct URLs (not file page URLs)",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/images.ts",
+              "pattern": "/commons/thumb/",
+              "found": false,
+              "severity": "error",
+              "description": "images.ts must NOT contain thumbnail URLs (/commons/thumb/) — use direct image URLs only",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/images.ts",
+              "regex": "https://upload\\.wikimedia\\.org/wikipedia/commons/[a-f0-9]/[a-f0-9]{2}/[^\"]+\\.(jpg|jpeg|png|gif|svg)",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "images.ts must contain at least one properly-hashed Wikimedia Commons direct URL (format: /commons/{hash1}/{hash2}/filename.ext)",
+              "pass": true
+            },
+            {
+              "type": "min_regex_count",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/images.ts",
+              "regex": "https://upload\\.wikimedia\\.org/wikipedia/commons/[a-f0-9]/[a-f0-9]{2}/",
+              "min_count": 5,
+              "actual_count": 7,
+              "severity": "error",
+              "description": "images.ts must contain at least 5 verified direct image URLs (photorealistic essays require substantial photography)",
+              "pass": true
+            },
+            {
+              "type": "url_reachable",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/images.ts",
+              "total_urls": 7,
+              "checked": 7,
+              "ok": 0,
+              "failed": [
+                {
+                  "url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Homo_erectus_-_Turkana_Boy_-_Ausschnitt_-_Fundort_Nariokotome%2C_Kenia_-_Rekonstruktion_im_Neanderthal-Museum.jpg",
+                  "status": 404
+                },
+                {
+                  "url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Lake_Turkana.jpg",
+                  "status": 404
+                },
+                {
+                  "url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Lac_Turkana.png",
+                  "status": 404
+                },
+                {
+                  "url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/View_of_Lake_Turkana_from_Eliye_Springs_Hotel_Resort.jpg",
+                  "status": 404
+                },
+                {
+                  "url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Lower_Palaeolithic_-_Acheulean_-_Bifaced_Ovate_Flint_Hand_Axe_-_FindID_1008304.jpg",
+                  "status": 404
+                },
+                {
+                  "url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Ergaster_skull.png",
+                  "status": 404
+                },
+                {
+                  "url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Homo_ergaster_skull_replica%2C_World_Museum_Liverpool.jpg",
+                  "status": 404
+                }
+              ],
+              "max_failures": 0,
+              "severity": "error",
+              "description": "All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML",
+              "pass": false
+            }
+          ],
+          "failure_reason": "All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML"
+        }
+      ]
+    },
+    {
+      "gate": "G4.6",
+      "name": "Visualization Technology Decision",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-03-05T22:12:00.736Z",
+          "finished_at": "2026-03-05T22:12:00.772Z",
+          "agent": "visualization-technology-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/VIZ-TECH-DECISIONS.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/VIZ-TECH-DECISIONS.md",
+              "sha256": "38d161f321980fcd6d6b51e773f4c74902753fa7e89e255a3d766e0e8ee3d797",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/VIZ-TECH-DECISIONS.md",
+              "pass": true,
+              "description": "Technology tier assignment for each planned visualization"
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/VIZ-TECH-DECISIONS.md",
+              "patterns": [
+                "Tier",
+                "Minimum Tier"
+              ],
+              "missing": [],
+              "severity": "error",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/VIZ-TECH-DECISIONS.md",
+              "checks": {
+                "status": "PASS"
+              },
+              "fields": {},
+              "severity": "error",
+              "reason": "File not found or no YAML frontmatter: /Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/VIZ-TECH-DECISIONS.md",
+              "pass": false
+            },
+            {
+              "type": "regex_match",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/VIZ-TECH-DECISIONS.md",
+              "regex": "Tier [1-4]",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "At least one visualization must be assigned Tier 1 or higher",
+              "pass": true
+            }
+          ],
+          "failure_reason": ""
+        },
+        {
+          "attempt": 2,
+          "status": "PASS",
+          "started_at": "2026-03-05T22:12:12.701Z",
+          "finished_at": "2026-03-05T22:12:12.739Z",
+          "agent": "visualization-technology-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/VIZ-TECH-DECISIONS.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/VIZ-TECH-DECISIONS.md",
+              "sha256": "6b26c740b33d7c552b60b6adaee33f1052c1e733f45763cac25be6393e958d2d",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/VIZ-TECH-DECISIONS.md",
+              "pass": true,
+              "description": "Technology tier assignment for each planned visualization"
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/VIZ-TECH-DECISIONS.md",
+              "patterns": [
+                "Tier",
+                "Minimum Tier"
+              ],
+              "missing": [],
+              "severity": "error",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/VIZ-TECH-DECISIONS.md",
+              "checks": {
+                "status": "PASS"
+              },
+              "fields": {
+                "status": "PASS",
+                "date": "2026-03-05",
+                "build": "opus-4-6"
+              },
+              "failures": [],
+              "severity": "error",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/VIZ-TECH-DECISIONS.md",
+              "regex": "Tier [1-4]",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "At least one visualization must be assigned Tier 1 or higher",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G4.7",
+      "name": "R2 Image Upload",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-03-05T22:12:18.542Z",
+          "finished_at": "2026-03-05T22:12:22.014Z",
+          "agent": "image-research-licensing-expert",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/images.ts"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/images.ts",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/images.ts",
+              "sha256": "3c65a81925ea8147f6e0208cfb56952af55a02f90ced7d1e29ef5cac7317bb02",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/images.ts",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/images.ts",
+              "pass": true,
+              "description": "TypeScript image data with all URLs pointing to images.esy.com"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/images.ts",
+              "pattern": "upload.wikimedia.org",
+              "found": false,
+              "severity": "error",
+              "description": "No hotlinked Wikimedia URLs — all images must be on images.esy.com",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/images.ts",
+              "pattern": "tile.loc.gov",
+              "found": false,
+              "severity": "error",
+              "description": "No hotlinked Library of Congress URLs — all images must be on images.esy.com",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/images.ts",
+              "patterns": [
+                "images.esy.com",
+                "as const"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "images.ts must contain R2-hosted URLs (images.esy.com) and be typed as const",
+              "pass": true
+            },
+            {
+              "type": "min_regex_count",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/images.ts",
+              "regex": "https://images\\.esy\\.com/essays/",
+              "min_count": 5,
+              "actual_count": 7,
+              "severity": "error",
+              "description": "At least 5 R2-hosted image URLs must be present (photorealistic essays require substantial photography)",
+              "pass": true
+            },
+            {
+              "type": "url_reachable",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/images.ts",
+              "total_urls": 7,
+              "checked": 7,
+              "ok": 7,
+              "failed": [],
+              "max_failures": 0,
+              "severity": "error",
+              "description": "All R2-hosted image URLs must return HTTP 2xx — verifies upload completed successfully",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5",
+      "name": "Content Complete",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-03-05T22:17:55.303Z",
+          "finished_at": "2026-03-05T22:17:55.345Z",
+          "agent": "visual-essay-production-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/page.tsx",
+            "{artifact_path}/{slug}.css"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/page.tsx",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/page.tsx",
+              "sha256": "b886d26e1999b8e3ce06a636ea165b9c50182ce22cd5f0a2ddcad1faaecd1fb9",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/{slug}.css",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/turkana-boy.css",
+              "sha256": "3d89bfc06b6842946e2e62eb405594f29bbe12c49ac6da2dbd43a9460ceaa282",
+              "exists": true,
+              "optional": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/page.tsx",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/page.tsx",
+              "pass": true,
+              "description": "Next.js page with metadata, ArtifactDetailWrapper, and default export"
+            },
+            {
+              "type": "contains_headings",
+              "path": "{artifact_path}/page.tsx",
+              "missing": [],
+              "severity": "error",
+              "description": "page.tsx must contain a default export and metadata definition",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/page.tsx",
+              "patterns": [
+                "ArtifactDetailWrapper",
+                "ESSAY_META"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "page.tsx MUST import and use ArtifactDetailWrapper with ESSAY_META (visual-essay-engineering-standard.md §2, Red Lines)",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/page.tsx",
+              "patterns": [
+                "@/components/ArtifactDetail"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "page.tsx MUST import ArtifactDetailWrapper from @/components/ArtifactDetail",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/page.tsx",
+              "pattern": "TODO",
+              "found": false,
+              "severity": "warning",
+              "description": "page.tsx should not contain TODO markers (indicates incomplete implementation)",
+              "pass": true,
+              "warning": false
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": "[\\u{1F300}-\\u{1F9FF}\\u{2600}-\\u{26FF}\\u{2700}-\\u{27BF}]",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "Client component must NOT contain emoji characters — use SVG icons or CSS shapes instead",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": ">([^{<\"]*\\\\u[0-9a-fA-F]{4})",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "Client component must NOT contain raw Unicode escape sequences (\\uXXXX) in JSX text content — they render as literal text, not as the intended character. Wrap in JavaScript expressions ({\"\\u0113\"}) or use actual UTF-8 characters (ē) instead. See: JSX text nodes do not process JS string escape sequences.",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": "from ['\"]\\./images['\"]",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "Client component must import from ./images (images.ts) — all external image URLs must be centralized in the images file, not hardcoded inline",
+              "pass": true
+            },
+            {
+              "type": "min_regex_count",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": "<img[\\s\\n]",
+              "min_count": 3,
+              "actual_count": 2,
+              "severity": "error",
+              "description": "Client component must contain at least 3 <img> elements — photorealistic essays require substantial photography",
+              "pass": false
+            },
+            {
+              "type": "contains_text",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "patterns": [
+                "Sources",
+                "SOURCES"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Client component must contain a Sources/Bibliography section — every essay requires source attribution at the conclusion",
+              "pass": true
+            },
+            {
+              "type": "viz_tech_match",
+              "metadata_source": "{artifact_path}/page.tsx",
+              "implementation_target": "{client_component}",
+              "claims_count": 7,
+              "unmatched": [],
+              "severity": "error",
+              "description": "Visualization tech claims in ESSAY_META.visualizations[].type must match actual imports AND rendered elements — if metadata says 'React Three Fiber', the code must both import @react-three/fiber and render a <Canvas> element",
+              "pass": true
+            }
+          ],
+          "failure_reason": "Client component must contain at least 3 <img> elements — photorealistic essays require substantial photography"
+        },
+        {
+          "attempt": 2,
+          "status": "PASS",
+          "started_at": "2026-03-05T22:18:19.767Z",
+          "finished_at": "2026-03-05T22:18:19.809Z",
+          "agent": "visual-essay-production-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/page.tsx",
+            "{artifact_path}/{slug}.css"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/page.tsx",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/page.tsx",
+              "sha256": "b886d26e1999b8e3ce06a636ea165b9c50182ce22cd5f0a2ddcad1faaecd1fb9",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/{slug}.css",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/turkana-boy.css",
+              "sha256": "3d89bfc06b6842946e2e62eb405594f29bbe12c49ac6da2dbd43a9460ceaa282",
+              "exists": true,
+              "optional": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/page.tsx",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/page.tsx",
+              "pass": true,
+              "description": "Next.js page with metadata, ArtifactDetailWrapper, and default export"
+            },
+            {
+              "type": "contains_headings",
+              "path": "{artifact_path}/page.tsx",
+              "missing": [],
+              "severity": "error",
+              "description": "page.tsx must contain a default export and metadata definition",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/page.tsx",
+              "patterns": [
+                "ArtifactDetailWrapper",
+                "ESSAY_META"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "page.tsx MUST import and use ArtifactDetailWrapper with ESSAY_META (visual-essay-engineering-standard.md §2, Red Lines)",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/page.tsx",
+              "patterns": [
+                "@/components/ArtifactDetail"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "page.tsx MUST import ArtifactDetailWrapper from @/components/ArtifactDetail",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/page.tsx",
+              "pattern": "TODO",
+              "found": false,
+              "severity": "warning",
+              "description": "page.tsx should not contain TODO markers (indicates incomplete implementation)",
+              "pass": true,
+              "warning": false
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": "[\\u{1F300}-\\u{1F9FF}\\u{2600}-\\u{26FF}\\u{2700}-\\u{27BF}]",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "Client component must NOT contain emoji characters — use SVG icons or CSS shapes instead",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": ">([^{<\"]*\\\\u[0-9a-fA-F]{4})",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "Client component must NOT contain raw Unicode escape sequences (\\uXXXX) in JSX text content — they render as literal text, not as the intended character. Wrap in JavaScript expressions ({\"\\u0113\"}) or use actual UTF-8 characters (ē) instead. See: JSX text nodes do not process JS string escape sequences.",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": "from ['\"]\\./images['\"]",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "Client component must import from ./images (images.ts) — all external image URLs must be centralized in the images file, not hardcoded inline",
+              "pass": true
+            },
+            {
+              "type": "min_regex_count",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": "<img[\\s\\n]",
+              "min_count": 3,
+              "actual_count": 3,
+              "severity": "error",
+              "description": "Client component must contain at least 3 <img> elements — photorealistic essays require substantial photography",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "patterns": [
+                "Sources",
+                "SOURCES"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Client component must contain a Sources/Bibliography section — every essay requires source attribution at the conclusion",
+              "pass": true
+            },
+            {
+              "type": "viz_tech_match",
+              "metadata_source": "{artifact_path}/page.tsx",
+              "implementation_target": "{client_component}",
+              "claims_count": 7,
+              "unmatched": [],
+              "severity": "error",
+              "description": "Visualization tech claims in ESSAY_META.visualizations[].type must match actual imports AND rendered elements — if metadata says 'React Three Fiber', the code must both import @react-three/fiber and render a <Canvas> element",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.4",
+      "name": "Visualization Ambition Audit",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-03-05T22:19:15.148Z",
+          "finished_at": "2026-03-05T22:19:15.184Z",
+          "agent": "viz-ambition-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md"
+          ],
+          "artifacts": [],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/G5.4-VIZ-AMBITION-AUDIT.md",
+              "pass": false,
+              "description": "Per-visualization technology audit with scores"
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/G5.4-VIZ-AMBITION-AUDIT.md",
+              "checks": {
+                "status": "PASS"
+              },
+              "fields": {},
+              "severity": "error",
+              "reason": "File not found or no YAML frontmatter: /Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/G5.4-VIZ-AMBITION-AUDIT.md",
+              "pass": false
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/G5.4-VIZ-AMBITION-AUDIT.md",
+              "patterns": [
+                "Average Score",
+                "Technology Tier"
+              ],
+              "missing": [
+                "Average Score",
+                "Technology Tier"
+              ],
+              "severity": "error",
+              "reason": "File not found",
+              "pass": false
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": "import .*(d3|three|recharts|Canvas|useRef.*canvas|getContext)",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "Client component or its visualization imports must reference at least one visualization library or Canvas API",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": "width:\\s*[`'\"]\\$\\{.*\\}%[`'\"]",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "No div-width-percentage bar charts in data-encoding visualizations",
+              "pass": true
+            }
+          ],
+          "failure_reason": "Missing: {artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md; ; "
+        },
+        {
+          "attempt": 2,
+          "status": "FAIL",
+          "started_at": "2026-03-05T22:19:52.385Z",
+          "finished_at": "2026-03-05T22:19:52.421Z",
+          "agent": "viz-ambition-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/G5.4-VIZ-AMBITION-AUDIT.md",
+              "sha256": "8ef213346d857e0294168dc64bec442fac918844c3621d29eb9d424da719c451",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/G5.4-VIZ-AMBITION-AUDIT.md",
+              "pass": true,
+              "description": "Per-visualization technology audit with scores"
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/G5.4-VIZ-AMBITION-AUDIT.md",
+              "checks": {
+                "status": "PASS"
+              },
+              "fields": {
+                "status": "PASS",
+                "average_score": 3.7,
+                "date": "2026-03-05",
+                "build": "opus-4-6"
+              },
+              "failures": [],
+              "severity": "error",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/G5.4-VIZ-AMBITION-AUDIT.md",
+              "patterns": [
+                "Average Score",
+                "Technology Tier"
+              ],
+              "missing": [
+                "Average Score",
+                "Technology Tier"
+              ],
+              "severity": "error",
+              "pass": false
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": "import .*(d3|three|recharts|Canvas|useRef.*canvas|getContext)",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "Client component or its visualization imports must reference at least one visualization library or Canvas API",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": "width:\\s*[`'\"]\\$\\{.*\\}%[`'\"]",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "No div-width-percentage bar charts in data-encoding visualizations",
+              "pass": true
+            }
+          ],
+          "failure_reason": ""
+        },
+        {
+          "attempt": 3,
+          "status": "PASS",
+          "started_at": "2026-03-05T22:20:08.214Z",
+          "finished_at": "2026-03-05T22:20:08.255Z",
+          "agent": "viz-ambition-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/G5.4-VIZ-AMBITION-AUDIT.md",
+              "sha256": "bafca3556eea880c7f2a1364c6038941dedc4933b71f83845b46036ddeb834d3",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/G5.4-VIZ-AMBITION-AUDIT.md",
+              "pass": true,
+              "description": "Per-visualization technology audit with scores"
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/G5.4-VIZ-AMBITION-AUDIT.md",
+              "checks": {
+                "status": "PASS"
+              },
+              "fields": {
+                "status": "PASS",
+                "average_score": 3.7,
+                "date": "2026-03-05",
+                "build": "opus-4-6"
+              },
+              "failures": [],
+              "severity": "error",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/G5.4-VIZ-AMBITION-AUDIT.md",
+              "patterns": [
+                "Average Score",
+                "Technology Tier"
+              ],
+              "missing": [],
+              "severity": "error",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": "import .*(d3|three|recharts|Canvas|useRef.*canvas|getContext)",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "Client component or its visualization imports must reference at least one visualization library or Canvas API",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": "width:\\s*[`'\"]\\$\\{.*\\}%[`'\"]",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "No div-width-percentage bar charts in data-encoding visualizations",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.2",
+      "name": "Design Fidelity Audit",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-03-05T22:19:15.230Z",
+          "finished_at": "2026-03-05T22:19:15.276Z",
+          "agent": "design-fidelity-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+            "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "sha256": "890c7edf4c97a33f3467cdc696f98ffc645e65612f49b4ffd22157dff164d3a2",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/DESIGN-RESEARCH.md",
+              "sha256": "732822d06dbdbc5d1e9c7c17c23e564350a8e621c1e5d2699d8cacbd404de1a0",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Design research must still exist (design source of truth)"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Design fidelity audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                },
+                "blocking_issues": {
+                  "min": 0
+                }
+              },
+              "fields": {
+                "status": "PASS",
+                "date": "2026-03-05",
+                "build": "opus-4-6"
+              },
+              "failures": [
+                "blocking_issues: expected >= 0, got undefined"
+              ],
+              "severity": "error",
+              "description": "Frontmatter must indicate non-FAIL status with zero blocking issues",
+              "pass": false
+            }
+          ],
+          "failure_reason": "Frontmatter must indicate non-FAIL status with zero blocking issues"
+        },
+        {
+          "attempt": 2,
+          "status": "PASS",
+          "started_at": "2026-03-05T22:19:52.456Z",
+          "finished_at": "2026-03-05T22:19:52.494Z",
+          "agent": "design-fidelity-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+            "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+            "{artifact_path}/DESIGN-RESEARCH.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "sha256": "c92e7dbc464fc66eaa0bd6492774e10f051e07c5855ce4fd600feeea79cf5a83",
+              "exists": true
+            },
+            {
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/DESIGN-RESEARCH.md",
+              "sha256": "732822d06dbdbc5d1e9c7c17c23e564350a8e621c1e5d2699d8cacbd404de1a0",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{artifact_path}/DESIGN-RESEARCH.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/DESIGN-RESEARCH.md",
+              "pass": true,
+              "description": "Design research must still exist (design source of truth)"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Design fidelity audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                },
+                "blocking_issues": {
+                  "min": 0
+                }
+              },
+              "fields": {
+                "status": "PASS",
+                "blocking_issues": 0,
+                "date": "2026-03-05",
+                "build": "opus-4-6"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter must indicate non-FAIL status with zero blocking issues",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.3",
+      "name": "Diagram-Code Reconciliation",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-03-05T22:19:15.310Z",
+          "finished_at": "2026-03-05T22:19:15.349Z",
+          "agent": "diagram-code-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+            "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+            "{client_component}"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "sha256": "5c131082ed6d9286b47bac7e56df8a388bc07128f1bcb094ec101ddd1b63a5f6",
+              "exists": true
+            },
+            {
+              "path": "{client_component}",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "sha256": "3b4d62837e45197aba842b004f63f40fe207ef257bac7a17f2267bf3a62d1c3e",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/DIAGRAM-CODE-RECONCILIATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "file_exists",
+              "path": "{client_component}",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "pass": true,
+              "description": "Client component must contain @diagram-contract blocks for every visualization function"
+            },
+            {
+              "type": "contains_text",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "patterns": [
+                "@diagram-contract"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Client component MUST contain at least one @diagram-contract block per diagram-code-contract.md standard",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Diagram-code reconciliation must not have FAIL status",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/DIAGRAM-CODE-RECONCILIATION.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "status": "PASS",
+                "date": "2026-03-05",
+                "build": "opus-4-6"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Diagram-code reconciliation frontmatter status must not be FAIL",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G5.5",
+      "name": "Bibliography Implementation",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-03-05T22:19:15.383Z",
+          "finished_at": "2026-03-05T22:19:15.421Z",
+          "agent": "bibliography-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+            "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "sha256": "475d4b8b9ee775ab7f0f96c92cdb32100b1391513a2e11bec6f8275659b15bd2",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/research/BIBLIOGRAPHY-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Bibliography audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "pattern": "Overall Status: ❌",
+              "found": false,
+              "severity": "error",
+              "description": "Bibliography audit must not report overall failure",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "status": "PASS",
+                "date": "2026-03-05",
+                "build": "opus-4-6"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "patterns": [
+                "SOURCES"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Client component must import and render the SOURCES data — the bibliography section must exist in the actual rendered output, not just the audit document",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "patterns": [
+                "IMAGE_CREDITS"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Client component must import and render IMAGE_CREDITS data — image attribution must appear in the actual rendered output",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": "sources|bibliography|works.cited|further.reading",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "Client component must contain bibliography-related section markers (sources, bibliography, works cited, or further reading)",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G6",
+      "name": "Citation Audit",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-03-05T22:21:16.335Z",
+          "finished_at": "2026-03-05T22:21:16.371Z",
+          "agent": "citation-audit-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/CITATION-AUDIT.md",
+            "{artifact_path}/CITATION-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/CITATION-AUDIT.md",
+              "sha256": "8342dad772dc3c8d33de378a73564560b9a4d1877a3f2253a3e48f253ac6beb7",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/CITATION-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/CITATION-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/CITATION-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Citation audit must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/CITATION-AUDIT.md",
+              "pattern": "Citation Certification: Rejected",
+              "found": false,
+              "severity": "error",
+              "description": "Citation audit must not have Rejected certification",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/CITATION-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/CITATION-AUDIT.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "status": "PASS",
+                "date": "2026-03-05",
+                "build": "opus-4-6"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML, not string match)",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G6.6",
+      "name": "Prose Quality Audit",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-03-05T22:21:16.410Z",
+          "finished_at": "2026-03-05T22:21:16.449Z",
+          "agent": "prose-quality-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+            "{artifact_path}/PROSE-QUALITY-AUDIT.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PROSE-QUALITY-AUDIT.md",
+              "sha256": "be660c967c285167ee57ab87135337d437688a7e1790af55edd642a0d47fd5c5",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PROSE-QUALITY-AUDIT.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PROSE-QUALITY-AUDIT.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Prose quality audit must not have FAIL status",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PROSE-QUALITY-AUDIT.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "status": "PASS",
+                "overall_score": 8.8,
+                "date": "2026-03-05",
+                "build": "opus-4-6"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": "(\\bdelve\\b|\\btapestry\\b|\\bunlock the secrets\\b|\\bin today's world\\b|\\blet's dive\\b|\\bfascinating journey\\b|\\bit's important to note\\b|\\bIn conclusion\\b)",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "warning",
+              "description": "Client component should not contain common AI slop phrases (delve, tapestry, unlock the secrets, etc.)",
+              "pass": true,
+              "warning": false
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": "[\\u{1F300}-\\u{1F9FF}\\u{2600}-\\u{26FF}\\u{2700}-\\u{27BF}]",
+              "must_not_match": true,
+              "matched": false,
+              "severity": "error",
+              "description": "Client component must NOT contain emoji characters",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G7",
+      "name": "Scroll Certification",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-03-05T22:21:16.489Z",
+          "finished_at": "2026-03-05T22:21:16.526Z",
+          "agent": "scroll-performance-auditor",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+            "{artifact_path}/SCROLL-CERTIFICATION.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/SCROLL-CERTIFICATION.md",
+              "sha256": "16db0b7c8520949c4306409d5820748c58198ab48e1c3bd886bb5471234f3f00",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/SCROLL-CERTIFICATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/SCROLL-CERTIFICATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Scroll certification must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/SCROLL-CERTIFICATION.md",
+              "pattern": "Overall Status: ❌",
+              "found": false,
+              "severity": "error",
+              "description": "Scroll certification must not report overall failure",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/SCROLL-CERTIFICATION.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "status": "PASS",
+                "overall_score": 8.3,
+                "date": "2026-03-05",
+                "build": "opus-4-6"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+              "pass": true
+            },
+            {
+              "type": "min_regex_count",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": "src=\\{IMAGES\\.",
+              "min_count": 3,
+              "actual_count": 7,
+              "severity": "error",
+              "description": "Client component must reference at least 3 images from the IMAGES constant — scroll certification requires visual content actually renders",
+              "pass": true
+            },
+            {
+              "type": "regex_match",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": "loading=[\"']lazy[\"']",
+              "must_not_match": false,
+              "matched": true,
+              "severity": "error",
+              "description": "Client component must use lazy loading on images (loading='lazy') for scroll performance",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G8",
+      "name": "Publication Certification",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "PASS",
+          "started_at": "2026-03-05T22:21:16.565Z",
+          "finished_at": "2026-03-05T22:21:18.865Z",
+          "agent": "publication-certification-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+            "{artifact_path}/PUBLICATION-CERTIFICATION.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-CERTIFICATION.md",
+              "sha256": "67940137cb0403b88b19cc0717e550dc630e26e9120a2bbae7aef555199acd13",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PUBLICATION-CERTIFICATION.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-CERTIFICATION.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Publication certification must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-CERTIFICATION.md",
+              "pattern": "NO-GO",
+              "found": false,
+              "severity": "error",
+              "description": "Publication certification must not be NO-GO",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-CERTIFICATION.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "status": "PASS",
+                "date": "2026-03-05",
+                "build": "opus-4-6"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "patterns": [
+                "SOURCES",
+                "IMAGE_CREDITS"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "PUBLICATION GATE: Client component must import SOURCES and IMAGE_CREDITS — bibliography and image attribution must be present in the shipped code",
+              "pass": true
+            },
+            {
+              "type": "min_regex_count",
+              "path": "{client_component}",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+              "regex": "src=\\{IMAGES\\.",
+              "min_count": 5,
+              "actual_count": 7,
+              "severity": "error",
+              "description": "PUBLICATION GATE: Client component must reference at least 5 images from the IMAGES constant — photorealistic essays require substantial photography",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/images.ts",
+              "patterns": [
+                "images.esy.com"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "PUBLICATION GATE: images.ts must contain R2-hosted URLs (images.esy.com) — hotlinking external URLs is prohibited",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/images.ts",
+              "pattern": "upload.wikimedia.org",
+              "found": false,
+              "severity": "error",
+              "description": "PUBLICATION GATE: images.ts must not contain hotlinked Wikimedia URLs — all images must be self-hosted on R2",
+              "pass": true
+            },
+            {
+              "type": "url_reachable",
+              "path": "{artifact_path}/images.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/images.ts",
+              "total_urls": 7,
+              "checked": 5,
+              "ok": 5,
+              "failed": [],
+              "max_failures": 0,
+              "severity": "error",
+              "description": "PUBLICATION GATE: Spot-check that R2 image URLs are reachable (HTTP 2xx) — final defense against broken images shipping to production",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    },
+    {
+      "gate": "G9",
+      "name": "Publication Approval",
+      "status": "PASS",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "FAIL",
+          "started_at": "2026-03-05T22:21:59.509Z",
+          "finished_at": "2026-03-05T22:21:59.579Z",
+          "agent": "publication-approval-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+            "{artifact_path}/PUBLICATION-APPROVAL.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-APPROVAL.md",
+              "sha256": "fbe6e6bb9f655545b06e67a933df3cd88d502b87eb7fb87d00596817dba56255",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PUBLICATION-APPROVAL.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-APPROVAL.md",
+              "pattern": "REJECTED",
+              "found": false,
+              "severity": "error",
+              "description": "Publication approval must not contain REJECTED",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-APPROVAL.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Publication approval must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/page.tsx",
+              "patterns": [
+                "ArtifactDetailWrapper"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Final verification: page.tsx MUST use ArtifactDetailWrapper at publication time (visual-essay-engineering-standard.md §Red Lines)",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "src/data/visualEssays.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/data/visualEssays.ts",
+              "patterns": [
+                "{slug}"
+              ],
+              "missing": [
+                "{slug}"
+              ],
+              "severity": "error",
+              "description": "Essay must be registered in the central visualEssays.ts index (auto-registered by pre-script)",
+              "pass": false
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-APPROVAL.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "status": "APPROVED",
+                "date": "2026-03-05",
+                "build": "opus-4-6",
+                "approved_by": "human-in-the-loop"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+              "pass": true
+            }
+          ],
+          "failure_reason": "Essay must be registered in the central visualEssays.ts index (auto-registered by pre-script)"
+        },
+        {
+          "attempt": 2,
+          "status": "FAIL",
+          "started_at": "2026-03-05T22:23:24.206Z",
+          "finished_at": "2026-03-05T22:23:24.274Z",
+          "agent": "publication-approval-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+            "{artifact_path}/PUBLICATION-APPROVAL.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-APPROVAL.md",
+              "sha256": "fbe6e6bb9f655545b06e67a933df3cd88d502b87eb7fb87d00596817dba56255",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PUBLICATION-APPROVAL.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-APPROVAL.md",
+              "pattern": "REJECTED",
+              "found": false,
+              "severity": "error",
+              "description": "Publication approval must not contain REJECTED",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-APPROVAL.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Publication approval must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/page.tsx",
+              "patterns": [
+                "ArtifactDetailWrapper"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Final verification: page.tsx MUST use ArtifactDetailWrapper at publication time (visual-essay-engineering-standard.md §Red Lines)",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "src/data/visualEssays.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/data/visualEssays.ts",
+              "patterns": [
+                "{slug}"
+              ],
+              "missing": [
+                "{slug}"
+              ],
+              "severity": "error",
+              "description": "Essay must be registered in the central visualEssays.ts index (auto-registered by pre-script)",
+              "pass": false
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-APPROVAL.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "status": "APPROVED",
+                "date": "2026-03-05",
+                "build": "opus-4-6",
+                "approved_by": "human-in-the-loop"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+              "pass": true
+            }
+          ],
+          "failure_reason": "Essay must be registered in the central visualEssays.ts index (auto-registered by pre-script)"
+        },
+        {
+          "attempt": 3,
+          "status": "FAIL",
+          "started_at": "2026-03-05T22:26:56.420Z",
+          "finished_at": "2026-03-05T22:26:56.484Z",
+          "agent": "publication-approval-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+            "{artifact_path}/PUBLICATION-APPROVAL.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-APPROVAL.md",
+              "sha256": "fbe6e6bb9f655545b06e67a933df3cd88d502b87eb7fb87d00596817dba56255",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PUBLICATION-APPROVAL.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-APPROVAL.md",
+              "pattern": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/REJECTED",
+              "found": false,
+              "severity": "error",
+              "description": "Publication approval must not contain REJECTED",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-APPROVAL.md",
+              "pattern": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Publication approval must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/page.tsx",
+              "patterns": [
+                "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/ArtifactDetailWrapper"
+              ],
+              "missing": [
+                "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/ArtifactDetailWrapper"
+              ],
+              "severity": "error",
+              "description": "Final verification: page.tsx MUST use ArtifactDetailWrapper at publication time (visual-essay-engineering-standard.md §Red Lines)",
+              "pass": false
+            },
+            {
+              "type": "contains_text",
+              "path": "src/data/visualEssays.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/data/visualEssays.ts",
+              "patterns": [
+                "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/turkana-boy"
+              ],
+              "missing": [
+                "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/turkana-boy"
+              ],
+              "severity": "error",
+              "description": "Essay must be registered in the central visualEssays.ts index (auto-registered by pre-script)",
+              "pass": false
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-APPROVAL.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "status": "APPROVED",
+                "date": "2026-03-05",
+                "build": "opus-4-6",
+                "approved_by": "human-in-the-loop"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+              "pass": true
+            }
+          ],
+          "failure_reason": "Final verification: page.tsx MUST use ArtifactDetailWrapper at publication time (visual-essay-engineering-standard.md §Red Lines); Essay must be registered in the central visualEssays.ts index (auto-registered by pre-script)"
+        },
+        {
+          "attempt": 4,
+          "status": "PASS",
+          "started_at": "2026-03-05T22:27:57.734Z",
+          "finished_at": "2026-03-05T22:27:57.799Z",
+          "agent": "publication-approval-agent",
+          "prompt_sha256": null,
+          "invocation_ids": [],
+          "required_outputs": [
+            "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+            "{artifact_path}/PUBLICATION-APPROVAL.md"
+          ],
+          "artifacts": [
+            {
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-APPROVAL.md",
+              "sha256": "fbe6e6bb9f655545b06e67a933df3cd88d502b87eb7fb87d00596817dba56255",
+              "exists": true
+            }
+          ],
+          "validations": [
+            {
+              "type": "file_exists_any_of",
+              "pass": true,
+              "checked": [
+                {
+                  "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+                  "exists": true
+                },
+                {
+                  "path": "{artifact_path}/PUBLICATION-APPROVAL.md",
+                  "exists": false
+                }
+              ],
+              "description": "At least one intake artifact must exist"
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-APPROVAL.md",
+              "pattern": "REJECTED",
+              "found": false,
+              "severity": "error",
+              "description": "Publication approval must not contain REJECTED",
+              "pass": true
+            },
+            {
+              "type": "not_contains",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-APPROVAL.md",
+              "pattern": "status: FAIL",
+              "found": false,
+              "severity": "error",
+              "description": "Publication approval must not have FAIL status in frontmatter",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "{artifact_path}/page.tsx",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/page.tsx",
+              "patterns": [
+                "ArtifactDetailWrapper"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Final verification: page.tsx MUST use ArtifactDetailWrapper at publication time (visual-essay-engineering-standard.md §Red Lines)",
+              "pass": true
+            },
+            {
+              "type": "contains_text",
+              "path": "src/data/visualEssays.ts",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/data/visualEssays.ts",
+              "patterns": [
+                "turkana-boy"
+              ],
+              "missing": [],
+              "severity": "error",
+              "description": "Essay must be registered in the central visualEssays.ts index (auto-registered by pre-script)",
+              "pass": true
+            },
+            {
+              "type": "frontmatter_status",
+              "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+              "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/PUBLICATION-APPROVAL.md",
+              "checks": {
+                "status": {
+                  "not": "FAIL"
+                }
+              },
+              "fields": {
+                "status": "APPROVED",
+                "date": "2026-03-05",
+                "build": "opus-4-6",
+                "approved_by": "human-in-the-loop"
+              },
+              "failures": [],
+              "severity": "error",
+              "description": "Frontmatter status must not be FAIL (parsed from YAML)",
+              "pass": true
+            }
+          ],
+          "failure_reason": null
+        }
+      ]
+    }
+  ],
+  "invocations": [],
+  "artifacts_index": [
+    {
+      "path": "{artifact_path}/G1-INTAKE.md",
+      "sha256": "50f4407e9370cadc9e583bddcc679d5c1d9a3623d42dce444f82bd0aaec2a75a",
+      "gate": "G1",
+      "recorded_at": "2026-03-05T22:03:48.305Z"
+    },
+    {
+      "path": "{artifact_path}/research/CITATIONS.md",
+      "sha256": "ff71a7b3bfb799b471faf9dbf8c5a74b9439f218ac59e65cd85500aeda3b4701",
+      "gate": "G2",
+      "recorded_at": "2026-03-05T22:07:47.556Z"
+    },
+    {
+      "path": "orchestration/skills/visual-essay-invocation/specs/{slug}.md",
+      "sha256": "a08b925f311fc71fafca032dc8fe0e55dc853291a67ca57999cc823c2fb1e1ea",
+      "gate": "G3",
+      "recorded_at": "2026-03-05T22:07:58.734Z"
+    },
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "sha256": "732822d06dbdbc5d1e9c7c17c23e564350a8e621c1e5d2699d8cacbd404de1a0",
+      "gate": "G4",
+      "recorded_at": "2026-03-05T22:08:54.902Z",
+      "updated_at": "2026-03-05T22:19:52.495Z"
+    },
+    {
+      "path": "{artifact_path}/research/G4.1-DESIGN-RECONCILIATION.md",
+      "sha256": "1354c11923ebeb399cae52e48563aec1ed95e8c3706f704a0d91591207f75542",
+      "gate": "G4.1",
+      "recorded_at": "2026-03-05T22:09:13.925Z"
+    },
+    {
+      "path": "{artifact_path}/research/IMAGE_RESEARCH_AUDIT.md",
+      "sha256": "87c7cc4a06e3d437c3b400d913485a7cc92548d758525b0dcd1a8eda77e5e94d",
+      "gate": "G4.5",
+      "recorded_at": "2026-03-05T22:10:09.205Z"
+    },
+    {
+      "path": "{artifact_path}/images.ts",
+      "sha256": "3c65a81925ea8147f6e0208cfb56952af55a02f90ced7d1e29ef5cac7317bb02",
+      "gate": "G4.5",
+      "recorded_at": "2026-03-05T22:10:09.205Z",
+      "updated_at": "2026-03-05T22:12:22.014Z"
+    },
+    {
+      "path": "{artifact_path}/VIZ-TECH-DECISIONS.md",
+      "sha256": "6b26c740b33d7c552b60b6adaee33f1052c1e733f45763cac25be6393e958d2d",
+      "gate": "G4.6",
+      "recorded_at": "2026-03-05T22:12:00.772Z",
+      "updated_at": "2026-03-05T22:12:12.740Z"
+    },
+    {
+      "path": "{artifact_path}/page.tsx",
+      "sha256": "b886d26e1999b8e3ce06a636ea165b9c50182ce22cd5f0a2ddcad1faaecd1fb9",
+      "gate": "G5",
+      "recorded_at": "2026-03-05T22:17:55.346Z",
+      "updated_at": "2026-03-05T22:18:19.810Z"
+    },
+    {
+      "path": "{artifact_path}/{slug}.css",
+      "sha256": "3d89bfc06b6842946e2e62eb405594f29bbe12c49ac6da2dbd43a9460ceaa282",
+      "gate": "G5",
+      "recorded_at": "2026-03-05T22:17:55.346Z",
+      "updated_at": "2026-03-05T22:18:19.810Z"
+    },
+    {
+      "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "sha256": "c92e7dbc464fc66eaa0bd6492774e10f051e07c5855ce4fd600feeea79cf5a83",
+      "gate": "G5.2",
+      "recorded_at": "2026-03-05T22:19:15.277Z",
+      "updated_at": "2026-03-05T22:19:52.495Z"
+    },
+    {
+      "path": "{artifact_path}/research/DIAGRAM-CODE-RECONCILIATION.md",
+      "sha256": "5c131082ed6d9286b47bac7e56df8a388bc07128f1bcb094ec101ddd1b63a5f6",
+      "gate": "G5.3",
+      "recorded_at": "2026-03-05T22:19:15.350Z"
+    },
+    {
+      "path": "{client_component}",
+      "sha256": "3b4d62837e45197aba842b004f63f40fe207ef257bac7a17f2267bf3a62d1c3e",
+      "gate": "G5.3",
+      "recorded_at": "2026-03-05T22:19:15.350Z"
+    },
+    {
+      "path": "{artifact_path}/research/CONTENT-BIBLIOGRAPHY-AUDIT.md",
+      "sha256": "475d4b8b9ee775ab7f0f96c92cdb32100b1391513a2e11bec6f8275659b15bd2",
+      "gate": "G5.5",
+      "recorded_at": "2026-03-05T22:19:15.422Z"
+    },
+    {
+      "path": "{artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md",
+      "sha256": "bafca3556eea880c7f2a1364c6038941dedc4933b71f83845b46036ddeb834d3",
+      "gate": "G5.4",
+      "recorded_at": "2026-03-05T22:19:52.422Z",
+      "updated_at": "2026-03-05T22:20:08.256Z"
+    },
+    {
+      "path": "{artifact_path}/research/CITATION-AUDIT.md",
+      "sha256": "8342dad772dc3c8d33de378a73564560b9a4d1877a3f2253a3e48f253ac6beb7",
+      "gate": "G6",
+      "recorded_at": "2026-03-05T22:21:16.372Z"
+    },
+    {
+      "path": "{artifact_path}/research/PROSE-QUALITY-AUDIT.md",
+      "sha256": "be660c967c285167ee57ab87135337d437688a7e1790af55edd642a0d47fd5c5",
+      "gate": "G6.6",
+      "recorded_at": "2026-03-05T22:21:16.450Z"
+    },
+    {
+      "path": "{artifact_path}/research/SCROLL-CERTIFICATION.md",
+      "sha256": "16db0b7c8520949c4306409d5820748c58198ab48e1c3bd886bb5471234f3f00",
+      "gate": "G7",
+      "recorded_at": "2026-03-05T22:21:16.527Z"
+    },
+    {
+      "path": "{artifact_path}/research/PUBLICATION-CERTIFICATION.md",
+      "sha256": "67940137cb0403b88b19cc0717e550dc630e26e9120a2bbae7aef555199acd13",
+      "gate": "G8",
+      "recorded_at": "2026-03-05T22:21:18.866Z"
+    },
+    {
+      "path": "{artifact_path}/research/PUBLICATION-APPROVAL.md",
+      "sha256": "fbe6e6bb9f655545b06e67a933df3cd88d502b87eb7fb87d00596817dba56255",
+      "gate": "G9",
+      "recorded_at": "2026-03-05T22:21:59.580Z",
+      "updated_at": "2026-03-05T22:27:57.800Z"
+    }
+  ],
+  "validations": [],
+  "events": [
+    {
+      "timestamp": "2026-03-05T22:02:44.259Z",
+      "type": "RUN_STARTED",
+      "message": "Run initialized for visual-essay/turkana-boy"
+    },
+    {
+      "timestamp": "2026-03-05T22:02:44.262Z",
+      "type": "GATE_STARTED",
+      "gate": "G1",
+      "attempt": 1,
+      "agent": "visual-essay-orchestrator",
+      "message": "Gate G1 attempt 1 started with agent visual-essay-orchestrator"
+    },
+    {
+      "timestamp": "2026-03-05T22:03:48.305Z",
+      "type": "GATE_PASSED",
+      "gate": "G1",
+      "attempt": 1,
+      "message": "Gate G1 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-03-05T22:07:43.670Z",
+      "type": "GATE_STARTED",
+      "gate": "G2",
+      "attempt": 1,
+      "agent": "concept-research-agent",
+      "message": "Gate G2 attempt 1 started with agent concept-research-agent"
+    },
+    {
+      "timestamp": "2026-03-05T22:07:47.556Z",
+      "type": "GATE_PASSED",
+      "gate": "G2",
+      "attempt": 1,
+      "message": "Gate G2 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-03-05T22:07:58.698Z",
+      "type": "GATE_STARTED",
+      "gate": "G3",
+      "attempt": 1,
+      "agent": "spec-construction-agent",
+      "message": "Gate G3 attempt 1 started with agent spec-construction-agent"
+    },
+    {
+      "timestamp": "2026-03-05T22:07:58.734Z",
+      "type": "GATE_PASSED",
+      "gate": "G3",
+      "attempt": 1,
+      "message": "Gate G3 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-03-05T22:08:54.865Z",
+      "type": "GATE_STARTED",
+      "gate": "G4",
+      "attempt": 1,
+      "agent": "design-research-agent",
+      "message": "Gate G4 attempt 1 started with agent design-research-agent"
+    },
+    {
+      "timestamp": "2026-03-05T22:08:54.902Z",
+      "type": "GATE_PASSED",
+      "gate": "G4",
+      "attempt": 1,
+      "message": "Gate G4 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-03-05T22:09:13.884Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.1",
+      "attempt": 1,
+      "agent": "design-reconciliation-agent",
+      "message": "Gate G4.1 attempt 1 started with agent design-reconciliation-agent"
+    },
+    {
+      "timestamp": "2026-03-05T22:09:13.925Z",
+      "type": "GATE_PASSED",
+      "gate": "G4.1",
+      "attempt": 1,
+      "message": "Gate G4.1 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-03-05T22:10:04.645Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "agent": "image-research-licensing-expert",
+      "message": "Gate G4.5 attempt 1 started with agent image-research-licensing-expert"
+    },
+    {
+      "timestamp": "2026-03-05T22:10:09.205Z",
+      "type": "GATE_FAILED",
+      "gate": "G4.5",
+      "attempt": 1,
+      "message": "Gate G4.5 failed: All image URLs in images.ts must return HTTP 2xx — verifies URLs are not broken (404), not thumbnail redirects, and not file-page HTML"
+    },
+    {
+      "timestamp": "2026-03-05T22:12:00.737Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.6",
+      "attempt": 1,
+      "agent": "visualization-technology-agent",
+      "message": "Gate G4.6 attempt 1 started with agent visualization-technology-agent"
+    },
+    {
+      "timestamp": "2026-03-05T22:12:00.772Z",
+      "type": "GATE_FAILED",
+      "gate": "G4.6",
+      "attempt": 1,
+      "message": "Gate G4.6 failed: "
+    },
+    {
+      "timestamp": "2026-03-05T22:12:12.702Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.6",
+      "attempt": 2,
+      "agent": "visualization-technology-agent",
+      "message": "Gate G4.6 attempt 2 started with agent visualization-technology-agent"
+    },
+    {
+      "timestamp": "2026-03-05T22:12:12.740Z",
+      "type": "GATE_PASSED",
+      "gate": "G4.6",
+      "attempt": 2,
+      "message": "Gate G4.6 passed on attempt 2"
+    },
+    {
+      "timestamp": "2026-03-05T22:12:18.542Z",
+      "type": "GATE_STARTED",
+      "gate": "G4.7",
+      "attempt": 1,
+      "agent": "image-research-licensing-expert",
+      "message": "Gate G4.7 attempt 1 started with agent image-research-licensing-expert"
+    },
+    {
+      "timestamp": "2026-03-05T22:12:22.014Z",
+      "type": "GATE_PASSED",
+      "gate": "G4.7",
+      "attempt": 1,
+      "message": "Gate G4.7 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-03-05T22:17:55.303Z",
+      "type": "GATE_STARTED",
+      "gate": "G5",
+      "attempt": 1,
+      "agent": "visual-essay-production-agent",
+      "message": "Gate G5 attempt 1 started with agent visual-essay-production-agent"
+    },
+    {
+      "timestamp": "2026-03-05T22:17:55.346Z",
+      "type": "GATE_FAILED",
+      "gate": "G5",
+      "attempt": 1,
+      "message": "Gate G5 failed: Client component must contain at least 3 <img> elements — photorealistic essays require substantial photography"
+    },
+    {
+      "timestamp": "2026-03-05T22:18:19.767Z",
+      "type": "GATE_STARTED",
+      "gate": "G5",
+      "attempt": 2,
+      "agent": "visual-essay-production-agent",
+      "message": "Gate G5 attempt 2 started with agent visual-essay-production-agent"
+    },
+    {
+      "timestamp": "2026-03-05T22:18:19.810Z",
+      "type": "GATE_PASSED",
+      "gate": "G5",
+      "attempt": 2,
+      "message": "Gate G5 passed on attempt 2"
+    },
+    {
+      "timestamp": "2026-03-05T22:19:15.149Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.4",
+      "attempt": 1,
+      "agent": "viz-ambition-auditor",
+      "message": "Gate G5.4 attempt 1 started with agent viz-ambition-auditor"
+    },
+    {
+      "timestamp": "2026-03-05T22:19:15.185Z",
+      "type": "GATE_FAILED",
+      "gate": "G5.4",
+      "attempt": 1,
+      "message": "Gate G5.4 failed: Missing: {artifact_path}/G5.4-VIZ-AMBITION-AUDIT.md; ; "
+    },
+    {
+      "timestamp": "2026-03-05T22:19:15.231Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.2",
+      "attempt": 1,
+      "agent": "design-fidelity-auditor",
+      "message": "Gate G5.2 attempt 1 started with agent design-fidelity-auditor"
+    },
+    {
+      "timestamp": "2026-03-05T22:19:15.277Z",
+      "type": "GATE_FAILED",
+      "gate": "G5.2",
+      "attempt": 1,
+      "message": "Gate G5.2 failed: Frontmatter must indicate non-FAIL status with zero blocking issues"
+    },
+    {
+      "timestamp": "2026-03-05T22:19:15.311Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.3",
+      "attempt": 1,
+      "agent": "diagram-code-auditor",
+      "message": "Gate G5.3 attempt 1 started with agent diagram-code-auditor"
+    },
+    {
+      "timestamp": "2026-03-05T22:19:15.350Z",
+      "type": "GATE_PASSED",
+      "gate": "G5.3",
+      "attempt": 1,
+      "message": "Gate G5.3 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-03-05T22:19:15.384Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.5",
+      "attempt": 1,
+      "agent": "bibliography-auditor",
+      "message": "Gate G5.5 attempt 1 started with agent bibliography-auditor"
+    },
+    {
+      "timestamp": "2026-03-05T22:19:15.422Z",
+      "type": "GATE_PASSED",
+      "gate": "G5.5",
+      "attempt": 1,
+      "message": "Gate G5.5 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-03-05T22:19:52.386Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.4",
+      "attempt": 2,
+      "agent": "viz-ambition-auditor",
+      "message": "Gate G5.4 attempt 2 started with agent viz-ambition-auditor"
+    },
+    {
+      "timestamp": "2026-03-05T22:19:52.422Z",
+      "type": "GATE_FAILED",
+      "gate": "G5.4",
+      "attempt": 2,
+      "message": "Gate G5.4 failed: "
+    },
+    {
+      "timestamp": "2026-03-05T22:19:52.457Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.2",
+      "attempt": 2,
+      "agent": "design-fidelity-auditor",
+      "message": "Gate G5.2 attempt 2 started with agent design-fidelity-auditor"
+    },
+    {
+      "timestamp": "2026-03-05T22:19:52.495Z",
+      "type": "GATE_PASSED",
+      "gate": "G5.2",
+      "attempt": 2,
+      "message": "Gate G5.2 passed on attempt 2"
+    },
+    {
+      "timestamp": "2026-03-05T22:20:08.215Z",
+      "type": "GATE_STARTED",
+      "gate": "G5.4",
+      "attempt": 3,
+      "agent": "viz-ambition-auditor",
+      "message": "Gate G5.4 attempt 3 started with agent viz-ambition-auditor"
+    },
+    {
+      "timestamp": "2026-03-05T22:20:08.256Z",
+      "type": "GATE_PASSED",
+      "gate": "G5.4",
+      "attempt": 3,
+      "message": "Gate G5.4 passed on attempt 3"
+    },
+    {
+      "timestamp": "2026-03-05T22:21:16.335Z",
+      "type": "GATE_STARTED",
+      "gate": "G6",
+      "attempt": 1,
+      "agent": "citation-audit-agent",
+      "message": "Gate G6 attempt 1 started with agent citation-audit-agent"
+    },
+    {
+      "timestamp": "2026-03-05T22:21:16.372Z",
+      "type": "GATE_PASSED",
+      "gate": "G6",
+      "attempt": 1,
+      "message": "Gate G6 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-03-05T22:21:16.411Z",
+      "type": "GATE_STARTED",
+      "gate": "G6.6",
+      "attempt": 1,
+      "agent": "prose-quality-auditor",
+      "message": "Gate G6.6 attempt 1 started with agent prose-quality-auditor"
+    },
+    {
+      "timestamp": "2026-03-05T22:21:16.450Z",
+      "type": "GATE_PASSED",
+      "gate": "G6.6",
+      "attempt": 1,
+      "message": "Gate G6.6 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-03-05T22:21:16.489Z",
+      "type": "GATE_STARTED",
+      "gate": "G7",
+      "attempt": 1,
+      "agent": "scroll-performance-auditor",
+      "message": "Gate G7 attempt 1 started with agent scroll-performance-auditor"
+    },
+    {
+      "timestamp": "2026-03-05T22:21:16.527Z",
+      "type": "GATE_PASSED",
+      "gate": "G7",
+      "attempt": 1,
+      "message": "Gate G7 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-03-05T22:21:16.565Z",
+      "type": "GATE_STARTED",
+      "gate": "G8",
+      "attempt": 1,
+      "agent": "publication-certification-agent",
+      "message": "Gate G8 attempt 1 started with agent publication-certification-agent"
+    },
+    {
+      "timestamp": "2026-03-05T22:21:18.866Z",
+      "type": "GATE_PASSED",
+      "gate": "G8",
+      "attempt": 1,
+      "message": "Gate G8 passed on attempt 1"
+    },
+    {
+      "timestamp": "2026-03-05T22:21:59.510Z",
+      "type": "GATE_STARTED",
+      "gate": "G9",
+      "attempt": 1,
+      "agent": "publication-approval-agent",
+      "message": "Gate G9 attempt 1 started with agent publication-approval-agent"
+    },
+    {
+      "timestamp": "2026-03-05T22:21:59.580Z",
+      "type": "GATE_FAILED",
+      "gate": "G9",
+      "attempt": 1,
+      "message": "Gate G9 failed: Essay must be registered in the central visualEssays.ts index (auto-registered by pre-script)"
+    },
+    {
+      "timestamp": "2026-03-05T22:23:24.207Z",
+      "type": "GATE_STARTED",
+      "gate": "G9",
+      "attempt": 2,
+      "agent": "publication-approval-agent",
+      "message": "Gate G9 attempt 2 started with agent publication-approval-agent"
+    },
+    {
+      "timestamp": "2026-03-05T22:23:24.274Z",
+      "type": "GATE_FAILED",
+      "gate": "G9",
+      "attempt": 2,
+      "message": "Gate G9 failed: Essay must be registered in the central visualEssays.ts index (auto-registered by pre-script)"
+    },
+    {
+      "timestamp": "2026-03-05T22:26:56.420Z",
+      "type": "GATE_STARTED",
+      "gate": "G9",
+      "attempt": 3,
+      "agent": "publication-approval-agent",
+      "message": "Gate G9 attempt 3 started with agent publication-approval-agent"
+    },
+    {
+      "timestamp": "2026-03-05T22:26:56.485Z",
+      "type": "GATE_FAILED",
+      "gate": "G9",
+      "attempt": 3,
+      "message": "Gate G9 failed: Final verification: page.tsx MUST use ArtifactDetailWrapper at publication time (visual-essay-engineering-standard.md §Red Lines); Essay must be registered in the central visualEssays.ts index (auto-registered by pre-script)"
+    },
+    {
+      "timestamp": "2026-03-05T22:27:57.735Z",
+      "type": "GATE_STARTED",
+      "gate": "G9",
+      "attempt": 4,
+      "agent": "publication-approval-agent",
+      "message": "Gate G9 attempt 4 started with agent publication-approval-agent"
+    },
+    {
+      "timestamp": "2026-03-05T22:27:57.800Z",
+      "type": "GATE_PASSED",
+      "gate": "G9",
+      "attempt": 4,
+      "message": "Gate G9 passed on attempt 4"
+    },
+    {
+      "timestamp": "2026-03-05T22:28:10.194Z",
+      "type": "RUN_COMPLETED",
+      "status": "PASSED",
+      "message": "Run completed with status: PASSED"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "attempt": 2,
+  "status": "PASS",
+  "started_at": "2026-03-05T22:19:52.456Z",
+  "finished_at": "2026-03-05T22:19:52.494Z",
+  "agent": "design-fidelity-auditor",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+    "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+    "{artifact_path}/DESIGN-RESEARCH.md"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "sha256": "c92e7dbc464fc66eaa0bd6492774e10f051e07c5855ce4fd600feeea79cf5a83",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/DESIGN-RESEARCH.md",
+      "sha256": "732822d06dbdbc5d1e9c7c17c23e564350a8e621c1e5d2699d8cacbd404de1a0",
+      "exists": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists_any_of",
+      "pass": true,
+      "checked": [
+        {
+          "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+          "exists": true
+        },
+        {
+          "path": "{artifact_path}/G5.2-DESIGN-FIDELITY-AUDIT.md",
+          "exists": false
+        }
+      ],
+      "description": "At least one intake artifact must exist"
+    },
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/DESIGN-RESEARCH.md",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/DESIGN-RESEARCH.md",
+      "pass": true,
+      "description": "Design research must still exist (design source of truth)"
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "pattern": "status: FAIL",
+      "found": false,
+      "severity": "error",
+      "description": "Design fidelity audit must not have FAIL status in frontmatter",
+      "pass": true
+    },
+    {
+      "type": "frontmatter_status",
+      "path": "{artifact_path}/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/research/G5.2-DESIGN-FIDELITY-AUDIT.md",
+      "checks": {
+        "status": {
+          "not": "FAIL"
+        },
+        "blocking_issues": {
+          "min": 0
+        }
+      },
+      "fields": {
+        "status": "PASS",
+        "blocking_issues": 0,
+        "date": "2026-03-05",
+        "build": "opus-4-6"
+      },
+      "failures": [],
+      "severity": "error",
+      "description": "Frontmatter must indicate non-FAIL status with zero blocking issues",
+      "pass": true
+    }
+  ],
+  "failure_reason": null
+}

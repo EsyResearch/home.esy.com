@@ -37,6 +37,7 @@ export interface ArtifactMeta {
   category: string;
   subcategory?: string;
   readTime: string;
+  wordCount?: number;
   sourceCount: number;
   sourceTier: string;
   sectionCount: number;

@@ -27,3 +27,36 @@ if [ $? -ne 0 ]; then
 fi
 
 echo ">>> Pipeline tests passed."
+
+# ── readTime validation ──────────────────────────────────────────────
+# When essay files or visualEssays.ts change, verify readTime values
+# match computed values (±1 min tolerance).
+
+ESSAY_CHANGED=false
+for f in $STAGED_FILES; do
+  case "$f" in
+    src/app/essays/*Client.tsx|src/app/essays/*Client.jsx) ESSAY_CHANGED=true; break ;;
+    src/app/essays/*/images.ts) ESSAY_CHANGED=true; break ;;
+    src/app/essays/*/meta.ts) ESSAY_CHANGED=true; break ;;
+    src/data/visualEssays.ts) ESSAY_CHANGED=true; break ;;
+  esac
+done
+
+if [ "$ESSAY_CHANGED" = true ]; then
+  echo ">>> Essay files staged — validating readTime values..."
+  node scripts/compute-read-times.mjs --json 2>/dev/null | node -e "
+    const data = JSON.parse(require('fs').readFileSync('/dev/stdin','utf-8'));
+    const bad = data.filter(r => r.delta !== null && Math.abs(r.delta) > 1);
+    if (bad.length > 0) {
+      console.error('readTime drift detected (>1 min):');
+      bad.forEach(r => console.error('  ' + r.href + ': ' + r.oldReadTime + ' -> ' + r.newReadTime));
+      console.error('Run: node scripts/compute-read-times.mjs --update');
+      process.exit(1);
+    }
+  "
+  if [ $? -ne 0 ]; then
+    echo ">>> readTime validation FAILED. Run compute-read-times.mjs --update."
+    exit 1
+  fi
+  echo ">>> readTime values validated."
+fi

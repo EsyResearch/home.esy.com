@@ -1,0 +1,149 @@
+{
+  "attempt": 1,
+  "status": "FAIL",
+  "started_at": "2026-03-05T22:17:55.303Z",
+  "finished_at": "2026-03-05T22:17:55.345Z",
+  "agent": "visual-essay-production-agent",
+  "prompt_sha256": null,
+  "invocation_ids": [],
+  "required_outputs": [
+    "{artifact_path}/page.tsx",
+    "{artifact_path}/{slug}.css"
+  ],
+  "artifacts": [
+    {
+      "path": "{artifact_path}/page.tsx",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/page.tsx",
+      "sha256": "b886d26e1999b8e3ce06a636ea165b9c50182ce22cd5f0a2ddcad1faaecd1fb9",
+      "exists": true
+    },
+    {
+      "path": "{artifact_path}/{slug}.css",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/turkana-boy.css",
+      "sha256": "3d89bfc06b6842946e2e62eb405594f29bbe12c49ac6da2dbd43a9460ceaa282",
+      "exists": true,
+      "optional": true
+    }
+  ],
+  "validations": [
+    {
+      "type": "file_exists",
+      "path": "{artifact_path}/page.tsx",
+      "absolute_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/page.tsx",
+      "pass": true,
+      "description": "Next.js page with metadata, ArtifactDetailWrapper, and default export"
+    },
+    {
+      "type": "contains_headings",
+      "path": "{artifact_path}/page.tsx",
+      "missing": [],
+      "severity": "error",
+      "description": "page.tsx must contain a default export and metadata definition",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/page.tsx",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/page.tsx",
+      "patterns": [
+        "ArtifactDetailWrapper",
+        "ESSAY_META"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "page.tsx MUST import and use ArtifactDetailWrapper with ESSAY_META (visual-essay-engineering-standard.md §2, Red Lines)",
+      "pass": true
+    },
+    {
+      "type": "contains_text",
+      "path": "{artifact_path}/page.tsx",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/page.tsx",
+      "patterns": [
+        "@/components/ArtifactDetail"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "page.tsx MUST import ArtifactDetailWrapper from @/components/ArtifactDetail",
+      "pass": true
+    },
+    {
+      "type": "not_contains",
+      "path": "{artifact_path}/page.tsx",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/page.tsx",
+      "pattern": "TODO",
+      "found": false,
+      "severity": "warning",
+      "description": "page.tsx should not contain TODO markers (indicates incomplete implementation)",
+      "pass": true,
+      "warning": false
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+      "regex": "[\\u{1F300}-\\u{1F9FF}\\u{2600}-\\u{26FF}\\u{2700}-\\u{27BF}]",
+      "must_not_match": true,
+      "matched": false,
+      "severity": "error",
+      "description": "Client component must NOT contain emoji characters — use SVG icons or CSS shapes instead",
+      "pass": true
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+      "regex": ">([^{<\"]*\\\\u[0-9a-fA-F]{4})",
+      "must_not_match": true,
+      "matched": false,
+      "severity": "error",
+      "description": "Client component must NOT contain raw Unicode escape sequences (\\uXXXX) in JSX text content — they render as literal text, not as the intended character. Wrap in JavaScript expressions ({\"\\u0113\"}) or use actual UTF-8 characters (ē) instead. See: JSX text nodes do not process JS string escape sequences.",
+      "pass": true
+    },
+    {
+      "type": "regex_match",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+      "regex": "from ['\"]\\./images['\"]",
+      "must_not_match": false,
+      "matched": true,
+      "severity": "error",
+      "description": "Client component must import from ./images (images.ts) — all external image URLs must be centralized in the images file, not hardcoded inline",
+      "pass": true
+    },
+    {
+      "type": "min_regex_count",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+      "regex": "<img[\\s\\n]",
+      "min_count": 3,
+      "actual_count": 2,
+      "severity": "error",
+      "description": "Client component must contain at least 3 <img> elements — photorealistic essays require substantial photography",
+      "pass": false
+    },
+    {
+      "type": "contains_text",
+      "path": "{client_component}",
+      "resolved_path": "/Users/lem/Desktop/Projects/Dev/apps/esy/client/esy.com/src/app/essays/science/turkana-boy--opus-4-6/TurkanaBoyClient.tsx",
+      "patterns": [
+        "Sources",
+        "SOURCES"
+      ],
+      "missing": [],
+      "severity": "error",
+      "description": "Client component must contain a Sources/Bibliography section — every essay requires source attribution at the conclusion",
+      "pass": true
+    },
+    {
+      "type": "viz_tech_match",
+      "metadata_source": "{artifact_path}/page.tsx",
+      "implementation_target": "{client_component}",
+      "claims_count": 7,
+      "unmatched": [],
+      "severity": "error",
+      "description": "Visualization tech claims in ESSAY_META.visualizations[].type must match actual imports AND rendered elements — if metadata says 'React Three Fiber', the code must both import @react-three/fiber and render a <Canvas> element",
+      "pass": true
+    }
+  ],
+  "failure_reason": "Client component must contain at least 3 <img> elements — photorealistic essays require substantial photography"
+}
