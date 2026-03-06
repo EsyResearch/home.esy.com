@@ -1,8 +1,8 @@
 # Artifact Specification Standard
 
-> Version: 2.0
+> Version: 2.1
 > Created: February 24, 2026
-> Updated: March 1, 2026
+> Updated: March 6, 2026
 > Status: Active
 
 ## Purpose
@@ -37,7 +37,7 @@ The specification appears in the artifact's detail panel (the "spec card" render
 | Field | Type | Description |
 |-------|------|-------------|
 | `subcategory` | string | Secondary category (e.g., "Physics" under "Science"). |
-| `authorship` | ArtifactAuthorship | Authorship provenance (see [Authorship](#authorship) below). When absent, defaults to `{ mode: 'ai-directed', model: meta.model }`. |
+| `authorship` | ArtifactAuthorship | Authorship provenance (see [Authorship](#authorship) below). When absent, defaults to `{ mode: 'ai-directed', model: meta.model, director: { name: 'Zev Uhuru' } }`. |
 | `backLink` | string | URL path for the back button (default: `/essays`). |
 | `backLabel` | string | Label for the back button (default: "Essays"). |
 | `palette` | Array<{name, color}> | Named color palette used in the design system. |
@@ -55,13 +55,15 @@ The `authorship` field describes who made the artifact and what role AI played i
 
 Every artifact falls into one of three authorship modes:
 
-| Mode | Meaning | Spec Panel Display |
-|------|---------|-------------------|
-| `'human'` | A named person wrote the essay. No meaningful AI involvement. | **Author:** [Name] |
-| `'ai-assisted'` | A named person wrote the essay. AI assisted with specific contributions. | **Author:** [Name] + **AI Assist:** [Model] · [Contributions] |
-| `'ai-directed'` | AI produced the artifact under human editorial direction (the current pipeline). | **Model:** [Model label] |
+| Mode | Meaning | Spec Panel Cards |
+|------|---------|-----------------|
+| `'human'` | A named person wrote the essay. No meaningful AI involvement. | **Author** [Name] · **Method** Human |
+| `'ai-assisted'` | A named person wrote the essay. AI assisted with specific contributions. | **Author** [Name] · **Method** AI-Assisted · [Contributions] · **Model** [Model label] |
+| `'ai-directed'` | AI produced the artifact under human editorial direction (the current pipeline). | **Director** [Name] · **Method** AI-Directed · [Contributions] · **Model** [Model label] |
 
 The naming encodes directionality: in `ai-assisted`, the human is the author and AI is the tool. In `ai-directed`, AI is the production engine and the human is the director.
+
+The **Method** card always displays the mode value (`Human`, `AI-Assisted`, or `AI-Directed`) with optional contributions as secondary text. The **Director** card appears only for `ai-directed` mode; the **Author** card appears for `human` and `ai-assisted` modes.
 
 ### ArtifactAuthorship Schema
 
@@ -83,8 +85,9 @@ interface ArtifactAuthor {
 interface ArtifactAuthorship {
   mode: AuthorshipMode;
   author?: ArtifactAuthor;       // Required for 'human' and 'ai-assisted'
+  director?: ArtifactAuthor;     // Required for 'ai-directed' — the human who directed the AI
   model?: ModelId | string;      // Required for 'ai-assisted' and 'ai-directed'
-  aiContributions?: AiContribution[];  // What AI helped with (ai-assisted only)
+  aiContributions?: AiContribution[];  // What AI helped with
 }
 ```
 
@@ -112,13 +115,15 @@ authorship: {
 ```typescript
 authorship: {
   mode: 'ai-directed',
+  director: { name: 'Zev Uhuru' },
   model: 'claude-opus-4.6',
+  aiContributions: ['research', 'code', 'visualization'],
 }
 ```
 
 ### AI Contributions
 
-When an essay is `ai-assisted`, the `aiContributions` array describes what AI helped with. Valid values:
+The `aiContributions` array describes what AI helped with. It applies to both `ai-assisted` and `ai-directed` modes. Valid values:
 
 | Contribution | Meaning |
 |-------------|---------|
@@ -128,14 +133,14 @@ When an essay is `ai-assisted`, the `aiContributions` array describes what AI he
 | `'fact-checking'` | AI verified claims, dates, or attributions |
 | `'visualization'` | AI designed or implemented data visualizations |
 
-These render in the spec panel as a comma-separated list after the model name (e.g., "Claude Opus 4.6 · Research, Visualization").
+These render in the spec panel's **Method** card as secondary text beneath the mode label (e.g., "AI-Directed · Research, Code, Visualization").
 
 ### Backward Compatibility
 
 The flat `model` field remains on `ArtifactMeta` for backward compatibility. When `authorship` is absent, `ArtifactDetailWrapper` derives it as:
 
 ```typescript
-{ mode: 'ai-directed', model: meta.model }
+{ mode: 'ai-directed', model: meta.model, director: { name: 'Zev Uhuru' } }
 ```
 
 This means every existing essay works without modification. The `model` field will be gradually superseded by `authorship.model` but is not deprecated yet.
@@ -204,6 +209,7 @@ export interface ArtifactAuthor {
 export interface ArtifactAuthorship {
   mode: AuthorshipMode;
   author?: ArtifactAuthor;
+  director?: ArtifactAuthor;
   model?: ModelId | string;
   aiContributions?: AiContribution[];
 }
@@ -237,12 +243,12 @@ export interface ArtifactMeta {
 ## Migration
 
 ### Phase 1 (Current)
-- The `authorship` field is optional. All existing essays work without changes — `ArtifactDetailWrapper` derives `{ mode: 'ai-directed', model: meta.model }` when `authorship` is absent.
+- The `authorship` field is optional. All existing essays work without changes — `ArtifactDetailWrapper` derives `{ mode: 'ai-directed', model: meta.model, director: { name: 'Zev Uhuru' } }` when `authorship` is absent.
 - New human-written or AI-assisted essays should set `authorship` explicitly.
 
 ### Phase 2 (Future)
 - Existing essays with `model: 'Claude'` should be migrated to use specific model IDs (e.g., `'claude-opus-4.5'`).
-- Existing AI-directed essays can optionally add `authorship: { mode: 'ai-directed', model: '...' }` for explicitness.
+- Existing AI-directed essays can optionally add `authorship: { mode: 'ai-directed', director: { name: 'Zev Uhuru' }, model: '...' }` for explicitness.
 - The flat `model` field will eventually be deprecated in favor of `authorship.model`.
 
 ---
@@ -251,5 +257,6 @@ export interface ArtifactMeta {
 
 | Version | Date | Change |
 |---------|------|--------|
+| 2.1 | 2026-03-06 | Authorship UI overhaul — `director` field for `ai-directed` mode, "Method" card label for mode values, `aiContributions` applies to both `ai-assisted` and `ai-directed` modes. |
 | 2.0 | 2026-03-01 | Authorship system — `authorship` field with three modes (`human`, `ai-assisted`, `ai-directed`), `AiContribution` enum, backward-compatible rendering in spec panel. |
 | 1.0 | 2026-02-24 | Initial standard — schema definition, model registry integration, pipeline enforcement. |

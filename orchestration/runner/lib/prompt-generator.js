@@ -416,6 +416,7 @@ Authorship (see @orchestration/standards/artifact-spec-standard.md):
 ESSAY_META must include an authorship field declaring how the essay was produced.
   authorship: {
     mode: 'ai-directed',
+    director: { name: 'Zev Uhuru' },
     model: '${buildModel || '(set to the model used for this build)'}',
     aiContributions: ['research', 'code', 'visualization'],
   }

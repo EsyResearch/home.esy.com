@@ -13,8 +13,8 @@ export const ESSAY_META = {
   template: 'Visual Essay',
   spec: 'turkana-boy',
   authorship: {
-    mode: 'ai-assisted' as const,
-    author: { name: 'Esy Research' },
+    mode: 'ai-directed' as const,
+    director: { name: 'Zev Uhuru' },
     model: 'claude-opus-4.6',
     aiContributions: ['research', 'code', 'visualization', 'editing'],
   },

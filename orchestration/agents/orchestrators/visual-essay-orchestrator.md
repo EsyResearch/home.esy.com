@@ -534,7 +534,16 @@
 - Each essay's `page.tsx` must define an `ESSAY_META` object and pass it as the `meta` prop
 - Required meta fields: title, subtitle, category, readTime, sourceCount, sourceTier, sectionCount, visualizationCount, designSystem, published, model, template, authorship
 - Optional meta fields: subcategory, backLink, backLabel, palette, visualizations, keySources, spec, variant, canonicalHref
-- The authorship field declares how the essay was produced: `{ mode: 'human' | 'ai-assisted' | 'ai-directed', model?: string, aiContributions?: string[] }`. Pipeline-generated essays should use `mode: 'ai-directed'`. See `orchestration/standards/artifact-spec-standard.md` for the full schema.
+- The authorship field declares how the essay was produced. Pipeline-generated essays should use `mode: 'ai-directed'` with a `director`. The spec panel renders three cards: **Director** (or **Author**), **Method** (the mode value: Human / AI-Assisted / AI-Directed), and **Model**. Example for pipeline essays:
+  ```
+  authorship: {
+    mode: 'ai-directed',
+    director: { name: 'Zev Uhuru' },
+    model: 'claude-opus-4.6',
+    aiContributions: ['research', 'code', 'visualization'],
+  }
+  ```
+  See `orchestration/standards/artifact-spec-standard.md` for the full schema.
 - See `src/components/ArtifactDetail/index.js` for the full interface and usage example
 
 ### Cross-Agent Orchestration

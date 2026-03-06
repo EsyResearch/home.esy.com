@@ -27,6 +27,7 @@ export interface ArtifactAuthor {
 export interface ArtifactAuthorship {
   mode: AuthorshipMode;
   author?: ArtifactAuthor;
+  director?: ArtifactAuthor;
   model?: ModelId | string;
   aiContributions?: AiContribution[];
 }

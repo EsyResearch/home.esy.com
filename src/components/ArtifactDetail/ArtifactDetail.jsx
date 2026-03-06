@@ -41,7 +41,7 @@ import './model-variant-switcher.css';
  * @property {string} published
  * @property {string} model - AI model ID (legacy; prefer authorship.model)
  * @property {string} template
- * @property {{ mode: 'human'|'ai-assisted'|'ai-directed', author?: { name: string, role?: string }, model?: string, aiContributions?: string[] }} [authorship] - Authorship provenance. Falls back to { mode: 'ai-directed', model: meta.model } when absent.
+ * @property {{ mode: 'human'|'ai-assisted'|'ai-directed', author?: { name: string, role?: string }, director?: { name: string, role?: string }, model?: string, aiContributions?: string[] }} [authorship] - Authorship provenance. Falls back to { mode: 'ai-directed', model: meta.model, director: { name: 'Zev Uhuru' } } when absent.
  * @property {string} [backLink='/essays'] - Where the back button navigates
  * @property {string} [backLabel='Essays'] - Label for the back button
  * @property {Array<{name: string, color: string}>} [palette]
@@ -62,7 +62,11 @@ const AI_CONTRIBUTION_LABELS = {
 
 function resolveAuthorship(meta) {
   if (meta.authorship) return meta.authorship;
-  return { mode: 'ai-directed', model: meta.model };
+  return {
+    mode: 'ai-directed',
+    model: meta.model,
+    director: { name: 'Zev Uhuru' },
+  };
 }
 
 function formatAiContributions(contributions) {
@@ -77,20 +81,27 @@ const AUTHORSHIP_MODE_LABELS = {
 };
 
 function AuthorshipCards({ authorship }) {
-  const { mode, author, model, aiContributions } = authorship;
+  const { mode, author, director, model, aiContributions } = authorship;
   const contributionsLabel = formatAiContributions(aiContributions);
+  const modeLabel = AUTHORSHIP_MODE_LABELS[mode] || mode;
 
   if (mode === 'human') {
     return (
-      <div className="artifact-detail-spec__card">
-        <div className="artifact-detail-spec__card-label">Author</div>
-        <div className="artifact-detail-spec__card-value">
-          {author?.name || 'Unknown'}
-          {author?.role && (
-            <span className="artifact-detail-spec__card-secondary"> · {author.role}</span>
-          )}
+      <>
+        <div className="artifact-detail-spec__card">
+          <div className="artifact-detail-spec__card-label">Author</div>
+          <div className="artifact-detail-spec__card-value">
+            {author?.name || 'Unknown'}
+            {author?.role && (
+              <span className="artifact-detail-spec__card-secondary"> · {author.role}</span>
+            )}
+          </div>
         </div>
-      </div>
+        <div className="artifact-detail-spec__card">
+          <div className="artifact-detail-spec__card-label">Method</div>
+          <div className="artifact-detail-spec__card-value">{modeLabel}</div>
+        </div>
+      </>
     );
   }
 
@@ -107,23 +118,47 @@ function AuthorshipCards({ authorship }) {
           </div>
         </div>
         <div className="artifact-detail-spec__card">
-          <div className="artifact-detail-spec__card-label">AI Assist</div>
+          <div className="artifact-detail-spec__card-label">Method</div>
           <div className="artifact-detail-spec__card-value">
-            {model ? resolveModelLabel(model) : 'AI'}
+            {modeLabel}
             {contributionsLabel && (
               <span className="artifact-detail-spec__card-secondary"> · {contributionsLabel}</span>
             )}
           </div>
+        </div>
+        <div className="artifact-detail-spec__card">
+          <div className="artifact-detail-spec__card-label">Model</div>
+          <div className="artifact-detail-spec__card-value">{model ? resolveModelLabel(model) : '—'}</div>
         </div>
       </>
     );
   }
 
   return (
-    <div className="artifact-detail-spec__card">
-      <div className="artifact-detail-spec__card-label">Model</div>
-      <div className="artifact-detail-spec__card-value">{model ? resolveModelLabel(model) : '—'}</div>
-    </div>
+    <>
+      <div className="artifact-detail-spec__card">
+        <div className="artifact-detail-spec__card-label">Director</div>
+        <div className="artifact-detail-spec__card-value">
+          {director?.name || 'Unknown'}
+          {director?.role && (
+            <span className="artifact-detail-spec__card-secondary"> · {director.role}</span>
+          )}
+        </div>
+      </div>
+      <div className="artifact-detail-spec__card">
+        <div className="artifact-detail-spec__card-label">Method</div>
+        <div className="artifact-detail-spec__card-value">
+          {modeLabel}
+          {contributionsLabel && (
+            <span className="artifact-detail-spec__card-secondary"> · {contributionsLabel}</span>
+          )}
+        </div>
+      </div>
+      <div className="artifact-detail-spec__card">
+        <div className="artifact-detail-spec__card-label">Model</div>
+        <div className="artifact-detail-spec__card-value">{model ? resolveModelLabel(model) : '—'}</div>
+      </div>
+    </>
   );
 }
 

@@ -17,6 +17,7 @@ export const ESSAY_META = {
   template: 'Visual Essay',
   authorship: {
     mode: 'ai-directed' as const,
+    director: { name: 'Zev Uhuru' },
     model: 'claude-opus-4.6',
     aiContributions: ['research', 'code', 'visualization'],
   },
