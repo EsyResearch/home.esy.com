@@ -34,7 +34,9 @@ function generatePromptPacket(options) {
     artifactPath, 
     depth, 
     originalPrompt,
-    attemptNumber
+    attemptNumber,
+    variant,
+    buildModel
   } = options;
   
   // Load contract to get required outputs
@@ -48,7 +50,7 @@ function generatePromptPacket(options) {
     .join('\n');
   
   // Generate gate-specific instructions
-  const gateInstructions = getGateInstructions(gateCode, gateDef, { slug, artifactPath, depth });
+  const gateInstructions = getGateInstructions(gateCode, gateDef, { slug, artifactPath, depth, variant, buildModel });
   
   // Load required skills
   const requiredSkills = getRequiredSkills(contract);
@@ -151,7 +153,7 @@ included below so you have them in context. Do NOT skip these procedures.
  * Get gate-specific instructions
  */
 function getGateInstructions(gateCode, gateDef, context) {
-  const { slug, artifactPath, depth } = context;
+  const { slug, artifactPath, depth, variant, buildModel } = context;
   
   switch (gateCode) {
     case 'G1':
@@ -408,7 +410,17 @@ The implementation must:
 - Wrap the essay in ArtifactDetailWrapper from @/components/ArtifactDetail
   with an ESSAY_META object containing: title, subtitle, category, subcategory,
   readTime, sourceCount, sourceTier, sectionCount, visualizationCount,
-  designSystem, published, model, template, palette, visualizations, keySources`;
+  designSystem, published, model, template, authorship, palette, visualizations, keySources
+
+Authorship (see @orchestration/standards/artifact-spec-standard.md):
+ESSAY_META must include an authorship field declaring how the essay was produced.
+  authorship: {
+    mode: 'ai-directed',
+    model: '${buildModel || '(set to the model used for this build)'}',
+    aiContributions: ['research', 'code', 'visualization'],
+  }
+${buildModel ? `Model for this build: ${buildModel}` : 'Set model to the AI model used to generate this essay.'}
+${variant ? `\nVariant build metadata — also include:\n  spec: '${slug}',\n  variant: '${variant}',\n  canonicalHref: '/essays/science/${slug}'` : ''}`;
 
     case 'G5.4':
       return `## G5.4: Visualization Ambition Audit

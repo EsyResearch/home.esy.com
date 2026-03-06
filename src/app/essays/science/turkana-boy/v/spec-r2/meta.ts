@@ -12,6 +12,12 @@ export const ESSAY_META = {
   model: 'claude-opus-4.6',
   template: 'Visual Essay',
   spec: 'turkana-boy',
+  authorship: {
+    mode: 'ai-assisted' as const,
+    author: { name: 'Esy Research' },
+    model: 'claude-opus-4.6',
+    aiContributions: ['research', 'code', 'visualization', 'editing'],
+  },
   backLink: '/essays',
   backLabel: 'Essays',
   clusterParent: {

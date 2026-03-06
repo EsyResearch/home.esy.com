@@ -15,6 +15,11 @@ export const ESSAY_META = {
   variant: 'claude-opus-4-6',
   canonicalHref: '/essays/science/turkana-boy',
   template: 'Visual Essay',
+  authorship: {
+    mode: 'ai-directed' as const,
+    model: 'claude-opus-4.6',
+    aiContributions: ['research', 'code', 'visualization'],
+  },
   backLink: '/essays',
   backLabel: 'Essays',
   clusterParent: {

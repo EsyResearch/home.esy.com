@@ -532,8 +532,9 @@
 - Every visual essay MUST be wrapped in `ArtifactDetailWrapper` from `@/components/ArtifactDetail`
 - The wrapper presents essays as produced artifacts with metadata, spec access, and immersive mode
 - Each essay's `page.tsx` must define an `ESSAY_META` object and pass it as the `meta` prop
-- Required meta fields: title, subtitle, category, readTime, sourceCount, sourceTier, sectionCount, visualizationCount, designSystem, published, model, template
-- Optional meta fields: subcategory, backLink, backLabel, palette, visualizations, keySources
+- Required meta fields: title, subtitle, category, readTime, sourceCount, sourceTier, sectionCount, visualizationCount, designSystem, published, model, template, authorship
+- Optional meta fields: subcategory, backLink, backLabel, palette, visualizations, keySources, spec, variant, canonicalHref
+- The authorship field declares how the essay was produced: `{ mode: 'human' | 'ai-assisted' | 'ai-directed', model?: string, aiContributions?: string[] }`. Pipeline-generated essays should use `mode: 'ai-directed'`. See `orchestration/standards/artifact-spec-standard.md` for the full schema.
 - See `src/components/ArtifactDetail/index.js` for the full interface and usage example
 
 ### Cross-Agent Orchestration

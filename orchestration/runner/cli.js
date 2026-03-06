@@ -355,7 +355,9 @@ async function runVisualEssayPipeline(options) {
       artifactPath,
       depth,
       originalPrompt,
-      attemptNumber
+      attemptNumber,
+      variant,
+      buildModel
     });
     
     // Compute prompt packet hash

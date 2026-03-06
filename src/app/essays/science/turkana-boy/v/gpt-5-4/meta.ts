@@ -12,7 +12,14 @@ export const ESSAY_META = {
   published: 'March 2026',
   model: 'gpt-5.4',
   spec: 'turkana-boy',
+  variant: 'gpt-5-4',
+  canonicalHref: '/essays/science/turkana-boy',
   template: 'Visual Essay',
+  authorship: {
+    mode: 'ai-directed' as const,
+    model: 'gpt-5.4',
+    aiContributions: ['research', 'code', 'visualization'],
+  },
   backLink: '/essays',
   backLabel: 'Essays',
   clusterParent: {
