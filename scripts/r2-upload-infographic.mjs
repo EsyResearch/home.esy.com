@@ -130,7 +130,7 @@ if (convertToWebp) {
 }
 
 const hash = hashBytes(buf, 10);
-const key = `infographics/${slug}/${slug}.${hash}${ext}`;
+const key = `infographics/${slug}.${hash}${ext}`;
 const publicUrl = `https://images.esy.com/${key}`;
 
 // ---- Thumbnail ----
@@ -141,7 +141,7 @@ if (!noThumb && !skipConversion) {
     .webp({ quality: 80, effort: 6 })
     .toBuffer();
   const thumbHash = hashBytes(thumbBuf, 10);
-  const thumbKey = `infographics/${slug}/${slug}-thumb.${thumbHash}.webp`;
+  const thumbKey = `infographics/${slug}-thumb.${thumbHash}.webp`;
   thumbUrl = `https://images.esy.com/${thumbKey}`;
 
   if (!dryRun) {
