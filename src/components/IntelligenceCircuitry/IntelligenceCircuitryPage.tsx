@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { ArrowRight, FileText, Layers, BarChart3, FileSpreadsheet, Clock, Sun, Moon } from 'lucide-react';
 import CircuitCanvas from './CircuitCanvas';
 import { publishedVisualEssays, CATEGORY_COLORS, isNewEssay, type VisualEssay } from '@/data/visualEssays';
+import { publishedInfographics, CLUSTER_LABELS, INFOGRAPHIC_CATEGORY_COLORS } from '@/data/infographics';
 import './IntelligenceCircuitryPage.css';
 
 /**
@@ -145,6 +146,121 @@ const HowItWorksSection: React.FC = () => {
         </div>
       </div>
     </section>
+  );
+};
+
+const INFOGRAPHIC_SHOWCASE_COUNT = 5;
+
+const InfographicShowcaseInline: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const items = publishedInfographics.slice(0, INFOGRAPHIC_SHOWCASE_COUNT);
+
+  const goNext = () => setActiveIndex((prev) => (prev + 1) % items.length);
+  const goPrev = () => setActiveIndex((prev) => (prev - 1 + items.length) % items.length);
+
+  if (items.length === 0) return null;
+
+  const active = items[activeIndex] || items[0];
+  const activeColor =
+    INFOGRAPHIC_CATEGORY_COLORS[active.category as keyof typeof INFOGRAPHIC_CATEGORY_COLORS] || '#6B7280';
+
+  return (
+    <>
+      <div className="ic-artifact-type-divider">
+        <span className="ic-artifact-type-label">Infographics</span>
+        <Link href="/infographics" className="ic-artifact-type-link">
+          View all <ArrowRight size={12} />
+        </Link>
+      </div>
+
+      <div className="ic-infographic-coverflow">
+        {items.length > 1 && (
+          <>
+            <button className="ic-infographic-arrow ic-infographic-arrow--prev" onClick={goPrev} aria-label="Previous">
+              <ArrowRight size={18} />
+            </button>
+            <button className="ic-infographic-arrow ic-infographic-arrow--next" onClick={goNext} aria-label="Next">
+              <ArrowRight size={18} />
+            </button>
+          </>
+        )}
+
+        <div className="ic-infographic-track">
+          {items.map((item, i) => {
+            let offset = i - activeIndex;
+            if (offset > Math.floor(items.length / 2)) offset -= items.length;
+            if (offset < -Math.floor(items.length / 2)) offset += items.length;
+
+            const isActive = offset === 0;
+            const absOffset = Math.abs(offset);
+            const clampedOffset = Math.max(-2, Math.min(2, offset));
+
+            const translateX = clampedOffset * 38;
+            const rotateY = clampedOffset * -45;
+            const translateZ = isActive ? 0 : -150 - absOffset * 40;
+            const scale = isActive ? 1 : 0.75;
+            const opacity = absOffset > 2 ? 0 : isActive ? 1 : 0.6;
+            const zIndex = 10 - absOffset;
+
+            return (
+              <Link
+                key={item.id}
+                href={`/infographics/${item.id}`}
+                className={`ic-infographic-card ${isActive ? 'ic-infographic-card--active' : ''}`}
+                style={{
+                  transform: `translateX(${translateX}%) rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`,
+                  zIndex,
+                  opacity,
+                  pointerEvents: absOffset > 2 ? 'none' : 'auto',
+                }}
+                onClick={(e) => {
+                  if (!isActive) {
+                    e.preventDefault();
+                    setActiveIndex(i);
+                  }
+                }}
+              >
+                <Image
+                  src={item.imageSrc}
+                  alt={item.imageAlt}
+                  width={item.width}
+                  height={item.height}
+                  className="ic-infographic-image"
+                  sizes="(max-width: 768px) 90vw, 720px"
+                  unoptimized
+                />
+              </Link>
+            );
+          })}
+        </div>
+
+        {items.length > 1 && (
+          <div className="ic-infographic-dots">
+            {items.map((_, i) => (
+              <button
+                key={i}
+                className={`ic-infographic-dot ${i === activeIndex ? 'ic-infographic-dot--active' : ''}`}
+                onClick={() => setActiveIndex(i)}
+                aria-label={`View infographic ${i + 1}`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div className="ic-infographic-info">
+        <span className="ic-infographic-cluster" style={{ color: activeColor, backgroundColor: `${activeColor}15` }}>
+          {CLUSTER_LABELS[active.cluster] || active.cluster}
+        </span>
+        <h3 className="ic-infographic-title">
+          <Link href={`/infographics/${active.id}`}>{active.title}</Link>
+        </h3>
+        <Link href={`/infographics/${active.id}`} className="ic-infographic-cta">
+          <span>View Infographic</span>
+          <ArrowRight size={14} />
+        </Link>
+      </div>
+    </>
   );
 };
 
@@ -383,7 +499,7 @@ const IntelligenceCircuitryPage: React.FC = () => {
       <HowItWorksSection />
 
       {/* ══════════════════════════════════════════════════════════════
-          ARTIFACT GALLERY
+          ARTIFACTS — Unified section: Infographics + Visual Essays
           ══════════════════════════════════════════════════════════════ */}
       <section className="ic-gallery-section">
         <div className="ic-section-container">
@@ -393,8 +509,19 @@ const IntelligenceCircuitryPage: React.FC = () => {
               Artifacts built from <span className="ic-gradient-text">real sources</span>
             </h2>
             <p className="ic-section-description">
-              Every visual essay carries its provenance. Every claim traces to evidence.
+              Every artifact carries its provenance. Every claim traces to evidence.
             </p>
+          </div>
+
+          {/* ── Infographics subsection ── */}
+          <InfographicShowcaseInline />
+
+          {/* ── Visual Essays subsection ── */}
+          <div className="ic-artifact-type-divider">
+            <span className="ic-artifact-type-label">Visual Essays</span>
+            <Link href="/essays/" className="ic-artifact-type-link">
+              View all <ArrowRight size={12} />
+            </Link>
           </div>
 
           <div className="ic-gallery-grid">
@@ -404,7 +531,6 @@ const IntelligenceCircuitryPage: React.FC = () => {
                 href={essay.href}
                 className="ic-artifact-card"
               >
-                {/* Hero Image */}
                 <div className="ic-artifact-image">
                   <Image
                     src={getEssayImage(essay)}
@@ -416,7 +542,6 @@ const IntelligenceCircuitryPage: React.FC = () => {
                   />
                   <div className="ic-artifact-overlay" />
                 </div>
-                {/* Content */}
                 <div className="ic-artifact-content">
                   <div className="ic-artifact-header">
                     <span 
@@ -449,13 +574,6 @@ const IntelligenceCircuitryPage: React.FC = () => {
                 </div>
               </Link>
             ))}
-          </div>
-
-          <div className="ic-gallery-footer">
-            <Link href="/essays/" className="ic-gallery-link">
-              <span>View all artifacts</span>
-              <ArrowRight size={16} />
-            </Link>
           </div>
         </div>
       </section>
