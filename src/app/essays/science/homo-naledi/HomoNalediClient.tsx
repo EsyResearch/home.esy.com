@@ -1186,6 +1186,14 @@ export default function HomoNalediClient() {
         <em>Australopithecus afarensis</em> skeleton that rewrote the story of
         walking upright.
       </li>
+      <li className="naledi-sources__credits-item">
+        <Link href="/infographics/seven-million-years-homo" className="naledi-link">
+          Infographic: How Our Brains Grew Over 7 Million Years
+        </Link>
+        {' \u2014 '}
+        Cranial capacity comparison across 8 hominid species, from{' '}
+        <em>Sahelanthropus</em> (350 cc) to <em>Homo sapiens</em> (1,350 cc).
+      </li>
     </ul>
   </div>
 </div>

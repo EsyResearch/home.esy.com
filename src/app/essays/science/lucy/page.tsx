@@ -55,6 +55,9 @@ const ESSAY_META = {
     'Stern & Susman 1983, AJPA -- Locomotor anatomy',
     'Cerling et al. 2013, PNAS -- Stable isotope diet',
   ],
+  relatedInfographics: [
+    { title: 'How Our Brains Grew Over 7 Million Years', href: '/infographics/seven-million-years-homo' },
+  ],
 };
 
 export const metadata = createVisualEssayMetadata({

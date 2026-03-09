@@ -853,6 +853,13 @@ function SourcesSection() {
               {" — "}
               From Sahelanthropus to Homo sapiens — the complete arc of hominin evolution in one visual essay.
             </li>
+            <li style={{ marginBottom: "var(--space-md)" }}>
+              <Link href="/infographics/seven-million-years-homo" style={{ color: "var(--color-accent)" }}>
+                Infographic: How Our Brains Grew Over 7 Million Years
+              </Link>
+              {" — "}
+              Cranial capacity comparison across 8 hominid species, from Sahelanthropus (350 cc) to Homo sapiens (1,350 cc).
+            </li>
           </ul>
         </div>
       </div>

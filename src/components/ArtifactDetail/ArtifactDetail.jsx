@@ -49,6 +49,7 @@ import './model-variant-switcher.css';
  * @property {Array<{name: string, color: string}>} [palette]
  * @property {Array<{name: string, type: string}>} [visualizations]
  * @property {string[]} [keySources]
+ * @property {Array<{title: string, href: string}>} [relatedInfographics] - Cross-links to related infographic artifacts
  * @property {boolean} [citationFirst=false] - Whether the essay was written citation-first (all claims sourced before prose)
  */
 
@@ -522,6 +523,21 @@ export default function ArtifactDetailWrapper({ meta, children }) {
                       +{meta.sourceCount - meta.keySources.length} more
                     </span>
                   )}
+                </div>
+              </div>
+            )}
+
+            {/* Related Infographics */}
+            {meta.relatedInfographics && meta.relatedInfographics.length > 0 && (
+              <div className="artifact-detail-spec__section">
+                <div className="artifact-detail-spec__section-label">Related Infographics</div>
+                <div className="artifact-detail-spec__related-infographics">
+                  {meta.relatedInfographics.map(ig => (
+                    <Link key={ig.href} href={ig.href} className="artifact-detail-spec__infographic-link">
+                      <span className="artifact-detail-spec__infographic-icon">◈</span>
+                      <span>{ig.title}</span>
+                    </Link>
+                  ))}
                 </div>
               </div>
             )}
