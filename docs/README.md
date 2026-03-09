@@ -33,6 +33,7 @@ This directory contains technical documentation for the Esy.com project.
 ### Front-End Patterns
 - `/front-end/` - Reusable front-end patterns and components
   - `IMAGE_DISPLAY_PATTERNS.md` - Cover vs. Contain modes for responsive images
+  - `INLINE_INTELLIGENCE.md` - Highlight-to-insight system for visual essays
 
 ### Quick Start
 - `QUICK_START.md` - Getting started guide

@@ -1,0 +1,287 @@
+/* ═══════════════════════════════════════════════════════════════
+   Inline Intelligence — Highlight-to-Insight UI
+   
+   Floating action button appears on text selection,
+   insight panel slides down below the containing paragraph.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Floating Action Button ─────────────────────────────────── */
+.inline-intel-fab {
+  position: absolute;
+  z-index: 100;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 100px;
+  background: rgba(0, 168, 150, 0.95);
+  color: #fff;
+  font-family: var(--font-inter, 'Inter', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  animation: intelFabIn 0.15s ease-out;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.inline-intel-fab:hover {
+  background: rgba(0, 188, 170, 1);
+  transform: translateX(-50%) scale(1.04);
+}
+
+.inline-intel-fab:active {
+  transform: translateX(-50%) scale(0.97);
+}
+
+@keyframes intelFabIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ─── Insight Panel ──────────────────────────────────────────── */
+.inline-intel-portal {
+  display: block;
+}
+
+.inline-intel-panel {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  margin: 16px 0;
+  padding: 0 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid rgba(0, 168, 150, 0.6);
+  border-radius: 0 8px 8px 0;
+  transition: max-height 0.35s ease-out, opacity 0.25s ease-out, padding 0.35s ease-out;
+}
+
+.inline-intel-panel--open {
+  max-height: 500px;
+  opacity: 1;
+  padding: 16px 20px;
+}
+
+.inline-intel-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.inline-intel-panel__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-inter, 'Inter', sans-serif);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(0, 168, 150, 0.9);
+}
+
+.inline-intel-panel__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.inline-intel-panel__close:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.inline-intel-panel__quote {
+  font-family: var(--font-inter, 'Inter', sans-serif);
+  font-size: 0.8rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0 0 12px;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inline-intel-panel__body {
+  min-height: 24px;
+}
+
+.inline-intel-panel__text {
+  font-family: var(--font-inter, 'Inter', sans-serif);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0;
+}
+
+.inline-intel-panel__error {
+  font-family: var(--font-inter, 'Inter', sans-serif);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+.inline-intel-panel__footer {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.inline-intel-panel__deeper {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border: 1px solid rgba(0, 168, 150, 0.3);
+  border-radius: 100px;
+  background: transparent;
+  color: rgba(0, 168, 150, 0.9);
+  font-family: var(--font-inter, 'Inter', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.inline-intel-panel__deeper:hover {
+  background: rgba(0, 168, 150, 0.08);
+  border-color: rgba(0, 168, 150, 0.5);
+}
+
+/* ─── Go Deeper Loading ──────────────────────────────────────── */
+.inline-intel-panel__deepening {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.inline-intel-panel__deepening-label {
+  font-family: var(--font-inter, 'Inter', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: rgba(0, 168, 150, 0.7);
+  letter-spacing: 0.02em;
+}
+
+/* ─── Loading Dots ───────────────────────────────────────────── */
+.inline-intel-dots {
+  display: inline-flex;
+  gap: 5px;
+  padding: 4px 0;
+}
+
+.inline-intel-dots__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(0, 168, 150, 0.6);
+  animation: intelDotPulse 1.2s ease-in-out infinite;
+}
+
+.inline-intel-dots__dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.inline-intel-dots__dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes intelDotPulse {
+  0%, 80%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ─── Mobile ─────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .inline-intel-fab {
+    position: fixed;
+    bottom: 24px;
+    left: 50% !important;
+    top: auto !important;
+    z-index: 200;
+    padding: 10px 20px;
+    font-size: 0.85rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  .inline-intel-portal {
+    scroll-margin-top: 80px;
+  }
+
+  .inline-intel-panel {
+    margin: 12px -4px;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .inline-intel-panel--open {
+    padding: 14px 16px;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  .inline-intel-panel__quote {
+    font-size: 0.75rem;
+  }
+
+  .inline-intel-panel__text {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .inline-intel-panel__deeper {
+    padding: 8px 16px;
+    font-size: 0.78rem;
+  }
+
+  .inline-intel-panel__header {
+    position: sticky;
+    top: 0;
+    background: inherit;
+    z-index: 1;
+  }
+}
+
+/* Tablet tweaks */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .inline-intel-fab {
+    padding: 8px 16px;
+  }
+
+  .inline-intel-panel--open {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+}

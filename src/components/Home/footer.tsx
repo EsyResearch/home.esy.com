@@ -60,6 +60,7 @@ export default function Footer () {
         const isPrivacyPage = normalizedPath === '/privacy';
         const isGlossaryPage = normalizedPath === '/glossary' || normalizedPath.startsWith('/glossary/');
         const isResearchPage = normalizedPath === '/research' || normalizedPath.startsWith('/research/');
+        const isInfographicsPage = normalizedPath === '/infographics' || normalizedPath.startsWith('/infographics/');
         // Check for 404 page - Next.js uses various paths
         // Also check body classes as fallback since pathname might not be reliable
         const hasNotFoundBodyClass = typeof window !== 'undefined' && (
@@ -72,7 +73,7 @@ export default function Footer () {
                                hasNotFoundBodyClass;
         
         // Pages that always use light theme (Navy Calm)
-        const isAlwaysLightPage = isEssaysPage || isAboutPage || isSchoolPage || isTemplatesPage || isDocsPage || isAgentsPage || isContactPage || isTermsPage || isPrivacyPage || isGlossaryPage || isResearchPage;
+        const isAlwaysLightPage = isEssaysPage || isAboutPage || isSchoolPage || isTemplatesPage || isDocsPage || isAgentsPage || isContactPage || isTermsPage || isPrivacyPage || isGlossaryPage || isResearchPage || isInfographicsPage;
         
         if (isModelsPage) {
           // Check localStorage for models page theme

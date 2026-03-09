@@ -1,10 +1,12 @@
 'use client';
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { resolveModelLabel } from '@/lib/models/registry';
 import ModelVariantSwitcher from './ModelVariantSwitcher';
+import InlineIntelligence from '@/components/InlineIntelligence/InlineIntelligence';
 import './artifact-detail.css';
 import './image-zoom.css';
 import './model-variant-switcher.css';
@@ -276,6 +278,13 @@ export default function ArtifactDetailWrapper({ meta, children }) {
   const [specExpanded, setSpecExpanded] = useState(false);
   const contentRef = useRef(null);
   const zoomOverlay = useImageZoom(contentRef, immersiveMode);
+  const pathname = usePathname();
+
+  const essayMeta = useMemo(() => ({
+    title: meta.title,
+    category: meta.category,
+    slug: pathname ? pathname.split('/').filter(Boolean).pop() || '' : '',
+  }), [meta.title, meta.category, pathname]);
 
   const backLink = meta.backLink || '/essays';
   const backLabel = meta.backLabel || 'Essays';
@@ -334,6 +343,7 @@ export default function ArtifactDetailWrapper({ meta, children }) {
         <div className="artifact-detail-immersive__content" ref={contentRef}>
           {children}
         </div>
+        <InlineIntelligence meta={essayMeta} />
         {zoomOverlay}
       </div>
     );
@@ -525,6 +535,7 @@ export default function ArtifactDetailWrapper({ meta, children }) {
           {children}
         </div>
       </section>
+      <InlineIntelligence meta={essayMeta} />
       {zoomOverlay}
     </div>
   );

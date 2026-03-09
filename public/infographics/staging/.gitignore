@@ -1,0 +1,4 @@
+# Staging directory for infographic images before R2 upload.
+# Drop images here, run r2-upload-infographic.mjs, then delete.
+*
+!.gitignore

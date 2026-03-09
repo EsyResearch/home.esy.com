@@ -12,6 +12,7 @@ Documentation for reusable front-end patterns, components, and design implementa
 - [Sticky Position Fixes](./STICKY_POSITION_FIXES.md) - **Critical fixes for `position: sticky` breaking** (overflow, specificity, height)
 - [Image Display Patterns](./IMAGE_DISPLAY_PATTERNS.md) - Cover vs. Contain modes for responsive images
 - [Trailing Slash Standard](./TRAILING_SLASH_STANDARD.md) - URL conventions for SEO and sitemap consistency
+- [Inline Intelligence](./INLINE_INTELLIGENCE.md) - Highlight-to-insight system for visual essays (two-tier cache, abuse protection, session write-back)
 
 ### Deprecated
 - [Hero Scroll-Lock Pattern](./HERO_SCROLL_LOCK_PATTERN.md) - Superseded by general Scroll-Lock Pattern

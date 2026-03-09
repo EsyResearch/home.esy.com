@@ -112,6 +112,7 @@ export default function Navigation({
         const isPrivacyPage = normalizedPath === '/privacy';
         const isGlossaryPage = normalizedPath === '/glossary' || normalizedPath.startsWith('/glossary/');
         const isResearchPage = normalizedPath === '/research' || normalizedPath.startsWith('/research/');
+        const isInfographicsPage = normalizedPath === '/infographics' || normalizedPath.startsWith('/infographics/');
         // Check for 404 page - Next.js uses various paths
         // Also check body classes as fallback since pathname might not be reliable
         const hasNotFoundBodyClass = typeof window !== 'undefined' && (
@@ -126,7 +127,7 @@ export default function Navigation({
         const isSchoolOrCoursesSection = isSchoolArticle || isCoursesPage;
         
         // Pages that always use light theme (Navy Calm)
-        const isAlwaysLightPage = isEssaysPage || isAboutPage || isSchoolPage || isTemplatesPage || isDocsPage || isAgentsPage || isContactPage || isTermsPage || isPrivacyPage || isGlossaryPage || isResearchPage;
+        const isAlwaysLightPage = isEssaysPage || isAboutPage || isSchoolPage || isTemplatesPage || isDocsPage || isAgentsPage || isContactPage || isTermsPage || isPrivacyPage || isGlossaryPage || isResearchPage || isInfographicsPage;
         
         // Check for homepage themes
         if (isHomepage) {
@@ -466,6 +467,16 @@ export default function Navigation({
                         <span className="nav-artifact-desc">Visual research narratives</span>
                       </div>
                     </Link>
+                    <Link 
+                      href="/infographics/" 
+                      className="nav-artifact-item"
+                      onClick={() => setIsArtifactsOpen(false)}
+                    >
+                      <div className="nav-artifact-content">
+                        <span className="nav-artifact-title">Infographics</span>
+                        <span className="nav-artifact-desc">Citation-verified visual data</span>
+                      </div>
+                    </Link>
                   </div>
                 </div>
             </div>
@@ -586,10 +597,20 @@ export default function Navigation({
             </Link>
 
             <Link 
+              href="/infographics/" 
+              className={`mnav-item ${normalizedPathForNav.startsWith('/infographics') ? 'mnav-item--active' : ''}`}
+              onClick={() => setIsMobileMenuOpen(false)}
+              style={{ animationDelay: '0.08s' }}
+            >
+              <span className="mnav-item__label">Infographics</span>
+              <span className="mnav-item__desc">Citation-verified visual data</span>
+            </Link>
+
+            <Link 
               href="/templates/" 
               className={`mnav-item ${normalizedPathForNav.startsWith('/templates') ? 'mnav-item--active' : ''}`}
               onClick={() => setIsMobileMenuOpen(false)}
-              style={{ animationDelay: '0.10s' }}
+              style={{ animationDelay: '0.12s' }}
             >
               <span className="mnav-item__label">Templates</span>
               <span className="mnav-item__desc">Production-ready research formats</span>
@@ -599,7 +620,7 @@ export default function Navigation({
               href="/school/" 
               className={`mnav-item ${normalizedPathForNav.startsWith('/school') ? 'mnav-item--active' : ''}`}
               onClick={() => setIsMobileMenuOpen(false)}
-              style={{ animationDelay: '0.14s' }}
+              style={{ animationDelay: '0.16s' }}
             >
               <span className="mnav-item__label">School</span>
               <span className="mnav-item__desc">Research articles & guides</span>
@@ -609,7 +630,7 @@ export default function Navigation({
               href="/courses/" 
               className={`mnav-item ${normalizedPathForNav.startsWith('/courses') ? 'mnav-item--active' : ''}`}
               onClick={() => setIsMobileMenuOpen(false)}
-              style={{ animationDelay: '0.18s' }}
+              style={{ animationDelay: '0.20s' }}
             >
               <span className="mnav-item__label">Courses</span>
               <span className="mnav-item__desc">Interactive video lessons</span>
@@ -617,7 +638,7 @@ export default function Navigation({
           </nav>
 
           {/* Footer — CTA */}
-          <div className="mnav-footer" style={{ animationDelay: '0.24s' }}>
+          <div className="mnav-footer" style={{ animationDelay: '0.26s' }}>
             <a 
               href={ctaConfig.ctaHref}
               target="_blank"
