@@ -2321,6 +2321,21 @@ export default function TurkanaBoyV2Client() {
         </ul>
       </section>
 
+      {/* ── Related Infographics ── */}
+      <section className="turkana-v2-section turkana-v2-sources" id="related-infographics">
+        <h2>Related Infographics</h2>
+        <ul className="turkana-v2-sources-list" style={{ listStyle: 'none', padding: 0 }}>
+          <li>
+            <Link href="/infographics/seven-million-years-homo">
+              How Our Brains Grew Over 7 Million Years
+            </Link>
+            {' \u2014 '}
+            Cranial capacity comparison across 8 hominid species, from{' '}
+            <em>Sahelanthropus</em> (350 cc) to <em>Homo sapiens</em> (1,350 cc).
+          </li>
+        </ul>
+      </section>
+
       {/* ── Cluster Navigation ── */}
       <nav className="turkana-v2-cluster-nav">
         <h3>Explore the Cluster</h3>

@@ -2701,6 +2701,14 @@ export default function LucyClient() {
       From <em>Sahelanthropus</em> to <em>Homo sapiens</em> &mdash; the complete
       arc of hominin evolution in one visual essay.
     </li>
+    <li className="lucy-sources__credits-item">
+      <Link href="/infographics/seven-million-years-homo">
+        Infographic: How Our Brains Grew Over 7 Million Years
+      </Link>
+      {' \u2014 '}
+      Cranial capacity comparison across 8 hominid species, from{' '}
+      <em>Sahelanthropus</em> (350 cc) to <em>Homo sapiens</em> (1,350 cc).
+    </li>
   </ul>
 </div>
 

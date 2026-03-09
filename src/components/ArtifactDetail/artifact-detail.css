@@ -499,6 +499,39 @@
   color: var(--color-text-subtle, rgba(255, 255, 255, 0.5));
 }
 
+/* ─── Related Infographics ──────────────────────────────────── */
+.artifact-detail-spec__related-infographics {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.artifact-detail-spec__infographic-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(0, 168, 150, 0.06);
+  border: 1px solid rgba(0, 168, 150, 0.15);
+  border-radius: 8px;
+  color: #00A896;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.artifact-detail-spec__infographic-link:hover {
+  background: rgba(0, 168, 150, 0.12);
+  border-color: rgba(0, 168, 150, 0.3);
+  transform: translateX(2px);
+}
+
+.artifact-detail-spec__infographic-icon {
+  font-size: 0.875rem;
+  opacity: 0.7;
+}
+
 /* ─── Essay Content Frame ────────────────────────────────────── */
 .artifact-detail-content {
   max-width: 1200px;

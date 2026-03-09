@@ -57,6 +57,9 @@ const ESSAY_META = {
     'Kivell et al. 2015, Nat. Commun. -- Hand morphology',
     'Harcourt-Smith et al. 2015, Nat. Commun. -- Foot morphology',
   ],
+  relatedInfographics: [
+    { title: 'How Our Brains Grew Over 7 Million Years', href: '/infographics/seven-million-years-homo' },
+  ],
 };
 
 export const metadata = createVisualEssayMetadata({

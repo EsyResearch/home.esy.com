@@ -30,6 +30,8 @@ src/data/infographics.ts       <-- SINGLE SOURCE OF TRUTH
 
 Each infographic is defined by the `Infographic` interface in `src/data/infographics.ts`:
 
+### Core Fields
+
 | Field           | Type                   | Required | Purpose                                    |
 |-----------------|------------------------|----------|--------------------------------------------|
 | `id`            | `string`               | Yes      | URL slug, must be unique                   |
@@ -39,15 +41,44 @@ Each infographic is defined by the `Infographic` interface in `src/data/infograp
 | `category`      | `InfographicCategory`  | Yes      | Visual category for badge color            |
 | `imageSrc`      | `string`               | Yes      | Full-res image URL on R2                   |
 | `thumbnailSrc`  | `string`               | No       | 400px thumbnail URL for grid cards         |
+| `animatedSrc`   | `string`               | No       | URL for animated version (video/webp)      |
 | `imageAlt`      | `string`               | Yes      | Descriptive alt text (SEO-critical)        |
 | `width`         | `number`               | Yes      | Original pixel width                       |
 | `height`        | `number`               | Yes      | Original pixel height                      |
-| `dataPoints`    | `InfographicDataPoint[]`| No      | Key data rendered on detail page           |
-| `sources`       | `string[]`             | No       | Academic citations (displayed on detail)   |
-| `relatedEssays` | `string[]`             | No       | Paths to related visual essays for linking |
-| `keywords`      | `string[]`             | No       | Long-tail SEO keywords                     |
 | `publishedDate` | `string`               | Yes      | ISO date string for ordering               |
 | `draft`         | `boolean`              | No       | If true, excluded from published list      |
+
+### Artifact Spec Fields
+
+| Field           | Type                        | Required | Purpose                                    |
+|-----------------|-----------------------------|----------|--------------------------------------------|
+| `designSystem`  | `string`                    | No       | e.g. "Subject-derived"                     |
+| `sourceTier`    | `string`                    | No       | e.g. "Tier-1"                              |
+| `citationFirst` | `boolean`                   | No       | Whether data was verified before design    |
+| `model`         | `string`                    | No       | AI model used (e.g. "gemini-2.0-flash")   |
+| `authorship`    | `InfographicAuthorship`     | No       | Provenance: mode, director, model, contributions |
+| `palette`       | `Array<{name, color}>`      | No       | Color palette used in the infographic      |
+
+### Content Fields
+
+| Field           | Type                        | Required | Purpose                                    |
+|-----------------|-----------------------------|----------|--------------------------------------------|
+| `dataPoints`    | `InfographicDataPoint[]`    | No       | Key data rendered on detail page           |
+| `sources`       | `string[]`                  | No       | Academic citations (displayed in spec)     |
+| `relatedEssays` | `string[]`                  | No       | Paths to related visual essays for linking |
+| `keywords`      | `string[]`                  | No       | Long-tail SEO keywords                     |
+
+### Authorship Interface
+
+```typescript
+interface InfographicAuthorship {
+  mode: 'human' | 'ai-assisted' | 'ai-directed';
+  director?: { name: string; role?: string };
+  author?: { name: string; role?: string };
+  model?: string;
+  aiContributions?: string[];
+}
+```
 
 ## SEO Strategy
 
@@ -88,10 +119,11 @@ Add new clusters by updating `CLUSTER_LABELS` in `src/data/infographics.ts`.
 ```
 images.esy.com/
   infographics/
-    {slug}/
-      {slug}.{hash}.webp          <-- Full resolution
-      {slug}-thumb.{hash}.webp    <-- 400px thumbnail
+    {slug}.{hash}.webp            <-- Full resolution
+    {slug}-thumb.{hash}.webp      <-- 400px thumbnail
 ```
+
+Flat key structure — no subdirectories per slug.
 
 - All images are content-hashed for cache-busting with immutable cache headers
 - WebP at quality 90 for full-res, quality 80 for thumbnails
@@ -137,12 +169,105 @@ node scripts/r2-upload-infographic.mjs \
 | Route                      | Component                          | Purpose          |
 |----------------------------|------------------------------------|------------------|
 | `/infographics`            | `page.tsx` → `InfographicsIndexClient` | Grid index   |
-| `/infographics/[slug]`     | `[slug]/page.tsx` → `InfographicDetailClient` | Detail   |
+| `/infographics/[slug]`     | `[slug]/page.tsx` → `InfographicDetailClient` → `InfographicArtifactWrapper` | Artifact detail |
 
 Both routes use Next.js App Router with:
 - Server components for metadata generation
 - Client components for interactivity (filtering, image loading)
 - `generateStaticParams` for build-time static generation
+
+### Navigation Behavior
+
+Individual infographic detail pages (`/infographics/[slug]`) hide the site-wide
+navigation and footer via `ConditionalNavigation.js` and `ConditionalFooter.js`.
+The artifact wrapper provides its own toolbar, matching the pattern used by
+visual essay detail pages.
+
+## Detail Page Architecture
+
+The infographic detail page uses `InfographicArtifactWrapper`
+(`src/components/InfographicArtifact/InfographicArtifactWrapper.tsx`),
+which mirrors the visual language of the essay `ArtifactDetailWrapper` but is
+purpose-built for static image artifacts.
+
+### Artifact Mode (Default)
+
+The default view presents the infographic as a produced artifact:
+
+```
+┌─────────────────────────────────────────────┐
+│ ← Infographics         [Science] [Cinematic]│  Toolbar (sticky)
+├─────────────────────────────────────────────┤
+│         ── Artifact · Research Infographic ──│  Provenance line
+│              How Our Brains Grew…            │  Title
+│         Cranial capacity comparison…         │  Description
+│      5 Tier-1 sources · Human Evolution      │  Meta row
+│      [View Infographic] [Cinematic Mode]     │  CTAs
+├─────────────────────────────────────────────┤
+│  ▾ Artifact Spec                             │  Collapsible spec panel
+│  ┌──────┬──────┬──────┬──────┐              │    - Template, Design System
+│  │Templ.│Design│Publi.│Direct│              │    - Published, Authorship
+│  └──────┴──────┴──────┴──────┘              │    - Source Quality, Citation-First
+│  Color Palette: ■ ■ ■ ■                     │    - Dimensions, Palette
+│  Key Sources: [tag] [tag] [tag]              │    - Sources, Related Essays
+├─────────────────────────────────────────────┤
+│                                              │
+│            [ Infographic Image ]        [⛶]  │  Full-width image + cinematic btn
+│                                              │
+├─────────────────────────────────────────────┤
+│  KEY DATA                                    │  Data points panel
+│  Species shown ................... 8         │
+│  Time span ............. 7 million years     │
+├─────────────────────────────────────────────┤
+│  Related Visual Essays                       │  Cross-links to essays
+│  ┌──────────┬──────────┬──────────┐         │
+│  │ Essay    │ Essay    │ Essay    │         │
+│  └──────────┴──────────┴──────────┘         │
+├─────────────────────────────────────────────┤
+│  More in Human Evolution                     │  Cluster siblings (image cards)
+│  ┌──────────┬──────────┬──────────┐         │
+│  │ [image]  │ [image]  │ [image]  │         │
+│  │  Title   │  Title   │  Title   │         │
+│  └──────────┴──────────┴──────────┘         │
+└─────────────────────────────────────────────┘
+```
+
+### Cinematic Mode
+
+Cinematic mode is an immersive full-viewport image viewer optimized for
+infographic inspection. It replaces the essay-style "Immersive Mode" with
+an image-centric experience.
+
+**Entry points:**
+- Toolbar "Cinematic Mode" button
+- Hero CTA "Cinematic Mode" button
+- Small expand icon (top-right corner of image, appears on hover)
+
+**Behavior:**
+- Full-screen `#000` overlay at `z-index: 9999`
+- Lite toolbar: exit button + infographic title
+- Image centered at maximum viewport-fitting size
+  (`max-width: 90vw`, `object-fit: contain`)
+- Left/right arrow buttons navigate between infographics in the same cluster
+- Keyboard: Escape exits, Arrow Left/Right navigates cluster
+
+**Future — Animated Toggle:**
+When `animatedSrc` is set on an infographic entry, the cinematic toolbar
+will show a static/animated toggle. This enables switching between the
+original infographic and an AI-animated version (video or animated webp).
+The toggle is currently a stub that only renders when the field is present.
+
+### Component Structure
+
+```
+src/components/InfographicArtifact/
+  InfographicArtifactWrapper.tsx   ← Main wrapper (artifact + cinematic modes)
+  infographic-artifact.css         ← BEM styles, iga-* prefix
+```
+
+The wrapper is NOT a refactoring of `ArtifactDetailWrapper`. It is a separate
+component that mirrors the visual language but is tailored to infographic metadata
+and the cinematic viewing experience. This avoids coupling with the essay system.
 
 ## Quality Checklist (Per Infographic)
 
@@ -161,6 +286,8 @@ Before publishing, verify:
 
 The following will be developed as the infographic production system matures:
 
+- **Animated infographics**: AI-animated versions of static infographics
+  (data model field `animatedSrc` is ready; cinematic mode toggle is stubbed)
 - **Nano Banana Pro**: AI infographic generation engine (Gemini-powered)
 - **Template system**: Reusable infographic templates with data binding
 - **Batch upload**: Process entire cluster of infographics at once

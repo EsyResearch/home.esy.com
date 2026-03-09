@@ -25,6 +25,14 @@ export interface InfographicDataPoint {
   value: string;
 }
 
+export interface InfographicAuthorship {
+  mode: 'human' | 'ai-assisted' | 'ai-directed';
+  director?: { name: string; role?: string };
+  author?: { name: string; role?: string };
+  model?: string;
+  aiContributions?: string[];
+}
+
 export interface Infographic {
   id: string;
   title: string;
@@ -33,9 +41,16 @@ export interface Infographic {
   category: InfographicCategory;
   imageSrc: string;
   thumbnailSrc?: string;
+  animatedSrc?: string;
   imageAlt: string;
   width: number;
   height: number;
+  designSystem?: string;
+  sourceTier?: string;
+  citationFirst?: boolean;
+  model?: string;
+  authorship?: InfographicAuthorship;
+  palette?: Array<{ name: string; color: string }>;
   dataPoints?: InfographicDataPoint[];
   sources?: string[];
   relatedEssays?: string[];
@@ -74,6 +89,22 @@ const infographics: Infographic[] = [
     imageAlt: 'Eight hominid skulls arranged chronologically showing brain volume growth from 350 cc to 1,450 cc over 7 million years, with Homo naledi as a small-brained outlier contemporary with Homo sapiens',
     width: 1376,
     height: 768,
+    designSystem: 'Subject-derived',
+    sourceTier: 'Tier-1',
+    citationFirst: true,
+    model: 'nano-banana-2',
+    authorship: {
+      mode: 'ai-directed',
+      director: { name: 'Zev Uhuru' },
+      model: 'nano-banana-2',
+      aiContributions: ['research', 'visualization'],
+    },
+    palette: [
+      { name: 'Deep Black', color: '#0A0A0A' },
+      { name: 'Bone Ivory', color: '#E8DCC8' },
+      { name: 'Brain Amber', color: '#D4883A' },
+      { name: 'Fossil Grey', color: '#8A8477' },
+    ],
     dataPoints: [
       { label: 'Species shown', value: '8' },
       { label: 'Time span', value: '7 million years' },
@@ -82,11 +113,11 @@ const infographics: Infographic[] = [
       { label: 'The outlier', value: 'H. naledi — 500 cc at 300 ka' },
     ],
     sources: [
-      'Holloway, R.L., Broadfield, D.C. & Yuan, M.S. (2004). The Human Fossil Record, Volume 3: Brain Endocasts.',
-      'Berger, L.R. et al. (2015). Homo naledi, a new species of the genus Homo. eLife.',
-      'Dirks, P.H.G.M. et al. (2017). The age of Homo naledi. eLife.',
-      'Hublin, J.-J. et al. (2017). New fossils from Jebel Irhoud, Morocco. Nature.',
-      'Walker, A. & Leakey, R.E. (1993). The Nariokotome Homo erectus Skeleton.',
+      'Seven Million Years: The Complete Visual History of Our Kind — esy.com/essays/science/seven-million-years',
+      'Turkana Boy: The First Modern Body — esy.com/essays/science/turkana-boy',
+      'Lucy: Before the Genus Homo — esy.com/essays/science/lucy',
+      'Homo naledi: The Small-Brained Species That Buried Its Dead — esy.com/essays/science/homo-naledi',
+      'Human Evolution, Visualized — esy.com/essays/history/human-evolution',
     ],
     relatedEssays: [
       '/essays/science/seven-million-years',

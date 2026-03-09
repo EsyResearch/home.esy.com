@@ -1386,6 +1386,14 @@ export default function SevenMillionYearsClient() {
                 us human. A visual essay on the Rising Star Cave discovery that
                 challenges the link between brain size and behavioural complexity.
               </li>
+              <li className="smy-sources__credits-item">
+                <Link href="/infographics/seven-million-years-homo" className="smy-narrative__link">
+                  Infographic: How Our Brains Grew Over 7 Million Years
+                </Link>
+                {' \u2014 '}
+                Cranial capacity comparison across 8 hominid species, from{' '}
+                <em>Sahelanthropus</em> (350 cc) to <em>Homo sapiens</em> (1,350 cc).
+              </li>
             </ul>
           </div>
         </div>

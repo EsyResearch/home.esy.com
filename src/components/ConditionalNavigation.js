@@ -69,13 +69,17 @@ const ConditionalNavigation = () => {
   // Check if we're on agents reference pages (own sidebar navigation)
   const isAgentsPage = normalizedPath?.startsWith('/agents');
   
+  // Individual infographic detail pages use their own artifact toolbar
+  const isInfographicViewPage = normalizedPath?.startsWith('/infographics/') && normalizedPath !== '/infographics';
+
   // Don't render navigation on:
   // - Essay view pages (focused reading)
+  // - Infographic detail pages (artifact wrapper has own toolbar)
   // - Docs pages (own navigation)
   // - Agents pages (own sidebar navigation)
   // - Scrollytelling story pages (own header via ScrollytellingHeader)
   // - Photo essays landing page (immersive experience with own header)
-  if (isEssayViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage) {
+  if (isEssayViewPage || isInfographicViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage) {
     return null;
   }
 

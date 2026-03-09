@@ -20,6 +20,12 @@ const ConditionalFooter = () => {
     return null;
   }
   
+  // Individual infographic detail pages use their own artifact wrapper
+  const isInfographicViewPage = normalizedPath?.startsWith('/infographics/') && normalizedPath !== '/infographics';
+  if (isInfographicViewPage) {
+    return null;
+  }
+  
   // Check if we're on a prompt library page (individual prompt or category page)
   const isPromptPage = normalizedPath?.startsWith('/prompt-library/') && normalizedPath !== '/prompt-library';
   

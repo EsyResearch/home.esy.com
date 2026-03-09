@@ -59,4 +59,7 @@ export const ESSAY_META = {
     'MacLarnon & Hewitt 1999, AJPA — Spinal cord and breathing control',
     'Lepre et al. 2011, Nature — Earliest Acheulean from West Turkana',
   ],
+  relatedInfographics: [
+    { title: 'How Our Brains Grew Over 7 Million Years', href: '/infographics/seven-million-years-homo' },
+  ],
 };

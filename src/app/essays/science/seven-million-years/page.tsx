@@ -45,6 +45,9 @@ const ESSAY_META = {
     'Reich et al. 2010, Nature -- Denisovan Genome',
     'Stringer 2012, Lone Survivors',
   ],
+  relatedInfographics: [
+    { title: 'How Our Brains Grew Over 7 Million Years', href: '/infographics/seven-million-years-homo' },
+  ],
 };
 
 export const metadata = createVisualEssayMetadata({
