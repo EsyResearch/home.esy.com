@@ -32,6 +32,22 @@ export interface ArtifactAuthorship {
   aiContributions?: AiContribution[];
 }
 
+export interface InfographicMeta {
+  title: string;
+  description: string;
+  cluster: string;
+  category: string;
+  imageSrc: string;
+  imageAlt: string;
+  width: number;
+  height: number;
+  sources?: string[];
+  relatedEssays?: string[];
+  published: string;
+  template: string;
+  authorship?: ArtifactAuthorship;
+}
+
 export interface ArtifactMeta {
   title: string;
   subtitle: string;

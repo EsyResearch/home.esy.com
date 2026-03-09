@@ -64,6 +64,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       return a.localeCompare(b)
     })
 
+  // Get infographic slugs from data registry
+  let infographicSlugs: string[] = []
+  try {
+    const infographicsModule = require('@/data/infographics')
+    infographicSlugs = infographicsModule.getInfographicSlugs?.() || []
+  } catch {
+    // Infographics module may not be available during build
+  }
+
   // Get dynamic routes from content directories
   const essaysDir = path.join(process.cwd(), 'src/content/essays')
   const glossaryDir = path.join(process.cwd(), 'src/content/glossary')
@@ -135,12 +144,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
+  // Add infographic routes (all with trailing slashes)
+  infographicSlugs.forEach(slug => {
+    sitemap.push({
+      url: `${baseUrl}/infographics/${slug}/`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    })
+  })
+
   // Log discovered routes for debugging
   console.log(`Sitemap generated with ${sitemap.length} total routes:`)
   console.log(`- ${discoveredRoutes.length} static routes (auto-discovered)`)
   console.log(`- ${essays.length} essay routes`)
   console.log(`- ${glossaryTerms.length} glossary routes`)
   console.log(`- ${schoolArticles.length} school article routes`)
+  console.log(`- ${infographicSlugs.length} infographic routes`)
 
   return sitemap
 }
