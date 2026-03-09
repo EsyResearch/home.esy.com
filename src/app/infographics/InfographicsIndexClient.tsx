@@ -165,13 +165,13 @@ function CoverflowHero() {
                 }}
               >
                 <Image
-                  src={item.thumbnailSrc || item.imageSrc}
+                  src={item.imageSrc}
                   alt={item.imageAlt}
                   width={item.width}
                   height={item.height}
                   className="ig-coverflow__image"
                   priority={i < 3}
-                  sizes="(max-width: 768px) 90vw, 640px"
+                  sizes="(max-width: 768px) 95vw, (max-width: 1200px) 800px, 880px"
                 />
               </Link>
             );
