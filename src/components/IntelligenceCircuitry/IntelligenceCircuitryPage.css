@@ -2849,3 +2849,457 @@
 .ic-page--navy-dark .circuit-corner {
   border-color: rgba(0, 212, 170, 0.2);
 }
+
+
+/* ============================================
+   INFOGRAPHIC SHOWCASE — Compact Coverflow
+   Inline within unified Artifacts section
+   ============================================ */
+
+/* Artifact type divider — separates Infographics / Visual Essays */
+.ic-artifact-type-divider {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--ic-space-md);
+  margin-bottom: var(--ic-space-sm);
+  border-bottom: 1px solid var(--ic-border-subtle);
+}
+
+.ic-artifact-type-label {
+  font-family: var(--ic-font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ic-text-muted);
+}
+
+.ic-artifact-type-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--ic-font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ic-text-subtle);
+  text-decoration: none;
+  transition: color 0.2s var(--ic-ease);
+}
+
+.ic-artifact-type-link:hover {
+  color: var(--ic-accent);
+}
+
+.ic-artifact-type-link svg {
+  transition: transform 0.2s var(--ic-ease);
+}
+
+.ic-artifact-type-link:hover svg {
+  transform: translateX(2px);
+}
+
+/* Coverflow container */
+.ic-infographic-coverflow {
+  position: relative;
+  padding: var(--ic-space-xl) 0 var(--ic-space-md);
+  overflow: hidden;
+}
+
+.ic-infographic-track {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+@media (min-width: 768px) {
+  .ic-infographic-track {
+    max-width: 680px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .ic-infographic-track {
+    max-width: 720px;
+  }
+}
+
+/* Individual card */
+.ic-infographic-card {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 4px;
+  background: var(--ic-surface-elevated);
+  box-shadow: var(--ic-shadow-md);
+  transition: all 0.55s cubic-bezier(0.32, 0.72, 0, 1);
+  cursor: pointer;
+  text-decoration: none;
+  backface-visibility: hidden;
+  transform-origin: center center;
+}
+
+.ic-infographic-card--active {
+  box-shadow: var(--ic-shadow-lg);
+}
+
+.ic-infographic-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 7px;
+}
+
+/* Arrows */
+.ic-infographic-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--ic-card-border);
+  background: var(--ic-surface);
+  color: var(--ic-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s var(--ic-ease);
+  box-shadow: var(--ic-shadow-sm);
+}
+
+.ic-infographic-arrow:hover {
+  border-color: var(--ic-accent);
+  color: var(--ic-accent);
+}
+
+.ic-infographic-arrow--prev {
+  left: var(--ic-space-sm);
+}
+
+.ic-infographic-arrow--prev svg {
+  transform: rotate(180deg);
+}
+
+.ic-infographic-arrow--next {
+  right: var(--ic-space-sm);
+}
+
+@media (min-width: 768px) {
+  .ic-infographic-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .ic-infographic-arrow--prev {
+    left: var(--ic-space-md);
+  }
+
+  .ic-infographic-arrow--next {
+    right: var(--ic-space-md);
+  }
+}
+
+@media (min-width: 1200px) {
+  .ic-infographic-arrow--prev {
+    left: var(--ic-space-2xl);
+  }
+
+  .ic-infographic-arrow--next {
+    right: var(--ic-space-2xl);
+  }
+}
+
+/* Dots */
+.ic-infographic-dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--ic-space-xs);
+  margin-top: var(--ic-space-md);
+}
+
+.ic-infographic-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: var(--ic-border);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s var(--ic-ease);
+}
+
+.ic-infographic-dot:hover {
+  background: var(--ic-text-muted);
+}
+
+.ic-infographic-dot--active {
+  background: var(--ic-accent);
+  width: 20px;
+  border-radius: 4px;
+}
+
+/* Info block below coverflow */
+.ic-infographic-info {
+  text-align: center;
+  padding: var(--ic-space-lg) var(--ic-space-lg) var(--ic-space-3xl);
+}
+
+.ic-infographic-cluster {
+  display: inline-block;
+  font-family: var(--ic-font-mono);
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: var(--ic-space-xs);
+}
+
+.ic-infographic-title {
+  font-family: var(--ic-font-display);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: var(--ic-space-sm);
+  color: var(--ic-text);
+}
+
+.ic-infographic-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s var(--ic-ease);
+}
+
+.ic-infographic-title a:hover {
+  color: var(--ic-accent);
+}
+
+.ic-infographic-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ic-space-xs);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ic-text-muted);
+  text-decoration: none;
+  transition: color 0.2s var(--ic-ease);
+}
+
+.ic-infographic-cta:hover {
+  color: var(--ic-accent);
+}
+
+.ic-infographic-cta svg {
+  transition: transform 0.3s var(--ic-ease);
+}
+
+.ic-infographic-cta:hover svg {
+  transform: translateX(3px);
+}
+
+
+/* ─────────────────────────────────────────────
+   INFOGRAPHIC SHOWCASE — Light (Violet Mist)
+   ───────────────────────────────────────────── */
+.ic-page--light .ic-artifact-type-divider {
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+.ic-page--light .ic-artifact-type-label {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.ic-page--light .ic-artifact-type-link {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.ic-page--light .ic-artifact-type-link:hover {
+  color: var(--ic-accent);
+}
+
+.ic-page--light .ic-infographic-card {
+  background: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+.ic-page--light .ic-infographic-card--active {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 20px 60px rgba(0, 0, 0, 0.06);
+}
+
+.ic-page--light .ic-infographic-arrow {
+  background: #FFFFFF;
+  border-color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.ic-page--light .ic-infographic-arrow:hover {
+  border-color: var(--ic-accent);
+  color: var(--ic-accent);
+}
+
+.ic-page--light .ic-infographic-dot {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.ic-page--light .ic-infographic-dot:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.ic-page--light .ic-infographic-dot--active {
+  background: var(--ic-accent);
+}
+
+.ic-page--light .ic-infographic-title {
+  color: #0f172a;
+}
+
+.ic-page--light .ic-infographic-cta {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.ic-page--light .ic-infographic-cta:hover {
+  color: var(--ic-accent);
+}
+
+
+/* ─────────────────────────────────────────────
+   INFOGRAPHIC SHOWCASE — Navy Calm
+   ───────────────────────────────────────────── */
+.ic-page--navy-calm .ic-artifact-type-divider {
+  border-bottom-color: #E9ECEF;
+}
+
+.ic-page--navy-calm .ic-artifact-type-label {
+  color: #6C757D;
+}
+
+.ic-page--navy-calm .ic-artifact-type-link {
+  color: rgba(10, 37, 64, 0.4);
+}
+
+.ic-page--navy-calm .ic-artifact-type-link:hover {
+  color: #00A896;
+}
+
+.ic-page--navy-calm .ic-infographic-card {
+  background: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(10, 37, 64, 0.06), 0 8px 24px rgba(10, 37, 64, 0.04);
+}
+
+.ic-page--navy-calm .ic-infographic-card--active {
+  box-shadow: 0 4px 16px rgba(10, 37, 64, 0.08), 0 20px 60px rgba(10, 37, 64, 0.06);
+}
+
+.ic-page--navy-calm .ic-infographic-arrow {
+  background: #FFFFFF;
+  border-color: rgba(10, 37, 64, 0.12);
+  color: #6C757D;
+  box-shadow: 0 2px 8px rgba(10, 37, 64, 0.06);
+}
+
+.ic-page--navy-calm .ic-infographic-arrow:hover {
+  border-color: #00A896;
+  color: #00A896;
+}
+
+.ic-page--navy-calm .ic-infographic-dot {
+  background: rgba(10, 37, 64, 0.12);
+}
+
+.ic-page--navy-calm .ic-infographic-dot:hover {
+  background: rgba(10, 37, 64, 0.3);
+}
+
+.ic-page--navy-calm .ic-infographic-dot--active {
+  background: #00A896;
+}
+
+.ic-page--navy-calm .ic-infographic-title {
+  color: #0A2540;
+}
+
+.ic-page--navy-calm .ic-infographic-cta {
+  color: #6C757D;
+}
+
+.ic-page--navy-calm .ic-infographic-cta:hover {
+  color: #00A896;
+}
+
+
+/* ─────────────────────────────────────────────
+   INFOGRAPHIC SHOWCASE — Navy Dark
+   ───────────────────────────────────────────── */
+.ic-page--navy-dark .ic-artifact-type-divider {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.ic-page--navy-dark .ic-artifact-type-label {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.ic-page--navy-dark .ic-artifact-type-link {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.ic-page--navy-dark .ic-artifact-type-link:hover {
+  color: #00D4AA;
+}
+
+.ic-page--navy-dark .ic-infographic-card {
+  background: #0F3460;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.ic-page--navy-dark .ic-infographic-card--active {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.ic-page--navy-dark .ic-infographic-arrow {
+  background: #0F3460;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ic-page--navy-dark .ic-infographic-arrow:hover {
+  border-color: #00D4AA;
+  color: #00D4AA;
+}
+
+.ic-page--navy-dark .ic-infographic-dot {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.ic-page--navy-dark .ic-infographic-dot:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.ic-page--navy-dark .ic-infographic-dot--active {
+  background: #00D4AA;
+}
+
+.ic-page--navy-dark .ic-infographic-title {
+  color: #FFFFFF;
+}
+
+.ic-page--navy-dark .ic-infographic-cta {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ic-page--navy-dark .ic-infographic-cta:hover {
+  color: #00D4AA;
+}
