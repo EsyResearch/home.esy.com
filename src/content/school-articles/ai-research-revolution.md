@@ -4,7 +4,7 @@ category: "Academic Writing"
 author:
   name: "Zev Uhuru"
   title: "Workflow Designer, Esy"
-  avatar: "https://ui-avatars.com/api/?name=Zev+Uhuru&background=6366f1&color=fff"
+  avatar: "/images/zev-ai.jpeg"
   bio: "Explores the intersection of AI and academic research."
 date: "Mar 18, 2025"
 readTime: "6 min read"

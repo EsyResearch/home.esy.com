@@ -4,7 +4,7 @@ category: "LLM Basics"
 author:
   name: "Zev Uhuru"
   title: "Workflow Designer, Esy"
-  avatar: "https://ui-avatars.com/api/?name=Zev+Uhuru&background=6366f1&color=fff"
+  avatar: "/images/zev-ai.jpeg"
   bio: "Leading expert in natural language processing and deep learning."
 date: "Mar 20, 2025"
 readTime: "12 min read"

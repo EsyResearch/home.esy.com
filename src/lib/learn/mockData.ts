@@ -751,7 +751,7 @@ Every infographic must include:
 const author = {
   name: 'Zev Uhuru',
   role: 'Workflow Designer, Esy',
-  avatar: 'https://images.esy.com/essays/authors/zev-uhuru.1d0f7777ab.webp',
+  avatar: '/images/zev-ai.jpeg',
 };
 
 export const courses: Course[] = [

@@ -165,7 +165,7 @@ export default function AIAgentsPage() {
           <AgentsAuthorSection
             name="Zev Uhuru"
             role="Workflow Designer at Esy"
-            image="/images/zev_uhuru.webp"
+            image="/images/zev-ai.jpeg"
             socials={[
               {
                 platform: "linkedin",

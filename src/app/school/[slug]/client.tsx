@@ -356,7 +356,7 @@ export default function VideoPageClient({ video, related }: VideoPageClientProps
               }}
             >
               <Image
-                src="https://images.esy.com/essays/authors/zev-uhuru.1d0f7777ab.webp"
+                src="/images/zev-ai.jpeg"
                 alt="Zev Uhuru"
                 width={36}
                 height={36}
