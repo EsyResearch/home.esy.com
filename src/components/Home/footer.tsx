@@ -239,7 +239,7 @@ export default function Footer () {
         <div className="footer-content">
           <div className="footer-brand">
             <div className="footer-logo">
-              <Logo suffix={logoSuffix} href="" showText={false} theme={logoTheme} />
+              <Logo href="" wordmarkOnly wordmarkFont="blackops" theme={logoTheme} />
             </div>
             <p className="footer-desc" style={{ color: theme.muted }}>
               Esy is a citation-first research platform for creating reliable, auditable artifacts — essays, visuals, and learning materials.

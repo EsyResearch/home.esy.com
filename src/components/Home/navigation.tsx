@@ -416,7 +416,8 @@ export default function Navigation({
             <Logo
               suffix=""
               href=""
-              showText={false}
+              wordmarkOnly
+              wordmarkFont="blackops" // swap to "zcool" or "noto" to compare
               theme={isLightMode ? 'light' : isNavyDark ? 'navy-dark' : 'dark'}
               size={isMobile ? 36 : 60}
               priority
@@ -569,7 +570,8 @@ export default function Navigation({
               <Logo
                 suffix=""
                 href=""
-                showText={false}
+                wordmarkOnly
+                wordmarkFont="blackops"
                 theme={isLightMode ? 'light' : 'dark'}
                 size={36}
                 priority

@@ -70,3 +70,40 @@
   font-weight: 700;
   color: var(--text);
 }
+
+/* ── Wordmark-only mode ─────────────────────────────────────── */
+
+.logoWordmarkOnly {
+  gap: 0;
+}
+
+/* Base wordmark — adjust --wordmark-size to resize globally */
+.logoWordmark {
+  --wordmark-size: 2.5rem;
+  font-size: var(--wordmark-size);
+  font-weight: 400;
+  line-height: 1;
+  user-select: none;
+}
+
+/* ZCOOL XiaoWei — distinctive character at wordmark scale */
+.logoWordmark__zcool {
+  font-family: var(--font-zcool-xiaowei), serif;
+  letter-spacing: 0.025em;
+}
+
+/* Noto Serif JP — clean and strong */
+.logoWordmark__noto {
+  font-family: var(--font-noto-serif-jp), serif;
+  letter-spacing: 0.01em;
+}
+
+/* Black Ops One — bold military stencil */
+.logoWordmark__blackops {
+  font-family: var(--font-black-ops-one), sans-serif;
+  letter-spacing: 0.03em;
+}
+
+.logoWordmarkDot {
+  color: #00A896;
+}

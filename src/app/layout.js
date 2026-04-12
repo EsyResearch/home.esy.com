@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono, Newsreader, Inter, Literata } from "next/font/google";
+import { Geist, Geist_Mono, Newsreader, Inter, Literata, ZCOOL_XiaoWei, Noto_Serif_JP, Black_Ops_One } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Home/navigation";
 import Footer from "@/components/Home/footer";
@@ -33,6 +33,24 @@ const inter = Inter({
 const literata = Literata({
   variable: "--font-literata",
   subsets: ["latin"],
+});
+
+const zcoolXiaowei = ZCOOL_XiaoWei({
+  variable: "--font-zcool-xiaowei",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const notoSerifJP = Noto_Serif_JP({
+  variable: "--font-noto-serif-jp",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+const blackOpsOne = Black_Ops_One({
+  variable: "--font-black-ops-one",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 // Check if QA environment (set via NEXT_PUBLIC_IS_QA=true)
@@ -91,7 +109,7 @@ export default function RootLayout({ children }) {
         <MicrosoftClarity />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} ${inter.variable} ${literata.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} ${inter.variable} ${literata.variable} ${zcoolXiaowei.variable} ${notoSerifJP.variable} ${blackOpsOne.variable} antialiased`}
       >
         <GoogleTagManagerBody />
         <HeaderSearchProvider>

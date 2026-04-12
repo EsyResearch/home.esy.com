@@ -8,6 +8,8 @@ const Logo = ({
   className = '', 
   size = 60,
   showText = true,
+  wordmarkOnly = false, // Show only the text wordmark, no image
+  wordmarkFont = 'zcool', // 'zcool' | 'noto' — swap to compare typefaces
   theme = 'dark', // Theme options: 'dark', 'light', 'navy-dark'
   priority = false // Whether this image should be preloaded (for LCP optimization)
 }) => {
@@ -44,17 +46,28 @@ const Logo = ({
   
   const logoPath = getLogoPath();
 
+  const wordmarkFontClass =
+    wordmarkFont === 'noto'     ? styles.logoWordmark__noto :
+    wordmarkFont === 'blackops' ? styles.logoWordmark__blackops :
+                                  styles.logoWordmark__zcool;
+
+  const wordmarkColor = isDarkTheme
+    ? 'rgba(255, 255, 255, 0.92)'
+    : 'rgba(15, 23, 42, 0.88)';
+
   const logoContent = (
-    <div className={`${styles.logo} ${className}`}>
-      <div className={styles.logoIcon}>
-        <Image 
-          src={logoPath} 
-          alt="Esy Logo" 
-          width={size} 
-          height={size}
-          priority={priority}
-        />
-      </div>
+    <div className={`${styles.logo} ${wordmarkOnly ? styles.logoWordmarkOnly : ''} ${className}`}>
+      {!wordmarkOnly && (
+        <div className={styles.logoIcon}>
+          <Image 
+            src={logoPath} 
+            alt="Esy Logo" 
+            width={size} 
+            height={size}
+            priority={priority}
+          />
+        </div>
+      )}
       {suffix && (
         <span 
           ref={suffixRef}
@@ -97,8 +110,17 @@ const Logo = ({
           {suffix}
         </span>
       )}
-      {showText && (
-        <span className={styles.logoText}>esy</span>
+      {(showText || wordmarkOnly) && (
+        wordmarkOnly ? (
+          <span
+            className={`${styles.logoWordmark} ${wordmarkFontClass}`}
+            style={{ color: wordmarkColor }}
+          >
+            <span style={{ color: '#00A896' }}>e</span>sy
+          </span>
+        ) : (
+          <span className={styles.logoText}>esy</span>
+        )
       )}
     </div>
   );
