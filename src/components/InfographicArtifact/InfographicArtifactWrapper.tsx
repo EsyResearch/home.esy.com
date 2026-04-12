@@ -721,12 +721,16 @@ export default function InfographicArtifactWrapper({ infographic }: Props) {
       {/* ─── Minimal Footer ─── */}
       <footer className="iga-footer">
         <Link href="/" className="iga-footer__brand">
-          <Image
-            src="/esy-logos/logo-files/for-web/svg/white-logo-no-bg.svg"
-            alt="esy"
-            width={32}
-            height={32}
-          />
+          <span style={{
+            fontFamily: 'var(--font-black-ops-one), sans-serif',
+            fontSize: '1.5rem',
+            letterSpacing: '0.03em',
+            lineHeight: 1,
+            userSelect: 'none',
+          }}>
+            <span style={{ color: '#00A896' }}>e</span>
+            <span style={{ color: 'rgba(255, 255, 255, 0.92)' }}>sy</span>
+          </span>
         </Link>
       </footer>
 
