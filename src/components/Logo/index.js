@@ -3,8 +3,8 @@ import { useEffect, useRef } from 'react';
 import styles from './Logo.module.css';
 
 const Logo = ({ 
-  suffix, 
-  href, 
+  suffix = undefined, 
+  href = '', 
   className = '', 
   size = 60,
   showText = true,
