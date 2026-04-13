@@ -319,13 +319,16 @@ const NewsletterModal: React.FC<NewsletterModalProps> = ({ isOpen, onClose, sour
                   <>
                     {/* Logo */}
                     <div style={styles.logoContainer}>
-                      <img 
-                        src="/esy-logos/logo-files/for-web/png/black-logo-no-bg.png"
-                        alt="Esy"
-                        width={56}
-                        height={56}
-                        style={{ display: 'block' }}
-                      />
+                      <span style={{
+                        fontFamily: 'var(--font-black-ops-one), sans-serif',
+                        fontSize: '2.5rem',
+                        letterSpacing: '0.03em',
+                        lineHeight: 1,
+                        userSelect: 'none',
+                      }}>
+                        <span style={{ color: '#00A896' }}>e</span>
+                        <span style={{ color: 'rgba(15, 23, 42, 0.88)' }}>sy</span>
+                      </span>
                     </div>
 
               {/* Content */}

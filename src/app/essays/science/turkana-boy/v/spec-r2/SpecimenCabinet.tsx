@@ -103,12 +103,16 @@ function EsyBrandedLoader({ visible }: { visible: boolean }) {
       className="turkana-3d-loader"
       style={{ opacity: visible ? 1 : 0, pointerEvents: 'none' }}
     >
-      <img
-        className="turkana-3d-loader__mark"
-        src="/esy-logos/logo-files/for-web/svg/white-logo-no-bg.svg"
-        alt="esy"
-        draggable={false}
-      />
+      <span style={{
+        fontFamily: 'var(--font-black-ops-one), sans-serif',
+        fontSize: '2rem',
+        letterSpacing: '0.03em',
+        lineHeight: 1,
+        userSelect: 'none',
+      }}>
+        <span style={{ color: '#00A896' }}>e</span>
+        <span style={{ color: 'rgba(255, 255, 255, 0.92)' }}>sy</span>
+      </span>
       <span className="turkana-3d-loader__text">Loading 3D specimen&hellip;</span>
     </div>
   );

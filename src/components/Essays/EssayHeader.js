@@ -57,14 +57,16 @@ const EssayHeader = ({
 
           <div className={styles.centerSection}>
             <Link href="/" className={styles.logoLink}>
-              <img 
-                src={theme === 'dark' 
-                  ? "/esy-logos/logo-files/for-web/png/white-logo-no-bg.png"
-                  : "/esy-logos/logo-files/for-web/png/black-logo-no-bg.png"
-                } 
-                alt="Esy" 
-                className={styles.logo}
-              />
+              <span style={{
+                fontFamily: 'var(--font-black-ops-one), sans-serif',
+                fontSize: '1.75rem',
+                letterSpacing: '0.03em',
+                lineHeight: 1,
+                userSelect: 'none',
+              }}>
+                <span style={{ color: '#00A896' }}>e</span>
+                <span style={{ color: theme === 'dark' ? 'rgba(255, 255, 255, 0.92)' : 'rgba(15, 23, 42, 0.88)' }}>sy</span>
+              </span>
             </Link>
           </div>
 

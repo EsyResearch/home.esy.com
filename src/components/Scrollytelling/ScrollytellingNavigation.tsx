@@ -2,8 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-
 interface ScrollytellingNavigationProps {
   scrollThreshold?: number;
 }
@@ -57,14 +55,16 @@ const ScrollytellingNavigation: React.FC<ScrollytellingNavigationProps> = ({
           transition: 'opacity 0.3s ease',
         }}
       >
-        <Image
-          src="/esy-logos/logo-files/for-web/svg/color-no-bg.svg"
-          alt="Esy"
-          width={60}
-          height={24}
-          style={{ height: 'auto' }}
-          priority
-        />
+        <span style={{
+          fontFamily: 'var(--font-black-ops-one), sans-serif',
+          fontSize: '1.75rem',
+          letterSpacing: '0.03em',
+          lineHeight: 1,
+          userSelect: 'none',
+        }}>
+          <span style={{ color: '#00A896' }}>e</span>
+          <span style={{ color: 'rgba(255, 255, 255, 0.92)' }}>sy</span>
+        </span>
       </Link>
 
       {/* CTA - only visible after scroll */}

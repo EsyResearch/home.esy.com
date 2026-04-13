@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 
 /**
@@ -54,15 +53,16 @@ const GalleryNavigation: React.FC = () => {
       <div className="gallery-nav-inner">
         {/* Logo */}
         <Link href="/" className="gallery-logo" aria-label="Esy homepage">
-          <Image
-            src="/esy-logos/logo-files/for-web/png/white-logo-no-bg.png"
-            alt="Esy"
-            width={100}
-            height={40}
-            className="gallery-logo-icon"
-            priority
-            style={{ objectFit: 'contain' }}
-          />
+          <span style={{
+            fontFamily: 'var(--font-black-ops-one), sans-serif',
+            fontSize: '2rem',
+            letterSpacing: '0.03em',
+            lineHeight: 1,
+            userSelect: 'none',
+          }}>
+            <span style={{ color: '#00A896' }}>e</span>
+            <span style={{ color: 'rgba(255, 255, 255, 0.92)' }}>sy</span>
+          </span>
         </Link>
 
         {/* Desktop Navigation */}

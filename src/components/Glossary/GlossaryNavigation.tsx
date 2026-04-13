@@ -1,7 +1,6 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Search, Filter } from 'lucide-react';
 import { Theme, GlossaryCategory } from '@/types';
 
@@ -46,25 +45,16 @@ const GlossaryNavigation: React.FC<GlossaryNavigationProps> = ({
     <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '1.5rem 2rem' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', color: 'white' }}>
-          <Image 
-            src="/esy-logo.png" 
-            alt="Esy Logo" 
-            width={36} 
-            height={36}
-            style={{ flexShrink: 0 }}
-          />
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <span style={{ fontSize: '1.1rem', fontWeight: 600, color: currentTheme.text }}>
-              Esy
-            </span>
-            <span style={{ 
-              fontSize: '0.75rem', 
-              color: currentTheme.subtle,
-              marginTop: '-0.1rem'
-            }}>
-              AI Research Assistant
-            </span>
-          </div>
+          <span style={{
+            fontFamily: 'var(--font-black-ops-one), sans-serif',
+            fontSize: '1.75rem',
+            letterSpacing: '0.03em',
+            lineHeight: 1,
+            userSelect: 'none',
+          }}>
+            <span style={{ color: '#00A896' }}>e</span>
+            <span style={{ color: currentTheme.text }}>sy</span>
+          </span>
         </Link>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <Link

@@ -444,7 +444,8 @@ export default function ScrollytellingTheatreBar({
           <Logo 
             suffix="" 
             href="" 
-            showText={false} 
+            wordmarkOnly
+            wordmarkFont="blackops"
             theme="dark"
             size={48}
           />

@@ -1,7 +1,6 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { ArrowLeft, Bookmark, Share2, Link2, Twitter, Linkedin } from 'lucide-react';
 import { Theme } from '@/types';
 
@@ -43,16 +42,16 @@ const GlossaryTermNavigation: React.FC<GlossaryTermNavigationProps> = ({
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         {/* Left side - Logo and Back button */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', color: 'white' }}>
-            <Image 
-              src="/esy-logo.png" 
-              alt="Esy Logo" 
-              width={32} 
-              height={32}
-              style={{ flexShrink: 0 }}
-            />
-            <span style={{ fontSize: '1.1rem', fontWeight: 600, color: currentTheme.text }}>
-              Esy
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+            <span style={{
+              fontFamily: 'var(--font-black-ops-one), sans-serif',
+              fontSize: '1.75rem',
+              letterSpacing: '0.03em',
+              lineHeight: 1,
+              userSelect: 'none',
+            }}>
+              <span style={{ color: '#00A896' }}>e</span>
+              <span style={{ color: currentTheme.text }}>sy</span>
             </span>
           </Link>
           
