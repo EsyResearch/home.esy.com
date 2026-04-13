@@ -175,7 +175,7 @@ export default function CoursesListClient() {
             color: text,
             maxWidth: '700px',
           }}>
-            Esy <span style={{ color: accent }}>Courses</span>
+            <span style={{ color: accent }}>Courses</span>
           </h1>
 
           {/* Subtitle */}

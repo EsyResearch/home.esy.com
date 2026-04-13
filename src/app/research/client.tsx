@@ -125,7 +125,7 @@ export default function ResearchClient() {
               letterSpacing: "-0.02em",
             }}
           >
-            Esy <span style={{ color: theme.accent }}>Research</span>
+            <span style={{ color: theme.accent }}>Research</span>
           </h1>
 
           <p

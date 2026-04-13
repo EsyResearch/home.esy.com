@@ -277,7 +277,7 @@ export default function AboutPage() {
           fontFamily: 'var(--font-literata)',
           color: theme.text
         }}>
-          About <span style={{ color: theme.accent }}>Esy</span>
+          About
         </h1>
 
         <p style={{

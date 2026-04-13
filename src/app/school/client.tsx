@@ -126,7 +126,7 @@ export default function SchoolVideosClient() {
               letterSpacing: "-0.02em",
             }}
           >
-            Esy <span style={{ color: theme.accent }}>School</span>
+            <span style={{ color: theme.accent }}>School</span>
           </h1>
 
           <p
