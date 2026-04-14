@@ -3,7 +3,7 @@ title: "5 Ways AI is Revolutionizing Academic Research"
 category: "Academic Writing"
 author:
   name: "Zev Uhuru"
-  title: "Workflow Designer, Esy"
+  title: "Agentic Engineer"
   avatar: "/images/zev-ai.jpeg"
   bio: "Explores the intersection of AI and academic research."
 date: "Mar 18, 2025"

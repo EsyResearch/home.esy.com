@@ -1,12 +1,11 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { Brain, FileText, Code, Globe, Lightbulb, Search, ArrowRight } from 'lucide-react';
+import { Bot, GitBranch, ShieldCheck, Server, FileOutput, Search, ArrowRight } from 'lucide-react';
 import GlossaryGrid from '@/components/Glossary/GlossaryGrid';
 import { Theme, GlossaryTerm, GlossaryCategory, CategoryType } from '@/types';
 import { useScrollHeaderSearch } from '@/hooks/useScrollHeaderSearch';
 
-// Navy Calm Light Theme
 const navyCalmLightTheme: Theme = {
   bg: '#FFFFFF',
   elevated: '#F8F9FA',
@@ -36,325 +35,70 @@ const GlossaryPage = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const isMobile = windowWidth < 768;
-  const isTablet = windowWidth < 1024;
-
   const currentTheme: Theme = navyCalmLightTheme;
 
-  // Glossary terms
   const glossaryTerms: GlossaryTerm[] = [
     {
-      id: 'thesis-statement',
-      term: 'Thesis Statement',
-      category: 'structure',
-      definition: 'A concise summary of the main point or claim of an essay, usually appearing in the introduction.',
-      views: 2987,
-      readTime: 2,
+      id: 'agentic-workflow',
+      term: 'Agentic Workflow',
+      category: 'workflows',
+      definition: 'A multi-step automated process where AI agents execute tasks, make decisions, and hand off results without human intervention at each stage.',
+      views: 0,
+      readTime: 4,
       popularity: 5,
-      lastUpdated: '2025-01-15'
+      lastUpdated: '2026-04-14'
     },
     {
-      id: 'topic-sentence',
-      term: 'Topic Sentence',
-      category: 'structure',
-      definition: 'The first sentence of a paragraph that introduces the main idea and connects to the thesis.',
-      views: 2654,
-      readTime: 2,
+      id: 'hallucination',
+      term: 'Hallucination',
+      category: 'verification',
+      definition: 'When an AI model generates plausible-sounding but factually incorrect information, including fabricated citations, invented data, or false claims.',
+      views: 0,
+      readTime: 5,
       popularity: 5,
-      lastUpdated: '2025-01-14'
+      lastUpdated: '2026-04-14'
     },
     {
-      id: 'argumentative-essay',
-      term: 'Argumentative Essay',
-      category: 'writing',
-      definition: 'A type of essay that presents a clear position on a topic and supports it with evidence and reasoning.',
-      views: 2432,
-      readTime: 3,
+      id: 'citation-verification',
+      term: 'Citation Verification',
+      category: 'verification',
+      definition: 'The automated process of validating that citations in AI-generated content reference real, accessible sources with accurate metadata.',
+      views: 0,
+      readTime: 5,
       popularity: 5,
-      lastUpdated: '2025-01-13'
+      lastUpdated: '2026-04-14'
     },
     {
-      id: 'body-paragraph',
-      term: 'Body Paragraph',
-      category: 'structure',
-      definition: 'The main paragraphs of an essay that develop and support the thesis with evidence and analysis.',
-      views: 2198,
-      readTime: 2,
+      id: 'structured-output',
+      term: 'Structured Output',
+      category: 'output',
+      definition: 'AI-generated content delivered in a predefined, typed format — not free-form text — with consistent schema, metadata, and audit information.',
+      views: 0,
+      readTime: 4,
       popularity: 4,
-      lastUpdated: '2025-01-12'
+      lastUpdated: '2026-04-14'
     },
     {
-      id: 'conclusion',
-      term: 'Conclusion',
-      category: 'structure',
-      definition: 'The final paragraph that restates the thesis, summarizes key points, and provides closure.',
-      views: 2076,
-      readTime: 2,
+      id: 'pipeline-orchestration',
+      term: 'Pipeline Orchestration',
+      category: 'infrastructure',
+      definition: 'The system that coordinates the execution order, data flow, and error handling across multiple agents in an agentic workflow.',
+      views: 0,
+      readTime: 4,
       popularity: 4,
-      lastUpdated: '2025-01-11'
+      lastUpdated: '2026-04-14'
     },
-    {
-      id: 'introduction',
-      term: 'Introduction',
-      category: 'structure',
-      definition: 'The opening paragraph that provides background, engages the reader, and presents the thesis.',
-      views: 1987,
-      readTime: 2,
-      popularity: 5,
-      lastUpdated: '2025-01-10'
-    },
-    {
-      id: 'hook',
-      term: 'Hook',
-      category: 'writing',
-      definition: 'An engaging opening sentence or phrase designed to capture the reader\'s attention.',
-      views: 1876,
-      readTime: 2,
-      popularity: 4,
-      lastUpdated: '2025-01-09'
-    },
-    {
-      id: 'transition',
-      term: 'Transition',
-      category: 'writing',
-      definition: 'Words or phrases that connect ideas and create smooth flow between sentences and paragraphs.',
-      views: 1765,
-      readTime: 2,
-      popularity: 4,
-      lastUpdated: '2025-01-08'
-    },
-    {
-      id: 'evidence',
-      term: 'Evidence',
-      category: 'research',
-      definition: 'Facts, statistics, examples, or expert opinions used to support claims in an essay.',
-      views: 1654,
-      readTime: 3,
-      popularity: 5,
-      lastUpdated: '2025-01-07'
-    },
-    {
-      id: 'citation',
-      term: 'Citation',
-      category: 'citation',
-      definition: 'A reference to a source of information used in academic writing to give credit to original authors.',
-      views: 1543,
-      readTime: 2,
-      popularity: 5,
-      lastUpdated: '2025-01-06'
-    },
-    {
-      id: 'mla-format',
-      term: 'MLA Format',
-      category: 'citation',
-      definition: 'A citation style guide published by the Modern Language Association for humanities papers.',
-      views: 1432,
-      readTime: 3,
-      popularity: 4,
-      lastUpdated: '2025-01-05'
-    },
-    {
-      id: 'apa-format',
-      term: 'APA Format',
-      category: 'citation',
-      definition: 'A citation style guide by the American Psychological Association for social sciences papers.',
-      views: 1321,
-      readTime: 3,
-      popularity: 4,
-      lastUpdated: '2025-01-04'
-    },
-    {
-      id: 'works-cited',
-      term: 'Works Cited',
-      category: 'citation',
-      definition: 'A list of all sources referenced in an essay, formatted according to a specific style guide.',
-      views: 1298,
-      readTime: 2,
-      popularity: 4,
-      lastUpdated: '2025-01-03'
-    },
-    {
-      id: 'plagiarism',
-      term: 'Plagiarism',
-      category: 'citation',
-      definition: 'The practice of using someone else\'s work or ideas without proper attribution.',
-      views: 1187,
-      readTime: 2,
-      popularity: 5,
-      lastUpdated: '2025-01-02'
-    },
-    {
-      id: 'paraphrase',
-      term: 'Paraphrase',
-      category: 'writing',
-      definition: 'Restating someone else\'s ideas in your own words while maintaining the original meaning.',
-      views: 1176,
-      readTime: 2,
-      popularity: 4,
-      lastUpdated: '2025-01-01'
-    },
-    {
-      id: 'quote',
-      term: 'Quote',
-      category: 'citation',
-      definition: 'The exact words from a source, enclosed in quotation marks and properly attributed.',
-      views: 1165,
-      readTime: 2,
-      popularity: 4,
-      lastUpdated: '2024-12-31'
-    },
-    {
-      id: 'analysis',
-      term: 'Analysis',
-      category: 'writing',
-      definition: 'The process of examining and interpreting evidence to support your argument.',
-      views: 1154,
-      readTime: 3,
-      popularity: 4,
-      lastUpdated: '2024-12-30'
-    },
-    {
-      id: 'counterargument',
-      term: 'Counterargument',
-      category: 'writing',
-      definition: 'An opposing viewpoint that challenges your thesis, addressed to strengthen your argument.',
-      views: 1143,
-      readTime: 3,
-      popularity: 4,
-      lastUpdated: '2024-12-29'
-    },
-    {
-      id: 'outline',
-      term: 'Outline',
-      category: 'structure',
-      definition: 'A structured plan that organizes your main points and supporting details before writing.',
-      views: 1132,
-      readTime: 2,
-      popularity: 4,
-      lastUpdated: '2024-12-28'
-    },
-    {
-      id: 'brainstorming',
-      term: 'Brainstorming',
-      category: 'writing',
-      definition: 'A creative process for generating ideas and topics before beginning to write.',
-      views: 1121,
-      readTime: 2,
-      popularity: 3,
-      lastUpdated: '2024-12-27'
-    },
-    {
-      id: 'revision',
-      term: 'Revision',
-      category: 'writing',
-      definition: 'The process of reviewing and improving content, organization, and clarity of a draft.',
-      views: 1110,
-      readTime: 3,
-      popularity: 4,
-      lastUpdated: '2024-12-26'
-    },
-    {
-      id: 'proofreading',
-      term: 'Proofreading',
-      category: 'grammar',
-      definition: 'The final step of checking for spelling, grammar, and punctuation errors.',
-      views: 1099,
-      readTime: 2,
-      popularity: 4,
-      lastUpdated: '2024-12-25'
-    },
-    {
-      id: 'subject-verb-agreement',
-      term: 'Subject-Verb Agreement',
-      category: 'grammar',
-      definition: 'The grammatical rule that subjects and verbs must agree in number (singular or plural).',
-      views: 1088,
-      readTime: 2,
-      popularity: 3,
-      lastUpdated: '2024-12-24'
-    },
-    {
-      id: 'comma-splice',
-      term: 'Comma Splice',
-      category: 'grammar',
-      definition: 'A grammatical error where two independent clauses are incorrectly joined with only a comma.',
-      views: 1077,
-      readTime: 2,
-      popularity: 3,
-      lastUpdated: '2024-12-23'
-    },
-    {
-      id: 'run-on-sentence',
-      term: 'Run-on Sentence',
-      category: 'grammar',
-      definition: 'A sentence that contains multiple independent clauses without proper punctuation or conjunctions.',
-      views: 1066,
-      readTime: 2,
-      popularity: 3,
-      lastUpdated: '2024-12-22'
-    },
-    {
-      id: 'parallel-structure',
-      term: 'Parallel Structure',
-      category: 'grammar',
-      definition: 'Using the same grammatical form for similar elements in a sentence or series.',
-      views: 1055,
-      readTime: 2,
-      popularity: 3,
-      lastUpdated: '2024-12-21'
-    },
-    {
-      id: 'active-voice',
-      term: 'Active Voice',
-      category: 'grammar',
-      definition: 'A sentence construction where the subject performs the action expressed by the verb.',
-      views: 1044,
-      readTime: 2,
-      popularity: 4,
-      lastUpdated: '2024-12-20'
-    },
-    {
-      id: 'passive-voice',
-      term: 'Passive Voice',
-      category: 'grammar',
-      definition: 'A sentence construction where the subject receives the action expressed by the verb.',
-      views: 1033,
-      readTime: 2,
-      popularity: 3,
-      lastUpdated: '2024-12-19'
-    },
-    {
-      id: 'peer-review',
-      term: 'Peer Review',
-      category: 'research',
-      definition: 'The process of having classmates or colleagues evaluate and provide feedback on your writing.',
-      views: 1022,
-      readTime: 2,
-      popularity: 4,
-      lastUpdated: '2024-12-18'
-    },
-    {
-      id: 'research-question',
-      term: 'Research Question',
-      category: 'research',
-      definition: 'A focused question that guides your research and helps develop your thesis statement.',
-      views: 1011,
-      readTime: 3,
-      popularity: 4,
-      lastUpdated: '2024-12-17'
-    }
   ];
 
   const categories: GlossaryCategory[] = [
     { id: 'all', name: 'All', icon: null, color: currentTheme.subtle },
-    { id: 'writing', name: 'Writing', icon: FileText, color: '#00A896' },
-    { id: 'structure', name: 'Structure', icon: Brain, color: '#0A2540' },
-    { id: 'research', name: 'Research', icon: Globe, color: '#2A9D8F' },
-    { id: 'citation', name: 'Citation', icon: Lightbulb, color: '#F59E0B' },
-    { id: 'grammar', name: 'Grammar', icon: Code, color: '#6C757D' }
+    { id: 'agents', name: 'Agents', icon: Bot, color: '#00A896' },
+    { id: 'workflows', name: 'Workflows', icon: GitBranch, color: '#0A2540' },
+    { id: 'verification', name: 'Verification', icon: ShieldCheck, color: '#2A9D8F' },
+    { id: 'infrastructure', name: 'Infrastructure', icon: Server, color: '#6C757D' },
+    { id: 'output', name: 'Output', icon: FileOutput, color: '#F59E0B' }
   ];
 
-  // Filter and sort
   const filteredTerms = glossaryTerms.filter(term => {
     const matchesCategory = activeFilter === 'all' || term.category === activeFilter;
     const matchesSearch = term.term.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -374,7 +118,6 @@ const GlossaryPage = () => {
     return cat?.color || currentTheme.subtle;
   };
 
-  // Alphabet index — gather unique first letters
   const alphabetLetters = Array.from(
     new Set(glossaryTerms.map(t => t.term[0].toUpperCase()))
   ).sort();
@@ -394,7 +137,6 @@ const GlossaryPage = () => {
         padding: '7rem 2rem 3rem',
         position: 'relative'
       }}>
-        {/* Grid Background Pattern */}
         <div style={{
           position: 'absolute',
           inset: 0,
@@ -410,7 +152,6 @@ const GlossaryPage = () => {
         }} />
         
         <div style={{ position: 'relative', zIndex: 1 }}>
-          {/* Breadcrumb */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
@@ -424,7 +165,6 @@ const GlossaryPage = () => {
             <span style={{ color: currentTheme.muted }}>Glossary</span>
           </div>
 
-          {/* Title */}
           <h1 style={{
             fontFamily: 'var(--font-literata)',
             fontSize: 'clamp(2.75rem, 6vw, 4.5rem)',
@@ -433,10 +173,9 @@ const GlossaryPage = () => {
             marginBottom: '1.25rem',
             letterSpacing: '-0.02em'
           }}>
-            Writing <span style={{ color: currentTheme.accent }}>Glossary</span>
+            AI &amp; Agentic <span style={{ color: currentTheme.accent }}>Glossary</span>
           </h1>
 
-          {/* Subtitle */}
           <p style={{
             fontSize: 'clamp(1.0625rem, 2vw, 1.25rem)',
             lineHeight: 1.6,
@@ -444,8 +183,7 @@ const GlossaryPage = () => {
             maxWidth: '600px',
             marginBottom: '2.5rem'
           }}>
-            Essential terms and concepts for academic writing and essay composition. 
-            From thesis statements to citation formats.
+            Definitions for agentic workflows, AI infrastructure, and verification systems. Built for engineers.
           </p>
         </div>
       </section>
@@ -462,7 +200,6 @@ const GlossaryPage = () => {
           alignItems: 'center',
           flexWrap: 'wrap'
         }}>
-          {/* Search Input */}
           <div style={{
             flex: '1 1 280px',
             minWidth: '200px',
@@ -505,7 +242,6 @@ const GlossaryPage = () => {
             />
           </div>
 
-          {/* Sort Dropdown */}
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
@@ -531,10 +267,8 @@ const GlossaryPage = () => {
             <option value="recent">Recently Updated</option>
           </select>
 
-          {/* Spacer */}
           <div style={{ flex: 1 }} />
 
-          {/* Term Count */}
           <span style={{
             fontSize: '0.8125rem',
             color: currentTheme.subtle,
@@ -592,7 +326,7 @@ const GlossaryPage = () => {
       </section>
 
       {/* ─── Alphabet Quick Nav ─── */}
-      {!searchQuery && activeFilter === 'all' && sortBy === 'alphabetical' && (
+      {!searchQuery && activeFilter === 'all' && sortBy === 'alphabetical' && alphabetLetters.length > 0 && (
         <section style={{
           maxWidth: '1200px',
           margin: '0 auto',
@@ -639,22 +373,48 @@ const GlossaryPage = () => {
         </section>
       )}
 
-      {/* ─── Terms Grid ─── */}
+      {/* ─── Terms Grid / Empty State ─── */}
       <main style={{ paddingBottom: '4rem' }}>
         <div style={{
           maxWidth: '1200px',
           margin: '0 auto',
           padding: '0 2rem'
         }}>
-          <GlossaryGrid
-            terms={sortedTerms}
-            categories={categories}
-            currentTheme={currentTheme}
-            hoveredTerm={hoveredTerm}
-            setHoveredTerm={setHoveredTerm}
-            getCategoryColor={getCategoryColor}
-            windowWidth={windowWidth}
-          />
+          {sortedTerms.length > 0 ? (
+            <GlossaryGrid
+              terms={sortedTerms}
+              categories={categories}
+              currentTheme={currentTheme}
+              hoveredTerm={hoveredTerm}
+              setHoveredTerm={setHoveredTerm}
+              getCategoryColor={getCategoryColor}
+              windowWidth={windowWidth}
+            />
+          ) : (
+            <div style={{
+              textAlign: 'center',
+              padding: '4rem 2rem',
+              color: currentTheme.subtle
+            }}>
+              <Bot size={48} strokeWidth={1} style={{ marginBottom: '1.5rem', opacity: 0.4 }} />
+              <p style={{
+                fontSize: '1.25rem',
+                fontWeight: 500,
+                color: currentTheme.text,
+                marginBottom: '0.75rem'
+              }}>
+                Glossary launching soon
+              </p>
+              <p style={{
+                fontSize: '1rem',
+                lineHeight: 1.7,
+                maxWidth: '480px',
+                margin: '0 auto'
+              }}>
+                We&apos;re building definitions for agentic workflows, AI infrastructure, and verification systems. Check back shortly.
+              </p>
+            </div>
+          )}
         </div>
       </main>
 
@@ -677,7 +437,7 @@ const GlossaryPage = () => {
             letterSpacing: '-0.01em',
             color: '#FFFFFF'
           }}>
-            Master academic writing with Esy
+            See the glossary in action
           </h2>
           
           <p style={{
@@ -687,11 +447,11 @@ const GlossaryPage = () => {
             maxWidth: '560px',
             margin: '0 auto 2rem'
           }}>
-            Go beyond definitions. Use Esy&apos;s structured workflows to produce essays, research briefs, and visual artifacts — publication-ready from the start.
+            These aren&apos;t just definitions — they&apos;re the building blocks of Esy&apos;s agentic workflows. See how they come together in real artifacts.
           </p>
 
           <Link
-            href="/about"
+            href="/essays/"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -716,7 +476,7 @@ const GlossaryPage = () => {
               e.currentTarget.style.transform = 'translateY(0)';
             }}
           >
-            Learn more about Esy
+            View Artifacts
             <ArrowRight size={16} strokeWidth={2} />
           </Link>
         </div>

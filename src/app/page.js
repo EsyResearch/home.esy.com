@@ -1,42 +1,22 @@
 import IntelligenceCircuitryPage from "../components/IntelligenceCircuitry/IntelligenceCircuitryPage";
 
-/**
- * Homepage - Citation-First Research Platform
- * 
- * Strategic positioning: Esy as a workflow-based research platform
- * where citations come first and artifacts are defensible.
- * 
- * Key messaging:
- * - "Citation-First Research" as a methodology
- * - Workflows as the product (not visual essays)
- * - Visual essays as proof of the method
- * - Trust, rigor, and defensibility as core values
- * 
- * SEO Strategy:
- * - Title focuses on research platform positioning
- * - Description emphasizes workflow-based, citation-first approach
- * - Unique positioning: research platform, not AI essay generator
- * 
- * @see /orchestration/agents/engineering/seo-specialist-expert.md
- */
-
 export const metadata = {
-  title: "Esy — Citation-First Research Workflows",
-  description: "Esy is a citation-first research platform. Turn trusted sources into structured, auditable artifacts — essays, visuals, and learning materials.",
+  title: "Esy — Automate & Audit. Agentic Workflows.",
+  description: "Automate research, verify citations, and produce publishable artifacts — all through agentic workflow templates. Structured, auditable output by default.",
   keywords: [
-    "citation-first research",
-    "research platform",
+    "agentic workflows",
+    "verified artifacts",
+    "workflow automation",
+    "citation verification",
     "research workflows",
     "visual essays",
     "auditable artifacts",
-    "academic research",
-    "research synthesis",
-    "defensible research",
-    "source verification"
+    "batch processing",
+    "structured output"
   ],
   openGraph: {
-    title: "Esy — Citation-First Research Workflows",
-    description: "Esy is a citation-first research platform. Turn trusted sources into structured, auditable artifacts — essays, visuals, and learning materials.",
+    title: "Esy — Automate & Audit. Agentic Workflows.",
+    description: "Automate research, verify citations, and produce publishable artifacts — all through agentic workflow templates. Structured, auditable output by default.",
     type: "website",
     url: "https://esy.com",
     siteName: "Esy",
@@ -45,14 +25,14 @@ export const metadata = {
       url: "https://esy.com/og/homepage.png",
       width: 1200,
       height: 630,
-      alt: "Esy — Citation-First Research Workflows"
+      alt: "Esy — Automate & Audit. Agentic Workflows."
     }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Esy — Citation-First Research Workflows",
-    description: "Esy is a citation-first research platform. Turn trusted sources into structured, auditable artifacts — essays, visuals, and learning materials.",
-    site: "@EsyResearch",
+    title: "Esy — Automate & Audit. Agentic Workflows.",
+    description: "Automate research, verify citations, and produce publishable artifacts — all through agentic workflow templates. Structured, auditable output by default.",
+    site: "@EsyDotCom",
     images: ["https://esy.com/og/homepage.png"],
   },
   alternates: {

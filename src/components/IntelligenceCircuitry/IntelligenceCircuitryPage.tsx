@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, FileText, Layers, BarChart3, FileSpreadsheet, Clock, Sun, Moon } from 'lucide-react';
+import { ArrowRight, Clock, Sun, Moon } from 'lucide-react';
 import CircuitCanvas from './CircuitCanvas';
 import { publishedVisualEssays, CATEGORY_COLORS, isNewEssay, type VisualEssay } from '@/data/visualEssays';
 import { publishedInfographics, CLUSTER_LABELS, INFOGRAPHIC_CATEGORY_COLORS } from '@/data/infographics';
@@ -22,69 +22,6 @@ import './IntelligenceCircuitryPage.css';
  * - Quality gates (logic gate glyphs)
  */
 
-// Template definitions with circuit-inspired icons
-const templates = [
-  {
-    id: 'academic-essay',
-    title: 'Academic Essay',
-    description: 'Structured argument with thesis, evidence, and analysis. Full citation chain.',
-    timeSaved: '~15 min',
-    automates: ['Research', 'Structure', 'Citations'],
-    icon: FileText,
-    accent: 'purple',
-  },
-  // {
-  //   id: 'research-brief',
-  //   title: 'Research Brief',
-  //   description: 'Synthesized findings from multiple sources. Key insights extracted and organized.',
-  //   timeSaved: '~20 min',
-  //   automates: ['Synthesis', 'Key Findings', 'Sources'],
-  //   icon: FileSpreadsheet,
-  //   accent: 'blue',
-  // },
-  {
-    id: 'visual-essay',
-    title: 'Visual Essay',
-    description: 'Interactive narrative with data visualizations and scroll-driven storytelling.',
-    timeSaved: '~30 min',
-    automates: ['Narrative', 'Visuals', 'Flow'],
-    icon: Layers,
-    accent: 'pink',
-  },
-  {
-    id: 'infographic',
-    title: 'Infographic',
-    description: 'Data-driven visual summary. Facts verified, layout optimized for clarity.',
-    timeSaved: '~25 min',
-    automates: ['Data Viz', 'Layout', 'Fact Check'],
-    icon: BarChart3,
-    accent: 'amber',
-  },
-];
-
-// How It Works - Minimal, academic-focused
-const howItWorksSteps = [
-  { 
-    number: '01', 
-    title: 'Pick a Template',
-    description: 'Essay, visual narrative, or infographic.'
-  },
-  { 
-    number: '02', 
-    title: 'Add Your Sources',
-    description: 'PDFs, citations, notes — Esy uses only what you provide.'
-  },
-  { 
-    number: '03', 
-    title: 'Verified Output',
-    description: 'Every claim traced to a source. Every source cited.'
-  },
-  { 
-    number: '04', 
-    title: 'Publish or Export',
-    description: 'Download, share, or keep editing. It\'s yours.'
-  },
-];
 
 // Featured artifacts for gallery - using essay data with source counts
 const FEATURED_ESSAY_IDS = ['the-manhattan-project', 'the-complete-history-of-soda', 'the-word-robot'];
@@ -112,42 +49,6 @@ const getEssayImage = (essay: VisualEssay): string => {
   return '/og/default.png';
 };
 
-/**
- * HowItWorksSection Component
- * 
- * Minimal, academic design for research audience.
- * Clean typography, restrained colors, no decorative elements.
- * Focus on clarity and content over visual flourishes.
- */
-const HowItWorksSection: React.FC = () => {
-  return (
-    <section className="ic-hiw-section">
-      <div className="ic-hiw-container">
-        <div className="ic-section-header">
-          <span className="ic-section-eyebrow">How It Works</span>
-          <h2 className="ic-final-cta-headline">
-            Four steps to <span className="ic-gradient-text">defensible work</span>
-          </h2>
-          <p className="ic-final-cta-description">
-            Citation-first research workflows that produce structured, auditable artifacts.
-          </p>
-        </div>
-
-        <div className="ic-hiw-steps">
-          {howItWorksSteps.map((step) => (
-            <div key={step.number} className="ic-hiw-step">
-              <span className="ic-hiw-step-number">{step.number}</span>
-              <div className="ic-hiw-step-content">
-              <h3 className="ic-hiw-step-title">{step.title}</h3>
-              <p className="ic-hiw-step-description">{step.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
 
 const INFOGRAPHIC_SHOWCASE_COUNT = 5;
 
@@ -356,7 +257,7 @@ const IntelligenceCircuitryPage: React.FC = () => {
                 maxWidth: '100%',
                 overflow: 'hidden'
               }}>
-                <span style={{ display: 'block', whiteSpace: 'nowrap' }}>Choose a template.</span>
+                <span style={{ display: 'block', whiteSpace: 'nowrap' }}>Automate the pipeline.</span>
                 <span style={{ 
                   display: 'block', 
                   whiteSpace: 'nowrap',
@@ -365,7 +266,7 @@ const IntelligenceCircuitryPage: React.FC = () => {
                     : 'linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)', 
                   WebkitBackgroundClip: 'text', 
                   WebkitTextFillColor: 'transparent' 
-                }}>Get a publishable artifact.</span>
+                }}>Audit the output.</span>
               </h1>
 
               {/* Subheadline */}
@@ -375,7 +276,7 @@ const IntelligenceCircuitryPage: React.FC = () => {
                 color: isDarkTheme ? 'rgba(250, 250, 250, 0.7)' : theme === 'navy-calm' ? '#6C757D' : 'rgba(15, 23, 42, 0.7)', 
                 marginBottom: '32px' 
               }}>
-                Start from real sources — PDFs, citations, or notes — and use citation-first templates to produce structured, publishable research artifacts.
+                Esy runs agentic workflows that research, verify citations, and deliver publishable artifacts.
               </p>
 
               {/* CTAs */}
@@ -400,7 +301,7 @@ const IntelligenceCircuitryPage: React.FC = () => {
                       : '0 4px 12px rgba(91, 33, 182, 0.25)' 
                   }}
                 >
-                  <span>Start with a Template</span>
+                  <span>Browse Templates</span>
                   <ArrowRight size={18} />
                 </Link>
                 <Link href="/essays/" style={{ 
@@ -424,7 +325,7 @@ const IntelligenceCircuitryPage: React.FC = () => {
                   borderRadius: '10px', 
                   textDecoration: 'none' 
                 }}>
-                  <span>Explore Artifacts</span>
+                  <span>View Artifacts</span>
                 </Link>
               </div>
             </div>
@@ -438,65 +339,9 @@ const IntelligenceCircuitryPage: React.FC = () => {
 
         {/* Scroll indicator */}
         <div className="ic-scroll-indicator">
-          <span>How it works</span>
           <div className="ic-scroll-line" />
         </div>
       </section>
-
-      {/* ══════════════════════════════════════════════════════════════
-          TEMPLATE GRID SECTION
-          ══════════════════════════════════════════════════════════════ */}
-      <section id="templates" className="ic-templates-section">
-        <div className="ic-section-container">
-          <div className="ic-section-header">
-            <span className="ic-section-eyebrow">Pick a Template</span>
-            <h2 className="ic-section-title">
-              Every artifact starts with <span className="ic-gradient-text">structure</span>
-            </h2>
-            <p className="ic-section-description">
-              Templates define the shape of your output. Esy handles the research, 
-              citations, and quality checks automatically.
-            </p>
-          </div>
-
-          <div className="ic-templates-grid">
-            {templates.map((template) => (
-              <Link
-                key={template.id}
-                href="/templates"
-                className={`ic-template-card ic-template-card--${template.accent}`}
-              >
-                <div className="ic-template-header">
-                  <div className={`ic-template-icon ic-template-icon--${template.accent}`}>
-                    <template.icon size={24} />
-                  </div>
-                </div>
-                
-                <h3 className="ic-template-title">{template.title}</h3>
-                <p className="ic-template-description">{template.description}</p>
-                
-                <div className="ic-template-meta">
-                  <span className="ic-template-time">⏱ {template.timeSaved}</span>
-                  <span className="ic-template-divider">•</span>
-                  <span className="ic-template-automates">
-                    Automates: {template.automates.join(', ')}
-                  </span>
-                </div>
-
-                <div className="ic-template-hover-cta">
-                  <span>Use Template</span>
-                  <ArrowRight size={14} />
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════════
-          HOW IT WORKS SECTION (Redesigned)
-          ══════════════════════════════════════════════════════════════ */}
-      <HowItWorksSection />
 
       {/* ══════════════════════════════════════════════════════════════
           ARTIFACTS — Unified section: Infographics + Visual Essays
@@ -504,12 +349,12 @@ const IntelligenceCircuitryPage: React.FC = () => {
       <section className="ic-gallery-section">
         <div className="ic-section-container">
           <div className="ic-section-header">
-            <span className="ic-section-eyebrow">Proof of Method</span>
+            <span className="ic-section-eyebrow">Workflow Output</span>
             <h2 className="ic-section-title">
-              Artifacts built from <span className="ic-gradient-text">real sources</span>
+              Artifacts produced by <span className="ic-gradient-text">these workflows</span>
             </h2>
             <p className="ic-section-description">
-              Every artifact carries its provenance. Every claim traces to evidence.
+              Every artifact below was generated through Esy's agentic pipeline — automated research, citation verification, and QA. Source counts and verification status are attached.
             </p>
           </div>
 
@@ -585,22 +430,22 @@ const IntelligenceCircuitryPage: React.FC = () => {
         <div className="ic-final-cta-background" />
         <div className="ic-final-cta-container">
           <h2 className="ic-final-cta-headline">
-            Ready to build something <span className="ic-gradient-text">defensible?</span>
+            Build something <span className="ic-gradient-text">auditable.</span>
           </h2>
           <p className="ic-final-cta-description">
-            Start with a template. Add your sources. Let Esy handle the rigor.
+            Start from a template. Let agents handle the pipeline.
           </p>
           <div className="ic-final-cta-buttons">
             <Link 
               href="/templates"
               className="ic-cta-primary ic-cta-primary--large"
             >
-              <span>Start with a Template</span>
+              <span>Browse Templates</span>
               <ArrowRight size={20} />
             </Link>
-            <Link href="/essays/" className="ic-cta-secondary">
-              <span>Explore Artifacts</span>
-            </Link>
+            <a href="https://synthesize.esy.com" target="_blank" rel="noopener noreferrer" className="ic-cta-secondary">
+              <span>Follow the Research</span>
+            </a>
           </div>
         </div>
       </section>

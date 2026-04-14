@@ -242,9 +242,9 @@ export default function Footer () {
               <Logo href="" wordmarkOnly wordmarkFont="blackops" theme={logoTheme} />
             </div>
             <p className="footer-desc" style={{ color: theme.muted }}>
-              Esy is a citation-first research platform for creating reliable, auditable artifacts — essays, visuals, and learning materials.
+              Agentic workflow templates that automate research, verify citations, and deliver publishable artifacts.
               <br />
-              <strong style={{ color: isLightMode ? theme.text : 'inherit' }}>Experimentation, designed.</strong>
+              <strong style={{ color: isLightMode ? theme.text : 'inherit' }}>Automate &amp; audit.</strong>
             </p>
             <div className="footer-socials">
               <a href="https://synthesize.esy.com" target="_blank" className="social-link" aria-label="Substack">
@@ -271,26 +271,16 @@ export default function Footer () {
             title="Explore"
             links={[
               { href: "/templates/", text: "Templates" },
-              { href: "/essays/", text: "Visual Essays" },
-              { href: "/research/", text: "Research" },
-            ]}
-          />
-          
-          <FooterColumn 
-            title="Learn"
-            links={[
-              { href: "/school/", text: "School" },
-              { href: "/courses/", text: "Courses" },
               { href: "/agents/", text: "Agents" },
+              { href: "/glossary/", text: "Glossary" },
             ]}
           />
-          
+
           <FooterColumn 
             title="Resources"
             links={[
+              { href: "/research/", text: "Research" },
               // { href: "/docs/", text: "Docs" },
-              { href: "/glossary/", text: "Glossary" },
-              { href: "/models/", text: "Models" },
             ]}
           />
           
@@ -305,10 +295,7 @@ export default function Footer () {
         </div>
         
         <div className="footer-bottom" style={{ borderTopColor: theme.border }}>
-          <p style={{ color: theme.faint }}>&copy; 2024-2026 Esy, LLC. All rights reserved.</p>
-          <p style={{ color: theme.faint, marginTop: '0.5rem' }}>
-            <a href="mailto:research@esy.com" style={{ color: theme.faint }}>research@esy.com</a>
-          </p>
+          <p style={{ color: theme.faint }}>&copy; 2024-2026 ESY, LLC. All rights reserved.</p>
         </div>
       </footer>
     );

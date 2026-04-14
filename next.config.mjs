@@ -132,6 +132,197 @@ const nextConfig = {
         destination: '/essays/etymology/pornography-etymology',
         permanent: true,
       },
+      // Archived writing glossary terms → glossary index
+      {
+        source: '/glossary/thesis-statement',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/topic-sentence',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/argumentative-essay',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/body-paragraph',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/conclusion',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/introduction',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/hook',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/transition',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/evidence',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/citation',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/mla-format',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/apa-format',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/works-cited',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/plagiarism',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/paraphrase',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/quote',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/analysis',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/counterargument',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/outline',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/brainstorming',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/revision',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/proofreading',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/subject-verb-agreement',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/comma-splice',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/run-on-sentence',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/parallel-structure',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/active-voice',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/passive-voice',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/peer-review',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/research-question',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/bibliography',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/chicago-style',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/essay',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/grammar',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/punctuation',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/research',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/sentence-structure',
+        destination: '/glossary',
+        permanent: true,
+      },
+      {
+        source: '/glossary/writing',
+        destination: '/glossary',
+        permanent: true,
+      },
     ];
   },
 };

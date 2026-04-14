@@ -27,7 +27,7 @@ export interface Essay {
   }
 
 // Glossary Types
-export type CategoryType = 'writing' | 'structure' | 'research' | 'citation' | 'grammar';
+export type CategoryType = 'agents' | 'workflows' | 'verification' | 'infrastructure' | 'output';
 
 export interface GlossaryTerm {
   id: string;

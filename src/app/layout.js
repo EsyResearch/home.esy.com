@@ -59,17 +59,17 @@ const isQA = process.env.NEXT_PUBLIC_IS_QA === 'true';
 export const metadata = {
   title: {
     template: '%s | Esy',
-    default: 'Esy — Citation-First Research Workflows',
+    default: 'Esy — Automate & Audit. Agentic Workflows.',
   },
-  description: "Esy is a citation-first research platform that turns trusted sources into structured, reliable, and auditable artifacts — essays, visuals, and learning materials.",
-  keywords: 'citation-first research, research platform, research workflows, visual essays, auditable artifacts, academic research, research synthesis',
+  description: "Automate research, verify citations, and produce publishable artifacts — all through agentic workflow templates. Structured, auditable output by default.",
+  keywords: 'agentic workflows, verified artifacts, workflow automation, citation verification, research workflows, visual essays, auditable artifacts, structured output',
   metadataBase: new URL('https://esy.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'Esy — Citation-First Research Workflows',
-    description: 'Esy is a citation-first research platform that turns trusted sources into structured, reliable, and auditable artifacts — essays, visuals, and learning materials.',
+    title: 'Esy — Automate & Audit. Agentic Workflows.',
+    description: 'Automate research, verify citations, and produce publishable artifacts — all through agentic workflow templates. Structured, auditable output by default.',
     url: 'https://esy.com',
     siteName: 'Esy',
     locale: 'en_US',

@@ -496,17 +496,17 @@ export default function Navigation({
               </Link>
             )}
 
-            {/* School (hidden on mobile, available in hamburger menu) */}
+            {/* Research (hidden on mobile, available in hamburger menu) */}
             {!isMobile && (
               <Link
-                href="/school/"
-                className={`nav-link nav-link-school ${pathname?.startsWith('/school') ? 'active' : ''}`}
+                href="/research/"
+                className={`nav-link nav-link-research ${pathname?.startsWith('/research') ? 'active' : ''}`}
                 style={{
                   color: isLightMode ? 'rgba(10, 37, 64, 0.7)' : 'rgba(255, 255, 255, 0.85)',
                   textShadow: 'none',
                 }}
               >
-                School
+                Research
               </Link>
             )}
 
@@ -619,13 +619,13 @@ export default function Navigation({
             </Link>
 
             <Link 
-              href="/school/" 
-              className={`mnav-item ${normalizedPathForNav.startsWith('/school') ? 'mnav-item--active' : ''}`}
+              href="/research/" 
+              className={`mnav-item ${normalizedPathForNav.startsWith('/research') ? 'mnav-item--active' : ''}`}
               onClick={() => setIsMobileMenuOpen(false)}
               style={{ animationDelay: '0.16s' }}
             >
-              <span className="mnav-item__label">School</span>
-              <span className="mnav-item__desc">Research articles & guides</span>
+              <span className="mnav-item__label">Research</span>
+              <span className="mnav-item__desc">Building workflows & AI tools</span>
             </Link>
 
             <Link 

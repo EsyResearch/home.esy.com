@@ -386,7 +386,7 @@ export default function VideoPageClient({ video, related }: VideoPageClientProps
                     lineHeight: 1.3,
                   }}
                 >
-                  Workflow Designer, Esy
+                  Agentic Engineer
                 </span>
               </div>
             </div>
