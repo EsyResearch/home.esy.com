@@ -443,9 +443,9 @@ const IntelligenceCircuitryPage: React.FC = () => {
               <span>Browse Templates</span>
               <ArrowRight size={20} />
             </Link>
-            <a href="https://synthesize.esy.com" target="_blank" rel="noopener noreferrer" className="ic-cta-secondary">
+            <Link href="/research" className="ic-cta-secondary">
               <span>Follow the Research</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
