@@ -607,7 +607,7 @@ export default function AboutPage() {
                 color: theme.muted,
                 marginBottom: '0.875rem'
               }}>
-                I built ESY to evaluate whether agentic workflows can reliably produce artifacts that pass quality gates — across models, at scale, with humans in the loop for borderline outputs.
+                I built ESY to evaluate whether agentic workflows can reliably produce artifacts that pass quality gates, across models, at scale, with humans in the loop for borderline outputs.
               </p>
               <p style={{
                 fontSize: '1rem',
@@ -623,7 +623,7 @@ export default function AboutPage() {
                 >
                   clip.art
                 </a>
-                , a platform I built to generate children&apos;s educational material at scale — used daily by my 4-year-old daughter. That became the production pipeline: 250–1,000 images a day through provider routing, quality scoring, HITL review, and R2 delivery.
+                , a platform I built to generate children&apos;s educational material at scale, used daily by my 4-year-old daughter. That became the production pipeline: 250–1,000 images a day through provider routing, quality scoring, HITL review, and R2 delivery.
               </p>
               <p style={{
                 fontSize: '1rem',
@@ -698,7 +698,7 @@ export default function AboutPage() {
           }}>
             Questions? Email me at{' '}
             <a
-              href="mailto:hello@esy.com"
+              href="mailto:zev@esy.com"
               style={{
                 color: theme.dark.accent,
                 textDecoration: 'none',
@@ -708,7 +708,7 @@ export default function AboutPage() {
               onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'}
               onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
             >
-              hello@esy.com
+              zev@esy.com
             </a>
           </p>
         </div>
