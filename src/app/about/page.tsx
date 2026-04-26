@@ -623,7 +623,7 @@ export default function AboutPage() {
                 >
                   clip.art
                 </a>
-                , a platform I built to generate children&apos;s educational material at scale, used daily by my 4-year-old daughter. That became the production pipeline: 250–1,000 clipart, coloring pages, illustrations, and worksheets a day through provider routing, quality scoring, human-in-the-loop (HITL) review, and R2 delivery.
+                , a platform I built to generate children&apos;s educational material at scale, used daily by my 4-year-old daughter. That became the production pipeline: 250–1,000 clipart, coloring pages, illustrations, worksheets, and infographics a day through provider routing, quality scoring, human-in-the-loop (HITL) review, and R2 delivery.
               </p>
               <p style={{
                 fontSize: '1rem',
