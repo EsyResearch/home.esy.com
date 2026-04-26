@@ -183,11 +183,12 @@ export default function CoursesListClient() {
             fontSize: isMobile ? '1rem' : '1.188rem',
             color: textSecondary,
             lineHeight: 1.7,
-            maxWidth: '560px',
+            maxWidth: '620px',
             margin: '0 0 2rem',
           }}>
-            Premium video courses with interactive transcripts, instructor commentary,
-            and timestamped notes. Learn from researchers, for researchers.
+            Learn to create with AI: build agents, design agentic workflows, and ship
+            at scale. Each course pairs a video walkthrough with a runnable template
+            &mdash; finish every lesson with a real artifact you can run, not just notes.
           </p>
 
           {/* Stats row */}

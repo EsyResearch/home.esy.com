@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 /* ─── Circuit Grid Animation — single subtle pulse ─── */
@@ -255,7 +256,7 @@ export default function AboutPage() {
             marginBottom: '1.75rem',
             fontWeight: 400
           }}>
-            Esy (pronounced &quot;Eh-see&quot;) runs agentic workflows that automate research, verify citations, and deliver publishable artifacts.
+            Esy (pronounced &quot;Eh-see&quot;) runs agentic workflows that automate generation, quality-score outputs, and deliver approved artifacts at scale.
           </p>
 
           <p style={{
@@ -529,6 +530,159 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* ── Built by ── */}
+      <section style={{
+        padding: '5rem 2rem',
+        backgroundColor: theme.surface,
+        borderTop: `1px solid ${theme.border}`
+      }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+
+          <p style={{
+            fontSize: '0.75rem',
+            fontWeight: 600,
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase' as const,
+            color: theme.faint,
+            marginBottom: '2.5rem'
+          }}>
+            Built by
+          </p>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'auto 1fr',
+            gap: '2.5rem',
+            alignItems: 'start'
+          }}>
+            {/* Avatar */}
+            <div
+              className="zev-about-avatar"
+              style={{
+                width: 112,
+                height: 112,
+                borderRadius: '50%',
+                overflow: 'hidden',
+                flexShrink: 0,
+                boxShadow: '0 0 0 1px rgba(10,37,64,0.08), 0 2px 12px rgba(10,37,64,0.08)'
+              }}
+            >
+              <Image
+                src="/images/zev-uhuru.png"
+                alt="Zev Uhuru"
+                width={112}
+                height={112}
+                style={{ width: 112, height: 112, objectFit: 'cover', display: 'block' }}
+              />
+            </div>
+
+            {/* Bio */}
+            <div>
+              {/* Name + role lockup */}
+              <div style={{ marginBottom: '1.5rem' }}>
+                <h3 style={{
+                  fontSize: '1.375rem',
+                  fontWeight: 600,
+                  letterSpacing: '-0.02em',
+                  color: theme.text,
+                  marginBottom: '0.3rem',
+                  fontFamily: 'var(--font-literata)'
+                }}>
+                  Zev Uhuru
+                </h3>
+                <span style={{
+                  fontSize: '0.875rem',
+                  color: theme.subtle,
+                  fontWeight: 500,
+                  letterSpacing: '0.01em'
+                }}>
+                  Agentic Engineer — New York
+                </span>
+              </div>
+
+              {/* Bio text */}
+              <p style={{
+                fontSize: '1rem',
+                lineHeight: 1.85,
+                color: theme.muted,
+                marginBottom: '0.875rem'
+              }}>
+                I built ESY to evaluate whether agentic workflows can reliably produce artifacts that pass quality gates — across models, at scale, with humans in the loop for borderline outputs.
+              </p>
+              <p style={{
+                fontSize: '1rem',
+                lineHeight: 1.85,
+                color: theme.muted,
+                marginBottom: '0.875rem'
+              }}>
+                The first real test was{' '}
+                <a
+                  href="https://clip.art"
+                  target="_blank"
+                  style={{ color: theme.accent, textDecoration: 'none', borderBottom: `1px solid ${theme.accent}` }}
+                >
+                  clip.art
+                </a>
+                , a platform I built to generate children&apos;s educational material at scale — used daily by my 4-year-old daughter. That became the production pipeline: 250–1,000 images a day through provider routing, quality scoring, HITL review, and R2 delivery.
+              </p>
+              <p style={{
+                fontSize: '1rem',
+                lineHeight: 1.85,
+                color: theme.muted,
+                marginBottom: '2rem'
+              }}>
+                That work is ongoing. The same infrastructure is available to other engineers through my{' '}
+                <Link
+                  href="/templates"
+                  style={{ color: theme.accent, textDecoration: 'none', borderBottom: `1px solid ${theme.accent}` }}
+                >
+                  templates
+                </Link>
+                {' '}and the API.
+              </p>
+
+              {/* Links */}
+              <div style={{ display: 'flex', gap: '0.625rem', flexWrap: 'wrap' as const }}>
+                {[
+                  { label: 'GitHub', href: 'https://github.com/ZevUhuru' },
+                  { label: 'YouTube', href: 'https://youtube.com/@EsyDotCom' },
+                  { label: 'Substack', href: 'https://synthesize.esy.com' },
+                  { label: 'X', href: 'https://x.com/EsyDotCom' },
+                ].map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      fontSize: '0.8125rem',
+                      fontWeight: 500,
+                      color: theme.muted,
+                      textDecoration: 'none',
+                      padding: '0.375rem 0.875rem',
+                      borderRadius: '999px',
+                      border: `1px solid ${theme.border}`,
+                      backgroundColor: theme.elevated,
+                      transition: 'border-color 0.2s ease, color 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = theme.accent;
+                      e.currentTarget.style.color = theme.accent;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = theme.border;
+                      e.currentTarget.style.color = theme.muted;
+                    }}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Contact Footer ── */}
       <section style={{
         padding: '3rem 2rem',
@@ -542,7 +696,7 @@ export default function AboutPage() {
             color: theme.dark.subtle,
             textAlign: 'center'
           }}>
-            Questions? Email us at{' '}
+            Questions? Email me at{' '}
             <a
               href="mailto:hello@esy.com"
               style={{

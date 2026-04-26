@@ -627,16 +627,6 @@ export default function Navigation({
               <span className="mnav-item__label">Research</span>
               <span className="mnav-item__desc">Building workflows & AI tools</span>
             </Link>
-
-            <Link 
-              href="/courses/" 
-              className={`mnav-item ${normalizedPathForNav.startsWith('/courses') ? 'mnav-item--active' : ''}`}
-              onClick={() => setIsMobileMenuOpen(false)}
-              style={{ animationDelay: '0.20s' }}
-            >
-              <span className="mnav-item__label">Courses</span>
-              <span className="mnav-item__desc">Interactive video lessons</span>
-            </Link>
           </nav>
 
           {/* Footer — CTA */}

@@ -596,6 +596,9 @@ body.agents-dark .agents-video-section[data-open="true"] {
   overflow: hidden;
   border: 2px solid var(--agents-border);
   background: var(--agents-elevated);
+  --zev-avatar-scale: 1.35;
+  --zev-avatar-x: 5%;
+  --zev-avatar-y: 14%;
 }
 
 .agents-author-avatar img {

@@ -751,7 +751,7 @@ Every infographic must include:
 const author = {
   name: 'Zev Uhuru',
   role: 'Agentic Engineer',
-  avatar: '/images/zev-ai.jpeg',
+  avatar: '/images/zev-uhuru.png',
 };
 
 export const courses: Course[] = [

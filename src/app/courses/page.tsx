@@ -2,11 +2,11 @@ import { Metadata } from 'next';
 import CoursesListClient from './CoursesListClient';
 
 export const metadata: Metadata = {
-  title: 'Video Courses | Esy School',
-  description: 'Master AI-powered research workflows with Esy\'s video courses. Learn Claude Code, ChatGPT for research, infographic creation, and more.',
+  title: 'Courses | Esy',
+  description: 'Learn to create with AI: build agents, design agentic workflows, and ship at scale. Each course pairs a video walkthrough with a runnable template — finish every lesson with a real artifact you can run.',
   openGraph: {
-    title: 'Video Courses | Esy School',
-    description: 'Master AI-powered research workflows with Esy\'s video courses.',
+    title: 'Courses | Esy',
+    description: 'Learn to create with AI: build agents, design agentic workflows, and ship at scale. Each course pairs a walkthrough with a runnable template.',
     type: 'website',
   },
 };

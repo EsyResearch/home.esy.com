@@ -2,6 +2,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Neuton&family=Poiret+One&family=Rokkitt:wght@100;200;300;400;500;600;700;800;900&family=Spartan:wght@100;200;300;400;500;600;700;800;900&family=Dancing+Script:wght@400;500;600;700&family=Cormorant+Garamond&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 /* src/styles/fonts.css */
 
+/*
+ * Zev headshot framing.
+ * The source PNG places the head right-of-center with a window on the left.
+ * To avoid the head touching the circular mask, we scale the image up and
+ * nudge it so the head sits inside the inscribed circle. Tune these three
+ * variables to retune every avatar in the app at once. The image must be
+ * placed inside a wrapper with `overflow: hidden` and `border-radius: 50%`.
+ */
+:root {
+  --zev-avatar-scale: 1.50;
+  --zev-avatar-x: -5%;
+  --zev-avatar-y: 7%;
+}
+
+img[src*="zev-uhuru"] {
+  transform: translate(var(--zev-avatar-x), var(--zev-avatar-y))
+             scale(var(--zev-avatar-scale));
+  transform-origin: center center;
+}
+
+.zev-byline-avatar {
+  --zev-avatar-scale: 1.35;
+  --zev-avatar-x: 6%;
+  --zev-avatar-y: 12%;
+}
+
+.zev-about-avatar {
+  --zev-avatar-scale: 1.28;
+  --zev-avatar-x: 5%;
+  --zev-avatar-y: 10%;
+}
+
 @font-face {
   font-family: 'OrigamiIncised';
   src: url('/fonts/origami_incised-webfont.woff2') format('woff2'),

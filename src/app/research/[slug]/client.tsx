@@ -447,19 +447,29 @@ export default function ResearchVideoPageClient({
                 gap: 12,
               }}
             >
-              <Image
-                src="/images/zev-ai.jpeg"
-                alt="Zev Uhuru"
-                width={36}
-                height={36}
+              <div
+                className="zev-byline-avatar"
                 style={{
-                  width: 36,
-                  height: 36,
+                  width: 40,
+                  height: 40,
                   borderRadius: "50%",
-                  objectFit: "cover",
+                  overflow: "hidden",
                   flexShrink: 0,
                 }}
-              />
+              >
+                <Image
+                  src="/images/zev-uhuru.png"
+                  alt="Zev Uhuru"
+                  width={40}
+                  height={40}
+                  style={{
+                    width: 40,
+                    height: 40,
+                    objectFit: "cover",
+                    display: "block",
+                  }}
+                />
+              </div>
               <div
                 style={{
                   display: "flex",
@@ -484,7 +494,7 @@ export default function ResearchVideoPageClient({
                     lineHeight: 1.3,
                   }}
                 >
-                  Engineer, Esy
+                  Agentic Engineer
                 </span>
               </div>
             </div>

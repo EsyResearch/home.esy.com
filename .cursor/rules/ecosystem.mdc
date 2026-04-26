@@ -1,0 +1,20 @@
+---
+description: esy.com ecosystem context — marketing site role and cross-repo references
+globs: "**/*"
+alwaysApply: true
+---
+
+# esy.com — Ecosystem Context
+
+This is the ESY marketing and content site — the public-facing brand presence.
+
+## Role
+
+Consumer-facing marketing site at esy.com. Visual essays, brand storytelling, SEO content, documentation landing pages. This is NOT the app and NOT the API.
+
+## Relationship to Other Repos
+
+- `app.esy.com` is the dashboard app (control plane)
+- `api.esy.com` is the Python API (execution plane)
+- clip.art is ESY's primary consumer product
+- ESY is engineer-first (see `docs/brand/ESY_DEFINITION.md` in this repo and `docs/strategy/sessions/2026-04-12-engineer-first-rebrand-and-homepage-redesign.md`)

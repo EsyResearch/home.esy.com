@@ -280,6 +280,7 @@ export default function Footer () {
             title="Resources"
             links={[
               { href: "/research/", text: "Research" },
+              { href: "/courses/", text: "Courses" },
               // { href: "/docs/", text: "Docs" },
             ]}
           />

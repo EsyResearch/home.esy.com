@@ -161,7 +161,7 @@ export default function GlossaryTermPage({ term }: GlossaryTermPageProps) {
               <div className={styles.authorInner}>
                 <div className={styles.authorAvatar}>
                   <Image
-                    src="/images/zev-ai.jpeg"
+                    src="/images/zev-uhuru.png"
                     alt="Zev Uhuru"
                     width={72}
                     height={72}
