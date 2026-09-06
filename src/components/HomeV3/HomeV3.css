@@ -318,3 +318,42 @@
 }
 
   
+/* ══ The Marketing Engineer shelf ══
+   Editorial, not product: quieter than the catalog grid above it, so the eye
+   passes through on the way to the ask rather than stopping to shop. */
+.hv3-tme-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 28px; list-style: none; padding: 0; margin: 36px 0 28px;
+}
+.hv3-tme-card {
+  display: flex; flex-direction: column; gap: 10px;
+  text-decoration: none; color: inherit;
+}
+.hv3-tme-thumb {
+  width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover;
+  border-radius: 10px; display: block; background: rgba(10, 37, 64, 0.06);
+  transition: opacity 0.18s ease;
+}
+.hv3-tme-card:hover .hv3-tme-thumb { opacity: 0.88; }
+.hv3-tme-meta {
+  font-size: 0.76rem; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--hv3-ink-soft);
+}
+.hv3-tme-title {
+  font-size: 1rem; line-height: 1.42; font-weight: 600; color: var(--hv3-navy);
+  transition: color 0.18s ease;
+}
+.hv3-tme-card:hover .hv3-tme-title { color: var(--hv3-jade); }
+.hv3-tme-card:focus-visible {
+  outline: 2px solid var(--hv3-jade); outline-offset: 4px; border-radius: 10px;
+}
+@media (max-width: 860px) {
+  .hv3-tme-grid { grid-template-columns: 1fr 1fr; gap: 22px; }
+  /* Three across becomes two, and the third would sit alone — hide it rather
+     than leave a ragged row. */
+  .hv3-tme-grid > li:nth-child(3) { display: none; }
+}
+@media (max-width: 560px) {
+  .hv3-tme-grid { grid-template-columns: 1fr; }
+  .hv3-tme-grid > li:nth-child(3) { display: block; }
+}

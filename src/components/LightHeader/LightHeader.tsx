@@ -1,4 +1,8 @@
+"use client";
+
 import Link from 'next/link';
+
+import Logo from '@/components/Logo';
 
 import './LightHeader.css';
 
@@ -15,11 +19,30 @@ export default function LightHeader() {
     <header className="lh">
       <div className="lh-inner">
         <Link href="/" className="lh-wordmark" aria-label="Esy home">
-          <span className="lh-wordmark-e">e</span>sy
+          {/* The real Logo, not a flat span: `animatedE` renders the brand "e"
+              as Black Ops One glyph pieces that play the synthesis motion on
+              hover (.esy-wordmark:hover in globals.css). */}
+          <Logo
+            suffix=""
+            href=""
+            wordmarkOnly
+            animatedE
+            wordmarkFont="blackops"
+            theme="light"
+            size={60}
+            priority
+          />
         </Link>
         <nav className="lh-nav" aria-label="Primary">
+          {/* Pre-launch the header carries exactly one action. Restore Sign in
+              when the studio opens.
           <Link href="https://make.esy.com/signin" className="lh-signin">Sign in</Link>
+          */}
+          {/* Pre-launch: Make isn't open, so the dominant CTA is the waitlist.
+              Restore the line below the day the studio opens.
           <Link href="https://make.esy.com" className="lh-cta">Start producing</Link>
+          */}
+          <Link href="/waitlist/?src=header" className="lh-cta">Join the waitlist</Link>
         </nav>
       </div>
     </header>

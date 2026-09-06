@@ -563,28 +563,42 @@ export default function Navigation({
             {/* The single dominant CTA — reinforces the category verb. */}
             {!isMobile && (
               <a
-                href="https://make.esy.com"
+                /* Pre-launch: points at the waitlist, not make.esy.com.
+                   Restore href="https://make.esy.com" and the "Start producing"
+                   label below when the studio opens. */
+                href="/waitlist/?src=nav"
                 className="nav-cta-start"
+                /* Back to the subtle bordered button this CTA originally wore.
+                   Weight and text colour stay a step above Sign in so the
+                   hierarchy still reads without a filled block of accent. */
                 style={{
                   padding: '9px 18px',
                   borderRadius: '8px',
                   fontSize: '14px',
                   fontWeight: 600,
-                  color: '#fafafa',
-                  background: '#00A896',
+                  color: !navOnDark ? '#374151' : 'rgba(255, 255, 255, 0.9)',
+                  background: 'transparent',
+                  border: !navOnDark ? '1px solid #e5e7eb' : '1px solid rgba(255, 255, 255, 0.15)',
                   textDecoration: 'none',
-                  boxShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
-                  transition: 'background 0.2s ease',
+                  transition: 'color 0.2s ease, border-color 0.2s ease',
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = '#00D4AA'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = '#00A896'; }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = !navOnDark ? '#0A2540' : '#ffffff';
+                  e.currentTarget.style.borderColor = !navOnDark ? '#d1d5db' : 'rgba(255, 255, 255, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = !navOnDark ? '#374151' : 'rgba(255, 255, 255, 0.9)';
+                  e.currentTarget.style.borderColor = !navOnDark ? '#e5e7eb' : 'rgba(255, 255, 255, 0.15)';
+                }}
               >
-                Start producing
+                Join the waitlist
               </a>
             )}
 
-            {/* Sign in stays visually secondary — the customer destination
-                is Make, never Workbench (docs/make/13). */}
+            {/* Pre-launch the header carries exactly one action, so Sign in is
+                parked. Restore this block when the studio opens — it stays
+                visually secondary, and the customer destination is Make,
+                never Workbench (docs/make/13).
             {!isMobile && (
               <a
                 href="https://make.esy.com/signin"
@@ -612,6 +626,7 @@ export default function Navigation({
                 Sign in
               </a>
             )}
+            */}
 
             {/* Product and Managed are parked for launch (Zev 2026-09-02) —
                 restore from git history (commit 8651e784) when those pages
@@ -730,6 +745,7 @@ export default function Navigation({
 
           {/* Footer — CTA */}
           <div className="mnav-footer" style={{ animationDelay: '0.26s' }}>
+            {/* Parked with the desktop Sign in — one action pre-launch.
             <a
               href="https://make.esy.com/signin"
               className="mnav-item"
@@ -738,12 +754,13 @@ export default function Navigation({
             >
               <span className="mnav-item__label">Sign in</span>
             </a>
+            */}
             <a
-              href="https://make.esy.com"
+              href="/waitlist/?src=mobile_nav"
               className="mnav-cta"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Start producing
+              Join the waitlist
             </a>
           </div>
         </div>

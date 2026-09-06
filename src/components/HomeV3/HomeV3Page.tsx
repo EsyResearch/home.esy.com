@@ -27,6 +27,8 @@ const cormorant = Cormorant_Garamond({
   variable: '--hv3-serif',
 });
 
+import { getAllAgenticArticles } from '@/lib/published-articles';
+
 import ProcessScrubber from './ProcessScrubber';
 import LightHeader from '@/components/LightHeader/LightHeader';
 import CountUp from './CountUp';
@@ -48,7 +50,18 @@ const CHANNELS = [
   { name: 'Instagram & Facebook', formats: 'Feed squares and stories' },
 ];
 
-export default function HomeV3Page() {
+// The Marketing Engineer shelf: newest three, by publish date. Reads the same
+// merged publication list the /engineer index does, so the homepage can never
+// drift from it.
+async function latestEngineerArticles() {
+  const all = await getAllAgenticArticles();
+  return [...all]
+    .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
+    .slice(0, 3);
+}
+
+export default async function HomeV3Page() {
+  const latest = await latestEngineerArticles();
   return (
     <div className={`hv3 ${cormorant.variable}`}>
       <LightHeader />
@@ -66,11 +79,14 @@ export default function HomeV3Page() {
             landing pages — and nothing ships until you approve it.
           </p>
           <div className="hv3-ctas hv3-enter" style={{ animationDelay: '270ms' }}>
-            <Link href="https://make.esy.com" className="hv3-btn hv3-btn--primary">
-              <span>Start producing</span>
+            <Link href="/waitlist/?src=homepage" className="hv3-btn hv3-btn--primary">
+              <span>Join the waitlist</span>
               <ArrowRight size={18} />
             </Link>
+            {/* Parked pre-launch so the hero offers one action. The line is
+                still there to scroll to; it just isn't a competing CTA.
             <a href="#the-line" className="hv3-btn hv3-btn--ghost">Watch the line run</a>
+            */}
           </div>
         </div>
         <figure className="hv3-master hv3-enter" style={{ animationDelay: '380ms' }}>
@@ -265,6 +281,69 @@ export default function HomeV3Page() {
         </div>
       </section>
 
+      {/* ══ The Marketing Engineer ══
+          Editorial, and deliberately placed below the product story and above
+          the ask so it never competes with the CTA (docs/make/13). Renders
+          nothing until three pieces exist — a one-item "latest" shelf reads as
+          abandonment, which is worse than no shelf at all. */}
+      {latest.length >= 3 && (
+        <section className="hv3-section hv3-section--alt">
+          <div className="hv3-container">
+            <span className="hv3-eyebrow">The Marketing Engineer</span>
+            <h2 className="hv3-title">How this actually gets run.</h2>
+            <p className="hv3-lede">
+              AI, automation, and data pointed at real marketing production —
+              built on our own products first, then broken down step by step.
+            </p>
+            <ul className="hv3-tme-grid">
+              {latest.map((a) => {
+                // Same thumbnail fallback the /engineer cards use: an explicit
+                // still if one was set, otherwise the first frame from Mux.
+                const thumb =
+                  a.thumbnailUrl ||
+                  (a.muxPlaybackId
+                    ? `https://image.mux.com/${a.muxPlaybackId}/thumbnail.jpg?time=0`
+                    : null);
+                // Date-only strings format in UTC so they don't render a day
+                // early behind UTC.
+                const date = a.publishedAt
+                  ? new Date(a.publishedAt).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                      timeZone: 'UTC',
+                    })
+                  : null;
+                return (
+                  <li key={a.slug}>
+                    <Link href={`/engineer/${a.slug}/`} className="hv3-tme-card">
+                      {thumb && (
+                        <img
+                          className="hv3-tme-thumb"
+                          src={thumb}
+                          alt=""
+                          loading="lazy"
+                          width={480}
+                          height={270}
+                        />
+                      )}
+                      <span className="hv3-tme-meta">
+                        {a.categoryLabel}
+                        {date && <> · {date}</>}
+                      </span>
+                      <span className="hv3-tme-title">{a.title}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+            <Link href="/engineer/" className="hv3-inline-link">
+              Explore The Marketing Engineer <ArrowRight size={15} />
+            </Link>
+          </div>
+        </section>
+      )}
+
       {/* ══ The ask — the story's world, seen whole ══
           The finale is a place, not a panel: the campus the page described,
           with the road running out toward the viewer and the closing words in
@@ -280,13 +359,16 @@ export default function HomeV3Page() {
             of it live until you approve it.
           </p>
           <div className="hv3-ctas hv3-ctas--center">
-            <Link href="https://make.esy.com" className="hv3-btn hv3-btn--primary">
-              <span>Start producing</span>
+            <Link href="/waitlist/?src=homepage" className="hv3-btn hv3-btn--primary">
+              <span>Join the waitlist</span>
               <ArrowRight size={18} />
             </Link>
+            {/* Parked with the hero's secondary CTA — the closing ask offers
+                one action pre-launch.
             <Link href="/workflows" className="hv3-btn hv3-btn--ghost">
               Browse workflow templates
             </Link>
+            */}
           </div>
           <div className="hv3-pipeline hv3-pipeline--light" aria-label="Esy operating model">
             <span>Brief</span>

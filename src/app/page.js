@@ -45,4 +45,10 @@ export const metadata = {
   },
 };
 
+// The homepage now reads published articles for The Marketing Engineer shelf.
+// Same posture as /engineer: the publish/unpublish webhook purges the
+// published-articles tags for instant updates, and this hourly revalidate is
+// only a backstop if a webhook is ever missed.
+export const revalidate = 3600;
+
 export default HomeV3Page;
