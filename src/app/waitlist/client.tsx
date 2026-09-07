@@ -64,7 +64,7 @@ export default function WaitlistClient() {
             </div>
             <h1 className="wl-title">You&apos;re on the list</h1>
             <p className="wl-lede">
-              We saved your place under <strong>{email}</strong>. Esy Make is still in production — we&apos;ll email you
+              We saved your place under <strong>{email}</strong>. Esy is still in production — we&apos;ll email you
               the moment it opens.
             </p>
             <p className="wl-fineprint">
@@ -78,7 +78,7 @@ export default function WaitlistClient() {
             <h1 className="wl-title">Put marketing production on autopilot.</h1>
             <p className="wl-lede">
               One brief in — research, angles, ad creative, copy at platform caps, and a landing page out, all sharing
-              one brand. Esy Make isn&apos;t open to everyone yet. Claim your place and we&apos;ll open your studio
+              one brand. Esy isn&apos;t open to everyone yet. Claim your place and we&apos;ll open your studio
               first.
             </p>
 
