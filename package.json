@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "next dev",
     "prebuild": "node scripts/sync-workflow-catalog.mjs || (node scripts/sync-workflow-catalog.mjs --check && echo 'Catalog sync skipped (API unreachable); using committed snapshot.')",
-    "build": "next build",
+    "build": "ESY_BUILD_PHASE=1 next build",
     "start": "next start",
     "lint": "next lint",
     "test": "node --test orchestration/runner/__tests__/validator.test.js orchestration/runner/__tests__/contracts.test.js orchestration/runner/__tests__/regression.test.js",

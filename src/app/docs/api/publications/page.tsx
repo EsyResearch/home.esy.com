@@ -103,8 +103,8 @@ export default function PublicationsApiPage() {
       <p>
         Authenticated requests are scoped to your account: you only see and manage publications you
         own. Manage tokens from{' '}
-        <a href="https://app.esy.com" rel="noopener noreferrer">
-          app.esy.com
+        <a href="https://os.esy.com" rel="noopener noreferrer">
+          os.esy.com
         </a>
         .
       </p>

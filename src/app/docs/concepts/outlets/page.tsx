@@ -4,7 +4,7 @@ import { Callout, CodeBlock, PageHeader, Table } from '@/components/docs/Primiti
 export const metadata = {
   title: 'Outlets',
   description:
-    'Channels for publishing artifacts of any kind from app.esy.com — your site mirrors publish/unpublish state via a signed webhook.',
+    'Channels for publishing artifacts of any kind from os.esy.com — your site mirrors publish/unpublish state via a signed webhook.',
 };
 
 const outletShape = `{
@@ -34,7 +34,7 @@ export default function OutletsPage() {
         lead={
           <>
             An outlet is the channel <strong>artifacts</strong> ship to — a factory outlet and a media outlet at
-            once. Artifacts of any kind, published from app.esy.com (by you, or by a worker whose job says so),
+            once. Artifacts of any kind, published from os.esy.com (by you, or by a worker whose job says so),
             with unpublishing a single flip at the platform. Outlets are their own plane: hand-authored documents
             publish through <a href="/docs/concepts/publications">Publications</a> instead — same pattern,
             separate systems.
@@ -72,7 +72,7 @@ export default function OutletsPage() {
       />
       <p>
         Nothing about this list lives in any consumer’s configuration: adding clip.art/school is one create in
-        app.esy.com, discovered by the site on its next ping. The routing ladder (below) spreads a single
+        os.esy.com, discovered by the site on its next ping. The routing ladder (below) spreads a single
         worker’s shift across all of them — kind gates and section matches decide, not per-site plumbing.
       </p>
 

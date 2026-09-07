@@ -74,6 +74,7 @@ const ConditionalNavigation = () => {
   // Light-first pages carry their own light header (the global bar is navy and
   // would sit on a white hero): the homepage, and The Marketing Engineer index.
   const isEngineerIndex = normalizedPath === '/engineer';
+  const isWaitlistPage = normalizedPath === '/waitlist';
 
   // Don't render navigation on:
   // - Essay view pages (focused reading)
@@ -83,7 +84,7 @@ const ConditionalNavigation = () => {
   // - Agents pages (own sidebar navigation)
   // - Scrollytelling story pages (own header via ScrollytellingHeader)
   // - Photo essays landing page (immersive experience with own header)
-  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isEngineerIndex) {
+  if (isEssayViewPage || isInfographicViewPage || isClipArtViewPage || isDocsPage || isAgentsPage || isScrollytellingStoryPage || isPhotoEssaysPage || isHomepage || isEngineerIndex || isWaitlistPage) {
     return null;
   }
 

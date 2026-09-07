@@ -39,8 +39,8 @@ export default function ApiKeysPage() {
             API keys let your <strong>applications</strong> call the Esy API without a browser
             session — runs, artifacts, and costs work exactly as they do for you, because a key
             acts as your account. Create and manage keys from{' '}
-            <a href="https://app.esy.com/settings" rel="noopener noreferrer">
-              app.esy.com → Settings
+            <a href="https://os.esy.com/settings" rel="noopener noreferrer">
+              os.esy.com → Settings
             </a>
             .
           </>

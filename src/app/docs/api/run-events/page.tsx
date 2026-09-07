@@ -139,7 +139,7 @@ export default function RunEventsPage() {
 
       <h2>Recommended client ladder</h2>
       <p>
-        This is the pattern app.esy.com ships — copy it rather than reinventing it. The worst case
+        This is the pattern os.esy.com ships — copy it rather than reinventing it. The worst case
         at every rung is plain polling, never a broken UI:
       </p>
       <ol>

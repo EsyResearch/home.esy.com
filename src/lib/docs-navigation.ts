@@ -183,7 +183,7 @@ export const navigation: NavSection[] = [
       {
         title: 'Outlets',
         href: '/docs/concepts/outlets',
-        description: 'Channels for publishing artifacts of any kind from app.esy.com — separate from Publications.',
+        description: 'Channels for publishing artifacts of any kind from os.esy.com — separate from Publications.',
         icon: 'globe',
       },
     ],
@@ -300,7 +300,7 @@ export const navigation: NavSection[] = [
     items: [
       {
         title: 'Open the app',
-        href: 'https://app.esy.com',
+        href: 'https://os.esy.com',
         description: 'Manage projects, runs, and costs in the Esy dashboard.',
         icon: 'app-window',
         external: true,

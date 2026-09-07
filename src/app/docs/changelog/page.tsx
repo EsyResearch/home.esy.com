@@ -64,7 +64,7 @@ const entries = [
       'Workers: durable principals that run bounded shifts on schedules, produce against a standing job, and report to your Inbox in their own voice (with stop-condition escalation).',
       'Assigned work: goals and tasks carry an assignee — yours or a worker\u2019s. Worker goals require measurable targets, progress by live catalog census, and achieve themselves; scheduled tasks are day directives workers check off with a completion note.',
       'Generation Orders documented: one template fanned into N child runs with variation, per-child dedupe keys, and a hard budget cap — two-phase (planned \u2192 start).',
-      'Outlets (new, separate from compose\u2019s Publications): channels for publishing artifacts of any kind from app.esy.com. Publish/unpublish are platform acts fired to your site as signed webhooks ({ outlet, action, artifactIds }).',
+      'Outlets (new, separate from compose\u2019s Publications): channels for publishing artifacts of any kind from os.esy.com. Publish/unpublish are platform acts fired to your site as signed webhooks ({ outlet, action, artifactIds }).',
       'New references: Workers API, Planning API (goals/tasks/messages), and the expanded Outlets API.',
     ],
   },
@@ -83,7 +83,7 @@ const entries = [
     tag: 'docs',
     title: 'Public reference layer',
     items: [
-      'Launched docs.esy.com with the Esy brand system aligned to esy.com and app.esy.com.',
+      'Launched docs.esy.com with the Esy brand system aligned to esy.com and os.esy.com.',
       'Added concept pages for Workflow templates, Runs, Artifacts, and Costs.',
       'Documented the generate-clip-art-asset workflow end-to-end with step-level telemetry.',
       'Introduced the provider cost ledger with estimated, provider-reported, and reconciled states.',

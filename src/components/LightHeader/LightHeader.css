@@ -11,6 +11,9 @@
   height: 64px; display: flex; align-items: center; justify-content: space-between;
 }
 .lh-wordmark {
+  /* Now wraps the real Logo component, which brings its own type; this just
+     keeps the mark optically centred in the 64px bar. */
+  display: inline-flex; align-items: center;
   font-family: var(--font-black-ops-one), sans-serif;
   font-weight: 400; /* the only cut — synthetic bold fills the stencil gaps */
   font-synthesis: none;
@@ -24,6 +27,8 @@
   text-decoration: none; padding: 9px 14px; border-radius: 8px;
 }
 .lh-signin:hover { color: #0A2540; }
+/* Reverted to the original subtle treatment — the solid teal fill introduced
+   in #108 shouted next to a wordmark that already carries the accent.
 .lh-cta {
   font-size: 0.94rem; font-weight: 600; color: #fff;
   background: #00A896; text-decoration: none;
@@ -31,4 +36,13 @@
   transition: background 0.15s ease;
 }
 .lh-cta:hover { background: #00D4AA; }
+*/
+.lh-cta {
+  font-size: 0.94rem; font-weight: 600; color: #41566D;
+  background: transparent; text-decoration: none;
+  padding: 9px 16px; border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.lh-cta:hover { color: #0A2540; border-color: #d1d5db; }
 
