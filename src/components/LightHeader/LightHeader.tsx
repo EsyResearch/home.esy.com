@@ -36,11 +36,11 @@ export default function LightHeader() {
         <nav className="lh-nav" aria-label="Primary">
           {/* Pre-launch the header carries exactly one action. Restore Sign in
               when the studio opens.
-          <Link href="https://make.esy.com/signin" className="lh-signin">Sign in</Link>
+          <Link href="https://app.esy.com/signin" className="lh-signin">Sign in</Link>
           */}
           {/* Pre-launch: Make isn't open, so the dominant CTA is the waitlist.
               Restore the line below the day the studio opens.
-          <Link href="https://make.esy.com" className="lh-cta">Start producing</Link>
+          <Link href="https://app.esy.com" className="lh-cta">Start producing</Link>
           */}
           <Link href="/waitlist/?src=header" className="lh-cta">Join the waitlist</Link>
         </nav>

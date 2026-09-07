@@ -44,14 +44,14 @@ export default function ArtifactDetailTemplate({
     subcategory,
   } = template;
 
-  // Deep-link into the app.esy.com workflow runner.
+  // Deep-link into the os.esy.com workflow runner.
   // The dashboard exposes each workflow at /workflows/{slug} — the SAME path
   // shape as this marketing detail page, just on a different host:
   //   esy.com/workflows/{slug}        → browse / learn
-  //   app.esy.com/workflows/{slug}    → configure & launch
+  //   os.esy.com/workflows/{slug}    → configure & launch
   // (See docs/strategy/sessions/2026-05-25-workflow-detail-page-layout-and-design.md
   //  for the full URL-contract rationale.)
-  const esyEditorUrl = `https://app.esy.com/workflows/${template.slug}`;
+  const esyEditorUrl = `https://os.esy.com/workflows/${template.slug}`;
   const exploreArtifactsHref = getExploreArtifactsHref(template);
 
   // Workflow stages come from the live catalog (slug === catalog id); fall back

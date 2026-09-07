@@ -3625,7 +3625,7 @@ Develop master argument framework:
     ],
     // Real artifacts produced by the Generate Clip Art Asset workflow,
     // served from ESY R2 via images.esy.com. Each entry mirrors a record
-    // shown in app.esy.com/artifacts; key shape follows the MVP convention:
+    // shown in os.esy.com/artifacts; key shape follows the MVP convention:
     // artifacts/{artifact_type}/{artifact_id}/processed.webp.
     sampleArtifacts: [
       {

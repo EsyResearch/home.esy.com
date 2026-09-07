@@ -419,7 +419,7 @@ export function AgentsSidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
           borderTop: `1px solid ${theme.border}`,
         }}>
           <Link
-            href="https://app.esy.com/signup"
+            href="https://os.esy.com/signup"
             target="_blank"
             rel="noopener noreferrer"
             style={{

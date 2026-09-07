@@ -447,7 +447,7 @@ export function Sidebar({ onOpenSearch }: { onOpenSearch?: () => void }) {
           }}
         >
           <a
-            href="https://app.esy.com/signup"
+            href="https://os.esy.com/signup"
             target="_blank"
             rel="noopener noreferrer"
             style={{

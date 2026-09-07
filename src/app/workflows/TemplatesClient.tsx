@@ -26,7 +26,7 @@ import {
 import SearchBar from '@/components/SearchBar/SearchBar';
 import WorkflowPipelineStrip from '@/components/templates/WorkflowPipelineStrip';
 
-const APP_URL = 'https://app.esy.com';
+const APP_URL = 'https://os.esy.com';
 
 // Navy Calm Light Theme
 const theme = {
@@ -779,7 +779,7 @@ export default function TemplatesClient() {
             Pick a workflow template and run it in Esy. Adjust as needed, or use it as-is.
           </p>
           <Link
-            href="https://app.esy.com"
+            href="https://os.esy.com"
             target="_blank"
             rel="noopener noreferrer"
             style={{

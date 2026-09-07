@@ -556,15 +556,15 @@ export default function Navigation({
                 Artifacts/Workflows/Agentic moved to the footer's discovery
                 layer; Pricing joins the header only when real pricing ships.
                 "Start producing" is the ACTION and goes to the product
-                (make.esy.com, live 2026-09-01); Product stays the explainer —
+                (app.esy.com, live 2026-09-01); Product stays the explainer —
                 software vs. the Managed service is the contrast the header
                 teaches. */}
 
             {/* The single dominant CTA — reinforces the category verb. */}
             {!isMobile && (
               <a
-                /* Pre-launch: points at the waitlist, not make.esy.com.
-                   Restore href="https://make.esy.com" and the "Start producing"
+                /* Pre-launch: points at the waitlist, not app.esy.com.
+                   Restore href="https://app.esy.com" and the "Start producing"
                    label below when the studio opens. */
                 href="/waitlist/?src=nav"
                 className="nav-cta-start"
@@ -601,7 +601,7 @@ export default function Navigation({
                 never Workbench (docs/make/13).
             {!isMobile && (
               <a
-                href="https://make.esy.com/signin"
+                href="https://app.esy.com/signin"
                 className="nav-cta-muted"
                 style={{
                   padding: '8px 16px',
@@ -747,7 +747,7 @@ export default function Navigation({
           <div className="mnav-footer" style={{ animationDelay: '0.26s' }}>
             {/* Parked with the desktop Sign in — one action pre-launch.
             <a
-              href="https://make.esy.com/signin"
+              href="https://app.esy.com/signin"
               className="mnav-item"
               onClick={() => setIsMobileMenuOpen(false)}
               style={{ justifyContent: 'center' }}

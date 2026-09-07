@@ -49,7 +49,7 @@ export default function OutletsApiPage() {
         title="Outlets API"
         lead={
           <>
-            Outlets are app.esy.com’s channels for publishing artifacts of any kind — separate from the{' '}
+            Outlets are os.esy.com’s channels for publishing artifacts of any kind — separate from the{' '}
             <a href="/docs/api/publications">Publications API</a> (compose’s documents). An outlet is
             URL-defined (<code>siteUrl</code> + <code>sectionPath</code>): clip.art/free and clip.art/flowers
             are different outlets. All routes use a bearer token (session or <code>esy_sk_</code> key).

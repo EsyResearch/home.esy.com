@@ -67,8 +67,8 @@ export default function ApiPage() {
       <p>
         Requests are authenticated with a bearer token scoped to a workspace. External API keys, scopes, and rate
         limits will be documented here once they&rsquo;re available. For now, manage workspaces and tokens from{' '}
-        <a href="https://app.esy.com" rel="noopener noreferrer">
-          app.esy.com
+        <a href="https://os.esy.com" rel="noopener noreferrer">
+          os.esy.com
         </a>
         .
       </p>
