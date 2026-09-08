@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Check } from "lucide-react";
 
 import LightHeader from "@/components/LightHeader/LightHeader";
+import { TurnstileWidget } from "@/components/Turnstile/TurnstileWidget";
 
 import "./waitlist.css";
 
@@ -23,6 +24,11 @@ export default function WaitlistClient() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
+  // Anti-bot signals: mount time proves a human took time to fill the form, and
+  // the off-screen field below is one no real person can see or tab into.
+  const mountedAt = useRef(Date.now());
+  const hpRef = useRef<HTMLInputElement>(null);
+  const turnstileToken = useRef("");
   const [intent, setIntent] = useState("full_campaigns");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -40,7 +46,12 @@ export default function WaitlistClient() {
       const res = await fetch("/api/waitlist/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, name, company, intent, source }),
+        body: JSON.stringify({
+          email, name, company, intent, source,
+          hp: hpRef.current?.value || "",
+          elapsedMs: Date.now() - mountedAt.current,
+          turnstileToken: turnstileToken.current,
+        }),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
@@ -96,6 +107,19 @@ export default function WaitlistClient() {
                   </label>
                   <input id="wl-name" className="wl-input" value={name} onChange={(e) => setName(e.target.value)} />
                 </div>
+                {/* Bot trap: off-screen, unfocusable, and named outside every
+                    autofill category so password managers leave it alone. */}
+                <input
+                  ref={hpRef}
+                  type="text"
+                  name="contact_note"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  data-1p-ignore
+                  data-lpignore="true"
+                  style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0, pointerEvents: "none" }}
+                />
                 <div className="wl-field">
                   <label className="wl-label" htmlFor="wl-company">
                     Company <span className="wl-optional">(optional)</span>
@@ -113,6 +137,10 @@ export default function WaitlistClient() {
                   ))}
                 </select>
               </div>
+
+              {/* Above the button and below the fields: the natural reading
+                  order, and it renders nothing until the widget is configured. */}
+              <TurnstileWidget onToken={(t) => { turnstileToken.current = t; }} />
 
               {error && <p className="wl-error" role="alert">{error}</p>}
 

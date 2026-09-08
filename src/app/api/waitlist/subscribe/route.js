@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
 
+import { EMAIL_REGEX, clientIp, detectBot } from '@/lib/botCheck';
+import { verifyTurnstile } from '@/lib/turnstile';
+
 /* The Make waitlist rides the existing Beehiiv publication rather than a second
    email service — one list, one set of credentials, and waitlist joiners are
    already the audience The Marketing Engineer is written for.
@@ -20,10 +23,37 @@ const INTENTS = new Set([
 
 export async function POST(request) {
   try {
-    const { email, name, company, intent, source } = await request.json();
+    const { email, name, company, intent, source, hp, elapsedMs, turnstileToken } = await request.json();
 
-    if (!email || !email.includes('@')) {
+    if (!email || !EMAIL_REGEX.test(String(email).trim())) {
       return NextResponse.json({ error: 'A valid email address is required.' }, { status: 400 });
+    }
+
+    /* Same gates as the newsletter route, and needed just as badly: the bot run
+       that filled this list submitted both forms, which is how newsletter-
+       attributed subscribers ended up carrying waitlist custom fields.
+       A rejection mimics success so the caller learns nothing. */
+    const bot = detectBot({ hp, elapsedMs, ip: clientIp(request) });
+    if (bot?.soft) {
+      console.warn('[waitlist] soft-rejected:', bot.reason, { email });
+      return NextResponse.json(
+        { error: 'Too many signups from your network just now. Please try again in a few minutes.' },
+        { status: 429 }
+      );
+    }
+    if (bot) {
+      console.warn('[waitlist] rejected as bot:', bot.reason, { email });
+      return NextResponse.json({ success: true });
+    }
+
+    // Same ordering as the newsletter route: cheap local gates, then Turnstile.
+    const turnstile = await verifyTurnstile(turnstileToken, clientIp(request));
+    if (!turnstile.ok) {
+      console.warn('[waitlist] turnstile rejected:', turnstile.reason, { email });
+      return NextResponse.json(
+        { error: 'We could not verify that you are human. Please refresh and try again.' },
+        { status: 403 }
+      );
     }
 
     // Unknown intents are recorded as "unspecified" rather than rejected — a
