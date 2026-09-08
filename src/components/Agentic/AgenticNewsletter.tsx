@@ -3,6 +3,8 @@
 import React from "react";
 import { CheckCircle2 } from "lucide-react";
 
+import { TurnstileWidget } from "@/components/Turnstile/TurnstileWidget";
+
 interface AgenticNewsletterProps {
   emailInputRef: React.RefObject<HTMLInputElement | null>;
   handleNewsletterSubmit: (e: React.FormEvent) => void;
@@ -11,6 +13,10 @@ interface AgenticNewsletterProps {
   isTablet: boolean;
   subscribeStatus?: string;
   errorMessage?: string | null;
+  // Hidden anti-bot field supplied by useNewsletterSubscribe; see the hook.
+  honeypotProps?: Record<string, unknown>;
+  // Receives the Turnstile token; omitted on surfaces without the widget.
+  setTurnstileToken?: (token: string) => void;
 }
 
 export default function AgenticNewsletter({
@@ -21,6 +27,8 @@ export default function AgenticNewsletter({
   isTablet,
   subscribeStatus = "idle",
   errorMessage = null,
+  honeypotProps,
+  setTurnstileToken,
 }: AgenticNewsletterProps) {
   const isError = subscribeStatus === "error";
   const isSuccess = subscribeStatus === "success";
@@ -218,6 +226,11 @@ export default function AgenticNewsletter({
                       alignItems: "stretch",
                     }}
                   >
+                    {/* Bot trap: off-screen, never focusable, never filled by a human. */}
+                    {honeypotProps ? <input {...honeypotProps} /> : null}
+                    {setTurnstileToken ? (
+                      <TurnstileWidget onToken={setTurnstileToken} />
+                    ) : null}
                     <input
                       type="email"
                       placeholder="Enter your email address"

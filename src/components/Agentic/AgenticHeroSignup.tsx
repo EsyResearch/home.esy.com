@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { EsyLoader } from "@/components/EsyLoader";
 import { useNewsletterSubscribe } from "@/hooks/useNewsletterSubscribe";
+import { TurnstileWidget } from "@/components/Turnstile/TurnstileWidget";
 
 // Compact newsletter capture for the dark .esy-stage hero panel on /agentic.
 // Posts to the default Beehiiv-backed endpoint (the surviving publication for
@@ -11,7 +12,7 @@ import { useNewsletterSubscribe } from "@/hooks/useNewsletterSubscribe";
 export function AgenticHeroSignup() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [buttonHover, setButtonHover] = useState(false);
-  const { subscribe, status, errorMessage, reset } = useNewsletterSubscribe();
+  const { subscribe, status, errorMessage, reset, honeypotProps, setTurnstileToken } = useNewsletterSubscribe();
 
   const isLoading = status === "loading";
 
@@ -51,6 +52,9 @@ export function AgenticHeroSignup() {
         onSubmit={handleSubmit}
         style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem" }}
       >
+        {/* Bot trap: off-screen, never focusable, never filled by a human. */}
+        <input {...honeypotProps} />
+        <TurnstileWidget onToken={setTurnstileToken} />
         <input
           ref={inputRef}
           type="email"

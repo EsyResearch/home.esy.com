@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, Play, Mail } from 'lucide-react';
 import { useNewsletterSubscribe } from '@/hooks/useNewsletterSubscribe';
+import { TurnstileWidget } from "@/components/Turnstile/TurnstileWidget";
 
 interface TransformSectionProps {
   currentTheme: {
@@ -14,7 +15,7 @@ interface TransformSectionProps {
 
 const TransformSection: React.FC<TransformSectionProps> = ({ currentTheme }) => {
   const [email, setEmail] = useState('');
-  const { subscribe, status } = useNewsletterSubscribe();
+  const { subscribe, status, honeypotProps, setTurnstileToken } = useNewsletterSubscribe();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -121,6 +122,9 @@ const TransformSection: React.FC<TransformSectionProps> = ({ currentTheme }) => 
                   top: '50%',
                   transform: 'translateY(-50%)'
                 }} />
+                {/* Bot trap: off-screen, never focusable, never filled by a human. */}
+                <input {...honeypotProps} />
+                <TurnstileWidget onToken={setTurnstileToken} />
                 <input
                   type="email"
                   placeholder="Enter your academic email"
